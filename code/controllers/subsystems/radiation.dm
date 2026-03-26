@@ -1,148 +1,186 @@
 SUBSYSTEM_DEF(radiation)
 	name = "Radiation"
-	wait = 2 SECONDS
-	flags = SS_NO_INIT
+	flags = SS_BACKGROUND | SS_NO_INIT
 
-	var/list/sources = list()			// all radiation source datums
-	var/list/sources_assoc = list()		// Sources indexed by turf for de-duplication.
-	var/list/resistance_cache = list()	// Cache of turf's radiation resistance.
+	wait = 0.5 SECONDS
 
-	var/tmp/list/current_sources   = list()
-	var/tmp/list/current_res_cache = list()
-	var/tmp/list/listeners         = list()
+	/// A list of radiation sources (/datum/radiation_pulse_information) that have yet to process.
+	/// Do not interact with this directly, use `radiation_pulse` instead.
+	var/list/datum/radiation_pulse_information/processing = list()
 
-/datum/controller/subsystem/radiation/fire(resumed = FALSE)
-	if (!resumed)
-		current_sources = sources.Copy()
-		current_res_cache = resistance_cache.Copy()
-		listeners = GLOB.living_mob_list.Copy()
+/datum/controller/subsystem/radiation/fire(resumed)
+	while (processing.len)
+		var/datum/radiation_pulse_information/pulse_information = processing[1]
 
-	while(length(current_sources))
-		var/datum/radiation_source/S = current_sources[length(current_sources)]
-		current_sources.len--
+		var/datum/weakref/source_ref = pulse_information.source_ref
+		var/atom/source = source_ref.resolve()
+		if (isnull(source))
+			processing.Cut(1, 2)
+			continue
 
-		if(QDELETED(S))
-			sources -= S
-		else if(S.decay)
-			S.update_rad_power(S.rad_power - CONFIG_GET(number/radiation_decay_rate))
+		pulse(source, pulse_information)
+
 		if (MC_TICK_CHECK)
 			return
 
-	while(length(current_res_cache))
-		var/turf/T = current_res_cache[length(current_res_cache)]
-		current_res_cache.len--
-
-		if(QDELETED(T))
-			resistance_cache -= T
-		else if((length(T.contents) + 1) != resistance_cache[T])
-			resistance_cache -= T // If its stale REMOVE it! It will get added if its needed.
-		if (MC_TICK_CHECK)
-			return
-
-	if(!length(sources))
-		listeners.Cut()
-
-	while(length(listeners))
-		var/atom/A = listeners[length(listeners)]
-		listeners.len--
-
-		if(!QDELETED(A))
-			var/turf/T = get_turf(A)
-			var/rads = get_rads_at_turf(T)
-			if(rads)
-				A.rad_act(rads)
-		if (MC_TICK_CHECK)
-			return
+		processing.Cut(1, 2)
 
 /datum/controller/subsystem/radiation/stat_entry(msg)
-	msg = "S:[length(sources)], RC:[length(resistance_cache)]"
+	msg = "Pulses:[processing.len]"
 	return ..()
 
-// Ray trace from all active radiation sources to T and return the strongest effect.
-/datum/controller/subsystem/radiation/proc/get_rads_at_turf(var/turf/T)
-	. = 0
-	if(!istype(T))
-		return
+/datum/controller/subsystem/radiation/proc/pulse(atom/source, datum/radiation_pulse_information/pulse_information)
+	var/list/cached_rad_insulations = list()
+	var/list/cached_turfs_to_process = pulse_information.turfs_to_process
+	var/turfs_iterated = 0
+	var/pulse_strength = pulse_information.strength
+	for (var/turf/turf_to_irradiate as anything in cached_turfs_to_process)
+		turfs_iterated += 1
 
-	for(var/datum/radiation_source/source as anything in sources)
-		if(source.rad_power < .)
-			continue // Already being affected by a stronger source
+		for(var/obj/machinery/power/rad_collector in turf_to_irradiate)
+			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
+			continue
 
-		if(source.source_turf.z != T.z)
-			continue // Radiation is not multi-z
+		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
+			var/current_insulation = 1
+			for(var/turf/turf_in_between in get_line(source, geiger_counter) - get_turf(source))
+				var/insulation = cached_rad_insulations[turf_in_between]
+				if(isnull(insulation))
+					insulation = turf_in_between.rad_insulation
+					for (var/atom/on_turf as anything in turf_in_between.contents)
+						insulation *= on_turf.rad_insulation
+					cached_rad_insulations[turf_in_between] = insulation
 
-		if(source.respect_maint)
-			var/area/A = T.loc
-			if(A.flag_check(RAD_SHIELDED))
-				continue // In shielded area
+				current_insulation *= insulation
 
-		var/dist = get_dist(source.source_turf, T)
-		if(dist > source.range)
-			continue // Too far to possibly affect
+				if(current_insulation <= pulse_information.threshold)
+					continue
 
-		if(source.flat)
-			. += source.rad_power
-			continue // No need to ray trace for flat field
+			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
-		// Okay, now ray trace to find resistence!
-		var/turf/origin = source.source_turf
-		var/working = source.rad_power
-		while(origin != T)
-			origin = get_step_towards(origin, T) //Raytracing
-			if(!resistance_cache[origin]) //Only get the resistance if we don't already know it.
-				origin.calc_rad_resistance()
 
-			if(origin.cached_rad_resistance)
-				if(CONFIG_GET(flag/radiation_resistance_calc_mode) == RAD_RESIST_CALC_DIV)
-					working = round((working / (origin.cached_rad_resistance * CONFIG_GET(number/radiation_resistance_multiplier))), 0.01)
-				else if(CONFIG_GET(flag/radiation_resistance_calc_mode) == RAD_RESIST_CALC_SUB)
-					working = round((working - (origin.cached_rad_resistance * CONFIG_GET(number/radiation_resistance_multiplier))), 0.01)
+		for(var/mob/living/target in turf_to_irradiate)
+			if(!can_irradiate_basic(target))
+				continue
 
-			if(working <= CONFIG_GET(number/radiation_lower_limit)) // Too far from this source
-				working = 0 // May as well be 0
+			var/current_insulation = 1
+			for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+				var/insulation = cached_rad_insulations[turf_in_between]
+				if (isnull(insulation))
+					insulation = turf_in_between.rad_insulation
+					for (var/atom/on_turf as anything in turf_in_between.contents)
+						insulation *= on_turf.rad_insulation
+					cached_rad_insulations[turf_in_between] = insulation
+
+				current_insulation *= insulation
+
+				if (current_insulation <= pulse_information.threshold)
+					break
+
+			SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
+
+			// Check a second time, because of TRAIT_BYPASS_EARLY_IRRADIATED_CHECK
+			if (HAS_TRAIT(target, TRAIT_IRRADIATED))
+				continue
+
+			if (current_insulation <= pulse_information.threshold)
+				continue
+
+			/// Perceived chance of target getting irradiated.
+			var/perceived_chance
+			/// Intensity variable which will describe the radiation pulse.
+			/// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
+			/// Intensity is calculated so that the chance of getting irradiated at half of the max range is the same as the chance parameter.
+			var/intensity
+			/// Diminishes over range. Used by perceived chance, which is the actual chance to get irradiated.
+			var/perceived_intensity
+
+			if(pulse_information.chance < 100) // Prevents log(0) runtime if chance is 100%
+				intensity = -log(1 - pulse_information.chance / 100) * (1 + pulse_information.max_range / 2) ** 2
+				perceived_intensity = intensity * INVERSE((1 + get_dist_euclidean(source, target)) ** 2) // Diminishes over range.
+				perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
+				perceived_chance = 100 * (1 - NUM_E ** -perceived_intensity)
+				pulse_strength = pulse_strength * (1 - NUM_E ** -perceived_intensity)
+			else
+				perceived_chance = 100
+
+			var/irradiation_result = SEND_SIGNAL(target, COMSIG_IN_THRESHOLD_OF_IRRADIATION, pulse_information)
+			if (irradiation_result & CANCEL_IRRADIATION)
+				continue
+
+			if (pulse_information.minimum_exposure_time && !(irradiation_result & SKIP_MINIMUM_EXPOSURE_TIME_CHECK))
+				target.AddComponent(/datum/component/radiation_countdown, pulse_information.minimum_exposure_time)
+				continue
+
+			if (!prob(perceived_chance))
+				continue
+
+			if (irradiate_after_basic_checks(target, pulse_strength))
+				target.investigate_log("was irradiated by [source].", INVESTIGATE_RADIATION)
+
+		if(MC_TICK_CHECK)
+			break
+
+	cached_turfs_to_process.Cut(1, turfs_iterated + 1)
+
+/// Will attempt to irradiate the given target, limited through IC means, such as radiation protected clothing.
+/datum/controller/subsystem/radiation/proc/irradiate(atom/target, strength)
+	if (!can_irradiate_basic(target))
+		return FALSE
+
+	irradiate_after_basic_checks(target, strength)
+	return TRUE
+
+/datum/controller/subsystem/radiation/proc/irradiate_after_basic_checks(mob/living/target, strength)
+	PRIVATE_PROC(TRUE)
+
+	if(!ishuman(target))
+		if(ismob(target))
+			target.radiation += strength
+			return TRUE
+		return FALSE
+
+	/// 0 = full protection, 1 = no protection.
+	var/rad_vulnerability = 1 - wearing_rad_protected_clothing(target)
+	if(rad_vulnerability <= 0)
+		return FALSE
+	target.radiation += round(strength * rad_vulnerability, 0.1)
+
+//	target.AddComponent(/datum/component/irradiated)
+	return TRUE
+
+/// Returns whether or not the target can be irradiated by any means.
+/// Does not check for clothing.
+/datum/controller/subsystem/radiation/proc/can_irradiate_basic(atom/target)
+	if (!CAN_IRRADIATE(target))
+		return FALSE
+
+	if (HAS_TRAIT(target, TRAIT_IRRADIATED) && !HAS_TRAIT(target, TRAIT_BYPASS_EARLY_IRRADIATED_CHECK))
+		return FALSE
+
+	if (HAS_TRAIT(target, TRAIT_RADIMMUNE))
+		return FALSE
+
+	return TRUE
+
+/// Retruns a value from 1 (full protection) to 0 (no protection)
+/// If we have 4 limbs and 3 are protected, we would expect to have 0.75 returned.
+/datum/controller/subsystem/radiation/proc/wearing_rad_protected_clothing(mob/living/carbon/human/human)
+	///Check how many limbs we have.
+	var/limb_count = 0
+	///Check how many of our limbs are protected.
+	var/protected_limbs = 0
+	for(var/obj/item/organ/external/limb as anything in human.organs)
+		limb_count++
+
+		for(var/obj/item/clothing as anything in human.get_clothing_on_part(limb))
+			if(HAS_TRAIT(clothing, TRAIT_RADIATION_PROTECTED_CLOTHING)) //If our clothing
+				protected_limbs++
 				break
 
-		// Accumulate radiation from all sources in range, not just the biggest.
-		// Shouldn't really ever have practical uses, but standing in a room literally made from uranium is more dangerous than standing next to a single uranium vase
-		. += working / (dist ** 2)
+			var/rad_resistance = clothing.armor["rad"]
+			if(prob(rad_resistance))
+				protected_limbs++
+				break
 
-	if(. <= CONFIG_GET(number/radiation_lower_limit))
-		. = 0
-
-// Add a radiation source instance to the repository.  It will override any existing source on the same turf.
-/datum/controller/subsystem/radiation/proc/add_source(var/datum/radiation_source/S)
-	if(!isturf(S.source_turf))
-		return
-	var/datum/radiation_source/existing = sources_assoc[S.source_turf]
-	if(existing)
-		qdel(existing)
-	sources += S
-	sources_assoc[S.source_turf] = S
-
-// Creates a temporary radiation source that will decay
-/datum/controller/subsystem/radiation/proc/radiate(source, power) //Sends out a radiation pulse, taking walls into account
-	if(!(source && power)) //Sanity checking
-		return
-	var/datum/radiation_source/S = new()
-	S.source_turf = get_turf(source)
-	S.update_rad_power(power)
-	add_source(S)
-
-// Sets the radiation in a range to a constant value.
-/datum/controller/subsystem/radiation/proc/flat_radiate(source, power, range, var/respect_maint = TRUE)	//VOREStation edit; Respect shielded areas by default please.
-	if(!(source && power && range))
-		return
-	var/datum/radiation_source/S = new()
-	S.flat = TRUE
-	S.range = range
-	S.respect_maint = respect_maint
-	S.source_turf = get_turf(source)
-	S.update_rad_power(power)
-	add_source(S)
-
-// Irradiates a full Z-level. Hacky way of doing it, but not too expensive.
-/datum/controller/subsystem/radiation/proc/z_radiate(var/atom/source, power, var/respect_maint = TRUE)	//VOREStation edit; Respect shielded areas by default please.
-	if(!(power && source))
-		return
-	var/turf/epicentre = locate(round(world.maxx / 2), round(world.maxy / 2), source.z)
-	flat_radiate(epicentre, power, world.maxx, respect_maint)
+	return (protected_limbs/limb_count)

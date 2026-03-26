@@ -28,11 +28,13 @@
 
 	var/hudmode = null
 	fire_stack_decay_rate = -0.55
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
 	GLOB.silicon_mob_list += src
 	if(!is_decoy)
+		init_id(idcard_type)
 		add_language(LANGUAGE_GALCOM)
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 		init_subsystems()

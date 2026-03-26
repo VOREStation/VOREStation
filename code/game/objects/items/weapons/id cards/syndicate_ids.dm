@@ -15,7 +15,7 @@
 
 /obj/item/card/id/syndicate/station_access/Initialize(mapload)
 	. = ..() // Same as the normal Syndicate id, only already has all station access
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 /obj/item/card/id/syndicate/Destroy()
 	QDEL_NULL(agentcard_module)

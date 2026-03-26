@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds Slip Prone - A new neutral trait that allows accidentally stumbling into nearby people to either eat/be eaten by them prefs-dependant."

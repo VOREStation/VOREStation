@@ -19,3 +19,20 @@
 #define TOOL_KNIFE "knife"
 #define TOOL_BLOODFILTER "bloodfilter"
 #define TOOL_ROLLINGPIN "rollingpin"
+
+/**
+ * A helper for checking if an item interaction should be skipped.
+ * This is only used explicitly because some interactions may not want to ever be skipped.
+ */
+#define SHOULD_SKIP_INTERACTION(target, item, user) (HAS_TRAIT(target, TRAIT_COMBAT_MODE_SKIP_INTERACTION) && (user.a_intent == I_HURT))
+
+/// Return when an item interaction is successful.
+/// This cancels the rest of the chain entirely and indicates success.
+#define ITEM_INTERACT_SUCCESS (1<<0) // Same as TRUE, as most tool (legacy) tool acts return TRUE on success
+/// Return to prevent the rest of the attack chain from being executed / preventing the item user from thwacking the target.
+/// Similar to [ITEM_INTERACT_SUCCESS], but does not necessarily indicate success.
+#define ITEM_INTERACT_BLOCKING (1<<1)
+	/// Only for people who get confused by the naming scheme
+	#define ITEM_INTERACT_FAILURE ITEM_INTERACT_BLOCKING
+/// Return to skip the rest of the interaction chain, going straight to attack.
+#define ITEM_INTERACT_SKIP_TO_ATTACK (1<<2)

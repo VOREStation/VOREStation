@@ -319,3 +319,38 @@
   - qol: techweb and lathe menus now use scaled icons for larger images instead of
       huge buttons
   - bugfix: injector maker no longer uses an AFRG board during construction
+2026-03-22:
+  Kashargul:
+  - code_imp: migrate more admin verbs
+  - bugfix: single item mat cost tooltip
+  Nova:
+  - refactor: Refactored species, organ_data, and rlimb_data
+2026-03-23:
+  Diana:
+  - bugfix: SM now gives radiation off while idle/unpowered
+  - rscadd: Screwdriver (The Drink) stops radiation effects while it is in your system.
+  - rscadd: Uranium walls, doors, and coins now emit slight amounts of radiation.
+  - qol: Radiation protective items now have a tag upon examine that informs of their
+      radiation protective status.
+  - refactor: Massively improves radiation performance by moving to pulses instead
+      of 1000s of deleted radiation_sources a second.
+  - code_imp: Radiation reworked. Please report on Discord or Github if power generation
+      feels too low from radioactive (SM) sources.
+  Will:
+  - bugfix: Adds missing cable coils in autolathe.
+  - bugfix: Autolathe efficiency and speed upgrades corrected to virgo expected numbers
+2026-03-24:
+  Will:
+  - rscadd: Lightpainter is available in the lathes
+  - code_imp: Circuitboard unit test
+  - bugfix: multiple cryopod types have correct default circuitboard
+  - bugfix: security alert console has the correct default circuitboard
+  - bugfix: refinery filter has the correct default circuitboard
+  - bugfix: pump relay has the correct default circuitboard
+  - balance: chem sprayer does not require protolathe hacking to print
+2026-03-25:
+  ARGUS-Memory:
+  - rscadd: NtOS ByteCrawl, An IDLE Hacking Game
+  Will:
+  - rscadd: Most ammoboxes to the autolathe
+  - rscadd: techweb disks can be used to expand autolathe designs
