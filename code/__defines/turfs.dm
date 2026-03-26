@@ -9,6 +9,7 @@
 #define TURF_IS_FRAGILE         256
 #define TURF_ACID_IMMUNE        512
 #define TURF_UNSHIELDABLE       1024
+#define TURF_CAN_DIG_SHOVEL		2048
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 //Used for floor/wall smoothing

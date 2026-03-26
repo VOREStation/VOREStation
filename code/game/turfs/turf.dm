@@ -528,7 +528,3 @@
 			expanding_turfs += next_turf
 
 	return expanding_turfs
-
-/// Used by shovel_dig element to discern the loot being dug up. Returns the type path of loot to spawn or null if nothing.
-/turf/proc/get_dig_loot_type(mob/user, obj/item/W)
-	return null

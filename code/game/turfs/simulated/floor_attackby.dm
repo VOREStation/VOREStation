@@ -3,8 +3,9 @@
 	if(!C || !user)
 		return 0
 
-	// Call parent for signal
-	if(..())
+	// Check if this turf can be dug up, check initial because we removethe flag when we've exhausted all loot, but still want to keep dig functionality
+	if((initial(flags) & TURF_CAN_DIG_SHOVEL) && istype(C, /obj/item/shovel))
+		handle_turf_dig(user, C)
 		return
 
 	if(isliving(user) && istype(C, /obj/item))

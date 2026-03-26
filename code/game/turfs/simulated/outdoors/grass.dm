@@ -3,6 +3,7 @@
 	icon_state = "grass0"
 	edge_blending_priority = 4
 	initial_flooring = /datum/decl/flooring/grass/outdoors // VOREStation Edit
+	flags = TURF_CAN_DIG_SHOVEL
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
 		/turf/simulated/floor/outdoors/dirt
@@ -63,7 +64,6 @@
 	if(grass_chance && prob(grass_chance) && !check_density())
 		var/grass_type = pickweight(grass_types)
 		new grass_type(src)
-	AddElement(/datum/element/shovel_dig)
 /*
 	if(animal_chance && prob(animal_chance) && !check_density())
 		var/animal_type = pickweight(animal_types)

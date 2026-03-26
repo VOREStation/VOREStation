@@ -80,11 +80,8 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 	name = "mud"
 	icon_state = "mud_dark"
 	edge_blending_priority = 3
+	flags = TURF_CAN_DIG_SHOVEL
 	initial_flooring = /datum/decl/flooring/mud
-
-/turf/simulated/floor/outdoors/mud/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/shovel_dig)
 
 /turf/simulated/floor/outdoors/rocks
 	name = "rocks"
