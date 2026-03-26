@@ -252,9 +252,9 @@ GLOBAL_PROTECT(protected_ranks)
 		dbfail = TRUE
 	//clear the datums references
 	GLOB.admin_datums.Cut()
-	for(var/client/C in GLOB.admins)
-		C.remove_admin_verbs()
-		C.holder = null
+	for(var/client/current_client in GLOB.admins)
+		SSadmin_verbs.deassosciate_admin(current_client)
+		current_client.holder = null
 	GLOB.admins.Cut()
 	GLOB.protected_admins.Cut()
 	GLOB.deadmins.Cut()

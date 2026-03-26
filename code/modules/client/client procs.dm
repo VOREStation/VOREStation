@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
 	if(holder)
-		add_admin_verbs()
+		SSadmin_verbs.deassosciate_admin(src)
 		admin_memo_show()
 
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
@@ -609,14 +609,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 /mob/proc/MayRespawn()
-	return 0
+	return FALSE
 
 /client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
-	return 0
+	return FALSE
 
 /client/verb/character_setup()
 	set name = "Character Setup"

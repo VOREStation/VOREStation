@@ -858,18 +858,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	plane_holder.set_vis(VIS_LIGHTING, lighting_alpha)
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
-/mob/observer/dead/MayRespawn(var/feedback = 0)
+/mob/observer/dead/MayRespawn(var/feedback = FALSE)
 	if(!client)
-		return 0
+		return FALSE
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
 			to_chat(src, span_warning("Your non-dead body prevents you from respawning."))
-		return 0
+		return FALSE
 	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD == 1)
 		if(feedback)
 			to_chat(src, span_warning("antagHUD restrictions prevent you from respawning."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /atom/proc/extra_ghost_link()
 	return

@@ -1,14 +1,10 @@
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
-	set name = "Modify Robot"
-	set desc = "Allows to add or remove modules to/from robots."
-	set category = "Admin.Silicon"
-	if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT|R_EVENT))
+ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modify Robot", "Allows to add or remove modules to/from robots.", ADMIN_CATEGORY_SILICON, mob/living/silicon/robot/target in GLOB.silicon_mob_list)
+	if(!target)
 		return
-
 	var/datum/eventkit/modify_robot/modify_robot = new()
-	modify_robot.target = isrobot(target) ? target : null
+	modify_robot.target = target
 	modify_robot.selected_ai = target.is_slaved()
-	modify_robot.tgui_interact(src.mob)
+	modify_robot.tgui_interact(user.mob)
 
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
