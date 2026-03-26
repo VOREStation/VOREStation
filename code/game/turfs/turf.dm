@@ -161,7 +161,12 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
-/turf/attackby(obj/item/W as obj, mob/user as mob)
+/turf/attackby(obj/item/W, mob/user)
+	// Check if this turf can be dug up, check initial because we remove the flag when we've exhausted all loot, but still want to keep dig functionality
+	if((initial(flags) & TURF_CAN_DIG_SHOVEL) && !density && istype(W, /obj/item/shovel))
+		handle_turf_dig(user, W)
+		return TRUE
+	// Collect objects on turf if the bag supports scooping stuff up
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup && S.collection_mode)
