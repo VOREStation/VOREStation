@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Treat Organ surgery's detection logic now includes infected organs"
