@@ -370,7 +370,6 @@
 	icon_state = "fur0"
 	edge_blending_priority = 4
 	initial_flooring = /datum/decl/flooring/fur
-	can_dig = FALSE
 	var/tree_chance = 25
 	var/tree_color = null
 	var/tree_type = /obj/structure/flora/tree/fur
@@ -430,6 +429,7 @@
 			tree.color = tree_color
 		else
 			tree.color = color
+	AddElement(/datum/element/shovel_dig)
 
 /turf/simulated/floor/outdoors/fur/woof/wall
 	name = "dense fur"

@@ -5,4 +5,7 @@
 	edge_blending_priority = 2
 	turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 	initial_flooring = /datum/decl/flooring/dirt
-	can_dig = TRUE
+
+/turf/simulated/floor/outdoors/dirt/Initialize(mapload, floortype)
+	. = ..()
+	AddElement(/datum/element/shovel_dig)

@@ -864,6 +864,7 @@
 #include "code\datums\elements\radiation_protected_clothing.dm"
 #include "code\datums\elements\rotatable.dm"
 #include "code\datums\elements\sellable.dm"
+#include "code\datums\elements\shovel_dig.dm"
 #include "code\datums\elements\slosh.dm"
 #include "code\datums\elements\topturfcrossed.dm"
 #include "code\datums\elements\turf_transparency.dm"
