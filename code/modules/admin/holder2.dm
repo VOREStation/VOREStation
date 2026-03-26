@@ -116,7 +116,7 @@ GLOBAL_PROTECT(href_token)
 
 	owner = client
 	owner.holder = src
-	SSadmin_verbs.assosciate_admin(owner)
+	owner.add_admin_verbs()
 	remove_verb(owner, /client/proc/readmin)
 	owner.init_verbs() //re-initialize the verb list
 	//owner.update_special_keybinds()
@@ -130,7 +130,7 @@ GLOBAL_PROTECT(href_token)
 		return
 	if(owner)
 		GLOB.admins -= owner
-		SSadmin_verbs.deassosciate_admin(owner)
+		owner.remove_admin_verbs()
 		// owner.init_verbs() //re-initialize the verb list
 		owner.holder = null
 		owner = null

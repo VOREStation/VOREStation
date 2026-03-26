@@ -1,3 +1,11 @@
+/client/proc/add_admin_verbs()
+	// NEW ADMIN VERBS SYSTEM
+	SSadmin_verbs.assosciate_admin(src)
+
+/client/proc/remove_admin_verbs()
+	// NEW ADMIN VERBS SYSTEM
+	SSadmin_verbs.deassosciate_admin(src)
+
 ADMIN_VERB(hide_verbs, R_HOLDER, "Adminverbs - Hide All", "Hide all admin verbs.", ADMIN_CATEGORY_MISC)
 	SSadmin_verbs.deassosciate_admin(user)
 	add_verb(user, /client/proc/show_verbs)
@@ -14,7 +22,7 @@ ADMIN_VERB(hide_verbs, R_HOLDER, "Adminverbs - Hide All", "Hide all admin verbs.
 		return
 
 	remove_verb(src, /client/proc/show_verbs)
-	SSadmin_verbs.assosciate_admin(src)
+	add_admin_verbs()
 
 	to_chat(src, span_filter_adminlog(span_interface("All of your adminverbs are now visible.")))
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

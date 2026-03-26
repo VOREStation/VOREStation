@@ -253,7 +253,7 @@ GLOBAL_PROTECT(protected_ranks)
 	//clear the datums references
 	GLOB.admin_datums.Cut()
 	for(var/client/current_client in GLOB.admins)
-		SSadmin_verbs.deassosciate_admin(current_client)
+		current_client.remove_admin_verbs()
 		current_client.holder = null
 	GLOB.admins.Cut()
 	GLOB.protected_admins.Cut()
