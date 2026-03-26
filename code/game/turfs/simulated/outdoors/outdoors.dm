@@ -83,8 +83,8 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 	name = "mud"
 	icon_state = "mud_dark"
 	edge_blending_priority = 3
-	flags = TURF_CAN_DIG_SHOVEL
 	initial_flooring = /datum/decl/flooring/mud
+	flags = TURF_CAN_DIG_SHOVEL
 
 /turf/simulated/floor/outdoors/rocks
 	name = "rocks"
@@ -92,6 +92,7 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 	icon_state = "rock"
 	edge_blending_priority = 1
 	initial_flooring = /datum/decl/flooring/rock
+	flags = TURF_CAN_DIG_SHOVEL
 
 /turf/simulated/floor/outdoors/rocks/caves
 	outdoors = OUTDOORS_NO
