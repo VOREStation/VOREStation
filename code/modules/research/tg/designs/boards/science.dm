@@ -218,7 +218,7 @@
 
 /datum/design_techweb/board/botany_seedextractor
 	SET_CIRCUIT_DESIGN_NAMEDESC("seed extractor")
-	id = "seedextractor"
+	id = "seed_extractor"
 	build_path = /obj/item/circuitboard/botany_seedextractor
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BOTANY
