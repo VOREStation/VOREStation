@@ -3,18 +3,7 @@
 
 	// Grave digging
 	if(our_shovel.grave_mode)
-		if(length(contents))
-			to_chat(user, span_warning("You can't dig here!"))
-			return
-
-		// Make a grave
-		to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [our_shovel]."))
-		var/delay = (5 SECONDS * our_shovel.toolspeed)
-		user.setClickCooldown(delay)
-		if(do_after(user, delay, target = src))
-			if(!(locate(/obj/structure/closet/grave/dirthole) in contents))
-				new /obj/structure/closet/grave/dirthole(src)
-			to_chat(user, span_notice("You dug up a hole!"))
+		shovel_dig_grave(user, our_shovel)
 		return
 
 	// Loot and garden digging
@@ -39,6 +28,19 @@
 		// Effectively the current flag is used to check if we have exhausted the loot in the turf or not
 		if(prob(80))
 			flags ^= TURF_CAN_DIG_SHOVEL
+
+/turf/proc/shovel_dig_grave(mob/user, obj/item/shovel/our_shovel)
+	if(length(contents))
+		to_chat(user, span_warning("You can't dig here!"))
+		return
+	// Make a grave
+	to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [our_shovel]."))
+	var/delay = (5 SECONDS * our_shovel.toolspeed)
+	user.setClickCooldown(delay)
+	if(do_after(user, delay, target = src))
+		if(!(locate(/obj/structure/closet/grave/dirthole) in contents))
+			new /obj/structure/closet/grave/dirthole(src)
+		to_chat(user, span_notice("You dug up a hole!"))
 
 /turf/proc/get_dig_loot_type(mob/user, obj/item/W)
 	return null
