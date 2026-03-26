@@ -94,6 +94,9 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 	initial_flooring = /datum/decl/flooring/rock
 	flags = TURF_CAN_DIG_SHOVEL
 
+/turf/simulated/floor/outdoors/rocks/shovel_can_cultivate()
+	return FALSE // Nope, no growing stuff on rocks
+
 /turf/simulated/floor/outdoors/rocks/caves
 	outdoors = OUTDOORS_NO
 
