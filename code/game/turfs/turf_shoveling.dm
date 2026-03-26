@@ -11,7 +11,7 @@
 	var/delay = (3 SECONDS * our_shovel.toolspeed)
 	user.setClickCooldown(delay)
 	if(do_after(user, delay, target = src))
-		if(!(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
+		if(shovel_can_cultivate() && !(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
 			var/obj/machinery/portable_atmospherics/hydroponics/soil/soil = new(src)
 			user.visible_message(span_notice("\The [src] digs \a [soil] into \the [src]."))
 			return
@@ -42,5 +42,10 @@
 			new /obj/structure/closet/grave/dirthole(src)
 		to_chat(user, span_notice("You dug up a hole!"))
 
+/// If a turf has any loot when dug with a shovel
 /turf/proc/get_dig_loot_type(mob/user, obj/item/W)
 	return null
+
+/// If a turf supports making growbeds
+/turf/proc/shovel_can_cultivate()
+	return FALSE

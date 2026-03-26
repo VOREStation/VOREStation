@@ -36,6 +36,9 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 		1;/obj/item/material/knife/machete/hatchet/stone  \
 	)
 
+/turf/simulated/floor/outdoors/shovel_can_cultivate()
+	return TRUE
+
 // Turfs can decide if they should be indoors or outdoors.
 // By default they choose based on their area's setting.
 // This helps cut down on ten billion `/outdoors` subtypes being needed.
