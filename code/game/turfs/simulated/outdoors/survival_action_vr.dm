@@ -26,39 +26,23 @@ GLOBAL_LIST_INIT(has_rocks, list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9"))
 		if(do_after(user, 5 SECONDS, target = src))
 			new /obj/machinery/portable_atmospherics/hydroponics/soil(src)
 
-/turf/simulated/floor/outdoors
-	var/rock_chance = 0
+/turf/simulated/floor/outdoors/newdirt/get_dig_loot_type(mob/user, obj/item/W)
+	if(prob(5))
+		return /obj/item/stack/material/flint
+	return null
 
-/turf/simulated/floor/outdoors/proc/rock_gathering(var/mob/user as mob)
-	if(locate(/obj) in src)
-		to_chat(user, span_notice("The [name] isn't clear."))
-		return
-	user.visible_message("[user] starts digging around in \the [src]...", "You start digging around in \the [src]...")
-	if(do_after(user, 5 SECONDS, target = src))
-		if(prob(rock_chance))
-			var/obj/item/stack/material/flint/R = new(get_turf(src), rand(1,4))
-			to_chat(user, span_notice("You found some [R]"))
-			R.pixel_x = rand(-6,6)
-			R.pixel_y = rand(-6,6)
-		else
-			to_chat(user, span_notice("You didn't find anything..."))
-	else
-		return
+/turf/simulated/floor/outdoors/dirt/get_dig_loot_type(mob/user, obj/item/W)
+	if(prob(10))
+		return /obj/item/stack/material/flint
+	return null
 
-/turf/simulated/floor/outdoors/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/shovel) && rock_chance)
-		rock_gathering(user)
-	else
-		return ..()
+/turf/simulated/floor/outdoors/rocks/get_dig_loot_type(mob/user, obj/item/W)
+	return /obj/item/stack/material/flint
 
-/turf/simulated/floor/outdoors/newdirt
-	rock_chance = 5
-/turf/simulated/floor/outdoors/dirt
-	rock_chance = 10
-/turf/simulated/floor/outdoors/rocks
-	rock_chance = 100
-/turf/simulated/floor/outdoors/ironsand
-	rock_chance = 50
+/turf/simulated/floor/outdoors/ironsand/get_dig_loot_type(mob/user, obj/item/W)
+	if(prob(50))
+		return pick(/obj/item/stack/material/flint, /obj/item/ore/iron)
+	return null
 
 /turf/simulated/floor/outdoors/newdirt/examine(var/mob/user)
 	. = ..()

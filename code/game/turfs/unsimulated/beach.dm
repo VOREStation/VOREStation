@@ -33,8 +33,18 @@
 	flags = TURF_CAN_DIG_SHOVEL // Can dig but can't cultivate
 
 /turf/simulated/floor/beach/sand/get_dig_loot_type(mob/user, obj/item/W)
-	if(prob(1))
-		return pick(/obj/item/coin/silver, /obj/item/coin/gold, /obj/item/coin/copper, /obj/item/coin/steel, /obj/item/coin/titanium)
+	if(prob(2))
+		return pick(/obj/item/coin/silver,
+					/obj/item/coin/gold,
+					/obj/item/coin/copper,
+					/obj/item/clothing/shoes/sandal,
+					/obj/item/cell/empty,
+					/obj/item/stack/cable_coil/cut,
+					/obj/item/ore/iron,
+					/obj/item/stack/material/wood,
+					/obj/item/stack/material/stick,
+					/obj/item/stack/material/flint,
+				)
 	return null
 
 /turf/simulated/floor/beach/sand/desert
