@@ -29,12 +29,12 @@ GLOBAL_LIST_INIT(has_rocks, list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9"))
 /turf/simulated/floor/outdoors/newdirt/get_dig_loot_type(mob/user, obj/item/W)
 	if(prob(5))
 		return /obj/item/stack/material/flint
-	return null
+	. = ..()
 
 /turf/simulated/floor/outdoors/dirt/get_dig_loot_type(mob/user, obj/item/W)
 	if(prob(10))
 		return /obj/item/stack/material/flint
-	return null
+	. = ..()
 
 /turf/simulated/floor/outdoors/rocks/get_dig_loot_type(mob/user, obj/item/W)
 	return /obj/item/stack/material/flint
@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(has_rocks, list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9"))
 /turf/simulated/floor/outdoors/ironsand/get_dig_loot_type(mob/user, obj/item/W)
 	if(prob(50))
 		return pick(/obj/item/stack/material/flint, /obj/item/ore/iron)
-	return null
+	. = ..()
 
 /turf/simulated/floor/outdoors/newdirt/examine(var/mob/user)
 	. = ..()
