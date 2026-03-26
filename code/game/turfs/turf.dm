@@ -26,6 +26,7 @@
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
+	var/dig_exhaustion_chance = 60 // Chance that the digging loot will be exhausted, if set to TURF_DIG_LOOT_EXHAUSTED then the turf is exhausted of loot. if set to TURF_DIG_LOOT_ENDLESS it will never run out.
 
 	var/list/decals
 
@@ -163,7 +164,7 @@
 
 /turf/attackby(obj/item/W, mob/user)
 	// Check if this turf can be dug up, check initial because we remove the flag when we've exhausted all loot, but still want to keep dig functionality
-	if((initial(flags) & TURF_CAN_DIG_SHOVEL) && !density && istype(W, /obj/item/shovel))
+	if((flags & TURF_CAN_DIG_SHOVEL) && !density && istype(W, /obj/item/shovel))
 		handle_turf_dig(user, W)
 		return TRUE
 	// Collect objects on turf if the bag supports scooping stuff up

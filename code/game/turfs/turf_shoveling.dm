@@ -17,7 +17,7 @@
 			return
 
 		// Spawn loot
-		if(!(flags & TURF_CAN_DIG_SHOVEL))
+		if(dig_exhaustion_chance >= TURF_DIG_LOOT_EXHAUSTED)
 			to_chat(user, span_warning("There is nothing more to be found in \the [src]."))
 			return
 		var/loot_type = get_dig_loot_type(user, our_shovel)
@@ -27,10 +27,9 @@
 		var/obj/item/loot = new loot_type(src)
 		to_chat(user, span_notice("You dug up \a [loot]!"))
 
-		// Clear the flag, the caller proc looks at the initial() flags of the turf to check if we can get here.
-		// Effectively the current flag is used to check if we have exhausted the loot in the turf or not
-		if(prob(60))
-			flags ^= TURF_CAN_DIG_SHOVEL
+		// Check if we should be exhausted of loot
+		if(dig_exhaustion_chance && prob(dig_exhaustion_chance))
+			dig_exhaustion_chance = TURF_DIG_LOOT_EXHAUSTED
 
 /turf/proc/shovel_dig_grave(mob/user, obj/item/shovel/our_shovel)
 	if(length(contents))

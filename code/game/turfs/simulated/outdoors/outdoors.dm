@@ -92,6 +92,7 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 	icon_state = "rock"
 	edge_blending_priority = 1
 	initial_flooring = /datum/decl/flooring/rock
+	dig_exhaustion_chance = TURF_DIG_LOOT_ENDLESS
 	flags = TURF_CAN_DIG_SHOVEL
 
 /turf/simulated/floor/outdoors/rocks/shovel_can_cultivate()
