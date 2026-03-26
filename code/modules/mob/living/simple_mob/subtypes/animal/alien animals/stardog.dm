@@ -369,7 +369,6 @@
 	icon = 'icons/turf/fur.dmi'
 	icon_state = "fur0"
 	edge_blending_priority = 4
-	flags = TURF_CAN_DIG_SHOVEL
 	initial_flooring = /datum/decl/flooring/fur
 	var/tree_chance = 25
 	var/tree_color = null
