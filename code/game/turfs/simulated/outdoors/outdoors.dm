@@ -169,6 +169,7 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 	icon_state = "dirt0"
 	edge_blending_priority = 2
 	initial_flooring = /datum/decl/flooring/outdoors/newdirt
+	flags = TURF_CAN_DIG_SHOVEL
 
 /datum/decl/flooring/outdoors/newdirt
 	name = "dirt"

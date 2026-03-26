@@ -29,11 +29,15 @@ GLOBAL_LIST_INIT(has_rocks, list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9"))
 /turf/simulated/floor/outdoors/newdirt/get_dig_loot_type(mob/user, obj/item/W)
 	if(prob(5))
 		return /obj/item/stack/material/flint
+	if(prob(2))
+		return pick(/obj/fruitspawner/potato, /obj/fruitspawner/carrot)
 	. = ..()
 
 /turf/simulated/floor/outdoors/dirt/get_dig_loot_type(mob/user, obj/item/W)
 	if(prob(10))
 		return /obj/item/stack/material/flint
+	if(prob(2))
+		return pick(/obj/fruitspawner/potato, /obj/fruitspawner/carrot)
 	. = ..()
 
 /turf/simulated/floor/outdoors/rocks/get_dig_loot_type(mob/user, obj/item/W)
