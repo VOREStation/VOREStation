@@ -34,6 +34,7 @@
 
 /turf/simulated/floor/beach/sand/get_dig_loot_type(mob/user, obj/item/W)
 	if(prob(2))
+		// Things of note that might wash up on a beach
 		return pick(/obj/item/coin/silver,
 					/obj/item/coin/gold,
 					/obj/item/coin/copper,
@@ -44,6 +45,7 @@
 					/obj/item/stack/material/wood,
 					/obj/item/stack/material/stick,
 					/obj/item/stack/material/flint,
+					/obj/item/stack/material/smolebricks,
 				)
 	return null
 
