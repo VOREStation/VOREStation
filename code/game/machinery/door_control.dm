@@ -202,7 +202,7 @@
 	if(I.has_tool_quality(TOOL_MULTITOOL))
 		var/new_id = tgui_input_number(user, "[src] has an id of \"[id]\". What would you like it to be?", "[src] ID]", id, 9999)
 		if(!Adjacent(user)) //walked away
-			to_chat(user, "You need to be adjacent to the remote to change its id.")
+			to_chat(user, span_warning(span_warning("You need to be adjacent to the remote to change its id.")))
 			return
 		if(new_id)
 			id = new_id
