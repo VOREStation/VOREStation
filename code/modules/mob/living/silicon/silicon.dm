@@ -415,7 +415,7 @@
 		qdel(mind.objectives)
 		mind.special_role = null
 
-	clear_antag_roles(mind)
+	SSantag_job.clear_antag_roles(mind)
 
 	ghostize(0)
 	qdel(src)

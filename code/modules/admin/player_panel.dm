@@ -412,8 +412,8 @@
 
 		dat += "<a href='byond://?src=\ref[src];[HrefToken()];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		dat += "<hr>"
-		for(var/antag_type in GLOB.all_antag_types)
-			var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
+		for(var/antag_type in SSantag_job.all_antag_types)
+			var/datum/antagonist/A = SSantag_job.all_antag_types[antag_type]
 			dat += A.get_check_antag_output(src)
 		dat += "</body></html>"
 		user << browse(dat, "window=roundstatus;size=400x500")

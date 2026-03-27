@@ -485,11 +485,11 @@
 		counter = 0
 		var/isbanned_dept = jobban_isbanned(M, JOB_SYNDICATE)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(GLOB.all_antag_types)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
+		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(SSantag_job.all_antag_types)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
 
 		// Antagonists.
-		for(var/antag_type in GLOB.all_antag_types)
-			var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+		for(var/antag_type in SSantag_job.all_antag_types)
+			var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 			if(!antag || !antag.bantype)
 				continue
 
