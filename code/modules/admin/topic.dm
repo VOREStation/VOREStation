@@ -83,23 +83,23 @@
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				if ((!( SSticker ) || !GLOB.emergency_shuttle.location()))
+				if ((!( SSticker ) || !SSemergency_shuttle.location()))
 					return
-				if (GLOB.emergency_shuttle.can_call())
-					GLOB.emergency_shuttle.call_evac()
+				if (SSemergency_shuttle.can_call())
+					SSemergency_shuttle.call_evac()
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins(span_blue("[key_name_admin(usr)] called the Emergency Shuttle to the station."), 1)
 
 			if("2")
-				if (!( SSticker ) || !GLOB.emergency_shuttle.location())
+				if (!( SSticker ) || !SSemergency_shuttle.location())
 					return
-				if (GLOB.emergency_shuttle.can_call())
-					GLOB.emergency_shuttle.call_evac()
+				if (SSemergency_shuttle.can_call())
+					SSemergency_shuttle.call_evac()
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins(span_blue("[key_name_admin(usr)] called the Emergency Shuttle to the station."), 1)
 
-				else if (GLOB.emergency_shuttle.can_recall())
-					GLOB.emergency_shuttle.recall()
+				else if (SSemergency_shuttle.can_recall())
+					SSemergency_shuttle.recall()
 					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
 					message_admins(span_blue("[key_name_admin(usr)] sent the Emergency Shuttle back."), 1)
 
@@ -108,20 +108,20 @@
 	else if(href_list["edit_shuttle_time"])
 		if(!check_rights(R_SERVER))	return
 
-		if (GLOB.emergency_shuttle.wait_for_launch)
-			var/new_time_left = tgui_input_number(usr, "Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", GLOB.emergency_shuttle.estimate_launch_time() )
+		if (SSemergency_shuttle.wait_for_launch)
+			var/new_time_left = tgui_input_number(usr, "Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", SSemergency_shuttle.estimate_launch_time() )
 
-			GLOB.emergency_shuttle.launch_time = world.time + new_time_left*10
+			SSemergency_shuttle.launch_time = world.time + (new_time_left * 10)
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]"), 1)
-		else if (GLOB.emergency_shuttle.shuttle.has_arrive_time())
+			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left * 10]"), 1)
+		else if (SSemergency_shuttle.shuttle.has_arrive_time())
 
-			var/new_time_left = tgui_input_number(usr, "Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", GLOB.emergency_shuttle.estimate_arrival_time() )
-			GLOB.emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
+			var/new_time_left = tgui_input_number(usr, "Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", SSemergency_shuttle.estimate_arrival_time() )
+			SSemergency_shuttle.shuttle.arrive_time = world.time + (new_time_left * 10)
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
-			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left*10]"), 1)
+			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left * 10]"), 1)
 		else
 			tgui_alert_async(usr, "The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
 

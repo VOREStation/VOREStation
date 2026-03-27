@@ -209,8 +209,8 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(antag.is_latejoin_template())
 			latejoin_templates |= antag
 
-	if(GLOB.emergency_shuttle && auto_recall_shuttle)
-		GLOB.emergency_shuttle.auto_recall = 1
+	if(SSemergency_shuttle && auto_recall_shuttle)
+		SSemergency_shuttle.auto_recall = TRUE
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore, SetRoundStart))
@@ -262,14 +262,14 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	GLOB.command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
-	if(GLOB.emergency_shuttle.returned() || station_was_nuked)
+	if(SSemergency_shuttle.returned() || station_was_nuked)
 		return 1
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
 			if(!antag.antags_are_dead())
 				return 0
 		if(CONFIG_GET(flag/continuous_rounds))
-			GLOB.emergency_shuttle.auto_recall = 0
+			SSemergency_shuttle.auto_recall = FALSE
 			return 0
 		return 1
 	return 0
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	var/text = ""
 	if(surviving_total > 0)
 		text += "<br>There [surviving_total>1 ? ("were " + span_bold("[surviving_total] survivors")) : ("was " + span_bold("one survivor"))] ("
-		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [GLOB.emergency_shuttle.evac ? "escaped" : "transferred"]") + ") and " + span_bold("[ghosts] ghosts")
+		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [SSemergency_shuttle.evac ? "escaped" : "transferred"]") + ") and " + span_bold("[ghosts] ghosts")
 		text += ".<br>"
 	else
 		text += "There were " + span_bold("no survivors") + " (" + span_bold("[ghosts] ghosts") + ")."
