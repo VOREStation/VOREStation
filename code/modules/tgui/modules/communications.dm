@@ -25,6 +25,8 @@
 
 	var/message_cooldown
 	var/centcomm_message_cooldown
+	///Cooldown on how quickly you can change the station's level.
+	COOLDOWN_DECLARE(level_change_cooldown)
 	var/tmp_alertlevel = 0
 
 	var/stat_msg1
@@ -63,6 +65,10 @@
 		return COMM_AUTHENTICATION_NONE
 
 /datum/tgui_module/communications/proc/change_security_level(mob/user, new_level)
+	if(!COOLDOWN_FINISHED(src, level_change_cooldown))
+		to_chat(user, span_warning("Please wait [round((COOLDOWN_TIMELEFT(src, level_change_cooldown) * 0.1), 1)] second(s) before changing the station's alert level again."))
+		tmp_alertlevel = 0
+		return
 	tmp_alertlevel = new_level
 	var/old_level = GLOB.security_level
 	if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
@@ -84,6 +90,7 @@
 				feedback_inc("alert_comms_orange",1)
 			if(SEC_LEVEL_BLUE)
 				feedback_inc("alert_comms_blue",1)
+		COOLDOWN_START(src, level_change_cooldown, 2 MINUTES) // 2 minute cd on station alert changing.
 	tmp_alertlevel = 0
 
 /datum/tgui_module/communications/tgui_data(mob/user)
