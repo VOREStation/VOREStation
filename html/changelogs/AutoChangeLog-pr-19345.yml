@@ -1,0 +1,6 @@
+author: "Will"
+delete-after: True
+changes:
+  - refactor: "Shovel works on more turfs and supports unique loot tables"
+  - refactor: "Shovel loot systems unified into one system shared at base turf definition"
+  - bugfix: "Depletable lootpiles no longer share their depletion count between all piles"
