@@ -36,3 +36,12 @@
 		/obj/item/stock_parts/spring = 1,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/cable_coil = 10)
+
+/obj/item/circuitboard/hydromagnetic_trap
+	name = T_BOARD("hydromagnetic trap")
+	build_path = /obj/machinery/power/hydromagnetic_trap
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+		/obj/item/stock_parts/spring = 1,
+		/obj/item/stock_parts/motor = 2,
+		/obj/item/stack/cable_coil = 10)

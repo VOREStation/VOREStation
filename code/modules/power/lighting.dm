@@ -1108,7 +1108,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	if(isrobot(user))
 		I = user.get_active_hand()
 
-	if(istype(I,/obj/item/multitool))
+	if(I?.has_tool_quality(TOOL_MULTITOOL))
 		var/list/menu_list = list(
 		"Normal Range",
 		"Normal Brightness",

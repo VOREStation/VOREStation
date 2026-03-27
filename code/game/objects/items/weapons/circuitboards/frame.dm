@@ -74,6 +74,11 @@
 	build_path = /obj/machinery/button/windowtint
 	board_type = new /datum/frame/frame_types/button
 
+/obj/item/circuitboard/mass_driver_button
+	name = T_BOARD("mass driver button")
+	build_path = /obj/machinery/button/remote/driver
+	board_type = new /datum/frame/frame_types/button
+
 //Computer
 
 /obj/item/circuitboard/holopad
