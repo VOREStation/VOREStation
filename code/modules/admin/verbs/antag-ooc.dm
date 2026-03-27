@@ -9,7 +9,7 @@
 		to_chat(src, span_warning("Sorry, but only certain antagonists or administrators can use this verb."))
 		return
 
-	var/datum/antagonist/antag_datum = get_antag_data(src.mob.mind.special_role)
+	var/datum/antagonist/antag_datum = SSantag_job.get_antag_data(src.mob.mind.special_role)
 	if(!(antag_datum?.can_speak_aooc) || !antag_datum.can_hear_aooc)
 		to_chat(src, span_warning("Sorry, but your antagonist type is not allowed to speak in AOOC."))
 		return
@@ -43,7 +43,7 @@ ADMIN_VERB(admin_aooc, R_ADMIN|R_MOD|R_EVENT, "Admin AOOC", "Send a message to a
 		if(target_mob.client) // Players can only see AOOC if observing, or if they are an antag type allowed to use AOOC.
 			var/datum/antagonist/antag_datum = null
 			if(target_mob.mind) // Observers don't have minds, but they should still see AOOC.
-				antag_datum = get_antag_data(target_mob.mind.special_role)
+				antag_datum = SSantag_job.get_antag_data(target_mob.mind.special_role)
 			if((target_mob.mind?.special_role && antag_datum?.can_hear_aooc) || isobserver(target_mob)) // Antags must have their type be allowed to AOOC to see AOOC.  This prevents, say, ERT from seeing AOOC.
 				to_chat(target_mob, span_ooc(span_aooc("[create_text_tag("aooc", "Antag-OOC:", target_mob.client)] <EM>[player_display]:</EM> " + span_message("[msg]"))))
 

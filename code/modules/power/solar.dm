@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(span_notice("[user] begins to take the glass off the solar panel."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			var/obj/item/solar_assembly/S = new(loc)
 			S.anchored = TRUE
 			new glass_type(loc, 2)
@@ -70,10 +70,12 @@ GLOBAL_LIST_EMPTY(solars_list)
 			user.visible_message(span_notice("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
-	else if (W)
-		src.add_fingerprint(user)
-		src.health -= W.force
-		src.healthcheck()
+	else if(W && user.a_intent == I_HURT)
+		user.visible_message(span_warning("[user] strikes the solar panel with [W]."))
+		user.setClickCooldown(user.get_attack_speed(W))
+		add_fingerprint(user)
+		health -= W.force
+		healthcheck()
 	..()
 
 

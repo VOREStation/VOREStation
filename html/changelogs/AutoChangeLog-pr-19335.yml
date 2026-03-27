@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Cleans up some code about trays."
-  - bugfix: "Trays will now properly stun the target if you target the head."

@@ -109,7 +109,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 			.["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
 			var/list/active_access = list()
 			for(var/access in target.idcard?.GetAccess())
-				active_access += list(list("id" = access, "name" = get_access_desc(access)))
+				active_access += list(list("id" = access, "name" = SSaccess.get_access_desc(access)))
 			.["target"]["active_access"] = active_access
 			var/list/access_options = list()
 			for(var/datum/access/acc)
@@ -481,17 +481,17 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 			target.idcard.access -= text2num(params["access"])
 			return TRUE
 		if("add_centcom")
-			target.idcard.access |= get_all_centcom_access()
+			target.idcard.access |= SSaccess.get_all_centcom_access()
 			return TRUE
 		if("rem_centcom")
-			target.idcard.access -= get_all_centcom_access()
+			target.idcard.access -= SSaccess.get_all_centcom_access()
 			return TRUE
 		if("add_station")
-			target.idcard.access |= get_all_station_access()
+			target.idcard.access |= SSaccess.get_all_station_access()
 			target.idcard.access |= ACCESS_SYNTH
 			return TRUE
 		if("rem_station")
-			target.idcard.access -= get_all_station_access()
+			target.idcard.access -= SSaccess.get_all_station_access()
 			target.idcard.access -= ACCESS_SYNTH
 			return TRUE
 		if("law_channel")

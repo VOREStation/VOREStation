@@ -407,7 +407,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		call_shuttle_proc(src)
 
 	// hack to display shuttle timer
-	if(GLOB.emergency_shuttle.online())
+	if(SSemergency_shuttle.online())
 		post_status(src, "shuttle", user = src)
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()

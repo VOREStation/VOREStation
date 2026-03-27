@@ -197,6 +197,34 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
+// Xenobotany
+/datum/design_techweb/board/botany_extractor
+	SET_CIRCUIT_DESIGN_NAMEDESC("lysis-isolation centrifuge")
+	id = "botany_extractor"
+	build_path = /obj/item/circuitboard/botany_extractor
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BOTANY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/botany_editor
+	SET_CIRCUIT_DESIGN_NAMEDESC("bioballistic delivery system")
+	id = "botany_editor"
+	build_path = /obj/item/circuitboard/botany_editor
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BOTANY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/botany_seedextractor
+	SET_CIRCUIT_DESIGN_NAMEDESC("seed extractor")
+	id = "seed_extractor"
+	build_path = /obj/item/circuitboard/botany_seedextractor
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BOTANY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/destructive_analyzer
 	SET_CIRCUIT_DESIGN_NAMEDESC("destructive analyzer")
 	id = "destructive_analyzer"

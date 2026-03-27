@@ -124,7 +124,7 @@
 	if(Proj.get_structure_damage())
 		adjust_health(-Proj.get_structure_damage(), TRUE)
 
-/obj/structure/flora/tree/tesla_act(power, explosive)
+/obj/structure/flora/tree/tesla_act(power, explosive, current_jumps)
 	adjust_health(-power / 100, TRUE) // Kills most trees in one lightning strike.
 	..()
 

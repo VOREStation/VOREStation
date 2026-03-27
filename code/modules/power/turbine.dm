@@ -330,7 +330,7 @@
 			compressor = C
 	LAZYINITLIST(doors)
 	for(var/obj/machinery/door/blast/P in GLOB.machines)
-		if(P.id == id)
+		if(P.id == id) //This will never work because the ID on the blast doors is a number while the ID on the turbine (if set mid-round) is a string.
 			doors += P
 
 /obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)

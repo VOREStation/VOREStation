@@ -115,12 +115,12 @@
 	text = replacetext(text, "\n", "<BR>")
 	return text
 
-/obj/machinery/computer/attackby(I as obj, user as mob)
-	if(computer_deconstruction_screwdriver(user, I))
+/obj/machinery/computer/attackby(obj/item/W, mob/user)
+	if(computer_deconstruction_screwdriver(user, W))
 		return
 	else
-		if(istype(I,/obj/item/gripper)) //Behold, Grippers and their horribleness. If ..() is called by any computers' attackby() now or in the future, this should let grippers work with them appropriately.
-			var/obj/item/gripper/B = I	//B, for Borg.
+		if(istype(W,/obj/item/gripper)) //Behold, Grippers and their horribleness. If ..() is called by any computers' attackby() now or in the future, this should let grippers work with them appropriately.
+			var/obj/item/gripper/B = W	//B, for Borg.
 			var/obj/item/wrapped = B.get_wrapped_item()
 			if(!wrapped)
 				to_chat(user, "\The [B] is not holding anything.")

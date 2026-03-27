@@ -54,7 +54,7 @@ GLOBAL_DATUM(deathsquad, /datum/antagonist/deathsquad)
 
 	var/obj/item/card/id/id = create_id("Asset Protection", player)
 	if(id)
-		id.access |= get_all_station_access()
+		id.access |= SSaccess.get_all_station_access()
 		id.icon_state = "centcom"
 	create_radio(DTH_FREQ, player)
 
