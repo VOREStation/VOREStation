@@ -416,10 +416,6 @@ GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
 	REAGENT_ID_SUPERMATTER
 	))
 
-#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_DEFAULT "default_container"
-#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_WATERCOOLER "watercooler_container"
-#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_NONE "forbidden_container"
-
 GLOBAL_LIST_INIT(reagent_containers_can_be_placed_into, list(
 	REAGENTCONTAINER_CANBEPLACED_DEFAULT = list(
 		/obj/machinery/chem_master,

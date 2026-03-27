@@ -160,6 +160,7 @@
 #include "code\__defines\qdel.dm"
 #include "code\__defines\radiation.dm"
 #include "code\__defines\radio.dm"
+#include "code\__defines\reagents.dm"
 #include "code\__defines\recipe.dm"
 #include "code\__defines\refinery.dm"
 #include "code\__defines\request_console.dm"
