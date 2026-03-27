@@ -1262,12 +1262,12 @@ ADMIN_VERB(force_antag_latespawn, R_ADMIN|R_EVENT|R_FUN, "Force Template Spawn",
 		to_chat(user, span_warning("Mode has not started."))
 		return
 
-	var/antag_type = tgui_input_list(user, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
-	if(!antag_type || !GLOB.all_antag_types[antag_type])
+	var/antag_type = tgui_input_list(user, "Choose a template.","Force Latespawn", SSantag_job.all_antag_types)
+	if(!antag_type || !SSantag_job.all_antag_types[antag_type])
 		to_chat(user, span_warning("Aborting."))
 		return
 
-	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+	var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 	message_admins("[key_name(user)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 

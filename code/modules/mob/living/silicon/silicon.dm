@@ -157,8 +157,8 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. = "[eta_status]"
 
@@ -415,7 +415,7 @@
 		qdel(mind.objectives)
 		mind.special_role = null
 
-	clear_antag_roles(mind)
+	SSantag_job.clear_antag_roles(mind)
 
 	ghostize(0)
 	qdel(src)
