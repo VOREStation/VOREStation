@@ -1,16 +1,10 @@
-/client/proc/spawn_character_mob()
-	set category = "Fun.Event Kit"
-	set name = "Spawn Character As Mob"
-	set desc = "Spawn a specified ckey as a chosen mob."
 
-	if(!holder)
-		return
-
-	var/client/picked_client = tgui_input_list(src, "Who are we spawning as a mob?", "Client", GLOB.clients)
+ADMIN_VERB(spawn_character_mob, R_SPAWN, "Spawn Character As Mob", "Spawn a specified ckey as a chosen mob.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/client/picked_client = tgui_input_list(user, "Who are we spawning as a mob?", "Client", GLOB.clients)
 	if(!picked_client)
 		return
 	var/list/types = typesof(/mob/living)
-	var/mob_type = tgui_input_text(src, "Mob path to spawn as?", "Mob")
+	var/mob_type = tgui_input_text(user, "Mob path to spawn as?", "Mob")
 	if(!mob_type)
 		return
 	var/list/matches = new()
@@ -23,17 +17,17 @@
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select a mob type", "Select Mob", matches)
+		chosen = tgui_input_list(user, "Select a mob type", "Select Mob", matches)
 		if(!chosen)
 			return
 
-	var/char_name = tgui_alert(src, "Spawn mob with their character name?", "Mob name", list("Yes", "No", "Cancel"))
+	var/char_name = tgui_alert(user, "Spawn mob with their character name?", "Mob name", list("Yes", "No", "Cancel"))
 	var/name = 0
 	if(!char_name || char_name == "Cancel")
 		return
 	if(char_name == "Yes")
 		name = 1
-	var/vorgans = tgui_alert(src, "Spawn mob with their character's vore organs and prefs?", "Vore organs", list("Yes", "No", "Cancel"))
+	var/vorgans = tgui_alert(user, "Spawn mob with their character's vore organs and prefs?", "Vore organs", list("Yes", "No", "Cancel"))
 	var/organs
 	if(!vorgans || vorgans == "Cancel")
 		return
@@ -42,18 +36,18 @@
 	if(vorgans == "No")
 		organs = 0
 
-	var/flavor = tgui_alert(src, "Spawn mob with their character's flavor text?", "Flavor text", list("General", "Robot", "Cancel"))
+	var/flavor = tgui_alert(user, "Spawn mob with their character's flavor text?", "Flavor text", list("General", "Robot", "Cancel"))
 
 	var/spawnloc
-	if(!src.mob)
-		to_chat(src, "Can't spawn them in unless you're in a valid spawn location!")
+	if(!user.mob)
+		to_chat(user, "Can't spawn them in unless you're in a valid spawn location!")
 		return
-	spawnloc = get_turf(src.mob)
+	spawnloc = get_turf(user.mob)
 
 	var/mob/living/new_mob = new chosen(spawnloc)
 
 	if(!new_mob)
-		to_chat(src, "Spawning failed, try again or bully coders")
+		to_chat(user, "Spawning failed, try again or bully coders")
 		return
 	new_mob.ai_holder_type = /datum/ai_holder/simple_mob/inert //Dont want the mob AI to activate if the client dc's or anything
 
@@ -73,12 +67,12 @@
 		if(LAZYLEN(new_mob.vore_organs))
 			new_mob.vore_selected = new_mob.vore_organs[1]
 			if(isanimal(new_mob))
-				var/mob/living/simple_mob/Sm = new_mob
-				if(!Sm.voremob_loaded || !Sm.vore_active)
-					Sm.init_vore(TRUE)
+				var/mob/living/simple_mob/new_simple_mob = new_mob
+				if(!new_simple_mob.voremob_loaded || !new_simple_mob.vore_active)
+					new_simple_mob.init_vore(TRUE)
 
-	log_admin("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].")
-	message_admins("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].", 1)
+	log_admin("[key_name_admin(user)] has spawned [new_mob.key] as mob [new_mob.type].")
+	message_admins("[key_name_admin(user)] has spawned [new_mob.key] as mob [new_mob.type].", 1)
 
 	to_chat(new_mob, "You've been spawned as a mob! Have fun.")
 
@@ -86,8 +80,8 @@
 
 	return new_mob
 
-ADMIN_VERB(cmd_admin_z_narrate, (R_ADMIN|R_MOD|R_EVENT), "Z Narrate", "Narrates to your Z level.", "Fun.Narrate") // Allows administrators to fluff events a little easier -- TLE
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
+ADMIN_VERB(cmd_admin_z_narrate, (R_ADMIN|R_MOD|R_EVENT), "Z Narrate", "Narrates to your Z level.", ADMIN_CATEGORY_FUN_NARRATE) // Allows administrators to fluff events a little easier -- TLE
+	var/msg = tgui_input_text(user, "Message:", text("Enter the text you wish to appear to everyone:"))
 
 	if (!msg)
 		return
@@ -108,19 +102,15 @@ ADMIN_VERB(cmd_admin_z_narrate, (R_ADMIN|R_MOD|R_EVENT), "Z Narrate", "Narrates 
 	message_admins(span_blue(span_bold(" ZNarrate: [key_name_admin(user)] : [msg]<BR>")), 1)
 	feedback_add_details("admin_verb","GLNA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggle_vantag_hud(var/mob/target as mob)
-	set category = "Fun.Event Kit"
-	set name = "Give/Remove Event HUD"
-	set desc = "Give a mob the event hud, which shows them other people's event preferences, or remove it from them"
-
+ADMIN_VERB_AND_CONTEXT_MENU(toggle_vantag_hud, R_EVENT|R_ADMIN|R_SERVER, "Give/Remove Event HUD", "Give a mob the event hud, which shows them other people's event preferences, or remove it from them.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in GLOB.player_list)
 	if(target.vantag_hud)
 		target.vantag_hud = FALSE
 		target.recalculate_vis()
-		to_chat(src, "You removed the event HUD from [key_name(target)].")
+		to_chat(user, "You removed the event HUD from [key_name(target)].")
 		to_chat(target, "You no longer have the event HUD.")
 	else
 		target.vantag_hud = TRUE
 		target.recalculate_vis()
-		to_chat(src, "You gave the event HUD to [key_name(target)].")
+		to_chat(user, "You gave the event HUD to [key_name(target)].")
 		to_chat(target, "You now have the event HUD.  Icons will appear next to characters indicating if they prefer to be killed(red crosshairs), devoured(belly), or kidnapped(blue crosshairs) by event characters.")
 	feedback_add_details("admin_verb","GREHud") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

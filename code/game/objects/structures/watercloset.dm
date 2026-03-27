@@ -201,6 +201,9 @@
 	if(istype(I, /obj/item/analyzer)) //Lol? Why...
 		to_chat(user, span_notice("The water temperature seems to be [current_temperature]."))
 
+/obj/machinery/shower/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/machinery/shower/click_alt(mob/user)
 	..()
 	var/list/temperature_settings = list(SHOWER_NORMAL, SHOWER_BOILING, SHOWER_FREEZING)
@@ -258,10 +261,8 @@
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash_atom(atom/A)
-	/* //TG cleans rads and only does CLEAN_WASH, not sure if that's wanted here.
 	A.wash(CLEAN_RAD | CLEAN_TYPE_WEAK) // Clean radiation non-instantly
 	A.wash(CLEAN_WASH)
-	*/
 	A.wash(CLEAN_SCRUB)
 	reagents.splash(A, reaction_volume / 20, 1, TRUE, min_spill = 0, max_spill = 0) //Reaction volume needs to be divided by 20 due to a larger internal volume
 
@@ -271,6 +272,7 @@
 	check_heat(L)
 	L.extinguish_mob()
 	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
+	L.radiation = CLAMP(L.radiation - 5, 0, RADIATION_CAP)
 
 	if(!iscarbon(A))
 		return

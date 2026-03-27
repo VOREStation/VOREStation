@@ -23,6 +23,7 @@
 
 	// There's basically always going to be wall connections, making this lazy doesn't seem like it'd help much unless you wanted to make it bitflags instead.
 	var/list/wall_connections = list("0", "0", "0", "0")
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
@@ -297,11 +298,19 @@
 	return
 
 /turf/simulated/wall/proc/radiate()
+	SIGNAL_HANDLER
 	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0) + (girder_material ? girder_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return
 
-	SSradiation.radiate(src, total_radiation)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = total_radiation,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = total_radiation
+	)
 	return total_radiation
 
 /turf/simulated/wall/proc/burn(temperature)

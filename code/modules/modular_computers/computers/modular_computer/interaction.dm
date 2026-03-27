@@ -109,7 +109,7 @@
 	return attack_self(user)
 
 /obj/item/modular_computer/attack_hand(var/mob/user)
-	if(anchored)
+	if(anchored || ispAI(user))
 		return attack_self(user)
 	return ..()
 
@@ -212,3 +212,10 @@
 		return
 
 	..()
+
+/obj/item/modular_computer/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	if(!card_slot?.stored_card?.dna_hash || !user.master_dna)
+		return FALSE
+	if(card_slot.stored_card.dna_hash != user.master_dna)
+		return FALSE
+	return proximity_flag

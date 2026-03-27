@@ -1,6 +1,5 @@
 ///////////////////////////
 //// Spawning and despawning
-GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
@@ -162,16 +161,16 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
-	idcard_type = /obj/item/card/id/synthetic/talon
+	module_type = /obj/item/robot_module/drone/talon
 
-/obj/item/card/id/synthetic/talon
+/obj/item/card/id/talon
 	name = "\improper Talon synthetic ID"
 	desc = "Access module for Talon synthetics"
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize(mapload)
+/obj/item/card/id/talon/Initialize(mapload)
 	. = ..()
 	access = list(ACCESS_TALON, ACCESS_SYNTH)
 
@@ -262,7 +261,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
 	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/captain
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/captain
 
 	starts_with = list(
 		/obj/item/storage/backpack/dufflebag/captain,
@@ -280,7 +279,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
 	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/guard
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/guard
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/pcarrier/light,
@@ -307,7 +306,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
 	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/doctor
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
@@ -327,7 +326,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
 	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/engineer
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/engineer
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -349,7 +348,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_pilot
 	name = "talon pilot's locker"
 	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/pilot
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/pilot
 
 	starts_with = list(
 		/obj/item/material/knife/tacknife/survival,
@@ -376,7 +375,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_miner
 	name = "talon miner's locker"
 	req_access = list(ACCESS_TALON)
-	closet_appearance = /decl/closet_appearance/secure_closet/talon/miner
+	closet_appearance = /datum/decl/closet_appearance/secure_closet/talon/miner
 
 	starts_with = list(
 		/obj/item/radio/headset/talon,

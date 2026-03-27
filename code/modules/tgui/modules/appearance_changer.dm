@@ -486,7 +486,7 @@
 					owner.species.deform = owner.species.get_icobase(get_deform = TRUE)
 					owner.species.vanity_base_fit = new_species
 					if(istype(owner.species, /datum/species/shapeshifter)) //TODO: See if this is still needed.
-						wrapped_species_by_ref["\ref[owner]"] = new_species
+						GLOB.wrapped_species_by_ref["\ref[owner]"] = new_species
 					owner.regenerate_icons()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)

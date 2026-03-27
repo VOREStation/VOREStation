@@ -33,9 +33,9 @@
 				data["convo_job"] = sanitize(c["job"])
 				break
 	else
-		var/convopdas[0]
-		var/pdas[0]
-		for(var/obj/item/pda/P as anything in PDAs)
+		var/list/convopdas = list()
+		var/list/pdas = list()
+		for(var/obj/item/pda/P as anything in GLOB.PDAs)
 			var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 
 			if(!P.owner || PM.toff || P == pda || PM.m_hidden)
@@ -148,12 +148,11 @@
 	// check if telecomms I/O route 1459 is stable
 	//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 	var/obj/machinery/message_server/useMS = null
-	if(message_servers)
-		for(var/obj/machinery/message_server/MS as anything in message_servers)
-		//PDAs are now dependent on the Message Server.
-			if(MS.active)
-				useMS = MS
-				break
+	for(var/obj/machinery/message_server/MS as anything in GLOB.message_servers)
+	//PDAs are now dependent on the Message Server.
+		if(MS.active)
+			useMS = MS
+			break
 
 	var/datum/signal/signal = pda.telecomms_process()
 
@@ -180,7 +179,7 @@
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
-		U.log_message("(PDA: [src.name] | [U.real_name]) sent \"[t]\" to [P.name]", LOG_PDA)
+		U.log_message("(PDA: [src.name] | [U.real_name]) sent \"[t]\" to [P.name]", LOG_PDA, color="#00ff00")
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
 		to_chat(U, span_notice("ERROR: Messaging server is not responding.\n\n\
@@ -195,7 +194,7 @@
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/pda/P as anything in PDAs)
+	for(var/obj/item/pda/P as anything in GLOB.PDAs)
 		var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 
 		if(!P.owner || !PM || PM.hidden || P == pda || PM.toff)
@@ -238,7 +237,7 @@
 	modified_message["target"] = "\ref[M]"
 
 	var/list/targets = list()
-	for(var/obj/item/pda/pda in PDAs)
+	for(var/obj/item/pda/pda in GLOB.PDAs)
 		if(pda.cartridge && pda.owner && is_type_in_list(pda.cartridge, M.cartridges_to_send_to))
 			targets |= pda
 	if(targets.len)

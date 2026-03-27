@@ -23,7 +23,7 @@
 	ideal_character_age = 40
 	dept_time_required = 20
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/qm
+	outfit_type = /datum/decl/hierarchy/outfit/job/cargo/qm
 	job_description = "The " + JOB_QUARTERMASTER + " manages the Supply department, checking cargo orders and ensuring supplies get to where they are needed."
 	alt_titles = list(JOB_ALT_SUPPLY_CHIEF = /datum/alt_title/supply_chief, JOB_ALT_LOGISTICS_MANAGER = /datum/alt_title/logistics_manager, JOB_ALT_CARGO_SUPERVISOR = /datum/alt_title/cargo_supervisor)
 
@@ -57,7 +57,7 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
+	outfit_type = /datum/decl/hierarchy/outfit/job/cargo/cargo_tech
 	job_description = "A " + JOB_CARGO_TECHNICIAN + " fills and delivers cargo orders. They are encouraged to return delivered crates to the Cargo Shuttle, \
 						because Central Command gives a partial refund."
 
@@ -83,7 +83,7 @@
 /datum/alt_title/mailman
 	title = JOB_ALT_MAILMAN
 	title_blurb = "A Mail Carrier is tasked with delivering packages or mail to whoever it might adress."
-	title_outfit = /decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
+	title_outfit = /datum/decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
 
 /datum/alt_title/delivery_worker
 	title = JOB_ALT_DELIVERY_WORKER
@@ -109,7 +109,7 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION)
 	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 
-	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
+	outfit_type = /datum/decl/hierarchy/outfit/job/cargo/mining
 	job_description = "A " + JOB_SHAFT_MINER + " mines and processes minerals to be delivered to departments that need them."
 	alt_titles = list(JOB_ALT_DEEP_SPACE_MINER = /datum/alt_title/deep_space_miner, JOB_ALT_DRILL_TECHNICIAN = /datum/alt_title/drill_tech, JOB_ALT_PROSPECTOR = /datum/alt_title/prospector,
 						JOB_ALT_EXCAVATOR = /datum/alt_title/excavator)

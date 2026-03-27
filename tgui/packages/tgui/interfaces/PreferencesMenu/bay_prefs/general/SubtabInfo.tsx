@@ -11,6 +11,7 @@ import {
 } from 'tgui-core/components';
 
 import {
+  byondGenders,
   Gender,
   type GeneralData,
   type GeneralDataConstant,
@@ -21,6 +22,7 @@ import { SpeciesBaseStats } from './stats/SpeciesSpaceStats';
 
 export const GenderButton = (props: {
   gender: Gender;
+  possibleGenders: Gender[];
   usePronouns?: boolean;
   setGender: (gender: Gender) => void;
 }) => {
@@ -30,7 +32,7 @@ export const GenderButton = (props: {
         placement="right-end"
         content={
           <Stack backgroundColor="black" ml={0.5} pl={0.5} pr={0.5}>
-            {Object.values(Gender).map((x) => (
+            {props.possibleGenders.map((x) => (
               <Button
                 selected={props.gender === x}
                 key={x}
@@ -121,12 +123,14 @@ export const SubtabInfo = (props: {
               <LabeledList.Item label="Biological Sex">
                 <GenderButton
                   gender={data.biological_sex}
+                  possibleGenders={byondGenders}
                   setGender={(gender: Gender) => act('bio_gender', { gender })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Pronouns">
                 <GenderButton
                   gender={data.identifying_gender}
+                  possibleGenders={Object.values(Gender)}
                   setGender={(gender: Gender) => act('id_gender', { gender })}
                   usePronouns
                 />

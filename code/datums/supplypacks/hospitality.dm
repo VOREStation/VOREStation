@@ -234,3 +234,50 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sweets crate"
+
+/datum/supply_pack/hospitality/condiments
+	contains = list(
+			/obj/item/reagent_containers/food/condiment/soysauce,
+			/obj/item/reagent_containers/food/condiment/ketchup,
+			/obj/item/reagent_containers/food/condiment/mustard,
+			/obj/item/reagent_containers/food/condiment/hotsauce,
+			/obj/item/reagent_containers/food/condiment/coldsauce,
+			/obj/item/reagent_containers/food/condiment/barbeque,
+			/obj/item/reagent_containers/food/condiment/small/saltshaker,
+			/obj/item/reagent_containers/food/condiment/small/peppermill
+			)
+	name = "Condiments crate"
+	desc = "A selection of condiment bottles for catering purposes, including a few that are hard to get."
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Condiments crate"
+
+/datum/supply_pack/hospitality/meat_resupply_beef
+	contains = list(
+			/obj/item/reagent_containers/food/snacks/meat = 6
+			)
+	name = "Kitchen supply crate: meat"
+	desc = "Steaks, on ice. Real ones, not that synthetic stuff!"
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Meat crate"
+
+/datum/supply_pack/hospitality/meat_resupply_fish
+	contains = list(
+			/obj/item/reagent_containers/food/snacks/carpmeat/fish = 6
+			)
+	name = "Kitchen supply crate: fish"
+	desc = "Fish, on ice. Guaranteed free of carpotoxins, we promise."
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Fish meat crate"
+
+/datum/supply_pack/hospitality/meat_resupply_poultry
+	contains = list(
+			/obj/item/reagent_containers/food/snacks/meat/chicken = 6
+			)
+	name = "Kitchen supply crate: poultry"
+	desc = "Poultry, on ice. No turkey, just chicken."
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Poultry meat crate"

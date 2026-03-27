@@ -233,7 +233,8 @@
 
 // Checks in a really hacky way if a character's preferences say they are an FBP or not.
 /datum/category_item/player_setup_item/proc/is_FBP()
-	if(pref.organ_data && pref.organ_data[BP_TORSO] != "cyborg")
+	var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+	if(organ_data && organ_data[BP_TORSO] != "cyborg")
 		return 0
 	return 1
 
@@ -241,8 +242,9 @@
 /datum/category_item/player_setup_item/proc/get_FBP_type()
 	if(!is_FBP())
 		return 0 // Not a robot.
-	if(O_BRAIN in pref.organ_data)
-		switch(pref.organ_data[O_BRAIN])
+	var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+	if(organ_data && (O_BRAIN in organ_data))
+		switch(organ_data[O_BRAIN])
 			if(FBP_ASSISTED)
 				return PREF_FBP_CYBORG
 			if(FBP_MECHANICAL)
@@ -252,7 +254,8 @@
 	return 0 //Something went wrong!
 
 /datum/category_item/player_setup_item/proc/get_min_age()
-	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : "Human"]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species) || "Human"
+	var/datum/species/S = GLOB.all_species[pref_species]
 	if(!is_FBP())
 		return S.min_age // If they're not a robot, we can just use the species var.
 	var/FBP_type = get_FBP_type()
@@ -266,7 +269,8 @@
 	return S.min_age // welp
 
 /datum/category_item/player_setup_item/proc/get_max_age()
-	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : "Human"]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species) || "Human"
+	var/datum/species/S = GLOB.all_species[pref_species]
 	if(!is_FBP())
 		return S.max_age // If they're not a robot, we can just use the species var.
 	var/FBP_type = get_FBP_type()

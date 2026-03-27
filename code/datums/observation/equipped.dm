@@ -8,9 +8,9 @@
 //			/obj/item/item: The equipped item.
 //			slot:           The slot equipped to.
 /*
-GLOBAL_DATUM_INIT(mob_equipped_event, /decl/observ/mob_equipped, new)
+GLOBAL_DATUM_INIT(mob_equipped_event, /datum/decl/observ/mob_equipped, new)
 
-/decl/observ/mob_equipped
+/datum/decl/observ/mob_equipped
 	name = "Mob Equipped"
 	expected_type = /mob
 
@@ -23,9 +23,9 @@ GLOBAL_DATUM_INIT(mob_equipped_event, /decl/observ/mob_equipped, new)
 //			/obj/item/item: The equipped item.
 //			/mob/equipper:  The mob that equipped the item.
 //			slot:           The slot equipped to.
-GLOBAL_DATUM_INIT(item_equipped_event, /decl/observ/item_equipped, new)
+GLOBAL_DATUM_INIT(item_equipped_event, /datum/decl/observ/item_equipped, new)
 
-/decl/observ/item_equipped
+/datum/decl/observ/item_equipped
 	name = "Item Equipped"
 	expected_type = /obj/item
 */

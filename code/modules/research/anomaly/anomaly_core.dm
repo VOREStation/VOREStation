@@ -32,6 +32,10 @@
 		to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code]."))
 		return TRUE
 
+	if(istype(W, /obj/item/anomaly_scanner))
+		to_chat(user, span_notice("Sealed anomalous energies detected. Use of a releaser will unleash these energies."))
+		return TRUE
+
 	if(istype(W, /obj/item/anomaly_releaser))
 		var/obj/item/anomaly_releaser/releaser = W
 		if(releaser.used)
@@ -44,12 +48,12 @@
 			return FALSE
 
 		var/obj/effect/anomaly/anomaly = new core.anomaly_type(get_turf(core))
-		anomaly.stabilize()
+		anomaly.stabilize(releaser.will_anchor, releaser.has_core, releaser.gives_stats)
 
 		if(!releaser.infinite)
 			releaser.icon_state = releaser.used_icon_state
 			releaser.used = TRUE
-			releaser.name = "used " + name
+			releaser.name = "used " + releaser.name
 			qdel(src)
 	return ..()
 
@@ -100,3 +104,9 @@
 	desc = "The neutralized core of a weather anomaly. The sound of thunder can be heard in the distance. It'd probably be valuable for research."
 	icon_state = "weather_core"
 	anomaly_type = /obj/effect/anomaly/weather
+
+/obj/item/assembly/signaler/anomaly/dust
+	name = "\improper dust anomaly core"
+	desc = "The neutralized core of a dust anomaly. It seems to leave some dirt on touch. It'd probably be valuable for research."
+	icon_state = "dust_core"
+	anomaly_type = /obj/effect/anomaly/dust

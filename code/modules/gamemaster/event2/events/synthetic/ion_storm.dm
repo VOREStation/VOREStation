@@ -49,18 +49,17 @@
 
 	// Messaging server spam filters.
 	// This might be better served as a seperate event since it seems more like a hacker attack than a natural occurance.
-	if(message_servers)
-		for(var/obj/machinery/message_server/MS in message_servers)
-			if(MS.z in get_location_z_levels())
-				MS.spamfilter.Cut()
-				for (var/i = 1, i <= MS.spamfilter_limit, i++)
-					MS.spamfilter += pick("warble","help","almach","ai","liberty","freedom","drugs", "[using_map.station_short]", \
-						"admin","sol","security","meow","_","monkey","-","moron","pizza","message","spam",\
-						"director", "Hello", "Hi!"," ","nuke","crate","taj","xeno")
+	for(var/obj/machinery/message_server/MS in GLOB.message_servers)
+		if(MS.z in get_location_z_levels())
+			MS.spamfilter.Cut()
+			for (var/i = 1, i <= MS.spamfilter_limit, i++)
+				MS.spamfilter += pick("warble","help","almach","ai","liberty","freedom","drugs", "[using_map.station_short]", \
+					"admin","sol","security","meow","_","monkey","-","moron","pizza","message","spam",\
+					"director", "Hello", "Hi!"," ","nuke","crate","taj","xeno")
 
 /datum/event2/event/ion_storm/announce()
 	if(prob(announce_odds))
-		command_announcement.Announce("An ion storm was detected within proximity to \the [location_name()] recently. \
+		GLOB.command_announcement.Announce("An ion storm was detected within proximity to \the [location_name()] recently. \
 		Check all AI controlled equipment for corruption.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 
 // Fake variant used by traitors.

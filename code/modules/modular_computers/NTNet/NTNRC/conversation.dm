@@ -1,4 +1,4 @@
-var/global/ntnrc_uid = 0
+GLOBAL_VAR_INIT(ntnrc_uid, 0)
 
 /datum/ntnet_conversation/
 	var/id = null
@@ -9,10 +9,10 @@ var/global/ntnrc_uid = 0
 	var/password
 
 /datum/ntnet_conversation/New()
-	id = ntnrc_uid
-	ntnrc_uid++
-	if(ntnet_global)
-		ntnet_global.chat_channels.Add(src)
+	id = GLOB.ntnrc_uid
+	GLOB.ntnrc_uid++
+	if(GLOB.ntnet_global)
+		GLOB.ntnet_global.chat_channels.Add(src)
 	..()
 
 /datum/ntnet_conversation/proc/add_message(var/message, var/username)

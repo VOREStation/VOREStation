@@ -20,7 +20,7 @@
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
 
-	organ_names = /decl/mob_organ_names/smallflying
+	organ_names = /datum/decl/mob_organ_names/smallflying
 
 	harm_intent_damage = 10
 

@@ -13,12 +13,12 @@
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Drone"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = TRUE
-	idcard_type = /obj/item/card/id/syndicate
 	req_access = list(999)
 	integrated_light_power = 3
 	local_transmit = 0
+	can_pick_shell = FALSE
 
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER
@@ -45,13 +45,13 @@
 	can_be_antagged = TRUE
 
 	var/spell_setup = list(
-		/spell/aoe_turf/conjure/swarmer,
-		/spell/aoe_turf/conjure/forcewall/swarm,
-		/spell/aoe_turf/conjure/zeropointwell,
-		/spell/aoe_turf/conjure/zeropointbarricade,
-		/spell/aoe_turf/blink/swarm,
-		/spell/aoe_turf/conjure/swarmer/gunner,
-		/spell/aoe_turf/conjure/swarmer/melee
+		/datum/spell/aoe_turf/conjure/swarmer,
+		/datum/spell/aoe_turf/conjure/forcewall/swarm,
+		/datum/spell/aoe_turf/conjure/zeropointwell,
+		/datum/spell/aoe_turf/conjure/zeropointbarricade,
+		/datum/spell/aoe_turf/blink/swarm,
+		/datum/spell/aoe_turf/conjure/swarmer/gunner,
+		/datum/spell/aoe_turf/conjure/swarmer/melee
 		)
 
 /mob/living/silicon/robot/drone/swarm/Initialize(mapload)
@@ -83,9 +83,9 @@
 	module_type = /obj/item/robot_module/drone/swarm/ranged
 
 	spell_setup = list(
-		/spell/aoe_turf/conjure/swarmer,
-		/spell/aoe_turf/conjure/forcewall/swarm,
-		/spell/aoe_turf/blink/swarm
+		/datum/spell/aoe_turf/conjure/swarmer,
+		/datum/spell/aoe_turf/conjure/forcewall/swarm,
+		/datum/spell/aoe_turf/blink/swarm
 		)
 
 /mob/living/silicon/robot/drone/swarm/melee
@@ -104,7 +104,7 @@
 	module_type = /obj/item/robot_module/drone/swarm/melee
 
 	spell_setup = list(
-		/spell/aoe_turf/conjure/swarmer,
-		/spell/aoe_turf/conjure/forcewall/swarm,
-		/spell/aoe_turf/blink/swarm
+		/datum/spell/aoe_turf/conjure/swarmer,
+		/datum/spell/aoe_turf/conjure/forcewall/swarm,
+		/datum/spell/aoe_turf/blink/swarm
 		)

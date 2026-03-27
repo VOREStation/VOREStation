@@ -65,7 +65,6 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		T = get_turf(M)				//Where is the body located?
-		attack_log = M.attack_log	//preserve our attack logs by copying them to our ghost
 		gender = M.gender
 		if(M.mind && M.mind.name)
 			name = M.mind.name
@@ -102,7 +101,7 @@
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	GLOB.observer_mob_list += src
 	. = ..()
-	visualnet = ghostnet
+	visualnet = GLOB.ghostnet
 
 /mob/observer/dead/proc/checkStatic()
 	return !(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT|R_SERVER) || (client && client.buildmode) || isbelly(loc))
@@ -223,7 +222,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(response == "Admin Ghost")
 				if(!src.client)
 					return
-				src.client.admin_ghost()
+				SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/admin_ghost)
 		else
 			response = tgui_alert(src, "Are you -sure- you want to ghost?\n(You are alive, or otherwise have the potential to become alive. Don't abuse ghost unless you are inside a cryopod or equivalent! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", list("Stay in body", "Ghost"))
 		if(response != "Ghost")
@@ -246,8 +245,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/dead/get_status_tab_items()
 	. = ..()
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. += ""
 			. += "[eta_status]"
@@ -642,7 +641,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		gas_analyzing += "Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
 		gas_analyzing += "Heat Capacity: [round(environment.heat_capacity(),0.1)]"
 	to_chat(src, span_notice("[jointext(gas_analyzing, "<br>")]"))
-
+/*
 /mob/observer/dead/verb/check_radiation()
 	set name = "Check Radiation"
 	set category = "Ghost.Game"
@@ -651,7 +650,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(t)
 		var/rads = SSradiation.get_rads_at_turf(t)
 		to_chat(src, span_notice("Radiation level: [rads ? rads : "0"] Bq."))
-
+*/
 /mob/observer/dead/verb/view_manfiest()
 	set name = "Show Crew Manifest"
 	set category = "Ghost.Game"
@@ -965,24 +964,28 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src,span_warning("You cannot alert pAI cards when you are banned from playing as a pAI."))
 		return
 
-	if(src.client.prefs?.be_special & BE_PAI)
-		var/choice = tgui_alert(src, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
-		if(!choice)
-			return
-		if(choice == "Yes")
-			paiController.recruitWindow(src)
-		var/count = 0
-		for(var/obj/item/paicard/p in GLOB.all_pai_cards)
-			var/obj/item/paicard/PP = p
-			if(PP.pai == null)
-				count++
-				PP.add_overlay("pai-ghostalert")
-				PP.alertUpdate()
-				spawn(54)
-					PP.cut_overlays()
-		to_chat(src,span_notice("Flashing the displays of [count] unoccupied PAIs."))
-	else
-		to_chat(src,span_warning("You have 'Be pAI' disabled in your character prefs, so we can't help you."))
+	if(!(src.client.prefs?.be_special & BE_PAI))
+		to_chat(src,span_warning("You have 'Be pAI' disabled in your character prefs."))
+		return
+
+	var/choice = tgui_alert(src, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
+	if(!choice || choice != "Yes")
+		return
+
+	to_chat(src,span_notice("Flashing the displays of [pai_card_ping()] unoccupied PAIs."))
+
+/mob/observer/dead/proc/pai_card_ping()
+	var/count = 0
+	for(var/obj/item/paicard/p in GLOB.all_pai_cards)
+		var/obj/item/paicard/PP = p
+		if(PP.pai)
+			continue
+		count++
+		PP.cut_overlays()
+		PP.add_overlay("pai-ghostalert")
+		PP.alertUpdate()
+		addtimer(CALLBACK(PP, TYPE_PROC_REF(/obj/item/paicard, clear_invite_overlay)), 1 MINUTE, TIMER_DELETE_ME)
+	return count
 
 /mob/observer/dead/speech_bubble_appearance()
 	return "ghost"

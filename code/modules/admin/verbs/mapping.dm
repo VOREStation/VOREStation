@@ -40,42 +40,30 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 /obj/effect/debugging/marker/Move()
 	return 0
 
-/client/proc/do_not_use_these()
-	set category = "Mapping"
-	set name = "-None of these are for ingame use!!"
-
-/client/proc/camera_view()
-	set category = "Mapping"
-	set name = "Camera Range Display"
-
+ADMIN_VERB_VISIBILITY(camera_view, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(camera_view, R_DEBUG, "Camera Range Display", "Globally changes the camera view (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	if(GLOB.camera_range_display_status)
 		GLOB.camera_range_display_status = FALSE
 	else
 		GLOB.camera_range_display_status = TRUE
 
-
-
 	for(var/obj/effect/debugging/camera_range/C in GLOB.all_debugging_effects)
 		qdel(C)
 
 	if(GLOB.camera_range_display_status)
-		for(var/obj/machinery/camera/C in cameranet.cameras)
+		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb","mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-
-/client/proc/sec_camera_report()
-	set category = "Mapping"
-	set name = "Camera Report"
-
+ADMIN_VERB_VISIBILITY(sec_camera_report, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(sec_camera_report, R_DEBUG, "Camera Report", "Gives a report of the camera state (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	if(!GLOB.master_controller)
-		tgui_alert_async(usr,"Master_controller not found.","Sec Camera Report")
+		tgui_alert_async(user,"Master_controller not found.","Sec Camera Report")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()
 
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
 	var/output = span_bold("CAMERA ANNOMALITIES REPORT") + {"<HR>
@@ -103,15 +91,13 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
 	output += "</ul>"
 
-	var/datum/browser/popup = new(src, "airreport", "Airreport", 1000, 500)
+	var/datum/browser/popup = new(user, "airreport", "Airreport", 1000, 500)
 	popup.set_content(output)
 	popup.open()
 	feedback_add_details("admin_verb","mCRP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/intercom_view()
-	set category = "Mapping"
-	set name = "Intercom Range Display"
-
+ADMIN_VERB_VISIBILITY(intercom_view, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(intercom_view, R_DEBUG, "Intercom Range Display", "Displays the intercom view as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
 	if(GLOB.intercom_range_display_status)
 		GLOB.intercom_range_display_status = FALSE
 	else
@@ -128,66 +114,12 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 					qdel(F)
 	feedback_add_details("admin_verb","mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-GLOBAL_LIST_INIT(debug_verbs, list(
-		/client/proc/do_not_use_these
-		,/client/proc/camera_view
-		,/client/proc/sec_camera_report
-		,/client/proc/intercom_view
-		,/client/proc/Cell
-		,/client/proc/atmosscan
-		,/client/proc/powerdebug
-		,/client/proc/count_objects_on_z_level
-		,/client/proc/count_objects_all
-		,/client/proc/jump_to_dead_group
-		,/client/proc/startSinglo
-		,/client/proc/cmd_admin_grantfullaccess
-		,/client/proc/kaboom
-		,/client/proc/cmd_admin_areatest
-		,/datum/admins/proc/show_traitor_panel
-		,/client/proc/print_jobban_old
-		,/client/proc/print_jobban_old_filter
-		,/client/proc/forceEvent
-		,/client/proc/Zone_Info
-		,/client/proc/Test_ZAS_Connection
-		,/client/proc/ZoneTick
-		,/client/proc/rebootAirMaster
-		,/client/proc/hide_debug_verbs
-		,/client/proc/testZAScolors
-		,/client/proc/testZAScolors_remove
-		,/datum/admins/proc/setup_supermatter
-		,/client/proc/atmos_toggle_debug
-		,/client/proc/spawn_tanktransferbomb
-		,/client/proc/take_picture
-	))
-
-
-/client/proc/enable_debug_verbs()
-	set category = "Debug.Misc"
-	set name = "Debug verbs"
-
-	if(!check_rights(R_DEBUG)) return
-
-	add_verb(src, GLOB.debug_verbs)
-
-	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/hide_debug_verbs()
-	set category = "Debug.Misc"
-	set name = "Hide Debug verbs"
-
-	if(!check_rights(R_DEBUG)) return
-
-	remove_verb(src, GLOB.debug_verbs)
-
-	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 /client/var/list/testZAScolors_turfs = list()
 /client/var/list/testZAScolors_zones = list()
 /client/var/usedZAScolors = 0
 /client/var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
+/client/proc/recurse_zone(var/datum/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return
@@ -196,94 +128,90 @@ GLOBAL_LIST_INIT(debug_verbs, list(
 	for(var/turf/T in Z.contents)
 		images += image(yellow, T, "zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in Z.edges)
-		var/zone/connected = edge.get_connected_zone(Z)
+	for(var/datum/connection_edge/zone/edge in Z.edges)
+		var/datum/zone/connected = edge.get_connected_zone(Z)
 		if(connected in testZAScolors_zones)
 			continue
 		recurse_zone(connected,recurse_level+1)
 
+ADMIN_VERB_VISIBILITY(testZAScolors, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(testZAScolors, R_DEBUG, "Check ZAS connections", "Displays ZAS connections as effects (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
+	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/testZAScolors_remove)
 
-/client/proc/testZAScolors()
-	set category = "Mapping.ZAS"
-	set name = "Check ZAS connections"
-
-	if(!check_rights(R_DEBUG)) return
-	testZAScolors_remove()
-
-	var/turf/simulated/location = get_turf(usr)
+	var/turf/simulated/location = get_turf(user.mob)
 
 	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
-		to_chat(usr, span_red("this debug tool cannot be used from space"))
+		to_chat(user, span_red("this debug tool cannot be used from space"))
 		return
 
 	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
 	var/icon/green = new('icons/misc/debug_group.dmi', "green")
 	var/icon/blue = new('icons/misc/debug_group.dmi', "blue")
 
-	if(!usedZAScolors)
-		to_chat(usr, "ZAS Test Colors")
-		to_chat(usr, "[span_green("Green")] = Zone you are standing in")
-		to_chat(usr, "[span_blue("Blue")] = Connected zone to the zone you are standing in")
-		to_chat(usr, "[span_yellow("Yellow")] = A zone that is connected but not one adjacent to your connected zone")
-		to_chat(usr, "[span_red("Red")] = Not connected")
-		usedZAScolors = 1
+	if(!user.usedZAScolors)
+		to_chat(user, "ZAS Test Colors")
+		to_chat(user, "[span_green("Green")] = Zone you are standing in")
+		to_chat(user, "[span_blue("Blue")] = Connected zone to the zone you are standing in")
+		to_chat(user, "[span_yellow("Yellow")] = A zone that is connected but not one adjacent to your connected zone")
+		to_chat(user, "[span_red("Red")] = Not connected")
+		user.usedZAScolors = 1
 
-	testZAScolors_zones += location.zone
+	user.testZAScolors_zones += location.zone
 	for(var/turf/T in location.zone.contents)
-		images += image(green, T,"zasdebug", TURF_LAYER)
-		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in location.zone.edges)
-		var/zone/Z = edge.get_connected_zone(location.zone)
-		testZAScolors_zones += Z
+		user.images += image(green, T,"zasdebug", TURF_LAYER)
+		user.testZAScolors_turfs += T
+	for(var/datum/connection_edge/zone/edge in location.zone.edges)
+		var/datum/zone/Z = edge.get_connected_zone(location.zone)
+		user.testZAScolors_zones += Z
 		for(var/turf/T in Z.contents)
-			images += image(blue, T,"zasdebug",TURF_LAYER)
-			testZAScolors_turfs += T
-		for(var/connection_edge/zone/z_edge in Z.edges)
-			var/zone/connected = z_edge.get_connected_zone(Z)
-			if(connected in testZAScolors_zones)
+			user.images += image(blue, T,"zasdebug",TURF_LAYER)
+			user.testZAScolors_turfs += T
+		for(var/datum/connection_edge/zone/z_edge in Z.edges)
+			var/datum/zone/connected = z_edge.get_connected_zone(Z)
+			if(connected in user.testZAScolors_zones)
 				continue
-			recurse_zone(connected,1)
+			user.recurse_zone(connected,1)
 
 	for(var/turf/T in range(25,location))
 		if(!istype(T))
 			continue
-		if(T in testZAScolors_turfs)
+		if(T in user.testZAScolors_turfs)
 			continue
-		images += image(red, T, "zasdebug", TURF_LAYER)
-		testZAScolors_turfs += T
+		user.images += image(red, T, "zasdebug", TURF_LAYER)
+		user.testZAScolors_turfs += T
 
-/client/proc/testZAScolors_remove()
-	set category = "Mapping.ZAS"
-	set name = "Remove ZAS connection colors"
+ADMIN_VERB_VISIBILITY(testZAScolors_remove, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(testZAScolors_remove, R_DEBUG, "Remove ZAS connection colors", "Clears displayed ZAS connections (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
+	user.testZAScolors_turfs.Cut()
+	user.testZAScolors_zones.Cut()
 
-	testZAScolors_turfs.Cut()
-	testZAScolors_zones.Cut()
-
-	if(images.len)
-		for(var/image/i in images)
+	if(length(user.images))
+		for(var/image/i in user.images)
 			if(i.icon_state == "zasdebug")
-				images.Remove(i)
+				user.images.Remove(i)
 
-/client/proc/rebootAirMaster()
-	set category = "Mapping.ZAS"
-	set name = "Reboot ZAS"
-
-	if(tgui_alert(usr, "This will destroy and remake all zone geometry on the whole map.","Reboot ZAS",list("Reboot ZAS","Nevermind")) == "Reboot ZAS")
+ADMIN_VERB_VISIBILITY(rebootAirMaster, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(rebootAirMaster, R_DEBUG, "Reboot ZAS", "Rstarts ZAS (Only use on a test server).", ADMIN_CATEGORY_MAPPING_ZAS)
+	if(tgui_alert(user, "This will destroy and remake all zone geometry on the whole map.","Reboot ZAS",list("Reboot ZAS","Nevermind")) == "Reboot ZAS")
 		SSair.RebootZAS()
 
-/client/proc/count_objects_on_z_level()
-	set category = "Mapping"
-	set name = "Count Objects On Level"
-	var/level = tgui_input_text(usr, "Which z-level?","Level?")
-	if(!level) return
+ADMIN_VERB_VISIBILITY(count_objects_on_z_level, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(count_objects_on_z_level, R_DEBUG, "Count Objects On Level", "Counts all objects on a Z level (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
+	var/level = tgui_input_text(user, "Which z-level?","Level?")
+	if(!level)
+		return
 	var/num_level = text2num(level)
-	if(!num_level) return
-	if(!isnum(num_level)) return
+	if(!num_level)
+		return
+	if(!isnum(num_level))
+		return
 
-	var/type_text = tgui_input_text(usr, "Which type path?","Path?")
-	if(!type_text) return
+	var/type_text = tgui_input_text(user, "Which type path?","Path?")
+	if(!type_text)
+		return
 	var/type_path = text2path(type_text)
-	if(!type_path) return
+	if(!type_path)
+		return
 
 	var/count = 1
 
@@ -314,14 +242,14 @@ GLOBAL_LIST_INIT(debug_verbs, list(
 	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
 	feedback_add_details("admin_verb","mOBJZ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/count_objects_all()
-	set category = "Mapping"
-	set name = "Count Objects All"
-
-	var/type_text = tgui_input_text(usr, "Which type path?","")
-	if(!type_text) return
+ADMIN_VERB_VISIBILITY(count_objects_all, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
+ADMIN_VERB(count_objects_all, R_DEBUG, "Count Objects All", "Count all objects by type (Only use on a test server).", ADMIN_CATEGORY_MAPPING)
+	var/type_text = tgui_input_text(user, "Which type path?","")
+	if(!type_text)
+		return
 	var/type_path = text2path(type_text)
-	if(!type_path) return
+	if(!type_path)
+		return
 
 	var/count = 0
 
@@ -340,3 +268,11 @@ GLOBAL_LIST_INIT(debug_verbs, list(
 
 	to_chat(world, "There are [count] objects of type [type_path] in the game world")
 	feedback_add_details("admin_verb","mOBJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+ADMIN_VERB(enable_mapping_verbs, R_DEBUG, "Enable Mapping Verbs", "Enable all mapping verbs.", ADMIN_CATEGORY_MAPPING)
+	SSadmin_verbs.update_visibility_flag(user, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG, TRUE)
+	feedback_add_details("admin_verb","mapDB")
+
+ADMIN_VERB_VISIBILITY(disable_mapping_verbs, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
+ADMIN_VERB(disable_mapping_verbs, R_DEBUG, "Disable Mapping Verbs", "Disable all mapping verbs.", ADMIN_CATEGORY_MAPPING)
+	SSadmin_verbs.update_visibility_flag(user, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG, FALSE)

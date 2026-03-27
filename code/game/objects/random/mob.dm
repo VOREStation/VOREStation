@@ -419,3 +419,21 @@
 				/mob/living/simple_mob/animal/sif/sakimm
 			)
 		)
+
+/obj/random/mob/vermin
+	name = "Random Vermin"
+	desc = "Often found in trash."
+	icon_state = "animal"
+	spawn_nothing_percentage = 15
+
+/obj/random/mob/vermin/item_to_spawn()
+	return pick(prob(15);/mob/living/simple_mob/animal/passive/mouse/white,
+				prob(15);/mob/living/simple_mob/animal/passive/mouse/black,
+				prob(30);/mob/living/simple_mob/animal/passive/mouse/brown,
+				prob(30);/mob/living/simple_mob/animal/passive/mouse/gray,
+				prob(30);/mob/living/simple_mob/animal/passive/mouse/rat,
+				prob(30);/obj/effect/spider/spiderling/non_growing,
+				prob(30);/mob/living/simple_mob/animal/passive/raccoon,
+				prob(30);/mob/living/simple_mob/animal/passive/opossum,
+				prob(40);/mob/living/simple_mob/animal/passive/cockroach,
+				)

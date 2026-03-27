@@ -1,14 +1,7 @@
-/client/proc/recipe_dump()
-	set name = "Generate Recipe Dump"
-	set category = "Server.Admin"
-	set desc = "Dumps food and drink recipe info and images for wiki or other use."
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
+ADMIN_VERB(recipe_dump, R_SERVER, "Generate Recipe Dump", "Dumps food and drink recipe info and images for wiki or other use.", ADMIN_CATEGORY_SERVER_ADMIN)
 	//////////////////////// DRINK
 	var/list/drink_recipes = list()
-	for(var/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
+	for(var/datum/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
 		drink_recipes[CR.type] = list("Result" = CR.name,
 								"ResAmt" = CR.result_amount,
 								"Reagents" = CR.required_reagents,
@@ -41,7 +34,7 @@
 		qdel(R)
 
 	//////////////////////// FOOD+ (basically condiments, tofu, cheese, soysauce, etc)
-	for(var/decl/chemical_reaction/instant/food/CR in SSchemistry.chemical_reactions)
+	for(var/datum/decl/chemical_reaction/instant/food/CR in SSchemistry.chemical_reactions)
 		food_recipes[CR.type] = list("Result" = CR.name,
 								"ResAmt" = CR.result_amount,
 								"Reagents" = CR.required_reagents,
@@ -175,7 +168,7 @@
 		if(icon_to_give)
 			var/image_path = "recipe-[ckey(food_recipes[Rp]["Result"])].png"
 			html += "<td><img src='imgrecipes/[image_path]' /></td>"
-			src << browse(icon_to_give, "window=picture;file=[image_path];display=0")
+			user << browse(icon_to_give, "window=picture;file=[image_path];display=0")
 		else
 			html += "<td>No<br>Image</td>"
 
@@ -244,7 +237,7 @@
 		html += "</tr>"
 
 	html += "</table></body></html>"
-	src << browse(html, "window=recipes;file=recipes_food.html;display=0")
+	user << browse(html, "window=recipes;file=recipes_food.html;display=0")
 
 	//Drink Output
 	html = "<head>\
@@ -293,6 +286,6 @@
 		html += "</tr>"
 
 	html += "</table></body></html>"
-	src << browse(html, "window=recipes;file=recipes_drinks.html;display=0")
+	user << browse(html, "window=recipes;file=recipes_drinks.html;display=0")
 
-	to_chat(src, span_notice("In your byond cache, recipe-xxx.png files and recipes_drinks.html and recipes_food.html now exist. Place recipe-xxx.png files in a subfolder named 'imgrecipes' wherever you put them. The file will take a food.css or drinks.css file if in the same path."))
+	to_chat(user, span_notice("In your byond cache, recipe-xxx.png files and recipes_drinks.html and recipes_food.html now exist. Place recipe-xxx.png files in a subfolder named 'imgrecipes' wherever you put them. The file will take a food.css or drinks.css file if in the same path."))

@@ -4,7 +4,7 @@
 	if(!message)
 		return
 
-	log_talk("(GHOST SAY) [message]", LOG_SAY)
+	log_talk("(GHOST SAY) [message]", LOG_SAY, color="#9c00bc")
 
 	if (client)
 		if(message)
@@ -20,7 +20,7 @@
 	if(!message)
 		return
 
-	log_message("(GHOST EMOTE) [message]", LOG_EMOTE)
+	log_message("(GHOST EMOTE) [message]", LOG_EMOTE, color="#9c00bc")
 
 	if(client)
 		if(message)

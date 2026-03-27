@@ -10,7 +10,7 @@
 	name = "Firework Star ([name])"
 
 /datum/design_techweb/board/firework_launcher
-	name = "firework launcher circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("firework launcher")
 	id = "fireworklauncher"
 	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/firework_launcher

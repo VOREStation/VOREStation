@@ -107,11 +107,7 @@ obj/item/gun/energy/laser/retro/sc_retro
  */
 
 //These vars hold the code itself, they'll be generated at round-start
-var/sc_safecode1 = "[rand(0,9)]"
-var/sc_safecode2 = "[rand(0,9)]"
-var/sc_safecode3 = "[rand(0,9)]"
-var/sc_safecode4 = "[rand(0,9)]"
-var/sc_safecode5 = "[rand(0,9)]"
+GLOBAL_LIST_INIT(sc_safecode, list("[rand(0,9)]", "[rand(0,9)]", "[rand(0,9)]", "[rand(0,9)]", "[rand(0,9)]"))
 
 //Pieces of paper actually containing the hints
 /obj/item/paper/sc_safehint_paper_prison
@@ -119,13 +115,13 @@ var/sc_safecode5 = "[rand(0,9)]"
 
 /obj/item/paper/sc_safehint_paper_prison/Initialize(mapload)
 	. = ..()
-	info = span_italics("The ink is smudged, you can only make out a couple numbers:") + " '[sc_safecode1]**[sc_safecode4]*'"
+	info = span_italics("The ink is smudged, you can only make out a couple numbers:") + " '[GLOB.sc_safecode[1]]**[GLOB.sc_safecode[4]]*'"
 
 /obj/item/paper/sc_safehint_paper_hydro
 	name = "shredded paper"
 /obj/item/paper/sc_safehint_paper_hydro/Initialize(mapload)
 	. = ..()
-	info = span_italics("Although the paper is shredded, you can clearly see the number:") + " '[sc_safecode2]'"
+	info = span_italics("Although the paper is shredded, you can clearly see the number:") + " '[GLOB.sc_safecode[2]]'"
 
 /obj/item/paper/sc_safehint_paper_caf
 	name = "blood-soaked paper"
@@ -137,7 +133,7 @@ var/sc_safecode5 = "[rand(0,9)]"
 /obj/item/paper/sc_safehint_paper_bible/Initialize(mapload)
 	. = ..()
 	info = span_italics("It would appear that the pen hidden with the paper had leaked ink over the paper.\
-			However you can make out the last three digits:") + " '[sc_safecode3][sc_safecode4][sc_safecode5]'"
+			However you can make out the last three digits:") + " '[GLOB.sc_safecode[3]][GLOB.sc_safecode[4]][GLOB.sc_safecode[5]]'"
 
 /obj/item/paper/sc_safehint_paper_shuttle
 	info = span_bold("Target:") + " Research-station Epsilon<br>" + span_bold("Objective:") + " " + {"
@@ -160,7 +156,7 @@ var/sc_safecode5 = "[rand(0,9)]"
 
 /obj/item/storage/secure/safe/sc_ssafe/Initialize(mapload)
 	. = ..()
-	l_code = "[sc_safecode1][sc_safecode2][sc_safecode3][sc_safecode4][sc_safecode5]"
+	l_code = "[GLOB.sc_safecode[1]][GLOB.sc_safecode[2]][GLOB.sc_safecode[3]][GLOB.sc_safecode[4]][GLOB.sc_safecode[5]]"
 	l_set = 1
 	new /obj/item/gun/energy/mindflayer(src)
 	new /obj/item/soulstone(src)

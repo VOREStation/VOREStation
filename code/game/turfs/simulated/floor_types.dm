@@ -91,6 +91,7 @@
 	var/join_flags = 0 //Bitstring to represent adjacency of joining walls
 	var/join_group = "shuttle" //A tag for what other walls to join with. Null if you don't want them to.
 	var/static/list/antilight_cache
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /turf/simulated/shuttle/Initialize(mapload)
 	. = ..()
@@ -303,7 +304,7 @@
 /turf/simulated/floor/tiled/material
 	icon = 'icons/turf/floors.dmi'
 
-/decl/flooring/tiling/material
+/datum/decl/flooring/tiling/material
 	name = "material floor"
 	icon_base = "steel"
 	icon = 'icons/turf/floors.dmi'
@@ -311,45 +312,75 @@
 
 /turf/simulated/floor/tiled/material/uranium
 	icon_state = "uranium"
-	initial_flooring = /decl/flooring/tiling/material/uranium
+	initial_flooring = /datum/decl/flooring/tiling/material/uranium
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
-/decl/flooring/tiling/material/uranium
+/turf/simulated/floor/tiled/material/uranium/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/turf/simulated/floor/tiled/material/uranium/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	. = ..()
+
+/turf/simulated/floor/tiled/material/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 1,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 1
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
+
+/datum/decl/flooring/tiling/material/uranium
 	name = "uranium floor"
 	icon_base = "uranium"
 	build_type = /obj/item/stack/tile/floor/uranium
 
 /turf/simulated/floor/tiled/material/phoron
 	icon_state = "phoron"
-	initial_flooring = /decl/flooring/tiling/material/phoron
+	initial_flooring = /datum/decl/flooring/tiling/material/phoron
 
-/decl/flooring/tiling/material/phoron
+/datum/decl/flooring/tiling/material/phoron
 	name = "phoron floor"
 	icon_base = "phoron"
 	build_type = /obj/item/stack/tile/floor/phoron
 
 /turf/simulated/floor/tiled/material/gold
 	icon_state = "gold"
-	initial_flooring = /decl/flooring/tiling/material/gold
+	initial_flooring = /datum/decl/flooring/tiling/material/gold
 
-/decl/flooring/tiling/material/gold
+/datum/decl/flooring/tiling/material/gold
 	name = "gold floor"
 	icon_base = "gold"
 	build_type = /obj/item/stack/tile/floor/gold
 
 /turf/simulated/floor/tiled/material/silver
 	icon_state = "silver"
-	initial_flooring = /decl/flooring/tiling/material/silver
+	initial_flooring = /datum/decl/flooring/tiling/material/silver
 
-/decl/flooring/tiling/material/silver
+/datum/decl/flooring/tiling/material/silver
 	name = "silver floor"
 	icon_base = "silver"
 	build_type = /obj/item/stack/tile/floor/silver
 
 /turf/simulated/floor/tiled/material/diamond
 	icon_state = "diamond"
-	initial_flooring = /decl/flooring/tiling/material/diamond
+	initial_flooring = /datum/decl/flooring/tiling/material/diamond
 
-/decl/flooring/tiling/material/diamond
+/datum/decl/flooring/tiling/material/diamond
 	name = "diamond floor"
 	icon_base = "diamond"
 	build_type = /obj/item/stack/tile/floor/diamond

@@ -35,7 +35,7 @@
 
 	var/list/starts_with // List of type = count (or just type for 1)
 
-	var/decl/closet_appearance/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
+	var/datum/decl/closet_appearance/closet_appearance = /datum/decl/closet_appearance // The /datum/decl that defines what decals we end up with, that makes our look unique
 
 	/// Currently animating the door transform
 	var/is_animating_door = FALSE
@@ -97,7 +97,7 @@
 			. += "It is full."
 
 	if(!opened && isobserver(user))
-		. += "It contains: [counting_english_list(contents)]"
+		. += "It contains: [counting_english_list(user.client, contents)]"
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
@@ -538,6 +538,9 @@
 	M.Multiply(matrix(cos(angle), 0, 0, -sin(angle) * closet_appearance.door_anim_squish, 1, 0))
 	M.Translate(closet_appearance.door_hinge, 0)
 	return M
+
+/obj/structure/closet/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 //verb to eat people in the same closet as yourself
 

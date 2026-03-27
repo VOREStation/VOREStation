@@ -31,9 +31,9 @@ export const ChemAnalyzerPro = () => {
   );
   const [searchText, setSearchText] = useState('');
 
-  const customSearch = createSearch(
+  const customSearch = createSearch<AnalyzerData>(
     searchText,
-    (search: AnalyzerData) => search.title,
+    (search) => search.title,
   );
   const toDisplay = scannedReagents.filter(customSearch);
 

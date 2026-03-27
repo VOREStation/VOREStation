@@ -37,18 +37,18 @@ length to avoid portals or something i guess?? Not that they're counted right no
 // Also added 'exclude' turf to avoid travelling over; defaults to null
 
 
-/PriorityQueue
+/datum/PriorityQueue
 	var/list/queue
 	var/comparison_function
 
-/PriorityQueue/New(compare)
+/datum/PriorityQueue/New(compare)
 	queue = list()
 	comparison_function = compare
 
-/PriorityQueue/proc/IsEmpty()
+/datum/PriorityQueue/proc/IsEmpty()
 	return !queue.len
 
-/PriorityQueue/proc/Enqueue(var/data)
+/datum/PriorityQueue/proc/Enqueue(var/data)
 	queue.Add(data)
 	var/index = queue.len
 
@@ -57,12 +57,12 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		queue.Swap(index, index / 2)
 		index /= 2
 
-/PriorityQueue/proc/Dequeue()
+/datum/PriorityQueue/proc/Dequeue()
 	if(!queue.len)
 		return 0
 	return Remove(1)
 
-/PriorityQueue/proc/Remove(var/index)
+/datum/PriorityQueue/proc/Remove(var/index)
 	if(index > queue.len)
 		return 0
 
@@ -73,7 +73,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		FixQueue(index)
 	return thing
 
-/PriorityQueue/proc/FixQueue(var/index)
+/datum/PriorityQueue/proc/FixQueue(var/index)
 	var/child = 2 * index
 	var/item = queue[index]
 
@@ -88,20 +88,20 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		child = 2 * index
 	queue[index] = item
 
-/PriorityQueue/proc/List()
+/datum/PriorityQueue/proc/List()
 	return queue.Copy()
 
-/PriorityQueue/proc/Length()
+/datum/PriorityQueue/proc/Length()
 	return queue.len
 
-/PriorityQueue/proc/RemoveItem(data)
+/datum/PriorityQueue/proc/RemoveItem(data)
 	var/index = queue.Find(data)
 	if(index)
 		return Remove(index)
 
-/PathNode
+/datum/PathNode
 	var/datum/position
-	var/PathNode/previous_node
+	var/datum/PathNode/previous_node
 
 	var/best_estimated_cost
 	var/estimated_cost
@@ -109,7 +109,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	var/cost
 	var/nodes_traversed
 
-/PathNode/New(_position, _previous_node, _known_cost, _cost, _nodes_traversed)
+/datum/PathNode/New(_position, _previous_node, _known_cost, _cost, _nodes_traversed)
 	position = _position
 	previous_node = _previous_node
 
@@ -120,11 +120,11 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	best_estimated_cost = estimated_cost
 	nodes_traversed = _nodes_traversed
 
-/proc/PathWeightCompare(PathNode/a, PathNode/b)
+/proc/PathWeightCompare(datum/PathNode/a, datum/PathNode/b)
 	return a.estimated_cost - b.estimated_cost
 
 /proc/AStar(var/start, var/end, var/adjacent, var/dist, var/max_nodes, var/max_node_depth = 30, var/min_target_dist = 0, var/min_node_dist, var/id, var/datum/exclude)
-	var/PriorityQueue/open = new /PriorityQueue(/proc/PathWeightCompare)
+	var/datum/PriorityQueue/open = new /datum/PriorityQueue(/proc/PathWeightCompare)
 	var/list/closed = list()
 	var/list/path
 	var/list/path_node_by_position = list()
@@ -132,10 +132,10 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	if(!start)
 		return 0
 
-	open.Enqueue(new /PathNode(start, null, 0, call(start, dist)(end), 0))
+	open.Enqueue(new /datum/PathNode(start, null, 0, call(start, dist)(end), 0))
 
 	while(!open.IsEmpty() && !path)
-		var/PathNode/current = open.Dequeue()
+		var/datum/PathNode/current = open.Dequeue()
 		closed.Add(current.position)
 
 		if(current.position == end || call(current.position, dist)(end) <= min_target_dist)
@@ -164,14 +164,14 @@ length to avoid portals or something i guess?? Not that they're counted right no
 
 			//handle removal of sub-par positions
 			if(datum in path_node_by_position)
-				var/PathNode/target = path_node_by_position[datum]
+				var/datum/PathNode/target = path_node_by_position[datum]
 				if(target.best_estimated_cost)
 					if(best_estimated_cost + call(datum, dist)(end) < target.best_estimated_cost)
 						open.RemoveItem(target)
 					else
 						continue
 
-			var/PathNode/next_node = new (datum, current, best_estimated_cost, call(datum, dist)(end), current.nodes_traversed + 1)
+			var/datum/PathNode/next_node = new (datum, current, best_estimated_cost, call(datum, dist)(end), current.nodes_traversed + 1)
 			path_node_by_position[datum] = next_node
 			open.Enqueue(next_node)
 

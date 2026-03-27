@@ -19,8 +19,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
-var/global/list/obj/item/pda/PDAs = list()
-var/global/list/obj/item/communicator/all_communicators = list()
+GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
+GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 GLOBAL_LIST_INIT(restricted_camera_networks, list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS))
@@ -72,14 +72,8 @@ GLOBAL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel", "Satchel Al
 GLOBAL_LIST_INIT(pdachoicelist, list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound","Slider", "Vintage"))
 GLOBAL_LIST_INIT(exclude_jobs, list(/datum/job/ai,/datum/job/cyborg))
 
-// Visual nets
-var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/camera/cameranet = new()
-var/datum/visualnet/cult/cultnet = new()
-var/datum/visualnet/ghost/ghostnet = new()
-
-var/global/list/obj/machinery/message_server/message_servers = list()
-var/global/list/datum/supply_drop_loot/supply_drop
+GLOBAL_LIST_EMPTY_TYPED(message_servers, /obj/machinery/message_server)
+GLOBAL_LIST_INIT_TYPED(supply_drop, /datum/supply_drop_loot, dd_sortedObjectList(init_subtypes(/datum/supply_drop_loot)))
 // Runes
 GLOBAL_LIST_EMPTY(rune_list)
 GLOBAL_LIST_EMPTY(escape_list)
@@ -251,9 +245,9 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.suit_cycler_emagged += new SCC()
 
 	//Ores
-	paths = subtypesof(/ore)
+	paths = subtypesof(/datum/ore)
 	for(var/oretype in paths)
-		var/ore/OD = new oretype()
+		var/datum/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
 
 	paths = subtypesof(/datum/alloy)
@@ -261,7 +255,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.alloy_data += new alloytype()
 
 	//Closet appearances
-	GLOB.closet_appearances = decls_repository.get_decls_of_type(/decl/closet_appearance)
+	GLOB.closet_appearances = GLOB.decls_repository.get_decls_of_type(/datum/decl/closet_appearance)
 
 	paths = subtypesof(/datum/sprite_accessory/ears)
 	for(var/path in paths)
@@ -281,11 +275,17 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.wing_styles_list[path] = instance
 
 	paths = typesof(/datum/digest_mode)
-	for(var/T in paths)
-		var/datum/digest_mode/DM = new T
+	for(var/path in paths)
+		var/datum/digest_mode/DM = new path
 		GLOB.digest_modes[DM.id] = DM
 	init_crafting_recipes(GLOB.crafting_recipes)
 
+	paths = subtypesof(/datum/ai_laws)
+	for(var/path in paths)
+		var/datum/ai_laws/laws = new path
+		GLOB.admin_laws += laws
+		if(laws.selectable)
+			GLOB.player_laws += laws
 /*
 	// Custom species traits
 	paths = subtypesof(/datum/trait)
@@ -326,6 +326,8 @@ GLOBAL_LIST_EMPTY(mannequins)
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
+	cache_no_ceiling_image()
+
 /// Inits the crafting recipe list, sorting crafting recipe requirements in the process.
 /proc/init_crafting_recipes(list/crafting_recipes)
 	for(var/path in subtypesof(/datum/crafting_recipe))
@@ -346,18 +348,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 */
 //Hexidecimal numbers
 GLOBAL_LIST_INIT(hexNums, list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"))
-
-// Many global vars aren't GLOB type. This puts them there to be more easily inspected.
-GLOBAL_LIST_EMPTY(legacy_globals)
-
-/proc/populate_legacy_globals()
-	//Note: these lists cannot be changed to a new list anywhere in code! //Lies. TG doesn't use any var/global/list so neither will we!
-	//If they are, these will cause the old list to stay around!
-	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	//visual nets
-	GLOB.legacy_globals["visual_nets"] = visual_nets
-	GLOB.legacy_globals["cameranet"] = cameranet
-	GLOB.legacy_globals["cultnet"] = cultnet
 
 GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Default" = FOOTSTEP_MOB_HUMAN,
@@ -628,10 +618,10 @@ GLOBAL_LIST_INIT(changeling_fabricated_clothing, list(
 //  This is to make some of the more OP superpowers a larger PITA to activate,
 //  and to tell our new DNA datum which values to set in order to turn something
 //  on or off.
-var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
+GLOBAL_ALIST_EMPTY(dna_activity_bounds)
 
 // Used to determine what each block means (admin hax and species stuff on /vg/, mostly)
-var/global/list/assigned_blocks[DNA_SE_LENGTH]
+GLOBAL_ALIST_EMPTY(assigned_blocks)
 
 GLOBAL_LIST_EMPTY(gear_distributed_to)
 GLOBAL_LIST_EMPTY(overlay_cache) //cache recent overlays
@@ -646,23 +636,20 @@ GLOBAL_LIST_INIT(all_technomancer_gambit_spells, typesof(/obj/item/spell) - list
 	/obj/item/spell/summon,
 	/obj/item/spell/modifier))
 
-var/global/list/image/splatter_cache=list()
-var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective. Clumsy, rewrite sometime.
-var/global/list/obj/machinery/telecomms/telecomms_list = list()
+GLOBAL_LIST_EMPTY_TYPED(telecomms_list, /obj/machinery/telecomms)
 
 // color-dir-dry
-var/global/list/image/fluidtrack_cache=list()
+GLOBAL_LIST_EMPTY_TYPED(fluidtrack_cache, /image)
 
-var/global/list/datum/stack_recipe/sandbag_recipes = list( \
-	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE))
+GLOBAL_LIST_INIT_TYPED(sandbag_recipes, /datum/stack_recipe, list( \
+	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE)))
 
-var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
-)
-var/global/list/datum/stack_recipe/rods_recipes = list( \
+GLOBAL_LIST_INIT_TYPED(wax_recipes, /datum/stack_recipe, list( \
+	new/datum/stack_recipe("candle", /obj/item/flame/candle)))
+
+GLOBAL_LIST_INIT_TYPED(rods_recipes, /datum/stack_recipe, list( \
 	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
-	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
-
+	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1)))
 
 GLOBAL_LIST_INIT(possible_plants, list(
 	"plant-1",
@@ -987,16 +974,13 @@ GLOBAL_LIST_INIT(special_roles, list(
 	"ninja" = 0,										// 10
 	"raider" = 0,										// 11
 	"diona" = 0,										// 12
-	"mutineer" = 0,										// 13
-	"loyalist" = 0,										// 14
-	"pAI candidate" = 1,								// 15
-	"lost drone" = 1,									// 16
-	"maint pred" = 1,									// 17
-	"maint lurker" = 1,									// 18
-	"morph" = 1,										// 19
-	"corgi" = 1,										// 20
-	"cursed sword" = 1,									// 21
-	"Ship Survivor" = 1,								// 22
+	"loyalist" = 0,										// 13
+	"pAI" = 1,											// 14
+	"lost drone" = 1,									// 15
+	"maint critter" = 1,								// 16
+	"corgi" = 1,										// 17
+	"cursed sword" = 1,									// 18
+	"ship survivor" = 1,								// 19
 ))
 
 GLOBAL_LIST_INIT(maint_mob_pred_options, list(
@@ -1113,23 +1097,27 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	"huge scorched area"
 	))
 
-GLOBAL_LIST_INIT(wide_chassis, list(
-	"rat",
-	"panther",
-	"teppi",
-	"pai-diredog",
-	"pai-horse_lune",
-	"pai-horse_soleil",
-	"pai-pdragon",
-	"pai-protodog"
-	))
+GLOBAL_LIST_EMPTY(paikeys)
 
-GLOBAL_LIST_INIT(flying_chassis, list(
-	"pai-parrot",
-	"pai-bat",
-	"pai-butterfly",
-	"pai-hawk",
-	"cyberelf"
+GLOBAL_LIST_EMPTY(pai_software_by_key)
+GLOBAL_LIST_EMPTY(default_pai_software)
+GLOBAL_LIST_INIT(pai_emotions, list(
+		"Neutral" = 1,
+		"What" = 2,
+		"Happy" = 3,
+		"Cat" = 4,
+		"Extremely Happy" = 5,
+		"Face" = 6,
+		"Laugh" = 7,
+		"Sad" = 8,
+		"Angry" = 9,
+		"Silly" = 10,
+		"Nose" = 11,
+		"Smirk" = 12,
+		"Exclamation Points" = 13,
+		"Question Mark" = 14,
+		"Blank" = 15,
+		"Off" = 16
 	))
 
 //Sure I could spend all day making wacky overlays for all of the different forms
@@ -1322,41 +1310,6 @@ GLOBAL_LIST_EMPTY(sparring_attack_cache)
 GLOBAL_LIST_EMPTY(protean_abilities)
 
 //PAI stuff
-GLOBAL_LIST_INIT(possible_chassis, list(
-	"Drone" = "pai-repairbot",
-	"Cat" = "pai-cat",
-	"Mouse" = "pai-mouse",
-	"Monkey" = "pai-monkey",
-	"Borgi" = "pai-borgi",
-	"Fox" = "pai-fox",
-	"Parrot" = "pai-parrot",
-	"Rabbit" = "pai-rabbit",
-	"Dire wolf" = "pai-diredog",
-	"Horse (Lune)" = "pai-horse_lune",
-	"Horse (Soleil)" = "pai-horse_soleil",
-	"Dragon" = "pai-pdragon",
-	"Bear" = "pai-bear",
-	"Fennec" = "pai-fen",
-	"Type Zero" = "pai-typezero",
-	"Raccoon" = "pai-raccoon",
-	"Raptor" = "pai-raptor",
-	"Corgi" = "pai-corgi",
-	"Bat" = "pai-bat",
-	"Butterfly" = "pai-butterfly",
-	"Hawk" = "pai-hawk",
-	"Duffel" = "pai-duffel",
-	"Rat" = "rat",
-	"Panther" = "panther",
-	"Cyber Elf" = "cyberelf",
-	"Teppi" = "teppi",
-	"Catslug" = "catslug",
-	"Car" = "car",
-	"Type One" = "typeone",
-	"Type Thirteen" = "13",
-	"Protogen Dog" = "pai-protodog"
-	))
-
-//PAI stuff
 GLOBAL_LIST_INIT(possible_say_verbs, list(
 	"Robotic" = list("states","declares","queries"),
 	"Natural" = list("says","yells","asks"),
@@ -1383,8 +1336,8 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	"Exploration"	= /obj/item/robot_module/robot/exploration,
 	"Engineering"	= /obj/item/robot_module/robot/engineering,
 	"Janitor" 		= /obj/item/robot_module/robot/janitor,
-	"Gravekeeper"	= /obj/item/robot_module/robot/gravekeeper,
-	"Lost"			= /obj/item/robot_module/robot/lost,
+	"Gravekeeper"	= /obj/item/robot_module/robot/malf/gravekeeper,
+	"Lost"			= /obj/item/robot_module/robot/malf/lost,
 	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
 	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
 	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic,
@@ -1425,8 +1378,8 @@ GLOBAL_LIST_INIT(finds_as_strings, list(
 
 
 //tgui law manager
-var/global/list/datum/ai_laws/admin_laws
-var/global/list/datum/ai_laws/player_laws
+GLOBAL_LIST_EMPTY_TYPED(admin_laws, /datum/ai_laws)
+GLOBAL_LIST_EMPTY_TYPED(player_laws, /datum/ai_laws)
 
 //shield_gen/external
 GLOBAL_LIST_INIT(external_shield_gen_blockedturfs,  list(

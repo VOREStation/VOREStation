@@ -26,9 +26,9 @@ export const ImportDataSelector = (props: {
     Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
   );
 
-  const bellySearch = createSearch(
+  const bellySearch = createSearch<{ name: string }>(
     searchText,
-    (belly: { name: string }) => belly.name,
+    (belly) => belly.name,
   );
 
   const belliesToShow = Object.values(

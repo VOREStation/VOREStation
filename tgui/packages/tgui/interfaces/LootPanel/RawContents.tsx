@@ -13,7 +13,7 @@ export function RawContents(props: Props) {
   const { contents, searchText } = props;
 
   const filteredContents = contents.filter(
-    createSearch(searchText, (item: SearchItem) => item.name),
+    createSearch(searchText, (item) => item.name),
   );
 
   return (

@@ -86,7 +86,7 @@
 		to_chat(src, span_danger("You begin to resist \the [prey_name]'s control!!!"))
 		to_chat(pred_body, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
-		if(do_after(src, 10 SECONDS, target = prey_name))
+		if(do_after(src, 10 SECONDS, target = pred_body))
 			restore_control()
 		else
 			to_chat(src, span_notice("Your attempt to regain control has been interrupted..."))

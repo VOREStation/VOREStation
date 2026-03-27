@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - balance: "AI controlled rig movement power draw reduced from 200 to 50 ( normally 20 for non-ai operators )"
+  - bugfix: "paicard typeB can be inserted into rigs that allow AI control"

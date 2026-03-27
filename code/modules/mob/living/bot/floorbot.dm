@@ -20,7 +20,7 @@
 	var/eattiles = 0
 	var/maketiles = 0
 	var/targetdirection = null
-	var/floor_build_type = /decl/flooring/tiling // Basic steel floor.
+	var/floor_build_type = /datum/decl/flooring/tiling // Basic steel floor.
 
 /mob/living/bot/floorbot/update_icons()
 	if(busy)

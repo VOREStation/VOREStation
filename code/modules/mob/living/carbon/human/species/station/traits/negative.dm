@@ -231,6 +231,7 @@
 	var_changes = list("gun_accuracy_mod" = -35)
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+	excludes = list(/datum/trait/negative/thick_digits)
 
 	//Traitgenes
 	is_genetrait = TRUE
@@ -473,6 +474,7 @@
 	desc = "Your hands are not shaped in a way that allows useage of guns."
 	cost = -4
 	custom_only = FALSE
+	excludes = list(/datum/trait/negative/bad_shooter)
 
 /datum/trait/negative/thick_digits/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -586,7 +588,7 @@
 	hidden = FALSE
 	custom_only = FALSE
 	added_component_path = /datum/component/omen/trait
-	excludes = list(/datum/trait/negative/unlucky/major)
+	excludes = list(/datum/trait/negative/unlucky/major, /datum/trait/neutral/slip_prone)
 
 
 /datum/trait/negative/unlucky/major
@@ -597,7 +599,7 @@
 	is_genetrait = TRUE
 	hidden = TRUE //VOREStation Note: Disabled
 	added_component_path = /datum/component/omen/trait/major
-	excludes = list(/datum/trait/negative/unlucky)
+	excludes = list(/datum/trait/negative/unlucky, /datum/trait/neutral/slip_prone)
 	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
 	primitive_expression_messages=list("unluckily stubs their toe!")
 

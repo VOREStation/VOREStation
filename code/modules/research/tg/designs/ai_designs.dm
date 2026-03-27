@@ -1,5 +1,5 @@
 /datum/design_techweb/board/aicore
-	name = "AI core circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("AI core")
 	id = "aicore"
 	// req_tech = list(TECH_DATA = 4, TECH_BIO = 3)
 	build_path = /obj/item/circuitboard/aicore
@@ -70,6 +70,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/aimodule
+	desc = "A circuit used to change a silicon's configured laws."
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 2000, MAT_GOLD = 100)
 	category = list(

@@ -12,7 +12,6 @@
 	pref.alternate_languages	= check_list_copy(save_data["language"])
 	pref.extra_languages		= save_data["extra_languages"]
 	pref.language_prefixes		= save_data["language_prefixes"]
-	pref.species				= save_data["species"]
 	pref.preferred_language		= save_data["preflang"]
 	pref.language_custom_keys	= check_list_copy(save_data["language_custom_keys"])
 	pref.runechat_color			= save_data["runechat_color"]
@@ -32,10 +31,11 @@
 	if(!islist(pref.alternate_languages))
 		testing("LANGSANI: Sanitizing languages on [pref.client]'s character [char_name] because their character has no languages list")
 		pref.alternate_languages = list()
-	if(pref.species)
-		var/datum/species/S = GLOB.all_species[pref.species]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
+	if(pref_species)
+		var/datum/species/S = GLOB.all_species[pref_species]
 		if(!istype(S))
-			testing("LANGSANI: Failed sani on [pref.client]'s character [char_name] because their species ([pref.species]) isn't in the global list")
+			testing("LANGSANI: Failed sani on [pref.client]'s character [char_name] because their species ([pref_species]) isn't in the global list")
 			return
 
 		if(pref.alternate_languages.len > (S.num_alternate_languages + pref.extra_languages))
@@ -62,7 +62,7 @@
 			pref.language_prefixes -= prefix
 	if(isnull(pref.language_custom_keys))
 		pref.language_custom_keys = list()
-	var/datum/species/S = GLOB.all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 	for(var/key in pref.language_custom_keys)
 		if(!pref.language_custom_keys[key])
 			pref.language_custom_keys.Remove(key)
@@ -76,7 +76,7 @@
 
 	var/list/languages_list = list()
 
-	var/datum/species/S = GLOB.all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 	if(S.language)
 		UNTYPED_LIST_ADD(languages_list, list(
 			"name" = S.language,
@@ -108,7 +108,7 @@
 		return
 
 	var/mob/user = ui.user
-	var/datum/species/S = GLOB.all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 
 	switch(action)
 		if("remove_language")

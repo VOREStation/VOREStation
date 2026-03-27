@@ -169,10 +169,9 @@
 	. = ..()
 	if(isrobotmultibelt(loc))
 		var/obj/item/robotic_multibelt/our_belt = loc
+		our_belt.cut_overlays()
 		if(welding)
 			our_belt.add_overlay("indwelder_cyborg-on")
-		else
-			our_belt.cut_overlays()
 
 /obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"

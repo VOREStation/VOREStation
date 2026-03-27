@@ -1,7 +1,7 @@
 
 GLOBAL_LIST_EMPTY(chemical_reaction_logs)
 
-/proc/log_chemical_reaction(atom/A, decl/chemical_reaction/R, multiplier)
+/proc/log_chemical_reaction(atom/A, datum/decl/chemical_reaction/R, multiplier)
 	if(!A || !R)
 		return
 
@@ -14,17 +14,11 @@ GLOBAL_LIST_EMPTY(chemical_reaction_logs)
 		message_admins(logstr)
 	log_admin(logstr)
 
-/client/proc/view_chemical_reaction_logs()
-	set name = "Show Chemical Reactions"
-	set category = "Admin.Investigate"
-
-	if(!check_rights(R_ADMIN|R_MOD))
-		return
-
+ADMIN_VERB(view_chemical_reaction_logs, R_ADMIN|R_MOD, "Show Chemical Reactions", "Access the chemical reactions log.", ADMIN_CATEGORY_INVESTIGATE)
 	var/html = ""
 	for(var/entry in GLOB.chemical_reaction_logs)
 		html += "[entry]<br>"
 
-	var/datum/browser/popup = new(usr, "chemlogs", "Chemlogs")
+	var/datum/browser/popup = new(user, "chemlogs", "Chemlogs")
 	popup.set_content(html)
 	popup.open()
