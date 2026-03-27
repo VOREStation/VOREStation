@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - refactor: "moves legacy global access lists to a no fire controller"

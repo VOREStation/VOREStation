@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Added some tweaks to the transfer code."
-  - spellcheck: "Makes the transfer text 'more correct'"
