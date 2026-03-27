@@ -19,8 +19,8 @@ SUBSYSTEM_DEF(transfer)
 /datum/controller/subsystem/transfer/fire(resumed)
 	currenttick = currenttick + 1
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES)
-		shift_last_vote = 99999999 //Setting to a stupidly high number since it'll be not used again.
-		to_chat(world, span_world(span_notice("Warning: You have one hour left in the shift. Wrap up your scenes in the next 60 minutes before the transfer is called."))) //VOREStation Edit
+		shift_last_vote = 1000000000000 //Setting to a stupidly high number since it'll be not used again.
+		to_chat(world, span_world(span_notice("Warning: This upcoming round-extend vote will be your last chance to vote for shift extension. Wrap up your scenes in the next 60 minutes if the round is extended.")))
 	if (round_duration_in_ds >= shift_hard_end - 1 MINUTE)
 		init_shift_change(null, 1)
 		shift_hard_end = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval) //If shuttle somehow gets recalled, let's force it to call again next time a vote would occur.
@@ -40,3 +40,6 @@ SUBSYSTEM_DEF(transfer)
 	shift_hard_end = calculated_end
 	shift_last_vote = calculated_end
 	timerbuffer = calculated_end
+
+/datum/controller/subsystem/transfer/proc/get_hard_end(client/user)
+	return shift_hard_end
