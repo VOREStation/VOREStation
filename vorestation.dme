@@ -2111,6 +2111,7 @@
 #include "code\game\turfs\turf.dm"
 #include "code\game\turfs\turf_changing.dm"
 #include "code\game\turfs\turf_flick_animations.dm"
+#include "code\game\turfs\turf_shoveling.dm"
 #include "code\game\turfs\unsimulated.dm"
 #include "code\game\turfs\weird_turfs_vr.dm"
 #include "code\game\turfs\flooring\flooring.dm"
