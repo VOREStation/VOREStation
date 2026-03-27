@@ -30,6 +30,24 @@
 	name = "Sand"
 	icon_state = "sand"
 	initial_flooring = /datum/decl/flooring/sand
+	flags = TURF_CAN_DIG_SHOVEL // Can dig but can't cultivate
+
+/turf/simulated/floor/beach/sand/get_dig_loot_type(mob/user, obj/item/W)
+	if(prob(2))
+		// Things of note that might wash up on a beach
+		return pick(/obj/item/coin/silver,
+					/obj/item/coin/gold,
+					/obj/item/coin/copper,
+					/obj/item/clothing/shoes/sandal,
+					/obj/item/cell/empty,
+					/obj/item/stack/cable_coil/cut,
+					/obj/item/ore/iron,
+					/obj/item/stack/material/wood,
+					/obj/item/stack/material/stick,
+					/obj/item/stack/material/flint,
+					/obj/item/stack/material/smolebricks,
+				)
+	return null
 
 /turf/simulated/floor/beach/sand/desert
 	icon = 'icons/turf/desert.dmi'

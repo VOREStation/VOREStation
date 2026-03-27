@@ -80,6 +80,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 //---------------
 //#define isturf(D)		istype(D, /turf)	//Built in
+#define issimulatedturf(A)	istype(A, /turf/simulated)
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
 #define isopenturf(A)	(istype(A, /turf/simulated/open) || istype(A, /turf/space))

@@ -97,7 +97,6 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	var/max_multicams = 6
 
 	can_be_antagged = TRUE
-	var/idcard_type = /obj/item/card/id/synthetic
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	add_verb(src, GLOB.ai_verbs_default)
@@ -408,7 +407,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		call_shuttle_proc(src)
 
 	// hack to display shuttle timer
-	if(GLOB.emergency_shuttle.online())
+	if(SSemergency_shuttle.online())
 		post_status(src, "shuttle", user = src)
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()

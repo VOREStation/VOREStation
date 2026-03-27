@@ -96,7 +96,7 @@
 	var/list/in_range = list()
 	if(!istype(M))
 		return in_range
-	var/social_check = only_people && !iscarbon(M) && !isrobot(M) && !ispAI(M)
+	var/social_check = only_people && !iscarbon(M) && !isrobot(M) && !ispAI(M) && !isAI(M)
 	var/self_invisible_check = M == human_parent || M.invisibility > human_parent.see_invisible
 	var/ckey_check = only_people && !M.ckey
 	var/overall_checks = M == human_parent || M.stat == DEAD || social_check || ckey_check || (ispAI(M) && !M.ckey)

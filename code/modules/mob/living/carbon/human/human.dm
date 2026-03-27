@@ -100,8 +100,8 @@
 	. += ""
 	. += "Intent: [a_intent]"
 	. += "Move Mode: [m_intent]"
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. += "[eta_status]"
 

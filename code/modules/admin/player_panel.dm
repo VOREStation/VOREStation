@@ -395,25 +395,25 @@
 		dat += "Current Game Mode: " + span_bold("[SSticker.mode.name]") + "<BR>"
 		dat += "Round Duration: " + span_bold("[roundduration2text()]") + "<BR>"
 		dat += span_bold("Emergency shuttle") + "<BR>"
-		if (!GLOB.emergency_shuttle.online())
+		if (!SSemergency_shuttle.online())
 			dat += "<a href='byond://?src=\ref[src];[HrefToken()];call_shuttle=1'>Call Shuttle</a><br>"
 		else
-			if (GLOB.emergency_shuttle.wait_for_launch)
-				var/timeleft = GLOB.emergency_shuttle.estimate_launch_time()
+			if (SSemergency_shuttle.wait_for_launch)
+				var/timeleft = SSemergency_shuttle.estimate_launch_time()
 				dat += "ETL: <a href='byond://?src=\ref[src];[HrefToken()];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 
-			else if (GLOB.emergency_shuttle.shuttle.has_arrive_time())
-				var/timeleft = GLOB.emergency_shuttle.estimate_arrival_time()
+			else if (SSemergency_shuttle.shuttle.has_arrive_time())
+				var/timeleft = SSemergency_shuttle.estimate_arrival_time()
 				dat += "ETA: <a href='byond://?src=\ref[src];[HrefToken()];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 				dat += "<a href='byond://?src=\ref[src];[HrefToken()];call_shuttle=2'>Send Back</a><br>"
 
-			if (GLOB.emergency_shuttle.shuttle.moving_status == SHUTTLE_WARMUP)
+			if (SSemergency_shuttle.shuttle.moving_status == SHUTTLE_WARMUP)
 				dat += "Launching now..."
 
 		dat += "<a href='byond://?src=\ref[src];[HrefToken()];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		dat += "<hr>"
-		for(var/antag_type in GLOB.all_antag_types)
-			var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
+		for(var/antag_type in SSantag_job.all_antag_types)
+			var/datum/antagonist/A = SSantag_job.all_antag_types[antag_type]
 			dat += A.get_check_antag_output(src)
 		dat += "</body></html>"
 		user << browse(dat, "window=roundstatus;size=400x500")
