@@ -65,7 +65,7 @@ ADMIN_VERB(radio_report, R_DEBUG, "Radio report", "Displays a radio report.", AD
 	popup.open()
 	feedback_add_details("admin_verb","RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Relaods admins from the file or database.", ADMIN_CATEGORY_DEBUG_SERVER)
+ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Reloads admins from the file or database.", ADMIN_CATEGORY_DEBUG_SERVER)
 	message_admins("[user] manually reloaded admins")
 	load_admins()
 	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
