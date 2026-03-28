@@ -297,10 +297,6 @@
 /obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
 	asplod()
 
-/obj/machinery/power/rtg/abductor/tesla_act(power, explosive, current_jumps)
-	..() //extend the zap
-	asplod()
-
 // Comes with an installed cell
 /obj/machinery/power/rtg/abductor/built
 	icon_state = "core"
@@ -353,10 +349,6 @@
 	asplod()
 
 /obj/machinery/power/rtg/kugelblitz/fire_act(exposed_temperature, exposed_volume)
-	asplod()
-
-/obj/machinery/power/rtg/kugelblitz/tesla_act(power, explosive, current_jumps)
-	..() //extend the zap
 	asplod()
 
 /obj/machinery/power/rtg/kugelblitz/bullet_act(obj/item/projectile/Proj)
@@ -619,10 +611,6 @@
 
 /obj/machinery/power/rtg/antimatter_core/fire_act(exposed_temperature, exposed_volume)
 	return
-
-/obj/machinery/power/rtg/antimatter_core/tesla_act(power, explosive, current_jumps)
-	..() //extend the zap
-	asplod()
 
 /obj/machinery/power/rtg/antimatter_core/bullet_act(obj/item/projectile/Proj)
 	. = ..()
