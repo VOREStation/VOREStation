@@ -5,7 +5,7 @@
 /obj/proc/tesla_act(power, explosive = FALSE, current_jumps = current_jumps)
 	being_shocked = TRUE
 	var/power_bounced = power / 2
-	tesla_zap(src, 3, power_bounced, current_jumps = current_jumps)
+	tesla_zap(src, zap_range = 3, power = power_bounced, explosive = explosive, current_jumps = current_jumps)
 	//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
 	//schedule_task_with_source_in(10, src, PROC_REF(reset_shocked))
 	spawn(10) reset_shocked()
