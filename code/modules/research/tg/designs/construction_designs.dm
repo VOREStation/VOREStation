@@ -123,3 +123,15 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/cable_coil
+	name = "cable coil"
+	id = "cable_coil"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 1500, MAT_GLASS = 600) // For a 30 stack, temporary workaround due to not having the correct /five and /thirty subtypes, and it breaking the lathe math... but it requires repathing all coils mapped to /thirty subtype.
+	build_path = /obj/item/stack/cable_coil
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MATERIALS,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

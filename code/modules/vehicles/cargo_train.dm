@@ -209,10 +209,12 @@
 	if(Adjacent(user))
 		if(on)
 			stop_engine()
-		else
-			start_engine()
-	else
-		return ..()
+			return CLICK_ACTION_SUCCESS
+
+		start_engine()
+		return CLICK_ACTION_SUCCESS
+
+	return ..()
 
 /obj/vehicle/train/engine/click_alt(var/mob/user)
 	if(Adjacent(user))

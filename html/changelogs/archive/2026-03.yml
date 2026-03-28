@@ -319,3 +319,104 @@
   - qol: techweb and lathe menus now use scaled icons for larger images instead of
       huge buttons
   - bugfix: injector maker no longer uses an AFRG board during construction
+2026-03-22:
+  Kashargul:
+  - code_imp: migrate more admin verbs
+  - bugfix: single item mat cost tooltip
+  Nova:
+  - refactor: Refactored species, organ_data, and rlimb_data
+2026-03-23:
+  Diana:
+  - bugfix: SM now gives radiation off while idle/unpowered
+  - rscadd: Screwdriver (The Drink) stops radiation effects while it is in your system.
+  - rscadd: Uranium walls, doors, and coins now emit slight amounts of radiation.
+  - qol: Radiation protective items now have a tag upon examine that informs of their
+      radiation protective status.
+  - refactor: Massively improves radiation performance by moving to pulses instead
+      of 1000s of deleted radiation_sources a second.
+  - code_imp: Radiation reworked. Please report on Discord or Github if power generation
+      feels too low from radioactive (SM) sources.
+  Will:
+  - bugfix: Adds missing cable coils in autolathe.
+  - bugfix: Autolathe efficiency and speed upgrades corrected to virgo expected numbers
+2026-03-24:
+  Will:
+  - rscadd: Lightpainter is available in the lathes
+  - code_imp: Circuitboard unit test
+  - bugfix: multiple cryopod types have correct default circuitboard
+  - bugfix: security alert console has the correct default circuitboard
+  - bugfix: refinery filter has the correct default circuitboard
+  - bugfix: pump relay has the correct default circuitboard
+  - balance: chem sprayer does not require protolathe hacking to print
+2026-03-25:
+  ARGUS-Memory:
+  - rscadd: NtOS ByteCrawl, An IDLE Hacking Game
+  Will:
+  - rscadd: Most ammoboxes to the autolathe
+  - rscadd: techweb disks can be used to expand autolathe designs
+2026-03-27:
+  Diana:
+  - code_imp: Cleans up some code about trays.
+  - bugfix: Trays will now properly stun the target if you target the head.
+  - qol: Treat Organ surgery's detection logic now includes infected organs
+  - rscadd: Clown borg has a lube spray (when emagged)
+  - code_imp: respawn_conumsable parent call added
+  - balance: Adjustments were made to various tesla coils.
+  - qol: Tesla coils tell you their special effects, power loss, and power efficiency
+      when examined.
+  - qol: Tesla coils can be changed to their various forms via screwdriver+multitool.
+  - qol: Tesla coils will no longer be shocked if unanchored near the tesla. This
+      means you can ungrade a running tesla.
+  - qol: Geiger counters will play less frequently if in safe areas and at a lower
+      volume.
+  - qol: Pumps (including volumetric) can be min/max'd with ctrl and alt click.
+  - qol: Makes the emergency shield use a battery instead of local power.
+  - qol: Hydromagnetic traps can now be made via R&D
+  - qol: Mass driver buttons can be created.
+  - qol: Solar panels now take 2 seconds (from 5) to pry glass off, and takes toolspeed
+      into account.
+  - bugfix: Supermatter once again emits passive rads at 0 power.
+  - bugfix: Infinite cells are EMP proof
+  - bugfix: Radiation can no longer go negative. Again.
+  - code_imp: Huge air scrubbers now use a static var instead of global var.
+  - qol: Portable air pumps can pressurize tanks up to 3997kPA.
+  - qol: Geiger counter descriptions more clear if you're in danger or not.
+  - maptweak: Minitest tesla now starts ready to immediately be turned on.
+  - code_imp: Added some pre-mapped in variants of the tesla generator and PA parts
+      for minitest.
+  - bugfix: Geiger counters no longer follow people.
+  - bugfix: Geiger counters work in inventory storage.
+  - bugfix: SM properly starts out at only requiring normal walls to block the rads
+      it produces.
+  - bugfix: Deconstructing a canister wrenched to a port will unconnect it from the
+      port.
+  - bugfix: Gets rid of a hard del with the 11 year old emergency shield
+  - bugfix: Buttons now inform you of the correct commands that can be sent.
+  - bugfix: Mass drivers no longer BSOD when a multitool is used on them.
+  - code_imp: Added some tweaks to the transfer code.
+  - spellcheck: Makes the transfer text 'more correct'
+  - rscadd: Adds Slip Prone - A new neutral trait that allows accidentally stumbling
+      into nearby people to either eat/be eaten by them prefs-dependant.
+  Kashargul:
+  - refactor: moves escape shuttle to a subsystem
+  - refactor: moves legacy global access lists to a no fire controller
+  - refactor: moves transfer controller to a subsystem
+  - refactor: moves antag job handling to a subsystem
+  - bugfix: legacy notes
+  - bugfix: borg default access
+  Will:
+  - refactor: Shovel works on more turfs and supports unique loot tables
+  - refactor: Shovel loot systems unified into one system shared at base turf definition
+  - bugfix: Depletable lootpiles no longer share their depletion count between all
+      piles
+  - balance: AI core counts as a lonely major comfort mob
+  - rscadd: Xenobotany machines can be researched and constructed in round
+  - balance: AI controlled rig movement power draw reduced from 200 to 50 ( normally
+      20 for non-ai operators )
+  - bugfix: paicard typeB can be inserted into rigs that allow AI control
+2026-03-28:
+  Will:
+  - bugfix: Trolley tankers drain correctly into reagent containers
+  - bugfix: refinery machines drain correctly into reagent containers
+  - code_imp: reagent container can_be_placed_into moved to global list handling
+  - bugfix: fixes reagent container insertion (actually this time)

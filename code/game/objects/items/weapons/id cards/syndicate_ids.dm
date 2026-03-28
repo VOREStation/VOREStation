@@ -15,7 +15,7 @@
 
 /obj/item/card/id/syndicate/station_access/Initialize(mapload)
 	. = ..() // Same as the normal Syndicate id, only already has all station access
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 /obj/item/card/id/syndicate/Destroy()
 	QDEL_NULL(agentcard_module)
@@ -30,7 +30,7 @@
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
 		src.access |= I.GetAccess()
-		if(player_is_antag(user.mind) || registered_user == user)
+		if(SSantag_job.player_is_antag(user.mind) || registered_user == user)
 			to_chat(user, span_notice("The microscanner activates as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user)

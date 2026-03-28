@@ -102,7 +102,7 @@
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
 
-	update_antag_icons(src)
+	SSantag_job.update_antag_icons(src)
 
 
 /datum/mind/proc/store_memory(new_text)
@@ -137,8 +137,8 @@
 	out += "Assigned role: [assigned_role]. <a href='byond://?src=\ref[src];[HrefToken()];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Factions and special roles:<br><table>"
-	for(var/antag_type in GLOB.all_antag_types)
-		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+	for(var/antag_type in SSantag_job.all_antag_types)
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 		out += "[antag.get_panel_entry(src)]"
 	out += "</table><hr>"
 	out += span_bold("Objectives") + "</br>"
@@ -170,7 +170,7 @@
 		return
 
 	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["add_antagonist"]]
 		if(antag)
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
@@ -178,19 +178,19 @@
 				to_chat(usr, span_warning("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["remove_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["remove_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["remove_antagonist"]]
 		if(antag) antag.remove_antagonist(src)
 
 	else if(href_list["equip_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["equip_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["equip_antagonist"]]
 		if(antag) antag.equip(src.current)
 
 	else if(href_list["unequip_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["unequip_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["unequip_antagonist"]]
 		if(antag) antag.unequip(src.current)
 
 	else if(href_list["move_antag_to_spawn"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["move_antag_to_spawn"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["move_antag_to_spawn"]]
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
@@ -527,7 +527,7 @@
 			log_world("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
-	if(player_is_antag(mind))
+	if(SSantag_job.player_is_antag(mind))
 		add_verb(src.client, /client/proc/aooc)
 
 //HUMAN

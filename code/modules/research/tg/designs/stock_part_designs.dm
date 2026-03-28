@@ -227,7 +227,7 @@
 	name = "Advanced Sensor"
 	desc = "A tier 2 stock part used in the construction of various devices."
 	id = "adv_sensor"
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
 	build_path = /obj/item/stock_parts/scanning_module/adv
 	category = list(

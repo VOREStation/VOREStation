@@ -83,23 +83,23 @@
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				if ((!( SSticker ) || !GLOB.emergency_shuttle.location()))
+				if ((!( SSticker ) || !SSemergency_shuttle.location()))
 					return
-				if (GLOB.emergency_shuttle.can_call())
-					GLOB.emergency_shuttle.call_evac()
+				if (SSemergency_shuttle.can_call())
+					SSemergency_shuttle.call_evac()
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins(span_blue("[key_name_admin(usr)] called the Emergency Shuttle to the station."), 1)
 
 			if("2")
-				if (!( SSticker ) || !GLOB.emergency_shuttle.location())
+				if (!( SSticker ) || !SSemergency_shuttle.location())
 					return
-				if (GLOB.emergency_shuttle.can_call())
-					GLOB.emergency_shuttle.call_evac()
+				if (SSemergency_shuttle.can_call())
+					SSemergency_shuttle.call_evac()
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins(span_blue("[key_name_admin(usr)] called the Emergency Shuttle to the station."), 1)
 
-				else if (GLOB.emergency_shuttle.can_recall())
-					GLOB.emergency_shuttle.recall()
+				else if (SSemergency_shuttle.can_recall())
+					SSemergency_shuttle.recall()
 					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
 					message_admins(span_blue("[key_name_admin(usr)] sent the Emergency Shuttle back."), 1)
 
@@ -108,20 +108,20 @@
 	else if(href_list["edit_shuttle_time"])
 		if(!check_rights(R_SERVER))	return
 
-		if (GLOB.emergency_shuttle.wait_for_launch)
-			var/new_time_left = tgui_input_number(usr, "Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", GLOB.emergency_shuttle.estimate_launch_time() )
+		if (SSemergency_shuttle.wait_for_launch)
+			var/new_time_left = tgui_input_number(usr, "Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", SSemergency_shuttle.estimate_launch_time() )
 
-			GLOB.emergency_shuttle.launch_time = world.time + new_time_left*10
+			SSemergency_shuttle.launch_time = world.time + (new_time_left * 10)
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]"), 1)
-		else if (GLOB.emergency_shuttle.shuttle.has_arrive_time())
+			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left * 10]"), 1)
+		else if (SSemergency_shuttle.shuttle.has_arrive_time())
 
-			var/new_time_left = tgui_input_number(usr, "Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", GLOB.emergency_shuttle.estimate_arrival_time() )
-			GLOB.emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
+			var/new_time_left = tgui_input_number(usr, "Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", SSemergency_shuttle.estimate_arrival_time() )
+			SSemergency_shuttle.shuttle.arrive_time = world.time + (new_time_left * 10)
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
-			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left*10]"), 1)
+			message_admins(span_blue("[key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left * 10]"), 1)
 		else
 			tgui_alert_async(usr, "The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
 
@@ -485,11 +485,11 @@
 		counter = 0
 		var/isbanned_dept = jobban_isbanned(M, JOB_SYNDICATE)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(GLOB.all_antag_types)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
+		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(SSantag_job.all_antag_types)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
 
 		// Antagonists.
-		for(var/antag_type in GLOB.all_antag_types)
-			var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+		for(var/antag_type in SSantag_job.all_antag_types)
+			var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 			if(!antag || !antag.bantype)
 				continue
 
@@ -1910,6 +1910,22 @@
 			return
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/despawn_player, carbon_target)
+
+	// player info stuff
+	if(href_list["notes"])
+		var/ckey = href_list["ckey"]
+		if(!ckey)
+			var/mob/M = locate(href_list["mob"])
+			if(ismob(M))
+				ckey = M.ckey
+
+		switch(href_list["notes"])
+			if("show")
+				var/datum/tgui_module/player_notes_info/A = new(src)
+				A.key = ckey
+				A.tgui_interact(usr)
+			if("list")
+				PlayerNotesPage(usr, text2num(href_list["index"]))
 		return
 
 /mob/living/proc/can_centcom_reply()

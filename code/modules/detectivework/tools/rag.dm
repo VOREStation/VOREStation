@@ -20,8 +20,8 @@
 	amount_per_transfer_from_this = 5
 	max_transfer_amount = 5
 	volume = 10
-	can_be_placed_into = null
 	flags = OPENCONTAINER | NOBLUDGEON
+	container_can_be_placed_into = REAGENT_CONTAINER_CAN_BE_PLACED_INTO_NONE
 	unacidable = FALSE
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'

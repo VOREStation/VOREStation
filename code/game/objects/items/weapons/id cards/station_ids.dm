@@ -181,7 +181,7 @@
 
 /obj/item/card/id/synthetic/Initialize(mapload)
 	. = ..()
-	access = get_all_station_access().Copy() + ACCESS_SYNTH
+	access = SSaccess.get_all_station_access().Copy() + ACCESS_SYNTH
 
 /obj/item/card/id/lost
 	name = "\improper Unknown ID"
@@ -214,11 +214,11 @@
 
 /obj/item/card/id/centcom/Initialize(mapload)
 	. = ..()
-	access = get_all_centcom_access().Copy()
+	access = SSaccess.get_all_centcom_access().Copy()
 
 /obj/item/card/id/centcom/station/Initialize(mapload)
 	. = ..()
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 /obj/item/card/id/centcom/ert
 	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
@@ -228,7 +228,7 @@
 
 /obj/item/card/id/centcom/ert/Initialize(mapload)
 	. = ..()
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 // Department-flavor IDs
 /obj/item/card/id/medical
