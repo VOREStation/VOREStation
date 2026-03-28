@@ -62,6 +62,10 @@ ADMIN_VERB(admin_lightning_strike, R_FUN, "Lightning Strike", "Causes lightning 
 			if(M.check_sound_preference(/datum/preference/toggle/weather_sounds))
 				M.playsound_local(get_turf(M), soundin = sound, vol = 70, vary = FALSE, is_global = TRUE)
 
+	// Prevent lightning on central command level from being simulated
+	if(T.z in using_map.admin_levels)
+		return
+
 	if(cosmetic) // Everything beyond here involves potentially damaging things. If we don't want to do that, stop now.
 		return
 
