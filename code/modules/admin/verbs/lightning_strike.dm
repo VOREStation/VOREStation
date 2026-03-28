@@ -73,7 +73,7 @@ ADMIN_VERB(admin_lightning_strike, R_FUN, "Lightning Strike", "Causes lightning 
 		coil.tesla_act(LIGHTNING_POWER, TRUE, current_jumps = 1)
 
 	else // Striking the turf directly.
-		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE, current_jumps = 1)
+		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE, current_jumps = 0)
 
 	// Some extra effects.
 	// Some apply to those within zap range, others if they were a bit farther away.
