@@ -324,12 +324,6 @@ SUBSYSTEM_DEF(job)
 		var/mob/new_player/candidate = pick(candidates)
 		assign_role(candidate, command_position)
 
-
-
-
-
-
-
 /** Proc DivideOccupations
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
