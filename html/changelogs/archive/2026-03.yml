@@ -414,3 +414,9 @@
   - balance: AI controlled rig movement power draw reduced from 200 to 50 ( normally
       20 for non-ai operators )
   - bugfix: paicard typeB can be inserted into rigs that allow AI control
+2026-03-28:
+  Will:
+  - bugfix: Trolley tankers drain correctly into reagent containers
+  - bugfix: refinery machines drain correctly into reagent containers
+  - code_imp: reagent container can_be_placed_into moved to global list handling
+  - bugfix: fixes reagent container insertion (actually this time)
