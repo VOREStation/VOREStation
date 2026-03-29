@@ -36,7 +36,7 @@ export const CharacterSelector = (props: {
 
   const [searchText, setSearchText] = useState('');
 
-  const chracterSearch = createSearch(searchText, (name: string) => name);
+  const chracterSearch = createSearch<string>(searchText, (name) => name);
 
   const characterNames = Object.keys(characterData)
     .filter(chracterSearch)

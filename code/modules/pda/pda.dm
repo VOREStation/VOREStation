@@ -107,8 +107,7 @@
 
 /obj/item/pda/Initialize(mapload)
 	. = ..()
-	PDAs += src
-	PDAs = sort_names(PDAs)
+	GLOB.PDAs += src
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
@@ -474,7 +473,7 @@
 	return
 
 /obj/item/pda/Destroy()
-	PDAs -= src
+	GLOB.PDAs -= src
 	if (id && !delete_id && id.loc == src)
 		id.forceMove(get_turf(loc))
 	else

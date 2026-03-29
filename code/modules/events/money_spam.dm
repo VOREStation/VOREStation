@@ -9,11 +9,10 @@
 	pick_message_server()
 
 /datum/event/pda_spam/proc/pick_message_server()
-	if(message_servers)
-		for (var/obj/machinery/message_server/MS in message_servers)
-			if(MS.active)
-				useMS = MS
-				break
+	for(var/obj/machinery/message_server/MS in GLOB.message_servers)
+		if(MS.active)
+			useMS = MS
+			break
 
 /datum/event/pda_spam/tick()
 	if(world.time > last_spam_time + 3000)
@@ -35,7 +34,7 @@
 			// /obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
 			var/obj/item/pda/P
 			var/list/viables = list()
-			for(var/obj/item/pda/check_pda in sort_names(PDAs))
+			for(var/obj/item/pda/check_pda in GLOB.PDAs)
 				if (!check_pda.owner || check_pda == src || check_pda.hidden)
 					continue
 

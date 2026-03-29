@@ -318,3 +318,4 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 	icon_state_idle = "wrecharger0"
 	portable = FALSE
 	circuit = /obj/item/circuitboard/recharger/wrecharger
+	flags = WALL_ITEM

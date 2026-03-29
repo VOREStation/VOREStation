@@ -26,6 +26,9 @@
 		get_asset_datum(/datum/asset/json/preferences),
 	)
 
+	if(GLOB.asset_datums[/datum/asset/spritesheet_batched/pai_icons])
+		assets += get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
+
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		assets += preference_middleware.get_ui_assets()
 

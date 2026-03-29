@@ -29,11 +29,11 @@
 	var/postfix = "[sobject][saddition][hp]"
 
 	var/message = "[what_done] [starget][postfix]"
-	user.log_message(message, LOG_ATTACK, color="red")
+	user.log_message(message, LOG_ATTACK, color="#ff0000")
 
 	if(user != target)
 		var/reverse_message = "was [what_done] by [ssource][postfix]"
-		target.log_message(reverse_message, LOG_VICTIM, color="orange", log_globally=FALSE)
+		target.log_message(reverse_message, LOG_VICTIM, color="#ffb300", log_globally=FALSE)
 
 /// Log for vore interactions
 /proc/log_vore(text, list/data)

@@ -20,7 +20,7 @@
 		return FALSE
 	if(!pred.can_be_afk_pred && (!pred.client || pred.away_from_keyboard))
 		return FALSE
-	if(!prey.can_be_afk_prey && (!prey.client || prey.away_from_keyboard))
+	if(!prey.is_dead() && !prey.can_be_afk_prey && (!prey.client || prey.away_from_keyboard))
 		return FALSE
 	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
 		return FALSE

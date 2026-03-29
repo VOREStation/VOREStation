@@ -61,6 +61,19 @@
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	var/knock_unpowered_sound = 'sound/machines/door/knock_glass.ogg'
 	var/mob/hold_open
+	rad_insulation = RAD_MEDIUM_INSULATION
+
+	// Frozen airlocks and how to deice them
+	var/frozen = FALSE
+	var/next_weather_check = 0
+	var/static/list/deicing_tools = list(
+		/obj/item/ice_pick = 3,
+		/obj/item/tool/crowbar = 5,
+		/obj/item/pen = 30,
+		/obj/item/card = 35,
+		/obj/item/tool = 10,
+		/obj/item = 12,
+	)
 
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -136,6 +149,44 @@
 
 	if (..() == PROCESS_KILL && !(main_power_lost_until > 0 || backup_power_lost_until > 0 || electrified_until > 0))
 		. = PROCESS_KILL
+
+/obj/machinery/door/airlock/proc/check_for_freeze()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// We don't freeze so none of this matters
+	if(!can_freeze())
+		return
+
+	// If we are not on a planet don't bother checking again. We physically cannot be outdoors. Except shuttles...
+	var/area/our_area = get_area(src)
+	var/turf/our_turf = get_turf(src)
+	if(!istype(our_area, /area/shuttle) && (our_turf.z > length(SSplanets.z_to_planet) || !SSplanets.z_to_planet[our_turf.z]))
+		return
+
+	// Don't do anything if we are changing states
+	if(!operating)
+		// Door must be facing the outdoors and the temp of the air must be low enough
+		var/planet_temp = T20C
+		for(var/check_dir in GLOB.cardinal)
+			var/turf/ground = get_step(our_turf, check_dir)
+			if(ground.density || !ground.is_outdoors() || isspace(ground))
+				continue
+			var/datum/gas_mixture/gas_mix = ground.return_air()
+			if(gas_mix.temperature < planet_temp)
+				planet_temp = gas_mix.temperature
+
+		// Check if we're in freezing weather, if above 0 start melting instead
+		if(planet_temp < (T0C - 15))
+			if(!frozen && density && prob(planet_temp < (T0C - 25) ? 20 : 5)) // Higher chance of freezing if temp is super low
+				freeze()
+		// Above 0 to have any chance at unfreezing
+		else if(planet_temp > T0C)
+			if(frozen && prob(20))
+				unFreeze()
+
+	// Runs in a seperate timer loop, because making every airlock process every tick just to check for unfreezing is a bad idea.
+	// By default airlocks only tick if they are waiting for their opening/closing times to tick down.
+	addtimer(CALLBACK(src, PROC_REF(check_for_freeze)), rand(10,20) SECONDS, TIMER_DELETE_ME)
 
 /*
 About the new airlock wires panel:
@@ -338,6 +389,8 @@ About the new airlock wires panel:
 		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
 			add_overlay("sparks_open")
+	if(frozen)
+		add_overlay(image(icon = 'icons/turf/overlays.dmi', icon_state = "snowairlock"))
 	return
 
 /obj/machinery/door/airlock/do_animate(animation)
@@ -635,7 +688,9 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
 	if(!user_allowed(user))
 		return
-	if(welded)
+	if(frozen)
+		to_chat(user, span_warning("The airlock is frozen shut!"))
+	else if(welded)
 		to_chat(user, span_warning("The airlock has been welded shut!"))
 	else if(locked)
 		to_chat(user, span_warning("The door bolts are down!"))
@@ -652,9 +707,44 @@ About the new airlock wires panel:
 		open()
 
 /obj/machinery/door/airlock/proc/can_remove_electronics()
-	return p_open && (operating < 0 || (!operating && welded && !arePowerSystemsOn() && density && (!locked || (stat & BROKEN))))
+	return !frozen && p_open && (operating < 0 || (!operating && welded && !arePowerSystemsOn() && density && (!locked || (stat & BROKEN))))
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
+	if(frozen)
+		//Special cases for tools that need more then just a type check.
+		if(istype(C, /obj/item/weldingtool))
+			var/obj/item/weldingtool/welder = C
+			if(welder.remove_fuel(0,user) && welder && welder.isOn())
+				to_chat(user, span_notice("You start to melt the ice off \the [src]"))
+				playsound(src, welder.usesound, 50, 1)
+				if(do_after(user, 5 SECONDS, target = src))
+					to_chat(user, span_notice("You finish melting the ice off \the [src]"))
+					unFreeze()
+					return
+
+		// Melting with hot objects that don't take fuel
+		if(C.is_hot())
+			if(do_after(user, 9 SECONDS, target = src))
+				to_chat(user, span_notice("You finish melting the ice off \the [src]"))
+				unFreeze()
+			return
+
+		// This is just funny
+		if(istype(C, /obj/item/pen/crayon))
+			to_chat(user, span_notice("You try to use \the [C] to clear the ice, but it crumbles away!"))
+			qdel(C)
+			return
+
+		// Check if we have something that can deice properly, and then use it's deice speed
+		for(var/IT in deicing_tools)
+			if(istype(C, IT))
+				handleRemoveIce(C, user, deicing_tools[IT])
+				return
+
+		//if we can't de-ice the door tell them what's wrong.
+		to_chat(user, span_notice("\the [src] is frozen shut!"))
+		return
+
 	if(!issilicon(user))
 		if(isElectrified() && shock(user, 75))
 			return
@@ -770,6 +860,12 @@ About the new airlock wires panel:
 				return
 	. = ..()
 
+/obj/machinery/door/airlock/proc/handleRemoveIce(obj/item/W, mob/user as mob, time = 15)
+	to_chat(user, span_notice("You start to chip at the ice covering \the [src]"))
+	if(do_after(user, time SECONDS, target = src))
+		unFreeze()
+		to_chat(user, span_notice("You finish chipping the ice off \the [src]"))
+
 /obj/machinery/door/airlock/set_broken()
 	p_open = TRUE
 	stat |= BROKEN
@@ -786,9 +882,14 @@ About the new airlock wires panel:
 	update_icon()
 	return
 
-/obj/machinery/door/airlock/open(var/forced=0)
+/obj/machinery/door/airlock/open(forced=0)
 	if(!can_open(forced))
 		return FALSE
+	if(frozen && !forced) //Frozen airlocks can't open.
+		return FALSE
+	if(frozen && forced)
+		unFreeze()
+
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 
 	if(hold_open)
@@ -836,7 +937,7 @@ About the new airlock wires panel:
 		closeOther.close()
 	. = ..()
 
-/obj/machinery/door/airlock/can_open(var/forced=0)
+/obj/machinery/door/airlock/can_open(forced=0)
 	if(!forced)
 		if(!arePowerSystemsOn() || wires.is_cut(WIRE_OPEN_DOOR))
 			return FALSE
@@ -845,7 +946,7 @@ About the new airlock wires panel:
 		return FALSE
 	. = ..()
 
-/obj/machinery/door/airlock/can_close(var/forced=0)
+/obj/machinery/door/airlock/can_close(forced=0)
 	if(locked || welded)
 		return FALSE
 	if(!forced)
@@ -910,9 +1011,13 @@ About the new airlock wires panel:
 	adjustBruteLoss(crush_damage)
 	return FALSE
 
-/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
+/obj/machinery/door/airlock/close(forced= FALSE, ignore_safties = FALSE, crush_damage = DOOR_CRUSH_DAMAGE)
 	if(!can_close(forced))
 		return FALSE
+	if(frozen && !forced)
+		return FALSE
+	if(frozen && forced) // Unfreeze on forced open
+		unFreeze()
 
 	hold_open = null //if it passes the can close check, always make sure to clear hold open
 
@@ -1056,6 +1161,7 @@ About the new airlock wires panel:
 	if(frequency)
 		set_frequency(frequency)
 	update_icon()
+	check_for_freeze()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)
@@ -1120,3 +1226,28 @@ About the new airlock wires panel:
 			qdel(src)
 			return TRUE
 	return FALSE
+
+/obj/machinery/door/airlock/examine(mob/user)
+	. = ..()
+	if(frozen)
+		. += span_danger("it's frozen shut!")
+
+/// Most airlocks don't freeze, subtypes set this
+/obj/machinery/door/airlock/proc/can_freeze()
+	SHOULD_BE_PURE(TRUE) // Don't put logic here, just return if the airlock can freeze or not.
+	PROTECTED_PROC(TRUE)
+	return FALSE
+
+/obj/machinery/door/airlock/proc/unFreeze()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	frozen = FALSE
+	update_icon()
+
+/obj/machinery/door/airlock/proc/freeze()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	frozen = TRUE
+	update_icon()

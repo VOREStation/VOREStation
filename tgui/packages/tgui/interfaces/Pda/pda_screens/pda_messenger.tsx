@@ -152,7 +152,7 @@ const MessengerList = (props) => {
   );
 };
 
-const PDAList = (props) => {
+const PDAList = (props: { pdas: pda[]; title: string; msgAct: string }) => {
   const { act, data } = useBackend<Data>();
 
   const { pdas, title, msgAct } = props;
@@ -165,31 +165,33 @@ const PDAList = (props) => {
 
   return (
     <Section title={title}>
-      {pdas.map((pda) => (
-        <Box key={pda.Reference}>
-          <Button
-            icon="arrow-circle-down"
-            onClick={() => act(msgAct, { target: pda.Reference })}
-          >
-            {pda.Name}
-          </Button>
-          {!!charges &&
-            plugins.map((plugin) => (
-              <Button
-                key={plugin.ref}
-                icon={plugin.icon}
-                onClick={() =>
-                  act('Messenger Plugin', {
-                    plugin: plugin.ref,
-                    target: pda.Reference,
-                  })
-                }
-              >
-                {plugin.name}
-              </Button>
-            ))}
-        </Box>
-      ))}
+      {pdas
+        .sort((a, b) => a.Name.localeCompare(b.Name))
+        .map((pda) => (
+          <Box key={pda.Reference}>
+            <Button
+              icon="arrow-circle-down"
+              onClick={() => act(msgAct, { target: pda.Reference })}
+            >
+              {pda.Name}
+            </Button>
+            {!!charges &&
+              plugins.map((plugin) => (
+                <Button
+                  key={plugin.ref}
+                  icon={plugin.icon}
+                  onClick={() =>
+                    act('Messenger Plugin', {
+                      plugin: plugin.ref,
+                      target: pda.Reference,
+                    })
+                  }
+                >
+                  {plugin.name}
+                </Button>
+              ))}
+          </Box>
+        ))}
     </Section>
   );
 };

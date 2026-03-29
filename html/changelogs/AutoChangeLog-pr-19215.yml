@@ -1,4 +1,0 @@
-author: "Sharkmare"
-delete-after: True
-changes:
-  - bugfix: "Made Bad shot and thick digits mutually exclusive"

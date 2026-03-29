@@ -4,6 +4,7 @@
 	wrenchable = 1
 	icon_state = "drying_rack"
 	icon_base = "drying_rack"
+	circuit = /obj/item/circuitboard/smartfridge/drying
 
 /obj/machinery/smartfridge/drying_rack/Initialize(mapload)
 	. = ..()

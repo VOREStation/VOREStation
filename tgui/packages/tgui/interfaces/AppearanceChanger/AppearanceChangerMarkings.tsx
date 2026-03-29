@@ -13,7 +13,7 @@ import {
 import { createSearch } from 'tgui-core/string';
 
 import { MARKINGS_PER_PAGE } from './constants';
-import type { bodyStyle, Data } from './types';
+import type { BodyStyle, Data } from './types';
 
 export const AppearanceChangerMarkings = (props) => {
   const { act, data } = useBackend<Data>();
@@ -23,7 +23,7 @@ export const AppearanceChangerMarkings = (props) => {
   const [searchText, setSearchText] = useState<string>('');
   const [tabIndex, setTabIndex] = useState(0);
 
-  const searcher = createSearch(searchText, (style: bodyStyle) => {
+  const searcher = createSearch<BodyStyle>(searchText, (style) => {
     return style.name;
   });
 
@@ -34,7 +34,7 @@ export const AppearanceChangerMarkings = (props) => {
   );
   const styleTabCount = Math.ceil(filteredStyles.length / MARKINGS_PER_PAGE);
 
-  const shownStyles: bodyStyle[][] = [];
+  const shownStyles: BodyStyle[][] = [];
 
   for (let i = 0; i < styleTabCount; i++) {
     shownStyles[i] = filteredStyles.slice(

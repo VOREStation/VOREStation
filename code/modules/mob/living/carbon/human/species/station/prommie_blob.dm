@@ -206,13 +206,6 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/rad_act(severity)
-	rad_glow += severity
-	rad_glow = CLAMP(rad_glow,0,250)
-	if(rad_glow > 1)
-		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
-		update_icon()
-
 /mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
 	if(humanform)
 		return humanform.bullet_act(P)
@@ -307,14 +300,14 @@
 	return
 
 
-/mob/living/simple_mob/slime/promethean/get_description_info()
+/mob/living/simple_mob/slime/promethean/get_description_info(list/additional_information)
 	return
 
 /mob/living/simple_mob/slime/promethean/init_vore(force)
 	return
 
 /mob/living/simple_mob/slime/promethean/get_available_emotes()
-	var/list/fulllist = global._slime_default_emotes.Copy()
+	var/list/fulllist = GLOB.slime_default_emotes.Copy()
 	fulllist += default_emotes
 	return fulllist
 /mob/living/carbon/human

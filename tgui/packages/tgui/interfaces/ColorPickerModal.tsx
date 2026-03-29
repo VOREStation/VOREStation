@@ -42,7 +42,7 @@ import { classes } from 'tgui-core/react';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
-interface ColorPickerData {
+type ColorPickerData = {
   autofocus: boolean;
   buttons: string[];
   message: string;
@@ -52,7 +52,7 @@ interface ColorPickerData {
   title: string;
   default_color: string;
   presets?: string;
-}
+};
 
 type ColorPickerModalProps = Record<never, never>;
 
@@ -260,7 +260,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
         </Stack>
-        {!!onAllowEditing && (
+        {!!onAllowEditing && presetList?.length && (
           <Button
             color={allowEditing ? 'green' : 'red'}
             position="absolute"

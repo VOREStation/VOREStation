@@ -4,8 +4,6 @@
 	if(can_open == WALL_OPENING)
 		return
 
-	SSradiation.resistance_cache.Remove(src)
-
 	if(density)
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)

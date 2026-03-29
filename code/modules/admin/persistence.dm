@@ -1,6 +1,2 @@
-/datum/admins/proc/view_persistent_data()
-	set category = "Admin.Game"
-	set name = "View Persistent Data"
-	set desc = "Shows a list of persistent data for this round. Allows modification by admins."
-
-	SSpersistence.show_info(usr)
+ADMIN_VERB(view_persistent_data, R_MOD|R_ADMIN, "View Persistent Data", "Shows a list of persistent data for this round. Allows modification by admins.", ADMIN_CATEGORY_GAME)
+	SSpersistence.show_info(user)

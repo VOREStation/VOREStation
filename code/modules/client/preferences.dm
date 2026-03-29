@@ -30,7 +30,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/grad_style = "none"				//Gradient style
 	var/f_style = "Shaved"				//Face hair type
 	var/s_tone = -75						//Skin tone
-	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Language prefix keys
@@ -86,8 +85,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)
-	var/list/organ_data = list()
-	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like JOB_MEDICAL_DOCTOR
 
 	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
@@ -158,7 +155,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Didn't load a character, so let's randomize
 	set_biological_gender(pick(MALE, FEMALE))
-	update_preference_by_type(/datum/preference/name/real_name, random_name(identifying_gender, species))
+	update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
 	b_type = RANDOM_BLOOD_TYPE
 
 	if(client)
@@ -297,10 +294,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	player_setup.sanitize_setup()
 
 	// This needs to happen before anything else becuase it sets some variables.
-	character.set_species(species)
+	character.set_species(read_preference(/datum/preference/choiced/species))
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		update_preference_by_type(/datum/preference/name/real_name, random_name(identifying_gender, species))
+		update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
@@ -399,7 +396,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
 		overwrite_character(slotnum)
-		save_character()
+		save_character(TRUE)
 		save_preferences()
 		load_preferences(TRUE)
 		load_character()
@@ -436,8 +433,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(character.dna)
 			character.dna.real_name = character.real_name
 		character.nickname = read_preference(/datum/preference/name/nickname)
-	character.gender = biological_gender
-	character.identifying_gender = identifying_gender
+	character.gender = read_preference(/datum/preference/choiced/gender/biological)
+	character.identifying_gender = read_preference(/datum/preference/choiced/gender/identifying)
 
 	character.h_style	= h_style
 
@@ -502,15 +499,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
 
 	var/datum/preference/numeric/wing_alpha = GLOB.preference_entries[/datum/preference/numeric/human/wing_alpha]
-	wing_alpha.apply_pref_to(character,read_preference(/datum/preference/numeric/human/wing_alpha))
+	wing_alpha.apply_pref_to(character, read_preference(/datum/preference/numeric/human/wing_alpha))
 
 	var/datum/preference/numeric/skin_color = GLOB.preference_entries[/datum/preference/color/human/skin_color]
-	skin_color.apply_pref_to(character,read_preference(/datum/preference/color/human/skin_color))
+	skin_color.apply_pref_to(character, read_preference(/datum/preference/color/human/skin_color))
 
-	character.set_gender(biological_gender)
+	var/datum/preference/color/human/eyes_color = GLOB.preference_entries[/datum/preference/color/human/eyes_color]
+	eyes_color.apply_pref_to(character, read_preference(/datum/preference/color/human/eyes_color))
+
+	character.set_gender(read_preference(/datum/preference/choiced/gender/biological))
 
 	// Destroy/cyborgize organs and limbs.
 	if (convert_to_prosthetics) //should only really be run for proteans
+		var/list/pref_organ_data = read_preference(/datum/preference/organ_data)
+		var/list/pref_rlimb_data = read_preference(/datum/preference/rlimb_data)
 		var/list/organs_to_edit = list()
 		for (var/name in list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/O = character.organs_by_name[name]
@@ -521,16 +523,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					organs_to_edit.Insert(x+(O.robotic == ORGAN_NANOFORM ? 1 : 0), name)
 		for(var/name in organs_to_edit)
-			var/status = organ_data[name]
+			var/status = pref_organ_data[name]
 			var/obj/item/organ/external/O = character.organs_by_name[name]
 			if(O)
 				if(status == "amputated")
 					continue
 				else if(status == "cyborg")
-					O.robotize(rlimb_data[name])
+					O.robotize(pref_rlimb_data[name])
 				else
 					var/bodytype
-					var/datum/species/selected_species = GLOB.all_species[species]
+					var/datum/species/selected_species = GLOB.all_species[read_preference(/datum/preference/choiced/species)]
 					if(selected_species.selects_bodytype && custom_base) //Everyone technically has custom_base set to HUMAN, but only some species actually select it.
 						bodytype = custom_base
 					else
@@ -553,7 +555,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
-				if(!islist(body_markings[M][BP])) continue
+				if(!islist(body_markings[M][BP]))
+					continue
 				O.markings[M] = list("color" = body_markings[M][BP]["color"], "datum" = mark_datum, "priority" = priority, "on" = body_markings[M][BP]["on"])
 	character.markings_len = priority
 
@@ -616,7 +619,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	character.species?.blood_color = blood_color
 
-	var/datum/species/selected_species = GLOB.all_species[species]
+	var/datum/species/selected_species = GLOB.all_species[read_preference(/datum/preference/choiced/species)]
 	var/bodytype_selected
 	if(selected_species.selects_bodytype && custom_base)
 		bodytype_selected = custom_base
@@ -628,7 +631,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
 	if(istype(character.species, /datum/species/shapeshifter))
-		wrapped_species_by_ref["\ref[character]"] = bodytype_selected
+		GLOB.wrapped_species_by_ref["\ref[character]"] = bodytype_selected
 
 	character.custom_species	= custom_species
 	character.custom_say		= lowertext(trim(custom_say))

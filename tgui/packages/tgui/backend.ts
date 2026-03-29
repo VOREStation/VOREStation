@@ -17,7 +17,7 @@ import type { BackendState } from './events/types';
  * ```
  */
 export function useBackend<
-  TData extends Record<string, any>,
+  TData extends Record<string, unknown>,
 >(): BackendState<TData> {
   const state = store.get(backendStateAtom);
 

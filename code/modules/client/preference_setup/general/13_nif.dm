@@ -42,7 +42,7 @@
 			pref.nif_path = null					//Kill!
 			WARNING("Loaded a NIF but it was an invalid path, [char_name]")
 
-	if (ispath(pref.nif_path, /obj/item/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
+	if (ispath(pref.nif_path, /obj/item/nif/protean) && pref.read_preference(/datum/preference/choiced/species) != SPECIES_PROTEAN) //no free nifs
 		pref.nif_path = null
 
 	if(ispath(pref.nif_path) && isnull(pref.nif_durability))		//How'd you lose this?

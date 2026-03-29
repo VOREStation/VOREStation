@@ -105,7 +105,7 @@
 		if(51 to 100)
 			return "an extremely long delay"
 
-/obj/item/gun/get_description_info()
+/obj/item/gun/get_description_info(list/additional_information)
 	var/is_loaded
 	var/non_lethal
 	var/non_lethal_list = list(/obj/item/gun/energy/medigun,/obj/item/gun/energy/mouseray,/obj/item/gun/energy/temperature,/obj/item/gun/energy/sizegun,/obj/item/gun/projectile/shotgun/pump/toy,/obj/item/gun/projectile/revolver/toy,/obj/item/gun/projectile/pistol/toy,/obj/item/gun/projectile/automatic/toy)

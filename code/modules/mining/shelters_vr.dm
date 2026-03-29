@@ -16,7 +16,7 @@
 /datum/map_template/shelter/proc/check_deploy(turf/deploy_location, var/is_ship)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
-		var/shelter_status = get_turf_deployability(T)
+		var/shelter_status = get_turf_deployability(T, is_ship)
 		if(shelter_status != SHELTER_DEPLOY_ALLOWED)
 			return shelter_status
 	return SHELTER_DEPLOY_ALLOWED

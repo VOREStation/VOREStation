@@ -52,10 +52,13 @@ GLOBAL_LIST_INIT(shell_module_types, list(
 	"Janitor", "Service", "Clown", "Clerical", "Security",
 	"Research", "Command" //"Exploration"
 ))
+// List of modules available malf borgs
+GLOBAL_LIST_INIT(malf_module_types, list("Lost", "Gravekeeper"))
+// List of modules available toantags
+GLOBAL_LIST_INIT(antag_module_types, list("Protector", "Mechanist", "Combat Medic", "Ninja"))
+
 // List of whitelisted modules
-GLOBAL_LIST_INIT(whitelisted_module_types, list(
-	"Lost"
-))
+GLOBAL_LIST_INIT(whitelisted_module_types, list("Combat", "Lost", "Gravekeeper", "Protector", "Mechanist", "Combat Medic", "Ninja"))
 
 // Bomb cap!
 GLOBAL_VAR_INIT(max_explosion_range, 14)
@@ -75,6 +78,3 @@ GLOBAL_DATUM_INIT(buildmode_hud, /icon, icon('icons/misc/buildmode.dmi'))
 GLOBAL_LIST_EMPTY(cached_character_icons)
 
 GLOBAL_VAR_INIT(triai, FALSE)
-
-// Pipe colors, needs to be inited before our pipe icon_manager
-GLOBAL_LIST_INIT(pipe_colors, list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_RED, "blue" = PIPE_COLOR_BLUE, "cyan" = PIPE_COLOR_CYAN, "green" = PIPE_COLOR_GREEN, "yellow" = PIPE_COLOR_YELLOW, "black" = PIPE_COLOR_BLACK, "orange" = PIPE_COLOR_ORANGE, "white" = PIPE_COLOR_WHITE, "purple" = PIPE_COLOR_PURPLE))

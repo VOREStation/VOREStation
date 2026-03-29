@@ -10,7 +10,7 @@
 	var/I = 0
 	while(++I < DNA_SE_LENGTH)
 		blocks_remaining.Add(I)
-		assigned_blocks[I] = "" // setup a clean list
+		GLOB.assigned_blocks[I] = "" // setup a clean list
 	for(var/TI in trait_list)
 		var/datum/trait/T = trait_list[TI]
 		if(T.is_genetrait)
@@ -23,10 +23,10 @@
 			G.name = "[copytext(tex,1,min( 8, length(tex)+1 ))]:[G.block]"
 			T.linked_gene = G
 			G.linked_trait = T
-			dna_activity_bounds[G.block]=T.activity_bounds
+			GLOB.dna_activity_bounds[G.block] = T.activity_bounds
 			// Handle global block data
 			log_world("DNA2: Assigned [G.name] - Linked to trait [T.name].")
-			assigned_blocks[G.block]=G.name
+			GLOB.assigned_blocks[G.block] = G.name
 			GLOB.trait_to_dna_genes[T.type] = G
 			GLOB.dna_genes.Add(G)
 			blocks_remaining.Remove(G.block)

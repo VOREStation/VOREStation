@@ -11,7 +11,7 @@
 	gnat_cap = 8 + 4 ** severity // No more than this many at once regardless of waves. (12, 16, ??)
 
 /datum/event/gnat_migration/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/gnat_migration/announce()
@@ -20,7 +20,7 @@
 		announcement = "Massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
 	else
 		announcement = "Unknown biological [spawned_gnat.len == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert")
 
 /datum/event/gnat_migration/tick()
 	if(activeFor % 5 != 0)

@@ -7,7 +7,7 @@
 		return ..()
 	else
 		density = FALSE
-		var/mob/living/silicon/robot/lost/randomlaws/vore/R = new(get_turf(src))
+		var/mob/living/silicon/robot/malf/lost/randomlaws/vore/R = new(get_turf(src))
 		R.adjustBruteLoss(rand(5, 30))
 		R.adjustFireLoss(rand(5, 10))
 		if(M.mind)

@@ -2,7 +2,7 @@
 	real_name = "Test Dummy"
 	status_flags = CANPUSH
 	has_huds = FALSE
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	no_vore = TRUE //Dummies don't need bellies.
 
 /mob/living/carbon/human/dummy/Initialize(mapload)

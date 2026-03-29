@@ -1,10 +1,10 @@
 /obj/item/circuitboard/fusion_core_control
-	name = "circuit board (fusion core controller)"
+	name = T_BOARD("fusion core controller")
 	build_path = /obj/machinery/computer/fusion_core_control
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 
 /obj/item/circuitboard/fusion_fuel_compressor
-	name = "circuit board (fusion fuel compressor)"
+	name = T_BOARD("fusion fuel compressor")
 	build_path = /obj/machinery/fusion_fuel_compressor
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 4, TECH_MATERIAL = 4)
@@ -16,12 +16,12 @@
 							)
 
 /obj/item/circuitboard/fusion_fuel_control
-	name = "circuit board (fusion fuel controller)"
+	name = T_BOARD("fusion fuel controller")
 	build_path = /obj/machinery/computer/fusion_fuel_control
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 
 /obj/item/circuitboard/gyrotron_control
-	name = "circuit board (gyrotron controller)"
+	name = T_BOARD("gyrotron controller")
 	build_path = /obj/machinery/computer/gyrotron_control
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 
@@ -51,7 +51,7 @@
 							)
 
 /obj/item/circuitboard/gyrotron
-	name = "circuit board (gyrotron)"
+	name = T_BOARD("gyrotron")
 	build_path = /obj/machinery/power/emitter/gyrotron
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_MAGNET = 3)

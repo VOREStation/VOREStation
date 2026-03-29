@@ -36,7 +36,7 @@
 
 //Builds an empty map
 /datum/rogue/asteroid/New(var/core, var/tw, var/tu)
-	rm_controller.dbg("A(n): New asteroid, with: C:[core], TW:[tw], TU:[tu].")
+	GLOB.rm_controller.dbg("A(n): New asteroid, with: C:[core], TW:[tw], TU:[tu].")
 
 	if(core)
 		coresize = core
@@ -46,20 +46,20 @@
 		type_under = tu
 
 	width = coresize*3
-	rm_controller.dbg("A(n): My width is [width].")
+	GLOB.rm_controller.dbg("A(n): My width is [width].")
 
 	map = new/list(width,width,0)
-	rm_controller.dbg("A(n): Created empty map lists. Map now has [map.len] X-lists.")
+	GLOB.rm_controller.dbg("A(n): Created empty map lists. Map now has [map.len] X-lists.")
 
 //Adds something to a spot in the asteroid map
 /datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
 	if(!x || !y || !thing)
 		return
 
-	rm_controller.dbg("A(sa): Adding [thing] at [x],[y] in the map.")
+	GLOB.rm_controller.dbg("A(sa): Adding [thing] at [x],[y] in the map.")
 	var/list/work = map[x][y]
 	work.Add(thing)
-	rm_controller.dbg("A(n): [x],[y] now contains [work.len] items.")
+	GLOB.rm_controller.dbg("A(n): [x],[y] now contains [work.len] items.")
 
 //Removes something from a spot in the asteroid map
 /datum/rogue/asteroid/proc/spot_remove(var/x,var/y,var/thing)
@@ -84,7 +84,7 @@
 	width = 3 //Small 1-tile room by default.
 
 /datum/rogue/asteroid/predef/New() //Basically just ignore what we're told.
-	rm_controller.dbg("Ap(n): A predefined asteroid is created with width [width].")
+	GLOB.rm_controller.dbg("Ap(n): A predefined asteroid is created with width [width].")
 	map = new/list(width,width,0)
 
 //Abandoned 1-tile hollow cargo box (pressurized).

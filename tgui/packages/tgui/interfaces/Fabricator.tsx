@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   Dimmer,
   Icon,
@@ -11,6 +10,7 @@ import {
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
+import { TechWebRecipeIcon } from './common/TechWebRecipeIcon';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type {
@@ -187,34 +187,14 @@ const Recipe = (props: RecipeProps) => {
           <Icon name="question-circle" />
         </div>
       </Tooltip>
-      <Tooltip
-        content={
-          <MaterialCostSequence
-            design={design}
-            amount={1}
-            available={available}
-          />
-        }
-      >
-        <div
-          className={classes([
-            'FabricatorRecipe__Title',
-            !canPrint && 'FabricatorRecipe__Title--disabled',
-          ])}
-          onClick={() =>
-            canPrint && act('build', { ref: design.id, amount: 1 })
-          }
-        >
-          <div className="FabricatorRecipe__Icon">
-            <Box
-              width={'32px'}
-              height={'32px'}
-              className={classes(['design32x32', design.icon])}
-            />
-          </div>
-          <div className="FabricatorRecipe__Label">{design.name}</div>
-        </div>
-      </Tooltip>
+      <TechWebRecipeIcon
+        icon={design.icon}
+        name={design.name}
+        design={design}
+        availableMaterials={available}
+        canPrint={canPrint}
+        action={() => act('build', { ref: design.id, amount: 1 })}
+      />
       <PrintButton
         design={design}
         quantity={5}

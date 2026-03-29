@@ -442,6 +442,14 @@
 	hidden = FALSE
 	activation_message="Your body feels mundane."
 
+/datum/trait/positive/rad_immune/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/rad_immune/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	REMOVE_TRAIT(H, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
+
 /datum/trait/positive/vibration_sense
 	name = "Vibration Sense"
 	desc = "Allows you to sense subtle vibrations nearby, even if the source cannot be seen."
@@ -471,6 +479,8 @@
 	cost = 2
 	custom_only = TRUE
 	var_changes = list("flags" = NO_DNA)
+	excludes = list(/datum/trait/negative/disability_deteriorating)
+	banned_species	= list(/datum/species/protean, /datum/species/shapeshifter/promethean)
 
 /datum/trait/positive/weaver/xenochimera
 	sort = TRAIT_SORT_SPECIES

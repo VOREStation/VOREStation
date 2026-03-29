@@ -103,10 +103,10 @@ emp_act
 
 	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
 	for(var/organ_name in organs_by_name)
-		if (organ_name in organ_rel_size)
+		if (organ_name in GLOB.organ_rel_size)
 			var/obj/item/organ/external/organ = organs_by_name[organ_name]
 			if(organ)
-				var/weight = organ_rel_size[organ_name]
+				var/weight = GLOB.organ_rel_size[organ_name]
 				armorval += (getarmor_organ(organ, type) * weight)
 				total += weight
 	return (armorval/max(total, 1))
@@ -135,10 +135,10 @@ emp_act
 	var/siemens_value = 0
 	var/total = 0
 	for(var/organ_name in organs_by_name)
-		if(organ_name in organ_rel_size)
+		if(organ_name in GLOB.organ_rel_size)
 			var/obj/item/organ/external/organ = organs_by_name[organ_name]
 			if(organ)
-				var/weight = organ_rel_size[organ_name]
+				var/weight = GLOB.organ_rel_size[organ_name]
 				siemens_value += get_siemens_coefficient_organ(organ) * weight
 				total += weight
 
@@ -610,3 +610,11 @@ emp_act
 		return TRUE
 
 	return FALSE
+
+///Get all the clothing on a specific body part
+/mob/living/carbon/human/proc/get_clothing_on_part(obj/item/organ/external/def_zone)
+	var/list/covering_part = list()
+	for(var/obj/item/clothing/equipped in get_equipped_items(INCLUDE_ABSTRACT))
+		if(equipped.body_parts_covered & def_zone.body_part)
+			covering_part += equipped
+	return covering_part

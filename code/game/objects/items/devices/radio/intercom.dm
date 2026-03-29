@@ -7,7 +7,7 @@
 	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7
-	flags = NOBLOODY
+	flags = NOBLOODY | WALL_ITEM
 	light_color = "#00ff00"
 	light_power = 0.25
 	blocks_emissive = NONE
@@ -233,3 +233,8 @@
 /obj/item/radio/intercom/locked/confessional
 	name = "confessional intercom"
 	frequency = LOCKED_COM_FREQ
+
+/obj/item/radio/intercom/locked/entertainment
+	name = "entertainment PA"
+	frequency = ENT_FREQ
+	broadcasting = TRUE

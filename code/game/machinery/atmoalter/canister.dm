@@ -266,6 +266,8 @@ update_flag
 			if(!src || !WT.isOn()) return
 			to_chat(user, span_notice("You deconstruct the [src]."))
 			new /obj/item/stack/material/steel( src.loc, 10)
+			if(connected_port)
+				disconnect()
 			qdel(src)
 			return
 	//Voreend
