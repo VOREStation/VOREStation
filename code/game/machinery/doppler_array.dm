@@ -9,6 +9,17 @@
 	circuit = /obj/item/circuitboard/doppler_array
 
 /obj/machinery/doppler_array/Initialize(mapload)
+	//Explosive analysis
+	var/static/list/explosive_signals = list(
+		COMSIG_MACHINERY_EXPLOSION_DETECTED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_destructive_experiment),
+	)
+
+	AddComponent(/datum/component/experiment_handler, \
+		allowed_experiments = list(/datum/experiment/ordnance),\
+		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
+		experiment_signals = explosive_signals, \
+	)
+
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
 
@@ -31,6 +42,7 @@
 	if(our_turf.Distance(epicenter) > 100)
 		return
 	atom_say("Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds.")
+	SEND_SIGNAL(src, COMSIG_MACHINERY_EXPLOSION_DETECTED, epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
 
 /obj/machinery/doppler_array/power_change()
 	..()
