@@ -1,129 +1,129 @@
 /datum/design_techweb/board/industrial_reagent_filter
-	name = "Industrial Reagent Filter"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Filter")
 	id = "industrial_reagent_filter"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_filter
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_furnace
-	name = "Industrial Reagent Furnace"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Furnace")
 	id = "industrial_reagent_furnace"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_furnace
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_grinder
-	name = "Industrial Reagent Grinder"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Grinder")
 	id = "industrial_reagent_grinder"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_grinder
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_hub
-	name = "Industrial Reagent Hub"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Hub")
 	id = "industrial_reagent_hub"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_hub
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_pipe
-	name = "Industrial Reagent Pipe"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Pipe")
 	id = "industrial_reagent_pipe"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_pipe
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_pump
-	name = "Industrial Reagent Pump"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Pump")
 	id = "industrial_reagent_pump"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_pump
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_reactor
-	name = "Industrial Reagent Reactor"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Reactor")
 	id = "industrial_reagent_reactor"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_reactor
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_vat
-	name = "Industrial Reagent Vat"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Vat")
 	id = "industrial_reagent_vat"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_vat
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_mixer
-	name = "Industrial Reagent Mixer"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Mixer")
 	id = "industrial_reagent_mixer"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_mixer
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_waste_processor
-	name = "Industrial Reagent Waste Processor"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Waste Processor")
 	id = "industrial_reagent_waste_processor"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_waste_processor
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/industrial_reagent_splitter
-	name = "Industrial Reagent Splitter"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Splitter")
 	id = "industrial_reagent_splitter"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/industrial_reagent_splitter
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/pump_relay
-	name = "Pump Relay"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Pump Relay")
 	id = "pump_relay"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/pump_relay
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/board/fluid_pump
-	name = "Fluid Pump"
+	SET_CIRCUIT_DESIGN_NAMEDESC("Fluid Pump")
 	id = "fluid_pump"
 	// req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/fluidpump
 	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

@@ -8,6 +8,7 @@
 	icon_base = "industrial"
 	icon_contents = "sheet"
 	stored_datum_type = /datum/stored_item/stack
+	circuit = /obj/item/circuitboard/smartfridge/sheets
 
 /obj/machinery/smartfridge/sheets/persistent
 	persistent = /datum/persistent/storage/smartfridge/sheet_storage
@@ -44,6 +45,7 @@
 	icon_state = "base_mining"
 	icon_base = "mining"
 	icon_contents = "sheet"
+	circuit = /obj/item/circuitboard/smartfridge/sheets/mining
 
 /obj/machinery/smartfridge/sheets/mining/persistent
 	persistent = /datum/persistent/storage/smartfridge/sheet_storage

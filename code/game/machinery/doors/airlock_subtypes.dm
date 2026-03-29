@@ -104,6 +104,9 @@
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
+/obj/machinery/door/airlock/external/can_freeze()
+	return TRUE
+
 /obj/machinery/door/airlock/external/bolted
 	icon_state = "door_locked" // So it looks visibly bolted in map editor
 	locked = TRUE
@@ -121,6 +124,9 @@
 	req_one_access = list(ACCESS_EXTERNAL_AIRLOCKS)
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
+
+/obj/machinery/door/airlock/glass_external/can_freeze()
+	return TRUE
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
@@ -375,14 +381,26 @@
 	icon = 'icons/obj/doors/Dooruranium.dmi'
 	mineral = MAT_URANIUM
 	var/last_event = 0
-	var/rad_power = 7.5
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
-/obj/machinery/door/airlock/uranium/process()
-	if(world.time > last_event+20)
-		if(prob(50))
-			SSradiation.radiate(src, rad_power)
-		last_event = world.time
-	..()
+/obj/machinery/door/airlock/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 5,
+	)
+	last_event = world.time
+	active = FALSE
 
 /obj/machinery/door/airlock/uranium_appearance
 	icon = 'icons/obj/doors/Dooruranium.dmi'

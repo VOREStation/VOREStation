@@ -14,6 +14,7 @@
 		"Stripe" = "stripe",
 		"Vertical Stripe" = "stripe_vertical"
 	)
+	idcard_type = /obj/item/card/id/platform
 
 // Only show on manifest if they have a player.
 /obj/item/robot_module/robot/platform/hide_on_manifest()

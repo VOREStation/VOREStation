@@ -283,7 +283,7 @@
 	else
 		user.add_spell(S)
 		to_chat(user, span_notice("you rapidly read through the arcane book. Suddenly you realize you understand [spellname]!"))
-		user.attack_log += text("\[[time_stamp()]\] [span_orange("[user.real_name] ([user.ckey]) learned the spell [spellname] ([S]).")]")
+		add_attack_logs(user, src, "learned the spell [spellname] ([S]).")
 		onlearned(user)
 
 /obj/item/spellbook/oneuse/proc/recoil(mob/user as mob)

@@ -69,11 +69,14 @@
 	///How much the damage we take from rads is multiplied by.
 	var/damage_multiplier = 1.0
 
+	///If we use a toony glow instead of a more emmissive one.
+	var/toony = FALSE
+
 
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	dupe_type = /datum/component/radiation_effects
 
-/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation, radiation_nutrition, radiation_nutrition_cap, glow_toggle, nutrition_toggle)
+/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation, radiation_nutrition, radiation_nutrition_cap, glow_toggle, nutrition_toggle, toony)
 
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -115,16 +118,25 @@
 	if(show_panel)
 		add_verb(parent, /mob/living/proc/radiation_control_panel)
 
+	if(toony)
+		src.toony = toony
+
 /datum/component/radiation_effects/Destroy(force)
+	var/atom/movable/parent_movable = parent
 	if(show_panel)
 		remove_verb(parent, /mob/living/proc/radiation_control_panel)
 
+	if(istype(parent_movable))//For the toony glow.
+		var/filter = parent_movable.get_filter("rad_glow")
+		if(filter)
+			parent_movable.remove_filter("rad_glow")
 	return ..()
 
 /datum/component/radiation_effects/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HANDLE_RADIATION, PROC_REF(process_component))
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_glow))
 	RegisterSignal(parent, COMSIG_LIVING_IRRADIATE_EFFECT, PROC_REF(handle_irradiate_effect))
+	RegisterSignal(parent, COMSIG_GEIGER_COUNTER_SCAN, PROC_REF(on_geiger_counter_scan))
 
 /datum/component/radiation_effects/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_HANDLE_RADIATION, COMSIG_LIVING_LIFE, COMSIG_LIVING_IRRADIATE_EFFECT))
@@ -136,10 +148,12 @@
 		if(living_guy.glow_override) //Toggled glow off while we were still actively glowing.
 			living_guy.glow_override = FALSE
 			living_guy.set_light(0)
+			living_guy.remove_filter("rad_glow")
 		return
 	if(living_guy.radiation < radiation_glow_threshold)
 		living_guy.glow_override = FALSE
 		living_guy.set_light(0)
+		living_guy.remove_filter("rad_glow")
 		return
 
 	if(glows)
@@ -148,14 +162,18 @@
 
 		living_guy.set_light(l_range = light_range, l_power = light_power, l_color = radiation_color, l_on = TRUE)
 		living_guy.glow_override = TRUE
+		if(toony)
+			var/filter = living_guy.get_filter("rad_glow")
+			if(!filter)
+				create_toony_glow()
 
 ///Handles the radiation removal, immunity, and healing effects.
 /datum/component/radiation_effects/proc/process_component()
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
-	if(living_guy.radiation > RADIATION_CAP)
-		living_guy.radiation = CLAMP(living_guy.radiation,0,RADIATION_CAP)
-		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads,0,RADIATION_CAP)
+	if(living_guy.radiation > RADIATION_CAP || living_guy.radiation < 0 || living_guy.accumulated_rads > RADIATION_CAP || living_guy.accumulated_rads < 0)
+		living_guy.radiation = CLAMP(living_guy.radiation, 0, RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads, 0, RADIATION_CAP)
 
 	if(QDELETED(parent))
 		return
@@ -175,7 +193,15 @@
 	//End of the calculation.
 
 	if(contamination && living_guy.radiation > contamination_threshold)
-		SSradiation.radiate(living_guy, rads * contamination_strength * rad_removal_mod)
+		//SSradiation.radiate(living_guy, rads * contamination_strength * rad_removal_mod)
+		radiation_pulse(
+			living_guy,
+			max_range = 2,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = CLAMP(rads * contamination_strength, 0, 25),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rads * contamination_strength
+		)
 
 	///Used for radiation nutrition and healing.
 	var/rads_to_utilize
@@ -205,6 +231,8 @@
 			living_guy.radiation -= rads_to_utilize
 			living_guy.accumulated_rads -= rads_to_utilize
 
+		living_guy.radiation = CLAMP(living_guy.radiation, 0, RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
 	if(custom_damage)
@@ -217,6 +245,8 @@
 
 		living_guy.apply_damage(rads_to_utilize * damage_multiplier, damage_type)
 
+		living_guy.radiation = CLAMP(living_guy.radiation, 0, RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
 /datum/component/radiation_effects/proc/handle_irradiate_effect(var/mob/living/living_guy, var/effect, var/effecttype, var/blocked, var/check_protection, var/rad_protection)
@@ -240,6 +270,7 @@
 		//If we linger in one place for a prolonged period, the area around us will become irradiated and give us a small bit of radiation back. (only got ~1 rad per tick when we were offputting 60 rads for example)
 		//However, we'll lose our rads faster than we accumulate.
 		living_guy.radiation += max((radiation_to_apply * rad_protection), 0)
+		living_guy.radiation = CLAMP(living_guy.radiation, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_IRRADIATION
 
 ///TGUI below here
@@ -295,6 +326,31 @@
 			radiation_nutrition = !radiation_nutrition
 			to_chat(parent, span_info("You are [radiation_nutrition ? "now" : "no longer"] gaining nutrition from radiation."))
 			return FALSE
+
+/datum/component/radiation_effects/proc/create_toony_glow()
+	var/atom/movable/parent_movable = parent
+	if (!istype(parent_movable))
+		return
+
+	parent_movable.add_filter("rad_glow", 2, list("type" = "outline", "color" = "#39ff1430", "size" = 2))
+	addtimer(CALLBACK(src, PROC_REF(toony_glow_loop), parent_movable), rand(0.1 SECONDS, 1.9 SECONDS)) // Things should look uneven
+
+/datum/component/radiation_effects/proc/toony_glow_loop(atom/movable/parent_movable)
+	var/filter = parent_movable.get_filter("rad_glow")
+	if (!filter)
+		return
+
+	animate(filter, alpha = 110, time = 1.5 SECONDS, loop = -1)
+	animate(alpha = 40, time = 2.5 SECONDS)
+
+
+/datum/component/radiation_effects/proc/on_geiger_counter_scan(mob/living/living_source, mob/user, obj/item/geiger/geiger_counter)
+	SIGNAL_HANDLER
+	if(living_source.radiation > 0)
+		if(contamination && living_source.radiation > contamination_threshold) //Are we spreading radiation?
+			to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated and offputting radiation."))
+		else
+			to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated."))
 
 /mob/living/proc/get_radiation_component()
 	var/datum/component/radiation_effects/rad = GetComponent(/datum/component/radiation_effects)

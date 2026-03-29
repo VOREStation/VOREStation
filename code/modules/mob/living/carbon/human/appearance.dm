@@ -171,8 +171,8 @@
 
 /mob/living/carbon/human/proc/update_dna()
 	check_dna()
-	dna.ready_dna(src)
-	sync_organ_dna(dna)
+	dna.ResetUIFrom(src) // Do not call ready_dna here: it resets ALL SE blocks, wiping trait gene state
+	sync_organ_dna()
 
 /mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
 	var/list/valid_species = new()

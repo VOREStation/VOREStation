@@ -64,7 +64,7 @@
 		return
 	var/value = tgui_input_number(user, "Choose your Jukebox volume.", "Jukebox volume", media.volume, 100, 0)
 	value = round(max(0, min(100, value)))
-	media.update_volume(value)
+	media.update_volume(value / 100)
 
 //
 // ### Media procs on mobs ###
@@ -108,7 +108,7 @@
 	var/start_time = 0			// world.time when it started playing *in the source* (Not when started playing for us)
 	var/source_volume = 1		// Volume as set by source. Actual volume = "volume * source_volume"
 	var/rate = 1				// Playback speed.  For Fun(tm)
-	var/volume = 50				// Client's volume modifier. Actual volume = "volume * source_volume"
+	var/volume = 0.5			// Client's volume modifier. Actual volume = "volume * source_volume"
 	var/client/owner			// Client this is actually running in
 	var/forced=0				// If true, current url overrides area media sources
 	var/playerstyle				// Choice of which player plugin to use

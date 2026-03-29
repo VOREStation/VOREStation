@@ -333,7 +333,13 @@
 	radiation += plasma_temperature/2
 	plasma_temperature = 0
 
-	SSradiation.radiate(src, radiation)
+	radiation_pulse(
+		src,
+		max_range = 7,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = energy * 0.001 //Might need to be increased.
+		)
 	Radiate()
 
 /obj/effect/fusion_em_field/proc/Radiate()
@@ -539,7 +545,13 @@
 
 //Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
 /obj/effect/fusion_em_field/proc/radiation_scale()
-	SSradiation.radiate(src, 2 + plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = (URANIUM_IRRADIATION_CHANCE + (plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)),
+		strength = energy * 0.01 //Might need to be increased.
+	)
 
 //Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.
 /obj/effect/fusion_em_field/proc/temp_dump()

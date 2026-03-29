@@ -4,7 +4,6 @@
 	build_path = /obj/machinery/microwave
 	board_type = new /datum/frame/frame_types/microwave
 	contain_parts = 0
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list(
 							/obj/item/stock_parts/console_screen = 1,
 							/obj/item/stock_parts/capacitor = 1,
@@ -17,7 +16,6 @@
 	desc = "The circuitboard for an oven."
 	build_path = /obj/machinery/appliance/cooker/oven
 	board_type = new /datum/frame/frame_types/machine
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list(
 							/obj/item/stock_parts/capacitor = 3,
 							/obj/item/stock_parts/scanning_module = 1,

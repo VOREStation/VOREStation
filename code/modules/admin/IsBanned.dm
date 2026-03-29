@@ -40,7 +40,7 @@
 
 		var/ckeytext = ckey(key)
 
-		if(!establish_db_connection())
+		if(!SSdbcore.IsConnected())
 			var/msg = "Ban database connection failure. Key [ckeytext] not checked"
 			log_world(msg)
 			message_admins(msg)

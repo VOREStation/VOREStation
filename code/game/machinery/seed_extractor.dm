@@ -5,6 +5,16 @@
 	icon_state = "sextractor"
 	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/circuitboard/botany_seedextractor
+
+/obj/machinery/seed_extractor/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+
+/* Currently part upgrades do nothing
+/obj/machinery/seed_extractor/RefreshParts()
+	..()
+*/
 
 /obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
@@ -32,20 +42,29 @@
 			to_chat(user, "[O] doesn't seem to have any usable seeds inside it.")
 
 		qdel(O)
+		return
 
 	//Grass.
-	else if(istype(O, /obj/item/stack/tile/grass))
+	if(istype(O, /obj/item/stack/tile/grass))
 		var/obj/item/stack/tile/grass/S = O
 		if(S.use(1))
 			to_chat(user, span_notice("You extract some seeds from the grass tile."))
 			new /obj/item/seeds/grassseed(loc)
+		return
 
-	else if(istype(O, /obj/item/fossil/plant)) // Fossils
+	// Fossils
+	if(istype(O, /obj/item/fossil/plant))
 		var/obj/item/seeds/random/R = new(get_turf(src))
 		to_chat(user, "\The [src] pulverizes \the [O] and spits out \the [R].")
 		qdel(O)
-
-	else if(default_unfasten_wrench(user, O, 20))
 		return
 
-	return
+	// Deconstruction
+	if(default_deconstruction_screwdriver(user, O))
+		return
+	if(default_deconstruction_crowbar(user, O))
+		return
+	if(default_part_replacement(user, O))
+		return
+	if(default_unfasten_wrench(user, O, 20))
+		return

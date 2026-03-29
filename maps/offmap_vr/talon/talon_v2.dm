@@ -1,6 +1,5 @@
 ///////////////////////////
 //// Spawning and despawning
-GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
@@ -282,7 +281,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
-	idcard_type = /obj/item/card/id/synthetic/talon
+	module_type = /obj/item/robot_module/drone/talon
 
 /obj/item/card/id/synthetic/talon
 	name = "\improper Talon synthetic ID"

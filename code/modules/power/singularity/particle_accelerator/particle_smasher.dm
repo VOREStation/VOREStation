@@ -148,13 +148,27 @@
 /obj/machinery/particle_smasher/process()
 	if(!src.anchored)	// Rapidly loses focus.
 		if(energy)
-			SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
+			radiation_pulse(
+				src,
+				max_range = 7,
+				threshold = RAD_HEAVY_INSULATION,
+				chance = round(((src.energy-150)/50)*5,1),
+				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+				strength = energy * 0.1 //60 rads at max energy.
+			)
 			energy = max(0, energy - 30)
 			update_icon()
 		return
 
 	if(energy)
-		SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
+		radiation_pulse(
+			src,
+			max_range = 7,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = round(((src.energy-150)/50)*5,1),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = energy * 0.1 //60 rads at max energy.
+		)
 		energy = CLAMP(energy - 5, 0, max_energy)
 
 	return
@@ -184,7 +198,14 @@
 	if(successful_craft)
 		visible_message(span_warning("\The [src] fizzles."))
 		if(prob(33))	// Why are you blasting it after it's already done!
-			SSradiation.radiate(src, 10 + round(src.energy / 60, 1))
+			radiation_pulse(
+				src,
+				max_range = 7,
+				threshold = RAD_HEAVY_INSULATION,
+				chance = URANIUM_IRRADIATION_CHANCE + round(src.energy / 60, 1),
+				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+				strength = energy * 0.1
+			)
 			energy = max(0, energy - 30)
 		update_icon()
 		return
