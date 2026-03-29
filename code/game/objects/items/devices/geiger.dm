@@ -1,102 +1,136 @@
-//Geiger counter
-//Rewritten version of TG's geiger counter
-//I opted to show exact radiation levels
-
-/obj/item/geiger
-	name = "geiger counter"
-	desc = "A handheld device used for detecting and measuring radiation in an area."
-	icon = 'icons/obj/device.dmi'
+/obj/item/geiger //DISCLAIMER: I know nothing about how real-life Geiger counters work. This will not be realistic. ~Xhuis
+	name = "\improper Geiger counter"
+	desc = "A handheld device used for detecting and measuring radiation pulses."
+	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "geiger_off"
 	item_state = "multitool"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_righthand.dmi',
+		)
 	w_class = ITEMSIZE_SMALL
-	var/scanning = 0
-	var/radiation_count = 0
-	var/datum/looping_sound/geiger/soundloop
+	slot_flags = SLOT_BELT
+	item_flags = NOBLUDGEON
+	matter = list(/datum/material/steel = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5)
+
+	var/last_perceived_radiation_danger = null
+
+	var/scanning = FALSE
+
 	var/mounted = FALSE
 
-	pickup_sound = 'sound/items/pickup/device.ogg'
-	drop_sound = 'sound/items/drop/device.ogg'
-
 /obj/item/geiger/Initialize(mapload)
-	soundloop = new(list(src), FALSE)
-	return ..()
+	. = ..()
 
-/obj/item/geiger/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(soundloop)
-	return ..()
-
-/obj/item/geiger/process()
-	get_radiation()
-
-/obj/item/geiger/proc/get_radiation()
-	if(!scanning)
-		return
-	radiation_count = SSradiation.get_rads_at_turf(get_turf(src))
-	update_icon()
-	update_sound()
+	RegisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
 /obj/item/geiger/examine(mob/user)
 	. = ..()
-	get_radiation()
-	. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.")
-
-/obj/item/geiger/rad_act(amount)
-	if(!amount || !scanning)
-		return FALSE
-
-	if(amount > radiation_count)
-		radiation_count = amount
-
-	update_icon()
-	update_sound()
-
-/obj/item/geiger/proc/update_sound()
-	var/datum/looping_sound/geiger/loop = soundloop
 	if(!scanning)
-		loop.stop()
 		return
-	if(!radiation_count)
-		loop.stop()
-		return
-	loop.last_radiation = radiation_count
-	loop.start()
-
-/obj/item/geiger/attack_self(mob/user)
-	. = ..(user)
-	if(.)
-		return TRUE
-	if(mounted)
-		return
-	scanning = !scanning
-	if(scanning)
-		START_PROCESSING(SSobj, src)
-	else
-		STOP_PROCESSING(SSobj, src)
-	update_icon()
-	update_sound()
-	to_chat(user, span_notice("[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src]."))
+	. += span_info("Alt-click it to clear stored radiation levels.")
+	switch(last_perceived_radiation_danger)
+		if(null)
+			. += span_notice("Ambient radiation level count reports that all is well. It is ") + span_green("safe ") + span_notice("here.")
+		if(PERCEIVED_RADIATION_DANGER_LOW)
+			. += span_notice("Ambient radiation levels slightly above average. It is ") + span_green("safe ") + span_notice("here.")
+		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
+			. += span_notice("Ambient radiation levels above average. It is ") + span_green("safe ") + span_notice("here.")
+		if(PERCEIVED_RADIATION_DANGER_HIGH)
+			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("unsafe ") + span_suicide("here.")
+		if(PERCEIVED_RADIATION_DANGER_EXTREME)
+			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely unsafe ") + span_suicide("here.")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
 		icon_state = "geiger_off"
-		return 1
+		return ..()
 
-	switch(radiation_count)
+	switch(last_perceived_radiation_danger)
 		if(null)
 			icon_state = "geiger_on_1"
-		if(-INFINITY to RAD_LEVEL_LOW)
-			icon_state = "geiger_on_1"
-		if(RAD_LEVEL_LOW to RAD_LEVEL_MODERATE)
+		if(PERCEIVED_RADIATION_DANGER_LOW)
 			icon_state = "geiger_on_2"
-		if(RAD_LEVEL_MODERATE to RAD_LEVEL_HIGH)
+		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
 			icon_state = "geiger_on_3"
-		if(RAD_LEVEL_HIGH to RAD_LEVEL_VERY_HIGH)
+		if(PERCEIVED_RADIATION_DANGER_HIGH)
 			icon_state = "geiger_on_4"
-		if(RAD_LEVEL_VERY_HIGH to INFINITY)
+		if(PERCEIVED_RADIATION_DANGER_EXTREME)
 			icon_state = "geiger_on_5"
+	return ..()
 
-///////////////////////
+/obj/item/geiger/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
+	scanning = !scanning
+
+	if (scanning)
+		AddComponent(/datum/component/geiger_sound)
+	else
+		qdel(GetComponent(/datum/component/geiger_sound))
+
+	update_icon()
+	balloon_alert(user, "switch [scanning ? "on" : "off"]")
+
+/obj/item/geiger/afterattack(atom/interacting_with, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(SHOULD_SKIP_INTERACTION(interacting_with, src, user))
+		return NONE
+	return attack_at_range(interacting_with, user, proximity_flag, click_parameters)
+
+/obj/item/geiger/proc/attack_at_range(atom/interacting_with, mob/living/user, proximity_flag, click_parameters) //This is ranged_interact_with_atom on TG but we don't have that yet.
+	if(!CAN_IRRADIATE(interacting_with))
+		return NONE
+
+	user.visible_message(span_notice("[user] scans [interacting_with] with [src]."), span_notice("You scan [interacting_with]'s radiation levels with [src]..."))
+	addtimer(CALLBACK(src, PROC_REF(scan), interacting_with, user), 20, TIMER_UNIQUE) // Let's not have spamming GetAllContents
+	return ITEM_INTERACT_SUCCESS
+
+/obj/item/geiger/equipped(mob/user, slot, initial)
+	. = ..()
+
+	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
+
+/obj/item/geiger/dropped(mob/user, silent = FALSE)
+	. = ..()
+
+	UnregisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION)
+
+/obj/item/geiger/proc/on_pre_potential_irradiation(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
+	SIGNAL_HANDLER
+
+	last_perceived_radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
+	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+	if (scanning)
+		update_icon()
+
+/obj/item/geiger/proc/reset_perceived_danger()
+	last_perceived_radiation_danger = null
+	if (scanning)
+		update_icon()
+
+/obj/item/geiger/proc/scan(atom/target, mob/user)
+	if (SEND_SIGNAL(target, COMSIG_GEIGER_COUNTER_SCAN, user, src) & COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL)
+		return
+
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(living_target.radiation)
+			to_chat(user, span_notice("[icon2html(src, user)] [living_target] is reporting a radiation level of [living_target.radiation]."))
+			return
+
+	to_chat(user, span_notice("[icon2html(src, user)] [isliving(target) ? "Subject" : "Target"] is free of radioactive contamination."))
+
+/obj/item/geiger/click_alt(mob/living/user)
+	if(!scanning)
+		to_chat(user, span_warning("[src] must be on to reset its radiation level!"))
+		return CLICK_ACTION_BLOCKING
+	to_chat(user, span_notice("You flush [src]'s radiation counts, resetting it to normal."))
+	last_perceived_radiation_danger = null
+	update_icon()
+	return CLICK_ACTION_SUCCESS
 
 /obj/item/geiger/wall
 	name = "mounted geiger counter"
@@ -105,8 +139,7 @@
 	icon_state = "geiger_wall"
 	item_state = "geiger_wall"
 	anchored = TRUE
-	scanning = 1
-	radiation_count = 0
+	scanning = TRUE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	w_class = ITEMSIZE_LARGE
@@ -118,41 +151,25 @@
 	mounted = TRUE
 
 /obj/item/geiger/wall/Initialize(mapload)
-	START_PROCESSING(SSobj, src)
-	soundloop = new(list(src), FALSE)
-	return ..()
+	. = ..()
+	if(scanning)
+		AddComponent(/datum/component/geiger_sound)
 
-/obj/item/geiger/wall/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(soundloop)
-	return ..()
-
-/obj/item/geiger/wall/attack_self(mob/user)
-	. = ..(user)
-	if(.)
-		return TRUE
-	scanning = !scanning
-	update_icon()
-	update_sound()
-	to_chat(user, span_notice("[icon2html(src, user.client)] You switch [scanning ? "on" : "off"] \the [src]."))
 
 /obj/item/geiger/wall/update_icon()
 	if(!scanning)
 		icon_state = "geiger_wall-p"
 		return 1
-
-	switch(radiation_count)
+	switch(last_perceived_radiation_danger)
 		if(null)
 			icon_state = "geiger_level_1"
-		if(-INFINITY to RAD_LEVEL_LOW)
-			icon_state = "geiger_level_1"
-		if(RAD_LEVEL_LOW to RAD_LEVEL_MODERATE)
+		if(PERCEIVED_RADIATION_DANGER_LOW)
 			icon_state = "geiger_level_2"
-		if(RAD_LEVEL_MODERATE to RAD_LEVEL_HIGH)
+		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
 			icon_state = "geiger_level_3"
-		if(RAD_LEVEL_HIGH to RAD_LEVEL_VERY_HIGH)
+		if(PERCEIVED_RADIATION_DANGER_HIGH)
 			icon_state = "geiger_level_4"
-		if(RAD_LEVEL_VERY_HIGH to INFINITY)
+		if(PERCEIVED_RADIATION_DANGER_EXTREME)
 			icon_state = "geiger_level_5"
 
 /obj/item/geiger/wall/attack_ai(mob/user as mob)

@@ -610,3 +610,11 @@ emp_act
 		return TRUE
 
 	return FALSE
+
+///Get all the clothing on a specific body part
+/mob/living/carbon/human/proc/get_clothing_on_part(obj/item/organ/external/def_zone)
+	var/list/covering_part = list()
+	for(var/obj/item/clothing/equipped in get_equipped_items(INCLUDE_ABSTRACT))
+		if(equipped.body_parts_covered & def_zone.body_part)
+			covering_part += equipped
+	return covering_part

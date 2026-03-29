@@ -115,6 +115,7 @@ GLOBAL_LIST(construction_frame_floor)
 /datum/frame/frame_types/reagent_distillery
 	name = "Distillery"
 	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/circuitboard/distiller
 	frame_size = 4
 
 /datum/frame/frame_types/display

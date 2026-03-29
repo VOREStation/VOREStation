@@ -61,6 +61,7 @@
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	var/knock_unpowered_sound = 'sound/machines/door/knock_glass.ogg'
 	var/mob/hold_open
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 	// Frozen airlocks and how to deice them
 	var/frozen = FALSE

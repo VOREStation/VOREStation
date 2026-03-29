@@ -74,6 +74,11 @@
 	id = "comm_traffic"
 	build_path =  /obj/item/circuitboard/comm_traffic
 
+/datum/design_techweb/board/tcom/message_server
+	SET_CIRCUIT_DESIGN_NAMEDESC("message server")
+	id = "message_server"
+	build_path =  /obj/item/circuitboard/message_server
+
 // Telecomm parts
 /datum/design_techweb/subspace
 	desc = "Complex components used to construct and repair telecomms machinery."

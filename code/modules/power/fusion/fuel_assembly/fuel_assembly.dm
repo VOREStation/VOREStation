@@ -11,6 +11,34 @@
 	var/fuel_colour
 	var/radioactivity = 0
 	var/const/initial_amount = 3000000
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
+
+/obj/item/fuel_assembly/process()
+	radiate()
+
+/obj/item/fuel_assembly/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = (radioactivity * 0.5),
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DEFAULT_RADIATION_CHANCE,
+		strength = radioactivity * 0.5
+	)
+	last_event = world.time
+	active = FALSE
+
+/obj/item/fuel_assembly/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
 
 /obj/item/fuel_assembly/Initialize(mapload, var/_material, var/_colour)
 	. = ..()
@@ -37,17 +65,6 @@
 	I.color = fuel_colour
 	add_overlay(list(I, image(icon, "fuel_assembly_bracket")))
 	rod_quantities[fuel_type] = initial_amount
-
-/obj/item/fuel_assembly/process()
-	if(!radioactivity)
-		return PROCESS_KILL
-
-	if(istype(loc, /turf))
-		SSradiation.radiate(src, max(1,CEILING(radioactivity/30, 1)))
-
-/obj/item/fuel_assembly/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
 
 // Mapper shorthand.
 /obj/item/fuel_assembly/deuterium/Initialize(mapload)

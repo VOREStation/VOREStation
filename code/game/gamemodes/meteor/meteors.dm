@@ -310,13 +310,11 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	meteordrop = /obj/item/ore/uranium
 	wall_power = 75
 
-
 /obj/effect/meteor/irradiated/meteor_effect(var/explode)
 	..()
 	if(explode)
 		explosion(src.loc, 0, 0, 4, 3, 0)
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
-	SSradiation.radiate(src, 50)
 
 // This meteor fries toasters.
 /obj/effect/meteor/emp

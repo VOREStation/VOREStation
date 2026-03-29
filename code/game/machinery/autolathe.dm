@@ -26,7 +26,9 @@
 	var/datum/wires/autolathe/wires = null
 
 	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
-	var/creation_efficiency = 1.6
+	var/creation_efficiency = 1
+	///modifier for lathe build speed. Lower values are faster.
+	var/lathe_build_rate = 0.8
 	///Designs related to the autolathe
 	var/datum/techweb/autounlocking/stored_research
 	///Designs imported from technology disks that we can print.
@@ -94,7 +96,7 @@
 
 /obj/machinery/autolathe/crowbar_act(mob/living/user, obj/item/tool)
 	. = NONE
-	if(default_deconstruction_crowbar(tool))
+	if(default_deconstruction_crowbar(user, tool))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/autolathe/screwdriver_act(mob/living/user, obj/item/tool)
@@ -271,7 +273,7 @@
 		charge_per_item += amount
 
 	charge_per_item = ROUND_UP((charge_per_item / (MAX_STACK_SIZE * SHEET_MATERIAL_AMOUNT)) * material_cost_coefficient * active_power_usage)
-	var/build_time_per_item = (design.construction_time * design.lathe_time_factor) ** 0.8
+	var/build_time_per_item = (design.construction_time * (design.lathe_time_factor)) ** lathe_build_rate
 
 	//do the printing sequentially
 	busy = TRUE
@@ -424,7 +426,7 @@
 			to_chat(user, "close the panel first!")
 		return
 
-	if(!istype(O, /obj/item/disk/design_disk))
+	if(!istype(O, /obj/item/disk/design_disk) && !istype(O, /obj/item/disk/tech_disk))
 		return ..()
 
 	// The rest has to do with loading from design disks
@@ -439,15 +441,37 @@
 		balloon_alert(user, "interrupted!")
 		return
 
-	var/obj/item/disk/design_disk/disky = O
 	var/list/not_imported
-	for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
-		if(!blueprint)
-			continue
-		if(blueprint.build_type & AUTOLATHE)
-			imported_designs[blueprint.id] = TRUE
-		else
-			LAZYADD(not_imported, blueprint.name)
+	var/design_count = 0
+	// Basic design loot disks
+	if(istype(O, /obj/item/disk/design_disk))
+		var/obj/item/disk/design_disk/disky = O
+		for(var/datum/design_techweb/blueprint as anything in disky.blueprints)
+			if(!blueprint)
+				continue
+			if(imported_designs[blueprint.id] || stored_research.researched_designs[blueprint.id])
+				continue
+			if(blueprint.build_type & AUTOLATHE)
+				imported_designs[blueprint.id] = TRUE
+				design_count++
+			else
+				LAZYADD(not_imported, blueprint.name)
+
+	// More complex as it holds multiple nodes of research
+	else if(istype(O, /obj/item/disk/tech_disk))
+		var/obj/item/disk/tech_disk/disky = O
+		var/datum/techweb/disk_web = disky.stored_research
+		for(var/design_id in disk_web.researched_designs)
+			var/datum/design_techweb/blueprint = SSresearch.techweb_design_by_id(design_id)
+			if(imported_designs[blueprint.id] || stored_research.researched_designs[blueprint.id])
+				continue
+			if(blueprint.build_type & AUTOLATHE)
+				imported_designs[blueprint.id] = TRUE
+				design_count++
+			// Don't report failed designs here, techwebs can be huge and the message would be massive for something like the debug disk
+
+	if(design_count)
+		to_chat(user, span_notice("[design_count] design\s imported."))
 
 	if(not_imported)
 		to_chat(user, span_warning("The following design[length(not_imported) > 1 ? "s" : ""] couldn't be imported: [english_list(not_imported)]"))
@@ -463,10 +487,11 @@
 		mat_capacity += new_matter_bin.rating * (37.5*SHEET_MATERIAL_AMOUNT)
 	materials.max_amount = mat_capacity
 
-	var/efficiency = 1.8
-	for(var/obj/item/stock_parts/motor/new_servo in component_parts)
-		efficiency -= new_servo.rating * 0.2
-	creation_efficiency = max(1, round(efficiency, 0.1)) // creation_efficiency goes 1.6 -> 1.4 -> 1.2 -> 1 per level of servo efficiency
+	var/man_rating = 0
+	for(var/obj/item/stock_parts/manipulator/manip in component_parts)
+		man_rating += manip.rating;
+	creation_efficiency = max(0.6, round(1.1 - (man_rating * 0.1), 0.1)) // creation_efficiency goes 1 -> 0.9 -> 0.8 -> 0.7 -> 0.6 per level of manipulator efficiency
+	lathe_build_rate = 0.85 - (man_rating * 0.05) // lathe_build_rate goes 0.8 -> 0.75 -> 0.7 -> 0.65 -> 0.6 per level of manipulator efficiency
 
 /obj/machinery/autolathe/update_icon()
 	cut_overlays()

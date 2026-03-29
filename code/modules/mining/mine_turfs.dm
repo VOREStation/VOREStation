@@ -373,6 +373,9 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 
 		if(istype(W, /obj/item/shovel))
 			var/obj/item/shovel/S = W
+			if(S.grave_mode)
+				shovel_dig_grave(user, S)
+				return
 			valid_tool = 1
 			digspeed = S.digspeed
 

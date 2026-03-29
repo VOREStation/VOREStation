@@ -63,7 +63,7 @@
 
 /obj/item/circuitboard/stationalert_security
 	name = T_BOARD("station alert console (security)")
-	build_path = /obj/machinery/computer/station_alert
+	build_path = /obj/machinery/computer/station_alert/security
 
 /obj/item/circuitboard/stationalert_all
 	name = T_BOARD("station alert console (all)")

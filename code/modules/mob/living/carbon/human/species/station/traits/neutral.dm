@@ -1965,3 +1965,13 @@
 /datum/trait/neutral/slobber/apply(var/datum/species/S, var/mob/living/carbon/human/human)
 	..()
 	ADD_TRAIT(human, TRAIT_SLOBBER, ROUNDSTART_TRAIT)
+
+/datum/trait/neutral/slip_prone
+	name = "Slip Prone (Vore)"
+	desc = "You're prone to slips, trips, and falls when next to others, resulting in occasionally falling into them! (This takes spontaneous prefs into account!)"
+	cost = 0
+	is_genetrait = FALSE
+	hidden = FALSE
+	custom_only = FALSE
+	added_component_path = /datum/component/slip_prone
+	excludes = list(/datum/trait/negative/unlucky/major, /datum/trait/negative/unlucky)

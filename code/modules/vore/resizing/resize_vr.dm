@@ -350,13 +350,13 @@
 			tmob.Weaken(1)
 
 	var/size_damage_multiplier = size_multiplier - tmob.size_multiplier
-	// This technically means that I_GRAB will set this value to the same as I_HARM, but
+	// This technically means that I_GRAB will set this value to the same as I_HURT, but
 	// I_GRAB won't ever trigger the damage-giving code, so it doesn't matter.
-	// I_HARM: Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
+	// I_HURT: Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
 	// I_DISARM: Perform some HALLOSS damage to the smaller.
 	//           Since stunned is broken, let's do this. Rand 15-30 multiplied by 1 min or 1.75 max. 15 holo to 52.5 holo, depending on RNG and size differnece.
 	var/damage = (a_intent == I_DISARM) ? (rand(15, 30) * size_damage_multiplier) : (rand(1, 3) * size_damage_multiplier)
-	// I_HARM only
+	// I_HURT only
 	var/calculated_damage = damage / 2 //This will sting, but not kill. Does .5 to 2.625 damage, randomly, to each limb.
 
 	var/message_pred = null

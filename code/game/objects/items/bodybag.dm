@@ -195,6 +195,7 @@
 		syringe = null
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
+	ADD_TRAIT(AM, TRAIT_STASIS, REF(src))
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(stasis_level)
@@ -209,6 +210,7 @@
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
+	REMOVE_TRAIT(AM, TRAIT_STASIS, REF(src))
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(0)

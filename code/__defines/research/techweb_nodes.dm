@@ -161,3 +161,4 @@
 #define TECHWEB_NODE_CONFETTI "confetti"
 #define TECHWEB_NODE_RSF "rapid_service_fab"
 #define TECHWEB_NODE_MATERIALSHEETS "material_sheets"
+#define TECHWEB_NODE_SMARTFRIDGES "smartfridges"

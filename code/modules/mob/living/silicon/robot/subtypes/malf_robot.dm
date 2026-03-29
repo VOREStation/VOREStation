@@ -5,6 +5,7 @@
 	lawchannel = "State"
 	braintype = "Drone"
 	ui_theme = "malfunction"
+	idcard_type = /obj/item/card/id/lost
 
 /mob/living/silicon/robot/malf/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
