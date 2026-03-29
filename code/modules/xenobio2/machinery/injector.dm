@@ -132,6 +132,5 @@
 /obj/item/circuitboard/xenobioinjectormachine
 	name = T_BOARD("biological injector")
 	build_path = /obj/machinery/xenobio2/manualinjector
-	board_type = /datum/frame/frame_types/machine
-	origin_tech = list()	//To be filled,
+	board_type = /datum/frame/frame_types/machine	//To be filled,
 	req_components = list()	//To be filled,

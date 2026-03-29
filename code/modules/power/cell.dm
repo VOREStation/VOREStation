@@ -8,7 +8,6 @@
 	icon = 'icons/obj/power_cells_old.dmi' //swap to 'icons/obj/power_cells_.dmi' for new sprites.
 	icon_state = "b_st"
 	item_state = "cell"
-	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3

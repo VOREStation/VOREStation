@@ -15,7 +15,6 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 80)
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
@@ -78,7 +77,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters"
 	toolspeed = 0.1
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
 /obj/item/tool/wirecutters/hybrid
@@ -87,7 +85,6 @@
 	icon_state = "hybcutters"
 	random_color = FALSE
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("pinched", "nipped", "warped", "blasted")
 	usesound = 'sound/effects/stealthoff.ogg'
 	toolspeed = 0.4

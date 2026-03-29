@@ -39,7 +39,6 @@
 	name = T_BOARD("radioisotope TEG")
 	build_path = /obj/machinery/power/rtg
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1,
@@ -48,7 +47,6 @@
 /obj/item/circuitboard/machine/rtg/advanced
 	name = T_BOARD("advanced radioisotope TEG")
 	build_path = /obj/machinery/power/rtg/advanced
-	origin_tech = list(TECH_DATA = 5, TECH_POWER = 5, TECH_PHORON = 5, TECH_ENGINEERING = 5)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1,
@@ -60,7 +58,6 @@
 	name = T_BOARD("void generator")
 	build_path = /obj/machinery/power/rtg/abductor
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor/hyper = 1)
@@ -70,7 +67,6 @@
 	name = T_BOARD("void generator (hybrid)")
 	build_path = /obj/machinery/power/rtg/abductor/hybrid
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor/hyper = 1,
@@ -466,7 +462,6 @@
 	name = T_BOARD("D-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1)
@@ -475,7 +470,6 @@
 	name = T_BOARD("C-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg/c
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1)

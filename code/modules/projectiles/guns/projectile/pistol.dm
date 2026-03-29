@@ -10,7 +10,6 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	icon_state = "colt"
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 
 /obj/item/gun/projectile/colt/update_icon()
@@ -85,7 +84,6 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 
 /obj/item/gun/projectile/sec/update_icon()
@@ -122,7 +120,6 @@
 	silenced = 1
 	fire_delay = 1
 	recoil = 0
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m45
 	allowed_magazines = list(/obj/item/ammo_magazine/m45)
@@ -183,7 +180,6 @@
 	max_shells = 8
 	caliber = ".75"
 	fire_sound = 'sound/weapons/railgun.ogg'
-	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m75
@@ -219,7 +215,6 @@
 	w_class = ITEMSIZE_SMALL
 	caliber = "9mm"
 	silenced = 0
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mm/compact
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm/compact)
@@ -278,7 +273,6 @@
 	item_state = null
 	caliber = "9mm"
 	silenced = 0
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mm
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
@@ -351,7 +345,6 @@
 	icon_state = "derringer"
 	item_state = "concealed"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 3)
 	handle_casings = CYCLE_CASINGS //player has to take the old casing out manually before reloading
 	load_method = SINGLE_CASING
 	max_shells = 2
@@ -371,7 +364,6 @@
 	same cannot be said for the hundreds of low-grade (But technically legal) copies circulating the squalid habitats and smoke-filled \
 	junk ships of the frontier."
 	icon_state = "p08a"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "9mm"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mm/luger
@@ -399,7 +391,6 @@
 	name = "9mm pistol"
 	desc = "A widespread MarsTech sidearm called the P92X which is used by military, police, and security forces across the galaxy. Uses 9mm rounds."
 	icon_state = "p92x"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "9mm"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mm
@@ -441,7 +432,6 @@
 	load_method = MAGAZINE
 	w_class = ITEMSIZE_SMALL
 	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 
 /obj/item/gun/projectile/giskard/update_icon()
 	..()
@@ -482,7 +472,6 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	load_method = MAGAZINE
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /obj/item/gun/projectile/makarov/update_icon()
 	if(ammo_magazine)
@@ -506,7 +495,6 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	load_method = MAGAZINE
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /obj/item/gun/projectile/n99/update_icon()
 	if(ammo_magazine)
@@ -538,7 +526,6 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	load_method = MAGAZINE
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /obj/item/gun/projectile/ecureuil/update_icon()
 	if(ammo_magazine)
@@ -580,7 +567,6 @@
 	load_method = MAGAZINE
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 
 /obj/item/gun/projectile/lamia/update_icon()
 	cut_overlays()

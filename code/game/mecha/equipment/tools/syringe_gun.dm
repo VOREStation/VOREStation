@@ -15,7 +15,6 @@
 	var/datum/global_iterator/mech_synth/synth
 	range = MELEE|RANGED
 	equip_cooldown = 10
-	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_MAGNET = 4, TECH_DATA = 3)
 	required_type = list(/obj/mecha/medical)
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize(mapload)
@@ -279,7 +278,6 @@
 	name = "crisis dronebay"
 	desc = "A small shoulder-mounted dronebay containing a rapid response drone capable of moderately stabilizing a patient near the exosuit."
 	icon_state = "mecha_dronebay"
-	origin_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_BIO = 5, TECH_DATA = 4)
 	range = MELEE|RANGED
 	equip_cooldown = 3 SECONDS
 	required_type = list(/obj/mecha/medical)
@@ -493,7 +491,6 @@
 	name = "mounted humanoid scanner"
 	desc = "An exosuit-mounted scanning device."
 	icon_state = "mecha_analyzer_health"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 5, TECH_BIO = 5)
 	equip_cooldown = 5 SECONDS
 	energy_drain = 100
 	range = MELEE

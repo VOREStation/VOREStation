@@ -6,7 +6,6 @@
 	desc = "A very tightly compacted ball of chemicals for use with firework launcher."
 	icon_state = "star"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
 
 /obj/item/firework_star/proc/trigger_firework(var/datum/weather_holder/w_holder)
 	return
@@ -16,7 +15,6 @@
 	name = "weather firework star"
 	desc = "A firework star designed to alter a weather, rather than put on a show."
 	var/weather_type
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 2)
 
 /obj/item/firework_star/weather/trigger_firework(var/datum/weather_holder/w_holder)
 	if(!w_holder)						// Sanity
@@ -73,14 +71,12 @@
 	name = T_FIREWORK_WEATHER_STAR("HAIL")
 	weather_type = WEATHER_HAIL
 	icon_state = "snow"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 2, TECH_ILLEGAL = 1)
 
 /obj/item/firework_star/weather/fallout
 	name = T_FIREWORK_WEATHER_STAR("NUCLEAR")
 	desc = "This is the worst idea ever."
 	weather_type = WEATHER_FALLOUT_TEMP
 	icon_state = "nuclear"
-	origin_tech = list(TECH_MATERIAL = 7, TECH_ENGINEERING = 3, TECH_ILLEGAL = 5)
 
 /obj/item/firework_star/weather/confetti
 	name = T_FIREWORK_WEATHER_STAR("CONFETTI")

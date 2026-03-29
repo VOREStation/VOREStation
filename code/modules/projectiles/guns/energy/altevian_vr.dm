@@ -7,7 +7,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 5
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 1000)
 	projectile_type = /obj/item/projectile/beam/meeplaser
 	charge_cost = 400
@@ -20,7 +19,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 4)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/meeplaser/strong
 	charge_cost = 200
@@ -70,7 +68,6 @@
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_HUGE
 	force = 10
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/scatter/ratminer
 	charge_cost = 400

@@ -25,7 +25,6 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_HUGE //It's a giant shield generator!!!
 	unacidable = TRUE
-	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 8, TECH_POWER = 6, TECH_DATA = 4) //These are limited AND high tech. Breaking one of them down is massive.
 	actions_types = list(/datum/action/item_action/toggle_shield)
 	var/obj/item/gun/energy/gun/generator/active_weapon
 	var/obj/item/cell/device/bcell = null

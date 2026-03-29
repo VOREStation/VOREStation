@@ -110,5 +110,4 @@
 
 /obj/item/circuitboard/xenobio2computer
 	name = T_BOARD("injector control console")
-	build_path = /obj/machinery/computer/xenobio2
-	origin_tech = list()	//To be filled
+	build_path = /obj/machinery/computer/xenobio2	//To be filled

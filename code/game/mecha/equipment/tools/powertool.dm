@@ -2,7 +2,6 @@
 	name = "pneumatic wrench"
 	desc = "An exosuit-mounted hydraulic wrench."
 	icon_state = "mecha_wrench"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
 	equip_cooldown = 3
 	energy_drain = 15
 	range = MELEE

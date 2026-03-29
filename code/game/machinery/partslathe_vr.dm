@@ -49,14 +49,6 @@
 	update_icon()
 	update_recipe_list()
 
-/obj/machinery/partslathe/proc/getHighestOriginTechLevel(var/obj/item/I)
-	if(!istype(I) || !I.origin_tech)
-		return 0
-	var/highest = 0
-	for(var/tech in I.origin_tech)
-		highest = max(highest, I.origin_tech[tech])
-	return highest
-
 /obj/machinery/partslathe/RefreshParts()
 	var/mb_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
@@ -355,9 +347,6 @@
 		var/list/paths = subtypesof(/obj/item/stock_parts)
 		for(var/type in paths)
 			var/obj/item/stock_parts/I = new type()
-			if(getHighestOriginTechLevel(I) > 1)
-				qdel(I)
-				continue // Ignore high-tech parts
 			if(!I.matter)
 				qdel(I)
 				continue // Ignore parts we can't build

@@ -22,7 +22,6 @@
 	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/force = 0
 	var/damtype = BRUTE
@@ -153,9 +152,6 @@
 
 	for(var/path in actions_types)
 		add_item_action(path)
-
-	if(islist(origin_tech))
-		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
 
 	if(embed_chance < 0)
 		if(sharp)

@@ -5,7 +5,6 @@
 	desc = "A flask containing strange, mysterious substances excreted by a slime."
 	icon = 'icons/obj/chemical.dmi'
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_BIO = 4)
 
 // This is actually applied to an extract, so no attack() overriding needed.
 /obj/item/slimepotion/enhancer

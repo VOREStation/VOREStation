@@ -13,7 +13,6 @@
 
 	step_delay = 0.5
 
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 4)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot/rigged
 	name = "jury-rigged shrapnel cannon"

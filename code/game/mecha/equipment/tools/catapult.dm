@@ -2,7 +2,6 @@
 	name = "gravitational catapult"
 	desc = "An exosuit mounted gravitational catapult."
 	icon_state = "mecha_teleport"
-	origin_tech = list(TECH_BLUESPACE = 2, TECH_MAGNET = 3)
 	equip_cooldown = 10
 	energy_drain = 100
 	range = MELEE|RANGED

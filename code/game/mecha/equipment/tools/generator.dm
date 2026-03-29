@@ -2,7 +2,6 @@
 	name = "phoron generator"
 	desc = "Generates power using solid phoron as fuel. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(TECH_PHORON = 2, TECH_POWER = 2, TECH_ENGINEERING = 1)
 	equip_cooldown = 10
 	energy_drain = 0
 	range = MELEE
@@ -128,7 +127,6 @@
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30

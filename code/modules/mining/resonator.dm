@@ -9,7 +9,6 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
 		)
-	origin_tech =  list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It can also be activated without a target to create a field at the user's location, to act as a delayed time trap. It's more effective in low temperature."
 	w_class = ITEMSIZE_NORMAL
 	force = 8
@@ -25,7 +24,6 @@
 	name = "upgraded resonator"
 	desc = "An upgraded version of the resonator that can produce more fields at once."
 	icon_state = "resonator_u"
-	origin_tech =  list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	fieldlimit = 5
 
 /obj/item/resonator/proc/CreateResonance(var/target, var/creator)

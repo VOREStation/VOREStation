@@ -20,7 +20,6 @@
 
 	charge_cost = 600
 
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 
 //Projectile
 /obj/item/projectile/sickshot

@@ -2,7 +2,6 @@
 	name = "welding laser"
 	desc = "An exosuit-mounted welding laser."
 	icon_state = "mecha_laser-rig"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 4, TECH_PHORON = 2)
 	equip_cooldown = 3
 	energy_drain = 15
 	range = MELEE

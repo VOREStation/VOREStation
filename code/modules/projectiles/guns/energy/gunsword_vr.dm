@@ -10,7 +10,6 @@
 	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob.dmi')
 
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 4)
 	projectile_type = /obj/item/projectile/beam/stun
 	fire_sound = 'sound/weapons/taser.ogg'
 	charge_meter = 1
@@ -23,8 +22,6 @@
 	list(mode_name="stun", charge_cost=240,projectile_type=/obj/item/projectile/beam/stun, modifystate="gbuster", fire_sound='sound/weapons/taser.ogg'),
 	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam/imperial, modifystate="gbuster", fire_sound='sound/weapons/mandalorian.ogg'),
 	)
-
-
 
 // -----------------gunsword battery--------------------------
 /obj/item/cell/device/weapon/gunsword
@@ -41,7 +38,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 5)
 
 	var/active = 0
 	var/active_force = 30

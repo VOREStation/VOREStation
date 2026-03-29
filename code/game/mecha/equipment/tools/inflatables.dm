@@ -2,7 +2,6 @@
 	name = "inflatable deployment mechanism"
 	desc = "An exosuit-mounted inflatable barrier deployer. Useful!"
 	icon_state = "mecha_inflatables"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	equip_cooldown = 3
 	energy_drain = 30
 	range = MELEE
