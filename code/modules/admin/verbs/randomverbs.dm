@@ -880,49 +880,49 @@ ADMIN_VERB(toggle_vantag_hud_global, R_EVENT|R_SERVER|R_ADMIN, "Toggle Global Ev
 
 	to_chat(user, span_warning("Global Event HUD has been turned [GLOB.global_vantag_hud ? "on" : "off"]."))
 
-ADMIN_VERB_AND_CONTEXT_MENU(door_access_check, R_ADMIN|R_MOD|R_DEBUG, "Check Access List", "Read the access list of an airlock.", ADMIN_CATEGORY_GAME, obj/machinery/door/airlock/check_door in world)
+ADMIN_VERB_AND_CONTEXT_MENU(machine_access_check, R_ADMIN|R_MOD|R_DEBUG, "Check Access List", "Read and edit the access list of a machine.", ADMIN_CATEGORY_GAME, obj/machinery/req_thing in world)
 	// Find broken IDs if any exist...
 	var/list/remaining_unknown = list()
-	if(check_door.req_access)
-		remaining_unknown |= check_door.req_access
-	if(check_door.req_one_access)
-		remaining_unknown |= check_door.req_one_access
+	if(req_thing.req_access)
+		remaining_unknown |= req_thing.req_access
+	if(req_thing.req_one_access)
+		remaining_unknown |= req_thing.req_one_access
 	// Get all access available
 	var/list/lock_display = list()
 	for(var/datum/access/dat as anything in subtypesof(/datum/access))
 		remaining_unknown -= dat.id
 		var/key_string = "[dat.id]:[dat.desc]"
-		if(dat.id in check_door.req_access)
+		if(dat.id in req_thing.req_access)
 			key_string += " - (REQ)"
-		if(dat.id in check_door.req_one_access)
+		if(dat.id in req_thing.req_one_access)
 			key_string += " - (REQONE)"
 		lock_display[key_string] = dat
 	// Add them to the list
 	for(var/bad_id in remaining_unknown)
 		lock_display["[bad_id]:!!!BAD ID!!!"] = bad_id
 	// Can change access as needed
-	var/edit_key = tgui_input_list(usr, "Access on \the [check_door] at [check_door.x].[check_door.y].[check_door.z]", "Airlock Access", lock_display)
-	if(!edit_key || !(edit_key in lock_display) || QDELETED(check_door))
+	var/edit_key = tgui_input_list(user, "Access on \the [req_thing] at [req_thing.x].[req_thing.y].[req_thing.z]", "Machine Access Check", lock_display)
+	if(!edit_key || !(edit_key in lock_display) || QDELETED(req_thing))
 		return
-	if(istype(lock_display[edit_key], /datum/access))
-		var/action = tgui_input_list(usr, "Access type?", "Airlock Access", list("REQ","REQONE","REMOVE"))
-		if(!action || QDELETED(check_door))
+	if(ispath(lock_display[edit_key]))
+		var/action = tgui_input_list(user, "Access type?", "Machine Access Edit", list("REQ","REQONE","REMOVE"))
+		if(!action || QDELETED(req_thing))
 			return
 		var/datum/access/set_dat = lock_display[edit_key]
 		switch(action)
 			if("REQ")
-				check_door.req_access |= set_dat.id
-				to_chat(usr, span_info("Added req_access \"[set_dat.desc]\" access on \the [check_door]."))
+				req_thing.req_access |= set_dat.id
+				to_chat(user, span_info("Added req_access \"[set_dat.desc]\" access on \the [req_thing]."))
 			if("REQONE")
-				check_door.req_one_access |= set_dat.id
-				to_chat(usr, span_info("Added req_one_access \"[set_dat.desc]\" access on \the [check_door]."))
+				req_thing.req_one_access |= set_dat.id
+				to_chat(user, span_info("Added req_one_access \"[set_dat.desc]\" access on \the [req_thing]."))
 			if("REMOVE")
-				check_door.req_access -= set_dat.id
-				check_door.req_one_access -= set_dat.id
-				to_chat(usr, span_info("Removed \"[set_dat.desc]\" access on \the [check_door]."))
+				req_thing.req_access -= set_dat.id
+				req_thing.req_one_access -= set_dat.id
+				to_chat(user, span_info("Removed \"[set_dat.desc]\" access on \the [req_thing]."))
 		return
 	// Removing bad ids
 	var/raw_bad_id = lock_display[edit_key]
-	to_chat(usr, span_info("Removed bad access \"[raw_bad_id]\", on \the [check_door]."))
-	check_door.req_access -= raw_bad_id
-	check_door.req_one_access -= raw_bad_id
+	to_chat(user, span_info("Removed bad access \"[raw_bad_id]\", on \the [req_thing]."))
+	req_thing.req_access -= raw_bad_id
+	req_thing.req_one_access -= raw_bad_id
