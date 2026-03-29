@@ -409,7 +409,7 @@ so as to remain in compliance with the most up-to-date laws."
 // /atom/movable/screen/alert/notify_jump/Click()
 // 	if(!usr || !usr.client) return
 // 	if(!jump_target) return
-// 	var/mob/dead/observer/G = usr
+// 	var/mob/observer/dead/G = usr
 // 	if(!istype(G)) return
 // 	if(attack_not_jump)
 // 		jump_target.attack_ghost(G)

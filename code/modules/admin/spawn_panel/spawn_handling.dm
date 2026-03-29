@@ -88,7 +88,7 @@
 
 				if (!relative_turf)
 					if(isobserver(user))
-						var/mob/dead/observer/user_observer = user
+						var/mob/observer/dead/user_observer = user
 						relative_turf = get_turf(user_observer.client?.eye) || get_turf(user_observer)
 					if (!relative_turf)
 						relative_turf = locate(1, 1, 1)
