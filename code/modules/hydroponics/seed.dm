@@ -809,7 +809,7 @@
 					yield_mod = 0
 					total_yield = get_trait(TRAIT_YIELD)
 				else
-					total_yield = get_trait(TRAIT_YIELD) + rand(yield_mod)
+					total_yield = get_trait(TRAIT_YIELD) + rand(0, yield_mod)
 				total_yield = max(1,total_yield)
 
 		for(var/i = 0;i<total_yield;i++)
