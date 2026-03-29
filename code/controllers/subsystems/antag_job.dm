@@ -2,6 +2,9 @@ SUBSYSTEM_DEF(antag_job)
 	name = "Antag Job"
 	flags = SS_NO_FIRE
 		//List of all jobs
+	dependencies = list(
+		/datum/controller/subsystem/job
+	)
 	var/list/occupations = list()
 
 	var/list/syndicate_code_phrase
