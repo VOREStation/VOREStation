@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Stasis bags no longer kill their inhabitants through pressure"
-  - qol: "Fossil bag now fits on xenoarch belts."
-  - bugfix: "Resurrection artifact is blacklisted from being touch only."

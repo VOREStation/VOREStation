@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - balance: "Stolen package crates now costs 200 each, up from 150"
-  - balance: "Stolen package crates now have 2 packages each, up from 1."

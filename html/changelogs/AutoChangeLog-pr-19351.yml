@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "All sources of teslazap is no longer explosive"
-  - bugfix: "Lightning can only jump to a nearby thing once."
-  - code_imp: "tesla_zap args more clear."
