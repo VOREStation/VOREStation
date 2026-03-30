@@ -170,6 +170,12 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GHOST_CAPTURED, passing_entity)
 
 /obj/item/ghost_trap/Crossed(atom/movable/AM)
+
+	if(istype(AM, /obj/effect/shadow_wight))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WIGHT_CAPTURED, AM)
+		visible_message(span_danger("A flurry of beams shoot into the air from \the [src] and into [AM], capturing and disintegrating it!"))
+		return
+
 	if(!ismob(AM)) //Only affects mobs!
 		return
 

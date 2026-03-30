@@ -11,6 +11,7 @@
 /datum/experiment/ghost_capture/New()
 	..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_GHOST_CAPTURED, PROC_REF(ghost_captured))
+	RegisterSignal(SSdcs, COMSIG_GLOB_WIGHT_CAPTURED, PROC_REF(ghost_captured))
 	return TRUE
 
 /datum/experiment/ghost_capture/proc/ghost_captured(datum/source, mob/captured_entity)
@@ -18,3 +19,4 @@
 	// We don't actually care about the mob that's captured, just that something was captured.
 	completed = TRUE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_GHOST_CAPTURED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_WIGHT_CAPTURED)
