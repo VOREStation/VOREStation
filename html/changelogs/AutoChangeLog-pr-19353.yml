@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "yield_mod (floragun on tray) will now increase amount of plants obtained"
