@@ -18,7 +18,7 @@ export const DopplerArray = (props) => {
 
   const { explosions } = data;
 
-  const grouped: Record<string, Explosion[]> = explosions?.reduce(
+  const grouped = explosions?.reduce<Record<string, Explosion[]>>(
     (acc, exp) => {
       const severity = getSeverity(exp);
 
