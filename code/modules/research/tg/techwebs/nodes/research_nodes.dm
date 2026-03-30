@@ -205,6 +205,8 @@
 		"smg_mag_9mm_spectral",
 		"loader_357_spectral",
 		"loader_44_spectral",
+		"ammobox_38_spectral",
+		"ammobox_44_spectral",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
