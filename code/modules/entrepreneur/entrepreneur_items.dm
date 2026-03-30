@@ -315,33 +315,53 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "emf"
 	var/emf = 5
-	var/turf/last_used
 	///If our scanner will accurately detect ghosts or not.
 	var/advanced = FALSE
 	///How far our we search. 0 = own turf.
 	var/detection_range = 0
 
+	///How often we can use the EMF actively.
+	COOLDOWN_DECLARE(scan_cooldown)
+
+/obj/item/entrepreneur/emf/Initialize(mapload)
+	. = ..()
+	emf = rand(1,100)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/entrepreneur/emf/process()
+	search_for_ghosts()
+	. = ..()
+
 /obj/item/entrepreneur/emf/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
+	if(COOLDOWN_FINISHED(src, scan_cooldown))
+		search_for_ghosts(user)
+	else
+		to_chat(user, span_warning("Your EMF scanner is recharging. The current reading is [emf]mG."))
 
-	var/turf/user_turf = get_turf(user)
-	if(!user_turf)
+/obj/item/entrepreneur/emf/proc/search_for_ghosts(mob/user)
+	var/turf/our_turf = get_turf(src)
+	if(!our_turf)
 		return
 
-	if(!last_used)
-		emf = rand(1,100)
-		last_used = user_turf
 	///How many ghosts are around us.
 	var/ghosts_present = 0
 	///How much we'll increase/decrease the EMF reading.
 	var/emf_change = 0
+
+	//Loop for the 'advanced' emfs, which detect actual ghosts/phasers.
 	if(advanced)
-		for(var/mob/observer/dead/ghosts in range(detection_range, user_turf))
-			if(ghosts.following || !ghosts.interact_with_world) //Ghosts orbiting us or someone else, or have opted out of interactions.
-				continue
-			ghosts_present++
+		for(var/mob/living/entity in range(detection_range, our_turf))
+			if(isobserver(entity))
+				var/mob/observer/dead/ghost = entity
+				if(ghost.following || !ghost.interact_with_world || ghost.admin_ghosted) //Ghosts orbiting us or someone else, or have opted out of interactions.
+					continue
+				ghosts_present++
+			if(entity.is_incorporeal())
+				ghosts_present++
+
 	if(last_used != get_turf(user))
 		if(emf >= 100)
 			emf = 100
@@ -349,7 +369,7 @@
 			emf = 20
 		if(ghosts_present)
 			if(advanced)
-				emf_change = rand(1 * ghosts_present, 5 * ghosts_present)
+				emf_change = rand(3 * ghosts_present, 10 * ghosts_present)
 			else
 				emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
 		else
@@ -357,7 +377,9 @@
 		last_used = get_turf(user)
 		emf = (emf + emf_change)
 		update_icon()
-	to_chat(user, span_notice("You update the EMF scanner and check the reading. It reads [emf]mG!"))
+	if(user)
+		to_chat(user, span_notice("You update the EMF scanner and check the reading. It reads [emf]mG!"))
+		COOLDOWN_START(src, scan_cooldown, 5 SECONDS)
 
 /obj/item/entrepreneur/emf/update_icon()
 	switch(emf)
@@ -379,10 +401,14 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "spirit_board"
 	var/list/possible_results = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Yes","No","1","2","3","4","5","6","7","8","9","0","Nothing")
+	///What the next letter/number will be.
 	var/next_result = 0
+	///If ghosts can interact with it.
 	var/ghost_enabled = 1
+	///If the board will always display what ghosts put
+	var/accurate = FALSE
 
-/obj/item/entrepreneur/spirit_board/attackby(obj/item/reagent_containers/food/drinks/W as obj, mob/living/user as mob)
+/obj/item/entrepreneur/spirit_board/attackby(obj/item/reagent_containers/food/drinks/W, mob/living/user)
 	if(!istype(user))
 		return 0
 	if(!istype(W))
@@ -410,7 +436,7 @@
 		to_chat(user, span_warning("You cannot interact with this board because you are banned from playing ghost roles."))
 		return
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
-	if(!is_admin(user)) //admins can bypass this for event stuff
+	if(!is_admin(user) || !accurate) //admins can bypass this for event stuff
 		if(prob(25))
 			next_result = 0 //25% chance for the ghost to fail to manipulate the board
 
