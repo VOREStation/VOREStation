@@ -164,3 +164,4 @@
 #define TECHWEB_NODE_SMARTFRIDGES "smartfridges"
 #define TECHWEB_NODE_GHOST_BASIC "ghost_basics"
 #define TECHWEB_NODE_GHOST_ADVANCED "ghost_advanced"
+#define TECHWEB_NODE_GHOST_ROUNDS "ghost_rounds"
