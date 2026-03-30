@@ -10,6 +10,7 @@
 
 	var/has_eye_sprites = TRUE
 	var/has_eye_light_sprites = FALSE
+	var/has_animation_flag = FALSE
 	var/has_custom_open_sprites = FALSE
 	var/has_vore_belly_sprites = FALSE
 	var/has_vore_belly_resting_sprites = FALSE
@@ -244,6 +245,7 @@
 /datum/robot_sprite/dogborg/tall
 	has_dead_sprite_overlay = FALSE
 	has_custom_equipment_sprites = FALSE
+	has_animation_flag = TRUE
 	vis_height = 64
 	icon_x = 64
 	icon_y = 64
