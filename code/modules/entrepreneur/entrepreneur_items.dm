@@ -323,6 +323,20 @@
 	///How often we can use the EMF actively.
 	COOLDOWN_DECLARE(scan_cooldown)
 
+/obj/item/entrepreneur/emf/examine(mob/user)
+	. = ..()
+	switch(emf)
+		if(-1000 to 20)
+			. += span_info("The EMF reader is very low, reading [emf]mG.")
+		if(20 to 40)
+			. += span_info("The EMF reader is low, reading [emf]mG.")
+		if(40 to 60)
+			. += span_info(span_red("The EMF reader is reading moderate interference, reading [emf]mG."))
+		if(60 to 80)
+			. += span_info(span_red("The EMF reader is reading high interference, reading [emf]mG."))
+		if(80 to 1000)
+			. += span_info(span_red("The EMF reader is reading extremely high interference, reading [emf]mG."))
+
 /obj/item/entrepreneur/emf/Initialize(mapload)
 	. = ..()
 	emf = rand(1,100)
@@ -365,6 +379,7 @@
 		emf = 100
 	if(emf <= 20)
 		emf = 20
+
 	if(ghosts_present)
 		if(advanced)
 			emf_change = rand(3 * ghosts_present, 10 * ghosts_present)

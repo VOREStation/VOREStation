@@ -17,6 +17,23 @@
 	var/datum/weakref/captured_entity
 	var/obj/item/radio/intercom/ghost_reporter
 
+/obj/item/ghost_trap/Initialize(mapload)
+	. = ..()
+	if(mapload && deployed)
+		update_icon()
+	ghost_reporter = new /obj/item/radio/intercom{channels=list("Science")}(null)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/ghost_trap/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	if(captured_entity)
+		var/mob/our_entity = captured_entity.resolve()
+		if(our_entity)
+			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
+		captured_entity = null
+	QDEL_NULL(ghost_reporter)
+	. = ..()
+
 /obj/item/ghost_trap/verb/release_occupant()
 	set src in oview(1)
 	set category = "Object"
@@ -31,17 +48,8 @@
 		to_chat(user, span_warning("You need to be outside \the [src] to do this."))
 		return
 
-/obj/item/ghost_trap/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	if(captured_entity)
-		var/mob/our_entity = captured_entity.resolve()
-		if(our_entity)
-			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
-		captured_entity = null
-	QDEL_NULL(ghost_reporter)
-	. = ..()
 
-//placeholder, give new sprites.
+#warn TODO: put the sprites here
 /obj/item/ghost_trap/update_icon()
 	..()
 
@@ -53,13 +61,6 @@
 
 /obj/item/ghost_trap/start_active
 	deployed = TRUE
-
-/obj/item/ghost_trap/Initialize(mapload)
-	. = ..()
-	if(mapload && deployed)
-		update_icon()
-	ghost_reporter = new /obj/item/radio/intercom{channels=list("Science")}(null)
-	START_PROCESSING(SSobj, src)
 
 /obj/item/ghost_trap/process()
 	if(captured_entity)
@@ -78,7 +79,10 @@
 	return (user.IsAdvancedToolUser() && !isAI(user) && !user.stat && !user.restrained())
 
 /obj/item/ghost_trap/attack_self(mob/user)
-	..()
+	. = ..()
+	if(.)
+		return
+
 	if(captured_entity)
 		var/mob/our_entity = captured_entity.resolve()
 		if(our_entity)
@@ -188,3 +192,29 @@
 		anchored = FALSE
 		update_icon()
 		log_and_message_admins("has been captured at \the [get_area(loc)] by the [name], last touched by [forensic_data?.get_lastprint()]", passing_entity)
+
+
+/obj/item/ghost_trap/verb/hidden_vore()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Eat Entity"
+	eat_entity(usr)
+
+/obj/item/ghost_trap/proc/eat_entity(mob/living/user)
+	if(!isliving(user)) //no ghosts
+		return
+
+	if((user in contents))
+		to_chat(user, span_warning("You need to be inside \the [src] to do this."))
+		return
+
+	if(captured_entity)
+		var/mob/our_entity = captured_entity.resolve()
+		if(our_entity && (our_entity.loc == src) && our_entity.devourable)
+			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
+			captured_entity = null
+			user.begin_instant_nom(user, our_entity, user, user.vore_selected)
+			return
+
+	to_chat(user, span_info("There appears to be nothing in the trap to eat!"))
+	return
