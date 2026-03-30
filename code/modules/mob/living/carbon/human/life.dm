@@ -991,9 +991,10 @@
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
-		if(stat==DEAD)
+		if(stat == DEAD)
 			pressure_damage = pressure_damage/2
-		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
+		if(!istype(loc, /obj/structure/closet/body_bag/cryobag))
+			take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
 		throw_alert("pressure", /atom/movable/screen/alert/highpressure, 2)
 	else if(adjusted_pressure >= species.warning_high_pressure)
 		throw_alert("pressure", /atom/movable/screen/alert/highpressure, 1)
@@ -1002,7 +1003,7 @@
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 1)
 	else
-		if( !(COLD_RESISTANCE in mutations))
+		if(!(COLD_RESISTANCE in mutations) && !istype(loc, /obj/structure/closet/body_bag/cryobag))
 			if(!isSynthetic() || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER))
 				var/pressure_damage = LOW_PRESSURE_DAMAGE
 				if(stat==DEAD)

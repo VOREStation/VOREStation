@@ -3,7 +3,7 @@
 	icon_state = "grass0"
 	edge_blending_priority = 4
 	initial_flooring = /datum/decl/flooring/grass/outdoors // VOREStation Edit
-	can_dig = TRUE
+	flags = TURF_CAN_DIG_SHOVEL
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
 		/turf/simulated/floor/outdoors/dirt

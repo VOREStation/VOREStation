@@ -18,7 +18,7 @@
 	if(A)
 		A.forceMove(src) // helo
 		podfall(auto_open)
-		air = new
+	air = new
 
 /obj/structure/drop_pod/Destroy()
 	. = ..()

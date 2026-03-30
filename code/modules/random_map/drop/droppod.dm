@@ -189,9 +189,9 @@ ADMIN_VERB(call_drop_pod, R_FUN, "Call Drop Pod", "Call an immediate drop pod on
 
 		// Equip them, if they are human and it is desirable.
 		if(ishuman(spawned_mob))
-			var/antag_type = tgui_input_list(user, "Select an equipment template to use or cancel for nude.", GLOB.all_antag_types)
+			var/antag_type = tgui_input_list(user, "Select an equipment template to use or cancel for nude.", SSantag_job.all_antag_types)
 			if(antag_type)
-				var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
+				var/datum/antagonist/A = SSantag_job.all_antag_types[antag_type]
 				A.equip(spawned_mob)
 
 	if(tgui_alert(user, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) != "Yes")

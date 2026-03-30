@@ -325,3 +325,14 @@
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+
+/datum/design_techweb/board/account_console
+	SET_CIRCUIT_DESIGN_NAMEDESC("account database console")
+	id = "account_console"
+	build_type = AUTOLATHE | IMPRINTER // Simple circuit
+	build_path = /obj/item/circuitboard/account_console
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_COMMAND
