@@ -5,7 +5,7 @@
 	Due to their extremely poor visual clarity and the extreme static coming from the display, users often claim to see 'specters' and 'spirits' \
 	while wearing them with no physcial proof to back up these claims, as any attempt to take a photo or record through the goggles results in \
 	results in a blurry, static-filled mess."
-	icon_state = "uzenwa_sissra_1"
+	icon_state = "proton_goggles"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	darkness_view = 7 //So you can really see those ghosts~
 	see_invisible = SEE_INVISIBLE_CULT
