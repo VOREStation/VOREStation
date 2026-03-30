@@ -8,24 +8,36 @@
 	icon_state = "doppler"
 	circuit = /obj/item/circuitboard/doppler_array
 
+	var/list/detected_explosions = list()
+
 /obj/machinery/doppler_array/Initialize(mapload)
 	//Explosive analysis
 	var/static/list/explosive_signals = list(
 		COMSIG_MACHINERY_EXPLOSION_DETECTED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_destructive_experiment),
 	)
-
 	AddComponent(/datum/component/experiment_handler, \
+		config_mode = EXPERIMENT_CONFIG_ALTCLICK, \
 		allowed_experiments = list(/datum/experiment/ordnance),\
 		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
 		experiment_signals = explosive_signals, \
 	)
-
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
 
 /obj/machinery/doppler_array/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION)
 	. = ..()
+
+/obj/machinery/doppler_array/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DopplerArray", name)
+		ui.open()
+
+/obj/machinery/doppler_array/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = list()
+	data["explosions"] = length(detected_explosions) ? detected_explosions : null;
+	return data
 
 /obj/machinery/doppler_array/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
 	SIGNAL_HANDLER
@@ -43,6 +55,20 @@
 		return
 	atom_say("Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds.")
 	SEND_SIGNAL(src, COMSIG_MACHINERY_EXPLOSION_DETECTED, epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
+	detected_explosions += list(
+		list(
+			"index" = length(detected_explosions),
+			"time" = ROUND_TIME(),
+			"x" = x0,
+			"y" = y0,
+			"z" = z0,
+			"devastation_range" = devastation_range,
+			"heavy_impact_range" = heavy_impact_range,
+			"light_impact_range" = light_impact_range,
+			"seconds_taken" = seconds_taken,
+		)
+	)
+	update_static_data_for_all_viewers()
 
 /obj/machinery/doppler_array/power_change()
 	..()
@@ -59,3 +85,7 @@
 		return
 	if(default_part_replacement(user, W))
 		return
+
+/obj/machinery/doppler_array/attack_hand(mob/user)
+	. = ..()
+	tgui_interact(user)
