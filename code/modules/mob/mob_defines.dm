@@ -282,3 +282,6 @@
 	var/vent_crawl_time = 4.5 SECONDS // Time to animate entering a vent
 	VAR_PRIVATE/is_motion_tracking = FALSE // Prevent multiple unsubs and resubs, also used to check if the vis layer is enabled, use has_motiontracking() to get externally.
 	VAR_PRIVATE/wants_to_see_motion_echos = TRUE
+
+	var/is_slipping = FALSE
+	var/slip_protect = 1
