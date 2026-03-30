@@ -13,7 +13,7 @@
 /obj/machinery/doppler_array/Initialize(mapload)
 	//Explosive analysis
 	var/static/list/explosive_signals = list(
-		COMSIG_MACHINERY_EXPLOSION_DETECTED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_destructive_experiment),
+		COMSIG_MACHINERY_EXPLOSION_DETECTED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_ordinance_experiment),
 	)
 	AddComponent(/datum/component/experiment_handler, \
 		config_mode = EXPERIMENT_CONFIG_ALTCLICK, \
@@ -23,6 +23,7 @@
 	)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
+	ADD_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER, ROUNDSTART_TRAIT)
 
 /obj/machinery/doppler_array/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION)
