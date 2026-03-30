@@ -20,7 +20,7 @@
 	ammo_type = /obj/item/ammo_casing/a357/spectral
 
 /obj/item/ammo_casing/a357/spectral
-	desc = "A .357 spectral bullet casing."
+	desc = "A .357 spectral bullet casing. Hits incorporeal entities and brings them into the corporeal realm, but near-useless against corporeal ones."
 	caliber = ".357"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/spectral/strong
@@ -39,7 +39,7 @@
 	max_ammo = 24
 
 /obj/item/ammo_casing/a38/spectral
-	desc = "A .38 rubber bullet casing."
+	desc = "A .38 rubber bullet casing. Hits incorporeal entities and brings them into the corporeal realm, but near-useless against corporeal ones.""
 	icon_state = "empcasing"
 	projectile_type = /obj/item/projectile/bullet/spectral
 
@@ -56,7 +56,7 @@
 	max_ammo = 24
 
 /obj/item/ammo_casing/a44/spectral
-	desc = "A .44 bullet casing."
+	desc = "A .44 bullet casing. Hits incorporeal entities and brings them into the corporeal realm, but near-useless against corporeal ones."
 	caliber = ".44"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/spectral/strong
@@ -78,7 +78,7 @@
 		damage = phaser_damage
 	. = ..()
 	if(. && incorp)
-		target_mob.Stun(stun_duration) //Stun them for 3 ticks after being shot out of phase.
+		target_mob.Stun(stun_duration)
 		target_mob.Weaken(weaken_duration)
 
 /obj/item/projectile/bullet/spectral/can_embed()
