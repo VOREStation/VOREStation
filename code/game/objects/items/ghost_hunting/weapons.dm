@@ -2,8 +2,8 @@
 	name = "Photon rifle" //Legally distinct proton rifle.
 	desc = "A hand-held device, used for 'catching ghosts' Weakens the entity initially grabbed."
 	//description_info = "TODO"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "cataloguer"
+	icon = 'icons/obj/guns/ghost_beam.dmi'
+	icon_state = "ghost_beam"
 	w_class = ITEMSIZE_NORMAL
 	force = 0
 	slot_flags = SLOT_BELT
@@ -28,7 +28,7 @@
 
 /obj/item/ghost_catcher/update_icon()
 	if(busy)
-		icon_state = "[initial(icon_state)]_active"
+		icon_state = "ghost_beam_active"
 	else
 		icon_state = initial(icon_state)
 
@@ -72,19 +72,16 @@
 		to_chat(user, span_warning("You are too far away from \the [target] to catalogue it. Get closer."))
 		return
 
-	// Get how long the delay will be.
-	var/scan_delay = target.get_catalogue_delay() * toolspeed
-
 	// Start the special effects.
 	busy = TRUE
 	update_icon()
-	var/datum/beam/scan_beam = user.Beam(target, icon_state = "rped_upgrade", time = scan_delay)
-	var/filter = filter(type = "outline", size = 1, color = "#ff0000")
+	var/datum/beam/scan_beam = user.Beam(target, icon_state = "rped_upgrade", time = 60 SECONDS)
+	var/filter = filter(type = "outline", size = 1, color = "#330099")
 	target.filters += filter
 	var/list/box_segments = list()
 	if(user.client)
 		box_segments = draw_box(target, grab_range, user.client)
-		color_box(box_segments, "#ff3939", scan_delay)
+		color_box(box_segments, "#330099", 60 SECONDS)
 
 	playsound(src, 'sound/machines/beep.ogg', 50)
 
@@ -99,7 +96,7 @@
 	if(do_after(user, 60 SECONDS, target, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, max_distance = grab_range))
 		to_chat(user, span_warning("With a buzz, \the [src] flashes red, the beam on \the [target] has broken!"))
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
-		color_box(box_segments, "#FF0000", 3)
+		color_box(box_segments, "#330099", 3)
 	busy = FALSE
 
 	// Now clean up the effects.
