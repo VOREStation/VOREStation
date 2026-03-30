@@ -341,7 +341,6 @@
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/m9mm/spectral
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
 	)
 
@@ -496,8 +495,6 @@
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/m9mml/spectral
 	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
 	)
 
@@ -1017,8 +1014,6 @@
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/s357/spectral
 	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
 	)
 
@@ -1055,8 +1050,6 @@
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/s44/spectral
 	category = list(
-		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_HACKED,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
 	)
 
@@ -1125,7 +1118,6 @@
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/ammo_box/b38/spectral
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
@@ -1213,7 +1205,6 @@
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/ammo_box/b44/spectral
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
