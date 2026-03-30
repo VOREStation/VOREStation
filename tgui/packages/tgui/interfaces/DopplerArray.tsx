@@ -28,11 +28,8 @@ export const DopplerArray = (props) => {
       <Window.Content scrollable>
         {explosions ? (
           explosions.map((exp) => (
-            <Section key={exp.index}>
+            <Section key={exp.index} title={exp.time}>
               <LabeledList>
-                <LabeledList.Item label="Recorded Time">
-                  {exp.time}
-                </LabeledList.Item>
                 <LabeledList.Item label="Coordinates">
                   {exp.x}.{exp.y}.{exp.z}
                 </LabeledList.Item>
