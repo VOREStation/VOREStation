@@ -39,7 +39,7 @@
 	max_ammo = 24
 
 /obj/item/ammo_casing/a38/spectral
-	desc = "A .38 rubber bullet casing. Hits incorporeal entities and brings them into the corporeal realm, but near-useless against corporeal ones.""
+	desc = "A .38 rubber bullet casing. Hits incorporeal entities and brings them into the corporeal realm, but near-useless against corporeal ones."
 	icon_state = "empcasing"
 	projectile_type = /obj/item/projectile/bullet/spectral
 
