@@ -31,10 +31,10 @@
 	var/max_item_count = 1
 	var/upgraded_capacity = FALSE
 	var/gulpsound = 'sound/vore/gulp.ogg'
-	var/datum/matter_synth/metal = null
-	var/datum/matter_synth/glass = null
-	var/datum/matter_synth/wood = null
-	var/datum/matter_synth/plastic = null
+	var/datum/matter_synth/metal/metal = null
+	var/datum/matter_synth/glass/glass = null
+	var/datum/matter_synth/wood/wood = null
+	var/datum/matter_synth/plastic/plastic = null
 	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
