@@ -13,3 +13,12 @@ export type Explosion = {
   light_impact_range: number;
   seconds_taken: number;
 };
+
+export type SearchFields = {
+  time: boolean;
+  coordinates: boolean;
+  inner_radius: boolean;
+  outer_radius: boolean;
+  shockwave: boolean;
+  tachyon: boolean;
+};

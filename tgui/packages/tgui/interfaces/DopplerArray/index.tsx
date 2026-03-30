@@ -1,24 +1,16 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import {
-  Box,
-  Button,
-  Collapsible,
-  Input,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Stack,
-  Tabs,
-} from 'tgui-core/components';
-import { capitalize, createSearch } from 'tgui-core/string';
-import { explosionTypes } from './constants';
+import { Box, NoticeBox, Stack } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
+import { DopplerExplosions } from './DopplerExplosions';
+import { DopplerSearch } from './DopplerSearch';
+import { DopplerTabs } from './DopplerTabs';
 import { getSeverity } from './functions';
 import type { Data, Explosion } from './types';
 
 export const DopplerArray = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
   const [searchFields, setSearchFields] = useState({
     time: true,
     coordinates: true,
@@ -70,68 +62,19 @@ export const DopplerArray = (props) => {
       <Window.Content scrollable>
         <Stack vertical>
           <Stack.Item>
-            <Tabs>
-              {['All', ...explosionTypes].map((sev) => (
-                <Tabs.Tab
-                  key={sev}
-                  selected={activeTab === sev}
-                  onClick={() => setActiveTab(sev)}
-                >
-                  {sev}
-                </Tabs.Tab>
-              ))}
-            </Tabs>
+            <DopplerTabs activeTab={activeTab} setActiveTab={setActiveTab} />
           </Stack.Item>
           <Stack.Item>
-            <Collapsible color="transparent" title="Search Filter">
-              <Stack wrap="wrap">
-                {Object.keys(searchFields).map((field) => (
-                  <Stack.Item key={field}>
-                    <Button.Checkbox
-                      checked={searchFields[field]}
-                      onClick={() =>
-                        setSearchFields({
-                          ...searchFields,
-                          [field]: !searchFields[field],
-                        })
-                      }
-                    >
-                      {capitalize(field.replace(/_/g, ' '))}
-                    </Button.Checkbox>
-                  </Stack.Item>
-                ))}
-              </Stack>
-              <Input
-                placeholder="Search explosions..."
-                value={searchText}
-                onChange={(value) => setSearchText(value)}
-                fluid
-              />
-            </Collapsible>
+            <DopplerSearch
+              searchFields={searchFields}
+              setSearchFields={setSearchFields}
+              searchText={searchText}
+              setSearchText={setSearchText}
+            />
           </Stack.Item>
           <Stack.Item grow>
             {filteredExplosions.length ? (
-              filteredExplosions.map((exp) => (
-                <Section key={exp.index} title={exp.time}>
-                  <LabeledList>
-                    <LabeledList.Item label="Coordinates">
-                      {exp.x}.{exp.y}.{exp.z}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Inner Radius">
-                      {exp.devastation_range}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Outer Radius">
-                      {exp.heavy_impact_range}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Shockwave Radius">
-                      {exp.light_impact_range}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Tachyon Displacement">
-                      {exp.seconds_taken}
-                    </LabeledList.Item>
-                  </LabeledList>
-                </Section>
-              ))
+              <DopplerExplosions explosions={filteredExplosions} />
             ) : (
               <NoticeBox>
                 <Box inline verticalAlign="middle">
