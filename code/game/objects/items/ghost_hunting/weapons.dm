@@ -75,7 +75,7 @@
 	// Start the special effects.
 	busy = TRUE
 	update_icon()
-	var/datum/beam/scan_beam = user.Beam(target, icon_state = "rped_upgrade", time = 60 SECONDS)
+	var/datum/beam/scan_beam = user.Beam(target, icon_state = "curse1", time = 60 SECONDS)
 	var/filter = filter(type = "outline", size = 1, color = "#330099")
 	target.filters += filter
 	var/list/box_segments = list()
