@@ -1,7 +1,11 @@
 
 //9mm
-/obj/item/ammo_magazine/m9mm/spectral_shot
+/obj/item/ammo_magazine/m9mm/spectral
 	name = "magazine (9mm specter shot)"
+	ammo_type = /obj/item/ammo_casing/a9mm/spectral
+
+/obj/item/ammo_magazine/m9mml/spectral
+	name = "compact magazine (9mm specter shot)"
 	ammo_type = /obj/item/ammo_casing/a9mm/spectral
 
 /obj/item/ammo_casing/a9mm/spectral
@@ -33,7 +37,7 @@
 	projectile_type = /obj/item/projectile/bullet/spectral
 
 //44
-/obj/item/ammo_magazine/m44/spectral
+/obj/item/ammo_magazine/s44/spectral
 	name = "speedloader (.44 specter shot)"
 	ammo_type = /obj/item/ammo_casing/a44/spectral
 

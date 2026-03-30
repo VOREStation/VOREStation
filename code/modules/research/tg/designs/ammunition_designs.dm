@@ -334,6 +334,17 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
 	)
 
+/datum/design_techweb/pistol_mag_9mm_spectral
+	SET_AMMO_DESIGN_NAMEDESC("pistol magazine (9mm spectral)")
+	id = "pistol_mag_9mm_spectral"
+	materials = list(MAT_STEEL = 750)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/m9mm/spectral
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_PISTOL
+	)
+
 // Small mags for small or old guns. These are all hidden because they are traitor mags and will otherwise just clutter the Autolathe.
 
 /datum/design_techweb/pistol_mag_compact_9mm
@@ -477,6 +488,18 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/smg_mag_9mm_spectral
+	SET_AMMO_DESIGN_NAMEDESC("SMG magazine (9mm spectral)")
+	id = "smg_mag_9mm_spectral"
+	materials = list(MAT_STEEL = 1500)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/m9mml/spectral
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_RIFLE
+	)
 
 /////// 10mm
 
@@ -987,6 +1010,18 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
 	)
 
+/datum/design_techweb/loader_357_spectral
+	SET_AMMO_DESIGN_NAMEDESC("speedloader (.357 spectral)")
+	id = "loader_357_spectral"
+	materials = list(MAT_STEEL = 1575)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/s357/spectral
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
+	)
+
 /////// 44
 
 /datum/design_techweb/loader_44
@@ -1007,6 +1042,18 @@
 	materials = list(MAT_STEEL = 1575)
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/s44/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_HACKED,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_LOADERS
+	)
+
+/datum/design_techweb/loader_44_spectral
+	SET_AMMO_DESIGN_NAMEDESC("speedloader (.44 spectral)")
+	id = "loader_44_spectral"
+	materials = list(MAT_STEEL = 1575)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/s44/spectral
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_HACKED,
