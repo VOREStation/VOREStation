@@ -1117,11 +1117,11 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/photon_pack
-	name = "Photon Rifle"
+	name = "Proton Pack"
 	id = "ghost_pack"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_PHORON = 4000, MAT_DIAMOND = 2000, MAT_VERDANTIUM = 2000) //Expensive.
-	build_path = /obj/item/ghost_catcher
+	build_path = /obj/item/proton_pack
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
