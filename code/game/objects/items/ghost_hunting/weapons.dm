@@ -43,7 +43,7 @@
 	if(isturf(target) && (!target.incorporeal_grab()))
 		var/turf/T = target
 		if(!busy)
-			for(var/mob/entity in range(3, T))
+			for(var/mob/entity in range(1, T)) //We'll let you grab things ON the tile or AROUND the tile you click on.
 				if(entity.incorporeal_grab())
 					target = entity
 					break
