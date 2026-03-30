@@ -1,7 +1,7 @@
 /obj/item/ghost_trap
 	name = "spectral trap"
-	desc = "A mechanically activated ghost trap. Low-tech, but reliable. Looks like it could really hurt if you set it off."
-	description_fluff = "A 'ghost trap' created by K.E's Spectral-Division. Used by ghost-hunters and \
+	desc = "A mechanically activated 'ghost trap'."
+	description_fluff = "A 'ghost trap' created by Krow Enterprise's Spectral Division. Used by self proclaimed ghost-hunters and \
 	paranormal investigators to supposedly capture spirits and specters."
 	throw_speed = 5
 	throw_range = 7
@@ -27,7 +27,7 @@
 	if(!isliving(user)) //no ghosts
 		return
 
-	if((user in src.contents))
+	if((user.loc == src))
 		to_chat(user, span_warning("You need to be outside \the [src] to do this."))
 		return
 
@@ -75,9 +75,9 @@
 	ghost_reporter.autosay("Attention: Spectral event detected. Captured entity at [our_area] has breached containment.", "Spectral Trap", "Science", using_map.get_map_levels(z))
 
 /obj/item/ghost_trap/proc/can_use(mob/user)
-	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
+	return (user.IsAdvancedToolUser() && !isAI(user) && !user.stat && !user.restrained())
 
-/obj/item/ghost_trap/attack_self(mob/user as mob)
+/obj/item/ghost_trap/attack_self(mob/user)
 	..()
 	if(captured_entity)
 		var/mob/our_entity = captured_entity.resolve()
@@ -90,12 +90,12 @@
 			span_danger("You begin deploying \the [src]!")
 			)
 
-		if (do_after(user, 6 SECONDS, target = src))
+		if(do_after(user, 6 SECONDS, target = src))
 			user.visible_message(
 				span_danger("[user] has deployed \the [src]."),
 				span_danger("You have deployed \the [src]!")
 				)
-			playsound(src, 'sound/machines/click.ogg',70, 1)
+			playsound(src, 'sound/machines/click.ogg', 70, 1)
 
 			deployed = TRUE
 			user.drop_from_inventory(src)
@@ -115,15 +115,14 @@
 		visible_message(span_danger("A loud buzzer rings out as \the [src] suddenly opens, alerting that a containment breach has ocurred!"))
 
 
-/obj/item/ghost_trap/attack_hand(mob/user as mob)
+/obj/item/ghost_trap/attack_hand(mob/user)
 	if(has_buckled_mobs() && can_use(user))
-		var/victim = english_list(buckled_mobs)
 		user.visible_message(
-			span_notice("[user] begins freeing [victim] from \the [src]."),
-			span_notice("You carefully begin to free [victim] from \the [src]."),
+			span_notice("[user] begins freeing something from \the [src]."),
+			span_notice("You carefully begin to free something from \the [src]."),
 			)
 		if(do_after(user, 6 SECONDS, target = src))
-			user.visible_message(span_notice("[victim] has been freed from \the [src] by [user]."))
+			user.visible_message(span_notice("Something has been freed from \the [src] by [user]."))
 			for(var/A in buckled_mobs)
 				unbuckle_mob(A)
 			anchored = FALSE
@@ -149,10 +148,12 @@
 	if(!ismob(passing_entity)) //wtf did you do
 		return
 	captured_entity = WEAKREF(passing_entity)
+
 	if(isliving(passing_entity))
 		var/mob/living/living_entity = passing_entity
 		var/datum/component/shadekin/SK = living_entity.get_shadekin_component()
 		living_entity.phase_in(get_turf(src), SK)
+
 	passing_entity.forceMove(src)
 	var/area/our_area = get_area(src)
 	ghost_reporter.autosay("Attention: Spectral event detected. Trap activated at [our_area.name]", "Spectral Trap", "Science", using_map.get_map_levels(z))
@@ -165,13 +166,18 @@
 /obj/item/ghost_trap/Crossed(atom/movable/AM)
 	if(!ismob(AM)) //Only affects mobs!
 		return
+
+	//Ghost catching.
 	var/mob/passing_entity = AM
 	if(isobserver(passing_entity))
 		var/mob/observer/dead/ghost = AM
 		if(ghost.admin_ghosted || !ghost.interact_with_world)
 			return
+
+	//Catching phasers.
 	if(!passing_entity.is_incorporeal())
 		return
+
 	if(deployed)
 		visible_message(span_danger("A flurry of beams shoot into the air from \the [src]!"))
 		SSmotiontracker.ping(src,100) // Clunk!
