@@ -43,10 +43,14 @@
 	if(isturf(target) && (!target.incorporeal_grab()))
 		var/turf/T = target
 		if(!busy)
-			for(var/atom/movable/A in range(3, T))
-				if(A.incorporeal_grab())
-					target = A
+			for(var/mob/entity in range(3, T))
+				if(entity.incorporeal_grab())
+					target = entity
 					break
+			if(!ismob(target))
+				to_chat(user, span_warning("No valid target in range! Beginning cooldown."))
+				COOLDOWN_START(src, ghost_cooldown, 3 SECONDS) //Prevent from spamclicking to find ghosts.
+				return
 		else
 			if(grabbed_entity)
 				var/atom/movable/entity = grabbed_entity.resolve()
