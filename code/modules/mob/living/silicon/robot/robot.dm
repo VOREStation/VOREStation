@@ -41,6 +41,7 @@
 	var/rest_style = "Default"
 	var/notransform
 	does_spin = FALSE
+	var/borg_animation_manager_var
 
 //Hud stuff
 
@@ -531,12 +532,8 @@
 
 /mob/living/silicon/robot/verb/toggle_sitanimation()
 	set category = "Abilities.Settings"
-	set name = "Toggle Sit Animation"
-	if(sprite_datum.has_animation_flag)
-		sitanimationboolean = !sitanimationboolean
-		to_chat(src, span_filter_notice("Your thighs feel [sitanimationboolean ? "more" : "less"] thick."))
-	else
-		to_chat(src, span_warning("This module does not support sit animations."))
+	set name = "Toggle Sit Effect"
+	borg_animation_manager_var = animation_manager()
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
@@ -1081,8 +1078,9 @@
 				if(eyes_overlay)
 					add_overlay(eyes_overlay)
 
-		if(resting && sprite_datum.has_animation_flag && sitanimationboolean)
-			new /obj/effect/temp_visual/borgsit(loc)
+		if(resting && (borg_animation_manager_var & ROBOT_ANIMATION_FLAG_SIT))
+			var/turf/T = get_turf_pixel(src)
+			new /obj/effect/temp_visual/borgsit(T)
 			playsound(src, 'sound/effects/robot_sit.ogg', 25)
 			//if(sprite_datum.module_type == "clown") for specific chassis types
 
@@ -1668,3 +1666,11 @@
 	if(emagged)
 		return "syndicate"
 	return ui_theme
+
+/* /mob/living/silicon/robot/handle_sit_anim()
+    if(animation_flags & ANIMATION_FLAG_SIT)
+		new /obj/effect/temp_visual/borgsit(loc)
+		playsound(src, 'sound/effects/robot_sit.ogg', 25)
+
+   	//sit anim code here
+*/

@@ -1516,6 +1516,18 @@
 
 /mob/living
 	var/toggled_sleeping = FALSE
+	var/active_animation_flags = 0
+
+/mob/living/proc/animation_manager()
+    //set name = "Animation Toggle"
+    //set desc = "Allows to toggle mob specific extra animations"
+	#define ROBOT_ANIMATION_FLAG_SIT 0x1
+	active_animation_flags ^= ROBOT_ANIMATION_FLAG_SIT
+	if(active_animation_flags & ROBOT_ANIMATION_FLAG_SIT)
+		to_chat(src, span_filter_notice("Your thighs feel more thick."))
+	else
+		to_chat(src, span_warning("Your thighs feel less heavy."))
+	return active_animation_flags
 
 /mob/living/verb/mob_sleep()
 	set name = "Sleep"
