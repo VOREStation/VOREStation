@@ -163,6 +163,8 @@
 	if(isobserver(passing_entity))
 		to_chat(passing_entity, span_info("((You are incapable of moving or 'jumping' to turf by clicking, but can still escape via teleport or orbit!))"))
 
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GHOST_CAPTURED, passing_entity)
+
 /obj/item/ghost_trap/Crossed(atom/movable/AM)
 	if(!ismob(AM)) //Only affects mobs!
 		return

@@ -162,3 +162,5 @@
 #define TECHWEB_NODE_RSF "rapid_service_fab"
 #define TECHWEB_NODE_MATERIALSHEETS "material_sheets"
 #define TECHWEB_NODE_SMARTFRIDGES "smartfridges"
+#define TECHWEB_NODE_GHOST_BASIC "ghost_basics"
+#define TECHWEB_NODE_GHOST_ADVANCED "ghost_advanced"
