@@ -1,6 +1,6 @@
 /obj/item/ghost_catcher
 	name = "Photon rifle" //Legally distinct proton rifle.
-	desc = "A hand-held device, used for 'catching ghosts'"
+	desc = "A hand-held device, used for 'catching ghosts' Weakens the entity initially grabbed."
 	//description_info = "TODO"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "cataloguer"
@@ -13,7 +13,10 @@
 	/// The entity we are currently grabbing.
 	var/datum/weakref/grabbed_entity
 	/// How far we can move an entity in one go!
-	var/max_move_distance = 3
+	var/max_move_distance = 1
+
+	COOLDOWN_DECLARE(ghost_cooldown)
+	COOLDOWN_DECLARE(click_cooldown)
 
 	//TODO:
 	// Make ghosts/phased entities slow when grabbed
@@ -30,6 +33,13 @@
 		icon_state = initial(icon_state)
 
 /obj/item/ghost_catcher/afterattack(atom/target, mob/user, proximity_flag)
+	if(!COOLDOWN_FINISHED(src, ghost_cooldown))
+		to_chat(user, span_warning("The [src] is recharging!"))
+		return
+	if(!COOLDOWN_FINISHED(src, click_cooldown))
+		to_chat(user, span_warning("The [src] needs time between movements!"))
+		return
+
 	if(isturf(target) && (!target.incorporeal_grab()))
 		var/turf/T = target
 		if(!busy)
@@ -44,6 +54,7 @@
 					to_chat(user, span_warning("\The [src] is unable to pull the entity that far!"))
 					return
 				entity.forceMove(T)
+				COOLDOWN_START(src, click_cooldown, 1 SECOND)
 				return
 	// Things that invalidate the scan immediately.
 	if(busy)
@@ -72,7 +83,13 @@
 		color_box(box_segments, "#ff3939", scan_delay)
 
 	playsound(src, 'sound/machines/beep.ogg', 50)
+
 	grabbed_entity = WEAKREF(target)
+	if(isliving(target))
+		var/mob/living/target_mob = target
+		target_mob.Weaken(3)
+		target_mob.Stun(3)
+		to_chat(target, span_danger("You feel yourself weakened from the [src]'s beam!"))
 
 	// The delay, and test for if the scan succeeds or not.
 	if(do_after(user, 60 SECONDS, target, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, max_distance = grab_range))
@@ -88,6 +105,8 @@
 		target.filters -= filter
 	if(user.client) // If for some reason they logged out mid-scan the box will be gone anyways.
 		delete_box(box_segments, user.client)
+	grabbed_entity = null
+	COOLDOWN_START(src, ghost_cooldown, 10 SECONDS) // Arbitrary cooldown to prevent spam. Adjust as needed.
 
 /atom/proc/incorporeal_grab(mob/user)
 	if(is_incorporeal())
