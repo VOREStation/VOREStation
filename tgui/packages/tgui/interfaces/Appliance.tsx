@@ -30,6 +30,7 @@ export type Data = {
   }[];
   is_open?: BooleanLike;
   icon_used?: string;
+  reagents?: { name: string; volume: number; max: number };
 };
 
 export const ApplianceStatus = (props) => {
@@ -45,6 +46,7 @@ export const ApplianceStatus = (props) => {
     efficiency,
     containersRemovable,
     our_contents,
+    reagents,
   } = data;
 
   return (
@@ -97,6 +99,18 @@ export const ApplianceStatus = (props) => {
         {!!efficiency && (
           <LabeledList.Item label="Efficiency">
             <AnimatedNumber value={efficiency} />%
+          </LabeledList.Item>
+        )}
+        {!!reagents && (
+          <LabeledList.Item label={reagents.name}>
+            <ProgressBar
+              color="yellow"
+              value={reagents.volume}
+              maxValue={reagents.max}
+            >
+              <AnimatedNumber value={Math.round(reagents.volume)} />u /{' '}
+              {reagents.max}u
+            </ProgressBar>
           </LabeledList.Item>
         )}
       </LabeledList>

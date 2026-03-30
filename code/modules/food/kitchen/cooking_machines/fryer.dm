@@ -72,6 +72,10 @@
 	light.pixel_y = light_y
 	add_overlay(light)
 
+/obj/machinery/appliance/cooker/fryer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	.["reagents"] = list("name" = oil.get_master_reagent_name(), "volume" = oil.total_volume, "max" = oil.maximum_volume)
+
 /obj/machinery/appliance/cooker/fryer/heat_up()
 	if (..())
 		//Set temperature of oil reagent
