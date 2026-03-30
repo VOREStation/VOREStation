@@ -371,7 +371,10 @@
 		else
 			emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
 	else
-		emf_change = rand(-20,15) //Trend downwards
+		if(advanced)
+			emf_change = rand(-5, -1)
+		else
+			emf_change = rand(-20,15) //Trend downwards
 	emf = (emf + emf_change)
 	update_icon()
 	if(user)
