@@ -110,7 +110,7 @@ export const DopplerArray = (props) => {
             </Collapsible>
           </Stack.Item>
           <Stack.Item grow>
-            {filteredExplosions?.length ? (
+            {filteredExplosions.length ? (
               filteredExplosions.map((exp) => (
                 <Section key={exp.index} title={exp.time}>
                   <LabeledList>
