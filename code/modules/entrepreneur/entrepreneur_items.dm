@@ -362,21 +362,19 @@
 			if(entity.is_incorporeal())
 				ghosts_present++
 
-	if(last_used != get_turf(user))
-		if(emf >= 100)
-			emf = 100
-		if(emf <= 20)
-			emf = 20
-		if(ghosts_present)
-			if(advanced)
-				emf_change = rand(3 * ghosts_present, 10 * ghosts_present)
-			else
-				emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
+	if(emf >= 100)
+		emf = 100
+	if(emf <= 20)
+		emf = 20
+	if(ghosts_present)
+		if(advanced)
+			emf_change = rand(3 * ghosts_present, 10 * ghosts_present)
 		else
-			emf_change = rand(-20,15) //Trend downwards
-		last_used = get_turf(user)
-		emf = (emf + emf_change)
-		update_icon()
+			emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
+	else
+		emf_change = rand(-20,15) //Trend downwards
+	emf = (emf + emf_change)
+	update_icon()
 	if(user)
 		to_chat(user, span_notice("You update the EMF scanner and check the reading. It reads [emf]mG!"))
 		COOLDOWN_START(src, scan_cooldown, 5 SECONDS)
