@@ -330,7 +330,6 @@
 
 /obj/item/entrepreneur/emf/process()
 	search_for_ghosts()
-	. = ..()
 
 /obj/item/entrepreneur/emf/attack_self(mob/user)
 	. = ..(user)
