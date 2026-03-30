@@ -200,7 +200,11 @@
 	prereq_ids = list(TECHWEB_NODE_GHOST_BASIC)
 	design_ids = list(
 		"ghost_gun",
-		"ghost_goggles"
+		"ghost_goggles",
+		"pistol_mag_9mm_spectral",
+		"smg_mag_9mm_spectral",
+		"loader_357_spectral",
+		"loader_44_spectral",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)

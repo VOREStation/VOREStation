@@ -1118,6 +1118,17 @@
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
 	)
 
+/datum/design_techweb/ammobox_38_spectral
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.38 spectral)")
+	id = "ammobox_38_spectral"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b38/spectral
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
 /*
  * 10mm
  */
@@ -1190,6 +1201,17 @@
 	materials = list(MAT_STEEL = 1440)
 	build_type = AUTOLATHE
 	build_path = /obj/item/ammo_magazine/ammo_box/b44/rubber
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES
+	)
+
+/datum/design_techweb/ammobox_44_spectral
+	SET_AMMO_DESIGN_NAMEDESC("ammo box (.44 spectral)")
+	id = "ammobox_44_spectral"
+	materials = list(MAT_STEEL = 1440)
+	build_type = AUTOLATHE
+	build_path = /obj/item/ammo_magazine/ammo_box/b44/spectral
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_SUBCATEGORY_WEAPONS_AMMO + RND_SUBCATEGORY_WEAPONS_AMMO_BOXES

@@ -16,12 +16,13 @@
 //357
 /obj/item/ammo_magazine/s357/spectral
 	name = "speedloader (.357 specter shot)"
-	icon_state = "S38"
+	icon_state = "T38"
 	ammo_type = /obj/item/ammo_casing/a357/spectral
 
 /obj/item/ammo_casing/a357/spectral
 	desc = "A .357 spectral bullet casing."
 	caliber = ".357"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/spectral/strong
 	matter = list(MAT_STEEL = 210)
 
@@ -31,19 +32,33 @@
 	icon_state = "T38"
 	ammo_type = /obj/item/ammo_casing/a38/spectral
 
+/obj/item/ammo_magazine/ammo_box/b38/spectral
+	name = "ammo box (.38 spectral)"
+	icon_state = "pistol_p"
+	ammo_type = /obj/item/ammo_casing/a38/spectral
+	max_ammo = 24
+
 /obj/item/ammo_casing/a38/spectral
 	desc = "A .38 rubber bullet casing."
-	icon_state = "r-casing"
+	icon_state = "empcasing"
 	projectile_type = /obj/item/projectile/bullet/spectral
 
 //44
 /obj/item/ammo_magazine/s44/spectral
 	name = "speedloader (.44 specter shot)"
+	icon_state = "R44"
 	ammo_type = /obj/item/ammo_casing/a44/spectral
 
-/obj/item/ammo_casing/a44
+/obj/item/ammo_magazine/ammo_box/b44/spectral
+	name = "ammo box (.44 specter shot)"
+	icon_state = "box44-rubber"
+	ammo_type = /obj/item/ammo_casing/a44/spectral
+	max_ammo = 24
+
+/obj/item/ammo_casing/a44/spectral
 	desc = "A .44 bullet casing."
 	caliber = ".44"
+	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/spectral/strong
 	matter = list(MAT_STEEL = 210)
 
