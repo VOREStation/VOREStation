@@ -196,10 +196,10 @@
 /datum/techweb_node/ghost_advanced
 	id = TECHWEB_NODE_GHOST_ADVANCED
 	display_name = "Spectral Hunting"
-	description = "Developing advanced techniques for tracking and engaging spectral entities."
+	description = "Developing advanced weaponry for tracking and engaging spectral entities."
 	prereq_ids = list(TECHWEB_NODE_GHOST_BASIC)
 	design_ids = list(
-		"ghost_gun",
+		"ghost_pack",
 		"ghost_goggles",
 		"pistol_mag_9mm_spectral",
 		"smg_mag_9mm_spectral",

@@ -1104,9 +1104,21 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+//Standalone photon rifle. Not unlockable for now.
 /datum/design_techweb/photon_rifle
 	name = "Photon Rifle"
 	id = "ghost_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 8000, MAT_PHORON = 8000, MAT_DIAMOND = 6000, MAT_VERDANTIUM = 6000) //Expensive.
+	build_path = /obj/item/ghost_catcher
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/photon_pack
+	name = "Photon Rifle"
+	id = "ghost_pack"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_PHORON = 4000, MAT_DIAMOND = 2000, MAT_VERDANTIUM = 2000) //Expensive.
 	build_path = /obj/item/ghost_catcher

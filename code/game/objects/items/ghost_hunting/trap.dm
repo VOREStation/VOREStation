@@ -6,20 +6,21 @@
 	throw_speed = 5
 	throw_range = 7
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
-	icon_state = "beartrap0" //placeholder
+	icon = 'icons/obj/ghost_trap.dmi'
+	icon_state = "item"
 	randpixel = 0
 	center_of_mass_x = 0
 	center_of_mass_y = 0
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
 	var/deployed = FALSE
+	///The entity we currently have captured.
 	var/datum/weakref/captured_entity
 	var/obj/item/radio/intercom/ghost_reporter
 
 /obj/item/ghost_trap/Initialize(mapload)
 	. = ..()
-	if(mapload && deployed)
+	if(deployed)
 		update_icon()
 	ghost_reporter = new /obj/item/radio/intercom{channels=list("Science")}(null)
 	START_PROCESSING(SSobj, src)
@@ -30,6 +31,7 @@
 		var/mob/our_entity = captured_entity.resolve()
 		if(our_entity)
 			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
+			our_entity.forceMove(get_turf(src))
 		captured_entity = null
 	QDEL_NULL(ghost_reporter)
 	. = ..()
@@ -48,15 +50,34 @@
 		to_chat(user, span_warning("You need to be outside \the [src] to do this."))
 		return
 
+	if(captured_entity)
+		var/mob/our_entity = captured_entity.resolve()
+		if(our_entity && (our_entity.loc == src))
+			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
+			captured_entity = null
+			our_entity.forceMove(get_turf(src))
+			update_icon()
+			return
 
-#warn TODO: put the sprites here
+	to_chat(user, span_info("There appears to be nothing in the trap!"))
+	return
+
 /obj/item/ghost_trap/update_icon()
 	..()
 
-	if(!deployed)
-		icon_state = "beartrap0"
-	else
-		icon_state = "beartrap1"
+	if(deployed)
+		icon_state = "on"
+		return
+
+	if(captured_entity)
+		var/mob/our_entity = captured_entity.resolve()
+		if(our_entity)
+			icon_state = "item_captured"
+			return
+
+		icon_state = initial(icon_state)
+		return
+	icon_state = initial(icon_state)
 
 
 /obj/item/ghost_trap/start_active
@@ -69,6 +90,7 @@
 			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
 			captured_entity = null
 			announce_escape(our_entity)
+			update_icon()
 
 /obj/item/ghost_trap/proc/announce_escape(mob/our_entity)
 	var/area/our_area = get_area(src)
@@ -88,6 +110,7 @@
 		if(our_entity)
 			to_chat(user, "You are unable to use \the [src]! It beeps that it an entity contained inside!")
 			return
+
 	if(!deployed && can_use(user))
 		user.visible_message(
 			span_danger("[user] starts to deploy \the [src]."),
@@ -117,6 +140,7 @@
 		escapee.forceMove(get_turf(src))
 		announce_escape(escapee)
 		visible_message(span_danger("A loud buzzer rings out as \the [src] suddenly opens, alerting that a containment breach has ocurred!"))
+		update_icon()
 
 
 /obj/item/ghost_trap/attack_hand(mob/user)
@@ -130,6 +154,7 @@
 			for(var/A in buckled_mobs)
 				unbuckle_mob(A)
 			anchored = FALSE
+			deployed = FALSE
 	else if(deployed && can_use(user))
 		user.visible_message(
 			span_danger("[user] starts to deactivate \the [src]."),

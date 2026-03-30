@@ -1,7 +1,6 @@
 /obj/item/ghost_catcher
-	name = "Photon rifle" //Legally distinct proton rifle.
-	desc = "A hand-held device, used for 'catching ghosts' Weakens the entity initially grabbed."
-	//description_info = "TODO"
+	name = "proton rifle"
+	desc = "A two handed device, used for 'catching ghosts'. Weakens the entity initially grabbed."
 	icon = 'icons/obj/guns/ghost_beam.dmi'
 	icon_state = "ghost_beam"
 	w_class = ITEMSIZE_NORMAL
@@ -14,6 +13,8 @@
 	var/datum/weakref/grabbed_entity
 	/// How far we can move an entity in one go!
 	var/max_move_distance = 1
+	/// If we're held in two hands or not...Used until we get two handed component.
+	var/wielded = FALSE
 
 	COOLDOWN_DECLARE(ghost_cooldown)
 	COOLDOWN_DECLARE(click_cooldown)
@@ -32,7 +33,19 @@
 	else
 		icon_state = initial(icon_state)
 
+/obj/item/ghost_catcher/update_held_icon()
+	var/mob/living/M = loc
+	if(istype(M) && M.can_wield_item(src) && is_held_twohanded(M))
+		wielded = TRUE
+	else
+		wielded = FALSE
+	..()
+
 /obj/item/ghost_catcher/afterattack(atom/target, mob/user, proximity_flag)
+	if(!wielded)
+		to_chat(user, span_warning("You need to hold \the [src] in two hands to use it!"))
+		return
+
 	if(!COOLDOWN_FINISHED(src, ghost_cooldown))
 		to_chat(user, span_warning("The [src] is recharging!"))
 		return
@@ -119,3 +132,26 @@
 		to_chat(user, span_notice("No entity detected!")) //The goggles ARE listed as unreliable. You could just be seeing static.
 		return FALSE
 	return ..()
+
+//The backpack the gun is (typically) attached to!
+/obj/item/proton_pack
+	name = "proton pack"
+	desc = "A complex backpack that houses a miniature antimatter reactor to power a spectral capture device."
+	icon = 'icons/obj/technomancer.dmi'
+	default_worn_icon = 'icons/inventory/back/mob.dmi'
+	icon_state = "technomancer_core"
+	item_state = "proton_pack"
+	slot_flags = SLOT_BACK
+	preserve_item = 1
+	w_class = ITEMSIZE_LARGE
+	var/obj/item/ghost_catcher/who_ya_gunna_call = /obj/item/ghost_catcher
+
+/obj/item/proton_pack/Initialize(mapload)
+	AddComponent(/datum/component/tethered_item, who_ya_gunna_call)
+	. = ..()
+
+/obj/item/proton_pack/attack_hand(mob/living/user)
+	// See important note in tethered_item.dm
+	if(SEND_SIGNAL(src,COMSIG_ITEM_ATTACK_SELF,user) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return TRUE
+	. = ..()
