@@ -59,7 +59,7 @@
 	detected_explosions += list(
 		list(
 			"index" = length(detected_explosions),
-			"time" = ROUND_TIME(),
+			"time" = stationtime2text(),
 			"x" = x0,
 			"y" = y0,
 			"z" = z0,
