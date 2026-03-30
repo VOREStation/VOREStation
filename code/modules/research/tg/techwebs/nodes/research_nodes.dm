@@ -222,5 +222,5 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_SECURITY)
-	required_experiments = list(/datum/experiment/ghost_capture)
+	//required_experiments = list(ADD_A_GOOD_EXPERIMENT_HERE)
 	hidden = TRUE //Hidden on Virgo
