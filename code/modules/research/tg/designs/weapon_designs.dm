@@ -1126,6 +1126,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+
+/datum/design_techweb/advanced_emf
+	name = "Advanced EMF Reader"
+	id = "ghost_emf"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/entrepreneur/emf/professional
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/spectral_goggles
 	name = "Spectral Goggles"
 	id = "ghost_goggles"
