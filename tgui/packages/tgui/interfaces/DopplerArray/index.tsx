@@ -1,33 +1,56 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, LabeledList, NoticeBox, Section } from 'tgui-core/components';
-
-type Data = {
-  explosions: Explosion[];
-};
-
-type Explosion = {
-  index: number;
-  time: string;
-  x: number;
-  y: number;
-  z: number;
-  devastation_range: number;
-  heavy_impact_range: number;
-  light_impact_range: number;
-  seconds_taken: number;
-};
+import {
+  Box,
+  LabeledList,
+  NoticeBox,
+  Section,
+  Tabs,
+} from 'tgui-core/components';
+import { explosionTypes } from './constants';
+import { getSeverity } from './functions';
+import type { Data, Explosion } from './types';
 
 export const DopplerArray = (props) => {
   const { act, data } = useBackend<Data>();
+  const [activeTab, setActiveTab] = useState('All');
 
   const { explosions } = data;
+
+  const grouped: Record<string, Explosion[]> = explosions?.reduce(
+    (acc, exp) => {
+      const severity = getSeverity(exp);
+
+      if (!acc[severity]) {
+        acc[severity] = [];
+      }
+
+      acc[severity].push(exp);
+      return acc;
+    },
+    {},
+  );
+
+  const visibleExplosions =
+    activeTab === 'All' ? explosions : grouped?.[activeTab];
 
   return (
     <Window width={300} height={500}>
       <Window.Content scrollable>
-        {explosions ? (
-          explosions.map((exp) => (
+        <Tabs>
+          {['All', ...explosionTypes].map((sev) => (
+            <Tabs.Tab
+              key={sev}
+              selected={activeTab === sev}
+              onClick={() => setActiveTab(sev)}
+            >
+              {sev}
+            </Tabs.Tab>
+          ))}
+        </Tabs>
+        {visibleExplosions?.length ? (
+          visibleExplosions.map((exp) => (
             <Section key={exp.index} title={exp.time}>
               <LabeledList>
                 <LabeledList.Item label="Coordinates">
