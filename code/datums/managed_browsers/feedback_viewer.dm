@@ -1,18 +1,15 @@
 /client
 	var/datum/managed_browser/feedback_viewer/feedback_viewer = null
 
-/datum/admins/proc/view_feedback()
-	set category = "Admin.Misc"
-	set name = "View Feedback"
-	set desc = "Open the Feedback Viewer"
-
-	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))
+ADMIN_VERB(view_feedback, R_ADMIN|R_DEBUG|R_EVENT, "View Feedback", "Open the Feedback Viewer.", ADMIN_CATEGORY_MISC)
+	if(!check_rights())
 		return
 
-	if(usr.client.feedback_viewer)
-		usr.client.feedback_viewer.display()
-	else
-		usr.client.feedback_viewer = new(usr.client)
+	if(user.feedback_viewer)
+		user.feedback_viewer.display()
+		return
+
+	user.feedback_viewer = new(user)
 
 // This object holds the code to run the admin feedback viewer.
 /datum/managed_browser/feedback_viewer

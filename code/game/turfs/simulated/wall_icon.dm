@@ -26,7 +26,6 @@
 	else if(material.opacity < 0.5 && opacity)
 		set_light(0)
 
-	SSradiation.resistance_cache.Remove(src)
 	update_connections(1)
 	update_icon()
 

@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(robot_custom_icons)
 		return
 	var/sprite_owner = GLOB.robot_custom_icons[sprite_name]
 	if(sprite_owner && sprite_owner == ckey)
-		custom_sprite = 1
+		custom_sprite = TRUE
 		icon = CUSTOM_ITEM_SYNTH
 		if(icon_state == "robot")
 			icon_state = "[ckey]-[sprite_name]-Standard" //Compliant with robot.dm line 236 ~Mech

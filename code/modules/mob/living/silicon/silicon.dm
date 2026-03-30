@@ -23,20 +23,20 @@
 
 	var/list/access_rights
 	var/obj/item/card/id/idcard
-	var/idcard_type = /obj/item/card/id/synthetic
 
 	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
 
 	var/hudmode = null
 	fire_stack_decay_rate = -0.55
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
 	GLOB.silicon_mob_list += src
 	if(!is_decoy)
+		init_id(idcard_type)
 		add_language(LANGUAGE_GALCOM)
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
-		init_id()
 		init_subsystems()
 
 		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
@@ -55,7 +55,9 @@
 	clear_subsystems()
 	return ..()
 
-/mob/living/silicon/proc/init_id()
+/mob/living/silicon/proc/init_id(idcard_type)
+	if(!idcard_type)
+		return
 	if(idcard)
 		return
 	idcard = new idcard_type(src)
@@ -155,8 +157,8 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. = "[eta_status]"
 
@@ -413,7 +415,7 @@
 		qdel(mind.objectives)
 		mind.special_role = null
 
-	clear_antag_roles(mind)
+	SSantag_job.clear_antag_roles(mind)
 
 	ghostize(0)
 	qdel(src)

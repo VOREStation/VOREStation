@@ -4,7 +4,10 @@
 	proper_name = "Autolathe"
 
 /datum/wires/autolathe/New(atom/_holder)
-	wires = list(WIRE_AUTOLATHE_HACK, WIRE_ELECTRIFY, WIRE_AUTOLATHE_DISABLE)
+	wires = list(WIRE_LATHE_HACK, WIRE_ELECTRIFY, WIRE_LATHE_DISABLE)
+	var/obj/machinery/autolathe/A = _holder
+	if(A.hacked)
+		cut_wires += WIRE_LATHE_HACK
 	return ..()
 
 /datum/wires/autolathe/get_status()
@@ -23,12 +26,12 @@
 /datum/wires/autolathe/on_cut(wire, mend)
 	var/obj/machinery/autolathe/A = holder
 	switch(wire)
-		if(WIRE_AUTOLATHE_HACK)
+		if(WIRE_LATHE_HACK)
 			A.hacked = !mend
 			A.update_tgui_static_data(usr)
 		if(WIRE_ELECTRIFY)
 			A.shocked = !mend
-		if(WIRE_AUTOLATHE_DISABLE)
+		if(WIRE_LATHE_DISABLE)
 			A.disabled = !mend
 	..()
 
@@ -37,21 +40,30 @@
 		return
 	var/obj/machinery/autolathe/A = holder
 	switch(wire)
-		if(WIRE_AUTOLATHE_HACK)
+		if(WIRE_LATHE_HACK)
 			A.hacked = !A.hacked
 			A.update_tgui_static_data(usr)
-			spawn(50)
-				if(A && !is_cut(wire))
-					A.hacked = 0
-					A.update_tgui_static_data(usr)
+			addtimer(CALLBACK(src, PROC_REF(reset_hacked), WIRE_LATHE_HACK, usr), 5 SECONDS)
 		if(WIRE_ELECTRIFY)
 			A.shocked = !A.shocked
-			spawn(50)
-				if(A && !is_cut(wire))
-					A.shocked = 0
-		if(WIRE_AUTOLATHE_DISABLE)
+			addtimer(CALLBACK(src, PROC_REF(reset_electrify), WIRE_ELECTRIFY), 5 SECONDS)
+		if(WIRE_LATHE_DISABLE)
 			A.disabled = !A.disabled
-			spawn(50)
-				if(A && !is_cut(wire))
-					A.disabled = 0
+			addtimer(CALLBACK(src, PROC_REF(reset_disable), WIRE_LATHE_DISABLE), 5 SECONDS)
 	..()
+
+/datum/wires/autolathe/proc/reset_hacked(wire, mob/user)
+	var/obj/machinery/autolathe/A = holder
+	if(A && !is_cut(wire))
+		A.hacked = FALSE
+		A.update_tgui_static_data(user)
+
+/datum/wires/autolathe/proc/reset_electrify(wire)
+	var/obj/machinery/autolathe/A = holder
+	if(A && !is_cut(wire))
+		A.shocked = FALSE
+
+/datum/wires/autolathe/proc/reset_disable(wire)
+	var/obj/machinery/autolathe/A = holder
+	if(A && !is_cut(wire))
+		A.disabled = FALSE

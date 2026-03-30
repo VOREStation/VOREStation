@@ -15,11 +15,9 @@
 
 /obj/machinery/atmospherics/var/debug = 0
 
-/client/proc/atmos_toggle_debug(var/obj/machinery/atmospherics/M in view())
-	set name = "Toggle Debug Messages"
-	set category = "Debug.Misc"
-	M.debug = !M.debug
-	to_chat(usr, "[M]: Debug messages toggled [M.debug? "on" : "off"].")
+ADMIN_VERB(atmos_toggle_debug, R_DEBUG, "Toggle Debug Messages", "Allows to toggle receiving debug messages.", ADMIN_CATEGORY_DEBUG_MISC, obj/machinery/atmospherics/machine in view())
+	machine.debug = !machine.debug
+	to_chat(user, span_debug_info("[machine]: Debug messages toggled [machine.debug? "on" : "off"]."))
 
 //Generalized gas pumping proc.
 //Moves gas from one gas_mixture to another and returns the amount of power needed (assuming 1 second), or -1 if no gas was pumped.

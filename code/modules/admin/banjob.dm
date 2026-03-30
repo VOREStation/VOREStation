@@ -69,7 +69,7 @@ DEBUG
 			GLOB.jobban_keylist=list()
 			log_admin("jobban_keylist was empty")
 	else
-		if(!establish_db_connection())
+		if(!SSdbcore.IsConnected())
 			log_sql("Database connection failed. Reverting to the legacy ban system.")
 			CONFIG_SET(flag/ban_legacy_system, TRUE)
 			jobban_loadbanfile()

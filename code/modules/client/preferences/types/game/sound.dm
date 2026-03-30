@@ -254,7 +254,7 @@
 	step = 1
 
 /datum/preference/numeric/living/jukebox_volume/apply_to_client_updated(client/client, value)
-	client?.media?.update_volume(value)
+	client?.media?.update_volume(value / 100)
 
 /datum/preference/numeric/volume
 	abstract_type = /datum/preference/numeric/volume

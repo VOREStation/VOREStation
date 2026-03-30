@@ -10,6 +10,9 @@
 	if(!checkClickCooldown())
 		return
 
+	if(check_click_intercept(params,A))
+		return
+
 	setClickCooldown(1)
 
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked

@@ -116,11 +116,13 @@ GLOBAL_LIST(fusion_reactions)
 
 	var/turf/origin = get_turf(holder)
 	holder.Rupture()
-	qdel(holder)
-	var/radiation_level = 200
-
-	// Copied from the SM for proof of concept. //Not any more --Cirra //Use the whole z proc --Leshana
-	SSradiation.z_radiate(locate(1, 1, holder.z), radiation_level, 1)
+	radiation_pulse(
+		holder,
+		max_range = 50,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 500
+	)
 
 	for(var/mob/living/mob in GLOB.living_mob_list)
 		var/turf/T = get_turf(mob)
@@ -135,8 +137,7 @@ GLOBAL_LIST(fusion_reactions)
 			spawn(5)
 				if(I && I.loc)
 					qdel(I)
-
-	sleep(5)
+	qdel(holder)
 	explosion(origin, 1, 2, 5)
 
 	return 1

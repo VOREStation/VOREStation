@@ -34,6 +34,8 @@
 	// Bookkeeping
 	var/list/original_languages = list()
 	var/list/added_networks = list()
+	var/ui_theme
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /obj/item/robot_module/proc/hide_on_manifest()
 	. = hide_on_manifest
@@ -68,19 +70,29 @@
 		I.canremove = FALSE
 
 /obj/item/robot_module/proc/create_equipment(var/mob/living/silicon/robot/robot)
+	if(!istype(robot.idcard, idcard_type))
+		QDEL_NULL(robot.idcard)
+	robot.init_id(idcard_type)
 	return
 
-/obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
-	remove_camera_networks(R)
-	remove_languages(R)
-	remove_subsystems(R)
-	remove_status_flags(R)
+// Reset the module and delete it
+/obj/item/robot_module/proc/reset_module(var/mob/living/silicon/robot/robot)
+	remove_camera_networks(robot)
+	remove_languages(robot)
+	remove_subsystems(robot)
+	remove_status_flags(robot)
 
-	if(R.radio)
-		R.radio.recalculateChannels()
-	R.set_default_module_icon()
+	if(robot.radio)
+		robot.radio.recalculateChannels()
+	robot.set_default_module_icon()
 
-	R.scrubbing = FALSE
+	robot.scrubbing = FALSE
+
+	modules -= robot.idcard
+	if(robot.idcard.loc != robot)
+		robot.idcard.forceMove(robot)
+	robot.module = null
+	qdel(src)
 
 /obj/item/robot_module/Destroy()
 	QDEL_LIST(modules)
@@ -101,7 +113,8 @@
 	return
 
 /obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
-	if(!synths || !synths.len)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!LAZYLEN(synths))
 		return
 
 	for(var/datum/matter_synth/T in synths)
@@ -170,6 +183,85 @@
 			CHANNEL_COMMAND = 1,
 			CHANNEL_EXPLORATION = 1
 			)
+
+/obj/item/robot_module/proc/add_item_with_reagents(obj/item/stack/item_with_synth)
+	var/list/item_synths = list()
+	for(var/datum/matter_synth/matter_synth as anything in item_with_synth.synths)
+		var/found = FALSE
+		for(var/datum/matter_synth/synth as anything in synths)
+			if(matter_synth.type == synth.type)
+				item_synths += synth
+				break
+		if(!found)
+			var/datum/matter_synth/new_synth = new matter_synth.type(10000)
+			item_synths += new_synth
+			synths += new_synth
+	item_with_synth.synths = item_synths
+
+/obj/item/robot_module/proc/add_item(atom/movable/new_item, mob/living/silicon/robot/robot)
+	if(istype(new_item, /obj/item/card/id))
+		if(robot.idcard)
+			modules -= robot.idcard
+			QDEL_NULL(robot.idcard)
+		robot.idcard = new_item
+	modules += new_item
+	new_item.forceMove(src)
+	robot.hud_used?.update_robot_modules_display()
+
+	if(istype(new_item, /obj/item/robotic_multibelt/materials))
+		var/obj/item/robotic_multibelt/materials/mat_belt = new_item
+		for(var/obj/item/stack as anything in mat_belt.cyborg_integrated_tools)
+			add_item_with_reagents(stack)
+
+	if(istype(new_item, /obj/item/stack))
+		add_item_with_reagents(new_item)
+
+	if(istype(new_item, /obj/item/matter_decompiler) || istype(new_item, /obj/item/dogborg/sleeper/compactor/decompiler))
+		var/obj/item/matter_decompiler/item_with_matter = new_item
+		if(item_with_matter.metal)
+			var/found = FALSE
+			for(var/datum/matter_synth/synth as anything in synths)
+				if(item_with_matter.metal.type == synth.type)
+					item_with_matter.metal = synth
+					found = TRUE
+					break
+			if(!found)
+				var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
+				item_with_matter.metal = metal
+				LAZYADD(synths, metal)
+		if(item_with_matter.glass)
+			var/found = FALSE
+			for(var/datum/matter_synth/synth as anything in synths)
+				if(item_with_matter.glass.type == synth.type)
+					item_with_matter.glass = synth
+					found = TRUE
+					break
+			if(!found)
+				var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
+				item_with_matter.glass = glass
+				LAZYADD(synths, glass)
+		if(item_with_matter.wood)
+			var/found = FALSE
+			for(var/datum/matter_synth/synth as anything in synths)
+				if(item_with_matter.wood.type == synth.type)
+					item_with_matter.wood = synth
+					found = TRUE
+					break
+			if(!found)
+				var/datum/matter_synth/wood = new /datum/matter_synth/wood(40000)
+				item_with_matter.wood = wood
+				LAZYADD(synths, wood)
+		if(item_with_matter.plastic)
+			var/found = FALSE
+			for(var/datum/matter_synth/synth as anything in synths)
+				if(item_with_matter.plastic.type == synth.type)
+					item_with_matter.plastic = synth
+					found = TRUE
+					break
+			if(!found)
+				var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(40000)
+				item_with_matter.plastic = plastic
+				LAZYADD(synths, plastic)
 
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
@@ -421,6 +513,7 @@
 	src.modules += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
 	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -497,6 +590,7 @@
 	src.emag += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
 	var/obj/item/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 
@@ -570,6 +664,7 @@
 	src.emag += new /obj/item/dogborg/pounce(src) //Pounce
 
 /obj/item/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
 	var/obj/item/reagent_containers/food/drinks/bottle/small/beer/PB = locate() in src.emag
 	if(PB)
 		PB.reagents.add_reagent(REAGENT_ID_BEER2, 2 * amount)
@@ -605,7 +700,17 @@
 
 	var/obj/item/dogborg/sleeper/compactor/honkborg/B = new /obj/item/dogborg/sleeper/compactor/honkborg(src)
 	src.modules += B
+	var/obj/item/reagent_containers/spray/LS = new /obj/item/reagent_containers/spray(src)
+	src.emag += LS
+	LS.reagents.add_reagent(REAGENT_ID_LUBE, 250)
+	LS.name = "Lube spray"
 	..()
+
+/obj/item/robot_module/robot/clerical/honkborg/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	..()
+	var/obj/item/reagent_containers/spray/LS = locate() in src.emag
+	if(LS)
+		LS.reagents.add_reagent(REAGENT_ID_LUBE, 2 * amount)
 
 /obj/item/robot_module/robot/clerical/general
 	name = "clerical robot module"
@@ -630,6 +735,7 @@
 	networks = list(NETWORK_MINE)
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/pka, /obj/item/borg/upgrade/restricted/diamonddrill, /obj/item/borg/upgrade/restricted/adv_scanner, /obj/item/borg/upgrade/restricted/adv_snatcher, /obj/item/borg/upgrade/restricted/adv_mailbag)
 	pto_type = PTO_CARGO
+	idcard_type = /obj/item/card/id/synthetic/borg
 
 /obj/item/robot_module/robot/miner/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -641,7 +747,13 @@
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/gripper/miner(src)
 	src.modules += new /obj/item/mining_scanner/robot(src)
-	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
+
+	var/obj/item/card/id/robot_id = robot.idcard
+	robot_id.name = "\improper Synthetic Miner ID"
+	robot_id.initial_sprite_stack = list("base-stamp", "top-brown", "stamp-n", "stripe-purple")
+	robot_id.reset_icon()
+	robot_id.forceMove(src)
+	src.modules += robot_id
 	src.modules += new /obj/item/mail_scanner(src)
 	src.modules += new /obj/item/storage/bag/mail/borg(src)
 	src.modules += new /obj/item/destTagger(src)
@@ -822,3 +934,9 @@
 	src.modules += new /obj/item/storage/bag/ore(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.emag += new /obj/item/pickaxe/diamonddrill(src)
+
+/obj/item/robot_module/drone/talon
+	name = "talon drone module"
+	idcard_type = /obj/item/card/id/talon
+	channels = list(CHANNEL_TALON = 1)
+	networks = list(NETWORK_TALON_SHIP)

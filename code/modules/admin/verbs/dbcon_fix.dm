@@ -15,7 +15,6 @@
 	else
 		log_admin("Database already disconnected")
 
-	establish_db_connection()
 	var/errno = SSdbcore.ErrorMsg()
 	if(errno)
 		log_admin("Database connection returned error message `[errno]`. Aborting.")

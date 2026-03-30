@@ -493,71 +493,73 @@ export const LawManagerLawSets = (props: {
         onChange={(value: string) => onSearchLawName(value)}
       />
       {law_sets.length
-        ? prepareSearch(law_sets, searchLawName).map((laws) => (
-            <Section
-              key={laws.name}
-              title={laws.name}
-              buttons={
-                <Stack>
-                  <Stack.Item>
-                    <Button
-                      disabled={!isMalf}
-                      icon="sync"
-                      onClick={() =>
-                        act('transfer_laws', { transfer_laws: laws.ref })
-                      }
-                    >
-                      Load Laws
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      icon="volume-up"
-                      onClick={() =>
-                        act('state_law_set', { state_law_set: laws.ref })
-                      }
-                    >
-                      State Laws
-                    </Button>
-                  </Stack.Item>
-                </Stack>
-              }
-            >
-              {laws.laws.has_ion_laws ? (
-                <LawsTable
-                  noButtons
-                  laws={laws.laws.ion_laws}
-                  title={`${ion_law_nr} Laws:`}
-                  isAdmin={isAdmin}
-                  isMalf={isMalf}
-                />
-              ) : (
-                ''
-              )}
-              {laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws ? (
-                <LawsTable
-                  noButtons
-                  laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
-                  title={laws.header}
-                  isAdmin={isAdmin}
-                  isMalf={isMalf}
-                />
-              ) : (
-                ''
-              )}
-              {laws.laws.has_supplied_laws ? (
-                <LawsTable
-                  noButtons
-                  laws={laws.laws.supplied_laws}
-                  title="Supplied Laws"
-                  isAdmin={isAdmin}
-                  isMalf={isMalf}
-                />
-              ) : (
-                ''
-              )}
-            </Section>
-          ))
+        ? prepareSearch(law_sets, searchLawName)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((laws) => (
+              <Section
+                key={laws.name}
+                title={laws.name}
+                buttons={
+                  <Stack>
+                    <Stack.Item>
+                      <Button
+                        disabled={!isMalf}
+                        icon="sync"
+                        onClick={() =>
+                          act('transfer_laws', { transfer_laws: laws.ref })
+                        }
+                      >
+                        Load Laws
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="volume-up"
+                        onClick={() =>
+                          act('state_law_set', { state_law_set: laws.ref })
+                        }
+                      >
+                        State Laws
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                }
+              >
+                {laws.laws.has_ion_laws ? (
+                  <LawsTable
+                    noButtons
+                    laws={laws.laws.ion_laws}
+                    title={`${ion_law_nr} Laws:`}
+                    isAdmin={isAdmin}
+                    isMalf={isMalf}
+                  />
+                ) : (
+                  ''
+                )}
+                {laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws ? (
+                  <LawsTable
+                    noButtons
+                    laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
+                    title={laws.header}
+                    isAdmin={isAdmin}
+                    isMalf={isMalf}
+                  />
+                ) : (
+                  ''
+                )}
+                {laws.laws.has_supplied_laws ? (
+                  <LawsTable
+                    noButtons
+                    laws={laws.laws.supplied_laws}
+                    title="Supplied Laws"
+                    isAdmin={isAdmin}
+                    isMalf={isMalf}
+                  />
+                ) : (
+                  ''
+                )}
+              </Section>
+            ))
         : ''}
     </>
   );
