@@ -233,7 +233,5 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 			var/obj/vehicle/vehicle = movable
 			if(vehicle.load)
 				break
-		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_STOMACH) && istype(movable, /obj/belly))
-			if(teleportable in movable.contents)
-				break
-		return teleportable
+		teleportable = movable
+	return teleportable

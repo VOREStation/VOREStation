@@ -17,9 +17,11 @@
 		return FALSE
 	if(signal.encryption != code)
 		return FALSE
-	for(var/obj/effect/anomaly/anomaly in get_turf(src))
+	if(istype(loc, /obj/effect/anomaly))
+		var/obj/effect/anomaly/anomaly = loc
 		anomaly.anomalyNeutralize()
-	return TRUE
+		return TRUE
+	return FALSE
 
 /obj/item/assembly/signaler/anomaly/attack_self(mob/user)
 	. = ..(user)
@@ -64,7 +66,18 @@
 	anomaly_type = /obj/effect/anomaly/flux
 
 /obj/item/assembly/signaler/anomaly/flux/receive_signal()
-	tesla_zap(src, 2, 1000, FALSE, FALSE, 1)
+	if(..())
+		return
+	if(ishuman(loc))
+		var/mob/living/carbon/human/human = loc
+		human.electrocute_act(5, src)
+		return
+
+	var/source = null
+	if(connected)
+		var/datum/wires/wires = connected
+		source = wires.holder
+	tesla_zap(source ? source : src, 2, 1000, FALSE, TRUE, 1)
 
 /obj/item/assembly/signaler/anomaly/bluespace
 	name = "\improper bluespace anomaly core"
@@ -74,9 +87,14 @@
 	activation_cooldown = 15 SECONDS
 
 /obj/item/assembly/signaler/anomaly/bluespace/receive_signal()
-	var/atom/movable/to_teleport = get_teleportable_container(src, container_flags = TELEPORT_CONTAINER_INCLUDE_SEALED_RIGSUIT)
+	if(..())
+		return
+	var/atom/movable/to_teleport = get_teleportable_container(src, container_flags = TELEPORT_CONTAINER_INCLUDE_SEALED_RIGSUIT|TELEPORT_CONTAINER_INCLUDE_CLOSET)
 	if(!to_teleport)
 		return
+	if(isliving(to_teleport.loc))
+		var/mob/living/creature = to_teleport.loc
+		creature.drop_from_inventory(to_teleport, get_turf(creature))
 	var/turf/teleportable_turf = get_turf(to_teleport)
 	playsound(teleportable_turf, 'sound/effects/phasein.ogg', 100, TRUE)
 	do_teleport(to_teleport, teleportable_turf, 4, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -88,6 +106,8 @@
 	anomaly_type = /obj/effect/anomaly/grav
 
 /obj/item/assembly/signaler/anomaly/grav/receive_signal()
+	if(..())
+		return
 	for(var/obj/object in orange(2, get_turf(src)))
 		if(!object.anchored)
 			step_towards(object, src)
@@ -103,6 +123,8 @@
 	activation_cooldown = 15 SECONDS
 
 /obj/item/assembly/signaler/anomaly/dimensional/receive_signal()
+	if(..())
+		return
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf)
 		return
@@ -120,6 +142,8 @@
 	activation_cooldown = 10 SECONDS
 
 /obj/item/assembly/signaler/anomaly/bioscrambler/receive_signal()
+	if(..())
+		return
 	new /obj/effect/temp_visual/circle_wave/bioscrambler(get_turf(src))
 	for(var/mob/living/carbon/nearby in hearers(1, get_turf(src)))
 		randmutb(nearby)
@@ -133,6 +157,8 @@
 	activation_cooldown = 10 SECONDS
 
 /obj/item/assembly/signaler/anomaly/hallucination/receive_signal()
+	if(..())
+		return
 	for(var/mob/living/nearby_living in view(get_turf(src), 2))
 		if(HAS_TRAIT(nearby_living, TRAIT_MADNESS_IMMUNE))
 			continue
@@ -149,6 +175,8 @@
 	anomaly_type = /obj/effect/anomaly/pyro
 
 /obj/item/assembly/signaler/anomaly/pyro/receive_signal()
+	if(..())
+		return
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf)
 		return
@@ -164,6 +192,8 @@
 	anomaly_type = /obj/effect/anomaly/weather
 
 /obj/item/assembly/signaler/anomaly/weather/receive_signal()
+	if(..())
+		return
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf)
 		return
@@ -182,6 +212,8 @@
 	anomaly_type = /obj/effect/anomaly/dust
 
 /obj/item/assembly/signaler/anomaly/dust/receive_signal()
+	if(..())
+		return
 	new /obj/effect/temp_visual/circle_wave/dirt(get_turf(src))
 	for(var/mob/living/carbon/human/person in view(get_turf(src), 2))
 		person.germ_level += rand(5, 10)
