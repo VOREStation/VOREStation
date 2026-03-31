@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 	set category = "Special Verbs"
 	if(M.client)
 		if(M.client.buildmode)
-			log_admin("[key_name(M)] has left build mode.")
+			log_admin("[key_name(M)] exited build mode.")
 			M.client.buildmode = 0
 			M.client.show_popup_menus = 1
 			M.plane_holder.set_vis(VIS_BUILDMODE, FALSE)
@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(H.cl == M.client)
 					qdel(H)
 		else
-			log_admin("[key_name(M)] has entered build mode.")
+			log_admin("[key_name(M)] entered build mode.")
 			M.client.buildmode = 1
 			M.client.show_popup_menus = 0
 			M.plane_holder.set_vis(VIS_BUILDMODE, TRUE)
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
-				log_admin("BUILDMODE Logging: [key_name(usr)] has set their var-edit to [valueholder].")
+				log_admin("BUILDMODE: [key_name(usr)] set var-edit: [valueholder].")
 
 			if(BUILDMODE_ROOM)
 				switch(tgui_alert(usr, "Would you like to generate a new area as well?","Room Builder", list("No", "Yes")))
@@ -315,15 +315,15 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							area_enabled = 0
 							return
 						area_name = sanitize(area_name,MAX_NAME_LEN)
-						log_admin("BUILDMODE Logging: [key_name(usr)] has set area name to [area_name].")
+						log_admin("BUILDMODE ROOM: [key_name(usr)] area: [area_name].")
 				var/choice = tgui_alert(usr, "Would you like to change the floor or wall holders?","Room Builder", list("Floor", "Wall"))
 				switch(choice)
 					if("Floor")
 						floor_holder = get_path_from_partial_text(/turf/simulated/floor/plating)
-						log_admin("BUILDMODE Logging: [key_name(usr)] has set their room floor to [floor_holder].")
+						log_admin("BUILDMODE ROOM: [key_name(usr)] floor: [floor_holder].")
 					if("Wall")
 						wall_holder = get_path_from_partial_text(/turf/simulated/wall)
-						log_admin("BUILDMODE Logging: [key_name(usr)] has set their room wall to [wall_holder].")
+						log_admin("BUILDMODE ROOM: [key_name(usr)] wall: [wall_holder].")
 
 			if(BUILDMODE_LIGHTS)
 				var/choice = tgui_alert(usr, "Change the new light range, power, or color?", "Light Maker", list("Range", "Power", "Color"))
@@ -332,17 +332,17 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						var/input = tgui_input_number(usr, "New light range.","Light Maker",3)
 						if(input)
 							new_light_range = input
-							log_admin("BUILDMODE Logging: [key_name(usr)] has set their light range to [new_light_range].")
+							log_admin("BUILDMODE: [key_name(usr)] set light r to [new_light_range].")
 					if("Power")
 						var/input = tgui_input_number(usr, "New light power.","Light Maker",3)
 						if(input)
 							new_light_intensity = input
-							log_admin("BUILDMODE Logging: [key_name(usr)] has set their light intensity to [new_light_intensity].")
+							log_admin("BUILDMODE: [key_name(usr)] set light i to [new_light_intensity].")
 					if("Color")
 						var/input = tgui_color_picker(usr, "New light color.","Light Maker",new_light_color)
 						if(input)
 							new_light_color = input
-							log_admin("BUILDMODE Logging: [key_name(usr)] has set their light color to [new_light_color].")
+							log_admin("BUILDMODE: [key_name(usr)] set light c to [new_light_color].")
 			if(BUILDMODE_DROP)
 				objholder = get_path_from_partial_text()
 	return 1
@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
-				log_admin("BUILDMODE Logging: [key_name(usr)] has copied [object.type] to buildmode.")
+				log_admin("BUILDMODE: [key_name(usr)] has copied [object.type] to buildmode.")
 			else if(pa.Find("left") && pa.Find("alt"))
 				user.client.debug_variables(object)
 			else if(pa.Find("right") && pa.Find("alt"))
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)
 					to_chat(usr, "[object.type]")
-					log_admin("BUILDMODE Logging: [key_name(usr)] has selected [object.type].")
+					log_admin("BUILDMODE: [key_name(usr)] selected [object.type].")
 
 		if(BUILDMODE_EDIT)
 			if(pa.Find("left")) //I cant believe this shit actually compiles.
@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
-					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
+					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to initial state.")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
 				else
 					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
@@ -465,10 +465,10 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			if(pa.Find("left"))
 				if(istype(object, /atom/movable))
 					holder.throw_atom = object
+					log_admin("[key_name(usr)] selected [object] to throw.")
 			if(pa.Find("right"))
 				if(holder.throw_atom)
-					holder.throw_atom.throw_at(object, 10, 1)
-					log_admin("[key_name(usr)] threw [holder.throw_atom] at [object]")
+					holder.throw_atom.throw_at(object, 10, 1) //No logging here since this gets spammed.
 
 		if(BUILDMODE_ROOM)
 			if(pa.Find("left"))
@@ -493,7 +493,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					holder.buildmode.floor_holder,
 					holder.buildmode.area_enabled,
 					holder.buildmode.area_name)
-				log_admin("BUILDMODE Logging: [key_name(usr)] has created a room starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and ending at x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
+				log_admin("BUILDMODE: [key_name(usr)] has created a room starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and ending at x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
 				holder.buildmode.coordA = null
 				holder.buildmode.coordB = null
 
@@ -514,7 +514,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				B.target_down = A
 				A.update_icon()
 				B.update_icon()
-				log_admin("BUILDMODE Logging: [key_name(usr)] has created a ladder starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and connecting to x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
+				log_admin("BUILDMODE: [key_name(usr)] has created a ladder starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and connecting to x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
 				holder.buildmode.coordA = null
 				holder.buildmode.coordB = null
 
@@ -749,7 +749,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					i++
 
 			to_chat(user, span_notice("Band-selected [i] mobs."))
-			log_admin("[key_name(usr)] selected [i] amount of mobs starting at x: [low_x] y: [low_y] and ending at x: [hi_x] y: [hi_y].")
+			log_admin("[key_name(usr)] selected [i] mobs. x:[low_x] y:[low_y]- x:[hi_x] y:[hi_y] z:[z].")
 			return
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
