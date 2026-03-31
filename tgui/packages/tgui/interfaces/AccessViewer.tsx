@@ -21,19 +21,6 @@ type Access = {
 export const AccessViewer = (props) => {
   const { act, data } = useBackend<Data>();
   const { access_list, name, coords, req_access, req_one_access } = data;
-
-  // Get all ids provided, remove each one as we check the access list of real datums
-  // If any remain by the end then they don't have a datum, and are invalid
-  const invalid_access: number[] = [];
-  invalid_access.concat(req_access);
-  invalid_access.concat(req_one_access);
-
-  access_list.map((entry) => {
-    entry.has_req = req_access.includes(entry.id);
-    entry.has_req_one = req_one_access.includes(entry.id);
-    invalid_access.filter((check) => check === entry.id);
-  });
-
   return (
     <Window width={520} height={540}>
       <Window.Content scrollable>
@@ -60,18 +47,6 @@ export const AccessViewer = (props) => {
             ))}
           </LabeledList>
         </Section>
-        {!!invalid_access.length && (
-          <Section title="Invalid IDs">
-            <LabeledList>
-              <LabeledList.Item label="Coords">{coords}</LabeledList.Item>
-              {invalid_access.map((invalid) => (
-                <LabeledList.Item
-                  key={invalid}
-                >{`Bad key ${invalid}`}</LabeledList.Item>
-              ))}
-            </LabeledList>
-          </Section>
-        )}
       </Window.Content>
     </Window>
   );
