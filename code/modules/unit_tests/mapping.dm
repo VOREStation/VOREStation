@@ -23,7 +23,7 @@
 
 /datum/unit_test/all_access_id_must_have_existing_datums/Run()
 	var/failed = FALSE
-	var/list/access_datums = get_all_access_datums_by_id()
+	var/list/access_datums = SSaccess.get_all_access_datums_by_id()
 
 	for(var/obj/machinery/thing in world)
 		if(thing.req_access)
