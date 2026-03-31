@@ -37,9 +37,8 @@ export const AccessViewer = (props) => {
   return (
     <Window width={520} height={540}>
       <Window.Content scrollable>
-        <Section title={`${name}'s access`}>
+        <Section title={`${name}'s access at ${coords}`}>
           <LabeledList>
-            <LabeledList.Item label="Coords">{coords}</LabeledList.Item>
             {access_list.map((entry) => (
               <LabeledList.Item
                 label={`${entry.id}: ${entry.name}`}
@@ -61,7 +60,7 @@ export const AccessViewer = (props) => {
             ))}
           </LabeledList>
         </Section>
-        {(invalid_access.length && (
+        {!!invalid_access.length && (
           <Section title="Invalid IDs">
             <LabeledList>
               <LabeledList.Item label="Coords">{coords}</LabeledList.Item>
@@ -72,8 +71,7 @@ export const AccessViewer = (props) => {
               ))}
             </LabeledList>
           </Section>
-        )) ??
-          ''}
+        )}
       </Window.Content>
     </Window>
   );
