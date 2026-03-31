@@ -360,19 +360,23 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(istype(object,/turf/space))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/floor))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall/r_wall)
+					T.flags |= ADMIN_SPAWNED
 					return
 			else if(pa.Find("right"))
 				if(istype(object,/turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/floor))
 					var/turf/T = object
@@ -384,40 +388,49 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						else
 							return
 					T.ChangeTurf(get_base_turf_by_area(T)) //Defaults to Z if area does not have a special base turf.
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/wall/r_wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/obj))
 					log_admin("[key_name(usr)] qdel'd [object].")
 					qdel(object)
 					return
 			else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
-				new/obj/machinery/door/airlock(get_turf(object))
+				var/obj/new_door = new /obj/machinery/door/airlock(get_turf(object))
+				new_door.flags |= ADMIN_SPAWNED
 			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("left"))
 				switch(holder.builddir.dir)
 					if(NORTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(NORTH)
+						WIN.flags |= ADMIN_SPAWNED
 					if(SOUTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(SOUTH)
+						WIN.flags |= ADMIN_SPAWNED
 					if(EAST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(EAST)
+						WIN.flags |= ADMIN_SPAWNED
 					if(WEST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(WEST)
+						WIN.flags |= ADMIN_SPAWNED
 					if(NORTHWEST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(NORTHWEST)
+						WIN.flags |= ADMIN_SPAWNED
 			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("alt") && pa.Find("middle"))
 				var/turf/T = object
 				var/obj/item/toy/plushie/teshari/easter_egg = new /obj/item/toy/plushie/teshari(T)
 				easter_egg.name = "coding teshari plushie"
 				easter_egg.desc = "A small purple teshari with a plush keyboard attached to it. Where did this come from?"
 				easter_egg.color = "#a418c7"
+				easter_egg.flags |= ADMIN_SPAWNED
 
 
 		if(BUILDMODE_ADVANCED)
@@ -425,9 +438,11 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
+					T.flags |= ADMIN_SPAWNED
 				else if(ispath(holder.buildmode.objholder))
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.set_dir(holder.builddir.dir)
+					A.flags |= ADMIN_SPAWNED
 					//log_admin("BUILDMODE: [key_name(usr)] spawned [A] at x:[object.x] y:[object.y] z:[object.z].") //Too spammy. We'll just log when they select the item initially.
 			else if(pa.Find("right") && !pa.Find("alt"))
 				if(isobj(object))
@@ -452,12 +467,14 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
+					object.datum_flags |= DF_VAR_EDITED
 				else
 					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to initial state.")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
+					object.datum_flags |= DF_VAR_EDITED
 				else
 					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 
@@ -512,6 +529,8 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				var/obj/structure/ladder/B = new /obj/structure/ladder(holder.buildmode.coordB)
 				A.target_up = B
 				B.target_down = A
+				A.flags |= ADMIN_SPAWNED
+				B.flags |= ADMIN_SPAWNED
 				A.update_icon()
 				B.update_icon()
 				log_admin("BUILDMODE: [key_name(usr)] has created a ladder starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and connecting to x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
@@ -549,10 +568,12 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							var/datum/ai_holder/AI = L.ai_holder
 							if(stance == STANCE_SLEEP)
 								AI.go_wake()
+								L.datum_flags |= DF_VAR_EDITED //we'll consider messing with AI as varediting it.
 								to_chat(user, span_notice("\The [L]'s AI has been enabled."))
 								log_admin("[key_name(usr)] activated [L]'s AI.")
 							else
 								AI.go_sleep()
+								L.datum_flags |= DF_VAR_EDITED
 								to_chat(user, span_notice("\The [L]'s AI has been disabled."))
 								log_admin("[key_name(usr)] deactivated [L]'s AI.")
 							return
@@ -565,6 +586,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						if(!isnull(L.get_AI_stance()))
 							var/datum/ai_holder/AI = L.ai_holder
 							AI.hostile = !AI.hostile
+							L.datum_flags |= DF_VAR_EDITED
 							to_chat(user, span_notice("\The [L] is now [AI.hostile ? "hostile" : "passive"]."))
 							log_admin("[key_name(usr)] made [L]'s AI hostile.")
 						else
@@ -600,12 +622,14 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = TRUE
+						unit.datum_flags |= DF_VAR_EDITED
 				if(pa.Find("ctrl"))
 					to_chat(user, span_notice("Setting mobs set to NOT wander"))
 					log_admin("[key_name(usr)] told selected mobs to not wander.")
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = FALSE
+						unit.datum_flags |= DF_VAR_EDITED
 				if(pa.Find("alt") && isatom(object))
 					to_chat(user, span_notice("Adding [object] to Entity Narrate List!"))
 					log_admin("[key_name(usr)] added [object] to the entity narration list.")
@@ -622,6 +646,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						var/mob/living/L = object
 						log_admin("[key_name(usr)] changed [L]'s faction from [L.faction] to [holder.copied_faction].")
 						L.faction = holder.copied_faction
+						L.datum_flags |= DF_VAR_EDITED
 						to_chat(user, span_notice("Pasted faction '[holder.copied_faction]'."))
 						return
 
@@ -696,11 +721,11 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
-					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE)
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE, TRUE)
 					log_admin("[key_name(usr)] dropped [holder.buildmode.objholder] onto [object] nonlethally.")
 			else if(pa.Find("right"))
 				if(ispath(holder.buildmode.objholder))
-					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE)
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE, TRUE)
 					log_admin("[key_name(usr)] dropped [holder.buildmode.objholder] onto [object] lethally.")
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
@@ -853,16 +878,21 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			if(i == low_bound_x || i == high_bound_x || j == low_bound_y || j == high_bound_y)
 				if(isturf(wall_type))
 					T.ChangeTurf(wall_type)
+					T.flags |= ADMIN_SPAWNED
 				else
-					new wall_type(T)
+					var/atom/new_thing = new wall_type(T) //wall_type can be ANY /obj, /mob, /turf, etc
+					new_thing.flags |= ADMIN_SPAWNED
 
 			else
 				if(T.x == origin_x && T.y == origin_y) //Get the middle of the square.
 					origin = T
 				if(isturf(floor_type))
 					T.ChangeTurf(floor_type)
+					T.flags |= ADMIN_SPAWNED
 				else
-					new floor_type(T)
+					var/atom/new_thing = new floor_type(T)
+					new_thing.flags |= ADMIN_SPAWNED
+
 	if(area_enabled) //Let's try not to make a new area unless you got walls and a floor.
 		create_buildmode_area(area_name, origin) //Generates a new area.
 
