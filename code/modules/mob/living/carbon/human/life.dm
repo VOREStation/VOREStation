@@ -536,11 +536,6 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		if(breath && should_have_organ(O_LUNGS))
-			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised())
-				rupture_lung(TRUE)
-
 		throw_alert("oxy", /atom/movable/screen/alert/not_enough_atmos)
 		return 0
 	else
