@@ -544,6 +544,9 @@
 		if(istype(to_despawn, /mob/living/dominated_brain))
 			depart_announce = FALSE
 
+		if(to_despawn.client?.prefs?.read_preference(/datum/preference/toggle/living/radio_announce) == FALSE)
+			depart_announce = FALSE
+
 		if(depart_announce)
 			announce.autosay("[to_despawn.real_name][departing_job ? ", [departing_job], " : " "][on_store_message]", "[on_store_name]", announce_channel, using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
 			visible_message(span_notice("\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2]"), 3)
