@@ -779,6 +779,36 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			log_admin("BUILDMODE/ITEM GENERATION: [key_name(usr)] selected [result] to be spawned.")
 	return result
 
+	//See below for attempt at incorporating spawn panel into it. Sadly, the spawn panel doesn't return anything, so can't use it.
+	/*
+	var/static/list/atom_types
+	if(isnull(atom_types))
+		atom_types = subtypesof(/atom)
+
+	var/mob/user_mob = usr
+	var/client/user = user_mob.client
+
+	var/chosen_path = null
+	var/list/preparsed = null
+	if(default_path)
+		preparsed = splittext(default_path, ":")
+		var/list/matches = filter_fancy_list(atom_types, preparsed[1])
+		if(length(matches) == 1)
+			chosen_path = matches[1]
+			log_admin("BUILDMODE/ITEM GENERATION: [key_name(usr)] selected [chosen_path] to be spawned.")
+			return chosen_path
+
+	if(!chosen_path)
+		var/datum/spawn_menu/menu = user.holder.spawn_menu
+		if(!menu)
+			menu = new()
+			user.holder.spawn_menu = menu
+		menu.init_value = default_path
+		menu.tgui_interact(user.mob)
+		feedback_add_details("admin_verb","SA")
+		return
+	*/
+
 /obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type, var/area_enabled, var/area_name)
 	if(!A || !B) // No coords
 		return
