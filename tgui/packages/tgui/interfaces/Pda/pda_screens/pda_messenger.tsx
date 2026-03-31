@@ -159,7 +159,7 @@ const PDAList = (props: { pdas: pda[]; title: string; msgAct: string }) => {
 
   const { charges, plugins = [] } = data;
 
-  if (!pdas || !pdas.length) {
+  if (!pdas?.length) {
     return <Section title={title}>No PDAs found.</Section>;
   }
 
