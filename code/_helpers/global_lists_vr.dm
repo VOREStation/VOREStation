@@ -1289,6 +1289,10 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/spacecasinocash, \
 	/obj/item/spacecasinocash_fake, \
 	/obj/item/hand, \
+	/obj/item/card/id, \
+	/obj/item/pen, \
+	/obj/item/leash, \
+	/obj/item/paper, \
 	/obj/item/a_gift
 
 #define ORGAN_GRIPPER \

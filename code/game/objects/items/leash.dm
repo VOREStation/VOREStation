@@ -32,6 +32,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/mob/living/leash_pet = null //Variable to store our pet later
 	var/mob/living/leash_master = null //And our master too
+	var/doubleclick = FALSE //This is awful, but necessary for borgs to use leashes. Grippers call both attack() and attackby() for their functionality, attaching and detaching the leash, so this var essentially disables using the leash in very quick succession
 
 /obj/item/leash/Destroy()
 	// Just in case
@@ -39,9 +40,11 @@
 	return ..()
 
 /obj/item/leash/process()
+	if(doubleclick)
+		doubleclick = FALSE
 	if(!leash_pet)
 		return
-	if(!is_wearing_collar(leash_pet)) //The pet has slipped their collar and is not the pet anymore.
+	if(!is_wearing_collar(leash_pet) && istype(leash_pet, /mob/living/carbon/human)) //The pet has slipped their collar and is not the pet anymore.
 		leash_pet.visible_message(
 			span_warning("[leash_pet] has slipped out of [leash_pet.p_their()] collar!"),
 			span_warning("You have slipped out of your collar!")
@@ -52,8 +55,11 @@
 		clear_leash()
 
 //Called when someone is clicked with the leash
-/obj/item/leash/attack(mob/living/carbon/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
+/obj/item/leash/attack(mob/living/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
 	if(C.alerts && C.alerts["leashed"]) //If the pet is already leashed, do not leash them. For the love of god.
+		if(doubleclick)//prevents grippers from immediately unhooking the leash due to calling attack() and attackby() in quick succession
+			doubleclick = FALSE
+			return
 		// If they re-click, remove the leash
 		if (C == leash_pet && user == leash_master)
 			unleash()
@@ -66,20 +72,22 @@
 		to_chat(user, span_notice("You cannot leash yourself!"))
 		return
 
-	if (!is_wearing_collar(C))
-		to_chat(user, span_notice("[C] needs a collar before you can attach a leash to it."))
-		return
-
 	var/leashtime = 35
-	if(C.handcuffed)
-		leashtime = 5
+
+	if(istype(C, /mob/living/carbon/human))
+		var/mob/living/carbon/human/humantarget = C
+		if (!is_wearing_collar(humantarget))
+			to_chat(user, span_notice("[humantarget] needs a collar before you can attach a leash to it."))
+			return
+		if(humantarget.handcuffed)
+			leashtime = 5
 
 	C.visible_message(span_danger("\The [user] is attempting to put the leash on \the [C]!"), span_danger("\The [user] tries to put a leash on you"))
 	add_attack_logs(user,C,"Leashed (attempt)")
 	if(!do_after(user, leashtime, C)) //do_mob adds a progress bar, but then we also check to see if they have a collar
 		return
-	if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
-		return
+	/* if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
+		return  DONT LEAVE THIS COMMENTED OUT, TESTING ONLY*/
 
 	C.visible_message(span_danger("\The [user] puts a leash on \the [C]!"), span_danger("The leash clicks onto your collar!"))
 
@@ -94,6 +102,7 @@
 	RegisterSignal(leash_master, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
 
 	START_PROCESSING(SSobj, src)
+	doubleclick = TRUE
 
 //Called when the leash is used in hand
 //Tugs the pet closer
@@ -222,13 +231,13 @@
 	slowdown = 5
 
 // Utility functions
-/obj/item/proc/apply_tug_mob_to_mob(mob/living/carbon/tug_pet, mob/living/carbon/tug_master, distance = 2)
+/obj/item/proc/apply_tug_mob_to_mob(mob/living/tug_pet, mob/living/tug_master, distance = 2)
 	apply_tug_position(tug_pet, tug_pet.x, tug_pet.y, tug_master.x, tug_master.y, distance)
 
-/obj/item/proc/apply_tug_mob_to_object(mob/living/carbon/tug_pet, obj/tug_master, distance = 2)
+/obj/item/proc/apply_tug_mob_to_object(mob/living/tug_pet, obj/tug_master, distance = 2)
 	apply_tug_position(tug_pet, tug_pet.x, tug_pet.y, tug_master.x, tug_master.y, distance)
 
-/obj/item/proc/apply_tug_object_to_mob(obj/tug_pet, mob/living/carbon/tug_master, distance = 2)
+/obj/item/proc/apply_tug_object_to_mob(obj/tug_pet, mob/living/tug_master, distance = 2)
 	apply_tug_position(tug_pet, tug_pet.x, tug_pet.y, tug_master.x, tug_master.y, distance)
 
 // TODO: improve this for bigger distances, where it's easy to hide behind something and break the tugging
