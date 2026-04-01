@@ -229,6 +229,8 @@
 		if(prob(15))
 			person.Stun(2)
 			to_chat(person, span_danger(pick("You have a coughing fit!", "You can't stop coughing!")))
-			addtimer(CALLBACK(person, TYPE_PROC_REF(/mob, emote), "cough"), 1 SECONDS)
-			addtimer(CALLBACK(person, TYPE_PROC_REF(/mob, emote), "cough"), 3 SECONDS)
-			addtimer(CALLBACK(person, TYPE_PROC_REF(/mob, emote), "cough"), 6 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(extraCough), person), 3 SECONDS)
+
+/obj/item/assembly/signaler/anomaly/dust/proc/extraCough(mob/living/coughing)
+	coughing.emote("cough")
+	addtimer(CALLBACK(coughing, TYPE_PROC_REF(/mob, emote), "cough"), 3 SECONDS)
