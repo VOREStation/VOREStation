@@ -50,6 +50,8 @@
 			list(
 				"id" = dat.id,
 				"name" = dat.desc,
+				"region" = dat.region,
+				"access_type" = dat.access_type,
 			)
 		)
 	data["access_list"] = access_list
