@@ -21,28 +21,37 @@ type Access = {
 export const AccessViewer = (props) => {
   const { act, data } = useBackend<Data>();
   const { access_list, name, coords, req_access, req_one_access } = data;
+
+  access_list.map((entry) => {
+    entry.has_req = req_access.includes(entry.id);
+    entry.has_req_one = req_one_access.includes(entry.id);
+  });
+
   return (
     <Window width={520} height={540}>
       <Window.Content scrollable>
-        <Section title={`${name}'s access at ${coords}`}>
+        <Section title={`${name}'s access`}>
           <LabeledList>
+            <LabeledList.Item label="Coords">{coords}</LabeledList.Item>
             {access_list.map((entry) => (
               <LabeledList.Item
                 label={`${entry.id}: ${entry.name}`}
                 key={entry.id}
               >
-                <Button
+                <Button.Checkbox
+                  checked={entry.has_req}
                   color={entry.has_req ? 'good' : 'bad'}
                   onClick={() => act('req_all', { set_id: entry.id })}
                 >
                   Requires
-                </Button>
-                <Button
+                </Button.Checkbox>
+                <Button.Checkbox
+                  checked={entry.has_req_one}
                   color={entry.has_req_one ? 'good' : 'bad'}
                   onClick={() => act('req_one', { set_id: entry.id })}
                 >
                   Have Any
-                </Button>
+                </Button.Checkbox>
               </LabeledList.Item>
             ))}
           </LabeledList>
