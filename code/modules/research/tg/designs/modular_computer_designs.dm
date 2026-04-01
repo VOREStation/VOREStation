@@ -1,6 +1,7 @@
 // Hard drives
 
 /datum/design_techweb/modularcomponent
+	desc = "A component for a modular computer. Used to upgrade and extend the computer's features."
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_MODULAR_COMPUTERS + RND_SUBCATEGORY_MODULAR_COMPUTERS_PARTS

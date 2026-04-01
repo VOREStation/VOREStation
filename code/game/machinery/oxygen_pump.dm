@@ -39,7 +39,7 @@
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
 	var/mob/living/user = usr
-	if(!istype(user) || !istype(target))
+	if(!istype(user) || !istype(target) || user.is_incorporeal())
 		return ..()
 
 	if(CanMouseDrop(target, user))
@@ -54,6 +54,8 @@
 		src.add_fingerprint(user)
 
 /obj/machinery/oxygen_pump/attack_hand(mob/user as mob)
+	if(user.is_incorporeal())
+		return
 	if((stat & MAINT) && tank)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " removes \the [tank] from \the [src]."), span_notice("You remove \the [tank] from \the [src]."))
 		user.put_in_hands(tank)
@@ -128,6 +130,8 @@
 	return 1
 
 /obj/machinery/oxygen_pump/attackby(obj/item/W as obj, mob/user as mob)
+	if(user.is_incorporeal())
+		return
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		stat ^= MAINT
 		user.visible_message(span_notice("\The [user] [(stat & MAINT) ? "opens" : "closes"] \the [src]."), span_notice("You [(stat & MAINT) ? "open" : "close"] \the [src]."))

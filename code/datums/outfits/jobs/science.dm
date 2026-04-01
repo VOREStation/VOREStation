@@ -50,3 +50,7 @@
 	backpack = /obj/item/storage/backpack
 	satchel_one = /obj/item/storage/backpack/satchel/norm
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/roboticist
+
+/datum/decl/hierarchy/outfit/job/science/scientist/anomalist
+	name = OUTFIT_JOB_NAME(JOB_ALT_ANOMALIST)
+	backpack_contents = list(/obj/item/storage/box/anomaly = 1)

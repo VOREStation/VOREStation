@@ -1,0 +1,3 @@
+#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_DEFAULT "default_container"
+#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_WATERCOOLER "watercooler_container"
+#define REAGENT_CONTAINER_CAN_BE_PLACED_INTO_NONE "forbidden_container"

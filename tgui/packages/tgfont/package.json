@@ -7,7 +7,7 @@
 		"tgfont:build": "svgo icons && node svgtofont.mjs"
 	},
 	"dependencies": {
-		"svgo": "^4.0.0",
+		"svgo": "^4.0.1",
 		"svgtofont": "^6.5.1"
 	}
 }

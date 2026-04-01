@@ -138,7 +138,7 @@
 	user.visible_message(span_notice("[user] opens the maintenance hatch on [target]'s [affected.name] with \the [tool]."), \
 										span_notice("You open the maintenance hatch on [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("opens the maintenance hatch on [target]'s [affected.name]", "maintenance hatch on \the [affected.name] open")
-	affected.open = BONE_CUT
+	affected.open = BONE_RETRACTED
 
 /datum/surgery_step/robotics/open_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -583,7 +583,7 @@
 				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))
 				if(okay == "Ok")
 					new_name = clean_name
-					break //ChompEDIT infinite rename bug
+					break
 
 		new_name = sanitizeName(new_name, allow_numbers = TRUE)
 		target.name = new_name

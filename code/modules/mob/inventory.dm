@@ -1,22 +1,22 @@
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list( \
-		slot_back,\
-		slot_wear_id,\
-		slot_w_uniform,\
-		slot_wear_suit,\
-		slot_wear_mask,\
-		slot_head,\
-		slot_shoes,\
-		slot_gloves,\
-		slot_l_ear,\
-		slot_r_ear,\
-		slot_glasses,\
-		slot_belt,\
-		slot_s_store,\
-		slot_tie,\
-		slot_l_store,\
-		slot_r_store\
-	)
+GLOBAL_LIST_INIT(slot_equipment_priority, list(
+		slot_back,
+		slot_wear_id,
+		slot_w_uniform,
+		slot_wear_suit,
+		slot_wear_mask,
+		slot_head,
+		slot_shoes,
+		slot_gloves,
+		slot_l_ear,
+		slot_r_ear,
+		slot_glasses,
+		slot_belt,
+		slot_s_store,
+		slot_tie,
+		slot_l_store,
+		slot_r_store
+	))
 
 /mob
 	var/obj/item/storage/s_active = null // Even ghosts can/should be able to peek into boxes on the ground
@@ -87,7 +87,7 @@ var/list/slot_equipment_priority = list( \
 //puts the item "W" into an appropriate slot in a human's inventory
 //returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
-	for(var/slot in slot_equipment_priority)
+	for(var/slot in GLOB.slot_equipment_priority)
 		if(equip_to_slot_if_possible(W, slot, del_on_fail=0, disable_warning=1, redraw_mob=1))
 			return 1
 

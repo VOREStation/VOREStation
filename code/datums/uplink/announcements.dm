@@ -26,7 +26,7 @@
 
 /datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/uplink/U, var/location, var/mob/user, var/list/arguments)
 	post_comm_message(arguments["title"], replacetext(arguments["message"], "\n", "<br/>"))
-	command_announcement.Announce(arguments["message"], arguments["title"])
+	GLOB.command_announcement.Announce(arguments["message"], arguments["title"])
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival

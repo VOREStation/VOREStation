@@ -1,5 +1,3 @@
-#define MAT_ALGAE "algae"
-
 /obj/machinery/atmospherics/binary/algae_farm
 	name = "algae oxygen generator"
 	desc = "An oxygen generator using algae to convert carbon dioxide to oxygen."
@@ -303,5 +301,3 @@
 
 /obj/item/stack/material/algae/ten
 	amount = 10
-
-#undef MAT_ALGAE

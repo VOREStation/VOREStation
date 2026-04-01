@@ -4,7 +4,7 @@
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = 1		//indicates that the mind is currently synced with a client
 	//If they're SSD, remove it so they can wake back up.
-	update_antag_icons(mind)
+	SSantag_job.update_antag_icons(mind)
 	client.screen |= GLOB.global_hud.darksight
 	client.images |= dsoverlay
 
@@ -37,7 +37,7 @@
 	add_verb(src,/mob/proc/nme_vore_ch)
 	add_verb(src,/mob/proc/enter_soulcatcher)
 
-	if(!voice_sounds_list.len || !voice_sounds_list)
+	if(!length(voice_sounds_list))
 		if(client.prefs.voice_sound)
 			var/prefsound = client.prefs.voice_sound
 			voice_sounds_list = get_talk_sound(prefsound)

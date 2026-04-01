@@ -197,6 +197,7 @@
 	light_power = 1
 	light_color = "#FFFFFF"
 	light_on = TRUE
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/atmospheric_retention_field/update_icon()
 	cut_overlays() //overlays.Cut()

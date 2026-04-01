@@ -7,6 +7,7 @@
 	var/teleport_range = 1
 	///Distance we can teleport someone passively
 	var/teleport_distance = 4
+	danger_mult = 1.1
 
 /obj/effect/anomaly/bluespace/Initialize(mapload, new_lifespan)
 	. = ..()
@@ -92,3 +93,43 @@
 	color = COLOR_BLUE_LIGHT
 	duration = 1 SECONDS
 	amount_to_scale = 5
+
+/obj/effect/anomaly/bluespace/anomalyPulse()
+	if(!..())
+		return
+
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		if(16 to 33)
+			pulse_teleport(4, 1)
+		if(34 to 65)
+			pulse_teleport(5, 2)
+		else
+			pulse_teleport(6, 3)
+
+/obj/effect/anomaly/bluespace/proc/pulse_teleport(range, count)
+	var/list/possible = list()
+
+	for(var/obj/item/radio/beacon in GLOB.all_beacons)
+		var/turf/turf = get_turf(beacon)
+		if(!turf)
+			continue
+		if(!check_teleport_valid(src, turf))
+			continue
+		possible += beacon
+
+	var/chosen = pick(possible)
+
+	var/list/things = list()
+	for(var/atom/movable/thing in orange(range, get_turf(src)))
+		if(istype(thing, /obj/item/radio/beacon) || iseffect(thing) || isEye(thing))
+			continue
+		if(thing.anchored)
+			continue
+		things += thing
+
+	for(var/i in 1 to count)
+		do_teleport(pick(things), get_turf(chosen))

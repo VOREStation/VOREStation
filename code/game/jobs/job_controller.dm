@@ -50,7 +50,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
 			return 0
-		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data[O_BRAIN])))
+		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.read_preference(/datum/preference/choiced/species), player.client.prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])))
 			return 0
 		if(jobban_isbanned(player, rank))
 			return 0
@@ -100,7 +100,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		if(!job.player_old_enough(player.client))
 			Debug("FOC player not old enough, Player: [player]")
 			continue
-		if(job.minimum_character_age && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data[O_BRAIN])))
+		if(job.minimum_character_age && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.read_preference(/datum/preference/choiced/species), player.client.prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])))
 			Debug("FOC character not old enough, Player: [player]")
 			continue
 		//VOREStation Code Start
@@ -125,7 +125,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		if(!job)
 			continue
 
-		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data[O_BRAIN])))
+		if((job.minimum_character_age || job.min_age_by_species) && (player.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(player.client.prefs.read_preference(/datum/preference/choiced/species), player.client.prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])))
 			continue
 
 		if(istype(job, GetJob(JOB_ALT_VISITOR))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
@@ -183,10 +183,10 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 				if(!V.client) continue
 				var/age = V.read_preference(/datum/preference/numeric/human/age)
 
-				if(age < job.get_min_age(V.client.prefs.species, V.client.prefs.organ_data[O_BRAIN])) // Nope.
+				if(age < job.get_min_age(V.client.prefs.read_preference(/datum/preference/choiced/species), V.client.prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])) // Nope.
 					continue
 
-				var/idealage = job.get_ideal_age(V.client.prefs.species, V.client.prefs.organ_data[O_BRAIN])
+				var/idealage = job.get_ideal_age(V.client.prefs.read_preference(/datum/preference/choiced/species), V.client.prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])
 				var/agediff = abs(idealage - age) // Compute the absolute difference in age from target
 				switch(agediff) /// If the math sucks, it's because I almost failed algebra in high school.
 					if(20 to INFINITY)
@@ -392,7 +392,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		if(H?.client?.prefs && !(job.mob_type & JOB_SILICON))
 			var/list/active_gear_list = LAZYACCESS(H.client.prefs.gear_list, "[H.client.prefs.gear_slot]")
 			for(var/thing in active_gear_list)
-				var/datum/gear/G = gear_datums[thing]
+				var/datum/gear/G = GLOB.gear_datums[thing]
 				if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
 					continue
 
@@ -456,7 +456,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 
 		// If some custom items could not be equipped before, try again now.
 		for(var/thing in custom_equip_leftovers)
-			var/datum/gear/G = gear_datums[thing]
+			var/datum/gear/G = GLOB.gear_datums[thing]
 			if(G.slot == slot_wear_suit && H.client?.prefs?.no_jacket)
 				continue
 			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
@@ -508,7 +508,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		// TWEET PEEP
 		if(rank == JOB_SITE_MANAGER && announce)
 			var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
-			captain_announcement.Announce("All hands, [alt_title ? alt_title : JOB_SITE_MANAGER] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
+			GLOB.captain_announcement.Announce("All hands, [alt_title ? alt_title : JOB_SITE_MANAGER] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
 		//Deferred item spawning.
 		if(spawn_in_storage && spawn_in_storage.len)
@@ -521,7 +521,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 			if(!isnull(B))
 				for(var/thing in spawn_in_storage)
 					to_chat(H, span_notice("Placing \the [thing] in your [B.name]!"))
-					var/datum/gear/G = gear_datums[thing]
+					var/datum/gear/G = GLOB.gear_datums[thing]
 					var/metadata = active_gear_list[G.display_name]
 					G.spawn_item(B, metadata)
 			else
@@ -766,7 +766,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 			else
 				to_chat(C, span_warning("No predators were available to accept you."))
 				return
-			spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
+			spawnpos = GLOB.spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
 		if(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) == "Vorespawn - Pred") //Same as above, but in reverse!
 			var/list/preys = list()
 			var/list/prey_names = list() //This is still cringe
@@ -946,7 +946,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 					to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
 					spawnpos = null
 			else
-				spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
+				spawnpos = GLOB.spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
 
 	//We will return a list key'd by "turf" and "msg"
 	. = list("turf","msg", "voreny", "prey", "itemtf", "vorgans", "carrier") // Item TF spawnpoints, spawn as mob
@@ -960,7 +960,7 @@ GLOBAL_DATUM(job_master, /datum/controller/occupations)
 		.["carrier"] = item_carrier
 		.["vorgans"] = vorgans
 		.["itemtf"] = item_to_be
-	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
+	if(spawnpos && istype(spawnpos) && length(spawnpos.turfs))
 		if(spawnpos.check_job_spawning(rank))
 			.["turf"] = spawnpos.get_spawn_position()
 			.["msg"] = spawnpos.msg

@@ -103,7 +103,7 @@
 /obj/item/gift
 	name = "gift"
 	desc = "A wrapped item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/gifts.dmi'
 	icon_state = "gift3"
 	var/size = 3.0
 	var/obj/item/gift = null
@@ -210,7 +210,7 @@
 	icon_state = "power_mod"
 	item_state = "std_mod"
 	desc = "Heavy-duty switching circuits for power control."
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 
 /obj/item/module/id_auth
 	name = "\improper ID authentication module"

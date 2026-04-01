@@ -1,6 +1,5 @@
 
 /mob/new_player/proc/handle_privacy_poll()
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 	var/voted = 0
@@ -47,7 +46,6 @@
 	var/optiontext
 
 /mob/new_player/proc/handle_player_polling()
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 		var/isadmin = 0
 		if(src.client && check_rights_for(src.client, R_HOLDER))
@@ -81,7 +79,6 @@
 
 /mob/new_player/proc/poll_player(var/pollid = -1)
 	if(pollid == -1) return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid]")
@@ -343,7 +340,6 @@
 
 	if(!isnum(pollid) || !isnum(optionid))
 		return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
@@ -415,7 +411,6 @@
 
 	if(!isnum(pollid) || !istext(replytext))
 		return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
@@ -475,7 +470,6 @@
 
 	if(!isnum(pollid) || !isnum(optionid))
 		return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")

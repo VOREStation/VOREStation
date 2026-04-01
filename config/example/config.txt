@@ -58,9 +58,6 @@ BAN_LEGACY_SYSTEM
 ## Configure how fast explosion strength diminishes when travelling up/down z levels. All explosion distances are multiplied by this each time they go up/down z-levels.
 #MULTI_Z_EXPLOSION_SCALAR 0.5
 
-# Radiation weakens with distance from the source; stop calculating when the strength falls below this value.   Lower values mean radiation reaches smaller (with increasingly trivial damage) at the cost of more CPU usage.  Max range =  DISTANCE^2 * POWER / RADIATION_LOWER_LIMIT
-# RADIATION_LOWER_LIMIT	0.35
-
 ## disconnect players who did nothing during the set amount of minutes
 KICK_INACTIVE 30
 
@@ -472,24 +469,6 @@ GIVE_FREE_AI_SHELL
 ## This requires solar controller computers in the map to be set up to use it, with the auto_start variable.
 # AUTOSTART_SOLARS
 
-## Rate of radiation decay (how much it's reduced by) per life tick
-RADIATION_DECAY_RATE 1
-
-## Lower limit on radiation for actually irradiating things on a turf
-RADIATION_LOWER_LIMIT 0.35
-
-## Multiplier for radiation resistances when tracing a ray from source to destination to compute radiation on a turf
-RADIATION_RESISTANCE_MULTIPLIER 8.5
-
-## Divisor for material weights when computing radiation resistance of a material object (walls)
-RADIATION_MATERIAL_RESISTANCE_DIVISOR 1
-
-## Mode of computing radiation resistance into effective radiation on a turf
-## 0:1 subtraction:division for computing effective radiation on a turf
-## 0 / RAD_RESIST_CALC_DIV = Each turf absorbs some fraction of the working radiation level
-## 1 / RAD_RESIST_CALC_SUB = Each turf absorbs a fixed amount of radiation
-RADIATION_RESISTANCE_CALC_MODE 1
-
 ## IP Reputation Checking
 # Enable/disable IP reputation checking (present/nonpresent)
 #IP_REPUTATION
@@ -567,6 +546,11 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 # The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
 # REQUIRES chatlog_database_backend to be enabled
 #CHATLOG_DATABASE_API_ENDPOINT https://example.com
+
+# Logs player logs inside the Database. Reduces memory usage, but increases cpu load
+# REQUIRES an database
+# Uncomment to enable
+#DATABASE_LOGGING
 
 ## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
 #FORBID_ADMIN_PROFILING

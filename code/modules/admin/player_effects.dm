@@ -1,5 +1,5 @@
 
-ADMIN_VERB(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in get_mob_with_client_list())
 	var/datum/eventkit/player_effects/spawner = new()
 	spawner.target = target
 	spawner.tgui_interact(user.mob)
@@ -776,19 +776,18 @@ ADMIN_VERB(player_effects, R_FUN, "Player Effects", "Modify a player character w
 				target.dust()
 
 		if("paralyse")
-			var/mob/living/Tar = target
-			if(!istype(Tar))
+			if(!isliving(target))
 				return
-			ui.user.client.holder.paralyze_mob(Tar)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/paralyze_mob, target)
 
 		if("subtle_message")
-			ui.user.client.cmd_admin_subtle_message(target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/cmd_admin_subtle_message, target)
 
 		if("direct_narrate")
-			ui.user.client.cmd_admin_direct_narrate(target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/cmd_admin_direct_narrate, target)
 
 		if("player_panel")
-			SSadmin_verbs.dynamic_invoke_verb(ui.user, /datum/admin_verb/show_player_panel, target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
 			ui.user.client.debug_variables(target)

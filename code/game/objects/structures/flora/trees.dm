@@ -124,10 +124,6 @@
 	if(Proj.get_structure_damage())
 		adjust_health(-Proj.get_structure_damage(), TRUE)
 
-/obj/structure/flora/tree/tesla_act(power, explosive)
-	adjust_health(-power / 100, TRUE) // Kills most trees in one lightning strike.
-	..()
-
 /obj/structure/flora/tree/get_description_interaction()
 	var/list/results = list()
 
@@ -264,7 +260,7 @@
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_sif"
 	base_state = "tree_sif"
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	product = /obj/item/stack/material/log/sif
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 	randomize_size = TRUE

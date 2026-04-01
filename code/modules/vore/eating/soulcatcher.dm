@@ -104,7 +104,7 @@
 			for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 				to_chat(CS, message)
 
-	sender.log_talk("NSAY (NIF:[owner.real_name]): [message]", LOG_SAY)
+	sender.log_talk("NSAY (SC:[owner.real_name]): [message]", LOG_SAY, color="#ff006f")
 
 // Forwards the emotes of captured souls
 /obj/soulgem/proc/use_emote(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
@@ -127,7 +127,7 @@
 			for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 				to_chat(CS, message)
 
-	sender.log_message("NME (NIF:[owner.real_name]): [message]", LOG_EMOTE)
+	sender.log_message("NME (SC:[owner.real_name]): [message]", LOG_EMOTE, color="#ff006f")
 
 // The capture function which transfers the given mob's mind into the soulcatcher
 /obj/soulgem/proc/catch_mob(var/mob/M, var/custom_name)

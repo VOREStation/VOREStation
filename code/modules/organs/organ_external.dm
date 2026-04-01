@@ -666,11 +666,13 @@ This function completely restores a damaged organ to perfect condition.
 
 	if(owner && !ignore_prosthetic_prefs)
 		if(owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
-			var/status = owner.client.prefs.organ_data[organ_tag]
+			var/list/organ_data = owner.client.prefs.read_preference(/datum/preference/organ_data)
+			var/status = organ_data?[organ_tag]
 			if(status == "amputated")
 				remove_rejuv()
 			else if(status == "cyborg")
-				var/robodata = owner.client.prefs.rlimb_data[organ_tag]
+				var/list/rlimb_data = owner.client.prefs.read_preference(/datum/preference/rlimb_data)
+				var/robodata = rlimb_data?[organ_tag]
 				if(robodata)
 					robotize(robodata)
 				else

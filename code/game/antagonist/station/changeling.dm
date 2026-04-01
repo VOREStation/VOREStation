@@ -82,10 +82,11 @@
 			return 1
 		else if(isnewplayer(player.current))
 			if(player.current.client && player.current.client.prefs)
-				var/datum/species/S = GLOB.all_species[player.current.client.prefs.species]
+				var/datum/species/S = GLOB.all_species[player.current.client.prefs.read_preference(/datum/preference/choiced/species)]
 				if(S && (S.flags & (NO_SLEEVE|NO_DNA)))
 					return 0
-				if(player.current.client.prefs.organ_data[BP_TORSO] == "cyborg") // Full synthetic. // TODO, this to issynthetic()?
+				var/list/organ_data = player.current.client.prefs.read_preference(/datum/preference/organ_data)
+				if(organ_data && organ_data[BP_TORSO] == "cyborg") // Full synthetic. // TODO, this to issynthetic()?
 					return 0
 				return 1
 	return 0

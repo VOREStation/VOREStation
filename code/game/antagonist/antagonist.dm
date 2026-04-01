@@ -124,7 +124,7 @@
 		else if(!can_become_antag(player))
 			candidates -= player
 			log_game("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role! They have been removed from the draft.")
-		else if(player_is_antag(player))
+		else if(SSantag_job.player_is_antag(player))
 			candidates -= player
 			log_game("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist! They have been removed from the draft.")
 

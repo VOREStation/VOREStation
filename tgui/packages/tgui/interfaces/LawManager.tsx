@@ -21,10 +21,10 @@ type Data = {
   inherent_law: string;
   supplied_law: string;
   supplied_law_position: number;
-  zeroth_laws: law[];
-  ion_laws: law[];
-  inherent_laws: law[];
-  supplied_laws: law[];
+  zeroth_laws: Law[];
+  ion_laws: Law[];
+  inherent_laws: Law[];
+  supplied_laws: Law[];
   has_zeroth_laws: number;
   has_ion_laws: number;
   has_inherent_laws: number;
@@ -35,26 +35,26 @@ type Data = {
   isAdmin: BooleanLike;
   channel: string;
   channels: { channel: string }[];
-  law_sets: law_pack[];
+  law_sets: LawPack[];
 };
 
-type law_pack = {
+type LawPack = {
   name: string;
   header: string;
   ref: string;
   laws: {
-    zeroth_laws: law[];
+    zeroth_laws: Law[];
     has_zeroth_laws: number;
-    ion_laws: law[];
+    ion_laws: Law[];
     has_ion_laws: number;
-    inherent_laws: law[];
+    inherent_laws: Law[];
     has_inherent_laws: number;
-    supplied_laws: law[];
+    supplied_laws: Law[];
     has_supplied_laws: number;
   };
 };
 
-type law = {
+type Law = {
   law: string;
   index: number;
   state: number;
@@ -166,10 +166,10 @@ export const LawManagerLaws = (props: {
   inherent_law: string;
   supplied_law: string;
   supplied_law_position: number;
-  zeroth_laws: law[];
-  ion_laws: law[];
-  inherent_laws: law[];
-  supplied_laws: law[];
+  zeroth_laws: Law[];
+  ion_laws: Law[];
+  inherent_laws: Law[];
+  supplied_laws: Law[];
   has_zeroth_laws: number;
   has_ion_laws: number;
   has_inherent_laws: number;
@@ -380,7 +380,7 @@ export const LawManagerLaws = (props: {
 };
 
 const LawsTable = (props: {
-  laws: law[];
+  laws: Law[];
   title: string;
   noButtons?: BooleanLike;
   [rest: string]: any;
@@ -407,7 +407,7 @@ const LawsTable = (props: {
             ''
           )}
         </Table.Row>
-        {laws.map((law: law) => (
+        {laws.map((law) => (
           <Table.Row key={law.index}>
             <Table.Cell collapsing>{law.index}.</Table.Cell>
             <Table.Cell color={law.zero ? 'bad' : undefined}>
@@ -462,7 +462,7 @@ const LawsTable = (props: {
 };
 
 export const LawManagerLawSets = (props: {
-  law_sets: law_pack[];
+  law_sets: LawPack[];
   ion_law_nr: string;
   searchLawName: string;
   onSearchLawName: React.Dispatch<React.SetStateAction<string>>;
@@ -493,86 +493,85 @@ export const LawManagerLawSets = (props: {
         onChange={(value: string) => onSearchLawName(value)}
       />
       {law_sets.length
-        ? prepareSearch(law_sets, searchLawName).map((laws) => (
-            <Section
-              key={laws.name}
-              title={laws.name}
-              buttons={
-                <Stack>
-                  <Stack.Item>
-                    <Button
-                      disabled={!isMalf}
-                      icon="sync"
-                      onClick={() =>
-                        act('transfer_laws', { transfer_laws: laws.ref })
-                      }
-                    >
-                      Load Laws
-                    </Button>
-                  </Stack.Item>
-                  <Stack.Item>
-                    <Button
-                      icon="volume-up"
-                      onClick={() =>
-                        act('state_law_set', { state_law_set: laws.ref })
-                      }
-                    >
-                      State Laws
-                    </Button>
-                  </Stack.Item>
-                </Stack>
-              }
-            >
-              {laws.laws.has_ion_laws ? (
-                <LawsTable
-                  noButtons
-                  laws={laws.laws.ion_laws}
-                  title={`${ion_law_nr} Laws:`}
-                  isAdmin={isAdmin}
-                  isMalf={isMalf}
-                />
-              ) : (
-                ''
-              )}
-              {laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws ? (
-                <LawsTable
-                  noButtons
-                  laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
-                  title={laws.header}
-                  isAdmin={isAdmin}
-                  isMalf={isMalf}
-                />
-              ) : (
-                ''
-              )}
-              {laws.laws.has_supplied_laws ? (
-                <LawsTable
-                  noButtons
-                  laws={laws.laws.supplied_laws}
-                  title="Supplied Laws"
-                  isAdmin={isAdmin}
-                  isMalf={isMalf}
-                />
-              ) : (
-                ''
-              )}
-            </Section>
-          ))
+        ? prepareSearch(law_sets, searchLawName)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((laws) => (
+              <Section
+                key={laws.name}
+                title={laws.name}
+                buttons={
+                  <Stack>
+                    <Stack.Item>
+                      <Button
+                        disabled={!isMalf}
+                        icon="sync"
+                        onClick={() =>
+                          act('transfer_laws', { transfer_laws: laws.ref })
+                        }
+                      >
+                        Load Laws
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="volume-up"
+                        onClick={() =>
+                          act('state_law_set', { state_law_set: laws.ref })
+                        }
+                      >
+                        State Laws
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                }
+              >
+                {laws.laws.has_ion_laws ? (
+                  <LawsTable
+                    noButtons
+                    laws={laws.laws.ion_laws}
+                    title={`${ion_law_nr} Laws:`}
+                    isAdmin={isAdmin}
+                    isMalf={isMalf}
+                  />
+                ) : (
+                  ''
+                )}
+                {laws.laws.has_zeroth_laws || laws.laws.has_inherent_laws ? (
+                  <LawsTable
+                    noButtons
+                    laws={laws.laws.zeroth_laws.concat(laws.laws.inherent_laws)}
+                    title={laws.header}
+                    isAdmin={isAdmin}
+                    isMalf={isMalf}
+                  />
+                ) : (
+                  ''
+                )}
+                {laws.laws.has_supplied_laws ? (
+                  <LawsTable
+                    noButtons
+                    laws={laws.laws.supplied_laws}
+                    title="Supplied Laws"
+                    isAdmin={isAdmin}
+                    isMalf={isMalf}
+                  />
+                ) : (
+                  ''
+                )}
+              </Section>
+            ))
         : ''}
     </>
   );
 };
 
-const prepareSearch = (
-  laws: law_pack[],
-  searchText: string = '',
-): law_pack[] => {
-  const testSearch = createSearch(
+const prepareSearch = (laws: LawPack[], searchText: string = ''): LawPack[] => {
+  const testSearch = createSearch<LawPack>(
     searchText,
-    (law: law_pack) => law.name + law.header,
+    (law) => law.name + law.header,
   );
   return flow([
-    (laws: law_pack[]) => {
+    (laws: LawPack[]) => {
       // Optional search term
       if (!searchText) {
         return laws;

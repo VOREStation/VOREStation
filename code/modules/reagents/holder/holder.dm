@@ -70,6 +70,8 @@
 	total_volume = 0
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
+			if(isliving(R.holder.my_atom))
+				R.on_mob_end_metabolize(R.holder.my_atom, src)
 			del_reagent(R.id)
 		else
 			total_volume += R.volume
@@ -366,6 +368,8 @@
 
 /datum/reagents/proc/touch_mob(var/mob/target)
 	if(!target || !istype(target))
+		return
+	if(target.is_incorporeal()) // I really cannot imagine any scenario in which you would want reagent touch clouds to affect phased shadekin, so putting it here instead of higher up.
 		return
 
 	for(var/datum/reagent/current in reagent_list)

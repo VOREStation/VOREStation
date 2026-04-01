@@ -1,8 +1,3 @@
-/client/proc/kaboom()
-	var/power = tgui_input_number(src, "power?", "power?")
-	var/turf/T = get_turf(src.mob)
-	explosion(T, power)
-
 /turf
 	var/explosion_resistance
 

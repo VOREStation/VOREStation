@@ -167,7 +167,7 @@
 	stack_type = /obj/item/stack/material/log/hard
 
 /datum/material/wood/stick
-	name = "wooden stick"
+	name = MAT_WOODEN_STICK
 	icon_colour = "#824B28"
 	display_name = MAT_WOOD
 	icon_base = "stick"

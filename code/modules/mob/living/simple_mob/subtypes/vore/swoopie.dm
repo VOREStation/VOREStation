@@ -47,9 +47,6 @@
 
 	var/static/list/crew_creatures = list(	/mob/living/simple_mob/protean_blob,
 											/mob/living/simple_mob/slime/promethean)
-	var/static/list/pest_creatures = list(	/mob/living/simple_mob/animal/passive/mouse,
-											/mob/living/simple_mob/animal/passive/lizard,
-											/mob/living/simple_mob/animal/passive/cockroach)
 	var/obj/item/vac_attachment/swoopie/Vac
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/swoopie/Initialize(mapload)
@@ -65,7 +62,7 @@
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/swoopie/IIsAlly(mob/living/L)
 	. = ..()
-	if(L?.type in pest_creatures) // If they're a pest, swoop no matter what!
+	if(L && HAS_TRAIT(L, TRAIT_AMBIENT_PEST_MOB)) // If they're a pest, swoop no matter what!
 		return FALSE
 	if(!.) // Outside the faction and not in friends, are they crew
 		return L?.type in crew_creatures
