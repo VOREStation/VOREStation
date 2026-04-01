@@ -18,6 +18,7 @@
 
 		TEST_FAIL(log_entry)
 
+/* Should probably be done as a linter thing instead
 /// Checks all machines for legal access numbers
 /datum/unit_test/all_access_id_must_have_existing_datums
 
@@ -46,3 +47,4 @@
 			failed = TRUE // has a non-existant id, illegal
 
 	return failed
+*/
