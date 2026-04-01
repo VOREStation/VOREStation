@@ -44,6 +44,10 @@
 		doubleclick = FALSE
 	if(!leash_pet)
 		return
+
+	if(!leash_pet.mind) //in the extremely niche case a sentient simplemob is leashed, and then ghosts, use this
+		clear_leash()
+
 	if(!is_wearing_collar(leash_pet) && istype(leash_pet, /mob/living/carbon/human)) //The pet has slipped their collar and is not the pet anymore.
 		leash_pet.visible_message(
 			span_warning("[leash_pet] has slipped out of [leash_pet.p_their()] collar!"),
@@ -68,6 +72,9 @@
 			to_chat(user, span_notice("[C] has already been leashed."))
 		return
 
+	if(!C.mind)
+		return
+
 	if (C == user)
 		to_chat(user, span_notice("You cannot leash yourself!"))
 		return
@@ -86,8 +93,8 @@
 	add_attack_logs(user,C,"Leashed (attempt)")
 	if(!do_after(user, leashtime, C)) //do_mob adds a progress bar, but then we also check to see if they have a collar
 		return
-	if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
-		return
+	/*if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
+		return*/
 
 	C.visible_message(span_danger("\The [user] puts a leash on \the [C]!"), span_danger("The leash clicks onto your collar!"))
 
