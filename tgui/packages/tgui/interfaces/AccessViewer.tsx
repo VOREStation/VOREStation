@@ -52,15 +52,16 @@ export const AccessViewer = (props) => {
     entry.has_req_one = req_one_access.includes(entry.id);
     access_regions[entry.region].push(entry);
   });
+  const access_array = Object.entries(access_list);
 
   return (
     <Window width={520} height={540}>
       <Window.Content scrollable>
         <Section title={`${name}'s access at ${coords}`}>
-          {access_regions.map((record) => (
-            <Section key={record.key} title={record.key.toString()}>
+          {access_array.map(([key, value]) => (
+            <Section key={key} title={key}>
               <LabeledList>
-                {record.value.map((entry) => (
+                {access_array[key].map((entry: Access) => (
                   <LabeledList.Item
                     label={`${entry.id}: ${entry.name}`}
                     key={entry.id}
