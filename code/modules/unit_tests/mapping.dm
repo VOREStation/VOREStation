@@ -37,9 +37,9 @@
 
 	if(!islist(access_list))
 		TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a [name_list] that was not a list or null.")
-		failed = TRUE // Was something other than null or a list... illegal
-		return failed
+		return TRUE // Was something other than null or a list... illegal
 
+	var/failed = FALSE
 	for(var/access in access_list)
 		if(!SSaccess.get_access_by_id(access))
 			TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a [name_list] with a non-existant id [access].")
