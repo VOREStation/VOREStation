@@ -12,7 +12,7 @@
 /datum/goal/proc/check_completion()
 	SHOULD_CALL_PARENT(TRUE)
 	if(current_count >= goal_count && !completed)
-		command_announcement.Announce("The [category] \"[name]\" has been completed, congratulations!", "Central Command")
+		GLOB.command_announcement.Announce("The [category] \"[name]\" has been completed, congratulations!", "Central Command")
 		completed = TRUE
 	return completed
 
