@@ -26,15 +26,23 @@
 	var/list/access_datums = SSaccess.get_all_access_datums_by_id()
 
 	for(var/obj/machinery/thing in world)
-		if(thing.req_access)
-			for(var/access in thing.req_access)
-				if(!SSaccess.get_access_by_id(access))
-					TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a req_access with a non-existant id [access].")
-					failed = TRUE
-		if(thing.req_one_access)
-			for(var/access in thing.req_one_access)
-				if(!SSaccess.get_access_by_id(access))
-					TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a req_one_access with a non-existant id [access].")
-					failed = TRUE
+		failed += validate_list(thing.req_access, thing, "req_access")
+		failed += validate_list(thing.req_one_access, thing, "req_one_access")
 	if(failed)
 		TEST_FAIL("Machinery had an illegal access id.")
+
+/datum/unit_test/proc/validate_list(var/list/access_list, var/obj/machinery/thing, name_list)
+	if(!access_list)
+		return FALSE // null is legal
+
+	if(!islist(access_list))
+		TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a [name_list] that was not a list or null.")
+		failed = TRUE // Was something other than null or a list... illegal
+		return failed
+
+	for(var/access in access_list)
+		if(!SSaccess.get_access_by_id(access))
+			TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a [name_list] with a non-existant id [access].")
+			failed = TRUE // has a non-existant id, illegal
+
+	return failed
