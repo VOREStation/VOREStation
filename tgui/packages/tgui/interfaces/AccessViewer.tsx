@@ -32,6 +32,14 @@ enum region_ids {
   Supply,
 }
 
+enum access_types {
+  None = 0,
+  Centcom = 1,
+  Station = 2,
+  Syndicate = 4,
+  Private = 8,
+}
+
 export const AccessViewer = (props) => {
   const { act, data } = useBackend<Data>();
   const { access_list, name, coords, req_access, req_one_access } = data;
@@ -52,16 +60,15 @@ export const AccessViewer = (props) => {
     entry.has_req_one = req_one_access.includes(entry.id);
     access_regions[entry.region].push(entry);
   });
-  const access_array = Object.entries(access_list);
 
   return (
-    <Window width={520} height={540}>
+    <Window width={620} height={540}>
       <Window.Content scrollable>
         <Section title={`${name}'s access at ${coords}`}>
-          {access_array.map(([key, value]) => (
-            <Section key={key} title={key}>
+          {Object.keys(access_regions).map((key) => (
+            <Section key={key} title={region_ids[key]}>
               <LabeledList>
-                {access_array[key].map((entry: Access) => (
+                {access_regions[key].map((entry: Access) => (
                   <LabeledList.Item
                     label={`${entry.id}: ${entry.name}`}
                     key={entry.id}
@@ -80,6 +87,8 @@ export const AccessViewer = (props) => {
                     >
                       Have Any
                     </Button.Checkbox>
+                    {/* TODO - Some kind of display for these bitflags */}
+                    access_type
                   </LabeledList.Item>
                 ))}
               </LabeledList>
