@@ -14,16 +14,44 @@
 	icon_state = "toilet"
 	density = FALSE
 	anchored = TRUE
-	var/open = 0			//if the lid is up
-	var/cistern = 0			//if the cistern bit is open
-	var/w_items = 0			//the combined w_class of all the items in the cistern
+	var/open = FALSE			//if the lid is up
+	var/cistern = FALSE			//if the cistern bit is open
+	var/w_items = 0				//the combined w_class of all the items in the cistern
+
+	/// Used to both track the crystal needed to upgrade the toilet, and to tell if the toilet is teleplumbed. Set to True in subtypes or mapping if you'd like it to be teleplumbed on init.
+	var/obj/item/teleplumb_crystal = null
+	/// Bin used to upgrade this toilet. Turned into a real object on init.
+	var/obj/item/stock_parts/matter_bin/bin	= /obj/item/stock_parts/matter_bin
+
+	//Flushing stuff
+	var/panic_mult = 1
+	var/refilling = FALSE
 	var/mob/living/swirlie = null	//the mob being given a swirlie
+	var/atom/teleplumb_dest			//the destination of this toilet if it's teleplumbed
 
 /obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
 	AddComponent(/datum/component/hose_connector/endless_drain) // Cannot suck from toilet... for obvious reasons.
+
+	if(ispath(bin))
+		bin = new bin(src)
+
+	if(teleplumb_crystal)
+		teleplumb_crystal = new /obj/item/bluespace_crystal(src)
+		teleplumb_dest = locate(/obj/effect/landmark/teleplumb_exit)
+		desc = "The BS-500, a bluespace rift-rotation-based waste disposal unit for small matter. This one seems remarkably clean."
+
+	// Non-bluespace plumbing. For POIs and player construction n' stuff.
+	var/obj/structure/disposalpipe/trunk/trunk = locate() in get_turf(src)
+	AddComponent(/datum/component/disposal_system_connection, FALSE, FALSE) //Dont show our disposal connection, and we want to handle failed flushes on our own.
+	RegisterSignal(src, COMSIG_DISPOSAL_RECEIVE, PROC_REF(toilet_reflux))
+	if(trunk)
+		SEND_SIGNAL(src, COMSIG_DISPOSAL_LINK, trunk)
+
+/obj/structure/toilet/update_icon()
+	icon_state = "[initial(icon_state)][open][cistern]"
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
@@ -33,24 +61,43 @@
 		return
 
 	if(cistern && !open)
-		if(!contents.len)
+		var/list/cistern_loot = list()
+		for(var/atom/movable/AM in contents)
+			if(AM == bin || AM == teleplumb_crystal)
+				continue
+			cistern_loot += AM
+
+		if(!cistern_loot.len)
+			//You can take the bluespace crystal out if there's nothing else in the cistern.
+			if(teleplumb_crystal && ishuman(user)) //Only humans can grief the toilets
+				if(tgui_alert(user, "You see a glimmering crystal attached to parts of the toilet's components... Do you want to take it?", "Toilet Crystal", list("Take it!", "Leave it.")) == "Take it!")
+					user.put_in_hands(teleplumb_crystal)
+					to_chat(user, span_notice("You take \the [teleplumb_crystal]."))
+					teleplumb_crystal = null
+					teleplumb_dest = null
+					desc = initial(desc)
+				else
+					to_chat(user, span_notice("You decide to leave it."))
 			to_chat(user, span_notice("The cistern is empty."))
 			return
+		var/obj/item/I = pick(cistern_loot)
+		if(ishuman(user))
+			user.put_in_hands(I)
 		else
-			var/obj/item/I = pick(contents)
-			if(ishuman(user))
-				user.put_in_hands(I)
-			else
-				I.loc = get_turf(src)
-			to_chat(user, span_notice("You find \an [I] in the cistern."))
-			w_items -= I.w_class
-			return
+			I.loc = get_turf(src)
+		to_chat(user, span_notice("You find \an [I] in the cistern."))
+		w_items -= I.w_class
+		return
 
 	open = !open
 	update_icon()
 
-/obj/structure/toilet/update_icon()
-	icon_state = "[initial(icon_state)][open][cistern]"
+/obj/structure/toilet/attack_ai(mob/user as mob)
+	if(isrobot(user))
+		if(user.client && !user.is_remote_viewing())
+			return attack_hand(user)
+	else
+		return attack_hand(user)
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(I.has_tool_quality(TOOL_CROWBAR))
@@ -62,6 +109,16 @@
 			update_icon()
 			return
 
+	if(I.has_tool_quality(TOOL_WRENCH) && cistern) //Kill Toilet.
+		if(refilling)
+			to_chat(user, span_notice("Wait for \the [src] to finish refilling..."))
+		to_chat(user, span_notice("You begin to dismantle \the [src]..."))
+		if(!do_after(user, 5 SECONDS, src))
+			return
+		to_chat(user, span_notice("You dismantle \the [src]."))
+		deconstruct()
+		return
+
 	if(istype(I, /obj/item/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
 		var/obj/item/grab/G = I
@@ -69,29 +126,64 @@
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
 
-			if(G.state>1)
-				if(!GM.loc == get_turf(src))
-					to_chat(user, span_notice("[GM.name] needs to be on the toilet."))
-					return
-				if(open && !swirlie)
-					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
-					swirlie = GM
-					if(do_after(user, 3 SECONDS, target = GM))
-						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
+			if(G.state <= GRAB_PASSIVE)
+				to_chat(user, span_notice("You need a tighter grip."))
+				return
+			if(!GM.loc == get_turf(src))
+				to_chat(user, span_notice("[GM.name] needs to be on the toilet."))
+				return
+			if(open && !swirlie)
+				user.visible_message(span_danger("[user] starts to give [GM] a swirlie!"), span_notice("You start to give [GM] a swirlie!"))
+				swirlie = GM
+				if(do_after(user, 3 SECONDS, target = GM))
+					if(!open) //Someone closed it while we were trying to swirlie. Rude.
+						open = TRUE //Open it.
+						update_icon()
+					if(!refilling)
+						user.visible_message(span_danger("[user] gives [GM] a swirlie!"), span_notice("You give [GM] a swirlie!"), "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
-					swirlie = null
-				else
-					user.visible_message(span_danger("[user] slams [GM.name] into the [src]!"), span_notice("You slam [GM.name] into the [src]!"))
-					GM.adjustBruteLoss(5)
+						if(GM.size_multiplier <= 0.75)
+							GM.visible_message(span_danger("[GM] gets sucked into \the [src] due to their small size!"), span_userdanger("You get sucked into \the [src]!"))
+							GM.forceMove(get_turf(src))
+							GM.Weaken(5)
+						flush()
+					else
+						user.visible_message(span_warning("[user] tries to give [GM.name] a swirlie, but the toilet was still refilling!"), span_warning("You cant give [GM] swirlie while \the [src] is still refilling!"))
+				swirlie = null
 			else
-				to_chat(user, span_notice("You need a tighter grip."))
+				user.visible_message(span_danger("[user] slams [GM] into the [src]!"), span_notice("You slam [GM] into the [src]!"))
+				GM.adjustBruteLoss(5)
+
+	if(cistern && !teleplumb_crystal && istype(I, /obj/item/bluespace_crystal))
+		to_chat(user, span_notice("You begin to insert \the [I] into \the [src]..."))
+		if(!do_after(user, 2 SECONDS, src))
+			return
+		to_chat(user, span_notice("You insert \the [I] into \the [src]. A deep rumble eminates from within it, and a faint blue glow eminates from the bottom of the bowl for a moment."))
+		user.drop_item()
+		I.forceMove(src)
+		teleplumb_crystal = I
+		//TODO: add a way to link this to custom destinations.
+		teleplumb_dest = locate(/obj/effect/landmark/teleplumb_exit)
+		desc = "The BS-500, a bluespace rift-rotation-based waste disposal unit for small matter. This one seems remarkably clean."
+		return
+
+	if(cistern && istype(I, /obj/item/stock_parts/matter_bin))
+		to_chat(user, span_notice("You begin to replace \the [bin] in \the [src] with \the [I]."))
+		if(!do_after(user, 2 SECONDS, src))
+			return
+		to_chat(user, span_notice("You replace \the [bin] with \the [I]."))
+		bin.forceMove(src.loc) //Remove the old bin.
+		user.drop_item()
+		I.forceMove(src)
+		bin = I //Set the internally stored bin to the new bin.
+		return
 
 	if(cistern && !istype(user,/mob/living/silicon/robot)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > ITEMSIZE_NORMAL) //3
 			to_chat(user, span_notice("\The [I] does not fit."))
 			return
-		if(w_items + I.w_class > ITEMSIZE_HUGE) //5
+		if(w_items + I.w_class > ITEMSIZE_COST_TINY * 5) // 5 tiny or 2 small and 1 tiny
 			to_chat(user, span_notice("The cistern is full."))
 			return
 		user.drop_item()
@@ -100,38 +192,180 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
-/obj/structure/toilet/prison
-	name = "prison toilet"
-	icon_state = "toilet2"
+/obj/structure/toilet/click_alt(mob/user)
+	if(!isliving(user) || get_dist(user, src) > 1 || user.loc == src )
+		return
+	if(user.stat) //replace with user.canUseTopic() in the future
+		return CLICK_ACTION_BLOCKING
+	if(user.a_intent == I_HURT)
+		panic_mult++
+	if(!open)
+		to_chat(user, span_notice("You need to open the lid before flushing \the [src]."))
+		return CLICK_ACTION_BLOCKING
+	if(refilling)
+		to_chat(user, span_notice("The toilet is still refilling its tank."))
+		playsound(src, 'sound/machines/door_locked.ogg', 30, 1)
+		return CLICK_ACTION_BLOCKING
+	//Flush succeeds
+	user.visible_message(span_notice("[user] flushes the toilet."), span_notice("You flush the toilet."), "you hear a toilet flushing.")
+	flush()
+	return CLICK_ACTION_SUCCESS
 
-/obj/structure/toilet/prison/attack_hand(mob/living/user)
+/obj/structure/toilet/proc/flush()
+	refilling = TRUE
+	playsound(src, 'sound/vore/death7.ogg', 50, 1) //Got lazy about getting new sound files. Have a sick remix lmao.
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	playsound(src, 'sound/mecha/powerup.ogg', 30, 1)
+
+	var/list/bowl_contents = list()
+	for(var/obj/item/I in loc.contents)
+		if(istype(I) && !I.anchored)
+			bowl_contents += I
+	for(var/mob/living/L in loc.contents)
+		if(L.buckled || !(L.resting || L.lying))
+			continue
+		var/bin_bonus = 0.15
+		if(bin)
+			bin_bonus *= bin.rating
+		if(L.size_multiplier <= 0.6 + bin_bonus)
+			bowl_contents += L
+
+	if(!bowl_contents.len) //Reduced recharge if nothing is being flushed
+		VARSET_IN(src, refilling, FALSE, 7.5 SECONDS)
+		return
+
+	var/bowl_conga = 0
+	for(var/atom/movable/F in bowl_contents)
+		if(QDELETED(F))
+			continue
+
+		if(bowl_conga < 150)
+			bowl_conga += 2
+
+		spawn(3 + bowl_conga)
+			F.SpinAnimation(5,3)
+			spawn(15)
+				if(F.loc == loc)
+					F.forceMove(src)
+	addtimer(CALLBACK(src, PROC_REF(flush_send), bowl_contents), 15 SECONDS)
+	VARSET_IN(src, refilling, FALSE, 20 SECONDS)
 	return
 
-/obj/structure/toilet/prison/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/grab))
-		user.setClickCooldown(user.get_attack_speed(I))
-		var/obj/item/grab/G = I
+/obj/structure/toilet/proc/flush_send(list/to_send)
+	var/flush_weight = 0
+	var/max_flush_weight = get_flush_power()
+	var/list/taken_contents = list()
+	for(var/atom/movable/flushed in to_send)
+		if(flushed.loc != src)
+			continue
 
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
+		//Mobs and items are calculated differently
+		var/weight_value = 0
+		if(isitem(flushed))
+			var/obj/item/I = flushed
+			weight_value = I.w_class
+		if(isliving(flushed))
+			var/mob/living/L = flushed
+			weight_value = L.size_multiplier * 10
 
-			if(G.state>1)
-				if(!GM.loc == get_turf(src))
-					to_chat(user, span_notice("[GM.name] needs to be on the toilet."))
-					return
-				if(open && !swirlie)
-					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
-					swirlie = GM
-					if(do_after(user, 3 SECONDS, target = GM))
-						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
-						if(!GM.internal)
-							GM.adjustOxyLoss(5)
-					swirlie = null
-				else
-					user.visible_message(span_danger("[user] slams [GM.name] into the [src]!"), span_notice("You slam [GM.name] into the [src]!"))
-					GM.adjustBruteLoss(5)
-			else
-				to_chat(user, span_notice("You need a tighter grip."))
+		if(flush_weight + weight_value <= max_flush_weight)
+			taken_contents += flushed
+			flush_weight += weight_value
+			if(teleplumb_crystal && teleplumb_dest)
+				if(isliving(flushed))
+					var/mob/living/m = flushed
+					to_chat(m, span_danger("You're glunked down by \the [src] through a series of extradimensional bluespace pipeworks!"))
+				flushed.forceMove(teleplumb_dest)
+
+	var/datum/gas_mixture/air_contents = new(1) //1 liter of nothing, ig.
+	if(SEND_SIGNAL(src, COMSIG_DISPOSAL_FLUSH, to_send, air_contents))
+		for(var/atom/movable/flushed in to_send)
+			if(isliving(flushed))
+				var/mob/living/m = flushed
+				to_chat(m, span_warning("You're flushed away by \the [src]!"))
+
+	var/flush_failed = FALSE
+	for(var/atom/movable/flushed in to_send)
+		if(flushed.loc != src) //Not in here, flushed or otherwise.
+			continue
+		flush_failed = TRUE
+		flushed.forceMove(src.loc)
+	if(flush_failed)
+		visible_message(span_warning("\The [src] glurks and splutters, unable to guzzle more stuff down in a single flush!"), span_warning("Glornch"))
+	panic_mult = 0
+
+/obj/structure/toilet/proc/toilet_reflux(datum/source, list/received_items, datum/gas_mixture/gas)
+	SIGNAL_HANDLER
+	var/turf/T = get_turf(src)
+	T.assume_air(gas)
+
+	if(!received_items.len)
+		visible_message(span_warning("The water in \the [src] gurgles and bubbles ominously..."), span_notice("You hear a wet gurgling and spluttering..."), runemessage = "glurgles")
+		return
+	visible_message(span_danger("\The [src] gurgles for a moment, before spewing forth a bunch of stuff in a wave of toilet water!"), "GLORGLONCH!")
+	for(var/atom/movable/AM in received_items)
+		var/turf/target_turf = get_offset_target_turf(loc, rand(-2, 2), rand(-2, 2))
+
+		AM.forceMove(T)
+		AM.pipe_eject(0)
+		AM.throw_at(target_turf, 5, 1)
+
+	//Toilet blast !
+	for(var/direction in GLOB.alldirs + null) // null is for the center tile.
+		if(prob(75) && direction != null) //Only sometimes wet blast, except the center tile. That always wets.
+			continue
+		var/turf/target_turf = get_ranged_target_turf(src, direction, rand(1, 2))
+		if(!target_turf) // This shouldn't fail but...
+			continue
+		var/obj/effect/effect/water/W = new(get_turf(T))
+		W.create_reagents(15)
+		W.reagents.add_reagent(REAGENT_ID_WATER, 15)
+		W.set_color()
+		W.set_up(target_turf)
+
+/obj/structure/toilet/proc/deconstruct()
+	place_deconstruction_materials()
+	for(var/atom/movable/AM in contents) //Should handle both cistern and upgrade parts.
+		AM.forceMove(src.loc)
+	qdel(src)
+	return
+
+/obj/structure/toilet/proc/place_deconstruction_materials()
+	new /obj/item/stack/material/steel(src.loc, 5)
+	new /obj/item/reagent_containers/glass/bucket(src.loc)
+
+/obj/structure/toilet/proc/get_flush_power()
+	. = ITEMSIZE_COST_SMALL * 3 // 3 small items, or 6 tiny items.
+	if(bin)
+		. *= bin.rating
+	. *= panic_mult
+	if(teleplumb_crystal) //Teleplumbed gets applied at the end
+		. *= 2
+
+/obj/structure/toilet/teleplumbed
+	teleplumb_crystal = TRUE
+
+/obj/structure/toilet/prison
+	name = "prison toilet"
+	desc = "The HT-421, a torque rotation based waste disposal unit for small matter. This older model isnt quite as capable as newer units."
+	icon_state = "toilet2"
+
+/obj/structure/toilet/prison/place_deconstruction_materials()
+	new /obj/item/stack/material/iron(src.loc, 5)
+	new /obj/item/reagent_containers/glass/bucket(src.loc)
+
+/obj/structure/toilet/prison/get_flush_power()
+	. = ..()
+	if(teleplumb_crystal) //No teleplumb bonus.
+		. /= 2
+	return round(. / 3) //Has a 1/3 the power of a normal toilet.
+
+/obj/structure/toilet/prison/flush_send(list/to_send) //Permabrig escape prevention
+	for(var/mob/living/escapee in to_send)
+		to_chat(escapee, span_warning("A grate at the bottom of \the [src] prevents you from being flushed away!")) //Kinda gross, come to think of it.
+		escapee.forceMove(src.loc)
+		to_send -= escapee
+	. = ..(to_send)
 
 /obj/structure/urinal
 	name = "urinal"
