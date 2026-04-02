@@ -32,7 +32,6 @@
 	w_class = ITEMSIZE_SMALL
 	var/mob/living/leash_pet = null //Variable to store our pet later
 	var/mob/living/leash_master = null //And our master too
-	var/doubleclick = FALSE //This is awful, but necessary for borgs to use leashes. Grippers call both attack() and attackby() for their functionality, attaching and detaching the leash, so this var essentially disables using the leash in very quick succession
 
 /obj/item/leash/Destroy()
 	// Just in case
@@ -40,8 +39,6 @@
 	return ..()
 
 /obj/item/leash/process()
-	if(doubleclick)
-		doubleclick = FALSE
 	if(!leash_pet)
 		return
 
@@ -61,9 +58,6 @@
 //Called when someone is clicked with the leash
 /obj/item/leash/attack(mob/living/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
 	if(C.alerts && C.alerts["leashed"]) //If the pet is already leashed, do not leash them. For the love of god.
-		if(doubleclick)//prevents grippers from immediately unhooking the leash due to calling attack() and attackby() in quick succession
-			doubleclick = FALSE
-			return
 		// If they re-click, remove the leash
 		if (C == leash_pet && user == leash_master)
 			unleash()
@@ -93,8 +87,8 @@
 	add_attack_logs(user,C,"Leashed (attempt)")
 	if(!do_after(user, leashtime, C)) //do_mob adds a progress bar, but then we also check to see if they have a collar
 		return
-	/*if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
-		return*/
+	if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
+		return
 
 	C.visible_message(span_danger("\The [user] puts a leash on \the [C]!"), span_danger("The leash clicks onto your collar!"))
 
@@ -109,7 +103,6 @@
 	RegisterSignal(leash_master, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
 
 	START_PROCESSING(SSobj, src)
-	doubleclick = TRUE
 
 //Called when the leash is used in hand
 //Tugs the pet closer
