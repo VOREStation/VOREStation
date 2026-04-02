@@ -42,6 +42,7 @@
 	..()
 
 /obj/item/ghost_catcher/afterattack(atom/target, mob/user, proximity_flag)
+	update_held_icon()
 	if(!wielded)
 		to_chat(user, span_warning("You need to hold \the [src] in two hands to use it!"))
 		return
@@ -73,6 +74,23 @@
 				entity.forceMove(T)
 				COOLDOWN_START(src, click_cooldown, 1 SECOND)
 				return
+
+	if(istype(target, /obj/item/ghost_trap)) //Special handling for traps, since traps are full sized objects and not turf.
+		var/obj/item/ghost_trap/trap = target
+		var/atom/movable/entity = grabbed_entity.resolve()
+		if(!trap.deployed)
+			to_chat(user, span_warning("The trap isn't deployed!"))
+			return
+		if(!entity)
+			to_chat(user, span_warning("No valid target!"))
+			return
+		if(get_dist(trap, entity) > max_move_distance)
+			to_chat(user, span_warning("\The [src] is unable to pull the entity that far!"))
+			return
+		entity.forceMove(get_turf(trap))
+		COOLDOWN_START(src, click_cooldown, 1 SECOND)
+		return
+
 	// Things that invalidate the scan immediately.
 	if(busy)
 		to_chat(user, span_warning("\The [src] is already grabbing an entity!"))
