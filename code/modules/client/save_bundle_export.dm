@@ -70,8 +70,11 @@
 	else
 		chosen_format = has_json ? EXPORT_FORMAT_JSON : EXPORT_FORMAT_SAV
 
-	// Step 2: confirm.
-	if(tgui_alert(src, "Export your save data as [chosen_format]? This will save a file to your computer.", "Export Save Data", list("Cancel", "Export")) != "Export")
+	// Step 2: confirm with warning about bundle format.
+	var/warning_text = "Export your save data as [chosen_format]? This will save a file to your computer."
+	if(chosen_format == EXPORT_FORMAT_JSON)
+		warning_text += "\n\nIMPORTANT: The exported JSON bundle contains multiple files combined into one. It CANNOT be placed directly into your save folder. Use the debundler tool to extract individual files before restoring."
+	if(tgui_alert(src, warning_text, "Export Save Data", list("Cancel", "Export")) != "Export")
 		return
 
 	COOLDOWN_START(src, save_bundle_export_cooldown, SAVE_BUNDLE_EXPORT_COOLDOWN)
@@ -139,6 +142,8 @@
 	message_admins("[key_name_admin(src)] exported their save data as a JSON bundle ([length(vore_files)] vore file\s included).")
 	DIRECT_OUTPUT(src, ftp(file(temp_path), file_name))
 	fdel(temp_path)
+	to_chat(src, span_notice("Save bundle exported. This file contains preferences.json and [length(vore_files)] vore file\s bundled together."))
+	to_chat(src, span_warning("Do NOT place this file directly in your save folder. It is a bundle of multiple files. Use the debundler tool to extract individual files before restoring."))
 
 #undef SAVE_BUNDLE_EXPORT_COOLDOWN
 #undef SAVE_BUNDLE_EXPORT_WORKING_DIR
