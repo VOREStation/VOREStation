@@ -2,3 +2,10 @@
   Kashargul:
   - admin: ports TG spawn verb UI
   - code_imp: depdendency up
+2026-04-02:
+  Diana:
+  - bugfix: Water no longer explodes your lungs
+  Will:
+  - bugfix: Floorpainter missing autolathe tag
+  Will, Kash:
+  - rscadd: Doppler array explosive experiments
