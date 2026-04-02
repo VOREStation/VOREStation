@@ -27,12 +27,11 @@
 
 /obj/item/ghost_trap/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(captured_entity)
-		var/mob/our_entity = captured_entity.resolve()
-		if(our_entity)
-			REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
-			our_entity.forceMove(get_turf(src))
-		captured_entity = null
+	var/mob/our_entity = captured_entity?.resolve()
+	if(our_entity)
+		REMOVE_TRAIT(our_entity, TRAIT_NO_TRANSFORM, src)
+		our_entity.forceMove(get_turf(src))
+	captured_entity = null
 	QDEL_NULL(ghost_reporter)
 	. = ..()
 
