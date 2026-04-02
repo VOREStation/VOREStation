@@ -24,6 +24,13 @@
 	stored_research.techweb_servers |= src
 	name += " [num2hex(rand(1,65535), -1)]" //gives us a random four-digit hex number as part of the name. Y'know, for fluff.
 
+	//So we can be listening for experiments that are global.
+	AddComponent(/datum/component/experiment_handler, \
+		allowed_experiments = list(/datum/experiment/ghost_capture), \
+		config_mode = EXPERIMENT_CONFIG_UI, \
+		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE)
+
+
 /obj/machinery/rnd/server/Destroy()
 	if(stored_research)
 		stored_research.techweb_servers -= src
