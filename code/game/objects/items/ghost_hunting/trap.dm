@@ -16,13 +16,13 @@
 	var/deployed = FALSE
 	///The entity we currently have captured.
 	var/datum/weakref/captured_entity
-	var/obj/item/radio/intercom/ghost_reporter
+	var/obj/item/radio/intercom/science/ghost_reporter
 
 /obj/item/ghost_trap/Initialize(mapload)
 	. = ..()
 	if(deployed)
 		update_icon()
-	ghost_reporter = new /obj/item/radio/intercom{channels=list("Science")}(null)
+	ghost_reporter = new(null)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/ghost_trap/Destroy()
