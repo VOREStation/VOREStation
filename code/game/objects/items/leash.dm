@@ -212,7 +212,7 @@
 	leash_pet.visible_message(span_danger("\The [leash_master] is attempting to remove the leash on \the [leash_pet]!"), span_danger("\The [leash_master] tries to remove leash from you"))
 	add_attack_logs(leash_master,leash_pet,"Unleashed (attempt)")
 
-	if(!do_after(leash_master, 0.5 SECONDS, leash_pet))
+	if(!do_after(leash_master, 1.5 SECONDS, leash_pet))
 		return
 
 	to_chat(leash_pet, span_userdanger("You have been released!"))
