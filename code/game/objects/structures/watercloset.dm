@@ -67,7 +67,7 @@
 				continue
 			cistern_loot += AM
 
-		if(!cistern_loot.len)
+		if(!length(cistern_loot))
 			//You can take the bluespace crystal out if there's nothing else in the cistern.
 			if(teleplumb_crystal && ishuman(user)) //Only humans can grief the toilets
 				if(tgui_alert(user, "You see a glimmering crystal attached to parts of the toilet's components... Do you want to take it?", "Toilet Crystal", list("Take it!", "Leave it.")) == "Take it!")
@@ -365,7 +365,7 @@
 		to_chat(escapee, span_warning("A grate at the bottom of \the [src] prevents you from being flushed away!")) //Kinda gross, come to think of it.
 		escapee.forceMove(src.loc)
 		to_send -= escapee
-	. = ..(to_send)
+	. = ..()
 
 /obj/structure/urinal
 	name = "urinal"

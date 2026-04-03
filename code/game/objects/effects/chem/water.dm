@@ -42,8 +42,8 @@
 
 	if(step_count > 0)
 		addtimer(CALLBACK(src, PROC_REF(step_process), target, step_count, delay, iteration), delay)
-	else
-		QDEL_IN(src, 1 SECOND)
+		return
+	QDEL_IN(src, 1 SECOND)
 
 /obj/effect/effect/water/Move(turf/newloc)
 	if(newloc.density)
