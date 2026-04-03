@@ -15,8 +15,7 @@
 	QDEL_LIST_NULL(cam_plane_masters)
 	if(cam_background)
 		QDEL_NULL(cam_background)
-	if(local_skybox)
-		QDEL_NULL(local_skybox)
+	local_skybox = null
 	. = ..()
 
 // Proc: setup_tgui_camera()
