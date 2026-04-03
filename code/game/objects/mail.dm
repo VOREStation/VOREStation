@@ -79,8 +79,8 @@
 			stamps += list("stamp_[rand(2, 8)]")
 
 /obj/item/mail/Destroy()
-	. = ..()
 	recipient_ref = null
+	. = ..()
 
 /obj/item/mail/blank
 	desc = "A blank envelope."
