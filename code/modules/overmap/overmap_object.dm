@@ -66,8 +66,7 @@
 
 	if(cam_screen)
 		QDEL_NULL(cam_screen)
-	if(cam_plane_masters)
-		QDEL_LIST(cam_plane_masters)
+	QDEL_LIST_NULL(cam_plane_masters)
 	if(cam_background)
 		QDEL_NULL(cam_background)
 

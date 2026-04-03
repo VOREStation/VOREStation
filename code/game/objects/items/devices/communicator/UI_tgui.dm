@@ -9,6 +9,16 @@
 	var/atom/movable/screen/background/cam_background
 	var/atom/movable/screen/skybox/local_skybox
 
+/obj/item/communicator/Destroy()
+	if(cam_screen)
+		QDEL_NULL(cam_screen)
+	QDEL_LIST_NULL(cam_plane_masters)
+	if(cam_background)
+		QDEL_NULL(cam_background)
+	if(local_skybox)
+		QDEL_NULL(local_skybox)
+	. = ..()
+
 // Proc: setup_tgui_camera()
 // Parameters: None
 // Description: This sets up all of the variables above to handle in-UI map windows.
