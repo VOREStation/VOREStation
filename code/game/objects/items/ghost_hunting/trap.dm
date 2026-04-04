@@ -25,6 +25,17 @@
 	ghost_reporter = new(null)
 	START_PROCESSING(SSobj, src)
 
+	var/static/list/ghost_signals = list(
+		COMSIG_GLOB_GHOST_CAPTURED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_spectral_experiment),
+		COMSIG_GLOB_WIGHT_CAPTURED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_spectral_experiment),
+	)
+
+	AddComponent(/datum/component/experiment_handler, \
+		allowed_experiments = list(/datum/experiment/ghost_capture), \
+		config_mode = EXPERIMENT_CONFIG_UI, \
+		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE, \
+		experiment_signals = ghost_signals)
+
 /obj/item/ghost_trap/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	var/mob/our_entity = captured_entity?.resolve()

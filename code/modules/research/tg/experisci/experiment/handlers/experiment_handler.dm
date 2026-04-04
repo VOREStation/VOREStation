@@ -144,6 +144,16 @@
 		source.atom_say("Destructive analysis complete.")
 
 /**
+ * Hooks on to RD server to try and run a spectral experiment.
+ */
+/datum/component/experiment_handler/proc/try_run_spectral_experiment(obj/source, atom/scan_target)
+	SIGNAL_HANDLER
+
+	if(action_experiment(source, scan_target))
+		playsound(source, 'sound/machines/ping.ogg', 25)
+		source.atom_say("Spectral analysis complete.")
+
+/**
  * Hooks on doppler array scans to try and run a explosive experiment.
  */
 /datum/component/experiment_handler/proc/try_run_ordinance_experiment(obj/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
