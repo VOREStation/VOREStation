@@ -366,7 +366,7 @@
 
 	//Loop for the 'advanced' emfs, which detect actual ghosts/phasers.
 	if(advanced)
-		for(var/mob/living/entity in range(detection_range, our_turf))
+		for(var/mob/entity in range(detection_range, our_turf))
 			if(isobserver(entity))
 				var/mob/observer/dead/ghost = entity
 				if(ghost.following || !ghost.interact_with_world || ghost.admin_ghosted) //Ghosts orbiting us or someone else, or have opted out of interactions.

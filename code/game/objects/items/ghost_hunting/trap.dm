@@ -25,6 +25,17 @@
 	ghost_reporter = new(null)
 	START_PROCESSING(SSobj, src)
 
+	var/static/list/ghost_signals = list(
+		COMSIG_GLOB_GHOST_CAPTURED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_spectral_experiment),
+		COMSIG_GLOB_WIGHT_CAPTURED = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_spectral_experiment),
+	)
+
+	AddComponent(/datum/component/experiment_handler, \
+		allowed_experiments = list(/datum/experiment/ghost_capture), \
+		config_mode = EXPERIMENT_CONFIG_UI, \
+		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE, \
+		experiment_signals = ghost_signals)
+
 /obj/item/ghost_trap/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	var/mob/our_entity = captured_entity?.resolve()
@@ -191,12 +202,12 @@
 	if(isobserver(passing_entity))
 		to_chat(passing_entity, span_info("((You are incapable of moving or 'jumping' to turf by clicking, but can still escape via teleport or orbit!))"))
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GHOST_CAPTURED, passing_entity)
+	SEND_SIGNAL(src, COMSIG_GLOB_GHOST_CAPTURED, passing_entity)
 
 /obj/item/ghost_trap/Crossed(atom/movable/AM)
 
 	if(istype(AM, /obj/effect/shadow_wight))
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WIGHT_CAPTURED, AM)
+		SEND_SIGNAL(src, COMSIG_GLOB_WIGHT_CAPTURED, AM)
 		visible_message(span_danger("A flurry of beams shoot into the air from \the [src] and into [AM], capturing and disintegrating it!"))
 		return
 
