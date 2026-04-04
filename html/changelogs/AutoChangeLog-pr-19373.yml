@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "Fixed accidental looting debug flag being left enabled on trash piles"
