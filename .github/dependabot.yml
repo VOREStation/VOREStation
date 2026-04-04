@@ -5,7 +5,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 4
+
   - package-ecosystem: npm
     directory: "/tools"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 4
