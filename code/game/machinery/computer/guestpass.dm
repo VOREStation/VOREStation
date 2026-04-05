@@ -40,7 +40,7 @@
 
 	to_chat(usr, span_notice("It grants access to following areas:"))
 	for (var/A in temp_access)
-		to_chat(usr, span_notice("[get_access_desc(A)]."))
+		to_chat(usr, span_notice("[SSaccess.get_access_desc(A)]."))
 	to_chat(usr, span_notice("Issuing reason: [reason]."))
 	return
 
@@ -177,9 +177,9 @@
 		data["access"] = giver.GetAccess()
 		for (var/A in giver.GetAccess())
 			if(A in accesses)
-				area_list.Add(list(list("area" = A, "area_name" = get_access_desc(A), "on" = 1)))
+				area_list.Add(list(list("area" = A, "area_name" = SSaccess.get_access_desc(A), "on" = 1)))
 			else
-				area_list.Add(list(list("area" = A, "area_name" = get_access_desc(A), "on" = null)))
+				area_list.Add(list(list("area" = A, "area_name" = SSaccess.get_access_desc(A), "on" = null)))
 	data["area"] = area_list
 
 	data["giver"] = giver
@@ -258,7 +258,7 @@
 				for (var/i=1 to accesses.len)
 					var/A = accesses[i]
 					if(A)
-						var/area = get_access_desc(A)
+						var/area = SSaccess.get_access_desc(A)
 						entry += "[i > 1 ? ", [area]" : "[area]"]"
 				entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
 				internal_log.Add(entry)

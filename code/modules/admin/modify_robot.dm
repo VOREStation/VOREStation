@@ -113,7 +113,7 @@
 			.["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
 			var/list/active_access = list()
 			for(var/access in target.idcard?.GetAccess())
-				active_access += list(list("id" = access, "name" = get_access_desc(access)))
+				active_access += list(list("id" = access, "name" = SSaccess.get_access_desc(access)))
 			.["target"]["active_access"] = active_access
 			var/list/access_options = list()
 			for(var/datum/access/acc)
@@ -219,63 +219,14 @@
 			target.module_reset(FALSE)
 			return TRUE
 		if("add_module")
-			var/obj/item/add_item = locate(params["module"])
-			if(!add_item)
+			var/obj/item/selected_item = locate(params["module"])
+			if(!selected_item)
 				return TRUE
-			if(istype(add_item, /obj/item/card/id))
+			if(istype(selected_item, /obj/item/card/id))
 				source.idcard = null
-			source.module.emag.Remove(add_item)
-			source.module.modules.Remove(add_item)
-			source.module.contents.Remove(add_item)
-			if(istype(add_item, /obj/item/card/id))
-				if(target.idcard)
-					qdel(target.idcard)
-				target.idcard = add_item
-			target.module.modules.Add(add_item)
-			target.module.contents.Add(add_item)
-			spawn(0)
-				SEND_SIGNAL(add_item, COMSIG_MOVABLE_ATTEMPTED_MOVE)
-			target.hud_used?.update_robot_modules_display()
-			if(istype(add_item, /obj/item/stack/))
-				var/obj/item/stack/item_with_synth = add_item
-				for(var/synth in item_with_synth.synths)
-					var/found = target.module.synths.Find(synth)
-					if(!found)
-						source.module.synths.Remove(synth)
-						target.module.synths.Add(synth)
-					else
-						item_with_synth.synths = list(target.module.synths[found])
-				return TRUE
-			if(istype(add_item, /obj/item/matter_decompiler/) || istype(add_item, /obj/item/dogborg/sleeper/compactor/decompiler/))
-				var/obj/item/matter_decompiler/item_with_matter = add_item
-				if(item_with_matter.metal)
-					var/found = target.module.synths.Find(item_with_matter.metal)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.metal)
-						target.module.synths.Add(item_with_matter.metal)
-					else
-						item_with_matter.metal = target.module.synths[found]
-				if(item_with_matter.glass)
-					var/found = target.module.synths.Find(item_with_matter.glass)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.glass)
-						target.module.synths.Add(item_with_matter.glass)
-					else
-						item_with_matter.glass = target.module.synths[found]
-				if(item_with_matter.wood)
-					var/found = target.module.synths.Find(item_with_matter.wood)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.wood)
-						target.module.synths.Add(item_with_matter.wood)
-					else
-						item_with_matter.wood = target.module.synths[found]
-				if(item_with_matter.plastic)
-					var/found = target.module.synths.Find(item_with_matter.plastic)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.plastic)
-						target.module.synths.Add(item_with_matter.plastic)
-					else
-						item_with_matter.plastic = target.module.synths[found]
+			source.module.emag -= selected_item
+			source.module.modules -= selected_item
+			target.module.add_item(selected_item, target)
 			return TRUE
 		if("rem_module")
 			var/obj/item/rem_item = locate(params["module"])
@@ -485,17 +436,17 @@
 			target.idcard.access -= text2num(params["access"])
 			return TRUE
 		if("add_centcom")
-			target.idcard.access |= get_all_centcom_access()
+			target.idcard.access |= SSaccess.get_all_centcom_access()
 			return TRUE
 		if("rem_centcom")
-			target.idcard.access -= get_all_centcom_access()
+			target.idcard.access -= SSaccess.get_all_centcom_access()
 			return TRUE
 		if("add_station")
-			target.idcard.access |= get_all_station_access()
+			target.idcard.access |= SSaccess.get_all_station_access()
 			target.idcard.access |= ACCESS_SYNTH
 			return TRUE
 		if("rem_station")
-			target.idcard.access -= get_all_station_access()
+			target.idcard.access -= SSaccess.get_all_station_access()
 			target.idcard.access -= ACCESS_SYNTH
 			return TRUE
 		if("law_channel")
