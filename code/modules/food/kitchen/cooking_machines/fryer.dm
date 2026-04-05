@@ -33,14 +33,19 @@
 
 	tgui_id = "CookingFryer"
 
-	var/datum/reagents/oil
+	var/datum/reagents/oil_reagents/oil
 	var/optimal_oil = 2500 //25 litres of cooking oil
+
+///Reagent subtype for the fryer.
+/datum/reagents/oil_reagents
+	var/optimal_oil = 2500 //Overridden during init of the fryer.
 
 /obj/machinery/appliance/cooker/fryer/Initialize(mapload)
 	. = ..()
 	fry_loop = new(list(src), FALSE)
 
-	oil = new/datum/reagents(optimal_oil * 1.25, src)
+	oil = new/datum/reagents/oil_reagents(optimal_oil * 1.25, src)
+	oil.optimal_oil = optimal_oil
 	var/variance = rand()*0.15
 	// Fryer is always a little below full, but its usually negligible
 
@@ -48,6 +53,7 @@
 		// Sometimes the fryer will start with much less than full oil, significantly impacting efficiency until filled
 		variance = rand()*0.5
 	oil.add_reagent(REAGENT_ID_COOKINGOIL, optimal_oil*(1 - variance))
+	AddComponent(/datum/component/hose_connector/input/fryer)
 
 /obj/machinery/appliance/cooker/fryer/Destroy()
 	QDEL_NULL(fry_loop)
@@ -254,7 +260,7 @@
 	fry_loop.stop()
 
 /obj/machinery/appliance/cooker/fryer/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/reagent_containers) && I.reagents)
+	if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && I.reagents)
 		if(istype(I, /obj/item/reagent_containers/glass)) //Scooping stuff out with a glass.
 			if(I.reagents.total_volume <= 0 && oil)
 				//Its empty, handle scooping some hot oil out of the fryer
