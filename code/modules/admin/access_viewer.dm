@@ -19,9 +19,8 @@
 	return ADMIN_STATE(R_DEBUG)
 
 /datum/access_viewer/tgui_act(action, params, datum/tgui/ui)
-	. = ..()
-	if(.)
-		return
+	if(..() || !check_rights_for(ui.user.client, R_DEBUG))
+		return FALSE
 
 	var/obj/machinery/req_thing = focused_obj?.resolve()
 	if(!req_thing)
