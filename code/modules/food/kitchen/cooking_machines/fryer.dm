@@ -34,7 +34,7 @@
 	tgui_id = "CookingFryer"
 
 	var/datum/reagents/oil
-	var/optimal_oil = 9000 //90 litres of cooking oil
+	var/optimal_oil = 2500 //25 litres of cooking oil
 
 /obj/machinery/appliance/cooker/fryer/Initialize(mapload)
 	. = ..()
@@ -56,8 +56,14 @@
 
 /obj/machinery/appliance/cooker/fryer/examine(var/mob/user)
 	. = ..()
+	var/oil_level = oil.total_volume/optimal_oil
 	if(Adjacent(user))
-		to_chat(user, "Oil Level: [oil.total_volume]/[optimal_oil]")
+		var/message = span_notice("Oil Level: [oil.total_volume] / [optimal_oil]")
+		if(oil_level <= 0.9)
+			message += span_warning(" UNDERFILLED")
+		else if(oil_level > 1.05) //A little bit of wiggle room
+			message += span_warning(" OVERFILLED")
+		to_chat(user, message)
 
 /obj/machinery/appliance/cooker/fryer/update_icon() // We add our own version of the proc to use the special fryer double-lights.
 	cut_overlays()
