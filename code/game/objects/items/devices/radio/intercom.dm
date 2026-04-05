@@ -75,6 +75,10 @@
 	name = "entertainment intercom"
 	frequency = ENT_FREQ
 
+/obj/item/radio/intercom/science
+	name = "station intercom (Science)"
+	channels=list("Science")
+
 /obj/item/radio/intercom/omni
 	name = "global announcer"
 /obj/item/radio/intercom/omni/Initialize(mapload)
