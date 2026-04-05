@@ -78,7 +78,7 @@ export const pda_main_menu = (props) => {
           {categories.map((name) => {
             const valid_apps = apps[name];
 
-            if (!valid_apps || !valid_apps.length) {
+            if (!valid_apps?.length) {
               return null;
             } else {
               return (
