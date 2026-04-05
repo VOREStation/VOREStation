@@ -5,6 +5,10 @@
 /datum/access_viewer
 	var/datum/weakref/focused_obj
 
+/datum/access_viewer/Destroy(force)
+	focused_obj = null
+	. = ..()
+
 /datum/access_viewer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
