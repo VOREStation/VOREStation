@@ -2,45 +2,10 @@ import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Divider, Input, Section, Table } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
-
-type Data = {
-  access_list: Access[];
-  name?: string;
-  coords?: string;
-  req_access?: number[];
-  req_one_access?: number[];
-};
-
-type Access = {
-  name: string;
-  id: number;
-  region: number;
-  access_type: number;
-  has_req: BooleanLike;
-  has_req_one: BooleanLike;
-};
-
-enum region_ids {
-  None = -1,
-  All = 0,
-  Security,
-  Medbay,
-  Research,
-  Engineering,
-  Command,
-  General,
-  Supply,
-}
-
-enum access_types {
-  None = 0,
-  Centcom = 1,
-  Station = 2,
-  Syndicate = 4,
-  Private = 8,
-}
+import { AccessTypeDisplay } from './AccessTypeDisplay';
+import { region_ids } from './constants';
+import type { Access, Data } from './types';
 
 export const AccessViewer = (props) => {
   const { act, data } = useBackend<Data>();
@@ -70,6 +35,7 @@ export const AccessViewer = (props) => {
       access_regions[entry.region].push(entry);
     }
   });
+
   return (
     <Window width={620} height={540}>
       <Window.Content>
@@ -125,9 +91,8 @@ export const AccessViewer = (props) => {
                         Have Any
                       </Button.Checkbox>
                     </Table.Cell>
-                    <Table.Cell collapsing>
-                      {/* TODO - Some kind of display for these bitflags */}
-                      access_type
+                    <Table.Cell collapsing color="label">
+                      <AccessTypeDisplay type={entry.access_type} />
                     </Table.Cell>
                   </Table.Row>
                 ))}

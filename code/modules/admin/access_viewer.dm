@@ -27,9 +27,11 @@
 	if(!req_thing)
 		return FALSE
 
-	var/set_id = text2num(params["set_id"])
 	switch(action)
 		if("req_all")
+			var/set_id = text2num(params["set_id"])
+			if(!set_id)
+				return FALSE
 			if(!req_thing.req_access)
 				req_thing.req_access = list()
 			if(set_id in req_thing.req_access)
@@ -39,6 +41,9 @@
 			return TRUE
 
 		if("req_one")
+			var/set_id = text2num(params["set_id"])
+			if(!set_id)
+				return FALSE
 			if(!req_thing.req_one_access)
 				req_thing.req_one_access = list()
 			if(set_id in req_thing.req_one_access)
