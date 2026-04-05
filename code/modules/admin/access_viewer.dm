@@ -8,15 +8,16 @@
 /datum/access_viewer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "AccessViewer")
+		ui = new(user, src, "AccessViewer", "Access Viewer")
 		ui.open()
 
 /datum/access_viewer/tgui_state(mob/user)
 	return ADMIN_STATE(R_DEBUG)
 
 /datum/access_viewer/tgui_act(action, params, datum/tgui/ui)
-	if(..() || !check_rights_for(ui.user.client, R_DEBUG))
-		return FALSE
+	. = ..()
+	if(.)
+		return
 
 	var/obj/machinery/req_thing = focused_obj?.resolve()
 	if(!req_thing)
@@ -59,10 +60,6 @@
 
 /datum/access_viewer/tgui_data(mob/user)
 	var/list/data = list()
-	data["name"] = null
-	data["coords"] = null
-	data["req_access"] = null
-	data["req_one_access"] = null
 	// Check if the object still exists
 	var/obj/machinery/req_thing = focused_obj?.resolve()
 	if(req_thing)
