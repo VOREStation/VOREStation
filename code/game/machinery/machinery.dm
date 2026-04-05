@@ -373,14 +373,14 @@ Class Procs:
 		update_icon()
 	return TRUE
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/C)
+/obj/machinery/proc/default_deconstruction_crowbar(mob/user, obj/item/C)
 	if(!C.has_tool_quality(TOOL_CROWBAR))
 		return 0
 	if(!panel_open)
 		return 0
 	. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+/obj/machinery/proc/default_deconstruction_screwdriver(mob/user, obj/item/S)
 	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	playsound(src, S.usesound, 50, 1)
@@ -389,7 +389,7 @@ Class Procs:
 	update_icon()
 	return 1
 
-/obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+/obj/machinery/proc/computer_deconstruction_screwdriver(mob/user, obj/item/S)
 	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	if(!circuit)

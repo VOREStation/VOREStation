@@ -141,17 +141,6 @@
 		"ammobox_12g_emp",
 		"ammobox_12g_flechette",
 		"ammobox_12g_practice",
-		/* Single shells available, but probably not needed
-		"ammo_12g_slug",
-		"ammo_12g_blank",
-		"ammo_12g_beanbag",
-		"ammo_12g_flash",
-		"ammo_12g_pellet",
-		"ammo_12g_stun",
-		"ammo_12g_emp",
-		"ammo_12g_flechette",
-		"ammo_12g_practice",
-		*/
 		// Auto shotgun drums
 		"shotgun_mag_12g_drum",
 		"shotgun_mag_12g_drum_beanbag",
@@ -186,6 +175,41 @@
 		"loader_545_practice",
 		"loader_762",
 		"loader_762_practice",
+		// Boxes
+		"ammobox_357",
+		"ammobox_357_rubber",
+		"ammobox_38",
+		"ammobox_38_rubber",
+		"ammobox_10mm",
+		"ammobox_10mm_practice",
+		"ammobox_10mm_rubber",
+		"ammobox_10mm_haywire",
+		"ammobox_44",
+		"ammobox_44_rubber",
+		"ammobox_45",
+		"ammobox_45_practice",
+		"ammobox_45_ap",
+		"ammobox_45_hp",
+		"ammobox_45_rubber",
+		"ammobox_45_haywire",
+		"ammobox_145",
+		"ammobox_145_highvel",
+		"ammobox_762",
+		"ammobox_762_hp",
+		"ammobox_762_ap",
+		"ammobox_762_practice",
+		"ammobox_762_hunter",
+		"ammobox_545",
+		"ammobox_545_ap",
+		"ammobox_545_hp",
+		"ammobox_545_practice",
+		"ammobox_545_hunter",
+		"ammobox_545_blank",
+		"ammocrate_545",
+		"ammocrate_545_ap",
+		"ammocrate_545_hp",
+		"ammocrate_545_practice",
+		"ammocrate_545_hunter",
 	)
 
 /datum/techweb_node/sec_equip
@@ -259,7 +283,7 @@
 		"large_Grenade",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	// required_experiments = list(/datum/experiment/ordnance/explosive/lowyieldbomb)
+	required_experiments = list(/datum/experiment/ordnance/lowyieldbomb)
 	announce_channels = list(CHANNEL_SECURITY, CHANNEL_MEDICAL)
 
 /datum/techweb_node/exotic_ammo
@@ -284,7 +308,7 @@
 		// "techshotshell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
-	// discount_experiments = list(/datum/experiment/ordnance/explosive/highyieldbomb = TECHWEB_TIER_4_POINTS)
+	discount_experiments = list(/datum/experiment/ordnance/highyieldbomb = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)
 
 /datum/techweb_node/electric_weapons

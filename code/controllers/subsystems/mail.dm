@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(mail)
 	// Collect recipients
 	var/list/mail_recipients = list()
 	for(var/mob/living/carbon/human/player_human in GLOB.player_list)
-		if(player_human.stat != DEAD && player_human.client && player_human.client.inactivity <= 10 MINUTES && !(player_human.job in banned_jobs) && !player_is_antag(player_human.mind) && !isbelly(player_human.loc)) // Only alive, active and NT employeers should be getting mail.
+		if(player_human.stat != DEAD && player_human.client && player_human.client.inactivity <= 10 MINUTES && !(player_human.job in banned_jobs) && !SSantag_job.player_is_antag(player_human.mind) && !isbelly(player_human.loc)) // Only alive, active and NT employeers should be getting mail.
 			mail_recipients += player_human
 
 	// Creates mail for all the mail waiting to arrive, if there's nobody to receive it, it will be a chance of junk mail.

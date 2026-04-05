@@ -1008,7 +1008,7 @@
 			wearer_move_delay += 2
 			return wearer.buckled.relaymove(wearer,direction)
 
-	var/power_cost = 200
+	var/power_cost = 50
 	if(!ai_moving)
 		power_cost = 20
 	cell.use(power_cost) //Arbitrary, TODO

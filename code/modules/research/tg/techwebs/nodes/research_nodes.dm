@@ -178,3 +178,49 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
 */
+
+//Ghost catching stuff! Disabled on Virgo, but used downstream.
+/datum/techweb_node/ghost_basic
+	id = TECHWEB_NODE_GHOST_BASIC
+	display_name = "Spectral Detection and Containment"
+	description = "Determining high-energy signatures indicative of spectral entities and developing methods to safely contain them."
+	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE, TECHWEB_NODE_APPLIED_ANOMALY_HARVESTING)
+	design_ids = list(
+		"ghost_trap",
+		"ghost_emf",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_SECURITY)
+	hidden = TRUE //Hidden on Virgo
+
+/datum/techweb_node/ghost_advanced
+	id = TECHWEB_NODE_GHOST_ADVANCED
+	display_name = "Spectral Hunting"
+	description = "Developing advanced weaponry for tracking and engaging spectral entities."
+	prereq_ids = list(TECHWEB_NODE_GHOST_BASIC)
+	design_ids = list(
+		"ghost_pack",
+		"ghost_goggles",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_SECURITY)
+	required_experiments = list(/datum/experiment/ghost_capture)
+	hidden = TRUE //Hidden on Virgo
+
+/datum/techweb_node/ghost_rounds
+	id = TECHWEB_NODE_GHOST_ROUNDS
+	display_name = "Spectral Rounds"
+	description = "Having reached the pinnacle of spectral research, we can now produce specialized ammunition for ghost hunting."
+	prereq_ids = list(TECHWEB_NODE_GHOST_ADVANCED)
+	design_ids = list(
+		"pistol_mag_9mm_spectral",
+		"smg_mag_9mm_spectral",
+		"loader_357_spectral",
+		"loader_44_spectral",
+		"ammobox_38_spectral",
+		"ammobox_44_spectral",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_SECURITY)
+	//required_experiments = list(ADD_A_GOOD_EXPERIMENT_HERE)
+	hidden = TRUE //Hidden on Virgo

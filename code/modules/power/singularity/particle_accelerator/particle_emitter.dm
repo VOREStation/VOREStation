@@ -45,3 +45,28 @@
 			A.set_dir(src.dir)
 			return 1
 	return 0
+
+/obj/structure/particle_accelerator/particle_emitter/center/pre_mapped
+	construction_state = 3
+	anchored = TRUE
+
+/obj/structure/particle_accelerator/particle_emitter/center/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+
+/obj/structure/particle_accelerator/particle_emitter/right/pre_mapped
+	construction_state = 3
+	anchored = TRUE
+
+/obj/structure/particle_accelerator/particle_emitter/right/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/particle_accelerator/particle_emitter/left/pre_mapped
+	construction_state = 3
+	anchored = TRUE
+
+/obj/structure/particle_accelerator/particle_emitter/left/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()

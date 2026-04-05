@@ -98,7 +98,7 @@ const DiseaseSplicerVirusDish = (props) => {
             )}
           </Section>
           <Section title="Affected Species" color="label">
-            {!affected_species || !affected_species.length
+            {!affected_species?.length
               ? 'None'
               : affected_species.sort().join(', ')}
           </Section>
