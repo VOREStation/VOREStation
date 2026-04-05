@@ -230,7 +230,7 @@
 		if(L.size_multiplier <= 0.6 + bin_bonus)
 			bowl_contents += L
 
-	if(!bowl_contents.len) //Reduced recharge if nothing is being flushed
+	if(!length(bowl_contents)) //Reduced recharge if nothing is being flushed
 		VARSET_IN(src, refilling, FALSE, 7.5 SECONDS)
 		return
 
@@ -299,7 +299,7 @@
 	var/turf/T = get_turf(src)
 	T.assume_air(gas)
 
-	if(!received_items.len)
+	if(!length(received_items))
 		visible_message(span_warning("The water in \the [src] gurgles and bubbles ominously..."), span_notice("You hear a wet gurgling and spluttering..."), runemessage = "glurgles")
 		return
 	visible_message(span_danger("\The [src] gurgles for a moment, before spewing forth a bunch of stuff in a wave of toilet water!"), "GLORGLONCH!")
