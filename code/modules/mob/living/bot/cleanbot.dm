@@ -43,7 +43,7 @@
 		ignore_list += gib
 		addtimer(CALLBACK(src,PROC_REF(clear_ignored_gib), gib), 1 MINUTE, TIMER_DELETE_ME)
 
-/mob/living/bot/cleanbot/clear_ignored_gib(var/obj/gibref)
+/mob/living/bot/cleanbot/proc/clear_ignored_gib(var/obj/gibref)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	ignore_list -= gibref
