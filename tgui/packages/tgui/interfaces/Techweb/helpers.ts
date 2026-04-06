@@ -1,4 +1,5 @@
 import { useBackend } from 'tgui/backend';
+import { buildIconData } from '../common/TechWebRecipeIcon';
 import type { NodeCache, TechWebData } from './types';
 
 type Cost = {
@@ -14,6 +15,7 @@ type RemappedNode = NodeCache & {
 type RemappedDesignCache = {
   name: string;
   class: string;
+  transform?: string;
 };
 
 // Data reshaping / ingestion (thanks stylemistake for the help, very cool!)
@@ -56,9 +58,16 @@ function selectRemappedStaticData(data: TechWebData) {
   const design_cache = {} as RemappedDesignCache;
   for (const id of Object.keys(data.static_data.design_cache)) {
     const [name, classes] = data.static_data.design_cache[id];
+
+    const { transformValue, offset } = buildIconData(classes);
+
     design_cache[remapId(id)] = {
       name: name,
       class: classes.startsWith('design') ? classes : `design32x32 ${classes}`,
+      transform: transformValue
+        ? `scale(${32 / transformValue},${32 / transformValue})`
+        : undefined,
+      margin: `${offset > 0 ? offset : 0}px ${offset < 0 ? -offset : 0}px`,
     };
   }
 

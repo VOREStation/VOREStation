@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(mob_hat_cache)
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Drone"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = TRUE
 	req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS)
 	integrated_light_power = 3
@@ -276,8 +276,8 @@ GLOBAL_LIST_EMPTY(mob_hat_cache)
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOB.lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
 
-	emagged = 1
-	lawupdate = 0
+	emagged = TRUE
+	lawupdate = FALSE
 	connected_ai = null
 	clear_supplied_laws()
 	clear_inherent_laws()
@@ -359,7 +359,7 @@ GLOBAL_LIST_EMPTY(mob_hat_cache)
 	if(player.mob && player.mob.mind)
 		player.mob.mind.transfer_to(src)
 
-	lawupdate = 0
+	lawupdate = FALSE
 	to_chat(src, span_infoplain(span_bold("Systems rebooted") + " Loading base pattern maintenance protocol... " + span_bold("loaded") + "."))
 	full_law_reset()
 	welcome_drone()

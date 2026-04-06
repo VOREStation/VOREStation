@@ -37,7 +37,13 @@
 			continue
 
 		//Todo: Apply some burn damage from the heat of the sun. Until then, enjoy some moderate radiation.
-		L.rad_act(rand(15, 30))
+		radiation_pulse(
+			L,
+			max_range = 1,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			strength = rand(10, 50)
+		)
 
 /datum/event/solar_storm/end()
 	GLOB.command_announcement.Announce("The solar storm has passed the [using_map.facility_type]. It is now safe to resume EVA activities. Please report to medbay if you experience any unusual symptoms. ", "Anomaly Alert")

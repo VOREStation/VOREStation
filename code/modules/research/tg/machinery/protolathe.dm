@@ -5,3 +5,7 @@
 	circuit = /obj/item/circuitboard/machine/protolathe
 	production_animation = "protolathe_n"
 	allowed_buildtypes = PROTOLATHE
+
+/obj/machinery/rnd/production/protolathe/Initialize(mapload)
+	. = ..()
+	wires = new /datum/wires/protolathe(src)

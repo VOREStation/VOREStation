@@ -6,7 +6,6 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			playercount += 1
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		log_game("SQL ERROR during population polling. Failed to connect.")
 	else
@@ -47,7 +46,6 @@
 		log_game("Round ended without any feedback being generated. No feedback was sent to the database.")
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		log_game("SQL ERROR during feedback reporting. Failed to connect.")
 	else

@@ -11,9 +11,10 @@
 
 /// Check if the character is a Full Body Prosthetic (allows numbers in name)
 /datum/preference/name/proc/is_fbp(datum/preferences/preferences)
-	if(!preferences?.organ_data)
+	var/list/organ_data = preferences?.read_preference(/datum/preference/organ_data)
+	if(!organ_data)
 		return FALSE
-	return preferences.organ_data[BP_TORSO] == "cyborg"
+	return organ_data[BP_TORSO] == "cyborg"
 
 /datum/preference/name/is_valid(value)
 	if(!istext(value))
@@ -26,8 +27,8 @@
 	if(!istext(input))
 		return create_default_value()
 	var/species = default_species
-	if(preferences?.species)
-		species = preferences.species
+	if(preferences)
+		species = preferences.read_preference(/datum/preference/choiced/species)
 	var/allow_numbers = is_fbp(preferences)
 	var/sanitized = sanitize_name(input, species, allow_numbers)
 	if(!sanitized)
@@ -63,7 +64,7 @@
 
 /datum/preference/name/real_name/create_informed_default_value(datum/preferences/preferences)
 	var/gender = preferences?.read_preference(/datum/preference/choiced/gender/identifying) || MALE
-	var/species = preferences?.species || SPECIES_HUMAN
+	var/species = preferences?.read_preference(/datum/preference/choiced/species) || SPECIES_HUMAN
 	return random_name(gender, species)
 
 /datum/preference/name/real_name/create_random_value(datum/preferences/preferences, datum/species/current_species)

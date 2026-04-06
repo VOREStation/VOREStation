@@ -343,7 +343,7 @@
 					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 					set_frequency(new_frequency)
 			if("Command")
-				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: cycle, cycle_interior, cycle_exterior", "[src] command", command, encode = TRUE)
+				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: 'open', 'close', 'unlock', 'lock', 'secure_open', 'secure_close', and 'update', without the '. Additionally, some airlocks support 'cycle', 'cycle_interion', and 'cycle_exterior' '", "[src] command", command, encode = TRUE)
 				if(new_command)
 					command = new_command
 

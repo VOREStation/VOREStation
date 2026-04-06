@@ -78,6 +78,10 @@
 		for(var/i = 1, i <= stamp_count, i++)
 			stamps += list("stamp_[rand(2, 8)]")
 
+/obj/item/mail/Destroy()
+	recipient_ref = null
+	. = ..()
+
 /obj/item/mail/blank
 	desc = "A blank envelope."
 	description_info = "An object can be placed into the envelope, click on it with an empty hand to seal it. Alt-Click to retrieve the items from inside before sealing."
@@ -112,7 +116,7 @@
 	var/list/recipients = list()
 	var/mob/living/recipient_mob
 	for(var/mob/living/player in GLOB.player_list)
-		if(!player_is_antag(player.mind) && player.mind.show_in_directory)
+		if(!SSantag_job.player_is_antag(player.mind) && player.mind.show_in_directory)
 			recipients += player
 
 	recipient_mob = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
@@ -276,13 +280,7 @@
 		disposal_holder.destinationTag = sortTag
 
 // Mail spawn for events
-/datum/admins/proc/spawn_mail(var/object as text)
-	set name = "Spawn Mail"
-	set category = "Fun.Event Kit"
-	set desc = "Spawn mail for a specific player, with a specific item."
-
-	if(!check_rights(R_SPAWN)) return
-
+ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player, with a specific item.", ADMIN_CATEGORY_FUN_EVENT_KIT, object as text)
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
 	var/list/recipients = list()
@@ -298,23 +296,25 @@
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select an atom type", "Spawn Atom in Mail", matches)
+		chosen = tgui_input_list(user, "Select an atom type", "Spawn Atom in Mail", matches)
 		if(!chosen)
 			return
 
 	for(var/mob/living/player in GLOB.player_list)
 		recipients += player
 
-	var/mob/living/chosen_player = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
+	var/mob/living/chosen_player = tgui_input_list(user, "Choose recipient", "Recipients", recipients, recipients)
 
 	recipient_mind = chosen_player.mind
 
 	if(!recipient_mind)
 		return
 
-	var/shuttle_spawn = tgui_alert(usr, "Spawn mail at location or in the shuttle?", "Spawn mail", list("Location", "Shuttle"))
+	var/shuttle_spawn = tgui_alert(user, "Spawn mail at location or in the shuttle?", "Spawn mail", list("Location", "Shuttle"))
 	if(!shuttle_spawn)
 		return
+
+	var/mob/user_mob = user.mob
 	if(shuttle_spawn == "Shuttle")
 		var/obj/item/mail/new_mail = new
 		new_mail.initialize_for_recipient(recipient_mind, TRUE)
@@ -322,10 +322,10 @@
 		SSmail.admin_mail += new_mail
 		log_and_message_admins("spawned [chosen] inside an envelope at the shuttle")
 	else
-		var/obj/item/mail/ground_mail = new /obj/item/mail(usr.loc)
+		var/obj/item/mail/ground_mail = new /obj/item/mail(user_mob.loc)
 		ground_mail.initialize_for_recipient(recipient_mind, TRUE)
 		new chosen(ground_mail)
-		log_and_message_admins("spawned [chosen] inside an envelope at ([usr.x],[usr.y],[usr.z])")
+		log_and_message_admins("spawned [chosen] inside an envelope at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
 	feedback_add_details("admin_verb","SM")
 

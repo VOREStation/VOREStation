@@ -383,7 +383,7 @@
 		else
 			destroy_shields()
 			my_tool.set_ready_state(TRUE)
-			my_tool.log_message("Power lost.")
+			my_tool.log_message("Power lost.", LOG_GAME)
 	else
 		my_tool.set_ready_state(TRUE)
 
@@ -409,5 +409,5 @@
 	..()
 	my_mecha.use_power(my_tool.energy_drain)
 	if(!active && shield_health < shield_regen_amount)
-		my_tool.log_message("Shield overloaded.")
+		my_tool.log_message("Shield overloaded.", LOG_GAME)
 		my_mecha.use_power(my_tool.energy_drain * 4)

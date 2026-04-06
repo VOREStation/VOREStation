@@ -144,7 +144,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
-/datum/robot_sprite/dogborg/tall/combat_gooborg
+/datum/robot_sprite/dogborg/tall/combat/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "malf"
@@ -159,9 +159,8 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_MELEE_SPRITE //Baton
-	module_type = "Combat"
 
-/datum/robot_sprite/dogborg/tall/combat_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	return ..()
@@ -182,7 +181,7 @@
 	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
 //Exploration.
-/datum/robot_sprite/dogborg/tall/exploration/gooborg
+/datum/robot_sprite/dogborg/tall/explorer/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "explo"
@@ -197,7 +196,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 
-/datum/robot_sprite/dogborg/tall/ninja_gooborg
+/datum/robot_sprite/dogborg/tall/ninja/gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "syndicat"
@@ -212,10 +211,9 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
-	module_type = "Ninja"
 	sprite_hud_icon_state = "malf" //malf!!
 
-/datum/robot_sprite/dogborg/tall/ninja_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/ninja/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else

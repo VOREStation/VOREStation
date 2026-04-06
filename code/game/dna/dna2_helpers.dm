@@ -15,10 +15,10 @@
 // DNA Gene activation boundaries, see dna2.dm.
 // Returns a list object with 4 numbers.
 /proc/GetDNABounds(var/block)
-	var/list/BOUNDS=dna_activity_bounds[block]
-	if(!istype(BOUNDS))
+	var/list/bounds = GLOB.dna_activity_bounds[block]
+	if(!istype(bounds))
 		return DNA_DEFAULT_BOUNDS
-	return BOUNDS
+	return bounds
 
 // Give Random Bad Mutation to M
 /proc/randmutb(var/mob/living/M)

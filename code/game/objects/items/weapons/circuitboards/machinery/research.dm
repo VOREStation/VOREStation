@@ -20,6 +20,7 @@
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/reagent_containers/glass/beaker = 2)
+	hidden = TRUE // Base types aren't cared for, a fully unlocked lathe shouldn't be easy to make
 
 /obj/item/circuitboard/machine/protolathe/department
 	name = T_BOARD("departmental protolathe")
@@ -27,21 +28,27 @@
 /obj/item/circuitboard/machine/protolathe/department/engineering
 	name = T_BOARD("departmental protolathe (engineering)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/engineering
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/service
 	name = T_BOARD("departmental protolathe (service)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/service
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/medical
 	name = T_BOARD("departmental protolathe (medical)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/medical
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/cargo
 	name = T_BOARD("departmental protolathe (cargo)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/cargo
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/science
 	name = T_BOARD("departmental protolathe (science)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/science
+	hidden = FALSE
 /obj/item/circuitboard/machine/protolathe/department/security
 	name = T_BOARD("departmental protolathe (security)")
 	build_path = /obj/machinery/rnd/production/protolathe/department/security
+	hidden = FALSE
 
 /obj/item/circuitboard/circuit_imprinter
 	name = T_BOARD("circuit imprinter")
@@ -54,7 +61,7 @@
 							/obj/item/reagent_containers/glass/beaker = 2)
 
 /obj/item/circuitboard/mechfab
-	name = "Circuit board (Exosuit Fabricator)"
+	name = T_BOARD("Exosuit Fabricator")
 	build_path = /obj/machinery/mecha_part_fabricator_tg
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
@@ -65,7 +72,7 @@
 							/obj/item/stock_parts/console_screen = 1)
 
 /obj/item/circuitboard/prosthetics
-	name = "Circuit board (Prosthetics Fabricator)"
+	name = T_BOARD("Prosthetics Fabricator")
 	build_path = /obj/machinery/mecha_part_fabricator_tg/prosthetics
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
@@ -76,7 +83,7 @@
 							/obj/item/stock_parts/console_screen = 1)
 
 /obj/item/circuitboard/ntnet_relay
-	name = "Circuit board (NTNet Quantum Relay)"
+	name = T_BOARD("NTNet Quantum Relay")
 	build_path = /obj/machinery/ntnet_relay
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 4)
@@ -121,3 +128,11 @@
 							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/micro_laser = 1)
+
+/obj/item/circuitboard/doppler_array
+	name = T_BOARD("doppler array")
+	build_path = /obj/machinery/doppler_array
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 1, TECH_DATA = 3)
+	req_components = list(
+							/obj/item/stock_parts/scanning_module = 4)

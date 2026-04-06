@@ -273,10 +273,7 @@
 */
 /datum/robot_sprite/dogborg/tall/ninja
 	module_type = "Ninja"
-	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	sprite_hud_icon_state = "malf"
-	icon_x = 32
-	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/ninja/dullahan
 	name = "dullahan"
@@ -288,31 +285,34 @@
 	belly_capacity_list = list("sleeper" = 3)
 	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "Sit")
-	pixel_x = -16
-	icon_x = 64
 
-/datum/robot_sprite/dogborg/tall/ninja/mekaninja
+/datum/robot_sprite/dogborg/tall/ninja/tall
+	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/ninja/tall/mekaninja
 	name = "Meka"
 	sprite_icon_state = "mekaninja"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
-/datum/robot_sprite/dogborg/tall/ninja/fmekaninja
+/datum/robot_sprite/dogborg/tall/ninja/tall/fmekaninja
 	name = "Niko"
 	sprite_icon_state = "fmekaninja"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
-/datum/robot_sprite/dogborg/tall/ninja/k4tninja
+/datum/robot_sprite/dogborg/tall/ninja/tall/k4tninja
 	name = "K4T"
 	sprite_icon_state = "k4tninja"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
-/datum/robot_sprite/dogborg/tall/ninja/mmekaninja
+/datum/robot_sprite/dogborg/tall/ninja/tall/mmekaninja
 	name = "Nika"
 	sprite_icon_state = "mmekaninja"
 	has_eye_light_sprites = TRUE
@@ -329,5 +329,3 @@
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "breastplatehalo","swordhalo","tophalo")
 	rest_sprite_options = list("Default")
-	icon_x = 64
-	pixel_x = -16

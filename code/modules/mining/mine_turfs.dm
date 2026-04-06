@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
-	var/obj/item/last_find
+	var/last_find_name
 	var/datum/artifact_find/artifact_find
 	var/ignore_mapgen
 
@@ -373,6 +373,9 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 
 		if(istype(W, /obj/item/shovel))
 			var/obj/item/shovel/S = W
+			if(S.grave_mode)
+				shovel_dig_grave(user, S)
+				return
 			valid_tool = 1
 			digspeed = S.digspeed
 
@@ -689,10 +692,8 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
 	var/display_name = "Something"
-	if(!X)
-		X = last_find
-	if(X)
-		display_name = X.name
+	if(last_find_name)
+		display_name = last_find_name
 
 	//This is affected by 'prob_delicate' in finds.dm. As of writing, this has been set to 0 because the suspension field is just one extra piece that makes
 	//Xenoarch that much more confusing, and the intent of this PR is to make it more friendly to get into.

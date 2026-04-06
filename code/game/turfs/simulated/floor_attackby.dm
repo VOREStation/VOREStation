@@ -3,6 +3,10 @@
 	if(!C || !user)
 		return 0
 
+	// Check parent signals
+	if(..())
+		return
+
 	if(isliving(user) && istype(C, /obj/item))
 		var/mob/living/L = user
 		if(L.a_intent != I_HELP)
