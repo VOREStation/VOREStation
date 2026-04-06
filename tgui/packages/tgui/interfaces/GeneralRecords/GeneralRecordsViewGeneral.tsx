@@ -8,7 +8,7 @@ import type { Data } from './types';
 export const GeneralRecordsViewGeneral = (props) => {
   const { act, data } = useBackend<Data>();
   const { general } = data;
-  if (!general || !general.fields) {
+  if (!general?.fields) {
     return (
       <Box color="bad">
         General record lost!

@@ -298,7 +298,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
-	if(channel && channels && channels.len > 0)
+	if(channel && channels && LAZYLEN(channels))
 		if(channel == "department")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
@@ -325,7 +325,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		return radio_connection
 
 	// Otherwise, if a channel is specified, look for it.
-	if(channels && channels.len > 0)
+	if(channels && LAZYLEN(channels))
 		if (message_mode == "department") // Department radio shortcut
 			message_mode = channels[1]
 

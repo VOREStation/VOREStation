@@ -97,7 +97,7 @@
 	return TRUE
 
 /obj/item/assembly/infra/proc/trigger_beam()
-	if(!process_cooldown())
+	if(!COOLDOWN_FINISHED(src, next_activate))
 		return FALSE
 	pulse(0)
 	QDEL_LIST_NULL(i_beams) //They will get recreated next process() if the situation is still appropriate

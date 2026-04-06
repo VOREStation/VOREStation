@@ -1,14 +1,14 @@
 // Use this define to register something as a creatable!
 // * n - The proper name of the purchasable
 // * o - The object type path of the purchasable to spawn
-// * r - The amount to dispense
+// * r - The maximum amount to dispense
 // * p - The price of the purchasable in biomass
 #define BIOGEN_ITEM(n, o, r, p) n = new /datum/data/biogenerator_item(n, o, r, p)
 
 // Use this define to register something as dispensable
 // * n - The proper name of the purchasable
 // * o - The reagent ID
-// * r - The amount of reagent to dispense
+// * r - The maximum amount to dispense
 // * p - The price of the purchasable in biomass
 #define BIOGEN_REAGENT(n, o, r, p) n = new /datum/data/biogenerator_reagent(n, o, r, p)
 
@@ -64,26 +64,19 @@
 
 	item_list = list()
 	item_list["Food Items"] = list(
-		BIOGEN_REAGENT("Milk x10", REAGENT_ID_MILK, 10, 20),
-		BIOGEN_REAGENT("Milk x50", REAGENT_ID_MILK, 50, 95),
-		BIOGEN_REAGENT("Cream x10", REAGENT_ID_CREAM, 10, 30),
-		BIOGEN_REAGENT("Cream x50", REAGENT_ID_CREAM, 50, 120),
-		BIOGEN_ITEM("Slab of meat", /obj/item/reagent_containers/food/snacks/meat, 1, 50),
-		BIOGEN_ITEM("Slabs of meat x5", /obj/item/reagent_containers/food/snacks/meat, 5, 250),
+		BIOGEN_REAGENT("Milk", REAGENT_ID_MILK, 50, 20),
+		BIOGEN_REAGENT("Cream", REAGENT_ID_CREAM, 50, 30),
+		BIOGEN_ITEM("Slab of meat", /obj/item/reagent_containers/food/snacks/meat, 5, 50),
+		BIOGEN_ITEM("Algae Sheets", /obj/item/stack/material/algae, 50, 100),
 	)
 	item_list["Cooking Ingredients"] = list(
-		BIOGEN_REAGENT("Universal Enzyme x10", REAGENT_ID_ENZYME, 10, 30),
-		BIOGEN_REAGENT("Universal Enzyme x50", REAGENT_ID_ENZYME, 50, 120),
-		BIOGEN_ITEM("Nutri-spread", /obj/item/reagent_containers/food/snacks/spreads, 1, 30),
-		BIOGEN_ITEM("Nutri-spread x5", /obj/item/reagent_containers/food/snacks/spreads, 5, 120),
+		BIOGEN_REAGENT("Universal Enzyme", REAGENT_ID_ENZYME, 50, 30),
+		BIOGEN_ITEM("Nutri-spread", /obj/item/reagent_containers/food/snacks/spreads, 5, 30),
 	)
 	item_list["Gardening Nutrients"] = list(
-		BIOGEN_ITEM("E-Z-Nutrient", /obj/item/reagent_containers/glass/bottle/eznutrient, 1, 60),
-		BIOGEN_ITEM("E-Z-Nutrient x5", /obj/item/reagent_containers/glass/bottle/eznutrient, 5, 300),
-		BIOGEN_ITEM("Left 4 Zed", /obj/item/reagent_containers/glass/bottle/left4zed, 1, 120),
-		BIOGEN_ITEM("Left 4 Zed x5", /obj/item/reagent_containers/glass/bottle/left4zed, 5, 600),
-		BIOGEN_ITEM("Robust Harvest", /obj/item/reagent_containers/glass/bottle/robustharvest, 1, 150),
-		BIOGEN_ITEM("Robust Harvest x5", /obj/item/reagent_containers/glass/bottle/robustharvest, 5, 750),
+		BIOGEN_ITEM("E-Z-Nutrient", /obj/item/reagent_containers/glass/bottle/eznutrient, 5, 60),
+		BIOGEN_ITEM("Left 4 Zed", /obj/item/reagent_containers/glass/bottle/left4zed, 5, 120),
+		BIOGEN_ITEM("Robust Harvest", /obj/item/reagent_containers/glass/bottle/robustharvest, 5, 150),
 	)
 	item_list["Leather Products"] = list(
 		BIOGEN_ITEM("Wallet", /obj/item/storage/wallet, 1, 100),
@@ -99,21 +92,23 @@
 		BIOGEN_ITEM("Leather Coat", /obj/item/clothing/suit/leathercoat, 1, 500),
 		BIOGEN_ITEM("Leather Jacket", /obj/item/clothing/suit/storage/toggle/brown_jacket, 1, 500),
 		BIOGEN_ITEM("Winter Coat", /obj/item/clothing/suit/storage/hooded/wintercoat, 1, 500),
-		//VOREStation Edit - Algae for oxygen generator
-		BIOGEN_ITEM("Algae Sheets x4", /obj/item/stack/material/algae, 4, 400),
-		BIOGEN_ITEM("Algae Sheets x50", /obj/item/stack/material/algae, 50, 5000),
 	)
 
 /obj/machinery/biogenerator/tgui_static_data(mob/user)
-	var/list/static_data[0]
+	var/list/static_data = list()
 
 	// Available items - in static data because we don't wanna compute this list every time! It hardly changes.
 	static_data["items"] = list()
 	for(var/cat in item_list)
 		var/list/cat_items = list()
-		for(var/prize_name in item_list[cat])
-			var/datum/data/biogenerator_reagent/prize = item_list[cat][prize_name]
-			cat_items[prize_name] = list("name" = prize_name, "price" = prize.cost, "reagent" = istype(prize))
+		for(var/prize_name, value in item_list[cat])
+			if(istype(value, /datum/data/biogenerator_item))
+				var/datum/data/biogenerator_item/cat_item = value
+				cat_items[prize_name] = list("name" = prize_name, "price" = cat_item.cost, "max_amount" = cat_item.equipment_amt)
+				continue
+			var/datum/data/biogenerator_reagent/cat_reag = value
+			cat_items[prize_name] = list("name" = prize_name, "price" = cat_reag.cost, "max_amount" = cat_reag.reagent_amt, "reagent" = TRUE)
+
 		static_data["items"][cat] = cat_items
 
 	return static_data
@@ -136,13 +131,13 @@
 		ui.open()
 
 /obj/machinery/biogenerator/tgui_act(action, params, datum/tgui/ui)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
-	. = TRUE
 	switch(action)
 		if("activate")
-			INVOKE_ASYNC(src, PROC_REF(activate), ui.user)
+			activate(ui.user)
 			return TRUE
 		if("detach")
 			if(beaker)
@@ -153,47 +148,52 @@
 		if("purchase")
 			var/category = params["cat"] // meow
 			var/name = params["name"]
+			var/amount = params["amount"]
 
-			if(!(category in item_list) || !(name in item_list[category])) // Not trying something that's not in the list, are you?
-				return
+			if(!(category in item_list) || !(name in item_list[category]) || !isnum(amount)) // Not trying something that's not in the list, are you?
+				return FALSE
 
 			var/datum/data/biogenerator_item/bi = item_list[category][name]
+
 			if(!istype(bi))
 				var/datum/data/biogenerator_reagent/br = item_list[category][name]
 				if(!istype(br))
-					return
+					return FALSE
 				if(!beaker)
-					return
-				var/cost = round(br.cost / build_eff)
+					return FALSE
+				if(amount <= 0 || amount > br.reagent_amt)
+					return FALSE
+				var/cost = round(br.cost / build_eff) * amount
 				if(cost > points)
 					to_chat(ui.user, span_danger("Insufficient biomass."))
-					return
-				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), br.reagent_amt))
+					return FALSE
+				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), br.reagent_amt)) * amount
 				if(amt_to_actually_dispense <= 0)
 					to_chat(ui.user, span_danger("The loaded beaker is full!"))
-					return
+					return FALSE
 				points -= (cost * (amt_to_actually_dispense / br.reagent_amt))
 				beaker.reagents.add_reagent(br.reagent_id, amt_to_actually_dispense)
 				playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
-				return
+				return FALSE
+
+			if(amount <= 0 || amount > bi.equipment_amt)
+				return FALSE
 
 			var/cost = round(bi.cost / build_eff)
 			if(cost > points)
 				to_chat(ui.user, span_danger("Insufficient biomass."))
-				return
+				return FALSE
 
-			points -= cost
+			points -= cost * amount
 			if(ispath(bi.equipment_path, /obj/item/stack))
-				new bi.equipment_path(loc, bi.equipment_amt)
+				new bi.equipment_path(loc, amount)
 				playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1)
 				return TRUE
 
-			for(var/i in 1 to bi.equipment_amt)
+			for(var/i in 1 to amount)
 				new bi.equipment_path(loc)
 				playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1)
 			return TRUE
-		else
-			return FALSE
 
 /obj/machinery/biogenerator/on_reagent_change()			//When the reagents change, change the icon as well.
 	update_icon()
@@ -277,19 +277,21 @@
 			points += 1
 		else points += I.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 10 * eat_eff
 		qdel(I)
-	if(S)
-		processing = 1
-		update_icon()
-		playsound(src, 'sound/machines/blender.ogg', 40, 1)
-		use_power(S * 30)
-		sleep((S + 15) / eat_eff)
-		processing = 0
-		SStgui.update_uis(src)
-		playsound(src, 'sound/machines/biogenerator_end.ogg', 40, 1)
-		update_icon()
-	else
+	if(!S)
 		to_chat(user, span_warning("Error: No growns inside. Please insert growns."))
-	return
+		return
+
+	processing = 1
+	update_icon()
+	playsound(src, 'sound/machines/blender.ogg', 40, 1)
+	use_power(S * 30)
+	addtimer(CALLBACK(src, PROC_REF(finish_processing)), (S + 15) / eat_eff, TIMER_DELETE_ME)
+
+/obj/machinery/biogenerator/proc/finish_processing()
+	processing = 0
+	SStgui.update_uis(src)
+	playsound(src, 'sound/machines/biogenerator_end.ogg', 40, 1)
+	update_icon()
 
 /obj/machinery/biogenerator/RefreshParts()
 	..()

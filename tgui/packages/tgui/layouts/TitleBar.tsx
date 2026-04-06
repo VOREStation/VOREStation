@@ -52,7 +52,7 @@ export function TitleBar(props: TitleBarProps) {
     <div className={classes(['TitleBar', className])}>
       <div
         className="TitleBar__dragZone"
-        onMouseDown={(e) => fancy && onDragStart && onDragStart(e)}
+        onMouseDown={(e) => fancy && onDragStart?.(e)}
       />
       {status === undefined ? (
         <Icon className="TitleBar__statusIcon" name="tools" opacity={0.5} />
