@@ -155,7 +155,6 @@
 	update_icon()
 
 /obj/machinery/transhuman/synthprinter/Destroy()
-	go_out()
 	current_br = null
 	. = ..()
 

@@ -149,7 +149,6 @@
 	if(alarm_area.main_air_alarm?.resolve() == src)
 		alarm_area.elect_main_air_alarm(TRUE)
 	alarm_area = null
-	main_air_alarm = null
 	. = ..()
 
 /obj/machinery/alarm/proc/offset_airalarm()
