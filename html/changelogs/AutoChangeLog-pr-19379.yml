@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Borgs will get a client side indicator when electrifying doors with alt-click"

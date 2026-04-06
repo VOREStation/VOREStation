@@ -27,15 +27,11 @@
 	///var used for attack_self chain
 	var/special_handling = FALSE
 
+	COOLDOWN_DECLARE(next_activate)
+	var/activation_cooldown = 3 SECONDS
+
 /obj/item/assembly/proc/holder_movement()
 	return
-
-/obj/item/assembly/proc/process_cooldown()
-	if(cooldown)
-		return FALSE
-	cooldown = TRUE
-	VARSET_IN(src, cooldown, FALSE, 2 SECONDS)
-	return TRUE
 
 /obj/item/assembly/proc/pulsed(var/radio = 0)
 	if(holder && (wires & WIRE_RECEIVE))
@@ -52,8 +48,9 @@
 	return 1
 
 /obj/item/assembly/proc/activate()
-	if(!secured || !process_cooldown())
+	if(QDELETED(src) || !secured || !COOLDOWN_FINISHED(src, next_activate))
 		return FALSE
+	COOLDOWN_START(src, next_activate, activation_cooldown)
 	return TRUE
 
 /obj/item/assembly/proc/toggle_secure()
