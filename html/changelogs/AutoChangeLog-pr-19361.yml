@@ -1,0 +1,6 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Anomaly Core Rigging"
+  - rscdel: "Removed acid weather from being picked for the Weather Anomaly"
+  - bugfix: "Fixed signalers cooldown not working"

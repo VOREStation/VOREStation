@@ -78,6 +78,10 @@
 		for(var/i = 1, i <= stamp_count, i++)
 			stamps += list("stamp_[rand(2, 8)]")
 
+/obj/item/mail/Destroy()
+	recipient_ref = null
+	. = ..()
+
 /obj/item/mail/blank
 	desc = "A blank envelope."
 	description_info = "An object can be placed into the envelope, click on it with an empty hand to seal it. Alt-Click to retrieve the items from inside before sealing."
