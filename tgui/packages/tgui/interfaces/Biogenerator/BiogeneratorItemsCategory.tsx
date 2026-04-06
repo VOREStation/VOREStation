@@ -7,6 +7,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { clamp, round } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 import { canBuyItem } from './functions';
 import type { Data, Sortable } from './types';
@@ -71,7 +72,7 @@ const BiogeneratorItemsEntry = (props: {
               icon="basket-shopping"
               disabled={
                 !canBuyItem(item, beaker) &&
-                (item.price / build_eff) * amount > points
+                clamp(item.price / build_eff, 1, 10000) * amount > points
               }
               textAlign="right"
               onClick={() =>
@@ -82,7 +83,7 @@ const BiogeneratorItemsEntry = (props: {
                 })
               }
             >
-              {`${((item.price * amount) / build_eff).toFixed()}`}
+              {`${(clamp(item.price / build_eff, 1, 10000) * amount).toFixed()}`}
             </Button>
           </Stack.Item>
         </Stack>
@@ -91,7 +92,7 @@ const BiogeneratorItemsEntry = (props: {
         Price:
       </Table.Cell>
       <Table.Cell collapsing color="label" textAlign="right" width="30px">
-        {`${(item.price / build_eff).toFixed()}`}
+        {`${clamp(item.price / build_eff, 1, 10000).toFixed()}`}
       </Table.Cell>
     </Table.Row>
   );
