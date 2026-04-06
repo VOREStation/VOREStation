@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "legacy notes"
-  - bugfix: "borg default access"

@@ -198,7 +198,7 @@
 // Organ Detaching Surgery
 ///////////////////////////////////////////////////////////////
 
-/datum/surgery_step/internal/detatch_organ/
+/datum/surgery_step/internal/detatch_organ
 	surgery_name = "Detach Organ"
 
 	allowed_tools = list(

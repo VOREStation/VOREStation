@@ -40,6 +40,9 @@
 					P.Click(params)
 					break
 
+	if(check_click_intercept(params,A))
+		return
+
 	if(stat)
 		return
 
@@ -158,6 +161,11 @@
 		electrify(0, 1)
 	else
 		electrify(-1, 1)
+	// Clientside only notification
+	var/turf/root_turf = get_turf(src)
+	var/image/client_only/electrify_notice/zap = new('icons/hud/screen_gen.dmi', root_turf, electrified_until ? "stamina_crit" : "stamina_dead", OBFUSCATION_LAYER, SOUTH)
+	zap.place_from_root(root_turf)
+	zap.append_client(user.client)
 	return 1
 
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets

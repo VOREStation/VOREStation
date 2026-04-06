@@ -16,3 +16,9 @@
 	name = T_BOARD("telecommunications traffic control console")
 	build_path = /obj/machinery/computer/telecomms/traffic
 	origin_tech = list(TECH_DATA = 3)
+
+/obj/item/circuitboard/message_server
+	name = T_BOARD("message server")
+	build_path = /obj/machinery/message_server
+	origin_tech = list(TECH_DATA = 3)
+	board_type = new /datum/frame/frame_types/machine

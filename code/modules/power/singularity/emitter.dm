@@ -307,3 +307,12 @@
 		projectile.particle_type = particle
 		return projectile
 	return new /obj/item/projectile/beam/emitter(get_turf(src))
+
+/obj/machinery/power/emitter/pre_mapped
+	anchored = TRUE
+	state = 2
+
+/obj/machinery/power/emitter/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+	update_icon()

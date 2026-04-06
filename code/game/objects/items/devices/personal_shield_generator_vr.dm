@@ -69,7 +69,6 @@
 /obj/item/personal_shield_generator/loaded //starts with a cell
 	bcell = /obj/item/cell/device/shield_generator/backpack
 
-
 /obj/item/personal_shield_generator/update_icon()
 	if(shield_active)
 		icon_state = "shieldpack_basic_on"

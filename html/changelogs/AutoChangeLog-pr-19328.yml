@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Clown borg has a lube spray (when emagged)"
-  - code_imp: "respawn_conumsable parent call added"

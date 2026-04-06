@@ -18,6 +18,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view_tg)
 /atom/movable/screen/map_view_tg/Destroy()
 	for(var/datum/weakref/client_ref in viewing_clients)
 		hide_from_client(client_ref.resolve())
+	QDEL_LIST_NULL(popup_plane_masters)
 
 	return ..()
 

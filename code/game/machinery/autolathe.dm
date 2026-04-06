@@ -96,7 +96,7 @@
 
 /obj/machinery/autolathe/crowbar_act(mob/living/user, obj/item/tool)
 	. = NONE
-	if(default_deconstruction_crowbar(tool))
+	if(default_deconstruction_crowbar(user, tool))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/autolathe/screwdriver_act(mob/living/user, obj/item/tool)

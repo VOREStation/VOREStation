@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - refactor: "moves transfer controller to a subsystem"
