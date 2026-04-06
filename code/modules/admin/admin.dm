@@ -1062,7 +1062,7 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATE
 	log_and_message_admins("spawned [amount] x [chosen_path] at [AREACOORD(user.mob)]", user)
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
 	if(!istype(M))
 		to_chat(user, "This can only be used on instances of type /mob")
 		return

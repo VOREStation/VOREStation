@@ -2,3 +2,19 @@
   Kashargul:
   - admin: ports TG spawn verb UI
   - code_imp: depdendency up
+2026-04-02:
+  Diana:
+  - bugfix: Water no longer explodes your lungs
+  Will:
+  - bugfix: Floorpainter missing autolathe tag
+  Will, Kash:
+  - rscadd: Doppler array explosive experiments
+2026-04-03:
+  Diana:
+  - rscadd: ghostbusting
+2026-04-04:
+  Will:
+  - bugfix: Fixed accidental looting debug flag being left enabled on trash piles
+2026-04-06:
+  Kashargul:
+  - qol: allows free amount selection between min and max

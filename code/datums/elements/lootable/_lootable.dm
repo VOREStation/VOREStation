@@ -4,7 +4,7 @@
 	var/chance_rare = 1				// Ditto, but for rare_loot list.
 	var/chance_gamma = 0			// Singledrop global loot table shared with all piles.
 
-	var/allow_multiple_looting = TRUE	// If true, the same person can loot multiple times.  Mostly for debugging.
+	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/loot_depletion = FALSE		// If true, loot piles can be 'depleted' after a certain number of searches by different players, where no more loot can be obtained.
 	var/loot_left = 0				// Maximum number of times a pile can be looted before no loot will remain for anyone
 	var/delete_on_depletion = FALSE	// If true, and if the loot gets depleted as above, the pile is deleted.

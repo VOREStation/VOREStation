@@ -38,6 +38,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	)
 	. = ..()
 	default_apply_parts()
+	ADD_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER, ROUNDSTART_TRAIT)
 
 /obj/machinery/rnd/destructive_analyzer/Destroy()
 	rmat = null

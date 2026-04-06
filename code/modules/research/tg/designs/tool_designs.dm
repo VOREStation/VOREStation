@@ -1009,8 +1009,9 @@
 	id = "floor_painter"
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 500)
 	build_path = /obj/item/floor_painter
-	build_type = PROTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
