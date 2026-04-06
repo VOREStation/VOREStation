@@ -71,6 +71,10 @@
 	antag_holder = new
 	..()
 
+/datum/mind/Destroy(force)
+	. = ..()
+	original_character = null
+
 /datum/mind/proc/transfer_to(mob/living/new_character, force = FALSE)
 	if(!istype(new_character))
 		log_world("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")

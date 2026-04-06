@@ -64,6 +64,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 /obj/item/cataloguer/Destroy()
 	GLOB.all_cataloguers -= src
 	displayed_data = null
+	partial_scanned = null
 	return ..()
 
 /obj/item/cataloguer/update_icon()

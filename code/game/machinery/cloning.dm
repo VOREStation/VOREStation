@@ -55,6 +55,11 @@
 	default_apply_parts()
 	update_icon()
 
+/obj/machinery/clonepod/Destroy()
+	locked = FALSE
+	go_out()
+	. = ..()
+
 /obj/machinery/clonepod/proc/set_occupant(var/mob/living/L)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!L)

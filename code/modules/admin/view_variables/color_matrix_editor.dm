@@ -28,6 +28,7 @@
 
 /datum/color_matrix_editor/Destroy(force)
 	QDEL_NULL(proxy_view)
+	target = null
 	return ..()
 
 /datum/color_matrix_editor/tgui_state(mob/user)

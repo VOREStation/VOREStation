@@ -122,6 +122,7 @@
 		var/obj/structure/blob/core/B = weakref.resolve()
 		if(istype(B))
 			qdel(B)
+	blobs.Cut()
 
 /datum/event2/event/blob/announce()
 	if(!ended) // Don't announce if the blobs die early.
