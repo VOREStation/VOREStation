@@ -7,7 +7,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-import { clamp, round } from 'tgui-core/math';
+import { clamp } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 import { canBuyItem } from './functions';
 import type { Data, Sortable } from './types';
