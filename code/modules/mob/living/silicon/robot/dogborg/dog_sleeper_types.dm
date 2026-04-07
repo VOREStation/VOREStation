@@ -81,19 +81,6 @@
 		current_capacity++
 		qdel(ore)
 
-/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/dogborg/sleeper/compactor/supply))
-		var/obj/item/dogborg/sleeper/compactor/supply/S = W
-		for(var/ore in S.stored_ore)
-			if(S.stored_ore[ore] > 0)
-				var/ore_amount = S.stored_ore[ore]	// How many ores does the satchel have?
-				stored_ore[ore] += ore_amount 		// Add the ore to the machine.
-				S.stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
-				S.current_capacity = 0				// Set the amount of ore in the satchel  to 0.
-		to_chat(user, span_notice("You empty the satchel into the box."))
-		return
-	..()
-
 /obj/item/dogborg/sleeper/compactor/brewer
 	name = "Brew Belly"
 	desc = "A mounted drunk tank unit with fuel processor, for putting away particularly rowdy patrons."
