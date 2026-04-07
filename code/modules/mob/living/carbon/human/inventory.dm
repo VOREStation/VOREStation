@@ -239,7 +239,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return
 
 	W.loc = src
-	has_unequipped(W) //If you're wondering: TG calls attempt_insert -> transferItemToLoc -> doUnEquip -> has_unequipped. This is where we do it insteead since we don't have storage datums.
 	switch(slot)
 		if(slot_back)
 			src.back = W
@@ -336,10 +335,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 			update_inv_w_uniform()
 		if(slot_l_store)
 			src.l_store = W
+			has_unequipped(W)
 			W.equipped(src, slot)
 			//update_inv_pockets() //Doesn't do anything
 		if(slot_r_store)
 			src.r_store = W
+			has_unequipped(W)
 			W.equipped(src, slot)
 			//update_inv_pockets() //Doesn't do anything
 		if(slot_s_store)
