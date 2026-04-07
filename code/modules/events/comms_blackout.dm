@@ -2,7 +2,7 @@
 /proc/communications_blackout(var/silent = 1)
 
 	if(!silent)
-		GLOB.command_announcement.Announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", new_sound = 'sound/misc/interference.ogg')
+		GLOB.command_announcement.Announce("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT", new_sound = ANNOUNCER_MSG_COMMSBLACKOUT)
 	else // AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
 		for(var/mob/living/silicon/ai/A in GLOB.player_list)
 			to_chat(A, span_boldwarning("<br>"))
