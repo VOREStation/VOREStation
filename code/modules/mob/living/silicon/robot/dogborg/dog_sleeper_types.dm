@@ -50,36 +50,38 @@
 	injection_chems = list(REAGENT_ID_GLUCOSE,REAGENT_ID_INAPROVALINE,REAGENT_ID_TRICORDRAZINE)
 	max_item_count = 20
 	ore_storage = TRUE
-	var/list/stored_ore = list(
-		ORE_SAND = 0,
-		ORE_HEMATITE = 0,
-		ORE_CARBON = 0,
-		ORE_COPPER = 0,
-		ORE_TIN = 0,
-		ORE_VOPAL = 0,
-		ORE_PAINITE = 0,
-		ORE_QUARTZ = 0,
-		ORE_BAUXITE = 0,
-		ORE_PHORON = 0,
-		ORE_SILVER = 0,
-		ORE_GOLD = 0,
-		ORE_MARBLE = 0,
-		ORE_URANIUM = 0,
-		ORE_DIAMOND = 0,
-		ORE_PLATINUM = 0,
-		ORE_LEAD = 0,
-		ORE_MHYDROGEN = 0,
-		ORE_VERDANTIUM = 0,
-		ORE_RUTILE = 0)
+	var/obj/item/ore_bag/sleeper/ore_bag
 	medsensor = FALSE
+
+/obj/item/dogborg/sleeper/compactor/supply/Initialize(mapload)
+	ore_bag = new(null) //We don't need it inside, just need a reference to it.
+	. = ..()
 
 /obj/item/dogborg/sleeper/compactor/supply/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
-	if(istype(thing, /obj/item/ore))
+	if(ore_bag.current_capacity >= ore_bag.max_storage_space) //Don't even try anything if we're already full.
+		return
+	if(istype(thing, /obj/item/ore) && !istype(thing, /obj/item/ore/slag) && !istype(thing, /obj/item/ore/archeology_debris))
 		var/obj/item/ore/ore = thing
-		stored_ore[ore.material]++
-		current_capacity++
+		ore_bag.stored_ore[ore.material]++
+		ore_bag.current_capacity++
 		qdel(ore)
+
+/obj/item/dogborg/sleeper/compactor/supply/afterattack(atom/movable/target, mob/living/silicon/user, proximity)
+	if(isturf(target))
+		if(ore_bag.gather_all(target, user, TRUE))
+			user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as ore slips inside."), span_notice("Your [src.name] groans lightly as ore slips inside."))
+			playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+			return
+	if(istype(target, /obj/item/ore) && !istype(target, /obj/item/ore/slag) && !istype(target, /obj/item/ore/archeology_debris))
+		var/turf_check = isturf(target.loc) //get_turf intentionally not used here due to clicking ore in a backpack or other weirdness.
+		if(turf_check)
+			if(ore_bag.gather_all(target.loc, user, TRUE))
+				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as ore slips inside."), span_notice("Your [src.name] groans lightly as ore slips inside."))
+				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+				return
+	. = ..()
+
 
 /obj/item/dogborg/sleeper/compactor/brewer
 	name = "Brew Belly"

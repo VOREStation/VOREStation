@@ -50,6 +50,13 @@
 	icon_state = "satchel_bspace"
 	max_storage_space = ITEMSIZE_COST_NORMAL * 15000 // This should never, ever, ever be reached.
 
+/obj/item/ore_bag/sleeper
+	name = "processing chamber"
+	desc = "A mining satchel built into a sleeper. VORE!!!"
+	icon_state = "satchel_bspace"
+	max_storage_space = 300
+	//item_flags = ABSTRACT //Enable once we have abstract PR merged.
+
 /obj/item/ore_bag/attackby(obj/item/W, mob/user)
 	if(current_capacity >= max_storage_space)
 		to_chat(user, span_notice("\the [src] is too full to possibly fit anything else inside of it."))
@@ -131,6 +138,7 @@
 				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				current_capacity = 0				// Set the amount of ore in the satchel to 0.
 	current_pickup = 0
+	return success
 
 /obj/item/ore_bag/equipped(mob/user)
 	..()
