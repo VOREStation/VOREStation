@@ -378,6 +378,12 @@
 		if(tracker.tracking)
 			tracker.tracking = FALSE
 			tracker.toggle_tracking()
+	if(istype(O, /obj/item/dogborg/sleeper/compactor/supply)) //gross
+		var/obj/item/dogborg/sleeper/compactor/supply/our_compactor = O
+		if(O in get_all_held_items())
+			our_compactor.ore_bag.equipped(src)
+		else
+			our_compactor.ore_bag.dropped(src)
 	if(sight_mode & BORGANOMALOUS)
 		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)

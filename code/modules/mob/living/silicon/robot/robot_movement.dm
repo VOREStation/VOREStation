@@ -46,19 +46,6 @@
 	if(!module)
 		return
 
-	//Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
-	if(istype(module_state_1, /obj/item/ore_bag) || istype(module_state_2, /obj/item/ore_bag) || istype(module_state_3, /obj/item/ore_bag))
-		var/obj/item/ore_bag/B = null
-		if(istype(module_state_1, /obj/item/ore_bag)) //First orebag has priority, if they for some reason have multiple.
-			B = module_state_1
-		else if(istype(module_state_2, /obj/item/ore_bag))
-			B = module_state_2
-		else if(istype(module_state_3, /obj/item/ore_bag))
-			B = module_state_3
-		var/turf/tile = loc
-		if(isturf(tile))
-			B.gather_all(tile, src, 1) //Shhh, unless the bag fills, don't spam the borg's chat with stuff that's going on every time they move!
-
 	if(scrubbing && isturf(loc))
 		var/turf/tile = loc
 		tile.wash(CLEAN_SCRUB)

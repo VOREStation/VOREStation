@@ -71,12 +71,12 @@
 
 /obj/item/ore_bag/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	//If we attack a turf, we try to scoop up all the ore from the turf first.
-	if(isturf(target))
+	if(isturf(target) && user.Adjacent(target))
 		gather_all(target, user)
 		return
 
 	//If we attack an ore, see if it's on a turf. If so, scoop up everything on the turf. If not, scoop up just that ore.
-	else if(istype(target, /obj/item/ore))
+	else if(istype(target, /obj/item/ore) && user.Adjacent(target))
 		var/turf_check = isturf(target.loc) //get_turf intentionally not used here due to clicking ore in a backpack or other weirdness.
 		if(turf_check)
 			gather_all(target.loc, user)
