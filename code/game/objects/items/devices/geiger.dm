@@ -90,7 +90,7 @@
 /obj/item/geiger/equipped(mob/user, slot, initial)
 	. = ..()
 
-	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation), override = TRUE) //Much like the ore bag, any item that registers signals that can be placed in a pocket can call equipped twice and dropped only once.
+	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation), override = TRUE) //Any item that registers signals that can be placed in a pocket can call equipped twice and dropped only once, requiring an override. Ore satchels do this too.
 
 /obj/item/geiger/dropped(mob/user, silent = FALSE)
 	. = ..()
