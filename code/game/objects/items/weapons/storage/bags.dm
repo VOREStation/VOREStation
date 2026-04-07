@@ -209,7 +209,7 @@
 /obj/item/storage/bag/ore/equipped(mob/user)
 	..()
 	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/storage/bag/ore/proc/autoload, override = YES)
+	RegisterSignal(user, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/storage/bag/ore/proc/autoload, override = TRUE)
 
 /obj/item/storage/bag/ore/dropped(mob/user)
 	..()
