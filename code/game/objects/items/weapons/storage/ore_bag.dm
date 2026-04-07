@@ -70,11 +70,10 @@
 
 	//If we attack an ore, see if it's on a turf. If so, scoop up everything on the turf. If not, scoop up just that ore.
 	else if(istype(target, /obj/item/ore))
-		var/turf_check = get_turf(target)
+		var/turf_check = isturf(target.loc) //get_turf intentionally not used here due to clicking ore in a backpack or other weirdness.
 		if(turf_check)
-			gather_all(target, user)
+			gather_all(turf_check, user)
 			return
-		attackby(target, user)
 
 /obj/item/ore_bag/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
