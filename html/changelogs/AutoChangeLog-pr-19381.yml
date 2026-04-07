@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - rscdel: "Removed dimensional anomaly core pulses changing reinforced walls"
