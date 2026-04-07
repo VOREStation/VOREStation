@@ -47,13 +47,13 @@
 		return
 
 	//Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
-	if(istype(module_state_1, /obj/item/storage/bag/ore) || istype(module_state_2, /obj/item/storage/bag/ore) || istype(module_state_3, /obj/item/storage/bag/ore))
-		var/obj/item/storage/bag/ore/B = null
-		if(istype(module_state_1, /obj/item/storage/bag/ore)) //First orebag has priority, if they for some reason have multiple.
+	if(istype(module_state_1, /obj/item/ore_bag) || istype(module_state_2, /obj/item/ore_bag) || istype(module_state_3, /obj/item/ore_bag))
+		var/obj/item/ore_bag/B = null
+		if(istype(module_state_1, /obj/item/ore_bag)) //First orebag has priority, if they for some reason have multiple.
 			B = module_state_1
-		else if(istype(module_state_2, /obj/item/storage/bag/ore))
+		else if(istype(module_state_2, /obj/item/ore_bag))
 			B = module_state_2
-		else if(istype(module_state_3, /obj/item/storage/bag/ore))
+		else if(istype(module_state_3, /obj/item/ore_bag))
 			B = module_state_3
 		var/turf/tile = loc
 		if(isturf(tile))

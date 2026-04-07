@@ -68,7 +68,7 @@
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,								2500),
 		EQUIPMENT("Mini-Translocator",							/obj/item/perfect_tele/one_beacon,							1200),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,									750),
-		EQUIPMENT("Mining Satchel of Holding",					/obj/item/storage/bag/ore/holding,							1500),
+		EQUIPMENT("Mining Satchel of Holding",					/obj/item/ore_bag/holding,							1500),
 		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",		/obj/item/storage/bag/sheetsnatcher,						500),
 		EQUIPMENT("Sheet Snatcher of Holding",					/obj/item/storage/bag/sheetsnatcher/holding,				1000),
 		EQUIPMENT("Advanced Ore Scanner",						/obj/item/mining_scanner/advanced,							500),
