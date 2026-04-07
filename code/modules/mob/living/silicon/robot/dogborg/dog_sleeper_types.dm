@@ -57,16 +57,6 @@
 	ore_bag = new(null) //We don't need it inside, just need a reference to it.
 	. = ..()
 
-/obj/item/dogborg/sleeper/compactor/supply/Entered(atom/movable/thing, atom/OldLoc)
-	. = ..()
-	if(ore_bag.current_capacity >= ore_bag.max_storage_space) //Don't even try anything if we're already full.
-		return
-	if(istype(thing, /obj/item/ore) && !istype(thing, /obj/item/ore/slag) && !istype(thing, /obj/item/ore/archeology_debris))
-		var/obj/item/ore/ore = thing
-		ore_bag.stored_ore[ore.material]++
-		ore_bag.current_capacity++
-		qdel(ore)
-
 /obj/item/dogborg/sleeper/compactor/supply/afterattack(atom/movable/target, mob/living/silicon/user, proximity)
 	if(isturf(target))
 		if(ore_bag.gather_all(target, user, TRUE))
