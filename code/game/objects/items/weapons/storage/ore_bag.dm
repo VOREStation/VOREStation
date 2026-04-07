@@ -72,10 +72,10 @@
 	else if(istype(target, /obj/item/ore))
 		var/turf_check = isturf(target.loc) //get_turf intentionally not used here due to clicking ore in a backpack or other weirdness.
 		if(turf_check)
-			gather_all(turf_check, user)
+			gather_all(target.loc, user)
 			return
 
-/obj/item/ore_bag/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/ore_bag/proc/remove_from_storage(obj/item/W, atom/new_location)
 	if(!istype(W)) return 0
 
 	if(new_location)
