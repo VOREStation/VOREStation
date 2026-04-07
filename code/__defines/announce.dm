@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(announcer_library, list(
 		ANNOUNCER_MSG_NIGHTSHIFT_START = 'sound/AI/dim_lights.ogg',
 		ANNOUNCER_MSG_NIGHTSHIFT_END = 'sound/AI/bright_lights.ogg',
 
-		ANNOUNCER_MSG_NEW_AI = 'sound/AI/newai',
+		ANNOUNCER_MSG_NEW_AI = 'sound/AI/newai.ogg',
 		ANNOUNCER_MSG_NEW_COMMAND_REPORT = 'sound/AI/commandreport.ogg',
 		ANNOUNCER_MSG_SECURITY_ADVISEMENT = null,
 
