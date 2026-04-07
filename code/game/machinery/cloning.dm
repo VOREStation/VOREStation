@@ -56,6 +56,9 @@
 	update_icon()
 
 /obj/machinery/clonepod/Destroy()
+	for(var/obj/container in containers)
+		container.forceMove(get_turf(src))
+	containers.Cut()
 	locked = FALSE
 	go_out()
 	. = ..()
