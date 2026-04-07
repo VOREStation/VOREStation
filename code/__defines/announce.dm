@@ -24,6 +24,19 @@
 #define ANNOUNCER_MSG_BIOHAZARD_FIVE "announcer_msg_biohazard_five"
 #define ANNOUNCER_MSG_BIOHAZARD_SEVEN "announcer_msg_biohazard_seven"
 
+#define ANNOUNCER_MSG_RADIATION "announcer_msg_radiation"
+#define ANNOUNCER_MSG_SPACETIME_ANOMS "announcer_msg_spacetime_anoms"
+#define ANNOUNCER_MSG_GRAV_ANOMS "announcer_msg_grav_anoms"
+#define ANNOUNCER_MSG_IONSTORM "announcer_msg_ionstorm"
+#define ANNOUNCER_MSG_METEORS "announcer_msg_meteors"
+
+#define ANNOUNCER_MSG_POWER_OFF "announcer_msg_power_off"
+#define ANNOUNCER_MSG_POWER_ON "announcer_msg_power_on"
+
+
+#define ANNOUNCER_MSG_DISTRESS_SIGNAL "announcer_msg_distress_signal"
+
+
 // Set sound paths to null to explicitly disable a message from falling back to SS13 default
 GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_VIRGO)
 
@@ -47,8 +60,19 @@ GLOBAL_LIST_INIT(announcer_library, list(
 
 		ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS = 'sound/AI/aliens.ogg',
 
-		ANNOUNCER_MSG_BIOHAZARD_FIVE = ,
+		ANNOUNCER_MSG_BIOHAZARD_FIVE = 'sound/AI/outbreak5.ogg',
 		ANNOUNCER_MSG_BIOHAZARD_SEVEN = 'sound/AI/outbreak7.ogg',
+
+		ANNOUNCER_MSG_RADIATION = 'sound/AI/radiation.ogg',
+		ANNOUNCER_MSG_SPACETIME_ANOMS = 'sound/AI/spanomalies.ogg',
+		ANNOUNCER_MSG_GRAV_ANOMS = 'sound/AI/granomalies.ogg',
+		ANNOUNCER_MSG_IONSTORM = 'sound/AI/ionstorm.ogg',
+		ANNOUNCER_MSG_METEORS = 'sound/AI/meteors.ogg',
+
+		ANNOUNCER_MSG_POWER_OFF = 'sound/AI/poweroff.ogg',
+		ANNOUNCER_MSG_POWER_ON = 'sound/AI/poweron.ogg',
+
+		ANNOUNCER_MSG_DISTRESS_SIGNAL = 'sound/AI/sos.ogg',
 	),
 	ANNOUNCER_VOICE_VIRGO = list(
 		ANNOUNCER_MSG_ROUND_START = 'sound/AI/welcome_virgo.ogg', // Skie
@@ -60,9 +84,8 @@ GLOBAL_LIST_INIT(announcer_library, list(
 	),
 ))
 
-// Edit these for custom AI message start sounds
-/proc/announcer_message_preamble()
-	return 'sound/AI/preamble.ogg'
-
-/proc/announcer_message_preamble_delay()
-	return 2.2 SECONDS // based on length of preamble.ogg + arbitrary delay
+#define AIRLOCK_MSG_OUT "airlock_out"
+#define AIRLOCK_MSG_IN "airlock_in"
+#define AIRLOCK_MSG_BEEP "airlock_beep"
+#define AIRLOCK_MSG_END_OUT "airlock_end_out"
+#define AIRLOCK_MSG_END_IN "airlock_end_in"

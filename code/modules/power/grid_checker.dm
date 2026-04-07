@@ -67,7 +67,7 @@
 		the colony's power will be shut off for an indeterminate duration while the powernet monitor restarts automatically, or \
 		when Engineering can manually resolve the issue.",
 		"Critical Power Failure",
-		new_sound = 'sound/AI/poweroff.ogg')
+		new_sound = ANNOUNCER_MSG_POWER_OFF)
 	power_failing = TRUE
 	if(powernet)
 		for(var/obj/machinery/power/terminal/T in powernet.nodes) // APCs that are "downstream" of the powernet.
@@ -91,7 +91,7 @@
 	if(announce)
 		GLOB.command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.",
 		"Power Systems Nominal",
-		new_sound = 'sound/AI/poweron.ogg')
+		new_sound = ANNOUNCER_MSG_POWER_ON)
 	power_failing = FALSE
 	update_icon()
 

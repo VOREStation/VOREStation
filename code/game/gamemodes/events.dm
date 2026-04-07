@@ -33,7 +33,7 @@
 			command_alert("Meteors have been detected on collision course with the station.", "Meteor Alert")
 			for(var/mob/M in GLOB.player_list)
 				if(!isnewplayer(M))
-					M << sound('sound/AI/meteors.ogg')
+					play_simple_announcement(M, ANNOUNCER_MSG_METEORS)
 			spawn(100)
 				meteor_wave()
 				spawn_meteors()
@@ -45,7 +45,8 @@
 			command_alert("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert")
 			for(var/mob/M in GLOB.player_list)
 				if(!isnewplayer(M))
-					M << sound('sound/AI/granomalies.ogg')
+					play_simple_announcement(M, ANNOUNCER_MSG_GRAV_ANOMS)
+
 			var/turf/T = pick(blobstart)
 			var/obj/effect/bhole/bh = new /obj/effect/bhole( T.loc, 30 )
 			spawn(rand(50, 300))
@@ -53,7 +54,7 @@
 		/*
 		if(3) //Leaving the code in so someone can try and delag it, but this event can no longer occur randomly, per SoS's request. --NEO
 			command_alert("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert")
-			world << sound('sound/AI/spanomalies.ogg')
+			play_simple_announcement(world, ANNOUNCER_MSG_SPACETIME_ANOMS)
 			var/turf/picked
 			for(var/turf/simulated/floor/T in turfs)
 				if(prob(20))
@@ -108,7 +109,7 @@ GLOBAL_VAR_INIT(hadevent, 0)
 
 /proc/alien_infestation(var/spawncount = 1) // -- TLE
 	//command_alert("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert")
-	//world << sound('sound/AI/aliens.ogg')
+	// play_simple_announcement(world, ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
@@ -161,7 +162,7 @@ GLOBAL_VAR_INIT(hadevent, 0)
 					domutcheck(H,null,MUTCHK_FORCED)
 				H.UpdateAppearance()
 	sleep(100)
-	GLOB.command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	GLOB.command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_RADIATION)
 
 
 

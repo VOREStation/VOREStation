@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(event_viruses) // so that event viruses are kept around for ad
 		level = "five"
 
 	if (severity == EVENT_LEVEL_MAJOR || prob(60))
-		command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
+		command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = ANNOUNCER_MSG_BIOHAZARD_FIVE)
 
 /datum/event/viral_infection/start()
 	if(!viruses.len) return

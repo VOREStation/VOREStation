@@ -25,3 +25,26 @@
 	var/message_sound = announcer_library_get_voiceline(msg_key)
 	if(message_sound)
 		SEND_SOUND(target, message_sound)
+
+// Edit these for custom AI message start sounds
+/proc/announcer_message_preamble()
+	return 'sound/AI/preamble.ogg'
+
+/proc/announcer_message_preamble_delay()
+	return 2.2 SECONDS // based on length of preamble.ogg + arbitrary delay
+
+// Airlocks are a bit snowflakey so they get special handling
+/proc/announcer_airlock_message(context)
+	switch(context)
+		if(AIRLOCK_MSG_IN)
+			return 'sound/AI/airlockin.ogg'
+		if(AIRLOCK_MSG_OUT)
+			return 'sound/AI/airlockout.ogg'
+
+		if(AIRLOCK_MSG_BEEP)
+			return 'sound/machines/2beep.ogg'
+
+		if(AIRLOCK_MSG_END_OUT)
+			return 'sound/AI/airlockdone.ogg'
+		if(AIRLOCK_MSG_END_IN)
+			return 'sound/AI/airlockdone.ogg'
