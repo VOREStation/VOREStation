@@ -156,12 +156,12 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/W)
-	if(!W)
+/mob/proc/put_in_hands(var/obj/item/I)
+	if(!I)
 		return 0
-	W.forceMove(drop_location())
-	W.reset_plane_and_layer()
-	W.dropped(src)
+	I.forceMove(drop_location())
+	I.reset_plane_and_layer()
+	has_unequipped(I)
 	return 0
 
 // Removes an item from inventory and places it in the target atom.
@@ -173,6 +173,13 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	if(isnull(target) && isdisposalpacket(src.loc))
 		return remove_from_mob(W, src.loc)
 	return remove_from_mob(W, target)
+
+/// This proc is called after an item has been removed from a mob but before it has been officially deslotted.
+/mob/proc/has_unequipped(obj/item/item) //, silent = FALSE) //TODO: Add silent some other time.
+	SHOULD_CALL_PARENT(TRUE)
+	item.dropped(src) //, silent)
+	//update_equipment_speed_mods()
+	return TRUE
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
@@ -238,23 +245,22 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return SLOT_BACK
 
 //Attemps to remove an object on a mob.
-/mob/proc/remove_from_mob(var/obj/O, var/atom/target)
-	if(!O) // Nothing to remove, so we succeed.
+/mob/proc/remove_from_mob(var/obj/item_dropping, var/atom/target)
+	if(!item_dropping) // Nothing to remove, so we succeed.
 		return 1
-	src.u_equip(O)
+	src.u_equip(item_dropping)
 	if (src.client)
-		src.client.screen -= O
-	O.reset_plane_and_layer()
-	O.screen_loc = null
-	if(istype(O, /obj/item))
-		var/obj/item/I = O
+		src.client.screen -= item_dropping
+	item_dropping.reset_plane_and_layer()
+	item_dropping.screen_loc = null
+	if(isitem(item_dropping))
 		if(target)
-			I.forceMove(target)
+			item_dropping.forceMove(target)
 		else
-			I.dropInto(drop_location())
-		I.dropped(src)
-	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, O, target)
-	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, O, target)
+			item_dropping.dropInto(drop_location())
+		has_unequipped(item_dropping)
+	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, item_dropping, target)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, target)
 	return TRUE
 
 //Returns the item equipped to the specified slot, if any.
