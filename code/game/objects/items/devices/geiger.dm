@@ -19,11 +19,6 @@
 
 	var/mounted = FALSE
 
-/obj/item/geiger/Initialize(mapload)
-	. = ..()
-
-	RegisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
-
 /obj/item/geiger/examine(mob/user)
 	. = ..()
 	if(!scanning)
@@ -152,6 +147,7 @@
 
 /obj/item/geiger/wall/Initialize(mapload)
 	. = ..()
+	RegisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 	if(scanning)
 		AddComponent(/datum/component/geiger_sound)
 
