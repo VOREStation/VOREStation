@@ -116,7 +116,7 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 			if(zlevels && !(M.z in zlevels))
 				continue
 			if(!isnewplayer(M) && !isdeaf(M))
-				SEND_SOUND(M,)
+				SEND_SOUND(M, preamble_sound)
 
 	if(!message_sound)
 		return

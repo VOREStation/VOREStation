@@ -14,7 +14,7 @@
 
 	// Attempt fallback
 	if(!found_key) // Don't use null, if the key was found and was INTENTIONALLY null, then the announcement line was disabled!
-		var/list/voice_library = GLOB.announcer_library[ANNOUNCER_VOICE_SS13] // Default
+		voice_library = GLOB.announcer_library[ANNOUNCER_VOICE_SS13] // Default
 		if(msg_key in voice_library)
 			play_msg_sound = voice_library[msg_key]
 
