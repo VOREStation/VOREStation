@@ -21,18 +21,31 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 /mob
 	var/obj/item/storage/s_active = null // Even ghosts can/should be able to peek into boxes on the ground
 
-//This proc is called whenever someone clicks an inventory ui slot.
-/mob/proc/attack_ui(var/slot)
-	var/obj/item/W = get_active_hand()
+///Returns the thing we're currently holding
+/mob/proc/get_active_held_item() //Currently just a proc for when we do change to /tg/'s item handling.
+	return get_active_hand()
 
-	var/obj/item/E = get_equipped_item(slot)
-	if (istype(E))
-		if(istype(W))
-			E.attackby(W,src)
-		else
-			E.attack_hand(src)
-	else
-		equip_to_slot_if_possible(W, slot)
+/**
+ * This proc is called whenever someone clicks an inventory ui slot.
+ *
+ * Mostly tries to put the item into the slot if possible, or call attack hand
+ * on the item in the slot if the users active hand is empty
+ */
+/mob/proc/attack_ui(slot, params)
+	var/obj/item/W = get_active_held_item()
+
+	if(istype(W))
+		if(equip_to_slot_if_possible(W, slot,0,0,0))
+			return TRUE
+
+	if(!W)
+		// Activate the item
+		var/obj/item/I = get_item_by_slot(slot)
+		if(istype(I))
+			var/list/modifiers = params2list(params)
+			I.attack_hand(src, modifiers)
+
+	return FALSE
 
 /* Inventory manipulation */
 
@@ -219,7 +232,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 
 ///Get the item on the mob in the storage slot identified by the id passed in
 /mob/proc/get_item_by_slot(slot_id)
-	return null
+	return get_equipped_item(slot_id)
 
 /mob/proc/getBackSlot()
 	return SLOT_BACK
