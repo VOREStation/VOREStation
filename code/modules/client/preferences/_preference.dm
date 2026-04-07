@@ -380,7 +380,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	if(preference.savefile_identifier == PREFERENCE_PLAYER)
 		preference.apply_to_client_updated(client, read_preference(preference.type))
-	else
+	else if (!istype(preference, /datum/preference/name/real_name)) // Recursive random_name preference emergency hotfix.
 		update_preview_icon()
 
 	return TRUE
