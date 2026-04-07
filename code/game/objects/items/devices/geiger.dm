@@ -19,6 +19,11 @@
 
 	var/mounted = FALSE
 
+/obj/item/geiger/Initialize(mapload)
+	. = ..()
+
+	RegisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
+
 /obj/item/geiger/examine(mob/user)
 	. = ..()
 	if(!scanning)
@@ -85,7 +90,7 @@
 /obj/item/geiger/equipped(mob/user, slot, initial)
 	. = ..()
 
-	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
+	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation), override = TRUE) //Much like the ore bag, any item that registers signals that can be placed in a pocket can call equipped twice and dropped only once.
 
 /obj/item/geiger/dropped(mob/user, silent = FALSE)
 	. = ..()
@@ -147,7 +152,6 @@
 
 /obj/item/geiger/wall/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 	if(scanning)
 		AddComponent(/datum/component/geiger_sound)
 
