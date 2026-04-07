@@ -18,8 +18,10 @@
 
 #define ANNOUNCER_MSG_NEW_AI "announcer_msg_new_ai"
 #define ANNOUNCER_MSG_NEW_COMMAND_REPORT "announcer_msg_new_command_report"
+#define ANNOUNCER_MSG_SECURITY_ADVISEMENT "announcer_msg_security_advisement"
 
 #define ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS "announcer_msg_unidentified_lifesigns"
+#define ANNOUNCER_MSG_BIOHAZARD_LOW "announcer_msg_biohazard_low"
 #define ANNOUNCER_MSG_BIOHAZARD_FIVE "announcer_msg_biohazard_five"
 #define ANNOUNCER_MSG_BIOHAZARD_SEVEN "announcer_msg_biohazard_seven"
 #define ANNOUNCER_MSG_RADIATION "announcer_msg_radiation"
@@ -44,6 +46,9 @@
 #define ANNOUNCER_MSG_DEBRISFIELD_START "announcer_msg_debrisfield_start"
 #define ANNOUNCER_MSG_DEBRISFIELD_END "announcer_msg_debrisfield_end"
 
+#define ANNOUNCER_MSG_WIRING_FAULT_START "ANNOUNCER_MSG_WIRING_FAULT_START"
+#define ANNOUNCER_MSG_WIRING_FAULT_END "ANNOUNCER_MSG_WIRING_FAULT_END"
+
 #define ANNOUNCER_MSG_DISTRESS_SIGNAL "announcer_msg_distress_signal"
 #define ANNOUNCER_MSG_IANSTORM "announcer_msg_here_comes_the_boy"
 #define ANNOUNCER_MSG_SUPERMATTER_CASCADE "announcer_msg_supermatter_cascade"
@@ -55,6 +60,14 @@
 #define ANNOUNCER_MSG_VENDORVIRUS "announcer_msg_vendorvirus"
 #define ANNOUNCER_MSG_COMMSBLACKOUT "announcer_msg_commsblackout"
 #define ANNOUNCER_MSG_DRONEPOD "announcer_msg_dronepod"
+#define ANNOUNCER_MSG_SHUTTLE_CRASHED "announcer_msg_shuttle_crash"
+#define ANNOUNCER_MSG_POWERSPIKE "announcer_msg_powerspike"
+#define ANNOUNCER_MSG_WINDOWBREAK "announcer_msg_windowbreak"
+#define ANNOUNCER_MSG_GREYTIDEVIRUS "announcer_msg_greytidevirus"
+#define ANNOUNCER_MSG_VERMIN_INFESTATION "announcer_msg_vermin_infestation"
+#define ANNOUNCER_MSG_WALLROT "announcer_msg_wallrot"
+#define ANNOUNCER_MSG_SUPPLYORDER "announcer_msg_supplyorder"
+#define ANNOUNCER_MSG_WEATHER_ALERT "announcer_msg_weather_alert"
 
 // Set sound paths to null to explicitly disable a message from falling back to SS13 default
 GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_VIRGO)
@@ -76,8 +89,10 @@ GLOBAL_LIST_INIT(announcer_library, list(
 
 		ANNOUNCER_MSG_NEW_AI = 'sound/AI/newai
 		ANNOUNCER_MSG_NEW_COMMAND_REPORT = 'sound/AI/commandreport.ogg',
+		ANNOUNCER_MSG_SECURITY_ADVISEMENT = null,
 
 		ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS = 'sound/AI/aliens.ogg',
+		ANNOUNCER_MSG_BIOHAZARD_LOW = null,
 		ANNOUNCER_MSG_BIOHAZARD_FIVE = 'sound/AI/outbreak5.ogg',
 		ANNOUNCER_MSG_BIOHAZARD_SEVEN = 'sound/AI/outbreak7.ogg',
 		ANNOUNCER_MSG_RADIATION = 'sound/AI/radiation.ogg',
@@ -94,6 +109,9 @@ GLOBAL_LIST_INIT(announcer_library, list(
 
 		ANNOUNCER_MSG_GRAVITY_OFF = null,
 		ANNOUNCER_MSG_GRAVITY_ON = null,
+
+		ANNOUNCER_MSG_WIRING_FAULT_START = null,
+		ANNOUNCER_MSG_WIRING_FAULT_END = null,
 
 		ANNOUNCER_MSG_STRIKETEAM_SUCCESS = null,
 		ANNOUNCER_MSG_STRIKETEAM_FAIL = null,
@@ -113,6 +131,14 @@ GLOBAL_LIST_INIT(announcer_library, list(
 		ANNOUNCER_MSG_VENDORVIRUS = null
 		ANNOUNCER_MSG_COMMSBLACKOUT = 'sound/misc/interference.ogg',
 		ANNOUNCER_MSG_DRONEPOD = null,
+		ANNOUNCER_MSG_SHUTTLE_CRASHED = null,
+		ANNOUNCER_MSG_POWERSPIKE = null,
+		ANNOUNCER_MSG_WINDOWBREAK = null,
+		ANNOUNCER_MSG_GREYTIDEVIRUS = null,
+		ANNOUNCER_MSG_VERMIN_INFESTATION = null,
+		ANNOUNCER_MSG_WALLROT = null,
+		ANNOUNCER_MSG_SUPPLYORDER = null,
+		ANNOUNCER_MSG_WEATHER_ALERT = null,
 	),
 	ANNOUNCER_VOICE_VIRGO = list(
 		ANNOUNCER_MSG_ROUND_START = 'sound/AI/welcome_virgo.ogg', // Skie

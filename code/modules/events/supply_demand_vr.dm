@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY_TYPED(running_demand_events, /datum/event/supply_demand)
 		send_console_message(message, dpt);
 
 	// Also announce over main comms so people know to look
-	GLOB.command_announcement.Announce("An order for the [using_map.facility_type] to deliver supplies to [command_name()] has been delivered to all supply Request Consoles", my_department)
+	GLOB.command_announcement.Announce("An order for the [using_map.facility_type] to deliver supplies to [command_name()] has been delivered to all supply Request Consoles", my_department, ANNOUNCER_MSG_SUPPLYORDER)
 	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART, PROC_REF(handle_supply_demand_sell_shuttle))
 
 /datum/event/supply_demand/tick()
