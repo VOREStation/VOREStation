@@ -126,6 +126,9 @@ export function CreateObject(props: CreateObjectProps) {
       if (storedShowIcons !== undefined) setshowIcons(storedShowIcons);
       if (storedShowPreview !== undefined) setshowPreview(storedShowPreview);
       if (storedSelectedObj && allObjects[storedSelectedObj]) {
+        act('selected-atom-changed', {
+          newObj: storedSelectedObj,
+        });
         setSelectedObj(storedSelectedObj);
         props.onIconSettingsChange?.({
           icon: allObjects[storedSelectedObj].icon,
