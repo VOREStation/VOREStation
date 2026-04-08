@@ -64,19 +64,28 @@
 
 	item_list = list()
 	item_list["Food Items"] = list(
-		BIOGEN_REAGENT("Milk", REAGENT_ID_MILK, 50, 20),
-		BIOGEN_REAGENT("Cream", REAGENT_ID_CREAM, 50, 30),
+		BIOGEN_REAGENT("Milk", REAGENT_ID_MILK, 50, 2), //2 for each 1u
+		BIOGEN_REAGENT("Cream", REAGENT_ID_CREAM, 50, 3), //3 for each 1u
 		BIOGEN_ITEM("Slab of meat", /obj/item/reagent_containers/food/snacks/meat, 5, 50),
 		BIOGEN_ITEM("Algae Sheets", /obj/item/stack/material/algae, 50, 100),
 	)
 	item_list["Cooking Ingredients"] = list(
-		BIOGEN_REAGENT("Universal Enzyme", REAGENT_ID_ENZYME, 50, 30),
+		BIOGEN_REAGENT("Universal Enzyme", REAGENT_ID_ENZYME, 50, 3),
 		BIOGEN_ITEM("Nutri-spread", /obj/item/reagent_containers/food/snacks/spreads, 5, 30),
+		BIOGEN_REAGENT("Salt", REAGENT_ID_SODIUMCHLORIDE, 50, 2),
+		BIOGEN_REAGENT("Soy Sauce", REAGENT_ID_SOYSAUCE, 50, 3),
 	)
 	item_list["Gardening Nutrients"] = list(
-		BIOGEN_ITEM("E-Z-Nutrient", /obj/item/reagent_containers/glass/bottle/eznutrient, 5, 60),
-		BIOGEN_ITEM("Left 4 Zed", /obj/item/reagent_containers/glass/bottle/left4zed, 5, 120),
-		BIOGEN_ITEM("Robust Harvest", /obj/item/reagent_containers/glass/bottle/robustharvest, 5, 150),
+		BIOGEN_ITEM("E-Z-Nutrient", /obj/item/reagent_containers/glass/bottle/eznutrient, 5, 30),
+		BIOGEN_ITEM("Left 4 Zed", /obj/item/reagent_containers/glass/bottle/left4zed, 5, 50),
+		BIOGEN_ITEM("Robust Harvest", /obj/item/reagent_containers/glass/bottle/robustharvest, 5, 50),
+		BIOGEN_ITEM("Diethylamine", /obj/item/reagent_containers/glass/bottle/diethylamine, 5, 60),
+		BIOGEN_ITEM("Mutagen", /obj/item/reagent_containers/glass/bottle/mutagen, 15, 50),
+		BIOGEN_ITEM("Plant-B-Gone", /obj/item/reagent_containers/spray/plantbgone, 5, 50),
+	)
+	item_list["Exotic Seeds"] = list(
+		BIOGEN_ITEM("Mystery seed pack", /obj/item/seeds/random, 5, 150),
+		BIOGEN_ITEM("Kudzu seed pack", /obj/item/seeds/kudzuseed, 5, 100),
 	)
 	item_list["Leather Products"] = list(
 		BIOGEN_ITEM("Wallet", /obj/item/storage/wallet, 1, 100),
@@ -163,15 +172,17 @@
 					return FALSE
 				if(amount <= 0 || amount > br.reagent_amt)
 					return FALSE
-				var/cost = round(br.cost / build_eff) * amount
-				if(cost > points)
+				var/cost = round(br.cost / build_eff)
+				if(cost < 1) //No going below 1 cost.
+					cost = 1
+				if(cost * amount > points)
 					to_chat(ui.user, span_danger("Insufficient biomass."))
 					return FALSE
-				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), br.reagent_amt)) * amount
+				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), amount))
 				if(amt_to_actually_dispense <= 0)
 					to_chat(ui.user, span_danger("The loaded beaker is full!"))
 					return FALSE
-				points -= (cost * (amt_to_actually_dispense / br.reagent_amt))
+				points -= cost * amt_to_actually_dispense
 				beaker.reagents.add_reagent(br.reagent_id, amt_to_actually_dispense)
 				playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
 				return FALSE
