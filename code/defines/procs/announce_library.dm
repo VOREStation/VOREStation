@@ -5,7 +5,7 @@
 	var/play_msg_sound = null
 
 	// Check from our current announcer
-	var/found_key = TRUE
+	var/found_key = FALSE
 	var/list/voice_library = GLOB.announcer_library[GLOB.current_announcer_voice]
 	if(islist(voice_library)) // Announcer needs to exist
 		if(msg_key in voice_library)
