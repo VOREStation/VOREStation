@@ -27,6 +27,7 @@
 		named = 1
 		*/
 
+	user.client?.start_thinking()
 	user.client?.start_typing()
 	var/message = tgui_input_text(user,"Choose a message to relay to those around you.", "", "", MAX_MESSAGE_LEN)
 	user.client?.stop_thinking()
