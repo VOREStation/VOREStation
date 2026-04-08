@@ -76,11 +76,11 @@
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
 
-/obj/item/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)
+/obj/item/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity_flag, click_parameters)
 	hound = loc
 	if(!istype(target))
 		return
-	if(!proximity)
+	if(!proximity_flag)
 		return
 	if(target.anchored)
 		return

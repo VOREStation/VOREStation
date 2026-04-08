@@ -52,8 +52,8 @@
 	ore_storage = TRUE
 	medsensor = FALSE
 
-/obj/item/dogborg/sleeper/compactor/supply/afterattack(atom/movable/target, mob/living/silicon/user, proximity)
-	if(!proximity)
+/obj/item/dogborg/sleeper/compactor/supply/afterattack(atom/movable/target, mob/living/silicon/user, proximity_flag, click_parameters)
+	if(!proximity_flag)
 		return
 
 	if(isturf(target))
