@@ -1,0 +1,9 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Biogenerator no longer can go negative when dispensing reagents"
+  - bugfix: "Biogenerator will never go below 1 point per 1unit of reagent"
+  - bugfix: "Biogenerator will dispense 1 unit of reagent per amount selected"
+  - qol: "Prices for gardening nutriments decreased"
+  - rscadd: "Biogenerator can now dispense Salt, Soy, Plant-B-Gone, Mutagen, and Diethylamine"
+  - rscadd: "Biogenerator can dispense Mystery Seeds and Kudzu (Botanists can already use L4Z to get kudzu)"
