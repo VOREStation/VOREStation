@@ -181,22 +181,16 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "inert"
 	worth = 0
+	var/list/choices
 	var/picked = FALSE
 	anomaly_type = /obj/effect/anomaly/flux // Default
 
-/obj/item/assembly/signaler/anomaly/choice/attack_self(mob/user, modifiers)
-	. = ..(user)
-	if(.)
-		return TRUE
-
-	if(picked)
-		return TRUE
-
-	var/list/choices = list()
+/obj/item/assembly/signaler/anomaly/choice/Initialize(mapload)
+	. = ..()
 	var/list/core_types = subtypesof(/obj/effect/anomaly)
 
 	// Two random cores
-	for(var/i = 0, i < 2, i++)
+	for(var/i = 0, 1 < 2, i++)
 		var/type = pick(core_types)
 		var/obj/effect/anomaly/anom = new type
 		choices[capitalize(anom.name)] = type
@@ -205,6 +199,14 @@
 	var/preset = /obj/effect/anomaly/flux
 	var/obj/effect/anomaly/preset_anom = new preset
 	choices[capitalize(preset_anom.name)] = preset
+
+/obj/item/assembly/signaler/anomaly/choice/attack_self(mob/user, modifiers)
+	. = ..(user)
+	if(.)
+		return TRUE
+
+	if(picked)
+		return TRUE
 
 	var/choice = tgui_input_list(user, "Choose an anomaly core.", "Anomaly Core Selection", choices)
 
