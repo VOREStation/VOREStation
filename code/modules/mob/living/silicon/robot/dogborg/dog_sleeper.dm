@@ -43,8 +43,7 @@
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 	var/obj/item/healthanalyzer/med_analyzer = null
 	var/ore_storage = FALSE
-	var/max_ore_storage = 500
-	var/current_capacity = 0
+	var/obj/item/ore_bag/sleeper/ore_bag //Used by supply compactor
 	flags = NOBLUDGEON
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
@@ -58,6 +57,8 @@
 			config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
 			experiment_signals = destructive_signals, \
 		)
+	if(ore_storage)
+		ore_bag = new(null) //We don't need it inside, just need a reference to it.
 	. = ..()
 	med_analyzer = new /obj/item/healthanalyzer
 
@@ -291,6 +292,11 @@
 			)
 
 	var/datum/component/experiment_handler/handler = get_experiment_handler()
+	var/current_capacity = 0
+	var/max_ore_storage = 0
+	if(ore_storage)
+		current_capacity = ore_bag.current_capacity
+		max_ore_storage = ore_bag.max_storage_space
 	var/list/data = list(
 		"our_patient" = patient_data,
 		"eject_port" = eject_port,

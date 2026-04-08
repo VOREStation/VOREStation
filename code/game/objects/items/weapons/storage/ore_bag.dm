@@ -54,7 +54,7 @@
 	name = "processing chamber"
 	desc = "A mining satchel built into a sleeper. VORE!!!"
 	icon_state = "satchel_bspace"
-	max_storage_space = 300
+	max_storage_space = 500
 	//item_flags = ABSTRACT //Enable once we have abstract PR merged.
 
 /obj/item/ore_bag/attackby(obj/item/W, mob/user)

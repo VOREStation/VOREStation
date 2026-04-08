@@ -50,14 +50,12 @@
 	injection_chems = list(REAGENT_ID_GLUCOSE,REAGENT_ID_INAPROVALINE,REAGENT_ID_TRICORDRAZINE)
 	max_item_count = 20
 	ore_storage = TRUE
-	var/obj/item/ore_bag/sleeper/ore_bag
 	medsensor = FALSE
 
-/obj/item/dogborg/sleeper/compactor/supply/Initialize(mapload)
-	ore_bag = new(null) //We don't need it inside, just need a reference to it.
-	. = ..()
-
 /obj/item/dogborg/sleeper/compactor/supply/afterattack(atom/movable/target, mob/living/silicon/user, proximity)
+	if(!proximity)
+		return
+
 	if(isturf(target))
 		if(ore_bag.gather_all(target, user, TRUE))
 			user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as ore slips inside."), span_notice("Your [src.name] groans lightly as ore slips inside."))
