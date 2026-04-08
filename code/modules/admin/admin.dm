@@ -1024,36 +1024,45 @@ ADMIN_VERB(spawn_plant, R_SPAWN, "Spawn Plant", "Spawn a spreading plant effect.
 	new /obj/effect/plant(get_turf(user_mob), SSplants.seeds[seedtype])
 	log_admin("[key_name(user)] spawned [seedtype] vines at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
-ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATEGORY_DEBUG_GAME, object as text)
-	var/list/types = typesof(/atom)
-	var/list/matches = new()
+ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATEGORY_DEBUG_GAME, object as text|null)
+	var/static/list/atom_types
+	if(isnull(atom_types))
+		atom_types = subtypesof(/atom)
 
-	for(var/path in types)
-		if(findtext("[path]", object))
-			matches += path
+	var/chosen_path = null
+	var/list/preparsed = null
+	if(object)
+		preparsed = splittext(object, ":")
+		var/list/matches = filter_fancy_list(atom_types, preparsed[1])
+		if(length(matches) == 1)
+			chosen_path = matches[1]
 
-	if(matches.len==0)
+	if(!chosen_path)
+		var/datum/spawn_menu/menu = user.holder.spawn_menu
+		if(!menu)
+			menu = new()
+			user.holder.spawn_menu = menu
+		menu.init_value = object
+		menu.tgui_interact(user.mob)
+		feedback_add_details("admin_verb","SA")
 		return
 
-	var/chosen
-	if(matches.len==1)
-		chosen = matches[1]
-	else
-		chosen = tgui_input_list(user, "Select an atom type", "Spawn Atom", matches)
-		if(!chosen)
-			return
+	var/amount = 1
+	if(length(preparsed) > 1)
+		amount = clamp(text2num(preparsed[2]), 1, ADMIN_SPAWN_CAP)
 
-	var/mob/user_mob = user.mob
-	if(ispath(chosen,/turf))
-		var/turf/T = get_turf(user_mob.loc)
-		T.ChangeTurf(chosen)
+	var/turf/target_turf = get_turf(user.mob)
+	if(ispath(chosen_path, /turf))
+		target_turf.ChangeTurf(chosen_path)
 	else
-		new chosen(user_mob.loc)
+		for(var/i in 1 to amount)
+			var/atom/spawned = new chosen_path(target_turf)
+			spawned.flags |= ADMIN_SPAWNED
 
-	log_and_message_admins("spawned [chosen] at ([user_mob.x],[user_mob.y],[user_mob.z])")
+	log_and_message_admins("spawned [amount] x [chosen_path] at [AREACOORD(user.mob)]", user)
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
 	if(!istype(M))
 		to_chat(user, "This can only be used on instances of type /mob")
 		return
