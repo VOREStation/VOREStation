@@ -66,6 +66,8 @@
 	go_out()
 	if(ore_bag)
 		QDEL_NULL(ore_bag)
+	if(med_analyzer)
+		QDEL_NULL(med_analyzer)
 	. = ..()
 
 /obj/item/dogborg/sleeper/Exit(atom/movable/O)
