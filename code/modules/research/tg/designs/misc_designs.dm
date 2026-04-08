@@ -436,7 +436,7 @@
 	name = "hoist kit"
 	desc = "A setup kit for a hoist that can be used to lift things."
 	id = "hoist_kit"
-	materials = list(MAT_STEEL = 15000)
+	materials = list(MAT_STEEL = 9000)
 	build_path = /obj/item/hoist_kit
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
