@@ -36,10 +36,10 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 	if(!message)
 		return
 
-	if(istext(new_sound)) // Get the announcer voice line if it's a key
-		new_sound = announcer_library_get_voiceline(new_sound)
 	var/message_title = new_title ? new_title : title
 	var/message_sound = new_sound ? new_sound : sound
+	if(istext(message_sound)) // Get the announcer voice line if it's a key
+		message_sound = announcer_library_get_voiceline(message_sound)
 
 	if(!msg_sanitized)
 		message = sanitize(message, extra = 0)

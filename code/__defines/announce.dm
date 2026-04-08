@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(announcer_library, list(
 		ANNOUNCER_MSG_SHUTTLE_ENDROUND_CALLED = 'sound/AI/tramcalled.ogg',
 		ANNOUNCER_MSG_SHUTTLE_ENDROUND_RETURNING = 'sound/AI/tramdepart.ogg',
 
-		ANNOUNCER_MSG_NEW_AI = null,
+		ANNOUNCER_MSG_NEW_AI = null, // disabled
 	),
 ))
 
