@@ -151,9 +151,9 @@
 
 /obj/item/ore_bag/proc/autoload(mob/user)
 	SIGNAL_HANDLER
-	var/obj/item/ore/O = locate() in get_turf(src)
+	var/obj/item/ore/O = locate() in get_turf(user)
 	if(O)
-		gather_all(get_turf(src), user)
+		gather_all(get_turf(user), user)
 
 /obj/item/ore_bag/proc/rangedload(atom/A, mob/user)
 	var/obj/item/ore/O = locate() in get_turf(A)
