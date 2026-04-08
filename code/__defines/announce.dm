@@ -70,7 +70,7 @@
 #define ANNOUNCER_MSG_WEATHER_ALERT "announcer_msg_weather_alert"
 
 // Set sound paths to null to explicitly disable a message from falling back to SS13 default
-GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_VIRGO)
+GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_SS13)
 
 GLOBAL_LIST_INIT(announcer_library, list(
 	ANNOUNCER_VOICE_SS13 = list(
