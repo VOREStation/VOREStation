@@ -70,7 +70,7 @@
 #define ANNOUNCER_MSG_WEATHER_ALERT "announcer_msg_weather_alert"
 
 // Set sound paths to null to explicitly disable a message from falling back to SS13 default
-GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_SS13)
+GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_VIRGO)
 
 GLOBAL_LIST_INIT(announcer_library, list(
 	ANNOUNCER_VOICE_SS13 = list(
@@ -146,6 +146,10 @@ GLOBAL_LIST_INIT(announcer_library, list(
 		ANNOUNCER_MSG_SHUTTLE_ENDROUND_DOCK = 'sound/AI/tramarrived.ogg',
 		ANNOUNCER_MSG_SHUTTLE_ENDROUND_CALLED = 'sound/AI/tramcalled.ogg',
 		ANNOUNCER_MSG_SHUTTLE_ENDROUND_RETURNING = 'sound/AI/tramdepart.ogg',
+
+		ANNOUNCER_MSG_SHUTTLE_EMERG_DOCK = null,
+		ANNOUNCER_MSG_SHUTTLE_EMERG_CALLED = null,
+		ANNOUNCER_MSG_SHUTTLE_EMERG_RECALLED = null,
 
 		ANNOUNCER_MSG_NEW_AI = null,
 	),
