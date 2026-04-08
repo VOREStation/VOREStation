@@ -142,6 +142,8 @@
 
 /datum/element/sellable/trolley_tank/calculate_sell_value(obj/source)
 	var/obj/vehicle/train/trolley_tank/tank = source
+	if(!length(tank.reagents.reagent_list))
+		return 0
 
 	// Update export values
 	var/datum/reagent/R = tank.reagents.reagent_list[1]
