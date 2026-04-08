@@ -49,6 +49,8 @@
 		if(!core.anomaly_type)
 			return FALSE
 
+		user.unEquip(core, TRUE, drop_location())
+
 		var/obj/effect/anomaly/anomaly = new core.anomaly_type(get_turf(core))
 		anomaly.stabilize(releaser.will_anchor, releaser.has_core, releaser.gives_stats)
 

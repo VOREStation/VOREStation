@@ -149,6 +149,7 @@
 		if(isbelly(A)) //Prey are protected
 			continue
 		A.emp_act(severity, recursive)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 	return
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)

@@ -254,6 +254,11 @@
 										sound = "a light, rhythmic, mechanical clicking"
 									else
 										sound = span_warning("no heartbeat")
+									if(istype(heart, /obj/item/organ/internal/heart/machine/anomalock))
+										var/obj/item/organ/internal/heart/machine/anomalock/zap_heart = heart
+										if(zap_heart.core)
+											user.electrocute_act(15, src)
+											user.emote("scream")
 								else
 									switch(M.pulse)
 										if(PULSE_NONE)
