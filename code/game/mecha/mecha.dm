@@ -1332,6 +1332,7 @@
 */
 
 /obj/mecha/emp_act(severity, recursive)
+	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
 	if(get_charge())
