@@ -144,7 +144,7 @@
 		verbs -= /obj/item/gun/verb/give_dna
 		verbs -= /obj/item/gun/verb/allow_dna
 
-	if(length(firemodes) && sel_mode <= firemodes.len)
+	if(sel_mode <= length(firemodes))
 		var/datum/firemode/new_mode = firemodes[sel_mode]
 		new_mode.apply_to(src)
 
