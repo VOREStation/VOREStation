@@ -774,7 +774,7 @@
 	name = "Allergy: " + REAGENT_TRICORDRAZINE
 	desc = "You're highly allergic to " + REAGENT_TRICORDRAZINE + " and " + REAGENT_TRICORLIDAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = -1
-	var/allergen = ALLERGEN_TRICORD
+	var/medallergen = MEDALLERGEN_TRICORD
 
 	/* Lets show medical some mercy by not making these genes
 	is_genetrait = TRUE
@@ -794,29 +794,24 @@
 /datum/trait/negative/medical_allergy/bicard
 	name = "Allergy: " + REAGENT_BICARIDINE
 	desc = "You're highly allergic to " + REAGENT_BICARIDINE + " and " + REAGENT_BICARIDAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
-	cost = -1
-	allergen = ALLERGEN_BICARD
+	medallergen = MEDALLERGEN_BICARD
 
 /datum/trait/negative/medical_allergy/dylo
 	name = "Allergy: " + REAGENT_ANTITOXIN
 	desc = "You're highly allergic to " + REAGENT_ANTITOXIN + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
-	cost = -2
-	allergen = ALLERGEN_DYLO
+	medallergen = MEDALLERGEN_DYLO
 
 /datum/trait/negative/medical_allergy/spacacillin
 	name = "Allergy: " + REAGENT_SPACEACILLIN
 	desc = "You're highly allergic to " + REAGENT_SPACEACILLIN + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
-	cost = -1
-	allergen = ALLERGEN_SPACACIL
+	medallergen = MEDALLERGEN_SPACACIL
 
 /datum/trait/negative/medical_allergy/peridaxon
 	name = "Allergy: " + REAGENT_PERIDAXON
 	desc = "You're highly allergic to " + REAGENT_PERIDAXON + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
-	cost = -2
-	allergen = ALLERGEN_PERIDAX
+	medallergen = MEDALLERGEN_PERIDAX
 
 /datum/trait/negative/medical_allergy/kelotane
 	name = "Allergy: " + REAGENT_KELOTANE
 	desc = "You're highly allergic to " + REAGENT_KELOTANE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
-	cost = -1
-	allergen = ALLERGEN_KELOTANE
+	medallergen = MEDALLERGEN_KELOTANE
