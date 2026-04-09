@@ -23,21 +23,19 @@
 	listeners += holo_listeners
 
 	for(var/atom/U as anything in listeners)
-		var/turf/T = null
+		var/turf/T = get_turf(U)
 		var/mob/hearer = null
 		// Normal mobs
 		if(istype(U,/mob))
 			var/mob/M = U
 			if(!M || !M.client)
 				continue
-			T = get_turf(M)
 			hearer = M
 		// Holograms need to hear too
 		if(istype(U,/obj/effect/overlay/aiholo))
 			var/obj/effect/overlay/aiholo/H = U
 			if(!H || !H.master || !H.master.client)
 				continue
-			var/turf/T = get_turf(H)
 			hearer = H.master
 
 		if(!T || !hearer)
