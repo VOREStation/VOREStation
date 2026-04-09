@@ -400,9 +400,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
 
-/datum/controller/subsystem/internal_wiki/proc/assemble_allergens(var/allergens)
-	if(allergens > 0)
+/datum/controller/subsystem/internal_wiki/proc/assemble_allergens(allergens,med_allergens)
+	if(allergens > 0 || med_allergens > 0)
 		var/list/allergies = list()
+		// foods
 		if(allergens & ALLERGEN_MEAT)
 			allergies.Add("Meat protein")
 		if(allergens & ALLERGEN_FISH)
@@ -435,6 +436,21 @@ SUBSYSTEM_DEF(internal_wiki)
 			allergies.Add("Pollen")
 		if(allergens & ALLERGEN_SALT)
 			allergies.Add("Salt")
+		// meds
+		if(med_allergens & MEDALLERGEN_TRICORD)
+			allergies.Add(REAGENT_TRICORDRAZINE)
+		if(med_allergens & MEDALLERGEN_BICARD)
+			allergies.Add(REAGENT_BICARIDINE)
+		if(med_allergens & MEDALLERGEN_DYLO)
+			allergies.Add(REAGENT_ANTITOXIN)
+		if(med_allergens & MEDALLERGEN_DYLO)
+			allergies.Add(REAGENT_ANTITOXIN)
+		if(med_allergens & MEDALLERGEN_SPACACIL)
+			allergies.Add(REAGENT_SPACEACILLIN)
+		if(med_allergens & MEDALLERGEN_PERIDAX)
+			allergies.Add(MEDALLERGEN_PERIDAX)
+		if(med_allergens & MEDALLERGEN_KELOTANE)
+			allergies.Add(MEDALLERGEN_KELOTANE)
 		return allergies
 	return null
 
@@ -602,6 +618,7 @@ SUBSYSTEM_DEF(internal_wiki)
 						"Coating" = R.coating,
 						"Appliance" = R.appliance,
 						"Allergens" = 0,
+						"Medallergens" = 0,
 						"Price" = initial(res.price_tag),
 						"Flags" = R.wiki_flag
 						)
@@ -623,6 +640,7 @@ SUBSYSTEM_DEF(internal_wiki)
 								"Ingredients" = list(),
 								"Appliance" = 0,
 								"Allergens" = 0,
+								"Medallergens" = 0,
 								"Flags" = CR.wiki_flag
 								)
 	//Items needs further processing into human-readability.
@@ -676,6 +694,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			food_recipes[Rp]["Reagents"] -= rid
 			food_recipes[Rp]["Reagents"][R_name] = amt
 			food_recipes[Rp]["Allergens"] |= Rd.allergen_type
+			food_recipes[Rp]["Medallergens"] |= Rd.medallergen_type
 		for(var/rid in food_recipes[Rp]["Catalysts"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
 			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
@@ -1173,7 +1192,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["sintering"] = SSinternal_wiki.assemble_sintering(GLOB.reagent_sheets[R.id])
 	data["overdose"] = R.overdose
 	data["flavor"] = R.taste_description
-	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/chemical/get_print()
@@ -1221,7 +1240,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/food/get_print()
@@ -1248,7 +1267,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/drink/get_print()
@@ -1274,7 +1293,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		SSinternal_wiki.add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), "#ffffff")
 	// Get internal data
 	data["description"] = recipe["Desc"]
-	data["allergen"] = SSinternal_wiki.assemble_allergens(recipe["Allergens"])
+	data["allergen"] = SSinternal_wiki.assemble_allergens(recipe["Allergens"], recipe["Medallergens"]) // No med allergens here...
 	var/list/recipe_data = list()
 	var/value = recipe["Price"] ? recipe["Price"] : 0
 	recipe_data["supply_points"] = value
