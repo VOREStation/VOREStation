@@ -93,6 +93,9 @@
 	return
 
 /obj/machinery/camera/emp_act(severity, recursive, forced)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!isEmpProof() && (forced || prob(100/severity)))
 		if(!affected_by_emp_until || (world.time > affected_by_emp_until))
 			affected_by_emp_until = max(affected_by_emp_until, world.time + (90 SECONDS / severity))

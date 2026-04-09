@@ -1836,5 +1836,8 @@
 /obj/belly/proc/toggle_displayed_message_flags(flags_to_set)
 	displayed_message_flags ^= flags_to_set
 
+/obj/belly/emp_act(severity, recursive) // Prey are inside within
+	return
+
 #undef MAX_ENTRY_MESSAAGES
 #undef ENTRY_MESSAGE_INTERVAL

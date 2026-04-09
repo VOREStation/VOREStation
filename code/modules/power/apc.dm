@@ -1187,6 +1187,9 @@ GLOBAL_LIST_EMPTY(apcs)
 
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	// Fail for 8-12 minutes (divided by severity)
 	// Division by 2 is required, because machinery ticks are every two seconds. Without it we would fail for 16-24 minutes.
 
@@ -1202,7 +1205,6 @@ GLOBAL_LIST_EMPTY(apcs)
 		severity = severity+1
 
 	update_icon()
-	..(severity, recursive)
 
 /obj/machinery/power/apc/ex_act(severity)
 

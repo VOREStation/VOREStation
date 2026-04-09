@@ -620,11 +620,13 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	else return
 
 /obj/item/radio/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	broadcasting = FALSE
 	listening = FALSE
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
-	..()
 
 /obj/item/radio/start_off
 	listening = FALSE

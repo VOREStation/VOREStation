@@ -818,6 +818,9 @@
 	return 0
 
 /obj/item/rig/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	//set malfunctioning
 	if(emp_protection < 30) //for ninjas, really.
 		malfunctioning += 10

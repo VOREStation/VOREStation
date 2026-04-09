@@ -110,28 +110,29 @@
 		update_icon()
 
 /obj/machinery/atmospheric_field_generator/emp_act(severity, recursive)
-	if(!(stat & EMPED))
-		stat |= EMPED
-		disable_field() //shutting dowwwwwwn
-		spawn(rand(reboot_delay_min,reboot_delay_max))
-			stat &= ~EMPED
-			if(alwaysactive || wasactive) //reboot after a short delay if we were online before
-				generate_field()
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || (stat & EMPED))
+		return
+	stat |= EMPED
+	disable_field() //shutting dowwwwwwn
+	spawn(rand(reboot_delay_min,reboot_delay_max))
+		stat &= ~EMPED
+		if(alwaysactive || wasactive) //reboot after a short delay if we were online before
+			generate_field()
 
 /obj/machinery/atmospheric_field_generator/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			stat |= BROKEN //ensures that always on generators are set as broken prior to being deleted, thus, off.
 			disable_field()
 			qdel(src)
 			return
-		if(2)
+		if(EMP_MEDIUM)
 			stat |= BROKEN
 			update_icon()
 			src.visible_message("The ARF-G cracks and shatters!","You hear an uncomfortable metallic crunch.")
 			disable_field()
-		if(3)
+		if(EMP_LIGHT)
 			emp_act()
 	return
 

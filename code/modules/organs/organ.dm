@@ -417,6 +417,9 @@
 	robotize()
 
 /obj/item/organ/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	for(var/obj/O as anything in src.contents)
 		O.emp_act(severity, recursive)
 

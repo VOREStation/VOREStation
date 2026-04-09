@@ -101,6 +101,9 @@
 	return ..()
 
 /obj/item/robot_module/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(modules)
 		for(var/obj/O in modules)
 			O.emp_act(severity, recursive)
@@ -110,7 +113,6 @@
 	if(synths)
 		for(var/datum/matter_synth/S in synths)
 			S.emp_act(severity, recursive)
-	return
 
 /obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)
 	SHOULD_CALL_PARENT(TRUE)

@@ -23,6 +23,9 @@
 	energy = min(energy + amount, max_energy)
 
 /datum/matter_synth/proc/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	use_charge(max_energy * 0.1 / severity)
 
 /datum/matter_synth/medicine

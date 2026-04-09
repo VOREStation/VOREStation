@@ -56,6 +56,9 @@
 // Damage code.
 
 /obj/item/mecha_parts/component/emp_act(severity = 4, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(severity + emp_resistance > 4)
 		return
 

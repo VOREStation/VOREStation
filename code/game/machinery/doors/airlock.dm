@@ -1186,11 +1186,13 @@ About the new airlock wires panel:
 		electronics.one_access = 1
 
 /obj/machinery/door/airlock/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(40/severity))
 		var/duration = world.time + ((30 / severity) SECONDS)
 		if(duration > electrified_until)
 			electrify(duration)
-	..()
 
 /obj/machinery/door/airlock/power_change() //putting this is obj/machinery/door itself makes non-airlock doors turn invisible for some reason
 	..()

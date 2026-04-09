@@ -155,7 +155,8 @@ Implant Specifics:<BR>"}
 	return dat
 
 /obj/item/implant/tracking/emp_act(severity, recursive)
-	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction) //no, dawg, you can't malfunction while you are malfunctioning
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 
@@ -295,7 +296,8 @@ Implant Specifics:<BR>"}
 	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
 
 /obj/item/implant/explosive/emp_act(severity, recursive)
-	if (malfunction)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
@@ -399,7 +401,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	return
 
 /obj/item/implant/chem/emp_act(severity, recursive)
-	if (malfunction)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 
@@ -558,7 +561,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/implant/death_alarm/emp_act(severity, recursive)			//for some reason alarms stop going off in case they are emp'd, even without this
-	if (malfunction)		//so I'm just going to add a meltdown chance here
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction) //so I'm just going to add a meltdown chance here
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 

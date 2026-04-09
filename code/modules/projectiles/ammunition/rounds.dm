@@ -316,6 +316,9 @@
 	matter = list(MAT_STEEL = 360, MAT_GLASS = 720)
 
 /obj/item/ammo_casing/a12g/stunshell/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(100/severity)) BB = null
 	update_icon()
 

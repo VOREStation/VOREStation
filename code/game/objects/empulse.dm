@@ -5,7 +5,8 @@
 // # define EMPDEBUG 10
 
 /proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_range, log=0)
-	if(!epicenter) return
+	if(!epicenter)
+		return
 
 	if(!istype(epicenter, /turf))
 		epicenter = get_turf(epicenter.loc)
@@ -15,13 +16,7 @@
 		log_game("EMP with size ([first_range], [second_range], [third_range], [fourth_range]) in area [epicenter.loc.name] ")
 
 	if(first_range > 1)
-		var/obj/effect/overlay/pulse = new /obj/effect/overlay(epicenter)
-		pulse.icon = 'icons/effects/effects.dmi'
-		pulse.icon_state = "emppulse"
-		pulse.name = "emp pulse"
-		pulse.anchored = TRUE
-		spawn(20)
-			qdel(pulse)
+		new /obj/effect/temp_visual/emp/pulse(epicenter)
 
 	if(first_range > second_range)
 		second_range = first_range
@@ -31,9 +26,9 @@
 		fourth_range = third_range
 
 	for(var/mob/M in range(first_range, epicenter))
-		M << 'sound/effects/EMPulse.ogg'
+		playsound(epicenter, 'sound/effects/EMPulse.ogg', 100, TRUE)
 
-	for(var/atom/T in range(fourth_range, epicenter))
+	for(var/atom/T in spiral_range(fourth_range, epicenter))
 		#ifdef EMPDEBUG
 		var/time = world.timeofday
 		#endif
@@ -42,33 +37,33 @@
 			distance = 0
 		//Worst effects, really hurts
 		if(distance < first_range)
-			T.emp_act(1)
+			T.emp_act(EMP_HEAVY)
 		else if(distance == first_range)
 			if(prob(50))
-				T.emp_act(1)
+				T.emp_act(EMP_HEAVY)
 			else
-				T.emp_act(2)
+				T.emp_act(EMP_MEDIUM)
 		//Slightly less painful
 		else if(distance <= second_range)
-			T.emp_act(2)
+			T.emp_act(EMP_MEDIUM)
 		else if(distance == second_range)
 			if(prob(50))
-				T.emp_act(2)
+				T.emp_act(EMP_MEDIUM)
 			else
-				T.emp_act(3)
+				T.emp_act(EMP_LIGHT)
 		//Even less slightly less painful
 		else if(distance <= third_range)
-			T.emp_act(3)
+			T.emp_act(EMP_LIGHT)
 		else if(distance == third_range)
 			if(prob(50))
-				T.emp_act(2)
+				T.emp_act(EMP_MEDIUM)
 			else
-				T.emp_act(3)
+				T.emp_act(EMP_LIGHT)
 		//This should be more or less harmless
 		else if(distance <= fourth_range)
-			T.emp_act(4)
+			T.emp_act(EMP_HARMLESS)
 		#ifdef EMPDEBUG
 		if((world.timeofday - time) >= EMPDEBUG)
 			log_and_message_admins("EMPDEBUG: [T.name] - [T.type] - took [world.timeofday - time]ds to process emp_act()!")
 		#endif
-	return 1
+	return TRUE

@@ -9,4 +9,4 @@
 			to_chat(A, span_boldwarning("Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT"))
 			to_chat(A, span_boldwarning("<br>"))
 	for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
-		T.emp_act(1)
+		T.emp_act(EMP_HEAVY)
