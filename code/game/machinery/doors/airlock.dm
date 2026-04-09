@@ -1076,6 +1076,7 @@ About the new airlock wires panel:
 			var/mob/living/silicon/ai/A = M
 			if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
 				T = get_turf(A.holo)
+
 		var/distance = get_dist(T, get_turf(src))
 		if(distance <= world.view * 2)
 			if(T && T.z == get_z(src))
