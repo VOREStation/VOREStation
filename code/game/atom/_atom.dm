@@ -142,15 +142,16 @@
 
 
 /atom/proc/emp_act(severity, recursive)
-	recursive++
+	recursive++ // Needs SHOULD_CALL_PARENT(), then check all the emp_acts
 	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
 		return
+	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_PRE_EMP_ACT, severity)
 	for(var/atom/A in contents)
 		if(isbelly(A)) //Prey are protected
 			continue
 		A.emp_act(severity, recursive)
-	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity, protection)
+	return protection
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) & COMPONENT_CANCEL_ATTACK_CHAIN)

@@ -28,10 +28,12 @@
 	if(!removed)
 		add_lightning_overlay(30 SECONDS)
 		playsound(owner, 'sound/machines/defib_zap.ogg', 50, TRUE, -1)
+		owner._AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
 		RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), PROC_REF(activate_survival))
 
 	if(removed)
 		clear_lightning_overlay(owner)
+		owner._RemoveElement(/datum/element/empprotection)
 		UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION))
 		tesla_zap(owner, 10, 2500, current_jumps = 5)
 		QDEL_IN(src, 0)
