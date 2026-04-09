@@ -488,3 +488,5 @@
 			remaining_pulses--
 			if(!remaining_pulses)
 				break
+
+#undef MAXIMUM_EMP_WIRES
