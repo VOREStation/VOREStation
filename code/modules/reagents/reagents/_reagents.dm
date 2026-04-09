@@ -180,6 +180,10 @@
 	removed = min(removed, volume)
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
+	if(M.species.medallergens & medallergen_type) // Medical allergies don't gain ANY benefits...
+		M.add_chemical_effect(CE_ALLERGEN, allergen_factor * removed)
+		remove_self(removed)
+		return
 	switch(active_metab.metabolism_class)
 		if(CHEM_BLOOD)
 			affect_blood(M, alien, removed)
@@ -193,7 +197,7 @@
 	on_mob_metabolize(M, location)
 	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH || can_overdose_touch))
 		overdose(M, alien, removed)
-	if((M.species.allergens & allergen_type) || (M.species.medallergens & medallergen_type))	//uhoh, we can't handle this!
+	if((M.species.allergens & allergen_type))	//uhoh, we can't handle this!
 		M.add_chemical_effect(CE_ALLERGEN, allergen_factor * removed)
 	remove_self(removed)
 	return
