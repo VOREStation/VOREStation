@@ -443,14 +443,12 @@ SUBSYSTEM_DEF(internal_wiki)
 			allergies.Add(REAGENT_BICARIDINE)
 		if(med_allergens & MEDALLERGEN_DYLO)
 			allergies.Add(REAGENT_ANTITOXIN)
-		if(med_allergens & MEDALLERGEN_DYLO)
-			allergies.Add(REAGENT_ANTITOXIN)
 		if(med_allergens & MEDALLERGEN_SPACACIL)
 			allergies.Add(REAGENT_SPACEACILLIN)
 		if(med_allergens & MEDALLERGEN_PERIDAX)
-			allergies.Add(MEDALLERGEN_PERIDAX)
+			allergies.Add(REAGENT_PERIDAXON)
 		if(med_allergens & MEDALLERGEN_KELOTANE)
-			allergies.Add(MEDALLERGEN_KELOTANE)
+			allergies.Add(REAGENT_KELOTANE)
 		return allergies
 	return null
 
