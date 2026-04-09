@@ -852,7 +852,7 @@
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
 
-	if(H.species.allergens)
+	if(H.species.allergens || H.species.medallergens)
 		H.AddElement(/datum/element/allergy)
 	else
 		H.RemoveElement(/datum/element/allergy)
