@@ -783,12 +783,12 @@
 	activation_message="Something feels odd..."
 	*/
 
-/datum/trait/neutral/medical_allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	S.medical_allergy |= allergen
+/datum/trait/negative/medical_allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.medallergens |= medallergen
 	..()
 
-/datum/trait/neutral/medical_allergy/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
-	S.medical_allergy &= ~allergen
+/datum/trait/negative/medical_allergy/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.medallergens &= ~medallergen
 	..()
 
 /datum/trait/negative/medical_allergy/bicard
