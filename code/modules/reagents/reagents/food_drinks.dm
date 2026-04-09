@@ -2544,6 +2544,7 @@
 	glass_name = REAGENT_DOCTORSDELIGHT
 	glass_desc = "A healthy mixture of juices, guaranteed to keep you healthy until the next toolboxing takes place."
 	allergen_type = ALLERGEN_FRUIT|ALLERGEN_DAIRY //Made from several fruit juices, and cream.
+	medallergen_type = MEDALLERGEN_TRICORD // this too!
 
 /datum/reagent/drink/doctor_delight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
