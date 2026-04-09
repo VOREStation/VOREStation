@@ -14,11 +14,33 @@
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
 	var/list/listeners = GLOB.player_list.Copy()
-	for(var/mob/M as anything in listeners)
-		if(!M || !M.client)
-			continue
-		var/turf/T = get_turf(M)
-		if(!T)
+
+	// Get AI holograms of active AIs too
+	var/list/holo_listeners = list()
+	for(var/mob/living/silicon/ai/A in listeners)
+		if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo/))
+			holo_listeners += A.holo.masters[A]
+	listeners += holo_listeners
+
+	for(var/atom/U as anything in listeners)
+		var/turf/T = null
+		var/mob/hearer = null
+		// Normal mobs
+		if(istype(U,/mob))
+			var/mob/M = U
+			if(!M || !M.client)
+				continue
+			T = get_turf(M)
+			hearer = M
+		// Holograms need to hear too
+		if(istype(U,/obj/effect/overlay/aiholo))
+			var/obj/effect/overlay/aiholo/H = U
+			if(!H || !H.master || !H.master.client)
+				continue
+			var/turf/T = get_turf(H)
+			hearer = H.master
+
+		if(!T || !hearer)
 			continue
 		var/area/A = T.loc
 		if((A.flag_check(AREA_SOUNDPROOF) || area_source.flag_check(AREA_SOUNDPROOF)) && (A != area_source))
@@ -32,8 +54,8 @@
 		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2))
 			continue
 
+		hearer.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel, T)
 		SSmotiontracker.ping(source,vol) // Nearly everything pings this, the quieter the less likely
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
 /mob/proc/check_sound_preference(list/preference)
 	if(!islist(preference))
@@ -72,9 +94,16 @@
 		else
 			S.frequency = get_rand_frequency()
 
-	if(isturf(turf_source))
-		var/turf/T = get_turf(src)
+	// Check if an AI is listening through hologram...
+	var/turf/T = get_turf(src)
+	var/listener_position = T
+	if(isAI(src))
+		var/mob/living/silicon/ai/A = src
+		if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
+			T = get_turf(A.holo.masters[A])
+			listener_position = A.holo.masters[A]
 
+	if(isturf(turf_source))
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
@@ -105,7 +134,7 @@
 
 		//Apply a sound environment.
 		if(!is_global)
-			S.environment = get_sound_env(pressure_factor)
+			S.environment = get_sound_env(listener_position,pressure_factor)
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
