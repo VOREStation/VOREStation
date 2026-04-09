@@ -51,8 +51,7 @@
 
 /obj/machinery/power/shield_generator/Initialize(mapload)
 	. = ..()
-	if(!wires)
-		wires = new(src)
+	set_wires(new /datum/wires/shield_generator)
 	default_apply_parts()
 	connect_to_network()
 
