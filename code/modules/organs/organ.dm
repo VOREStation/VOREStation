@@ -427,13 +427,13 @@
 		return
 	for(var/i = 1; i <= robotic; i++)
 		switch (severity)
-			if (1)
+			if (EMP_HEAVY)
 				take_damage(rand(5,9))
-			if (2)
+			if (EMP_MEDIUM)
 				take_damage(rand(3,7))
-			if (3)
+			if (EMP_LIGHT)
 				take_damage(rand(2,5))
-			if (4)
+			if (EMP_HARMLESS)
 				take_damage(rand(1,3))
 
 /obj/item/organ/proc/removed(var/mob/living/user)

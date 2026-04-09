@@ -81,7 +81,7 @@
 //the degree of damage and duration of effects can be tweaked up or down based on the species emp_dmg_mod and emp_stun_mod vars (default 1) on top of tuning the random ranges
 /mob/living/carbon/emp_act(severity, recursive)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & EMP_PROTECT_SELF || !species)
 		return
 	//pregen our stunning stuff, had to do this seperately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
 	var/agony_str = ((rand(4,6)*15)-(15*severity))*species.emp_stun_mod //big ouchies at high severity, causes 0-75 halloss/agony; shotgun beanbags and revolver rubbers do 60
@@ -92,13 +92,13 @@
 	if(species.emp_sensitivity) //receive warning message and basic effects
 		to_chat(src, span_bolddanger("*BZZZT*"))
 		switch(severity)
-			if(1)
+			if(EMP_HEAVY)
 				to_chat(src, span_danger("DANGER: Extreme EM flux detected!"))
-			if(2)
+			if(EMP_MEDIUM)
 				to_chat(src, span_danger("Danger: High EM flux detected!"))
-			if(3)
+			if(EMP_LIGHT)
 				to_chat(src, span_danger("Warning: Moderate EM flux detected!"))
-			if(4)
+			if(EMP_HARMLESS)
 				to_chat(src, span_danger("Warning: Minor EM flux detected!"))
 		if(prob(90-(10*severity))) //50-80% chance to fire an emote. most are harmless, but vomit might reduce your nutrition level which could suck (so the whole thing is padded out with extras)
 			src.emote(pick("twitch", "twitch_v", "choke", "pale", "blink", "blink_r", "shiver", "sneeze", "vomit", "gasp", "cough", "drool"))

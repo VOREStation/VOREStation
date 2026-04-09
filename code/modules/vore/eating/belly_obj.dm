@@ -505,6 +505,7 @@
 				START_PROCESSING(SSbellies, src)
 
 	create_reagents(300)	// So we can have some liquids in bellies
+	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/belly/Destroy()
 	if(mode_flags & DM_FLAG_TURBOMODE)
@@ -1835,9 +1836,6 @@
 
 /obj/belly/proc/toggle_displayed_message_flags(flags_to_set)
 	displayed_message_flags ^= flags_to_set
-
-/obj/belly/emp_act(severity, recursive) // Prey are inside within
-	return
 
 #undef MAX_ENTRY_MESSAAGES
 #undef ENTRY_MESSAGE_INTERVAL

@@ -137,7 +137,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/has_electronics = APC_HAS_ELECTRONICS_NONE // 0 - none, 1 - plugged in, 2 - secured by screwdriver
 	var/beenhit = 0 // used for counting how many times it has been hit, used for Aliens at the moment
 	var/longtermpower = 10
-	var/datum/wires/apc/wires = null
 	var/emergency_lights = FALSE
 	var/update_state = -1
 	var/update_overlay = -1
@@ -187,7 +186,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 /obj/machinery/power/apc/Initialize(mapload, ndir, building)
 	. = ..()
-	wires = new(src)
+	set_wires(new /datum/wires/apc(src))
 	GLOB.apcs += src
 
 	// offset 24 pixels in direction of dir

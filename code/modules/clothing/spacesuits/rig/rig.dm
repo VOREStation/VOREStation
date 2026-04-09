@@ -94,8 +94,6 @@
 	var/emp_protection = 0
 	item_flags = PHORONGUARD //VOREStation add
 
-	// Wiring! How exciting.
-	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
@@ -112,7 +110,7 @@
 
 	suit_state = icon_state
 	item_state = icon_state
-	wires = new(src)
+	set_wires(new /datum/wires/rig(src))
 
 	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		locked = 0

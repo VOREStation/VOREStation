@@ -28,7 +28,7 @@
 	for(var/mob/M in range(first_range, epicenter))
 		playsound(epicenter, 'sound/effects/EMPulse.ogg', 100, TRUE)
 
-	for(var/atom/T in spiral_range(fourth_range, epicenter))
+	for(var/atom/T in spiral_range_turfs(fourth_range, epicenter))
 		#ifdef EMPDEBUG
 		var/time = world.timeofday
 		#endif

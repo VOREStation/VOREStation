@@ -169,10 +169,6 @@
 		..()
 		return
 
-
-/obj/machinery/field_generator/emp_act(severity, recursive)
-	return
-
 /obj/machinery/field_generator/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
 		power += Proj.damage * EMITTER_DAMAGE_POWER_TRANSFER

@@ -45,7 +45,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
 	var/security_level = 1 //Acts as a multiplier on the time required to hack an airlock with a hacktool
-	var/datum/wires/airlock/wires = null
 
 	var/open_sound_powered = 'sound/machines/door/covert1o.ogg'
 	var/open_sound_unpowered = 'sound/machines/door/airlockforced.ogg'

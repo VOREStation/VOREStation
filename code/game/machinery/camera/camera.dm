@@ -20,9 +20,6 @@
 
 	var/toughness = 5 //sorta fragile
 
-	// WIRES
-	var/datum/wires/camera/wires = null // Wires datum
-
 	//OTHER
 
 	var/view_range = 7
@@ -41,7 +38,7 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
-	wires = new(src)
+	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
 	LAZYOR(client_huds, GLOB.global_hud.whitense)
@@ -176,7 +173,7 @@
 	else if((W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/multitool)) && panel_open)
 		interact(user)
 
-	else if(W.has_tool_quality(TOOL_WELDER) && (wires.CanDeconstruct() || (stat & BROKEN)))
+	else if(W.has_tool_quality(TOOL_WELDER) && (wires.is_all_cut() || (stat & BROKEN)))
 		if(weld(W, user))
 			if(assembly)
 				assembly.loc = src.loc
