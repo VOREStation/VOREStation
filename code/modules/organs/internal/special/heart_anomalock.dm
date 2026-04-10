@@ -21,6 +21,14 @@
 	///If the core is removable once socketed.
 	var/core_removable = TRUE
 
+/obj/item/organ/internal/heart/machine/anomalock/Destroy()
+	if(lightning_timer)
+		deltimer(lightning_timer)
+	if(lightning_overlay)
+		lightning_overlay = null
+	QDEL_NULL(core)
+	return ..()
+
 /obj/item/organ/internal/heart/machine/anomalock/handle_organ_mod_special(removed)
 	if(!core)
 		return
@@ -30,11 +38,13 @@
 		playsound(owner, 'sound/machines/defib_zap.ogg', 50, TRUE, -1)
 		owner.AddElement(/datum/element/empprotection, EMP_PROTECT_SELF|EMP_PROTECT_CONTENTS)
 		RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), PROC_REF(activate_survival))
+		RegisterSignal(owner, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp_act))
 
 	if(removed)
 		clear_lightning_overlay(owner)
-		owner.RemoveElement(/datum/element/empprotection)
 		UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION))
+		UnregisterSignal(owner, COMSIG_ATOM_EMP_ACT)
+		owner.RemoveElement(/datum/element/empprotection)
 		tesla_zap(owner, 10, 2500, current_jumps = 5)
 		QDEL_IN(src, 0)
 
@@ -68,7 +78,8 @@
 	balloon_alert(organ_owner, "your heart strengthtens")
 	playsound(owner, 'sound/machines/defib_zap.ogg', 40)
 
-/obj/item/organ/internal/heart/machine/anomalock/emp_act(severity, recursive)
+/obj/item/organ/internal/heart/machine/anomalock/proc/on_emp_act(severity, recursive)
+	SIGNAL_HANDLER
 	add_lightning_overlay(10 SECONDS)
 
 /obj/item/organ/internal/heart/machine/anomalock/attackby(obj/item/W, mob/user)
