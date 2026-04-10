@@ -181,7 +181,7 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "inert"
 	worth = 0
-	var/choices = 3
+	var/options = 3
 	var/list/choices
 	var/picked = FALSE
 	anomaly_type = /obj/effect/anomaly/flux // Default
@@ -190,7 +190,7 @@
 	. = ..()
 	var/list/core_types = subtypesof(/obj/effect/anomaly)
 
-	for(var/i = 0, i < choices, i++)
+	for(var/i = 0, i < options, i++)
 		var/type = pick_n_take(core_types)
 		var/obj/effect/anomaly/anom = new type
 		choices[capitalize(anom.name)] = type
