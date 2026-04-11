@@ -69,7 +69,21 @@
 			//Messages having theese tokens will be rejected by server. Case sensitive
 	var/spamfilter_limit = MESSAGE_SERVER_DEFAULT_SPAM_LIMIT	//Maximal amount of tokens
 
+	var/datum/looping_sound/tcomms/soundloop
+	var/noisy = FALSE
+
 /obj/machinery/message_server/Initialize(mapload)
+	soundloop = new(list(src), FALSE)
+	if(prob(60)) // 60% chance to change the midloop
+		if(prob(40))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_02.ogg' = 1)
+			soundloop.mid_length = 40
+		else if(prob(20))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_03.ogg' = 1)
+			soundloop.mid_length = 10
+		else
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_04.ogg' = 1)
+			soundloop.mid_length = 30
 	. = ..()
 	GLOB.message_servers += src
 	decryptkey = GenerateKey()
@@ -77,6 +91,7 @@
 
 /obj/machinery/message_server/Destroy()
 	GLOB.message_servers -= src
+	QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
@@ -96,7 +111,12 @@
 	//	decryptkey = generateKey()
 	if(active && (stat & (BROKEN|NOPOWER)))
 		active = 0
+		soundloop.stop()
+		noisy = FALSE
 		return
+	if(!noisy && active)
+		soundloop.start()
+		noisy = TRUE
 	update_icon()
 	return
 
@@ -366,7 +386,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/blackbox_recorder)
 		query_insert.Execute()
 		qdel(query_insert)
 
-// Sanitize inputs to avoid SQL injection attacks
+// Sanitize inputs to avoid SQL injection attacks. This is not secure. Basic filters like this are pretty easy to bypass. Use the format for arguments used in the above.
 /proc/sql_sanitize_text(var/text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
