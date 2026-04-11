@@ -19,11 +19,10 @@
 	var/list/obj/structure/particle_accelerator/connected_parts
 	var/assembled = 0
 	var/parts = null
-	var/datum/wires/particle_acc/control_box/wires = null
 
 /obj/machinery/particle_accelerator/control_box/Initialize(mapload)
 	. = ..()
-	wires = new(src)
+	set_wires(new /datum/wires/particle_acc/control_box(src))
 	connected_parts = list()
 	update_active_power_usage(initial(active_power_usage) * (strength + 1))
 
