@@ -146,6 +146,9 @@
 		return
 	end_orbit(orbiter)
 
+/datum/component/orbiter/proc/orbiters_length()
+	return orbiters.len
+
 /////////////////////
 /atom/
 	var/datum/component/orbiter/orbiters
@@ -169,3 +172,6 @@
 	if(!orbiters || !istype(target) || !get_turf(target) || target == src)
 		return
 	target.TakeComponent(orbiters)
+
+/atom/proc/get_orbiters_count()
+	return orbiters.orbiters_length()
