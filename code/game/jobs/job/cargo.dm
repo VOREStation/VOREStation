@@ -137,4 +137,4 @@
 
 /datum/alt_title/mining_contractor
 	title = JOB_ALT_MINING_CONTRACTOR
-	title_blub = "A " + JOB_ALT_MINING_CONTRACTOR + " executes mining operations, including drilling, blasting, and excavation, but isn't directly employed by NT proper."
+	title_blurb = "A " + JOB_ALT_MINING_CONTRACTOR + " executes mining operations, including drilling, blasting, and excavation, but isn't directly employed by NT proper."
