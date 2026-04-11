@@ -26,9 +26,9 @@ ADMIN_VERB(create_random_map, R_DEBUG, "Create Random Map", "Create a random map
 		var/seed = tgui_input_text(user, "Seed? (blank for none)")
 		var/lx =   tgui_input_number(user, "X-size? (blank for default)")
 		var/ly =   tgui_input_number(user, "Y-size? (blank for default)")
-		selected_map = new map_datum(seed,null,null,0,lx,ly,1)
+		selected_map = new map_datum(seed,null,null,0,lx,ly,1,null,TRUE)
 	else
-		selected_map = new map_datum(null,null,null,0,null,null,1)
+		selected_map = new map_datum(null,null,null,0,null,null,1,null,TRUE)
 
 	if(selected_map)
 		log_and_message_admins("has created [selected_map.name]", user)
