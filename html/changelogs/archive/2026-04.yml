@@ -29,3 +29,25 @@
   - bugfix: plane holder hard dels
   Will:
   - rscadd: Borgs will get a client side indicator when electrifying doors with alt-click
+2026-04-09:
+  Diana:
+  - bugfix: Biogenerator no longer can go negative when dispensing reagents
+  - bugfix: Biogenerator will never go below 1 point per 1unit of reagent
+  - bugfix: Biogenerator will dispense 1 unit of reagent per amount selected
+  - qol: Prices for gardening nutriments decreased
+  - rscadd: Biogenerator can now dispense Salt, Soy, Plant-B-Gone, Mutagen, and Diethylamine
+  - rscadd: Biogenerator can dispense Mystery Seeds and Kudzu (Botanists can already
+      use L4Z to get kudzu)
+  - bugfix: Radstorms give rads once more.
+  - bugfix: Proton packs no longer get perma-stuck to your back
+  - qol: Geiger counters give you more information.
+  - bugfix: Inactive geigers will no longer cause tremor sense to trigger.
+  Nova:
+  - bugfix: Fix an issue with random name generation.
+  Will:
+  - code_imp: Small death alarm null safety tweak
+  - spellcheck: tape roll lathe entry
+  - rscadd: Check Access List admin verb for mappers
+  - bugfix: Getting the value of a cargo tanker with no reagents inside it no longer
+      runtimes.
+  - bugfix: Foam crossbow toy properly spawns from loadout entry

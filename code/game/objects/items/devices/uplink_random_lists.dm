@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(default_uplink_selection, /datum/uplink_random_selection, new)
+GLOBAL_DATUM_INIT(default_uplink_selection, /datum/uplink_random_selection/default, new)
 GLOBAL_DATUM_INIT(all_uplink_selection, /datum/uplink_random_selection/all, new)
 
 /datum/uplink_random_item

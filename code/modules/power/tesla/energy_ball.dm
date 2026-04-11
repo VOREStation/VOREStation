@@ -295,7 +295,7 @@
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if(stun_mobs)
-				S.emp_act(3 /*EMP_LIGHT*/)
+				S.emp_act(EMP_LIGHT)
 			tesla_zap(closest_mob, 7, power / 1.5, explosive, stun_mobs, current_jumps = current_jumps) // metallic folks bounce it further
 		else
 			tesla_zap(closest_mob, 5, power / 1.5, explosive, stun_mobs, current_jumps = current_jumps)

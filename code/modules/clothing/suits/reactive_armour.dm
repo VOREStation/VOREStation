@@ -87,7 +87,7 @@
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity, recursive)
 	. = ..()
-	if(bad_effect || !active)
+	if (. & EMP_PROTECT_SELF || bad_effect || !active)
 		return
 	visible_message(emp_message)
 	bad_effect = TRUE

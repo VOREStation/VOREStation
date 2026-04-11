@@ -516,7 +516,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in GLOB.player_list)
 		if(man.client)
-			if(man.client.prefs.economic_status == CLASS_LOWER)
+			if((man.client.prefs.economic_status == CLASS_LOWER) || (man.client.prefs.economic_status == CLASS_BROKE))
 				dudes += man
 			else if(man.client.prefs.economic_status == CLASS_LOWMID && prob(50))
 				dudes += man

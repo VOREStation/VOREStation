@@ -4,7 +4,7 @@
 	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
 	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
 	var/center_offset = 0.5				// Center offset for uneven scaling symmetry.
-	var/offset_override = FALSE			// Pref toggle for center offset.
+	var/offset_override = TRUE			// Pref toggle for center offset.
 
 /mob/living
 	var/holder_default

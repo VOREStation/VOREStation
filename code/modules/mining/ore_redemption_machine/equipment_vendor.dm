@@ -27,7 +27,8 @@
 		else
 			QDEL_NULL(inserted_id)
 	for(var/key, value in prize_list)
-		QDEL_NULL_LIST(value)
+		var/list/item_list = value
+		QDEL_LIST_ASSOC_VAL(item_list)
 	. = ..()
 
 /datum/data/mining_equipment

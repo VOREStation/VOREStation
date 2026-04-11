@@ -108,6 +108,9 @@
 	..()
 
 /obj/item/gun/energy/locked/frontier/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	return ..(severity+2, recursive)
 
 /obj/item/gun/energy/locked/frontier/ex_act() //|rugged|
