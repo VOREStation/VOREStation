@@ -55,11 +55,11 @@
 
 // Damage code.
 
-/obj/item/mecha_parts/component/emp_act(severity = 4, recursive)
+/obj/item/mecha_parts/component/emp_act(severity = EMP_HARMLESS, recursive)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(severity + emp_resistance > 4)
+	if(severity + emp_resistance >= EMP_NONE)
 		return
 
 	severity = clamp(severity + emp_resistance, 1, 4)

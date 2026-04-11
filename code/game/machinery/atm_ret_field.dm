@@ -122,17 +122,17 @@
 
 /obj/machinery/atmospheric_field_generator/ex_act(severity)
 	switch(severity)
-		if(EMP_HEAVY)
+		if(1)
 			stat |= BROKEN //ensures that always on generators are set as broken prior to being deleted, thus, off.
 			disable_field()
 			qdel(src)
 			return
-		if(EMP_MEDIUM)
+		if(2)
 			stat |= BROKEN
 			update_icon()
 			src.visible_message("The ARF-G cracks and shatters!","You hear an uncomfortable metallic crunch.")
 			disable_field()
-		if(EMP_LIGHT)
+		if(3)
 			emp_act()
 	return
 

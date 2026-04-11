@@ -94,13 +94,13 @@
 	if (. & EMP_PROTECT_SELF || !brainmob)
 		return
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			src.brainmob.emp_damage += rand(20,30)
-		if(2)
+		if(EMP_MEDIUM)
 			src.brainmob.emp_damage += rand(10,20)
-		if(3)
+		if(EMP_LIGHT)
 			src.brainmob.emp_damage += rand(5,10)
-		if(4)
+		if(EMP_HARMLESS)
 			src.brainmob.emp_damage += rand(0,5)
 
 /obj/item/mmi/digital/posibrain/Initialize(mapload)
