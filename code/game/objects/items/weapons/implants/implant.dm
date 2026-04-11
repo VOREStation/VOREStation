@@ -516,6 +516,10 @@ the implant may become unstable and either pre-maturely inject the subject or si
 "} + span_bold("Integrity:") + {"Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
+/obj/item/implant/death_alarm/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
 /obj/item/implant/death_alarm/process()
 	if (!implanted) return
 	var/mob/M = imp_in
@@ -528,6 +532,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/death_alarm/activate(var/cause)
 	var/mob/M = imp_in
 	var/area/t = get_area(M)
+	if(!t) // Failsafe
+		STOP_PROCESSING(SSobj, src)
+		return
 	switch (cause)
 		if("death")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)

@@ -153,18 +153,6 @@
 		return
 	..()
 
-/obj/machinery/power/tesla_coil/tesla_act(power, explosive, current_jumps)
-	if(anchored && !panel_open)
-		being_shocked = TRUE
-		coil_act(power, explosive, current_jumps)
-		//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
-		spawn(zap_cooldown) reset_shocked()
-	else if(anchored && panel_open) //Doing maintenance. Just act like a grounding rod.
-		being_shocked = TRUE
-		spawn(zap_cooldown) reset_shocked()
-	else
-		..()
-
 /obj/machinery/power/tesla_coil/proc/coil_act(power, explosive, current_jumps)
 	var/power_produced = power / power_loss
 	add_avail(power_produced*input_power_multiplier)
@@ -383,12 +371,6 @@
 	if(user.a_intent == I_GRAB && user_buckle_mob(user.pulling, user))
 		return
 	..()
-
-/obj/machinery/power/grounding_rod/tesla_act(power, explosive, current_jumps)
-	if(anchored && !panel_open)
-		flick("grounding_rodhit", src)
-	else
-		..()
 
 //Mapspawn variants of each.
 /obj/machinery/power/tesla_coil/pre_mapped

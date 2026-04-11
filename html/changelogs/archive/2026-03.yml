@@ -414,3 +414,34 @@
   - balance: AI controlled rig movement power draw reduced from 200 to 50 ( normally
       20 for non-ai operators )
   - bugfix: paicard typeB can be inserted into rigs that allow AI control
+2026-03-28:
+  Will:
+  - bugfix: Trolley tankers drain correctly into reagent containers
+  - bugfix: refinery machines drain correctly into reagent containers
+  - code_imp: reagent container can_be_placed_into moved to global list handling
+  - bugfix: fixes reagent container insertion (actually this time)
+2026-03-29:
+  Diana:
+  - balance: Stolen package crates now costs 200 each, up from 150
+  - balance: Stolen package crates now have 2 packages each, up from 1.
+  - bugfix: All sources of teslazap is no longer explosive
+  - bugfix: Lightning can only jump to a nearby thing once.
+  - code_imp: tesla_zap args more clear.
+  - bugfix: Stasis bags no longer kill their inhabitants through pressure
+  - qol: Fossil bag now fits on xenoarch belts.
+  - bugfix: Resurrection artifact is blacklisted from being touch only.
+  Will:
+  - bugfix: lightning strikes no longer have an extra tesla arc
+  - bugfix: Virgo central command should not explode into a firestorm every shift
+      from bad weather
+2026-03-30:
+  Diana:
+  - bugfix: yield_mod (floragun on tray) will now increase amount of plants obtained
+  - bugfix: Distillery can now be made in game properly.
+  - bugfix: Resurrection artifact doesn't runtime any longer.
+  Kashargul:
+  - bugfix: matter transfer for modify robot with multibelts
+  - code_imp: ports TG spawn panel
+2026-03-31:
+  Kashargul:
+  - code_imp: some more grep checks
