@@ -66,15 +66,18 @@ ADMIN_VERB_AND_CONTEXT_MENU(jumptomob, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to M
 	else
 		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
 
-ADMIN_VERB(jumptocoord, R_ADMIN|R_MOD|R_DEBUG|R_EVENT,"Jump to Coordinate", "Jump to the target coordinates.", ADMIN_CATEGORY_GAME, tx, ty, tz)
+ADMIN_VERB(jumptocoord, R_ADMIN|R_MOD|R_DEBUG|R_EVENT,"Jump to Coordinate", "Jump to the target coordinates.", ADMIN_CATEGORY_GAME)
 	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(user, "Admin jumping disabled")
 		return
 
-	if(!tx || !ty ||!tz)
-		tx = tgui_input_number(user, "Select the target x coordinate", "X Loc", 1, world.maxx, 1)
-		ty = tgui_input_number(user, "Select the target y coordinate", "Y Loc", 1, world.maxy, 1)
-		tz = tgui_input_number(user, "Select the target z coordinate", "Z Loc", 1, world.maxz, 1)
+	var/tx
+	var/ty
+	var/tz
+
+	tx = tgui_input_number(user, "Select the target x coordinate", "X Loc", 1, world.maxx, 1)
+	ty = tgui_input_number(user, "Select the target y coordinate", "Y Loc", 1, world.maxy, 1)
+	tz = tgui_input_number(user, "Select the target z coordinate", "Z Loc", 1, world.maxz, 1)
 
 	var/mob/user_mob = user.mob
 	user_mob.on_mob_jump()
