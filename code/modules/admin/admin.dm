@@ -713,13 +713,14 @@ ADMIN_VERB(intercom_convo, R_ADMIN|R_EVENT, "Intercom Convo", "Send an intercom 
 
 	//Split on pipe or \n
 	decomposed = splittext(message,regex("\\||$","m"))
-	decomposed += "0" //Tack on a final 0 sleep to make 3-per-message evenly
 
 	//Time to find how they screwed up.
 	//Wasn't the right length
-	if((decomposed.len) % 3) //+1 to accomidate the lack of a wait time for the last message
+	if((decomposed.len) % 3)
 		to_chat(user, span_warning("You passed [decomposed.len] segments (senders+messages+pauses). You must pass a multiple of 3, minus 1 (no pause after the last message). That means a sender and message on every other line (starting on the first), separated by a pipe character (|), and a number every other line that is a pause in seconds."))
 		return
+	decomposed.Remove("") //ancient black magic.
+	decomposed += 0 //Add a final wait time for the final message.
 
 	//Too long a conversation
 	if((decomposed.len / 3) > 20)
@@ -731,14 +732,14 @@ ADMIN_VERB(intercom_convo, R_ADMIN|R_EVENT, "Intercom Convo", "Send an intercom 
 
 		//Sanitize sender
 		var/clean_sender = sanitize(decomposed[i])
-		if(!clean_sender)
+		if(!istext(clean_sender))
 			to_chat(user, span_warning("One part of your conversation was not able to be sanitized. It was the sender of the [(i+2)/3]\th message."))
 			return
 		decomposed[i] = clean_sender
 
 		//Sanitize message
 		var/clean_message = sanitize(decomposed[++i])
-		if(!clean_message)
+		if(!istext(clean_message))
 			to_chat(user, span_warning("One part of your conversation was not able to be sanitized. It was the body of the [(i+2)/3]\th message."))
 			return
 		decomposed[i] = clean_message
