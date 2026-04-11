@@ -40,8 +40,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(jumptoturf, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to 
 	tgui_alert_async(user, "Admin jumping disabled")
 
 /// Verb wrapper around do_jumptomob()
-ADMIN_VERB(jumptomob, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to Mob", "Jump to the selected mob.", ADMIN_CATEGORY_GAME, mob)
-	user.do_jumptomob(mob)
+ADMIN_VERB_AND_CONTEXT_MENU(jumptomob, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to Mob", "Jump to the selected mob.", ADMIN_CATEGORY_GAME, mob/M in GLOB.mob_list)
+	user.do_jumptomob(M)
 
 /// Performs the jumps, also called from admin Topic() for JMP links
 /client/proc/do_jumptomob(var/mob/M)
