@@ -925,6 +925,10 @@ About the new airlock wires panel:
 				volume = 75
 
 		var/turf/T = get_turf(M)
+		if(isAI(M)) // AI holograms can listen too
+			var/mob/living/silicon/ai/A = M
+			if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
+				T = get_turf(A.holo)
 		var/distance = get_dist(T, get_turf(src))
 		if(distance <= world.view * 2)
 			if(T && T.z == get_z(src))
@@ -1067,6 +1071,11 @@ About the new airlock wires panel:
 				volume = 75
 
 		var/turf/T = get_turf(M)
+		if(isAI(M)) // AI holograms can listen too
+			var/mob/living/silicon/ai/A = M
+			if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
+				T = get_turf(A.holo)
+
 		var/distance = get_dist(T, get_turf(src))
 		if(distance <= world.view * 2)
 			if(T && T.z == get_z(src))
