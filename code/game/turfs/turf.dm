@@ -534,10 +534,3 @@
 			expanding_turfs += next_turf
 
 	return expanding_turfs
-
-/*
-// /empulse handles emp acting stuff in range. You can override this to do specialty stuff, but otherwise we don't want it to do a recursive check.
-// empulse now does range_spiral_turf and it's contents, should EMP things inside them now
-/turf/emp_act(severity, recursive)
-	return
-*/
