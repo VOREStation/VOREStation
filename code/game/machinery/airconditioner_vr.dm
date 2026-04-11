@@ -131,11 +131,13 @@
 	update_icon()
 
 /obj/machinery/power/thermoregulator/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!on)
 		on = TRUE
 	target_temp += rand(0, 1000)
 	update_icon()
-	..(severity, recursive)
 
 /obj/machinery/power/thermoregulator/overload(var/obj/machinery/power/source)
 	if(!anchored || !powernet)

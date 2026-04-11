@@ -40,6 +40,9 @@
 
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
 /obj/item/modular_computer/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	take_damage(rand(100,200) / severity, 50 / severity, 0)
 
 // "Stun" weapons can cause minor damage to components (short-circuits?)

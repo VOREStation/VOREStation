@@ -98,7 +98,8 @@ Deployable items
 			return
 
 /obj/machinery/deployable/barrier/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
+	. = ..()
+	if (. & EMP_PROTECT_SELF || (stat & (BROKEN|NOPOWER)))
 		return
 	if(prob(50/severity))
 		locked = !locked
