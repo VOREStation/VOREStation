@@ -29,6 +29,11 @@
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 
+/datum/component/nif_menu/Destroy(force)
+	if(screen_icon)
+		QDEL_NULL(screen_icon)
+	. = ..()
+
 /datum/component/nif_menu/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))

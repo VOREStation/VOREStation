@@ -1234,10 +1234,9 @@
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
 
-		var/client/C = usr.client
 		if(!isobserver(usr))
 			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/admin_ghost)
-		C.jumptocoord(x,y,z)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/jumptocoord, x, y, z)
 
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])

@@ -132,7 +132,7 @@
 	var/datum/dimension_theme/theme = new theme_path
 
 	for(var/turf/turf as anything in RANGE_TURFS(1, our_turf))
-		theme.apply_theme(turf, show_effect = TRUE)
+		theme.apply_theme(turf, show_effect = TRUE, reinforced = FALSE)
 
 /obj/item/assembly/signaler/anomaly/bioscrambler
 	name = "\improper bioscrambler anomaly core"

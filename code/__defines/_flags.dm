@@ -21,3 +21,12 @@
 #define SHUTTLE_CRUSH_PROOF (1<<8)
 /// can't be destroyed by bombs
 #define BOMB_PROOF (1<<9)
+///Object will protect itself.
+#define EMP_PROTECT_SELF (1<<0)
+///Object will protect its contents from being EMPed.
+#define EMP_PROTECT_CONTENTS (1<<1)
+///Object will protect its wiring from being EMPed.
+#define EMP_PROTECT_WIRES (1<<2)
+
+///Protects against all EMP types.
+#define EMP_PROTECT_ALL (EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS | EMP_PROTECT_WIRES)

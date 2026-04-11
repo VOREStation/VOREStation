@@ -82,8 +82,10 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	return ..()
 
 /obj/structure/blob/emp_act(severity, recursive)
-	if(overmind)
-		overmind.blob_type.on_emp(src, severity)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !overmind)
+		return
+	overmind.blob_type.on_emp(src, severity)
 
 /obj/structure/blob/proc/pulsed()
 	if(pulse_timestamp <= world.time)

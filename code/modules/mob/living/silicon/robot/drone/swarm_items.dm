@@ -124,6 +124,9 @@
 	pulse_delay = 2 SECONDS
 
 /obj/effect/temporary_effect/pulse/disintegrate/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	visible_message(span_warning("\The [src] flickers, before dispersing energetically."))
 	qdel(src)
 

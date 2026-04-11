@@ -149,7 +149,10 @@
 	maxcharge = 30000 //determines how badly mobs get shocked
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 	robot_durability = 200
-	emp_proof = TRUE
+
+/obj/item/cell/infinite/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	return ..()
 
 /obj/item/cell/infinite/check_charge()
 	return 1
