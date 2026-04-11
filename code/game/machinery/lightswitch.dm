@@ -86,11 +86,10 @@
 		update_icon()
 
 /obj/machinery/light_switch/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 	power_change()
-	..(severity, recursive)
 
 //Breakers for event maps
 

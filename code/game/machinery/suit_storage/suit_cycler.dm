@@ -50,8 +50,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	var/obj/item/clothing/suit/space/void/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
 
-	var/datum/wires/suit_storage_unit/wires = null
-
 /obj/machinery/suit_cycler/Initialize(mapload)
 	. = ..()
 
@@ -66,7 +64,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(!target_department || !target_species)
 		stat |= BROKEN
 
-	wires = new(src)
+	set_wires(new /datum/wires/suit_storage_unit(src))
 
 /obj/machinery/suit_cycler/Destroy()
 	qdel(wires)

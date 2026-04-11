@@ -1,0 +1,10 @@
+author: "Diana"
+delete-after: True
+changes:
+  - refactor: "Ore bags refactored from /storage to just /item"
+  - qol: "Miner borg sleeper belly can now click turf to scoop up ore."
+  - code_imp: "Miner borg sleeper belly now dynamically updates how much it can hold based on the ore bag it contains."
+  - bugfix: "Ore can now be scooped from any turf, not just mineral turf."
+  - bugfix: "Ore bags will no longer pick up archeo debris"
+  - bugfix: "Miner borg sleeper belly now properly picks up ore."
+  - code_imp: "Ore bag signal override removed."

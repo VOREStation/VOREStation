@@ -159,5 +159,5 @@
 
 /obj/machinery/power/port_gen/pacman2/emag_act(var/remaining_uses, var/mob/user)
 	emagged = 1
-	emp_act(1)
+	emp_act(EMP_HEAVY)
 	return 1

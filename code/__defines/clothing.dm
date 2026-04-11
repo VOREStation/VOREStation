@@ -94,7 +94,7 @@ NOTICE: Do not leave trailing commas!!!!
 #define POCKET_MINING \
 	/obj/item/storage/excavation, \
 	/obj/item/storage/briefcase/inflatable, \
-	/obj/item/storage/bag/ore, \
+	/obj/item/ore_bag, \
 	/obj/item/pickaxe, \
 	/obj/item/shovel, \
 	/obj/item/stack/marker_beacon, \

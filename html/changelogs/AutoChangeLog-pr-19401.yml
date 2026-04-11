@@ -1,0 +1,8 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "EMPs can pulse random wires now"
+  - refactor: "Refactored EMPs"
+  - code_imp: "Added var/datum/wires to /atom"
+  - code_imp: "Added EMP Protection Element"
+  - code_imp: "EMP defines instead of magic numbers"
