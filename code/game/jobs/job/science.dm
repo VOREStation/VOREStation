@@ -141,7 +141,7 @@
 
 /datum/alt_title/research_contractor
 	title = JOB_ALT_RESEARCH_CONTRACTOR
-	title_blurb = "A " + JOB_ALT_RESEARCH_CONTRACTOR + " is a " a specialist hired to conduct various or specific research projects and operations, but isn't directly employed by NT proper."
+	title_blurb = "A " + JOB_ALT_RESEARCH_CONTRACTOR + " is a specialist hired to conduct various or specific research projects and operations, but isn't directly employed by NT proper."
 
 //////////////////////////////////
 //			Xenobiologist
