@@ -262,8 +262,21 @@
 		/obj/item/integrated_electronics,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
-		/obj/item/multitool
+		/obj/item/multitool,
+		/obj/item/integrated_electronics/wirer,
+		/obj/item/integrated_electronics/debugger,
+		/obj/item/integrated_electronics/detailer,
 		)
+
+/obj/item/storage/bag/circuits/basic/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	. = ..()
+
+//Emp'ing this one bag causes a recursion loop of over 700 emp_act's,
+//Which is enough to trigger byond's recursion level protection
+/obj/item/storage/bag/circuits/basic/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	. = ..()
 
 /obj/item/storage/bag/circuits/basic/Initialize(mapload)
 	new /obj/item/storage/bag/circuits/mini/arithmetic(src)
