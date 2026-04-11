@@ -296,6 +296,9 @@
 	new /obj/item/multitool(src)
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/crowbar(src)
+	new /obj/item/integrated_electronics/wirer(src)
+	new /obj/item/integrated_electronics/debugger(src)
+	new /obj/item/integrated_electronics/detailer(src)
 	make_exact_fit()
 	. = ..()
 
@@ -320,6 +323,7 @@
 	new /obj/item/electronic_assembly/drone(src)
 	new /obj/item/integrated_electronics/wirer(src)
 	new /obj/item/integrated_electronics/debugger(src)
+	new /obj/item/integrated_electronics/detailer(src)
 	new /obj/item/tool/crowbar(src)
 	make_exact_fit()
 	. = ..()
