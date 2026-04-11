@@ -1937,6 +1937,7 @@
 #include "code\game\objects\items\weapons\storage\lockbox.dm"
 #include "code\game\objects\items\weapons\storage\misc.dm"
 #include "code\game\objects\items\weapons\storage\mre.dm"
+#include "code\game\objects\items\weapons\storage\ore_bag.dm"
 #include "code\game\objects\items\weapons\storage\pouches.dm"
 #include "code\game\objects\items\weapons\storage\quickdraw.dm"
 #include "code\game\objects\items\weapons\storage\secure.dm"

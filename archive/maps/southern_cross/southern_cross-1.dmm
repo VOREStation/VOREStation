@@ -63826,7 +63826,7 @@
 /obj/structure/table/rack{
 	dir = 1
 	},
-/obj/item/storage/bag/ore,
+/obj/item/ore_bag,
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/cargo,

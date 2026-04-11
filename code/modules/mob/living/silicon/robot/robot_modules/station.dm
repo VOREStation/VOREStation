@@ -744,7 +744,6 @@
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
-	src.modules += new /obj/item/storage/bag/ore(src)
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/gripper/miner(src)
@@ -933,7 +932,7 @@
 	..()
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
-	src.modules += new /obj/item/storage/bag/ore(src)
+	src.modules += new /obj/item/ore_bag(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.emag += new /obj/item/pickaxe/diamonddrill(src)
 
