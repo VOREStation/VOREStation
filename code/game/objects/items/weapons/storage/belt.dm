@@ -550,7 +550,8 @@
 		/obj/item/pickaxe/hand,
 		/obj/item/xenoarch_multi_tool,
 		/obj/item/pickaxe/excavationdrill,
-		/obj/item/storage/sample_container
+		/obj/item/storage/sample_container,
+		/obj/item/storage/bag/fossils
 		)
 
 /obj/item/storage/belt/fannypack
@@ -736,7 +737,7 @@
 		/obj/item/melee,
 		/obj/item/kinetic_crusher,
 		/obj/item/mining_scanner,
-		/obj/item/storage/bag/ore,
+		/obj/item/ore_bag,
 		/obj/item/storage/sample_container
 		)
 		//Pretty much, if it's in the mining vendor, they should be able to put it on the belt.

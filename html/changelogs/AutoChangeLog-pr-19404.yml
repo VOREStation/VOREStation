@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Swoopies no longer runtime"
+  - bugfix: "Environmental message works now."
+  - bugfix: "Antag NT opposed now considers broke instead of just underpaid/poor"
+  - bugfix: "EMPs will no longer doubletap things."

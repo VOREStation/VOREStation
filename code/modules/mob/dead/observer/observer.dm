@@ -11,8 +11,8 @@
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	stat = DEAD
-	canmove = 0
-	blinded = 0
+	canmove = FALSE
+	blinded = FALSE
 	anchored = TRUE	//  don't get pushed around
 	var/list/visibleChunks = list()
 	var/datum/visualnet/ghost/visualnet
@@ -24,21 +24,23 @@
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
-	var/has_enabled_antagHUD = 0
-	var/medHUD = 0
-	var/secHUD = 0
-	var/antagHUD = 0
-	universal_speak = 1
+	var/has_enabled_antagHUD = FALSE
+	var/medHUD = FALSE
+	var/secHUD = FALSE
+	var/antagHUD = FALSE
+	universal_speak = TRUE
 	var/atom/movable/following = null
-	var/admin_ghosted = 0
-	var/anonsay = 0
-	var/ghostvision = 1 //is the ghost able to see things humans can't?
+	var/admin_ghosted = FALSE
+	var/anonsay = FALSE
+	var/ghostvision = TRUE //is the ghost able to see things humans can't?
 	var/lighting_alpha = 255
-	incorporeal_move = 1
-
-	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
-	var/toggled_invisible = 0
+	incorporeal_move = TRUE
+	/// If set to TRUE, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
+	var/is_manifest = FALSE
+	var/toggled_invisible = FALSE
 	var/ghost_sprite = null
+	/// If TRUE, the ghost can be interacted with by the corporeal world (ghost traps, photon pack, etc)
+	var/interact_with_world = TRUE
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 	var/selecting_ghostrole = FALSE
@@ -245,8 +247,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/dead/get_status_tab_items()
 	. = ..()
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. += ""
 			. += "[eta_status]"
@@ -568,11 +570,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return ..()
 
 /mob/proc/check_holy(var/turf/T)
-	return 0
+	return FALSE
 
 /mob/observer/dead/check_holy(var/turf/T)
 	if(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT))
-		return 0
+		return FALSE
 
 	return (T && T.holy) && (is_manifest || (mind in GLOB.cult.current_antagonists))
 
@@ -783,6 +785,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
 		client.images += J
 
+/mob/observer/dead/verb/toggle_interactions()
+
+	set name = "Toggle Interactions"
+	set desc = "Allows you to toggle if you wish for the corporeal world to interact with you!"
+	set category = "Ghost.Settings"
+	toggle_ghost_interactions()
+
+/mob/observer/dead/proc/toggle_ghost_interactions()
+	if(is_manifest)
+		to_chat(src, span_info("You are currently manifested into the world and can not toggle this!"))
+		return
+
+	interact_with_world = !interact_with_world
+	to_chat(src, span_info("You will [interact_with_world ? "now" : "no longer"] be able to be interacted with by the corporeal world!"))
+
 /mob/observer/dead/verb/toggle_visibility()
 
 	set name = "Toggle Visibility"
@@ -858,18 +875,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	plane_holder.set_vis(VIS_LIGHTING, lighting_alpha)
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
-/mob/observer/dead/MayRespawn(var/feedback = 0)
+/mob/observer/dead/MayRespawn(var/feedback = FALSE)
 	if(!client)
-		return 0
+		return FALSE
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
 			to_chat(src, span_warning("Your non-dead body prevents you from respawning."))
-		return 0
+		return FALSE
 	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD == 1)
 		if(feedback)
 			to_chat(src, span_warning("antagHUD restrictions prevent you from respawning."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /atom/proc/extra_ghost_link()
 	return

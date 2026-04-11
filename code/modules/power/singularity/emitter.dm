@@ -82,10 +82,6 @@
 		to_chat(user, span_warning("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 
-
-/obj/machinery/power/emitter/emp_act(severity, recursive)
-	return TRUE
-
 /obj/machinery/power/emitter/process()
 	if(stat & (BROKEN))
 		return
@@ -307,3 +303,12 @@
 		projectile.particle_type = particle
 		return projectile
 	return new /obj/item/projectile/beam/emitter(get_turf(src))
+
+/obj/machinery/power/emitter/pre_mapped
+	anchored = TRUE
+	state = 2
+
+/obj/machinery/power/emitter/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+	update_icon()

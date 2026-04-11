@@ -438,7 +438,7 @@
 	for(var/datum/action/action_item_has as anything in actions)
 		action_item_has.Remove(user)
 
-	if((item_flags & DROPDEL) && !QDELETED(src))
+	if((item_flags & DROPDEL) && loc != user && !QDELETED(src))
 		qdel(src)
 
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)

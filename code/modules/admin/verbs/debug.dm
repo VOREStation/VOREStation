@@ -227,11 +227,11 @@ ADMIN_VERB(cmd_admin_grantfullaccess, (R_ADMIN|R_EVENT), "Grant Full Access", "G
 			var/obj/item/pda/pda = H.wear_id
 			id = pda.id
 		id.icon_state = "gold"
-		id.access = get_all_accesses().Copy()
+		id.access = SSaccess.get_all_accesses().Copy()
 	else
 		var/obj/item/card/id/id = new/obj/item/card/id(H);
 		id.icon_state = "gold"
-		id.access = get_all_accesses().Copy()
+		id.access = SSaccess.get_all_accesses().Copy()
 		id.registered_name = H.real_name
 		id.assignment = JOB_SITE_MANAGER
 		id.name = "[id.registered_name]'s ID Card ([id.assignment])"

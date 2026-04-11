@@ -14,6 +14,10 @@
 	matter = list(/datum/material/steel = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5)
 
 	var/last_perceived_radiation_danger = null
+	///How strong the last radiation pulse was, at the source.
+	var/last_radiation_strength = null
+	///How much insulation we're lacking.
+	var/insulation_deficit = null
 
 	var/scanning = FALSE
 
@@ -31,15 +35,19 @@
 	. += span_info("Alt-click it to clear stored radiation levels.")
 	switch(last_perceived_radiation_danger)
 		if(null)
-			. += span_notice("Ambient radiation level count reports that all is well.")
+			. += span_notice("Ambient radiation level count reports that all is well. It is ") + span_green("safe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_LOW)
-			. += span_alert("Ambient radiation levels slightly above average.")
+			. += span_notice("Ambient radiation levels slightly above average. It is ") + span_green("safe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
-			. += span_warning("Ambient radiation levels above average.")
+			. += span_notice("Ambient radiation levels above average. It is ") + span_green("safe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_HIGH)
-			. += span_danger("Ambient radiation levels highly above average.")
+			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("unsafe ") + span_suicide("here.")
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
-			. += span_suicide("Ambient radiation levels reaching critical level!")
+			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely unsafe ") + span_suicide("here.")
+	if(last_radiation_strength)
+		. += span_notice("Maximum strength at source of radioactive pulse: ") + span_warning("[last_radiation_strength]")
+	if(insulation_deficit)
+		. += span_warning("Insulation deficit: [insulation_deficit]")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
@@ -92,7 +100,7 @@
 
 	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
-/obj/item/geiger/dropped(mob/user, silent = FALSE)
+/obj/item/geiger/dropped(mob/user)
 	. = ..()
 
 	UnregisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION)
@@ -101,6 +109,11 @@
 	SIGNAL_HANDLER
 
 	last_perceived_radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
+	last_radiation_strength = pulse_information.strength
+	if(insulation_to_target > pulse_information.threshold)
+		insulation_deficit = round(insulation_to_target - pulse_information.threshold, 0.1)
+	else
+		insulation_deficit = null
 	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 	if (scanning)
@@ -108,6 +121,8 @@
 
 /obj/item/geiger/proc/reset_perceived_danger()
 	last_perceived_radiation_danger = null
+	last_radiation_strength = null
+	insulation_deficit = null
 	if (scanning)
 		update_icon()
 
@@ -153,7 +168,7 @@
 /obj/item/geiger/wall/Initialize(mapload)
 	. = ..()
 	if(scanning)
-		AddComponent(/datum/component/geiger_sound)
+		AddComponent(/datum/component/geiger_sound/wall)
 
 
 /obj/item/geiger/wall/update_icon()

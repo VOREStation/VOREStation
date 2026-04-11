@@ -28,11 +28,13 @@
 
 	var/hudmode = null
 	fire_stack_decay_rate = -0.55
+	var/idcard_type = /obj/item/card/id/synthetic
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
 	GLOB.silicon_mob_list += src
 	if(!is_decoy)
+		init_id(idcard_type)
 		add_language(LANGUAGE_GALCOM)
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 		init_subsystems()
@@ -72,7 +74,8 @@
 	return
 
 /mob/living/silicon/emp_act(severity, recursive)
-	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
 		return
 	switch(severity)
 		if(1)
@@ -90,7 +93,6 @@
 	flash_eyes(affect_silicon = 1)
 	to_chat(src, span_bolddanger("*BZZZT*"))
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
-	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	return	//immune
@@ -155,8 +157,8 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. = "[eta_status]"
 
@@ -413,7 +415,7 @@
 		qdel(mind.objectives)
 		mind.special_role = null
 
-	clear_antag_roles(mind)
+	SSantag_job.clear_antag_roles(mind)
 
 	ghostize(0)
 	qdel(src)

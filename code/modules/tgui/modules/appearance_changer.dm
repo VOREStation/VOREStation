@@ -105,6 +105,7 @@
 	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	QDEL_NULL(cam_background)
+	local_skybox = null
 	return ..()
 
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

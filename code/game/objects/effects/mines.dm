@@ -9,7 +9,6 @@
 	var/smoke_strength = 3
 	var/obj/item/mine/mineitemtype = /obj/item/mine
 	var/panel_open = FALSE
-	var/datum/wires/mines/wires = null
 	var/camo_net = FALSE	// Will the mine 'cloak' on deployment?
 
 	// The trap item will be triggered in some manner when detonating. Default only checks for grenades.
@@ -17,7 +16,7 @@
 
 /obj/effect/mine/Initialize(mapload)
 	icon_state = "landmine_armed"
-	wires = new(src)
+	set_wires(new /datum/wires/mines(src))
 	. = ..()
 	if(ispath(trap))
 		trap = new trap(src)

@@ -101,12 +101,11 @@
 		O.Weaken(flash_time)
 
 /obj/machinery/flasher/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 	if(prob(75/severity))
 		flash()
-	..(severity, recursive)
 
 /obj/machinery/flasher/portable/HasProximity(turf/T, datum/weakref/WF, oldloc)
 	if(isnull(WF))

@@ -11,7 +11,7 @@
 	var/target_pressure = ONE_ATMOSPHERE
 
 	var/pressuremin = 0
-	var/pressuremax = 10 * ONE_ATMOSPHERE
+	var/pressuremax = 39.45 * ONE_ATMOSPHERE //The safest level you can get WITHOUT the tank exploding.
 
 	volume = 1000
 
@@ -49,8 +49,8 @@
 	return
 
 /obj/machinery/portable_atmospherics/powered/pump/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(prob(50/severity))
@@ -61,8 +61,6 @@
 
 	target_pressure = rand(0,1300)
 	update_icon()
-
-	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/pump/process()
 	..()

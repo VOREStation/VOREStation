@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(default_uplink_selection, /datum/uplink_random_selection, new)
+GLOBAL_DATUM_INIT(default_uplink_selection, /datum/uplink_random_selection/default, new)
 GLOBAL_DATUM_INIT(all_uplink_selection, /datum/uplink_random_selection/all, new)
 
 /datum/uplink_random_item
@@ -108,8 +108,8 @@ GLOBAL_DATUM_INIT(all_uplink_selection, /datum/uplink_random_selection/all, new)
 
 #ifdef DEBUG
 /proc/debug_uplink_purchage_log()
-	for(var/antag_type in GLOB.all_antag_types)
-		var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
+	for(var/antag_type in SSantag_job.all_antag_types)
+		var/datum/antagonist/A = SSantag_job.all_antag_types[antag_type]
 		A.print_player_summary()
 
 /proc/debug_uplink_item_assoc_list()

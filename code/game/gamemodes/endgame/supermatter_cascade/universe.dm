@@ -44,9 +44,9 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 	for(var/mob/M in GLOB.player_list)
 		M.flash_eyes()
 
-	if(GLOB.emergency_shuttle.can_recall())
+	if(SSemergency_shuttle.can_recall())
 		GLOB.priority_announcement.Announce("The emergency shuttle has returned due to bluespace distortion.")
-		GLOB.emergency_shuttle.recall()
+		SSemergency_shuttle.recall()
 
 	AreaSet()
 	MiscSet()
@@ -138,4 +138,4 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 			M.current.Weaken(10)
 			M.current.flash_eyes()
 
-		clear_antag_roles(M)
+		SSantag_job.clear_antag_roles(M)

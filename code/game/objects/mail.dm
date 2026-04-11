@@ -78,6 +78,10 @@
 		for(var/i = 1, i <= stamp_count, i++)
 			stamps += list("stamp_[rand(2, 8)]")
 
+/obj/item/mail/Destroy()
+	recipient_ref = null
+	. = ..()
+
 /obj/item/mail/blank
 	desc = "A blank envelope."
 	description_info = "An object can be placed into the envelope, click on it with an empty hand to seal it. Alt-Click to retrieve the items from inside before sealing."
@@ -112,7 +116,7 @@
 	var/list/recipients = list()
 	var/mob/living/recipient_mob
 	for(var/mob/living/player in GLOB.player_list)
-		if(!player_is_antag(player.mind) && player.mind.show_in_directory)
+		if(!SSantag_job.player_is_antag(player.mind) && player.mind.show_in_directory)
 			recipients += player
 
 	recipient_mob = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)

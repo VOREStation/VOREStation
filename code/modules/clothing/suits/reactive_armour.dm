@@ -87,7 +87,7 @@
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity, recursive)
 	. = ..()
-	if(bad_effect || !active)
+	if (. & EMP_PROTECT_SELF || bad_effect || !active)
 		return
 	visible_message(emp_message)
 	bad_effect = TRUE
@@ -176,7 +176,7 @@
 
 /obj/item/clothing/suit/armor/reactive/tesla/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)
 	owner.visible_message(span_danger("[src] blocks [attack_text], sending out arcs of lightning!"))
-	tesla_zap(owner, zap_range, zap_power)
+	tesla_zap(owner, zap_range, zap_power, current_jumps = 1)
 	reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 	return TRUE
 

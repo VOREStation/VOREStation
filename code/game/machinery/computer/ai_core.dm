@@ -143,7 +143,7 @@
 					return
 
 				if(M.brainmob.mind)
-					clear_antag_roles(M.brainmob.mind, 1)
+					SSantag_job.clear_antag_roles(M.brainmob.mind, 1)
 
 				user.drop_item()
 				P.loc = src

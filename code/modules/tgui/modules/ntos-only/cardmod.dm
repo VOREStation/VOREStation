@@ -66,24 +66,24 @@
 	if(program.computer.card_slot && program.computer.card_slot.stored_card)
 		var/obj/item/card/id/id_card = program.computer.card_slot.stored_card
 		if(is_centcom)
-			for(var/access in get_all_centcom_access())
+			for(var/access in SSaccess.get_all_centcom_access())
 				all_centcom_access.Add(list(list(
-					"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp;"),
+					"desc" = replacetext(SSaccess.get_centcom_access_desc(access), " ", "&nbsp;"),
 					"ref" = access,
 					"allowed" = (access in id_card.GetAccess()) ? 1 : 0)))
 			data["all_centcom_access"] = all_centcom_access
 		else
 			for(var/i in ACCESS_REGION_SECURITY to ACCESS_REGION_SUPPLY)
 				var/list/accesses = list()
-				for(var/access in get_region_accesses(i))
-					if(get_access_desc(access))
+				for(var/access in SSaccess.get_region_accesses(i))
+					if(SSaccess.get_access_desc(access))
 						accesses.Add(list(list(
-							"desc" = replacetext(get_access_desc(access), " ", "&nbsp;"),
+							"desc" = replacetext(SSaccess.get_access_desc(access), " ", "&nbsp;"),
 							"ref" = access,
 							"allowed" = (access in id_card.GetAccess()) ? 1 : 0)))
 
 				regions.Add(list(list(
-					"name" = get_region_accesses_name(i),
+					"name" = SSaccess.get_region_accesses_name(i),
 					"accesses" = accesses)))
 			data["regions"] = regions
 
@@ -142,10 +142,10 @@
 									<u>Access:</u><br>
 								"}
 
-						var/known_access_rights = get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
+						var/known_access_rights = SSaccess.get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
 						for(var/A in id_card.GetAccess())
 							if(A in known_access_rights)
-								contents += "  [get_access_desc(A)]"
+								contents += "  [SSaccess.get_access_desc(A)]"
 
 						if(!computer.nano_printer.print_text(contents,"access report"))
 							to_chat(ui.user, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
@@ -199,7 +199,7 @@
 				else
 					var/list/access = list()
 					if(is_centcom)
-						access = get_centcom_access(t1)
+						access = SSaccess.get_centcom_access(t1)
 					else
 						var/datum/job/jobdatum
 						for(var/jobtype in typesof(/datum/job))
@@ -223,7 +223,7 @@
 			if(computer && program.can_run(ui.user, 1))
 				var/access_type = text2num(params["access_target"])
 				var/access_allowed = text2num(params["allowed"])
-				if(access_type in get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
+				if(access_type in SSaccess.get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
 					id_card.access -= access_type
 					if(!access_allowed)
 						id_card.access += access_type

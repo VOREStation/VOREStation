@@ -24,19 +24,10 @@ GLOBAL_DATUM(master_controller, /datum/controller/game_controller) //Set in worl
 		GLOB.job_master.LoadJobs("config/jobs.txt")
 		admin_notice(span_danger("Job setup complete"), R_DEBUG)
 
-	if(!GLOB.syndicate_code_phrase)
-		GLOB.syndicate_code_phrase = generate_code_phrase()
-
-	if(!GLOB.syndicate_code_response)
-		GLOB.syndicate_code_response = generate_code_phrase()
-
 /datum/controller/game_controller/proc/setup()
-
-	setup_objects()
 	// setupgenetics() Moved to SSatoms
 	// SetupXenoarch() - Moved to SSxenoarch
 
-	GLOB.transfer_controller = new
 	admin_notice(span_danger("Initializations complete."), R_DEBUG)
 
 // #if UNIT_TESTS
@@ -44,7 +35,3 @@ GLOBAL_DATUM(master_controller, /datum/controller/game_controller) //Set in worl
 // #else
 // # define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
 // #endif
-
-/datum/controller/game_controller/proc/setup_objects()
-	// Set up antagonists.
-	populate_antag_type_list()
