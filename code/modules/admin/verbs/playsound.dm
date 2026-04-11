@@ -212,18 +212,12 @@ ADMIN_VERB(play_web_sound, R_SOUNDS, "Play Internet Sound", "Plays a sound from 
 	else
 		web_sound(user.mob, null)
 
-/client/proc/stop_sounds()
-	set category = "Debug.Dangerous"
-	set name = "Stop All Playing Sounds"
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	log_admin("[key_name(src)] stopped all currently playing sounds.")
-	message_admins("[key_name_admin(src)] stopped all currently playing sounds.")
-	for(var/mob/M in GLOB.player_list)
-		SEND_SOUND(M, sound(null))
-		var/client/C = M.client
-		C?.tgui_panel?.stop_music()
+ADMIN_VERB(stop_sounds, R_SOUNDS, "Stop All Playing Sounds", "Stops all playing sounds.", ADMIN_CATEGORY_FUN_SOUNDS)
+	log_and_message_admins("stopped all currently playing sounds.", user)
+	for(var/mob/current_mob in GLOB.player_list)
+		SEND_SOUND(current_mob, sound(null))
+		var/client/current_client = current_mob.client
+		current_client?.tgui_panel?.stop_music()
 
 	S_TIMER_COOLDOWN_RESET(SStimer, COOLDOWN_INTERNET_SOUND)
 	feedback_add_details("admin_verb", "Stop All Playing Sounds")

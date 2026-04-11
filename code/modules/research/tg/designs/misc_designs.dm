@@ -328,7 +328,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/sticky_tape
-	name = "tape role"
+	name = "tape roll"
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
 	id = "sticky_tape"
 	build_type = AUTOLATHE | PROTOLATHE

@@ -61,7 +61,10 @@
 	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
 	icon_state = "s_st"
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
-	emp_proof = TRUE
+
+/obj/item/cell/device/empproof/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	return ..()
 
 /obj/item/cell/device/empproof/empty
 	charge = 0
@@ -88,7 +91,10 @@
 	desc = "A small power cell designed to power handheld weaponry. Shielded from EMPs."
 	icon_state = "s_hi"
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
-	emp_proof = TRUE
+
+/obj/item/cell/device/weapon/empproof/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	return ..()
 
 /obj/item/cell/device/weapon/empproof/empty
 	charge = 0
