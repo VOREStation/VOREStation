@@ -306,7 +306,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
 		B = new /datum/reagent/blood
-	B.holder = container
+	B.holder = container.reagents
 	B.volume += amount
 
 	//set reagent data

@@ -33,14 +33,19 @@
 
 	tgui_id = "CookingFryer"
 
-	var/datum/reagents/oil
-	var/optimal_oil = 9000 //90 litres of cooking oil
+	var/datum/reagents/oil_reagents/oil
+	var/optimal_oil = 2500 //25 litres of cooking oil
+
+///Reagent subtype for the fryer.
+/datum/reagents/oil_reagents
+	var/optimal_oil = 2500 //Overridden during init of the fryer.
 
 /obj/machinery/appliance/cooker/fryer/Initialize(mapload)
 	. = ..()
 	fry_loop = new(list(src), FALSE)
 
-	oil = new/datum/reagents(optimal_oil * 1.25, src)
+	oil = new/datum/reagents/oil_reagents(optimal_oil * 1.25, src)
+	oil.optimal_oil = optimal_oil
 	var/variance = rand()*0.15
 	// Fryer is always a little below full, but its usually negligible
 
@@ -48,6 +53,7 @@
 		// Sometimes the fryer will start with much less than full oil, significantly impacting efficiency until filled
 		variance = rand()*0.5
 	oil.add_reagent(REAGENT_ID_COOKINGOIL, optimal_oil*(1 - variance))
+	AddComponent(/datum/component/hose_connector/input/fryer)
 
 /obj/machinery/appliance/cooker/fryer/Destroy()
 	QDEL_NULL(fry_loop)
@@ -56,8 +62,14 @@
 
 /obj/machinery/appliance/cooker/fryer/examine(var/mob/user)
 	. = ..()
+	var/oil_level = oil.total_volume/optimal_oil
 	if(Adjacent(user))
-		to_chat(user, "Oil Level: [oil.total_volume]/[optimal_oil]")
+		var/message = span_notice("Oil Level: [oil.total_volume] / [optimal_oil]")
+		if(oil_level <= 0.9)
+			message += span_warning(" UNDERFILLED")
+		else if(oil_level > 1.05) //A little bit of wiggle room
+			message += span_warning(" OVERFILLED")
+		to_chat(user, message)
 
 /obj/machinery/appliance/cooker/fryer/update_icon() // We add our own version of the proc to use the special fryer double-lights.
 	cut_overlays()
@@ -71,6 +83,10 @@
 	light.pixel_x = light_x
 	light.pixel_y = light_y
 	add_overlay(light)
+
+/obj/machinery/appliance/cooker/fryer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	.["reagents"] = list("name" = oil.get_master_reagent_name(), "volume" = oil.total_volume, "max" = oil.maximum_volume)
 
 /obj/machinery/appliance/cooker/fryer/heat_up()
 	if (..())
@@ -245,27 +261,27 @@
 	fry_loop.stop()
 
 /obj/machinery/appliance/cooker/fryer/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/reagent_containers/glass) && I.reagents)
-		if (I.reagents.total_volume <= 0 && oil)
-			//Its empty, handle scooping some hot oil out of the fryer
-			oil.trans_to(I, I.reagents.maximum_volume)
-			user.visible_message(span_filter_notice("[user] scoops some oil out of \the [src]."), span_notice("You scoop some oil out of \the [src]."))
-			return 1
-		else
+	if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && I.reagents)
+		if(istype(I, /obj/item/reagent_containers/glass)) //Scooping stuff out with a glass.
+			if(I.reagents.total_volume <= 0 && oil)
+				//Its empty, handle scooping some hot oil out of the fryer
+				oil.trans_to(I, I.reagents.maximum_volume)
+				user.visible_message(span_filter_notice("[user] scoops some oil out of \the [src]."), span_notice("You scoop some oil out of \the [src]."))
+				return TRUE
 	//It contains stuff, handle pouring any oil into the fryer
 	//Possibly in future allow pouring non-oil reagents in, in  order to sabotage it and poison food.
 	//That would really require coding some sort of filter or better replacement mechanism first
 	//So for now, restrict to oil only
-			var/amount = 0
-			for (var/datum/reagent/R in I.reagents.reagent_list)
-				if (istype(R, /datum/reagent/nutriment/triglyceride/oil))
-					var/delta = oil.get_free_space()
-					delta = min(delta, R.volume)
-					oil.add_reagent(R.id, delta)
-					I.reagents.remove_reagent(R.id, delta)
-					amount += delta
-			if (amount > 0)
-				user.visible_message(span_filter_notice("[user] pours some oil into \the [src]."), span_notice("You pour [amount]u of oil into \the [src]."), span_notice("You hear something viscous being poured into a metal container."))
-				return 1
+		var/amount = 0
+		for(var/datum/reagent/R in I.reagents.reagent_list)
+			if(istype(R, /datum/reagent/nutriment/triglyceride/oil))
+				var/delta = oil.get_free_space()
+				delta = min(delta, R.volume)
+				oil.add_reagent(R.id, delta)
+				I.reagents.remove_reagent(R.id, delta)
+				amount += delta
+		if(amount > 0)
+			user.visible_message(span_filter_notice("[user] pours some oil into \the [src]."), span_notice("You pour [amount]u of oil into \the [src]."), span_notice("You hear something viscous being poured into a metal container."))
+			return TRUE
 	//If neither of the above returned, then call parent as normal
 	..()
