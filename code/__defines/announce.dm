@@ -70,9 +70,10 @@
 #define ANNOUNCER_MSG_SUPPLYORDER "announcer_msg_supplyorder"
 #define ANNOUNCER_MSG_WEATHER_ALERT "announcer_msg_weather_alert"
 
-// Set sound paths to null to explicitly disable a message from falling back to SS13 default
+// Sets the current voice for the station PA
 GLOBAL_VAR_INIT(current_announcer_voice, ANNOUNCER_VOICE_VIRGO)
 
+// Set sound paths to null to explicitly disable a message from falling back to SS13 default
 GLOBAL_LIST_INIT(announcer_library, list(
 	ANNOUNCER_VOICE_SS13 = list(
 		ANNOUNCER_MSG_ROUND_START = 'sound/AI/welcome.ogg',
