@@ -402,13 +402,6 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 			to_chat(user, span_notice("You dug a hole."))
 			GetDrilled()
 
-		else if(istype(W,/obj/item/storage/bag/ore))
-			var/obj/item/storage/bag/ore/S = W
-			if(S.collection_mode)
-				for(var/obj/item/ore/O in contents)
-					O.attackby(W,user)
-					return
-
 		else if(istype(W,/obj/item/storage/bag/fossils))
 			var/obj/item/storage/bag/fossils/S = W
 			if(S.collection_mode)
@@ -497,7 +490,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 			next_rock += S.excavation_amount
 			while(next_rock > 50)
 				next_rock -= 50
-				var/obj/item/ore/O = new(src)
+				var/obj/item/ore/archeology_debris/O = new(src)
 				geologic_data.UpdateNearbyArtifactInfo(src)
 				O.geologic_data = geologic_data
 
@@ -547,7 +540,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 				next_rock += P.excavation_amount
 				while(next_rock > 50)
 					next_rock -= 50
-					var/obj/item/ore/O = new(src)
+					var/obj/item/ore/archeology_debris/O = new(src)
 					geologic_data.UpdateNearbyArtifactInfo(src)
 					O.geologic_data = geologic_data
 			return

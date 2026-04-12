@@ -173,19 +173,18 @@
 	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/mmi/emp_act(severity, recursive)
-	if(!brainmob)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !brainmob)
 		return
-	else
-		switch(severity)
-			if(1)
-				brainmob.emp_damage += rand(20,30)
-			if(2)
-				brainmob.emp_damage += rand(10,20)
-			if(3)
-				brainmob.emp_damage += rand(5,10)
-			if(4)
-				brainmob.emp_damage += rand(0,5)
-	..()
+	switch(severity)
+		if(EMP_HEAVY)
+			brainmob.emp_damage += rand(20,30)
+		if(EMP_MEDIUM)
+			brainmob.emp_damage += rand(10,20)
+		if(EMP_LIGHT)
+			brainmob.emp_damage += rand(5,10)
+		if(EMP_HARMLESS)
+			brainmob.emp_damage += rand(0,5)
 
 /obj/item/mmi/digital
 	var/searching = 0
