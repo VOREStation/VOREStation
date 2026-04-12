@@ -1,4 +1,8 @@
 /proc/announcer_library_get_voiceline(msg_key)
+	// Silence bot
+	if(GLOB.current_announcer_voice == ANNOUNCER_VOICE_SILENT)
+		return null
+
 	// Attempts to use voice lines in the currently chosen announces
 	// Otherwise falls back to station default
 	// Passing null to datum/announcement/PlayMessage() will only pay the preamble message

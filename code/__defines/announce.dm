@@ -1,5 +1,6 @@
 // Announcer IDs
 #define ANNOUNCER_VOICE_SS13 "announcer_ss13"
+#define ANNOUNCER_VOICE_SILENT "announcer_silent"
 #define ANNOUNCER_VOICE_VIRGO "announcer_virgo"
 
 // Announcements
