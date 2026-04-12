@@ -4796,6 +4796,7 @@
 #include "code\modules\tgui\states\admin.dm"
 #include "code\modules\tgui\states\always.dm"
 #include "code\modules\tgui\states\board_game.dm"
+#include "code\modules\tgui\states\cameras.dm"
 #include "code\modules\tgui\states\conscious.dm"
 #include "code\modules\tgui\states\contained.dm"
 #include "code\modules\tgui\states\deep_inventory.dm"
