@@ -7,7 +7,7 @@
 	var/pointer_icon_state
 	slot_flags = SLOT_BELT
 	matter = list(MAT_GLASS = 500, MAT_STEEL = 500)
-	w_class = 2 //Increased to 2, because diodes are w_class 2. Conservation of matter.
+	w_class = ITEMSIZE_SMALL //Increased to 2, because diodes are w_class 2. Conservation of matter.
 	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 	var/turf/pointer_loc
 	var/energy = 8

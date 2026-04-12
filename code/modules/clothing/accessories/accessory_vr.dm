@@ -413,7 +413,7 @@
 			original_size = null
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -516,7 +516,7 @@
 			original_size = null
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -592,7 +592,7 @@
 			currently_shrinking = 0
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
