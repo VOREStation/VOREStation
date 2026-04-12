@@ -82,10 +82,6 @@
 		to_chat(user, span_warning("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 
-
-/obj/machinery/power/emitter/emp_act(severity, recursive)
-	return TRUE
-
 /obj/machinery/power/emitter/process()
 	if(stat & (BROKEN))
 		return

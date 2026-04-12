@@ -9,7 +9,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
 		)
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	max_w_class = 0
 	show_messages = 0
 	allow_quick_empty = TRUE

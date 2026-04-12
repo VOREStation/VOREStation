@@ -162,7 +162,8 @@
 	return
 
 /obj/vehicle/emp_act(severity, recursive)
-	if(!mechanical)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !mechanical)
 		return
 
 	var/was_on = on

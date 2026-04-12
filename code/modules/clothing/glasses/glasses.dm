@@ -560,6 +560,9 @@ BLIND     // can't see anything
 	flash_protection = FLASH_PROTECTION_REDUCED
 
 /obj/item/clothing/glasses/thermal/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, span_red("The Optical Thermal Scanner overloads and blinds you!"))
@@ -571,7 +574,6 @@ BLIND     // can't see anything
 				M.disabilities |= NEARSIGHTED
 				spawn(100)
 					M.disabilities &= ~NEARSIGHTED
-	..()
 
 /obj/item/clothing/glasses/thermal/Initialize(mapload)
 	. = ..()

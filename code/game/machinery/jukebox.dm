@@ -19,7 +19,6 @@
 	clicksound = 'sound/machines/buttonbeep.ogg'
 
 	// Vars for hacking
-	var/datum/wires/jukebox/wires = null
 	var/hacked = 0 // Whether to show the hidden songs or not
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 	//VOREStation Add
@@ -370,7 +369,7 @@
 /obj/machinery/media/jukebox/ghost/power_change()
 	return
 /obj/machinery/media/jukebox/ghost/emp_act(severity, recursive)
-	return
+	return ..()
 /obj/machinery/media/jukebox/ghost/emag_act(remaining_charges, mob/user)
 	return
 /obj/machinery/media/jukebox/ghost/explode()
