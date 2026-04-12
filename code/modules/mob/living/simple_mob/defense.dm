@@ -235,7 +235,9 @@
 
 // Electromagnetism
 /mob/living/simple_mob/emp_act(severity, recursive)
-	..() // To emp_act() its contents.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!isSynthetic())
 		return
 	switch(severity)

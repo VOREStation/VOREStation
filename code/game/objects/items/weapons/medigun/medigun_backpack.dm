@@ -256,6 +256,8 @@
 
 /obj/item/medigun_backpack/emp_act(severity)
 	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(bcell)
 		bcell.emp_act(severity)
 

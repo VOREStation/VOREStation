@@ -33,6 +33,9 @@
 	return dat
 
 /obj/item/implant/integrated_circuit/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	IC.emp_act(severity, recursive)
 
 /obj/item/implant/integrated_circuit/examine(mob/user)

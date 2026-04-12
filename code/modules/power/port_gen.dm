@@ -72,18 +72,21 @@
 			. += span_notice("The generator is off.")
 
 /obj/machinery/power/port_gen/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/duration = 6000 //ten minutes
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			stat &= BROKEN
 			if(prob(75)) explode()
-		if(2)
+		if(EMP_MEDIUM)
 			if(prob(50)) stat &= BROKEN
 			if(prob(10)) explode()
-		if(3)
+		if(EMP_LIGHT)
 			if(prob(25)) stat &= BROKEN
 			duration = 300
-		if(4)
+		if(EMP_HARMLESS)
 			if(prob(10)) stat &= BROKEN
 			duration = 300
 

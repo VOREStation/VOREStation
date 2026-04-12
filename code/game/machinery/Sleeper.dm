@@ -428,6 +428,10 @@
 	go_out()
 
 /obj/machinery/sleeper/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
+
 	if(filtering)
 		toggle_filter()
 
@@ -441,7 +445,6 @@
 	if(occupant)
 		go_out()
 
-	..(severity, recursive)
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant || !beaker)
 		filtering = 0

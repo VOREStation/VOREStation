@@ -215,9 +215,10 @@
 
 // EMP. It may seem weak but keep in mind that multiple shield segments are likely to be affected.
 /obj/effect/shield/emp_act(severity, recursive)
-	if(!disabled_for)
-		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM)
-
+	. = ..()
+	if (. & EMP_PROTECT_SELF || disabled_for)
+		return
+	take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM)
 
 // Explosions
 /obj/effect/shield/ex_act(var/severity)
