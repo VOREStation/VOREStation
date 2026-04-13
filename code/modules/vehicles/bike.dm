@@ -57,7 +57,7 @@
 
 /obj/vehicle/bike/click_ctrl(mob/user)
 	if(Adjacent(user) && anchored)
-		toggle()
+		return toggle_proc(user)
 	else
 		return ..()
 
@@ -65,18 +65,23 @@
 	set name = "Toggle Engine"
 	set category = "Vehicle"
 	set src in view(0)
+	toggle_proc(usr)
 
-	if(!isliving(usr) || HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB))
+/obj/vehicle/bike/proc/toggle_proc(mob/user)
+	if(!isliving(user) || HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB))
 		return
 
-	if(usr.incapacitated()) return
+	if(user.incapacitated())
+		return CLICK_ACTION_BLOCKING
 
 	if(!on && cell && cell.charge > charge_use)
 		turn_on()
-		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		return CLICK_ACTION_SUCCESS
 	else
 		turn_off()
-		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
+		visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
+		return CLICK_ACTION_SUCCESS
 
 /obj/vehicle/bike/click_alt(var/mob/user)
 	if(Adjacent(user))
