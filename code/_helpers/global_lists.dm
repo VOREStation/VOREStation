@@ -16,7 +16,6 @@ GLOBAL_LIST_EMPTY(cable_list)						//Index for all cables, so that powernets don
 GLOBAL_LIST_EMPTY(landmarks_list)					//list of all landmarks created
 GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(landmark references) for event triggers
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
-GLOBAL_LIST_EMPTY(joblist)							//list of all jobstypes, minus borg and AI
 
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
@@ -172,13 +171,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 		var/datum/surgery_step/S = new T
 		GLOB.surgery_steps += S
 	sort_surgeries()
-
-	//List of job. I can't believe this was calculated multiple times per tick!
-	paths = subtypesof(/datum/job)
-	paths -= GLOB.exclude_jobs
-	for(var/T in paths)
-		var/datum/job/J = new T
-		GLOB.joblist[J.title] = J
 
 	//Languages
 	paths = subtypesof(/datum/language)
