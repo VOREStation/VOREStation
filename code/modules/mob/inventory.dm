@@ -32,18 +32,21 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
  * on the item in the slot if the users active hand is empty
  */
 /mob/proc/attack_ui(slot, params)
-	var/obj/item/W = get_active_held_item()
+	var/obj/item/active_item = get_active_held_item()
+	var/obj/item/equipped_item = get_item_by_slot(slot)
+	var/list/modifiers = params2list(params)
 
-	if(istype(W))
-		if(equip_to_slot_if_possible(W, slot,0,0,0))
+	if(istype(equipped_item))
+		if(active_item)
+			equipped_item.attackby(active_item, src) //Wearing an item and item in hand.
 			return TRUE
 
-	if(!W)
-		// Activate the item
-		var/obj/item/I = get_item_by_slot(slot)
-		if(istype(I))
-			var/list/modifiers = params2list(params)
-			I.attack_hand(src, modifiers)
+		equipped_item.attack_hand(src, modifiers) //Wearing an item w/ no item in hand.
+		return TRUE
+
+	if(istype(active_item))
+		if(equip_to_slot_if_possible(active_item, slot,0,0,0)) //NOT wearing an item, but DO have item in hand.
+			return TRUE
 
 	return FALSE
 
