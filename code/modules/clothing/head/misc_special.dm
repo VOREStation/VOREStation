@@ -32,6 +32,7 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 	special_handling = TRUE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
 	. = ..(user)
@@ -346,7 +347,7 @@
 	throwforce = 3
 	throw_speed = 2
 	throw_range = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	body_parts_covered = HEAD
 	attack_verb = list("warned", "cautioned", "smashed")
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)

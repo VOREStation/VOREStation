@@ -176,6 +176,7 @@ class ChatRenderer {
         highlightWholeMessage: boolean;
         highlightBlacklist: boolean;
         blacklistregex: RegExp;
+        enabled: boolean;
       }[]
     | null;
   databaseBackendEnabled: boolean;
@@ -288,6 +289,7 @@ class ChatRenderer {
       const highlightWholeMessage = setting.highlightWholeMessage;
       const matchWord = setting.matchWord;
       const matchCase = setting.matchCase;
+      const enabled = setting.enabled;
       const allowedRegex = /^[a-zа-яё0-9_\-$/^[\s\]\\]+$/gi;
       const regexEscapeCharacters = /[!#$%^&*)(+=.<>{}[\]:;'"|~`_\-\\/]/g;
       // Reset lastIndex so it does not mess up the next word
@@ -397,6 +399,7 @@ class ChatRenderer {
         this.highlightParsers = [];
       }
       this.highlightParsers.push({
+        enabled,
         highlightWords,
         highlightRegex,
         highlightColor,
@@ -640,31 +643,32 @@ class ChatRenderer {
 
         // Highlight text
         if (!message.avoidHighlighting && this.highlightParsers) {
-          this.highlightParsers.map((parser) => {
-            const ourUser = node.getElementsByClassName('name');
-            const isEmote = node.getElementsByClassName('emote');
-            if (
-              !(
-                parser.highlightBlacklist &&
-                parser.blacklistregex &&
-                ((ourUser.length > 0 &&
-                  parser.blacklistregex.test(ourUser[0].textContent)) ||
-                  (isEmote.length > 0 &&
-                    parser.blacklistregex.test(isEmote[0].textContent)))
-              )
-            ) {
-              const highlighted = highlightNode(
-                node,
-                parser.highlightRegex,
-                parser.highlightWords,
-                (text) => createHighlightNode(text, parser.highlightColor),
-              );
-              if (highlighted && parser.highlightWholeMessage) {
-                node.className += ' ChatMessage--highlighted';
+          this.highlightParsers
+            .filter((parser) => parser.enabled)
+            .forEach((parser) => {
+              const ourUser = node.getElementsByClassName('name');
+              const isEmote = node.getElementsByClassName('emote');
+              if (
+                !(
+                  parser.highlightBlacklist &&
+                  parser.blacklistregex &&
+                  ((ourUser.length > 0 &&
+                    parser.blacklistregex.test(ourUser[0].textContent)) ||
+                    (isEmote.length > 0 &&
+                      parser.blacklistregex.test(isEmote[0].textContent)))
+                )
+              ) {
+                const highlighted = highlightNode(
+                  node,
+                  parser.highlightRegex,
+                  parser.highlightWords,
+                  (text) => createHighlightNode(text, parser.highlightColor),
+                );
+                if (highlighted && parser.highlightWholeMessage) {
+                  node.className += ' ChatMessage--highlighted';
+                }
               }
-            }
-            return undefined;
-          });
+            });
         }
         // Linkify text
         const linkifyNodes = node.querySelectorAll('.linkify');

@@ -49,8 +49,8 @@
 	return
 
 /obj/machinery/portable_atmospherics/powered/pump/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(prob(50/severity))
@@ -61,8 +61,6 @@
 
 	target_pressure = rand(0,1300)
 	update_icon()
-
-	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/pump/process()
 	..()

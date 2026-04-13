@@ -28,7 +28,6 @@
 	var/integrated_light_power = 6
 	var/list/robotdecal_on = list()
 	var/glowy_enabled = FALSE
-	var/datum/wires/robot/wires
 
 	can_be_antagged = TRUE
 
@@ -151,7 +150,7 @@
 	add_language(LANGUAGE_GALCOM, 1)
 	add_language(LANGUAGE_EAL, 1)
 
-	wires = new(src)
+	set_wires(new /datum/wires/robot(src))
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"

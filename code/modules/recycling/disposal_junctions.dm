@@ -56,7 +56,6 @@
 	var/last_sort = FALSE
 	var/sort_scan = TRUE
 	var/panel_open = FALSE
-	var/datum/wires/wires = null // ...Why isnt this defined on /atom...
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
@@ -90,7 +89,7 @@
 	if(sortType)
 		LAZYADD(GLOB.tagger_locations["[sortType]"], get_z(src))
 
-	wires = new /datum/wires/disposals(src)
+	set_wires(new /datum/wires/disposals(src))
 
 	updatedir()
 	updatename()

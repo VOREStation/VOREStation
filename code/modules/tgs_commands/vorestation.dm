@@ -408,7 +408,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	if(action == "help")
 		var/list/whitelist_jobs = list()
-		for(var/datum/job/our_job in GLOB.job_master.occupations)
+		for(var/datum/job/our_job in SSjob.occupations)
 			if(our_job.whitelist_only)
 				whitelist_jobs += our_job.title
 		var/list/whitelisted_language = list()
@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		if("add")
 			switch(kind)
 				if("job")
-					var/datum/job/job = GLOB.job_master.GetJob(role)
+					var/datum/job/job = SSjob.get_job(role)
 					if(!job)
 						message.text = "Error, invalid job entered. Check spelling and capitalization."
 						return message

@@ -17,6 +17,7 @@
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 	///Var used for attack_hand chain.
 	var/special_handling = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/item/a_gift/Initialize(mapload)
 	. = ..()

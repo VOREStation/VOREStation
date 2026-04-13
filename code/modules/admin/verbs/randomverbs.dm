@@ -123,7 +123,7 @@ ADMIN_VERB(cmd_admin_local_narrate, R_FUN|R_EVENT, "Local Narrate", "Locally nar
 	feedback_add_details("admin_verb","LNR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-ADMIN_VERB(cmd_admin_direct_narrate, R_FUN|R_EVENT, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_direct_narrate, R_FUN|R_EVENT, "Direct Narrate", "Directly narrate the target.", ADMIN_CATEGORY_FUN_NARRATE, mob/target_mob in GLOB.mob_list)
 	if(!target_mob)
 		target_mob = tgui_input_list(user, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
 
@@ -390,7 +390,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = tgui_input_list(src, "Pick a job to assign them (or none).","Job Select", GLOB.joblist.Copy() + "-No Job-", "-No Job-")
+		var/pickjob = tgui_input_list(src, "Pick a job to assign them (or none).","Job Select", SSjob.occupations_by_name.Copy() + "-No Job-", "-No Job-")
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")
@@ -521,10 +521,10 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	//If desired, apply equipment.
 	if(equipment)
 		if(charjob)
-			GLOB.job_master.EquipRank(new_character, charjob, 1)
+			SSjob.equip_rank(new_character, charjob, 1)
 			if(new_character.mind)
 				new_character.mind.assigned_role = charjob
-				new_character.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(new_character, charjob)
+				new_character.mind.role_alt_title = SSjob.get_player_alt_title(new_character, charjob)
 
 	//If customised job title, modify here.
 	if(custom_job && custom_job_title)
@@ -652,8 +652,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_delete, R_FUN|R_ADMIN, "Delete", "Delete t
 	user.admin_delete(atom_target)
 
 ADMIN_VERB(cmd_admin_list_open_jobs, R_HOLDER, "List free slots", "Show available job slots.", ADMIN_CATEGORY_INVESTIGATE)
-	if(GLOB.job_master)
-		for(var/datum/job/job in GLOB.job_master.occupations)
+	if(SSjob)
+		for(var/datum/job/job in SSjob.occupations)
 			to_chat(user, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

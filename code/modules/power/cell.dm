@@ -14,8 +14,6 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	/// Are we EMP immune?
-	var/emp_proof = FALSE
 	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
 	var/c_uid
 	var/charge = 1000	// maximum charge on spawn
@@ -234,7 +232,8 @@
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/cell/emp_act(severity, recursive)
-	if(emp_proof)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
 		return
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
@@ -246,7 +245,6 @@
 		charge = 0
 
 	update_icon()
-	..()
 
 /obj/item/cell/ex_act(severity)
 

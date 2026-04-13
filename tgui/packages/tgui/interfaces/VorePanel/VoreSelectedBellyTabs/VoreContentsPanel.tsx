@@ -56,18 +56,8 @@ export const VoreContentsPanel = (props: {
   }, [contents]);
 
   function bellyValueToName(value: string) {
-    const bellyName = bellyDropdownNames
-      ?.map((entry) => {
-        if (entry.value === value) {
-          return entry.displayText;
-        }
-        return undefined;
-      })
-      .filter((value) => value !== undefined);
-    if (Array.isArray(bellyName) && bellyName.length) {
-      return bellyName[0];
-    }
-    return '';
+    const entry = bellyDropdownNames?.find((entry) => entry.value === value);
+    return entry ? entry.displayText : '';
   }
 
   const contentSearch = createSearch<ContentData>(

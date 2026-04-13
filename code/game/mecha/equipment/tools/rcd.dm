@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4)
 	equip_cooldown = 10
 	energy_drain = 250
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_type = EQUIP_SPECIAL
 	var/obj/item/rcd/electric/mounted/mecha/my_rcd = null
 

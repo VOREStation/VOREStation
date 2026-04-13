@@ -18,3 +18,92 @@
 2026-04-06:
   Kashargul:
   - qol: allows free amount selection between min and max
+2026-04-07:
+  Guti:
+  - rscadd: Anomaly Core Rigging
+  - rscdel: Removed acid weather from being picked for the Weather Anomaly
+  - bugfix: Fixed signalers cooldown not working
+  - rscdel: Removed dimensional anomaly core pulses changing reinforced walls
+  Kashargul:
+  - bugfix: cig lighter chat sorting
+  - bugfix: plane holder hard dels
+  Will:
+  - rscadd: Borgs will get a client side indicator when electrifying doors with alt-click
+2026-04-09:
+  Diana:
+  - bugfix: Biogenerator no longer can go negative when dispensing reagents
+  - bugfix: Biogenerator will never go below 1 point per 1unit of reagent
+  - bugfix: Biogenerator will dispense 1 unit of reagent per amount selected
+  - qol: Prices for gardening nutriments decreased
+  - rscadd: Biogenerator can now dispense Salt, Soy, Plant-B-Gone, Mutagen, and Diethylamine
+  - rscadd: Biogenerator can dispense Mystery Seeds and Kudzu (Botanists can already
+      use L4Z to get kudzu)
+  - bugfix: Radstorms give rads once more.
+  - bugfix: Proton packs no longer get perma-stuck to your back
+  - qol: Geiger counters give you more information.
+  - bugfix: Inactive geigers will no longer cause tremor sense to trigger.
+  Nova:
+  - bugfix: Fix an issue with random name generation.
+  Will:
+  - code_imp: Small death alarm null safety tweak
+  - spellcheck: tape roll lathe entry
+  - rscadd: Check Access List admin verb for mappers
+  - bugfix: Getting the value of a cargo tanker with no reagents inside it no longer
+      runtimes.
+  - bugfix: Foam crossbow toy properly spawns from loadout entry
+2026-04-12:
+  Diana:
+  - bugfix: Swoopies no longer runtime
+  - bugfix: Environmental message works now.
+  - bugfix: Antag NT opposed now considers broke instead of just underpaid/poor
+  - bugfix: EMPs will no longer doubletap things.
+  - refactor: Ore bags refactored from /storage to just /item
+  - qol: Miner borg sleeper belly can now click turf to scoop up ore.
+  - code_imp: Miner borg sleeper belly now dynamically updates how much it can hold
+      based on the ore bag it contains.
+  - bugfix: Ore can now be scooped from any turf, not just mineral turf.
+  - bugfix: Ore bags will no longer pick up archeo debris
+  - bugfix: Miner borg sleeper belly now properly picks up ore.
+  - code_imp: Ore bag signal override removed.
+  Guti:
+  - bugfix: Fixed mob offset
+  - rscadd: EMPs can pulse random wires now
+  - refactor: Refactored EMPs
+  - code_imp: Added var/datum/wires to /atom
+  - code_imp: Added EMP Protection Element
+  - code_imp: EMP defines instead of magic numbers
+  Kashargul:
+  - code_imp: finishes migrating the admin verbs to the subsystem
+  - bugfix: a bunch of runtimes
+  KillianKirilenko:
+  - bugfix: fixed weapon cell icons in examine when guns/etc. are unloaded
+  Nova:
+  - bugfix: fixed powernet circuit outputs
+  Will:
+  - rscadd: AI players can now hear local sounds and area ambiences through their
+      holograms
+  - bugfix: Guns with nonstandard firemode selection properly set firemode properties
+      during init
+  - rscadd: hoistkit added to techweb
+  - rscadd: borgs can now use unpacked hoist kits
+  - refactor: General improvements to hoist kits
+  - rscadd: TTS device now shows a typing indicator while in use.
+2026-04-13:
+  Diana:
+  - bugfix: Infectious component no longer potentially crashes the game.
+  - code_imp: Implements but does not enable the Germ component. (Things left on the
+      ground will become dirty, ultimately making you ill)
+  - code_imp: Robust Gut also applies the strong stomach trait, making you immune
+      to eaten germs.
+  - code_imp: Implements a list of 'elevated structures'. Any /machinery or /structure
+      counts for this. Germs will not accumulate while on them.
+  Diana, Kash.:
+  - qol: The fryer now tells you how much oil is remaining in it.
+  - qol: The fryer now alerts you if the fryer is underfilled or overfilled on oil
+  - qol: Tankers can now be attached to the fryer to fill it.
+  - bugfix: Fryer works properly and adds oil to food
+  - bugfix: Fryer and trays no longer show 'phantom items' overlay.
+  - bugfix: You can now insert oil into the fryer with any reagent container.
+  - code_imp: Recipes are now a global list instead of a per-item list
+  Will:
+  - bugfix: Drawing blood with syringes and IV stands works properly again.

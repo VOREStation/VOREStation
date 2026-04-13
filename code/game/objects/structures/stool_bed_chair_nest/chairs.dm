@@ -261,6 +261,7 @@
 	applies_material_colour = 1
 	var/sofa_material = MAT_CARPET
 	var/corner_piece = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/structure/bed/chair/sofa/update_icon()
 	if(applies_material_colour && sofa_material)

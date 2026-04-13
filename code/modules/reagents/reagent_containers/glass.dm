@@ -20,6 +20,7 @@
 	drop_sound = 'sound/items/drop/bottle.ogg'
 	pickup_sound = 'sound/items/pickup/bottle.ogg'
 	description_info = "Clicking on a venomous animal (or person) with the lid closed will express their venom into the beaker!"
+	resistance_flags = ACID_PROOF
 
 	var/label_text = ""
 

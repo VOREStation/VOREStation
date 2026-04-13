@@ -85,6 +85,7 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 	craftable = TRUE
+	resistance_flags = FLAMMABLE
 
 /*
  * Wood
@@ -102,6 +103,7 @@
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/stack/tile/wood/alt
 	name = "wood floor tile"
@@ -396,6 +398,7 @@
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/stack/tile/carpet/teal
 	desc = "A piece of teal carpet. It is the same size as a normal floor tile!"

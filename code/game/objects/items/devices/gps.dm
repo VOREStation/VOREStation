@@ -167,7 +167,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	update_icon()
 
 /obj/item/gps/emp_act(severity, recursive)
-	if(emped) // Without a fancy callback system, this will have to do.
+	. = ..()
+	if (. & EMP_PROTECT_SELF || emped)
 		return
 	var/severity_modifier = severity ? severity : 4 // In case emp_act gets called without any arguments.
 	var/duration = 5 MINUTES / severity_modifier

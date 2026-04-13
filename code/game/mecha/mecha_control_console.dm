@@ -104,8 +104,10 @@
 	return data
 
 /obj/item/mecha_parts/mecha_tracking/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	qdel(src)
-	return
 
 /obj/item/mecha_parts/mecha_tracking/ex_act()
 	qdel(src)
@@ -119,7 +121,7 @@
 /obj/item/mecha_parts/mecha_tracking/proc/shock()
 	var/obj/mecha/M = in_mecha()
 	if(M)
-		M.emp_act(4)
+		M.emp_act(EMP_HARMLESS)
 	qdel(src)
 
 /obj/item/mecha_parts/mecha_tracking/proc/get_mecha_log()
