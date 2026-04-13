@@ -102,6 +102,7 @@
 /obj/effect/abstract
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = ABOVE_MOB_PLANE
+	item_flags = ABSTRACT
 
 /obj/effect/abstract/light_spot
 	icon = 'icons/effects/eris_flashlight.dmi'
