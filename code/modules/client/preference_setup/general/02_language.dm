@@ -12,7 +12,6 @@
 	pref.alternate_languages	= check_list_copy(save_data["language"])
 	pref.extra_languages		= save_data["extra_languages"]
 	pref.language_prefixes		= save_data["language_prefixes"]
-	pref.species				= save_data["species"]
 	pref.preferred_language		= save_data["preflang"]
 	pref.language_custom_keys	= check_list_copy(save_data["language_custom_keys"])
 	pref.runechat_color			= save_data["runechat_color"]
@@ -26,17 +25,21 @@
 	save_data["runechat_color"]			= pref.runechat_color
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
+	#ifdef TESTING
+	var/char_name = pref.read_preference(/datum/preference/name/real_name) || "-name not yet loaded-"
+	#endif
 	if(!islist(pref.alternate_languages))
-		testing("LANGSANI: Sanitizing languages on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their character has no languages list")
+		testing("LANGSANI: Sanitizing languages on [pref.client]'s character [char_name] because their character has no languages list")
 		pref.alternate_languages = list()
-	if(pref.species)
-		var/datum/species/S = GLOB.all_species[pref.species]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
+	if(pref_species)
+		var/datum/species/S = GLOB.all_species[pref_species]
 		if(!istype(S))
-			testing("LANGSANI: Failed sani on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their species ([pref.species]) isn't in the global list")
+			testing("LANGSANI: Failed sani on [pref.client]'s character [char_name] because their species ([pref_species]) isn't in the global list")
 			return
 
 		if(pref.alternate_languages.len > (S.num_alternate_languages + pref.extra_languages))
-			testing("LANGSANI: Truncated [pref.client]'s character [pref.real_name || "-name not yet loaded-"] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
+			testing("LANGSANI: Truncated [pref.client]'s character [char_name] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
 			pref.alternate_languages.len = (S.num_alternate_languages + pref.extra_languages) // Truncate to allowed length
 
 		// VOREStation Edit Start
@@ -48,7 +51,7 @@
 		for(var/language in pref.alternate_languages)
 			var/datum/language/L = GLOB.all_languages[language]
 			if(!istype(L) || (L.flags & RESTRICTED) || (!(language in S.secondary_langs) && pref.client && !is_lang_whitelisted(pref.client, L)))
-				testing("LANGSANI: Removed [L?.name || "lang not found"] from [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because it failed allowed checks")
+				testing("LANGSANI: Removed [L?.name || "lang not found"] from [pref.client]'s character [char_name] because it failed allowed checks")
 				pref.alternate_languages -= language
 
 	if(isnull(pref.language_prefixes) || !pref.language_prefixes.len)
@@ -59,7 +62,7 @@
 			pref.language_prefixes -= prefix
 	if(isnull(pref.language_custom_keys))
 		pref.language_custom_keys = list()
-	var/datum/species/S = GLOB.all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 	for(var/key in pref.language_custom_keys)
 		if(!pref.language_custom_keys[key])
 			pref.language_custom_keys.Remove(key)
@@ -73,7 +76,7 @@
 
 	var/list/languages_list = list()
 
-	var/datum/species/S = GLOB.all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 	if(S.language)
 		UNTYPED_LIST_ADD(languages_list, list(
 			"name" = S.language,
@@ -105,7 +108,7 @@
 		return
 
 	var/mob/user = ui.user
-	var/datum/species/S = GLOB.all_species[pref.species]
+	var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 
 	switch(action)
 		if("remove_language")

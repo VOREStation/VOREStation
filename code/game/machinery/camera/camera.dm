@@ -47,7 +47,7 @@
 	LAZYOR(client_huds, GLOB.global_hud.whitense)
 
 	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
 			to_world_log("[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
@@ -132,13 +132,13 @@
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
 	src.view_range = num
-	cameranet.updateVisibility(src, 0)
+	GLOB.cameranet.updateVisibility(src, 0)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if(!istype(user))
 		return
 
-	if(user.species.can_shred(user))
+	if(user.species.can_shred(user, FALSE, 11))
 		set_status(0)
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())
@@ -310,14 +310,14 @@
 
 /obj/machinery/camera/proc/triggerCameraAlarm(var/duration = 0)
 	alarm_on = 1
-	camera_alarm.triggerAlarm(loc, src, duration)
+	GLOB.camera_alarm.triggerAlarm(loc, src, duration)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	if(wires.is_cut(WIRE_CAM_ALARM))
 		return
 
 	alarm_on = 0
-	camera_alarm.clearAlarm(loc, src)
+	GLOB.camera_alarm.clearAlarm(loc, src)
 
 //if false, then the camera is listed as DEACTIVATED and cannot be used
 /obj/machinery/camera/proc/can_use()
@@ -462,15 +462,15 @@
 
 /obj/machinery/camera/proc/update_coverage(var/network_change = 0)
 	if(network_change)
-		var/list/open_networks = difflist(network, restricted_camera_networks)
+		var/list/open_networks = difflist(network, GLOB.restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary
 		if(on_open_network && !open_networks.len)
-			cameranet.removeCamera(src)
+			GLOB.cameranet.removeCamera(src)
 		else if(!on_open_network && open_networks.len)
 			on_open_network = 1
-			cameranet.addCamera(src)
+			GLOB.cameranet.addCamera(src)
 	else
-		cameranet.updateVisibility(src, 0)
+		GLOB.cameranet.updateVisibility(src, 0)
 
 // Resets the camera's wires to fully operational state. Used by one of Malfunction abilities.
 /obj/machinery/camera/proc/reset_wires()

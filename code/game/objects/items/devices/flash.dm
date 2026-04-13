@@ -94,7 +94,7 @@
 	return null
 
 /obj/item/flash/proc/clown_check(var/mob/user)
-	if(user && (CLUMSY in user.mutations) && prob(50))
+	if(user && CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("\The [src] slips out of your hand."))
 		user.drop_item()
 		return 0
@@ -162,7 +162,8 @@
 
 //attack_as_weapon
 /obj/item/flash/attack(mob/living/target, mob/living/user, var/target_zone)
-	if(!user || !target)	return	//sanity
+	if(!user || !target || target.is_incorporeal())
+		return //sanity
 
 	add_attack_logs(user,target,"Flashed (attempt) with [src]")
 
@@ -207,6 +208,8 @@
 	if(!istype(target))
 		return FALSE
 	if(target.stat == DEAD) //no point, they're already gone.
+		return FALSE
+	if(target.is_incorporeal()) // SHADEEEKINNNNNNN
 		return FALSE
 	if(FLASHPROOF in target.mutations)
 		return FALSE

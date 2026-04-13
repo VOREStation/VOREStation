@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
 /datum/disease/advance/proc/Evolve(min_level, max_level, ignore_mutable = FALSE)
-	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
 		return
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
@@ -311,8 +311,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 // Randomly generates a symptom from a given list, has a chance to lose or gain a symptom.
-/datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D, ignore_mutable)
-	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+/datum/disease/advance/proc/PickyEvolve(list/datum/symptom/D, ignore_mutable = FALSE)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
 		return
 	var/s = safepick(D)
 	if(s)
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 // Randomly remove a symptom.
 /datum/disease/advance/proc/Devolve(ignore_mutable = FALSE)
-	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
 		return
 	if(length(symptoms) > 1)
 		var/s = safepick(symptoms)
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 // Randomly neuter a symptom.
 /datum/disease/advance/proc/Neuter(ignore_mutable = FALSE)
-	if(!global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
+	if(global_flag_check(virus_modifiers, IMMUTABLE) && !ignore_mutable)
 		return
 	if(symptoms.len)
 		var/s = safepick(symptoms)
@@ -442,7 +442,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)
-		if(!global_flag_check(A.virus_modifiers, IMMUTABLE))
+		if(global_flag_check(A.virus_modifiers, IMMUTABLE))
 			return
 		diseases += A.Copy()
 
@@ -479,14 +479,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		if(length(preserve))
 			R.data["viruses"] = preserve
 
-/client/proc/AdminCreateVirus()
-	set category = "Fun.Event Kit"
-	set name = "Create Advanced Virus"
-	set desc = "Create an advanced virus and release it."
-
-	if(!is_admin(usr))
-		return FALSE
-
+ADMIN_VERB(AdminCreateVirus, R_SPAWN|R_EVENT, "Create Advanced Virus", "Create an advanced virus and release it.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/i = VIRUS_SYMPTOM_LIMIT
 	var/mob/living/carbon/human/H = null
 
@@ -497,22 +490,23 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	symptoms += "Done"
 	symptoms += GLOB.list_symptoms.Copy()
 	do
-		if(src)
-			var/symptom = tgui_input_list(src, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", symptoms)
-			if(isnull(symptom))
-				return
-			else if(istext(symptom))
-				i = 0
-			else if(ispath(symptom))
-				var/datum/symptom/S = new symptom
-				if(!D.HasSymptom(S))
-					D.symptoms += S
-					i -= 1
+		if(!user)
+			return
+		var/symptom = tgui_input_list(user, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", symptoms)
+		if(isnull(symptom))
+			return
+		else if(istext(symptom))
+			i = 0
+		else if(ispath(symptom))
+			var/datum/symptom/S = new symptom
+			if(!D.HasSymptom(S))
+				D.symptoms += S
+				i -= 1
 	while(i > 0)
 
 	if(length(D.symptoms) > 0)
 
-		var/new_name = tgui_input_text(src, "Name your new disease.", "New Name")
+		var/new_name = tgui_input_text(user, "Name your new disease.", "New Name")
 		if(!new_name)
 			return FALSE
 		D.AssignName(new_name)
@@ -521,7 +515,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		for(var/datum/disease/advance/AD in GLOB.active_diseases)
 			AD.Refresh()
 
-		H = tgui_input_list(src, "Choose infectee", "Infectees", GLOB.human_mob_list)
+		H = tgui_input_list(user, "Choose infectee", "Infectees", GLOB.human_mob_list)
 
 		if(isnull(H))
 			return FALSE
@@ -532,14 +526,12 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/list/name_symptoms = list()
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
-		message_admins("[key_name_admin(src)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
-		log_admin("[key_name_admin(src)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
+		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
+		log_admin("[key_name_admin(user)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
-		return TRUE
-
-/datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/advance/A = make_copy ? Copy() : src
-	if(!initial && global_flag_check(A.virus_modifiers, IMMUTABLE) && (spread_flags & DISEASE_SPREAD_FLUIDS))
+	if(!initial && !global_flag_check(A.virus_modifiers, IMMUTABLE) && (spread_flags & DISEASE_SPREAD_FLUIDS))
 		var/minimum = 1
 		if(prob(clamp(35-(A.resistance + A.stealth - A.speed), 0, 50) * (A.mutability)))
 			if(infectee.job == JOB_CLOWN || infectee.job == JOB_MIME || prob(1))
@@ -631,7 +623,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			if(H.get_species() == SPECIES_UNATHI || H.get_species() == SPECIES_TAJARAN)
 				prefixes += list("Vermin ", "Zoo", "Maintenance ")
 				bodies += list("Rat", "Maint")
-		if(ismouse(diseasesource) && !istype(diseasesource, /mob/living/simple_mob/animal/passive/mouse/white/virology))
+		if(HAS_TRAIT(diseasesource, TRAIT_AMBIENT_PEST_MOB) && !istype(diseasesource, /mob/living/simple_mob/animal/passive/mouse/white/virology))
 			prefixes += list("Vermin ", "Zoo", "Maintenance ")
 			bodies += list("Rat", "Maint")
 		else switch(diseasesource.type)

@@ -394,14 +394,15 @@
 	var/from_slot = ""
 	from_slot = "You'll hatch using your current appearance"
 	if(reload_slot == "From Slot" && client)
-		if(client.prefs.species == SPECIES_PROTEAN) // Exploit protection
+		if(client.prefs.read_preference(/datum/preference/choiced/species) == SPECIES_PROTEAN) // Exploit protection
 			to_chat(src,span_warning("You cannot copy nanoform prosthetic limbs from this species. Please try another character."))
 			return
-		var/slot_is_synth = ((O_BRAIN in client.prefs.organ_data) && client.prefs.organ_data[O_BRAIN])
+		var/list/organ_data = client.prefs.read_preference(/datum/preference/organ_data)
+		var/slot_is_synth = (organ_data && (O_BRAIN in organ_data) && organ_data[O_BRAIN])
 		if(slot_is_synth && !isSynthetic()) // Prevents some pretty weird situations
 			to_chat(src,span_warning("Cannot apply character appearance. [slot_is_synth ? "The slot's character is synthetic." : "The slot's character is organic."] Slot must match the current body's synthetic state. Please try another character."))
 			return
-		from_slot = "You'll hatch using [client.prefs.real_name]'s appearance"
+		from_slot = "You'll hatch using [client.prefs.read_preference(/datum/preference/name/real_name)]'s appearance"
 
 	var/confirm = tgui_alert(src, "Are you sure you want to hatch right now? This will be very obvious to anyone in view. [from_slot]! Are you sure?", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")

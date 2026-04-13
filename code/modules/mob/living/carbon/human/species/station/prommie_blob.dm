@@ -33,15 +33,15 @@
 	var/rad_glow = 0
 
 	var/list/default_emotes = list(
-		/decl/emote/audible/squish,
-		/decl/emote/audible/chirp,
-		/decl/emote/visible/bounce,
-		/decl/emote/visible/jiggle,
-		/decl/emote/visible/lightup,
-		/decl/emote/visible/vibrate,
-		/decl/emote/visible/flip,
-		/decl/emote/visible/spin,
-		/decl/emote/visible/floorspin
+		/datum/decl/emote/audible/squish,
+		/datum/decl/emote/audible/chirp,
+		/datum/decl/emote/visible/bounce,
+		/datum/decl/emote/visible/jiggle,
+		/datum/decl/emote/visible/lightup,
+		/datum/decl/emote/visible/vibrate,
+		/datum/decl/emote/visible/flip,
+		/datum/decl/emote/visible/spin,
+		/datum/decl/emote/visible/floorspin
 	)
 /mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
 	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_blobform)
@@ -206,13 +206,6 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/rad_act(severity)
-	rad_glow += severity
-	rad_glow = CLAMP(rad_glow,0,250)
-	if(rad_glow > 1)
-		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
-		update_icon()
-
 /mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
 	if(humanform)
 		return humanform.bullet_act(P)
@@ -307,14 +300,14 @@
 	return
 
 
-/mob/living/simple_mob/slime/promethean/get_description_info()
+/mob/living/simple_mob/slime/promethean/get_description_info(list/additional_information)
 	return
 
 /mob/living/simple_mob/slime/promethean/init_vore(force)
 	return
 
 /mob/living/simple_mob/slime/promethean/get_available_emotes()
-	var/list/fulllist = global._slime_default_emotes.Copy()
+	var/list/fulllist = GLOB.slime_default_emotes.Copy()
 	fulllist += default_emotes
 	return fulllist
 /mob/living/carbon/human

@@ -210,13 +210,6 @@
 		get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	)
 
-/obj/machinery/rnd/production/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
-
-	tgui_interact(user)
-
 /obj/machinery/rnd/production/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -235,6 +228,8 @@
 	for(var/datum/design_techweb/design in cached_designs)
 		if(!(isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)))
 			continue
+		if(!hacked && (RND_CATEGORY_HACKED in design.category))
+			continue
 
 		var/cost = list()
 
@@ -242,14 +237,15 @@
 		for(var/mat_id in design.materials)
 			cost[mat_id] = OPTIMAL_COST(design.materials[mat_id] * coefficient)
 
-		var/icon_size = spritesheet.icon_size_id(design.id)
+		var/css_id = sanitize_css_class_name(design.id)
+		var/size = spritesheet.icon_size_id(css_id)
 		designs[design.id] = list(
 			"name" = design.name,
 			"desc" = design.get_description(),
 			"cost" = cost,
 			"id" = design.id,
 			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]"
+			"icon" = "[size == size32x32 ? "" : "[size] "][css_id]"
 		)
 
 	data["designs"] = designs
@@ -281,7 +277,7 @@
 
 	switch(action)
 		if("remove_mat")
-			var/datum/material/material = name_to_material[params["id"]]
+			var/datum/material/material = GLOB.name_to_material[params["id"]]
 			if(!istype(material))
 				return
 

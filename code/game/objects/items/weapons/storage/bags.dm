@@ -423,6 +423,10 @@
 	desc = null
 	capacity = 700//Borgs get more because >specialization
 
+/obj/item/storage/bag/sheetsnatcher/borg/proc/upgrade()
+	name += " of holding"
+	capacity = 5000
+
 // -----------------------------
 //           Cash Bag
 // -----------------------------

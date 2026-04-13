@@ -37,7 +37,7 @@
 
 /obj/effect/overmap/Initialize(mapload)
 	. = ..()
-	if(!global.using_map.use_overmap)
+	if(!using_map.use_overmap)
 		return INITIALIZE_HINT_QDEL
 
 	if(render_map) // Initialize map objects
@@ -66,8 +66,7 @@
 
 	if(cam_screen)
 		QDEL_NULL(cam_screen)
-	if(cam_plane_masters)
-		QDEL_LIST(cam_plane_masters)
+	QDEL_LIST_NULL(cam_plane_masters)
 	if(cam_background)
 		QDEL_NULL(cam_background)
 

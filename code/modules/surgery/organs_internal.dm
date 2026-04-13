@@ -38,7 +38,7 @@
 		return
 	var/is_organ_damaged = 0
 	for(var/obj/item/organ/I in affected.internal_organs)
-		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
+		if(I && (I.damage > 0 || I.status == ORGAN_DEAD || I.germ_level > INFECTION_LEVEL_ONE))
 			is_organ_damaged = 1
 			break
 	return ..() && is_organ_damaged
@@ -56,7 +56,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	for(var/obj/item/organ/I in affected.internal_organs)
-		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
+		if(I && (I.damage > 0 || I.status == ORGAN_DEAD || I.germ_level > INFECTION_LEVEL_ONE))
 			if(!(I.robotic >= ORGAN_ROBOT))
 				user.visible_message(span_filter_notice("[user] starts treating damage to [target]'s [I.name] with [tool_name]."), \
 				span_filter_notice("You start treating damage to [target]'s [I.name] with [tool_name].") )
@@ -77,7 +77,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
-		if(I && (I.damage > 0 || I.status == ORGAN_DEAD))
+		if(I && (I.damage > 0 || I.status == ORGAN_DEAD || I.germ_level))
 			if(!(I.robotic >= ORGAN_ROBOT))
 				user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with [tool_name]."), \
 				span_notice("You treat damage to [target]'s [I.name] with [tool_name].") )
@@ -198,7 +198,7 @@
 // Organ Detaching Surgery
 ///////////////////////////////////////////////////////////////
 
-/datum/surgery_step/internal/detatch_organ/
+/datum/surgery_step/internal/detatch_organ
 	surgery_name = "Detach Organ"
 
 	allowed_tools = list(

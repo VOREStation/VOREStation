@@ -85,14 +85,15 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 
 	var/client/ghost_client = ghost.client
 
-	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
+	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.read_preference(/datum/preference/choiced/species)]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
 		to_chat(ghost, span_warning("You are not whitelisted to spawn as this species!"))
 		return
 
 	/* // Comments out NO_SLEEVE restriction, as per headmin/maintainer request.
 	var/datum/species/chosen_species
-	if(ghost.client.prefs.species) // In case we somehow don't have a species set here.
-		chosen_species = GLOB.all_species[ghost_client.prefs.species]
+	var/pref_species = ghost.client.prefs.read_preference(/datum/preference/choiced/species)
+	if(pref_species) // In case we somehow don't have a species set here.
+		chosen_species = GLOB.all_species[pref_species]
 
 	if(chosen_species.flags & NO_SLEEVE) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
 		to_chat(ghost, span_warning("This species cannot be resleeved!"))
@@ -102,7 +103,7 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	//Name matching is ugly but mind doesn't persist to look at.
 	var/charjob
 	var/datum/data/record/record_found
-	record_found = find_general_record("name",ghost_client.prefs.real_name)
+	record_found = find_general_record("name", ghost_client.prefs.read_preference(/datum/preference/name/real_name))
 
 	//Found their record, they were spawned previously
 	if(record_found)
@@ -180,7 +181,7 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
-		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
+		var/datum/antagonist/antag_data = SSantag_job.get_antag_data(new_character.mind.special_role)
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)

@@ -1,4 +1,4 @@
-var/datum/planet/sif/planet_sif = null
+GLOBAL_DATUM(planet_sif, /datum/planet/sif)
 
 /datum/planet/sif
 	name = "Sif"
@@ -14,7 +14,7 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/planet/sif/New()
 	..()
-	planet_sif = src
+	GLOB.planet_sif = src
 	weather_holder = new /datum/weather_holder/sif(src) // Cold weather is also nice.
 
 // This code is horrible.
@@ -103,8 +103,8 @@ var/datum/planet/sif/planet_sif = null
 
 // Returns the time datum of Sif.
 /proc/get_sif_time()
-	if(planet_sif)
-		return planet_sif.current_time
+	if(GLOB.planet_sif)
+		return GLOB.planet_sif.current_time
 
 //Weather definitions
 /datum/weather_holder/sif

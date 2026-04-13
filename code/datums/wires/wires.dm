@@ -165,6 +165,14 @@
 		return
 
 	var/obj/item/I = ui.user.get_active_hand()
+	if(istype(I, /obj/item/paicard)) // Get pai builtin emag tools
+		var/obj/item/paicard/card = I
+		if(card.emagged && card.has_emag_toolkit)
+			switch(card.selected_system)
+				if("MultiTool")
+					I = card.multitool
+				if("Signaler")
+					I = card.signaler
 	var/color = lowertext(params["wire"])
 	holder.add_hiddenprint(ui.user)
 

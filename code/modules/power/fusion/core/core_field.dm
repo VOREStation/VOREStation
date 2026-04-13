@@ -333,7 +333,13 @@
 	radiation += plasma_temperature/2
 	plasma_temperature = 0
 
-	SSradiation.radiate(src, radiation)
+	radiation_pulse(
+		src,
+		max_range = 7,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = energy * 0.001 //Might need to be increased.
+		)
 	Radiate()
 
 /obj/effect/fusion_em_field/proc/Radiate()
@@ -431,7 +437,7 @@
 			for(var/cur_s_react in possible_s_reacts)
 				if(possible_s_reacts[cur_s_react] < 1)
 					continue
-				var/decl/fusion_reaction/cur_reaction = get_fusion_reaction(cur_p_react, cur_s_react)
+				var/datum/decl/fusion_reaction/cur_reaction = get_fusion_reaction(cur_p_react, cur_s_react)
 				if(cur_reaction && plasma_temperature >= cur_reaction.minimum_energy_level)
 					possible_reactions.Add(cur_reaction)
 
@@ -441,7 +447,7 @@
 
 			//split up the reacting atoms between the possible reactions
 			while(possible_reactions.len)
-				var/decl/fusion_reaction/cur_reaction = pick(possible_reactions)
+				var/datum/decl/fusion_reaction/cur_reaction = pick(possible_reactions)
 				possible_reactions.Remove(cur_reaction)
 
 				//set the randmax to be the lower of the two involved reactants
@@ -539,7 +545,13 @@
 
 //Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
 /obj/effect/fusion_em_field/proc/radiation_scale()
-	SSradiation.radiate(src, 2 + plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = (URANIUM_IRRADIATION_CHANCE + (plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)),
+		strength = energy * 0.01 //Might need to be increased.
+	)
 
 //Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.
 /obj/effect/fusion_em_field/proc/temp_dump()

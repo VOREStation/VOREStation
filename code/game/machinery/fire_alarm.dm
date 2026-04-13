@@ -7,8 +7,9 @@ FIRE ALARM
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire"
 	layer = ABOVE_WINDOW_LAYER
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = WALL_ITEM
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
@@ -147,7 +148,6 @@ FIRE ALARM
 			time = 0
 			timing = 0
 			STOP_PROCESSING(SSobj, src)
-		updateDialog()
 	last_process = world.timeofday
 
 	if(detecting && (locate(/obj/fire) in loc))
@@ -176,7 +176,7 @@ FIRE ALARM
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
-		fire_alarm.clearAlarm(src.loc, FA)
+		GLOB.fire_alarm.clearAlarm(src.loc, FA)
 	update_icon()
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
@@ -186,7 +186,7 @@ FIRE ALARM
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
-		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
+		GLOB.fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 	update_icon()
 	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 	if(user)
@@ -207,7 +207,7 @@ Just a object used in constructing fire alarms
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 */
 /obj/machinery/partyalarm
 	name = "\improper PARTY BUTTON"

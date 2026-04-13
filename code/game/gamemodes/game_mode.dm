@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(href_list["debug_antag"] == "self")
 			usr.client.debug_variables(src)
 			return
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["debug_antag"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["debug_antag"]]
 		if(antag)
 			usr.client.debug_variables(antag)
 			message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
@@ -93,28 +93,23 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(antag_tags && (href_list["remove_antag_type"] in antag_tags))
 			to_chat(usr, "Cannot remove core mode antag type.")
 			return
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["remove_antag_type"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["remove_antag_type"]]
 		if(antag_templates && antag_templates.len && antag && (antag in antag_templates) && (antag.id in GLOB.additional_antag_types))
 			antag_templates -= antag
 			GLOB.additional_antag_types -= antag.id
 			message_admins("Admin [key_name_admin(usr)] removed [antag.role_text] template from game mode.")
 	else if(href_list["add_antag_type"])
-		var/choice = tgui_input_list(usr, "Which type do you wish to add?", "Select Antag Type", GLOB.all_antag_types)
+		var/choice = tgui_input_list(usr, "Which type do you wish to add?", "Select Antag Type", SSantag_job.all_antag_types)
 		if(!choice)
 			return
-		var/datum/antagonist/antag = GLOB.all_antag_types[choice]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[choice]
 		if(antag)
 			if(!islist(SSticker.mode.antag_templates))
 				SSticker.mode.antag_templates = list()
 			SSticker.mode.antag_templates |= antag
 			message_admins("Admin [key_name_admin(usr)] added [antag.role_text] template to game mode.")
 
-	// I am very sure there's a better way to do this, but I'm not sure what it might be. ~Z
-	spawn(1)
-		for(var/datum/admins/admin in world)
-			if(usr.client == admin.owner)
-				admin.show_game_mode(usr)
-				return
+	SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_game_mode)
 
 /datum/game_mode/proc/announce() //to be called when round starts
 	to_chat(world, span_world("The current game mode is [capitalize(name)]!"))
@@ -160,7 +155,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	var/enemy_count = 0
 	if(antag_tags && antag_tags.len)
 		for(var/antag_tag in antag_tags)
-			var/datum/antagonist/antag = GLOB.all_antag_types[antag_tag]
+			var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_tag]
 			if(!antag)
 				continue
 			var/list/potential = list()
@@ -214,8 +209,8 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(antag.is_latejoin_template())
 			latejoin_templates |= antag
 
-	if(emergency_shuttle && auto_recall_shuttle)
-		emergency_shuttle.auto_recall = 1
+	if(SSemergency_shuttle && auto_recall_shuttle)
+		SSemergency_shuttle.auto_recall = TRUE
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore, SetRoundStart))
@@ -264,17 +259,17 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		"radical Skrellian transevolutionaries",
 		"classified security operations"
 		)
-	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
+	GLOB.command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
-	if(emergency_shuttle.returned() || station_was_nuked)
+	if(SSemergency_shuttle.returned() || station_was_nuked)
 		return 1
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
 			if(!antag.antags_are_dead())
 				return 0
 		if(CONFIG_GET(flag/continuous_rounds))
-			emergency_shuttle.auto_recall = 0
+			SSemergency_shuttle.auto_recall = FALSE
 			return 0
 		return 1
 	return 0
@@ -344,7 +339,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	var/text = ""
 	if(surviving_total > 0)
 		text += "<br>There [surviving_total>1 ? ("were " + span_bold("[surviving_total] survivors")) : ("was " + span_bold("one survivor"))] ("
-		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]") + ") and " + span_bold("[ghosts] ghosts")
+		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [SSemergency_shuttle.evac ? "escaped" : "transferred"]") + ") and " + span_bold("[ghosts] ghosts")
 		text += ".<br>"
 	else
 		text += "There were " + span_bold("no survivors") + " (" + span_bold("[ghosts] ghosts") + ")."
@@ -380,7 +375,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	var/list/players = list()
 	var/list/candidates = list()
 
-	var/datum/antagonist/antag_template = GLOB.all_antag_types[antag_id]
+	var/datum/antagonist/antag_template = SSantag_job.all_antag_types[antag_id]
 	if(!antag_template)
 		return candidates
 
@@ -442,7 +437,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	if(antag_tags && antag_tags.len)
 		antag_templates = list()
 		for(var/antag_tag in antag_tags)
-			var/datum/antagonist/antag = GLOB.all_antag_types[antag_tag]
+			var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_tag]
 			if(antag)
 				antag_templates |= antag
 
@@ -450,7 +445,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(!antag_templates)
 			antag_templates = list()
 		for(var/antag_type in GLOB.additional_antag_types)
-			var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+			var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 			if(antag)
 				antag_templates |= antag
 

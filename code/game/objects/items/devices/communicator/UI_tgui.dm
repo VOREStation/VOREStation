@@ -9,6 +9,15 @@
 	var/atom/movable/screen/background/cam_background
 	var/atom/movable/screen/skybox/local_skybox
 
+/obj/item/communicator/Destroy()
+	if(cam_screen)
+		QDEL_NULL(cam_screen)
+	QDEL_LIST_NULL(cam_plane_masters)
+	if(cam_background)
+		QDEL_NULL(cam_background)
+	local_skybox = null
+	. = ..()
+
 // Proc: setup_tgui_camera()
 // Parameters: None
 // Description: This sets up all of the variables above to handle in-UI map windows.
@@ -155,7 +164,7 @@
 	for(var/mob/observer/dead/O in known_devices)
 		if(O.client && O.client.prefs.communicator_visibility == 1 && O.exonet)
 			communicators.Add(list(list(
-				"name" = sanitize("[O.client.prefs.real_name]'s communicator"),
+				"name" = sanitize("[O.client.prefs.read_preference(/datum/preference/name/real_name)]'s communicator"),
 				"address" = O.exonet.address,
 				"ref" = "\ref[O]"
 			)))
@@ -173,7 +182,7 @@
 	for(var/mob/observer/dead/O in voice_invites)
 		if(O.exonet && O.client)
 			invites.Add(list(list(
-				"name" = sanitize("[O.client.prefs.real_name]'s communicator"),
+				"name" = sanitize("[O.client.prefs.read_preference(/datum/preference/name/real_name)]'s communicator"),
 				"address" = O.exonet.address,
 				"ref" = "\ref[O]"
 			)))
@@ -191,7 +200,7 @@
 	for(var/mob/observer/dead/O in voice_requests)
 		if(O.exonet && O.client)
 			requests.Add(list(list(
-				"name" = sanitize("[O.client.prefs.real_name]'s communicator"),
+				"name" = sanitize("[O.client.prefs.read_preference(/datum/preference/name/real_name)]'s communicator"),
 				"address" = O.exonet.address,
 				"ref" = "\ref[O]"
 			)))

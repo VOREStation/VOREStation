@@ -188,8 +188,8 @@
 	return TRUE // yup
 
 /mob/living/simple_mob/protean_blob/get_available_emotes()
-	var/list/fulllist = global._robot_default_emotes.Copy()
-	fulllist |= global._human_default_emotes //they're living nanites, they can make whatever sounds they want
+	var/list/fulllist = GLOB.robot_default_emotes.Copy()
+	fulllist |= GLOB.human_default_emotes //they're living nanites, they can make whatever sounds they want
 	return fulllist
 
 /mob/living/simple_mob/protean_blob/update_misc_tabs()
@@ -304,14 +304,6 @@
 /mob/living/simple_mob/protean_blob/ex_act(severity)
 	if(humanform)
 		return humanform.ex_act(severity)
-	else
-		return ..()
-
-/mob/living/simple_mob/protean_blob/rad_act(severity)
-	if(istype(loc, /obj/item/rig))
-		return	//Don't irradiate us while we're in rig mode
-	if(humanform)
-		return humanform.rad_act(severity)
 	else
 		return ..()
 

@@ -74,14 +74,14 @@
 /obj/item/radio/LateInitialize()
 	if(bs_tx_preload_id)
 		//Try to find a receiver
-		for(var/obj/machinery/telecomms/receiver/RX in telecomms_list)
+		for(var/obj/machinery/telecomms/receiver/RX in GLOB.telecomms_list)
 			if(RX.id == bs_tx_preload_id) //Again, bs_tx is the thing to TRANSMIT TO, so a receiver.
 				bs_tx_weakref = WEAKREF(RX)
 				RX.link_radio(src)
 				break
 		//Hmm, howabout an AIO machine
 		if(!bs_tx_weakref)
-			for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
+			for(var/obj/machinery/telecomms/allinone/AIO in GLOB.telecomms_list)
 				if(AIO.id == bs_tx_preload_id)
 					bs_tx_weakref = WEAKREF(AIO)
 					AIO.link_radio(src)
@@ -92,14 +92,14 @@
 	if(bs_rx_preload_id)
 		var/found = 0
 		//Try to find a transmitter
-		for(var/obj/machinery/telecomms/broadcaster/TX in telecomms_list)
+		for(var/obj/machinery/telecomms/broadcaster/TX in GLOB.telecomms_list)
 			if(TX.id == bs_rx_preload_id) //Again, bs_rx is the thing to RECEIVE FROM, so a transmitter.
 				TX.link_radio(src)
 				found = 1
 				break
 		//Hmm, howabout an AIO machine
 		if(!found)
-			for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
+			for(var/obj/machinery/telecomms/allinone/AIO in GLOB.telecomms_list)
 				if(AIO.id == bs_rx_preload_id)
 					AIO.link_radio(src)
 					found = 1
@@ -143,6 +143,12 @@
 		ui = new(user, src, "Radio", name, parent_ui)
 		ui.open()
 
+/obj/item/radio/tgui_static_data(mob/user)
+	. = ..()
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robot_owner = loc
+		.["theme"] = robot_owner.get_ui_theme()
+
 /obj/item/radio/tgui_data(mob/user)
 	var/data = list()
 
@@ -163,9 +169,9 @@
 		data["chan_list"] = null
 
 	if(syndie)
-		data["useSyndMode"] = 1
+		data["useSyndMode"] = TRUE
 	else
-		data["useSyndMode"] = 0
+		data["useSyndMode"] = FALSE
 
 
 	data["minFrequency"] = PUBLIC_LOW_FREQ
@@ -292,7 +298,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
-	if(channel && channels && channels.len > 0)
+	if(channel && channels && LAZYLEN(channels))
 		if(channel == "department")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
@@ -319,7 +325,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		return radio_connection
 
 	// Otherwise, if a channel is specified, look for it.
-	if(channels && channels.len > 0)
+	if(channels && LAZYLEN(channels))
 		if (message_mode == "department") // Department radio shortcut
 			message_mode = channels[1]
 
@@ -490,11 +496,11 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 
 		//#### Sending the signal to all subspace receivers ####//
-		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+		for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
 		// Allinone can act as receivers.
-		for(var/obj/machinery/telecomms/allinone/R in telecomms_list)
+		for(var/obj/machinery/telecomms/allinone/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
 		// Receiving code can be located in Telecommunications.dm
@@ -518,14 +524,14 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 		signal.data["compression"] = 0
 
-		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+		for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
 		// Allinone can act as receivers.
-		for(var/obj/machinery/telecomms/allinone/R in telecomms_list)
+		for(var/obj/machinery/telecomms/allinone/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
-	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+	for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 		R.receive_signal(signal)
 
 		if(signal.data["done"] && (pos_z in signal.data["level"]))
@@ -608,7 +614,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 			user.show_message(span_notice("\The [src] can now be attached and modified!"))
 		else
 			user.show_message(span_notice("\The [src] can no longer be modified or attached!"))
-		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)
 		return
@@ -795,8 +800,8 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 				continue
 	broadcast_tiles = output
 
-/obj/item/radio/intercom/forceMove(atom/destination)
-	. = ..()
+/obj/item/radio/intercom/forceMove(atom/destination, direction, movetime)
+	. = ..(destination, direction, movetime)
 	update_broadcast_tiles()
 
 /obj/item/radio/intercom/Initialize(mapload)

@@ -76,6 +76,7 @@
 	power_channel = ENVIRON
 	density = FALSE
 	unacidable = TRUE
+	flags = WALL_ITEM
 
 	var/id_tag
 	//var/radio_power_use = 50 //power used to xmit signals

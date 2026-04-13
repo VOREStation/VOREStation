@@ -53,9 +53,9 @@ GLOBAL_VAR_INIT(narsie_cometh, 0)
 		GLOB.narsie_cometh = 1
 
 		spawn(10 SECONDS)
-			if(emergency_shuttle)
-				emergency_shuttle.call_evac()
-				emergency_shuttle.launch_time = 0	// Cannot recall
+			if(SSemergency_shuttle)
+				SSemergency_shuttle.call_evac()
+				SSemergency_shuttle.launch_time = 0	// Cannot recall
 
 /obj/singularity/narsie/process()
 	eat()

@@ -7,13 +7,6 @@
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == 0)
 
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-	block( \
-		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-	)
-
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
 	return max(low,min(high,num))
@@ -1106,49 +1099,34 @@ GLOBAL_LIST_INIT(common_tools, list(
 /proc/reverse_direction(dir)
 	return GLOB.reverse_dir[dir]
 
-/*
-Checks if that loc and dir has a item on the wall
-TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana
-*/
-var/list/WALLITEMS = list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom, /obj/structure/frame,
-	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
-	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/structure/sign,
-	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/button/remote,
-	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio,
-	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
-	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
-	)
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
-			if(istype(O, item))
-				//Direction works sometimes
-				if(O.dir == dir)
-					return 1
+		if(O.flags & WALL_ITEM)
+			//Direction works sometimes
+			if(O.dir == dir)
+				return 1
 
-				//Some stuff doesn't use dir properly, so we need to check pixel instead
-				switch(dir)
-					if(SOUTH)
-						if(O.pixel_y > 10)
-							return 1
-					if(NORTH)
-						if(O.pixel_y < -10)
-							return 1
-					if(WEST)
-						if(O.pixel_x > 10)
-							return 1
-					if(EAST)
-						if(O.pixel_x < -10)
-							return 1
+			//Some stuff doesn't use dir properly, so we need to check pixel instead
+			switch(dir)
+				if(SOUTH)
+					if(O.pixel_y > 10)
+						return 1
+				if(NORTH)
+					if(O.pixel_y < -10)
+						return 1
+				if(WEST)
+					if(O.pixel_x > 10)
+						return 1
+				if(EAST)
+					if(O.pixel_x < -10)
+						return 1
 
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
-			if(istype(O, item))
-				if(O.pixel_x == 0 && O.pixel_y == 0)
-					return 1
+		if(O.flags & WALL_ITEM)
+			if(O.pixel_x == 0 && O.pixel_y == 0)
+				return 1
 	return 0
 
 /proc/topic_link(var/datum/D, var/arglist, var/content)
@@ -1594,47 +1572,45 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
  * * [target_object][atom] - the target object who's custom materials we are trying to modify
  */
 /proc/split_materials_uniformly(list/custom_materials, multiplier, obj/item/target_object)
-	target_object.set_custom_materials(custom_materials)
+	if(!length(target_object.contents)) //most common case where the object is just 1 thing
+		target_object.set_custom_materials(custom_materials, multiplier)
+		return
 
-	// if(!length(target_object.contents)) //most common case where the object is just 1 thing
-	// 	target_object.set_custom_materials(custom_materials, multiplier)
-	// 	return
+	//Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
+	var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
 
-	// //Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
-	// var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
+	//Step 2: find the sum of each material type per object and record their amounts into an 2D list
+	var/list/material_map_sum = list()
+	var/list/material_map_amounts = list()
+	for(var/obj/item/object as anything in reccursive_contents)
+		var/list/item_materials = object.matter
+		for(var/mat as anything in custom_materials)
+			var/mat_amount = 1 //no materials mean we assign this default amount
+			if(length(item_materials))
+				mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
 
-	// //Step 2: find the sum of each material type per object and record their amounts into an 2D list
-	// var/list/material_map_sum = list()
-	// var/list/material_map_amounts = list()
-	// for(var/obj/object as anything in reccursive_contents)
-	// 	var/list/item_materials = object.matter
-	// 	for(var/mat as anything in custom_materials)
-	// 		var/mat_amount = 1 //no materials mean we assign this default amount
-	// 		if(length(item_materials))
-	// 			mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
+			//record the sum of mats for normalizing
+			material_map_sum[mat] += mat_amount
+			//record the material amount for each item into an 2D list
+			var/list/mat_list_per_item = material_map_amounts[mat]
+			if(isnull(mat_list_per_item))
+				material_map_amounts[mat] = list(mat_amount)
+			else
+				mat_list_per_item += mat_amount
 
-	// 		//record the sum of mats for normalizing
-	// 		material_map_sum[mat] += mat_amount
-	// 		//record the material amount for each item into an 2D list
-	// 		var/list/mat_list_per_item = material_map_amounts[mat]
-	// 		if(isnull(mat_list_per_item))
-	// 			material_map_amounts[mat] = list(mat_amount)
-	// 		else
-	// 			mat_list_per_item += mat_amount
+	//Step 3: normalize & scale material_map_amounts with material_map_sum
+	for(var/mat as anything in material_map_amounts)
+		var/mat_sum = material_map_sum[mat]
+		var/list/mat_per_item = material_map_amounts[mat]
+		for(var/i in 1 to mat_per_item.len)
+			mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
 
-	// //Step 3: normalize & scale material_map_amounts with material_map_sum
-	// for(var/mat as anything in material_map_amounts)
-	// 	var/mat_sum = material_map_sum[mat]
-	// 	var/list/mat_per_item = material_map_amounts[mat]
-	// 	for(var/i in 1 to mat_per_item.len)
-	// 		mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
-
-	// //Step 4 flatten the 2D list and assign the final values to each atom
-	// var/index = 1
-	// for(var/obj/object as anything in reccursive_contents)
-	// 	var/list/final_material_list = list()
-	// 	for(var/mat as anything in material_map_amounts)
-	// 		var/list/mat_per_item = material_map_amounts[mat]
-	// 		final_material_list[mat] = mat_per_item[index]
-	// 	object.set_custom_materials(final_material_list, multiplier)
-		// index += 1
+	//Step 4 flatten the 2D list and assign the final values to each atom
+	var/index = 1
+	for(var/obj/item/object as anything in reccursive_contents)
+		var/list/final_material_list = list()
+		for(var/mat as anything in material_map_amounts)
+			var/list/mat_per_item = material_map_amounts[mat]
+			final_material_list[mat] = mat_per_item[index]
+		object.set_custom_materials(final_material_list, multiplier)
+		index += 1

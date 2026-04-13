@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(processing)
 			processing |= D
 
 /datum/controller/subsystem/processing/stat_entry(msg)
-	msg = "[stat_tag]:[processing.len]"
+	msg = "[stat_tag]:[length(processing)]"
 	return ..()
 
 /datum/controller/subsystem/processing/fire(resumed = 0)
@@ -34,8 +34,8 @@ SUBSYSTEM_DEF(processing)
 	//cache for sanic speed (lists are references anyways)
 	var/list/current_run = currentrun
 
-	while(current_run.len)
-		current_thing = current_run[current_run.len]
+	while(length(current_run))
+		current_thing = current_run[length(current_run)]
 		current_run.len--
 		if(QDELETED(current_thing))
 			processing -= current_thing
@@ -68,25 +68,25 @@ SUBSYSTEM_DEF(processing)
 		msg += "ERROR: A critical list [currentrun ? "processing" : "currentrun"] is gone!"
 		log_world(msg)
 		return
-	msg += "Lists: current_run: [currentrun.len], processing: [processing.len]\n"
+	msg += "Lists: current_run: [length(currentrun)], processing: [length(processing)]\n"
 
-	if(!currentrun.len)
+	if(!length(currentrun))
 		msg += "!!The subsystem just finished the processing list, and currentrun is empty (or has never run).\n"
 		msg += "!!The info below is the tail of processing instead of currentrun.\n"
 
-	var/datum/D = currentrun.len ? currentrun[currentrun.len] : processing[processing.len]
+	var/datum/D = length(currentrun) ? currentrun[length(currentrun)] : processing[length(processing)]
 	msg += "Tail entry: [describeThis(D)] (this is likely the item AFTER the problem item)\n"
 
 	var/position = processing.Find(D)
 	if(!position)
 		msg += "Unable to find context of tail entry in processing list.\n"
 	else
-		if(position != processing.len)
+		if(position != length(processing))
 			var/additional = processing.Find(D, position+1)
 			if(additional)
 				msg += "WARNING: Tail entry found more than once in processing list! Context is for the first found.\n"
-		var/start = clamp(position-2,1,processing.len)
-		var/end = clamp(position+2,1,processing.len)
+		var/start = clamp(position-2,1,length(processing))
+		var/end = clamp(position+2,1,length(processing))
 		msg += "2 previous elements, then tail, then 2 next elements of processing list for context:\n"
 		msg += "---\n"
 		for(var/i in start to end)

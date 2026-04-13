@@ -47,5 +47,5 @@
 
 //Non TG signals:
 #define COMSIG_REAGENTS_CRAFTING_PING "reagents_crafting_ping"
-///from base of /datum/reagents/proc/handle_reactions(): (list/decl/chemical_reaction)
+///from base of /datum/reagents/proc/handle_reactions(): (list/datum/decl/chemical_reaction)
 #define COMSIG_REAGENTS_HOLDER_REACTED "reagents_holder_reacted"

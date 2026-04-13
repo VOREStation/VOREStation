@@ -106,3 +106,23 @@
 	set_trait(TRAIT_IDEAL_LIGHT, 1)
 	set_trait(TRAIT_PLANT_COLOUR,"#5e0303")
 	set_trait(TRAIT_CARNIVOROUS,1)
+
+/datum/seed/flower/mustard
+	name = PLANT_MUSTARD
+	seed_name = PLANT_MUSTARD
+	display_name = PLANT_MUSTARD
+	kitchen_tag = PLANT_MUSTARD
+	chems = list(REAGENT_ID_MUSTARDPODS = list(1,10))
+
+/datum/seed/flower/mustard/New()
+	..()
+	set_trait(TRAIT_POTENCY,20)
+	set_trait(TRAIT_MATURATION,7)
+	set_trait(TRAIT_PRODUCTION,5)
+	set_trait(TRAIT_YIELD,6)
+	set_trait(TRAIT_PRODUCT_ICON,"flower3")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#EBC934")
+	set_trait(TRAIT_PLANT_ICON,"flower3")
+	set_trait(TRAIT_IDEAL_LIGHT, 6)
+	set_trait(TRAIT_WATER_CONSUMPTION, 0.5)
+	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)

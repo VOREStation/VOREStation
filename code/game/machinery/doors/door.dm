@@ -131,8 +131,8 @@
 		M.last_bumped = world.time
 		if(M.restrained() && !check_access(null))
 			return
-		else if(istype(M, /mob/living/simple_mob/animal/passive/mouse) && !(M.ckey))	//VOREStation Edit: Make wild mice
-			return																		//VOREStation Edit: unable to open doors
+		else if(HAS_TRAIT(M, TRAIT_AMBIENT_PEST_MOB) && !(M.ckey))
+			return
 		else
 			bumpopen(M)
 		return
@@ -184,7 +184,7 @@
 		return
 	if(operating)
 		return
-	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
+	if(user.last_airflow > world.time - GLOB.vsc.airflow_delay) //Fakkit
 		return
 	if(SEND_SIGNAL(user, COMSIG_MOB_BUMPED_DOOR_OPEN, src) & DOOR_STOP_BUMP)
 		return
@@ -448,7 +448,6 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
-	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
 

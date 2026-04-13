@@ -1,11 +1,11 @@
-/decl/hierarchy/outfit/job/cargo
-	hierarchy_type = /decl/hierarchy/outfit/job/cargo
+/datum/decl/hierarchy/outfit/job/cargo
+	hierarchy_type = /datum/decl/hierarchy/outfit/job/cargo
 
 	headset = /obj/item/radio/headset/cargo
 	headset_alt = /obj/item/radio/headset/alt/cargo
 	headset_earbud = /obj/item/radio/headset/earbud/cargo
 
-/decl/hierarchy/outfit/job/cargo/qm
+/datum/decl/hierarchy/outfit/job/cargo/qm
 	name = OUTFIT_JOB_NAME("Cargo")
 	uniform = /obj/item/clothing/under/rank/cargo
 	shoes = /obj/item/clothing/shoes/brown
@@ -18,13 +18,13 @@
 	headset_alt = /obj/item/radio/headset/alt/qm
 	headset_earbud = /obj/item/radio/headset/earbud/qm
 
-/decl/hierarchy/outfit/job/cargo/cargo_tech
+/datum/decl/hierarchy/outfit/job/cargo/cargo_tech
 	name = OUTFIT_JOB_NAME("Cargo technician")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	id_type = /obj/item/card/id/cargo
 	pda_type = /obj/item/pda/cargo
 
-/decl/hierarchy/outfit/job/cargo/mining
+/datum/decl/hierarchy/outfit/job/cargo/mining
 	name = OUTFIT_JOB_NAME("Shaft miner")
 	uniform = /obj/item/clothing/under/rank/miner
 	backpack = /obj/item/storage/backpack/industrial
@@ -38,7 +38,7 @@
 	headset_alt = /obj/item/radio/headset/miner
 	headset_earbud = /obj/item/radio/headset/miner
 
-/decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
+/datum/decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
 	name = OUTFIT_JOB_NAME(JOB_ALT_MAILMAN)
 	uniform = /obj/item/clothing/under/rank/mailman2
 	head = /obj/item/clothing/head/mailman2

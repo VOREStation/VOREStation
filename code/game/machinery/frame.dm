@@ -41,12 +41,12 @@ GLOBAL_LIST(construction_frame_floor)
 
 /datum/frame/frame_types/computer
 	name = "Computer"
-	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_COMPUTER
 
 /datum/frame/frame_types/machine
 	name = "Machine"
-	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/conveyor
@@ -115,6 +115,7 @@ GLOBAL_LIST(construction_frame_floor)
 /datum/frame/frame_types/reagent_distillery
 	name = "Distillery"
 	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/circuitboard/distiller
 	frame_size = 4
 
 /datum/frame/frame_types/display
@@ -213,7 +214,7 @@ GLOBAL_LIST(construction_frame_floor)
 /datum/frame/frame_types/injector_maker
 	name = "Ready-to-Use Medicine 3000"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/machinery/atmospheric_field_generator
+	circuit = /obj/item/circuitboard/injector_maker
 	frame_size = 3
 
 // Refinery machines
@@ -281,6 +282,7 @@ GLOBAL_LIST(construction_frame_floor)
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
+	flags = WALL_ITEM
 	var/state = FRAME_PLACED
 	var/obj/item/circuitboard/circuit = null
 	var/need_circuit = TRUE

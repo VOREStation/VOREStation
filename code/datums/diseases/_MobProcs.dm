@@ -220,20 +220,13 @@
 				danger = disease.danger
 	return danger
 
-/client/proc/ReleaseVirus()
-	set category = "Fun.Event Kit"
-	set name = "Release Virus"
-	set desc = "Release a pre-set virus."
-
-	if(!check_rights(R_FUN|R_EVENT))
-		return FALSE
-
-	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
+ADMIN_VERB(ReleaseVirus, R_SPAWN|R_EVENT, "Release Virus", "Release a pre-set virus.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/disease = tgui_input_list(user, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
 
 	if(isnull(disease))
 		return FALSE
 
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", "Characters", GLOB.human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(user, "Choose infectee", "Characters", GLOB.human_mob_list)
 
 	if(isnull(H))
 		return FALSE
@@ -243,10 +236,8 @@
 	if(!H.HasDisease(D))
 		H.ForceContractDisease(D)
 
-		message_admins("[key_name_admin(usr)] has triggered a virus outbreak of [D.name]! Affected mob: [key_name_admin(H)]")
-		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]")
+		message_admins("[key_name_admin(user)] has triggered a virus outbreak of [D.name]! Affected mob: [key_name_admin(H)]")
+		log_admin("[key_name_admin(user)] infected [key_name_admin(H)] with [D.name]")
 
 		if(!GLOB.archive_diseases[D.GetDiseaseID()])
 			GLOB.archive_diseases[D.GetDiseaseID()] = D
-
-		return TRUE

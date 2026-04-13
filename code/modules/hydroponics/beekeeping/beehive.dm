@@ -185,6 +185,12 @@
 	RefreshParts()
 	update_icon()
 
+/obj/machinery/honey_extractor/examine(mob/user)
+	. = ..()
+
+	if(Adjacent(user))
+		. += "It has [honey] units of honey in its storage tank."
+
 /obj/machinery/honey_extractor/power_change()
 	. = ..()
 	var/delay = rand(0,15)
@@ -314,7 +320,7 @@
 
 /obj/item/stack/material/wax/Initialize(mapload)
 	. = ..()
-	recipes = wax_recipes
+	recipes = GLOB.wax_recipes
 
 /datum/material/wax
 	name = MAT_WAX

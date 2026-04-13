@@ -60,6 +60,9 @@
 	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
 	var/list/image/update_on_z
 
+	/// Radiation insulation types
+	var/rad_insulation = RAD_NO_INSULATION
+
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
@@ -640,7 +643,6 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 	// Basically "if has washable coloration"
 	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
 		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-		return TRUE
 
 	forensic_data?.wash(clean_types)
 	blood_color = null

@@ -1,10 +1,11 @@
 export type Data = {
   possible_modules: string[];
+  whitelisted_modules: string[];
   mind_name: string;
   possible_sprites?: spriteOption[];
   currentName: string;
   isDefaultName: boolean;
-  theme: string | null;
+  theme: string;
   selected_module?: string;
   sprite_datum?: string | null;
   sprite_datum_class?: string | null;

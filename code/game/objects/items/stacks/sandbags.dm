@@ -34,7 +34,7 @@
 
 /obj/item/stack/sandbags/Initialize(mapload, var/amt, var/bag_mat)
 	. = ..(mapload, amt)
-	recipes = sandbag_recipes
+	recipes = GLOB.sandbag_recipes
 	update_icon()
 	if(bag_mat)
 		bag_material = bag_mat

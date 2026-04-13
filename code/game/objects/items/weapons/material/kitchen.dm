@@ -90,7 +90,7 @@
 
 	if(user.a_intent != I_HELP)
 		if(user.zone_sel.selecting == BP_HEAD || user.zone_sel.selecting == O_EYES)
-			if((CLUMSY in user.mutations) && prob(50))
+			if(CLUMSY_HARM_CHANCE(user))
 				M = user
 			return eyestab(M,user)
 		else
@@ -186,7 +186,7 @@
 
 /* From the time of Clowns. Commented out for posterity, and sanity.
 /obj/item/material/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_HARM_CHANCE(user))
 		to_chat(user, span_warning("You accidentally cut yourself with \the [src]."))
 		user.take_organ_damage(20)
 		return
@@ -212,7 +212,7 @@
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
 /obj/item/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if (CLUMSY_HARM_CHANCE(user))
 		to_chat(user, span_warning("\The [src] slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(2)

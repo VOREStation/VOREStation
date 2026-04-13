@@ -25,6 +25,7 @@
 	req_access = list(ACCESS_BRIG)
 	anchored = TRUE    		// can't pick it up
 	density = FALSE       		// can walk through it.
+	flags = WALL_ITEM
 	var/id = null     		// id of door it controls.
 	var/activation_time = 0
 	var/timer_duration = 0

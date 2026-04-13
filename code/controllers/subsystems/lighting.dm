@@ -164,12 +164,12 @@ SUBSYSTEM_DEF(lighting)
 //Wrapper for the list, because these type of lists are just awful to work with
 //Also takes care of initialization order issues
 /datum/controller/subsystem/lighting/proc/get_pshandler_z(var/z)
-	if(z > z_to_pshandler.len)
+	if(z > length(z_to_pshandler))
 		z_to_pshandler.len = z
 	var/datum/planet_sunlight_handler/pshandler = z_to_pshandler[z]
 	if(istype(pshandler))
 		return pshandler
-	else if(SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z])
+	else if(SSplanets && length(SSplanets.z_to_planet) >= z && SSplanets.z_to_planet[z])
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(istype(P))
 			pshandler = get_pshandler_planet(P)

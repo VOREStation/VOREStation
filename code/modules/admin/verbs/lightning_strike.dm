@@ -1,20 +1,14 @@
-/client/proc/admin_lightning_strike()
-	set name = "Lightning Strike"
-	set desc = "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely."
-	set category = "Fun.Do Not"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/result = tgui_alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
+ADMIN_VERB(admin_lightning_strike, R_FUN, "Lightning Strike", "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely.", ADMIN_CATEGORY_FUN_DO_NOT)
+	var/result = tgui_alert(user, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
 
 	if(!result || result == "No")
 		return
 	var/fake_lightning = result == "Yes (Cosmetic)"
 
-	lightning_strike(get_turf(usr), fake_lightning)
-	log_and_message_admins("has caused [fake_lightning ? "cosmetic":"harmful"] lightning to strike at their position ([src.mob.x], [src.mob.y], [src.mob.z]). \
-	(<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[src.mob.x];Y=[src.mob.y];Z=[src.mob.z]'>JMP</a>)", src)
+	var/mob/user_mob = user.mob
+	lightning_strike(get_turf(user_mob), fake_lightning)
+	log_and_message_admins("has caused [fake_lightning ? "cosmetic":"harmful"] lightning to strike at their position ([user_mob.x], [user_mob.y], [user_mob.z]). \
+	(<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[user_mob.x];Y=[user_mob.y];Z=[user_mob.z]'>JMP</a>)", user)
 
 #define LIGHTNING_REDIRECT_RANGE 28 // How far in tiles certain things draw lightning from.
 #define LIGHTNING_ZAP_RANGE 1 // How far the tesla effect zaps, as well as the bad effects from a direct strike.
@@ -68,18 +62,22 @@
 			if(M.check_sound_preference(/datum/preference/toggle/weather_sounds))
 				M.playsound_local(get_turf(M), soundin = sound, vol = 70, vary = FALSE, is_global = TRUE)
 
+	// Prevent lightning on central command level from being simulated
+	if(T.z in using_map.admin_levels)
+		return
+
 	if(cosmetic) // Everything beyond here involves potentially damaging things. If we don't want to do that, stop now.
 		return
 
 	if(ground) // All is well.
-		ground.tesla_act(LIGHTNING_POWER, FALSE)
+		ground.tesla_act(LIGHTNING_POWER, FALSE, current_jumps = 1)
 		return
 
 	else if(coil) // Otherwise lets bounce off the tesla coil.
-		coil.tesla_act(LIGHTNING_POWER, TRUE)
+		coil.tesla_act(LIGHTNING_POWER, TRUE, current_jumps = 1)
 
 	else // Striking the turf directly.
-		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE)
+		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE, current_jumps = MAXIMUM_TESLA_JUMPS - 1) //This ensures it can only jump to the closest thing and that's it. No more jumps after that.
 
 	// Some extra effects.
 	// Some apply to those within zap range, others if they were a bit farther away.

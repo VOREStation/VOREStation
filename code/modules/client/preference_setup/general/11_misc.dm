@@ -154,6 +154,8 @@
 	data["auto_backup_implant"] = pref.auto_backup_implant
 	data["borg_petting"] = pref.borg_petting
 
+	data["ignore_shoes"] = pref.read_preference(/datum/preference/toggle/human/ignore_shoes)
+
 	data["resleeve_lock"] = pref.resleeve_lock
 	data["resleeve_scan"] = pref.resleeve_scan
 	data["mind_scan"] = pref.mind_scan
@@ -214,6 +216,9 @@
 		if("toggle_capture_crystal")
 			pref.capture_crystal = pref.capture_crystal ? 0 : 1;
 			return TOPIC_REFRESH
+		if("toggle_ignore_shoes")
+			pref.update_preference_by_type(/datum/preference/toggle/human/ignore_shoes, !pref.read_preference(/datum/preference/toggle/human/ignore_shoes))
+			return TOPIC_REFRESH
 		if("toggle_implant")
 			pref.auto_backup_implant = pref.auto_backup_implant ? 0 : 1;
 			return TOPIC_REFRESH
@@ -247,22 +252,26 @@
 				pref.vantag_preference = names_list[selection]
 			return TOPIC_REFRESH
 		if("custom_say")
-			var/say_choice = tgui_input_text(user, "This word or phrase will appear instead of 'says': [pref.real_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
+			var/say_choice = tgui_input_text(user, "This word or phrase will appear instead of 'says': [char_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12)
 			if(say_choice)
 				pref.custom_say = say_choice
 			return TOPIC_REFRESH
 		if("custom_whisper")
-			var/whisper_choice = tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [pref.real_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
+			var/whisper_choice = tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [char_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12)
 			if(whisper_choice)
 				pref.custom_whisper = whisper_choice
 			return TOPIC_REFRESH
 		if("custom_ask")
-			var/ask_choice = tgui_input_text(user, "This word or phrase will appear instead of 'asks': [pref.real_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
+			var/ask_choice = tgui_input_text(user, "This word or phrase will appear instead of 'asks': [char_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12)
 			if(ask_choice)
 				pref.custom_ask = ask_choice
 			return TOPIC_REFRESH
 		if("custom_exclaim")
-			var/exclaim_choice = tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [pref.real_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12)
+			var/char_name = pref.read_preference(/datum/preference/name/real_name)
+			var/exclaim_choice = tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [char_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12)
 			if(exclaim_choice)
 				pref.custom_exclaim = exclaim_choice
 			return TOPIC_REFRESH

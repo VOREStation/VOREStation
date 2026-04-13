@@ -483,6 +483,7 @@
 	scannable = SCANNABLE_ADVANCED
 	color = "#DB5008"
 	metabolism = REM * 2
+	dermal_absorption = 0
 	touch_met = 50 // It's acid!
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt

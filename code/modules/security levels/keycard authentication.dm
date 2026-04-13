@@ -5,6 +5,7 @@
 	icon_state = "auth_off"
 	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/circuitboard/keycard_auth
+	flags = WALL_ITEM
 	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
 	var/event = ""
 	var/screen = 1

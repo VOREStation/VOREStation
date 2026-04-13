@@ -62,7 +62,7 @@
 	// Borgos!
 	if(istype(O,/obj/item/gripper))
 		var/obj/item/gripper/B = O	//B, for Borg.
-		var/obj/item/wrapped = B.get_current_pocket()
+		var/obj/item/wrapped = B.get_wrapped_item()
 		if(!wrapped)
 			to_chat(user, "\The [B] is not holding anything.")
 			return FALSE

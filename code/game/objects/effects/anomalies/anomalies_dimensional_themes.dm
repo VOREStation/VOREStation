@@ -47,8 +47,8 @@
  * * skip_sound - If the sound shouldn't be played.
  * * show_effect - if the temp visual effect should be shown.
  */
-/datum/dimension_theme/proc/apply_theme(turf/affected_turf, skip_sound = FALSE, show_effect = FALSE)
-	if(!replace_turf(affected_turf))
+/datum/dimension_theme/proc/apply_theme(turf/affected_turf, skip_sound = FALSE, show_effect = FALSE, reinforced = FALSE)
+	if(!replace_turf(affected_turf, reinforced))
 		return
 	if(!skip_sound)
 		playsound(affected_turf, sound, 100, TRUE)
@@ -61,6 +61,8 @@
 		new random_spawn_picked(affected_turf)
 
 /datum/dimension_theme/proc/can_convert(var/turf/affected_turf)
+	if(istype(affected_turf, /turf/unsimulated))
+		return FALSE
 	if(isspace(affected_turf))
 		return FALSE
 	if(isfloorturf(affected_turf))
@@ -71,7 +73,7 @@
 		return TRUE
 	return FALSE
 
-/datum/dimension_theme/proc/replace_turf(turf/affected_turf)
+/datum/dimension_theme/proc/replace_turf(turf/affected_turf, reinforced = TRUE)
 	PROTECTED_PROC(TRUE)
 
 	if(isfloorturf(affected_turf))
@@ -82,7 +84,11 @@
 	if(!iswall(affected_turf))
 		return FALSE
 
-	affected_turf.ChangeTurf(replace_walls)
+	var/turf/simulated/wall/thewall = affected_turf
+	if(thewall.reinf_material && !reinforced)
+		return FALSE
+
+	thewall.ChangeTurf(replace_walls)
 	return TRUE
 
 /**

@@ -7,13 +7,14 @@ import { SelectorElement } from './SelectorElement';
 export const ModuleSection = (props: {
   title: string;
   sortable?: string[];
+  highlighted?: string[];
   selected?: string;
 }) => {
-  const { title, sortable, selected } = props;
+  const { title, sortable, highlighted, selected } = props;
 
   const [searchText, setSearchText] = useState<string>('');
 
-  const searcher = createSearch(searchText, (element: string) => {
+  const searcher = createSearch<string>(searchText, (element) => {
     return element;
   });
 
@@ -39,6 +40,13 @@ export const ModuleSection = (props: {
                   <SelectorElement
                     key={filter}
                     option={filter}
+                    icon={
+                      highlighted?.includes(filter)
+                        ? 'circle-exclamation'
+                        : undefined
+                    }
+                    iconTooltip={'Module is whitelisted!'}
+                    iconColor="red"
                     action="pick_module"
                     selected={selected}
                   />

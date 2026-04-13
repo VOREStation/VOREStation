@@ -1,17 +1,4 @@
 
-///Example of a destructive experiment.
-/datum/experiment/scanning/random/artifact_destruction
-	name = "Artifact Analysis"
-	description = "Destroy some artifacts"
-	possible_types = list(/obj/item/research_sample/common)
-	total_requirement = 3
-	traits = EXPERIMENT_TRAIT_DESTRUCTIVE
-	exp_tag = "Physical Experiment"
-
-/datum/experiment/scanning/random/artifact_destruction/serialize_progress_stage(atom/target, list/seen_instances)
-	return EXPERIMENT_PROG_INT("Destroy artifacts.", \
-		traits & EXPERIMENT_TRAIT_DESTRUCTIVE ? scanned[target] : seen_instances.len, required_atoms[target])
-
 /datum/experiment/scanning/random/janitor_trash
 	name = "Station Hygiene Inspection"
 	description = "To learn how to clean, we must first learn what it is to have filth. We need you to scan some filth around the station."
@@ -99,4 +86,20 @@
 		/obj/item/clothing/suit/space/anomaly/heat = 1,
 		/obj/item/clothing/suit/bomb_suit = 1,
 		/obj/item/clothing/suit/bio_suit = 1,
+	)
+
+/datum/experiment/scanning/points/anomaly
+	name = "Anomaly Research Scans"
+	description = "Anomalies. What are they? Where do they come from? Why are they here? Get close and personal with some of them, and observe their strange nature."
+	required_points = 4
+	required_atoms = list(
+		/obj/effect/anomaly/bioscrambler = 1,
+		/obj/effect/anomaly/bluespace = 1,
+		/obj/effect/anomaly/dimensional = 1,
+		/obj/effect/anomaly/dust = 1,
+		/obj/effect/anomaly/flux = 1,
+		/obj/effect/anomaly/grav = 1,
+		/obj/effect/anomaly/hallucination = 1,
+		/obj/effect/anomaly/pyro = 1,
+		/obj/effect/anomaly/weather = 1,
 	)

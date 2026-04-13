@@ -3,7 +3,8 @@
 		return
 
 	// Are we cool with this prey spawning in at all?
-	var/answer = tgui_alert(src, "[potential_prey.prefs.real_name] wants to spawn in one of your bellies. Do you accept?", "Inbelly Spawning", list("Yes", "No"))
+	var/prey_name = potential_prey.prefs.read_preference(/datum/preference/name/real_name)
+	var/answer = tgui_alert(src, "[prey_name] wants to spawn in one of your bellies. Do you accept?", "Inbelly Spawning", list("Yes", "No"))
 	if(answer != "Yes")
 		to_chat(potential_prey, span_notice("Your request was turned down."))
 		return
@@ -40,7 +41,7 @@
 		return
 
 	// Final confirmation for pred
-	var/confirmation_pred = tgui_alert(src, "Are you certain that you want [potential_prey.prefs.real_name] spawned in your [belly_choice][absorbed ? ", absorbed" : ""]?", "Inbelly Spawning", list("Yes", "No"))
+	var/confirmation_pred = tgui_alert(src, "Are you certain that you want [prey_name] spawned in your [belly_choice][absorbed ? ", absorbed" : ""]?", "Inbelly Spawning", list("Yes", "No"))
 
 	if(confirmation_pred != "Yes")
 		to_chat(potential_prey, span_notice("Your pred couldn't finish selection. Try again?"))
@@ -54,7 +55,7 @@
 
 	if(confirmation_prey == "Yes" && potential_prey && src && belly_choice)
 		//Now we finally spawn them in!
-		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.species]))
+		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.read_preference(/datum/preference/choiced/species)]))
 			to_chat(potential_prey, span_notice("You are not whitelisted to play as currently selected character."))
 			to_chat(src, span_notice("Prey accepted the confirmation, but something went wrong with spawning their character."))
 			return
@@ -84,7 +85,7 @@
 	new_character.initialize_vessel()
 	new_character.key = player_key
 	if(new_character.mind)
-		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
+		var/datum/antagonist/antag_data = SSantag_job.get_antag_data(new_character.mind.special_role)
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)

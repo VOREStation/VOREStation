@@ -129,7 +129,7 @@
 		return //something is terribly wrong
 
 	for(var/mob/living/L in GLOB.mob_list) //Simple check so you don't have dead people calling.
-		if(src.client.prefs.real_name == L.real_name)
+		if(src.client.prefs.read_preference(/datum/preference/name/real_name) == L.real_name)
 			to_chat(src, span_danger("Your identity is already present in the game world.  Please load in a different character first."))
 			return
 
@@ -140,7 +140,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/obj/item/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in GLOB.all_communicators)
 		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
 			continue
 		choices.Add(comm)

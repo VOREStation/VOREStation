@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 
 	// Tgui Topic middleware
-	if(!tgui_Topic(href_list))
+	if(tgui_Topic(href_list))
 		return
 
 	//Admin PM
@@ -420,7 +420,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
-
+	if(skybox)
+		QDEL_NULL(skybox)
+	if(fakeConversations)
+		QDEL_NULL(fakeConversations)
 	QDEL_NULL(loot_panel)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
@@ -430,7 +433,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 // Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
 
 /proc/get_player_age(key)
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return null
 
@@ -451,7 +453,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if ( IsGuestKey(src.key) )
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 

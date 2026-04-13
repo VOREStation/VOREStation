@@ -1,4 +1,4 @@
-var/list/mining_overlay_cache = list()
+GLOBAL_LIST_EMPTY(mining_overlay_cache)
 
 /**********************Mineral deposits**************************/
 /turf/unsimulated/mineral
@@ -35,7 +35,7 @@ var/list/mining_overlay_cache = list()
 	var/rock_icon_path = 'icons/turf/walls.dmi' // Override this on a subtype turf if you want a custom icon
 	var/random_icon = 0
 
-	var/ore/mineral
+	var/datum/ore/mineral
 	var/sand_dug
 	var/mined_ore = 0
 	var/last_act = 0
@@ -48,7 +48,7 @@ var/list/mining_overlay_cache = list()
 	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
-	var/obj/item/last_find
+	var/last_find_name
 	var/datum/artifact_find/artifact_find
 	var/ignore_mapgen
 
@@ -185,7 +185,7 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/get_cached_border(var/cache_id, var/direction, var/icon_file, var/icon_state, var/offset = 32)
 	//Cache miss
-	if(!mining_overlay_cache["[cache_id]_[direction]"])
+	if(!GLOB.mining_overlay_cache["[cache_id]_[direction]"])
 		var/image/new_cached_image = image(icon_state, dir = direction, layer = ABOVE_TURF_LAYER)
 		switch(direction)
 			if(NORTH)
@@ -196,11 +196,11 @@ var/list/mining_overlay_cache = list()
 				new_cached_image.pixel_x = offset
 			if(WEST)
 				new_cached_image.pixel_x = -offset
-		mining_overlay_cache["[cache_id]_[direction]"] = new_cached_image
+		GLOB.mining_overlay_cache["[cache_id]_[direction]"] = new_cached_image
 		return new_cached_image
 
 	//Cache hit
-	return mining_overlay_cache["[cache_id]_[direction]"]
+	return GLOB.mining_overlay_cache["[cache_id]_[direction]"]
 
 /turf/simulated/mineral/Initialize(mapload)
 	. = ..()
@@ -373,6 +373,9 @@ var/list/mining_overlay_cache = list()
 
 		if(istype(W, /obj/item/shovel))
 			var/obj/item/shovel/S = W
+			if(S.grave_mode)
+				shovel_dig_grave(user, S)
+				return
 			valid_tool = 1
 			digspeed = S.digspeed
 
@@ -689,10 +692,8 @@ var/list/mining_overlay_cache = list()
 	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
 	var/display_name = "Something"
-	if(!X)
-		X = last_find
-	if(X)
-		display_name = X.name
+	if(last_find_name)
+		display_name = last_find_name
 
 	//This is affected by 'prob_delicate' in finds.dm. As of writing, this has been set to 0 because the suspension field is just one extra piece that makes
 	//Xenoarch that much more confusing, and the intent of this PR is to make it more friendly to get into.

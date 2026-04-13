@@ -236,6 +236,7 @@
 			if(M.pulling == my_mob)
 				if(!M.restrained() && M.stat == 0 && M.canmove && my_mob.Adjacent(M))
 					to_chat(src, span_blue("You're restrained! You can't move!"))
+					my_mob.setMoveCooldown(my_mob.movement_delay()) //Prevent no-cooldown attempts at moving while restrained.
 					return 0
 				else
 					M.stop_pulling()
@@ -388,6 +389,8 @@
 			is_leaving_belly = FALSE
 			return
 		is_leaving_belly = FALSE
+	if(isghosttrap(mob.loc))
+		return
 	var/turf/mobloc = get_turf(mob)
 
 	if(incorporeal_speed)

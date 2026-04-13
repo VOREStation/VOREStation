@@ -4,7 +4,7 @@
 	//Prime this list if we need it.
 	if(has_huds)
 		// Note, this should be refactored to drop priority overlays
-		add_overlay(backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
+		add_overlay(GLOB.backplane,TRUE) //Strap this on here, to block HUDs from appearing in rightclick menus: http://www.byond.com/forum/?post=2336679
 		hud_list = list()
 		hud_list.len = TOTAL_HUDS
 		make_hud_overlays()
@@ -32,7 +32,6 @@
 		return name
 
 /mob/living/Destroy()
-	SSradiation.listeners -= src
 	remove_all_modifiers(TRUE)
 	QDEL_NULL(say_list)
 
@@ -102,7 +101,7 @@
 			if(isobj(OR))
 				qdel(OR)
 
-	cultnet.updateVisibility(src, 0)
+	GLOB.cultnet.updateVisibility(src, 0)
 
 	if(aiming)
 		qdel(aiming)
@@ -905,6 +904,9 @@
 /mob/living/proc/has_eyes()
 	return 1
 
+/mob/living/proc/has_lungs()
+	return TRUE
+
 /mob/living/proc/get_restraining_bolt()
 	var/obj/item/implant/restrainingbolt/RB = locate() in src
 	if(RB)
@@ -1469,6 +1471,8 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
+		var/datum/hud/HUD = owner?.hud_used
+		LAZYREMOVE(HUD?.other_important, screen_icon)
 		QDEL_NULL(screen_icon)
 
 /datum/component/character_setup/proc/create_mob_button(mob/user)

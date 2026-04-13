@@ -60,8 +60,9 @@
 			return // Failed to load character
 
 		// For now as a safety measure we will only save if the name matches.
-		if(prefs.real_name != persister.real_name)
-			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
+		var/prefs_real_name = prefs.read_preference(/datum/preference/name/real_name)
+		if(prefs_real_name != persister.real_name)
+			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs_real_name].")
 			return
 
 		return prefs
@@ -162,35 +163,39 @@
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(!istype(character) || !character.species) return
+	var/list/organ_data = prefs.read_preference(/datum/preference/organ_data) || list()
+	var/list/rlimb_data = prefs.read_preference(/datum/preference/rlimb_data) || list()
 	// Checkify the limbs!
 	for(var/name in character.species.has_limbs)
-		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(!O)
+		var/obj/item/organ/external/external_organ = character.organs_by_name[name]
+		if(!external_organ)
 			if(name in GLOB.storable_amputated_organs)
-				prefs.organ_data[name] = "amputated"
+				organ_data[name] = "amputated"
 			else
-				prefs.rlimb_data.Remove(name) // Missing limb and not in the global list means default model
-		else if(O.robotic >= ORGAN_ROBOT)
-			prefs.organ_data[name] = "cyborg"
-			if(O.model)
-				prefs.rlimb_data[name] = O.model
+				rlimb_data.Remove(name) // Missing limb and not in the global list means default model
+		else if(external_organ.robotic >= ORGAN_ROBOT)
+			organ_data[name] = "cyborg"
+			if(external_organ.model)
+				rlimb_data[name] = external_organ.model
 			else
-				prefs.rlimb_data.Remove(name) // Missing rlimb_data entry means default model
+				rlimb_data.Remove(name) // Missing rlimb_data entry means default model
 		else
-			prefs.organ_data.Remove(name) // Misisng organ_data entry means normal
+			organ_data.Remove(name) // Misisng organ_data entry means normal
 
 	// Internal organs also
 	for(var/name in character.species.has_organ)
-		var/obj/item/organ/I = character.internal_organs_by_name[name]
-		if(I)
-			if(istype(I, /obj/item/organ/internal/mmi_holder/robot))
-				prefs.organ_data[name] = FBP_DIGITAL // Need a better way to detect this special type
-			else if(I.robotic == ORGAN_ASSISTED)
-				prefs.organ_data[name] = FBP_ASSISTED
-			else if(I.robotic >= ORGAN_ROBOT)
-				prefs.organ_data[name] = FBP_MECHANICAL
+		var/obj/item/organ/internal_organ = character.internal_organs_by_name[name]
+		if(internal_organ)
+			if(istype(internal_organ, /obj/item/organ/internal/mmi_holder/robot))
+				organ_data[name] = FBP_DIGITAL // Need a better way to detect this special type
+			else if(internal_organ.robotic == ORGAN_ASSISTED)
+				organ_data[name] = FBP_ASSISTED
+			else if(internal_organ.robotic >= ORGAN_ROBOT)
+				organ_data[name] = FBP_MECHANICAL
 			else
-				prefs.organ_data.Remove(name) // Missing organ_data entry means normal
+				organ_data.Remove(name) // Missing organ_data entry means normal
+	prefs.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
+	prefs.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
 
 // Saves mob's current body markings state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana

@@ -90,6 +90,21 @@
 	containername = "Xenoarchaeology Tech crate"
 	access = ACCESS_RESEARCH
 
+/datum/supply_pack/sci/protolathe_boards
+	name = "Protolathe Board Crate"
+	desc = "A set of standard protolathe boards, one for every department! Locked to science."
+	contains = list(
+			/obj/item/circuitboard/machine/protolathe/department/engineering,
+			/obj/item/circuitboard/machine/protolathe/department/service,
+			/obj/item/circuitboard/machine/protolathe/department/medical,
+			/obj/item/circuitboard/machine/protolathe/department/cargo,
+			/obj/item/circuitboard/machine/protolathe/department/science,
+			/obj/item/circuitboard/machine/protolathe/department/security)
+	cost = 200 //If you're ordering this, you're doing something sus or you REALLY messed up
+	containertype = /obj/structure/closet/crate/secure/science
+	containername = "Protolathe Board crate"
+	access = ACCESS_RESEARCH
+
 /*
 /datum/supply_pack/sci/dune_buggy
 	name = "Exploration Dune Buggy"
@@ -140,3 +155,18 @@
 	containername = "VARMAcorp adaptive beta subject (Experimental)"
 	access = ACCESS_XENOBIOLOGY
 */ //VORESTATION AI TEMPORARY REMOVAL. Oties commented out cuz broke.
+
+/datum/supply_pack/sci/anomaly_harvesting
+	name = "Anomaly Harvesting crate"
+	desc = "Contains the tools to start anomaly harvesting. Requires Research access."
+	cost = 350
+	containertype = /obj/structure/largecrate/anomaly
+	access = ACCESS_RESEARCH
+
+/datum/supply_pack/sci/latent_anomaly
+	name = "Latent Anomaly crate"
+	desc = "Contains a latent anomaly core."
+	cost = 300
+	contains = list(/obj/item/assembly/signaler/anomaly/choice)
+	containertype = /obj/structure/closet/crate/secure/science
+	access = ACCESS_RESEARCH

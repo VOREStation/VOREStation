@@ -66,6 +66,7 @@ GLOBAL_LIST_INIT(ai_status_emotions, list(
 	anchored = TRUE
 	density = FALSE
 	circuit =  /obj/item/circuitboard/ai_status_display
+	flags = WALL_ITEM
 
 	var/mode = 0	// 0 = Blank
 					// 1 = AI emoticon

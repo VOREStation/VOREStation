@@ -178,11 +178,11 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
-		command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]")
 		GLOB.can_call_ert = 0 // Only one call per round, ladies.
 		return
 	if(GLOB.silent_ert == 0)
-		command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]")
 
 	GLOB.can_call_ert = 0 // Only one call per round, gentleman.
 	GLOB.send_emergency_team = 1

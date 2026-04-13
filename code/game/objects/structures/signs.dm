@@ -6,6 +6,7 @@
 	plane = OBJ_PLANE //VOREStation Edit
 	layer = ABOVE_JUNK_LAYER //VOREStation Edit
 	w_class = ITEMSIZE_NORMAL
+	flags = WALL_ITEM
 
 /obj/structure/sign/ex_act(severity)
 	qdel(src)

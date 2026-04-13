@@ -32,8 +32,12 @@
 #define COMSIG_MACHINERY_SET_OCCUPANT "machinery_set_occupant"
 ///from /obj/machinery/rnd/destructive_analyzer/proc/destroy_item(gain_research_points = FALSE): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
+///from /obj/machinery/doppler_array/proc/sense_explosion(): Runs when an explosion is detected. (turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
+#define COMSIG_MACHINERY_EXPLOSION_DETECTED "machinery_explosion_detected"
 ///from /obj/machinery/computer/arcade/victory_tickets(tickets, sound = TRUE)
 #define COMSIG_ARCADE_VICTORY "arcade_victory"
+///from /obj/machinery/computer/telescience/proc/doteleport(mob/user): (list/atom/movable/teleported_things, turf/target_turf, sending )
+#define COMSIG_TELESCI_TELEPORT "telesci_teleport"
 ///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
 #define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
 ///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()

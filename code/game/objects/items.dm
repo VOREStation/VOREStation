@@ -141,7 +141,7 @@
 	var/digest_stage = null
 	var/d_mult_old = 1 //digest stage descriptions
 	var/d_mult = 1 //digest stage descriptions
-	var/d_stage_overlay //digest stage effects
+	var/image/d_stage_overlay //digest stage effects
 	var/gurgled = FALSE
 	var/oldname
 	var/cleanname
@@ -171,6 +171,7 @@
 	M.update_held_icons()
 
 /obj/item/Destroy()
+	d_stage_overlay = null
 	if(item_tf_spawn_allowed)
 		GLOB.item_tf_spawnpoints -= src
 	if(ismob(loc))
@@ -724,7 +725,7 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 	user.do_attack_animation(M)
 
 	src.add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
+	//if(CLUMSY_HARM_CHANCE(user))
 	//	M = user
 		/*
 		to_chat(M, span_warning("You stab yourself in the eye."))

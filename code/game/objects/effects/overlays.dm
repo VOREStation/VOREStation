@@ -144,7 +144,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/light_visible/Destroy(force)
 	if(!force)
@@ -161,7 +161,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = NONE
 	alpha = 110
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 	var/static/matrix/normal_transform
 

@@ -31,21 +31,23 @@
 
 	cut_overlays()
 
-	. = list()
+	var/list/overlays = list()
 
 	if(coil_damaged)
-		. += mutable_appearance(icon, "fc_unstable")
-		. += emissive_appearance(icon, "fc_unstable")
+		overlays += mutable_appearance(icon, "fc_unstable")
+		overlays += emissive_appearance(icon, "fc_unstable")
 		set_light(1, 3, light_color_danger)
-		return add_overlay(.)
-	else if(coil_charged)
-		. += mutable_appearance(icon, "fc_charged")
-		. += emissive_appearance(icon, "fc_charged")
-		set_light(1, 2, light_color)
-		return add_overlay(.)
-	else
-		set_light(0)
+		add_overlay(overlays)
 		return
+
+	if(coil_charged)
+		overlays += mutable_appearance(icon, "fc_charged")
+		overlays += emissive_appearance(icon, "fc_charged")
+		set_light(1, 2, light_color)
+		add_overlay(overlays)
+		return
+
+	set_light(0)
 
 /obj/item/fusion_coil/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()

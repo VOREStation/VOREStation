@@ -17,7 +17,7 @@
 		pass = FALSE
 
 	//Are they on the VERBOTEN LIST?
-	if (GLOB.prevent_respawns.Find(client?.prefs?.real_name))
+	if (GLOB.prevent_respawns.Find(client?.prefs?.read_preference(/datum/preference/name/real_name)))
 		to_chat(src,span_warning("You've already quit the round as this character. You can't go back now that you've free'd your job slot. Play another character, or wait for the next round."))
 		pass = FALSE
 
@@ -27,12 +27,12 @@
 		to_chat(src,span_warning("You have not set your scale yet. Do this on the VORE tab in character setup."))
 
 	//Can they play?
-	if(!is_alien_whitelisted(src.client,GLOB.all_species[client?.prefs?.species]) && !check_rights(R_ADMIN, 0))
+	if(!is_alien_whitelisted(src.client,GLOB.all_species[client?.prefs?.read_preference(/datum/preference/choiced/species)]) && !check_rights(R_ADMIN, 0))
 		pass = FALSE
 		to_chat(src,span_warning("You are not allowed to spawn in as this species."))
 
 	//Custom species checks
-	if (client?.prefs?.species == "Custom Species")
+	if (client?.prefs?.read_preference(/datum/preference/choiced/species) == SPECIES_CUSTOM)
 
 		//Didn't name it
 		if(!client?.prefs?.custom_species)

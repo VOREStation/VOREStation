@@ -20,13 +20,11 @@
 	item_state = "crutch"
 
 /obj/item/cane/concealed
-	var/concealed_blade
+	var/obj/item/material/sword/katana/caneblade/concealed_blade
 
 /obj/item/cane/concealed/Initialize(mapload)
 	. = ..()
-	var/obj/item/material/sword/katana/caneblade/temp_blade = new(src)
-	concealed_blade = temp_blade
-	temp_blade.attack_self()
+	concealed_blade = new(src)
 
 /obj/item/cane/concealed/attack_self(mob/user)
 	. = ..(user)

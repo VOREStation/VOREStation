@@ -16,3 +16,6 @@
 #define SUBMAP_MAP_EDGE_PAD 8 // Automatically created submaps are forbidden from being this close to the main map's edge.
 
 #define CELL_ALIVE(VAL) (VAL == cell_live_value)
+
+/// A map key that corresponds to being one exclusively for Space.
+#define SPACE_KEY "space"

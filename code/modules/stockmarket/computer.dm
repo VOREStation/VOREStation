@@ -336,13 +336,3 @@
 		GLOB.stockExchange.add_log(/datum/stock_log/borrow, user.name, B.stock.name, B.share_amount, B.deposit)
 	else
 		to_chat(user, span_danger("Could not complete transaction. Check your account balance."))
-
-/obj/machinery/computer/stockexchange/Topic(href, href_list)
-	if (..())
-		return 1
-
-	if (!usr || (!(usr in range(1, src)) && iscarbon(usr)))
-		usr.set_machine(src)
-
-	src.add_fingerprint(usr)
-	src.updateUsrDialog(usr)

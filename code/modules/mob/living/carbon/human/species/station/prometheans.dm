@@ -1,5 +1,3 @@
-var/datum/species/shapeshifter/promethean/prometheans
-
 // Species definition follows.
 /datum/species/shapeshifter/promethean
 	name =             SPECIES_PROMETHEAN
@@ -129,19 +127,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/heal_rate = 0.5 // Temp. Regen per tick.
 
 	default_emotes = list(
-		/decl/emote/audible/squish,
-		/decl/emote/audible/chirp,
-		/decl/emote/visible/bounce,
-		/decl/emote/visible/jiggle,
-		/decl/emote/visible/lightup,
-		/decl/emote/visible/vibrate
+		/datum/decl/emote/audible/squish,
+		/datum/decl/emote/audible/chirp,
+		/datum/decl/emote/visible/bounce,
+		/datum/decl/emote/visible/jiggle,
+		/datum/decl/emote/visible/lightup,
+		/datum/decl/emote/visible/vibrate
 	)
 
 	footstep = FOOTSTEP_MOB_SLIME
-
-/datum/species/shapeshifter/promethean/New()
-	..()
-	prometheans = src
 
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
 	var/boxtype = pick(list(/obj/item/storage/toolbox/lunchbox,
@@ -358,7 +352,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 /datum/species/shapeshifter/promethean/get_additional_examine_text(var/mob/living/carbon/human/H)
 
-	if(!stored_shock_by_ref["\ref[H]"])
+	if(!GLOB.stored_shock_by_ref["\ref[H]"])
 		return
 
 	var/t_she = "She is"
@@ -371,7 +365,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	else if(H.identifying_gender == HERM) //VOREStation Edit
 		t_she = "Shi is"
 
-	switch(stored_shock_by_ref["\ref[H]"])
+	switch(GLOB.stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)
 			return "[t_she] flickering gently with a little electrical activity."
 		if(11 to 20)

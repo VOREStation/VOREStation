@@ -185,6 +185,22 @@
 /area/redgate/structure/powered
 	requires_power = 0
 
+/area/redgate/structure/powered/bed1
+	name = "Bedroom 1"
+	requires_power = 0
+
+/area/redgate/structure/powered/bed2
+	name = "Bedroom 2"
+	requires_power = 0
+
+/area/redgate/structure/powered/bed3
+	name = "Bedroom 3"
+	requires_power = 0
+
+/area/redgate/structure/powered/bed4
+	name = "Bedroom 4"
+	requires_power = 0
+
 /area/redgate/lit
 	dynamic_lighting = 0
 
@@ -1466,19 +1482,20 @@
 /area/redgate/laserdome/lobby/store_2
 	name = "Laserdome Store 2"
 
-/area/redgate/laserdome/lobby/spaceview_lounge
-	name = "Laserdome Spaceview Lounge"
-
 /area/redgate/laserdome/arena
 	name = "Laserdome Arenas"
-	icon_state = "yelwhisqu"
+	icon_state = "cyawhisqu"
 
 /area/redgate/laserdome/arena/ctf_prep
 	name = "Laserdome Capture The Flag Prep Area"
-	icon_state = "yelwhisqu"
+	icon_state = "yelwhitri"
 
 /area/redgate/laserdome/arena/hbl_prep
 	name = "Laserdome Hyperball Prep Area"
+	icon_state = "yelwhicir"
+
+/area/redgate/laserdome/arena/ffa_prep
+	name = "Laserdome Free-For-All Prep Area"
 	icon_state = "yelwhisqu"
 
 /area/redgate/laserdome/arena/capture_the_flag
@@ -1489,9 +1506,9 @@
 	name = "Laserdome Hyperball Arena"
 	icon_state = "redwhicir"
 
-/area/redgate/laserdome/space
-	name = "Laserdome Space View"
-	icon_state = "dark128"
+/area/redgate/laserdome/arena/freeforall
+	name = "Laserdome Free-For-All Arena"
+	icon_state = "redwhisqu"
 
 //The actual flags. Base type defined to handle some of the basic behaviours.
 /obj/item/laserdome_flag
@@ -1804,6 +1821,7 @@
 	EVEN IF YOU DO NOT WISH TO BE (OR ARE PHYSICALLY INCAPABLE OF) TAKING PART IN THE ACCELERATED LIGHT GAMES, PLEASE WITNESS OUR HEROIC GLADIATORS BATTLE FOR YOUR ENJOYMENT, AND VISIT LOCAL SERVICES SUCH AS THE \[incoherent\] ACCELERATED SUSTENANCE JOINT.
 	PLEASE TO BE FOLLOWINGS FLOOR-BASED POINTED INDICATORS TOWARDS PLACEMENTS OF INTERESTING! AND BE SURE TO BE TAKINGS FREE RADIO HEADSET CHIP TO BE HEARING ARENA ANNOUNCER!
 	THANKINGS YOU FOR YOUR PATRONAGE!!!
+	NEWLY AVAILABLE IS FREE-FOR-ALL ARENA, REPLACING OLD BORING STARVIEW LOUNGINGS!
 	(p.s. please to be cleanings up after selves, do not leave messes on concourse, thankings you again muchly)"}
 
 /obj/structure/prop/machine/biosyphon/laserdome/hyperball
@@ -1827,4 +1845,15 @@
 	RETURN OWN FLAG TO BASE BY TOUCHINGS!
 	FIRST TEAM TO THREE CAPTURES IS WIN!
 	MUST WEAR TEAM PLATINGS FOR SCORINGS TO COUNT!
+	GOOD LUCK!!!"}
+
+/obj/structure/prop/machine/biosyphon/laserdome/freeforall
+	name = "Laserdome Free-For-All Orientation Holo"
+	desc = {"This device is holoprojecting a wall of flickering text into the air. It seems to be incomprehensible gibberish at first, perhaps an alien language, but the longer you stare the more it starts to make sense, slowly coalescing into coherent sentences in your preferred language. The overall word choice is a little eclectic or unusual at times, and some words remain impossible for you to decipher, but you get the gist pretty quickly. It reads:<br>
+	THIS ARENA IS FOR FREE-FOR-ALL AND TEAM-FOR-ALL MODES!
+	PURPLED EQUIPMENT IS HAVING NO TEAM ALLEGIANCE!
+	RECOMMENDED RULINGS AS FOLLOWS:
+	LAST MAN STANDING: WHEN PLAYER HIT, PERMANENTLY ELIMINATED, RETURN TO SPAWN! LAST PLAYER \'ALIVE\' IS WINNING! IN TEAM MODE, LAST TEAM WITH LIVE PLAYERS IS WIN!
+	FIRST TO SCORE: WHEN PLAYER HIT, RETURN TO SPAWN! FIRST PLAYER (OR TEAM) TO ELIMINATE AGREED NUMBER OF OTHERS IS WINNING!
+	OR, PLAY HOWEVER MOST ENJOYED!
 	GOOD LUCK!!!"}

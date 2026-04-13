@@ -17,6 +17,7 @@
 /obj/item/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")
 	build_path = /obj/machinery/computer/security/wooden_tv
+	hidden = TRUE
 
 /obj/item/circuitboard/security/engineering
 	name = T_BOARD("engineering camera monitor")
@@ -80,7 +81,7 @@
 			to_chat(user, "No input found please hang up and try your call again.")
 			return
 		var/list/tempnetwork = splittext(input, ",")
-		tempnetwork = difflist(tempnetwork,restricted_camera_networks,1)
+		tempnetwork = difflist(tempnetwork, GLOB.restricted_camera_networks, 1)
 		if(tempnetwork.len < 1)
 			to_chat(user, "No network found please hang up and try your call again.")
 			return

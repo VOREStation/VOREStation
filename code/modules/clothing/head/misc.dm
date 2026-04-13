@@ -533,6 +533,13 @@
 	flags_inv = HIDEEARS|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EYES
 
+/obj/item/clothing/head/omnitag
+	name = "omni laser tag helmet"
+	desc = "FIRST BLOOD!"
+	icon_state = "marine"
+	flags_inv = HIDEEARS|BLOCKHEADHAIR
+	body_parts_covered = HEAD|EYES
+
 //hair bows
 
 /obj/item/clothing/head/bow

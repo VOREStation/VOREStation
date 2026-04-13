@@ -5,7 +5,8 @@
 	id = REAGENT_ID_CRAYONDUST
 	description = "Intensely coloured powder obtained by grinding crayons."
 	taste_description = "powdered wax"
-	reagent_state = LIQUID
+	reagent_state = SOLID
+	dermal_absorption = 0 //no
 	color = "#888888"
 	overdose = 10
 	scannable = SCANNABLE_ADVANCED
@@ -58,6 +59,7 @@
 	description = "Intensely coloured ink used in markers."
 	taste_description = "extremely bitter"
 	reagent_state = LIQUID
+	dermal_absorption = 0 //NO
 	color = "#888888"
 	overdose = 10
 	scannable = SCANNABLE_ADVANCED
@@ -115,6 +117,7 @@
 	description = "This paint will stick to almost any object."
 	taste_description = "chalk"
 	reagent_state = LIQUID
+	dermal_absorption = 0 //NOOOOOOOOOOO
 	color = "#808080"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20
@@ -377,6 +380,7 @@
 	description = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
+	dermal_absorption = 0.2
 	scannable = SCANNABLE_BENEFICIAL
 	color = "#C8A5DC"
 	mrate_static = TRUE
@@ -397,6 +401,7 @@
 	taste_description = "water"
 	color = "#E0E8EF"
 	mrate_static = TRUE
+	dermal_absorption = 0.5 //It's so holy it penetrates into your blood.
 	scannable = SCANNABLE_BENEFICIAL
 
 	glass_name = "holy water"
@@ -518,6 +523,7 @@
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	taste_description = "sweet tasting metal"
 	reagent_state = SOLID
+	dermal_absorption = 0
 	scannable = SCANNABLE_ADVANCED
 	color = "#673910"
 	touch_met = 50
@@ -548,6 +554,7 @@
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	taste_description = "sourness"
 	reagent_state = LIQUID
+	dermal_absorption = 0
 	scannable = SCANNABLE_ADVANCED
 	color = "#A5F0EE"
 	touch_met = 50
@@ -682,7 +689,7 @@
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 	coolant_modifier = 0.95
 
-/datum/reagent/nitroglycerin
+/datum/reagent/nitroglycerin //This immediately explode as soon as it reacts, so you can't actually obtain this.
 	name = REAGENT_NITROGLYCERIN
 	id = REAGENT_ID_NITROGLYCERIN
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
@@ -795,6 +802,7 @@
 	description = "Miniature medical robots that are malfunctioning and cause bodily harm. Fortunately, they cannot self-replicate."
 	taste_description = "metal"
 	reagent_state = SOLID
+	dermal_absorption = 0.1 //Burrow into the skin and get into your bloodstream. This means 60u splashed on someone (with no losses, given splash is lossy) will give them 6u of nanites.
 	color = "#333333"
 	metabolism = REM * 3 // Broken nanomachines go a bit slower.
 	scannable = 1
@@ -898,7 +906,7 @@
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/nutriment/pitcher_nectar //Pitcher plant reagent, doubles plant growth speed.
-	name = REAGENT_ID_PITCHERNECTAR
+	name = REAGENT_PITCHERNECTAR
 	id = REAGENT_ID_PITCHERNECTAR
 	description = "An odd, sticky slurry which promotes rapid plant growth."
 	taste_description = "pineapple"

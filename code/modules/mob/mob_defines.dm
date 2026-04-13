@@ -207,7 +207,7 @@
 	var/mob/living/carbon/LAssailant = null
 
 //Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/list/spell/spell_list = list()
+	var/list/datum/spell/spell_list = list()
 
 //Changlings, but can be used in other modes
 //	var/obj/effect/proc_holder/changpower/list/power_list = list()
@@ -269,6 +269,9 @@
 	///For storing what do_after's someone has, key = string, value = amount of interactions of that type happening.
 	var/list/do_afters
 
+	///Allows a datum to intercept all click calls this mob is the source of
+	var/datum/click_intercept
+
 	var/datum/focus //What receives our keyboard inputs. src by default
 	/// dict of custom stat tabs with data
 	var/list/list/misc_tabs = list()
@@ -282,3 +285,6 @@
 	var/vent_crawl_time = 4.5 SECONDS // Time to animate entering a vent
 	VAR_PRIVATE/is_motion_tracking = FALSE // Prevent multiple unsubs and resubs, also used to check if the vis layer is enabled, use has_motiontracking() to get externally.
 	VAR_PRIVATE/wants_to_see_motion_echos = TRUE
+
+	var/is_slipping = FALSE
+	var/slip_protect = 1

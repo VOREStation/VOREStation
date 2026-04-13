@@ -4,12 +4,12 @@
 #define SPECOPS_DOCK_AREATYPE "/area/shuttle/specops/centcom"	//Type of the spec ops shuttle area for dock
 #define SPECOPS_RETURN_DELAY 600 //Time between the shuttle is capable of moving.
 
-var/specops_shuttle_moving_to_station = 0
-var/specops_shuttle_moving_to_centcom = 0
-var/specops_shuttle_at_station = 0
-var/specops_shuttle_can_send = 1
-var/specops_shuttle_time = 0
-var/specops_shuttle_timeleft = 0
+GLOBAL_VAR_INIT(specops_shuttle_moving_to_station, 0)
+GLOBAL_VAR_INIT(specops_shuttle_moving_to_centcom, 0)
+GLOBAL_VAR_INIT(specops_shuttle_at_station, 0)
+GLOBAL_VAR_INIT(specops_shuttle_can_send, 1)
+GLOBAL_VAR_INIT(specops_shuttle_time, 0)
+GLOBAL_VAR_INIT(specops_shuttle_timeleft, 0)
 
 /obj/machinery/computer/specops_shuttle
 	name = "special operations shuttle control console"
@@ -32,16 +32,16 @@ var/specops_shuttle_timeleft = 0
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 
-	while(specops_shuttle_time - world.timeofday > 0)
-		var/ticksleft = specops_shuttle_time - world.timeofday
+	while(GLOB.specops_shuttle_time - world.timeofday > 0)
+		var/ticksleft = GLOB.specops_shuttle_time - world.timeofday
 
 		if(ticksleft > 1e5)
-			specops_shuttle_time = world.timeofday + 10	// midnight rollover
-		specops_shuttle_timeleft = (ticksleft / 10)
+			GLOB.specops_shuttle_time = world.timeofday + 10	// midnight rollover
+		GLOB.specops_shuttle_timeleft = (ticksleft / 10)
 
 		//All this does is announce the time before launch.
 		if(announcer)
-			var/rounded_time_left = round(specops_shuttle_timeleft)//Round time so that it will report only once, not in fractions.
+			var/rounded_time_left = round(GLOB.specops_shuttle_timeleft)//Round time so that it will report only once, not in fractions.
 			if(rounded_time_left in message_tracker)//If that time is in the list for message announce.
 				message = "\"ALERT: [rounded_time_left] SECOND[(rounded_time_left!=1)?"S":""] REMAIN\""
 				if(rounded_time_left==0)
@@ -52,10 +52,10 @@ var/specops_shuttle_timeleft = 0
 
 		sleep(5)
 
-	specops_shuttle_moving_to_station = 0
-	specops_shuttle_moving_to_centcom = 0
+	GLOB.specops_shuttle_moving_to_station = 0
+	GLOB.specops_shuttle_moving_to_centcom = 0
 
-	specops_shuttle_at_station = 1
+	GLOB.specops_shuttle_at_station = 1
 
 	var/area/start_location = locate(/area/shuttle/specops/station)
 	var/area/end_location = locate(/area/shuttle/specops/centcom)
@@ -90,7 +90,7 @@ var/specops_shuttle_timeleft = 0
 		var/mob/M = locate(/mob) in T
 		to_chat(M, span_notice("You have arrived at [using_map.boss_name]. Operation has ended!"))
 
-	specops_shuttle_at_station = 0
+	GLOB.specops_shuttle_at_station = 0
 
 	for(var/obj/machinery/computer/specops_shuttle/S in GLOB.machines)
 		S.specops_shuttle_timereset = world.time + SPECOPS_RETURN_DELAY
@@ -109,16 +109,16 @@ var/specops_shuttle_timeleft = 0
 //		message = "ARMORED SQUAD TAKE YOUR POSITION ON GRAVITY LAUNCH PAD"
 //		announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 
-	while(specops_shuttle_time - world.timeofday > 0)
-		var/ticksleft = specops_shuttle_time - world.timeofday
+	while(GLOB.specops_shuttle_time - world.timeofday > 0)
+		var/ticksleft = GLOB.specops_shuttle_time - world.timeofday
 
 		if(ticksleft > 1e5)
-			specops_shuttle_time = world.timeofday + 10	// midnight rollover
-		specops_shuttle_timeleft = (ticksleft / 10)
+			GLOB.specops_shuttle_time = world.timeofday + 10	// midnight rollover
+		GLOB.specops_shuttle_timeleft = (ticksleft / 10)
 
 		//All this does is announce the time before launch.
 		if(announcer)
-			var/rounded_time_left = round(specops_shuttle_timeleft)//Round time so that it will report only once, not in fractions.
+			var/rounded_time_left = round(GLOB.specops_shuttle_timeleft)//Round time so that it will report only once, not in fractions.
 			if(rounded_time_left in message_tracker)//If that time is in the list for message announce.
 				message = "\"ALERT: [rounded_time_left] SECOND[(rounded_time_left!=1)?"S":""] REMAIN\""
 				if(rounded_time_left==0)
@@ -129,11 +129,11 @@ var/specops_shuttle_timeleft = 0
 
 		sleep(5)
 
-	specops_shuttle_moving_to_station = 0
-	specops_shuttle_moving_to_centcom = 0
+	GLOB.specops_shuttle_moving_to_station = 0
+	GLOB.specops_shuttle_moving_to_centcom = 0
 
-	specops_shuttle_at_station = 1
-	if (specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
+	GLOB.specops_shuttle_at_station = 1
+	if (GLOB.specops_shuttle_moving_to_station || GLOB.specops_shuttle_moving_to_centcom) return
 
 	if (!specops_can_move())
 		to_chat(usr, span_warning("The Special Operations shuttle is unable to leave."))
@@ -239,7 +239,7 @@ var/specops_shuttle_timeleft = 0
 	qdel(announcer)
 
 /proc/specops_can_move()
-	if(specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom)
+	if(GLOB.specops_shuttle_moving_to_station || GLOB.specops_shuttle_moving_to_centcom)
 		return 0
 	for(var/obj/machinery/computer/specops_shuttle/S in GLOB.machines)
 		if(world.timeofday <= S.specops_shuttle_timereset)
@@ -266,8 +266,8 @@ var/specops_shuttle_timeleft = 0
 		dat = temp
 	else
 		dat += {"<BR><B>Special Operations Shuttle</B><HR>
-		\nLocation: [specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "Departing for [station_name()] in ([specops_shuttle_timeleft] seconds.)":specops_shuttle_at_station ? "Station":"Dock"]<BR>
-		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [station_name()]</A><BR>\n<BR>"]
+		\nLocation: [GLOB.specops_shuttle_moving_to_station || GLOB.specops_shuttle_moving_to_centcom ? "Departing for [station_name()] in ([GLOB.specops_shuttle_timeleft] seconds.)":GLOB.specops_shuttle_at_station ? "Station":"Dock"]<BR>
+		[GLOB.specops_shuttle_moving_to_station || GLOB.specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":GLOB.specops_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [station_name()]</A><BR>\n<BR>"]
 		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	var/datum/browser/popup = new(usr, "computer", "Computer", 575, 450)
@@ -282,7 +282,7 @@ var/specops_shuttle_timeleft = 0
 		usr.set_machine(src)
 
 	if (href_list["sendtodock"])
-		if(!specops_shuttle_at_station|| specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
+		if(!GLOB.specops_shuttle_at_station|| GLOB.specops_shuttle_moving_to_station || GLOB.specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
 			to_chat(usr, span_notice("[using_map.boss_name] will not allow the Special Operations shuttle to return yet."))
@@ -297,13 +297,13 @@ var/specops_shuttle_timeleft = 0
 		temp += "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog(usr)
 
-		specops_shuttle_moving_to_centcom = 1
-		specops_shuttle_time = world.timeofday + SPECOPS_MOVETIME
+		GLOB.specops_shuttle_moving_to_centcom = 1
+		GLOB.specops_shuttle_time = world.timeofday + SPECOPS_MOVETIME
 		spawn(0)
 			specops_return()
 
 	else if (href_list["sendtostation"])
-		if(specops_shuttle_at_station || specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
+		if(GLOB.specops_shuttle_at_station || GLOB.specops_shuttle_moving_to_station || GLOB.specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
 			to_chat(usr, span_warning("The Special Operations shuttle is unable to leave."))
@@ -317,9 +317,9 @@ var/specops_shuttle_timeleft = 0
 		var/area/centcom/specops/special_ops = locate()
 		if(special_ops)
 			special_ops.readyalert()//Trigger alarm for the spec ops area.
-		specops_shuttle_moving_to_station = 1
+		GLOB.specops_shuttle_moving_to_station = 1
 
-		specops_shuttle_time = world.timeofday + SPECOPS_MOVETIME
+		GLOB.specops_shuttle_time = world.timeofday + SPECOPS_MOVETIME
 		spawn(0)
 			specops_process()
 

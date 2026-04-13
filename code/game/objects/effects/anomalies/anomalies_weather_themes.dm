@@ -57,7 +57,7 @@
 	T.vis_contents -= visuals
 
 /datum/anomalous_weather/proc/affect_turf(turf/to_affect)
-	if(iswall(to_affect))
+	if(iswall(to_affect) || isopenturf(to_affect))
 		return
 
 	for(var/atom/thing in to_affect)
@@ -130,7 +130,7 @@
 	drench_message = "Rain falls on you, drenching you in water."
 
 /datum/anomalous_weather/rain/do_special(turf/simulated/T)
-	if(prob(2))
+	if(prob(2) && !isopenturf(T))
 		T.wet_floor(1)
 
 /datum/anomalous_weather/rain/blood
@@ -153,16 +153,16 @@
 	drench_message = "Rain falls on you, completely soaking you."
 
 /datum/anomalous_weather/rain/storm/do_special(turf/simulated/T)
-	if(prob(3))
+	if(prob(3) && !isopenturf(T))
 		T.wet_floor(1)
-	if(prob(0.025))
+	if(prob(0.025) && !isopenturf(T))
 		lightning_strike(T)
-
+/*
 /datum/anomalous_weather/rain/acid
 	name = "Acid Rain"
 	reagent_id = REAGENT_ID_SACID
 	telegraph_message = "Strange clouds begin to cover the ceiling, an acidid tinge on them..."
-
+*/
 /datum/anomalous_weather/hail
 	name = "Hail"
 	icon_state = "snowfall_heavy_old"

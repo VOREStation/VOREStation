@@ -109,13 +109,13 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
 	if (danger_level == 0)
-		atmosphere_alarm.clearAlarm(src, alarm_source)
+		GLOB.atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
 		var/obj/machinery/alarm/atmosalarm = alarm_source //maybe other things can trigger these, who knows
 		if(istype(atmosalarm))
-			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
+			GLOB.atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level, hidden = atmosalarm.alarms_hidden)
 		else
-			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
+			GLOB.atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()

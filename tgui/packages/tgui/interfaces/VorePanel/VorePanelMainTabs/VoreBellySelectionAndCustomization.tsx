@@ -56,9 +56,9 @@ export const VoreBellySelectionAndCustomization = (props: {
   const [currentNewName, setCurrentNewName] = useState('');
   const [searchedBellies, setSearchedBellies] = useState('');
 
-  const bellySearch = createSearch(
+  const bellySearch = createSearch<BellyData>(
     searchedBellies,
-    (belly: BellyData) => belly.name,
+    (belly) => belly.name,
   );
 
   const belliesToDisplay = our_bellies.filter(bellySearch);

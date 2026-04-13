@@ -127,17 +127,59 @@
 	icon_state = "talon_captain_cap"
 	item_state = "taloncaptaincap"
 
+/obj/item/clothing/head/soft/talon/refreshed
+	name = "Talon cap"
+	desc = "It's a standard dark blue baseball cap, it has the ITV Talon logo on the front proudly displayed."
+	icon = 'icons/inventory/head/item.dmi'
+	icon_override = 'icons/inventory/head/mob.dmi'
+	icon_state = "talonnewsoft"
+	item_state = "talonnewsoft"
+	item_state_slots = list(slot_r_hand_str = "blacksoft", slot_l_hand_str = "blacksoft")
+
+/obj/item/clothing/head/caphat/talon/refreshed
+	name = "Talon captain's peaked cap"
+	desc = "It's a parade cap usually worn by the ITV Talon's commanding officer, it displays power and discipline to whoever wears it."
+	icon = 'icons/inventory/head/item.dmi'
+	icon_override = 'icons/inventory/head/mob.dmi'
+	icon_state = "talon_caphat"
+	item_state = "talon_caphat"
+
+/obj/item/clothing/head/caphat/talon/pilot
+	name = "Talon pilot's cap"
+	desc = "It's a formal cap worn usually by ITV Talon's piloting personnel, emblazoned with the ITV Talon's logo on the front of the cap."
+	icon = 'icons/inventory/head/item.dmi'
+	icon_override = 'icons/inventory/head/mob.dmi'
+	icon_state = "talon_pilothat"
+	item_state = "talon_pilothat"
+
 /obj/item/clothing/head/beret/talon
 	name = "Talon beret"
 	desc = "It's a basic beret colored to match ITV Talon's uniforms."
 	icon_state = "beret_talon"
 	item_state = "baret_talon"
 
+/obj/item/clothing/head/beret/talon/refreshed
+	name = "Talon beret"
+	desc = "It's a standard dark blue beret with nothing especially interesting on it."
+	icon = 'icons/inventory/head/item.dmi'
+	icon_override = 'icons/inventory/head/mob.dmi'
+	icon_state = "talon_beret"
+	item_state = "talon_beret"
+
 /obj/item/clothing/head/beret/talon/command
 	name = "Talon officer beret"
 	desc = "It's a basic beret colored to match ITV Talon's uniforms with a badge pinned on the front. Perfect for commanders."
 	icon_state = "beret_talon_officer"
 	item_state = "baret_talon_command"
+
+
+/obj/item/clothing/head/beret/talon/command/refreshed
+	name = "Talon officer beret"
+	desc = "It's a standard dark blue beret with the ITV Talon logo on the front proudly displayed."
+	icon = 'icons/inventory/head/item.dmi'
+	icon_override = 'icons/inventory/head/mob.dmi'
+	icon_state = "talon_officer_beret"
+	item_state = "talon_officer_beret"
 
 // tiny tophat
 

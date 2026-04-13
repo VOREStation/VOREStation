@@ -14,9 +14,14 @@
 	matter = list(MAT_STEEL = 3000)
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
+	var/min_bonus_damage = 3
+	var/max_bonus_damage = 5
+	COOLDOWN_DECLARE(shield_bash)
 	drop_sound = 'sound/items/trayhit1.ogg'
 
-/obj/item/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
+	var/tray_sound = pick('sound/items/trayhit1.ogg', 'sound/items/trayhit2.ogg')
+	//var/attack_area = user.zone_sel.selecting
 	user.setClickCooldown(user.get_attack_speed(src))
 	// Drop all the things. All of them.
 	cut_overlays()
@@ -31,118 +36,70 @@
 						sleep(rand(2,4))
 
 
-	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
+	if(CLUMSY_FAIL_CHANCE(user))              //What if he's a clown?
 		to_chat(M, span_warning("You accidentally slam yourself with the [src]!"))
 		M.Weaken(1)
 		user.take_organ_damage(2)
-		if(prob(50))
-			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
-			return
-		else
-			playsound(src, 'sound/items/trayhit2.ogg', 50, 1) //sound playin'
-			return //it always returns, but I feel like adding an extra return just for safety's sakes. EDIT; Oh well I won't :3
+		playsound(src, tray_sound, 50, 1)
+		return
 
-	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
+	var/face_hit = FALSE
 
-
-	if(!(user.zone_sel.selecting == (O_EYES || BP_HEAD))) //////////////hitting anything else other than the eyes
-		if(prob(33))
-			src.add_blood(H)
-			var/turf/location = H.loc
-			if (istype(location, /turf/simulated))
-				location.add_blood(H)     ///Plik plik, the sound of blood
-
+	if(!(user.zone_sel.selecting == O_EYES) && !(user.zone_sel.selecting == BP_HEAD) && !(user.zone_sel.selecting == O_MOUTH))
 		add_attack_logs(user,M,"Hit with [src]")
-
 		if(prob(15))
 			M.Weaken(3)
-			M.take_organ_damage(3)
-		else
-			M.take_organ_damage(5)
-		if(prob(50))
-			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
-			return
-		else
-			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
-			for(var/mob/O in viewers(M, null))
-				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
-			return
+
+	else
+		//attack_area = BP_HEAD //Ensure we're hitting a valid area.
+		face_hit = TRUE //Our head is being hit! Let's presume we got hit in the face until we are told otherwise.
+		for(var/slot in list(slot_head, slot_wear_mask, slot_glasses))
+			var/obj/item/protection = M.get_equipped_item(slot)
+			if(istype(protection) && (protection.body_parts_covered & FACE))
+				face_hit = FALSE
+				break
 
 
-	var/protected = 0
-	for(var/slot in list(slot_head, slot_wear_mask, slot_glasses))
-		var/obj/item/protection = M.get_equipped_item(slot)
-		if(istype(protection) && (protection.body_parts_covered & FACE))
-			protected = 1
-			break
-
-	if(protected)
-		to_chat(M, span_warning("You get slammed in the face with the tray, against your mask!"))
-		if(prob(33))
-			src.add_blood(H)
-			if (H.wear_mask)
-				H.wear_mask.add_blood(H)
-			if (H.head)
-				H.head.add_blood(H)
-			if (H.glasses && prob(33))
-				H.glasses.add_blood(H)
-			var/turf/location = H.loc
-			if (istype(location, /turf/simulated))     //Addin' blood! At least on the floor and item :v
-				location.add_blood(H)
-
-		if(prob(50))
-			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
-		else
-			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin'
-			for(var/mob/O in viewers(M, null))
-				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
-		if(prob(10))
-			M.Stun(rand(1,3))
-			M.take_organ_damage(3)
-			return
-		else
-			M.take_organ_damage(5)
-			return
-
-	else //No eye or head protection, tough luck!
-		to_chat(M, span_warning("You get slammed in the face with the tray!"))
-		if(prob(33))
-			src.add_blood(M)
-			var/turf/location = H.loc
-			if (istype(location, /turf/simulated))
-				location.add_blood(H)
-
-		if(prob(50))
-			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(span_danger("[user] slams [M] in the face with the tray!"), 1)
-		else
-			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin' again
-			for(var/mob/O in viewers(M, null))
-				O.show_message(span_danger("[user] slams [M] in the face with the tray!"), 1)
-		if(prob(30))
-			M.Stun(rand(2,4))
-			M.take_organ_damage(4)
-			return
-		else
-			M.take_organ_damage(8)
+		if(face_hit) //No eye or head protection, tough luck!
+			to_chat(M, span_warning("You get slammed in the face with the tray!"))
+			//user.apply_damage(rand(min_bonus_damage, max_bonus_damage), BRUTE, attack_area) //How to make it take armor into account.
+			M.take_organ_damage(rand(min_bonus_damage, max_bonus_damage)) //This gets double damage. One here and one below.
 			if(prob(30))
+				M.Stun(rand(2,4))
+			else if(prob(30))
 				M.Weaken(2)
-				return
-			return
+		else
+			to_chat(M, span_warning("You get slammed in the face with the tray, against your mask!"))
+			if(M.wear_mask && prob(33))
+				M.wear_mask.add_blood(M)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(H.head && prob(33))
+					H.head.add_blood(H)
+				if(H.glasses && prob(33))
+					H.glasses.add_blood(H)
 
-/obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
+			if(prob(10))
+				M.Stun(rand(1,3))
+	if(prob(33))
+		add_blood(M)
+		var/turf/location = get_turf(M)
+		if(issimulatedturf(location))
+			location.add_blood(M)
+
+	playsound(src, tray_sound, 50, 1)
+	user.visible_message(span_danger("[user] slams [M] [face_hit ? "in the face " : ""]with the tray!"), runemessage = "CLANG!")
+	//user.apply_damage(rand(min_bonus_damage, max_bonus_damage), BRUTE, attack_area)
+	M.take_organ_damage(rand(min_bonus_damage, max_bonus_damage))
+	return
 
 /obj/item/tray/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/material/kitchen/rollingpin))
-		if(cooldown < world.time - 25)
-			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
-			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
-			cooldown = world.time
+		if(!COOLDOWN_FINISHED(src, shield_bash))
+			return
+		user.visible_message(span_warning("[user] bashes [src] with [W]!"))
+		playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
+		COOLDOWN_START(src, shield_bash, 2.5 SECONDS)
 	else
 		..()
 

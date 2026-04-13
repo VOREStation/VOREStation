@@ -11,6 +11,7 @@
 //Investigate logging defines
 #define INVESTIGATE_CARGO "cargo"
 #define INVESTIGATE_RESEARCH "research"
+#define INVESTIGATE_RADIATION "radiation"
 
 // Logging types for log_message()
 #define LOG_ATTACK (1 << 0)
@@ -37,6 +38,33 @@
 #define LOG_RADIO_EMOTE (1 << 21)
 #define LOG_SPEECH_INDICATORS (1 << 22)
 #define LOG_TRANSPORT (1 << 23)
+
+GLOBAL_ALIST_INIT(logtype_to_string, alist(
+	LOG_ATTACK = "ATTACK",
+	LOG_SAY = "SAY",
+	LOG_WHISPER = "WHISPER",
+	LOG_EMOTE = "EMOTE",
+	LOG_DSAY = "DEADSAY",
+	LOG_PDA = "PDA",
+	LOG_CHAT = "CHAT",
+	LOG_COMMENT = "COMMENT",
+	LOG_TELECOMMS = "RADIO",
+	LOG_OOC = "OOC",
+	LOG_LOOC = "LOOC",
+	LOG_ADMIN = "ADMIN",
+	LOG_OWNERSHIP = "OWNERSHIP",
+	LOG_GAME = "GAME",
+	LOG_ADMIN_PRIVATE = "ADMIN_PRIV",
+	LOG_ASAY = "ASAY",
+	LOG_MECHA = "MECH",
+	LOG_VIRUS = "VIRUS",
+	LOG_SHUTTLE = "SHUTTLE",
+	LOG_ECON = "ECON",
+	LOG_VICTIM = "VICTIM",
+	LOG_RADIO_EMOTE = "RADIO_EMOTE",
+	LOG_SPEECH_INDICATORS = "SPEECH_INDICATOR",
+	LOG_TRANSPORT = "TRANSPORT"
+))
 
 //Individual logging panel pages
 #define INDIVIDUAL_GAME_LOG (LOG_GAME)

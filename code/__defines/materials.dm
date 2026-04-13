@@ -81,6 +81,7 @@
 #define MAT_SMOLEBRICKS		"smolebricks"
 #define MAT_WAX				"wax"
 #define MAT_EAGATE			"energized agate"
+#define MAT_ALGAE 			"algae"
 
 #define MAT_CULT			"cult"
 #define MAT_CULT2			"cult2"
@@ -143,3 +144,7 @@
 #define GET_MATERIAL_REF(arguments...) _GetMaterialRef(list(##arguments))
 /// Makes sure only integer values are used when consuming, removing & checking for mats
 #define OPTIMAL_COST(cost)(max(1, round(cost)))
+
+/// Default circuitboard material list
+#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 2000)
+#define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = 40)

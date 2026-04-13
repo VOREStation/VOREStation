@@ -52,24 +52,35 @@
 ********************/
 
 /obj/machinery/microwave/RefreshParts()
-	efficiency = 0
-	advanced_microwave = FALSE
-	name = "microwave"
-	icon = 'icons/obj/kitchen.dmi'
+	var/smrating = 0
+	var/mbrating = 0
+	var/mlrating = 0
+	var/caprating = 0
+
 	for(var/obj/item/stock_parts/scanning_module/scanning_module in component_parts)
-		if(scanning_module.rating >= 3 || always_advanced)
-			advanced_microwave = TRUE
-			name = "deluxe microwave"
-			icon = 'icons/obj/deluxemicrowave.dmi'
-		break
+		smrating += scanning_module.rating
 	for(var/obj/item/stock_parts/matter_bin/matter_bin in component_parts)
-		item_capacity = (advanced_microwave ? 80 : 20) * matter_bin.rating
-		reagents.maximum_volume = (advanced_microwave ? 400 : 80) * matter_bin.rating
-		break
+		mbrating += matter_bin.rating
 	for(var/obj/item/stock_parts/micro_laser/micro_laser in component_parts)
-		efficiency += micro_laser.rating
+		mlrating += micro_laser.rating
 	for(var/obj/item/stock_parts/capacitor/capacitor in component_parts)
-		active_power_usage = max(100, 2000 / capacitor.rating)
+		caprating += capacitor.rating
+
+	// If it's advanced
+	if(smrating >= 3 || always_advanced)
+		advanced_microwave = TRUE
+		name = "deluxe microwave"
+		icon = 'icons/obj/deluxemicrowave.dmi'
+	else
+		advanced_microwave = FALSE
+		name = "microwave"
+		icon = 'icons/obj/kitchen.dmi'
+
+	// Upgrade the microwave based on the ratings of its components
+	item_capacity = (advanced_microwave ? 40 : 10) * mbrating
+	reagents.maximum_volume = (advanced_microwave ? 200 : 40) * mbrating
+	efficiency = mlrating
+	active_power_usage = max(100, 2000 / caprating)
 
 /obj/machinery/microwave/Initialize(mapload)
 	. = ..()
@@ -137,6 +148,7 @@
 	if(handle_dirty(O, user)) return TRUE
 	if(handle_deconstruction(O, user)) return TRUE
 	if(try_insert_item(O, user)) return TRUE
+	if(try_insert_reagent(O, user)) return FALSE
 	if(istype(O,/obj/item/grab))
 		var/obj/item/grab/G = O
 		to_chat(user, span_warning("Unfortunately, the laws of physics prevent you from inserting \the [G.affecting] into \the [src]."))
@@ -251,7 +263,9 @@
 
 		to_chat(user, !length(O.contents) ? "You empty \the [O] into \the [src]." : "You fill \the [src] from \the [O].")
 		return TRUE
+	return FALSE
 
+/obj/machinery/microwave/proc/try_insert_reagent(obj/item/O, mob/user)
 	if(is_type_in_list(O, list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/drinks, /obj/item/reagent_containers/food/condiment)))
 		if (!O.reagents)
 			to_chat(user, span_warning("\The [O] is empty!"))

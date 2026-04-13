@@ -306,6 +306,10 @@
 				soundin = pick(
 					'sound/effects/mech/powerloader_step.ogg',
 					'sound/effects/mech/powerloader_step2.ogg')
+			if ("sizzle")
+				soundin = pick(
+					'sound/effects/wounds/sizzle1.ogg',
+					'sound/effects/wounds/sizzle2.ogg')
 	return soundin
 
 
@@ -416,14 +420,16 @@ GLOBAL_LIST_INIT(species_sound_map, list(
 */
 /proc/select_default_species_sound(var/datum/preferences/pref) // Called in character setup. This is similar to check_gendered_sounds, except here we pull from the prefs.
 	// First, we determine if we're custom-choosing a body or if we're a base game species.
-	var/datum/species/valid = GLOB.all_species[pref.species]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
+	var/datum/species/valid = GLOB.all_species[pref_species]
 	if(valid.selects_bodytype == (SELECTS_BODYTYPE_CUSTOM || SELECTS_BODYTYPE_SHAPESHIFTER)) // Custom species or xenochimera handling here
-		valid = coalesce(GLOB.all_species[pref.custom_base], GLOB.all_species[pref.species])
+		valid = coalesce(GLOB.all_species[pref.custom_base], GLOB.all_species[pref_species])
 	// Now we start getting our sounds.
+	var/id_gender = pref.read_preference(/datum/preference/choiced/gender/identifying)
 	if(valid.gender_specific_species_sounds) // Do we have gender-specific sounds?
-		if(pref.identifying_gender == FEMALE && valid.species_sounds_female)
+		if(id_gender == FEMALE && valid.species_sounds_female)
 			return valid.species_sounds_female
-		else if(pref.identifying_gender == MALE && valid.species_sounds_male)
+		else if(id_gender == MALE && valid.species_sounds_male)
 			return valid.species_sounds_male
 		else // Failsafe. Update if there's ever gendered sounds for HERM/Neuter/etc
 			return valid.species_sounds
