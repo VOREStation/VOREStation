@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Infectious component no longer potentially crashes the game."
-  - code_imp: "Implements but does not enable the Germ component. (Things left on the ground will become dirty, ultimately making you ill)"
-  - code_imp: "Robust Gut also applies the strong stomach trait, making you immune to eaten germs."
-  - code_imp: "Implements a list of 'elevated structures'. Any /machinery or /structure counts for this. Germs will not accumulate while on them."
