@@ -51,6 +51,7 @@
 
 	///Var for attack_self chainn
 	var/special_handling = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return
@@ -77,6 +78,10 @@
 		var/stamp_count = rand(1, stamp_max)
 		for(var/i = 1, i <= stamp_count, i++)
 			stamps += list("stamp_[rand(2, 8)]")
+
+/obj/item/mail/Destroy()
+	recipient_ref = null
+	. = ..()
 
 /obj/item/mail/blank
 	desc = "A blank envelope."

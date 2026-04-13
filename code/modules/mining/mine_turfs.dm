@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
-	var/obj/item/last_find
+	var/last_find_name
 	var/datum/artifact_find/artifact_find
 	var/ignore_mapgen
 
@@ -402,13 +402,6 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 			to_chat(user, span_notice("You dug a hole."))
 			GetDrilled()
 
-		else if(istype(W,/obj/item/storage/bag/ore))
-			var/obj/item/storage/bag/ore/S = W
-			if(S.collection_mode)
-				for(var/obj/item/ore/O in contents)
-					O.attackby(W,user)
-					return
-
 		else if(istype(W,/obj/item/storage/bag/fossils))
 			var/obj/item/storage/bag/fossils/S = W
 			if(S.collection_mode)
@@ -497,7 +490,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 			next_rock += S.excavation_amount
 			while(next_rock > 50)
 				next_rock -= 50
-				var/obj/item/ore/O = new(src)
+				var/obj/item/ore/archeology_debris/O = new(src)
 				geologic_data.UpdateNearbyArtifactInfo(src)
 				O.geologic_data = geologic_data
 
@@ -547,7 +540,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 				next_rock += P.excavation_amount
 				while(next_rock > 50)
 					next_rock -= 50
-					var/obj/item/ore/O = new(src)
+					var/obj/item/ore/archeology_debris/O = new(src)
 					geologic_data.UpdateNearbyArtifactInfo(src)
 					O.geologic_data = geologic_data
 			return
@@ -692,10 +685,8 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
 	var/display_name = "Something"
-	if(!X)
-		X = last_find
-	if(X)
-		display_name = X.name
+	if(last_find_name)
+		display_name = last_find_name
 
 	//This is affected by 'prob_delicate' in finds.dm. As of writing, this has been set to 0 because the suspension field is just one extra piece that makes
 	//Xenoarch that much more confusing, and the intent of this PR is to make it more friendly to get into.

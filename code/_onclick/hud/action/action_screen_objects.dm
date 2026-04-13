@@ -33,7 +33,7 @@
 
 /atom/movable/screen/movable/action_button/proc/can_use(mob/user)
 	// if(isobserver(user))
-	// 	var/mob/dead/observer/dead_mob = user
+	// 	var/mob/observer/dead/dead_mob = user
 	// 	if(dead_mob.observetarget) // Observers can only click on action buttons if they're not observing something
 	// 		return FALSE
 
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 
 /atom/movable/screen/button_palette/proc/can_use(mob/user)
 	if(isobserver(user))
-		// var/mob/dead/observer/O = user
+		// var/mob/observer/dead/O = user
 		// return !O.observetarget
 		return TRUE
 	return TRUE
@@ -388,7 +388,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 
 /atom/movable/screen/palette_scroll/proc/can_use(mob/user)
 	if(isobserver(user))
-		// var/mob/dead/observer/O = user
+		// var/mob/observer/dead/O = user
 		// return !O.observetarget
 		return TRUE
 	return TRUE

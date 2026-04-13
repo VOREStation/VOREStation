@@ -75,6 +75,10 @@
 	name = "entertainment intercom"
 	frequency = ENT_FREQ
 
+/obj/item/radio/intercom/science
+	name = "station intercom (Science)"
+	channels=list("Science")
+
 /obj/item/radio/intercom/omni
 	name = "global announcer"
 /obj/item/radio/intercom/omni/Initialize(mapload)
@@ -156,7 +160,7 @@
 		A.anchored = TRUE
 		A.state = 2
 		A.update_icon()
-		M.deconstruct(src)
+		M.atom_deconstruct(TRUE, src)
 		qdel(src)
 	else
 		src.attack_hand(user)

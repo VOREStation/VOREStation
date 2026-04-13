@@ -37,11 +37,10 @@
 	var/smart = 0 //Used for hacking. Overrides the scanner.
 	var/hacked = 0
 	var/lockdown = 0
-	var/datum/wires/seedstorage/wires = null
 
 /obj/machinery/seed_storage/Initialize(mapload)
 	. = ..()
-	wires = new(src)
+	set_wires(new /datum/wires/seedstorage(src))
 	if(!contraband_seeds.len)
 		contraband_seeds = pick( 	/// Some form of ambrosia in all lists.
 			prob(30);list( /// General produce

@@ -35,7 +35,7 @@
 			if("Power")
 				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
 				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul."))
-				if (!(LASER in user.mutations))
+				if (!(LASER_EYES in user.mutations))
 					user.mutations.Add(LASER)
 					to_chat(user, span_notice("You feel pressure building behind your eyes."))
 				if (!(COLD_RESISTANCE in user.mutations))

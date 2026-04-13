@@ -502,4 +502,4 @@
 	return
 
 /mob/new_player/MayRespawn()
-	return 1
+	return TRUE

@@ -50,6 +50,19 @@
 	QDEL_NULL(oven_loop)
 	return ..()
 
+/obj/machinery/appliance/cooker/oven/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	.["is_open"] = open
+
+/obj/machinery/appliance/cooker/oven/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("toggle_door")
+			try_toggle_door(ui.user)
+			return TRUE
+
 /obj/machinery/appliance/cooker/oven/update_icon()
 	if(!open)
 		if(!stat)
@@ -75,13 +88,6 @@
 /obj/machinery/appliance/cooker/oven/click_alt(var/mob/user)
 	try_toggle_door(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
-/obj/machinery/appliance/cooker/oven/verb/toggle_door()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Open/close oven door"
-
-	try_toggle_door(usr)
 
 /obj/machinery/appliance/cooker/oven/proc/try_toggle_door(mob/user)
 	if(!isliving(user) || isAI(user))

@@ -1188,9 +1188,9 @@ GLOBAL_LIST_EMPTY(entopic_users)
 
 GLOBAL_LIST_EMPTY(alt_farmanimals)
 
-GLOBAL_LIST_EMPTY(acceptable_items) // List of the items you can put in
-GLOBAL_LIST_EMPTY(available_recipes) // List of the recipes you can use
-GLOBAL_LIST_EMPTY(acceptable_reagents) // List of the reagents you can put in
+GLOBAL_ALIST_INIT(available_recipes, build_kitchen_recipes()) //List of all recipies. THIS MUST COME FIRST before acceptable_items and acceptable_reagents because it is used to build those lists.
+GLOBAL_LIST_INIT(acceptable_items, build_kitchen_items()) // List of the items you can put in
+GLOBAL_LIST_INIT(acceptable_reagents, build_kitchen_reagents()) // List of the reagents you can put in
 
 
 GLOBAL_LIST_INIT(all_ui_styles, list(
@@ -1259,9 +1259,9 @@ GLOBAL_LIST_INIT(description_icons, list(
 	"stunbaton" = image(icon='icons/obj/weapons.dmi',icon_state="stunbaton_active"),
 	"slimebaton" = image(icon='icons/obj/weapons.dmi',icon_state="slimebaton_active"),
 
-	"power cell" = image(icon='icons/obj/power.dmi',icon_state="hcell"),
-	"device cell" = image(icon='icons/obj/power.dmi',icon_state="dcell"),
-	"weapon cell" = image(icon='icons/obj/power.dmi',icon_state="wcell"),
+	"power cell" = image(icon='icons/obj/power_cells_old.dmi',icon_state="b_st"),
+	"device cell" = image(icon='icons/obj/power_cells_old.dmi',icon_state="m_st"),
+	"weapon cell" = image(icon='icons/obj/power_cells_old.dmi',icon_state="m_sup"),
 
 	"hatchet" = image(icon='icons/obj/weapons.dmi',icon_state="hatchet"),
 	))
