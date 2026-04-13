@@ -51,6 +51,7 @@
 	max_storage_space = ITEMSIZE_SMALL * 21
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
+	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -68,6 +69,7 @@
 	origin_tech = list(TECH_BLUESPACE = 3)
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 10 // Slightly less than BoH
+	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/bag/trash/holding/update_icon()
 	return
@@ -87,6 +89,7 @@
 	max_w_class = ITEMSIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //          Plant bag
@@ -100,6 +103,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/grown)
+	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/plants/large
 	name = "large plant bag"
@@ -124,6 +128,7 @@
 	storage_slots = 7
 
 	allow_quick_empty = 1 // this function is superceded
+	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W,/obj/item/stack/material))
@@ -281,6 +286,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/coin,/obj/item/spacecash,/obj/item/spacecasinocash)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //         Chemistry Bag
@@ -294,6 +300,7 @@
 	w_class = ITEMSIZE_LARGE
 	slowdown = 1 //you probably shouldn't be running with chemicals
 	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/hypospray/autoinjector)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //           Xeno Bag
@@ -307,6 +314,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/slime_extract,/obj/item/slimepotion, /obj/item/reagent_containers/food/snacks/monkeycube)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //         Virology Bag
@@ -319,7 +327,8 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 12
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial/)
+	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //           Food Bag
@@ -333,6 +342,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/reagent_containers/food/snacks,/obj/item/reagent_containers/food/condiment)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //    Food Bag (Service Hound)
@@ -348,6 +358,7 @@
 	can_hold = list(/obj/item/reagent_containers/food/snacks,/obj/item/reagent_containers/food/condiment,
 	/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle,/obj/item/coin,/obj/item/spacecash,
 	/obj/item/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/grown,/obj/item/reagent_containers/pill)
+	resistance_flags = FIRE_PROOF
 
 // -----------------------------
 //           Evidence Bag
@@ -361,6 +372,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/forensics/swab,/obj/item/sample/print,/obj/item/sample/fibers,/obj/item/evidencebag)
+	resistance_flags = FLAMMABLE
 
 // -----------------------------
 //          Santa bag
@@ -377,6 +389,7 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
+	resistance_flags = FIRE_PROOF //ho ho ho
 
 /obj/item/storage/bag/santabag/update_icon()
 	if(contents.len < 10)

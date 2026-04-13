@@ -12,6 +12,7 @@
 	glove_level = 3
 	overgloves = 1
 	punch_force = 5
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/gauntlets/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user

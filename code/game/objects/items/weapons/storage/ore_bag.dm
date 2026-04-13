@@ -43,19 +43,21 @@
 	var/last_update = 0
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
+	item_flags = FLAMMABLE
 
 /obj/item/ore_bag/holding
 	name = "mining satchel of holding"
 	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
 	icon_state = "satchel_bspace"
 	max_storage_space = ITEMSIZE_COST_NORMAL * 15000 // This should never, ever, ever be reached.
+	item_flags = FIRE_PROOF
 
 /obj/item/ore_bag/sleeper
 	name = "processing chamber"
 	desc = "A mining satchel built into a sleeper. VORE!!!"
 	icon_state = "satchel_bspace"
 	max_storage_space = 500
-	//item_flags = ABSTRACT //Enable once we have abstract PR merged.
+	item_flags = INDESTRUCTIBLE | ABSTRACT
 
 /obj/item/ore_bag/attackby(obj/item/W, mob/user)
 	if(current_capacity >= max_storage_space)

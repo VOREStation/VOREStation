@@ -17,7 +17,7 @@
 	return thruster.get_thrust()
 
 /datum/ship_engine/ion/burn()
-	return thruster.burn()
+	return thruster.thrust_burn()
 
 /datum/ship_engine/ion/set_thrust_limit(var/new_limit)
 	thruster.thrust_limit = new_limit
@@ -69,7 +69,7 @@
 	if(!powered())
 		.+= list(list("Insufficient power to operate.", "bad"))
 
-/obj/machinery/ion_engine/proc/burn()
+/obj/machinery/ion_engine/proc/thrust_burn()
 	if(!on && !powered())
 		return 0
 	use_power_oneoff(burn_cost)

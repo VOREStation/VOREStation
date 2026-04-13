@@ -36,6 +36,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	var/scribble	//Scribble on the back.
 	var/icon/tiny
 	var/photo_size = 3
+	resistance_flags = FLAMMABLE
 
 /obj/item/photo/Initialize(mapload)
 	. = ..()
