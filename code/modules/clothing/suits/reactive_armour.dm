@@ -3,6 +3,7 @@
 	desc = "An experimental suit of armor, awaiting installation of an anomaly core."
 	icon_state = "reactiveoff"
 	w_class = ITEMSIZE_COST_LARGE
+	resistance_flags = FIRE_PROOF | UNACIDABLE
 
 /obj/item/clothing/suit/armor/reactive_armor_shell/attackby(obj/item/I, mob/user)
 	. = ..()

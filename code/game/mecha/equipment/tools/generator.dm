@@ -5,7 +5,7 @@
 	origin_tech = list(TECH_PHORON = 2, TECH_POWER = 2, TECH_ENGINEERING = 1)
 	equip_cooldown = 10
 	energy_drain = 0
-	range = MELEE
+	range = MECH_MELEE
 	var/coeff = 100
 	var/obj/item/stack/material/fuel
 	var/fuel_type = /obj/item/stack/material/phoron

@@ -11,6 +11,7 @@
 	icon_state = "monitor"
 
 	var/monitor_state_index = "blank"
+	resistance_flags = FIRE_PROOF
 
 
 /obj/item/clothing/mask/monitor/set_dir()
