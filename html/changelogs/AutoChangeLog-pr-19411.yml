@@ -1,0 +1,4 @@
+author: "Fracshun"
+delete-after: True
+changes:
+  - bugfix: "Fixed throwing items/mobs at yourself not triggering spont vore"
