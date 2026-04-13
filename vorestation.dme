@@ -696,6 +696,7 @@
 #include "code\datums\components\deconstructable_research.dm"
 #include "code\datums\components\effect_remover.dm"
 #include "code\datums\components\geiger_sound.dm"
+#include "code\datums\components\haunted_item.dm"
 #include "code\datums\components\holographic_nature.dm"
 #include "code\datums\components\infective.dm"
 #include "code\datums\components\orbiter.dm"
