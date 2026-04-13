@@ -69,7 +69,7 @@
 
 /obj/vehicle/bike/proc/toggle_proc(mob/user)
 	if(!isliving(user) || HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB))
-		return
+		return CLICK_ACTION_BLOCKING
 
 	if(user.incapacitated())
 		return CLICK_ACTION_BLOCKING
