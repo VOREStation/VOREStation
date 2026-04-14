@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Objects can now take damage. The most prevalent source of this is FIRE! Objects can now catch on fire and melt away!"
-  - qol: "Objects will make sounds when they take damage now."
-  - qol: "Examining objects will inform you of their various properties. Examining a fireproof, bombproof, or flammable item will inform you of such."
-  - code_imp: "Items can now be labeled as ABSTRACT. This means the game will ignore them in certain situations."
-  - code_imp: "Instead of things having their own specialty /deconstruct proc, they all now share a /atom_deconstruct proc"
