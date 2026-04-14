@@ -111,6 +111,22 @@
 	. = ..()
 	imp = new /obj/item/implant/death_alarm(src)
 
+/obj/item/implantcase/death_alarm/explorer
+	name = "glass case - 'away team death alarm'"
+	desc = "A case containing an away team death alarm implant."
+
+/obj/item/implantcase/death_alarm/explorer/Initialize(mapload)
+	. = ..()
+	imp = new /obj/item/implant/death_alarm/explorer(src)
+
+/obj/item/implantcase/death_alarm/security
+	name = "glass case - 'security death alarm'"
+	desc = "A case containing a security death alarm implant."
+
+/obj/item/implantcase/death_alarm/security/Initialize(mapload)
+	. = ..()
+	imp = new /obj/item/implant/death_alarm/security(src)
+
 
 /obj/item/implantcase/freedom
 	name = "glass case - 'freedom'"

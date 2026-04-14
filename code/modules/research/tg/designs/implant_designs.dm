@@ -126,8 +126,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/organ/internal/augment/bioaugment/health_scan
-	name = "Medical Scaner Implant"
-	desc = "A small implant that fits into a subject's pelvix. It deploys allows the user to analyze their vitals on demand."
+	name = "Medical Scanner Implant"
+	desc = "A small implant that fits into a subject's pelvis. It allows the user to analyze their vitals on demand."
 	id = "health_scan_implant"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_SILVER = 1000)
@@ -225,3 +225,39 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/implant/death_alarm
+	name = "Death Alarm Implant"
+	desc = "An implant that fits into a subject's torso. It monitors their vitals and transmit a radio message to the Medical channel upon death."
+	id = "implant_death_alarm"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	build_path = /obj/item/implantcase/death_alarm
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/implant/explorer_death_alarm
+	name = "Away Team Death Alarm Implant"
+	desc = "An implant that fits into a subject's torso. It monitors their vitals and transmit a radio message to the Away Team and Medical channels upon death."
+	id = "implant_death_alarm_explorer"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	build_path = /obj/item/implantcase/death_alarm/explorer
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/implant/security_death_alarm
+	name = "Security Death Alarm Implant"
+	desc = "An implant that fits into a subject's torso. It monitors their vitals and transmit a radio message to the Security and Medical channels upon death."
+	id = "implant_death_alarm_security"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	build_path = /obj/item/implantcase/death_alarm/security
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
