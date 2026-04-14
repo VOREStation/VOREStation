@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(sent_spiders_to_station, 0)
 	GLOB.sent_spiders_to_station = 0
 
 /datum/event/spider_infestation/announce()
-	GLOB.command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
+	GLOB.command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 
 
 /datum/event/spider_infestation/start()

@@ -32,9 +32,9 @@ SUBSYSTEM_DEF(nightshift)
 	var/pickedsound
 	if(!high_security_mode)
 		if(nightshift_active)
-			pickedsound = 'sound/AI/dim_lights.ogg'
+			pickedsound = ANNOUNCER_MSG_NIGHTSHIFT_START
 		else
-			pickedsound = 'sound/AI/bright_lights.ogg'
+			pickedsound = ANNOUNCER_MSG_NIGHTSHIFT_END
 	GLOB.priority_announcement.Announce(message, new_title = "Automated Lighting System Announcement", new_sound = pickedsound, zlevel = announce_z)
 
 /datum/controller/subsystem/nightshift/proc/check_nightshift(forced) //This is called from elsewhere, like setting the alert levels, sadly
