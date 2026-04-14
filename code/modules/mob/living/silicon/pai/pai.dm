@@ -432,6 +432,9 @@
 	..()
 
 /mob/living/silicon/pai/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	// Silence for 2 minutes
 	// 20% chance to damage critical components
 	// 50% chance to damage a non critical component

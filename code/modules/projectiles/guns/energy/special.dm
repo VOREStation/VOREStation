@@ -10,9 +10,6 @@
 	slot_flags = SLOT_BACK
 	projectile_type = /obj/item/projectile/ion
 
-/obj/item/gun/energy/ionrifle/emp_act(severity, recursive)
-	return
-
 /obj/item/gun/energy/ionrifle/empty
 	cell_type = null
 

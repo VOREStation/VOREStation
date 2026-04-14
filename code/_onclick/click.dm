@@ -43,9 +43,11 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn(atom/A, params)
-	if(world.time <= next_click)
+	if(!checkClickCooldown()) return
+	setClickCooldown(1) //1/10 of a second, 10 clicks allowed per second.
+
+	if(check_click_intercept(params,A) || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
-	next_click = world.time + 1
 
 	if(client && client.buildmode)
 		build_click(src, client.buildmode, params, A)
@@ -244,7 +246,7 @@
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == I_HURT)
+	if((LASER_EYES in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 	else if(has_telegrip())
 		if(get_dist(src, A) > TK_MAXRANGE)
@@ -372,3 +374,16 @@
 /// MouseWheelOn
 /mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	SEND_SIGNAL(src, COMSIG_MOUSE_SCROLL_ON, A, delta_x, delta_y, params)
+
+/mob/proc/check_click_intercept(params,A)
+	//Client level intercept
+	if(client?.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	//Mob level intercept
+	if(click_intercept)
+		if(call(click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	return FALSE

@@ -7,7 +7,6 @@
 	item_state = "plasticx"
 	flags = NOBLUDGEON
 	w_class = ITEMSIZE_SMALL
-	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null
 	var/open_panel = 0
@@ -19,7 +18,7 @@
 
 /obj/item/plastique/Initialize(mapload)
 	. = ..()
-	wires = new(src)
+	set_wires(new /datum/wires/explosive/c4(src))
 	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
 
 /obj/item/plastique/Destroy()

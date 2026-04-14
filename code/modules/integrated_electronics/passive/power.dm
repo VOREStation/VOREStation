@@ -211,6 +211,7 @@
 		set_pin_data(IC_OUTPUT, 1, IO.avail())
 		set_pin_data(IC_OUTPUT, 2, IO.surplus())
 		set_pin_data(IC_OUTPUT, 3, IO.viewload())
+		push_data()
 
 // Internal power machine for interacting with the powernet.
 // It needs a bit of special code since base /machinery/power assumes loc will be a tile.

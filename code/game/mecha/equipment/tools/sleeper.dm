@@ -4,7 +4,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	energy_drain = 20
-	range = MELEE
+	range = MECH_MELEE
 	equip_cooldown = 30
 	mech_flags = EXOSUIT_MODULE_MEDICAL
 	var/mob/living/carbon/human/occupant = null

@@ -65,7 +65,7 @@
 /datum/event2/event/infestation/announce()
 	var/turf/T = turfs[1]
 	GLOB.command_announcement.Announce("Bioscans indicate that [vermin_string] have been breeding \
-	in \the [T.loc]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
+	in \the [T.loc]. Clear them out, before this starts to affect productivity.", "Vermin infestation", ANNOUNCER_MSG_VERMIN_INFESTATION)
 
 
 /datum/event2/event/infestation/start()

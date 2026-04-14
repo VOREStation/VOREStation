@@ -99,6 +99,9 @@
 
 
 /obj/item/clothing/glasses/omnihud/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(tgarscreen)
 		SStgui.close_uis(src)
 	var/disconnect_tgar = tgarscreen
@@ -111,7 +114,6 @@
 			icon_state = "3d"
 			if(ishuman(loc))
 				to_chat(loc, span_warning("The lenses of your [src.name] malfunction!"))
-	..()
 
 /obj/item/clothing/glasses/omnihud/proc/flashed()
 	if(flash_prot && ishuman(loc))

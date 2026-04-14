@@ -21,7 +21,6 @@
 	var/scan_id = 1
 	var/is_secure = 0
 	var/wrenchable = 0
-	var/datum/wires/smartfridge/wires = null
 	var/persistent = null // Path of persistence datum used to track contents
 	circuit = /obj/item/circuitboard/smartfridge //This one is meant to be uncraftable, however.
 
@@ -33,9 +32,9 @@
 	if(persistent)
 		SSpersistence.track_value(src, persistent)
 	if(is_secure)
-		wires = new/datum/wires/smartfridge/secure(src)
+		set_wires(new /datum/wires/smartfridge/secure(src))
 	else
-		wires = new/datum/wires/smartfridge(src)
+		set_wires(new /datum/wires/smartfridge(src))
 	update_icon()
 	default_apply_parts()
 

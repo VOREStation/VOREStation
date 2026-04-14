@@ -21,7 +21,7 @@
 	set_frequency(frequency)
 
 /obj/item/assembly/signaler/activate()
-	if(!process_cooldown())
+	if(!COOLDOWN_FINISHED(src, next_activate))
 		return FALSE
 	signal()
 	return TRUE
@@ -81,6 +81,8 @@
 		..()
 
 /obj/item/assembly/signaler/proc/signal()
+	if(!COOLDOWN_FINISHED(src, next_activate))
+		return FALSE
 	if(!radio_connection)
 		return
 	if(is_jammed(src))
@@ -91,6 +93,7 @@
 	signal.encryption = code
 	signal.data["message"] = "ACTIVATE"
 	radio_connection.post_signal(src, signal)
+	COOLDOWN_START(src, next_activate, activation_cooldown)
 
 /obj/item/assembly/signaler/pulse(var/radio = 0)
 	if(is_jammed(src))

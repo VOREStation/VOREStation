@@ -434,3 +434,14 @@
   - bugfix: lightning strikes no longer have an extra tesla arc
   - bugfix: Virgo central command should not explode into a firestorm every shift
       from bad weather
+2026-03-30:
+  Diana:
+  - bugfix: yield_mod (floragun on tray) will now increase amount of plants obtained
+  - bugfix: Distillery can now be made in game properly.
+  - bugfix: Resurrection artifact doesn't runtime any longer.
+  Kashargul:
+  - bugfix: matter transfer for modify robot with multibelts
+  - code_imp: ports TG spawn panel
+2026-03-31:
+  Kashargul:
+  - code_imp: some more grep checks

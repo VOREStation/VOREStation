@@ -854,7 +854,7 @@
 
 		var/turf/simulated/mineral/T = get_turf(new_item)
 		if(istype(T))
-			T.last_find = new_item
+			T.last_find_name = new_item.name
 		if(secondary_item) //Is this part of a set?
 			if(talkative)
 				secondary_item.talking_atom = new(secondary_item)

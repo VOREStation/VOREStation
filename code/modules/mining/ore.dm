@@ -7,6 +7,10 @@
 	var/datum/geosample/geologic_data
 	var/material
 
+/obj/item/ore/archeology_debris
+	name = "rocky debris"
+	desc = "Leftover rocky debris from digging."
+
 /obj/item/ore/uranium
 	name = "pitchblende"
 	icon_state = "ore_uranium"

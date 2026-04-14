@@ -513,6 +513,9 @@
 		return 1
 
 /obj/item/shockpaddles/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/new_safety = rand(0, 1)
 	if(safety != new_safety)
 		safety = new_safety
@@ -523,7 +526,6 @@
 			make_announcement("beeps, \"Safety protocols disabled!\"", "warning")
 			playsound(src, 'sound/machines/defib_safetyoff.ogg', 50, 0)
 		update_icon()
-	..()
 
 /obj/item/shockpaddles/robot
 	name = "defibrillator paddles"
@@ -609,7 +611,9 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/shockpaddles/standalone/emp_act(severity, recursive)
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/new_fail = 0
 	switch(severity)
 		if(1)

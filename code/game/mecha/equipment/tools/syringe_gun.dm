@@ -13,7 +13,7 @@
 	energy_drain = 10
 	var/mode = 0 //0 - fire syringe, 1 - analyze reagents.
 	var/datum/global_iterator/mech_synth/synth
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_cooldown = 10
 	required_type = list(/obj/mecha/medical)
 
@@ -278,7 +278,7 @@
 	name = "crisis dronebay"
 	desc = "A small shoulder-mounted dronebay containing a rapid response drone capable of moderately stabilizing a patient near the exosuit."
 	icon_state = "mecha_dronebay"
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_cooldown = 3 SECONDS
 	required_type = list(/obj/mecha/medical)
 
@@ -493,7 +493,7 @@
 	icon_state = "mecha_analyzer_health"
 	equip_cooldown = 5 SECONDS
 	energy_drain = 100
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/weapons/flash.ogg'
 	required_type = list(/obj/mecha/medical)

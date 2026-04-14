@@ -3,9 +3,6 @@ Add fingerprints to items when we put them in our hands.
 This saves us from having to call add_fingerprint() any time something is put in a human's hands programmatically.
 */
 
-/mob/living/carbon/human
-	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
-
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = 1
@@ -239,6 +236,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return
 
 	W.loc = src
+	has_unequipped(W) //TG calls attempt_insert -> transferItemToLoc -> doUnEquip -> has_unequipped. This is where we do it instead since we don't have storage datums.
 	switch(slot)
 		if(slot_back)
 			src.back = W

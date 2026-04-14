@@ -143,6 +143,10 @@
 		verbs -= /obj/item/gun/verb/give_dna
 		verbs -= /obj/item/gun/verb/allow_dna
 
+	if(sel_mode <= length(firemodes))
+		var/datum/firemode/new_mode = firemodes[sel_mode]
+		new_mode.apply_to(src)
+
 /obj/item/gun/update_twohanding()
 	if(one_handed_penalty)
 		var/mob/living/M = loc

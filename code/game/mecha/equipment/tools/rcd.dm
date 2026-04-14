@@ -5,7 +5,7 @@
 	icon_state = "mecha_rcd"
 	equip_cooldown = 10
 	energy_drain = 250
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_type = EQUIP_SPECIAL
 	var/obj/item/rcd/electric/mounted/mecha/my_rcd = null
 

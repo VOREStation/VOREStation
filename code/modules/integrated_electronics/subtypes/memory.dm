@@ -83,11 +83,11 @@
 /obj/item/integrated_circuit/memory/constant/do_work()
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
-
+/*
 /obj/item/integrated_circuit/memory/constant/emp_act(severity, recursive)
 	// Prevents default EMP behavior for single-slot constants memory.
 	return
-
+*/
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	. = ..(user)
 	if(.)

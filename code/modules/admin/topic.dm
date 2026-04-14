@@ -257,7 +257,7 @@
 		if(!M.ckey)	//sanity
 			to_chat(usr, span_filter_adminlog("This mob has no ckey"))
 			return
-		if(!GLOB.job_master)
+		if(!SSjob)
 			to_chat(usr, span_filter_adminlog("Job Master has not been setup!"))
 			return
 
@@ -278,7 +278,7 @@
 		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -298,7 +298,7 @@
 		jobs += "<tr bgcolor='ffddf0'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=securitydept;jobban4=\ref[M]'>Security Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -318,7 +318,7 @@
 		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -338,7 +338,7 @@
 		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=cargodept;jobban4=\ref[M]'>Cargo Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -358,7 +358,7 @@
 		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -378,7 +378,7 @@
 		jobs += "<tr bgcolor='e79fff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -398,7 +398,7 @@
 		jobs += "<tr bgcolor='ebb8fc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=explorationdept;jobban4=\ref[M]'>Exploration Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -422,7 +422,7 @@
 		jobs += "<tr bgcolor='00ffff'><th colspan='[length(offmap_jobs)]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=offmapdept;jobban4=\ref[M]'>Offmap Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in offmap_jobs)
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -442,7 +442,7 @@
 		jobs += "<tr bgcolor='dddddd'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=civiliandept;jobban4=\ref[M]'>Civilian Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -467,7 +467,7 @@
 		jobs += "<tr bgcolor='ccffcc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))]'><a href='byond://?src=\ref[src];[HrefToken()];jobban3=nonhumandept;jobban4=\ref[M]'>Synthetic Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 			if(!jobPos)	continue
-			var/datum/job/job = GLOB.job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -547,7 +547,7 @@
 				tgui_alert_async(usr, "You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-		if(!GLOB.job_master)
+		if(!SSjob)
 			to_chat(usr, span_filter_adminlog("Job Master has not been setup!"))
 			return
 
@@ -557,63 +557,63 @@
 			if("commanddept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("securitydept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("cargodept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("sciencedept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("explorationdept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("offmapdept")
 				for(var/dept in GLOB.offmap_departments)
 					for(var/jobPos in SSjob.get_job_titles_in_department(dept))
 						if(!jobPos)	continue
-						var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+						var/datum/job/temp = SSjob.get_job(jobPos)
 						if(!temp) continue
 						joblist += temp.title
 			if("civiliandept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("nonhumandept")
 				joblist += "pAI"
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 					if(!jobPos)	continue
-					var/datum/job/temp = GLOB.job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			else
@@ -1234,10 +1234,9 @@
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
 
-		var/client/C = usr.client
 		if(!isobserver(usr))
 			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/admin_ghost)
-		C.jumptocoord(x,y,z)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/jumptocoord, x, y, z)
 
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
@@ -1534,138 +1533,8 @@
 			return
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_traitor_panel, M)
 
-	else if(href_list["create_object"])
-		if(!check_rights(R_SPAWN))	return
-		return create_object(usr)
-
-	else if(href_list["quick_create_object"])
-		if(!check_rights(R_SPAWN))	return
-		return quick_create_object(usr)
-
-	else if(href_list["create_turf"])
-		if(!check_rights(R_SPAWN))	return
-		return create_turf(usr)
-
-	else if(href_list["create_mob"])
-		if(!check_rights(R_SPAWN))	return
-		return create_mob(usr)
-
-	else if(href_list["object_list"])			//this is the laggiest thing ever
-		if(!check_rights(R_SPAWN))	return
-
-		if(!CONFIG_GET(flag/allow_admin_spawning))
-			to_chat(usr, span_filter_adminlog("Spawning of items is not allowed."))
-			return
-
-		var/atom/loc = usr.loc
-
-		var/dirty_paths
-		if (istext(href_list["object_list"]))
-			dirty_paths = list(href_list["object_list"])
-		else if (istype(href_list["object_list"], /list))
-			dirty_paths = href_list["object_list"]
-
-		var/paths = list()
-		var/removed_paths = list()
-
-		for(var/dirty_path in dirty_paths)
-			var/path = text2path(dirty_path)
-			if(!path)
-				removed_paths += dirty_path
-				continue
-			else if(!ispath(path, /obj) && !ispath(path, /turf) && !ispath(path, /mob))
-				removed_paths += dirty_path
-				continue
-			else if(ispath(path, /obj/item/gun/energy/pulse_rifle))
-				if(!check_rights(R_FUN,0))
-					removed_paths += dirty_path
-					continue
-			else if(ispath(path, /obj/item/melee/energy/blade))//Not an item one should be able to spawn./N
-				if(!check_rights(R_FUN,0))
-					removed_paths += dirty_path
-					continue
-			else if(ispath(path, /obj/effect/bhole))
-				if(!check_rights(R_FUN,0))
-					removed_paths += dirty_path
-					continue
-			paths += path
-
-		if(!paths)
-			tgui_alert(usr, "The path list you sent is empty")
-			return
-		if(length(paths) > 5)
-			tgui_alert_async(usr, "Select fewer object types, (max 5)")
-			return
-		else if(length(removed_paths))
-			tgui_alert_async(usr, "Removed:\n" + jointext(removed_paths, "\n"))
-
-		var/list/offset = splittext(href_list["offset"],",")
-		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
-		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
-		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
-		var/tmp_dir = href_list["object_dir"]
-		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
-		if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
-			obj_dir = 2
-		var/obj_name = sanitize(href_list["object_name"])
-		var/where = href_list["object_where"]
-		if (!( where in list("onfloor","inhand","inmarked") ))
-			where = "onfloor"
-
-		if( where == "inhand" )
-			to_chat(usr, span_filter_adminlog("Support for inhand not available yet. Will spawn on floor."))
-			where = "onfloor"
-
-		if ( where == "inhand" )	//Can only give when human or monkey
-			if ( !( ishuman(usr) || issmall(usr) ) )
-				to_chat(usr, span_filter_adminlog("Can only spawn in hand when you're a human or a monkey."))
-				where = "onfloor"
-			else if ( usr.get_active_hand() )
-				to_chat(usr, span_filter_adminlog("Your active hand is full. Spawning on floor."))
-				where = "onfloor"
-
-		if ( where == "inmarked" )
-			if ( !marked_datum )
-				to_chat(usr, span_filter_adminlog("You don't have any object marked. Abandoning spawn."))
-				return
-			else
-				if ( !istype(marked_datum,/atom) )
-					to_chat(usr, span_filter_adminlog("The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."))
-					return
-
-		var/atom/target //Where the object will be spawned
-		switch ( where )
-			if ( "onfloor" )
-				switch (href_list["offset_type"])
-					if ("absolute")
-						target = locate(0 + X,0 + Y,0 + Z)
-					if ("relative")
-						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
-			if ( "inmarked" )
-				target = marked_datum
-
-		if(target)
-			for (var/path in paths)
-				for (var/i = 0; i < number; i++)
-					if(path in typesof(/turf))
-						var/turf/O = target
-						var/turf/N = O.ChangeTurf(path)
-						if(N)
-							if(obj_name)
-								N.name = obj_name
-					else
-						var/atom/O = new path(target)
-						if(O)
-							O.set_dir(obj_dir)
-							if(obj_name)
-								O.name = obj_name
-								if(istype(O,/mob))
-									var/mob/M = O
-									M.real_name = obj_name
-
-		log_and_message_admins("created [number] [english_list(paths)]")
-		return
+	else if(href_list["spawn_panel"])
+		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/spawn_panel)
 
 	//else if(href_list["admin_secrets_panel"])
 		//var/datum/admin_secret_category/AC = locate(href_list["admin_secrets_panel"]) in admin_secrets.categories

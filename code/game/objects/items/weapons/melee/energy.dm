@@ -372,7 +372,7 @@
 	if(istype(AM, /obj) && proximity && active)
 		// EMP stuff.
 		var/obj/O = AM
-		O.emp_act(3) // A weaker severity is used because this has infinite uses.
+		O.emp_act(EMP_LIGHT) // A weaker severity is used because this has infinite uses.
 		playsound(O, 'sound/effects/EMPulse.ogg', 100, 1)
 		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
@@ -381,7 +381,7 @@
 	. = ..()
 	if(target.isSynthetic() && active)
 		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
-		target.emp_act(3) // A weaker severity is used because this has infinite uses.
+		target.emp_act(EMP_LIGHT) // A weaker severity is used because this has infinite uses.
 		playsound(target, 'sound/effects/EMPulse.ogg', 100, 1)
 		target.adjustFireLoss(force * 3) // 15 Burn, for 20 total.
 		playsound(target, 'sound/weapons/blade1.ogg', 100, 1)

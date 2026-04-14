@@ -4,7 +4,7 @@
 	icon_state = "tesla"
 	equip_cooldown = 10
 	energy_drain = 0
-	range = MELEE
+	range = MECH_MELEE
 	var/coeff = 100
 	var/obj/item/stack/material/fuel
 	var/fuel_type = /obj/item/stack/material/phoron

@@ -56,10 +56,10 @@
 	//VOREStation Add End
 	if(!(pref.player_alt_titles)) pref.player_alt_titles = new()
 
-	if(!GLOB.job_master)
+	if(!SSjob)
 		return
 
-	for(var/datum/job/job in GLOB.job_master.occupations)
+	for(var/datum/job/job in SSjob.occupations)
 		var/alt_title = pref.player_alt_titles[job.title]
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
@@ -173,7 +173,7 @@
 
 		if("job_info")
 			var/rank = params["rank"]
-			var/datum/job/job = GLOB.job_master.GetJob(rank)
+			var/datum/job/job = SSjob.get_job(rank)
 			if(!istype(job))
 				return TOPIC_NOACTION
 
@@ -225,7 +225,7 @@
 		pref.player_alt_titles[job.title] = new_title
 
 /datum/category_item/player_setup_item/occupation/proc/SetJob(mob/user, role, level)
-	var/datum/job/job = GLOB.job_master.GetJob(role)
+	var/datum/job/job = SSjob.get_job(role)
 	if(!job)
 		return 0
 

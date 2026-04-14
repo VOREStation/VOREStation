@@ -259,11 +259,12 @@
 	powercheck(hitcost)
 
 /obj/item/melee/shock_maul/emp_act(severity, recursive)
-	if(status)
-		status = FALSE
-		visible_message(span_warning("\The [src]'s power field hisses and sputters out."))
-		update_held_icon()
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !status)
+		return
+	status = FALSE
+	visible_message(span_warning("\The [src]'s power field hisses and sputters out."))
+	update_held_icon()
 
 /obj/item/melee/shock_maul/get_description_interaction()
 	var/list/results = list()

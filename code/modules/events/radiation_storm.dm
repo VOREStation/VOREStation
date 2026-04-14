@@ -9,7 +9,7 @@
 	var/postStartTicks 		= 0
 
 /datum/event/radiation_storm/announce()
-	GLOB.command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please evacuate into one of the shielded maintenance tunnels or dorms.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg') //VOREStation Edit - Dorms ref
+	GLOB.command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please evacuate into one of the shielded maintenance tunnels or dorms.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_RADIATION)
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
@@ -29,22 +29,6 @@
 	else if(activeFor == leaveBelt)
 		GLOB.command_announcement.Announce("The [using_map.facility_type] has passed the radiation belt. Please allow for up to one minute while radiation levels dissipate, and report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 /datum/event/radiation_storm/proc/radiate()
-
-	//This sucks. Just mutate.
-	/*
-	var/radiation_level = rand(15, 35)
-	for(var/z in using_map.station_levels)
-		var/turf/epicentre = locate(round(world.maxx / 2), round(world.maxy / 2), z)
-		if(epicentre)
-			radiation_pulse(
-				epicentre,
-				max_range = 5,
-				threshold = RAD_MEDIUM_INSULATION,
-				chance = URANIUM_IRRADIATION_CHANCE,
-				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-			)
-	*/
-
 	for(var/mob/living/carbon/C in GLOB.living_mob_list)
 		if(!(C.z in using_map.station_levels) || C.isSynthetic() || isbelly(C.loc))
 			continue
@@ -53,6 +37,13 @@
 			continue
 		if(A.flag_check(RAD_SHIELDED))
 			continue
+		radiation_pulse(
+			get_turf(C),
+			max_range = 1,
+			threshold = RAD_LIGHT_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE * 5,
+			strength = rand(15, 35)
+		)
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			var/chance = 5.0

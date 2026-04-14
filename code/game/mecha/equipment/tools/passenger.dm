@@ -3,7 +3,7 @@
 	desc = "A mountable passenger compartment for exosuits. Rather cramped."
 	icon_state = "mecha_passenger"
 	energy_drain = 10
-	range = MELEE
+	range = MECH_MELEE
 	equip_cooldown = 20
 	var/mob/living/carbon/occupant = null
 	var/door_locked = 1

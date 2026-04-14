@@ -3,6 +3,7 @@
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	resistance_flags = FLAMMABLE
 	var/list/species_restricted = null //Only these species can wear this kit.
 
 	var/list/accessories

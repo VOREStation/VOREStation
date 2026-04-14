@@ -291,7 +291,9 @@
 	return
 
 /obj/item/flash/emp_act(severity, recursive)
-	if(broken)	return
+	. = ..()
+	if (. & EMP_PROTECT_SELF || broken)
+		return
 	flash_recharge()
 	if(!check_capacitor())
 		return

@@ -4,7 +4,7 @@
 	icon_state = "mecha_inflatables"
 	equip_cooldown = 3
 	energy_drain = 30
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/effects/spray.ogg'
 	required_type = list(/obj/mecha/working/ripley)

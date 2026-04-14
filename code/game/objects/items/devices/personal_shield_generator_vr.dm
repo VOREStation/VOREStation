@@ -68,7 +68,6 @@
 /obj/item/personal_shield_generator/loaded //starts with a cell
 	bcell = /obj/item/cell/device/shield_generator/backpack
 
-
 /obj/item/personal_shield_generator/update_icon()
 	if(shield_active)
 		icon_state = "shieldpack_basic_on"
@@ -112,6 +111,9 @@
 */
 
 /obj/item/personal_shield_generator/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(bcell && shield_active)
 		switch(severity)
 			if(1) //Point blank EMP shots have a good chance of burning the cell charge.

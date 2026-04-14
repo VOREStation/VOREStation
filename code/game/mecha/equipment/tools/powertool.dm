@@ -4,7 +4,7 @@
 	icon_state = "mecha_wrench"
 	equip_cooldown = 3
 	energy_drain = 15
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/items/Ratchet.ogg'
 	required_type = list(/obj/mecha/working/ripley)

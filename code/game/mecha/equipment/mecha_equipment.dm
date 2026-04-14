@@ -11,7 +11,7 @@
 	var/equip_ready = TRUE
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
-	var/range = MELEE //bitflags
+	var/range = MECH_MELEE //bitflags
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE
 	var/salvageable = TRUE
@@ -116,7 +116,7 @@
 	return range&RANGED
 
 /obj/item/mecha_parts/mecha_equipment/proc/is_melee()
-	return range&MELEE
+	return range&MECH_MELEE
 
 /obj/item/mecha_parts/mecha_equipment/proc/enable_special_checks(atom/target)
 	if(ispath(required_type))

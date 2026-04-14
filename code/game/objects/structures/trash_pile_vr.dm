@@ -73,7 +73,7 @@
 		to_chat(user, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
 		return
 
-	if(!user.MayRespawn(1))
+	if(!user.MayRespawn(TRUE))
 		return
 
 	var/turf/T = get_turf(src)

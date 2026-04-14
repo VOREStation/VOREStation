@@ -32,6 +32,7 @@
 	has_sensor = FALSE // Reveals ling, and doesn't make sense anyway!
 
 /obj/item/clothing/under/chameleon/changeling/emp_act(severity, recursive) //As these are purely organic, EMP does nothing to them.
+	. = ..()
 	return
 
 /obj/item/clothing/under/chameleon/changeling/verb/shred() //Remove individual pieces if needed.
@@ -51,8 +52,9 @@
 	helmets that biologicals are so fond of wearing."
 	canremove = FALSE
 
-/obj/item/clothing/head/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/clothing/head/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/clothing/head/chameleon/changeling/verb/shred() //The copypasta is real.
 	set name = "Shred Helmet"
@@ -75,8 +77,9 @@
 	desc = "The cells in our chest are rapidly shifting, ready to reform into material that can resemble most pieces of clothing."
 	canremove = FALSE
 
-/obj/item/clothing/suit/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/clothing/suit/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/clothing/suit/chameleon/changeling/verb/shred()
 	set name = "Shred Suit"
@@ -99,8 +102,9 @@
 	desc = "Our feet are overlayed with another layer of flesh and bone on top.  We can reform our feet to resemble various boots and shoes."
 	canremove = FALSE
 
-/obj/item/clothing/shoes/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/clothing/shoes/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/clothing/shoes/chameleon/changeling/verb/shred()
 	set name = "Shred Shoes"
@@ -123,8 +127,9 @@
 	desc = "A large pouch imbedded in our back, it can shift form to resemble many common backpacks that other biologicals are fond of using."
 	canremove = FALSE
 
-/obj/item/storage/backpack/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/storage/backpack/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/storage/backpack/chameleon/changeling/verb/shred()
 	set name = "Shred Backpack"
@@ -150,8 +155,9 @@
 	tend to wear on their hands.  Remember that these won't protect your hands from harm."
 	canremove = FALSE
 
-/obj/item/clothing/gloves/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/clothing/gloves/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/clothing/gloves/chameleon/changeling/verb/shred()
 	set name = "Shred Gloves"
@@ -175,8 +181,9 @@
 	tanks.."
 	canremove = FALSE
 
-/obj/item/clothing/mask/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/clothing/mask/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/clothing/mask/chameleon/changeling/verb/shred()
 	set name = "Shred Mask"
@@ -195,8 +202,9 @@
 	desc = "A transparent piece of eyewear made out of brittle chitin.  We can reform it to resemble various glasses and goggles."
 	canremove = FALSE
 
-/obj/item/clothing/glasses/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/clothing/glasses/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/clothing/glasses/chameleon/changeling/verb/shred()
 	set name = "Shred Glasses"
@@ -219,8 +227,9 @@
 	item_state = "utility"
 	canremove = FALSE
 
-/obj/item/storage/belt/chameleon/changeling/emp_act(severity, recursive)
-	return
+/obj/item/storage/belt/chameleon/changeling/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/storage/belt/chameleon/changeling/verb/shred()
 	set name = "Shred Belt"

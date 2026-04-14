@@ -4,7 +4,7 @@
 	icon_state = "mecha_analyzer"
 	equip_cooldown = 5
 	energy_drain = 30
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_type = EQUIP_SPECIAL
 	ready_sound = 'sound/items/goggles_charge.ogg'
 	required_type = list(/obj/mecha/working/ripley)

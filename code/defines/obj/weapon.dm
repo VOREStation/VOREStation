@@ -73,6 +73,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 5
+	resistance_flags = FLAMMABLE
 
 /obj/item/disk
 	name = "disk"
@@ -86,6 +87,7 @@
 	icon_state = "nucleardisk"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF
 
 /*
 /obj/item/game_kit
@@ -109,6 +111,7 @@
 	var/obj/item/gift = null
 	item_state = "gift"
 	w_class = ITEMSIZE_LARGE
+	resistance_flags = FLAMMABLE
 
 /*/obj/item/syndicate_uplink
 	name = "station bounced radio"

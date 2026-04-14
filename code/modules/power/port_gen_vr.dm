@@ -455,9 +455,6 @@
 	power_gen = cool_rotations
 	runner.nutrition -= nutrition_drain
 
-/obj/machinery/power/rtg/reg/emp_act(severity, recursive)
-	return
-
 /obj/item/circuitboard/machine/reg_d
 	name = T_BOARD("D-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg

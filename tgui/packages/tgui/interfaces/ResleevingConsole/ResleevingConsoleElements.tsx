@@ -86,7 +86,7 @@ export const ResleevingConsoleNavigation = (props) => {
 export const ResleevingConsoleTemp = (props) => {
   const { act, data } = useBackend<Data>();
   const { temp } = data;
-  if (!temp || !temp.text || temp.text.length <= 0) {
+  if (!temp?.text || temp.text.length <= 0) {
     return;
   }
 

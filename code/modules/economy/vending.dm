@@ -73,7 +73,6 @@
 
 	var/scan_id = 1
 	var/obj/item/coin/coin
-	var/datum/wires/vending/wires = null
 
 	var/list/log = list()
 	var/req_log_access = ACCESS_CARGO //default access for checking logs is cargo
@@ -83,7 +82,7 @@
 
 /obj/machinery/vending/Initialize(mapload)
 	. = ..()
-	wires = new(src)
+	set_wires(new /datum/wires/vending(src))
 	if(product_slogans)
 		slogan_list += splittext(product_slogans, ";")
 
