@@ -83,7 +83,6 @@
 	board_type = "machine"
 	icon_state = "mcontroller"
 	build_path = /obj/machinery/ion_engine
-	origin_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 2)
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/stock_parts/matter_bin = 1,

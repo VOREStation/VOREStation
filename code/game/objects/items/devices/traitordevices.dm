@@ -24,7 +24,6 @@ effective or pretty fucking useless.
 	throw_speed = 4
 	throw_range = 10
 	item_state = "electronic"
-	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 3, TECH_ILLEGAL = 3)
 
 	var/times_used = 0 //Number of times it's been used.
 	var/max_uses = 2

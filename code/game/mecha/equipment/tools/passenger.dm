@@ -2,7 +2,6 @@
 	name = "passenger compartment"
 	desc = "A mountable passenger compartment for exosuits. Rather cramped."
 	icon_state = "mecha_passenger"
-	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
 	energy_drain = 10
 	range = MECH_MELEE
 	equip_cooldown = 20

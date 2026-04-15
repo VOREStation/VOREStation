@@ -148,7 +148,6 @@
 	standard xray beams, resulting in an effective 'anti-everything' energy weapon."
 	icon_state = "xray"
 	item_state = "xray"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/shock
 	charge_cost = 175
 

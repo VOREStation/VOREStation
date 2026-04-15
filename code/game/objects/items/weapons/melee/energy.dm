@@ -229,7 +229,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = TRUE
 	edge = TRUE
@@ -279,7 +278,6 @@
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	colorable = TRUE
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
@@ -408,7 +406,6 @@
 /obj/item/melee/energy/sword/charge
 	name = "charge sword"
 	desc = "A small, handheld device which emits a high-energy 'blade'."
-	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	active_force = 25
 	active_armourpen = 25
 	projectile_parry_chance = 40

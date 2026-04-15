@@ -12,7 +12,6 @@
 	preserve_item = TRUE
 	w_class = ITEMSIZE_HUGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2, TECH_BLUESPACE = 4)
 
 	var/obj/item/bork_medigun/linked/medigun_path = /obj/item/bork_medigun/linked
 	var/obj/item/cell/bcell = /obj/item/cell
