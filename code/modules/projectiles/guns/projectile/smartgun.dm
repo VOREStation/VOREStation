@@ -9,7 +9,6 @@
 	icon_state = "smartgun"
 	icon_override = 'icons/obj/guns/projectile/smartgun_mob.dmi'
 	item_state = "smartgun"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
 	w_class = ITEMSIZE_LARGE
 	matter = list(MAT_STEEL = 6000, MAT_DIAMOND = 2000, MAT_URANIUM = 2000)
 	recoil = 1

@@ -18,7 +18,6 @@
 
 	modifystate = "stun"
 
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 
 	charge_sections = 3 //For the icon
 	ammo_x_offset = 2

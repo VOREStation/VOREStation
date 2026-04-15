@@ -19,6 +19,7 @@
 	allow_quick_gather = 1
 	collection_mode = 1
 	var/linked
+	resistance_flags = FLAMMABLE
 
 
 /obj/item/storage/laundry_basket/attack_hand(mob/living/user as mob)

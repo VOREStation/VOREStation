@@ -62,7 +62,7 @@
 
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
-	var/obj/item/storage/bag/ore/my_storage = null
+	var/obj/item/ore_bag/my_storage = null
 
 	var/last_search = 0
 	var/search_cooldown = 5 SECONDS
@@ -74,7 +74,7 @@
 	ion_trail.set_up(src)
 	ion_trail.start()
 
-	my_storage = new /obj/item/storage/bag/ore(src)
+	my_storage = new /obj/item/ore_bag(src)
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 

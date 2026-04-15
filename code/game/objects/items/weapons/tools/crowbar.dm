@@ -12,7 +12,6 @@
 	pry = 1
 	item_state = "crowbar"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 50)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	usesound = 'sound/items/crowbar.ogg'
@@ -52,7 +51,6 @@
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	icon_state = "crowbar"
 	toolspeed = 0.1
-	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 4)
 
 /obj/item/tool/crowbar/hybrid
 	name = "strange crowbar"
@@ -61,7 +59,6 @@
 	icon_state = "hybcrowbar"
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	toolspeed = 0.4
-	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 3)
 	reach = 2
 
 /obj/item/tool/crowbar/power
@@ -86,7 +83,6 @@
 	throwforce = 5
 	pry = 1
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 30)
 	attack_verb = list("whapped", "smacked", "swatted", "thwacked", "hit")
 	usesound = 'sound/items/crowbar.ogg'

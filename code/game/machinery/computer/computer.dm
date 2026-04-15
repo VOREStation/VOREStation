@@ -30,8 +30,11 @@
 	return 1
 
 /obj/machinery/computer/emp_act(severity, recursive)
-	if(prob(20/severity)) set_broken()
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
+	if(prob(20/severity))
+		set_broken()
 
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)

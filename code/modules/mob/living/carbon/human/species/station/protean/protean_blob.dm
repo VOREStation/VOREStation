@@ -296,10 +296,11 @@
 		return ..()
 
 /mob/living/simple_mob/protean_blob/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(humanform)
 		return humanform.emp_act(severity, recursive)
-	else
-		return ..()
 
 /mob/living/simple_mob/protean_blob/ex_act(severity)
 	if(humanform)

@@ -7,10 +7,10 @@
 	icon = 'icons/mob/species/teshari/synth_facemask.dmi'
 	icon_override = 'icons/mob/species/teshari/synth_facemask.dmi'
 	icon_state = "synth_facemask"
-	origin_tech = list(TECH_ILLEGAL = 1)
 	var/lstat
 	var/visor_state = "Neutral" //Separating this from lstat so that it could potentially be used for an override system or something
 	var/mob/living/carbon/maskmaster
+	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE | BOMB_PROOF |FREEZE_PROOF
 
 /obj/item/clothing/mask/synthfacemask/equipped()
 	..()

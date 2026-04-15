@@ -16,7 +16,7 @@
 
 /datum/event/brand_intelligence/announce()
 	GLOB.command_announcement.Announce("An ongoing mass upload of malware for vendors has been detected onboard  [station_name()], which appears to transmit \
-	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert")
+	to other nearby vendors.  The original infected machine is believed to be \a [originMachine.name].", "Vendor Service Alert", ANNOUNCER_MSG_VENDORVIRUS)
 
 
 /datum/event/brand_intelligence/start()

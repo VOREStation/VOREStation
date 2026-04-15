@@ -63,6 +63,8 @@
 	/// Radiation insulation types
 	var/rad_insulation = RAD_NO_INSULATION
 
+	var/datum/wires/wires = null
+
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
@@ -142,14 +144,18 @@
 
 
 /atom/proc/emp_act(severity, recursive)
-	recursive++ // Needs SHOULD_CALL_PARENT(), then check all the emp_acts
+	SHOULD_CALL_PARENT(TRUE)
+	recursive++
 	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
 		return
 	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_PRE_EMP_ACT, severity)
-	for(var/atom/A in contents)
-		if(isbelly(A)) //Prey are protected
-			continue
-		A.emp_act(severity, recursive)
+	if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
+		wires.emp_pulse()
+
+	if(!(protection & EMP_PROTECT_CONTENTS))
+		for(var/atom/A in contents)
+			A.emp_act(severity, recursive)
+
 	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity, protection)
 	return protection
 
@@ -645,3 +651,7 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 	blood_color = null
 	germ_level = 0
 	fluorescent = 0
+
+/// Sets the wire datum of an atom
+/atom/proc/set_wires(datum/wires/new_wires)
+	wires = new_wires

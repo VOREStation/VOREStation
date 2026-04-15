@@ -4,7 +4,6 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	name = "basic NTNet network card"
 	desc = "A basic network card for usage with standard NTNet frequencies."
 	power_usage = 50
-	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 1)
 	critical = 0
 	icon_state = "netcard_basic"
 	hardware_size = 1
@@ -42,7 +41,6 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	name = "advanced NTNet network card"
 	desc = "An advanced network card for usage with standard NTNet frequencies. It's transmitter is strong enough to connect even when far away."
 	long_range = 1
-	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 2)
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "netcard_advanced"
 	hardware_size = 1
@@ -51,7 +49,6 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	name = "quantum NTNet network card"
 	desc = "A network card that can connect to NTnet from anywhere, using quantum entanglement."
 	long_range = 1
-	origin_tech = list(TECH_DATA = 6, TECH_ENGINEERING = 7)
 	power_usage = 200 // Infinite range but higher power usage.
 	icon_state = "netcard_advanced"
 	hardware_size = 1
@@ -72,7 +69,6 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	name = "wired NTNet network card"
 	desc = "An advanced network card for usage with standard NTNet frequencies. This one also supports wired connection."
 	ethernet = 1
-	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 3)
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "netcard_ethernet"
 	hardware_size = 3

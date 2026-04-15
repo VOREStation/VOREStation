@@ -5,7 +5,6 @@
 	icon_state = "deadringer"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_TIE
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/activated = 0
 	var/timer = 0
 	var/bruteloss_prev = 999999

@@ -19,7 +19,9 @@
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 /obj/item/organ/internal/cell/emp_act(severity, recursive)
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	owner?.adjust_nutrition(-rand(10 / severity, 50 / severity))
 
 /obj/item/organ/internal/cell/machine/handle_organ_proc_special()
@@ -109,11 +111,12 @@
 	if(istype(holder_mob))
 		holder_mob.drop_from_inventory(src)
 	qdel(src)
-
+/*
+// EMP loops inside things, this should still work?
 /obj/item/organ/internal/mmi_holder/emp_act(severity, recursive)
 	if(stored_mmi)
 		stored_mmi.emp_act(severity, recursive)
-
+*/
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
 	brain_type = /obj/item/mmi/digital/posibrain

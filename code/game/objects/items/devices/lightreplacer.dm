@@ -40,7 +40,6 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 2)
 
 	var/max_uses = 32
 	var/uses = 32

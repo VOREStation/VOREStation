@@ -7,7 +7,6 @@
 	name = T_BOARD("fluid pump")
 	build_path = /obj/machinery/pump
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 1)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/cell = 1,

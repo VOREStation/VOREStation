@@ -20,7 +20,6 @@
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 30)
 
 	//R&D tech level
-	origin_tech = list(TECH_ENGINEERING = 1)
 
 	tool_qualities = list(TOOL_WELDER)
 
@@ -364,7 +363,6 @@
 	desc = "A slightly larger welder with a larger tank."
 	icon_state = "indwelder"
 	max_fuel = 40
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
 
 /obj/item/weldingtool/hugetank
@@ -373,7 +371,6 @@
 	icon_state = "upindwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 3)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
 
 /obj/item/weldingtool/mini
@@ -424,7 +421,6 @@
 	flame_color = "#6699FF" // Light bluish.
 	eye_safety_modifier = 2
 	change_icons = 0
-	origin_tech = list(TECH_PHORON = 5 ,TECH_ENGINEERING = 5)
 	always_process = TRUE
 
 /obj/item/weldingtool/alien/process()
@@ -438,7 +434,6 @@
 	icon_state = "exwelder"
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
 	toolspeed = 0.5
 	change_icons = 0
@@ -461,7 +456,6 @@
 	toolspeed = 0.25
 	w_class = ITEMSIZE_NORMAL
 	flame_intensity = 5
-	origin_tech = list(TECH_ENGINEERING = 5, TECH_PHORON = 4, TECH_PRECURSOR = 1)
 	reach = 2
 
 /*

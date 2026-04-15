@@ -18,6 +18,7 @@
 	var/brute_damage = 0                    // Specifically brute damage.
 	var/burn_damage = 0                     // Specifically burn damage.
 	var/base_name                           // Used to keep the original name safe while we apply modifiers.
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/Initialize(mapload)
 	. = ..()

@@ -335,8 +335,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newai.ogg')
+				play_simple_announcement(world, ANNOUNCER_MSG_NEW_AI)
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -1615,7 +1614,6 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 		object.set_custom_materials(final_material_list, multiplier)
 		index += 1
 
-///similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center
 /proc/spiral_range(dist = 0, center = usr, orange = FALSE)
 	var/list/atom_list = list()
 	var/turf/t_center = get_turf(center)

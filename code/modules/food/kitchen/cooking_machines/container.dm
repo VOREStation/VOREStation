@@ -155,7 +155,7 @@
 	if (total > 0)
 		for (var/obj/item/I in contents)
 			if (weights[I])
-				holder.trans_to(I, weights[I] / total)
+				holder.trans_to_obj(I, weights[I] / total)
 
 /obj/item/reagent_containers/cooking_container/update_icon()
 	overlays.Cut()

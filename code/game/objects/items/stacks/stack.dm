@@ -11,7 +11,6 @@
 
 /obj/item/stack
 	gender = PLURAL
-	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
 	randpixel = 7
 	center_of_mass_x = 0

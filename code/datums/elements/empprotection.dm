@@ -11,7 +11,7 @@
 	RegisterSignal(target, COMSIG_ATOM_PRE_EMP_ACT, PROC_REF(getEmpFlags))
 
 /datum/element/empprotection/Detach(atom/target)
-	UnregisterSignal(target, COMSIG_ATOM_PRE_EMP_ACT, COMSIG_ATOM_EXAMINE_TAGS)
+	UnregisterSignal(target, list(COMSIG_ATOM_PRE_EMP_ACT, COMSIG_ATOM_EXAMINE_TAGS))
 	return ..()
 
 /datum/element/empprotection/proc/getEmpFlags(datum/source, severity)

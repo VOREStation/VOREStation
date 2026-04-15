@@ -166,7 +166,6 @@
 	icon_state = "joanaria"
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "joanariamob"
-	origin_tech = "materials=7"
 	force = 15
 	sharp = TRUE
 	edge = TRUE
@@ -200,8 +199,6 @@
 	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "scisword"
-	origin_tech = "materials=7"
-
 
 //john.wayne9392:Harmony Prechtl
 /obj/item/twohanded/fireaxe/fluff/mjollnir
@@ -209,7 +206,6 @@
 	desc = "Large hammer that looks like it can do a great deal of damage if properly used."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "harmonymjollnir"
-	origin_tech = "materials=7"
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
 //JoanRisu:Joan Risu
@@ -962,7 +958,6 @@
 	edge = FALSE
 	throwforce = 7
 	w_class = ITEMSIZE_HUGE
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	lightcolor = "#CC33FF"
 
@@ -1119,7 +1114,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
 	var/active_state = "wolfgirlsword"
 	allowed = list(/obj/item/shield/fluff/wolfgirlshield)
@@ -1461,7 +1455,6 @@
 	icon_state = "claws"
 	drop_sound = null
 	pickup_sound = null
-	origin_tech = null
 	matter = null
 
 //Coolcrow420 - Jade Davis

@@ -148,7 +148,6 @@
 /obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
-	origin_tech = list(TECH_DATA = 2)
 	secure = 1
 
 /obj/item/airlock_electronics/secure/emag_act(var/remaining_charges, var/mob/user)

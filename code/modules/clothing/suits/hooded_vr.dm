@@ -21,6 +21,7 @@
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
 	actions_types = list(/datum/action/item_action/toggle_knight_headgear)
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/storage/hooded/knight/galahad
 	name = "crusader's armor"

@@ -61,13 +61,14 @@
 // Parameters: 1 (severity - how strong the EMP is, with lower numbers being stronger)
 // Description: Shuts off the machine for awhile if an EMP hits it.  Ion anomalies also call this to turn it off.
 /obj/machinery/exonet_node/emp_act(severity, recursive)
-	if(!(stat & EMPED))
-		stat |= EMPED
-		var/duration = (300 * 10)/severity
-		spawn(rand(duration - 20, duration + 20))
-			stat &= ~EMPED
+	. = ..()
+	if (. & EMP_PROTECT_SELF || (stat & EMPED))
+		return
+	stat |= EMPED
+	var/duration = (300 * 10)/severity
+	spawn(rand(duration - 20, duration + 20))
+		stat &= ~EMPED
 	update_icon()
-	..()
 
 // Proc: process()
 // Parameters: None

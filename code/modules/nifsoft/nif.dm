@@ -104,6 +104,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 /obj/item/nif/proc/unregister_human()
 	UnregisterSignal(human, COMSIG_MOB_DEATH)
+	human.nif = null
 
 //Destructor cleans up references
 /obj/item/nif/Destroy()
@@ -186,6 +187,9 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 //EMP adds wear and disables all nifsoft
 /obj/item/nif/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	notify("Danger! Significant electromagnetic interference!",TRUE)
 	for(var/nifsoft in nifsofts)
 		if(nifsoft)

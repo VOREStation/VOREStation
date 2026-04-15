@@ -2,7 +2,6 @@
 	name = DEVELOPER_WARNING_NAME
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags = NONE //doesn't protect eyes because it's a monocle, duh
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
@@ -64,7 +63,6 @@
 	Commonly used to allow non-augmented crew to interact with virtual interfaces. \
 	<br>They are also fitted with toggleable cosmetic electrochromic lenses. \
 	The lenses will not protect against sudden bright flashes or welding."
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3)
 	var/obj/item/clothing/glasses/hud/omni/hud = null
 	var/mode = "civ"
 	icon_state = "glasses"
@@ -101,6 +99,9 @@
 
 
 /obj/item/clothing/glasses/omnihud/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(tgarscreen)
 		SStgui.close_uis(src)
 	var/disconnect_tgar = tgarscreen
@@ -113,7 +114,6 @@
 			icon_state = "3d"
 			if(ishuman(loc))
 				to_chat(loc, span_warning("The lenses of your [src.name] malfunction!"))
-	..()
 
 /obj/item/clothing/glasses/omnihud/proc/flashed()
 	if(flash_prot && ishuman(loc))

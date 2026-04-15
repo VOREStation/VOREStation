@@ -172,11 +172,7 @@ GLOBAL_VAR(restart_counter)
 	log_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
 #endif
 
-	GLOB.master_controller = new /datum/controller/game_controller()
 	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit
-
-	spawn(1)
-		GLOB.master_controller.setup()
 
 	RunUnattendedFunctions()
 

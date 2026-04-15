@@ -57,8 +57,8 @@ ADMIN_VERB(camera_view, R_DEBUG, "Camera Range Display", "Globally changes the c
 
 ADMIN_VERB_VISIBILITY(sec_camera_report, ADMIN_VERB_VISIBLITY_FLAG_LOCALHOST)
 ADMIN_VERB(sec_camera_report, R_DEBUG, "Camera Report", "Gives a report of the camera state (Only use on a test server).", ADMIN_CATEGORY_MAPPING_TESTS)
-	if(!GLOB.master_controller)
-		tgui_alert_async(user,"Master_controller not found.","Sec Camera Report")
+	if(!SSticker.HasRoundStarted())
+		tgui_alert_async(user,"Game init not ready.","Sec Camera Report")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()

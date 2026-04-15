@@ -110,7 +110,7 @@
 			to_chat(user, span_warning("[B.name] full. Empty or process contents to continue."))
 			return
 		if(B.ore_storage)
-			if(B.current_capacity >= B.max_ore_storage)
+			if(B.ore_bag.current_capacity >= B.ore_bag.max_storage_space)
 				to_chat(user, span_warning("Ore storage full. Deposit ore contents to a box continue."))
 				return
 	if(isbelly(output_atom))
