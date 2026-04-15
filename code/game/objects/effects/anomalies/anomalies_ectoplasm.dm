@@ -78,3 +78,16 @@
 				window_to_damage.take_damage(rand(60, 90))
 				if(window_to_damage?.fulltile)
 					new /obj/effect/temp_visual/revenant/cracks(get_turf(window_to_damage))
+	/*
+	if(effect_power >= 35)
+
+
+	if(effect_power >= 50)
+	*/
+
+/obj/effect/anomaly/ectoplasm/proc/intensity_update()
+	if(effect_power >= 50)
+		icon_state = "ectoplasm_heavy"
+	else
+		icon_state = "ectoplasm"
+	update_icon()
