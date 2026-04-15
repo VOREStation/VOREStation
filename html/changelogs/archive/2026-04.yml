@@ -132,3 +132,8 @@
   Kashargul:
   - refactor: axes the old job controller and old master controller
   - qol: chat highlights can be toggled
+2026-04-15:
+  Diana:
+  - code_imp: Removed origin_tech
+  Will:
+  - rscadd: Station announcer voice now supports customization without extensive editing
