@@ -70,7 +70,7 @@
 		return
 	else if(particle == containment_type)
 		update_state(FALSE)
-		update_health(-1, -10)
+		update_health(-1, -5)
 		return
 	else if(particle == transformation_type)
 		update_modifiers()
