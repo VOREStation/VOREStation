@@ -1415,7 +1415,7 @@
 	if(last_special > world.time)
 		return
 
-	var/chosen_name = tgui_input_text(src,"What would you like your name to become?", "Name change",name, MAX_NAME_LEN)
+	var/chosen_name = tgui_input_text(src, "What would you like your name to become?", "Name change", name, MAX_NAME_LEN)
 
 	if(!chosen_name || !length(chosen_name))
 		return
