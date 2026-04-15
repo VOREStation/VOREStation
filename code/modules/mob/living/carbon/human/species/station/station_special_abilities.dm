@@ -1429,15 +1429,11 @@
 		if(checkplayer.name == chosen_name)
 			if(checkplayer.client.prefs.resleeve_lock)
 				to_chat(src, span_notice("\The [checkplayer]'s preferences forbid you from impersonating them."))
-				message_admins("[key_name(src)] attempted to impersonate [key_name(checkplayer)], but preferences prevented it.")
-				log_admin("[key_name(src)] attempted to impersonate [key_name(checkplayer)], but preferences prevented it.")
+				log_and_message_admins("[key_name(src)] attempted to impersonate [key_name(checkplayer)], but preferences prevented it.", src)
 				return
-			message_admins("[key_name(src)] impersonated [key_name(checkplayer)]!")
-			log_admin("[key_name(src)] impersonated [key_name(checkplayer)]!")
+			log_and_message_admins("[key_name(src)] impersonated [key_name(checkplayer)]!", src)
 
-
-	message_admins("[key_name(src)] set their name to [chosen_name]")
-	log_admin("[key_name(src)] set their name to [chosen_name]")
+	log_and_message_admins("[key_name(src)] set their name to [chosen_name]", src)
 	if(dna)
 		dna.real_name = chosen_name
 	real_name = chosen_name
