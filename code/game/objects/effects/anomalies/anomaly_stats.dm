@@ -42,7 +42,7 @@
 	transformation_type = particles[4]
 
 /datum/anomaly_stats/proc/calculate_points()
-	var/total = 10
+	var/total = 15
 
 	var/obj/effect/anomaly/anomaly = attached_anomaly.resolve()
 

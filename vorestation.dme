@@ -1590,7 +1590,6 @@
 #include "code\game\objects\effects\anomalies\anomalies_dimensional.dm"
 #include "code\game\objects\effects\anomalies\anomalies_dimensional_themes.dm"
 #include "code\game\objects\effects\anomalies\anomalies_dust.dm"
-#include "code\game\objects\effects\anomalies\anomalies_ectoplasm.dm"
 #include "code\game\objects\effects\anomalies\anomalies_flux.dm"
 #include "code\game\objects\effects\anomalies\anomalies_gravity.dm"
 #include "code\game\objects\effects\anomalies\anomalies_hallucination.dm"
