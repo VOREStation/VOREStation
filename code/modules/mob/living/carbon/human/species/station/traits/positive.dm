@@ -952,6 +952,7 @@
 	desc = "You're able to shift your appearance."
 	cost = 3 //this trait is functionally wholly cosmetic, but it is less flavor-restricted than cocoon, and takes less time, so it's a bit pricier
 	custom_only = FALSE
+	hidden = TRUE
 
 /datum/trait/positive/shapeshifting/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
