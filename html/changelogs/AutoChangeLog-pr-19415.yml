@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Mag/rigboots will no longer eat boots."
+  - bugfix: "Gloves will no longer delete whatever it's put over."
+  - bugfix: "Changeling armblades properly pass their message, now."
+  - code_imp: "Gets rid of some X as mob / X as obj"
