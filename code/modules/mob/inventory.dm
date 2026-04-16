@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 
 /* Inventory manipulation */
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
+/mob/proc/put_in_any_hand_if_possible(obj/item/W, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
 	if(equip_to_slot_if_possible(W, slot_l_hand, del_on_fail, disable_warning, redraw_mob))
 		return 1
 	else if(equip_to_slot_if_possible(W, slot_r_hand, del_on_fail, disable_warning, redraw_mob))
@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, ignore_obstructions = 1)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, ignore_obstructions = 1)
 	if(!W)
 		return 0
 	if(!W.mob_can_equip(src, slot, disable_warning, ignore_obstructions))
@@ -80,19 +80,19 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
-/mob/proc/equip_to_slot(obj/item/W as obj, slot)
+/mob/proc/equip_to_slot(obj/item/W, slot)
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot, ignore_obstructions = 1)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, ignore_obstructions = 1)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0, ignore_obstructions)
 
 //hurgh. these feel hacky, but they're the only way I could get the damn thing to work. I guess they could be handy for antag spawners too?
-/mob/proc/equip_voidsuit_to_slot_or_del_with_refit(obj/item/clothing/suit/space/void/W as obj, slot, species = SPECIES_HUMAN)
+/mob/proc/equip_voidsuit_to_slot_or_del_with_refit(obj/item/clothing/suit/space/void/W, slot, species = SPECIES_HUMAN)
 	W.refit_for_species(species)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
-/mob/proc/equip_voidhelm_to_slot_or_del_with_refit(obj/item/clothing/head/helmet/space/void/W as obj, slot, species = SPECIES_HUMAN)
+/mob/proc/equip_voidhelm_to_slot_or_del_with_refit(obj/item/clothing/head/helmet/space/void/W, slot, species = SPECIES_HUMAN)
 	W.refit_for_species(species)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 		return 0
 	I.forceMove(drop_location())
 	I.reset_plane_and_layer()
-	has_unequipped(I)
+	has_unequipped(I, FALSE)
 	return 0
 
 // Removes an item from inventory and places it in the target atom.
@@ -178,9 +178,10 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return remove_from_mob(W, target)
 
 /// This proc is called after an item has been removed from a mob but before it has been officially deslotted.
-/mob/proc/has_unequipped(obj/item/item) //, silent = FALSE) //TODO: Add silent some other time.
+/// equipping = true tells the item we are EQUIPPING it.
+/mob/proc/has_unequipped(obj/item/item, equipping, slot) //, silent = FALSE) //TODO: Add silent some other time.
 	SHOULD_CALL_PARENT(TRUE)
-	item.dropped(src) //, silent)
+	item.dropped(src, equipping, slot) //, silent)
 	//update_equipment_speed_mods()
 	return TRUE
 
@@ -261,7 +262,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 			item_dropping.forceMove(target)
 		else
 			item_dropping.dropInto(drop_location())
-		has_unequipped(item_dropping)
+		has_unequipped(item_dropping, FALSE)
 	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, item_dropping, target)
 	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, target)
 	return TRUE

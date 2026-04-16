@@ -562,7 +562,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/medigun_backpack/dropped(mob/user)
+/obj/item/medigun_backpack/dropped(mob/user, equipping, slot)
 	..()
 	replace_icon()
 

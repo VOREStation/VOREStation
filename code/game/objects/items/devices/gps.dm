@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	. = ..()
 	update_holder()
 
-/obj/item/gps/dropped(mob/user)
+/obj/item/gps/dropped(mob/user, equipping, slot)
 	. = ..()
 	update_holder()
 

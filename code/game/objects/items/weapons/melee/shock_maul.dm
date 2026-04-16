@@ -145,7 +145,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/shock_maul/dropped(mob/user)
+/obj/item/melee/shock_maul/dropped(mob/user, equipping, slot)
 	..()
 	if(status)
 		status = 0

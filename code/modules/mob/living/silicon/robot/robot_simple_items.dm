@@ -118,7 +118,7 @@
 	color = chosen_item.color
 	selected_item = chosen_item
 
-/obj/item/robotic_multibelt/dropped(mob/user)
+/obj/item/robotic_multibelt/dropped(mob/user, equipping, slot)
 	..()
 	//We go back to our initial values.
 	original_state()

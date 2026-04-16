@@ -16,22 +16,22 @@
 	..()
 	var/mob/living/carbon/human/H = loc
 	if(istype(H) && H.wear_mask == src)
-		canremove = 0
+		canremove = FALSE
 		maskmaster = H
 		START_PROCESSING(SSprocessing, src)
 
-/obj/item/clothing/mask/synthfacemask/dropped(mob/user)
-	canremove = 1
+/obj/item/clothing/mask/synthfacemask/dropped(mob/user, equipping, slot)
+	canremove = TRUE
 	maskmaster = null
 	STOP_PROCESSING(SSprocessing, src)
-	return ..()
+	..()
 
 /obj/item/clothing/mask/synthfacemask/Destroy()
 	maskmaster = null
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
-/obj/item/clothing/mask/synthfacemask/mob_can_equip(var/mob/living/carbon/human/user, var/slot, var/disable_warning = FALSE)
+/obj/item/clothing/mask/synthfacemask/mob_can_equip(mob/living/carbon/human/user, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if (!..())
 		return 0
 	if(istype(user))

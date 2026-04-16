@@ -460,7 +460,7 @@
 /obj/item/stack/proc/combine_in_loc()
 	return //STUBBED for now, as it seems to randomly delete stacks
 
-/obj/item/stack/dropped(atom/old_loc)
+/obj/item/stack/dropped(mob/user, equipping, slot)
 	. = ..()
 	if(isturf(loc))
 		combine_in_loc()

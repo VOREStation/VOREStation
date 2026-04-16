@@ -46,7 +46,7 @@
 		else
 			to_chat(user, span_notice("You don't have a mouth, and can't make much use of \the [src]."))
 
-/obj/item/clothing/mask/chewable/dropped(mob/user)
+/obj/item/clothing/mask/chewable/dropped(mob/user, equipping, slot)
 	STOP_PROCESSING(SSprocessing, src)
 	..()
 

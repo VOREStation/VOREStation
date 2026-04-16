@@ -68,7 +68,7 @@
 	var/mob/living/host = null
 	item_flags = DROPDEL | NOSTRIP
 
-/obj/item/tk_grab/dropped(mob/user)
+/obj/item/tk_grab/dropped(mob/user, equipping, slot)
 	..()
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))

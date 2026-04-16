@@ -507,9 +507,9 @@
 
 	..()
 
-/obj/item/weldingtool/tubefed/dropped(mob/user)
+/obj/item/weldingtool/tubefed/dropped(mob/user, equipping, slot)
 	..()
-	if(src.loc != user)
+	if(loc != user)
 		mounted_pack.return_nozzle()
 		to_chat(user, span_notice("\The [src] retracts to its fueltank."))
 
