@@ -7,7 +7,7 @@ import type { Data } from './types';
 export const SecurityRecordsViewGeneral = (props) => {
   const { act, data } = useBackend<Data>();
   const { general } = data;
-  if (!general || !general.fields) {
+  if (!general?.fields) {
     return <Box color="bad">General records lost!</Box>;
   }
   return (

@@ -15,7 +15,6 @@
 	name = "artifact blade"
 	desc = "A mysterious blade that emanates terrifying power"
 	icon_state = "cultblade"
-	origin_tech = list(TECH_COMBAT = 6, TECH_ARCANE = 6, TECH_BIO = 6)
 	w_class = ITEMSIZE_LARGE
 	force = 30
 	throwforce = 10

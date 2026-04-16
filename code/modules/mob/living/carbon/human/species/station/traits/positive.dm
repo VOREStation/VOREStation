@@ -847,13 +847,14 @@
 
 /datum/trait/positive/toxin_gut
 	name ="Robust Gut"
-	desc = "You are immune to most ingested toxins. Does not protect from possible harm caused by other drugs, meds, allergens etc."
+	desc = "You are immune to most ingested toxins and raw food. Does not protect from possible harm caused by other drugs, meds, allergens etc."
 	cost = 1
 	custom_only = FALSE
 
 /datum/trait/positive/toxin_gut/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	ADD_TRAIT(H, INGESTED_TOXIN_IMMUNE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(H, TRAIT_STRONG_STOMACH, ROUNDSTART_TRAIT)
 
 /datum/trait/positive/nobreathe
 	name = "Breathless"

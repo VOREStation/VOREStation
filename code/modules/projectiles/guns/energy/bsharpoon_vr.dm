@@ -11,7 +11,6 @@
 	throw_speed = 4
 	throw_range = 20
 
-	origin_tech = list(TECH_BLUESPACE = 5)
 
 	var/mode = 1  // 1 mode - teleport you to turf  0 mode teleport turf to you
 	var/firable = TRUE

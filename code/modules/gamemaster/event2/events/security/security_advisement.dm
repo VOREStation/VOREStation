@@ -90,4 +90,4 @@
 /datum/event2/event/security_screening/announce()
 	GLOB.command_announcement.Announce("[pick("A nearby Navy vessel", "A Solar official", "A Vir-Gov official", "A NanoTrasen board director")] has \
 	requested the screening of [pick("every other", "every", "suspicious", "willing")] [victim] \
-	personnel onboard \the [location_name()].", "Security Advisement")
+	personnel onboard \the [location_name()].", "Security Advisement", ANNOUNCER_MSG_SECURITY_ADVISEMENT)

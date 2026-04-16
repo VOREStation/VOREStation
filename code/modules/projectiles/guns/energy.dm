@@ -111,7 +111,9 @@
 		update_icon()
 
 /obj/item/gun/energy/emp_act(severity, recursive)
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	update_icon()
 
 /obj/item/gun/energy/consume_next_projectile()

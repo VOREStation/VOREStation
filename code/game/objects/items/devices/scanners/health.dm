@@ -12,7 +12,6 @@
 	throw_speed = 5
 	throw_range = 10
 	matter = list(MAT_STEEL = 200)
-	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	var/mode = 1;
 	var/advscan = SCANNABLE_BENEFICIAL
 	var/showadvscan = 1
@@ -474,21 +473,18 @@
 	name = "improved health analyzer"
 	desc = "A miracle of medical technology, this handheld scanner can produce an accurate and specific report of a patient's biosigns."
 	advscan = SCANNABLE_ADVANCED
-	origin_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	icon_state = "health1"
 
 /obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
 	advscan = SCANNABLE_DIFFICULT
-	origin_tech = list(TECH_MAGNET = 6, TECH_BIO = 7)
 	icon_state = "health2"
 
 /obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "phasic health analyzer"
 	desc = "Possibly the most advanced health analyzer to ever have existed, utilising bluespace technology to determine almost everything worth knowing about a patient."
 	advscan = SCANNABLE_SECRETIVE
-	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 
 #undef DEFIB_TIME_LIMIT //VOREStation addition

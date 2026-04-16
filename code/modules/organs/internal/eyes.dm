@@ -107,6 +107,7 @@
 	return -1
 
 /obj/item/organ/internal/eyes/emp_act(severity, recursive)
-	..()
-	if(owner && robotic)
-		owner.eye_blurry += (4/severity)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !robotic || !owner)
+		return
+	owner.eye_blurry += (4/severity)

@@ -13,7 +13,6 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(MAT_STEEL = 500, MAT_GLASS = 200)
 	var/mode = 1;
 	pickup_sound = 'sound/items/pickup/device.ogg'

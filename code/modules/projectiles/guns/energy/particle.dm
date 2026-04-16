@@ -15,7 +15,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/bullet/particle
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_MATERIAL = 2)
 	fire_delay = 10
 	charge_cost = 200	//slightly more shots than lasers
 	var/safetycatch = 0 //if 1, won't let you fire in pressurised environment, rather than malfunctioning
@@ -31,7 +30,6 @@
 	slot_flags = SLOT_BELT
 	force = 8 //looks heavier than a pistol
 	w_class = ITEMSIZE_LARGE	//bigger than a pistol, too.
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
 	fire_delay = 6	//This one's not a handgun, it should have the same fire delay as everything else
 	self_recharge = 1
 	modifystate = null
@@ -46,7 +44,6 @@
 	item_state = "heavyparticle"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	slot_flags = SLOT_BACK
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
 	projectile_type = /obj/item/projectile/bullet/particle/heavy
 	battery_lock = 1
 	fire_delay = 15 // fires faster than a laser cannon. c'mon, it's an awesome-but-impractical endgame gun.
@@ -161,7 +158,6 @@
 	icon_state = "pressurelock"
 	desc = "A safety interlock that can be installed in an antiparticle projector. It prevents the weapon from discharging in pressurised environments."
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 
 // projectiles below
 

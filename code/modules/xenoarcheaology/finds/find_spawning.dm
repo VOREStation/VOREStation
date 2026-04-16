@@ -77,8 +77,6 @@
 		if(ARCHAEO_BOWL)
 			item_type = "bowl"
 			new_item = new /obj/item/reagent_containers/glass/replenishing(src.loc)
-			if(prob(33))
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "bowl"
 			apply_image_decorations = TRUE
@@ -87,8 +85,6 @@
 		if(ARCHAEO_URN)
 			item_type = "urn"
 			new_item = new /obj/item/reagent_containers/glass/beaker(src.loc)
-			if(prob(33))
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "urn[rand(1,2)]"
 			apply_image_decorations = TRUE
@@ -103,7 +99,6 @@
 			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]. \
 			[pick("It glares at anything that makes sound", "Any nearby sounds attract it's gaze", "Its eyes glow crimson when noises are made nearby")]]."
 			new_item = new /obj/item/vampiric(src.loc) //Possibly make multiple subtypes of this?
-			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 		if(ARCHAEO_INSTRUMENT)
 			name = "instrument"
 			icon = 'icons/obj/xenoarchaeology.dmi'
@@ -182,7 +177,6 @@
 			var/storage_amount = 2**(new_box.max_w_class-1)
 			new_box.max_storage_space = rand(storage_amount, storage_amount * 10)
 			if(prob(30))
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 				apply_image_decorations = TRUE
 
 		if(ARCHAEO_GASTANK)
@@ -238,7 +232,6 @@
 			if(prob(30))
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				icon_state = "pen1"
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 				apply_image_decorations = TRUE
 
 		if(ARCHAEO_CRYSTAL)
@@ -267,7 +260,6 @@
 				new_item.icon_state = icon_state
 				new_item.name = "Redspace Gem"
 				new_item.desc = "A glowing stone made of what appears to be a pure chunk of redspace. It seems to have the power to transfer the consciousness of dead or nearly-dead humanoids into it."
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 2)
 
 		if(ARCHAEO_CULTBLADE)
 			//cultblade
@@ -323,8 +315,6 @@
 
 			new_item = new new_helmet(src.loc)
 			secondary_item = new new_robes(src.loc)
-			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
-			LAZYSET(secondary_item.origin_tech, TECH_ARCANE, 1)
 		if(ARCHAEO_SOULSTONE)
 			//soulstone
 			become_anomalous = TRUE
@@ -332,7 +322,6 @@
 			new_item = new /obj/item/soulstone(src.loc)
 			item_type = new_item.name
 			apply_material_decorations = FALSE
-			LAZYSET(new_item.origin_tech, TECH_ARCANE, 2)
 		if(ARCHAEO_STOCKPARTS)
 			if(prob(30))
 				become_anomalous = TRUE
@@ -370,10 +359,8 @@
 			//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
 			if(prob(10))
 				new_gun.power_supply.maxcharge = 0
-				LAZYSET(new_gun.origin_tech, TECH_ARCANE, rand(0, 1))
 			if(prob(15))
 				new_gun.power_supply.charge = rand(0, new_gun.power_supply.maxcharge)
-				LAZYSET(new_gun.origin_tech, TECH_ARCANE, 1)
 			else
 				new_gun.power_supply.charge = 0
 			item_type = "Relic Laser Gun"
@@ -512,7 +499,6 @@
 			//gas mask
 			if(prob(50))
 				new_item = new /obj/item/clothing/mask/gas/poltergeist(src.loc)
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 			else
 				new_item = new /obj/item/clothing/mask/gas/voice(src.loc)
 			if(prob(40))
@@ -554,8 +540,6 @@
 			item_type = new_item.name
 			secondary_item_type = secondary_item.name
 			secondary_item_desc = ""
-			LAZYSET(new_item.origin_tech, TECH_ARCANE, 2)
-			LAZYSET(new_item.origin_tech, TECH_PRECURSOR, 1)
 
 		if(ARCHAEO_ALIEN_BOAT)
 			// Alien boats.
@@ -857,15 +841,6 @@
 
 		if(talkative)
 			new_item.talking_atom = new(new_item)
-			if("origin_tech" in new_item.vars)
-				var/list/new_tech
-				if(new_item.origin_tech)
-					new_tech = new_item.origin_tech.Copy()
-				else
-					new_tech = list()
-				new_tech[TECH_ARCANE] += 1
-				new_tech[TECH_PRECURSOR] += 1
-				new_item.origin_tech = new_tech
 
 		if(become_anomalous)
 			new_item.become_anomalous()
@@ -879,13 +854,10 @@
 
 		var/turf/simulated/mineral/T = get_turf(new_item)
 		if(istype(T))
-			T.last_find = new_item
+			T.last_find_name = new_item.name
 		if(secondary_item) //Is this part of a set?
 			if(talkative)
 				secondary_item.talking_atom = new(secondary_item)
-				LAZYINITLIST(secondary_item.origin_tech)
-				secondary_item.origin_tech[TECH_ARCANE] += 1
-				secondary_item.origin_tech[TECH_PRECURSOR] += 1
 
 			if(become_anomalous)
 				secondary_item.become_anomalous()
@@ -894,14 +866,6 @@
 
 	else if(talkative)
 		src.talking_atom = new(src)
-		var/list/new_tech
-		if(origin_tech)
-			new_tech = origin_tech.Copy()
-		else
-			new_tech = list()
-		new_tech[TECH_ARCANE] += 1
-		new_tech[TECH_PRECURSOR] += 1
-		origin_tech = new_tech
 
 	if(become_anomalous)
 		become_anomalous()

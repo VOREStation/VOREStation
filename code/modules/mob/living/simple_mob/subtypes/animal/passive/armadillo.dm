@@ -113,7 +113,6 @@
 	update_icon()
 
 /obj/item/holder/armadillo
-	origin_tech = list(TECH_BIO = 1)
 	default_worn_icon = 'icons/mob/head.dmi'
 	//item_state = "armadillo_rest" //Commented here as a reminder that holders will always set the item_state to icon_rest. You cannot override it like this.
 

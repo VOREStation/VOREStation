@@ -88,6 +88,14 @@ em						{font-style: normal;font-weight: bold;}
 h1.alert, h2.alert		{color: #000000;}
 .ghostalert				{color: #5c00e6;	font-style: italic; font-weight: bold;}
 .wingdings				{font-family: Wingdings, Webdings}
+.hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite; animation-direction: alternate;}
+	@keyframes hypnocolor {
+		0%		{color: #0d0d0d;}
+		25%		{color: #410194;}
+		50%		{color: #7f17d8;}
+		75%		{color: #410194;}
+		100%	{color: #3bb5d3;}
+}
 
 /* VOREStation Edit Start */
 .emote					{}

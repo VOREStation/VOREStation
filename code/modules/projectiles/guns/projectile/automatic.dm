@@ -27,7 +27,6 @@
 	w_class = ITEMSIZE_NORMAL
 	load_method = MAGAZINE
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	magazine_type = null // R&D builds this. Starts unloaded.
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mmAdvanced, /obj/item/ammo_magazine/m9mm)
@@ -59,7 +58,6 @@
 	w_class = ITEMSIZE_NORMAL
 	force = 10
 	caliber = "10mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m10mm
@@ -99,7 +97,6 @@
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "5.45mm"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m545
@@ -132,7 +129,6 @@
 	item_state = "c20r"
 	w_class = ITEMSIZE_NORMAL
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mmAdvanced
@@ -161,7 +157,6 @@
 	item_state = "wt550"
 	w_class = ITEMSIZE_NORMAL
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/a9mmr"
 	load_method = MAGAZINE
@@ -193,7 +188,6 @@
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "7.62mm"
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m762
@@ -272,7 +266,6 @@
 	slot_flags = 0
 	max_shells = 50
 	caliber = "5.45mm"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m545saw
@@ -354,7 +347,6 @@
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "12g"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m12gdrum
@@ -389,7 +381,6 @@
 	w_class = ITEMSIZE_NORMAL
 	load_method = MAGAZINE
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 	magazine_type = /obj/item/ammo_magazine/m45uzi
 	allowed_magazines = list(/obj/item/ammo_magazine/m45uzi)
 
@@ -416,7 +407,6 @@
 	item_state = "p90"
 	w_class = ITEMSIZE_NORMAL
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m9mmp90
@@ -441,7 +431,6 @@
 	item_state = "stg44"
 	w_class = ITEMSIZE_NORMAL
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 	slot_flags = SLOT_BELT // ToDo: Belt sprite.
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m45tommy
@@ -473,7 +462,6 @@
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "7.62mm"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m762
@@ -511,7 +499,6 @@
 	w_class = ITEMSIZE_NORMAL
 	load_method = MAGAZINE
 	caliber = "9mm"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4)
 	magazine_type = /obj/item/ammo_magazine/m9mmt
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mmt)
 

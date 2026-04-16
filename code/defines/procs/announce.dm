@@ -35,8 +35,11 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 /datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevel)
 	if(!message)
 		return
+
 	var/message_title = new_title ? new_title : title
 	var/message_sound = new_sound ? new_sound : sound
+	if(istext(message_sound)) // Get the announcer voice line if it's a key
+		message_sound = announcer_library_get_voiceline(message_sound)
 
 	if(!msg_sanitized)
 		message = sanitize(message, extra = 0)
@@ -107,21 +110,26 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 	announce_newscaster_news(news)
 
 /datum/announcement/proc/PlaySound(var/message_sound, var/list/zlevels)
-	for(var/mob/M in GLOB.player_list)
-		if(zlevels && !(M.z in zlevels))
-			continue
-		if(!isnewplayer(M) && !isdeaf(M))
-			M << 'sound/AI/preamble.ogg'
-
-	if(!message_sound)
-		return
-
-	spawn(22) // based on length of preamble.ogg + arbitrary delay
+	var/preamble_sound = announcer_message_preamble()
+	if(preamble_sound) // Downstreams might disable this
 		for(var/mob/M in GLOB.player_list)
 			if(zlevels && !(M.z in zlevels))
 				continue
 			if(!isnewplayer(M) && !isdeaf(M))
-				M << message_sound
+				SEND_SOUND(M, preamble_sound)
+
+	if(!message_sound)
+		return
+	addtimer(CALLBACK(src, PROC_REF(internal_postfire_play_sound), message_sound, zlevels), announcer_message_preamble_delay())
+
+/datum/announcement/proc/internal_postfire_play_sound(var/message_sound, var/list/zlevels)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	for(var/mob/M in GLOB.player_list)
+		if(zlevels && !(M.z in zlevels))
+			continue
+		if(!isnewplayer(M) && !isdeaf(M))
+			SEND_SOUND(M, message_sound)
 
 /datum/announcement/proc/Sound(var/message_sound, var/list/zlevels)
 	PlaySound(message_sound, zlevels)
@@ -136,7 +144,7 @@ GLOBAL_DATUM_INIT(command_announcement, /datum/announcement/priority/command, ne
 	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
 
 /proc/level_seven_announcement()
-	GLOB.command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+	GLOB.command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = ANNOUNCER_MSG_BIOHAZARD_SEVEN)
 
 /proc/ion_storm_announcement()
 	GLOB.command_announcement.Announce("It has come to our attention that \the [station_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")

@@ -171,9 +171,10 @@
 /obj/effect/anomaly/weather/rain
 	selected_weather = /datum/anomalous_weather/rain
 
+/*
 /obj/effect/anomaly/weather/acidrain
 	selected_weather = /datum/anomalous_weather/rain/acid
-
+*/
 /obj/effect/anomaly/weather/storm
 	selected_weather = /datum/anomalous_weather/rain/storm
 

@@ -5,7 +5,6 @@
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
-	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
 	preserve_item = 1
 
@@ -375,11 +374,11 @@
 	if(last_notify == 0 || (5 MINUTES <= world.time - last_notify))
 		audible_message(span_notice("\The [src] flashes a message across its screen, \"Additional personalities available for download.\""), hearing_distance = world.view, runemessage = "bleeps!")
 		last_notify = world.time
-
+/*
 /obj/item/paicard/emp_act(severity, recursive)
 	for(var/mob/M in src)
 		M.emp_act(severity, recursive)
-
+*/
 /obj/item/paicard/ex_act(severity)
 	if(pai)
 		pai.ex_act(severity)

@@ -9,7 +9,6 @@
 	pickup_sound = 'sound/items/pickup/knife.ogg'
 	w_class = ITEMSIZE_TINY
 	thrown_force_divisor = 1
-	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = TRUE
 	edge = TRUE

@@ -29,7 +29,6 @@
 	force = 10
 	slot_flags = SLOT_BELT|SLOT_BACK
 	caliber = "12g"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = EJECT_CASINGS //However, it's semi-automatic to make up for that
 	ammo_type = /obj/item/ammo_casing/a12g

@@ -20,6 +20,7 @@ LINEN BINS
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	///var used for attack_self chain
 	var/special_handling = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/item/bedsheet/Initialize(mapload)
 	. = ..()

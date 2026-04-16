@@ -319,7 +319,6 @@
 	S.speak |= message
 
 /obj/item/holder/catslug
-	origin_tech = list(TECH_BIO = 2)
 	icon = 'icons/mob/alienanimals_x32.dmi'
 	item_state = "catslug"
 

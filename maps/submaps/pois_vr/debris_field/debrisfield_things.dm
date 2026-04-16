@@ -147,7 +147,6 @@
 	desc = "An attempt by space-adapted giant spiders to reproduce! Unfortunately, their young cannot yet survive hard vacuum. Yet."
 	icon = 'icons/obj/egg.dmi'
 	icon_state = "egg_slimeglob"
-	origin_tech = list(TECH_BIO = 10)
 
 /obj/item/space_spider_egg/attack_self(mob/user)
 	. = ..(user)
@@ -300,7 +299,6 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	say_escalate = list("Janitorial Engaged!", "Shoot to-ta-te stun!")
 
 /obj/item/poi/broken_drone_circuit/phoron_tanker
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4, TECH_COMBAT = 6)
 	var/static/area/submap/debrisfield/phoron_tanker/tanker	//Doing this to save some perf
 	examine_multitool = "ERR- ERR- KZZZHT \n \
 	designation: <b>kzth!</b> \n assignment: <b>CRACKLE</b> \n \

@@ -154,31 +154,26 @@
 /obj/item/circuitboard/cryopodcontrol
 	name = T_BOARD("Cryogenic Oversight Console")
 	build_path = /obj/machinery/computer/cryopod
-	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/robotstoragecontrol
 	name = T_BOARD("Robotic Storage Console")
 	build_path = /obj/machinery/computer/cryopod/robot
-	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/dormscontrol
 	name = T_BOARD("Residential Oversight Console")
 	build_path = /obj/machinery/computer/cryopod/dorms
-	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/travelcontrol
 	name = T_BOARD("Travel Oversight Console - Docks")
 	build_path = /obj/machinery/computer/cryopod/travel
-	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/gatewaycontrol
 	name = T_BOARD("Travel Oversight Console - Gateway")
 	build_path = /obj/machinery/computer/cryopod/gateway
-	origin_tech = list(TECH_DATA = 3)
 	hidden = TRUE // todo - Make properly constructable in round
 
 //Decorative structures to go alongside cryopods.
@@ -487,7 +482,7 @@
 
 		//Handle job slot/tater cleanup.
 		var/job = to_despawn.mind.assigned_role
-		GLOB.job_master.FreeRole(job)
+		SSjob.free_role(job)
 		to_despawn.mind.assigned_role = null
 
 		if(to_despawn.mind.objectives.len)

@@ -163,6 +163,9 @@ Class Procs:
 	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(use_power && stat == 0)
 		use_power(7500/severity)
 
@@ -173,7 +176,6 @@ Class Procs:
 		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(GLOB.cardinal))
 		QDEL_IN(pulse2, 1 SECOND)
-	..()
 
 /obj/machinery/ex_act(severity)
 	switch(severity)
@@ -471,7 +473,7 @@ Class Procs:
 	A.update_desc()
 	A.update_icon()
 	M.loc = null
-	M.deconstruct(src)
+	M.atom_deconstruct(TRUE, src)
 	qdel(src)
 	return 1
 
