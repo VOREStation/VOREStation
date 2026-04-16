@@ -162,14 +162,12 @@
 		step_towards(leash_pet, leash_master)
 
 /obj/item/leash/dropped(mob/user, equipping, slot)
-	if(equipping)
-		return ..()
 	//Drop the leash, and the leash effects stop
 	. = ..()
 	if(!leash_pet || !leash_master) //There is no pet. Stop this silliness
 		return
 	//Dropping procs any time the leash changes slots. So, we will wait a tick and see if the leash was actually dropped
-	drop_effects(user)
+	addtimer(CALLBACK(src, PROC_REF(drop_effects), user), 1)
 
 /obj/item/leash/proc/drop_effects(mob/user)
 	SIGNAL_HANDLER
