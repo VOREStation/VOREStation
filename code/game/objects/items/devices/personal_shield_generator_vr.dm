@@ -360,7 +360,7 @@
 
 	return 0
 
-/obj/item/personal_shield_generator/dropped(mob/user)
+/obj/item/personal_shield_generator/dropped(mob/user, equipping, slot)
 	..()
 	reattach_gun(user) //A gun attached to a base unit should never exist outside of their base unit or the mob equipping the base unit
 
@@ -432,7 +432,7 @@
 		return 0
 	return 1
 
-/obj/item/gun/energy/gun/generator/dropped(mob/user)
+/obj/item/gun/energy/gun/generator/dropped(mob/user, equipping, slot)
 	..() //update twohanding
 	if(shield_generator)
 		shield_generator.reattach_gun(user)

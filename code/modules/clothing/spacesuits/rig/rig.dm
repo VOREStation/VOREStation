@@ -802,7 +802,7 @@
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, H, ONLY_DEPLOY)
 
-/obj/item/rig/dropped(mob/user)
+/obj/item/rig/dropped(mob/user, equipping, slot)
 	. = ..(user)
 	// So the next user will see the boot animation
 	tgui_shared_states?.Cut()

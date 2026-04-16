@@ -161,13 +161,15 @@
 	for(var/i in 3 to get_dist(leash_pet, leash_master)) // Move the pet to a minimum of 2 tiles away from the master, so the pet trails behind them.
 		step_towards(leash_pet, leash_master)
 
-/obj/item/leash/dropped(mob/user)
+/obj/item/leash/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	//Drop the leash, and the leash effects stop
 	. = ..()
 	if(!leash_pet || !leash_master) //There is no pet. Stop this silliness
 		return
 	//Dropping procs any time the leash changes slots. So, we will wait a tick and see if the leash was actually dropped
-	addtimer(CALLBACK(src, PROC_REF(drop_effects), user), 1)
+	drop_effects(user)
 
 /obj/item/leash/proc/drop_effects(mob/user)
 	SIGNAL_HANDLER

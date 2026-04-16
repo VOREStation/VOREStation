@@ -263,7 +263,6 @@
  * Energy Sword
  */
 /obj/item/melee/energy/sword
-	color
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "esword"
@@ -285,7 +284,7 @@
 
 	projectile_parry_chance = 65
 
-/obj/item/melee/energy/sword/dropped(mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user, equipping, slot)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)

@@ -147,7 +147,7 @@
 	user.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(user, COMSIG_MOVABLE_ATTEMPTED_MOVE, /obj/item/ore_bag/proc/autoload)
 
-/obj/item/ore_bag/dropped(mob/user)
+/obj/item/ore_bag/dropped(mob/user, equipping, slot)
 	..()
 	UnregisterSignal(user, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
