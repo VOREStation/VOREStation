@@ -364,7 +364,7 @@
 	if (SSticker.current_state == GAME_STATE_PLAYING)
 		if(character.client?.prefs?.read_preference(/datum/preference/toggle/living/radio_announce) == FALSE)
 			var/datum/job/announce_job = SSjob.get_job(character.mind?.assigned_role)
-			if(!announce_job || (DEPARTMENT_OFFDUTY in announce_job.departments) || (DEPARTMENT_NONCREW in announce_job.departments) || announce_job.title == JOB_ALT_VISITOR)
+			if(!announce_job || announce_job.title == JOB_ALT_VISITOR)
 				return
 		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
 		if(character.mind.role_alt_title)

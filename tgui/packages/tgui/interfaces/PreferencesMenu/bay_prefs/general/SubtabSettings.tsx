@@ -265,7 +265,7 @@ export const SubtabSettings = (props: {
                     <Button
                       onClick={() => act('radio_announce')}
                       selected={data.radio_announce}
-                      tooltip="Select whether your arrival and departure are announced over radio. Only disables arrival message if not on duty."
+                      tooltip="Select whether arrival and departure announcements are made over radio. Arrivals are only silenced for visitors"
                     >
                       {data.radio_announce ? 'Yes' : 'No'}
                     </Button>
