@@ -20,6 +20,7 @@
 	var/list/images
 	var/list/raw_images
 	var/last_status
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/pilot/Initialize(mapload)
 	. = ..()

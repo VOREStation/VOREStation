@@ -9,7 +9,6 @@
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
-	stack_origin_tech = list(TECH_MATERIAL = 1)
 	melting_point = T0C+1
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
@@ -37,7 +36,6 @@
 	weight = 2
 	hardness = 2
 	protectiveness = 0 // 0%
-	stack_origin_tech = list(TECH_MATERIAL = 1)
 	melting_point = T0C+1
 	destruction_desc = "crumbles"
 	sheet_singular_name = "brick"

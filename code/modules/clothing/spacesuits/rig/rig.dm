@@ -94,8 +94,6 @@
 	var/emp_protection = 0
 	item_flags = PHORONGUARD //VOREStation add
 
-	// Wiring! How exciting.
-	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
@@ -106,13 +104,14 @@
 	var/protean = 0
 	var/obj/item/storage/backpack/rig_storage
 	permeability_coefficient = 0  //Protect the squishies, after all this shit should be waterproof.
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/rig/Initialize(mapload)
 	. = ..()
 
 	suit_state = icon_state
 	item_state = icon_state
-	wires = new(src)
+	set_wires(new /datum/wires/rig(src))
 
 	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		locked = 0
@@ -818,6 +817,9 @@
 	return 0
 
 /obj/item/rig/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	//set malfunctioning
 	if(emp_protection < 30) //for ninjas, really.
 		malfunctioning += 10

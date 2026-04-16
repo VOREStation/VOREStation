@@ -21,10 +21,10 @@
 /datum/event/gravity/announce()
 	if(length(generators))
 		GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. \
-										Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure")
+										Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure", ANNOUNCER_MSG_GRAVITY_OFF)
 	else
 		GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system \
-										reinitializes. Please stand by while the gravity system reinitializes.", "Gravity Failure")
+										reinitializes. Please stand by while the gravity system reinitializes.", "Gravity Failure", ANNOUNCER_MSG_GRAVITY_OFF)
 
 /datum/event/gravity/start()
 	GLOB.gravity_is_on = FALSE
@@ -63,4 +63,4 @@
 					did_anything = TRUE
 
 		if(did_anything)
-			GLOB.command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+			GLOB.command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored", ANNOUNCER_MSG_GRAVITY_ON)

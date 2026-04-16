@@ -9,7 +9,7 @@
 
 /datum/event/viral_outbreak/announce()
 	command_alert("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
-	world << sound('sound/AI/outbreak7.ogg')
+	play_simple_announcement(world, ANNOUNCER_MSG_BIOHAZARD_SEVEN)
 
 /datum/event/viral_outbreak/start()
 	var/list/candidates = list()	//list of candidate keys

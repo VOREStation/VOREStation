@@ -52,7 +52,7 @@
 	playsound(beacon_turf, 'sound/effects/phasein.ogg', 100, TRUE)
 
 	var/datum/announcement/priority/announcement = new/datum/announcement/priority()
-	announcement.Announce("Massive bluespace translocation detected", "Anomaly Alert")
+	announcement.Announce("Massive bluespace translocation detected", "Anomaly Alert", ANNOUNCER_MSG_BLUESPACE_ANOM)
 
 	var/list/flashers = list()
 	for(var/mob/living/living in viewers(beacon_turf, null))

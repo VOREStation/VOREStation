@@ -112,5 +112,8 @@ GLOBAL_LIST_EMPTY(holoposters)
 		update_icon()
 
 /obj/machinery/holoposter/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & BROKEN)
+		return
 	stat |= BROKEN
 	update_icon()

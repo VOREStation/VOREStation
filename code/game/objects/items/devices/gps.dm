@@ -7,7 +7,6 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-gen"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 2, TECH_MAGNET = 1)
 	matter = list(MAT_STEEL = 500)
 
 	var/gps_tag = "GEN0"
@@ -167,7 +166,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	update_icon()
 
 /obj/item/gps/emp_act(severity, recursive)
-	if(emped) // Without a fancy callback system, this will have to do.
+	. = ..()
+	if (. & EMP_PROTECT_SELF || emped)
 		return
 	var/severity_modifier = severity ? severity : 4 // In case emp_act gets called without any arguments.
 	var/duration = 5 MINUTES / severity_modifier
@@ -452,7 +452,6 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-syndie"
 	gps_tag = "NULL"
 	desc = "A positioning system that has extended range and can detect other GPS device signals without revealing its own. How that works is best left a mystery. Alt+click to toggle power."
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	long_range = TRUE
 	hide_signal = TRUE
 	can_hide_signal = TRUE

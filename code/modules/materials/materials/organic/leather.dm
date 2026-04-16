@@ -3,7 +3,6 @@
 	display_name = "plainleather"
 	icon_colour = "#5C4831"
 	stack_type = /obj/item/stack/material/leather
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300

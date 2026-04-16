@@ -21,18 +21,34 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 /mob
 	var/obj/item/storage/s_active = null // Even ghosts can/should be able to peek into boxes on the ground
 
-//This proc is called whenever someone clicks an inventory ui slot.
-/mob/proc/attack_ui(var/slot)
-	var/obj/item/W = get_active_hand()
+///Returns the thing we're currently holding
+/mob/proc/get_active_held_item() //Currently just a proc for when we do change to /tg/'s item handling.
+	return get_active_hand()
 
-	var/obj/item/E = get_equipped_item(slot)
-	if (istype(E))
-		if(istype(W))
-			E.attackby(W,src)
-		else
-			E.attack_hand(src)
-	else
-		equip_to_slot_if_possible(W, slot)
+/**
+ * This proc is called whenever someone clicks an inventory ui slot.
+ *
+ * Mostly tries to put the item into the slot if possible, or call attack hand
+ * on the item in the slot if the users active hand is empty
+ */
+/mob/proc/attack_ui(slot, params)
+	var/obj/item/active_item = get_active_held_item()
+	var/obj/item/equipped_item = get_item_by_slot(slot)
+	var/list/modifiers = params2list(params)
+
+	if(istype(equipped_item))
+		if(active_item)
+			equipped_item.attackby(active_item, src) //Wearing an item and item in hand.
+			return TRUE
+
+		equipped_item.attack_hand(src, modifiers) //Wearing an item w/ no item in hand.
+		return TRUE
+
+	if(istype(active_item))
+		if(equip_to_slot_if_possible(active_item, slot,0,0,0)) //NOT wearing an item, but DO have item in hand.
+			return TRUE
+
+	return FALSE
 
 /* Inventory manipulation */
 
@@ -143,12 +159,12 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/W)
-	if(!W)
+/mob/proc/put_in_hands(var/obj/item/I)
+	if(!I)
 		return 0
-	W.forceMove(drop_location())
-	W.reset_plane_and_layer()
-	W.dropped(src)
+	I.forceMove(drop_location())
+	I.reset_plane_and_layer()
+	has_unequipped(I)
 	return 0
 
 // Removes an item from inventory and places it in the target atom.
@@ -160,6 +176,13 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	if(isnull(target) && isdisposalpacket(src.loc))
 		return remove_from_mob(W, src.loc)
 	return remove_from_mob(W, target)
+
+/// This proc is called after an item has been removed from a mob but before it has been officially deslotted.
+/mob/proc/has_unequipped(obj/item/item) //, silent = FALSE) //TODO: Add silent some other time.
+	SHOULD_CALL_PARENT(TRUE)
+	item.dropped(src) //, silent)
+	//update_equipment_speed_mods()
+	return TRUE
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
@@ -219,29 +242,28 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 
 ///Get the item on the mob in the storage slot identified by the id passed in
 /mob/proc/get_item_by_slot(slot_id)
-	return null
+	return get_equipped_item(slot_id)
 
 /mob/proc/getBackSlot()
 	return SLOT_BACK
 
 //Attemps to remove an object on a mob.
-/mob/proc/remove_from_mob(var/obj/O, var/atom/target)
-	if(!O) // Nothing to remove, so we succeed.
+/mob/proc/remove_from_mob(var/obj/item_dropping, var/atom/target)
+	if(!item_dropping) // Nothing to remove, so we succeed.
 		return 1
-	src.u_equip(O)
+	src.u_equip(item_dropping)
 	if (src.client)
-		src.client.screen -= O
-	O.reset_plane_and_layer()
-	O.screen_loc = null
-	if(istype(O, /obj/item))
-		var/obj/item/I = O
+		src.client.screen -= item_dropping
+	item_dropping.reset_plane_and_layer()
+	item_dropping.screen_loc = null
+	if(isitem(item_dropping))
 		if(target)
-			I.forceMove(target)
+			item_dropping.forceMove(target)
 		else
-			I.dropInto(drop_location())
-		I.dropped(src)
-	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, O, target)
-	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, O, target)
+			item_dropping.dropInto(drop_location())
+		has_unequipped(item_dropping)
+	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, item_dropping, target)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, target)
 	return TRUE
 
 //Returns the item equipped to the specified slot, if any.

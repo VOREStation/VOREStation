@@ -39,7 +39,6 @@
 	icon_state = "black"
 	worn_state = "black"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 
 /obj/item/clothing/under/chameleon/Initialize(mapload)
@@ -49,13 +48,15 @@
 		GLOB.chamelion_jumpsuit_choices = generate_chameleon_choices(/obj/item/clothing/under, blocked)
 
 /obj/item/clothing/under/chameleon/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "psychedelic"
 	desc = "Groovy!"
 	icon_state = "psyche"
 	LAZYSET(item_state_slots, slot_w_uniform_str, "psyche")
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/under/chameleon/verb/change(picked in GLOB.chamelion_jumpsuit_choices)
 	set name = "Change Jumpsuit Appearance"
@@ -76,7 +77,6 @@
 	name = "grey cap"
 	icon_state = "greysoft"
 	desc = "It looks like a plain hat, but upon closer inspection, there's an advanced holographic array installed inside. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	body_parts_covered = 0
 
 /obj/item/clothing/head/chameleon/Initialize(mapload)
@@ -86,12 +86,14 @@
 		GLOB.chamelion_head_choices = generate_chameleon_choices(/obj/item/clothing/head, blocked)
 
 /obj/item/clothing/head/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "grey cap"
 	desc = "It's a baseball hat in a tasteful grey colour."
 	icon_state = "greysoft"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/head/chameleon/verb/change(picked in GLOB.chamelion_head_choices)
 	set name = "Change Hat/Helmet Appearance"
@@ -112,7 +114,6 @@
 	name = "armor"
 	icon_state = "armor"
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/suit/chameleon/Initialize(mapload)
 	. = ..()
@@ -121,12 +122,14 @@
 		GLOB.chamelion_suit_choices = generate_chameleon_choices(/obj/item/clothing/suit, blocked)
 
 /obj/item/clothing/suit/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "armor"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armor"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/suit/chameleon/verb/change(picked in GLOB.chamelion_suit_choices)
 	set name = "Change Oversuit Appearance"
@@ -146,7 +149,6 @@
 	name = "black shoes"
 	icon_state = "black"
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/shoes/chameleon/Initialize(mapload)
 	. = ..()
@@ -155,12 +157,14 @@
 		GLOB.chamelion_shoe_choices = generate_chameleon_choices(/obj/item/clothing/shoes, blocked)
 
 /obj/item/clothing/shoes/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "black shoes"
 	desc = "A pair of black shoes."
 	icon_state = "black"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/shoes/chameleon/verb/change(picked in GLOB.chamelion_shoe_choices)
 	set name = "Change Footwear Appearance"
@@ -180,7 +184,6 @@
 	name = "backpack"
 	icon_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/storage/backpack/chameleon/Initialize(mapload)
 	. = ..()
@@ -189,6 +192,9 @@
 		GLOB.chamelion_back_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
 
 /obj/item/storage/backpack/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
@@ -196,7 +202,6 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_back()
-	..()
 
 /obj/item/storage/backpack/chameleon/verb/change(picked in GLOB.chamelion_back_choices)
 	set name = "Change Backpack Appearance"
@@ -233,7 +238,6 @@
 	name = "black gloves"
 	icon_state = "black"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/gloves/chameleon/Initialize(mapload)
 	. = ..()
@@ -241,12 +245,14 @@
 		GLOB.chamelion_glove_choices = generate_chameleon_choices(/obj/item/clothing/gloves, list(src.type))
 
 /obj/item/clothing/gloves/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "black gloves"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
 	icon_state = "black"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/gloves/chameleon/verb/change(picked in GLOB.chamelion_glove_choices)
 	set name = "Change Gloves Appearance"
@@ -267,7 +273,6 @@
 	name = "gas mask"
 	icon_state = "gas_old"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/mask/chameleon/Initialize(mapload)
 	. = ..()
@@ -275,12 +280,14 @@
 		GLOB.chamelion_mask_choices = generate_chameleon_choices(/obj/item/clothing/mask, list(src.type))
 
 /obj/item/clothing/mask/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "gas mask"
 	desc = "It's a gas mask."
 	icon_state = "gas_old"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/mask/chameleon/verb/change(picked in GLOB.chamelion_mask_choices)
 	set name = "Change Mask Appearance"
@@ -302,7 +309,6 @@
 	icon_state = "meson"
 	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/Initialize(mapload)
@@ -311,12 +317,14 @@
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/glasses, list(src.type))
 
 /obj/item/clothing/glasses/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "Optical Meson Scanner"
 	desc = "It's a set of mesons."
 	icon_state = "meson"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/glasses/chameleon/verb/change(picked in clothing_choices)
 	set name = "Change Glasses Appearance"
@@ -337,7 +345,6 @@
 	name = "belt"
 	desc = "Can hold various things.  It also has a small dial inside one of the pouches."
 	icon_state = "utilitybelt"
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/storage/belt/chameleon/Initialize(mapload)
 	. = ..()
@@ -345,6 +352,9 @@
 		GLOB.chamelion_belt_choices = generate_chameleon_choices(/obj/item/storage/belt, list(src.type))
 
 /obj/item/storage/belt/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "belt"
 	desc = "Can hold various things."
 	icon_state = "utilitybelt"
@@ -352,7 +362,6 @@
 	if(ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_belt()
-	..()
 
 /obj/item/storage/belt/chameleon/verb/change(picked in GLOB.chamelion_belt_choices)
 	set name = "Change Belt Appearance"
@@ -377,7 +386,6 @@
 	desc = "Looks like a black tie, but his one also has a dial inside."
 	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "blacktie"
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/accessory/chameleon/Initialize(mapload)
 	. = ..()
@@ -386,12 +394,14 @@
 		GLOB.chamelion_accessory_choices = generate_chameleon_choices(/obj/item/clothing/accessory, blocked)
 
 /obj/item/clothing/accessory/chameleon/emp_act(severity, recursive) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "black tie"
 	desc = "Looks like a black tie, but his one also has a dial inside."
 	icon_state = "blacktie"
 	update_icon()
 	update_clothing_icon()
-	..()
 
 /obj/item/clothing/accessory/chameleon/verb/change(picked in GLOB.chamelion_accessory_choices)
 	set name = "Change Accessory Appearance"
@@ -412,7 +422,6 @@
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon_state = "deagle"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 	matter = list()
 
 	fire_sound = 'sound/weapons/gunshot1.ogg'
@@ -447,6 +456,9 @@
 	return P
 
 /obj/item/gun/energy/chameleon/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	name = "desert eagle"
 	desc = "It's a desert eagle."
 	icon_state = "deagle"
@@ -455,7 +467,6 @@
 		var/mob/M = src.loc
 		M.update_inv_r_hand()
 		M.update_inv_l_hand()
-	..()
 
 /obj/item/gun/energy/chameleon/disguise(var/newtype)
 	var/obj/item/gun/copy = ..()

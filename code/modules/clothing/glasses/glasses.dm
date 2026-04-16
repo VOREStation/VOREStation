@@ -29,6 +29,7 @@ BLIND     // can't see anything
 	var/list/away_planes //Holder for disabled planes
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	resistance_flags = FIRE_PROOF
 
 	sprite_sheets = list(
 		SPECIES_TESHARI 	= 'icons/inventory/eyes/mob_teshari.dmi',
@@ -108,7 +109,6 @@ BLIND     // can't see anything
 	icon_state = "meson"
 	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
 	actions_types = list(/datum/action/item_action/toggle_goggles)
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	toggleable = 1
 	vision_flags = SEE_TURFS
 	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
@@ -175,7 +175,6 @@ BLIND     // can't see anything
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
-	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_goggles)
@@ -252,7 +251,6 @@ BLIND     // can't see anything
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 	vision_flags = SEE_OBJS
@@ -271,7 +269,6 @@ BLIND     // can't see anything
 	desc = "The secrets of space travel are.. not quite yours."
 	icon_state = "grav"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
-	origin_tech = list(TECH_MAGNET = 2, TECH_BLUESPACE = 1)
 	darkness_view = 5
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_goggles)
@@ -552,7 +549,6 @@ BLIND     // can't see anything
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
-	origin_tech = list(TECH_MAGNET = 3)
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 	vision_flags = SEE_MOBS
@@ -560,6 +556,9 @@ BLIND     // can't see anything
 	flash_protection = FLASH_PROTECTION_REDUCED
 
 /obj/item/clothing/glasses/thermal/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, span_red("The Optical Thermal Scanner overloads and blinds you!"))
@@ -571,7 +570,6 @@ BLIND     // can't see anything
 				M.disabilities |= NEARSIGHTED
 				spawn(100)
 					M.disabilities &= ~NEARSIGHTED
-	..()
 
 /obj/item/clothing/glasses/thermal/Initialize(mapload)
 	. = ..()
@@ -582,7 +580,6 @@ BLIND     // can't see anything
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 
 /obj/item/clothing/glasses/thermal/plain
 	toggleable = 0

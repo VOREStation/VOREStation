@@ -22,7 +22,6 @@
 	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/force = 0
 	var/damtype = BRUTE
@@ -153,9 +152,6 @@
 
 	for(var/path in actions_types)
 		add_item_action(path)
-
-	if(islist(origin_tech))
-		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
 
 	if(embed_chance < 0)
 		if(sharp)
@@ -310,9 +306,9 @@
 	src.loc = T
 
 // See inventory_sizes.dm for the defines.
-/obj/item/examine(mob/user)
-	var/size
-	switch(src.w_class)
+/obj/item/examine(mob/user, infix, suffix)
+	var/size = "unknown"
+	switch(w_class)
 		if(ITEMSIZE_TINY)
 			size = "tiny"
 		if(ITEMSIZE_SMALL)
@@ -325,7 +321,12 @@
 			size = "huge"
 		if(ITEMSIZE_NO_CONTAINER)
 			size = "massive"
-	return ..(user, "", "It is a [size] item.")
+		else
+			if(w_class > ITEMSIZE_HUGE && w_class < ITEMSIZE_NO_CONTAINER)
+				size = "giant"
+			else if (w_class > ITEMSIZE_NO_CONTAINER)
+				size = "enormous"
+	return ..(user, "", "It is \a [size] item.")
 
 /obj/item/attack_hand(mob/living/user as mob)
 	if (!user) return
@@ -438,7 +439,7 @@
 	for(var/datum/action/action_item_has as anything in actions)
 		action_item_has.Remove(user)
 
-	if((item_flags & DROPDEL) && !QDELETED(src))
+	if((item_flags & DROPDEL) && loc != user && !QDELETED(src))
 		qdel(src)
 
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)

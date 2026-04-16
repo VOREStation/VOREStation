@@ -3,6 +3,7 @@
 /obj/item/storage/internal
 	preserve_item = 1
 	var/obj/item/master_item
+	item_flags = ABSTRACT
 
 /obj/item/storage/internal/Initialize(mapload)
 	. = ..()

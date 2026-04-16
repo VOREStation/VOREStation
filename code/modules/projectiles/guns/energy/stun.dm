@@ -47,7 +47,6 @@
 	icon_state = "crossbow"
 	w_class = ITEMSIZE_SMALL
 	item_state = "crossbow"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 2, TECH_ILLEGAL = 5)
 	matter = list(MAT_STEEL = 2000)
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	silenced = 1
@@ -81,7 +80,6 @@
 	Less well known are RayZar's limited-production experimental projects, often in the form of less-lethal weapon solutions."
 	icon_state = "plasma_stun"
 	item_state = "plasma_stun"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_POWER = 3)
 	fire_delay = 20
 	charge_cost = 600
 	projectile_type = /obj/item/projectile/energy/plasmastun
@@ -99,7 +97,6 @@
 	and the company has been particularly litigious towards any attempted imitators."
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	projectile_type = /obj/item/projectile/energy/electrode/strong
 	charge_cost = 400
 
@@ -193,7 +190,6 @@
 	their own variants of the Stun Revolver."
 	icon_state = "vinstunrevolver"
 	item_state = "stunrevolver"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 
 /*
  * Snubnose Stun Revolver
@@ -209,4 +205,3 @@
 	icon_state = "snubstunrevolver"
 	item_state = "stunrevolver"
 	w_class = ITEMSIZE_SMALL //small pistol is small
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
