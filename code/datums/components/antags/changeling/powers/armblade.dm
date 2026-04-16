@@ -82,13 +82,11 @@
 		src.creator = loc
 
 /obj/item/melee/changeling/dropped(mob/user, equipping, slot)
-	if(equipping)
-		return ..()
-	..()
 	visible_message(span_warning("With a sickening crunch, [creator] reforms their arm!"),
 	span_notice("We assimilate the weapon back into our body."),
 	span_warningplain("You hear organic matter ripping and tearing!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
+	..()
 
 /obj/item/melee/changeling/Destroy()
 	creator = null
