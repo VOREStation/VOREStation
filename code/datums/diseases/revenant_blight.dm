@@ -1,5 +1,6 @@
 /datum/disease/revblight
 	name = "Unnatural Wasting"
+	medical_name = "Chameleonic Acute Depression"
 	desc = "A strange condition which causes the victim to feel as if they were wasting away, despite being otherwise (almost) perfectly healthy."
 	form = "Condition"
 	max_stages = 5
