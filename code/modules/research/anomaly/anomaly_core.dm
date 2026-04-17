@@ -236,10 +236,11 @@
 /obj/item/assembly/signaler/anomaly/dust/proc/extraCough(mob/living/coughing)
 	coughing.emote("cough")
 	addtimer(CALLBACK(coughing, TYPE_PROC_REF(/mob, emote), "cough"), 3 SECONDS)
-
+/*
 /obj/item/assembly/signaler/anomaly/ectoplasm
 	name = "\improper ectoplasm anomaly core"
 	desc = "The neutralized core of an ectoplasmic anomaly. When you hold it close, you can hear faint murmuring from inside. It'd probably be valuable for research."
 	icon_state = "dimensional_core"
 	anomaly_type = /obj/effect/anomaly/ectoplasm
 	activation_cooldown = 60 SECONDS
+*/
