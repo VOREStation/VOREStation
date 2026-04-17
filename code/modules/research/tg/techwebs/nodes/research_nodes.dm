@@ -148,6 +148,8 @@
 	design_ids = list(
 		"cybernetic_heart_anomalock"
 	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/anomaly_harvesting
 	id = TECHWEB_NODE_ANOMALY_HARVESTING
