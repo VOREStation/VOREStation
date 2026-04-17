@@ -2515,6 +2515,7 @@
 #include "code\modules\client\preferences\types\character\gender.dm"
 #include "code\modules\client\preferences\types\character\names.dm"
 #include "code\modules\client\preferences\types\character\organ_data.dm"
+#include "code\modules\client\preferences\types\character\records.dm"
 #include "code\modules\client\preferences\types\character\rlimb_data.dm"
 #include "code\modules\client\preferences\types\character\species.dm"
 #include "code\modules\client\preferences\types\character\antagonism\01_basic.dm"

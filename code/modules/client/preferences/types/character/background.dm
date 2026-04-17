@@ -1,6 +1,5 @@
 // Character background preferences
-// Handles "Background Information" pref section,
-// Also handles character records
+// Handles "Background Information" pref section
 
 /datum/preference/text/human/home_system
 	savefile_key = "home_system"
@@ -108,38 +107,6 @@
 
 /datum/preference/choiced/human/economic_status/apply_to_human(mob/living/carbon/human/target, value)
 	return // Economic status is read directly from prefs when needed, not stored on the mob.
-
-// Character Records
-
-/datum/preference/text/human/med_record
-	savefile_key = "med_record"
-	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	can_randomize = FALSE
-	maximum_value_length = MAX_RECORD_LENGTH
-
-/datum/preference/text/human/med_record/apply_to_human(mob/living/carbon/human/target, value)
-	target.med_record = value
-
-/datum/preference/text/human/sec_record
-	savefile_key = "sec_record"
-	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	can_randomize = FALSE
-	maximum_value_length = MAX_RECORD_LENGTH
-
-/datum/preference/text/human/sec_record/apply_to_human(mob/living/carbon/human/target, value)
-	target.sec_record = value
-
-/datum/preference/text/human/gen_record
-	savefile_key = "gen_record"
-	savefile_identifier = PREFERENCE_CHARACTER
-	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
-	can_randomize = FALSE
-	maximum_value_length = MAX_RECORD_LENGTH
-
-/datum/preference/text/human/gen_record/apply_to_human(mob/living/carbon/human/target, value)
-	target.gen_record = value
 
 // Bay UI Bridge
 
