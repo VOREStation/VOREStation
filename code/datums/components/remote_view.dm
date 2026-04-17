@@ -485,7 +485,7 @@
 		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
 			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
-			if(!QDELETED(cache_mob) && cached_mob.client)
+			if(!QDELETED(cache_mob) && cache_mob.client)
 				cache_mob.AddComponent(/datum/component/remote_view, focused_on = release_turf, viewsize = null, vconfig_path = /datum/remote_view_config/turf_decoupling)
 				cache_mob.client.eye = release_turf // Yes--
 				cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
