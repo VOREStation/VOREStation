@@ -137,15 +137,6 @@
 	data["religion"] = pref.read_preference(/datum/preference/text/human/religion)
 	data["ooc_note_style"] = pref.read_preference(/datum/preference/toggle/living/ooc_notes_style)
 
-	if(jobban_isbanned(user, "Records"))
-		data["records_banned"] = TRUE
-	else
-		data["records_banned"] = FALSE
-
-		data["med_record"] = TextPreview(pref.read_preference(/datum/preference/text/human/med_record), 40)
-		data["gen_record"] = TextPreview(pref.read_preference(/datum/preference/text/human/gen_record), 40)
-		data["sec_record"] = TextPreview(pref.read_preference(/datum/preference/text/human/sec_record), 40)
-
 	return data
 
 /datum/category_item/player_setup_item/general/background/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -219,40 +210,4 @@
 					pref.write_preference_by_type(/datum/preference/text/human/religion, sanitize(raw_choice))
 			else
 				pref.write_preference_by_type(/datum/preference/text/human/religion, choice)
-			return TOPIC_REFRESH
-
-		if("set_medical_records")
-			var/new_medical = strip_html_simple(tgui_input_text(user,"Enter medical information here.","Character Preference", html_decode(pref.read_preference(/datum/preference/text/human/med_record)), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-			if(new_medical && !jobban_isbanned(user, JOB_RECORDS))
-				pref.write_preference_by_type(/datum/preference/text/human/med_record, new_medical)
-			return TOPIC_REFRESH
-
-		if("set_general_records")
-			var/new_general = strip_html_simple(tgui_input_text(user,"Enter employment information here.","Character Preference", html_decode(pref.read_preference(/datum/preference/text/human/gen_record)), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-			if(new_general && !jobban_isbanned(user, JOB_RECORDS))
-				pref.write_preference_by_type(/datum/preference/text/human/gen_record, new_general)
-			return TOPIC_REFRESH
-
-		if("set_security_records")
-			var/sec_medical = strip_html_simple(tgui_input_text(user,"Enter security information here.","Character Preference", html_decode(pref.read_preference(/datum/preference/text/human/sec_record)), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-			if(sec_medical && !jobban_isbanned(user, JOB_RECORDS))
-				pref.write_preference_by_type(/datum/preference/text/human/sec_record, sec_medical)
-			return TOPIC_REFRESH
-
-		if("reset_medrecord")
-			var/resetmed_choice = tgui_alert(user, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
-			if(resetmed_choice == "Yes")
-				pref.write_preference_by_type(/datum/preference/text/human/med_record, "")
-			return TOPIC_REFRESH
-
-		if("reset_emprecord")
-			var/resetemp_choice = tgui_alert(user, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
-			if(resetemp_choice == "Yes")
-				pref.write_preference_by_type(/datum/preference/text/human/gen_record, "")
-			return TOPIC_REFRESH
-
-		if("reset_secrecord")
-			var/resetsec_choice = tgui_alert(user, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
-			if(resetsec_choice == "Yes")
-				pref.write_preference_by_type(/datum/preference/text/human/sec_record, "")
 			return TOPIC_REFRESH
