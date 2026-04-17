@@ -11,7 +11,7 @@
 	cure_chance = 30
 	agent = "Unholy Forces"
 	viable_mobtypes = list(/mob/living/carbon/human)
-	disease_flags = CURABLE
+	disease_flags = CURABLE | CAN_NOT_POPULATE
 	permeability_mod = 1
 	danger = DISEASE_HARMFUL
 	var/stagedamage = 0
@@ -43,16 +43,17 @@
 		if(stagedamage < stage)
 			stagedamage++
 			affected_mob.adjustToxLoss(1 * stage * seconds_per_tick)
+			new /obj/effect/temp_visual/revenant(affected_mob.loc)
 
 	switch(stage)
 		if(2)
-			if(SPT_PROB(2.5, seconds_per_tick))
+			if(prob(5))
 				affected_mob.emote("pale")
 		if(3)
-			if(SPT_PROB(5, seconds_per_tick))
+			if(prob(10))
 				affected_mob.emote(pick("pale", "shiver"))
 		if(4)
-			if(SPT_PROB(7.5, seconds_per_tick))
+			if(prob(15))
 				affected_mob.emote(pick("pale", "shiver", "cry"))
 		if(5)
 			if(!finalstage)
@@ -63,6 +64,6 @@
 					var/mob/living/carbon/human/human = affected_mob
 					original_hair_colour = list(human.r_hair, human.g_hair, human.b_hair)
 					human.change_hair_color(255, 255, 255)
-				affected_mob.visible_message(span_warning("[affected_mob] looks terrifyingly gaunt..."), span_danger("You suddenly feel like your sking is <i>wrong</i>..."))
+				affected_mob.visible_message(span_warning("[affected_mob] looks terrifyingly gaunt..."), span_danger("You suddenly feel like your skin is <i>wrong</i>..."))
 				affected_mob.add_atom_colour("#1d2953", TEMPORARY_COLOUR_PRIORITY)
 				addtimer(CALLBACK(src, PROC_REF(cure)), 10 SECONDS)

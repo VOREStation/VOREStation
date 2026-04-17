@@ -186,15 +186,6 @@
 	var/picked = FALSE
 	anomaly_type = /obj/effect/anomaly/flux // Default
 
-/obj/item/assembly/signaler/anomaly/choice/Initialize(mapload)
-	. = ..()
-	var/list/core_types = subtypesof(/obj/effect/anomaly)
-
-	for(var/i = 0, i < options, i++)
-		var/type = pick_n_take(core_types)
-		var/obj/effect/anomaly/anom = new type
-		choices[capitalize(anom.name)] = type
-
 /obj/item/assembly/signaler/anomaly/choice/attack_self(mob/user, modifiers)
 	. = ..(user)
 	if(.)
@@ -203,8 +194,22 @@
 	if(picked)
 		return TRUE
 
+	if(isnull(choices))
+		choices = list()
+		var/list/core_types = subtypesof(/obj/effect/anomaly)
+
+		for(var/i = 0, i < options, i++)
+			var/type = pick_n_take(core_types)
+			var/obj/effect/anomaly/anom = new type
+			choices[capitalize(anom.name)] = type
+
 	var/choice = tgui_input_list(user, "Choose an anomaly core.", "Anomaly Core Selection", choices)
 
 	if(choice && !picked)
 		anomaly_type = choices[choice]
 		picked = TRUE
+
+/obj/item/assembly/signaler/anomaly/choice/Destroy()
+	for(var/obj/effect/anomaly/anom in options)
+		qdel(anom)
+	. = ..()

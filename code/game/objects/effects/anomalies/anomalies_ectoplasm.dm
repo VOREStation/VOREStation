@@ -43,7 +43,7 @@
 	else
 		effect_power = 0
 
-	intesity_update()
+	intensity_update()
 
 /obj/effect/anomaly/ectoplasm/detonate()
 	. = ..()
@@ -54,7 +54,7 @@
 
 	if(effect_power >= 10)
 		var/effect_range = ghosts_orbiting + 3
-		for(var/impacted_thing in range(effect_range, src))
+		for(var/impacted_thing in range(effect_range, get_turf(src)))
 			if(isfloorturf(impacted_thing))
 				if(prob(5))
 					new /obj/effect/decal/cleanable/blood(get_turf(impacted_thing))
@@ -63,9 +63,9 @@
 				else if(prob(10))
 					new /obj/effect/decal/cleanable/dirt(get_turf(impacted_thing))
 
-			if(!istype(impacted_thing, /turf/simulated/floor/plating))
-				var/turf/simulated/floor/floor_to_break = impacted_thing
-				floor_to_break.break_tile()
+				if(!istype(impacted_thing, /turf/simulated/floor/plating))
+					var/turf/simulated/floor/floor_to_break = impacted_thing
+					floor_to_break.break_tile()
 
 			if(ishuman(impacted_thing))
 				var/mob/living/carbon/human/mob_to_infect = impacted_thing
