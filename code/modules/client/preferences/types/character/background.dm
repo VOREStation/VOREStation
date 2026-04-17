@@ -1,0 +1,296 @@
+// Character background preferences
+// Handles home system, birthplace, citizenship, faction, religion,
+// economic status, and character records.
+// Also provides the bay UI bridge (category_item) for tgui_data/tgui_act.
+
+// ===== Text Background Prefs =====
+// These are freeform text fields that accept values from a predefined list
+// or custom user input.
+
+/datum/preference/text/human/home_system
+	savefile_key = "home_system"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_NAME_LEN
+
+/datum/preference/text/human/home_system/create_default_value()
+	return "Unset"
+
+/datum/preference/text/human/home_system/pref_deserialize(input, datum/preferences/preferences)
+	if(!input || !istext(input))
+		return create_default_value()
+	return STRIP_HTML_SIMPLE(input, maximum_value_length)
+
+/datum/preference/text/human/home_system/apply_to_human(mob/living/carbon/human/target, value)
+	target.home_system = value
+
+/datum/preference/text/human/birthplace
+	savefile_key = "birthplace"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_NAME_LEN
+
+/datum/preference/text/human/birthplace/create_default_value()
+	return "Unset"
+
+/datum/preference/text/human/birthplace/pref_deserialize(input, datum/preferences/preferences)
+	if(!input || !istext(input))
+		return create_default_value()
+	return STRIP_HTML_SIMPLE(input, maximum_value_length)
+
+/datum/preference/text/human/birthplace/apply_to_human(mob/living/carbon/human/target, value)
+	target.birthplace = value
+
+/datum/preference/text/human/citizenship
+	savefile_key = "citizenship"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_NAME_LEN
+
+/datum/preference/text/human/citizenship/create_default_value()
+	return "None"
+
+/datum/preference/text/human/citizenship/pref_deserialize(input, datum/preferences/preferences)
+	if(!input || !istext(input))
+		return create_default_value()
+	return STRIP_HTML_SIMPLE(input, maximum_value_length)
+
+/datum/preference/text/human/citizenship/apply_to_human(mob/living/carbon/human/target, value)
+	target.citizenship = value
+
+/datum/preference/text/human/faction
+	savefile_key = "faction"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_NAME_LEN
+
+/datum/preference/text/human/faction/create_default_value()
+	return "None"
+
+/datum/preference/text/human/faction/pref_deserialize(input, datum/preferences/preferences)
+	if(!input || !istext(input))
+		return create_default_value()
+	return STRIP_HTML_SIMPLE(input, maximum_value_length)
+
+/datum/preference/text/human/faction/apply_to_human(mob/living/carbon/human/target, value)
+	target.personal_faction = value
+
+/datum/preference/text/human/religion
+	savefile_key = "religion"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_NAME_LEN
+
+/datum/preference/text/human/religion/create_default_value()
+	return "None"
+
+/datum/preference/text/human/religion/pref_deserialize(input, datum/preferences/preferences)
+	if(!input || !istext(input))
+		return create_default_value()
+	return STRIP_HTML_SIMPLE(input, maximum_value_length)
+
+/datum/preference/text/human/religion/apply_to_human(mob/living/carbon/human/target, value)
+	target.religion = value
+
+// Economic Status
+
+/datum/preference/choiced/human/economic_status
+	savefile_key = "economic_status"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+
+/datum/preference/choiced/human/economic_status/init_possible_values()
+	return ECONOMIC_CLASS
+
+/datum/preference/choiced/human/economic_status/create_default_value()
+	return "Average"
+
+/datum/preference/choiced/human/economic_status/apply_to_human(mob/living/carbon/human/target, value)
+	return // Economic status is read directly from prefs when needed, not stored on the mob.
+
+// Character Records
+
+/datum/preference/text/human/med_record
+	savefile_key = "med_record"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_RECORD_LENGTH
+
+/datum/preference/text/human/med_record/apply_to_human(mob/living/carbon/human/target, value)
+	target.med_record = value
+
+/datum/preference/text/human/sec_record
+	savefile_key = "sec_record"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_RECORD_LENGTH
+
+/datum/preference/text/human/sec_record/apply_to_human(mob/living/carbon/human/target, value)
+	target.sec_record = value
+
+/datum/preference/text/human/gen_record
+	savefile_key = "gen_record"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	can_randomize = FALSE
+	maximum_value_length = MAX_RECORD_LENGTH
+
+/datum/preference/text/human/gen_record/apply_to_human(mob/living/carbon/human/target, value)
+	target.gen_record = value
+
+// Bay UI Bridge
+
+/datum/category_item/player_setup_item/general/background
+	name = "Background"
+	sort_order = 5
+
+/datum/category_item/player_setup_item/general/background/load_character(list/save_data)
+	return
+
+/datum/category_item/player_setup_item/general/background/save_character(list/save_data)
+	return
+
+/datum/category_item/player_setup_item/general/background/sanitize_character()
+	return
+
+/datum/category_item/player_setup_item/general/background/copy_to_mob(var/mob/living/carbon/human/character)
+	return
+
+/datum/category_item/player_setup_item/general/background/tgui_data(mob/user)
+	var/list/data = ..()
+
+	data["economic_status"] = pref.read_preference(/datum/preference/choiced/human/economic_status)
+	data["home_system"] = pref.read_preference(/datum/preference/text/human/home_system)
+	data["birthplace"] = pref.read_preference(/datum/preference/text/human/birthplace)
+	data["citizenship"] = pref.read_preference(/datum/preference/text/human/citizenship)
+	data["faction"] = pref.read_preference(/datum/preference/text/human/faction)
+	data["religion"] = pref.read_preference(/datum/preference/text/human/religion)
+	data["ooc_note_style"] = pref.read_preference(/datum/preference/toggle/living/ooc_notes_style)
+
+	if(jobban_isbanned(user, "Records"))
+		data["records_banned"] = TRUE
+	else
+		data["records_banned"] = FALSE
+
+		data["med_record"] = TextPreview(pref.read_preference(/datum/preference/text/human/med_record), 40)
+		data["gen_record"] = TextPreview(pref.read_preference(/datum/preference/text/human/gen_record), 40)
+		data["sec_record"] = TextPreview(pref.read_preference(/datum/preference/text/human/sec_record), 40)
+
+	return data
+
+/datum/category_item/player_setup_item/general/background/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = ui.user
+	switch(action)
+		if("econ_status")
+			var/new_class = tgui_input_list(user, "Choose your economic status. This will affect the amount of money you will start with.", "Character Preference", ECONOMIC_CLASS, pref.read_preference(/datum/preference/choiced/human/economic_status))
+			if(new_class)
+				pref.write_preference_by_type(/datum/preference/choiced/human/economic_status, new_class)
+				return TOPIC_REFRESH
+
+		if("home_system")
+			var/choice = tgui_input_list(user, "Please choose your home planet and/or system. This should be your current primary residence. Select \"Other\" to specify manually.", "Character Preference", GLOB.home_system_choices + list("Unset","Other"), pref.read_preference(/datum/preference/text/human/home_system))
+			if(!choice || !CanUseTopic(user))
+				return TOPIC_NOACTION
+			if(choice == "Other")
+				var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a home system.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(raw_choice)
+					pref.write_preference_by_type(/datum/preference/text/human/home_system, raw_choice)
+			else
+				pref.write_preference_by_type(/datum/preference/text/human/home_system, choice)
+			return TOPIC_REFRESH
+
+		if("birthplace")
+			var/choice = tgui_input_list(user, "Please choose the planet and/or system or other appropriate location that you were born/created. Select \"Other\" to specify manually.", "Character Preference", GLOB.home_system_choices + list("Unset","Other"), pref.read_preference(/datum/preference/text/human/birthplace))
+			if(!choice || !CanUseTopic(user))
+				return TOPIC_NOACTION
+			if(choice == "Other")
+				var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a birthplace.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(raw_choice)
+					pref.write_preference_by_type(/datum/preference/text/human/birthplace, raw_choice)
+			else
+				pref.write_preference_by_type(/datum/preference/text/human/birthplace, choice)
+			return TOPIC_REFRESH
+
+		if("citizenship")
+			var/choice = tgui_input_list(user, "Please select the faction or political entity with which you currently hold citizenship. Select \"Other\" to specify manually.", "Character Preference", GLOB.citizenship_choices + list("None","Other"), pref.read_preference(/datum/preference/text/human/citizenship))
+			if(!choice || !CanUseTopic(user))
+				return TOPIC_NOACTION
+			if(choice == "Other")
+				var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter your current citizenship.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(raw_choice)
+					pref.write_preference_by_type(/datum/preference/text/human/citizenship, raw_choice)
+			else
+				pref.write_preference_by_type(/datum/preference/text/human/citizenship, choice)
+			return TOPIC_REFRESH
+
+		if("faction")
+			var/choice = tgui_input_list(user, "Please choose the faction you primarily work for, if you are not under the direct employ of NanoTrasen. Select \"Other\" to specify manually.", "Character Preference", GLOB.faction_choices + list("None","Other"), pref.read_preference(/datum/preference/text/human/faction))
+			if(!choice || !CanUseTopic(user))
+				return TOPIC_NOACTION
+			if(choice == "Other")
+				var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a faction.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(raw_choice)
+					pref.write_preference_by_type(/datum/preference/text/human/faction, raw_choice)
+			else
+				pref.write_preference_by_type(/datum/preference/text/human/faction, choice)
+			return TOPIC_REFRESH
+
+		if("religion")
+			var/choice = tgui_input_list(user, "Please choose a religion. Select \"Other\" to specify manually.", "Character Preference", GLOB.religion_choices + list("None","Other"), pref.read_preference(/datum/preference/text/human/religion))
+			if(!choice || !CanUseTopic(user))
+				return TOPIC_NOACTION
+			if(choice == "Other")
+				var/raw_choice = strip_html_simple(tgui_input_text(user, "Please enter a religon.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(raw_choice)
+					pref.write_preference_by_type(/datum/preference/text/human/religion, sanitize(raw_choice))
+			else
+				pref.write_preference_by_type(/datum/preference/text/human/religion, choice)
+			return TOPIC_REFRESH
+
+		if("set_medical_records")
+			var/new_medical = strip_html_simple(tgui_input_text(user,"Enter medical information here.","Character Preference", html_decode(pref.read_preference(/datum/preference/text/human/med_record)), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+			if(new_medical && !jobban_isbanned(user, JOB_RECORDS))
+				pref.write_preference_by_type(/datum/preference/text/human/med_record, new_medical)
+			return TOPIC_REFRESH
+
+		if("set_general_records")
+			var/new_general = strip_html_simple(tgui_input_text(user,"Enter employment information here.","Character Preference", html_decode(pref.read_preference(/datum/preference/text/human/gen_record)), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+			if(new_general && !jobban_isbanned(user, JOB_RECORDS))
+				pref.write_preference_by_type(/datum/preference/text/human/gen_record, new_general)
+			return TOPIC_REFRESH
+
+		if("set_security_records")
+			var/sec_medical = strip_html_simple(tgui_input_text(user,"Enter security information here.","Character Preference", html_decode(pref.read_preference(/datum/preference/text/human/sec_record)), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+			if(sec_medical && !jobban_isbanned(user, JOB_RECORDS))
+				pref.write_preference_by_type(/datum/preference/text/human/sec_record, sec_medical)
+			return TOPIC_REFRESH
+
+		if("reset_medrecord")
+			var/resetmed_choice = tgui_alert(user, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+			if(resetmed_choice == "Yes")
+				pref.write_preference_by_type(/datum/preference/text/human/med_record, "")
+			return TOPIC_REFRESH
+
+		if("reset_emprecord")
+			var/resetemp_choice = tgui_alert(user, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+			if(resetemp_choice == "Yes")
+				pref.write_preference_by_type(/datum/preference/text/human/gen_record, "")
+			return TOPIC_REFRESH
+
+		if("reset_secrecord")
+			var/resetsec_choice = tgui_alert(user, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+			if(resetsec_choice == "Yes")
+				pref.write_preference_by_type(/datum/preference/text/human/sec_record, "")
+			return TOPIC_REFRESH
