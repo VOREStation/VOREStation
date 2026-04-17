@@ -1,11 +1,6 @@
 // Character background preferences
-// Handles home system, birthplace, citizenship, faction, religion,
-// economic status, and character records.
-// Also provides the bay UI bridge (category_item) for tgui_data/tgui_act.
-
-// ===== Text Background Prefs =====
-// These are freeform text fields that accept values from a predefined list
-// or custom user input.
+// Handles "Background Information" pref section,
+// Also handles character records
 
 /datum/preference/text/human/home_system
 	savefile_key = "home_system"
