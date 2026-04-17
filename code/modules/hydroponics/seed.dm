@@ -684,6 +684,10 @@
 
 					if(isnull(gene_chem[i])) gene_chem[i] = 0
 
+					var/list/chems_rid = chems[rid]
+					if(istype(chems_rid) && (chems_rid.len < i))
+						continue
+
 					if(chems[rid][i])
 						chems[rid][i] = max(1,round((gene_chem[i] + chems[rid][i])/2))
 					else
