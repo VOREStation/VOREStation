@@ -165,3 +165,4 @@
 #define TECHWEB_NODE_GHOST_BASIC "ghost_basics"
 #define TECHWEB_NODE_GHOST_ADVANCED "ghost_advanced"
 #define TECHWEB_NODE_GHOST_ROUNDS "ghost_rounds"
+#define TECHWEB_NODE_AUTOLATHE_JUMPSTART "autolathe_jumpstart"
