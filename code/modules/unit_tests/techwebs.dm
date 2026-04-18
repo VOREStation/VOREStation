@@ -161,7 +161,7 @@
 		if(design.build_path in used_design_paths)
 			var/datum/design_techweb/prior_design = used_design_paths[design.build_path]
 			if(prior_design.build_type & design.build_type) // Check if the designs overlap machines, it's allowed if they don't (ex: one is autolathe, and one is protolathe)
-				TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a build_path that was already used by another design: \"[design.build_path]\"")
+				TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a build_path that was already used by another design: \"[design.build_path]\", used by [prior_design]")
 				failed = TRUE
 		else
 			used_design_paths[design.build_path] = design
