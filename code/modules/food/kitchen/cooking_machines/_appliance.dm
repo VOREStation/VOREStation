@@ -421,7 +421,6 @@
 	var/obj/cook_path = output_options[CI.combine_target]
 
 	var/list/words = list()
-	var/list/cooktypes = list()
 
 	for(var/obj/item/reagent_containers/food/snacks/S in CI.container)
 		words |= splittext(S.name, " ")
