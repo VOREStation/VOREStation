@@ -159,7 +159,7 @@
 
 	activation_message="You feel off balance..."
 	primitive_expression_messages=list("staggers")
-	excludes = list(/datum/trait/negative/lightweight_light)
+	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/positive/heavyweight)
 
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
@@ -732,7 +732,7 @@
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping if you are unprepared)"
 	cost = -1
 	var_changes = list("lightweight_light" = 1)
-	excludes = list(/datum/trait/negative/lightweight)
+	excludes = list(/datum/trait/negative/lightweight, /datum/trait/positive/heavyweight)
 	custom_only = FALSE
 
 /datum/trait/negative/scrawny
