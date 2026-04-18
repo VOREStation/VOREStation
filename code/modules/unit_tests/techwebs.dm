@@ -159,10 +159,12 @@
 
 		// Design must be a unique path produced
 		if(design.build_path in used_design_paths)
-			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a build_path that was already used by another design: \"[design.build_path]\"")
-			failed = TRUE
-
-		used_design_paths += design.build_path
+			var/datum/design_techweb/prior_design = used_design_paths[design.build_path]
+			if(prior_design.build_type & design.build_path) // Check if the designs overlap machines, it's allowed if they don't (ex: one is autolathe, and one is protolathe)
+				TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a build_path that was already used by another design: \"[design.build_path]\"")
+				failed = TRUE
+		else
+			used_design_paths[design.build_path] = design
 
 	if(failed)
 		TEST_FAIL("All techweb entries must be valid")
