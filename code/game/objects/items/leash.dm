@@ -30,8 +30,8 @@
 	force = 1
 	throwforce = 1
 	w_class = ITEMSIZE_SMALL
-	var/mob/living/leash_pet = null //Variable to store our pet later
-	var/mob/living/leash_master = null //And our master too
+	var/datum/weakref/leash_pet_ref
+	var/datum/weakref/leash_master_ref
 
 /obj/item/leash/Destroy()
 	// Just in case
@@ -39,6 +39,8 @@
 	return ..()
 
 /obj/item/leash/process()
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(!leash_pet)
 		return
 	if(!is_wearing_collar(leash_pet)) //The pet has slipped their collar and is not the pet anymore.
@@ -53,6 +55,8 @@
 
 //Called when someone is clicked with the leash
 /obj/item/leash/attack(mob/living/carbon/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(C.alerts && C.alerts["leashed"]) //If the pet is already leashed, do not leash them. For the love of god.
 		// If they re-click, remove the leash
 		if (C == leash_pet && user == leash_master)
@@ -83,15 +87,15 @@
 
 	C.visible_message(span_danger("\The [user] puts a leash on \the [C]!"), span_danger("The leash clicks onto your collar!"))
 
-	leash_pet = C //Save pet reference for later
-	leash_pet.add_modifier(/datum/modifier/leash)
-	leash_pet.throw_alert("leashed", /atom/movable/screen/alert/leash_pet, new_master = src) //Is the leasher
-	RegisterSignal(leash_pet, COMSIG_MOVABLE_MOVED, PROC_REF(on_pet_move))
-	to_chat(leash_pet, span_userdanger("You have been leashed!"))
-	to_chat(leash_pet, span_danger("(You can use OOC escape to detach the leash)"))
-	leash_master = user //Save dom reference for later
-	leash_master.throw_alert("leash", /atom/movable/screen/alert/leash_dom, new_master = src)//Has now been leashed
-	RegisterSignal(leash_master, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
+	leash_pet_ref = WEAKREF(C) //Save pet reference for later
+	C.add_modifier(/datum/modifier/leash)
+	C.throw_alert("leashed", /atom/movable/screen/alert/leash_pet, new_master = src) //Is the leasher
+	RegisterSignal(C, COMSIG_MOVABLE_MOVED, PROC_REF(on_pet_move))
+	to_chat(C, span_userdanger("You have been leashed!"))
+	to_chat(C, span_danger("(You can use OOC escape to detach the leash)"))
+	leash_master_ref = WEAKREF(user) //Save dom reference for later
+	user.throw_alert("leash", /atom/movable/screen/alert/leash_dom, new_master = src)//Has now been leashed
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
 
 	START_PROCESSING(SSobj, src)
 
@@ -101,14 +105,17 @@
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(!leash_pet) //No pet, no tug.
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
+	if(!leash_pet || leash_master) //No pet, no tug.
 		return
 	//Yank the pet. Yank em in close.
 	apply_tug_mob_to_mob(leash_pet, leash_master, 1)
 
 /obj/item/leash/proc/on_master_move()
 	SIGNAL_HANDLER
-
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	//Make sure the dom still has a pet
 	if(!leash_master || !leash_pet)
 		return
@@ -117,6 +124,8 @@
 /obj/item/leash/proc/after_master_move()
 	//If the master moves, pull the pet in behind
 	//Also, the timer means that the distance check for master happens before the pet, to prevent both from proccing.
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(!leash_master || !leash_pet) //Just to stop error messages
 		return
 	apply_tug_mob_to_mob(leash_pet, leash_master, 2)
@@ -124,6 +133,7 @@
 	//Knock the pet over if they get further behind. Shouldn't happen too often.
 	sleep(3) //This way running normally won't just yank the pet to the ground.
 	if(!leash_master || !leash_pet) //Just to stop error messages. Break the loop early if something removed the master
+		clear_leash()
 		return
 	if(get_dist(leash_pet, leash_master) > 3 && !leash_pet.stunned)
 		leash_pet.visible_message(
@@ -135,6 +145,7 @@
 	//This code is to check if the pet has gotten too far away, and then break the leash.
 	sleep(3) //Wait to snap the leash
 	if(!leash_master || !leash_pet) //Just to stop error messages
+		clear_leash()
 		return
 	if(get_dist(leash_pet, leash_master) > 5)
 		leash_pet.visible_message(
@@ -147,6 +158,8 @@
 
 /obj/item/leash/proc/on_pet_move()
 	SIGNAL_HANDLER
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	//This should only work if there is a pet and a master.
 	//This is here pretty much just to stop the console from flooding with errors
 	if(!leash_master || !leash_pet)
@@ -156,6 +169,8 @@
 	addtimer(CALLBACK(src, PROC_REF(after_pet_move)), 0.3 SECONDS) //A short timer so the pet kind of bounces back after they make the step
 
 /obj/item/leash/proc/after_pet_move()
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(!leash_master || !leash_pet)
 		return
 	for(var/i in 3 to get_dist(leash_pet, leash_master)) // Move the pet to a minimum of 2 tiles away from the master, so the pet trails behind them.
@@ -164,32 +179,44 @@
 /obj/item/leash/dropped(mob/user, equipping, slot)
 	//Drop the leash, and the leash effects stop
 	. = ..()
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(!leash_pet || !leash_master) //There is no pet. Stop this silliness
+		clear_leash()
 		return
 	//Dropping procs any time the leash changes slots. So, we will wait a tick and see if the leash was actually dropped
 	addtimer(CALLBACK(src, PROC_REF(drop_effects), user), 1)
 
 /obj/item/leash/proc/drop_effects(mob/user)
 	SIGNAL_HANDLER
-	if(leash_master.item_is_in_hands(src) || leash_master.get_item_by_slot(SLOT_TIE) == src)
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
+	if(leash_master && (leash_master.item_is_in_hands(src) || leash_master.get_item_by_slot(SLOT_TIE) == src))
 		return  //Dom still has the leash as it turns out. Cancel the proc.
-	leash_master.visible_message(span_notice("\The [leash_master] drops \the [src]."), span_notice("You drop \the [src]."))
+	if(leash_master)
+		leash_master.visible_message(span_notice("\The [leash_master] drops \the [src]."), span_notice("You drop \the [src]."))
 	//DOM HAS DROPPED LEASH. PET IS FREE. SCP HAS BREACHED CONTAINMENT.
 	clear_leash()
 
 /obj/item/leash/proc/clear_leash()
-	leash_pet?.clear_alert("leashed")
-	leash_pet?.remove_a_modifier_of_type(/datum/modifier/leash)
-	UnregisterSignal(leash_pet, COMSIG_MOVABLE_MOVED)
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
+	if(leash_pet)
+		leash_pet.clear_alert("leashed")
+		leash_pet.remove_a_modifier_of_type(/datum/modifier/leash)
+		UnregisterSignal(leash_pet, COMSIG_MOVABLE_MOVED)
 	leash_pet = null
 
-	leash_master?.clear_alert("leash")
-	UnregisterSignal(leash_master, COMSIG_MOVABLE_MOVED)
+	if(leash_master)
+		leash_master.clear_alert("leash")
+		UnregisterSignal(leash_master, COMSIG_MOVABLE_MOVED)
 	leash_master = null
 
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/leash/proc/struggle_leash()
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook [leash_pet.p_their()] leash!"), span_danger("You attempt to unhook your leash"))
 	add_attack_logs(leash_master,leash_pet,"Self-unleash (attempt)")
 
@@ -200,6 +227,8 @@
 	clear_leash()
 
 /obj/item/leash/proc/unleash()
+	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
+	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	leash_pet.visible_message(span_danger("\The [leash_master] is attempting to remove the leash on \the [leash_pet]!"), span_danger("\The [leash_master] tries to remove leash from you"))
 	add_attack_logs(leash_master,leash_pet,"Unleashed (attempt)")
 
