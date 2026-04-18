@@ -1,9 +1,5 @@
 // This folder contains code that was originally ported from Apollo Station and then refactored/optimized/changed.
 
-// Tracks precooked food to stop deep fried baked grilled grilled grilled diona nymph cereal.
-/obj/item/reagent_containers/food/snacks
-	var/tmp/list/cooked = list()
-
 // Root type for cooking machines. See following files for specific implementations.
 /obj/machinery/appliance
 	name = "cooker"
@@ -216,10 +212,7 @@
 
 	// We're trying to cook something else. Check if it's valid.
 	var/obj/item/reagent_containers/food/snacks/check = I
-	if(istype(check) && islist(check.cooked) && (cook_type in check.cooked))
-		to_chat(user, span_warning("\The [check] has already been [cook_type]."))
-		return 0
-	else if(istype(check, /obj/item/reagent_containers/glass))
+	if(istype(check, /obj/item/reagent_containers/glass))
 		to_chat(user, span_warning("That would probably break [src]."))
 		return 0
 	else if(istype(check, /obj/item/disk/nuclear))
@@ -428,11 +421,9 @@
 	var/obj/cook_path = output_options[CI.combine_target]
 
 	var/list/words = list()
-	var/list/cooktypes = list()
 
 	for(var/obj/item/reagent_containers/food/snacks/S in CI.container)
 		words |= splittext(S.name, " ")
-		cooktypes |= S.cooked
 
 	//Set the name.
 	words -= list("and", "the", "in", "is", "bar", "raw", "sticks", "boiled", "fried", "deep", "-o-", "warm", "two", "flavored")
@@ -487,7 +478,6 @@
 
 		for(var/obj/item/reagent_containers/food/snacks/R as anything in results)
 			R.forceMove(C) //Move everything from the buffer back to the container
-			R.cooked |= cook_type
 
 		QDEL_NULL(temp) //delete buffer object
 		. = 1 //None of the rest of this function is relevant for recipe cooking
@@ -513,7 +503,6 @@
 	var/cook_path = output_options[CI.combine_target]
 
 	var/list/words = list()
-	var/list/cooktypes = list()
 	var/datum/reagents/buffer = new /datum/reagents(1000)
 	var/totalcolour
 	var/reagents_determine_color
@@ -532,7 +521,6 @@
 			continue
 
 		words |= splittext(S.name," ")
-		cooktypes |= S.cooked
 
 		if (S.reagents && S.reagents.total_volume > 0)
 			if (S.filling_color)
@@ -605,8 +593,6 @@
 
 	if (!result)
 		return
-
-	result.cooked |= cook_type
 
 	// Set icon and appearance.
 	change_product_appearance(result, CI)
