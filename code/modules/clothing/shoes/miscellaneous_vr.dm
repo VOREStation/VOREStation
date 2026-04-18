@@ -17,6 +17,7 @@
 	var/recharging_rate = 60 //default 6 seconds between each dash
 	var/recharging_time = 0 //time until next dash
 	// var/jumping = FALSE //are we mid-jump? We have no throw_at callback, so we have to check user.throwing.
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/bhop/ui_action_click(mob/unused_user, actiontype)
 	var/mob/living/user = loc

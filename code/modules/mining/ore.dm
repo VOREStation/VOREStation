@@ -14,31 +14,26 @@
 /obj/item/ore/uranium
 	name = "pitchblende"
 	icon_state = "ore_uranium"
-	origin_tech = list(TECH_MATERIAL = 5)
 	material = ORE_URANIUM
 
 /obj/item/ore/iron
 	name = ORE_HEMATITE
 	icon_state = "ore_iron"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = ORE_HEMATITE
 
 /obj/item/ore/coal
 	name = "raw carbon"
 	icon_state = "ore_coal"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = ORE_CARBON
 
 /obj/item/ore/marble
 	name = "recrystallized carbonate"
 	icon_state = "ore_marble"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = ORE_MARBLE
 
 /obj/item/ore/glass
 	name = ORE_SAND
 	icon_state = "ore_glass"
-	origin_tech = list(TECH_MATERIAL = 1)
 	material = ORE_SAND
 	slot_flags = SLOT_HOLSTER
 
@@ -57,25 +52,21 @@
 /obj/item/ore/phoron
 	name = "phoron crystals"
 	icon_state = "ore_phoron"
-	origin_tech = list(TECH_MATERIAL = 2)
 	material = ORE_PHORON
 
 /obj/item/ore/silver
 	name = "native silver ore"
 	icon_state = "ore_silver"
-	origin_tech = list(TECH_MATERIAL = 3)
 	material = ORE_SILVER
 
 /obj/item/ore/gold
 	name = "native gold ore"
 	icon_state = "ore_gold"
-	origin_tech = list(TECH_MATERIAL = 4)
 	material = ORE_GOLD
 
 /obj/item/ore/diamond
 	name = "diamonds"
 	icon_state = "ore_diamond"
-	origin_tech = list(TECH_MATERIAL = 6)
 	material = ORE_DIAMOND
 
 /obj/item/ore/osmium
@@ -92,7 +83,6 @@
 	name = "verdantite dust"
 	icon_state = "ore_verdantium"
 	material = ORE_VERDANTIUM
-	origin_tech = list(TECH_MATERIAL = 7)
 
 // POCKET ... Crystal dust.
 /obj/item/ore/verdantium/throw_impact(atom/hit_atom)
@@ -109,7 +99,6 @@
 	name = "lead glance"
 	icon_state = "ore_lead"
 	material = ORE_LEAD
-	origin_tech = list(TECH_MATERIAL = 3)
 
 /obj/item/ore/copper
 	name = "raw copper"

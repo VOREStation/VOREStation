@@ -16,7 +16,6 @@
 	recoil = 2 // The battlerifle was known for its nasty recoil.
 	max_shells = 36
 	caliber = "9.5x40mm"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	magazine_type = /obj/item/ammo_magazine/m95
 	allowed_magazines = list(/obj/item/ammo_magazine/m95)
 	fire_sound = 'sound/weapons/battlerifle.ogg'
@@ -33,7 +32,6 @@
 	w_class = ITEMSIZE_LARGE
 	max_shells = 30
 	caliber = "7.92x33mm"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_ILLEGAL = 6)
 	magazine_type = /obj/item/ammo_magazine/mtg
 	allowed_magazines = list(/obj/item/ammo_magazine/mtg)
 	load_method = MAGAZINE
@@ -59,7 +57,6 @@
 	load_method = MAGAZINE
 	multi_aim = 1
 	burst_delay = 2
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0.1,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15),       dispersion=list(0.0, 0.6, 1.0)),
@@ -126,7 +123,6 @@
 	name = "\improper SMG magazine (9mm)"
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "smg"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 1800)
 	caliber = "9mm"

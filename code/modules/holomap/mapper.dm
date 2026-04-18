@@ -120,7 +120,7 @@
 
 	return ..()
 
-/obj/item/mapping_unit/dropped(mob/user)
+/obj/item/mapping_unit/dropped(mob/user, equipping, slot)
 	..()
 	if(loc != user) // Not just a juggle
 		hide_device()

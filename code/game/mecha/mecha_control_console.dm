@@ -75,7 +75,6 @@
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion2"
-	origin_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
 
 /obj/item/mecha_parts/mecha_tracking/tgui_data(mob/user)
 	var/list/data = ..()

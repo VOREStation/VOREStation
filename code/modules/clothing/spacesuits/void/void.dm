@@ -103,7 +103,7 @@
 			to_chat(M, "Your suit's cooling unit deploys.")
 			cooler.canremove = FALSE
 
-/obj/item/clothing/suit/space/void/dropped(mob/user)
+/obj/item/clothing/suit/space/void/dropped(mob/user, equipping, slot)
 	..()
 
 	var/mob/living/carbon/human/H

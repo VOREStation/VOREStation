@@ -403,7 +403,7 @@
 						answer = text2num(answer)
 
 					if(field == "rank")
-						if(answer in GLOB.joblist)
+						if(answer in SSjob.occupations_by_name)
 							active1.fields["real_rank"] = answer
 
 					if(field == "criminal")

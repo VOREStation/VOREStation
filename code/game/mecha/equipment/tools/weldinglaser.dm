@@ -2,10 +2,9 @@
 	name = "welding laser"
 	desc = "An exosuit-mounted welding laser."
 	icon_state = "mecha_laser-rig"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 4, TECH_PHORON = 2)
 	equip_cooldown = 3
 	energy_drain = 15
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/items/Ratchet.ogg'
 	required_type = list(/obj/mecha/working/ripley)
@@ -27,8 +26,8 @@
 	..()
 
 	if(enable_special)
-		range = MELEE|RANGED
+		range = MECH_MELEE|RANGED
 		my_tool.reach = 7
 	else
-		range = MELEE
+		range = MECH_MELEE
 		my_tool.reach = 1

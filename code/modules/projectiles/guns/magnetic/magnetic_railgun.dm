@@ -5,7 +5,6 @@
 	The distribution of MMI weapons is understandably tightly tracked and controlled."
 	gun_unreliable = 0
 	icon_state = "railgun"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_MAGNET = 4)
 	power_cost = 300
 	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BELT

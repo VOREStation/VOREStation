@@ -637,3 +637,26 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 		var/list/l = i
 		return l.Copy()
 	return i
+
+/proc/slot2body_zone(slot)
+	switch(slot)
+		if(SLOT_BACK, SLOT_OCLOTHING, SLOT_ICLOTHING, SLOT_BELT, SLOT_ID)
+			return BP_TORSO
+
+		if(SLOT_GLOVES)
+			return pick(BP_L_HAND, BP_R_HAND)
+
+		if(SLOT_HEAD, SLOT_TWOEARS, SLOT_TIE, SLOT_EARS)
+			return BP_HEAD
+
+		if(SLOT_MASK)
+			return BP_HEAD
+
+		if(SLOT_EYES)
+			return BP_HEAD
+
+		if(SLOT_FEET)
+			return pick(BP_R_FOOT, BP_L_FOOT)
+
+//		if(SLOT_LEGCUFFED)
+//			return pick(BP_L_LEG, BODY_ZONE_R_LEG)

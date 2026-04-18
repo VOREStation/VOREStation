@@ -104,6 +104,7 @@
 	var/protean = 0
 	var/obj/item/storage/backpack/rig_storage
 	permeability_coefficient = 0  //Protect the squishies, after all this shit should be waterproof.
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/rig/Initialize(mapload)
 	. = ..()
@@ -801,7 +802,7 @@
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, H, ONLY_DEPLOY)
 
-/obj/item/rig/dropped(mob/user)
+/obj/item/rig/dropped(mob/user, equipping, slot)
 	. = ..(user)
 	// So the next user will see the boot animation
 	tgui_shared_states?.Cut()

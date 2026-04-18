@@ -88,3 +88,58 @@
   - rscadd: borgs can now use unpacked hoist kits
   - refactor: General improvements to hoist kits
   - rscadd: TTS device now shows a typing indicator while in use.
+2026-04-13:
+  Diana:
+  - bugfix: Infectious component no longer potentially crashes the game.
+  - code_imp: Implements but does not enable the Germ component. (Things left on the
+      ground will become dirty, ultimately making you ill)
+  - code_imp: Robust Gut also applies the strong stomach trait, making you immune
+      to eaten germs.
+  - code_imp: Implements a list of 'elevated structures'. Any /machinery or /structure
+      counts for this. Germs will not accumulate while on them.
+  Diana, Kash.:
+  - qol: The fryer now tells you how much oil is remaining in it.
+  - qol: The fryer now alerts you if the fryer is underfilled or overfilled on oil
+  - qol: Tankers can now be attached to the fryer to fill it.
+  - bugfix: Fryer works properly and adds oil to food
+  - bugfix: Fryer and trays no longer show 'phantom items' overlay.
+  - bugfix: You can now insert oil into the fryer with any reagent container.
+  - code_imp: Recipes are now a global list instead of a per-item list
+  Will:
+  - bugfix: Drawing blood with syringes and IV stands works properly again.
+2026-04-14:
+  CMDRYouth:
+  - rscadd: New Contractor Title for Cargo Technician - Logistics Contractor.
+  - rscadd: New Contractor Title for Shaft Miner - Mining Contractor.
+  - rscadd: New Contractor Title for Scientist - Research Contractor.
+  Diana:
+  - bugfix: Wishgranter properly gives laser eyes.
+  - bugfix: Wizard mutate spell properly gives laser eyes.
+  - bugfix: Clicking an inventory slot with an item now acts as if you were clicking
+      the item in the slot.
+  - bugfix: Ctrl-clicking doors no longer tries to pull them.
+  - rscadd: Objects can now take damage. The most prevalent source of this is FIRE!
+      Objects can now catch on fire and melt away!
+  - qol: Objects will make sounds when they take damage now.
+  - qol: Examining objects will inform you of their various properties. Examining
+      a fireproof, bombproof, or flammable item will inform you of such.
+  - code_imp: Items can now be labeled as ABSTRACT. This means the game will ignore
+      them in certain situations.
+  - code_imp: Instead of things having their own specialty /deconstruct proc, they
+      all now share a /atom_deconstruct proc
+  Fracshun:
+  - bugfix: Fixed throwing items/mobs at yourself not triggering spont vore
+  Kashargul:
+  - refactor: axes the old job controller and old master controller
+  - qol: chat highlights can be toggled
+2026-04-15:
+  Diana:
+  - code_imp: Removed origin_tech
+  Will:
+  - rscadd: Station announcer voice now supports customization without extensive editing
+2026-04-17:
+  Diana:
+  - bugfix: Mag/rigboots will no longer eat boots.
+  - bugfix: Gloves will no longer delete whatever it's put over.
+  - bugfix: Changeling armblades properly pass their message, now.
+  - code_imp: Gets rid of some X as mob / X as obj

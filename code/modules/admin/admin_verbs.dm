@@ -357,17 +357,17 @@ ADMIN_VERB(shuttle_panel, R_ADMIN|R_EVENT, "Shuttle Control Panel", "Access the 
 
 ADMIN_VERB(free_slot, R_ADMIN|R_FUN|R_EVENT, "Free Job Slot", "Frees another job slot.", ADMIN_CATEGORY_EVENTS)
 	var/list/jobs = list()
-	for (var/datum/job/current_job in GLOB.job_master.occupations)
-		if (current_job.current_positions >= current_job.total_positions && current_job.total_positions != -1)
-			jobs += current_job.title
-	if (!length(jobs))
-		to_chat(user, "There are no fully staffed jobs.")
+	for(var/datum/job/J in SSjob.occupations)
+		if (J.current_positions >= J.total_positions && J.total_positions != -1)
+			jobs += J.title
+	if(!jobs.len)
+		to_chat(usr, "There are no fully staffed jobs.")
 		return
-	var/job = tgui_input_list(user, "Please select job slot to free", "Free job slot", jobs)
-	if (!job)
+	var/job = tgui_input_list(usr, "Please select job slot to free", "Free job slot", jobs)
+	if(job)
+		SSjob.free_role(job)
+		message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 		return
-	GLOB.job_master.FreeRole(job)
-	message_admins("A job slot for [job] has been opened by [key_name_admin(user)]")
 
 ADMIN_VERB(toggleghostwriters, R_ADMIN|R_FUN|R_EVENT, "Toggle ghost writers", "Toggles ghost writing.", ADMIN_CATEGORY_SERVER_GAME)
 	if(!config)

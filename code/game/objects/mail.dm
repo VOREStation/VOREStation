@@ -51,6 +51,7 @@
 
 	///Var for attack_self chainn
 	var/special_handling = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return
@@ -252,7 +253,7 @@
 	name = "[initial(name)] for [recipient.name] ([current_title])"
 	recipient_ref = WEAKREF(recipient)
 
-	var/datum/job/this_job = SSjob.name_occupations[recipient.assigned_role]
+	var/datum/job/this_job = SSjob.occupations_by_name[recipient.assigned_role]
 
 	var/list/goodies = generic_goodies
 	if(this_job)

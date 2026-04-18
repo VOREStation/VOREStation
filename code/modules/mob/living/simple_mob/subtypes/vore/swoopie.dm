@@ -335,7 +335,7 @@
 	icon = 'icons/mob/vacpack_swoop.dmi'
 	item_state = null
 
-/obj/item/vac_attachment/swoopie/dropped(mob/user) //This should fix it sitting on the ground until the next life() tick
+/obj/item/vac_attachment/swoopie/dropped(mob/user, equipping, slot) //This should fix it sitting on the ground until the next life() tick
 	. = ..()
 	if(!vac_owner)
 		return

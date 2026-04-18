@@ -55,7 +55,7 @@
 
 /datum/event2/event/meteor_defense/announce()
 	var/announcement = "Meteors are expected to approach from the [dir_text] side, in approximately [DisplayTimeText(time_to_start - world.time, 60)]."
-	GLOB.command_announcement.Announce(announcement, "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+	GLOB.command_announcement.Announce(announcement, "Meteor Alert", new_sound = ANNOUNCER_MSG_METEORS)
 
 /datum/event2/event/meteor_defense/wait_tick()
 	if(!soon_announced)

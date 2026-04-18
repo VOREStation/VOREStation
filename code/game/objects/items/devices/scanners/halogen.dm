@@ -4,7 +4,6 @@
 	icon_state = "eftpos"
 	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 2)
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7

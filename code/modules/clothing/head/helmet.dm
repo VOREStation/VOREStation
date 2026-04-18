@@ -14,6 +14,7 @@
 	ear_protection = 1
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/helmet/solgov
 	name = "\improper Solar Confederate Government helmet"

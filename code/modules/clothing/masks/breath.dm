@@ -13,6 +13,7 @@
 	pickup_sound = 'sound/items/pickup/component.ogg'
 	drop_sound = 'sound/items/drop/component.ogg'
 	special_handling = TRUE
+	resistance_flags = FIRE_PROOF
 
 
 /obj/item/clothing/mask/breath/proc/adjust_mask(mob/user)

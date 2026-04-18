@@ -89,7 +89,7 @@
 	else
 		user.visible_message(span_notice("[src]'s healing function has been turned off!"))
 
-/obj/item/clothing/suit/lasertag/dropped()
+/obj/item/clothing/suit/lasertag/dropped(mob/user, equipping, slot)
 	..()
 	STOP_PROCESSING(SSobj, src)
 	visible_message(span_notice("[src] is unequipped, its health going back to full!"))
