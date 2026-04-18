@@ -768,3 +768,51 @@
 	desc = "You are approximately 50% more susceptible to radiation, and it dissipates slower from your body."
 	cost = -2
 	var_changes = list("radiation_mod" = 1.5, "rad_removal_mod" = 0.5, "rad_levels" = WEAKENED_RADIATION_RESISTANCE)
+
+// medical allergens
+/datum/trait/negative/medical_allergy
+	name = "Allergy: " + REAGENT_TRICORDRAZINE
+	desc = "You're highly allergic to " + REAGENT_TRICORDRAZINE + " and " + REAGENT_TRICORLIDAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = -1
+	custom_only = FALSE
+	var/medallergen = MEDALLERGEN_TRICORD
+
+	/* Lets show medical some mercy by not making these genes
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Something feels odd..."
+	*/
+
+/datum/trait/negative/medical_allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.medallergens |= medallergen
+	..()
+
+/datum/trait/negative/medical_allergy/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.medallergens &= ~medallergen
+	..()
+
+/datum/trait/negative/medical_allergy/bicard
+	name = "Allergy: " + REAGENT_BICARIDINE
+	desc = "You're highly allergic to " + REAGENT_BICARIDINE + " and " + REAGENT_BICARIDAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_BICARD
+
+/datum/trait/negative/medical_allergy/dylo
+	name = "Allergy: " + REAGENT_ANTITOXIN
+	desc = "You're highly allergic to " + REAGENT_ANTITOXIN + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_DYLO
+
+/datum/trait/negative/medical_allergy/spacacillin
+	name = "Allergy: " + REAGENT_SPACEACILLIN
+	desc = "You're highly allergic to " + REAGENT_SPACEACILLIN + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_SPACACIL
+
+/datum/trait/negative/medical_allergy/peridaxon
+	name = "Allergy: " + REAGENT_PERIDAXON
+	desc = "You're highly allergic to " + REAGENT_PERIDAXON + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_PERIDAX
+
+/datum/trait/negative/medical_allergy/kelotane
+	name = "Allergy: " + REAGENT_KELOTANE
+	desc = "You're highly allergic to " + REAGENT_KELOTANE + ", " + REAGENT_DERMALINE + " and " + REAGENT_DERMALAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_KELOTANE

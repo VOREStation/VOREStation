@@ -21,6 +21,7 @@
 	reagent_state = LIQUID
 	metabolism = REM * 0.5
 	ingest_met = REM * 1.5 /// Be very careful with this, ingestion is weird and will spam high/sober messages horribly!
+	allergen_factor = 3 // Allergic reactions to concentrated medications should be pretty strong
 	dermal_absorption = 0
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
