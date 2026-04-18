@@ -140,7 +140,7 @@
 			span_warning("[leash_pet] is pulled to the ground by [leash_pet.p_their()] leash!"),
 			span_warning("You are pulled to the ground by your leash!")
 		)
-		leash_pet.apply_effect(20, STUN, 0)
+		leash_pet.apply_effect(5, STUN, 0)
 
 	//This code is to check if the pet has gotten too far away, and then break the leash.
 	sleep(3) //Wait to snap the leash
@@ -152,7 +152,7 @@
 			span_warning("The leash snaps free from [leash_pet]'s collar!"),
 			span_warning("Your leash pops from your collar!")
 		)
-		leash_pet.apply_effect(20, STUN, 0)
+		leash_pet.apply_effect(5, STUN, 0)
 		leash_pet.adjustOxyLoss(5)
 		clear_leash()
 
