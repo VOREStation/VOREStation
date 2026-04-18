@@ -1,0 +1,4 @@
+author: "Cameron-The-Raven"
+delete-after: True
+changes:
+  - bugfix: "lightweight and heavyweight can no longer be stacked"
