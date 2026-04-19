@@ -97,7 +97,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/dropped(mob/user)
+/obj/item/melee/baton/dropped(mob/user, equipping, slot)
 	..()
 	if(status && grip_safety && !taped_safety)
 		status = 0

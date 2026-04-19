@@ -243,7 +243,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
 	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100,
-	/obj/item/shield/energy = 100, /obj/item/melee/energy/sword/color = 20)
+	/obj/item/shield/energy = 100, /obj/item/melee/energy/sword = 20)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0

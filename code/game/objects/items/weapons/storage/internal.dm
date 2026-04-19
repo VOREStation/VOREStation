@@ -20,7 +20,7 @@
 /obj/item/storage/internal/attack_hand()
 	return		//make sure this is never picked up
 
-/obj/item/storage/internal/mob_can_equip(M as mob, slot, disable_warning = FALSE)
+/obj/item/storage/internal/mob_can_equip(mob/M, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	return 0	//make sure this is never picked up
 
 //Helper procs to cleanly implement internal storages - storage items that provide inventory slots for other items.
@@ -32,7 +32,7 @@
 //items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
 //returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
 //doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
+/obj/item/storage/internal/proc/handle_mousedrop(mob/user, obj/over_object)
 	if (ishuman(user) || issmall(user)) //so monkeys can take off their backpacks -- Urist
 
 		if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
@@ -65,7 +65,7 @@
 //items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
+/obj/item/storage/internal/proc/handle_attack_hand(mob/user)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

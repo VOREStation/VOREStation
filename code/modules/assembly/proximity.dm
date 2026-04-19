@@ -65,7 +65,7 @@
 		toggle_scan()
 		time = initial(time)
 
-/obj/item/assembly/prox_sensor/dropped(mob/user)
+/obj/item/assembly/prox_sensor/dropped(mob/user, equipping, slot)
 	..()
 	sense()
 

@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Leash stun is only 10 seconds instead of 40."
+  - bugfix: "Fixes a few runtimes"

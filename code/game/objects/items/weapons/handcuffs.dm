@@ -307,7 +307,9 @@
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
-/obj/item/handcuffs/legcuffs/bola/dropped(mob/user)
+/obj/item/handcuffs/legcuffs/bola/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	visible_message(span_infoplain(span_bold("\The [src]") + " falls apart!"))
 

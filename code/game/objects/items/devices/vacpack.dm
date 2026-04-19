@@ -333,8 +333,8 @@
 	.=..()
 	icon_state = "sucker-[vac_power]"
 
-/obj/item/vac_attachment/dropped(mob/user as mob)
-	.=..()
+/obj/item/vac_attachment/dropped(mob/user, equipping, slot)
+	. = ..()
 	icon_state = "sucker_drop"
 
 /obj/item/vac_attachment/verb/hide_pack()

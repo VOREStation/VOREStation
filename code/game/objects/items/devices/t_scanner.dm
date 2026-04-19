@@ -133,7 +133,9 @@
 
 	user_client = new_client
 
-/obj/item/t_scanner/dropped(mob/user)
+/obj/item/t_scanner/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	set_user_client(null)
 	..()
 

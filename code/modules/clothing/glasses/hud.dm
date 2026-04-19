@@ -85,7 +85,7 @@
 	QDEL_NULL(tgarscreen)
 	. = ..()
 
-/obj/item/clothing/glasses/omnihud/dropped(mob/user)
+/obj/item/clothing/glasses/omnihud/dropped(mob/user, equipping, slot)
 	if(tgarscreen)
 		SStgui.close_uis(src)
 	..()

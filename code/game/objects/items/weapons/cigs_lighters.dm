@@ -47,12 +47,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		location.hotspot_expose(700, 5)
 		return
 
-/obj/item/flame/match/dropped(mob/user)
+/obj/item/flame/match/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	//If dropped, put ourselves out
 	//not before lighting up the turf we land on, though.
 	if(lit)
 		spawn(0)
-			var/turf/location = src.loc
+			var/turf/location = loc
 			if(istype(location))
 				location.hotspot_expose(700, 5)
 			burn_out()
