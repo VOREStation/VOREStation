@@ -191,7 +191,6 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	var/drone_name = ""	//Randomly picked unless pre-defined. Used by tool examines
 	var/examine_multitool = "TEST_multi - CONTACT DEV"	//Read by attacking with multitool
 	var/examine_canalyzer = "TEST_canalyzer spoken - CONTACT DEV"	//Read by attacking with cyborg analyzer. Define in New() if using vars

@@ -31,7 +31,7 @@
 	// Test to see if rand_seed() can be used reliably.
 	var/priority_process
 
-/datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce)
+/datum/random_map/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/admin_map)
 	if(!isnum(tz))
 		var/old_tz = tz
 		tz = GLOB.map_templates_loaded[tz]
@@ -45,7 +45,7 @@
 	else
 		GLOB.map_count[descriptor]++
 	name = "[descriptor] #[GLOB.map_count[descriptor]]"
-	if(preserve_map) GLOB.random_maps[name] = src
+	if(preserve_map || admin_map) GLOB.random_maps[name] = src
 
 	// Get origins for applying the map later.
 	set_origins(tx, ty, tz)

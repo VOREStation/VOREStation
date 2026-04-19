@@ -8,7 +8,6 @@
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/mouselaser
-	origin_tech = list(TECH_BLUESPACE = 4)
 	battery_lock = 1
 	firemodes = list()
 	var/tf_type = /mob/living/simple_mob/animal/passive/mouse	//This type is what kind of mob it will try to turn people into!

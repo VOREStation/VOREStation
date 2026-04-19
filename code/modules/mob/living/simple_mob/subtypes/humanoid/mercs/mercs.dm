@@ -562,7 +562,7 @@
 	loot_list = list(/obj/item/material/knife/tacknife/combatknife = 100)
 
 /mob/living/simple_mob/humanoid/merc/melee/sword/poi
-	loot_list = list(/obj/item/melee/energy/sword/color = 20,
+	loot_list = list(/obj/item/melee/energy/sword = 20,
 		/obj/item/shield/energy = 40
 		)
 

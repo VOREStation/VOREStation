@@ -212,7 +212,7 @@
 		if(STATE_PREPARE)
 			if (check_doors_secured())
 				if(target_state == TARGET_INOPEN)
-					playsound(master, 'sound/AI/airlockin.ogg', 100, 0)
+					playsound(master, announcer_airlock_message(AIRLOCK_MSG_IN), 100, 0)
 					if(memory["chamber_sensor_phoron"] > memory["target_phoron"])
 						state = STATE_CLEAN
 						signalScrubber(tag_scrubber, 1) // Start cleaning
@@ -226,13 +226,13 @@
 				else if(memory["pump_status"] != "off")
 					signalPump(tag_airpump, 0)
 				else
-					playsound(master, 'sound/AI/airlockout.ogg', 100, 0)
+					playsound(master, announcer_airlock_message(AIRLOCK_MSG_OUT), 100, 0)
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
 
 		if(STATE_CLEAN)
-			playsound(master, 'sound/machines/2beep.ogg', 100, 0)
+			playsound(master, announcer_airlock_message(AIRLOCK_MSG_BEEP), 100, 0)
 			if(!check_doors_secured())
 				//the airlock will not allow itself to continue to cycle when any of the doors are forced open.
 				stop_cycling()
@@ -243,14 +243,14 @@
 				state = STATE_PRESSURIZE
 
 		if(STATE_PRESSURIZE)
-			playsound(master, 'sound/machines/2beep.ogg', 100, 0)
+			playsound(master, announcer_airlock_message(AIRLOCK_MSG_BEEP), 100, 0)
 			if(!check_doors_secured())
 				//the airlock will not allow itself to continue to cycle when any of the doors are forced open.
 				stop_cycling()
 			else if(memory["chamber_sensor_pressure"] >= memory["target_pressure"] * 0.95)
 				signalPump(tag_airpump, 0)	// send a signal to stop pumping. No need to wait for it tho.
 				cycleDoors(target_state)
-				playsound(master, 'sound/AI/airlockdone.ogg', 100, 0)
+				playsound(master, announcer_airlock_message(AIRLOCK_MSG_END_IN), 100, 0)
 				state = STATE_IDLE
 				target_state = TARGET_NONE
 

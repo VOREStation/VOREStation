@@ -105,7 +105,6 @@
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 40
 	weight = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2, MAT_GLASS = SHEET_MATERIAL_AMOUNT)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/reinforced
@@ -120,7 +119,6 @@
 	flags = MATERIAL_BRITTLE
 	integrity = 100
 	icon_colour = "#FC2BC5"
-	stack_origin_tech = list(TECH_MATERIAL = 4)
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronbasic
 	created_fulltile_window = /obj/structure/window/phoronbasic/full
@@ -131,13 +129,11 @@
 	name = MAT_RPGLASS
 	display_name = MAT_RPGLASS
 	stack_type = /obj/item/stack/material/glass/phoronrglass
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronreinforced
 	created_fulltile_window = /obj/structure/window/phoronreinforced/full
 	hardness = 40
 	weight = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2, MAT_PGLASS = SHEET_MATERIAL_AMOUNT)
 	rod_product = null
 	flags = MATERIAL_UNMELTABLE

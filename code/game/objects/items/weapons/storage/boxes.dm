@@ -34,6 +34,7 @@
 	use_sound = 'sound/items/storage/box.ogg'
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
+	resistance_flags = FLAMMABLE
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/storage/box/attack_self(mob/user)

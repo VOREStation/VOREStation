@@ -3,7 +3,6 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "xenobio"
 	item_state = "xenobio"
-	origin_tech = list(TECH_BIO = 1)
 	w_class = ITEMSIZE_SMALL
 	throwforce = 0
 	throw_speed = 3

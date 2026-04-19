@@ -24,7 +24,6 @@
 	icon = 'icons/obj/props/telecube.dmi'
 	icon_state = "cube"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 7, TECH_POWER = 6, TECH_BLUESPACE = 7, TECH_ARCANE = 2, TECH_PRECURSOR = 2)
 
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/telecube)
 
@@ -114,7 +113,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/telecube/dropped(mob/user)
+/obj/item/telecube/dropped(mob/user, equipping, slot)
 	. = ..()
 	update_icon()
 

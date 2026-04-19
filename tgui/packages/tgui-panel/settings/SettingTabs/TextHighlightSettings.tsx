@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import {
   Box,
   Button,
@@ -14,7 +15,7 @@ import { settingsAtom } from '../atoms';
 import { MAX_HIGHLIGHT_SETTINGS } from '../constants';
 import { useHighlights } from '../use-highlights';
 
-export const TextHighlightSettings = (props) => {
+export function TextHighlightSettings(props) {
   const {
     highlights: { highlightSettings },
     addHighlight,
@@ -59,9 +60,25 @@ export const TextHighlightSettings = (props) => {
       </Box>
     </Section>
   );
-};
+}
 
-const TextHighlightSetting = (props) => {
+const oneCharacterRegex = /^(\[.*\]|\\.|.)$/;
+
+function extractRegex(highlight: string): string | null {
+  if (
+    highlight.charAt(0) !== '/' ||
+    highlight.charAt(highlight.length - 1) !== '/'
+  ) {
+    return null;
+  }
+  const expr = highlight.substring(1, highlight.length - 1);
+  if (oneCharacterRegex.test(expr)) {
+    return null;
+  }
+  return expr;
+}
+
+function TextHighlightSetting(props) {
   const { id, ...rest } = props;
   const {
     highlights: { highlightSettingById },
@@ -69,6 +86,7 @@ const TextHighlightSetting = (props) => {
     removeHighlight,
   } = useHighlights();
   const {
+    enabled,
     highlightColor,
     highlightText,
     blacklistText,
@@ -77,6 +95,22 @@ const TextHighlightSetting = (props) => {
     matchWord,
     matchCase,
   } = highlightSettingById[id];
+
+  const highlightRegex = useMemo(
+    () => extractRegex(highlightText),
+    [highlightText],
+  );
+
+  const isRegexValid = useMemo(() => {
+    if (!highlightRegex) return true;
+    try {
+      new RegExp(highlightRegex, 'g');
+      return true;
+    } catch {
+      return false;
+    }
+  }, [highlightRegex]);
+
   return (
     <Stack.Item {...rest}>
       <Stack mb={1} color="label" align="baseline">
@@ -104,11 +138,26 @@ const TextHighlightSetting = (props) => {
             </Button.Confirm>
           </Stack.Item>
         )}
+        <Stack.Item>
+          <Button.Checkbox
+            checked={!!enabled}
+            mr="5px"
+            onClick={() =>
+              updateHighlight({
+                id,
+                enabled: !enabled,
+              })
+            }
+          >
+            Enabled
+          </Button.Checkbox>
+        </Stack.Item>
         <Stack.Item grow />
         <Stack.Item>
           <Button.Checkbox
             checked={highlightBlacklist}
             tooltip="If this option is selected, you can blacklist senders not to highlight their messages."
+            disabled={!!highlightRegex}
             mr="5px"
             onClick={() =>
               updateHighlight({
@@ -185,6 +234,7 @@ const TextHighlightSetting = (props) => {
         height="3em"
         value={highlightText}
         placeholder="Put words to highlight here. Separate terms with commas, i.e. (term1, term2, term3)"
+        style={{ border: isRegexValid ? '' : '1px solid red' }}
         onBlur={(value) =>
           updateHighlight({
             id,
@@ -208,4 +258,4 @@ const TextHighlightSetting = (props) => {
       )}
     </Stack.Item>
   );
-};
+}

@@ -19,6 +19,9 @@
 	return ..()
 
 /obj/structure/closet/secure_closet/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!broken)
 		if(prob(50/severity))
 			locked = !locked
@@ -29,7 +32,6 @@
 			else
 				req_access = list()
 				req_access += pick(SSaccess.get_all_station_access())
-	..()
 
 /obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
 	if(opened)

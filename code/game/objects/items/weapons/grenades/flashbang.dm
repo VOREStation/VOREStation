@@ -2,7 +2,6 @@
 	name = "flashbang"
 	icon_state = "flashbang"
 	item_state = "flashbang"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 

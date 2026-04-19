@@ -5,7 +5,6 @@
 	desc = "A flask containing strange, mysterious substances excreted by a slime."
 	icon = 'icons/obj/chemical.dmi'
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_BIO = 4)
 
 // This is actually applied to an extract, so no attack() overriding needed.
 /obj/item/slimepotion/enhancer
@@ -92,6 +91,7 @@
 		var/mob/living/simple_mob/slime/xenobio/S = M
 		if(S.harmless)
 			to_chat(user, span_warning("The slime is already docile!"))
+			currently_using = FALSE
 			return ..()
 
 		S.pacify()
@@ -103,10 +103,12 @@
 	else if(isanimal(M))
 		var/mob/living/simple_mob/SM = M
 		if(!(SM.mob_class & (MOB_CLASS_SLIME|MOB_CLASS_ANIMAL))) // So you can't use this on Russians/syndies/hivebots/etc.
-			to_chat(user, span_warning("\The [SM] only works on slimes and animals."))
+			to_chat(user, span_warning("\The [src] only works on slimes and animals."))
+			currently_using = FALSE
 			return ..()
 		if(!AI.hostile)
 			to_chat(user, span_warning("\The [SM] is already passive!"))
+			currently_using = FALSE
 			return ..()
 
 		AI.hostile = FALSE

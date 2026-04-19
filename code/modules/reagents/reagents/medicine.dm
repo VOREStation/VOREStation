@@ -59,6 +59,7 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	medallergen_type = MEDALLERGEN_BICARD
 
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
@@ -98,6 +99,7 @@
 	can_overdose_touch = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_SPECIALDRUG
+	medallergen_type = MEDALLERGEN_BICARD
 
 /datum/reagent/bicaridine/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
@@ -148,6 +150,7 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	medallergen_type = MEDALLERGEN_KELOTANE
 
 /datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
@@ -171,6 +174,7 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	medallergen_type = MEDALLERGEN_KELOTANE
 
 /datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
@@ -193,6 +197,7 @@
 	can_overdose_touch = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_SPECIALDRUG
+	medallergen_type = MEDALLERGEN_KELOTANE
 
 /datum/reagent/dermaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
@@ -220,6 +225,7 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	medallergen_type = MEDALLERGEN_DYLO
 
 /datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
@@ -339,6 +345,7 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	medallergen_type = MEDALLERGEN_TRICORD
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -364,6 +371,7 @@
 	can_overdose_touch = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_SPECIALDRUG
+	medallergen_type = MEDALLERGEN_TRICORD
 
 /datum/reagent/tricorlidaze/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -751,6 +759,7 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_SPECIALDRUG
+	medallergen_type = MEDALLERGEN_PERIDAX
 
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -1218,6 +1227,7 @@
 	data = 0
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	medallergen_type = MEDALLERGEN_SPACACIL
 
 /datum/reagent/spaceacillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
