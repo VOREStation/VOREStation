@@ -420,7 +420,7 @@ SUBSYSTEM_DEF(job)
 	// Hand out random jobs to the people who didn't get any in the last check
 	// Also makes sure that they got their preference correct
 	for(var/mob/new_player/player in unassigned)
-		if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
+		if(player.client.prefs.read_preference(/datum/preference/numeric/human/alternate_option) == GET_RANDOM_JOB)
 			give_random_job(player)
 
 	job_debug_message("DO, Standard Check end")
@@ -429,13 +429,13 @@ SUBSYSTEM_DEF(job)
 
 	// For those who wanted to be assistant if their preferences were filled, here you go.
 	for(var/mob/new_player/player in unassigned)
-		if(player.client.prefs.alternate_option == BE_ASSISTANT)
+		if(player.client.prefs.read_preference(/datum/preference/numeric/human/alternate_option) == BE_ASSISTANT)
 			job_debug_message("AC2 Assistant located, Player: [player]")
 			assign_role(player, JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 
 	//For ones returning to lobby
 	for(var/mob/new_player/player in unassigned)
-		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
+		if(player.client.prefs.read_preference(/datum/preference/numeric/human/alternate_option) == RETURN_TO_LOBBY)
 			player.ready = PLAYER_NOT_READY
 			unassigned -= player
 	return TRUE
