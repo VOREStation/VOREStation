@@ -39,7 +39,7 @@
 	var/list/sprite_decals = list() // Allow extra decals
 	var/list/sprite_animations = list() // Allows to flick animations
 
-	var/list/hat_offset = list(NORTH = list(0, -3), SOUTH = list(0, -3), EAST = list(4, -3), WEST = list(-4, -3))
+	var/list/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
