@@ -84,7 +84,7 @@
 			additional_desc = "There appear to be [pick("dark","faintly glowing","pungent","bright")] [pick("red","purple","green","blue")] stains inside."
 		if(ARCHAEO_URN)
 			item_type = "urn"
-			new_item = new /obj/item/reagent_containers/glass/beaker(src.loc)
+			new_item = new /obj/item/reagent_containers/glass/replenishing(src.loc)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "urn[rand(1,2)]"
 			apply_image_decorations = TRUE
@@ -119,6 +119,7 @@
 			item_type = "[pick("bladed knife","serrated blade","sharp cutting implement")]"
 			var/possible_object_paths = list(/obj/item/material/knife) //As far as I can tell, this is more 'random' than using typesof, as it just picks a random one vs going down the list with a prob (as seen below)
 			possible_object_paths += subtypesof(/obj/item/material/knife)
+			possible_object_paths -= list(/obj/item/material/knife/cyborg, /obj/item/material/knife/machete/hatchet/cyborg)
 			var/obj/item/material/knife/new_knife = pick(possible_object_paths)
 			new_item = new new_knife(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
