@@ -11,7 +11,7 @@
 
 	density = TRUE
 	slowdown = 10 //It's a vehicle frame, what do you expect?
-	w_class = 5
+	w_class = ITEMSIZE_HUGE
 
 	var/build_stage = 0
 	var/obj/item/cell/cell = null

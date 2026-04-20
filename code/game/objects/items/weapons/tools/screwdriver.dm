@@ -93,7 +93,6 @@
 	desc = "A strange conglomerate of a screwdriver."
 	icon_state = "hybscrewdriver"
 	item_state = "screwdriver_black"
-	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 	w_class = ITEMSIZE_NORMAL
 	usesound = 'sound/effects/uncloak.ogg'
 	toolspeed = 0.4

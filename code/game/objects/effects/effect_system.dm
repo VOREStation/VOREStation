@@ -6,6 +6,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 */
 /obj/effect
 	light_on = TRUE
+	uses_integrity = FALSE
 
 /obj/effect/effect
 	name = "effect"

@@ -2,7 +2,6 @@
 	name = "agent card"
 	icon_state = "generic-s"
 	assignment = "Agent"
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/electronic_warfare = 1
 	var/mob/registered_user = null
 

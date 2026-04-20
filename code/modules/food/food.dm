@@ -14,6 +14,7 @@
 
 	var/food_can_insert_micro = FALSE
 	var/list/food_inserted_micros
+	resistance_flags = FLAMMABLE
 
 /obj/item/reagent_containers/food/verb/change_name()
 	set name = "Rename Food"

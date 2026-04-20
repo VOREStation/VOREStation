@@ -74,7 +74,8 @@
 	return
 
 /mob/living/silicon/emp_act(severity, recursive)
-	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
 		return
 	switch(severity)
 		if(1)
@@ -92,7 +93,6 @@
 	flash_eyes(affect_silicon = 1)
 	to_chat(src, span_bolddanger("*BZZZT*"))
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
-	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	return	//immune
@@ -409,7 +409,7 @@
 	//Handle job slot/tater cleanup.
 	var/job = mind.assigned_role
 
-	GLOB.job_master.FreeRole(job)
+	SSjob.free_role(job)
 
 	if(mind.objectives.len)
 		qdel(mind.objectives)

@@ -5,7 +5,6 @@
 	item_state = "gun" // Placeholder
 
 	fire_sound = 'sound/weapons/eluger.ogg'
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	projectile_type = /obj/item/projectile/bola/energy
 	charge_cost = 400 //Low energy cost.
 	fire_delay = 10 //Rapid fire!

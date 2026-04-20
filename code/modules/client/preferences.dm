@@ -297,7 +297,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.set_species(read_preference(/datum/preference/choiced/species))
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
+		// write_ instead of update_ to avoid update_preference_by_type calling copy_to again.
+		write_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)

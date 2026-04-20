@@ -14,7 +14,6 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "strange"
 	var/datum/geosample/geologic_data
-	origin_tech = list(TECH_MATERIAL = 5)
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/strangerock/Initialize(mapload, var/inside_item_type = 0)

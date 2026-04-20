@@ -224,7 +224,6 @@
 	icon_state = "autoinjector"
 	amount_per_transfer_from_this = 15
 	volume = 15
-	origin_tech = list(TECH_BIO = 4)
 	filled_reagents = list(REAGENT_ID_INAPROVALINE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe

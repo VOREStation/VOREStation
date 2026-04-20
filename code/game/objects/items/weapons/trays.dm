@@ -152,18 +152,20 @@
 					Img.color = O.color
 			add_overlay(Img)
 
-/obj/item/tray/dropped(mob/user)
+/obj/item/tray/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..() //Don't bother searching if we're just being put in a pocket/in hands.
 	..()
 	var/noTable = null
 
-	spawn() //Allows the tray to udpate location, rather than just checking against mob's location
-		if(isturf(src.loc) && !(locate(/obj/structure/table) in src.loc))
+	spawn() //Allows the tray to update location, rather than just checking against mob's location
+		if(isturf(loc) && !(locate(/obj/structure/table) in loc))
 			noTable = 1
 
-		if(isturf(loc) && !(locate(/mob/living) in src.loc))
+		if(isturf(loc) && !(locate(/mob/living) in loc))
 			cut_overlays()
 			for(var/obj/item/I in carrying)
-				I.forceMove(src.loc)
+				I.forceMove(loc)
 				carrying.Remove(I)
 				if(noTable)
 					for(var/i = 1, i <= rand(1,2), i++)

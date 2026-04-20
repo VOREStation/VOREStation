@@ -71,7 +71,6 @@
 	desc = "Based on the technology of the 'Bluespace Harpoon' this device can teleport a loaded cube to a given target and rehydrate it."
 	loadable_item = /obj/item/reagent_containers/food/snacks/monkeycube
 	loadable_name = "Monkey Cube"
-	origin_tech = list(TECH_BLUESPACE = 5, TECH_BIO = 6)
 	//projectile_type = /obj/item/projectile/beam/xenobio/monkey
 
 /obj/item/xenobio/monkey_gun/afterattack(atom/A, mob/user as mob)

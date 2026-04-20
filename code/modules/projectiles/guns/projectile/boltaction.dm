@@ -17,8 +17,7 @@
 	item_state = "boltaction"
 	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 5
-	caliber = "7.62mm"
-	origin_tech = list(TECH_COMBAT = 1)// Old as shit rifle doesn't have very good tech.
+	caliber = "7.62mm"// Old as shit rifle doesn't have very good tech.
 	ammo_type = /obj/item/ammo_casing/a762
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'
@@ -108,8 +107,7 @@
 	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 4
 	slot_flags = null
-	caliber = "7.62mm"
-	origin_tech = list(TECH_COMBAT = 1) // Old(er) as shit rifle doesn't have very good tech.
+	caliber = "7.62mm" // Old(er) as shit rifle doesn't have very good tech.
 	ammo_type = /obj/item/ammo_casing/a762
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'
@@ -134,8 +132,7 @@
 	item_state = "boltaction_scoped"
 	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 5
-	caliber = "7.62mm"
-	origin_tech = list(TECH_COMBAT = 2)// Old as shit rifle doesn't have very good tech, but it does have a scope.
+	caliber = "7.62mm"// Old as shit rifle doesn't have very good tech, but it does have a scope.
 	ammo_type = /obj/item/ammo_casing/a762
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'

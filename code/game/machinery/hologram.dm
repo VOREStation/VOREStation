@@ -144,6 +144,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	if(LAZYLEN(masters))
 		START_MACHINE_PROCESSING(src)
 
+	// Let the AI experience area ambiences too
+	var/area/ar = get_area(hologram.loc)
+	ar?.play_ambience(A, initial = TRUE)
 	return 1
 
 /obj/machinery/hologram/holopad/proc/clear_holo(mob/living/silicon/ai/user)

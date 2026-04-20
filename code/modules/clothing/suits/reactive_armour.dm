@@ -3,6 +3,7 @@
 	desc = "An experimental suit of armor, awaiting installation of an anomaly core."
 	icon_state = "reactiveoff"
 	w_class = ITEMSIZE_COST_LARGE
+	resistance_flags = FIRE_PROOF | UNACIDABLE
 
 /obj/item/clothing/suit/armor/reactive_armor_shell/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -87,7 +88,7 @@
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity, recursive)
 	. = ..()
-	if(bad_effect || !active)
+	if (. & EMP_PROTECT_SELF || bad_effect || !active)
 		return
 	visible_message(emp_message)
 	bad_effect = TRUE

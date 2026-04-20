@@ -139,7 +139,6 @@
 	icon = 'icons/obj/closets/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	item_state = "bodybag_cryo_folded"
-	origin_tech = list(TECH_BIO = 4)
 	cryogenic = TRUE
 
 /obj/structure/closet/body_bag/cryobag

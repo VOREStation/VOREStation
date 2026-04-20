@@ -8,7 +8,6 @@
 	icon_state = "sizegun-old-0"
 	var/base_icon_state = "sizegun-old"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_BLUESPACE = 4)
 	force = 0
 	slot_flags = SLOT_BELT
 	var/beam_range = 4 // How many tiles away it can scan. Changing this also changes the box size.

@@ -2,10 +2,9 @@
 	name = "pneumatic wrench"
 	desc = "An exosuit-mounted hydraulic wrench."
 	icon_state = "mecha_wrench"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
 	equip_cooldown = 3
 	energy_drain = 15
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/items/Ratchet.ogg'
 	required_type = list(/obj/mecha/working/ripley)

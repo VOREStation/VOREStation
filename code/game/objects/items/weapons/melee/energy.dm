@@ -229,7 +229,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = TRUE
 	edge = TRUE
@@ -264,7 +263,6 @@
  * Energy Sword
  */
 /obj/item/melee/energy/sword
-	color
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "esword"
@@ -279,7 +277,6 @@
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	colorable = TRUE
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
@@ -287,7 +284,7 @@
 
 	projectile_parry_chance = 65
 
-/obj/item/melee/energy/sword/dropped(mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user, equipping, slot)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -374,7 +371,7 @@
 	if(istype(AM, /obj) && proximity && active)
 		// EMP stuff.
 		var/obj/O = AM
-		O.emp_act(3) // A weaker severity is used because this has infinite uses.
+		O.emp_act(EMP_LIGHT) // A weaker severity is used because this has infinite uses.
 		playsound(O, 'sound/effects/EMPulse.ogg', 100, 1)
 		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
@@ -383,7 +380,7 @@
 	. = ..()
 	if(target.isSynthetic() && active)
 		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
-		target.emp_act(3) // A weaker severity is used because this has infinite uses.
+		target.emp_act(EMP_LIGHT) // A weaker severity is used because this has infinite uses.
 		playsound(target, 'sound/effects/EMPulse.ogg', 100, 1)
 		target.adjustFireLoss(force * 3) // 15 Burn, for 20 total.
 		playsound(target, 'sound/weapons/blade1.ogg', 100, 1)
@@ -408,7 +405,6 @@
 /obj/item/melee/energy/sword/charge
 	name = "charge sword"
 	desc = "A small, handheld device which emits a high-energy 'blade'."
-	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	active_force = 25
 	active_armourpen = 25
 	projectile_parry_chance = 40

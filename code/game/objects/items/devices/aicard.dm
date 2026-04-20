@@ -10,7 +10,6 @@
 	preserve_item = 1
 
 	var/flush = null
-	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 
 	var/mob/living/silicon/ai/carded_ai
 
