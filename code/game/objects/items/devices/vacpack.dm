@@ -158,7 +158,7 @@
 					continue
 				suckables += I
 			for(var/mob/living/L in target)
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
+				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey || L == attachment_holder)
 					continue
 				if(L.size_multiplier < 0.5 || vac_power >= 6)
 					suckables += L
