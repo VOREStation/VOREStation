@@ -9,9 +9,6 @@
 	var/model_info
 	dir = SOUTH
 
-/obj/item/robot_parts/set_dir()
-	return
-
 /obj/item/robot_parts/l_arm
 	name = "cyborg left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."

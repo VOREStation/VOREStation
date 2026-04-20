@@ -50,7 +50,7 @@
 	sprite_icon_state = "raptor"
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_LASER_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
-	hat_offset = list(RAPTOR_HAT_OFFSET)
+	hat_offset = RAPTOR_HAT_OFFSET
 
 
 // Gravekeeper
@@ -85,4 +85,4 @@
 	sprite_icon_state = "raptor"
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_LASER_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
-	hat_offset = list(RAPTOR_HAT_OFFSET)
+	hat_offset = RAPTOR_HAT_OFFSET

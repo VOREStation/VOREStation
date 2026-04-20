@@ -80,7 +80,7 @@
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
-	hat_offset = list(SMOL_RAPTOR_HAT_OFFSET)
+	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
 // Tall sprites
 
@@ -149,7 +149,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 	has_eye_light_sprites = TRUE
 	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE
-	hat_offset = list(RAPTOR_HAT_OFFSET)
+	hat_offset = RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
