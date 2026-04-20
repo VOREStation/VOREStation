@@ -91,7 +91,7 @@
 	if(!output_atom)
 		return
 	var/mob/living/attachment_holder //If we have someone holding the vac_attachment, so we don't suck them up by mistake.
-	if(istype(src, /obj/item/vac_attachment/swoopie)) //Swoopie vac_attachments should ALWAYS treat the vac_owner as the user.
+	if(vac_owner) //If we have a vac owner, treat the vac owner as the user.
 		attachment_holder = user
 		user = vac_owner
 	if(istype(output_atom, /obj/item/storage/bag/trash))
