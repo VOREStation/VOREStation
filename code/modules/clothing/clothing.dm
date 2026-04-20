@@ -415,16 +415,17 @@
 	if(equipping && slot && slot == slot_gloves)
 		var/obj/item/clothing/G = H.gloves
 		if(istype(G))
+			to_chat(user, "You slip \the [src] on over \the [H.gloves].")
 			if(istype(G, /obj/item/clothing/gloves))
 				gloves = H.gloves
-				H.unEquip(gloves, TRUE, src)
-				to_chat(user, "You slip \the [src] on over \the [gloves].")
 			else if(istype(G, /obj/item/clothing/accessory))
 				ring = H.gloves
-				H.unEquip(ring, TRUE, src)
-				to_chat(user, "You slip \the [src] on over \the [ring].")
+			else
+				gloves = H.gloves //Fallback
+			H.unEquip(H.gloves, TRUE, src)
 			if(!(flags & THICKMATERIAL))
-				punch_force += gloves.punch_force
+				if(istype(G, /obj/item/clothing/gloves) || istype(G, /obj/item/clothing/accessory)) //Because sometimes you can wear non-glove items on your hands.
+					punch_force += ring.punch_force
 		return
 
 	//Taking our gloves off? Put our former gloves / ring on.
