@@ -451,6 +451,7 @@
 
 			var/obj/item/organ/internal/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
+			additional_desc = "This organ reminds you of a [new_organ.name]"
 
 			//Code to prevent rejection.
 			new_organ = new_item
