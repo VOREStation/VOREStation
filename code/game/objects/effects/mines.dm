@@ -280,6 +280,23 @@
 	SSmotiontracker.ping(src,100)
 	qdel(src)
 
+/obj/effect/mine/stripping
+	mineitemtype = /obj/item/mine/stripping
+
+/obj/effect/mine/stripping/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	s.set_up(3, 1, src)
+	s.start()
+	if(istype(M))
+		for(var/obj/item/content_item in M)
+			M.drop_from_inventory(content_item)
+	visible_message("\The [src.name] explodes, stripping [M]!")
+	SSmotiontracker.ping(src,100)
+	qdel(src)
+
 /obj/effect/mine/gadget
 	mineitemtype = /obj/item/mine/gadget
 
@@ -414,6 +431,11 @@
 	name = "incendiary mine"
 	desc = "A small explosive mine with a fire symbol on the side."
 	minetype = /obj/effect/mine/incendiary
+
+/obj/item/mine/stripping
+	name = "strip mine"
+	desc = "A small bluespace mine with a symbol of clothing with a slash through it.."
+	minetype = /obj/effect/mine/stirpping
 
 /obj/item/mine/gadget
 	name = "gadget mine"
