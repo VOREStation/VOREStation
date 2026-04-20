@@ -90,6 +90,10 @@
 	var/atom/movable/output_atom = output_dest?.resolve()
 	if(!output_atom)
 		return
+	var/mob/living/attachment_holder //If we have someone holding the vac_attachment, so we don't suck them up by mistake.
+	if(istype(src, /obj/item/vac_attachment/swoopie)) //Swoopie vac_attachments should ALWAYS treat the vac_owner as the user.
+		attachment_holder = user
+		user = vac_owner
 	if(istype(output_atom, /obj/item/storage/bag/trash))
 		if(get_turf(output_atom) != get_turf(user))
 			vac_power = 0
@@ -141,7 +145,7 @@
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
 			for(var/mob/living/L in oview(pull_range, target))
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
+				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey || L == attachment_holder)
 					continue
 				L.singularity_pull(target, STAGE_THREE)
 				suckables += L
@@ -266,7 +270,7 @@
 
 /obj/item/vac_attachment/proc/prepare_sucking(atom/movable/target, mob/user, turf/target_turf)
 	var/atom/movable/output_atom = output_dest?.resolve()
-	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
+	if(!target.Adjacent(user) || (src.loc != user && !istype(src, /obj/item/vac_attachment/swoopie)) || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
 		return
 	if(!is_allowed_suck(target, user, output_atom)) //cancel if you're not allowed
 		return
@@ -277,7 +281,7 @@
 	if(target_turf && target.loc != target_turf)
 		return
 	var/atom/movable/output_atom = output_dest?.resolve()
-	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
+	if(!target.Adjacent(user) || (src.loc != user && !istype(src, /obj/item/vac_attachment/swoopie)) || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
 		return
 	if(!is_allowed_suck(target, user, output_atom)) //Does it obey restrictions on what the target could otherwise consume?
 		return
