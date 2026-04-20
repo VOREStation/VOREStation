@@ -271,7 +271,7 @@
 /obj/item/vac_attachment/proc/prepare_sucking(atom/movable/target, mob/user, turf/target_turf)
 	var/atom/movable/output_atom = output_dest?.resolve()
 
-	if(istype(src, /obj/item/vac_attachment/swoopie))
+	if(vac_owner) //Embedded vacs have special handling.
 		var/turf/item_turf = get_turf(src)
 		if(vac_power < 2 || !output_atom || (!target.Adjacent(user) && !item_turf.Adjacent(target))) //Swoopie vacs check to see if you're adjacent to the person holding the vac OR the swoopie itself.
 			return
@@ -288,7 +288,7 @@
 		return
 	var/atom/movable/output_atom = output_dest?.resolve()
 
-	if(istype(src, /obj/item/vac_attachment/swoopie))
+	if(vac_owner)
 		var/turf/item_turf = get_turf(src)
 		if(vac_power < 2 || !output_atom || (!target.Adjacent(user) && !item_turf.Adjacent(target))) //Swoopie vacs check to see if you're adjacent to the person holding the vac OR the swoopie itself.
 			return
