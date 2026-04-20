@@ -189,7 +189,6 @@
 
 /obj/item/leash/proc/drop_effects(mob/user)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(leash_master && (leash_master.item_is_in_hands(src) || leash_master.get_item_by_slot(SLOT_TIE) == src))
 		return  //Dom still has the leash as it turns out. Cancel the proc.
