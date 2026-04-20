@@ -1,9 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "tricord allergy negative trait"
-  - rscadd: "bicardine allergy negative trait"
-  - rscadd: "kelotane allergy negative trait"
-  - rscadd: "dylovene allergy negative trait"
-  - rscadd: "spacacillin allergy negative trait"
-  - rscadd: "peridaxon allergy negative trait"
