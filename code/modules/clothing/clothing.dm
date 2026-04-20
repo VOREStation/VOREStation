@@ -768,6 +768,8 @@
 
 /obj/item/clothing/shoes/wash()
 	. = ..()
+	blood_color = null
+	track_blood = 0
 	update_icon()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running, var/mob/living/carbon/human/pred)
