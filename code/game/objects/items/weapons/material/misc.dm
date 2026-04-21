@@ -18,7 +18,6 @@
 	w_class = ITEMSIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
@@ -121,7 +120,6 @@
 	default_material = MAT_LEATHER
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	force_divisor = 0.15
 	thrown_force_divisor = 0.25
@@ -227,7 +225,6 @@
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "stone_wood_axe"
 	default_material = MAT_FLINT
-	origin_tech = list()
 	applies_material_colour = FALSE
 
 /obj/item/material/knife/machete/hatchet/stone/bone

@@ -152,9 +152,6 @@
 /obj/machinery/computer/shuttle_control/ex_act()
 	return
 
-/obj/machinery/computer/shuttle_control/emp_act(severity, recursive)
-	return
-
 /obj/item/paper/dockingcodes
 	name = "Docking Codes"
 	var/codes_from_z = null //So you can put codes from the station other places to give to antags or whatever

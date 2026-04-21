@@ -14,7 +14,7 @@
 			var/wormhole_min_duration = round((30 SECONDS) * wormhole_duration_modifier)
 
 			//All ready. Announce that bad juju is afoot.
-			GLOB.command_announcement.Announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", new_sound = 'sound/AI/spanomalies.ogg')
+			GLOB.command_announcement.Announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_SPACETIME_ANOMS)
 
 			//prob(20) can be approximated to 1 wormhole every 5 turfs!
 			//admittedly less random but totally worth it >_<

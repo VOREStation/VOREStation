@@ -56,7 +56,7 @@
 		init_vore()
 	Vac = new /obj/item/vac_attachment/swoopie(src)
 	if(istype(Vac))
-		Vac.output_dest = vore_selected
+		Vac.output_dest = WEAKREF(vore_selected)
 		Vac.vac_power = 3
 		Vac.vac_owner = src
 
@@ -202,9 +202,10 @@
 					L.remove_from_mob(Vac, src)
 				else
 					Vac.forceMove(src)
-		if(!Vac.output_dest)
+		var/atom/movable/vac_output = Vac.output_dest?.resolve()
+		if(!vac_output)
 			if(isbelly(vore_selected))
-				Vac.output_dest = vore_selected
+				Vac.output_dest = WEAKREF(vore_selected)
 	if(!istype(T) || !istype(Vac) || !has_AI() || Vac.loc != src || stat)
 		return
 	if(istype(T, /turf/simulated))
@@ -320,7 +321,7 @@
 			to_chat(usr, "You press a button on \the [src], [ai.swoop_pests ? "" : "de"]activating it's pest seeking routines!")
 		if("Swoop Trash")
 			ai.swoop_trash = !ai.swoop_trash // invert the option
-			to_chat(usr, "you press a button on \the [src], [ai.swoop_trash ? "" : "de"]activating it's pest seeking routines!")
+			to_chat(usr, "you press a button on \the [src], [ai.swoop_trash ? "" : "de"]activating it's trash seeking routines!")
 
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/swoopie/Login()
@@ -334,7 +335,7 @@
 	icon = 'icons/mob/vacpack_swoop.dmi'
 	item_state = null
 
-/obj/item/vac_attachment/swoopie/dropped(mob/user) //This should fix it sitting on the ground until the next life() tick
+/obj/item/vac_attachment/swoopie/dropped(mob/user, equipping, slot) //This should fix it sitting on the ground until the next life() tick
 	. = ..()
 	if(!vac_owner)
 		return

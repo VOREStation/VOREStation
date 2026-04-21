@@ -1332,7 +1332,7 @@
 		return FALSE //Grab processing has a chance of returning null
 
 	// Help intent + Adjacent = pass item to other
-	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target) && target != src)
 		var/obj/item/I = item
 		var/mob/living/carbon/human/H = target
 		if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
@@ -1369,7 +1369,7 @@
 	item.throw_at(target, throw_range, item.throw_speed, src)
 	return TRUE
 
-/mob/living/get_sound_env(var/pressure_factor)
+/mob/living/get_sound_env(var/spot, var/pressure_factor)
 	if (hallucination)
 		return SOUND_ENVIRONMENT_PSYCHOTIC
 	else if (druggy)

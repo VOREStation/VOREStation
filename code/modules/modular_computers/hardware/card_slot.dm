@@ -5,7 +5,6 @@
 	critical = 0
 	icon_state = "cardreader"
 	hardware_size = 1
-	origin_tech = list(TECH_DATA = 2)
 
 	var/obj/item/card/id/stored_card = null
 

@@ -5,7 +5,6 @@
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "hand_tele"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
 	var/cell_type = /obj/item/cell/device/weapon
 	var/obj/item/cell/power_source
@@ -435,7 +434,6 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
 	cell_type = /obj/item/cell/device
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
 /*
 /obj/item/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)

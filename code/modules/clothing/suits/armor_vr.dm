@@ -19,7 +19,7 @@
 	icon_state = "wolf_item"
 	item_state = "heavy_wolf_armor"
 
-/obj/item/clothing/suit/armor/vest/wolftaur/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/suit/armor/vest/wolftaur/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(..())
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 			return ..()

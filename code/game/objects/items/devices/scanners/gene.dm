@@ -6,7 +6,6 @@
 	flags = NOBLUDGEON
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_DATA = 1)
 
 // Always face the user when put on a table
 /obj/item/gene_scanner/afterattack(atom/movable/AM, mob/user, proximity)

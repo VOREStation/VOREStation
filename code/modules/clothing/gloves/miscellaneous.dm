@@ -20,6 +20,7 @@
 
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
@@ -30,6 +31,7 @@
 	permeability_coefficient = 0.05
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
 	desc = "These tactical gloves are somewhat fire and impact resistant."
@@ -40,6 +42,7 @@
 	permeability_coefficient = 0.05
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/sterile
 	name = "sterile gloves"
@@ -112,6 +115,7 @@
 
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"

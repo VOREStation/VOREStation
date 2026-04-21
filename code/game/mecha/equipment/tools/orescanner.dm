@@ -2,10 +2,9 @@
 	name = "mounted ore scanner"
 	desc = "An exosuit-mounted ore scanner."
 	icon_state = "mecha_analyzer"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
 	equip_cooldown = 5
 	energy_drain = 30
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_type = EQUIP_SPECIAL
 	ready_sound = 'sound/items/goggles_charge.ogg'
 	required_type = list(/obj/mecha/working/ripley)

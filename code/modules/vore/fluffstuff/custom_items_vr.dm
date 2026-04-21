@@ -166,7 +166,6 @@
 	icon_state = "joanaria"
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "joanariamob"
-	origin_tech = "materials=7"
 	force = 15
 	sharp = TRUE
 	edge = TRUE
@@ -200,8 +199,6 @@
 	desc = "A sword that can not only cut down your enemies, it can also cut fabric really neatly"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "scisword"
-	origin_tech = "materials=7"
-
 
 //john.wayne9392:Harmony Prechtl
 /obj/item/twohanded/fireaxe/fluff/mjollnir
@@ -209,7 +206,6 @@
 	desc = "Large hammer that looks like it can do a great deal of damage if properly used."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "harmonymjollnir"
-	origin_tech = "materials=7"
 	attack_verb = list("attacked", "hammered", "smashed", "slammed", "crushed")
 
 //JoanRisu:Joan Risu
@@ -462,7 +458,7 @@
 	item_state = "serdy_armor"
 	body_parts_covered = CHEST|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
 
-/obj/item/clothing/suit/armor/vest/wolftaur/serdy/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/suit/armor/vest/wolftaur/serdy/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 		return ..()
 	else
@@ -962,7 +958,6 @@
 	edge = FALSE
 	throwforce = 7
 	w_class = ITEMSIZE_HUGE
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	lightcolor = "#CC33FF"
 
@@ -1005,12 +1000,11 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/fluff/stunstaff/dropped(mob/user)
+/obj/item/melee/baton/fluff/stunstaff/dropped(mob/user, equipping, slot)
 	..()
 	if(wielded)
-		wielded = 0
-		spawn(0)
-			update_held_icon()
+		wielded = FALSE
+		update_held_icon()
 
 /obj/item/melee/baton/fluff/stunstaff/attack_self(mob/user)
 	. = ..(user)
@@ -1119,13 +1113,12 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
 	var/active_state = "wolfgirlsword"
 	allowed = list(/obj/item/shield/fluff/wolfgirlshield)
 	damtype = HALLOSS
 
-/obj/item/melee/fluffstuff/wolfgirlsword/dropped(mob/user)
+/obj/item/melee/fluffstuff/wolfgirlsword/dropped(mob/user, equipping, slot)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -1221,7 +1214,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "tiemgogs"
 
-/obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(..())
 		if(H.ckey != "radiantaurora")
 			to_chat(H, span_warning("These don't look like they were made to fit you..."))
@@ -1261,12 +1254,12 @@
 		return
 	..()
 
-/obj/item/rig/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
+/obj/item/rig/nikki/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
 	if(..())
-		if (M.ckey == "ryumi")
+		if(H.ckey == "ryumi")
 			return 1
-		else if (M.get_active_hand() == src)
-			to_chat(M, span_warning("For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit."))
+		else if (H.get_active_hand() == src)
+			to_chat(H, span_warning("For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit."))
 			return 0
 
 //Nickcrazy - Damon Bones Xrim
@@ -1461,7 +1454,6 @@
 	icon_state = "claws"
 	drop_sound = null
 	pickup_sound = null
-	origin_tech = null
 	matter = null
 
 //Coolcrow420 - Jade Davis
@@ -1648,7 +1640,7 @@
 	slot_flags = SLOT_MASK | SLOT_OCLOTHING
 	replacementType = /obj/item/remote_scene_tool/tally_doll
 
-/obj/item/remote_scene_tool/tally_necklace/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/remote_scene_tool/tally_necklace/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(..())
 		if(H.ckey != "bricker98")
 			if(!disable_warning)

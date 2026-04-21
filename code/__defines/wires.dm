@@ -125,3 +125,7 @@
 #define WIRE_SORT_FORWARD "Sort Forward"
 #define WIRE_SORT_SIDE "Sort Side"
 #define WIRE_SORT_SCAN "Sort Scan"
+
+#define WIRE_HACK "Hack"
+#define WIRE_DISABLE "Disable"
+#define WIRE_SHOCK "High Voltage Ground"

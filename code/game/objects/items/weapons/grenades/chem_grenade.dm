@@ -201,7 +201,6 @@
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
 	allowed_containers = list(/obj/item/reagent_containers/glass)
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	affected_area = 4
 
 /obj/item/grenade/chem_grenade/metalfoam

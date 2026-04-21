@@ -36,7 +36,6 @@
 	icon = 'icons/obj/gun_toy.dmi'
 	item_state = "omnitag"
 	item_state = "retro"
-	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/lasertag/omni
 	cell_type = /obj/item/cell/device/weapon/recharge

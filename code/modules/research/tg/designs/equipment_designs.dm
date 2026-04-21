@@ -60,7 +60,7 @@
 	// req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3)
 	build_type = PROTOLATHE
 	materials = list(MAT_GOLD = 1000, MAT_DIAMOND = 500, MAT_URANIUM = 250) // Less expensive since it can only hold ores
-	build_path = /obj/item/storage/bag/ore/holding
+	build_path = /obj/item/ore_bag/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)

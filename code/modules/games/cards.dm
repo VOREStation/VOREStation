@@ -567,7 +567,7 @@
 		i++
 
 
-/obj/item/hand/dropped(mob/user)
+/obj/item/hand/dropped(mob/user, equipping, slot)
 	..()
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)

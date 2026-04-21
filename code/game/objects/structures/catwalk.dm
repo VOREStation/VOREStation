@@ -80,7 +80,7 @@
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/catwalk/proc/deconstruct(mob/user)
+/obj/structure/catwalk/atom_deconstruct(disassembled = TRUE, mob/user)
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	to_chat(user, span_notice("Slicing \the [src] joints ..."))
 	//Lattice would delete itself, but let's save ourselves a new obj
@@ -97,7 +97,7 @@
 	if(C.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = C.get_welder()
 		if(WT.isOn() && WT.remove_fuel(0, user))
-			deconstruct(user)
+			atom_deconstruct(TRUE, user)
 			return
 	if(C.has_tool_quality(TOOL_CROWBAR) && plated_tile)
 		hatch_open = !hatch_open

@@ -471,7 +471,7 @@
 
 				//Job slot cleanup
 				var/job = mind.assigned_role
-				GLOB.job_master.FreeRole(job)
+				SSjob.free_role(job)
 
 				//Their objectives cleanup
 				if(mind.objectives.len)

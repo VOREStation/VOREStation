@@ -161,7 +161,7 @@
 			span_hear("You hear a ratchet."))
 		if(unsafe_wrenching)
 			unsafe_pressure_release(user, internal_pressure)
-		deconstruct()
+		atom_deconstruct()
 
 /obj/machinery/atmospherics/pipe/proc/change_color(var/new_color)
 	//only pass valid pipe colors please ~otherwise your pipe will turn invisible

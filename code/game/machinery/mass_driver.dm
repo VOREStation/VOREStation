@@ -56,7 +56,7 @@
 	return
 
 /obj/machinery/mass_driver/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 	drive()
-	..(severity, recursive)

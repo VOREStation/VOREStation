@@ -45,7 +45,7 @@
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
 	icon_state = "chest"
 	part = list(BP_GROIN,BP_TORSO)
-	var/wires = 0.0
+	var/wires_const = 0.0
 	var/obj/item/cell/cell = null
 
 /obj/item/robot_parts/head
@@ -139,13 +139,13 @@
 
 	if(istype(W, /obj/item/robot_parts/chest))
 		if(src.chest)	return
-		if(W:wires && W:cell)
+		if(W:wires_const && W:cell)
 			user.drop_item()
 			W.loc = src
 			src.chest = W
 			src.update_icon()
-		else if(!W:wires)
-			to_chat(user, span_warning("You need to attach wires to it first!"))
+		else if(!W:wires_const)
+			to_chat(user, span_warning("You need to attach wires_const to it first!"))
 		else
 			to_chat(user, span_warning("You need to attach a cell to it first!"))
 
@@ -250,13 +250,13 @@
 			src.cell = W
 			to_chat(user, span_notice("You insert the cell!"))
 	if(istype(W, /obj/item/stack/cable_coil))
-		if(src.wires)
+		if(src.wires_const)
 			to_chat(user, span_warning("You have already inserted wire!"))
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
 			coil.use(1)
-			src.wires = 1.0
+			src.wires_const = 1.0
 			to_chat(user, span_notice("You insert the wire!"))
 	return
 

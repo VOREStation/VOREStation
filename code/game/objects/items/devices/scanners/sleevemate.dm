@@ -13,7 +13,6 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	throw_speed = 5
 	throw_range = 10
 	matter = list(MAT_STEEL = 200)
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 
 	var/datum/mind/stored_mind
 
