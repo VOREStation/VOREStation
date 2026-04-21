@@ -19,7 +19,7 @@
 	power_rating = 30000			//7500 W ~ 10 HP //VOREStation Edit - 30000 W
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 	var/area/initial_loc
 	level = 1
@@ -442,7 +442,7 @@
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
-		deconstruct()
+		atom_deconstruct()
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/multitool_act(obj/item/W, mob/user)
 	var/list/options = list(

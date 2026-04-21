@@ -353,7 +353,7 @@ GLOBAL_LIST_INIT(alphabet_upper, list("A","B","C","D","E","F","G","H","I","J","K
 		else
 			return string
 	else
-		return "[copytext_preserve_html(string, 1, 37)]..."
+		return "[copytext_preserve_html(string, 1, len - 3)]..."
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
 /proc/copytext_preserve_html(var/text, var/first, var/last)
@@ -438,6 +438,7 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 	t = replacetext(t, "\[row\]", "</td><tr>")
 	t = replacetext(t, "\[cell\]", "<td>")
 	t = replacetext(t, "\[logo\]", "<img src=\ref['html/images/ntlogo.png']")
+	t = replacetext(t, "\[talogo\]", "<img src=\ref['html/images/talonlogo.png']>")
 	t = replacetext(t, "\[redlogo\]", "<img src=\ref['html/images/redntlogo.png']>")
 	t = replacetext(t, "\[sglogo\]", "<img src=\ref['html/images/sglogo.png']")
 	t = replacetext(t, "\[editorbr\]", "")
@@ -489,6 +490,7 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 	t = replacetext(t, "<td>", "\[cell\]")
 	t = replacetext(t, "<img src=\ref['html/images/ntlogo.png']>", "\[logo\]")
 	t = replacetext(t, "<img src=\ref['html/images/redntlogo.png']>", "\[redlogo\]")
+	t = replacetext(t, "<img src=\ref['html/images/talonlogo.png']>", "\[talogo\]")
 	t = replacetext(t, "<img src=\ref['html/images/sglogo.png']>", "\[sglogo\]")
 	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
 	t = replacetext(t, "<span class=\"redacted\">R E D A C T E D</span>", "\[redacted\]")

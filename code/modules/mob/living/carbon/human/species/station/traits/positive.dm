@@ -442,6 +442,14 @@
 	hidden = FALSE
 	activation_message="Your body feels mundane."
 
+/datum/trait/positive/rad_immune/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/rad_immune/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	REMOVE_TRAIT(H, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
+
 /datum/trait/positive/vibration_sense
 	name = "Vibration Sense"
 	desc = "Allows you to sense subtle vibrations nearby, even if the source cannot be seen."
@@ -471,6 +479,8 @@
 	cost = 2
 	custom_only = TRUE
 	var_changes = list("flags" = NO_DNA)
+	excludes = list(/datum/trait/negative/disability_deteriorating)
+	banned_species	= list(/datum/species/protean, /datum/species/shapeshifter/promethean)
 
 /datum/trait/positive/weaver/xenochimera
 	sort = TRAIT_SORT_SPECIES
@@ -638,6 +648,7 @@
 	desc = "You are more heavyweight or otherwise more sturdy than most species, and as such, more resistant to knockdown effects and stuns. Stuns are only half as effective on you, and neither players nor mobs can trade places with you or bump you out of the way."
 	cost = 2
 	var_changes = list("stun_mod" = 0.5, "weaken_mod" = 0.5) // Stuns are 50% as effective - a stun of 3 seconds will be 2 seconds due to rounding up. Set to 0.5 to be in-line with the trait's description. (Weaken is used alongside stun to prevent aiming.)
+	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/negative/lightweight)
 
 /datum/trait/positive/heavyweight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -837,13 +848,14 @@
 
 /datum/trait/positive/toxin_gut
 	name ="Robust Gut"
-	desc = "You are immune to most ingested toxins. Does not protect from possible harm caused by other drugs, meds, allergens etc."
+	desc = "You are immune to most ingested toxins and raw food. Does not protect from possible harm caused by other drugs, meds, allergens etc."
 	cost = 1
 	custom_only = FALSE
 
 /datum/trait/positive/toxin_gut/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	ADD_TRAIT(H, INGESTED_TOXIN_IMMUNE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(H, TRAIT_STRONG_STOMACH, ROUNDSTART_TRAIT)
 
 /datum/trait/positive/nobreathe
 	name = "Breathless"
@@ -935,3 +947,15 @@
 	if(G)
 		G.radiation_healing = initial(G.radiation_healing)
 		G.radiation_nutrition = initial(G.radiation_nutrition)
+
+/datum/trait/positive/shapeshifting
+	name = "Shapeshifter"
+	desc = "You're able to shift your appearance."
+	cost = 3 //this trait is functionally wholly cosmetic, but it is less flavor-restricted than cocoon, and takes less time, so it's a bit pricier
+	custom_only = FALSE
+	hidden = TRUE
+
+/datum/trait/positive/shapeshifting/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
+	add_verb(H, /mob/living/proc/name_change_verb)

@@ -19,7 +19,7 @@
 				vents += temp_vent
 
 /datum/event/grub_infestation/announce()
-	command_announcement.Announce("Solargrubs detected coming aboard [station_name()]. Please clear them out before this starts to affect productivity. All crew efforts are appreciated and encouraged.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
+	GLOB.command_announcement.Announce("Solargrubs detected coming aboard [station_name()]. Please clear them out before this starts to affect productivity. All crew efforts are appreciated and encouraged.", "Lifesign Alert", new_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 
 /datum/event/grub_infestation/start()
 	while((spawncount >= 1) && vents.len)
@@ -51,4 +51,4 @@
 		area_names |= grub_area.name
 	if(area_names.len)
 		var/english_list = english_list(area_names)
-		command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the following areas: [english_list]", "Lifesign Alert")
+		GLOB.command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the following areas: [english_list]", "Lifesign Alert")

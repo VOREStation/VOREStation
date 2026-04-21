@@ -14,6 +14,7 @@ fundamental differences
 	active_power_usage = 3000
 	idle_power_usage = 50
 	var/datum/looping_sound/mixer/mixer_loop
+	tgui_id = "KitchenMixer"
 
 /obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
@@ -25,6 +26,8 @@ fundamental differences
 	cooking_objs += new /datum/cooking_item(new /obj/item/reagent_containers/cooking_container(src))
 	cooking = FALSE
 	selected_option = pick(output_options)
+	var/datum/cooking_item/CI = cooking_objs[1]
+	CI.combine_target = selected_option
 
 	mixer_loop = new(list(src), FALSE)
 
@@ -34,27 +37,18 @@ fundamental differences
 	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
-/obj/machinery/appliance/mixer/choose_output()
-	set src in view(1)
-	set name = "Choose output"
-	set category = "Object"
-
-	if (!isliving(usr))
+/obj/machinery/appliance/mixer/choose_output(mob/user, new_output)
+	if (!user.IsAdvancedToolUser())
+		to_chat(user, span_notice("You can't operate [src]."))
 		return
 
-	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, span_notice("You can't operate [src]."))
+	if(!output_options[new_output])
 		return
 
-	if(LAZYLEN(output_options))
-		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options)
-		if(!choice)
-			return
-		else
-			selected_option = choice
-			to_chat(usr, span_notice("You prepare \the [src] to make \a [selected_option]."))
-			var/datum/cooking_item/CI = cooking_objs[1]
-			CI.combine_target = selected_option
+	selected_option = new_output
+	to_chat(user, span_notice("You prepare \the [src] to make \a [selected_option]."))
+	var/datum/cooking_item/CI = cooking_objs[1]
+	CI.combine_target = selected_option
 
 
 /obj/machinery/appliance/mixer/has_space(var/obj/item/I)
@@ -77,7 +71,7 @@ fundamental differences
 		return 0
 
 //Container is not removable
-/obj/machinery/appliance/mixer/removal_menu(var/mob/user)
+/obj/machinery/appliance/mixer/removal_menu(mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -98,6 +92,9 @@ fundamental differences
 		return 1
 	return 0
 
+/obj/machinery/appliance/mixer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	.["icon_used"] = off_icon
 
 /obj/machinery/appliance/mixer/toggle_power()
 	set src in view(1)

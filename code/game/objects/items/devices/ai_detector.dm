@@ -11,7 +11,6 @@
 	var/range_alert = 7			// Will turn red if the AI can observe its holder.
 	var/range_warning = 14		// Will turn yellow if the AI's eye is near the holder.
 	var/detect_state = PROXIMITY_NONE
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
 	description_antag = "Functions as a normal multitool with one added benefit.<br>\
 	This will change colors and make sounds (that only you can hear) during various events.<br>\
 	BLUE: You are outside of camera range.<br>\
@@ -56,13 +55,13 @@
 	if(!T)
 		return PROXIMITY_OFF_CAMERANET
 
-	// Now for the somewhat harder AI cameranet checks.
+	// Now for the somewhat harder AI GLOB.cameranet checks.
 
-	// Check if we are even on the cameranet.
-	if(!cameranet.checkVis(T))
+	// Check if we are even on the GLOB.cameranet.
+	if(!GLOB.cameranet.checkVis(T))
 		return PROXIMITY_OFF_CAMERANET
 
-	var/datum/chunk/chunk = cameranet.getChunk(T.x, T.y, T.z)
+	var/datum/chunk/chunk = GLOB.cameranet.getChunk(T.x, T.y, T.z)
 	if(!chunk)
 		return PROXIMITY_OFF_CAMERANET
 

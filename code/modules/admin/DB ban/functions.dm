@@ -4,7 +4,6 @@
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
@@ -126,7 +125,6 @@
 	if(job)
 		sql += " AND job = '[job]'"
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
@@ -225,7 +223,6 @@
 
 	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
@@ -279,7 +276,6 @@
 	if(!check_rights_for(user, R_BAN))
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		to_chat(usr, span_filter_adminlog("[span_red("Failed to establish database connection")]"))
 		return

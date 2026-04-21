@@ -270,6 +270,9 @@
 		return TRUE
 	return ..()
 
+/obj/machinery/airlock_sensor/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
+
 /obj/machinery/airlock_sensor/airlock_interior
 	command = "cycle_interior"
 
@@ -340,7 +343,7 @@
 					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 					set_frequency(new_frequency)
 			if("Command")
-				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: cycle, cycle_interior, cycle_exterior", "[src] command", command, encode = TRUE)
+				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: 'open', 'close', 'unlock', 'lock', 'secure_open', 'secure_close', and 'update', without the '. Additionally, some airlocks support 'cycle', 'cycle_interion', and 'cycle_exterior' '", "[src] command", command, encode = TRUE)
 				if(new_command)
 					command = new_command
 
@@ -361,6 +364,8 @@
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, radio_filter = RADIO_AIRLOCK)
 	flick("access_button_cycle", src)
 
+/obj/machinery/access_button/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)

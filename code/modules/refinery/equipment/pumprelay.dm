@@ -5,7 +5,7 @@
 	icon_state = "pumprelay"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/circuitboard/industrial_reagent_pump
+	circuit = /obj/item/circuitboard/pump_relay
 
 /obj/machinery/pump_relay/Initialize(mapload)
 	. = ..()

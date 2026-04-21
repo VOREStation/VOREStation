@@ -9,6 +9,7 @@ import type {
 import { SubtabBody } from './SubtabBody';
 import { SubtabInfo } from './SubtabInfo';
 import { SubtabNotes } from './SubtabNotes';
+import { SubtabPai } from './SubtabPai';
 import { SubtabSettings } from './SubtabSettings';
 import { SubtabSpecies } from './SubtabSpecies';
 import { SubtabTraits } from './SubtabTraits';
@@ -38,6 +39,7 @@ enum SubtabState {
   CharSettings = 'CharSettings',
   Notes = 'Notes',
   Traits = 'Traits',
+  Pai = 'Pai',
 }
 
 const SUBTAB_TO_NAME = {
@@ -71,6 +73,11 @@ const SUBTAB_TO_NAME = {
       Traits <Icon name="tractor" />
     </Box>
   ),
+  [SubtabState.Pai]: (
+    <Box inline>
+      Pai <Icon name="robot" />
+    </Box>
+  ),
 };
 
 const SUBTAB_TO_COMPONENT: Record<
@@ -87,6 +94,7 @@ const SUBTAB_TO_COMPONENT: Record<
   [SubtabState.CharSettings]: (props) => <SubtabSettings {...props} />,
   [SubtabState.Notes]: (props) => <SubtabNotes {...props} />,
   [SubtabState.Traits]: (props) => <SubtabTraits {...props} />,
+  [SubtabState.Pai]: (props) => <SubtabPai {...props} />,
 };
 
 export const GeneralContent = (props: {
@@ -105,7 +113,7 @@ export const GeneralContent = (props: {
   return (
     <Section
       title={
-        <Tabs>
+        <Tabs scrollable>
           {all_subtabs.map((state) => {
             const title = SUBTAB_TO_NAME[state];
             return (

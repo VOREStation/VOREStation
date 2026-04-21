@@ -9,7 +9,6 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MAT_STEEL = 500)
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
@@ -205,9 +204,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "legcuff"
-	throwforce = 0
-	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1)
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 	cuff_type = "legcuffs"
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
@@ -311,7 +307,9 @@
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
-/obj/item/handcuffs/legcuffs/bola/dropped(mob/user)
+/obj/item/handcuffs/legcuffs/bola/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	visible_message(span_infoplain(span_bold("\The [src]") + " falls apart!"))
 

@@ -47,6 +47,7 @@
 	. = ..()
 	clear_every_clients_images()
 	qdel_all_images()
+	clients.Cut()
 
 /obj/effect/fake_attacker/proc/create_images_from(var/atom/clone)
 	SHOULD_NOT_OVERRIDE(TRUE)

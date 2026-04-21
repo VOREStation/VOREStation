@@ -58,11 +58,11 @@
 
 		playsound(src, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
 
-		set_dir(tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE))
+		set_dir(tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE, current_jumps = 1))
 
 		for (var/ball in orbiting_balls)
 			var/range = rand(1, CLAMP(orbiting_balls.len, 3, 7))
-			tesla_zap(ball, range, TESLA_MINI_POWER/7*range, TRUE)
+			tesla_zap(ball, range, TESLA_MINI_POWER/7*range, TRUE, current_jumps = 1)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
 
@@ -158,12 +158,15 @@
 	// L.dust() - Changing to do fatal elecrocution instead
 	L.electrocute_act(500, src, def_zone = BP_TORSO)
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE)
+/proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE, current_jumps)
 	if(!source) // Some mobs and maybe some objects delete themselves when they die.
 		return
 	. = source.dir
 	if(power < 1000)
 		return
+	if(current_jumps >= MAXIMUM_TESLA_JUMPS)
+		return
+	current_jumps++
 
 	var/closest_dist = 0
 	var/closest_atom
@@ -194,10 +197,12 @@
 										/obj/structure/grille,
 										/obj/machinery/the_singularitygen/tesla))
 
-	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+2), things_to_shock, blacklisted_tesla_types))
+	for(var/A in typecache_filter_multi_list_exclusion(oview(zap_range+2, source), things_to_shock, blacklisted_tesla_types))
 		if(istype(A, /obj/machinery/power/tesla_coil))
 			var/dist = get_dist(source, A)
 			var/obj/machinery/power/tesla_coil/C = A
+			if(!C.anchored)
+				continue
 			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !C.being_shocked)
 				closest_dist = dist
 
@@ -277,10 +282,10 @@
 
 	//per type stuff:
 	if(closest_tesla_coil)
-		closest_tesla_coil.tesla_act(power, explosive, stun_mobs)
+		closest_tesla_coil.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_grounding_rod)
-		closest_grounding_rod.tesla_act(power, explosive, stun_mobs)
+		closest_grounding_rod.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_mob)
 		var/shock_damage = CLAMP(round(power/400), 10, 90) + rand(-5, 5)
@@ -290,22 +295,22 @@
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if(stun_mobs)
-				S.emp_act(3 /*EMP_LIGHT*/)
-			tesla_zap(closest_mob, 7, power / 1.5, explosive, stun_mobs) // metallic folks bounce it further
+				S.emp_act(EMP_LIGHT)
+			tesla_zap(closest_mob, 7, power / 1.5, explosive, stun_mobs, current_jumps = current_jumps) // metallic folks bounce it further
 		else
-			tesla_zap(closest_mob, 5, power / 1.5, explosive, stun_mobs)
+			tesla_zap(closest_mob, 5, power / 1.5, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_machine)
 		drain_energy = TRUE // VOREStation Edit - Safety First! Drain Tesla fast when its loose
-		closest_machine.tesla_act(power, explosive, stun_mobs)
+		closest_machine.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_blob)
 		drain_energy = TRUE // VOREStation Edit - Safety First! Drain Tesla fast when its loose
-		closest_blob.tesla_act(power, explosive, stun_mobs)
+		closest_blob.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	else if(closest_structure)
 		drain_energy = TRUE // VOREStation Edit - Safety First! Drain Tesla fast when its loose
-		closest_structure.tesla_act(power, explosive, stun_mobs)
+		closest_structure.tesla_act(power, explosive, stun_mobs, current_jumps = current_jumps)
 
 	// VOREStation Edit Start - Safety First! Drain Tesla fast when its loose
 	if(drain_energy && istype(source, /obj/singularity/energy_ball))

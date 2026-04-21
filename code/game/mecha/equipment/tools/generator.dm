@@ -2,10 +2,9 @@
 	name = "phoron generator"
 	desc = "Generates power using solid phoron as fuel. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(TECH_PHORON = 2, TECH_POWER = 2, TECH_ENGINEERING = 1)
 	equip_cooldown = 10
 	energy_drain = 0
-	range = MELEE
+	range = MECH_MELEE
 	var/coeff = 100
 	var/obj/item/stack/material/fuel
 	var/fuel_type = /obj/item/stack/material/phoron
@@ -128,7 +127,6 @@
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
@@ -138,7 +136,13 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
 	if(..())
-		SSradiation.radiate(src, (rad_per_cycle * 3))
+		radiation_pulse(
+			src,
+			max_range = 5,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			strength = 25
+		)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/critfail()

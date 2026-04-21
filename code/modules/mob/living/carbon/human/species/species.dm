@@ -54,6 +54,7 @@
 
 	var/taste_sensitivity = TASTE_NORMAL							// How sensitive the species is to minute tastes.
 	var/allergens = null									// Things that will make this species very sick
+	var/medallergens = null									// Medication that will makes this species very sick
 	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_BLURRY|AG_CONFUSE	// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses.
 	var/allergen_damage_severity = 2.5							// How bad are reactions to the allergen? Touch with extreme caution.
 	var/allergen_disable_severity = 10							// Whilst this determines how long nonlethal effects last and how common emotes are.
@@ -457,7 +458,7 @@
 	else
 		H.equip_to_slot_or_del(box, slot_in_backpack)
 
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
+/datum/species/proc/create_organs(mob/living/carbon/human/H) //Handles creation of mob organs.
 
 	H.mob_size = mob_size
 	for(var/obj/item/organ/organ in H.contents)
@@ -794,19 +795,6 @@
 	for(var/u_type in unarmed_types)
 		unarmed_attacks += new u_type()
 
-/datum/species/create_organs(var/mob/living/carbon/human/H)
-	if(H.nif)
-		/*var/type = H.nif.type
-		var/durability = H.nif.durability
-		var/list/nifsofts = H.nif.nifsofts
-		var/list/nif_savedata = H.nif.save_data.Copy()*/
-		..()
-		H.nif = null //A previous call during the rejuvenation path deleted it, so we no longer should have it here
-		/*var/obj/item/nif/nif = new type(H,durability,nif_savedata)
-		nif.nifsofts = nifsofts*/
-	else
-		..()
-
 /datum/species/proc/apply_components(var/mob/living/carbon/human/H)
 	if(LAZYLEN(species_component))
 		for(var/component in species_component)
@@ -851,7 +839,7 @@
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
 
-	if(H.species.allergens)
+	if(H.species.allergens || H.species.medallergens)
 		H.AddElement(/datum/element/allergy)
 	else
 		H.RemoveElement(/datum/element/allergy)

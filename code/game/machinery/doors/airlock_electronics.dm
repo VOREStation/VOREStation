@@ -48,7 +48,7 @@
 
 		var/list/accesses = get_available_accesses(user)
 		for (var/acc in accesses)
-			var/aname = get_access_desc(acc)
+			var/aname = SSaccess.get_access_desc(acc)
 
 			if (!conf_access || !conf_access.len || !(acc in conf_access))
 				t1 += "<a href='byond://?src=\ref[src];access=[acc]'>[aname]</a><br>"
@@ -139,7 +139,7 @@
 
 	// Has engineer access, can put any access
 	else if(has_access(null, apply_any_access, id.GetAccess()))
-		return get_all_station_access()
+		return SSaccess.get_all_station_access()
 
 	// Not an engineer, can only pick your own accesses to program
 	else
@@ -148,7 +148,6 @@
 /obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
-	origin_tech = list(TECH_DATA = 2)
 	secure = 1
 
 /obj/item/airlock_electronics/secure/emag_act(var/remaining_charges, var/mob/user)

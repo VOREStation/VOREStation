@@ -72,18 +72,21 @@
 			. += span_notice("The generator is off.")
 
 /obj/machinery/power/port_gen/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/duration = 6000 //ten minutes
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			stat &= BROKEN
 			if(prob(75)) explode()
-		if(2)
+		if(EMP_MEDIUM)
 			if(prob(50)) stat &= BROKEN
 			if(prob(10)) explode()
-		if(3)
+		if(EMP_LIGHT)
 			if(prob(25)) stat &= BROKEN
 			duration = 300
-		if(4)
+		if(EMP_HARMLESS)
 			if(prob(10)) stat &= BROKEN
 			duration = 300
 
@@ -236,7 +239,6 @@
 		var/temp_loss = (temperature - cooling_temperature)/TEMPERATURE_DIVISOR
 		temp_loss = between(2, round(temp_loss, 1), TEMPERATURE_CHANGE_MAX)
 		temperature = max(temperature - temp_loss, cooling_temperature)
-		updateDialog()
 
 	if(overheating)
 		overheating--
@@ -386,13 +388,25 @@
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
 	if (prob(2*power_output))
-		SSradiation.radiate(src, 4)
+		radiation_pulse(
+			src,
+			max_range = 2,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = DEFAULT_RADIATION_CHANCE,
+			strength = power_gen * 0.01
+		)
 	..()
 
 /obj/machinery/power/port_gen/pacman/super/explode()
 	//a nice burst of radiation
 	var/rads = 50 + (sheets + sheet_left)*1.5
-	SSradiation.radiate(src, (max(20, rads)))
+	radiation_pulse(
+		src,
+		max_range = (rads/10),
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DEFAULT_RADIATION_CHANCE,
+		strength = rads
+	)
 
 	explosion(src.loc, 3, 3, 5, 3)
 	qdel(src)

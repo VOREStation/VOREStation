@@ -26,7 +26,7 @@
 	fish_cap = fish_base_cap + fish_cap_mult ** severity // No more than this many at once regardless of waves. (5, 11, 29)
 
 /datum/event/spacefish_migration/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/spacefish_migration/announce()
@@ -35,7 +35,7 @@
 		announcement = "Massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
 	else
 		announcement = "Unknown biological [spawned_fish.len == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert", new_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 
 /datum/event/spacefish_migration/tick()
 	if(activeFor % 5 != 0)

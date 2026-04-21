@@ -311,22 +311,22 @@
 		trajectory.set_angle(new_angle)
 	return TRUE
 
-/obj/item/projectile/forceMove(atom/target)
-	if(!isloc(target) || !isloc(loc) || !z)
+/obj/item/projectile/forceMove(atom/destination, direction, movetime)
+	if(!isloc(destination) || !isloc(loc) || !z)
 		return ..()
-	var/zc = target.z != z
+	var/zc = destination.z != z
 	var/old = loc
 	if(zc)
-		before_z_change(old, target)
+		before_z_change(old, destination)
 	. = ..()
-	if(trajectory && !trajectory_ignore_forcemove && isturf(target))
+	if(trajectory && !trajectory_ignore_forcemove && isturf(destination))
 		if(hitscan)
 			finalize_hitscan_and_generate_tracers(FALSE)
-		trajectory.initialize_location(target.x, target.y, target.z, 0, 0)
+		trajectory.initialize_location(destination.x, destination.y, destination.z, 0, 0)
 		if(hitscan)
 			record_hitscan_start(RETURN_PRECISE_POINT(src))
 	if(zc)
-		after_z_change(old, target)
+		after_z_change(old, destination)
 
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
 	//If no angle needs to resolve it from xo/yo!

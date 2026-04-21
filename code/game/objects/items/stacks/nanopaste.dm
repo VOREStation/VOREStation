@@ -4,7 +4,6 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/stacks_vr.dmi'
 	icon_state = "nanopaste"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
 	max_amount = 10
 	toolspeed = 0.75 //Used in surgery, shouldn't be the same speed as a normal screwdriver on mechanical organ repair.
@@ -14,7 +13,7 @@
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))
 		return 0
-	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
+	if (istype(M,/mob/living/silicon/robot) && can_use(1))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss())
 			if(do_after(user, 7 * toolspeed, target = R))

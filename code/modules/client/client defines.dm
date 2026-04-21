@@ -40,6 +40,8 @@
 	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
+	///Needs to implement InterceptClickOn(user,params,atom) proc
+	var/datum/click_intercept = null
 	var/buildmode		= 0
 
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.
@@ -47,7 +49,7 @@
 	///contins a number of how many times a message identical to last_message was sent.
 	var/last_message_count = 0
 	var/entity_narrate_holder //Holds /datum/entity_narrate when using the relevant admin verbs.
-	var/fakeConversations //Holds fake PDA conversations for event set-up
+	var/datum/eventkit/fake_pdaconvos/fakeConversations //Holds fake PDA conversations for event set-up
 
 		/////////
 		//OTHER//

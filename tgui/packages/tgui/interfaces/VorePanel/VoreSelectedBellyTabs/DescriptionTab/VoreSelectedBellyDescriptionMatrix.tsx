@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
 import { messageTabLabel } from '../../constants';
 import type { BellyDescriptionData } from '../../types';
 import { VorePanelEditTextTabs } from '../../VorePanelElements/VorePaneldEditTextTabs';
@@ -29,6 +29,12 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
     displayed_message_types,
     selected_message,
   } = bellyDescriptionData;
+
+  useEffect(() => {
+    if (!displayed_options.includes(message_option)) {
+      act('change_message_option', { tab: 0 });
+    }
+  }, []);
 
   return (
     <Section

@@ -25,7 +25,11 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isradio(A)		istype(A, /obj/item/radio)
 
+#define isclothing(A)	istype(A, /obj/item/clothing)
+
 #define isairlock(A)	istype(A, /obj/machinery/door/airlock)
+
+#define ismachinery(A)	istype(A, /obj/machinery)
 
 #define isorgan(A)		istype(A, /obj/item/organ/external)
 
@@ -76,8 +80,10 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 //---------------
 //#define isturf(D)		istype(D, /turf)	//Built in
+#define issimulatedturf(A)	istype(A, /turf/simulated)
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
+#define islava(A)		istype(A, /turf/simulated/floor/lava)
 #define isopenturf(A)	(istype(A, /turf/simulated/open) || istype(A, /turf/space))
 #define isnonsolidturf(A)	(istype(A, /turf/simulated/open) || istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava))
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)

@@ -23,7 +23,6 @@
 	slot_flags = SLOT_ID | SLOT_BELT
 	show_messages = 1
 
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_DATA = 2)
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
 
 	var/video_range = 3
@@ -84,8 +83,7 @@
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
 /obj/item/communicator/Initialize(mapload)
 	. = ..()
-	all_communicators += src
-	all_communicators = sort_names(all_communicators)
+	GLOB.all_communicators += src
 	node = get_exonet_node()
 	START_PROCESSING(SSobj, src)
 	camera = new(src)
@@ -151,6 +149,9 @@
 // Parameters: None
 // Description: Drops all calls when EMPed, so the holder can then get murdered by the antagonist.
 /obj/item/communicator/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	close_connection(reason = "Hardware error de%#_^@%-BZZZZZZZT")
 
 // Proc: add_to_EPv2()
@@ -174,7 +175,7 @@
 	src.known_devices.Cut()
 	if(!get_connection_to_tcomms()) //If the network's down, we can't see anything.
 		return
-	for(var/obj/item/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in GLOB.all_communicators)
 		if(!comm || !comm.exonet || !comm.exonet.address || comm.exonet.address == src.exonet.address) //Don't add addressless devices, and don't add ourselves.
 			continue
 		src.known_devices |= comm
@@ -304,7 +305,7 @@
 	node = null
 
 	//Clean up references that might point at us
-	all_communicators -= src
+	GLOB.all_communicators -= src
 	STOP_PROCESSING(SSobj, src)
 	GLOB.listening_objects.Remove(src)
 	QDEL_NULL(camera)

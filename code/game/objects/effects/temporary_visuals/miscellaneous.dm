@@ -145,3 +145,16 @@
 
 /obj/effect/temp_visual/circle_wave/star_blast
 	color = COLOR_VOID_PURPLE
+
+/obj/effect/temp_visual/circle_wave/dirt
+	color = COLOR_ASTEROID_ROCK
+
+/obj/effect/temp_visual/emp
+	name = "emp sparks"
+	icon_state = "empdisable"
+
+/obj/effect/temp_visual/emp/pulse
+	name = "emp pulse"
+	icon_state = "emppulse"
+	duration = 8
+	randomdir = 0

@@ -22,11 +22,19 @@
 		CONNECT_TO_RND_SERVER_ROUNDSTART(stored_research, src)
 	if(stored_research)
 		on_connected_techweb()
+	set_wires(new /datum/wires/rnd(src))
 
 /obj/machinery/rnd/Destroy()
 	if(stored_research)
 		log_research("[src] disconnected from techweb [stored_research] (destroyed).")
 		stored_research = null
+	QDEL_NULL(wires)
+	loaded_item = null
+	return ..()
+
+/obj/machinery/rnd/tgui_status(mob/user)
+	if(disabled)
+		return STATUS_CLOSE
 	return ..()
 
 ///Called when attempting to connect the machine to a techweb, forgetting the old.
@@ -45,10 +53,22 @@
 /obj/machinery/rnd/proc/reset_busy()
 	busy = FALSE
 
+/obj/machinery/rnd/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(wires && panel_open)
+		return wires.Interact(user)
+	if(disabled)
+		return
+	tgui_interact(user)
+
 /obj/machinery/rnd/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
 	add_fingerprint(user)
 
 	if(default_deconstruction_screwdriver(user, W))
+		if(wires && panel_open)
+			wires.Interact(user)
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return

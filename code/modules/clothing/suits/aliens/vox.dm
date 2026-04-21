@@ -8,3 +8,4 @@
 	body_parts_covered = CHEST|ARMS|LEGS
 	species_restricted = list(SPECIES_VOX)
 	siemens_coefficient = 1 //Its literally metal
+	resistance_flags = FIRE_PROOF

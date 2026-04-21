@@ -14,6 +14,7 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/station_map
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = ON_BORDER|WALL_ITEM
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
 	var/use_auto_lights = 1
@@ -29,7 +30,6 @@
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
-	flags = ON_BORDER
 
 /obj/machinery/station_map/Initialize(mapload)
 	. = ..()
@@ -234,7 +234,6 @@
 	name = T_BOARD("Station Map")
 	board_type = new /datum/frame/frame_types/station_map
 	build_path = /obj/machinery/station_map
-	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	req_components = list()
 
 /datum/holomap_marker

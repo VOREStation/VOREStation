@@ -38,3 +38,29 @@ export function getNextAvailableShip(
   }
   return null;
 }
+
+export function mapDisabled(
+  state: number,
+  self: boolean,
+  opponent: boolean,
+): boolean {
+  if (!self && !opponent) {
+    return true;
+  }
+
+  switch (state) {
+    case 0:
+    case 4:
+      return true;
+
+    case 1:
+      return opponent && self ? false : opponent;
+
+    case 2:
+    case 3:
+      return opponent && self ? false : self;
+
+    default:
+      return false;
+  }
+}

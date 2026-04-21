@@ -11,7 +11,6 @@
 
 /obj/item/stack
 	gender = PLURAL
-	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
 	randpixel = 7
 	center_of_mass_x = 0
@@ -442,23 +441,26 @@
 	if(istype(W, /obj/item/gripper))
 		var/obj/item/gripper/G = W
 		G.consolidate_stacks(src)
+		if(QDELETED(src))
+			return
 
 	else if(istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)
+		if(QDELETED(src))
+			return
 
-		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && user.check_current_machine(S))
-				S.interact(user)
-			if (src && user.check_current_machine(src))
-				src.interact(user)
+		if (S && user.check_current_machine(S))
+			S.interact(user)
+		if (src && user.check_current_machine(src))
+			src.interact(user)
 	else
 		return ..()
 
 /obj/item/stack/proc/combine_in_loc()
 	return //STUBBED for now, as it seems to randomly delete stacks
 
-/obj/item/stack/dropped(atom/old_loc)
+/obj/item/stack/dropped(mob/user, equipping, slot)
 	. = ..()
 	if(isturf(loc))
 		combine_in_loc()

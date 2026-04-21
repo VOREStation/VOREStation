@@ -8,7 +8,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 300
 	active_power_usage = 300
-	blocks_emissive = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	var/processing = 0
 
 	var/icon_keyboard = "generic_key"
@@ -30,8 +30,11 @@
 	return 1
 
 /obj/machinery/computer/emp_act(severity, recursive)
-	if(prob(20/severity)) set_broken()
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
+	if(prob(20/severity))
+		set_broken()
 
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)
@@ -115,12 +118,12 @@
 	text = replacetext(text, "\n", "<BR>")
 	return text
 
-/obj/machinery/computer/attackby(I as obj, user as mob)
-	if(computer_deconstruction_screwdriver(user, I))
+/obj/machinery/computer/attackby(obj/item/W, mob/user)
+	if(computer_deconstruction_screwdriver(user, W))
 		return
 	else
-		if(istype(I,/obj/item/gripper)) //Behold, Grippers and their horribleness. If ..() is called by any computers' attackby() now or in the future, this should let grippers work with them appropriately.
-			var/obj/item/gripper/B = I	//B, for Borg.
+		if(istype(W,/obj/item/gripper)) //Behold, Grippers and their horribleness. If ..() is called by any computers' attackby() now or in the future, this should let grippers work with them appropriately.
+			var/obj/item/gripper/B = W	//B, for Borg.
 			var/obj/item/wrapped = B.get_wrapped_item()
 			if(!wrapped)
 				to_chat(user, "\The [B] is not holding anything.")

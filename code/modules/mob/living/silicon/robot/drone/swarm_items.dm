@@ -22,7 +22,7 @@
 	var/grabbed_something = FALSE
 
 	for(var/mob/M in T)
-		if(istype(M,/mob/living/simple_mob/animal/passive/lizard) || istype(M,/mob/living/simple_mob/animal/passive/mouse))
+		if(HAS_TRAIT(M, TRAIT_AMBIENT_PEST_MOB))
 			src.loc.visible_message(span_danger("[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise."),span_danger("It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
@@ -124,6 +124,9 @@
 	pulse_delay = 2 SECONDS
 
 /obj/effect/temporary_effect/pulse/disintegrate/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	visible_message(span_warning("\The [src] flickers, before dispersing energetically."))
 	qdel(src)
 
@@ -145,7 +148,6 @@
 	standard xray beams, resulting in an effective 'anti-everything' energy weapon."
 	icon_state = "xray"
 	item_state = "xray"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/shock
 	charge_cost = 175
 

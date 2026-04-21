@@ -55,6 +55,14 @@
 	default_apply_parts()
 	update_icon()
 
+/obj/machinery/clonepod/Destroy()
+	for(var/obj/container in containers)
+		container.forceMove(get_turf(src))
+	containers.Cut()
+	locked = FALSE
+	go_out()
+	. = ..()
+
 /obj/machinery/clonepod/proc/set_occupant(var/mob/living/L)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!L)
@@ -402,8 +410,10 @@
 	go_out()
 
 /obj/machinery/clonepod/emp_act(severity, recursive)
-	if(prob(100/severity))
-		malfunction()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !(prob(100/severity)))
+		return
+	malfunction()
 	..()
 
 /obj/machinery/clonepod/ex_act(severity)

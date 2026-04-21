@@ -17,7 +17,7 @@ GLOBAL_VAR(bomb_set)
 	var/yes_code = 0.0
 	var/safety = 1.0
 	var/obj/item/disk/nuclear/auth = null
-	var/list/wires = list()
+	var/list/wires_list = list()
 	var/light_wire
 	var/safety_wire
 	var/timing_wire
@@ -28,13 +28,13 @@ GLOBAL_VAR(bomb_set)
 /obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
-	wires["Red"] = 0
-	wires["Blue"] = 0
-	wires["Green"] = 0
-	wires["Marigold"] = 0
-	wires["Fuschia"] = 0
-	wires["Black"] = 0
-	wires["Pearl"] = 0
+	wires_list["Red"] = 0
+	wires_list["Blue"] = 0
+	wires_list["Green"] = 0
+	wires_list["Marigold"] = 0
+	wires_list["Fuschia"] = 0
+	wires_list["Black"] = 0
+	wires_list["Pearl"] = 0
 	var/list/w = list("Red","Blue","Green","Marigold","Black","Fuschia","Pearl")
 	light_wire = pick(w)
 	w -= light_wire
@@ -201,9 +201,9 @@ GLOBAL_VAR(bomb_set)
 	return
 
 /obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
-	var/dat = "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
-	for(var/wire in wires)
-		dat += text("[wire] Wire: <A href='byond://?src=\ref[src];wire=[wire];act=wire'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='byond://?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
+	var/dat = "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device wires_list:</A><HR>"
+	for(var/wire in wires_list)
+		dat += text("[wire] Wire: <A href='byond://?src=\ref[src];wire=[wire];act=wire'>[wires_list[wire] ? "Mend" : "Cut"]</A> <A href='byond://?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
 	dat += text("<HR>The device is [timing ? "shaking!" : "still"]<BR>")
 	dat += text("The device is [safety ? "quiet" : "whirring"].<BR>")
 	dat += text("The lights are [lighthack ? "static" : "functional"].<BR>")
@@ -241,7 +241,7 @@ GLOBAL_VAR(bomb_set)
 				if(!istype(usr.get_active_hand(), /obj/item/multitool))
 					to_chat(usr, "You need a multitool!")
 				else
-					if(wires[temp_wire])
+					if(wires_list[temp_wire])
 						to_chat(usr, "You can't pulse a cut wire.")
 					else
 						if(light_wire == temp_wire)
@@ -265,7 +265,7 @@ GLOBAL_VAR(bomb_set)
 				if(!I.has_tool_quality(TOOL_WIRECUTTER))
 					to_chat(usr, "You need wirecutters!")
 				else
-					wires[temp_wire] = !wires[temp_wire]
+					wires_list[temp_wire] = !wires_list[temp_wire]
 					if(safety_wire == temp_wire)
 						if(timing)
 							explode()
@@ -428,8 +428,8 @@ GLOBAL_VAR(bomb_set)
 
 				feedback_set_details("end_error","nuke - unhandled ending")
 
-				if(blackbox)
-					blackbox.save_all_data_to_sql()
+				if(GLOB.blackbox)
+					GLOB.blackbox.save_all_data_to_sql()
 				sleep(300)
 				log_game("Rebooting due to nuclear detonation")
 				world.Reboot()

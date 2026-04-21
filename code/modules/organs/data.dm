@@ -17,6 +17,10 @@
 	var/list/skin_color
 	var/list/hair_color
 
+/datum/organ_data/Destroy(force)
+	. = ..()
+	species = null
+
 /datum/organ_data/proc/setup_from_dna(var/datum/dna/dna)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	// Prosfab uses default dna to get vars, lets respect that still
@@ -46,11 +50,12 @@
 
 // All accessed vars need to be cached during read.
 // Get data from species, if this fails use cached data
-#define SETUP_SPECIES_CHECK(p,x)\
-var/datum/species/SP = species?.resolve();\
-if(SP)\
-	cached_species_vars[p] = x;\
-return cached_species_vars[p];
+#define SETUP_SPECIES_CHECK(p, x) \
+	var/datum/species/SP = species?.resolve(); \
+	if (SP) { \
+		cached_species_vars[p] = x; \
+	} \
+	return cached_species_vars[p];
 
 
 /datum/organ_data/proc/get_species_name()

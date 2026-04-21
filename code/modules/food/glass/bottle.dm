@@ -21,7 +21,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/glass/bottle/dropped(mob/user)
+/obj/item/reagent_containers/glass/bottle/dropped(mob/user, equipping, slot)
 	..()
 	update_icon()
 

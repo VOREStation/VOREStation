@@ -180,7 +180,7 @@
 	// Shoot a tesla bolt, and flashes people who are looking at the mecha without sufficent eye protection.
 	visible_message(span_warning("\The [energy_ball] explodes in a flash of light, sending a shock everywhere!"))
 	playsound(src, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
-	tesla_zap(src.loc, 5, ELECTRIC_ZAP_POWER, FALSE)
+	tesla_zap(src.loc, 5, ELECTRIC_ZAP_POWER, FALSE, current_jumps = 1)
 	for(var/mob/living/L in viewers(src))
 		if(L == src)
 			continue

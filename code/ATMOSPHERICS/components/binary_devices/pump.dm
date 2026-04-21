@@ -253,7 +253,32 @@ Thus, the two variables affect pump operation are set in New():
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
-		deconstruct()
+		atom_deconstruct()
+
+/obj/machinery/atmospherics/binary/pump/click_alt(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!allowed(user))
+		to_chat(user, span_warning("Access denied."))
+		return CLICK_ACTION_BLOCKING
+
+	to_chat(user, span_notice("You set the [name] to max output"))
+	target_pressure = max_pressure_setting
+	add_fingerprint(user)
+	return CLICK_ACTION_SUCCESS
+
+
+/obj/machinery/atmospherics/binary/pump/click_ctrl(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!allowed(user))
+		to_chat(user, span_warning("Access denied."))
+		return CLICK_ACTION_BLOCKING
+
+	update_use_power(!use_power)
+	update_icon()
+	add_fingerprint(user)
+	to_chat(user, span_notice("You toggle the [name] [use_power ? "on" : "off"]."))
+
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/binary/pump/high_power
 	icon = 'icons/atmos/volume_pump.dmi'

@@ -1,4 +1,5 @@
-var/list/mob_hat_cache = list()
+GLOBAL_LIST_EMPTY(mob_hat_cache)
+
 /proc/get_hat_icon(var/obj/item/hat, var/offset_x = 0, var/offset_y = 0)
 	var/t_state = hat.icon_state
 	if(LAZYACCESS(hat.item_state_slots, slot_head_str))
@@ -6,7 +7,7 @@ var/list/mob_hat_cache = list()
 	else if(hat.item_state)
 		t_state = hat.item_state
 	var/key = "[t_state]_[offset_x]_[offset_y]"
-	if(!mob_hat_cache[key])            // Not ideal as there's no guarantee all hat icon_states
+	if(!GLOB.mob_hat_cache[key])            // Not ideal as there's no guarantee all hat icon_states
 		var/t_icon = INV_HEAD_DEF_ICON // are unique across multiple dmis, but whatever.
 		if(hat.icon_override)
 			t_icon = hat.icon_override
@@ -15,8 +16,8 @@ var/list/mob_hat_cache = list()
 		var/image/I = image(icon = t_icon, icon_state = t_state)
 		I.pixel_x = offset_x
 		I.pixel_y = offset_y
-		mob_hat_cache[key] = I
-	return mob_hat_cache[key]
+		GLOB.mob_hat_cache[key] = I
+	return GLOB.mob_hat_cache[key]
 
 /mob/living/silicon/robot/drone
 	name = "maintenance drone"
@@ -31,7 +32,7 @@ var/list/mob_hat_cache = list()
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Drone"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = TRUE
 	req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS)
 	integrated_light_power = 3
@@ -275,8 +276,8 @@ var/list/mob_hat_cache = list()
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOB.lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
 
-	emagged = 1
-	lawupdate = 0
+	emagged = TRUE
+	lawupdate = FALSE
 	connected_ai = null
 	clear_supplied_laws()
 	clear_inherent_laws()
@@ -358,7 +359,7 @@ var/list/mob_hat_cache = list()
 	if(player.mob && player.mob.mind)
 		player.mob.mind.transfer_to(src)
 
-	lawupdate = 0
+	lawupdate = FALSE
 	to_chat(src, span_infoplain(span_bold("Systems rebooted") + " Loading base pattern maintenance protocol... " + span_bold("loaded") + "."))
 	full_law_reset()
 	welcome_drone()

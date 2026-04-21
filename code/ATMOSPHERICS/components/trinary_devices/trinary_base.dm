@@ -65,7 +65,7 @@
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
-		deconstruct()
+		atom_deconstruct()
 
 // Housekeeping and pipe network stuff below
 /obj/machinery/atmospherics/trinary/get_neighbor_nodes_for_init()

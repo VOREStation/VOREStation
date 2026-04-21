@@ -12,6 +12,8 @@
 				continue
 			nice_list += list("[req_components[A]] [initial(A.name)]")
 		. += "Required components: [english_list(nice_list)]."
+	if(hidden) // Notify the player that this board cannot be printed easily, so don't lose it!
+		. += span_danger("It might be hard to find a replacement for a circuit this unique.")
 
 // VOREStation specific circuit boards!
 
@@ -20,7 +22,6 @@
 	name = T_BOARD("parts lathe")
 	build_path = /obj/machinery/partslathe
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2,
@@ -31,7 +32,6 @@
 	name = T_BOARD("algae oxygen generator")
 	build_path = /obj/machinery/atmospherics/binary/algae_farm
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_BIO = 2)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 1,
@@ -43,7 +43,6 @@
 	name = T_BOARD("thermal regulator")
 	build_path = /obj/machinery/power/thermoregulator
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_POWER = 3)
 	req_components = list(
 							/obj/item/stack/cable_coil = 20,
 							/obj/item/stock_parts/capacitor/super = 3)
@@ -53,7 +52,6 @@
 	name = T_BOARD("explosive effect simulator")
 	build_path = /obj/machinery/bomb_tester
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_PHORON = 3, TECH_DATA = 2, TECH_MAGNET = 2)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin/adv = 1,
 							/obj/item/stock_parts/scanning_module = 5)
@@ -63,21 +61,18 @@
 	name = T_BOARD("timeclock")
 	build_path = /obj/machinery/computer/timeclock
 	board_type = new /datum/frame/frame_types/timeclock_terminal
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 // Board for the ID restorer in id_restorer_vr.dm
 /obj/item/circuitboard/id_restorer
 	name = T_BOARD("ID restoration console")
 	build_path = /obj/machinery/computer/id_restorer
 	board_type = new /datum/frame/frame_types/id_restorer
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/circuitboard/security/xenobio
 	name = T_BOARD("xenobiology camera monitor")
 	build_path = /obj/machinery/computer/security/xenobio
 	network = list(NETWORK_XENOBIO)
 	req_access = list()
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/circuitboard/machine/rdserver
 	name = T_BOARD("R&D Server")

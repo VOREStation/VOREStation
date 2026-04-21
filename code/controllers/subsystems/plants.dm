@@ -150,18 +150,12 @@ SUBSYSTEM_DEF(plants)
 
 
 // Debug for testing seed genes.
-/client/proc/show_plant_genes()
-	set category = "Debug.Investigate"
-	set name = "Show Plant Genes"
-	set desc = "Prints the round's plant gene masks."
-
-	if(!check_rights_for(src, R_HOLDER))	return
-
-	if(!SSplants || !SSplants.gene_tag_masks)
-		to_chat(usr, "Gene masks not set.")
+ADMIN_VERB(show_plant_genes, R_DEBUG, "Show Plant Genes", "Prints the round's plant gene masks.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	if(!SSplants.initialized)
+		to_chat(user, "Gene masks not set.")
 		return
 
 	for(var/mask in SSplants.gene_tag_masks)
-		to_chat(usr, "[mask]: [SSplants.gene_tag_masks[mask]]")
+		to_chat(user, "[mask]: [SSplants.gene_tag_masks[mask]]")
 
 #undef PLANT_TICK_TIME

@@ -5,9 +5,10 @@
 	icon_state = "doorctrl0"
 	power_channel = ENVIRON
 	layer = ABOVE_WINDOW_LAYER
+	flags = WALL_ITEM
 	var/desiredstate = 0
-	var/exposedwires = 0
-	var/wires = 3
+	var/exposedwires_num = 0
+	var/wires_num = 3
 	/*
 	Bitflag,	1=checkID
 				2=Network Access
@@ -19,7 +20,7 @@
 	active_power_usage = 4
 
 /obj/machinery/button/remote/attack_ai(mob/user as mob)
-	if(wires & 2)
+	if(wires_num & 2)
 		return attack_hand(user)
 	else
 		to_chat(user, "Error, no route to host.")
@@ -42,7 +43,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if(!allowed(user) && (wires & 1))
+	if(!allowed(user) && (wires_num & 1))
 		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
@@ -163,6 +164,7 @@
 	desc = "A remote control switch for a mass driver."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
+	circuit = /obj/item/circuitboard/mass_driver_button
 
 /obj/machinery/button/remote/driver/trigger(mob/user)
 	if(active)
@@ -192,6 +194,18 @@
 	active = FALSE
 	update_icon()
 
+/obj/machinery/button/remote/driver/attackby(obj/item/I, mob/user)
+	//Swiping ID on the access button
+	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
+		attack_hand(user)
+		return
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/new_id = tgui_input_number(user, "[src] has an id of \"[id]\". What would you like it to be?", "[src] ID]", id, 9999)
+		if(!Adjacent(user)) //walked away
+			to_chat(user, span_warning(span_warning("You need to be adjacent to the remote to change its id.")))
+			return
+		if(new_id)
+			id = new_id
 
 /obj/machinery/button/remote/driver/update_icon()
 	if(!active || (stat & NOPOWER))

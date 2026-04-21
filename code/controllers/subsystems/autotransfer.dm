@@ -1,0 +1,45 @@
+SUBSYSTEM_DEF(transfer)
+	name = "Transfer"
+	wait =  1 SECOND
+	runlevels = RUNLEVEL_GAME
+	init_stage = INITSTAGE_LAST
+	flags = SS_KEEP_TIMING
+
+	VAR_PRIVATE/timerbuffer = 0 //buffer for time check
+	VAR_PRIVATE/currenttick = 0
+	VAR_PRIVATE/shift_hard_end = 0
+	VAR_PRIVATE/shift_last_vote = 0
+
+/datum/controller/subsystem/transfer/Initialize()
+	timerbuffer = CONFIG_GET(number/vote_autotransfer_initial)
+	shift_hard_end = CONFIG_GET(number/vote_autotransfer_initial) + (CONFIG_GET(number/vote_autotransfer_interval) * 0) //Change this "1" to how many extend votes you want there to be.
+	shift_last_vote = shift_hard_end - CONFIG_GET(number/vote_autotransfer_interval)
+	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/transfer/fire(resumed)
+	currenttick = currenttick + 1
+	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES)
+		shift_last_vote = 1000000000000 //Setting to a stupidly high number since it'll be not used again.
+		to_chat(world, span_world(span_notice("Warning: This upcoming round-extend vote will be your last chance to vote for shift extension. Wrap up your scenes in the next 60 minutes if the round is extended.")))
+	if (round_duration_in_ds >= shift_hard_end - 1 MINUTE)
+		init_shift_change(null, 1)
+		shift_hard_end = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval) //If shuttle somehow gets recalled, let's force it to call again next time a vote would occur.
+		timerbuffer = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval) //Just to make sure a vote doesn't occur immediately afterwords.
+	else if (round_duration_in_ds >= timerbuffer - 1 MINUTE)
+		SSvote.start_vote(new /datum/vote/crew_transfer)
+		timerbuffer = timerbuffer + CONFIG_GET(number/vote_autotransfer_interval)
+
+/datum/controller/subsystem/transfer/proc/modify_hard_end(client/user)
+	var/new_shift_end = tgui_input_number(user, "Modify the shift end timer (Input in Minutes)", "Shift End", shift_hard_end / 600)
+
+	if(!new_shift_end)
+		return
+
+	var/calculated_end = new_shift_end * 600
+
+	shift_hard_end = calculated_end
+	shift_last_vote = calculated_end
+	timerbuffer = calculated_end
+
+/datum/controller/subsystem/transfer/proc/get_hard_end(client/user)
+	return shift_hard_end

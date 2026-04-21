@@ -164,10 +164,6 @@ GLOBAL_VAR(restart_counter)
 		load_alienwhitelist()
 	load_jobwhitelist()
 
-	//Emergency Fix
-	load_mods()
-	//end-emergency fix
-
 	src.update_status()
 	setup_season()	//VOREStation Addition
 
@@ -176,11 +172,7 @@ GLOBAL_VAR(restart_counter)
 	log_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
 #endif
 
-	GLOB.master_controller = new /datum/controller/game_controller()
 	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit
-
-	spawn(1)
-		GLOB.master_controller.setup()
 
 	RunUnattendedFunctions()
 
@@ -536,31 +528,6 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 	fdel(F)
 	F << the_mode
 
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	return 1
-
-/world/proc/load_mods()
-	if(CONFIG_GET(flag/admin_legacy_system))
-		var/text = file2text("config/moderators.txt")
-		if (!text)
-			log_world("Failed to load config/mods.txt")
-		else
-			var/list/lines = splittext(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Moderator"
-				var/rights = GLOB.admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(GLOB.directory[ckey])
-
 /world/proc/update_status()
 	var/s = ""
 
@@ -618,75 +585,6 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 	/* does this help? I do not know */
 	if (src.status != s)
 		src.status = s
-
-#define FAILED_DB_CONNECTION_CUTOFF 5
-GLOBAL_VAR_INIT(failed_db_connections, 0)
-
-/hook/startup/proc/connectDB()
-	if(!CONFIG_GET(flag/sql_enabled))
-		log_sql("SQL connection disabled in config.")
-	else if(!setup_database_connection())
-		log_sql("Your server failed to establish a connection with the feedback database.")
-	else
-		log_sql("Feedback database connection established.")
-	return 1
-
-/proc/setup_database_connection()
-	if(!CONFIG_GET(flag/sql_enabled))
-		return 0
-	if(GLOB.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!SSdbcore)
-		SSdbcore = new()
-
-	var/user = CONFIG_GET(string/feedback_login)
-	var/pass = CONFIG_GET(string/feedback_password)
-	var/db = CONFIG_GET(string/feedback_database)
-	var/address = CONFIG_GET(string/address)
-	var/port = CONFIG_GET(number/port)
-
-	SSdbcore.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = SSdbcore.IsConnected()
-	if ( . )
-		GLOB.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-		return
-	GLOB.failed_db_connections++		//If it failed, increase the failed connections counter.
-	log_sql(SSdbcore.ErrorMsg())
-	return
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-/proc/establish_db_connection()
-	if(GLOB.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!SSdbcore || !SSdbcore.IsConnected())
-		return setup_database_connection()
-	else
-		return 1
-
-// Cleans up DB connections and recreates them
-/proc/reset_database_connections()
-	var/list/results = list("-- Resetting DB connections --")
-	GLOB.failed_db_connections = 0
-
-	if(SSdbcore?.IsConnected())
-		SSdbcore.Disconnect()
-		results += "SSdbcore was connected and asked to disconnect"
-	else
-		results += "SSdbcore was not connected"
-
-	if(!CONFIG_GET(flag/sql_enabled))
-		results += "stopping because config.sql_enabled = false"
-	else
-		. = setup_database_connection()
-		if(.)
-			results += "SUCCESS: set up a connection successfully with setup_database_connection()"
-		else
-			results += "FAIL: failed to connect to the database with setup_database_connection()"
-
-	results += "-- DB Reset End --"
-	log_sql(results.Join("\n"))
 
 // Things to do when a new z-level was just made.
 /world/proc/max_z_changed()
@@ -757,8 +655,6 @@ GLOBAL_VAR_INIT(failed_db_connections, 0)
 // Called whenver world.tick_lag or world.fps are changed.
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
-
-#undef FAILED_DB_CONNECTION_CUTOFF
 
 /proc/auxtools_stack_trace(msg)
 	CRASH(msg)

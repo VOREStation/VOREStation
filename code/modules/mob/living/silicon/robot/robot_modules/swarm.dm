@@ -1,12 +1,14 @@
 /obj/item/robot_module/drone/swarm
 	name = "swarm drone module"
-	var/id
+	var/obj/item/card/id/drone_id
+	idcard_type = /obj/item/card/id/syndicate
 
 /obj/item/robot_module/drone/swarm/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 
-	id = robot.idcard
-	src.modules += id
+	var/obj/item/card/id/robot_id = robot.idcard
+	robot_id.forceMove(src)
+	src.modules += robot_id
 
 	src.modules += new /obj/item/rcd/electric/mounted/borg/swarm(src)
 	src.modules += new /obj/item/flash/robot(src)

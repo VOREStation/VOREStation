@@ -252,6 +252,7 @@
 
 	charge = 100
 	maxcharge = 100
+	item_flags = ABSTRACT
 
 	var/mob/living/carbon/human/hume
 

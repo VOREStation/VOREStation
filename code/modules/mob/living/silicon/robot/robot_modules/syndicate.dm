@@ -18,7 +18,8 @@
 					LANGUAGE_TERMINUS = 1,
 					LANGUAGE_ZADDAT = 0
 					)
-	var/id
+	ui_theme = "syndicate"
+	idcard_type = /obj/item/card/id/syndicate
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
 /obj/item/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)
@@ -34,14 +35,14 @@
 	src.modules += jetpack
 	robot.internals = jetpack
 
-	var/obj/id = robot.idcard
-	id.forceMove(src)
-	src.modules += id
+	var/obj/item/card/id/robot_id = robot.idcard
+	robot_id.forceMove(src)
+	src.modules += robot_id
 
-/obj/item/robot_module/robot/syndicate/Destroy()
-	src.modules -= id
-	id = null
-	return ..()
+/obj/item/robot_module/robot/syndicate/adjust_gps(obj/item/gps/robot/robot_gps)
+	robot_gps.long_range = TRUE
+	robot_gps.hide_signal = TRUE
+	robot_gps.can_hide_signal = TRUE
 
 // Gets a big shield and a gun that shoots really fast to scare the opposing force.
 /obj/item/robot_module/robot/syndicate/protector

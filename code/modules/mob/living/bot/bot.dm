@@ -64,6 +64,12 @@
 	update_icons() //VOREstation edit - overlay runtime fix
 	default_language = GLOB.all_languages[LANGUAGE_GALCOM] //VOREstation edit - runtime fix
 
+/mob/living/bot/Destroy()
+	. = ..()
+	ignore_list.Cut()
+	patrol_path.Cut()
+	target_path.Cut()
+
 /mob/living/bot/Life()
 	..()
 	if(health <= 0)
@@ -433,7 +439,7 @@
 
 	for(var/dir_to_check in GLOB.alldirs) // Cardinals first.
 		var/turf/T = get_step(src, dir_to_check)
-		if(!T || !T.Adjacent(src))
+		if(!T || T.density || !T.Adjacent(src))
 			continue
 		if(!LinkBlockedWithAccess(src, T, ID))
 			L.Add(T)

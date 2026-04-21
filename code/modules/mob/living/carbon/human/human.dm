@@ -100,8 +100,8 @@
 	. += ""
 	. += "Intent: [a_intent]"
 	. += "Move Mode: [m_intent]"
-	if(GLOB.emergency_shuttle)
-		var/eta_status = GLOB.emergency_shuttle.get_status_panel_eta()
+	if(SSemergency_shuttle)
+		var/eta_status = SSemergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			. += "[eta_status]"
 
@@ -167,6 +167,9 @@
 		RigPanel(R)
 
 /mob/living/carbon/human/ex_act(severity)
+	if(is_incorporeal()) // Can't explode shadekin in phase
+		return
+
 	if(!blinded)
 		flash_eyes()
 
@@ -385,10 +388,10 @@
 		def_zone = pick(BP_L_HAND, BP_R_HAND)
 
 	if(species.siemens_coefficient == -1)
-		if(stored_shock_by_ref["\ref[src]"])
-			stored_shock_by_ref["\ref[src]"] += shock_damage
+		if(GLOB.stored_shock_by_ref["\ref[src]"])
+			GLOB.stored_shock_by_ref["\ref[src]"] += shock_damage
 		else
-			stored_shock_by_ref["\ref[src]"] = shock_damage
+			GLOB.stored_shock_by_ref["\ref[src]"] = shock_damage
 		return
 
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))
@@ -1476,6 +1479,13 @@
 			return 1
 	return 0
 
+/mob/living/carbon/human/has_lungs()
+	if(internal_organs_by_name[O_LUNGS])
+		var/obj/item/organ/lungs = internal_organs_by_name[O_LUNGS]
+		if(lungs && istype(lungs) && !(lungs.status & ORGAN_CUT_AWAY))
+			return TRUE
+	return FALSE
+
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
 	var/footcoverage_check = FALSE
@@ -1995,7 +2005,7 @@
 			to_chat(src, "Mob doesn't exist anymore")
 			return
 
-		usr.client.cmd_admin_alienize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_alienize, H)
 
 	if(href_list[VK_HK_TURN_SKELETON])
 		if(!check_rights(R_FUN))
@@ -2042,7 +2052,7 @@
 			to_chat(src, "Mob doesn't exist anymore")
 			return
 
-		usr.client.cmd_admin_robotize(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
 
 	/*
 	if(href_list[VV_HK_PURRBATION])

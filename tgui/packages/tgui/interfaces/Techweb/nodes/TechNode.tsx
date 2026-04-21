@@ -98,52 +98,56 @@ export function TechNode(props: Props) {
       title={name}
       buttons={
         !nocontrols && (
-          <>
-            {tier > 0 &&
-              (!!can_unlock && (is_free || queue_nodes.length === 0) ? (
-                <Button
-                  icon="lightbulb"
-                  disabled={!can_unlock || tier > 1 || queue_nodes.length > 0}
-                  onClick={() => act('researchNode', { node_id: id })}
-                >
-                  Research
-                </Button>
-              ) : enqueued_by_user ? (
-                <Button
-                  icon="trash"
-                  color="bad"
-                  onClick={() => act('dequeueNode', { node_id: id })}
-                >
-                  Dequeue
-                </Button>
-              ) : id in queue_nodes && !enqueued_by_user ? (
-                <Button icon="check" color="good">
-                  Queued
-                </Button>
-              ) : (
-                <Button
-                  icon="lightbulb"
-                  disabled={
-                    !have_experiments_done ||
-                    id in queue_nodes ||
-                    techcompl < prereq_ids.length
-                  }
-                  onClick={() => act('enqueueNode', { node_id: id })}
-                >
-                  Enqueue
-                </Button>
-              ))}
+          <Stack>
+            <Stack.Item>
+              {tier > 0 &&
+                (!!can_unlock && (is_free || queue_nodes.length === 0) ? (
+                  <Button
+                    icon="lightbulb"
+                    disabled={!can_unlock || tier > 1 || queue_nodes.length > 0}
+                    onClick={() => act('researchNode', { node_id: id })}
+                  >
+                    Research
+                  </Button>
+                ) : enqueued_by_user ? (
+                  <Button
+                    icon="trash"
+                    color="bad"
+                    onClick={() => act('dequeueNode', { node_id: id })}
+                  >
+                    Dequeue
+                  </Button>
+                ) : id in queue_nodes && !enqueued_by_user ? (
+                  <Button icon="check" color="good">
+                    Queued
+                  </Button>
+                ) : (
+                  <Button
+                    icon="lightbulb"
+                    disabled={
+                      !have_experiments_done ||
+                      id in queue_nodes ||
+                      techcompl < prereq_ids.length
+                    }
+                    onClick={() => act('enqueueNode', { node_id: id })}
+                  >
+                    Enqueue
+                  </Button>
+                ))}
+            </Stack.Item>
             {!nodetails && (
-              <Button
-                icon="tasks"
-                onClick={() => {
-                  setTechwebRoute({ route: 'details', selectedNode: id });
-                }}
-              >
-                Details
-              </Button>
+              <Stack.Item>
+                <Button
+                  icon="tasks"
+                  onClick={() => {
+                    setTechwebRoute({ route: 'details', selectedNode: id });
+                  }}
+                >
+                  Details
+                </Button>
+              </Stack.Item>
             )}
-          </>
+          </Stack>
         )
       }
     >
@@ -187,14 +191,30 @@ export function TechNode(props: Props) {
         {description}
       </Box>
       <Box className="Techweb__NodeUnlockedDesigns" mb={2}>
-        {design_ids.map((k, i) => (
-          <Button
-            key={k}
-            className={`${design_cache[k].class} Techweb__DesignIcon`}
-            tooltip={design_cache[k].name}
-            tooltipPosition={i % 15 < 7 ? 'right' : 'left'}
-          />
-        ))}
+        <Stack wrap="wrap">
+          {design_ids.map((k, i) => (
+            <Button
+              fluid
+              key={k}
+              width="32px"
+              height="32px"
+              tooltip={design_cache[k].name}
+              tooltipPosition={i % 15 < 7 ? 'right' : 'left'}
+              style={{
+                padding: 0,
+              }}
+            >
+              <Box
+                className={`${design_cache[k].class}`}
+                style={{
+                  transform: `${design_cache[k].transform}`,
+                  transformOrigin: 'top left',
+                  margin: `${design_cache[k].margin}`,
+                }}
+              />
+            </Button>
+          ))}
+        </Stack>
       </Box>
       {required_experiments.length > 0 && (
         <Collapsible

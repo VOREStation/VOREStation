@@ -54,7 +54,7 @@
 			AP.set_broken()
 
 
-/datum/game_mode/malfunction/verb/hack_camera(var/obj/machinery/camera/target in cameranet.cameras)
+/datum/game_mode/malfunction/verb/hack_camera(var/obj/machinery/camera/target in GLOB.cameranet.cameras)
 	set name = "Hack Camera"
 	set desc = "100 CPU - Hacks existing camera, allowing you to add upgrade of your choice to it. Alternatively it lets you reactivate broken camera."
 	set category = "Software"
@@ -188,7 +188,7 @@
 		if(temp_apc && temp_apc.terminal && temp_apc.terminal.powernet)
 			temp_apc.terminal.powernet.trigger_warning(50) // Long alarm
 		if(temp_apc)
-			temp_apc.emp_act(3) // Such power surges are not good for APC electronics
+			temp_apc.emp_act(EMP_LIGHT) // Such power surges are not good for APC electronics
 			if(temp_apc.cell)
 				temp_apc.cell.maxcharge -= between(0, (temp_apc.cell.maxcharge/2) + 500, temp_apc.cell.maxcharge)
 				if(temp_apc.cell.maxcharge < 100) // That's it, you busted the APC cell completely. Break the APC and completely destroy the cell.

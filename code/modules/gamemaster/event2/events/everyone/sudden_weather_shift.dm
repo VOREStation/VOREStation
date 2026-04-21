@@ -24,9 +24,9 @@
 /datum/event2/event/sudden_weather_shift/announce()
 	if(!chosen_planet)
 		return
-	command_announcement.Announce("Local weather patterns on [chosen_planet.name] suggest that a \
+	GLOB.command_announcement.Announce("Local weather patterns on [chosen_planet.name] suggest that a \
 	sudden atmospheric fluctuation has occurred. All groundside personnel should be wary of \
-	rapidly deteriorating conditions.", "Weather Alert")
+	rapidly deteriorating conditions.", "Weather Alert", new_sound = ANNOUNCER_MSG_WEATHER_ALERT)
 
 /datum/event2/event/sudden_weather_shift/start()
 	// Using the roundstart weather list is handy, because it avoids the chance of choosing a bus-only weather.

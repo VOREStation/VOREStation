@@ -227,6 +227,9 @@
 		. += "Its shield matrix is at [round( (shield_health / max_shield_health) * 100, 0.01)]% strength."
 
 /obj/item/shield_projector/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	adjust_health(-max_shield_health / severity) // A strong EMP will kill the shield instantly, but weaker ones won't on the first hit.
 
 // Subtypes
@@ -383,7 +386,7 @@
 		else
 			destroy_shields()
 			my_tool.set_ready_state(TRUE)
-			my_tool.log_message("Power lost.")
+			my_tool.log_message("Power lost.", LOG_GAME)
 	else
 		my_tool.set_ready_state(TRUE)
 
@@ -409,5 +412,5 @@
 	..()
 	my_mecha.use_power(my_tool.energy_drain)
 	if(!active && shield_health < shield_regen_amount)
-		my_tool.log_message("Shield overloaded.")
+		my_tool.log_message("Shield overloaded.", LOG_GAME)
 		my_mecha.use_power(my_tool.energy_drain * 4)

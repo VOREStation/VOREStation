@@ -134,6 +134,9 @@
 
 // Exploding.
 /mob/living/simple_mob/ex_act(severity)
+	if(is_incorporeal()) // Can't explode shadekin in phase
+		return
+
 	if(!blinded)
 		flash_eyes()
 
@@ -232,7 +235,9 @@
 
 // Electromagnetism
 /mob/living/simple_mob/emp_act(severity, recursive)
-	..() // To emp_act() its contents.
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!isSynthetic())
 		return
 	switch(severity)

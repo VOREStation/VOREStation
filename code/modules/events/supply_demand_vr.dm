@@ -1,4 +1,4 @@
-/var/global/running_demand_events = list()
+GLOBAL_LIST_EMPTY_TYPED(running_demand_events, /datum/event/supply_demand)
 
 //
 // The Supply Demand Event - CentCom asks for us to put some stuff on the shuttle
@@ -14,7 +14,7 @@
 /datum/event/supply_demand/setup()
 	my_department = "[using_map.company_name] Supply Division" // Can't have company name in initial value (not const)
 	end_time = world.time + 1 HOUR + (severity * 30 MINUTES)
-	running_demand_events += src
+	GLOB.running_demand_events += src
 	// Decide what items are requried!
 	// We base this on what departmets are most active, excluding departments we don't have
 	var/list/notHaveDeptList = GLOB.metric.departments.Copy()
@@ -57,7 +57,7 @@
 		send_console_message(message, dpt);
 
 	// Also announce over main comms so people know to look
-	command_announcement.Announce("An order for the [using_map.facility_type] to deliver supplies to [command_name()] has been delivered to all supply Request Consoles", my_department)
+	GLOB.command_announcement.Announce("An order for the [using_map.facility_type] to deliver supplies to [command_name()] has been delivered to all supply Request Consoles", my_department, ANNOUNCER_MSG_SUPPLYORDER)
 	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART, PROC_REF(handle_supply_demand_sell_shuttle))
 
 /datum/event/supply_demand/tick()
@@ -65,7 +65,7 @@
 		endWhen = activeFor  // End early becuase we're done already!
 
 /datum/event/supply_demand/end()
-	running_demand_events -= src
+	GLOB.running_demand_events -= src
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART)
 	// Check if the crew succeeded or failed!
 	if(required_items.len == 0)
@@ -74,11 +74,11 @@
 		var/msg = "Great work! With those items you delivered our inventory levels all match up. "
 		msg += "[capitalize(pick(GLOB.first_names_female))] from accounting will have nothing to complain about. "
 		msg += "I think you'll find a little something in your supply account."
-		command_announcement.Announce(msg, my_department)
+		GLOB.command_announcement.Announce(msg, my_department)
 	else
 		// Fail!
 		var/datum/supply_demand_order/random = pick(required_items)
-		command_announcement.Announce("What happened? Accounting is here right now and they're already asking where that [random.name] is. Damn, I gotta go", my_department)
+		GLOB.command_announcement.Announce("What happened? Accounting is here right now and they're already asking where that [random.name] is. Damn, I gotta go", my_department)
 		var/message = "The delivery deadline was reached with the following needs outstanding:<hr>"
 		for(var/datum/supply_demand_order/req in required_items)
 			message += req.describe() + "<br>"
@@ -89,7 +89,7 @@
  */
 /datum/event/supply_demand/proc/handle_supply_demand_sell_shuttle(datum/source, list/area/supply_shuttle_areas)
 	SIGNAL_HANDLER
-	for(var/datum/event/supply_demand/E in running_demand_events)
+	for(var/datum/event/supply_demand/E in GLOB.running_demand_events)
 		// I don't think multiple supply shuttles have ever been used, but retaining support regardless...
 		for(var/area/sub_area in supply_shuttle_areas)
 			E.handle_sold_shuttle(sub_area)

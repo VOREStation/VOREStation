@@ -11,7 +11,6 @@
 	name = "\improper rechargable DD battery"
 	desc = "An older, cheap power cell. It's probably been in use for quite some time now."
 	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
-	origin_tech = list(TECH_POWER = 0)
 	icon_state = "crap"
 	charge = 500
 	maxcharge = 500
@@ -29,7 +28,6 @@
  */
 /obj/item/cell/apc
 	name = "heavy-duty power cell"
-	origin_tech = list(TECH_POWER = 1)
 	icon_state = "apc"
 	charge = 5000
 	maxcharge = 5000
@@ -48,7 +46,6 @@
  */
 /obj/item/cell/high
 	name = "high-capacity power cell"
-	origin_tech = list(TECH_POWER = 2)
 	icon_state = "b_hi"
 	charge = 10000
 	maxcharge = 10000
@@ -63,7 +60,6 @@
  */
 /obj/item/cell/super
 	name = "super-capacity power cell"
-	origin_tech = list(TECH_POWER = 5)
 	icon_state = "b_sup"
 	charge = 20000
 	maxcharge = 20000
@@ -89,7 +85,6 @@
  */
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
-	origin_tech = list(TECH_POWER = 6)
 	icon_state = "b_hy"
 	charge = 30000
 	maxcharge = 30000
@@ -113,7 +108,6 @@
 /obj/item/cell/mech/lead
 	name = "lead acid battery"
 	desc = "An ancient battery design not commonly seen anymore. It looks like it'd fit inside a mech however..."
-	origin_tech = list(TECH_POWER = 0) //Litteraly an old car battery, doesn't need tech
 	icon_state = "lead"
 	charge = 8000
 	maxcharge = 8000
@@ -124,7 +118,6 @@
 
 /obj/item/cell/mech/high
 	name = "high-capacity mecha power cell"
-	origin_tech = list(TECH_POWER = 3)
 	icon_state = "exs_m"
 	charge = 20000
 	maxcharge = 20000
@@ -132,7 +125,6 @@
 
 /obj/item/cell/mech/super
 	name = "super-capacity mecha power cell"
-	origin_tech = list(TECH_POWER = 6)
 	icon_state = "exs_l"
 	charge = 25000
 	maxcharge = 25000
@@ -144,11 +136,14 @@
 /obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "infinite_b"
-	origin_tech =  null
 	charge = 30000
 	maxcharge = 30000 //determines how badly mobs get shocked
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 	robot_durability = 200
+
+/obj/item/cell/infinite/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	return ..()
 
 /obj/item/cell/infinite/check_charge()
 	return 1
@@ -162,7 +157,6 @@
 /obj/item/cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
-	origin_tech = list(TECH_POWER = 1)
 	icon_state = "potato"
 	charge = 100
 	maxcharge = 300
@@ -175,7 +169,6 @@
 /obj/item/cell/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with phoron, it crackles with power."
-	origin_tech = list(TECH_POWER = 4, TECH_BIO = 5)
 	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"
 	connector_type = "slime"
@@ -255,7 +248,6 @@
 /obj/item/cell/void
 	name = "void cell (machinery)"
 	desc = "An alien technology that produces energy seemingly out of nowhere. Its small, cylinderal shape means it might be able to be used with human technology, perhaps?"
-	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cell"
 	charge = 10000
@@ -291,7 +283,6 @@
  */
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
-	origin_tech = list(TECH_POWER = 0)
 	icon_state = "secborg"
 	charge = 2400
 	maxcharge = 2400
@@ -305,7 +296,6 @@
  */
 /obj/item/cell/giga
 	name = "giga-capacity power cell"
-	origin_tech = list(TECH_POWER = 8)
 	icon_state = "meb_b_hi"
 	charge = 40000
 	maxcharge = 40000

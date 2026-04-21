@@ -80,6 +80,9 @@
 //higher sensitivity values incur additional effects, starting with confusion/blinding/knockdown and ending with increasing amounts of damage
 //the degree of damage and duration of effects can be tweaked up or down based on the species emp_dmg_mod and emp_stun_mod vars (default 1) on top of tuning the random ranges
 /mob/living/carbon/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !species)
+		return
 	//pregen our stunning stuff, had to do this seperately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
 	var/agony_str = ((rand(4,6)*15)-(15*severity))*species.emp_stun_mod //big ouchies at high severity, causes 0-75 halloss/agony; shotgun beanbags and revolver rubbers do 60
 	var/deafen_dur = (rand(9,16)-severity)*species.emp_stun_mod //5-15 deafen, on par with a flashbang
@@ -89,13 +92,13 @@
 	if(species.emp_sensitivity) //receive warning message and basic effects
 		to_chat(src, span_bolddanger("*BZZZT*"))
 		switch(severity)
-			if(1)
+			if(EMP_HEAVY)
 				to_chat(src, span_danger("DANGER: Extreme EM flux detected!"))
-			if(2)
+			if(EMP_MEDIUM)
 				to_chat(src, span_danger("Danger: High EM flux detected!"))
-			if(3)
+			if(EMP_LIGHT)
 				to_chat(src, span_danger("Warning: Moderate EM flux detected!"))
-			if(4)
+			if(EMP_HARMLESS)
 				to_chat(src, span_danger("Warning: Minor EM flux detected!"))
 		if(prob(90-(10*severity))) //50-80% chance to fire an emote. most are harmless, but vomit might reduce your nutrition level which could suck (so the whole thing is padded out with extras)
 			src.emote(pick("twitch", "twitch_v", "choke", "pale", "blink", "blink_r", "shiver", "sneeze", "vomit", "gasp", "cough", "drool"))
@@ -127,7 +130,6 @@
 			src.adjustToxLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
 		if(species.emp_sensitivity & EMP_OXY_DMG)
 			src.adjustOxyLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
-	..()
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	if(SEND_SIGNAL(src, COMSIG_BEING_ELECTROCUTED, shock_damage, source, siemens_coeff, def_zone, stun) & COMPONENT_CARBON_CANCEL_ELECTROCUTE)
@@ -195,6 +197,8 @@
 					if(prob(30))
 						burndamage += halloss
 				*/
+				//For reference, these will show up in game as:
+				//"My X is: [DESCRIPTOR]"
 				switch(brutedamage)
 					if(1 to 20)
 						status += "bruised"
@@ -218,18 +222,18 @@
 				if(org.dislocated == 1)
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
-					status += "hurts when touched"
+					status += "[can_feel_pain(org) ? "hurting and " : ""]abnormally bent"
 				//infection stuff
 				if(org.status & ORGAN_DEAD)
 					status += "necrotic"
 				else if(org.germ_level > INFECTION_LEVEL_TWO)
-					status += "feels like it's on fire!"
+					status += "burning and feels like it's on fire"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
 				if(LAZYLEN(org.wounds))
 					for(var/datum/wound/W in org.wounds)
 						if(W.internal)
-							status += "hurting with a slowly growing bruise"
+							status += "[can_feel_pain(org) ? "hurting and " : ""]showing a slowly growing bruise"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
@@ -262,9 +266,10 @@
 							span_warning("You successfully pat out [src]'s flames."))
 							src.extinguish_mob()
 		else
-			if (ishuman(src) && src:w_uniform)
+			if (ishuman(src))
 				var/mob/living/carbon/human/H = src
-				H.w_uniform.add_fingerprint(M)
+				if(H.w_uniform)
+					H.w_uniform.add_fingerprint(M)
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
@@ -535,10 +540,12 @@
 				src.update_inv_wear_mask(0)
 
 /mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+	if(!species) // carbon/brains have no species
+		return FALSE
 
 	if(allergen_type in species.food_preference)
 		return species.food_preference_bonus
-	return 0
+	return FALSE
 
 /mob/living/carbon/handle_diseases()
 	for(var/thing in GetViruses())
@@ -663,3 +670,19 @@
 		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
 		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
 	*/
+
+/**
+ * This proc is used to determine whether or not the mob can handle touching a burning object.
+ */
+/mob/living/carbon/proc/can_touch_burning(atom/burning_atom, acid_power, acid_volume)
+	// So people can take their own clothes off
+	if((burning_atom == src) || (burning_atom.loc == src))
+		return TRUE
+	if(HAS_TRAIT(src, TRAIT_RESISTHEAT) || HAS_TRAIT(src, TRAIT_RESISTHEATHANDS))
+		return TRUE
+	if(gloves?.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE)
+		return TRUE
+	for(var/obj/item/clothing/clothing in worn_clothing)
+		if(clothing.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE && (clothing.heat_protection & HANDS) && (clothing.body_parts_covered & HANDS))
+			return TRUE
+	return FALSE

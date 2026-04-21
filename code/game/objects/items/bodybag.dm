@@ -139,7 +139,6 @@
 	icon = 'icons/obj/closets/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	item_state = "bodybag_cryo_folded"
-	origin_tech = list(TECH_BIO = 4)
 	cryogenic = TRUE
 
 /obj/structure/closet/body_bag/cryobag
@@ -195,6 +194,7 @@
 		syringe = null
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
+	ADD_TRAIT(AM, TRAIT_STASIS, REF(src))
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(stasis_level)
@@ -209,6 +209,7 @@
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
+	REMOVE_TRAIT(AM, TRAIT_STASIS, REF(src))
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(0)

@@ -68,6 +68,7 @@
 	clickvol = 30
 	blocks_emissive = NONE
 	light_power = 0.25
+	flags = WALL_ITEM
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
 	var/frequency = PUMPS_FREQ
@@ -81,8 +82,6 @@
 	var/aidisabled = 0
 	var/shorted = 0
 	circuit = /obj/item/circuitboard/airalarm
-
-	var/datum/wires/alarm/wires
 
 	var/mode = AALARM_MODE_SCRUBBING
 	var/screen = AALARM_SCREEN_MAIN
@@ -133,8 +132,7 @@
 	set_frequency(frequency)
 	if(!pixel_x && !pixel_y)
 		offset_airalarm()
-	if(!wires)
-		wires = new(src)
+	set_wires(new /datum/wires/alarm(src))
 	alarm_area.air_alarms += src
 	if(!alarm_area.main_air_alarm_is_operating()) // select main alarm
 		alarm_area.elect_main_air_alarm()

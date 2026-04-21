@@ -2,14 +2,13 @@
 	name = "sleevecard"
 	desc = "This upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
-	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
-	var/emagged = FALSE
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	has_emag_toolkit = FALSE // sleevecards don't have multitools or signalers,  you can just change their laws
 	special_handling = TRUE
 
 /obj/item/paicard/sleevecard/attack_ghost(mob/user as mob)
-	return
+	return // No ghosts can invite, these are intended for sleevemates only
 
 /obj/item/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/sleevemate))
@@ -95,6 +94,8 @@
 	pda.owner = text("[]", src)
 	pda.name = pda.owner + " (" + pda.ownjob + ")"
 
+	default_language = GLOB.all_languages[LANGUAGE_GALCOM] // Same issue as bots
+
 
 /mob/living/silicon/pai/infomorph/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -124,11 +125,11 @@
 
 	// Emotions
 	var/list/emotions = list()
-	for(var/name in pai_emotions)
+	for(var/name in GLOB.pai_emotions)
 		var/list/emote = list()
 		emote["name"] = name
-		emote["id"] = pai_emotions[name]
-		emotions.Add(list(emote))
+		emote["id"] = GLOB.pai_emotions[name]
+		UNTYPED_LIST_ADD(emotions, emote)
 
 	data["emotions"] = emotions
 	data["current_emotion"] = card.current_emotion

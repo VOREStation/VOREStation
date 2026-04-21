@@ -25,25 +25,25 @@
 	var/flipdir = turn(fromdir, 180)
 	if(flipdir != dir)	// came from secondary dir
 		return dir		// so exit through primary
-	else				// came from primary
+						// came from primary
 						// so need to choose either secondary exit
-		var/mask = ..(fromdir)
+	var/mask = ..(fromdir)
 
-		// find a bit which is set
-		var/setbit = 0
-		if(mask & NORTH)
-			setbit = NORTH
-		else if(mask & SOUTH)
-			setbit = SOUTH
-		else if(mask & EAST)
-			setbit = EAST
-		else
-			setbit = WEST
+	// find a bit which is set
+	var/setbit = 0
+	if(mask & NORTH)
+		setbit = NORTH
+	else if(mask & SOUTH)
+		setbit = SOUTH
+	else if(mask & EAST)
+		setbit = EAST
+	else
+		setbit = WEST
 
-		if(prob(50))	// 50% chance to choose the found bit or the other one
-			return setbit
-		else
-			return mask & (~setbit)
+	if(prob(50))	// 50% chance to choose the found bit or the other one
+		return setbit
+
+	return mask & (~setbit)
 
 //a three-way junction that sorts objects
 /obj/structure/disposalpipe/sortjunction
@@ -56,7 +56,6 @@
 	var/last_sort = FALSE
 	var/sort_scan = TRUE
 	var/panel_open = FALSE
-	var/datum/wires/wires = null // ...Why isnt this defined on /atom...
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
@@ -66,11 +65,13 @@
 /obj/structure/disposalpipe/sortjunction/proc/updatename()
 	if(sortType)
 		name = "[initial(name)] ([sortType])"
-	else
-		name = initial(name)
+		return
+	name = initial(name)
 
 /obj/structure/disposalpipe/sortjunction/Destroy()
 	QDEL_NULL(wires)
+	if(sortType)
+		LAZYREMOVE(GLOB.tagger_locations["[sortType]"], get_z(src))
 	. = ..()
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
@@ -85,9 +86,10 @@
 
 /obj/structure/disposalpipe/sortjunction/Initialize(mapload)
 	. = ..()
-	if(sortType) GLOB.tagger_locations |= list("[sortType]" = get_z(src))
+	if(sortType)
+		LAZYADD(GLOB.tagger_locations["[sortType]"], get_z(src))
 
-	wires = new /datum/wires/disposals(src)
+	set_wires(new /datum/wires/disposals(src))
 
 	updatedir()
 	updatename()
@@ -113,7 +115,11 @@
 		var/obj/item/destTagger/O = I
 
 		if(O.currTag)// Tag set
+			var/current_z = get_z(src)
+			if(sortType)
+				LAZYREMOVE(GLOB.tagger_locations["[sortType]"], current_z)
 			sortType = O.currTag
+			LAZYADD(GLOB.tagger_locations["[sortType]"], current_z)
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
 			to_chat(user, span_blue("Changed filter to '[sortType]'."))
 			updatename()

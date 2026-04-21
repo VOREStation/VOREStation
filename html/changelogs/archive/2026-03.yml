@@ -1,0 +1,447 @@
+2026-03-01:
+  Diana:
+  - qol: Organs don't go from 'cut off' to 'necrotic' in (with bad RNG) ~215 seconds.
+      Now takes ~30 minutes.
+  - qol: Organs can be repaired from necrosis while removed/amputated with peridaxon,
+      just as if they were attached!
+  - qol: External Organs can be repaired from necrosis while removed/amputated with
+      a new amputation specific surgery. (Scalpel->Retractor->Scalpel->Bioregen)
+  - qol: Organs will inform you of what special interactions you can perform via the
+      big blue [I] button!
+  - qol: Clicking an organ no longer insta-butchers it. Instead, it has a 10 second
+      timer to prevent instagibbing.
+  - qol: Examining amputated limbs gives more info about itself and any children it
+      may have.
+  - qol: Robot augment surgery now uses crowbar instead of multitool.
+  - qol: Bruise packs and ointment no longer have a 50% chance to fail during external
+      repair surgery
+  - balance: Advanced bruise packs & Advanced burn packs heal 2x damage
+  - balance: Detoxify step heals cloneloss now.
+  - bugfix: Cutting necrosis will no longer cut the bone.
+  - bugfix: Painful injury descriptors will not longer note pain if you have pain
+      inhibitors.
+  - bugfix: Brain surgery properly sets brain damage to 0
+  - bugfix: Washing a colored object will no longer not get rid of the germs the first
+      wash.
+  - bugfix: Amputating a limb will no longer immdiately fracture the parent organ.
+  - bugfix: Limbs that are pain immune don't add their damage to the pain calculation.
+  - code_imp: Gets rid of a typecast
+  - code_imp: Puts some surgeries into their own files.
+  Guti:
+  - rscadd: Added the dust anomaly
+  - code_imp: Added random vermin object for mapping
+  - code_imp: Added a has_lungs helper proc
+  Kashargul:
+  - bugfix: plushie vending
+  - bugfix: bad deletes of equipment vendors
+  KillianKirilenko:
+  - image: added digitigrade states for signalis-inspired replikant and sleek uniforms
+  - rscadd: Added omni lasertag helmet that uses the doomguy sprite for giggles, and
+      added intercoms that are locked to the Entertainment Frequency
+  - maptweak: Replaced the Starview Lounge in the Laserdome with an all-new FFA Arena!
+      Also has red/blue kit lockers for doing team deathmatch.
+  - maptweak: Added a couple more redgate inhabitant spawners to the Laserdome. The
+      fast food venue also has ketchup and mustard bottles now, and the two shops
+      have gained cash registers and had their inventories shuffled around a bit.
+  - spellcheck: fixed the name of the universal lasertag gear locker because it had
+      an extra n in it
+  - maptweak: moved the kitchen goats out of the freezers and over to the animal pens
+  - maptweak: moved the beehives and honey machine on the tether to a better spot
+      where the hives can 'see' the hydroponics plots better
+  - qol: added a condiments crate to cargo, as a means to acquire premade bottles
+      of sauces
+  - qol: added meat resupply crates to cargo, allowing you to order fresh (non-synthetic)
+      meat (for flavour) and fish/poultry, without having to butcher animals
+  - qol: condiment bottles now transfer 2u base rather than 5u, and have a minimum
+      transfer value of 1u
+  - rscadd: added mustard plants (which contain a new "mustard pods" reagent, used
+      to make mustard by mixing them with salt, water, and honey in a 2:2:1:1 ratio
+      to make 4 mustard)
+  - rscadd: raw cutlets can be grilled into burger patties on the grill for making
+      custom burgs instead of just making a "grilled raw cutlet", or requiring you
+      to microwave the cutlet and then grill it
+  - rscadd: can now make vinegar using apple *or* grape juice *plus* water *and* sugar,
+      with yeast as a catalyst (2u of each + 5 yeast = 4 vinegar + 5 yeast). try it
+      on your fish and chips today! or don't.
+  - code_imp: added bbq sauce preset for map-placeable condiment bottles
+  - bugfix: fixed the mothroach and catslug crates sharing datum names
+  - bugfix: fixed duplicate def init for pillbug shell ingredients that was supposed
+      to go with the empty version
+  - image: brightened the default carrot produce sprite and changed the produce colours
+      for carrots and oranges
+2026-03-03:
+  Kashargul:
+  - code_imp: migrates some more globals to GLOBs
+  - code_imp: migrates more admin verbs to the subsystem
+  - code_imp: cleans up some more updateDialog
+  - refactor: replaces many old browser UIs with tgui
+2026-03-04:
+  Will, Kash:
+  - rscadd: observing the round from the main menu, while having pai candidate enabled(and
+      a set pai name) will automatically send out a pai notice about a new personality
+      being available
+  - rscadd: pai may have multiple levels of belly size per pai sprite type
+  - rscadd: type 13 pai hologram now uses all four directions for the AI hologram
+      sprite made of your character
+  - balance: pais now have an extremely limited selection of objects and computers
+      they can interact with
+  - refactor: pai controller ported to subsystem
+  - refactor: pai card menu updated to tgui
+  - refactor: pai sprites moved to datums
+  - refactor: pai saving uses TGprefs instead of it's own separate save file (each
+      save slot now has it's own pai config now)
+  - refactor: pai vr override icons collapsed into base file
+  - refactor: multiple pai related tgui menus updated to modern standards
+  - code_imp: special roles order unit test
+  - code_imp: pai software unit test
+  - code_imp: pai sprite unit test
+  - bugfix: parrot pai resting belly sprite has proper name
+  - bugfix: runtime when attempting to toggle non-existent gun aiming mode as a pai
+  - bugfix: herm is no longer missing from identifying gender in character prefs menu
+2026-03-05:
+  Azzy.Dreemurr:
+  - rscadd: Added new vending machine with Talon uniforms + for paperwork added [talogo]
+      which Talon logo displays
+  - balance: Talon armory got more holsters itself, added a helmet for Captain Talon
+      for their armor in locker
+  - bugfix: fixed locations of engineering lockers on Talon
+  - maptweak: small remap EVA room on Talon. A locker with musical instruments added
+      in Talon Bar
+  - image: New uniform for Talon Crew + Talon seal
+  - admin: A new option for sending a fax has been introduced -> Talon Headquarters.
+      And also the ability to answer.
+  KillianKirilenko:
+  - qol: restores default transfer values for flour and sugar
+2026-03-06:
+  Azzy.Dreemurr:
+  - image: Altavians is now available use Talon space suits (new sprites)
+  Will, Kash:
+  - rscadd: Vix/Flipper pai syndicate pet
+  - rscadd: Paicard emag behavior
+  - rscadd: pAI can use bingle wiki computer
+  - qol: pAI counts for social traits (lonely/agoraphobia)
+  - qol: pAI can use modular computers if their master's ID is in it
+2026-03-08:
+  Diana:
+  - bugfix: Robotics surgery works again
+2026-03-09:
+  Aroliacue:
+  - rscadd: Added new species-dependent melee attacks. Currently unused on Virgo.
+  - balance: Reduced damage on some accidentally overtuned existing species-dependent
+      melee attacks. Currently unused on Virgo.
+  - sound: Added a new melee attack sound.
+  Diana:
+  - bugfix: Reagents will now have some effect - even if extremely small - if you
+      have slow metabolism.
+  Kashargul:
+  - code_imp: update font awesome to v7
+  - code_imp: tgui dependency up
+  - code_imp: migrates GPS to tgui
+  - bugfix: bad compass_holder del
+  - bugfix: ship placement in two player mode
+  KillianKirilenko:
+  - qol: critter rifts are now emissive, so they can be seen in unlit areas (still
+      only visible to ghosts)
+  - bugfix: fixed notification prefs for maint critter rifts (I think)
+  Sharkmare:
+  - rscadd: Added a Command style Gooborg Chassis
+  Will:
+  - code_imp: added TRAIT_AMBIENT_PEST_MOB trait define
+  - refactor: 'Made pest mob interactions consistent (ex: mice couldn''t open airlocks,
+      but cockroaches could )'
+  - bugfix: forensic scanner runtime fix
+  - bugfix: handheld flashes no longer stun phased shadekin
+  - bugfix: flashbangs no longer hit phased shadekin
+  - bugfix: explosions no longer hit phased shadekin
+  - bugfix: emps no longer hit phased shadekin
+  - bugfix: chemical sprays no longer hit phased shadekin
+  - bugfix: shadekin can no longer toggle oxygen/anesthetic pumps while in phase
+  - bugfix: you can no longer mount phased shadekin taurs, or mount a taur while phased
+  - bugfix: wrapping up people in giftwrap no longer makes them invisible
+  - bugfix: missing giftbox icons fixed on several objects
+  - refactor: Moved solarpanel update to it's own subsystem
+  - bugfix: Solarpanels now follow the sun on planet, and not the global SPACESUN
+      the stations use.
+  - bugfix: pai correctly uses the new chassis data when changing chassis(would sometimes
+      turn you invisible)
+  - bugfix: paicards no longer comfort minor loneliness if they do not have a client
+2026-03-10:
+  Kashargul:
+  - bugfix: design disk scrolling
+  - code_imp: rids of Flex in techweb UIs
+  TheCaramelion:
+  - qol: Cargo borgs may work as mailman
+2026-03-11:
+  Kashargul:
+  - bugfix: text edit state being held too long
+2026-03-12:
+  Aroliacue:
+  - rscadd: Added additional starting security items to the SecTech vending machine.
+  - qol: Moved excessive clothing options from security lockers to clothing vending
+      machines.
+  - balance: Reduced weight class on legcuffs from normal to small. They now take
+      up the same space as regular handcuffs.
+  Cerami:
+  - bugfix: Specify the default spawn type.
+  Guti:
+  - rscadd: Added the ability to harvest anomalies
+  - rscadd: Added the Anomaly Scanner, Anomaly Harvester, and Anomalous Particle Gun
+  - rscadd: Xenoarch tech web
+  Kashargul:
+  - code_imp: cleans up some tgui types
+  - code_imp: updates tgui dependencies
+  - qol: adds search to gps
+  - code_imp: improves performance of belly resetting
+  Will:
+  - rscadd: cargo borgs get a destination tagger and package wrapper
+  - bugfix: package wrapper no longer drops its tube inside your mob when emptied
+  - refactor: package wrapper and gift wrap cleaned up
+  - image: adds a turf edge to concrete slabs
+  Willburd:
+  - rscadd: Exploration snowsuits
+  - rscadd: Victorian style coats
+  - rscadd: Trailblazer light structures
+  - rscadd: Sec spider pet Lorenzo
+  - rscadd: Chicken pet commander clucky
+  - rscadd: random steptrap spawner
+  - rscadd: Icepick for iced airlock breaking (map flavor too)
+  - rscadd: Mine lighting techweb entry for marker beacons and trailblazers
+  - rscadd: Debris Removal techweb entry for shovels and icepicks
+2026-03-13:
+  Guti:
+  - rscadd: Added "Anomaly Harvesting" crate to Cargo
+  - rscadd: Added "Anomaly harvesting kit"
+  - rscadd: Added "Latent anomaly core"
+  - code_imp: Added random core obj
+  - balance: Doubled the points from samples
+  - balance: Doubled the passive point generation of R&D's server (0.4)
+  - bugfix: Unsimulated turfs can no longer be converted by the dimensional anomaly
+  Kashargul:
+  - bugfix: disposal outlets ejection when not maploaded
+2026-03-14:
+  Kashargul:
+  - code_imp: removes invisible spawned item in xenoarch
+  - code_imp: moves some more bicon to icon2html
+2026-03-15:
+  Kashargul:
+  - code_imp: cleans up dest tagger
+  - qol: ingame logs now show the last 1000 entries per category
+  Will:
+  - code_imp: Slime research point unittest
+  - bugfix: light pink slime cores lacked a destructive analyzer point value
+2026-03-16:
+  Kashargul:
+  - code_imp: convert more globals to GLOBs
+  - bugfix: flags some more wall items as what they are
+2026-03-17:
+  Diana:
+  - bugfix: Attempting to move while handcuffed and being pulled will no longer result
+      in a crash.
+  Guti:
+  - qol: Normal anomalies can now be scanned with the anomaly scanner for it's frequencies.
+  - qol: The anomaly scanner will indicate the user to use a releaser, if used on
+      a core.
+  - qol: Added particle descriptions when examining the anomaly scanner.
+  - bugfix: Fixed Anomalis spawning without PDA
+2026-03-18:
+  ARGUS-Memory:
+  - bugfix: Copy loadout now correctly makes unique metadata entries for gear. So
+      that changing the color on one pair of glasses doesnt affect the ones in your
+      other loadout.
+  Diana:
+  - rscadd: Adds the Caseless Rifle (and its ammo) to the techweb.
+  - qol: Protolathe boards can be made via science protolathe (engineering can make
+      engineering protolathe boards) so if they're ever destroyed, they can be remade.
+  - qol: Protolathe boards can be ordered via cargo if the original science protolathe
+      is ever destroyed.
+  Kashargul:
+  - bugfix: copy slot skipping some values
+  Kiabiato:
+  - rscadd: Standard and Exploration Gooborg sprites
+  zeskorion:
+  - rscadd: 'new markings: Skull mask, three lengths of a thin snout variant, thinner
+      lower snout sprites, snout teeth, and a snout-tip horn'
+  - bugfix: circle tattoo unevenness fixed
+  - bugfix: ffixes dupe keys
+2026-03-19:
+  Kashargul:
+  - bugfix: 2 missing parent paths for tall borgs
+  - bugfix: explo tall parent path
+  - bugfix: some more gooborgs
+  - code_imp: migrates more globals to GLOBs
+2026-03-20:
+  ARGUS:
+  - bugfix: Using the Morph appearance editor no longer silently deactivates all trait
+      genes, including Morph itself.
+  - bugfix: Changing gender or markings via appearance tools no longer wipes active
+      genetic traits.
+  - bugfix: Make the juebox volume actually work
+  - rscadd: Adds animation states for command raptor (the thick one)
+  - bugfix: Handle ! Say emotes properly similiar to * emotes.
+  ARGUS-Memory:
+  - bugfix: RFID Slot of laptops and tablets actually are considered now for Access
+      Checks and take precedence over equipped Access.
+  Diana:
+  - bugfix: Zombie powder will no longer permanently cause you to not lose halloss.
+  Kashargul:
+  - admin: reimplements attack and player logs
+  - code_imp: rids of the old db connection hook... the dbcore subsystem needs to
+      handle it
+  - bugfix: player logs per mob verbs
+  - bugfix: some spawn failures
+  Will:
+  - rscadd: External airlocks on planets will freeze in extremely cold weather.
+2026-03-21:
+  Kashargul:
+  - qol: player logs now has a reload button
+  - bugfix: language and robot whitelist tgs commands
+  - bugfix: language whitelist not working
+  - bugfix: robot whitelist being non functional
+  - bugfix: job whitelist now properly checks the actual job name
+  - qol: marks whitelisted robot modules in the robot UI
+  - admin: admin whitelist tgui
+  Nova:
+  - bugfix: Fixed bot pathfinders getting stuck on diagonals
+  - qol: removed "As Unknown" from shadekin without any ID, or with a voice changer.
+  Will, Kash:
+  - refactor: replaced autolathe datums with techweb datums
+  - code_imp: many new validity checks for techweb unit test added, multiple changes
+      made to fix them.
+  - code_imp: added unit test that checks for circuits missing from the imprinter
+  - balance: autolathe uses it's own isolated material storage
+  - balance: many circuits tossed into the engivend replaced with an autolathe and
+      imprinter circuit instead, as they are all printable now
+  - bugfix: techweb entries now respect machine hacked state regarding hack only designs
+  - rscadd: protolathe and circuit imprinter wire hacking
+  - rscadd: a literal mountain of lathe and circuit designs that were missing
+  - qol: circuit boards that cannot be printed on station will show a unique message
+      on examine.
+  - qol: techweb and lathe menus now use scaled icons for larger images instead of
+      huge buttons
+  - bugfix: injector maker no longer uses an AFRG board during construction
+2026-03-22:
+  Kashargul:
+  - code_imp: migrate more admin verbs
+  - bugfix: single item mat cost tooltip
+  Nova:
+  - refactor: Refactored species, organ_data, and rlimb_data
+2026-03-23:
+  Diana:
+  - bugfix: SM now gives radiation off while idle/unpowered
+  - rscadd: Screwdriver (The Drink) stops radiation effects while it is in your system.
+  - rscadd: Uranium walls, doors, and coins now emit slight amounts of radiation.
+  - qol: Radiation protective items now have a tag upon examine that informs of their
+      radiation protective status.
+  - refactor: Massively improves radiation performance by moving to pulses instead
+      of 1000s of deleted radiation_sources a second.
+  - code_imp: Radiation reworked. Please report on Discord or Github if power generation
+      feels too low from radioactive (SM) sources.
+  Will:
+  - bugfix: Adds missing cable coils in autolathe.
+  - bugfix: Autolathe efficiency and speed upgrades corrected to virgo expected numbers
+2026-03-24:
+  Will:
+  - rscadd: Lightpainter is available in the lathes
+  - code_imp: Circuitboard unit test
+  - bugfix: multiple cryopod types have correct default circuitboard
+  - bugfix: security alert console has the correct default circuitboard
+  - bugfix: refinery filter has the correct default circuitboard
+  - bugfix: pump relay has the correct default circuitboard
+  - balance: chem sprayer does not require protolathe hacking to print
+2026-03-25:
+  ARGUS-Memory:
+  - rscadd: NtOS ByteCrawl, An IDLE Hacking Game
+  Will:
+  - rscadd: Most ammoboxes to the autolathe
+  - rscadd: techweb disks can be used to expand autolathe designs
+2026-03-27:
+  Diana:
+  - code_imp: Cleans up some code about trays.
+  - bugfix: Trays will now properly stun the target if you target the head.
+  - qol: Treat Organ surgery's detection logic now includes infected organs
+  - rscadd: Clown borg has a lube spray (when emagged)
+  - code_imp: respawn_conumsable parent call added
+  - balance: Adjustments were made to various tesla coils.
+  - qol: Tesla coils tell you their special effects, power loss, and power efficiency
+      when examined.
+  - qol: Tesla coils can be changed to their various forms via screwdriver+multitool.
+  - qol: Tesla coils will no longer be shocked if unanchored near the tesla. This
+      means you can ungrade a running tesla.
+  - qol: Geiger counters will play less frequently if in safe areas and at a lower
+      volume.
+  - qol: Pumps (including volumetric) can be min/max'd with ctrl and alt click.
+  - qol: Makes the emergency shield use a battery instead of local power.
+  - qol: Hydromagnetic traps can now be made via R&D
+  - qol: Mass driver buttons can be created.
+  - qol: Solar panels now take 2 seconds (from 5) to pry glass off, and takes toolspeed
+      into account.
+  - bugfix: Supermatter once again emits passive rads at 0 power.
+  - bugfix: Infinite cells are EMP proof
+  - bugfix: Radiation can no longer go negative. Again.
+  - code_imp: Huge air scrubbers now use a static var instead of global var.
+  - qol: Portable air pumps can pressurize tanks up to 3997kPA.
+  - qol: Geiger counter descriptions more clear if you're in danger or not.
+  - maptweak: Minitest tesla now starts ready to immediately be turned on.
+  - code_imp: Added some pre-mapped in variants of the tesla generator and PA parts
+      for minitest.
+  - bugfix: Geiger counters no longer follow people.
+  - bugfix: Geiger counters work in inventory storage.
+  - bugfix: SM properly starts out at only requiring normal walls to block the rads
+      it produces.
+  - bugfix: Deconstructing a canister wrenched to a port will unconnect it from the
+      port.
+  - bugfix: Gets rid of a hard del with the 11 year old emergency shield
+  - bugfix: Buttons now inform you of the correct commands that can be sent.
+  - bugfix: Mass drivers no longer BSOD when a multitool is used on them.
+  - code_imp: Added some tweaks to the transfer code.
+  - spellcheck: Makes the transfer text 'more correct'
+  - rscadd: Adds Slip Prone - A new neutral trait that allows accidentally stumbling
+      into nearby people to either eat/be eaten by them prefs-dependant.
+  Kashargul:
+  - refactor: moves escape shuttle to a subsystem
+  - refactor: moves legacy global access lists to a no fire controller
+  - refactor: moves transfer controller to a subsystem
+  - refactor: moves antag job handling to a subsystem
+  - bugfix: legacy notes
+  - bugfix: borg default access
+  Will:
+  - refactor: Shovel works on more turfs and supports unique loot tables
+  - refactor: Shovel loot systems unified into one system shared at base turf definition
+  - bugfix: Depletable lootpiles no longer share their depletion count between all
+      piles
+  - balance: AI core counts as a lonely major comfort mob
+  - rscadd: Xenobotany machines can be researched and constructed in round
+  - balance: AI controlled rig movement power draw reduced from 200 to 50 ( normally
+      20 for non-ai operators )
+  - bugfix: paicard typeB can be inserted into rigs that allow AI control
+2026-03-28:
+  Will:
+  - bugfix: Trolley tankers drain correctly into reagent containers
+  - bugfix: refinery machines drain correctly into reagent containers
+  - code_imp: reagent container can_be_placed_into moved to global list handling
+  - bugfix: fixes reagent container insertion (actually this time)
+2026-03-29:
+  Diana:
+  - balance: Stolen package crates now costs 200 each, up from 150
+  - balance: Stolen package crates now have 2 packages each, up from 1.
+  - bugfix: All sources of teslazap is no longer explosive
+  - bugfix: Lightning can only jump to a nearby thing once.
+  - code_imp: tesla_zap args more clear.
+  - bugfix: Stasis bags no longer kill their inhabitants through pressure
+  - qol: Fossil bag now fits on xenoarch belts.
+  - bugfix: Resurrection artifact is blacklisted from being touch only.
+  Will:
+  - bugfix: lightning strikes no longer have an extra tesla arc
+  - bugfix: Virgo central command should not explode into a firestorm every shift
+      from bad weather
+2026-03-30:
+  Diana:
+  - bugfix: yield_mod (floragun on tray) will now increase amount of plants obtained
+  - bugfix: Distillery can now be made in game properly.
+  - bugfix: Resurrection artifact doesn't runtime any longer.
+  Kashargul:
+  - bugfix: matter transfer for modify robot with multibelts
+  - code_imp: ports TG spawn panel
+2026-03-31:
+  Kashargul:
+  - code_imp: some more grep checks

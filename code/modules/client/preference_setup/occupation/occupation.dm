@@ -56,10 +56,10 @@
 	//VOREStation Add End
 	if(!(pref.player_alt_titles)) pref.player_alt_titles = new()
 
-	if(!GLOB.job_master)
+	if(!SSjob)
 		return
 
-	for(var/datum/job/job in GLOB.job_master.occupations)
+	for(var/datum/job/job in SSjob.occupations)
 		var/alt_title = pref.player_alt_titles[job.title]
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
@@ -98,14 +98,14 @@
 			"denylist_whitelist" = !is_job_whitelisted(user, job.title),
 			// tigercat2000 - these shouldn't exist >:(
 			"denylist_character_age" = FALSE,
-			"min_age" = job.get_min_age(pref.species, pref.organ_data[O_BRAIN]),
+			"min_age" = job.get_min_age(pref.read_preference(/datum/preference/choiced/species), pref.read_preference(/datum/preference/organ_data)?[O_BRAIN]),
 			"special_color" = "",
 			"selected" = 0,
 			"selected_title" = "",
 			"alt_titles" = list(),
 		)
 
-		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data[O_BRAIN])))
+		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(user.client.prefs.read_preference(/datum/preference/choiced/species), user.client.prefs.read_preference(/datum/preference/organ_data)?[O_BRAIN])))
 			job_data["denylist_character_age"] = TRUE
 
 		if((pref.job_civilian_low & ASSISTANT) && job.type != /datum/job/assistant)
@@ -173,7 +173,7 @@
 
 		if("job_info")
 			var/rank = params["rank"]
-			var/datum/job/job = GLOB.job_master.GetJob(rank)
+			var/datum/job/job = SSjob.get_job(rank)
 			if(!istype(job))
 				return TOPIC_NOACTION
 
@@ -225,7 +225,7 @@
 		pref.player_alt_titles[job.title] = new_title
 
 /datum/category_item/player_setup_item/occupation/proc/SetJob(mob/user, role, level)
-	var/datum/job/job = GLOB.job_master.GetJob(role)
+	var/datum/job/job = SSjob.get_job(role)
 	if(!job)
 		return 0
 

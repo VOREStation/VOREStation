@@ -86,7 +86,8 @@
 						they find an appropriate topic."
 	alt_titles = list(JOB_ALT_RESEARCHER = /datum/alt_title/researcher, JOB_ALT_LAB_ASSISTANT = /datum/alt_title/lab_assistant, JOB_ALT_XENOARCHAEOLOGIST = /datum/alt_title/xenoarch,
 							JOB_ALT_XENOPALEONTOLOGIST = /datum/alt_title/xenopaleontologist, JOB_ALT_ANOMALIST = /datum/alt_title/anomalist, JOB_ALT_PHORON_RESEARCHER = /datum/alt_title/phoron_research,
-						JOB_ALT_GAS_PHYSICIST = /datum/alt_title/gas_physicist, JOB_ALT_CIRCUIT_DESIGNER = /datum/alt_title/circuit_designer, JOB_ALT_CIRCUIT_PROGRAMMER = /datum/alt_title/circuit_programmer)
+						JOB_ALT_GAS_PHYSICIST = /datum/alt_title/gas_physicist, JOB_ALT_CIRCUIT_DESIGNER = /datum/alt_title/circuit_designer, JOB_ALT_CIRCUIT_PROGRAMMER = /datum/alt_title/circuit_programmer,
+						JOB_ALT_RESEARCH_CONTRACTOR = /datum/alt_title/research_contractor)
 
 /datum/job/scientist/get_request_reasons()
 	return list("Assembling expedition team")
@@ -101,6 +102,7 @@
 	title = JOB_ALT_ANOMALIST
 	title_blurb = "An " + JOB_ALT_ANOMALIST + " is a " + JOB_SCIENTIST + " whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
 					function. They work closely with " + JOB_ALT_XENOARCHAEOLOGIST + "s, or Miners, if either role is present."
+	title_outfit = /datum/decl/hierarchy/outfit/job/science/scientist/anomalist
 
 /datum/alt_title/phoron_research
 	title = JOB_ALT_PHORON_RESEARCHER
@@ -136,6 +138,10 @@
 	title = JOB_ALT_CIRCUIT_PROGRAMMER
 	title_blurb = "A " + JOB_ALT_CIRCUIT_PROGRAMMER + " is a " + JOB_SCIENTIST + " whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
 				   They work to create various useful devices using the capabilities of integrated circuitry."
+
+/datum/alt_title/research_contractor
+	title = JOB_ALT_RESEARCH_CONTRACTOR
+	title_blurb = "A " + JOB_ALT_RESEARCH_CONTRACTOR + " is a specialist hired to conduct various or specific research projects and operations, but isn't directly employed by NT proper."
 
 //////////////////////////////////
 //			Xenobiologist

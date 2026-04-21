@@ -471,7 +471,7 @@
 
 				//Job slot cleanup
 				var/job = mind.assigned_role
-				GLOB.job_master.FreeRole(job)
+				SSjob.free_role(job)
 
 				//Their objectives cleanup
 				if(mind.objectives.len)
@@ -1496,12 +1496,12 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		regenerate_icons()
 
 	if(href_list[VV_HK_PLAYER_PANEL])
-		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
+		return SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_player_panel, src)
 
 	if(href_list[VV_HK_GODMODE])
 		if(!check_rights(R_ADMIN))
 			return
-		usr.client.cmd_admin_godmode(src)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_godmode, src)
 
 	if(href_list[VV_HK_ADDLANGUAGE])
 		if(!check_rights(R_SPAWN))

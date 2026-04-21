@@ -93,14 +93,12 @@
 	name = "broken cryptographic sequencer"
 	icon_state = "emag-spent"
 	item_state = "card-id"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 
 /obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
 /obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, var/click_parameters)
@@ -271,35 +269,33 @@
 		return
 	return
 
-/obj/item/card/id/cargo/miner/borg
-	var/mob/living/silicon/robot/R
+/obj/item/card/id/synthetic/borg
+	var/mob/living/silicon/robot/robot_owner
 	var/last_robot_loc
-	name = "Robot Miner ID"
-	rank = JOB_SHAFT_MINER
 
-/obj/item/card/id/cargo/miner/borg/Initialize(mapload)
+/obj/item/card/id/synthetic/borg/Initialize(mapload)
 	. = ..()
-	if(isrobot(loc?.loc))
-		R = loc.loc
-		registered_name = R.braintype
+	if(isrobot(loc))
+		robot_owner = loc
+		registered_name = robot_owner.braintype
 		RegisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(check_loc))
 
-/obj/item/card/id/cargo/miner/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
+/obj/item/card/id/synthetic/borg/proc/check_loc(atom/movable/mover, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
-	if(old_loc == R || old_loc == R.module)
+	if(old_loc == robot_owner || old_loc == robot_owner.module)
 		last_robot_loc = old_loc
-	if(!istype(loc, /obj/machinery) && loc != R && loc != R.module)
+	if(!istype(loc, /obj/machinery) && loc != robot_owner && loc != robot_owner.module)
 		if(last_robot_loc)
 			forceMove(last_robot_loc)
 			last_robot_loc = null
 		else
-			forceMove(R)
-		if(loc == R)
+			forceMove(robot_owner)
+		if(loc == robot_owner)
 			hud_layerise()
 
-/obj/item/card/id/cargo/miner/borg/Destroy()
-	if(R)
+/obj/item/card/id/synthetic/borg/Destroy()
+	if(robot_owner)
 		UnregisterSignal(src, COMSIG_MOVABLE_ATTEMPTED_MOVE)
-		R = null
+		robot_owner = null
 		last_robot_loc = null
 	. = ..()

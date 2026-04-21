@@ -4,7 +4,6 @@
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
-	origin_tech = list(TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 1000, MAT_GLASS = 500)
 
 	wires = WIRE_PULSE
@@ -97,7 +96,7 @@
 	return TRUE
 
 /obj/item/assembly/infra/proc/trigger_beam()
-	if(!process_cooldown())
+	if(!COOLDOWN_FINISHED(src, next_activate))
 		return FALSE
 	pulse(0)
 	QDEL_LIST_NULL(i_beams) //They will get recreated next process() if the situation is still appropriate

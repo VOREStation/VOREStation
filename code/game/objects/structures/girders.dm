@@ -18,6 +18,7 @@
 	var/upgrading = FALSE
 	var/applies_material_colour = 1
 	var/wall_type = /turf/simulated/wall
+	rad_insulation = RAD_VERY_LIGHT_INSULATION
 
 /obj/structure/girder/Initialize(mapload, var/material_key)
 	. = ..()
@@ -42,9 +43,16 @@
 /obj/structure/girder/proc/radiate()
 	var/total_radiation = girder_material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
 	if(!total_radiation)
-		return
+		return FALSE
 
-	SSradiation.radiate(src, total_radiation)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = total_radiation
+	)
 	return total_radiation
 
 

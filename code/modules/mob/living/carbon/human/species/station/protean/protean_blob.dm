@@ -296,22 +296,15 @@
 		return ..()
 
 /mob/living/simple_mob/protean_blob/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(humanform)
 		return humanform.emp_act(severity, recursive)
-	else
-		return ..()
 
 /mob/living/simple_mob/protean_blob/ex_act(severity)
 	if(humanform)
 		return humanform.ex_act(severity)
-	else
-		return ..()
-
-/mob/living/simple_mob/protean_blob/rad_act(severity)
-	if(istype(loc, /obj/item/rig))
-		return	//Don't irradiate us while we're in rig mode
-	if(humanform)
-		return humanform.rad_act(severity)
 	else
 		return ..()
 

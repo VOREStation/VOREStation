@@ -115,7 +115,7 @@
 	if (lights_glowing)
 		add_overlay(emissive_appearance(icon, "[icon_state]-lights"))
 
-/obj/item/toy/plushie/borgplushie/drake/get_description_info()
+/obj/item/toy/plushie/borgplushie/drake/get_description_info(list/additional_information)
 	return "The lights on the plushie can be toggled [lights_glowing ? "off" : "on"] by alt-clicking on it."
 
 /obj/item/toy/plushie/borgplushie/drake/sec
@@ -507,7 +507,7 @@
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
+		if(!player.mind || SSantag_job.player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
 			continue
 		players += player.real_name
 

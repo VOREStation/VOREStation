@@ -104,7 +104,6 @@
 	var/cur_coils = 1 			// Current amount of installed coils
 	var/safeties_enabled = 1 	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = 0 			// If 1 critical failure has occured and SMES explosion is imminent.
-	var/datum/wires/smes/wires
 	var/grounding = 1			// Cut to quickly discharge, at cost of "minor" electrical issues in output powernet.
 	var/RCon = 1				// Cut to disable AI and remote control.
 	var/RCon_tag = "NO_TAG"		// RCON tag, change to show it on SMES Remote control console.
@@ -153,7 +152,7 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
-	wires = new /datum/wires/smes(src)
+	set_wires(new /datum/wires/smes(src))
 
 	// Allows for mapped-in SMESs with larger capacity/IO
 	if(mapload)
@@ -340,9 +339,14 @@
 		// Multitool - change RCON tag
 		if(istype(W, /obj/item/multitool))
 			var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system", "", MAX_NAME_LEN)
-			if(newtag)
-				RCon_tag = newtag
-				to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
+			if(!newtag)
+				return
+			for(var/obj/machinery/power/smes/buildable/smes in GLOB.smeses)
+				if(smes.RCon_tag == newtag)
+					to_chat(user, span_warning("The entered RCON tag [newtag] already exists. Aborting."))
+					return
+			RCon_tag = newtag
+			to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
 			return
 		// Charged above 1% and safeties are enabled.
 		if((charge > (capacity/100)) && safeties_enabled)

@@ -83,22 +83,22 @@
 
 
 /obj/machinery/power/am_control_unit/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			if(active)	toggle_power()
 			stability -= rand(15,30)
-		if(2)
+		if(EMP_MEDIUM)
 			if(active)	toggle_power()
 			stability -= rand(10,20)
-		if(3)
+		if(EMP_LIGHT)
 			if(active)	toggle_power()
 			stability -= rand(8,15)
-		if(4)
+		if(EMP_HARMLESS)
 			if(active)	toggle_power()
 			stability -= rand(5,10)
-	..()
-	return FALSE
-
 
 /obj/machinery/power/am_control_unit/ex_act(severity)
 	switch(severity)

@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	layer = MOB_LAYER + 0.1
 	var/integrity = 0
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
-	var/max_integrity = 30
+	max_integrity = 30
 	var/health_regen = 2 //how much health this blob regens when pulsed
 	var/pulse_timestamp = 0 //we got pulsed when?
 	var/heal_timestamp = 0 //we got healed when?
@@ -76,14 +76,16 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	else
 		. += overmind.blob_type.desc
 
-/obj/structure/blob/get_description_info()
+/obj/structure/blob/get_description_info(list/additional_information)
 	if(overmind)
 		return overmind.blob_type.effect_desc
 	return ..()
 
 /obj/structure/blob/emp_act(severity, recursive)
-	if(overmind)
-		overmind.blob_type.on_emp(src, severity)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !overmind)
+		return
+	overmind.blob_type.on_emp(src, severity)
 
 /obj/structure/blob/proc/pulsed()
 	if(pulse_timestamp <= world.time)

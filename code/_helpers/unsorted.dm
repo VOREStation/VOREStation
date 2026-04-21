@@ -7,13 +7,6 @@
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == 0)
 
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-	block( \
-		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-	)
-
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
 	return max(low,min(high,num))
@@ -342,8 +335,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newai.ogg')
+				play_simple_announcement(world, ANNOUNCER_MSG_NEW_AI)
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -1106,49 +1098,34 @@ GLOBAL_LIST_INIT(common_tools, list(
 /proc/reverse_direction(dir)
 	return GLOB.reverse_dir[dir]
 
-/*
-Checks if that loc and dir has a item on the wall
-TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana
-*/
-var/list/WALLITEMS = list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom, /obj/structure/frame,
-	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
-	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/structure/sign,
-	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/button/remote,
-	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio,
-	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
-	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
-	)
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
-			if(istype(O, item))
-				//Direction works sometimes
-				if(O.dir == dir)
-					return 1
+		if(O.flags & WALL_ITEM)
+			//Direction works sometimes
+			if(O.dir == dir)
+				return 1
 
-				//Some stuff doesn't use dir properly, so we need to check pixel instead
-				switch(dir)
-					if(SOUTH)
-						if(O.pixel_y > 10)
-							return 1
-					if(NORTH)
-						if(O.pixel_y < -10)
-							return 1
-					if(WEST)
-						if(O.pixel_x > 10)
-							return 1
-					if(EAST)
-						if(O.pixel_x < -10)
-							return 1
+			//Some stuff doesn't use dir properly, so we need to check pixel instead
+			switch(dir)
+				if(SOUTH)
+					if(O.pixel_y > 10)
+						return 1
+				if(NORTH)
+					if(O.pixel_y < -10)
+						return 1
+				if(WEST)
+					if(O.pixel_x > 10)
+						return 1
+				if(EAST)
+					if(O.pixel_x < -10)
+						return 1
 
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
-			if(istype(O, item))
-				if(O.pixel_x == 0 && O.pixel_y == 0)
-					return 1
+		if(O.flags & WALL_ITEM)
+			if(O.pixel_x == 0 && O.pixel_y == 0)
+				return 1
 	return 0
 
 /proc/topic_link(var/datum/D, var/arglist, var/content)
@@ -1636,3 +1613,59 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 			final_material_list[mat] = mat_per_item[index]
 		object.set_custom_materials(final_material_list, multiplier)
 		index += 1
+
+/proc/spiral_range(dist = 0, center = usr, orange = FALSE)
+	var/list/atom_list = list()
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return list()
+
+	if(!orange)
+		atom_list += t_center
+		atom_list += t_center.contents
+
+	if(!dist)
+		return atom_list
+
+
+	var/turf/checked_turf
+	var/y
+	var/x
+	var/c_dist = 1
+
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x + c_dist)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y - c_dist to y)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x - c_dist to x)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y + c_dist)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+		c_dist++
+
+	return atom_list

@@ -1241,7 +1241,9 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/disposable_teleporter/slime, \
 	/obj/item/slimepotion, \
 	/obj/item/slime_extract, \
-	/obj/item/reagent_containers/food/snacks/monkeycube
+	/obj/item/reagent_containers/food/snacks/monkeycube, \
+	/obj/item/anomaly_releaser, \
+	/obj/item/research_sample
 
 #define CIRCUIT_GRIPPER \
 	/obj/item/cell/device, \
@@ -1287,6 +1289,9 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/spacecasinocash, \
 	/obj/item/spacecasinocash_fake, \
 	/obj/item/hand, \
+	/obj/item/pen, \
+	/obj/item/leash, \
+	/obj/item/paper, \
 	/obj/item/a_gift
 
 #define ORGAN_GRIPPER \

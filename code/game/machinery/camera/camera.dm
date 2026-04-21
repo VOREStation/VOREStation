@@ -20,9 +20,6 @@
 
 	var/toughness = 5 //sorta fragile
 
-	// WIRES
-	var/datum/wires/camera/wires = null // Wires datum
-
 	//OTHER
 
 	var/view_range = 7
@@ -41,13 +38,13 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
-	wires = new(src)
+	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
 	LAZYOR(client_huds, GLOB.global_hud.whitense)
 
 	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
 			to_world_log("[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
@@ -93,6 +90,9 @@
 	return
 
 /obj/machinery/camera/emp_act(severity, recursive, forced)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!isEmpProof() && (forced || prob(100/severity)))
 		if(!affected_by_emp_until || (world.time > affected_by_emp_until))
 			affected_by_emp_until = max(affected_by_emp_until, world.time + (90 SECONDS / severity))
@@ -132,7 +132,7 @@
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
 	src.view_range = num
-	cameranet.updateVisibility(src, 0)
+	GLOB.cameranet.updateVisibility(src, 0)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if(!istype(user))
@@ -173,7 +173,7 @@
 	else if((W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/multitool)) && panel_open)
 		interact(user)
 
-	else if(W.has_tool_quality(TOOL_WELDER) && (wires.CanDeconstruct() || (stat & BROKEN)))
+	else if(W.has_tool_quality(TOOL_WELDER) && (wires.is_all_cut() || (stat & BROKEN)))
 		if(weld(W, user))
 			if(assembly)
 				assembly.loc = src.loc
@@ -465,12 +465,12 @@
 		var/list/open_networks = difflist(network, GLOB.restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary
 		if(on_open_network && !open_networks.len)
-			cameranet.removeCamera(src)
+			GLOB.cameranet.removeCamera(src)
 		else if(!on_open_network && open_networks.len)
 			on_open_network = 1
-			cameranet.addCamera(src)
+			GLOB.cameranet.addCamera(src)
 	else
-		cameranet.updateVisibility(src, 0)
+		GLOB.cameranet.updateVisibility(src, 0)
 
 // Resets the camera's wires to fully operational state. Used by one of Malfunction abilities.
 /obj/machinery/camera/proc/reset_wires()

@@ -60,40 +60,30 @@ GLOBAL_VAR_INIT(send_emergency_team, 0) // Used for automagic response teams; 'a
 
 GLOBAL_VAR_INIT(ert_base_chance, 10) // Default base chance. Will be incremented by increment ERT chance.
 GLOBAL_VAR(can_call_ert)
-GLOBAL_VAR_INIT(silent_ert, 0)
+GLOBAL_VAR_INIT(silent_ert, FALSE)
 
-/client/proc/response_team()
-	set name = "Dispatch Emergency Response Team"
-	set category = "Fun.Event Kit"
-	set desc = "Send an emergency response team to the station"
-
-	if(!check_rights_for(src, R_HOLDER))
-		to_chat(usr, span_danger("Only administrators may use this command."))
-		return
-	if(!SSticker)
-		to_chat(usr, span_danger("The game hasn't started yet!"))
-		return
-	if(SSticker.current_state == 1)
-		to_chat(usr, span_danger("The round hasn't started yet!"))
+ADMIN_VERB(response_team, R_ADMIN|R_MOD|R_EVENT, "Dispatch Emergency Response Team", "Send an emergency response team to the station.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		to_chat(user, span_danger("The round hasn't started yet!"))
 		return
 	if(GLOB.send_emergency_team)
-		to_chat(usr, span_danger("[using_map.boss_name] has already dispatched an emergency response team!"))
+		to_chat(user, span_danger("[using_map.boss_name] has already dispatched an emergency response team!"))
 		return
-	if(tgui_alert(usr, "Do you want to dispatch an Emergency Response Team?","ERT",list("Yes","No")) != "Yes")
+	if(tgui_alert(user, "Do you want to dispatch an Emergency Response Team?", "ERT", list("Yes","No")) != "Yes")
 		return
-	if(tgui_alert(usr, "Do you want this Response Team to be announced?","ERT",list("Yes","No")) != "Yes")
-		GLOB.silent_ert = 1
+	if(tgui_alert(user, "Do you want this Response Team to be announced?", "ERT", list("Yes","No")) != "Yes")
+		GLOB.silent_ert = TRUE
 	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
-		if(tgui_alert(usr, "The station is not in red alert. Do you still want to dispatch a response team?","ERT",list("Yes","No")) != "Yes")
+		if(tgui_alert(user, "The station is not in red alert. Do you still want to dispatch a response team?", "ERT", list("Yes","No")) != "Yes")
 			return
 	if(GLOB.send_emergency_team)
-		to_chat(usr, span_danger("Looks like somebody beat you to it!"))
+		to_chat(user, span_danger("Looks like somebody beat you to it!"))
 		return
 
-	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
-	admin_chat_message(message = "[key_name(usr)] is dispatching an Emergency Response Team", color = "#CC2222") //VOREStation Add
-	log_admin("[key_name(usr)] used Dispatch Response Team.")
-	trigger_armed_response_team(1)
+	message_admins("[key_name_admin(user)] is dispatching an Emergency Response Team.")
+	admin_chat_message(message = "[key_name(user)] is dispatching an Emergency Response Team", color = "#CC2222")
+	log_admin("[key_name(user)] used Dispatch Response Team.")
+	trigger_armed_response_team(TRUE)
 
 /client/verb/JoinResponseTeam()
 
@@ -178,11 +168,11 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
-		command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]", ANNOUNCER_MSG_STRIKETEAM_FAIL)
 		GLOB.can_call_ert = 0 // Only one call per round, ladies.
 		return
 	if(GLOB.silent_ert == 0)
-		command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]", ANNOUNCER_MSG_STRIKETEAM_SUCCESS)
 
 	GLOB.can_call_ert = 0 // Only one call per round, gentleman.
 	GLOB.send_emergency_team = 1

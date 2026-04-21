@@ -2,7 +2,6 @@
 	name = "flashbang"
 	icon_state = "flashbang"
 	item_state = "flashbang"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	var/max_range = 10 //The maximum range possible, including species effect mods. Cuts off at 7 for normal humans. Should be 3 higher than your intended target range for affecting normal humans.
 	var/banglet = 0
 
@@ -28,6 +27,9 @@
 	qdel(src)
 
 /obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+	if(M.is_incorporeal())
+		return
+
 	to_chat(M, span_danger("BANG"))						// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(src, 'sound/effects/bang.ogg', 50, 1, 30)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph

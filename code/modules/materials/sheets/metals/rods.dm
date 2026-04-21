@@ -10,7 +10,7 @@
 	throw_range = 20
 	drop_sound = 'sound/items/drop/metalweapon.ogg'
 	pickup_sound = 'sound/items/pickup/metalweapon.ogg'
-	matter = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2)
+	matter = list(MAT_STEEL = REAGENTS_PER_ROD)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
@@ -28,7 +28,7 @@
 
 /obj/item/stack/rods/Initialize(mapload)
 	. = ..()
-	recipes = rods_recipes
+	recipes = GLOB.rods_recipes
 	update_icon()
 
 /obj/item/stack/rods/update_icon()

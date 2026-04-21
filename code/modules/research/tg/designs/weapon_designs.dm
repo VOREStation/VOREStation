@@ -56,6 +56,39 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/caselessrifle_prototype
+	name = "Caseless Rifle"
+	id = "caselessrifle"
+	materials = list(MAT_STEEL = 7000, MAT_TITANIUM = 4000)
+	build_path = /obj/item/gun/projectile/caseless/prototype
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/caselessrifle_ammo
+	name = "Caseless Ammo"
+	id = "caselessrifle_ammo"
+	materials = list(MAT_PHORON = 10000, MAT_STEEL = 4000)
+	build_path = /obj/item/ammo_magazine/m5mmcaseless
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/caselessrifle_ammo_stun
+	name = "Caseless Ammo - Stun"
+	id = "caselessrifle_ammo_stun"
+	materials = list(MAT_PHORON = 10000, MAT_STEEL = 4000)
+	build_path = /obj/item/ammo_magazine/m5mmcaseless/stun
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
 /datum/design_techweb/lasercannon
 	name = "Laser Cannon"
 	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
@@ -68,6 +101,20 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+
+/*
+/datum/design_techweb/cyrogun
+	name = "Cryo Gun"
+	desc = "An improperly researched and poorly built weapon, specialized in utlizing frost offensively.."
+	id = "cryogun"
+	materials = list(MAT_GLASS = 3000, MAT_MORPHIUM = 4000, MAT_DURASTEEL = 6000, MAT_LEAD = 6000, MAT_METALHYDROGEN = 3000)
+	build_path = /obj/item/gun/energy/freezegun
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
 
 /datum/design_techweb/decloner
 	name = "Decloner"
@@ -132,46 +179,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
-// Ballistic ammo
-/datum/design_techweb/ammo_9mmAdvanced
-	name = "9mm magazine"
-	id = "ammo_9mm"
-	desc = "A 21 round magazine for an advanced 9mm SMG."
-	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3750, MAT_SILVER = 100) // Requires silver for proprietary magazines! Or something.
-	build_path = /obj/item/ammo_magazine/m9mmAdvanced
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/stunshell
-	name = "stun shells"
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/empshell
-	name = "emp shells"
-	desc = "An electromagnetic shell for a shotgun."
-	id = "empshell"
-	// req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_URANIUM = 1000)
-	build_path = /obj/item/ammo_magazine/ammo_box/b12g/emp
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
 // Other weapons
 /datum/design_techweb/rapidsyringe
 	name = "Rapid Syringe Gun"
@@ -204,7 +211,7 @@
 	id = "chemsprayer"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = 5000, MAT_STEEL = 2000)
 	build_path = /obj/item/reagent_containers/spray/chemsprayer
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -376,6 +383,19 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000)
 	build_path = /obj/item/gun/energy/netgun/shrink
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/bola_gun
+	name = "Bola Blaster"
+	desc  = "The \"Bola Blaster\" is an energy net projector designed to immobilize humanoid creatures."
+	id = "bolablaster"
+	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
+	build_path = /obj/item/gun/energy/bolagun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
@@ -900,7 +920,6 @@
 	id = "riflescope"
 	// req_tech = list(TECH_ILLEGAL = 2, TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 	build_path = /obj/item/binoculars/scope
 	category = list(
@@ -913,7 +932,6 @@
 	id = "slimebaton"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_POWER = 3, TECH_COMBAT = 3)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 5000)
 	build_path = /obj/item/melee/baton/slime
 	category = list(
@@ -925,7 +943,6 @@
 	name = "Slime Taser"
 	id = "slimetaser"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 3, TECH_POWER = 4, TECH_COMBAT = 4)
-	build_type = PROTOLATHE
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 5000)
 	build_path = /obj/item/gun/energy/taser/xeno
@@ -940,10 +957,206 @@
 	id = "monkey_gun"
 	// req_tech = list(TECH_BIO = 6, TECH_BLUESPACE = 5)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 3500, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500)
 	build_path = /obj/item/xenobio/monkey_gun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/knuckledusters
+	name = "knuckle dusters"
+	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
+	id = "knuckledusters"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 625)
+	build_path = /obj/item/clothing/accessory/knuckledusters
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/tacknife
+	name = "tactical knife"
+	desc = "A steel knife made for combat."
+	id = "tacknife"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 800)
+	build_path = /obj/item/material/knife/tacknife
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/* Unbalanced material weapons
+/datum/design_techweb/claymore
+	name = "claymore"
+	desc = "A very large sword."
+	id = "claymore"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 10000)
+	build_path = /obj/item/material/sword
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/gladius
+	name = "gladius"
+	desc = "An ancient short sword, designed to stab and cut."
+	id = "gladius"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 5000)
+	build_path = /obj/item/material/sword/gladius
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/katana
+	name = "katana"
+	desc = "An ancient short sword, designed to slice and dice."
+	id = "katana"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 6000)
+	build_path = /obj/item/material/sword/katana
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/rapier
+	name = "rapier"
+	desc = "A slender, fancy and sharply pointed sword."
+	id = "rapier"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 6000)
+	build_path = /obj/item/material/sword/rapier
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/sabre
+	name = "sabre"
+	desc = "A sharp curved sword, a favored weapon of pirates far in the past."
+	id = "sabre"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 7400)
+	build_path = /obj/item/material/sword/sabre
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/longsword
+	name = "longsword"
+	desc = "a more elegant weapon from a more civilised age"
+	id = "longsword"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 8000)
+	build_path = /obj/item/material/twohanded/longsword
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+// has no wielded sprite
+/datum/design_techweb/battleaxe
+	name = "battleaxe"
+	desc = "A one handed battle axe, still a deadly weapon."
+	id = "battleaxe"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = 7000)
+	build_path = /obj/item/material/sword/battleaxe
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
+
+/datum/design_techweb/anomaly_gun
+	name = "Handheld Anomalous Particle Releaser"
+	id = "anom_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500, MAT_URANIUM = 1500)
+	build_path = /obj/item/gun/energy/anomaly
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+//Standalone photon rifle. Not unlockable for now.
+/datum/design_techweb/photon_rifle
+	name = "Photon Rifle"
+	id = "ghost_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 8000, MAT_PHORON = 8000, MAT_DIAMOND = 6000, MAT_VERDANTIUM = 6000) //Expensive.
+	build_path = /obj/item/ghost_catcher
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/photon_pack
+	name = "Proton Pack"
+	id = "ghost_pack"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_PHORON = 4000, MAT_DIAMOND = 2000, MAT_VERDANTIUM = 2000) //Expensive.
+	build_path = /obj/item/proton_pack
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/spectral_trap
+	name = "Spectral Trap"
+	id = "ghost_trap"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_PHORON = 1000, MAT_DIAMOND = 500)
+	build_path = /obj/item/ghost_trap
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+
+/datum/design_techweb/advanced_emf
+	name = "Advanced EMF Reader"
+	id = "ghost_emf"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/entrepreneur/emf/professional
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/spectral_goggles
+	name = "Spectral Goggles"
+	id = "ghost_goggles"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_PHORON = 2000, MAT_DIAMOND = 500) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/clothing/glasses/ghost
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

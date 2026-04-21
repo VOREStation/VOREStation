@@ -97,7 +97,7 @@
 			. += "It is full."
 
 	if(!opened && isobserver(user))
-		. += "It contains: [counting_english_list(contents)]"
+		. += "It contains: [counting_english_list(user.client, contents)]"
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
@@ -538,6 +538,9 @@
 	M.Multiply(matrix(cos(angle), 0, 0, -sin(angle) * closet_appearance.door_anim_squish, 1, 0))
 	M.Translate(closet_appearance.door_hinge, 0)
 	return M
+
+/obj/structure/closet/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 //verb to eat people in the same closet as yourself
 

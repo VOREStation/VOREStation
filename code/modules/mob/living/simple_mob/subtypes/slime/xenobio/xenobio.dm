@@ -320,7 +320,7 @@
 
 	return results
 
-/mob/living/simple_mob/slime/xenobio/get_description_info()
+/mob/living/simple_mob/slime/xenobio/get_description_info(list/additional_information)
 	var/list/lines = list()
 	var/intro_line = "Slimes are generally the test subjects of Xenobiology, with different colors having different properties.  \
 	They can be extremely dangerous if not handled properly."
@@ -331,7 +331,7 @@
 	for(var/potential_color in slime_mutation)
 		var/mob/living/simple_mob/slime/S = potential_color
 		rewards.Add(initial(S.slime_color))
-	var/reward_line = "This color of slime can mutate into [english_list(rewards)] colors, when it reproduces.  It will do so when it has eatten enough."
+	var/reward_line = "This color of slime can mutate into [english_list(rewards)] colors, when it reproduces. It will do so when it has eatten enough."
 	lines.Add(reward_line)
 	lines.Add(null)
 

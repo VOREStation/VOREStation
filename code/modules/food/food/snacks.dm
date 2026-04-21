@@ -3760,7 +3760,7 @@
 	icon_state = "buche"
 	slice_path = /obj/item/reagent_containers/food/snacks/bucheslice
 	slices_num = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 20
 	nutriment_desc = list("spongy cake" = 20)
 	bitesize = 3
@@ -3787,7 +3787,7 @@
 	icon_state = "turkey"
 	slice_path = /obj/item/reagent_containers/food/snacks/turkeyslice
 	slices_num = 6
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 20
 	nutriment_desc = list("turkey" = 20)
 	bitesize = 5
@@ -3815,7 +3815,7 @@
 	icon_state = "roastturkey"
 	slice_path = /obj/item/reagent_containers/food/snacks/turkeyslice
 	slices_num = 6
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 20
 	nutriment_desc = list("turkey" = 20)
 	bitesize = 5
@@ -3862,7 +3862,7 @@
 	nutriment_amt = 48
 	nutriment_desc = list("pure power" = 48)
 	bitesize = 12
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/reagent_containers/food/snacks/sliceable/suppermatter/Initialize(mapload)
 	. = ..()
@@ -3890,7 +3890,7 @@
 	nutriment_amt = 60
 	nutriment_desc = list("pure, indescribable power" = 60)
 	bitesize = 12
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/reagent_containers/food/snacks/sliceable/excitingsuppermatter/Initialize(mapload)
 	. = ..()
@@ -4403,6 +4403,13 @@
 		qdel(W)
 		qdel(src)
 
+	// Bun + burgerpatty = beefburger
+	else if(istype(W,/obj/item/reagent_containers/food/snacks/burgerpatty))
+		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
+		to_chat(user, "You make a burger.")
+		qdel(W)
+		qdel(src)
+
 	// Bun + sausage = hotdog
 	else if(istype(W,/obj/item/reagent_containers/food/snacks/sausage))
 		new /obj/item/reagent_containers/food/snacks/hotdog(src)
@@ -4481,6 +4488,19 @@
 /obj/item/reagent_containers/food/snacks/cutlet/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 2)
+
+/obj/item/reagent_containers/food/snacks/burgerpatty
+	name = "burger patty"
+	desc = "A perfectly grilled quarter-pounder burger patty. It's probably beef."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "burgerpatty"
+	bitesize = 3
+	center_of_mass_x = 17
+	center_of_mass_y = 20
+
+/obj/item/reagent_containers/food/snacks/burgerpatty/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 3)
 
 /obj/item/reagent_containers/food/snacks/rawmeatball
 	name = "raw meatball"
@@ -6549,7 +6569,7 @@
 	icon_state = "admint_pack"
 	item_state = "candy"
 	slot_flags = SLOT_EARS
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/reagent_containers/food/snacks/mint/admints = 6)
 	can_hold = list(/obj/item/reagent_containers/food/snacks/mint/admints)
 	use_sound = 'sound/items/drop/paper.ogg'
@@ -6665,7 +6685,7 @@
 	trash = /obj/item/trash/candy/cb01
 	nutriment_amt = 4
 	nutriment_desc = list("stale chocolate" = 2, "nougat" = 1, "caramel" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb01/Initialize(mapload)
@@ -6682,7 +6702,7 @@
 	trash = /obj/item/trash/candy/cb02
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "caramel" = 1, "puffed rice" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb02/Initialize(mapload)
@@ -6699,7 +6719,7 @@
 	trash = /obj/item/trash/candy/cb03
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 4)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb03/Initialize(mapload)
@@ -6716,7 +6736,7 @@
 	trash = /obj/item/trash/candy/cb04
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "salt = 1", "licorice" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb04/Initialize(mapload)
@@ -6733,7 +6753,7 @@
 	trash = /obj/item/trash/candy/cb05
 	nutriment_amt = 3
 	nutriment_desc = list("milk chocolate" = 2)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb05/Initialize(mapload)
@@ -6750,7 +6770,7 @@
 	trash = /obj/item/trash/candy/cb06
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, REAGENT_ID_COFFEE = 1, "vanilla wafer" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb06/Initialize(mapload)
@@ -6768,7 +6788,7 @@
 	trash = /obj/item/trash/candy/cb07
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "taro" = 2)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb07/Initialize(mapload)
@@ -6785,7 +6805,7 @@
 	trash = /obj/item/trash/candy/cb08
 	nutriment_amt = 3
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "malt puffs" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb08/Initialize(mapload)
@@ -6802,7 +6822,7 @@
 	trash = /obj/item/trash/candy/cb09
 	nutriment_amt = 6
 	nutriment_desc = list("peanuts" = 3, "condensed milk" = 1, "cashews" = 2)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb09/Initialize(mapload)
@@ -6821,7 +6841,7 @@
 	trash = /obj/item/trash/candy/cb10
 	nutriment_amt = 5
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "caramel" = 1, "peanuts" = 1, "nougat" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb10/Initialize(mapload)

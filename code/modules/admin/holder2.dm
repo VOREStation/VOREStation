@@ -32,6 +32,10 @@ GLOBAL_PROTECT(href_token)
 	var/datum/filter_editor/filteriffic
 	var/datum/particle_editor/particle_test
 	var/datum/whitelist_editor/whitelist_editor
+	var/datum/spawn_menu/spawn_menu
+	var/datum/spawnpanel/spawn_panel
+
+	var/datum/access_viewer/access_view_menu
 
 	/// A lazylist of tagged datums, for quick reference with the View Tags verb
 	var/list/tagged_datums
@@ -65,6 +69,8 @@ GLOBAL_PROTECT(href_token)
 	if(IsAdminAdvancedProcCall())
 		alert_to_permissions_elevation_attempt(usr)
 		return QDEL_HINT_LETMELIVE
+	if(faxreply)
+		qdel(faxreply)
 	. = ..()
 
 /datum/admins/proc/activate()

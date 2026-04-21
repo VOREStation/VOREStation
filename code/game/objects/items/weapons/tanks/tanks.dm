@@ -621,6 +621,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	desc = "Used as a stand in to trigger single tank assemblies... but you shouldn't see this."
 	var/obj/item/tank/tank = null
 	var/obj/item/assembly_holder/assembly = null
+	item_flags = ABSTRACT
 
 
 /obj/item/tankassemblyproxy/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.

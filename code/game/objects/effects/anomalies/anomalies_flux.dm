@@ -61,3 +61,24 @@
 
 /obj/effect/anomaly/flux/minor/Initialize(mapload, new_lifespan, emp_zap = FLUX_NO_EMP)
 	return ..()
+
+/obj/effect/anomaly/flux/anomalyPulse()
+	if(!..())
+		return
+	switch(stats.severity)
+		if(0 to 15)
+			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+			sparks.set_up(3, 1, src)
+			sparks.start()
+		if(16 to 33)
+			tesla_zap(src, 2, 1000, FALSE, FALSE, current_jumps = 1) //Can't chain jumps.
+		if(34 to 65)
+			tesla_zap(src, 3, 1000, FALSE, FALSE, current_jumps = 1)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 3, 1500, FALSE, FALSE), 3 SECONDS)
+		else
+			tesla_zap(src, 4, 1000, FALSE, TRUE, current_jumps = 1)
+			addtimer(CALLBACK(src, PROC_REF(highSevPulse)), 3 SECONDS)
+
+/obj/effect/anomaly/flux/proc/highSevPulse(power, explosive, current_jumps)
+	tesla_zap(src, 4, 1250, FALSE, FALSE, current_jumps = 1)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1500, FALSE, FALSE), 3 SECONDS)

@@ -67,6 +67,10 @@
 	network = list(NETWORK_THUNDER)
 	density = FALSE
 	circuit = null
+	flags = WALL_ITEM
+
+/obj/machinery/computer/security/telescreen/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
+	return proximity_flag
 
 GLOBAL_LIST_EMPTY(entertainment_screens)
 /obj/machinery/computer/security/telescreen/entertainment
@@ -119,6 +123,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	vis_contents.Cut()
 	QDEL_NULL(pinboard)
 	QDEL_NULL(radio)
+	showing = null
 	return ..()
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/toggle()

@@ -112,6 +112,8 @@
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
+
 /mob/living/simple_mob/animal/sif/leech/get_status_tab_items()
 	. = ..()
 	. += "Chemicals: [chemicals]"

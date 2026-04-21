@@ -105,6 +105,7 @@
 	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	QDEL_NULL(cam_background)
+	local_skybox = null
 	return ..()
 
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -486,7 +487,7 @@
 					owner.species.deform = owner.species.get_icobase(get_deform = TRUE)
 					owner.species.vanity_base_fit = new_species
 					if(istype(owner.species, /datum/species/shapeshifter)) //TODO: See if this is still needed.
-						wrapped_species_by_ref["\ref[owner]"] = new_species
+						GLOB.wrapped_species_by_ref["\ref[owner]"] = new_species
 					owner.regenerate_icons()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -1139,6 +1140,7 @@
 	if(DC)
 		DC.selected_record = FALSE
 		DC.designer_gui = null // no hardrefs
+	linked_body_design_console = null
 	. = ..()
 
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()

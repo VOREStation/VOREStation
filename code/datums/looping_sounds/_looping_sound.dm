@@ -86,7 +86,9 @@
 		stop()
 		return
 	if(!chance || prob(chance))
-		play(get_sound(starttime))
+		var/soundfile = get_sound(starttime)
+		if(soundfile)
+			play(soundfile)
 	if(!timerid)
 		timerid = addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), mid_length, TIMER_STOPPABLE | TIMER_LOOP)
 

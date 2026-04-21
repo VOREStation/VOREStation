@@ -36,8 +36,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
 
-		if(GLOB.emergency_shuttle.evac)
-			var/ETA = GLOB.emergency_shuttle.get_status_panel_eta()
+		if(SSemergency_shuttle.evac)
+			var/ETA = SSemergency_shuttle.get_status_panel_eta()
 			if(ETA)
 				global_data += "[ETA]"
 
@@ -240,7 +240,7 @@ SUBSYSTEM_DEF(statpanels)
 #endif
 	for(var/datum/controller/subsystem/sub_system as anything in Master.subsystems)
 		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
-	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [length(global.cameranet.cameras)] | Chunks: [length(global.cameranet.chunks)]", "\ref[global.cameranet]")
+	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [length(GLOB.cameranet.cameras)] | Chunks: [length(GLOB.cameranet.chunks)]", "\ref[GLOB.cameranet]")
 
 ///immediately update the active statpanel tab of the target client
 /datum/controller/subsystem/statpanels/proc/immediate_send_stat_data(client/target)

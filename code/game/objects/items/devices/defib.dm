@@ -14,7 +14,6 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 
 	var/obj/item/shockpaddles/linked/paddle_path = /obj/item/shockpaddles/linked
 	var/obj/item/cell/bcell = null
@@ -137,7 +136,6 @@
 	item_state = "defibcompact"
 	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
 
 /obj/item/defib_kit/compact/loaded
 	bcell = /obj/item/cell/high
@@ -515,6 +513,9 @@
 		return 1
 
 /obj/item/shockpaddles/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/new_safety = rand(0, 1)
 	if(safety != new_safety)
 		safety = new_safety
@@ -525,7 +526,6 @@
 			make_announcement("beeps, \"Safety protocols disabled!\"", "warning")
 			playsound(src, 'sound/machines/defib_safetyoff.ogg', 50, 0)
 		update_icon()
-	..()
 
 /obj/item/shockpaddles/robot
 	name = "defibrillator paddles"
@@ -575,6 +575,9 @@
 /obj/item/shockpaddles/standalone
 	desc = "A pair of shockpaddles powered by an experimental miniaturized reactor" //Inspired by the advanced e-gun
 	var/fail_counter = 0
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/shockpaddles/standalone/Destroy()
 	. = ..()
@@ -585,17 +588,32 @@
 	return 1
 
 /obj/item/shockpaddles/standalone/checked_use(var/charge_amt)
-	SSradiation.radiate(src, charge_amt/12) //just a little bit of radiation. It's the price you pay for being powered by magic I guess
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 50
+	)
 	return 1
 
 /obj/item/shockpaddles/standalone/process()
 	if(fail_counter > 0)
-		SSradiation.radiate(src, fail_counter--)
+		radiation_pulse(
+			src,
+			max_range = 5,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			strength = 15
+		)
+		fail_counter--
 	else
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/shockpaddles/standalone/emp_act(severity, recursive)
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/new_fail = 0
 	switch(severity)
 		if(1)

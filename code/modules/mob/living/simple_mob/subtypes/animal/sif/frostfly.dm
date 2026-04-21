@@ -79,6 +79,8 @@
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
+	ADD_TRAIT(src, TRAIT_AMBIENT_PEST_MOB, ROUNDSTART_TRAIT)
+
 /datum/say_list/frostfly
 	speak = list("Zzzz.", "Kss.", "Zzt?")
 	emote_see = list("flutters its wings","looks around", "rubs its mandibles")

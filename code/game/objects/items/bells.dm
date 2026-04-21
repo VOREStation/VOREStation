@@ -5,7 +5,7 @@
 	icon_state = "deskbell"
 	force = 2
 	throwforce = 2
-	w_class = 2.0
+	w_class = ITEMSIZE_SMALL
 	matter = list(MAT_STEEL = 50)
 	var/broken
 	attack_verb = list("annoyed")

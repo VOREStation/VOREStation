@@ -4,9 +4,9 @@
 	endWhen = 3
 
 /datum/event/ianstorm/announce()
-	command_announcement.Announce("It has come to our attention that the [using_map.facility_type] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert", 'sound/AI/ian_storm.ogg')
+	GLOB.command_announcement.Announce("It has come to our attention that the [using_map.facility_type] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert", ANNOUNCER_MSG_IANSTORM)
 	spawn(7 SECONDS)
-		command_announcement.Announce("Wait. No, that's wrong. The [using_map.facility_type] passed through an IAN storm!.", "Ian Alert")
+		GLOB.command_announcement.Announce("Wait. No, that's wrong. The [using_map.facility_type] passed through an IAN storm!.", "Ian Alert")
 
 /datum/event/ianstorm/start()
 	spawn()

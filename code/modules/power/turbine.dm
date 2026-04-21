@@ -68,15 +68,15 @@
 	name = T_BOARD("power compressor")
 	build_path = /obj/machinery/compressor
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/manipulator = 6)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/machine/power_turbine
 	name = T_BOARD("power turbine")
 	build_path = /obj/machinery/power/turbine
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 4)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/capacitor = 6)
+	hidden = TRUE // todo - Make properly constructable in round
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Compressor
@@ -273,45 +273,41 @@
 	if(lastgen > 100)
 		add_overlay(image('icons/obj/pipes.dmi', "turb-o", FLY_LAYER))
 
-	updateDialog()
-
 /obj/machinery/power/turbine/attack_hand(var/mob/user as mob)
 	if((. = ..()))
 		return
-	src.interact(user)
+	tgui_interact(user)
 
-/obj/machinery/power/turbine/interact(mob/user)
-	if(!Adjacent(user)  || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
-		user.unset_machine(src)
-		user << browse(null, "window=turbine")
+/obj/machinery/power/turbine/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	. = ..()
+	if(!Adjacent(user) && !issilicon(user))
 		return
-	user.set_machine(src)
-
-	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
-	t += "Generated power : [DisplayPower(lastgen)]<BR><BR>"
-	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
-	t += "Starter: [ compressor.starter ? "<A href='byond://?src=\ref[src];str=1'>Off</A> " + span_bold("On") : span_bold("Off") + " <A href='byond://?src=\ref[src];str=1'>On</A>"]"
-	t += "</PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
-	t += "</TT>"
-	var/datum/browser/popup = new(user, "turbine", name, 700, 500, src)
-	popup.set_content(t)
-	popup.open()
-
-	return
-
-/obj/machinery/power/turbine/Topic(href, href_list)
-	if(..())
+	if(stat & (BROKEN|NOPOWER))
 		return
 
-	if(href_list["close"])
-		usr << browse(null, "window=turbine")
-		usr.unset_machine(src)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Turbine", name)
+		ui.open()
+
+/obj/machinery/power/turbine/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	return list(
+		"display_power" = lastgen,
+		"turbine_rpm" = compressor?.rpm,
+		"starter" = compressor?.starter
+	)
+
+/obj/machinery/power/turbine/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
 		return
-	else if(href_list["str"])
-		if(compressor)
+
+	switch(action)
+		if("start_stop")
+			if(!compressor)
+				return FALSE
 			compressor.starter = !compressor.starter
-	updateDialog()
-
+			return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Turbine Computer
@@ -332,7 +328,7 @@
 			compressor = C
 	LAZYINITLIST(doors)
 	for(var/obj/machinery/door/blast/P in GLOB.machines)
-		if(P.id == id)
+		if(P.id == id) //This will never work because the ID on the blast doors is a number while the ID on the turbine (if set mid-round) is a string.
 			doors += P
 
 /obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)

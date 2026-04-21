@@ -224,6 +224,9 @@
 		return 1
 
 /obj/structure/closet/crate/secure/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(!broken && !opened  && prob(50/severity))
 		if(!locked)
 			locked = TRUE
@@ -235,9 +238,8 @@
 			open()
 		else
 			req_access = list()
-			req_access += pick(get_all_station_access())
+			req_access += pick(SSaccess.get_all_station_access())
 	update_icon()
-	..()
 
 /obj/structure/closet/crate/plastic
 	name = "plastic crate"

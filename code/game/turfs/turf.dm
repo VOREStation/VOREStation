@@ -26,6 +26,7 @@
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
+	var/dig_exhaustion_chance = 60 // Chance that the digging loot will be exhausted, if set to TURF_DIG_LOOT_EXHAUSTED then the turf is exhausted of loot. if set to TURF_DIG_LOOT_ENDLESS it will never run out.
 
 	var/list/decals
 
@@ -110,6 +111,9 @@
 	if(Be)
 		Be.multiz_turf_new(src, UP)
 
+	if(uses_integrity)
+		atom_integrity = max_integrity
+
 /turf/Destroy()
 	if (!changing_turf)
 		stack_trace("Improper turf qdel. Do not qdel turfs directly.")
@@ -161,7 +165,12 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
-/turf/attackby(obj/item/W as obj, mob/user as mob)
+/turf/attackby(obj/item/W, mob/user)
+	// Check if this turf can be dug up, check initial because we remove the flag when we've exhausted all loot, but still want to keep dig functionality
+	if((flags & TURF_CAN_DIG_SHOVEL) && !density && istype(W, /obj/item/shovel))
+		handle_turf_dig(user, W)
+		return TRUE
+	// Collect objects on turf if the bag supports scooping stuff up
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup && S.collection_mode)

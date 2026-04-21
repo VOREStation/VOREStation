@@ -24,7 +24,6 @@
 	var/toolmode = MULTITOOL_MODE_STANDARD
 	var/list/modes = list(MULTITOOL_MODE_STANDARD, MULTITOOL_MODE_INTCIRCUITS)
 
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 	var/obj/machinery/clonepod/connecting //same for cryopod linkage
 	var/obj/machinery/connectable	//Used to connect machinery.
@@ -99,4 +98,10 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool"
 	toolspeed = 0.1
-	origin_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 5)
+
+// Alien multitool only has those icon states
+/obj/item/multitool/alien/update_icon()
+	if(accepting_refs)
+		icon_state = "multitool_ref_scan"
+		return
+	icon_state = "multitool"

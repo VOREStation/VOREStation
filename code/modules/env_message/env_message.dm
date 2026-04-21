@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 	if(!istype(src) || !get_turf(src) || !src.ckey)
 		return
 
-	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message", MAX_MESSAGE_LEN)
+	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message", max_length = MAX_MESSAGE_LEN)
 
 	if(!new_message)
 		return
@@ -121,60 +121,44 @@ GLOBAL_LIST_EMPTY(env_messages)
 	icon = 'icons/effects/env_message.dmi'
 	icon_state = "env_message_red"
 
-/client/proc/create_gm_message()
-	set name = "Map Message - Create"
-	set desc = "Create an ooc message in the environment for other players to see."
-	set category = "Fun.Event Kit"
-
-	if(!check_rights(R_FUN))
+ADMIN_VERB(create_gm_message, R_FUN, "Map Message - Create", "Create an ooc message in the environment for other players to see.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/mob/user_mob = user.mob
+	if(isnewplayer(user_mob))
+		to_chat(user, span_warning("You must spawn or observe to place messages."))
 		return
 
-	if(isnewplayer(mob))
-		to_chat(src, span_warning("You must spawn or observe to place messages."))
+	if(!get_turf(user_mob))
 		return
 
-	if(!get_turf(mob) || !src.ckey)
-		return
-
-	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message", "", MAX_MESSAGE_LEN)
+	var/new_message = tgui_input_text(user, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message", "", MAX_MESSAGE_LEN)
 
 	if(!new_message)
 		return
 
-	var/ourturf = get_turf(mob)
+	var/ourturf = get_turf(user_mob)
 
-	var/obj/effect/env_message/EM = locate(/obj/effect/env_message) in ourturf
+	var/obj/effect/env_message/new_env_message = locate(/obj/effect/env_message) in ourturf
 
-	if(!EM)
-		EM = new /obj/effect/env_message/admin(ourturf)
-	EM.add_message(src.ckey, new_message)
+	if(!new_env_message)
+		new_env_message = new /obj/effect/env_message/admin(ourturf)
+	new_env_message.add_message(user.ckey, new_message)
 
-	log_game("[key_name(src)] created an Env Message: [new_message] at ([EM.x], [EM.y], [EM.z])")
+	log_game("[key_name(user)] created an Env Message: [new_message] at ([new_env_message.x], [new_env_message.y], [new_env_message.z])")
 
-/client/proc/remove_gm_message()
-	set name = "Map Message - Remove"
-	set desc = "Remove any env/map message."
-	set category = "Fun.Event Kit"
-
-	if(!istype(src) || !src.ckey)
-		return
-
-	if(!check_rights(R_FUN))
-		return
-
+ADMIN_VERB(remove_gm_message, R_FUN, "Map Message - Remove", "Remove any env/map message.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/list/all_map_messages = list()
-	for(var/obj/effect/env_message/A in world)
-		all_map_messages |= A.combined_message
+	for(var/obj/effect/env_message/available_message in world)
+		all_map_messages |= available_message.combined_message
 
-	if(!all_map_messages.len)
-		to_chat(src, span_warning("There are no map or env messages."))
+	if(!length(all_map_messages))
+		to_chat(user, span_warning("There are no map or env messages."))
 		return
 
-	var/mob/chosen_message = tgui_input_list(src, "Which message do you want to remove?", "Make contact", all_map_messages)
+	var/mob/chosen_message = tgui_input_list(user, "Which message do you want to remove?", "Make contact", all_map_messages)
 	if(!chosen_message)
 		return
 
-	for(var/obj/effect/env_message/EM in world)
-		if(EM.combined_message == chosen_message)
-			qdel(EM)
-			log_game("[key_name(src)] deleted an Env Message that contained other players' entries at ([EM.x], [EM.y], [EM.z])")
+	for(var/obj/effect/env_message/env_message in world)
+		if(env_message.combined_message == chosen_message)
+			log_game("[key_name(user)] deleted an Env Message that contained other players' entries at ([env_message.x], [env_message.y], [env_message.z])")
+			qdel(env_message)

@@ -307,6 +307,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		var/mob/living/L = usr
 		return L.resist()
 
+/atom/movable/screen/alert/irradiated
+	name = "Irradiated"
+	desc = "You're irradiated! Heal your radiation quick, and stand under a shower to wash some radiation off from yourself!"
+//	use_user_hud_icon = TRUE
+	icon_state = "irradiated"
 
 //ALIENS
 
@@ -409,7 +414,7 @@ so as to remain in compliance with the most up-to-date laws."
 // /atom/movable/screen/alert/notify_jump/Click()
 // 	if(!usr || !usr.client) return
 // 	if(!jump_target) return
-// 	var/mob/dead/observer/G = usr
+// 	var/mob/observer/dead/G = usr
 // 	if(!istype(G)) return
 // 	if(attack_not_jump)
 // 		jump_target.attack_ghost(G)

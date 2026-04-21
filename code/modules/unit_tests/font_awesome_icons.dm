@@ -55,25 +55,23 @@
 	var/list/css_entries = splittext(css, "}")
 	var/list/icons = list()
 	for(var/entry in css_entries)
-		entry = replacetext(entry, "\t", "")
 		if(!length(entry))
 			continue
 
-		var/entry_contents = splittext(entry, "{")
+		var/list/entry_contents = splittext(entry, "{")
+		var/entry_declaration = entry_contents[2]
+
+		if(!findtext(entry_declaration, "--fa:"))
+			continue
+
 		var/list/entry_names = splittext(entry_contents[1], ",")
 		for(var/entry_name in entry_names)
-			entry_names -= entry_name
+			entry_name = trim(entry_name)
 
-			if(!findtext(entry_name, ":"))
-				continue
-
-			entry_name = splittext(entry_name, ":")[1]
 			if(!findtext(entry_name, ".fa-"))
 				continue
-
 			entry_name = replacetext(entry_name, ".fa-", "fa-")
-			entry_names |= entry_name
-		icons |= entry_names
+			icons |= entry_name
 
 	return sortList(icons)
 

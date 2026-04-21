@@ -1,3 +1,4 @@
+#define MAXIMUM_EMP_WIRES 3
 
 /datum/wires
 	/// TRUE if the wires will be different every time a new wire datum is created.
@@ -165,6 +166,14 @@
 		return
 
 	var/obj/item/I = ui.user.get_active_hand()
+	if(istype(I, /obj/item/paicard)) // Get pai builtin emag tools
+		var/obj/item/paicard/card = I
+		if(card.emagged && card.has_emag_toolkit)
+			switch(card.selected_system)
+				if("MultiTool")
+					I = card.multitool
+				if("Signaler")
+					I = card.signaler
 	var/color = lowertext(params["wire"])
 	holder.add_hiddenprint(ui.user)
 
@@ -468,3 +477,16 @@
 /datum/wires/proc/is_attached(color)
 	if(assemblies[color])
 		return TRUE
+
+/datum/wires/proc/emp_pulse()
+	var/list/possible_wires = shuffle(wires)
+	var/remaining_pulses = MAXIMUM_EMP_WIRES
+
+	for(var/wire in possible_wires)
+		if(prob(33))
+			pulse(wire)
+			remaining_pulses--
+			if(!remaining_pulses)
+				break
+
+#undef MAXIMUM_EMP_WIRES

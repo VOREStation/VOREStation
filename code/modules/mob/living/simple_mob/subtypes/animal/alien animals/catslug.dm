@@ -319,7 +319,6 @@
 	S.speak |= message
 
 /obj/item/holder/catslug
-	origin_tech = list(TECH_BIO = 2)
 	icon = 'icons/mob/alienanimals_x32.dmi'
 	item_state = "catslug"
 
@@ -791,7 +790,7 @@
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
-	myid.access |= get_all_station_access()
+	myid.access |= SSaccess.get_all_station_access()
 
 //Syndicate catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug
@@ -836,7 +835,7 @@
 	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
 	mob_radio.recalculateChannels(TRUE)
-	myid.access |= get_all_station_access()
+	myid.access |= SSaccess.get_all_station_access()
 
 //ERT catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug
@@ -880,7 +879,7 @@
 	mob_radio.ks2type = /obj/item/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
 	mob_radio.recalculateChannels(TRUE)
-	myid.access |= get_all_station_access()
+	myid.access |= SSaccess.get_all_station_access()
 
 //Pilot Catslug
 

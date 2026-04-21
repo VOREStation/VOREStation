@@ -422,7 +422,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		GLOB.admins -= src
 	if(skybox)
 		QDEL_NULL(skybox)
-
+	if(fakeConversations)
+		QDEL_NULL(fakeConversations)
 	QDEL_NULL(loot_panel)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
@@ -432,7 +433,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 // Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
 
 /proc/get_player_age(key)
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return null
 
@@ -453,7 +453,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if ( IsGuestKey(src.key) )
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 
@@ -610,14 +609,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 /mob/proc/MayRespawn()
-	return 0
+	return FALSE
 
 /client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
-	return 0
+	return FALSE
 
 /client/verb/character_setup()
 	set name = "Character Setup"

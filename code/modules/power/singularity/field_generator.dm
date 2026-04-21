@@ -169,10 +169,6 @@
 		..()
 		return
 
-
-/obj/machinery/field_generator/emp_act(severity, recursive)
-	return FALSE
-
 /obj/machinery/field_generator/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
 		power += Proj.damage * EMITTER_DAMAGE_POWER_TRANSFER
@@ -357,3 +353,12 @@
 					investigate_log("has " + span_red("failed") + " whilst a singulo exists.","singulo")
 					log_game("FIELDGEN([x],[y],[z]) Containment failed while singulo/tesla exists.")
 			O.last_warning = world.time
+
+/obj/machinery/field_generator/pre_mapped
+	state = 2 //Start welded.
+	anchored = TRUE
+
+
+/obj/machinery/field_generator/pre_mapped/Initialize(mapload)
+	. = ..()
+	update_icon()

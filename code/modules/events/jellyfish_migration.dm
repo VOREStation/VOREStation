@@ -11,7 +11,7 @@
 	jellyfish_cap = 2 + 3 ** severity // No more than this many at once regardless of waves. (5, 11, 29)
 
 /datum/event/jellyfish_migration/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/jellyfish_migration/announce()
@@ -20,7 +20,7 @@
 		announcement = "Massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
 	else
 		announcement = "Unknown biological [spawned_jellyfish.len == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert", new_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 
 /datum/event/jellyfish_migration/tick()
 	if(activeFor % 5 != 0)

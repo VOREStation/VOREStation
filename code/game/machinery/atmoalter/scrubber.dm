@@ -27,15 +27,13 @@
 	AddElement(/datum/element/climbable)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(prob(50/severity))
 		on = !on
 		update_icon()
-
-	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/update_icon()
 	cut_overlays()
@@ -83,9 +81,6 @@
 		if (!cell.charge)
 			power_change()
 			update_icon()
-
-	//src.update_icon()
-	src.updateDialog()
 
 /obj/machinery/portable_atmospherics/powered/scrubber/return_air()
 	return air_contents

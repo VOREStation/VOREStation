@@ -13,7 +13,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	throwforce = 1.0
 	throw_speed = 3
 	throw_range = 5
-	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/clone_source = FALSE
 	var/mob/living/carbon/brain/brainmob = null

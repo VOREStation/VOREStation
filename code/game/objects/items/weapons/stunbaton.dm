@@ -13,7 +13,6 @@
 	w_class = ITEMSIZE_NORMAL
 	drop_sound = 'sound/items/drop/metalweapon.ogg'
 	pickup_sound = 'sound/items/pickup/metalweapon.ogg'
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	var/lightcolor = "#FF6A00"
 	var/stunforce = 0
@@ -98,7 +97,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/dropped(mob/user)
+/obj/item/melee/baton/dropped(mob/user, equipping, slot)
 	..()
 	if(status && grip_safety && !taped_safety)
 		status = 0

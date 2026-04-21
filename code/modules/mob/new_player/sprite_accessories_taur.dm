@@ -93,6 +93,8 @@
 /mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
+	if(is_incorporeal(src) || is_incorporeal(M))
+		return FALSE
 	if(!istaurtail(tail_style))
 		return FALSE
 	else
