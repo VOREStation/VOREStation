@@ -1140,6 +1140,7 @@
 	if(DC)
 		DC.selected_record = FALSE
 		DC.designer_gui = null // no hardrefs
+	linked_body_design_console = null
 	. = ..()
 
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()

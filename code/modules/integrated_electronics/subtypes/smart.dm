@@ -55,6 +55,11 @@
 	var/turf/last_known_position = null
 	var/datum/weakref/last_target = null
 
+/obj/item/integrated_circuit/smart/targeted_pathfinder/Destroy()
+	. = ..()
+	last_known_position = null
+	last_target = null
+
 /obj/item/integrated_circuit/smart/targeted_pathfinder/do_work()
 	var/datum/integrated_io/I = inputs[1]
 	set_pin_data(IC_OUTPUT, 1, null)
@@ -130,6 +135,11 @@
 	// Add these two variables
 	var/turf/last_known_position = null
 	var/datum/weakref/last_target = null
+
+/obj/item/integrated_circuit/smart/pathfinding_locomotion/Destroy()
+	. = ..()
+	last_known_position = null
+	last_target = null
 
 /obj/item/integrated_circuit/smart/pathfinding_locomotion/do_work()
 	var/datum/integrated_io/I = inputs[1]
