@@ -366,6 +366,9 @@
 
 	return ..()
 
+/mob/living/silicon/robot/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+	return FALSE //Dropping things from robots break everything.
+
 // CONTINUE CODING HERE
 /*
 /mob/living/silicon/robot/proc/set_module_sprites(var/list/new_sprites)

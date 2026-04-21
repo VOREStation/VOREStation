@@ -43,6 +43,9 @@
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(!leash_pet)
 		return
+	if(leash_pet.absorbed) //Glrk'd
+		clear_leash()
+		return
 	if(!is_wearing_collar(leash_pet)) //The pet has slipped their collar and is not the pet anymore.
 		leash_pet.visible_message(
 			span_warning("[leash_pet] has slipped out of [leash_pet.p_their()] collar!"),
@@ -109,6 +112,9 @@
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	if(!leash_pet || leash_master) //No pet, no tug.
 		return
+	if(leash_pet.absorbed) //Glrk'd.
+		clear_leash()
+		return
 	//Yank the pet. Yank em in close.
 	apply_tug_mob_to_mob(leash_pet, leash_master, 1)
 
@@ -118,6 +124,9 @@
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
 	//Make sure the dom still has a pet
 	if(!leash_master || !leash_pet)
+		return
+	if(leash_pet.absorbed)
+		clear_leash()
 		return
 	addtimer(CALLBACK(src, PROC_REF(after_master_move)), 0.2 SECONDS)
 
@@ -132,7 +141,7 @@
 
 	//Knock the pet over if they get further behind. Shouldn't happen too often.
 	sleep(3) //This way running normally won't just yank the pet to the ground.
-	if(!leash_master || !leash_pet) //Just to stop error messages. Break the loop early if something removed the master
+	if(!leash_master || !leash_pet || leash_pet.absorbed) //Just to stop error messages. Break the loop early if something removed the master
 		clear_leash()
 		return
 	if(get_dist(leash_pet, leash_master) > 3 && !leash_pet.stunned)
@@ -144,7 +153,7 @@
 
 	//This code is to check if the pet has gotten too far away, and then break the leash.
 	sleep(3) //Wait to snap the leash
-	if(!leash_master || !leash_pet) //Just to stop error messages
+	if(!leash_master || !leash_pet || leash_pet.absorbed) //Just to stop error messages
 		clear_leash()
 		return
 	if(get_dist(leash_pet, leash_master) > 5)
@@ -171,7 +180,7 @@
 /obj/item/leash/proc/after_pet_move()
 	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
-	if(!leash_master || !leash_pet)
+	if(!leash_master || !leash_pet || leash_pet.absorbed)
 		return
 	for(var/i in 3 to get_dist(leash_pet, leash_master)) // Move the pet to a minimum of 2 tiles away from the master, so the pet trails behind them.
 		step_towards(leash_pet, leash_master)
@@ -181,7 +190,7 @@
 	. = ..()
 	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
-	if(!leash_pet || !leash_master) //There is no pet. Stop this silliness
+	if(!leash_pet || !leash_master || leash_pet.absorbed) //There is no pet. Stop this silliness
 		clear_leash()
 		return
 	//Dropping procs any time the leash changes slots. So, we will wait a tick and see if the leash was actually dropped
@@ -216,6 +225,9 @@
 /obj/item/leash/proc/struggle_leash()
 	var/mob/living/carbon/human/leash_pet = leash_pet_ref?.resolve()
 	var/mob/living/carbon/human/leash_master = leash_master_ref?.resolve()
+	if(leash_pet && leash_pet.absorbed)
+		clear_leash()
+		return
 	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook [leash_pet.p_their()] leash!"), span_danger("You attempt to unhook your leash"))
 	add_attack_logs(leash_master,leash_pet,"Self-unleash (attempt)")
 
