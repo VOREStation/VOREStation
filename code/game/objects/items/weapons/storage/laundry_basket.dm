@@ -60,7 +60,7 @@
 	else
 		return ..()
 
-/obj/item/storage/laundry_basket/dropped(mob/user)
+/obj/item/storage/laundry_basket/dropped(mob/user, equipping, slot)
 	if(linked)
 		QDEL_NULL(linked)
 	return ..()
@@ -78,7 +78,7 @@
 	name = "second hand"
 	use_to_pickup = FALSE
 
-/obj/item/storage/laundry_basket/offhand/dropped(mob/user)
+/obj/item/storage/laundry_basket/offhand/dropped(mob/user, equipping, slot)
 	SHOULD_CALL_PARENT(FALSE)
 	if(user.isEquipped(linked))
 		user.drop_from_inventory(linked)

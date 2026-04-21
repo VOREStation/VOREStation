@@ -14,7 +14,6 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 
 	var/obj/item/shockpaddles/linked/paddle_path = /obj/item/shockpaddles/linked
 	var/obj/item/cell/bcell = null
@@ -137,7 +136,6 @@
 	item_state = "defibcompact"
 	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
 
 /obj/item/defib_kit/compact/loaded
 	bcell = /obj/item/cell/high

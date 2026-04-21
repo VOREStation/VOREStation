@@ -39,7 +39,6 @@
 	icon_state = "black"
 	worn_state = "black"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 
 /obj/item/clothing/under/chameleon/Initialize(mapload)
@@ -78,7 +77,6 @@
 	name = "grey cap"
 	icon_state = "greysoft"
 	desc = "It looks like a plain hat, but upon closer inspection, there's an advanced holographic array installed inside. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	body_parts_covered = 0
 
 /obj/item/clothing/head/chameleon/Initialize(mapload)
@@ -116,7 +114,6 @@
 	name = "armor"
 	icon_state = "armor"
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/suit/chameleon/Initialize(mapload)
 	. = ..()
@@ -152,7 +149,6 @@
 	name = "black shoes"
 	icon_state = "black"
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/shoes/chameleon/Initialize(mapload)
 	. = ..()
@@ -188,7 +184,6 @@
 	name = "backpack"
 	icon_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/storage/backpack/chameleon/Initialize(mapload)
 	. = ..()
@@ -243,7 +238,6 @@
 	name = "black gloves"
 	icon_state = "black"
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/gloves/chameleon/Initialize(mapload)
 	. = ..()
@@ -279,7 +273,6 @@
 	name = "gas mask"
 	icon_state = "gas_old"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/mask/chameleon/Initialize(mapload)
 	. = ..()
@@ -316,7 +309,6 @@
 	icon_state = "meson"
 	item_state_slots = list(slot_r_hand_str = "meson", slot_l_hand_str = "meson")
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/Initialize(mapload)
@@ -353,7 +345,6 @@
 	name = "belt"
 	desc = "Can hold various things.  It also has a small dial inside one of the pouches."
 	icon_state = "utilitybelt"
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/storage/belt/chameleon/Initialize(mapload)
 	. = ..()
@@ -395,7 +386,6 @@
 	desc = "Looks like a black tie, but his one also has a dial inside."
 	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "blacktie"
-	origin_tech = list(TECH_ILLEGAL = 3)
 
 /obj/item/clothing/accessory/chameleon/Initialize(mapload)
 	. = ..()
@@ -432,7 +422,6 @@
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon_state = "deagle"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 	matter = list()
 
 	fire_sound = 'sound/weapons/gunshot1.ogg'

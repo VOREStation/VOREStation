@@ -224,7 +224,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
 
 	if(!slot)
 		return
@@ -236,7 +236,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return
 
 	W.loc = src
-	has_unequipped(W) //TG calls attempt_insert -> transferItemToLoc -> doUnEquip -> has_unequipped. This is where we do it instead since we don't have storage datums.
+	has_unequipped(W, TRUE, slot) //TG calls attempt_insert -> transferItemToLoc -> doUnEquip -> has_unequipped. This is where we do it instead since we don't have storage datums.
 	switch(slot)
 		if(slot_back)
 			src.back = W

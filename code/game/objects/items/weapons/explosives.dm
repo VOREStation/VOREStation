@@ -7,7 +7,6 @@
 	item_state = "plasticx"
 	flags = NOBLUDGEON
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ILLEGAL = 2)
 	var/timer = 10
 	var/atom/target = null
 	var/open_panel = 0

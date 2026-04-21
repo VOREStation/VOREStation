@@ -168,11 +168,11 @@ ADMIN_VERB(response_team, R_ADMIN|R_MOD|R_EVENT, "Dispatch Emergency Response Te
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
-		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "[using_map.boss_name]", ANNOUNCER_MSG_STRIKETEAM_FAIL)
 		GLOB.can_call_ert = 0 // Only one call per round, ladies.
 		return
 	if(GLOB.silent_ert == 0)
-		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]")
+		GLOB.command_announcement.Announce("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "[using_map.boss_name]", ANNOUNCER_MSG_STRIKETEAM_SUCCESS)
 
 	GLOB.can_call_ert = 0 // Only one call per round, gentleman.
 	GLOB.send_emergency_team = 1

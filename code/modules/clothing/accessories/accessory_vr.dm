@@ -36,7 +36,7 @@
 	setUniqueSpeciesSprite()
 	..(S, user)
 
-/obj/item/clothing/accessory/choker/dropped(mob/user)
+/obj/item/clothing/accessory/choker/dropped(mob/user, equipping, slot)
 	..()
 	icon_override = icon_previous_override
 
@@ -74,7 +74,7 @@
 	setUniqueSpeciesSprite()
 	..(S, user)
 
-/obj/item/clothing/accessory/collar/dropped(mob/user)
+/obj/item/clothing/accessory/collar/dropped(mob/user, equipping, slot)
 	..()
 	icon_override = icon_previous_override
 

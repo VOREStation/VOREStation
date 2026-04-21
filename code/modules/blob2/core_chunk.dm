@@ -46,8 +46,6 @@
 
 	if(blob_type)
 		color = blob_type.color
-		if(LAZYLEN(blob_type.core_tech))
-			origin_tech = blob_type.core_tech.Copy()
 
 		if(blob_type.chunk_active_type == BLOB_CHUNK_CONSTANT)
 			should_tick = TRUE

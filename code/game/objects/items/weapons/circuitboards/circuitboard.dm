@@ -2,7 +2,6 @@
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
-	origin_tech = list(TECH_DATA = 2)
 	density = FALSE
 	anchored = FALSE
 	w_class = ITEMSIZE_SMALL

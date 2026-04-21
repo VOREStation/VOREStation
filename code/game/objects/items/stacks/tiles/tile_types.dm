@@ -80,7 +80,6 @@
 	throw_speed = 5
 	throw_range = 20
 	flags = NONE
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
