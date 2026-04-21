@@ -44,6 +44,7 @@
 	var/const/deffont = "Verdana"
 	var/const/signfont = "Times New Roman"
 	var/const/crayonfont = "Comic Sans MS"
+	resistance_flags = FLAMMABLE
 
 /obj/item/paper/card
 	name = "blank card"

@@ -93,4 +93,4 @@
 /datum/event2/event/raise_funds/proc/send_command_report(title, message)
 	post_comm_message(title, message)
 	to_chat(world, span_danger("New [using_map.company_name] Update available at all communication consoles."))
-	SEND_SOUND(world, 'sound/AI/commandreport.ogg')
+	play_simple_announcement(world, ANNOUNCER_MSG_NEW_COMMAND_REPORT)

@@ -8,7 +8,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ILLEGAL = 4, TECH_MAGNET = 4)
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy = null
 	var/saved_item = /obj/item/trash/cigbutt
@@ -19,7 +18,9 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/chameleon/dropped(mob/user)
+/obj/item/chameleon/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	disrupt()
 	..()
 

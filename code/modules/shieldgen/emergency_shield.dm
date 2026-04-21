@@ -82,6 +82,9 @@
 	return
 
 /obj/machinery/shield/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -258,6 +261,9 @@
 	return
 
 /obj/machinery/shieldgen/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	switch(severity)
 		if(1)
 			src.health /= 2 //cut health in half

@@ -13,7 +13,6 @@
 
 	caliber = "nsfw"
 
-	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 6, TECH_MAGNET = 4)
 
 	fire_sound = 'sound/weapons/taser.ogg'
 
@@ -148,7 +147,6 @@
 	desc = "A microbattery holder for a cell-based variable weapon."
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "cell_mag"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	caliber = "nsfw"
 	ammo_type = /obj/item/ammo_casing/microbattery
 	initial_ammo = 0

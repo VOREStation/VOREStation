@@ -2,7 +2,6 @@
 /obj/item/cell/spike
 	name = "modified power cell"
 	desc = "A modified power cell sitting in a highly conductive chassis."
-	origin_tech = list(TECH_POWER = 2)
 	icon_state = "modded"
 	charge = 10000
 	maxcharge = 10000

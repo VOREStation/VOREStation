@@ -301,13 +301,11 @@
 /obj/item/gun/projectile/automatic/mini_uzi,
 /obj/item/card/id/syndicate{
 	access = list(616);
-	assignment = "Curabitur Contractor";
-	origin_tech = newlist()
+	assignment = "Curabitur Contractor"
 	},
 /obj/item/card/id/syndicate{
 	access = list(616);
-	assignment = "Curabitur Contractor";
-	origin_tech = newlist()
+	assignment = "Curabitur Contractor"
 	},
 /obj/item/spacecash/c1000,
 /obj/item/spacecash/c1000,

@@ -225,7 +225,7 @@
 /datum/event2/event/prison_break/end()
 	GLOB.command_announcement.Announce("[pick("Gr3y.T1d3 virus","Malignant trojan")] was detected \
 	in \the [location_name()] [area_display_name] [containment_display_desc] subroutines. Secure any compromised \
-	areas immediately. AI involvement is recommended.", "[capitalize(containment_display_desc)] Alert")
+	areas immediately. AI involvement is recommended.", "[capitalize(containment_display_desc)] Alert", new_sound = ANNOUNCER_MSG_GREYTIDEVIRUS)
 
 	GLOB.global_announcer.autosay(
 		"It is now safe to reactivate the APCs' main breakers inside [area_display_name].",

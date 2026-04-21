@@ -4,7 +4,7 @@
 	endWhen			= 35
 
 /datum/event/clang/announce()
-	GLOB.command_announcement.Announce("Attention [station_name()]. Unknown ultra-dense high-velocity object entering stratosphere!", "General Alert")
+	GLOB.command_announcement.Announce("Attention [station_name()]. Unknown ultra-dense high-velocity object entering stratosphere!", "General Alert", ANNOUNCER_MSG_CLANG)
 	if(seclevel2num(get_security_level()) < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE) // OHNO
 
@@ -69,7 +69,7 @@
 	name = "Immovable Rod"
 	desc = "What the fuck is that?"
 	icon = 'icons/obj/objects.dmi'
-	w_class = 100 //Affects how much damage it does to stuff
+	w_class = ITEMSIZE_NO_CONTAINER //Affects how much damage it does to stuff
 	icon_state = "immrod"
 	density = TRUE
 	anchored = TRUE

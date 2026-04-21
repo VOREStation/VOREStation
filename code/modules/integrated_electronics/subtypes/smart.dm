@@ -12,7 +12,6 @@
 	outputs = list("dir" = IC_PINTYPE_DIR)
 	activators = list("calculate dir" = IC_PINTYPE_PULSE_IN, "on calculated" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 5)
 	power_draw_per_use = 40
 
 /obj/item/integrated_circuit/smart/basic_pathfinder/do_work()
@@ -50,7 +49,6 @@
 		"on calculated" = IC_PINTYPE_PULSE_OUT
 	)
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 5)
 	power_draw_per_use = 40
 
 /obj/item/integrated_circuit/smart/targeted_pathfinder
@@ -130,7 +128,6 @@
 		"on failed move" = IC_PINTYPE_PULSE_OUT
 	)
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 5, TECH_DATA = 5)
 	power_draw_per_use = 60
 	cooldown_per_use = 2 // 3 delay on a ticker circuit from testing.
 
@@ -229,7 +226,6 @@
 	outputs = list("Z-level" = IC_PINTYPE_NUMBER)
 	activators = list("get Z-level" = IC_PINTYPE_PULSE_IN, "on read" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 3)
 	power_draw_per_use = 10
 
 /obj/item/integrated_circuit/smart/z_level_sensor/do_work()

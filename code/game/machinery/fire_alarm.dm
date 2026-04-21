@@ -112,9 +112,11 @@ FIRE ALARM
 	return alarm()
 
 /obj/machinery/firealarm/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(50 / severity))
 		alarm(rand(30 / severity, 60 / severity))
-	..()
 
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)

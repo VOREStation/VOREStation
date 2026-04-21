@@ -61,7 +61,7 @@ code\game\dna\genes\goon_powers.dm
 	range = 0
 	max_targets = 1
 
-	mutations = list(LASER, HULK)
+	mutations = list(LASER_EYES, HULK)
 	duration = 300
 	cooldown_min = 300 //25 deciseconds reduction per rank
 

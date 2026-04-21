@@ -181,7 +181,6 @@
 	name = T_BOARD("Slime extractor")
 	build_path = "/obj/machinery/slime/extractor"
 	board_type = "machine"
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	req_components = list(
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/matter_bin = 1,

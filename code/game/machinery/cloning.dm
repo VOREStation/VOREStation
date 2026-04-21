@@ -410,8 +410,10 @@
 	go_out()
 
 /obj/machinery/clonepod/emp_act(severity, recursive)
-	if(prob(100/severity))
-		malfunction()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !(prob(100/severity)))
+		return
+	malfunction()
 	..()
 
 /obj/machinery/clonepod/ex_act(severity)

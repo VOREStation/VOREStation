@@ -100,7 +100,7 @@
 
 	RegisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
-/obj/item/geiger/dropped(mob/user, silent = FALSE)
+/obj/item/geiger/dropped(mob/user, equipping, slot)
 	. = ..()
 
 	UnregisterSignal(user, COMSIG_IN_RANGE_OF_IRRADIATION)

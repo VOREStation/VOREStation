@@ -20,7 +20,7 @@
 		announcement = "Massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
 	else
 		announcement = "Unknown biological [spawned_jellyfish.len == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
-	GLOB.command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert", new_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 
 /datum/event/jellyfish_migration/tick()
 	if(activeFor % 5 != 0)

@@ -1,7 +1,7 @@
 /datum/technomancer/spell/summon_ward
 	name = "Summon Monitor Ward"
 	desc = "Teleports a prefabricated 'ward' drone to the target location, which will alert you when it sees entities \
-	moving around it, or when it is attacked.  They can see for up to five meters. It can also see invisible entities, and \
+	moving around it, or when it is attacked. They can see for up to five meters. It can also see invisible entities, and \
 	forcefully decloak them if close enough."
 	cost = 25
 	obj_path = /obj/item/spell/summon/summon_ward

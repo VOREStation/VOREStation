@@ -640,6 +640,9 @@
 	attempt_retaliate(damage)
 
 /obj/machinery/porta_turret/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(enabled)
 		//if the turret is on, the EMP no matter how severe disables the turret for a while
 		//and scrambles its settings, with a slight chance of having an emag effect
@@ -656,15 +659,14 @@
 			if(!enabled)
 				enabled = TRUE
 
-	..()
-
 /obj/machinery/porta_turret/ai_defense/emp_act(severity, recursive)
-	if(prob(33)) // One in three chance to resist an EMP.  This is significant if an AoE EMP is involved against multiple turrets.
+	. = ..()
+	if (. & EMP_PROTECT_SELF || prob(33)) // One in three chance to resist an EMP.  This is significant if an AoE EMP is involved against multiple turrets.
 		return
-	..()
 
 /obj/machinery/porta_turret/alien/emp_act(severity, recursive) // This is overrided to give an EMP resistance as well as avoid scambling the turret settings.
-	if(prob(75)) // Superior alien technology, I guess.
+	. = ..()
+	if (. & EMP_PROTECT_SELF || prob(75)) // Superior alien technology, I guess.
 		return
 	enabled = FALSE
 	spawn(rand(1 MINUTE, 2 MINUTES))

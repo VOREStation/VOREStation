@@ -14,7 +14,6 @@
 	force = 10
 	slot_flags = SLOT_BACK
 	caliber = "12g"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	load_method = SINGLE_CASING|SPEEDLOADER
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 	projectile_type = /obj/item/projectile/bullet/shotgun
@@ -89,7 +88,6 @@
 	branding for its military-grade equipment used by armed forces across human space."
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
 	ammo_type = /obj/item/ammo_casing/a12g
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -115,7 +113,6 @@
 	force = 10
 	slot_flags = SLOT_BACK
 	caliber = "12g"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 
 	var/unique_reskin
@@ -233,7 +230,6 @@
 	item_state = "shotgun"
 	w_class = ITEMSIZE_LARGE
 	caliber = "12g"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
 	load_method = SINGLE_CASING
 	max_shells = 5

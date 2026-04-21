@@ -303,7 +303,6 @@
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "unstable"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_BLUESPACE = 7, TECH_MATERIAL = 2)
 	var/tele_range = 4
 	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
 	var/tf_possible_types = list(

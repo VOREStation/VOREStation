@@ -4,7 +4,6 @@
 	icon_state = "mecha_honker"
 	energy_drain = 300
 	equip_cooldown = 150
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 4, TECH_ILLEGAL = 1)
 
 	equip_type = EQUIP_SPECIAL
 

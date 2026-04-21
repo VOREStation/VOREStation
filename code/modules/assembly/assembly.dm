@@ -10,13 +10,12 @@
 	throw_range = 10
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound =  'sound/items/pickup/component.ogg'
-	origin_tech = list(TECH_MAGNET = 1)
 
 	var/secured = 1
 	var/list/attached_overlays = null
 	var/obj/item/assembly_holder/holder = null
 	var/cooldown = FALSE //To prevent spam
-	var/wires = WIRE_RECEIVE | WIRE_PULSE
+	var/wires_type = WIRE_RECEIVE | WIRE_PULSE
 
 	var/const/WIRE_RECEIVE = 1			//Allows Pulsed(0) to call Activate()
 	var/const/WIRE_PULSE = 2				//Allows Pulse(0) to act on the holder
@@ -34,16 +33,16 @@
 	return
 
 /obj/item/assembly/proc/pulsed(var/radio = 0)
-	if(holder && (wires & WIRE_RECEIVE))
+	if(holder && (wires_type & WIRE_RECEIVE))
 		activate()
-	if(radio && (wires & WIRE_RADIO_RECEIVE))
+	if(radio && (wires_type & WIRE_RADIO_RECEIVE))
 		activate()
 	return 1
 
 /obj/item/assembly/proc/pulse(var/radio = 0)
-	if(holder && (wires & WIRE_PULSE))
+	if(holder && (wires_type & WIRE_PULSE))
 		holder.process_activation(src, 1, 0)
-	if(holder && (wires & WIRE_PULSE_SPECIAL))
+	if(holder && (wires_type & WIRE_PULSE_SPECIAL))
 		holder.process_activation(src, 0, 1)
 	return 1
 

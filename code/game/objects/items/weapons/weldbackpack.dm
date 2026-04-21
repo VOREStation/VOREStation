@@ -26,7 +26,7 @@
 	nozzle = null
 	return ..()
 
-/obj/item/weldpack/dropped(mob/user)
+/obj/item/weldpack/dropped(mob/user, equipping, slot)
 	..()
 	if(nozzle)
 		user.remove_from_mob(nozzle)

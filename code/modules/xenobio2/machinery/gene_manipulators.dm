@@ -394,7 +394,6 @@
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"
 	board_type = "machine"
-	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
 	req_components = list(
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/matter_bin = 1,
@@ -405,7 +404,6 @@
 	name = T_BOARD("biological genetic bombarder")
 	build_path = "/obj/machinery/xenobio/editor"
 	board_type = "machine"
-	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
 	req_components = list(
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/matter_bin = 2,
