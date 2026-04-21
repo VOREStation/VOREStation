@@ -41,6 +41,7 @@
 	var/obj/machinery/shieldgen/SG = our_owner.resolve()
 	if(SG)
 		SG.deployed_shields -= src
+	our_owner = null
 	. = ..()
 
 /obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)

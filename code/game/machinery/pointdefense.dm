@@ -140,6 +140,10 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	default_apply_parts()
 	update_icon()
 
+/obj/machinery/pointdefense/Destroy(force, ...)
+	. = ..()
+	engaging = null
+
 /obj/machinery/pointdefense/get_description_interaction()
 	. = ..()
 	if(!id_tag)
