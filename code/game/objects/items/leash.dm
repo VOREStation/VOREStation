@@ -58,9 +58,11 @@
 			span_warning("You have slipped out of your collar!")
 		)
 		clear_leash()
+		return
 
 	if(!leash_pet || !leash_master) //If there is no pet, there is no dom. Loop breaks.
 		clear_leash()
+		return
 
 //Called when someone is clicked with the leash
 /obj/item/leash/attack(mob/living/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
