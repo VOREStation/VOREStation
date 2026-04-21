@@ -1,0 +1,5 @@
+author: "ARGUS"
+delete-after: True
+changes:
+  - admin: "Added a \"Convert Player Savefile\" verb under the Admin category. Converts a target player's save data between .sav and .json formats. Player must be offline; the verb enforces this with two connection checks and blocks if the player is logged in."
+  - server: "Adds export_to_byond_savefile() to datum/json_savefile, the reverse of import_byond_savefile()."
