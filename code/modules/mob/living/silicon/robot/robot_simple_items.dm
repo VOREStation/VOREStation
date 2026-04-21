@@ -345,23 +345,26 @@
 /obj/item/material/minihoe/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_cultivator"
+	applies_material_colour = FALSE
 
 /obj/item/material/knife/machete/hatchet/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_hatchet"
+	applies_material_colour = FALSE
 
 /obj/item/analyzer/plant_analyzer/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_secateur"
 
-
 /obj/item/material/knife/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_knife"
+	applies_material_colour = FALSE
 
 /obj/item/material/kitchen/rollingpin/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_rolling_pin"
+	applies_material_colour = FALSE
 
 /obj/item/robotic_multibelt/syndicate
 	name = "Syndicate Robotic multitool"
