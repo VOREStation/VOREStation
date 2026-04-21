@@ -145,7 +145,6 @@
 
 /obj/item/pen/reagent
 	flags = OPENCONTAINER
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/pen/reagent/Initialize(mapload)
 	. = ..()
@@ -261,7 +260,6 @@
  */
 /obj/item/pen/reagent/sleepy
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/pen/reagent/sleepy/Initialize(mapload)
 	. = ..()
@@ -273,7 +271,6 @@
  * Parapens
  */
 /obj/item/pen/reagent/paralysis
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/pen/reagent/paralysis/Initialize(mapload)
 	. = ..()

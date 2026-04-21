@@ -519,6 +519,9 @@ GLOBAL_LIST_EMPTY(smeses)
 		qdel(src) // Either way we want to ensure the SMES is deleted.
 
 /obj/machinery/power/smes/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	inputting(rand(0,1))
 	outputting(rand(0,1))
 	output_level = rand(0, output_level_max)
@@ -527,7 +530,6 @@ GLOBAL_LIST_EMPTY(smeses)
 	if (charge < 0)
 		charge = 0
 	update_icon()
-	..()
 
 /obj/machinery/power/smes/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())

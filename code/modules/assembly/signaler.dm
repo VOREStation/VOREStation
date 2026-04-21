@@ -3,7 +3,6 @@
 	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
 	icon_state = "signaller"
 	item_state = "signaler"
-	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MAT_STEEL = 1000, MAT_GLASS = 200)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
@@ -22,7 +21,7 @@
 	set_frequency(frequency)
 
 /obj/item/assembly/signaler/activate()
-	if(!process_cooldown())
+	if(!COOLDOWN_FINISHED(src, next_activate))
 		return FALSE
 	signal()
 	return TRUE
@@ -82,6 +81,8 @@
 		..()
 
 /obj/item/assembly/signaler/proc/signal()
+	if(!COOLDOWN_FINISHED(src, next_activate))
+		return FALSE
 	if(!radio_connection)
 		return
 	if(is_jammed(src))
@@ -92,6 +93,7 @@
 	signal.encryption = code
 	signal.data["message"] = "ACTIVATE"
 	radio_connection.post_signal(src, signal)
+	COOLDOWN_START(src, next_activate, activation_cooldown)
 
 /obj/item/assembly/signaler/pulse(var/radio = 0)
 	if(is_jammed(src))

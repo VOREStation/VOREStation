@@ -11,7 +11,6 @@
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = ".357"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
 	ammo_type = /obj/item/ammo_casing/a357
@@ -53,7 +52,6 @@
 	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
 	icon_state = "detective"
 	caliber = ".38"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/gun/projectile/revolver/detective/verb/rename_gun()
@@ -79,7 +77,6 @@
 	desc = "A basic revolver, popular among some law enforcement agencies for its simple, long-lasting construction, modified for .45 rounds and a seven-shot cylinder."
 	icon_state = "detective"
 	caliber = ".45"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a45/rubber
 	max_shells = 6
 
@@ -132,7 +129,6 @@
 	name = "Lombardi Buzzard"
 	desc = "A rugged revolver that is mostly used by small law enforcement agencies across the frontier as a cheap, reliable sidearm. Uses .357 rounds."
 	icon_state = "lombardi_police"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /obj/item/gun/projectile/revolver/lombardi/panther
 	name = "Lombardi Panther"
@@ -153,7 +149,6 @@
 	MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
 	icon_state = "captains_peacemaker"
 	caliber = ".44"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a44
 
 /*
@@ -164,7 +159,6 @@
 	desc = "This unique looking handgun is named after an Italian company famous for the original manufacture of \
 	these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
 	icon_state = "mateba"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /*
  * Deckard (Blade Runner)
@@ -174,7 +168,6 @@
 	desc = "A custom-built revolver, based off the semi-popular Detective Special model. Uses .38-Special rounds."
 	icon_state = "deckard-empty"
 	caliber = ".38"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/gun/projectile/revolver/deckard/emp
@@ -205,7 +198,6 @@
 	'independent roughneck' demographic."
 	icon_state = "judge"
 	caliber = "12g"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 	max_shells = 5
 	recoil = 2 // ow my fucking hand
 	accuracy = -15 // smooth bore + short barrel = shit accuracy
@@ -225,7 +217,6 @@
 	the Mako was a notable exception, so original examples are much sought after."
 	icon_state = "combatrevolver"
 	item_state = "revolver"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 9
 	caliber = ".38"
@@ -323,7 +314,6 @@
 	icon_state = "webley2"
 	item_state = "webley2"
 	caliber = ".44"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	ammo_type = /obj/item/ammo_casing/a44
 
@@ -336,7 +326,6 @@
 	icon_state = "inspector"
 	item_state = "revolver"
 	caliber = ".44"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	handle_casings = CYCLE_CASINGS
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 

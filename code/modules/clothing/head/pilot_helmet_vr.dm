@@ -10,6 +10,7 @@
 	w_class = ITEMSIZE_NORMAL
 	actions_types = list(/datum/action/item_action/toggle_visor)
 	special_handling = TRUE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/pilot_vr/attack_self(mob/user)
 	. = ..(user)

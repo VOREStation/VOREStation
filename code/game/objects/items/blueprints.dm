@@ -333,7 +333,7 @@
 				usr.client.images.Remove(i)
 
 // Make sure to turn off the colors when we drop the blueprints.
-/obj/item/blueprints/dropped(mob/user)
+/obj/item/blueprints/dropped(mob/user, equipping, slot)
 	if(areaColor_turfs.len)
 		seeAreaColors_remove()
 	return ..()

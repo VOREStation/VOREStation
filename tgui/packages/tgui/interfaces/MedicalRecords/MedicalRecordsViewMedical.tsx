@@ -8,7 +8,7 @@ import type { Data } from './types';
 export const MedicalRecordsViewMedical = (props) => {
   const { act, data } = useBackend<Data>();
   const { medical } = data;
-  if (!medical || !medical.fields) {
+  if (!medical?.fields) {
     return (
       <Box color="bad">
         Medical records lost!

@@ -119,8 +119,8 @@
 
 
 /obj/machinery/vr_sleeper/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(occupant)
@@ -133,8 +133,6 @@
 			smoke.set_up(severity, 0, src)
 			smoke.start("#202020")
 		perform_exit()
-
-	..(severity, recursive)
 
 /obj/machinery/vr_sleeper/verb/eject()
 	set src in view(1)
@@ -293,7 +291,7 @@
 
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
-			GLOB.job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+			SSjob.equip_rank(avatar,"Visitor", 1, FALSE)
 		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 		add_verb(avatar,/mob/living/proc/set_size)

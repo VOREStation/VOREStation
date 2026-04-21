@@ -84,7 +84,6 @@
 	singular_name = "crude bandage length"
 	desc = "Some bandages to wrap around bloody stumps."
 	icon_state = "gauze"
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 
@@ -151,7 +150,6 @@
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	drop_sound = 'sound/items/drop/gloves.ogg'
@@ -227,7 +225,6 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 1
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/ointment.ogg')
 	drop_sound = 'sound/items/drop/herb.ogg'
@@ -275,7 +272,6 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 7
-	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -345,7 +341,6 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 7
-	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/ointment.ogg')
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)

@@ -176,7 +176,7 @@
 	if(issmall(M))
 		removed *= 2
 
-	if(!(M.species.allergens & allergen_type) && !(M.isSynthetic()))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects - VOREStation Edit (added synth check)
+	if(!(M.species.allergens & allergen_type) && !(M.species.medallergens & medallergen_type) && !(M.isSynthetic()))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects - VOREStation Edit (added synth check)
 		M.adjust_nutrition(nutriment_factor * removed)
 
 	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)

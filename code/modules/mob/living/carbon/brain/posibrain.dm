@@ -4,7 +4,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
 
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
@@ -90,19 +89,18 @@
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
 /obj/item/mmi/digital/posibrain/emp_act(severity, recursive)
-	if(!src.brainmob)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !brainmob)
 		return
-	else
-		switch(severity)
-			if(1)
-				src.brainmob.emp_damage += rand(20,30)
-			if(2)
-				src.brainmob.emp_damage += rand(10,20)
-			if(3)
-				src.brainmob.emp_damage += rand(5,10)
-			if(4)
-				src.brainmob.emp_damage += rand(0,5)
-	..()
+	switch(severity)
+		if(EMP_HEAVY)
+			src.brainmob.emp_damage += rand(20,30)
+		if(EMP_MEDIUM)
+			src.brainmob.emp_damage += rand(10,20)
+		if(EMP_LIGHT)
+			src.brainmob.emp_damage += rand(5,10)
+		if(EMP_HARMLESS)
+			src.brainmob.emp_damage += rand(0,5)
 
 /obj/item/mmi/digital/posibrain/Initialize(mapload)
 	. = ..()

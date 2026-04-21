@@ -18,9 +18,6 @@
 	description_antag = ""
 	allowed_magazines = list(/obj/item/ammo_magazine/cell_mag/combat/prototype)
 
-	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4, TECH_MAGNET = 3)
-
-
 // The Magazine //
 /obj/item/ammo_magazine/cell_mag/combat
 	name = "microbattery magazine"
@@ -37,8 +34,6 @@
 	max_ammo = 2
 	x_offset = 6
 	catalogue_data = null
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_MAGNET = 2)
-
 
 // The Pack //
 /obj/item/storage/secure/briefcase/nsfw_pack

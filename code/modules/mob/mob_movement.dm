@@ -162,7 +162,7 @@
 			next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 			return
 		else //We are anything BUT an observer.
-			if(!my_mob.canmove)//If you want to be very restrictive, add my_mob.restrained() and it'll stop people cuffed/straight jacketed. For now, that's too restrictive for a bugfix PR.
+			if(!my_mob.canmove || my_mob.paralysis || my_mob.stunned)//If you want to be very restrictive, add my_mob.restrained() and it'll stop people cuffed/straight jacketed. For now, that's too restrictive for a bugfix PR.
 				return
 			else //Proceed like normal.
 				Process_Incorpmove(direct)
@@ -389,6 +389,8 @@
 			is_leaving_belly = FALSE
 			return
 		is_leaving_belly = FALSE
+	if(isghosttrap(mob.loc))
+		return
 	var/turf/mobloc = get_turf(mob)
 
 	if(incorporeal_speed)

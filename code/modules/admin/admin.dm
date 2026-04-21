@@ -661,49 +661,40 @@ ADMIN_VERB(announce, R_SERVER|R_ADMIN|R_EVENT, "Announce", "Announce your desire
 	log_admin("Announce: [key_name(user)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/intercom()
-	set category = "Fun.Event Kit"
-	set name = "Intercom Msg"
-	set desc = "Send an intercom message, like an arrivals announcement."
-	if(!check_rights(0))	return
+ADMIN_VERB(intercom, R_ADMIN|R_EVENT, "Intercom Msg", "Send an intercom message, like an arrivals announcement.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/channel = tgui_input_list(user, "Channel for message:","Channel", GLOB.radiochannels)
 
-	var/channel = tgui_input_list(usr, "Channel for message:","Channel", GLOB.radiochannels)
+	if(!channel) //They didn't pick a channel
+		return
 
-	if(channel) //They picked a channel
-		var/sender = tgui_input_text(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer")
+	var/sender = tgui_input_text(user, "Name of sender (max 75):", "Announcement", "Announcement Computer")
 
-		if(sender) //They put a sender
-			sender = sanitize(sender, 75, extra = 0)
-			var/message = tgui_input_text(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.", multiline = TRUE, prevent_enter = TRUE)
-			var/msgverb = tgui_input_text(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says")
-			if(message) //They put a message
-				message = sanitize(message, 500, extra = 0)
-				if(msgverb)
-					msgverb = sanitize(msgverb, 50, extra = 0)
-				else
-					msgverb = "states"
-				GLOB.global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
-				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
+	if(sender) //They put a sender
+		sender = sanitize(sender, 75, extra = 0)
+		var/message = tgui_input_text(user, "Message content (max 500):", "Contents", "This is a test of the announcement system.", multiline = TRUE, prevent_enter = TRUE)
+		var/msgverb = tgui_input_text(user, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says")
+		if(message) //They put a message
+			message = sanitize(message, 500, extra = 0)
+			if(msgverb)
+				msgverb = sanitize(msgverb, 50, extra = 0)
+			else
+				msgverb = "states"
+			GLOB.global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+			log_admin("Intercom: [key_name(user)] : [sender]:[message]")
 
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/intercom_convo()
-	set category = "Fun.Event Kit"
-	set name = "Intercom Convo"
-	set desc = "Send an intercom conversation, like several uses of the Intercom Msg verb."
-	set waitfor = FALSE //Why bother? We have some sleeps. You can leave tho!
-	if(!check_rights(0))	return
-
-	var/channel = tgui_input_list(usr, "Channel for message:","Channel", GLOB.radiochannels)
+ADMIN_VERB(intercom_convo, R_ADMIN|R_EVENT, "Intercom Convo", "Send an intercom conversation, like several uses of the Intercom Msg verb.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/channel = tgui_input_list(user, "Channel for message:","Channel", GLOB.radiochannels)
 
 	if(!channel) //They picked a channel
 		return
 
-	var/speech_verb = tgui_alert(usr, "What speech verb to use for the conversation?", "Type", list("states", "says"))
+	var/speech_verb = tgui_alert(user, "What speech verb to use for the conversation?", "Type", list("states", "says"))
 	if(!speech_verb)
 		return
 
-	to_chat(usr, span_notice(span_bold("Intercom Convo Directions") + "<br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
+	to_chat(user, span_notice(span_bold("Intercom Convo Directions") + "<br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
 		add another line, and type a (whole) number of seconds to pause between that message, and the next message, then repeat the message syntax up to 20 times. For example:<br>\
 		--- --- ---<br>\
 		Some Guy|Hello guys, what's up?<br>\
@@ -715,24 +706,25 @@ ADMIN_VERB(announce, R_SERVER|R_ADMIN|R_EVENT, "Announce", "Announce your desire
 		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed."))
 
 	var/list/decomposed
-	var/message = tgui_input_text(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE, prevent_enter = TRUE)
+	var/message = tgui_input_text(user, "See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE, prevent_enter = TRUE)
 
 	if(!message)
 		return
 
 	//Split on pipe or \n
 	decomposed = splittext(message,regex("\\||$","m"))
-	decomposed += "0" //Tack on a final 0 sleep to make 3-per-message evenly
 
 	//Time to find how they screwed up.
 	//Wasn't the right length
-	if((decomposed.len) % 3) //+1 to accomidate the lack of a wait time for the last message
-		to_chat(usr, span_warning("You passed [decomposed.len] segments (senders+messages+pauses). You must pass a multiple of 3, minus 1 (no pause after the last message). That means a sender and message on every other line (starting on the first), separated by a pipe character (|), and a number every other line that is a pause in seconds."))
+	if((decomposed.len) % 3)
+		to_chat(user, span_warning("You passed [decomposed.len] segments (senders+messages+pauses). You must pass a multiple of 3, minus 1 (no pause after the last message). That means a sender and message on every other line (starting on the first), separated by a pipe character (|), and a number every other line that is a pause in seconds."))
 		return
+	decomposed.Remove("") //ancient black magic.
+	decomposed += 0 //Add a final wait time for the final message.
 
 	//Too long a conversation
 	if((decomposed.len / 3) > 20)
-		to_chat(usr, span_warning("This conversation is too long! 20 messages maximum, please."))
+		to_chat(user, span_warning("This conversation is too long! 20 messages maximum, please."))
 		return
 
 	//Missed some sleeps, or sanitized to nothing.
@@ -740,29 +732,29 @@ ADMIN_VERB(announce, R_SERVER|R_ADMIN|R_EVENT, "Announce", "Announce your desire
 
 		//Sanitize sender
 		var/clean_sender = sanitize(decomposed[i])
-		if(!clean_sender)
-			to_chat(usr, span_warning("One part of your conversation was not able to be sanitized. It was the sender of the [(i+2)/3]\th message."))
+		if(!istext(clean_sender))
+			to_chat(user, span_warning("One part of your conversation was not able to be sanitized. It was the sender of the [(i+2)/3]\th message."))
 			return
 		decomposed[i] = clean_sender
 
 		//Sanitize message
 		var/clean_message = sanitize(decomposed[++i])
-		if(!clean_message)
-			to_chat(usr, span_warning("One part of your conversation was not able to be sanitized. It was the body of the [(i+2)/3]\th message."))
+		if(!istext(clean_message))
+			to_chat(user, span_warning("One part of your conversation was not able to be sanitized. It was the body of the [(i+2)/3]\th message."))
 			return
 		decomposed[i] = clean_message
 
 		//Sanitize wait time
 		var/clean_time = text2num(decomposed[++i])
 		if(!isnum(clean_time))
-			to_chat(usr, span_warning("One part of your conversation was not able to be sanitized. It was the wait time after the [(i+2)/3]\th message."))
+			to_chat(user, span_warning("One part of your conversation was not able to be sanitized. It was the wait time after the [(i+2)/3]\th message."))
 			return
 		if(clean_time > 60)
-			to_chat(usr, span_warning("Max 60 second wait time between messages for sanity's sake please."))
+			to_chat(user, span_warning("Max 60 second wait time between messages for sanity's sake please."))
 			return
 		decomposed[i] = clean_time
 
-	log_admin("Intercom convo started by: [key_name(usr)] : [sanitize(message)]")
+	log_admin("Intercom convo started by: [key_name(user)] : [sanitize(message)]")
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	//Sanitized AND we still have a chance to send it? Wow!
@@ -1062,7 +1054,7 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATE
 	log_and_message_admins("spawned [amount] x [chosen_path] at [AREACOORD(user.mob)]", user)
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN|R_FUN|R_EVENT, "Show Traitor Panel", "Edit mobs's memory and role", ADMIN_CATEGORY_EVENTS, mob/M in GLOB.mob_list)
 	if(!istype(M))
 		to_chat(user, "This can only be used on instances of type /mob")
 		return
@@ -1395,17 +1387,12 @@ ADMIN_VERB(sendFax, R_ADMIN|R_MOD|R_EVENT, "Send Fax", "Sends a fax to this mach
 		faxreply = null
 	return
 
-/datum/admins/proc/set_uplink(mob/living/carbon/human/human_mob)
-	set category = "Debug.Events"
-	set name = "Set Uplink"
-	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
-	set popup_menu = FALSE
+ADMIN_VERB(set_uplink, R_ADMIN|R_DEBUG, "Set Uplink", "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals.", ADMIN_CATEGORY_DEBUG_EVENTS)
+	var/mob/living/carbon/human/traitor_human = tgui_input_list(user, "Select whom to give an uplink.", "Set uplink", GLOB.human_mob_list)
+	if(!traitor_human)
+		return
 
-	if(check_rights(R_ADMIN|R_DEBUG))
-		GLOB.traitors.spawn_uplink(human_mob)
-		human_mob.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
-		human_mob.mind.accept_tcrystals = 1
-		var/msg = "[key_name(usr)] has given [human_mob.ckey] an uplink."
-		message_admins(msg)
-	else
-		to_chat(usr, "You do not have access to this command.")
+	GLOB.traitors.spawn_uplink(traitor_human)
+	traitor_human.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+	traitor_human.mind.accept_tcrystals = 1
+	message_admins("[key_name(usr)] has given [traitor_human.ckey] an uplink.")

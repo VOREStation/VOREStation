@@ -413,10 +413,11 @@
 
 
 /obj/machinery/door/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
 		open()
-	..()
-
 
 /obj/machinery/door/ex_act(severity)
 	switch(severity)

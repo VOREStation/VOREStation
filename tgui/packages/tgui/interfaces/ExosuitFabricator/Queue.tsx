@@ -17,7 +17,7 @@ export const Queue = (props: {
 
   const { queueMaterials, missingMaterials, textColors } = props;
 
-  const disabled: boolean = !queue || !queue.length;
+  const disabled: boolean = !queue?.length;
 
   return (
     <Stack height="100%" width="100%" vertical>
@@ -119,7 +119,7 @@ const QueueList = (props: { textColors: Record<number, number> }) => {
 
   const { queue = [] } = data;
 
-  if (!queue || !queue.length) {
+  if (!queue?.length) {
     return 'No parts in queue.';
   }
 

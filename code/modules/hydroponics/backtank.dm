@@ -115,7 +115,7 @@
 	else
 		return ..()
 
-/obj/item/watertank/dropped(mob/user)
+/obj/item/watertank/dropped(mob/user, equipping, slot)
 	..()
 	remove_noz(user)
 

@@ -151,7 +151,7 @@
 	icon_state = "mecha_honker"
 	energy_drain = 200
 	equip_cooldown = 150
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 
 	can_attach(obj/mecha/combat/honker/M as obj)
 		if(!istype(M))

@@ -2,7 +2,6 @@
 	name = "cloaking device"
 	desc = "Integrated cloaking system. High power usage, but does render you invisible to the naked eye. Doesn't prevent noise, however."
 	icon_state = "tesla"
-	origin_tech = list(TECH_MAGNET = 5, TECH_DATA = 5)
 	energy_drain = 300
 	range = 0
 	equip_type = EQUIP_SPECIAL
