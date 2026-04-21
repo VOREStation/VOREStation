@@ -30,12 +30,14 @@
 	..()
 
 
-/obj/item/clothing/gloves/regen/dropped(var/mob/user)
+/obj/item/clothing/gloves/regen/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
+
 	..()
 
 	if(!ishuman(user))
 		return
-
 	var/mob/living/carbon/human/H = user
 	if(H.can_feel_pain())
 		to_chat(H, span_danger("You feel the hypodermic needles as you slide \the [src] off!"))

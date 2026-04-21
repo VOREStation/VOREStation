@@ -81,6 +81,10 @@
 
 	var/datum/weakref/buffered_anomaly = null
 
+/obj/item/anomaly_scanner/Destroy()
+	. = ..()
+	buffered_anomaly = null
+
 /obj/item/anomaly_scanner/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)

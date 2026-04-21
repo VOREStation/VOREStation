@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(tape_roll_applications)
 		add_overlay(overlay)
 
 
-/obj/item/taperoll/dropped(mob/user)
+/obj/item/taperoll/dropped(mob/user, equipping, slot)
 	update_icon()
 	return ..()
 

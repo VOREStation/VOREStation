@@ -58,7 +58,7 @@
 					if(user.hud_used && user.hud_used.move_intent)
 						user.hud_used.move_intent.icon_state = "walking"
 
-/obj/item/clothing/suit/shibari/dropped(var/mob/living/user)
+/obj/item/clothing/suit/shibari/dropped(mob/user, equipping, slot)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

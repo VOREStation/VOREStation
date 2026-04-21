@@ -22,12 +22,13 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/deadringer/dropped(mob/user)
+/obj/item/deadringer/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..() //Don't break cloak if we're being put in a pocket.
 	..()
 	if(timer > 20)
 		reveal()
 		watchowner = null
-	return
 
 /obj/item/deadringer/attack_self(mob/user)
 	. = ..(user)

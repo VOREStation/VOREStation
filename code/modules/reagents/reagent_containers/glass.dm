@@ -187,7 +187,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/dropped(mob/user)
+/obj/item/reagent_containers/glass/beaker/dropped(mob/user, equipping, slot)
 	..()
 	update_icon()
 

@@ -113,7 +113,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/telecube/dropped(mob/user)
+/obj/item/telecube/dropped(mob/user, equipping, slot)
 	. = ..()
 	update_icon()
 

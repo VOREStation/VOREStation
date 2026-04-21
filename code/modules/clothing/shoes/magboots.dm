@@ -64,44 +64,49 @@
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_mob_action_buttons()
 
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE)
+/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = TRUE)
 
 	var/mob/living/carbon/human/H = user
 
 	if(H.shoes)
 		shoes = H.shoes
 		if(istype(shoes, /obj/item/clothing/shoes) && shoes.overshoes)
-			if(slot && slot == slot_shoes)
+			if(slot && slot == slot_shoes && !disable_warning)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.shoes] are in the way.")
 			shoes = null
-			return 0
-		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
-		shoes.forceMove(src)
+			return FALSE
+		shoes = null
+	return ..()
 
-	if(!..())
-		if(shoes) 	//Put the old shoes back on if the check fails.
-			if(H.equip_to_slot_if_possible(shoes, slot_shoes))
-				src.shoes = null
-		return 0
+/obj/item/clothing/shoes/magboots/equipped(mob/user, slot)
 
-	if (shoes)
-		if(slot && slot == slot_shoes)
-			to_chat(user, "You slip \the [src] on over \the [shoes].")
+	var/mob/living/carbon/human/H = user
+	if(slot && slot != slot_shoes)
+		return ..()
 	set_slowdown()
 	wearer = WEAKREF(H)
-	return 1
+	..()
 
-/obj/item/clothing/shoes/magboots/dropped(mob/user)
+/obj/item/clothing/shoes/magboots/dropped(mob/user, equipping, slot)
 	..()
 	wearer = null
 
 	var/mob/living/carbon/human/H = user
-	if(!ishuman(H) || !shoes)
+	if(!ishuman(H))
 		return
 
-	if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
-		shoes.forceMove(get_turf(src))
-	shoes = null
+	//Equipping shoes. If you put it so you can put your shoes somewhere BUT your shoe slot, make sure this shit works.
+	if(equipping && (slot == slot_shoes))
+		if(H.shoes && H.shoes != src)
+			shoes = H.shoes
+			H.unEquip(shoes, TRUE, src)
+			to_chat(user, "You slip \the [src] on over \the [shoes].")
+		return
+
+	if(shoes)
+		if(!H.equip_to_slot_if_possible(shoes, slot_shoes, FALSE, TRUE, TRUE, TRUE))
+			shoes.forceMove(get_turf(src))
+		shoes = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()
@@ -125,12 +130,12 @@
 	return //voxboots suffer no slowdown penalties!
 
 //In case they somehow come off while enabled.
-/obj/item/clothing/shoes/magboots/vox/dropped(mob/user)
-	..(user)
-	if(src.magpulse)
+/obj/item/clothing/shoes/magboots/vox/dropped(mob/user, equipping, slot)
+	..()
+	if(magpulse)
 		user.visible_message("The [src] go limp as they are removed from [user]'s feet.", "The [src] go limp as they are removed from your feet.")
 		item_flags &= ~NOSLIP
-		magpulse = 0
+		magpulse = FALSE
 		canremove = TRUE
 
 /obj/item/clothing/shoes/magboots/vox/examine(mob/user)

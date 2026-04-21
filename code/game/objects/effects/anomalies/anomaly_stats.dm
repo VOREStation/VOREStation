@@ -31,6 +31,8 @@
 
 /datum/anomaly_stats/Destroy(force)
 	QDEL_NULL(modifier)
+	attached_anomaly = null
+	attached_harvester = null
 	return ..()
 
 /datum/anomaly_stats/proc/randomize_particle_types()
