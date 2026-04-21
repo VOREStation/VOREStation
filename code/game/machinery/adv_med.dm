@@ -242,6 +242,9 @@
 		occupantData["hasBorer"] = H.has_brain_worms()
 		occupantData["hasWithdrawl"] = has_withdrawl
 
+		occupantData["allergens"] = assembly_allergy_list(H.species.allergens, H.species.medallergens)
+		occupantData["hasAllergens"] = islist(occupantData["allergens"])
+
 		occupantData["colourblind"] = null
 		for(var/datum/modifier/M in H.modifiers)
 			if(!isnull(M.wire_colors_replace))
