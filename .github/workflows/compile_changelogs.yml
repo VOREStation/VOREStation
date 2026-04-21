@@ -8,7 +8,7 @@ on:
 jobs:
   compile:
     name: "Compile changelogs"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       #- name: "Check for ACTION_ENABLER secret and pass true to output if it exists to be checked by later steps"
       #  id: value_holder
@@ -21,7 +21,7 @@ jobs:
 
       - name: "Setup python"
         #if: steps.value_holder.outputs.ACTIONS_ENABLED
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v6.2.0
         with:
           python-version: "3.x"
 
@@ -34,7 +34,7 @@ jobs:
 
       - name: "Checkout"
         #if: steps.value_holder.outputs.ACTIONS_ENABLED
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 25
           persist-credentials: false

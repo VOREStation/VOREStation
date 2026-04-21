@@ -7,14 +7,14 @@ on:
 
 jobs:
   update-dmapi:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     name: Update the TGS DMAPI
     permissions:
       contents: write
       pull-requests: write
     steps:
       - name: Clone
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
 
       - name: Branch
         run: |
