@@ -35,6 +35,7 @@
 	var/power_usage = 1
 	var/power_use = 1
 	var/flickering = FALSE
+	var/single_use = FALSE
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -96,6 +97,8 @@
 	. = ..(user)
 	if(.)
 		return TRUE
+	if(single_use && on)
+		return FALSE
 	if(special_handling)
 		return FALSE
 	if(flickering)
@@ -409,16 +412,17 @@
 	icon_state = "flare"
 	item_state = "flare"
 	actions_types = list() //just pull it manually, neckbeard.
-	var/fuel = 0
+	var/fuel = 800
 	var/on_damage = 7
 	var/produce_heat = 1500
 	power_use = 0
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
+	single_use = TRUE
 
 /obj/item/flashlight/flare/Initialize(mapload)
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel += rand(0, 200)
 	. = ..()
 
 /obj/item/flashlight/flare/process()
@@ -443,10 +447,8 @@
 	if(.)
 		return TRUE
 	// Usual checks
-	if(!fuel)
+	if(!fuel || on)
 		to_chat(user, span_notice("It's out of fuel."))
-		return
-	if(on)
 		return
 	// All good, turn it on.
 	if(. == CAN_USE)
@@ -477,11 +479,12 @@
 	light_color = "#49F37C"
 	icon_state = "glowstick_green"
 	item_state = "glowstick_green"
-	var/fuel = 0
-	power_use = 0
+	var/fuel = 1600
+	power_use = FALSE
+	single_use = TRUE
 
 /obj/item/flashlight/glowstick/Initialize(mapload)
-	fuel = rand(1600, 2000)
+	fuel += rand(0, 400)
 	. = ..()
 
 /obj/item/flashlight/glowstick/process()
@@ -493,17 +496,15 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/glowstick/proc/turn_off()
-	on = 0
+	on = FALSE
 	update_brightness()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(!fuel)
+	if(!fuel || on)
 		to_chat(user, span_notice("The glowstick has already been turned on."))
-		return
-	if(on)
 		return
 
 	if(. == CAN_USE)
