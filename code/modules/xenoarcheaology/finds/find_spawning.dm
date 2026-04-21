@@ -586,7 +586,6 @@
 				apply_material_decorations = FALSE
 			new_item = new /obj/item/telecube/mated(src.loc)
 			item_type = new_item.name
-			secondary_item_type = secondary_item.name
 
 		if(ARCHAEO_BATTERY)
 			// Battery!
