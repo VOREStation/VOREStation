@@ -435,7 +435,7 @@
 /obj/item/mine/stripping
 	name = "strip mine"
 	desc = "A small bluespace mine with a symbol of clothing with a slash through it.."
-	minetype = /obj/effect/mine/stirpping
+	minetype = /obj/effect/mine/stripping
 
 /obj/item/mine/gadget
 	name = "gadget mine"
