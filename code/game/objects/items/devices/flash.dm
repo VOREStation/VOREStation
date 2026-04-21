@@ -8,7 +8,6 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
-	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 
 	///Number of times it's been used.
 	var/times_used = 0
@@ -292,7 +291,9 @@
 	return
 
 /obj/item/flash/emp_act(severity, recursive)
-	if(broken)	return
+	. = ..()
+	if (. & EMP_PROTECT_SELF || broken)
+		return
 	flash_recharge()
 	if(!check_capacitor())
 		return
@@ -310,7 +311,6 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 	base_icon = "sflash"
 	can_repair = FALSE
 	one_use = TRUE

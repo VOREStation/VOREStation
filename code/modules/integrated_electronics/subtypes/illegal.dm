@@ -22,7 +22,6 @@
 		)
 	activators = list("set spoof address" = IC_PINTYPE_PULSE_IN, "on data received" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH|IC_SPAWN_ILLEGAL
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_ILLEGAL = 2)
 	power_draw_per_use = 200
 	var/datum/exonet_protocol/exonet = null
 	var/address_spoofed = FALSE
@@ -74,7 +73,6 @@
 	outputs = list("addresses found" = IC_PINTYPE_LIST)
 	activators = list("start discovery" = IC_PINTYPE_PULSE_IN, "on addresses found" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_ILLEGAL
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_ILLEGAL = 1)
 	power_draw_per_use = 300
 	var/datum/exonet_protocol/exonet = null
 	var/obj/machinery/exonet_node/node = null

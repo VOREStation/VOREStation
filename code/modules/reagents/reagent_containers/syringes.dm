@@ -59,7 +59,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/dropped(mob/user)
+/obj/item/reagent_containers/syringe/dropped(mob/user, equipping, slot)
 	..()
 	update_icon()
 

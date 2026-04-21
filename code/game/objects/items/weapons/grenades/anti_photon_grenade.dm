@@ -4,7 +4,6 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "emp"
 	det_time = 20
-	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4)
 	var/light_sound = 'sound/effects/phasein.ogg'
 	var/blast_sound = 'sound/effects/bang.ogg'
 

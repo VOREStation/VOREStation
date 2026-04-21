@@ -3,7 +3,6 @@
 	name = "scroll of divination"
 	desc = "An unusual scroll that appears to report all of the details of a person's health when waved near them. Oddly, it seems to have a little metal chip up near the handles..."
 	advscan = SCANNABLE_SECRETIVE
-	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health_scroll"
 
 
@@ -297,7 +296,6 @@
 	icon_state = "teleporter"
 	beacons_left = 3
 	cell_type = /obj/item/cell/device
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 	special_handling = TRUE
 
 /obj/item/perfect_tele_beacon/magic

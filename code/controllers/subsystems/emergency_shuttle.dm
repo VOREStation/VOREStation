@@ -28,9 +28,9 @@ SUBSYSTEM_DEF(emergency_shuttle)
 	VAR_PRIVATE/list/current_run
 
 /datum/controller/subsystem/emergency_shuttle/Initialize()
-	emergency_shuttle_docked = new(0, new_sound = sound('sound/AI/shuttledock.ogg'))
-	emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
-	emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
+	emergency_shuttle_docked = new()
+	emergency_shuttle_called = new()
+	emergency_shuttle_recalled = new()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/emergency_shuttle/fire(resumed)
@@ -72,9 +72,9 @@ SUBSYSTEM_DEF(emergency_shuttle)
 		var/estimated_time = round(estimate_launch_time()/60,1)
 
 		if(evac)
-			emergency_shuttle_docked.Announce(replacetext(replacetext(using_map.emergency_shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+			emergency_shuttle_docked.Announce(replacetext(replacetext(using_map.emergency_shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"), new_sound = ANNOUNCER_MSG_SHUTTLE_EMERG_DOCK)
 		else
-			GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramarrived.ogg') //VOREStation Edit - TTS
+			GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"), "Transfer System", ANNOUNCER_MSG_SHUTTLE_ENDROUND_DOCK)
 
 	//arm the escape pods
 	if(!evac)
@@ -113,7 +113,7 @@ SUBSYSTEM_DEF(emergency_shuttle)
 	var/estimated_time = round(estimate_arrival_time()/60, 1)
 
 	evac = TRUE
-	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
+	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"), new_sound = ANNOUNCER_MSG_SHUTTLE_EMERG_CALLED)
 	for(var/type, area in GLOB.areas_by_type)
 		if(istype(area, /area/hallway))
 			var/area/hallway/our_hallway = area
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(emergency_shuttle)
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 	var/estimated_time = round(estimate_arrival_time()/60, 1)
 
-	GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg')
+	GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", ANNOUNCER_MSG_SHUTTLE_ENDROUND_CALLED)
 	SSatc.shift_ending()
 
 //recalls the shuttle
@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(emergency_shuttle)
 	shuttle.cancel_launch(src)
 
 	if(evac)
-		emergency_shuttle_recalled.Announce(using_map.emergency_shuttle_recall_message)
+		emergency_shuttle_recalled.Announce(using_map.emergency_shuttle_recall_message, new_sound = ANNOUNCER_MSG_SHUTTLE_EMERG_RECALLED)
 
 		for(var/type, area in GLOB.areas_by_type)
 			if(istype(area, /area/hallway))

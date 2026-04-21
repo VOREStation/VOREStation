@@ -24,6 +24,7 @@
 	var/affects_robots = 0	// Does this chem process inside a Synth?
 
 	var/allergen_type		// What potential allergens does this contain?
+	var/medallergen_type	// What potential medical allergens does this contain?
 	var/allergen_factor = 2	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
 
 	var/cup_icon_state = null
@@ -179,6 +180,10 @@
 	removed = min(removed, volume)
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
+	if(M.species.medallergens & medallergen_type) // Medical allergies don't gain ANY benefits...
+		M.add_chemical_effect(CE_ALLERGEN, allergen_factor * removed)
+		remove_self(removed)
+		return
 	switch(active_metab.metabolism_class)
 		if(CHEM_BLOOD)
 			affect_blood(M, alien, removed)
@@ -192,7 +197,7 @@
 	on_mob_metabolize(M, location)
 	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH || can_overdose_touch))
 		overdose(M, alien, removed)
-	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!
+	if((M.species.allergens & allergen_type))	//uhoh, we can't handle this!
 		M.add_chemical_effect(CE_ALLERGEN, allergen_factor * removed)
 	remove_self(removed)
 	return

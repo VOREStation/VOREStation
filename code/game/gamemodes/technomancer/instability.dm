@@ -129,7 +129,7 @@
 						safe_blink(src, range = 6)
 						to_chat(src, span_warning("You're teleported against your will!"))
 					if(4)
-						emp_act(3)
+						emp_act(EMP_LIGHT)
 
 			if(51 to 100) //Severe
 				rng = rand(0,3)
@@ -137,7 +137,7 @@
 					if(0)
 						electrocute_act(instability * 0.5, "extremely unstable energies", 0.75)
 					if(1)
-						emp_act(2)
+						emp_act(EMP_MEDIUM)
 					if(2)
 						adjustFireLoss(instability * 0.3) //30 burn @ 100 instability
 						to_chat(src, span_danger("Your chassis alerts you to extreme overheating from an unknown external force!"))
@@ -151,7 +151,7 @@
 					if(0)
 						electrocute_act(instability, "extremely unstable energies", 0.75)
 					if(1)
-						emp_act(1)
+						emp_act(EMP_HEAVY)
 					if(2)
 						adjustFireLoss(instability * 0.4) //40 burn @ 100 instability
 						to_chat(src, span_danger("Your chassis alerts you to extreme overheating from an unknown external force!"))

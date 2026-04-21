@@ -5,7 +5,6 @@
 	item_state = "graygloves"
 	var/use_power_amount = 12
 
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_BLUESPACE = 4)
 
 /obj/item/clothing/gloves/telekinetic/Initialize(mapload)
 	. = ..()

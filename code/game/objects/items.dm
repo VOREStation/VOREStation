@@ -22,7 +22,6 @@
 	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
-	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/force = 0
 	var/damtype = BRUTE
@@ -153,9 +152,6 @@
 
 	for(var/path in actions_types)
 		add_item_action(path)
-
-	if(islist(origin_tech))
-		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
 
 	if(embed_chance < 0)
 		if(sharp)
@@ -310,9 +306,9 @@
 	src.loc = T
 
 // See inventory_sizes.dm for the defines.
-/obj/item/examine(mob/user)
-	var/size
-	switch(src.w_class)
+/obj/item/examine(mob/user, infix, suffix)
+	var/size = "unknown"
+	switch(w_class)
 		if(ITEMSIZE_TINY)
 			size = "tiny"
 		if(ITEMSIZE_SMALL)
@@ -325,7 +321,12 @@
 			size = "huge"
 		if(ITEMSIZE_NO_CONTAINER)
 			size = "massive"
-	return ..(user, "", "It is a [size] item.")
+		else
+			if(w_class > ITEMSIZE_HUGE && w_class < ITEMSIZE_NO_CONTAINER)
+				size = "giant"
+			else if (w_class > ITEMSIZE_NO_CONTAINER)
+				size = "enormous"
+	return ..(user, "", "It is \a [size] item.")
 
 /obj/item/attack_hand(mob/living/user as mob)
 	if (!user) return
@@ -431,18 +432,25 @@
 		playsound(src, drop_sound, 30, preference = /datum/preference/toggle/drop_sounds)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
-/obj/item/proc/dropped(mob/user)
+// TO NOTE:
+// Putting an item from your HAND into a POCKET = equipping
+// Putting an item from your HAND to ANY INVENTORY SLOT = equipping
+// DROPPING an item (from hand or inventory slot) = NOT equipping
+// Putting an item from your POCKET into a HAND = NOT equipping
+// If you have an item you want an effect when DROPPED but NOT put in the user's inventory, do a loc == user check.
+// This whole things needs to be completely replaced by tg's dropped stuff but we're a long way off from that.
+/obj/item/proc/dropped(mob/user, equipping, slot)
 	SHOULD_CALL_PARENT(TRUE)
 	appearance_flags &= ~NO_CLIENT_COLOR
 	// Remove any item actions we temporary gave out.
 	for(var/datum/action/action_item_has as anything in actions)
 		action_item_has.Remove(user)
 
-	if((item_flags & DROPDEL) && !QDELETED(src))
-		qdel(src)
-
-	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
-	SEND_SIGNAL(user, COMSIG_MOB_DROPPED_ITEM, src)
+	if(!equipping) //We ONLY send these signals when we ACTUALLY drop the item. Because our item code is stupid, swapping items between your hand is 'dropping' them.
+		SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+		SEND_SIGNAL(user, COMSIG_MOB_DROPPED_ITEM, src)
+		if((item_flags & DROPDEL) && loc != user && !QDELETED(src))
+			qdel(src)
 
 	if(my_augment && !QDELETED(src))
 		forceMove(my_augment)
@@ -537,8 +545,9 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 //the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to 1 if you wish it to not give you outputs.
+//Set go_over_slot to TRUE if the item can go over an item (ex: magboots going over normal boots)
 //Should probably move the bulk of this into mob code some time, as most of it is related to the definition of slots and not item-specific
-/obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = FALSE, var/ignore_obstruction = FALSE)
+/obj/item/proc/mob_can_equip(mob/M, slot, disable_warning = FALSE, ignore_obstruction = FALSE, go_over_slot)
 	if(!slot) return 0
 	if(!M) return 0
 
@@ -559,7 +568,7 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 			return 0
 
 	//Next check that the slot is free
-	if(H.get_equipped_item(slot))
+	if(H.get_equipped_item(slot) && !go_over_slot)
 		return 0
 
 	//Next check if the slot is accessible.

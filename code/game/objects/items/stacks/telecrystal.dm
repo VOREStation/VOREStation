@@ -7,7 +7,6 @@
 	icon_state = "telecrystal"
 	w_class = ITEMSIZE_TINY
 	max_amount = 240
-	origin_tech = list(TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
 	force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 	custom_handling = TRUE
 

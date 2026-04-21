@@ -25,7 +25,6 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_HUGE //It's a giant shield generator!!!
 	unacidable = TRUE
-	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 8, TECH_POWER = 6, TECH_DATA = 4) //These are limited AND high tech. Breaking one of them down is massive.
 	actions_types = list(/datum/action/item_action/toggle_shield)
 	var/obj/item/gun/energy/gun/generator/active_weapon
 	var/obj/item/cell/device/bcell = null
@@ -112,6 +111,9 @@
 */
 
 /obj/item/personal_shield_generator/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(bcell && shield_active)
 		switch(severity)
 			if(1) //Point blank EMP shots have a good chance of burning the cell charge.
@@ -358,7 +360,7 @@
 
 	return 0
 
-/obj/item/personal_shield_generator/dropped(mob/user)
+/obj/item/personal_shield_generator/dropped(mob/user, equipping, slot)
 	..()
 	reattach_gun(user) //A gun attached to a base unit should never exist outside of their base unit or the mob equipping the base unit
 
@@ -430,7 +432,7 @@
 		return 0
 	return 1
 
-/obj/item/gun/energy/gun/generator/dropped(mob/user)
+/obj/item/gun/energy/gun/generator/dropped(mob/user, equipping, slot)
 	..() //update twohanding
 	if(shield_generator)
 		shield_generator.reattach_gun(user)

@@ -1,0 +1,5 @@
+author: "zeskorion"
+delete-after: True
+changes:
+  - rscadd: "Leashes can now work when used by, or on, non-carbons"
+  - qol: "misc gripper can hold a few more utility items. Pens, paper, leash"

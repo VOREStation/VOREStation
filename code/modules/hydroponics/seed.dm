@@ -684,6 +684,10 @@
 
 					if(isnull(gene_chem[i])) gene_chem[i] = 0
 
+					var/list/chems_rid = chems[rid]
+					if(istype(chems_rid) && (chems_rid.len < i))
+						continue
+
 					if(chems[rid][i])
 						chems[rid][i] = max(1,round((gene_chem[i] + chems[rid][i])/2))
 					else
@@ -836,13 +840,11 @@
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
 				var/blight = get_trait(TRAIT_BIOLUM)
 				if(blight >= 5)
 					blight = 5
 				product.set_light(blight, 0.5, l_color = clr)
-				//VOREStation Edit End
-			if(get_trait(TRAIT_STINGS))
+			if(get_trait(TRAIT_STINGS) && isitem(product)) //Sometimes the product can be a mob.
 				product.force = 1
 
 			//Handle spawning in living, mobile products (like dionaea).

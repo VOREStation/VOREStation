@@ -234,7 +234,6 @@
 	name = T_BOARD("Station Map")
 	board_type = new /datum/frame/frame_types/station_map
 	build_path = /obj/machinery/station_map
-	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	req_components = list()
 
 /datum/holomap_marker

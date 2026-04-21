@@ -36,7 +36,6 @@
 	w_class = ITEMSIZE_HUGE
 	drop_sound = 'sound/items/drop/metalweapon.ogg'
 	pickup_sound = 'sound/items/pickup/metalweapon.ogg'
-	origin_tech = list(TECH_COMBAT = 5)
 	attack_verb = list("beaten","slammed","smashed","mauled","hammered","bludgeoned")
 	var/lightcolor = "#D3FDFD"
 	var/status = 0		//whether the thing is on or not
@@ -146,7 +145,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/shock_maul/dropped(mob/user)
+/obj/item/melee/shock_maul/dropped(mob/user, equipping, slot)
 	..()
 	if(status)
 		status = 0
@@ -260,11 +259,12 @@
 	powercheck(hitcost)
 
 /obj/item/melee/shock_maul/emp_act(severity, recursive)
-	if(status)
-		status = FALSE
-		visible_message(span_warning("\The [src]'s power field hisses and sputters out."))
-		update_held_icon()
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !status)
+		return
+	status = FALSE
+	visible_message(span_warning("\The [src]'s power field hisses and sputters out."))
+	update_held_icon()
 
 /obj/item/melee/shock_maul/get_description_interaction()
 	var/list/results = list()

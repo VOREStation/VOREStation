@@ -46,7 +46,7 @@
 		else
 			to_chat(user, span_notice("You don't have a mouth, and can't make much use of \the [src]."))
 
-/obj/item/clothing/mask/chewable/dropped(mob/user)
+/obj/item/clothing/mask/chewable/dropped(mob/user, equipping, slot)
 	STOP_PROCESSING(SSprocessing, src)
 	..()
 
@@ -75,7 +75,7 @@
 	throw_speed = 0.5
 	icon_state = "chew"
 	type_butt = /obj/item/trash/spitwad
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_MASK
 	chem_volume = 50
 	chewtime = 300
@@ -134,7 +134,7 @@
 	item_state = "cigpacket"
 	drop_sound = 'sound/items/drop/shovel.ogg'
 	use_sound = 'sound/items/storage/pillbottle.ogg'
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco = 6)
@@ -214,7 +214,7 @@
 	throw_speed = 0.5
 	icon_state = "chew"
 	type_butt = /obj/item/trash/spitgum
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_MASK
 	chem_volume = 50
 	chewtime = 300
@@ -241,7 +241,7 @@
 	icon_state = "gum_pack"
 	item_state = "candy"
 	slot_flags = SLOT_EARS
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/clothing/mask/chewable/candy/gum = 5)
 	can_hold = list(/obj/item/clothing/mask/chewable/candy/gum,
 					/obj/item/trash/spitgum)
@@ -276,7 +276,7 @@
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "pockys"
 	item_state = "pocky"
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/clothing/mask/chewable/candy/pocky = 8)
 	can_hold = list(/obj/item/clothing/mask/chewable/candy/pocky)
 	use_sound = 'sound/items/drop/paper.ogg'

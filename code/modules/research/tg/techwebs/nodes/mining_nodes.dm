@@ -14,6 +14,7 @@
 		// "recycler",
 		// "stack_machine",
 		// "stack_console",
+		"hoist_kit",
 	)
 
 /datum/techweb_node/mining

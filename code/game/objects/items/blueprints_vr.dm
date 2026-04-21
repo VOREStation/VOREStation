@@ -332,27 +332,27 @@
 	if(message)
 		to_chat(user, message)
 */
-/obj/item/areaeditor/blueprints/dropped(mob/user)
+/obj/item/areaeditor/blueprints/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	//clear_viewer()
 	if(areaColor_turfs.len)
 		seeAreaColors_remove()
 	legend = FALSE
 
-
-
 /obj/item/areaeditor/proc/get_area_type(area/A)
-	if (!A)
+	if(!A)
 		A = get_area(usr)
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
-		if ( istype(A,type) )
+	for(var/type in GLOB.BUILDABLE_AREA_TYPES)
+		if(istype(A,type))
 			return AREA_SPACE
 
-	for (var/type in GLOB.SPECIALS)
-		if ( istype(A,type) )
+	for(var/type in GLOB.SPECIALS)
+		if(istype(A,type))
 			return AREA_SPECIAL
 	return AREA_STATION
 
@@ -775,16 +775,6 @@
 		for(var/image/i in usr.client.images)
 			if(i.icon_state == "blueprints")
 				usr.client.images.Remove(i)
-
-
-
-
-
-
-
-
-
-
 
 //GLOBAL VERB FOR PAPER TO ENABLE ANYONE TO MAKE AN AREA IN BUILDABLE AREAS.
 //THIS IS 70 TILES. ANYTHING LARGER SHOULD USE ACTUAL BLUEPRINTS.

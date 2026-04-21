@@ -26,6 +26,7 @@
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
 	max_pressure_protection = null
 	min_pressure_protection = null
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
@@ -33,10 +34,12 @@
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
 	icon_base = null
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/rig
 	name = "chestpiece"
@@ -72,6 +75,7 @@
 	var/obj/item/material/knife/tacknife
 	max_pressure_protection = null
 	min_pressure_protection = null
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/rig/attack_hand(var/mob/living/M)
 	if(tacknife)
@@ -126,15 +130,19 @@
 	name = DEVELOPER_WARNING_NAME // "mask"
 	body_parts_covered = HEAD|FACE|EYES
 	flags =              THICKMATERIAL|AIRTIGHT
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/lightrig
 	name = DEVELOPER_WARNING_NAME // "suit"
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	flags_inv =          HIDEJUMPSUIT
 	flags =              THICKMATERIAL
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/lightrig
 	name = DEVELOPER_WARNING_NAME // "boots"
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/gloves/gauntlets/lightrig
 	flags = THICKMATERIAL
+	resistance_flags = FIRE_PROOF | ACID_PROOF

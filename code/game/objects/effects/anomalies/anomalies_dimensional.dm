@@ -80,7 +80,7 @@
 	var/turf/new_turf = placer.find_valid_turf(new_area)
 
 	var/datum/announcement/priority/announcement = new/datum/announcement/priority()
-	announcement.Announce("Dimensional instability relocated. Expected location: [new_area.name].", "Anomaly Alert")
+	announcement.Announce("Dimensional instability relocated. Expected location: [new_area.name].", "Anomaly Alert", ANNOUNCER_MSG_DIMENSIONAL_ANOM)
 	src.forceMove(new_turf)
 	prepare_area()
 

@@ -28,7 +28,6 @@
 	icon_state = "clotkit"
 	heal_burn = 0
 	heal_brute = 2 // Only applies to non-humans, to give this some slight application on animals
-	origin_tech = list(TECH_BIO = 3)
 	apply_sounds = list('sound/effects/spray.ogg', 'sound/effects/spray2.ogg', 'sound/effects/spray3.ogg')
 	amount = 5
 	max_amount = 5

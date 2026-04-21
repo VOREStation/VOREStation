@@ -2,7 +2,6 @@
 	name = "\improper RW armor booster"
 	desc = "Ranged-weaponry armor booster. Boosts exosuit armor against ranged attacks. Completely blocks taser shots, but requires energy to operate."
 	icon_state = "mecha_abooster_proj"
-	origin_tech = list(TECH_MATERIAL = 4)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0

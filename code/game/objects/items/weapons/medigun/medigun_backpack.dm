@@ -12,7 +12,6 @@
 	preserve_item = TRUE
 	w_class = ITEMSIZE_HUGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2, TECH_BLUESPACE = 4)
 
 	var/obj/item/bork_medigun/linked/medigun_path = /obj/item/bork_medigun/linked
 	var/obj/item/cell/bcell = /obj/item/cell
@@ -256,6 +255,8 @@
 
 /obj/item/medigun_backpack/emp_act(severity)
 	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(bcell)
 		bcell.emp_act(severity)
 
@@ -561,7 +562,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/medigun_backpack/dropped(mob/user)
+/obj/item/medigun_backpack/dropped(mob/user, equipping, slot)
 	..()
 	replace_icon()
 

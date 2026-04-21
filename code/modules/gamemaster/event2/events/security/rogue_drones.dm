@@ -40,7 +40,7 @@
 			msg = "We're detecting a swarm of small objects approaching your station. \
 			Most likely a bunch of drones. Please exercise caution if you see any."
 
-	GLOB.command_announcement.Announce(msg, "Rogue drone alert")
+	GLOB.command_announcement.Announce(msg, "Rogue drone alert", new_sound = ANNOUNCER_MSG_DRONEPOD)
 
 /datum/event2/event/mob_spawning/rogue_drones/start()
 	for(var/i = 1 to drones_to_spawn)

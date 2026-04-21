@@ -4,7 +4,6 @@
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "armor"
 	w_class = ITEMSIZE_HUGE
-	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 2)
 
 	component_type = MECH_ARMOR
 

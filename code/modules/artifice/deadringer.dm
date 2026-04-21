@@ -5,7 +5,6 @@
 	icon_state = "deadringer"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_TIE
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/activated = 0
 	var/timer = 0
 	var/bruteloss_prev = 999999
@@ -23,12 +22,13 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/deadringer/dropped(mob/user)
+/obj/item/deadringer/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..() //Don't break cloak if we're being put in a pocket.
 	..()
 	if(timer > 20)
 		reveal()
 		watchowner = null
-	return
 
 /obj/item/deadringer/attack_self(mob/user)
 	. = ..(user)

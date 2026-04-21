@@ -258,7 +258,8 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		spawn(1)
 			GLOB.command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
 			for electrical damage.",
-			"Critical Power Overload")
+			"Critical Power Overload",
+			ANNOUNCER_MSG_POWERSPIKE)
 			var/i = 0
 			var/limit = rand(30, 50)
 			for(var/obj/machinery/power/P in powernet_union)

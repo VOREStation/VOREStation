@@ -70,4 +70,4 @@
 		current_collateral.take_damage(current_collateral.health - (current_collateral.maxhealth / 5)) //set to 1/5th health
 
 /datum/event/window_break/announce()
-	command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert")
+	command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert", ANNOUNCER_MSG_WINDOWBREAK)

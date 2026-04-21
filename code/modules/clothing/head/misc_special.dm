@@ -32,6 +32,7 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 	special_handling = TRUE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
 	. = ..(user)
@@ -278,23 +279,25 @@
 	to_chat(wearer, span_danger("The inside of your head hurts..."))
 	wearer.adjustBrainLoss(brainloss_cost)
 
-/obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
+/obj/item/clothing/head/psy_crown/equipped(mob/living/carbon/human/user)
 	..()
-	if(istype(H) && H.head == src && H.is_sentient())
+	if(istype(user) && user.head == src && user.is_sentient())
 		START_PROCESSING(SSobj, src)
 		if(flavor_equip)
-			to_chat(H, flavor_equip)
+			to_chat(user, flavor_equip)
 
-/obj/item/clothing/head/psy_crown/dropped(var/mob/living/carbon/human/H)
+/obj/item/clothing/head/psy_crown/dropped(mob/living/carbon/human/user, equipping, slot)
+	if(equipping || loc == user)
+		return ..()
 	..()
 	STOP_PROCESSING(SSobj, src)
-	if(H.is_sentient())
-		if(loc == H) // Still inhand.
+	if(user.is_sentient())
+		if(loc == user) // Still inhand.
 			if(flavor_unequip)
-				to_chat(H, flavor_unequip)
+				to_chat(user, flavor_unequip)
 				return
 		if(flavor_drop)
-			to_chat(H, flavor_drop)
+			to_chat(user, flavor_drop)
 
 /obj/item/clothing/head/psy_crown/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -346,7 +349,7 @@
 	throwforce = 3
 	throw_speed = 2
 	throw_range = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	body_parts_covered = HEAD
 	attack_verb = list("warned", "cautioned", "smashed")
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)

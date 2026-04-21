@@ -53,6 +53,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	. = ..()
 
 /obj/item/integrated_circuit/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	for(var/datum/integrated_io/io in inputs + outputs + activators)
 		io.scramble()
 

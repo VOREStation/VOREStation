@@ -35,7 +35,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 
 /datum/whitelist_editor/tgui_static_data(mob/user)
 	var/list/whitelist_jobs = list()
-	for(var/datum/job/our_job in GLOB.job_master.occupations)
+	for(var/datum/job/our_job in SSjob.occupations)
 		if(our_job.whitelist_only)
 			whitelist_jobs += our_job.title
 
@@ -75,7 +75,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 			var/role = params["role"]
 			switch(kind)
 				if("job")
-					var/datum/job/job = GLOB.job_master.GetJob(role)
+					var/datum/job/job = SSjob.get_job(role)
 					if(!job)
 						to_chat(ui.user, span_warning("Error, invalid job entered. Check spelling and capitalization."))
 						return FALSE
@@ -292,7 +292,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 
 /proc/is_job_whitelisted(mob/M, var/rank)
 	// Check if the job actually requires a whitelist
-	var/datum/job/job = GLOB.job_master.GetJob(rank)
+	var/datum/job/job = SSjob.get_job(rank)
 	if(!job.whitelist_only)
 		return TRUE
 

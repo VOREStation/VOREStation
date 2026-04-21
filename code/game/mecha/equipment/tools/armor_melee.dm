@@ -2,7 +2,6 @@
 	name = "\improper CCW armor booster"
 	desc = "Close-combat armor booster. Boosts exosuit armor against armed melee attacks. Requires energy to operate."
 	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(TECH_MATERIAL = 3)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
