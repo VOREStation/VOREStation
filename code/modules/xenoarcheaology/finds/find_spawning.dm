@@ -1,8 +1,10 @@
 /obj/item/archaeological_find
 	name = "object"
+	desc = "The existence of this object is reality defying and immersion breaking. Looking at it simply makes you unable to comprehend how it even exists. You should follow the command below."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "ano01"
 	var/find_type = 0
+	item_flags = ABSTRACT
 
 /// Find spawning debug tool. Can be called on any /mob to spawn it at their location.
 /mob/proc/artifact_spawn_debug_tool()
