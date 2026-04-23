@@ -8,3 +8,6 @@
 		)
 	time = 3 SECONDS
 	category = CAT_MISC
+
+/datum/crafting_recipe/toilet/on_craft_completion(mob/user, atom/result)
+	result.dir = user.dir //face the toilet where you face.

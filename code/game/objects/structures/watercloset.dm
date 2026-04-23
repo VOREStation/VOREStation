@@ -53,15 +53,20 @@
 		SEND_SIGNAL(src, COMSIG_DISPOSAL_LINK, trunk)
 
 /obj/structure/toilet/Destroy()
+	if(bin)
+		if(bin.type == /obj/item/stock_parts/matter_bin) //Specifically, if this is a basic bin, you dont get it back. Other bins are returned.
+			QDEL_NULL(bin)
+		else
+			bin.forceMove(src.loc)
+			bin = null
+	if(teleplumb_crystal)
+		teleplumb_crystal.forceMove(src.loc)
+		teleplumb_crystal = null
 	for(var/atom/movable/AM in currently_held_objects)
 		AM.forceMove(src.loc)
 	currently_held_objects = null
 	swirlie_mob = null
 	teleplumb_dest_ref = null
-	if(bin)
-		QDEL_NULL(bin)
-	if(teleplumb_crystal)
-		QDEL_NULL(teleplumb_crystal)
 	. = ..()
 
 
@@ -363,12 +368,10 @@
 		W.set_color()
 		W.set_up(target_turf)
 
-/obj/structure/toilet/proc/deconstruct()
+/obj/structure/toilet/atom_deconstruct(disassembled)
 	place_deconstruction_materials()
 	for(var/atom/movable/AM in contents) //Should handle both cistern and upgrade parts.
 		AM.forceMove(src.loc)
-	qdel(src)
-	return
 
 /obj/structure/toilet/proc/place_deconstruction_materials()
 	new /obj/item/stack/material/steel(src.loc, 5)
