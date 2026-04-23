@@ -48,6 +48,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
+	hat_offset = KITTY_HAT_OFFSET
 
 /// Engineering
 /datum/robot_sprite/dogborg/engineering/kittyborg
@@ -64,6 +65,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
+	hat_offset = KITTY_HAT_OFFSET
 
 
 /// Janitor
@@ -81,6 +83,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
+	hat_offset = KITTY_HAT_OFFSET
 
 /// Medical
 /datum/robot_sprite/dogborg/crisis/kittyborg
@@ -98,6 +101,7 @@
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 	module_type = list("Crisis", "Surgeon")
+	hat_offset = KITTY_HAT_OFFSET
 
 /// Science
 /datum/robot_sprite/dogborg/science/kittyborg
@@ -114,6 +118,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
+	hat_offset = KITTY_HAT_OFFSET
 
 /// Security
 /datum/robot_sprite/dogborg/security/kittyborg
@@ -130,6 +135,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
+	hat_offset = KITTY_HAT_OFFSET
 
 /// Service
 /datum/robot_sprite/dogborg/service/kittyborg
@@ -147,6 +153,7 @@
 	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 	module_type = list("Service", "Clerical")
+	hat_offset = KITTY_HAT_OFFSET
 
 
 
@@ -174,6 +181,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = CAT_HAT_OFFSET
 
 /// Engineering
 /datum/robot_sprite/dogborg/engineering/catborg
@@ -189,6 +197,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = CAT_HAT_OFFSET
 
 /// Crisis
 /datum/robot_sprite/dogborg/crisis/catborg
@@ -206,6 +215,7 @@
 	belly_light_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Crisis", "Surgeon")
+	hat_offset = CAT_HAT_OFFSET
 
 /// Science
 /datum/robot_sprite/dogborg/science/catborg
@@ -221,6 +231,7 @@
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = CAT_HAT_OFFSET
 
 /// Security
 /datum/robot_sprite/dogborg/security/catborg
@@ -237,6 +248,7 @@
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	belly_light_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = CAT_HAT_OFFSET
 
 /// Service
 /datum/robot_sprite/dogborg/service/catborg
@@ -253,6 +265,7 @@
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Service", "Clerical") //They get Janitor because no specific janitor sprite.
+	hat_offset = CAT_HAT_OFFSET
 
 /// Janiborg
 /datum/robot_sprite/dogborg/janitor/catborg
@@ -269,6 +282,7 @@
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Janitor") //Recolored one to be a janitor one lol
+	hat_offset = CAT_HAT_OFFSET
 
 /// Combat Medic
 /datum/robot_sprite/dogborg/combat_medic/catborg
@@ -285,6 +299,7 @@
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	belly_light_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = CAT_HAT_OFFSET
 
 /// CUSTOM
 
@@ -311,6 +326,7 @@
 	// Feel free to recolor it if you want to make it have specific sprites for specific departments.
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = CAT_HAT_OFFSET
 
 /* //These are in the game and can be enabled to enable the sprites. They were added to fluff.dm, but they're also included here commented out as they're part of the catborgs and it's easy to track them down from here.
 /// Custom Catborg Matica

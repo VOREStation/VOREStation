@@ -78,6 +78,7 @@
 /datum/robot_sprite/mining/handy
 	name = "Handy"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/mining/mechoid
 	name = "Acheron"
@@ -92,6 +93,7 @@
 	name = "ZOOM-BA"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/mining/worm
 	name = "W02M"
@@ -101,6 +103,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 /datum/robot_sprite/mining/uptall
 	name = "Feminine Humanoid"
@@ -183,6 +186,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/mining/k4t_alt1
 	name = "K4T Alt"
@@ -191,6 +195,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/mining/dullahan
 	name = "Dullahan Mining unit"
@@ -299,6 +304,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/mining/tall/mmekacargo
 	name = "NIKO - Cargo"
@@ -308,6 +314,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/mining/tall/fmekacargo
 	name = "NIKA - Cargo"
@@ -317,6 +324,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/mining/tall/k4tcargo
 	name = "K4T - Cargo"
@@ -326,6 +334,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/mining/tall/k4t_alt1cargo
 	name = "K4Talt - Cargo"
@@ -335,6 +344,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/mining/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_min.dmi'

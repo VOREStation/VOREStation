@@ -63,6 +63,7 @@
 	name = "Borgi"
 	sprite_icon_state = "borgi"
 	has_eye_light_sprites = TRUE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command
 	sprite_hud_icon_state = "clerical"
@@ -96,6 +97,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command/tall/mmeka
 	name = "NIKO"
@@ -104,6 +106,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command/tall/fmeka
 	name = "NIKA"
@@ -112,6 +115,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/command/smolraptor
 	name = "Small Raptor"

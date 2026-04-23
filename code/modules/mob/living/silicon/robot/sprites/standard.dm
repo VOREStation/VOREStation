@@ -83,6 +83,7 @@
 /datum/robot_sprite/standard/handy
 	name = "Handy"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/standard/mechoid
 	name = "Acheron"
@@ -97,6 +98,7 @@
 	name = "ZOOM-BA"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/standard/worm
 	name = "W02M"
@@ -106,6 +108,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 /datum/robot_sprite/standard/uptall
 	name = "Feminine Humanoid"

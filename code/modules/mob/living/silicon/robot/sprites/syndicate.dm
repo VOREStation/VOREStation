@@ -18,6 +18,7 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/syndie/drake
 	name = "Drake"
@@ -49,6 +50,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/syndie/newmeka
 	name = "MEKA v2"
@@ -56,6 +58,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/syndie/mmeka
 	name = "NIKO"
@@ -63,6 +66,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/syndie/fmeka
 	name = "NIKA"
@@ -70,6 +74,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/syndie/k4t
 	name = "K4T"
@@ -78,6 +83,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat_medic/dullahancombatmedic
 	name = "Dullahan Combat Medic"
@@ -158,6 +164,7 @@
 	has_eye_light_sprites = TRUE
 	sprite_flags = ROBOT_HAS_GUN_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = RAPTOR_HAT_OFFSET
 
 // Mechanist
 
@@ -234,6 +241,7 @@
 	module_type = "Combat Medic"
 	sprite_icon = 'icons/mob/robot/combat_medic_wide.dmi'
 	sprite_hud_icon_state = "malf"
+	hat_offset = VALE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(var/obj/item/robot_module/module)
 	..()
@@ -268,8 +276,7 @@
 	sprite_icon_state = "syndimediraptor"
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
-
-
+	hat_offset = RAPTOR_HAT_OFFSET
 
 // Ninja models
 /* //Unused
@@ -280,6 +287,7 @@
 /datum/robot_sprite/dogborg/tall/ninja
 	module_type = "Ninja"
 	sprite_hud_icon_state = "malf"
+	hat_offset = TALL_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/dullahan
 	name = "dullahan"
@@ -299,6 +307,7 @@
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = TALL_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/tall/mekaninja
 	name = "Meka"
@@ -306,6 +315,7 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/tall/fmekaninja
 	name = "Niko"
@@ -313,6 +323,7 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/tall/k4tninja
 	name = "K4T"
@@ -320,6 +331,7 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/tall/mmekaninja
 	name = "Nika"
@@ -327,6 +339,7 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/dullataurninja
 	name = "Dullataur"

@@ -79,6 +79,7 @@
 /datum/robot_sprite/janitor/handy
 	name = "Handy"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/janitor/mechoid
 	name = "Acheron"
@@ -93,6 +94,7 @@
 	name = "ZOOM-BA"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/janitor/worm
 	name = "W02M"
@@ -102,7 +104,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
-
+	hat_offset = WORM_HAT_OFFSET
 
 /datum/robot_sprite/janitor/uptall
 	name = "Feminine Humanoid"
@@ -134,12 +136,14 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/janitor/otie
 	name = "Otieborg"
 	sprite_icon_state = "otie"
 	sprite_hud_icon_state = "janihound"
 	has_eye_light_sprites = TRUE
+	hat_offset = OTIE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/janitor/drake
 	name = "Drake"
@@ -167,6 +171,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/janitor/newmeka
 	name = "MEKA v2"
@@ -175,6 +180,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/janitor/mmeka
 	name = "NIKO"
@@ -183,6 +189,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/janitor/fmeka
 	name = "NIKA"
@@ -191,6 +198,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/janitor/k4t
 	name = "K4T"
@@ -199,6 +207,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/janitor/k4t_alt1
 	name = "K4T Alt"
@@ -207,6 +216,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahan
 	name = "Dullahan"

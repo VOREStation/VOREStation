@@ -77,6 +77,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 /datum/robot_sprite/civilian/uptall
 	name = "Feminine Humanoid"
@@ -158,16 +159,19 @@
 /datum/robot_sprite/service/handy
 	name = "Handy-Serv"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/service/handy_hydro
 	name = "Handy-Hydro"
 	sprite_icon_state = "handy-hydro"
 	sprite_hud_icon_state = "hydroponics"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/service/zoomba
 	name = "ZOOM-BA"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 // Wide/dogborg sprites
 
@@ -285,6 +289,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/service/newmeka
 	name = "MEKA v2"
@@ -292,6 +297,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/service/mmeka
 	name = "NIKO"
@@ -299,6 +305,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/service/fmeka
 	name = "NIKA"
@@ -306,6 +313,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/service/k4t
 	name = "K4T"
@@ -314,6 +322,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/service/k4t_alt1
 	name = "K4T Alt"
@@ -322,6 +331,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/service/dullahan
 	name = "Dullahan"
@@ -445,6 +455,7 @@
 	name = "Otieborg"
 	sprite_icon_state = "otie"
 	has_eye_light_sprites = TRUE
+	hat_offset = OTIE_HAT_OFFSET
 
 // Tall sprites
 /*
@@ -482,6 +493,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/clown/tall/dullahan
 	name = "Dullahan"
@@ -503,6 +515,10 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default")
+	hat_offset = list(
+	SPRITE_HAT_OFFSET = list("north" = list(16, -2), "south" = list(16, -4), "east" = list(32, -6), "west" = list(-1, -6)),
+	SPRITE_HAT_REST_OFFSET = list("north" = list(16, -6), "south" = list(16, -7), "east" = list(32, -11), "west" = list(-1, -11)),
+	)
 
 /datum/robot_sprite/dogborg/service/valech
 	name = "ServicehoundV2 - Alt"
@@ -527,6 +543,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/service/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_serv.dmi'

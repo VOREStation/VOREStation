@@ -50,6 +50,7 @@
 /datum/robot_sprite/medical/handy
 	name = "Handy"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/medical/insekt
 	name = "Insekt"
@@ -81,6 +82,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 // Wide/dogborg sprites
 /*
@@ -103,6 +105,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/newmeka
 	name = "MEKA v2"
@@ -110,6 +113,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/mmeka
 	name = "NIKO"
@@ -117,6 +121,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/fmeka
 	name = "NIKA"
@@ -124,6 +129,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/k4t
 	name = "K4T"
@@ -132,6 +138,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/k4t_alt1
 	name = "K4T Alt"
@@ -140,6 +147,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/dullahanmed
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_med.dmi'
@@ -229,6 +237,7 @@
 	name = "ZOOM-BA - Surgical"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/surgical/uptall
 	name = "Feminine Humanoid - Surgical"
@@ -269,6 +278,7 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/surgical/drake
 	name = "Drake - Surgical"
@@ -349,6 +359,7 @@
 	name = "ZOOM-BA - Crisis"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/crisis/uptall
 	name = "Feminine Humanoid - Crisis"
@@ -411,6 +422,7 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/crisis/drake
 	name = "Drake - Crisis"

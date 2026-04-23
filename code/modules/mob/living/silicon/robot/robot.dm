@@ -1691,7 +1691,7 @@
 		return
 	cut_overlay(hat_overlay)
 
-	var/list/offset_list = resting ? sprite_datum.hat_offset[SPRITE_HAT_OFFSET] : sprite_datum.hat_offset[SPRITE_HAT_REST_OFFSET]
+	var/list/offset_list = resting ? sprite_datum.hat_offset[SPRITE_HAT_REST_OFFSET] : sprite_datum.hat_offset[SPRITE_HAT_OFFSET]
 	if(islist(offset_list))
 		var/list/offset = offset_list[isDiagonal(dir) ? dir2text(dir & (WEST|EAST)) : dir2text(dir)]
 		if(offset)
