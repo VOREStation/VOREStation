@@ -351,7 +351,8 @@
 	if(rbPDA)
 		QDEL_NULL(rbPDA)
 	if(hat)
-		QDEL_NULL(hat)
+		hat.forceMove(get_turf(src))
+		hat = null
 	if(hat_overlay)
 		QDEL_NULL(hat_overlay)
 	if(inv1)
