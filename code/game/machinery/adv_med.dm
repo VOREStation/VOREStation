@@ -525,6 +525,12 @@
 		dat += "Paralysis Summary %: [occupant_paralysis] ([paralysis_duration] seconds left!)<br>"
 		dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"
 
+		if(ishuman(occupant))
+			var/mob/living/carbon/human/H = occupant
+			var/list/allergen_list = assembly_allergy_list(H.species.allergens, H.species.medallergens)
+			if(length(allergen_list))
+				dat += "Allergens: [english_list(allergen_list)]<BR>"
+
 		dat += "<hr>"
 
 		if(occupant.has_brain_worms())
