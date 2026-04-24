@@ -386,7 +386,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/gps/mining/talonminer,
 		/obj/item/clothing/gloves/black,
 		/obj/item/analyzer,
-		/obj/item/storage/bag/ore,
+		/obj/item/ore_bag,
 		/obj/item/flashlight/lantern,
 		/obj/item/shovel,
 		/obj/item/pickaxe/drill,

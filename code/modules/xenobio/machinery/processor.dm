@@ -16,7 +16,6 @@
 /obj/item/circuitboard/processor
 	name = T_BOARD("slime processor")
 	build_path = /obj/machinery/processor
-	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/machinery/processor/attack_hand(mob/living/user)
 	if(processing)

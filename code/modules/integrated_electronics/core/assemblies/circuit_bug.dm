@@ -8,7 +8,6 @@
 	slot_flags = SLOT_EARS
 	max_components = IC_COMPONENTS_BASE
 	max_complexity = 20 // Incredibly low complexity to prevent shenanigans.
-	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 
 /obj/item/electronic_assembly/circuit_bug/examine(mob/user)
 	. = ..()

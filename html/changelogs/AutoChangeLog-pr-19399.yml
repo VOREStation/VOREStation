@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "AI players can now hear local sounds and area ambiences through their holograms"

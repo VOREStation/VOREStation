@@ -558,10 +558,10 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/click_ctrl(mob/user) //Hold door open
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.is_incorporeal())
-		return
+		return CLICK_ACTION_BLOCKING
 
 	if(!Adjacent(user))
-		return
+		return CLICK_ACTION_BLOCKING
 
 	if(user.a_intent == I_HURT)
 		visible_message(span_warning("[user] hammers on \the [src]!"), span_warning("Someone hammers loudly on \the [src]!"))
@@ -569,13 +569,13 @@ About the new airlock wires panel:
 		if(icon_state == "door_closed" && arePowerSystemsOn())
 			flick("door_deny", src)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(user.a_intent == I_GRAB) //Hold door open
 		hold_open = user
 		visible_message(span_info("[user] begins holding \the [src] open."), span_info("Someone has started holding \the [src] open."))
 		attack_hand(user)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(arePowerSystemsOn())
 		if(isElectrified())
@@ -590,11 +590,12 @@ About the new airlock wires panel:
 		if(icon_state == "door_closed")
 			flick("door_deny", src)
 		playsound(src, knock_sound, 50, 0, 3)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	visible_message(span_info("[user] knocks on \the [src]."), span_info("Someone knocks on \the [src]."))
 	add_fingerprint(user)
 	playsound(src, knock_unpowered_sound, 50, 0, 3)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/door/airlock/tgui_act(action, params, datum/tgui/ui)
 	if(..())

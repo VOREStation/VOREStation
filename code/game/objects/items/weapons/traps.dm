@@ -17,7 +17,6 @@
 	center_of_mass_y = 0
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MAT_STEEL = 18750)
 	var/deployed = 0
 	var/camo_net = FALSE
@@ -167,8 +166,6 @@
 	stun_length = 1 SECOND
 	camo_net = TRUE
 	color = "#C9DCE1"
-
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 1)
 
 /*
  * Barbed-Wire.

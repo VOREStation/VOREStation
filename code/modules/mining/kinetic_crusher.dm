@@ -232,7 +232,7 @@
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 
-/obj/item/kinetic_crusher/machete/gauntlets/dropped(mob/user)
+/obj/item/kinetic_crusher/machete/gauntlets/dropped(mob/user, equipping, slot)
 	ready_toggle(TRUE)
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
@@ -290,7 +290,7 @@
 /obj/item/offhand/crushergauntlets
 	var/obj/item/kinetic_crusher/machete/gauntlets/linked
 
-/obj/item/offhand/crushergauntlets/dropped(mob/user)
+/obj/item/offhand/crushergauntlets/dropped(mob/user, equipping, slot)
 	SHOULD_CALL_PARENT(FALSE)
 	if(linked.wielded)
 		linked.ready_toggle(TRUE)
@@ -299,7 +299,7 @@
 	name = "\improper mounted proto-kinetic gear"
 	var/obj/item/rig_module/gauntlets/storing_module
 
-/obj/item/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user)
+/obj/item/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user, equipping, slot)
 	. = ..(user)
 	if(storing_module)
 		src.forceMove(storing_module)

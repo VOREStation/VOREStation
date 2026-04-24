@@ -9,7 +9,6 @@
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
-	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	var/obj/item/bug_monitor/linkedmonitor
 	var/brokentype = /obj/item/brokenbug
 
@@ -58,7 +57,6 @@
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
-	origin_tech = list(TECH_ENGINEERING = 1)
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -72,7 +70,6 @@
 	layer = TURF_LAYER+0.2
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
-	origin_tech = list(TECH_ENGINEERING = 1, TECH_ILLEGAL = 3) //crush it and you lose the data
 	force = 0
 	throwforce = 5.0
 	throw_range = 15
@@ -87,7 +84,6 @@
 	layer = TURF_LAYER+0.2
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
-	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 	camtype = /obj/machinery/camera/bug/spy
 
 /obj/item/camerabug/examine(mob/user)
@@ -158,7 +154,6 @@
 	icon_state = "forensic0"
 	item_state = "electronic"
 	w_class  = ITEMSIZE_SMALL
-	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 
 //	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/selected_camera
@@ -232,7 +227,6 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
-	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 
 /obj/item/bug_monitor/spy/examine(mob/user)
 	. = ..()

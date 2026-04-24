@@ -77,11 +77,7 @@
 	throwforce = 0
 	force = 0
 	var/net_type = /obj/effect/energy_net
-
-/obj/item/energy_net/dropped(mob/user)
-	..()
-	spawn(10)
-		if(src) qdel(src)
+	item_flags = DROPDEL
 
 /obj/item/energy_net/throw_impact(atom/hit_atom)
 	..()

@@ -5,7 +5,6 @@
 	name = "nanite fabrication implant"
 	desc = "A buzzing implant covered in a writhing layer of metal insects."
 	icon_state = "implant_evil"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_BIO = 2, TECH_ILLEGAL = 2)
 
 	var/organ_to_implant = /obj/item/organ/internal/augment/bioaugment/thermalshades
 	var/organ_display_name = "unknown organ"

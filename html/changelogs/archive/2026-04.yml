@@ -51,3 +51,150 @@
   - bugfix: Getting the value of a cargo tanker with no reagents inside it no longer
       runtimes.
   - bugfix: Foam crossbow toy properly spawns from loadout entry
+2026-04-12:
+  Diana:
+  - bugfix: Swoopies no longer runtime
+  - bugfix: Environmental message works now.
+  - bugfix: Antag NT opposed now considers broke instead of just underpaid/poor
+  - bugfix: EMPs will no longer doubletap things.
+  - refactor: Ore bags refactored from /storage to just /item
+  - qol: Miner borg sleeper belly can now click turf to scoop up ore.
+  - code_imp: Miner borg sleeper belly now dynamically updates how much it can hold
+      based on the ore bag it contains.
+  - bugfix: Ore can now be scooped from any turf, not just mineral turf.
+  - bugfix: Ore bags will no longer pick up archeo debris
+  - bugfix: Miner borg sleeper belly now properly picks up ore.
+  - code_imp: Ore bag signal override removed.
+  Guti:
+  - bugfix: Fixed mob offset
+  - rscadd: EMPs can pulse random wires now
+  - refactor: Refactored EMPs
+  - code_imp: Added var/datum/wires to /atom
+  - code_imp: Added EMP Protection Element
+  - code_imp: EMP defines instead of magic numbers
+  Kashargul:
+  - code_imp: finishes migrating the admin verbs to the subsystem
+  - bugfix: a bunch of runtimes
+  KillianKirilenko:
+  - bugfix: fixed weapon cell icons in examine when guns/etc. are unloaded
+  Nova:
+  - bugfix: fixed powernet circuit outputs
+  Will:
+  - rscadd: AI players can now hear local sounds and area ambiences through their
+      holograms
+  - bugfix: Guns with nonstandard firemode selection properly set firemode properties
+      during init
+  - rscadd: hoistkit added to techweb
+  - rscadd: borgs can now use unpacked hoist kits
+  - refactor: General improvements to hoist kits
+  - rscadd: TTS device now shows a typing indicator while in use.
+2026-04-13:
+  Diana:
+  - bugfix: Infectious component no longer potentially crashes the game.
+  - code_imp: Implements but does not enable the Germ component. (Things left on the
+      ground will become dirty, ultimately making you ill)
+  - code_imp: Robust Gut also applies the strong stomach trait, making you immune
+      to eaten germs.
+  - code_imp: Implements a list of 'elevated structures'. Any /machinery or /structure
+      counts for this. Germs will not accumulate while on them.
+  Diana, Kash.:
+  - qol: The fryer now tells you how much oil is remaining in it.
+  - qol: The fryer now alerts you if the fryer is underfilled or overfilled on oil
+  - qol: Tankers can now be attached to the fryer to fill it.
+  - bugfix: Fryer works properly and adds oil to food
+  - bugfix: Fryer and trays no longer show 'phantom items' overlay.
+  - bugfix: You can now insert oil into the fryer with any reagent container.
+  - code_imp: Recipes are now a global list instead of a per-item list
+  Will:
+  - bugfix: Drawing blood with syringes and IV stands works properly again.
+2026-04-14:
+  CMDRYouth:
+  - rscadd: New Contractor Title for Cargo Technician - Logistics Contractor.
+  - rscadd: New Contractor Title for Shaft Miner - Mining Contractor.
+  - rscadd: New Contractor Title for Scientist - Research Contractor.
+  Diana:
+  - bugfix: Wishgranter properly gives laser eyes.
+  - bugfix: Wizard mutate spell properly gives laser eyes.
+  - bugfix: Clicking an inventory slot with an item now acts as if you were clicking
+      the item in the slot.
+  - bugfix: Ctrl-clicking doors no longer tries to pull them.
+  - rscadd: Objects can now take damage. The most prevalent source of this is FIRE!
+      Objects can now catch on fire and melt away!
+  - qol: Objects will make sounds when they take damage now.
+  - qol: Examining objects will inform you of their various properties. Examining
+      a fireproof, bombproof, or flammable item will inform you of such.
+  - code_imp: Items can now be labeled as ABSTRACT. This means the game will ignore
+      them in certain situations.
+  - code_imp: Instead of things having their own specialty /deconstruct proc, they
+      all now share a /atom_deconstruct proc
+  Fracshun:
+  - bugfix: Fixed throwing items/mobs at yourself not triggering spont vore
+  Kashargul:
+  - refactor: axes the old job controller and old master controller
+  - qol: chat highlights can be toggled
+2026-04-15:
+  Diana:
+  - code_imp: Removed origin_tech
+  Will:
+  - rscadd: Station announcer voice now supports customization without extensive editing
+2026-04-17:
+  Diana:
+  - bugfix: Mag/rigboots will no longer eat boots.
+  - bugfix: Gloves will no longer delete whatever it's put over.
+  - bugfix: Changeling armblades properly pass their message, now.
+  - code_imp: Gets rid of some X as mob / X as obj
+2026-04-19:
+  Cameron-The-Raven:
+  - bugfix: lightweight and heavyweight can no longer be stacked
+  Diana:
+  - qol: Leash stun is only 10 seconds instead of 40.
+  - bugfix: Fixes a few runtimes
+  Will:
+  - rscadd: tricord allergy negative trait
+  - rscadd: bicardine allergy negative trait
+  - rscadd: kelotane allergy negative trait
+  - rscadd: dylovene allergy negative trait
+  - rscadd: spacacillin allergy negative trait
+  - rscadd: peridaxon allergy negative trait
+2026-04-21:
+  Diana:
+  - bugfix: You can no longer pull absorbed players out from a stomach via leash
+  - bugfix: Swoopies can now eat again when their beak is picked up by another player.
+  - bugfix: You can no longer do CPR on yourself
+  - bugfix: Cleaning shoes will make it so they don't leave tracks after cleaned.
+  - bugfix: Geiger counters will no longer set off motiontrackers if they are making
+      no sound.
+  - bugfix: Incorporeal movement no longer bypasses stunned or paralysis.
+  - bugfix: Plastic flowers no longer gib people with pollen allergies.
+  - bugfix: Borg items no longer become colored if material
+  - bugfix: 'Waste processor no longer makes reactions.
+
+      fix; Teshari no longer use a default human rig backpack sprite.'
+  - bugfix: Cyborg tools can no longer be found in xenoarch
+  - bugfix: The replenishing urn is actually replenishing
+  - bugfix: The two telecubes xenoarch can find are mated when spawned.
+  - bugfix: Admin 'drop everything' command works again.
+  - bugfix: Glowsticks and flares can not be turned off once on.
+  - qol: Xenoarch found organs tell you what they are.
+  - bugfix: Jellyfish migration has the proper voice file.
+2026-04-22:
+  ARGUS:
+  - admin: Added a "Convert Player Savefile" verb under the Admin category. Converts
+      a target player's save data between .sav and .json formats. Player must be offline;
+      the verb enforces this with two connection checks and blocks if the player is
+      logged in.
+  - server: Adds export_to_byond_savefile() to datum/json_savefile, the reverse of
+      import_byond_savefile().
+  Diana:
+  - admin: Buildmode is logged now.
+  Will:
+  - code_imp: Cleanup weakref references that were lingering after Destroy()
+  - bugfix: resleeving pod no longer runtime the resleeving console forever if containers
+      are inside it when it is qdeleted
+  zeskorion:
+  - rscadd: shapechange trait
+  - rscadd: Leashes can now work when used by, or on, non-carbons
+  - qol: misc gripper can hold a few more utility items. Pens, paper, leash
+2026-04-23:
+  Will:
+  - code_imp: Slug mob uses weakrefs

@@ -16,7 +16,6 @@
 	name = MAT_CHITIN
 	icon_colour = "#8d6653"
 	stack_type = /obj/item/stack/material/chitin
-	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
 	icon_base = "solid"
 	icon_reinf = "reinf_mesh"
 	integrity = 60

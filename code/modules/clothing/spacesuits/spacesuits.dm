@@ -23,6 +23,7 @@
 	preserve_item = 1
 	flash_protection = FLASH_PROTECTION_MAJOR
 	valid_accessory_slots = null
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -90,6 +91,7 @@
 	preserve_item = 1
 	valid_accessory_slots = (ACCESSORY_SLOT_OVER | ACCESSORY_SLOT_ARMBAND | ACCESSORY_SLOT_DECOR)
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 //VOREStation edit start - use the specially refitted sprites by KBraid. Done this way to avoid breaking subtypes.
 /obj/item/clothing/suit/space/Initialize(mapload)
@@ -102,7 +104,7 @@
 	check_limb_support(M)
 	..()
 
-/obj/item/clothing/suit/space/dropped(mob/user)
+/obj/item/clothing/suit/space/dropped(mob/user, equipping, slot)
 	check_limb_support(user)
 	..()
 

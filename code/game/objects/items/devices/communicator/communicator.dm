@@ -23,7 +23,6 @@
 	slot_flags = SLOT_ID | SLOT_BELT
 	show_messages = 1
 
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_DATA = 2)
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
 
 	var/video_range = 3

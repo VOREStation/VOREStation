@@ -48,7 +48,7 @@
 	if (..(C))
 		C.set_network(network.Copy())
 
-/obj/item/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/security/atom_deconstruct(disassembled = TRUE, var/obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network.Copy()
 

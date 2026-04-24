@@ -4,7 +4,6 @@
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "component"
 	w_class = ITEMSIZE_HUGE
-	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 
 	var/component_type = null
 
@@ -17,7 +16,7 @@
 
 	var/integrity
 	var/integrity_danger_mod = 0.5	// Multiplier for comparison to max_integrity before problems start.
-	var/max_integrity = 100
+	max_integrity = 100
 
 	var/step_delay = 0
 

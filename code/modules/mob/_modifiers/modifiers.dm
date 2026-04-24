@@ -72,6 +72,10 @@
 		origin = WEAKREF(holder)
 	..()
 
+/datum/modifier/Destroy(force)
+	. = ..()
+	origin = null
+
 // Checks if the modifier should be allowed to be applied to the mob before attaching it.
 // Override for special criteria, e.g. forbidding robots from receiving it.
 /datum/modifier/proc/can_apply(var/mob/living/L, var/suppress_output = FALSE)

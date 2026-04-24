@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Guns with nonstandard firemode selection properly set firemode properties during init"
