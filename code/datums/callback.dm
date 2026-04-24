@@ -55,6 +55,10 @@
 	if(usr)
 		user = WEAKREF(usr)
 
+/datum/callback/Destroy(force)
+	. = ..()
+	user =  null
+
 /world/proc/ImmediateInvokeAsync(thingtocall, proctocall, ...)
 	set waitfor = FALSE
 

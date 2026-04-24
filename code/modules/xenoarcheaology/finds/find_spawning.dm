@@ -1,8 +1,10 @@
 /obj/item/archaeological_find
 	name = "object"
+	desc = "The existence of this object is reality defying and immersion breaking. Looking at it simply makes you unable to comprehend how it even exists. You should follow the command below."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "ano01"
 	var/find_type = 0
+	item_flags = ABSTRACT
 
 /// Find spawning debug tool. Can be called on any /mob to spawn it at their location.
 /mob/proc/artifact_spawn_debug_tool()
@@ -84,7 +86,7 @@
 			additional_desc = "There appear to be [pick("dark","faintly glowing","pungent","bright")] [pick("red","purple","green","blue")] stains inside."
 		if(ARCHAEO_URN)
 			item_type = "urn"
-			new_item = new /obj/item/reagent_containers/glass/beaker(src.loc)
+			new_item = new /obj/item/reagent_containers/glass/replenishing(src.loc)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "urn[rand(1,2)]"
 			apply_image_decorations = TRUE
@@ -119,6 +121,7 @@
 			item_type = "[pick("bladed knife","serrated blade","sharp cutting implement")]"
 			var/possible_object_paths = list(/obj/item/material/knife) //As far as I can tell, this is more 'random' than using typesof, as it just picks a random one vs going down the list with a prob (as seen below)
 			possible_object_paths += subtypesof(/obj/item/material/knife)
+			possible_object_paths -= list(/obj/item/material/knife/cyborg, /obj/item/material/knife/machete/hatchet/cyborg)
 			var/obj/item/material/knife/new_knife = pick(possible_object_paths)
 			new_item = new new_knife(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
@@ -192,7 +195,7 @@
 			item_type = "tool"
 			var/possible_object_paths = list()
 			possible_object_paths += subtypesof(/obj/item/tool)
-			possible_object_paths -= /obj/item/tool/screwdriver/test_driver
+			possible_object_paths -= list(/obj/item/tool/screwdriver/test_driver, /obj/item/tool/screwdriver/cyborg, /obj/item/tool/wrench/cyborg, /obj/item/tool/crowbar/cyborg, /obj/item/tool/crowbar/cyborg/jaws, /obj/item/tool/wirecutters/cyborg)
 			var/new_tool = pick(possible_object_paths)
 			new_item = new new_tool(src.loc)
 			new_item.color = rgb(rand(0,255),rand(0,255),rand(0,255))
@@ -450,6 +453,7 @@
 
 			var/obj/item/organ/internal/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
+			additional_desc = "This organ reminds you of a [new_organ.name]"
 
 			//Code to prevent rejection.
 			new_organ = new_item
@@ -582,10 +586,8 @@
 				apply_image_decorations = TRUE
 			if(prob(25))
 				apply_material_decorations = FALSE
-			new_item = new /obj/item/telecube/randomized(src.loc)
-			secondary_item = new /obj/item/telecube/randomized(src.loc)
+			new_item = new /obj/item/telecube/mated(src.loc)
 			item_type = new_item.name
-			secondary_item_type = secondary_item.name
 
 		if(ARCHAEO_BATTERY)
 			// Battery!

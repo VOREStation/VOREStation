@@ -168,6 +168,7 @@
 
 /obj/item/Destroy()
 	d_stage_overlay = null
+	exploit_for = null
 	if(item_tf_spawn_allowed)
 		GLOB.item_tf_spawnpoints -= src
 	if(ismob(loc))
