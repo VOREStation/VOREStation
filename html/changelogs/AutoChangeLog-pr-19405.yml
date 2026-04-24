@@ -1,0 +1,9 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Shield gens now properly fill gaps."
+  - bugfix: "EMPing circuitry bags no longer cause problems."
+  - qol: "Circuitry bag starts with wirer, debugger, and detailer."
+  - qol: "Circuitry bag all starts with a detailer."
+  - sound: "Soundloops have been added for fridges, tcomms, and shield generators."
+  - code_imp: "Falloff variable added for looping sounds."
