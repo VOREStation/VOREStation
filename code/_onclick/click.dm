@@ -325,21 +325,32 @@
 		to_chat(src, span_warning("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
-/mob/proc/face_atom(var/atom/A)
-	if(!A || !x || !y || !A.x || !A.y) return
-	var/dx = A.x - x
-	var/dy = A.y - y
-	if(!dx && !dy) return
+/mob/proc/face_atom(atom/atom_to_face)
+	if(buckled || stat != CONSCIOUS || !atom_to_face || !x || !y || !atom_to_face.x || !atom_to_face.y)
+		return
+	var/dx = atom_to_face.x - x
+	var/dy = atom_to_face.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(atom_to_face.pixel_y > 16)
+			set_dir(NORTH)
+		else if(atom_to_face.pixel_y < -16)
+			set_dir(SOUTH)
+		else if(atom_to_face.pixel_x > 16)
+			set_dir(EAST)
+		else if(atom_to_face.pixel_x < -16)
+			set_dir(WEST)
+		return
 
-	var/direction
 	if(abs(dx) < abs(dy))
-		if(dy > 0)	direction = NORTH
-		else		direction = SOUTH
+		if(dy > 0)
+			set_dir(NORTH)
+		else
+			set_dir(SOUTH)
 	else
-		if(dx > 0)	direction = EAST
-		else		direction = WEST
-	if(direction != dir)
-		facedir(direction)
+		if(dx > 0)
+			set_dir(EAST)
+		else
+			set_dir(WEST)
 
 /atom/movable/screen/click_catcher
 	name = "" // Empty string names don't show up in context menu clicks
