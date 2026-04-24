@@ -1011,6 +1011,10 @@
 	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
 	var/datum/weakref/our_gun
 
+/atom/movable/screen/ammo/Destroy()
+	. = ..()
+	our_gun = null
+
 /atom/movable/screen/ammo/Click()
 	var/mob/user = usr
 	if(!user.checkClickCooldown())

@@ -2212,6 +2212,7 @@
 #include "code\modules\admin\player_notes.dm"
 #include "code\modules\admin\player_panel.dm"
 #include "code\modules\admin\random_quest.dm"
+#include "code\modules\admin\savefile_convert.dm"
 #include "code\modules\admin\spawn_menu.dm"
 #include "code\modules\admin\tag.dm"
 #include "code\modules\admin\topic.dm"

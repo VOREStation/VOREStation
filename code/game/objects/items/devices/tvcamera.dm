@@ -24,6 +24,7 @@
 	qdel(radio)
 	camera = null
 	radio = null
+	showing = null
 	. = ..()
 
 /obj/item/tvcamera/examine()
