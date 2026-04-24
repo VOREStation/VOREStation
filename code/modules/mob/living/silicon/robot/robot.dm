@@ -350,6 +350,8 @@
 		QDEL_NULL(camera)
 	if(rbPDA)
 		QDEL_NULL(rbPDA)
+	if(hat)
+		QDEL_NULL(hat)
 	if(hat_overlay)
 		QDEL_NULL(hat_overlay)
 	if(inv1)
