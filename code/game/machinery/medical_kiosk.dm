@@ -328,11 +328,13 @@
 	if(istype(get_area(src), /area/vr))
 		return "<br>" + span_danger("Incompatible database configuration error: A Transcore Mind and Body Resource Management server could not be detected.")
 
+	/* PY edit - Nif removal
 	var/nif = user.nif
 	if(nif)
 		persist_nif_data(user)
+	*/
 
-	our_db.m_backup(user.mind,nif,one_time = TRUE)
+	our_db.m_backup(user.mind, null/* nif PY edit - Nif removal */,one_time = TRUE)
 	var/datum/transhuman/body_record/BR = new()
 	BR.init_from_mob(user, TRUE, TRUE, database_key = db_key)
 

@@ -112,6 +112,7 @@
 
 	user.fake_enter_vr(S)
 
+/* PY edit - Nif removal
 /datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list
 		//Didn't pick anyone or picked a null
@@ -168,6 +169,7 @@
 	var/req_time = world.time
 	gem.notify_holder("Transient mindstate detected, analyzing...")
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, soulcatcher_spawn_prompt), user, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
+*/
 
 /datum/tgui_module/ghost_spawn_menu/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list

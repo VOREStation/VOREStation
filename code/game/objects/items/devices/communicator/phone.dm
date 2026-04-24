@@ -209,12 +209,14 @@
 		if(!T) return
 		//VOREStation Edit Start for commlinks
 		var/list/mobs_to_relay
+		/* PY edit - Nif removal
 		if(istype(comm,/obj/item/communicator/commlink))
 			var/obj/item/communicator/commlink/CL = comm
 			mobs_to_relay = list(CL.nif.human)
 		else
-			var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
-			mobs_to_relay = in_range["mobs"]
+		*/
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
+		mobs_to_relay = in_range["mobs"]
 		//VOREStation Edit End
 		var/rendered = "[icon2html(src,mobs_to_relay)] " + span_message("[text]")
 		for(var/mob/mob in mobs_to_relay) //We can't use visible_message(), or else we will get an infinite loop if two communicators hear each other.
@@ -237,12 +239,14 @@
 		if(!T) return
 		//VOREStation Edit Start for commlinks
 		var/list/mobs_to_relay
+		/* PY edit - Nif removal
 		if(istype(comm,/obj/item/communicator/commlink))
 			var/obj/item/communicator/commlink/CL = comm
 			mobs_to_relay = list(CL.nif.human)
 		else
-			var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
-			mobs_to_relay = in_range["mobs"]
+		*/
+		var/list/in_range = get_mobs_and_objs_in_view_fast(T,world.view,0) //Range of 3 since it's a tiny video display
+		mobs_to_relay = in_range["mobs"]
 		//VOREStation Edit End
 
 		for(var/mob/mob in mobs_to_relay)

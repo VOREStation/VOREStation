@@ -625,7 +625,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot, list(
 	/obj/item/clothing/glasses/thermal/syndi,
 	/obj/item/gun/energy/netgun,
 	/obj/item/gun/projectile/dartgun,
-	/obj/item/clothing/gloves/black/bloodletter,
+//	/obj/item/clothing/gloves/black/bloodletter, PY edit - Nif removal
 	/obj/item/gun/energy/mouseray/metamorphosis
 	))
 

@@ -224,7 +224,7 @@
 		/obj/item/lightreplacer,
 		/obj/item/book/tome,
 		/obj/item/cell/device/weapon/recharge/alien/hybrid,
-		/obj/item/disk/nifsoft/compliance,
+	//	/obj/item/disk/nifsoft/compliance, PY edit - Nif removal
 		/obj/item/implanter/adrenalin,
 		/obj/item/moneybag,
 		/obj/item/pickaxe/diamonddrill,

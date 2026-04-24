@@ -71,7 +71,7 @@
 			handle_medical_side_effects()
 
 			handle_heartbeat()
-			handle_nif()
+			// handle_nif() PY edit - Nif removal
 			if(phobias)
 				handle_phobias()
 			if(!client)
@@ -999,7 +999,7 @@
 		throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 1)
 	else
 		if(!(COLD_RESISTANCE in mutations) && !istype(loc, /obj/structure/closet/body_bag/cryobag))
-			if(!isSynthetic() || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER))
+			if(!isSynthetic()) // || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)) PY edit - Nif removal
 				var/pressure_damage = LOW_PRESSURE_DAMAGE
 				if(stat==DEAD)
 					pressure_damage = pressure_damage/2
@@ -1032,8 +1032,8 @@
 
 	// FBPs will overheat when alive, prosthetic limbs are fine.
 	if(stat != DEAD && robobody_count)
-		if(!nif || !nif.flag_check(NIF_O_HEATSINKS,NIF_FLAGS_OTHER))
-			bodytemperature += round(robobody_count*1.15)
+		//if(!nif || !nif.flag_check(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)) PY edit - Nif removal
+		bodytemperature += round(robobody_count*1.15)
 		var/obj/item/organ/internal/robotic/heatsink/HS = internal_organs_by_name[O_HEATSINK]
 		if(!HS || HS.is_broken()) // However, NIF Heatsinks will not compensate for a core FBP component (your heatsink) being lost.
 			bodytemperature += round(robobody_count*0.5)
@@ -1608,9 +1608,10 @@
 				var/obj/item/clothing/glasses/G = glasses
 				if(G.prescription)
 					apply_nearsighted_overlay = FALSE
-
+			/* PY edit - Nif removal
 			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION))
 				apply_nearsighted_overlay = FALSE
+			*/
 
 		set_fullscreen(apply_nearsighted_overlay, "nearsighted", /atom/movable/screen/fullscreen/impaired, 1)
 
@@ -1633,7 +1634,7 @@
 					var/obj/item/clothing/glasses/welding/O = glasses
 					if(!O.up)
 						found_welder = 1
-				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1
+				// if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1 PY edit - Nif removal
 				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
 					found_welder = 1
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
@@ -1764,6 +1765,7 @@
 			if(!isnull(M.vision_flags))
 				sight |= M.vision_flags
 
+		/* PY edit - Nif removal
 		if(!glasses_processed && nif)
 			var/datum/nifsoft/vision_soft
 			for(var/datum/nifsoft/NS in nif.nifsofts)
@@ -1772,6 +1774,7 @@
 					break
 			if(vision_soft)
 				glasses_processed = process_nifsoft_vision(vision_soft)		//not really glasses but equitable
+		*/
 
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
@@ -1804,6 +1807,7 @@
 		else if(!druggy && !seer)
 			see_invisible = see_invisible_default
 
+/* PY edit - Nif removal
 /mob/living/carbon/human/proc/process_nifsoft_vision(var/datum/nifsoft/NS)
 	. = FALSE
 	if(NS && NS.active)
@@ -1813,6 +1817,7 @@
 		if(NS.vision_flags_mob)
 			sight |= NS.vision_flags_mob
 			. = TRUE
+*/
 
 /mob/living/carbon/human/handle_random_events()
 	if(inStasisNow())

@@ -231,6 +231,7 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 		var/datum/transhuman/mind_record/record = db.backed_up[new_character.mind.name]
 		if((world.time - record.last_notification) < 30 MINUTES)
 			GLOB.global_announcer.autosay("[new_character.name] has been resleeved by the automatic resleeving system.", "TransCore Oversight", new_character.isSynthetic() ? "Science" : "Medical")
+		/* PY edit - Nif removal
 		spawn(0)	//Wait a second for nif to do its thing if there is one
 		if(record.nif_path)
 			var/obj/item/nif/nif
@@ -243,9 +244,10 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 				for(var/path in record.nif_software)
 					new path(nif)
 				nif.durability = record.nif_durability
+		*/
 
 	if(!new_character.dna)
-		CRASH("[new_character] just came out of an autosleever and has no DNA! Species: [new_character.species] as mob: [new_character.type]. NIF Status: [new_character.nif]")
+		CRASH("[new_character] just came out of an autosleever and has no DNA! Species: [new_character.species] as mob: [new_character.type]") // . NIF Status: [new_character.nif]") PY edit - Nif removal
 
 	if(spawn_slots == -1)
 		return

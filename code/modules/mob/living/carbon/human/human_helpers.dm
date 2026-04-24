@@ -193,8 +193,10 @@
 				var/obj/item/clothing/glasses/V = rig.visor.vision.glasses
 				compiled_vis |= V.enables_planes
 
+	/* PY edit - Nif removal
 	if(nif)
 		compiled_vis |= nif.planes_visible()
+	*/
 	//event hud
 	if(vantag_hud)
 		compiled_vis |= VIS_CH_VANTAG
@@ -202,8 +204,10 @@
 	if(client?.prefs?.read_preference(/datum/preference/toggle/tummy_sprites))
 		compiled_vis += VIS_CH_STOMACH
 
+	/* PY edit - Nif removal
 	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))
 		compiled_vis += VIS_SOULCATCHER
+	*/
 
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.

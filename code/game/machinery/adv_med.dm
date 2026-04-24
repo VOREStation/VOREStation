@@ -309,15 +309,18 @@
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
 				var/obj/item/implant/I = thing
-				var/obj/item/nif/N = thing
+
+				// var/obj/item/nif/N = thing PY edit - Nif removal
 				if(istype(I))
 					implantSubData["name"] =  I.name
 					implantSubData["known"] = istype(I) && I.known_implant
 					implantData.Add(list(implantSubData))
+				/* PY edit - Nif removal
 				else
 					implantSubData["name"] =  N.name
 					implantSubData["known"] = istype(N) && N.known_implant
 					implantData.Add(list(implantSubData))
+				*/
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -604,11 +607,13 @@
 
 			var/unknown_body = 0
 			for(var/obj/item/implant/I as anything in e.implants)
-				var/obj/item/nif/N = I //VOREStation Add: NIFs
+				// var/obj/item/nif/N = I //VOREStation Add: NIFs PY edit - Nif removal
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
+				/* PY edit - Nif removal
 				else if(istype(N) && N.known_implant) //VOREStation Add: NIFs
 					imp += "[N] implanted:"
+				*/
 				else
 					unknown_body++
 

@@ -344,7 +344,7 @@
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
-	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
+	var/list/things_to_not_drop = list(w_uniform /*,nif PY edit - Nif removal*/ ,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
 	var/has_hat = FALSE
 	things_to_drop -= things_to_not_drop //Crunch the lists
@@ -419,7 +419,7 @@
 		B.forceMove(blob)
 		B.owner = blob
 
-	soulgem.owner = blob
+	// soulgem.owner = blob PY edit - Nif removal
 
 	//We can still speak our languages!
 	blob.languages = languages.Copy()
@@ -491,7 +491,7 @@
 		B.forceMove(src)
 		B.owner = src
 
-	soulgem.owner = src
+	// soulgem.owner = src PY edit - Nif removal
 
 	//vore_organs.Cut()
 

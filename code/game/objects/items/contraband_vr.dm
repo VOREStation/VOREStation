@@ -53,7 +53,7 @@
 					/obj/item/clothing/accessory/permit/gun,
 					/obj/item/perfect_tele,
 					/obj/item/sleevemate,
-					/obj/item/disk/nifsoft/compliance,
+				//	/obj/item/disk/nifsoft/compliance, PY edit - Nif removal
 					/obj/item/implanter/compliance,
 					/obj/item/seeds/ambrosiadeusseed,
 					/obj/item/seeds/ambrosiavulgarisseed,

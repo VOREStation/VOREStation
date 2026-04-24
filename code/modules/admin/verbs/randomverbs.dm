@@ -6,7 +6,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 		return
 
 	for(var/obj/item/W in dropee)
-		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//There's basically no reason to remove either of these
+		if(istype(W, /obj/item/implant/backup)) // || istype(W, /obj/item/nif))	//There's basically no reason to remove either of these PY edit - Nif removal
 			continue
 		dropee.drop_from_inventory(W)
 

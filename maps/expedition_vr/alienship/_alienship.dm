@@ -159,7 +159,7 @@
 		L.forceMove(pick(get_area_turfs(dump_area)))
 		if(!issilicon(L)) //Don't drop borg modules...
 			for(var/obj/item/I in L)
-				if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
+				if(istype(I,/obj/item/implant)) // || istype(I,/obj/item/nif)) PY edit - Nif removal
 					continue
 				if(istype(I,/obj/item/holder))
 					var/obj/item/holder/H = I

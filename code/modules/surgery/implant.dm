@@ -181,7 +181,7 @@
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
 	affected.implants += tool
 	tool.loc = affected
-	if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support
+	// if(istype(tool,/obj/item/nif)){var/obj/item/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support PY edit - Nif removal
 	affected.cavity = 0
 
 //////////////////////////////////////////////////////////////////
@@ -268,9 +268,11 @@
 				var/obj/item/implant/imp = obj
 				imp.imp_in = null
 				imp.implanted = FALSE
+			/* PY edit - Nif removal
 			else if(istype(tool,/obj/item/nif))
 				var/obj/item/nif/N = tool
 				N.unimplant(target)
+			*/
 	else
 		user.visible_message(span_notice("[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out."), \
 		span_notice("You could not find anything inside [target]'s [affected.name].") )

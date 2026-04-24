@@ -499,6 +499,7 @@
 			for(var/msg in B.fullness5_messages)
 				belly_data["fullness5_messages"] += msg
 
+	/* PY edit - Nif removal
 	// Soulcatcher export
 	if(user.soulgem)
 		var/obj/soulgem/gem = user.soulgem
@@ -514,5 +515,6 @@
 		soulcatcher_data["linked_belly"] = gem.linked_belly
 
 		data["soulcatcher"] = soulcatcher_data
+	*/
 
 	return data

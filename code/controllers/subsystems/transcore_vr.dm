@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(transcore)
 		BITSET(H.hud_updateflag, BACKUP_HUD)
 
 		if(H == imp.imp_in && H.mind && H.stat < DEAD)
-			db.m_backup(H.mind,H.nif)
+			db.m_backup(H.mind, null) // H.nif) // PY edit - Nif removal
 
 		if(MC_TICK_CHECK)
 			return
@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(transcore)
 			return db
 
 // These are now just interfaces to databases
-/datum/controller/subsystem/transcore/proc/m_backup(var/datum/mind/mind, var/obj/item/nif/nif, var/one_time = FALSE, var/database_key)
+/datum/controller/subsystem/transcore/proc/m_backup(var/datum/mind/mind, var/nif /* PY edit - Nif removal var/obj/item/nif/nif */, var/one_time = FALSE, var/database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.m_backup(mind=mind, nif=nif, one_time=one_time)
 
@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(transcore)
 	var/core_dumped = FALSE
 	var/key // Key for this DB
 
-/datum/transcore_db/proc/m_backup(var/datum/mind/mind, var/obj/item/nif/nif, var/one_time = FALSE)
+/datum/transcore_db/proc/m_backup(var/datum/mind/mind, var/nif /* PY edit - Nif removal var/obj/item/nif/nif */, var/one_time = FALSE)
 	ASSERT(mind)
 	if(!mind.name || core_dumped)
 		return 0
@@ -229,6 +229,7 @@ SUBSYSTEM_DEF(transcore)
 		MR.last_update = world.time
 		MR.one_time = one_time
 
+		/* PY edit begin - Nif removal
 		//Pass a 0 to not change NIF status (because the elseif is checking for null)
 		if(nif)
 			MR.nif_path = nif.type
@@ -245,6 +246,7 @@ SUBSYSTEM_DEF(transcore)
 			MR.nif_durability = null
 			MR.nif_software = null
 			MR.nif_savedata = null
+		*/ // PY edit end
 
 	else
 		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time, database_key = src.key)

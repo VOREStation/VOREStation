@@ -182,7 +182,7 @@ Due to the small chemical capacity of the implant, the life of the implant is re
 	icon_state = "implant_evil"
 	var/active = TRUE
 	var/laws = "CHANGE BEFORE IMPLANTATION"
-	var/nif_payload = /datum/nifsoft/compliance
+//	var/nif_payload = /datum/nifsoft/compliance PY edit - Nif removal
 
 /obj/item/implant/compliance/get_data()
 	var/dat = {"
@@ -200,13 +200,15 @@ Due to the small chemical capacity of the implant, the life of the implant is re
 		return
 
 	var/mob/living/carbon/human/target = source
-	if(!target.nif || target.nif.stat != NIF_WORKING) //No nif or their NIF is broken.
-		to_chat(target, span_notice("You suddenly feel compelled to follow the following commands: [laws]"))
-		to_chat(target, span_notice("((OOC NOTE: Commands that go against server rules should be disregarded and ahelped.))"))
-		to_chat(target, span_notice("((OOC NOTE: Your new commands can be checked at any time by using the 'notes' command in chat. Additionally, if you did not agree to this, you are not compelled to follow the implant.))"))
-		target.add_memory(laws)
-		return
+	// if(!target.nif || target.nif.stat != NIF_WORKING) //No nif or their NIF is broken. PY edit - Nif removal
+	to_chat(target, span_notice("You suddenly feel compelled to follow the following commands: [laws]"))
+	to_chat(target, span_notice("((OOC NOTE: Commands that go against server rules should be disregarded and ahelped.))"))
+	to_chat(target, span_notice("((OOC NOTE: Your new commands can be checked at any time by using the 'notes' command in chat. Additionally, if you did not agree to this, you are not compelled to follow the implant.))"))
+	target.add_memory(laws)
+	return
+	/* PY edit - Nif removal
 	else //You got a nif...Upload time.
 		new nif_payload(target.nif,laws)
 		to_chat(target, span_notice("((OOC NOTE: Commands that go against server rules should be disregarded and ahelped.))"))
 		to_chat(target, span_notice("((OOC NOTE: If you did not agree to this, you are not compelled to follow the laws.))"))
+	*/

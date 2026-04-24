@@ -60,6 +60,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 			if(isnum(new_tab))
 				active_tab = new_tab
 			. = TRUE
+		/* PY edit - Nif removal
 		if("soulcatcher_spawn")
 			soulcatcher_spawn(ui.user, params["selected_player"])
 			close_ui()
@@ -68,6 +69,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 			soulcatcher_vore_spawn(ui.user, params["selected_player"])
 			close_ui()
 			. = TRUE
+		*/
 		if("bellyspawn")
 			vore_belly_spawn(ui.user, params["selected_player"])
 			close_ui()
@@ -193,6 +195,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 		var/soulcatcher_active = FALSE
 		var/soulcatcher_vore_active = FALSE
 		var/vorespawn_active = FALSE
+		/* PY edit - Nif removal
 		if(ishuman(player))
 			var/mob/living/carbon/human/H = player
 			if(H.nif)
@@ -201,6 +204,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 					soulcatcher_active = TRUE
 		if(player.soulgem?.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_GHOSTS, TRUE))
 			soulcatcher_vore_active = TRUE
+		*/
 
 		if(!player.no_vore && (get_z(player) in using_map.station_levels))
 			if(ishuman(player))

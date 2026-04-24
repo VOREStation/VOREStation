@@ -20,7 +20,7 @@
 		spellremove(src)
 	if(!istype(src,/mob/observer))
 		ghostize(FALSE)
-	QDEL_NULL(soulgem) //Soulcatcher
+	// QDEL_NULL(soulgem) //Soulcatcher PY edit - Nif removal
 	QDEL_NULL(dna)
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)

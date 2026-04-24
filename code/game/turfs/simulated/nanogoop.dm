@@ -48,6 +48,7 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	if(ishuman(user))
 		if(smes || isAI(nutrienttarget))
 			return ..()
+		/* PY edit - Nif removal
 		var/mob/living/carbon/human/checker = user
 		if(checker.nif)//Proteans have NIFS
 			var/choice1 = tgui_input_list(user, "Do you wish interface with \the [src]", "Desired state", list("On", "Off"))
@@ -83,6 +84,7 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 						user.visible_message(span_warning("\The [user] inspects \the [src]"), span_warning("You begin to interface with \the [src]."))
 						if(do_after(user, 30, src))
 							toggle_all(FALSE)
+		*/
 	return ..()
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/attack_ai(mob/user)
@@ -217,7 +219,7 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 				if(istype(targetitem, /obj/item/organ))
 					targetitem.unacidable = TRUE
 					continue
-				if(istype(targetitem, /obj/item/implant/backup) || istype(targetitem, /obj/item/nif))
+				if(istype(targetitem, /obj/item/implant/backup)) // || istype(targetitem, /obj/item/nif)) PY edit - Nif removal
 					continue
 				targetcarbon.drop_from_inventory(targetitem)
 			var/how_much = targetcarbon.mob_size + targetcarbon.nutrition

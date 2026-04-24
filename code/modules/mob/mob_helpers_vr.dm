@@ -20,12 +20,14 @@
 			plane_holder.set_vis(VIS_CH_VANTAG,FALSE)
 			vis_enabled -= VIS_CH_VANTAG
 
+	/* PY edit - Nif removal
 	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))
 		plane_holder.set_vis(VIS_SOULCATCHER, TRUE)
 		vis_enabled += VIS_SOULCATCHER
 	else
 		plane_holder.set_vis(VIS_SOULCATCHER, FALSE)
 		vis_enabled -= VIS_SOULCATCHER
+	*/
 
 	return
 

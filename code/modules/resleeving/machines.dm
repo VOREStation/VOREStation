@@ -470,6 +470,7 @@
 		to_chat(occupant, span_danger("Your mind backup was a 'one-time' backup. \
 		You will not be able to remember anything since the backup, [how_long] minutes ago."))
 
+	/* PY edit - Nif removal
 	//Re-supply a NIF if one was backed up with them.
 	if(MR.nif_path)
 		var/obj/item/nif/nif = new MR.nif_path(occupant,null,MR.nif_savedata)
@@ -477,6 +478,7 @@
 			for(var/path in MR.nif_software)
 				new path(nif)
 		nif.durability = MR.nif_durability //Restore backed up durability after restoring the softs.
+	*/
 
 	// If it was a custom sleeve (not owned by anyone), update namification sequences
 	if(!occupant.original_player)

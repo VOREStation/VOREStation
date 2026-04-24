@@ -45,8 +45,10 @@
 	if(!isnewplayer(src))
 		AddElement(/datum/element/slosh)
 	if(LAZYLEN(vore_organs))
+		/* PY edit - Nif removal
 		if(!soulgem)
 			soulgem = new(src)
+		*/
 		return TRUE
 
 	//We'll load our client's organs if we have one
@@ -71,8 +73,10 @@
 			var/mob/living/carbon/human/H = src
 			if(istype(H.species,/datum/species/monkey))
 				allow_spontaneous_tf = TRUE
+		/* PY edit - Nif removal
 		if(!soulgem)
 			soulgem = new(src)
+		*/
 		return TRUE
 
 /mob/living/init_vore(force)
@@ -265,7 +269,7 @@
 
 	P.belly_prefs = serialized
 
-	P.soulcatcher_prefs = src.soulgem.serialize()
+	// P.soulcatcher_prefs = src.soulgem.serialize() PY edit - Nif removal
 	return TRUE
 
 //
@@ -297,6 +301,7 @@
 		else
 			vore_selected = vore_organs[1]
 
+		/* PY edit - Nif removal
 		if(soulgem)
 			src.soulgem.release_mobs()
 			QDEL_NULL(soulgem)
@@ -304,6 +309,7 @@
 			soulgem = list_to_object(P.soulcatcher_prefs, src)
 		else
 			soulgem = new(src)
+		*/
 
 	return TRUE
 

@@ -112,7 +112,7 @@
 #define TECHWEB_NODE_MOD_SECURITY "mod_security"
 #define TECHWEB_NODE_MOD_SUIT "mod_suit"
 #define TECHWEB_NODE_MODULAR_COMPUTER "modular_computer"
-#define TECHWEB_NODE_NIF "nif"
+//#define TECHWEB_NODE_NIF "nif" - PY Edit: No NIFs
 #define TECHWEB_NODE_NIGHT_VISION "night_vision"
 #define TECHWEB_NODE_THERMAL_VISION "thermal_vision"
 #define TECHWEB_NODE_GRAVITON_VISION "graviton_vision"

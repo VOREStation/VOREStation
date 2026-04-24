@@ -88,7 +88,7 @@
 		var/obj/belly/in_belly = loc
 		if(in_belly.digest_mode == DM_DIGEST || in_belly.digest_mode == DM_SELECT)
 			mind?.vore_death = TRUE
-	soulcatcher_on_mob_death()
+	// soulcatcher_on_mob_death() PY edit - Nif removal
 	if(istype(loc, /obj/item/clothing/shoes))
 		mind?.vore_death = TRUE
 

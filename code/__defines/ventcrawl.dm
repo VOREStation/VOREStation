@@ -12,8 +12,8 @@
 
 /// Vore unique objects
 #define VENTCRAWL_VORE_WHITELIST 	/obj/belly, \
-									/obj/soulgem, \
 									/obj/item/holder
+// /obj/soulgem, PY edit - Nif removal
 
 /// Reasonable items with a low chance of causing exploits, mostly for catslugs but allowed by default on other vent crawlers
 #define VENTCRAWL_SMALLITEM_WHITELIST /obj/item/coin, \

@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Button, Icon, NoticeBox, Stack, Tabs } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Icon,
+  NoticeBox,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 
 import type { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VorePanelMainTabs/VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VorePanelMainTabs/VoreInsidePanel';
-import { VoreSoulcatcher } from './VorePanelMainTabs/VoreSoulcatcher';
+// import { VoreSoulcatcher } from './VorePanelMainTabs/VoreSoulcatcher'; PY edit - Nif removal
 import { VoreUserGeneral } from './VorePanelMainTabs/VoreUserGeneral';
 import { VoreUserPreferences } from './VorePanelMainTabs/VoreUserPreferences';
 import { VoreContentsPreyPanel } from './VoreSelectedBellyTabs/VoreContentsPreyPanel';
@@ -81,16 +89,13 @@ export const VorePanel = () => {
       icon_overflow={icon_overflow}
     />
   );
-  tabs[2] = our_bellies && soulcatcher && abilities && (
-    <VoreSoulcatcher
-      our_bellies={our_bellies}
-      soulcatcher={soulcatcher}
-      abilities={abilities}
-      toggleEditMode={setEditMode}
-      editMode={editMode}
-      persist_edit_mode={persist_edit_mode}
-    />
+  // PY edit begin - Nif removal
+  tabs[2] = our_bellies && abilities && (
+    <Section fill>
+      <Box>This feature is disabled.</Box>
+    </Section>
   );
+  // PY edit end
   tabs[3] = general_pref_data && our_bellies && (
     <VoreUserGeneral
       general_pref_data={general_pref_data}
@@ -154,6 +159,7 @@ export const VorePanel = () => {
                   <Icon name="person-shelter" ml={0.5} />
                 </Tabs.Tab>
               )}
+              {/* // PY edit - Nif removal
               <Tabs.Tab
                 selected={active_tab === 2}
                 onClick={() => act('change_tab', { tab: 2 })}
@@ -161,6 +167,7 @@ export const VorePanel = () => {
                 Soulcatcher
                 <Icon name="ghost" ml={0.5} />
               </Tabs.Tab>
+              */}
               <Tabs.Tab
                 selected={active_tab === 3}
                 onClick={() => act('change_tab', { tab: 3 })}

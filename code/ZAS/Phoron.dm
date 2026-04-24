@@ -118,9 +118,11 @@ GLOBAL_DATUM_INIT(contamination_overlay, /image, 'icons/effects/contamination.dm
 		if(burn_eyes && head && (head.body_parts_covered & EYES) && (head.item_flags & AIRTIGHT))
 			burn_eyes = 0
 
+		/* PY edit - Nif removal
 		//VOREStation Edit - NIF Support
 		if(nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))
 			burn_eyes = 0
+		*/
 
 		//If we still need to, burn their eyes
 		if(burn_eyes)

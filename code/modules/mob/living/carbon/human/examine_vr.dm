@@ -60,6 +60,7 @@
 
 //For OmniHUD records access for appropriate models
 /proc/hasHUD_vr(mob/living/carbon/human/H, hudtype)
+	/* PY edit - Nif removal
 	if(H.nif)
 		switch(hudtype)
 			if("security")
@@ -68,6 +69,7 @@
 			if("medical")
 				if(H.nif.flag_check(NIF_V_AR_MEDICAL,NIF_FLAGS_VISION))
 					return TRUE
+	*/
 
 	if(istype(H.glasses, /obj/item/clothing/glasses/omnihud))
 		var/obj/item/clothing/glasses/omnihud/omni = H.glasses
@@ -96,9 +98,11 @@
 		message = span_red("They are small enough that you could easily trample them!")
 	return message
 
+/* PY edit - Nif removal
 /mob/living/carbon/human/proc/examine_nif(mob/living/carbon/human/H)
 	if(nif && nif.examine_msg) //If you have one set, anyway.
 		return span_notice("[nif.examine_msg]")
+*/
 
 /mob/living/carbon/human/proc/examine_chimera(mob/living/carbon/human/H)
 	var/t_He 	= "It" //capitalised for use at the start of each line.

@@ -21,7 +21,7 @@
 /datum/gear/utility/communicator/New()
 	..()
 	var/list/communicators = list()
-	for(var/obj/item/communicator_type as anything in typesof(/obj/item/communicator) - list(/obj/item/communicator/integrated,/obj/item/communicator/commlink)) //VOREStation Edit - Remove Commlink
+	for(var/obj/item/communicator_type as anything in typesof(/obj/item/communicator) /* - list(/obj/item/communicator/integrated,/obj/item/communicator/commlink) PY edit - Nif removal */ ) //VOREStation Edit - Remove Commlink
 		communicators[initial(communicator_type.name)] = communicator_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(communicators))
 

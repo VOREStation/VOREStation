@@ -937,20 +937,22 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.mmi && R.mind && R.mmi.brainmob)
+			/* PY edit - Nif removal
 			if((R.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE) && owner.soulgem && owner.soulgem.flag_check(SOULGEM_ACTIVE | NIF_SC_CATCHING_OTHERS, TRUE))
 				owner.soulgem.catch_mob(R, R.name)
 			else
-				R.mmi.loc = src
-				items_preserved += R.mmi
-				var/obj/item/robot_module/MB = locate() in R.contents
-				if(MB)
-					R.mmi.brainmob.languages = MB.original_languages
-				else
-					R.mmi.brainmob.languages = R.languages
-				R.mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
-				hasMMI = R.mmi
-				M.mind.transfer_to(hasMMI.brainmob)
-				R.mmi = null
+			*/
+			R.mmi.loc = src
+			items_preserved += R.mmi
+			var/obj/item/robot_module/MB = locate() in R.contents
+			if(MB)
+				R.mmi.brainmob.languages = MB.original_languages
+			else
+				R.mmi.brainmob.languages = R.languages
+			R.mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
+			hasMMI = R.mmi
+			M.mind.transfer_to(hasMMI.brainmob)
+			R.mmi = null
 		else if(!R.shell) // Shells don't have brainmobs in their MMIs.
 			to_chat(R, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
 		if(R.shell) // Let the standard procedure for shells handle this.
@@ -1801,12 +1803,19 @@
 
 // Updates the belly_surrounding list variable. Called in bellymodes_vr.dm
 /obj/belly/proc/update_belly_surrounding()
+	/* PY edit begin - Nif removal
 	if(!contents.len && !LAZYLEN(owner.soulgem?.brainmobs))
 		belly_surrounding = list()
 		return
 	belly_surrounding = get_belly_surrounding(contents)
 	if(owner.soulgem?.linked_belly == src)
 		belly_surrounding += owner.soulgem.brainmobs
+	*/
+	if(!contents.len)
+		belly_surrounding = list()
+		return
+	belly_surrounding = get_belly_surrounding(contents)
+	// PY edit end
 
 // Recursive proc that returns all living mobs directly and indirectly inside a belly
 // This can also be called more generically to get all living mobs not in bellies within any contents list

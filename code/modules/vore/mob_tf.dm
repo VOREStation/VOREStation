@@ -51,7 +51,7 @@
 	new_mob.mob_belly_transfer(src)
 	new_mob.nutrition = src.nutrition
 
-	src.soulgem?.transfer_self(new_mob)
+	// src.soulgem?.transfer_self(new_mob) PY edit - Nif removal
 
 /mob/living
 	var/mob/living/tf_mob_holder = null
@@ -60,8 +60,10 @@
 	if(!tf_mob_holder)
 		return
 	var/mob/living/ourmob = tf_mob_holder
+	/* PY edit - Nif removal
 	if(soulgem) //Should always be the case, but...Safety. Done here first
 		soulgem.transfer_self(ourmob)
+	*/
 	if(ourmob.loc != src)
 		if(isnull(ourmob.loc))
 			to_chat(src,span_notice("You have no body."))
@@ -110,7 +112,7 @@
 
 	if(ishuman(src))
 		for(var/obj/item/W in src)
-			if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+			if(istype(W, /obj/item/implant/backup)) // || istype(W, /obj/item/nif)) PY edit - Nif removal
 				continue
 			src.drop_from_inventory(W)
 

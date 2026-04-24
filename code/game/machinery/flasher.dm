@@ -80,9 +80,11 @@
 		var/flash_time = strength
 		if(ishuman(O))
 			var/mob/living/carbon/human/H = O
+			/* PY edit - Nif removal
 			if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
 				H.nif.notify("High intensity light detected, and blocked!",TRUE)
 				continue
+			*/
 			if(FLASHPROOF in H.mutations)
 				continue
 			if(!H.eyecheck() <= 0)

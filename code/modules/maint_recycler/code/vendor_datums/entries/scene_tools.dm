@@ -101,6 +101,7 @@
 	icon_state="tf-gun"
 	vendor_category = MAINTVENDOR_SCENETOOLS
 
+/* PY edit - Nif removal
 /datum/maint_recycler_vendor_entry/NIF_laws
 	name = "COMM4ND UR N1F!"
 	ad_message = "KNEEL!"
@@ -109,6 +110,7 @@
 	object_type_to_spawn = /obj/item/disk/nifsoft/compliance
 	tagline = "You didn't get it from us!"
 	vendor_category = MAINTVENDOR_SCENETOOLS
+*/
 
 /datum/maint_recycler_vendor_entry/NIFlet_laws
 	name = "Implnt law?"

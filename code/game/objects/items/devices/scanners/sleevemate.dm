@@ -181,6 +181,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	else
 		output += span_warning("Unable") + "<br>"
 
+	/* PY edit - Nif removal
 	//Soulcatcher transfer
 	if(H.nif)
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
@@ -192,6 +193,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 
 			if(stored_mind)
 				output += span_bold("Store in Soulcatcher: ") + "\[<a href='byond://?src=\ref[src];target=\ref[H];mindput=1'>Perform</a>\]<br>"
+	*/
 
 	to_chat(user,output)
 
@@ -219,15 +221,17 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 			to_chat(usr,span_warning("Target seems totally braindead."))
 			return
 
+		/* PY edit - Nif removal
 		var/nif
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			nif = H.nif
 			persist_nif_data(H)
+		*/
 
 		usr.visible_message("[usr] begins scanning [target]'s mind.",span_notice("You begin scanning [target]'s mind."))
 		if(do_after(usr, 8 SECONDS, target))
-			our_db.m_backup(target.mind,nif,one_time = TRUE)
+			our_db.m_backup(target.mind, null /* nif PY edit - Nif removal */,one_time = TRUE)
 			to_chat(usr,span_notice("Mind backed up!"))
 		else
 			to_chat(usr,span_warning("You must remain close to your target!"))
@@ -271,6 +275,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 
 		return
 
+	/* PY edit - Nif removal
 	if(href_list["mindput"])
 		if(!stored_mind)
 			to_chat(usr,span_warning("\The [src] no longer has a stored mind."))
@@ -299,6 +304,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 		put_mind(GLOB.sleevemate_mob)
 		SC.catch_mob(GLOB.sleevemate_mob)
 		to_chat(usr,span_notice("Mind transferred into Soulcatcher!"))
+	*/
 
 	if(href_list["mindupload"])
 		if(!stored_mind)
@@ -326,6 +332,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 			put_mind(target)
 			to_chat(usr,span_notice("Mind transferred into [target]!"))
 
+	/* PY edit - Nif removal
 	if(href_list["mindrelease"])
 		if(stored_mind)
 			to_chat(usr,span_warning("There is already someone's mind stored inside"))
@@ -341,6 +348,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 				to_chat(usr,span_notice("Mind downloaded!"))
 				return
 		to_chat(usr,span_notice("Unable to find that mind in Soulcatcher!"))
+	*/
 
 /obj/item/sleevemate/update_icon()
 	if(stored_mind)

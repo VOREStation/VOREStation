@@ -177,11 +177,13 @@
 			data["prey_abilities"] = get_prey_abilities(host, hostloc)
 			data["intent_data"] = get_intent_data(host, hostloc)
 
+		/* PY edit - Nif removal
 		if(SOULCATCHER_TAB)
 			// Soulcatcher and abilities
 			data["our_bellies"] = get_vorebellies(host, FALSE)
 			data["soulcatcher"] = get_soulcatcher_data(host)
 			data["abilities"] = get_ability_data(host)
+		*/
 
 		if(PREFERENCE_TAB)
 			// Preference data, we only ever need that when we go to the pref page!
@@ -792,6 +794,7 @@
 					living_host.adjust_nutrition(-VORE_RESIZE_COST)
 					living_host.resize(new_size, uncapped = living_host.has_large_resize_bounds(), ignore_prefs = TRUE)
 			return TRUE
+		/* PY edit - Nif removal
 		//Soulcatcher functions
 		if("soulcatcher_release_all")
 			host.soulgem.release_mobs()
@@ -912,6 +915,7 @@
 				unsaved_changes = TRUE
 				host.soulgem.set_custom_message(message, SC_DELETE_MESSAGE)
 			return TRUE
+		*/
 		if("preset")
 			var/raw_data = lowertext(params["color"])
 			var/index = lowertext(params["index"])

@@ -180,7 +180,7 @@
 				if(ishuman(inserted_mob)) //So, this WORKS. Works very well!
 					var/mob/living/carbon/human/inserted_human = inserted_mob
 					for(var/obj/item/I in inserted_mob)
-						if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
+						if(istype(I, /obj/item/implant)) // || istype(I, /obj/item/nif)) PY edit - Nif removal
 							continue
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
@@ -200,7 +200,7 @@
 		if(ishuman(inserted_mob)) //Only humans have the drop_from_inventory proc.
 			var/mob/living/carbon/human/inserted_human = inserted_mob
 			for(var/obj/item/I in inserted_human) //Drop any remaining items! This only really seems to affect hands.
-				if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
+				if(istype(I, /obj/item/implant)) // || istype(I, /obj/item/nif)) PY edit - Nif removal
 					continue
 				inserted_human.drop_from_inventory(I)
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.
@@ -434,7 +434,7 @@
 				if(ishuman(inserted_mob)) //So, this WORKS. Works very well!
 					var/mob/living/carbon/human/inserted_human = inserted_mob
 					for(var/obj/item/I in inserted_mob)
-						if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
+						if(istype(I, /obj/item/implant)) // || istype(I, /obj/item/nif)) PY edit - Nif removal
 							continue
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
@@ -452,7 +452,7 @@
 		if(ishuman(inserted_mob)) //Only humans have the drop_from_inventory proc.
 			var/mob/living/carbon/human/inserted_human = inserted_mob
 			for(var/obj/item/I in inserted_human) //Drop any remaining items! This only really seems to affect hands.
-				if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
+				if(istype(I, /obj/item/implant)) // || istype(I, /obj/item/nif)) PY edit - Nif removal
 					continue
 				inserted_human.drop_from_inventory(I)
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.

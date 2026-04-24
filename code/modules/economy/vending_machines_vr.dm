@@ -1678,7 +1678,7 @@
 					/obj/item/instrument/piano_synth/headphones/spacepods = 600,
 					/obj/item/clothing/gloves/bluespace = 500)
 	premium = list(/obj/item/perfect_tele/one_beacon = 1)
-	contraband = list(/obj/item/disk/nifsoft/compliance = 1)
+	// contraband = list(/obj/item/disk/nifsoft/compliance = 1) PY edit - Nif removal
 
 // Loadout Vending Machines End
 
@@ -2489,7 +2489,7 @@
 					/obj/item/laser_pointer = 3,
 					/obj/item/clothing/glasses/omnihud = 10,
 					/obj/item/perfect_tele/one_beacon = 1,
-					/obj/item/disk/nifsoft/compliance = 1,
+				//	/obj/item/disk/nifsoft/compliance = 1, PY edit - Nif removal
 					/obj/item/perfect_tele/alien = 10)
 
 /obj/machinery/vending/event/costume //FOR FACILITATING AND EQUIPPING EVENTS, DO NOT PLACE ON THE NORMAL MAP//

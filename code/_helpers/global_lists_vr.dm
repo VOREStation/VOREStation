@@ -1219,10 +1219,10 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/storage/pill_bottle, \
 	/obj/item/reagent_containers/pill, \
 	/obj/item/reagent_containers/blood, \
-	/obj/item/nif, \
 	/obj/item/stack/material/phoron, \
 	/obj/item/tank/anesthetic, \
 	/obj/item/disk/body_record
+//	/obj/item/nif, \ PY edit - Nif removal
 
 #define RESEARCH_GRIPPER \
 	/obj/item/cell, \
@@ -1280,7 +1280,6 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/capture_crystal, \
 	/obj/item/clothing, \
 	/obj/item/implanter, \
-	/obj/item/disk/nifsoft/compliance, \
 	/obj/item/handcuffs, \
 	/obj/item/toy, \
 	/obj/item/petrifier, \
@@ -1293,17 +1292,18 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/leash, \
 	/obj/item/paper, \
 	/obj/item/a_gift
+// /obj/item/disk/nifsoft/compliance, \ PY edit - Nif removal
 
 #define ORGAN_GRIPPER \
-	/obj/item/organ, \
-	/obj/item/nif
+	/obj/item/organ,
+// /obj/item/nif PY edit - Nif removal
 
 #define ROBOTICS_ORGAN_GRIPPER \
 	/obj/item/organ/external, \
 	/obj/item/organ/internal/brain, \
 	/obj/item/organ/internal/cell, \
-	/obj/item/organ/internal/eyes/robot, \
-	/obj/item/nif
+	/obj/item/organ/internal/eyes/robot,
+// /obj/item/nif PY edit - Nif removal
 
 #define EXOSUIT_GRIPPER \
 	/obj/item/mecha_parts/part, \

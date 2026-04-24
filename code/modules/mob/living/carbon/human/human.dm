@@ -81,8 +81,10 @@
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
 	QDEL_NULL_LIST(organs)
+	/* PY edit - Nif removal
 	if(nif)
 		QDEL_NULL(nif)
+	*/
 	GLOB.alt_farmanimals -= src
 	worn_clothing.Cut()
 
@@ -1169,7 +1171,7 @@
 	var/list/visible_implants = list()
 	for(var/obj/item/organ/external/organ in src.organs)
 		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/material/shard/shrapnel) && !istype(O,/obj/item/nif))
+			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/material/shard/shrapnel)) // && !istype(O,/obj/item/nif)) PY edit - Nif removal
 				visible_implants += O
 
 	return(visible_implants)

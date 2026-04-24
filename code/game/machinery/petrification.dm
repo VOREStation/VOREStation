@@ -118,7 +118,7 @@
 	var/datum/component/gargoyle/comp = statue.GetComponent(/datum/component/gargoyle)
 	if (no_clothes)
 		for(var/obj/item/W in statue)
-			if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+			if(istype(W, /obj/item/implant/backup)) // || istype(W, /obj/item/nif)) // PY edit - Nif removal
 				continue
 			statue.drop_from_inventory(W)
 

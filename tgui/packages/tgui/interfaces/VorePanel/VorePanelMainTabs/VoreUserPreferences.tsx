@@ -4,7 +4,7 @@ import type { LocalPrefs, PrefData } from '../types';
 import { VoreUserPreferencesDevouring } from '../VoreUserPreferencesTabs/VoreUserPreferencesDevouring';
 import { VoreUserPreferencesFX } from '../VoreUserPreferencesTabs/VoreUserPreferencesFX';
 import { VoreUserPreferencesMechanical } from '../VoreUserPreferencesTabs/VoreUserPreferencesMechanical';
-import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreUserPreferencesSoulcatcher';
+// import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreUserPreferencesSoulcatcher'; Outpost 21 edit - Disable soulgems
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
 import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
@@ -773,10 +773,12 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
         can_be_drop_pred={can_be_drop_pred}
         preferences={preferences}
       />
+      {/* PY edit - Nif removal
       <VoreUserPreferencesSoulcatcher
         soulcatcher_allow_capture={soulcatcher_allow_capture}
         preferences={preferences}
       />
+      */}
       <VoreUserPreferencesSpawn
         latejoin_vore={latejoin_vore}
         no_spawnpred_warning_time={no_spawnpred_warning_time}

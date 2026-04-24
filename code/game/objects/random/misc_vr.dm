@@ -30,7 +30,7 @@
 				prob(1);/obj/item/cell/void,
 				prob(1);/obj/item/cell/device/weapon/recharge/alien,
 				prob(1);/obj/item/clothing/shoes/boots/speed,
-				prob(1);/obj/item/nif,
+			//	prob(1);/obj/item/nif, PY edit - Nif removal
 				prob(1);/obj/item/paicard,
 				prob(2);/obj/item/storage/backpack/dufflebag/syndie,
 				prob(2);/obj/item/storage/backpack/dufflebag/syndie/ammo,
@@ -69,7 +69,7 @@
 				prob(1);/obj/item/cell/void,
 				prob(1);/obj/item/cell/device/weapon/recharge/alien,
 				prob(1);/obj/item/clothing/shoes/boots/speed,
-				prob(1);/obj/item/nif,
+			//	prob(1);/obj/item/nif, PY edit - Nif removal
 				prob(1);/obj/item/paicard,
 				prob(2);/obj/item/storage/backpack/dufflebag/syndie,
 				prob(2);/obj/item/storage/backpack/dufflebag/syndie/ammo,

@@ -654,7 +654,7 @@
 	var/list/valid_treasure = list(
 		/obj/item/cell/infinite = 5,
 		/obj/item/cell/device/weapon/recharge/alien = 5,
-		/obj/item/nif/authentic = 1,
+	//	/obj/item/nif/authentic = 1, PY edit - Nif removal
 		/obj/item/toy/bosunwhistle = 50,
 		/obj/random/mouseray = 50,
 		/obj/item/gun/energy/mouseray/metamorphosis/advanced/random = 10,
@@ -1516,7 +1516,7 @@
 				if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 					var/obj/item/organ/internal/mmi_holder/MMI = W
 					MMI.removed()
-				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif) || istype(W, /obj/item/organ))
+				if(istype(W, /obj/item/implant/backup) /* || istype(W, /obj/item/nif) PY edit - Nif removal */ || istype(W, /obj/item/organ))
 					continue
 				H.drop_from_inventory(W)
 			if(linked_mob)

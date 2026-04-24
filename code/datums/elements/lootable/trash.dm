@@ -172,13 +172,13 @@
 		/obj/item/clothing/gloves/bluespace/emagged,
 		/obj/item/reagent_containers/glass/beaker/vial/sustenance,
 		/obj/item/clothing/suit/storage/vest/heavy/merc,
-		/obj/item/nif/bad,
+	//	/obj/item/nif/bad, PY edit - Nif removal
 		/obj/item/radio_jammer,
 		/obj/item/sleevemate,
 		/obj/item/bodysnatcher,
 		/obj/item/beartrap,
 		/obj/item/cell/hyper/empty,
-		/obj/item/disk/nifsoft/compliance,
+	//	/obj/item/disk/nifsoft/compliance, PY edit - Nif removal
 		/obj/item/implanter/compliance,
 		/obj/item/material/knife/tacknife,
 		/obj/item/storage/box/survival/space,

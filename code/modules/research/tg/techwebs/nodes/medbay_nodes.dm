@@ -198,7 +198,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_MEDICAL)
 	discount_experiments = list(/datum/experiment/scanning/people/hurt_medigun = TECHWEB_TIER_3_POINTS)
-
+/* PY Edit: No NIFs
 /datum/techweb_node/nif
 	id = TECHWEB_NODE_NIF
 	display_name = "Nanite-Implant Frameworks"
@@ -235,3 +235,4 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_MEDICAL)
+*/

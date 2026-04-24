@@ -656,7 +656,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 				return
 
 			for(var/obj/item/W in Tar)
-				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//VOREStation Edit - There's basically no reason to remove either of these
+				if(istype(W, /obj/item/implant/backup)) // || istype(W, /obj/item/nif))	//VOREStation Edit - There's basically no reason to remove either of these PY edit - Nif removal
 					continue	//VOREStation Edit
 				Tar.drop_from_inventory(W)
 
@@ -710,6 +710,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 
 		////////ADMIN//////////////
 
+		/* PY edit - Nif removal
 		if("quick_nif")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
@@ -743,6 +744,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 				else
 					new /obj/item/nif(Tar)
 			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", ui.user)
+		*/
 
 		if("resize")
 			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/resize, target)

@@ -103,11 +103,13 @@
 	if(isliving(impacted))
 		var/mob/living/L = impacted
 		if(L.mind)
+			/* PY edit - Nif removal
 			var/nif
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				nif = H.nif
-			SStranscore.m_backup(L.mind,nif,one_time = TRUE)
+			*/
+			SStranscore.m_backup(L.mind, null /* nif PY edit - Nif removal */,one_time = TRUE)
 		L.gib()
 
 	..()

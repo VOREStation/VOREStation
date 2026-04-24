@@ -146,6 +146,7 @@
 		for(var/path in powertypes)
 			GLOB.protean_abilities += new path()
 
+/* PY edit - Nif removal
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
 	var/obj/item/nif/saved_nif = H.nif
 	if(saved_nif)
@@ -154,6 +155,7 @@
 	..()
 	if(saved_nif && !ismannequin(H))
 		saved_nif.quick_implant(H)
+*/
 
 /datum/species/protean/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]
@@ -224,12 +226,13 @@
 	spawn(0) //Let their real nif load if they have one
 		if(!H) //Human could have been deleted in this amount of time. Observing does this, mannequins, etc.
 			return
+		/* PY edit - Nif removal
 		if(!H.nif)
 			var/obj/item/nif/protean/new_nif = new()
 			new_nif.quick_implant(H)
 		else
 			H.nif.durability = 25
-
+		*/
 		new /obj/item/rig/protean(H,H)
 
 /datum/species/protean/hug(var/mob/living/carbon/human/H, var/mob/living/target)

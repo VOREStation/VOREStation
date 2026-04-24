@@ -31,11 +31,13 @@
 
 	add_verb(src,/mob/living/proc/vore_transfer_reagents) // If mob doesnt have bellies it cant use this verb for anything
 	add_verb(src,/mob/living/proc/vore_check_reagents) // If mob doesnt have bellies it cant use this verb for anything
+	/* PY edit - Nif removal
 	add_verb(src,/mob/proc/nsay_vore)
 	add_verb(src,/mob/proc/nme_vore)
 	add_verb(src,/mob/proc/nsay_vore_ch)
 	add_verb(src,/mob/proc/nme_vore_ch)
 	add_verb(src,/mob/proc/enter_soulcatcher)
+	*/
 
 	if(!length(voice_sounds_list))
 		if(client.prefs.voice_sound)

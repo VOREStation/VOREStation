@@ -22,11 +22,13 @@
 	else
 		//Okay, we can breathe, now check if we can get air
 		breath = get_breath_from_internal() //First, check for air from internals
+		/* PY edit - Nif removal
 		if(!breath && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			if(H.nif && H.nif.flag_check(NIF_H_SPAREBREATH,NIF_FLAGS_HEALTH))
 				var/datum/nifsoft/spare_breath/SB = H.nif.imp_check(NIF_SPAREBREATH)
 				breath = SB.resp_breath()
+		*/
 		if(!breath)
 			breath = get_breath_from_environment() //No breath from internals so let's try to get air from our location
 		if(!breath)

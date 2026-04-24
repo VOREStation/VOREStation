@@ -34,6 +34,7 @@
 					BI.forceMove(torso)
 					torso.implants += BI
 
+/* PY edit - Nif removal
 /datum/reagent/nif_repair_nanites
 	name = REAGENT_NIFREPAIRNANITES
 	id = REAGENT_ID_NIFREPAIRNANITES
@@ -56,6 +57,7 @@
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
 			nif.repair(removed)
+*/
 
 /datum/reagent/firefighting_foam
 	name = REAGENT_FIREFOAM
@@ -128,6 +130,7 @@
 		M.heal_organ_damage(0.5 * removed, 0.5 * removed * chem_effective)
 		M.adjustToxLoss(-0.5 * removed * chem_effective)
 
+	/* PY edit - Nif removal
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.nif)
@@ -135,6 +138,7 @@
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
 			nif.repair(removed*0.1)
+	*/
 
 //Special toxins for solargrubs
 /datum/reagent/grubshock

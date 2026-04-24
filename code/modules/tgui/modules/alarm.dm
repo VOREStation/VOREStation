@@ -32,10 +32,12 @@
 /datum/tgui_module/alarm_monitor/engineering/glasses/tgui_state(mob/user)
 	return GLOB.tgui_glasses_state
 
+/* PY edit - Nif removal
 // Subtype for nif_state
 /datum/tgui_module/alarm_monitor/engineering/nif
 /datum/tgui_module/alarm_monitor/engineering/nif/tgui_state(mob/user)
 	return GLOB.tgui_nif_state
+*/
 
 // Subtype for NTOS
 /datum/tgui_module/alarm_monitor/engineering/ntos

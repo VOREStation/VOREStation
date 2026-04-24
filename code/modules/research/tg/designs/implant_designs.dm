@@ -202,6 +202,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/* PY edit - Nif removal
 /datum/design_techweb/nif
 	name = "nanite implant framework (NIF)"
 	id = "nif"
@@ -225,3 +226,4 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+*/

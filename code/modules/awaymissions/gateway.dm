@@ -202,7 +202,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 						MI.forceMove(get_turf(H))
 						if(!issilicon(MI)) //Don't drop borg modules...
 							for(var/obj/item/II in MI)
-								if(istype(II,/obj/item/implant) || istype(II,/obj/item/nif))
+								if(istype(II,/obj/item/implant)) // || istype(II,/obj/item/nif)) PY edit - Nif removal
 									continue
 								MI.drop_from_inventory(II, dest.loc)
 						var/obj/effect/landmark/finaldest = pick(GLOB.awayabductors)
@@ -213,7 +213,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 						MI << 'sound/effects/bamf.ogg'
 						to_chat(MI,span_warning("You're starting to come to. You feel like you've been out for a few minutes, at least..."))
 					for(var/obj/item/I in L)
-						if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
+						if(istype(I,/obj/item/implant)) // || istype(I,/obj/item/nif)) PY edit - Nif removal
 							continue
 						L.drop_from_inventory(I, dest.loc)
 				var/obj/effect/landmark/finaldest = pick(GLOB.awayabductors)

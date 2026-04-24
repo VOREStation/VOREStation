@@ -125,6 +125,7 @@
 
 	return new_character			// incase its ever needed
 
+/* PY edit - Nif removal
 /mob/living/proc/soulcatcher_spawn_prompt(mob/observer/dead/prey, req_time)
 	if(tgui_alert(src, "[prey.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
 		to_chat(prey, span_warning("[src] has denied your request."))
@@ -174,3 +175,4 @@
 		prey.mind.active = TRUE
 
 		SC.catch_mob(prey) //This will result in the prey being deleted so...
+*/

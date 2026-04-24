@@ -273,7 +273,7 @@
 	vorestrings += formatted_vore_examine()
 	vorestrings += examine_pickup_size()
 	vorestrings += examine_step_size()
-	vorestrings += examine_nif()
+	// vorestrings += examine_nif() PY edit - Nif removal
 	vorestrings += examine_chimera()
 	vorestrings += examine_body_writing(hidden)
 	for(var/entry in vorestrings)
