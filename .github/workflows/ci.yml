@@ -32,7 +32,7 @@ jobs:
     needs: start_gate
     uses: ./.github/workflows/perform_regular_version_tests.yml
     with:
-      maps: '{"paths":["USE_MAP_TETHER","USE_MAP_STELLARDELIGHT","USE_MAP_GROUNDBASE"]}'
+      maps: '{"paths":["USE_MAP_GROUNDBASE"]}'
       max_required_byond_client: 516
 
   run_extra_map_tests:
