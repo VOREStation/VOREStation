@@ -195,3 +195,6 @@
   - rscadd: shapechange trait
   - rscadd: Leashes can now work when used by, or on, non-carbons
   - qol: misc gripper can hold a few more utility items. Pens, paper, leash
+2026-04-23:
+  Will:
+  - code_imp: Slug mob uses weakrefs

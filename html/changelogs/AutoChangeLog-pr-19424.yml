@@ -1,0 +1,4 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Added the ability for cyborgs to pick up and wear hats"
