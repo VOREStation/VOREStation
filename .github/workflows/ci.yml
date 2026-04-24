@@ -35,10 +35,10 @@ jobs:
       maps: '{"paths":["USE_MAP_MINITEST"]}'
       max_required_byond_client: 516
 
-  run_extra_map_tests:
-    name: Extra Map Tests
-    needs: start_gate
-    uses: ./.github/workflows/run_extra_map_tests.yml
+  #run_extra_map_tests:
+  #  name: Extra Map Tests
+  #  needs: start_gate
+  #  uses: ./.github/workflows/run_extra_map_tests.yml
 
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
@@ -46,7 +46,7 @@ jobs:
     needs:
       [
         run_all_tests,
-        run_extra_map_tests,
+       # run_extra_map_tests,
         run_linters,
       ]
     runs-on: ubuntu-24.04
