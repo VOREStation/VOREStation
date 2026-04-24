@@ -356,7 +356,7 @@
 			hat.forceMove(T)
 			hat = null
 		else
-		QDEL_NULL(hat)
+			QDEL_NULL(hat)
 	if(hat_overlay)
 		QDEL_NULL(hat_overlay)
 	if(inv1)
