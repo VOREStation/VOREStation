@@ -70,6 +70,8 @@
 /datum/element/sellable/material_stack/calculate_sell_value(obj/source)
 	var/obj/item/stack/P = source
 	var/datum/material/mat = P.get_material()
+	if(!mat || !mat.supply_conversion_value)
+		return 0
 	return P.get_amount() * mat.supply_conversion_value
 
 /datum/element/sellable/material_stack/calculate_sell_quantity(obj/source)

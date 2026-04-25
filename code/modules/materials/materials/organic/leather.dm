@@ -9,7 +9,7 @@
 	protectiveness = 3 // 13%
 	conductive = 0
 	integrity = 40
-	supply_conversion_value = 3
+	supply_conversion_value = 2
 
 /datum/material/leather/generate_recipes()
 	recipes = list(

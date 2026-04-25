@@ -316,6 +316,7 @@
 	icon_state = "wax"
 	default_type = MAT_WAX
 	pass_color = TRUE
+	supply_conversion_value = 0.5
 	strict_color_stacking = TRUE
 
 /obj/item/stack/material/wax/Initialize(mapload)

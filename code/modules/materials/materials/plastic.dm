@@ -11,6 +11,7 @@
 	conductive = 0
 	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
+	supply_conversion_value = 0.5
 
 /datum/material/plastic/generate_recipes()
 	..()

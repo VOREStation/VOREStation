@@ -13,6 +13,7 @@
 	explosion_resistance = 60
 	radiation_resistance = 10
 	stack_type = /obj/item/stack/material/resin
+	supply_conversion_value = 2
 
 /datum/material/resin/can_open_material_door(var/mob/living/user)
 	var/mob/living/carbon/M = user

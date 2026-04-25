@@ -7,6 +7,7 @@
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
+	supply_conversion_value = 0.15
 
 /datum/material/steel/generate_recipes()
 	..()
