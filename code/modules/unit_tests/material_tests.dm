@@ -63,8 +63,8 @@
 		var/datum/material/mat = value
 		if(!mat)
 			continue // how did we get here?
-		if(!mat.supply_conversion_value)
-			failures[name] = mat.type
+		if(isnull(mat.supply_conversion_value))
+			failures += mat.type
 
 	if(length(failures))
 		TEST_FAIL("[length(failures)] material\s had missing supply conversion values: [english_list(failures)].")
