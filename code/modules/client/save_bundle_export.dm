@@ -93,9 +93,7 @@
 		return
 
 	var/file_name = "[ckey]_preferences_[time2text(world.timeofday, "MMM_DD_YYYY_hh-mm-ss")].sav"
-	log_game("[key_name(src)] exported their legacy .sav save file.")
-	log_admin("[key_name(src)] exported their legacy .sav save file.")
-	message_admins("[key_name_admin(src)] exported their legacy .sav save file.")
+	log_and_message_admins("exported their legacy .sav save file.")
 	DIRECT_OUTPUT(src, ftp(file(sav_path), file_name))
 
 /// Builds a JSON bundle from preferences.json and all vore/ files, then sends it.
@@ -137,9 +135,7 @@
 		COOLDOWN_START(src, save_bundle_export_cooldown, 0)
 		return
 
-	log_game("[key_name(src)] exported their save data as a JSON bundle ([length(vore_files)] vore file\s included).")
-	log_admin("[key_name(src)] exported their save data as a JSON bundle ([length(vore_files)] vore file\s included).")
-	message_admins("[key_name_admin(src)] exported their save data as a JSON bundle ([length(vore_files)] vore file\s included).")
+	log_and_message_admins("exported their save data as a JSON bundle ([length(vore_files)] vore file\s included).")
 	DIRECT_OUTPUT(src, ftp(file(temp_path), file_name))
 	fdel(temp_path)
 	to_chat(src, span_notice("Save bundle exported. This file contains preferences.json and [length(vore_files)] vore file\s bundled together."))
