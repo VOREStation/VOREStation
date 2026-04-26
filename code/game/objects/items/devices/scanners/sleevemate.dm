@@ -72,7 +72,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 
 
 
-/obj/item/sleevemate/attack(mob/living/M, mob/living/user)
+/obj/item/sleevemate/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	// Gather potential subtargets
 	var/list/choices = list(M)
 	if(istype(M))

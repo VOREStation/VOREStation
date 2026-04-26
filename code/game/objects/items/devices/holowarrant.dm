@@ -57,7 +57,7 @@
 	..()
 
 //hit other people with it
-/obj/item/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/holowarrant/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	user.visible_message(span_notice("You show the warrant to [M]."), \
 			span_notice("[user] holds up a warrant projector and shows the contents to [M]."))
 	M.examinate(src)

@@ -236,7 +236,7 @@
 	pickup_sound = 'sound/items/pickup/flesh.ogg'
 	slot_flags = SLOT_EARS | SLOT_MASK
 
-/obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/trash/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	return
 
 

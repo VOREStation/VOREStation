@@ -150,7 +150,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/slime_grinder/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(processing)
 		return
 	if(!can_insert(M))

@@ -220,7 +220,7 @@
 	. = ..()
 	add_overlay("[icon_state]_100")
 
-/obj/item/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/fbp_backup_cell/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!used && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())

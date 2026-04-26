@@ -126,7 +126,7 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
 
-/obj/item/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!istype(M))
 		return
 
@@ -396,7 +396,7 @@
 		REAGENT_ID_WATERMELONJUICE,
 		REAGENT_ID_WHISKEY)
 
-/obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/service/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	return
 
 /obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target, var/mob/user, var/proximity)

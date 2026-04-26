@@ -50,7 +50,7 @@
 	src.icon_state += "_[active]"
 	return
 
-/obj/item/implanter/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!istype(M, /mob/living/carbon))
 		return
 	if(active)
@@ -125,7 +125,7 @@
 		icon_state = "cimplanter0"
 	return
 
-/obj/item/implanter/compressed/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/compressed/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/obj/item/implant/compressed/c = imp
 	if (!c)	return
 	if (c.scanned == null)

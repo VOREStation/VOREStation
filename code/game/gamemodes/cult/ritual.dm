@@ -293,7 +293,7 @@ ADMIN_VERB(check_words, R_ADMIN|R_EVENT, "Check Rune Words", "Check the rune-wor
 	for(var/V in GLOB.cultwords)
 		words[GLOB.cultwords[V]] = V
 
-/obj/item/book/tome/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/book/tome/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	add_attack_logs(user,M,"Hit with [name]")
 
 	if(isobserver(M))

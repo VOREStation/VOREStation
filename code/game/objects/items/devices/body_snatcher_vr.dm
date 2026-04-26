@@ -12,7 +12,7 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 	flags = NOBLUDGEON
 
-/obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)
+/obj/item/bodysnatcher/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(user == M)

@@ -19,7 +19,7 @@
 	COOLDOWN_DECLARE(shield_bash)
 	drop_sound = 'sound/items/trayhit1.ogg'
 
-/obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/tray/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/tray_sound = pick('sound/items/trayhit1.ogg', 'sound/items/trayhit2.ogg')
 	//var/attack_area = user.zone_sel.selecting
 	user.setClickCooldown(user.get_attack_speed(src))

@@ -299,7 +299,7 @@
 
 	return 1
 
-/obj/item/grab/attack(mob/M, mob/living/user)
+/obj/item/grab/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(QDELETED(src))
 		return
 	if(!affecting)

@@ -116,9 +116,7 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src)
 	return uses
 
-/obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob))
-		return
+/obj/item/dnainjector/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!user.IsAdvancedToolUser())
 		return
 	if (in_use)

@@ -32,12 +32,13 @@
 	amount = 5
 	max_amount = 5
 
-/obj/item/stack/medical/advanced/clotting/attack(mob/living/carbon/human/H, var/mob/user)
+/obj/item/stack/medical/advanced/clotting/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 
-	if(!istype(H))
+	if(!ishuman(M))
 		return
+	var/mob/living/carbon/human/H = M
 
 	var/clotted = 0
 	var/too_far_gone = 0

@@ -151,7 +151,7 @@
 	else
 		return ..()
 
-/obj/item/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/sizegun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if(backfire)
 		if(prob(50))
 			to_chat(user, span_notice("\The [src] backfires and consumes its entire charge!"))

@@ -8,7 +8,7 @@
 	throwforce = 0
 
 // Attack mob
-/obj/item/squishhammer/attack(mob/M as mob, mob/user as mob)
+/obj/item/squishhammer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/is_squished = M.tf_scale_x || M.tf_scale_y
 	playsound(src, 'sound/items/hooh.ogg', 50, 1)
 	if(!is_squished)
@@ -28,7 +28,7 @@
 	force = 0
 	throwforce = 0
 
-/obj/item/squishhammer/dark/attack(mob/M as mob, mob/user as mob)
+/obj/item/squishhammer/dark/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	..()
 	var/mob/living/carbon/human/H = M
 	if(istype(H))

@@ -42,7 +42,7 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	return
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
@@ -642,7 +642,7 @@
 	cooldown_length = 1 SECOND
 
 // Attack mob
-/obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
+/obj/item/toy/plushie/carp/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	playsound(src, squeeze_sound, 20, 1)	// Play bite sound in local area
 	return ..()
 

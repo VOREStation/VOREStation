@@ -61,7 +61,7 @@
 		icostate = organ_tag
 	return new /datum/nail_polish(ico, icostate, colour)
 
-/obj/item/nailpolish/attack(var/mob/user, var/mob/living/carbon/human/target)
+/obj/item/nailpolish/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!open)
 		return
 
@@ -115,7 +115,7 @@
 	. = ..()
 	icon_state = "[initial(icon_state)][open ? "-open" : ""]"
 
-/obj/item/nailpolish_remover/attack(var/mob/user, var/mob/living/carbon/human/target)
+/obj/item/nailpolish_remover/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!open)
 		return
 

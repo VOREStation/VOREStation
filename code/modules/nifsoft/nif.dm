@@ -675,7 +675,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 ////////////////////////////////
 // Special Promethean """surgery"""
-/obj/item/nif/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/nif/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!ishuman(M) || !ishuman(user) || (M == user))
 		return ..()
 

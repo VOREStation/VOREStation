@@ -130,7 +130,7 @@
 					qdel(src)
 	return
 
-/obj/item/pen/crayon/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/pen/crayon/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(M == user)
 		to_chat(user, "You take a bite of the crayon and swallow it.")
 		user.nutrition += 1
@@ -230,7 +230,7 @@
 		shadeColour = new_colour
 	return
 
-/obj/item/pen/crayon/marker/attack(mob/living/M, mob/living/user)
+/obj/item/pen/crayon/marker/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(M == user)
 		to_chat(user, "You take a bite of the marker and swallow it.")
 		user.nutrition += 1

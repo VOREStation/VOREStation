@@ -272,7 +272,7 @@
 		return return_target
 	return FALSE
 
-/obj/item/gun/energy/maghowitzer/attack(atom/A, mob/living/user, def_zone)
+/obj/item/gun/energy/maghowitzer/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if(power_cycle)
 		to_chat(user, span_notice("\The [src] is already powering up!"))
 		return 0
@@ -284,19 +284,19 @@
 		power_cycle = TRUE
 		if(do_after(user, 3 SECONDS, target = src))
 			if(A.loc == target_turf)
-				..(A, user, def_zone)
+				..(A, user, target_zone, attack_modifier)
 			else
 				var/rand_target = pick_random_target(target_turf)
 				if(rand_target)
-					..(rand_target, user, def_zone)
+					..(rand_target, user, target_zone, attack_modifier)
 				else
-					..(target_turf, user, def_zone)
+					..(target_turf, user, target_zone, attack_modifier)
 		else
 			if(beameffect)
 				qdel(beameffect)
 		power_cycle = FALSE
 	else
-		..(A, user, def_zone) //If it can't fire, just bash with no delay.
+		..(A, user, target_zone, attack_modifier) //If it can't fire, just bash with no delay.
 
 /obj/item/gun/energy/maghowitzer/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(power_cycle)

@@ -15,7 +15,7 @@
 /obj/item/melee/cultblade/cultify()
 	return
 
-/obj/item/melee/cultblade/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/melee/cultblade/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
 		return ..()
 

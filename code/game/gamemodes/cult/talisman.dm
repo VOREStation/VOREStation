@@ -46,11 +46,11 @@
 		return
 
 
-/obj/item/paper/talisman/attack(mob/living/carbon/T as mob, mob/living/user as mob)
+/obj/item/paper/talisman/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(iscultist(user))
 		if(imbue == "runestun")
 			user.take_organ_damage(5, 0)
-			call(/obj/effect/rune/proc/runestun)(T)
+			call(/obj/effect/rune/proc/runestun)(M)
 			qdel(src)
 		else
 			..()   ///If its some other talisman, use the generic attack code, is this supposed to work this way?

@@ -26,7 +26,7 @@
 
 	return ..()
 
-/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/attack(mob/living/carbon/C, mob/living/user, target_zone, attack_modifier)
 	if(!istype(C))
 		return
 
@@ -216,7 +216,7 @@
 
 	return ..()
 
-/obj/item/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/legcuffs/attack(mob/living/carbon/C, mob/living/user, target_zone, attack_modifier)
 	if(!istype(C))
 		return
 

@@ -143,7 +143,7 @@
 /**
  * Attack is called from the user's toy, aimed at target(another human), checking for target's toy.
  */
-/obj/item/toy/mecha/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+/obj/item/toy/mecha/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(target == user)
 		to_chat(user, span_notice("Target another toy mech if you want to start a battle with yourself."))
 		return

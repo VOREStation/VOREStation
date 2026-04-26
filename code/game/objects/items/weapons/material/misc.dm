@@ -45,7 +45,7 @@
 	can_cleave = FALSE
 	var/hits = 0
 
-/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
+/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(hits > 0)
 		return
 	var/obj/item/I = user.get_inactive_hand()
@@ -56,7 +56,7 @@
 		W.afterattack(M, user)
 	..()
 
-/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
+/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	hits = initial(hits)
 	..()
 

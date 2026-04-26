@@ -38,7 +38,7 @@
 	scan_mob(M, user) //default surgery behaviour is just to scan as usual
 	return 1
 
-/obj/item/healthanalyzer/attack(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	scan_mob(M, user)
 
 /obj/item/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)

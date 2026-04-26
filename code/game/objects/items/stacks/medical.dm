@@ -15,8 +15,8 @@
 
 	var/upgrade_to	// The type path this stack can be upgraded to.
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if (!istype(M))
+/obj/item/stack/medical/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!iscarbon(M))
 		balloon_alert(user, "\the [src] cannot be applied to [M]!")
 		return 1
 
@@ -89,7 +89,7 @@
 
 	upgrade_to = /obj/item/stack/medical/bruise_pack
 
-/obj/item/stack/medical/crude_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/crude_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 
@@ -157,7 +157,7 @@
 
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/bruise_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 
@@ -230,7 +230,7 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/ointment/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 
@@ -274,7 +274,7 @@
 	heal_brute = 7
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 
@@ -343,7 +343,7 @@
 	heal_burn = 7
 	apply_sounds = list('sound/effects/ointment.ogg')
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/ointment/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 
@@ -386,7 +386,7 @@
 
 	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
+/obj/item/stack/medical/splint/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..())
 		return 1
 

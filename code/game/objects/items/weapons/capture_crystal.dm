@@ -210,7 +210,7 @@
 		return FALSE
 	else return TRUE
 
-/obj/item/capture_crystal/attack(mob/living/M, mob/living/user)
+/obj/item/capture_crystal/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(bound_mob)
 		if(!bound_mob.devourable)	//Don't eat if prefs are bad
 			return
@@ -879,7 +879,7 @@
 	active = TRUE
 	loadout = TRUE
 
-/obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user)
+/obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!bound_mob && M != user)
 		to_chat(user, span_notice("\The [src] emits an unpleasant tone..."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)

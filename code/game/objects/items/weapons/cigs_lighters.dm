@@ -227,8 +227,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/clothing/mask/smokable/attack(mob/living/carbon/human/H, mob/user, def_zone)
-	if(lit && H == user && istype(H))
+/obj/item/clothing/mask/smokable/attack(mob/living/carbon/human/H, mob/living/user, target_zone, attack_modifier)
+	if(lit && H == user && ishuman(H))
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
 			to_chat(H, span_warning("\The [blocked] is in the way!"))
@@ -660,10 +660,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_icon()
 	return
 
-/obj/item/flame/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
-		return
-
+/obj/item/flame/lighter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(lit == 1)
 		M.ignite_mob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
@@ -876,10 +873,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 
-/obj/item/flame/lighter/supermatter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
-		return
-
+/obj/item/flame/lighter/supermatter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(lit == 1)
 		M.ignite_mob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
@@ -950,10 +944,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 
-/obj/item/flame/lighter/supermatter/syndismzippo/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
-		return
-
+/obj/item/flame/lighter/supermatter/syndismzippo/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(lit == 1)
 		M.ignite_mob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
@@ -1123,10 +1114,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/flame/lighter/supermatter/expsmzippo/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if (!istype(M, /mob))
-		return
-
+/obj/item/flame/lighter/supermatter/expsmzippo/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (lit == 1)
 		M.ignite_mob()
 		add_attack_logs(user, M, "Lit on fire with [src]")

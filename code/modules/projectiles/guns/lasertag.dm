@@ -128,7 +128,7 @@
 	allowed_suits = list(/obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/omni)
 
 //We have to do this if(user) check all over the place because for some reason someone broke thrower code. Thanks.
-/obj/item/lasertagknife/attack(target, mob/user)
+/obj/item/lasertagknife/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(user)
 		user.setClickCooldown(user.get_attack_speed(src))
 		user.do_attack_animation(target)

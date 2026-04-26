@@ -29,7 +29,7 @@
 				reagents.add_reagent(r, filled_reagents[r])
 	update_icon()
 
-/obj/item/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/reagent_containers/hypospray/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!reagents.total_volume)
 		balloon_alert(user, "\the [src] is empty.")
 		return

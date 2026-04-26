@@ -150,7 +150,7 @@
 	. = ..()
 	create_reagents(30)
 
-/obj/item/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/pen/reagent/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(!istype(M))
 		return

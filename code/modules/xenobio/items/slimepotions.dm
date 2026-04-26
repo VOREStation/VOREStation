@@ -20,19 +20,21 @@
 	icon_state = "potcyan"
 	description_info = "The slime needs to be alive for this to work.  It will reduce the chances of mutation by 15%."
 
-/obj/item/slimepotion/stabilizer/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
-	if(!istype(M))
+/obj/item/slimepotion/stabilizer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
 		to_chat(user, span_warning("The stabilizer only works on slimes!"))
 		return ..()
-	if(M.stat == DEAD)
+	var/mob/living/simple_mob/slime/xenobio/xenobio_slime = M
+
+	if(xenobio_slime.stat == DEAD)
 		to_chat(user, span_warning("The slime is dead!"))
 		return ..()
-	if(M.mutation_chance == 0)
+	if(xenobio_slime.mutation_chance == 0)
 		to_chat(user, span_warning("The slime already has no chance of mutating!"))
 		return ..()
 
 	to_chat(user, span_notice("You feed the slime the stabilizer. It is now less likely to mutate."))
-	M.mutation_chance = between(0, M.mutation_chance - 15, 100)
+	xenobio_slime.mutation_chance = between(0, xenobio_slime.mutation_chance - 15, 100)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 
@@ -44,19 +46,21 @@
 	description_info = "The slime needs to be alive for this to work.  It will increase the chances of mutation by 12%."
 	icon_state = "potred"
 
-/obj/item/slimepotion/mutator/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
-	if(!istype(M))
-		to_chat(user, span_warning("The mutator only works on slimes!"))
+/obj/item/slimepotion/mutator/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, span_warning("The stabilizer only works on slimes!"))
 		return ..()
-	if(M.stat == DEAD)
+	var/mob/living/simple_mob/slime/xenobio/xenobio_slime = M
+
+	if(xenobio_slime.stat == DEAD)
 		to_chat(user, span_warning("The slime is dead!"))
 		return ..()
-	if(M.mutation_chance == 100)
+	if(xenobio_slime.mutation_chance == 100)
 		to_chat(user, span_warning("The slime is already guaranteed to mutate!"))
 		return ..()
 
 	to_chat(user, span_notice("You feed the slime the mutator. It is now more likely to mutate."))
-	M.mutation_chance = between(0, M.mutation_chance + 12, 100)
+	xenobio_slime.mutation_chance = between(0, xenobio_slime.mutation_chance + 12, 100)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 
@@ -69,8 +73,8 @@
 	description_info = "The target needs to be alive, not already passive, and be an animal or slime type entity."
 	var/currently_using = FALSE						// To avoid same potion being usable multiple times
 
-/obj/item/slimepotion/docility/attack(mob/living/simple_mob/M, mob/user)
-	if(!istype(M))
+/obj/item/slimepotion/docility/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob))
 		to_chat(user, span_warning("The agent only works on creatures!"))
 		return ..()
 	if(M.stat == DEAD)
@@ -133,22 +137,24 @@
 	Extra extracts are not passed down to offspring when reproducing."
 	icon_state = "potpurple"
 
-/obj/item/slimepotion/steroid/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
-	if(!istype(M))
-		to_chat(user, span_warning("The steroid only works on slimes!"))
+/obj/item/slimepotion/steroid/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, span_warning("The stabilizer only works on slimes!"))
 		return ..()
-	if(M.stat == DEAD)
+	var/mob/living/simple_mob/slime/xenobio/xenobio_slime = M
+
+	if(xenobio_slime.stat == DEAD)
 		to_chat(user, span_warning("The slime is dead!"))
 		return ..()
-	if(M.is_adult) //Can't steroidify adults
+	if(xenobio_slime.is_adult) //Can't steroidify adults
 		to_chat(user, span_warning("Only baby slimes can use the steroid!"))
 		return ..()
-	if(M.cores >= 5)
+	if(xenobio_slime.cores >= 5)
 		to_chat(user, span_warning("The slime already has the maximum amount of extract!"))
 		return ..()
 
 	to_chat(user, span_notice("You feed the slime the steroid. It will now produce one more extract."))
-	M.cores++
+	xenobio_slime.cores++
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 
@@ -161,21 +167,23 @@
 	carry over to offspring when reproducing."
 	icon_state = "potpink"
 
-/obj/item/slimepotion/unity/attack(mob/living/simple_mob/slime/M, mob/user)
-	if(!istype(M))
-		to_chat(user, span_warning("The agent only works on slimes!"))
+/obj/item/slimepotion/unity/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, span_warning("The stabilizer only works on slimes!"))
 		return ..()
-	if(M.stat == DEAD)
+	var/mob/living/simple_mob/slime/xenobio/xenobio_slime = M
+
+	if(xenobio_slime.stat == DEAD)
 		to_chat(user, span_warning("The slime is dead!"))
 		return ..()
-	if(M.unity == TRUE)
+	if(xenobio_slime.unity == TRUE)
 		to_chat(user, span_warning("The slime is already unified!"))
 		return ..()
 
 	to_chat(user, span_notice("You feed the slime the agent. It will now be friendly to all other slimes."))
-	to_chat(M, span_notice("\The [user] feeds you \the [src], and you suspect that all the other slimes will be \
+	to_chat(xenobio_slime, span_notice("\The [user] feeds you \the [src], and you suspect that all the other slimes will be \
 	your friends, at least if you don't attack them first."))
-	M.unify()
+	xenobio_slime.unify()
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 
@@ -187,10 +195,11 @@
 	the user's faction, which means the slime will attack things that are hostile to the user's faction, such as carp, spiders, and other slimes."
 	icon_state = "potlightpink"
 
-/obj/item/slimepotion/loyalty/attack(mob/living/simple_mob/M, mob/user)
-	if(!istype(M))
+/obj/item/slimepotion/loyalty/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob))
 		to_chat(user, span_warning("The agent only works on creatures!"))
 		return ..()
+
 	if(!(M.mob_class & (MOB_CLASS_SLIME|MOB_CLASS_ANIMAL))) // So you can't use this on Russians/syndies/hivebots/etc.
 		to_chat(user, span_warning("\The [M] only works on slimes and animals."))
 		return ..()
@@ -225,28 +234,30 @@
 	their 'friend', and will never attack them.  This might also work on other things besides slimes."
 	icon_state = "potlightpink"
 
-/obj/item/slimepotion/friendship/attack(mob/living/simple_mob/M, mob/user)
-	if(!istype(M))
+/obj/item/slimepotion/friendship/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob))
 		to_chat(user, span_warning("The agent only works on creatures!"))
 		return ..()
-	if(!(M.mob_class & (MOB_CLASS_SLIME|MOB_CLASS_ANIMAL))) // So you can't use this on Russians/syndies/hivebots/etc.
+	var/mob/living/simple_mob/SM = M
+
+	if(!(SM.mob_class & (MOB_CLASS_SLIME|MOB_CLASS_ANIMAL))) // So you can't use this on Russians/syndies/hivebots/etc.
 		to_chat(user, span_warning("\The [M] only works on slimes and animals."))
 		return ..()
-	if(M.stat == DEAD)
+	if(SM.stat == DEAD)
 		to_chat(user, span_warning("\The [M] is dead!"))
 		return ..()
-	if(user in M.friends)
+	if(user in SM.friends)
 		to_chat(user, span_warning("\The [M] is already loyal to you!"))
 		return ..()
-	if(!M.has_AI())
+	if(!SM.has_AI())
 		to_chat(user, span_warning("\The [M] is too strong-willed for this to affect them."))
 		return ..()
 
-	var/datum/ai_holder/AI = M.ai_holder
+	var/datum/ai_holder/AI = SM.ai_holder
 
-	to_chat(user, span_notice("You feed \the [M] the agent. It will now be your best friend."))
-	to_chat(M, span_notice("\The [user] feeds you \the [src], and feel that \the [user] wants to be best friends with you."))
-	M.friends.Add(user)
+	to_chat(user, span_notice("You feed \the [SM] the agent. It will now be your best friend."))
+	to_chat(SM, span_notice("\The [user] feeds you \the [src], and feel that \the [user] wants to be best friends with you."))
+	SM.friends.Add(user)
 	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
@@ -259,18 +270,20 @@
 	description_info = "The slime needs to be alive for this to work.  It will instantly grow the slime enough to reproduce."
 	icon_state = "potorange"
 
-/obj/item/slimepotion/feeding/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
-	if(!istype(M))
-		to_chat(user, span_warning("The feeding agent only works on slimes!"))
+/obj/item/slimepotion/feeding/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, span_warning("The stabilizer only works on slimes!"))
 		return ..()
-	if(M.stat == DEAD)
+	var/mob/living/simple_mob/slime/xenobio/xenobio_slime = M
+
+	if(xenobio_slime.stat == DEAD)
 		to_chat(user, span_warning("The slime is dead!"))
 		return ..()
 
 	to_chat(user, span_notice("You feed the slime the feeding agent. It will now instantly reproduce."))
-	M.amount_grown = 10
-	M.make_adult()
-	M.amount_grown = 10
-	M.reproduce()
+	xenobio_slime.amount_grown = 10
+	xenobio_slime.make_adult()
+	xenobio_slime.amount_grown = 10
+	xenobio_slime.reproduce()
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)

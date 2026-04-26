@@ -1,4 +1,4 @@
-/obj/item/stack/material/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/stack/material/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(M.handle_eat_minerals(src, user))
 		return
 	..()

@@ -51,8 +51,8 @@
 					"What do you call a cow with no legs? Ground Beef.",
 					"Why'd the scarecrow win the Nobel prize? He was outstanding in his field.")
 
-/obj/item/cracker/attack(atom/A, mob/living/user, adjacent, params)
-	var/mob/living/carbon/human/target = A
+/obj/item/cracker/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	var/mob/living/carbon/human/target = M
 	if(!istype(target))
 		return
 	if(target.stat)
@@ -64,9 +64,6 @@
 	var/check_pull = tgui_alert(target, "\The [user] is offering to pull \the [src] with you, do you want to pull it?", "Pull Cracker", list("Yes", "No"))
 	if(!check_pull || check_pull == "No")
 		to_chat(user, span_notice("\The [target] chose not to pull \the [src]!"))
-		return
-	if(!adjacent)
-		to_chat(user, span_notice("\The [target] is not standing close enough to pull \the [src]!"))
 		return
 	var/obj/item/check_hand = user.get_active_hand()
 	if(check_hand != src)

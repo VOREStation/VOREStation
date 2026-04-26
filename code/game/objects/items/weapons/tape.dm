@@ -19,8 +19,9 @@
 
 	return FALSE
 
-/obj/item/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
-	if(istype(H))
+/obj/item/tape_roll/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		if(user.a_intent == I_HELP)
 			return
 		if(!can_place(H, user))

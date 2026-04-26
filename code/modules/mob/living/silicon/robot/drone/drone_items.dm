@@ -12,7 +12,7 @@
 	var/datum/matter_synth/wood/wood = null
 	var/datum/matter_synth/plastic/plastic = null
 
-/obj/item/matter_decompiler/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/matter_decompiler/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	return
 
 /obj/item/matter_decompiler/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)

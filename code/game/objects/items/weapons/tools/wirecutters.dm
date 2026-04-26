@@ -44,7 +44,10 @@
 	if (prob(75))
 		pixel_y = rand(0, 16)
 
-/obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/tool/wirecutters/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!iscarbon(M))
+		return ..()
+	var/mob/living/carbon/C = M
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		user.visible_message("\The [user] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\

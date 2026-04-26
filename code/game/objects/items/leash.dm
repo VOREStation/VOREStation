@@ -65,7 +65,7 @@
 		return
 
 //Called when someone is clicked with the leash
-/obj/item/leash/attack(mob/living/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
+/obj/item/leash/attack(mob/living/C, mob/living/user, target_zone, attack_modifier) //C is the target, user is the one with the leash
 	var/mob/living/leash_pet = leash_pet_ref?.resolve()
 	var/mob/living/leash_master = leash_master_ref?.resolve()
 	if(C.alerts && C.alerts["leashed"]) //If the pet is already leashed, do not leash them. For the love of god.

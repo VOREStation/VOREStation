@@ -10,18 +10,18 @@
 	hitcost = 48	//Less zap for less cost
 	description_info = "This baton will stun a slime or other slime-based lifeform for about five seconds, if hit with it while on."
 
-/obj/item/melee/baton/slime/attack(mob/living/L, mob/user, hit_zone)
-	if(istype(L) && status) // Is it on?
-		if(L.mob_class & MOB_CLASS_SLIME) // Are they some kind of slime? (Prommies might pass this check someday).
-			if(isslime(L))
-				var/mob/living/simple_mob/slime/S = L
+/obj/item/melee/baton/slime/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(istype(M) && status) // Is it on?
+		if(M.mob_class & MOB_CLASS_SLIME) // Are they some kind of slime? (Prommies might pass this check someday).
+			if(isslime(M))
+				var/mob/living/simple_mob/slime/S = M
 				S.slimebatoned(user, 5) // Feral and xenobio slimes will react differently to this.
 			else
-				L.Weaken(5)
+				M.Weaken(5)
 
 		// Now for prommies.
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
 			if(H.species && H.species.name == SPECIES_PROMETHEAN)
 				var/agony_to_apply = 60 - agonyforce
 				H.apply_damage(agony_to_apply, HALLOSS)

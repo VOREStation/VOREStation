@@ -160,7 +160,7 @@
 		return TRUE
 
 //attack_as_weapon
-/obj/item/flash/attack(mob/living/target, mob/living/user, var/target_zone)
+/obj/item/flash/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!user || !target || target.is_incorporeal())
 		return //sanity
 

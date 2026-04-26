@@ -42,10 +42,9 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/lipstick/attack(mob/M as mob, mob/user as mob)
-	if(!open)	return
-
-	if(!istype(M, /mob))	return
+/obj/item/lipstick/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!open)
+		return
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

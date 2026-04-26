@@ -12,7 +12,7 @@
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
 
-/obj/item/nullrod/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/nullrod/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	add_attack_logs(user,M,"Hit with [src] (nullrod)")
 

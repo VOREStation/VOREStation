@@ -366,7 +366,7 @@
 	clear_and_select_pocket()
 	generate_icons()
 
-/obj/item/gripper/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/gripper/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(is_in_use(user))
 		return FALSE
 

@@ -106,7 +106,7 @@
 			user.visible_message("[user] finishes wiping [A]!")
 			A.on_rag_wipe(src)
 
-/obj/item/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
+/obj/item/reagent_containers/glass/rag/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(isliving(target)) //Leaving this as isliving.
 		var/mob/living/M = target
 		if(on_fire) //Check if rag is on fire, if so igniting them and stopping.

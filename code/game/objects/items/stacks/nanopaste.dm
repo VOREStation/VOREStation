@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_SMALL
 	no_variants = FALSE
 
-/obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/stack/nanopaste/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!istype(M) || !istype(user))
 		return 0
 	if (istype(M,/mob/living/silicon/robot) && can_use(1))	//Repairing cyborgs

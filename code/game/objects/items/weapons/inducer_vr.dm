@@ -38,7 +38,7 @@
 /obj/item/inducer/get_cell()
 	return cell
 
-/obj/item/inducer/attack(mob/living/M, mob/living/user)
+/obj/item/inducer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HURT)
 		return ..()
 	else

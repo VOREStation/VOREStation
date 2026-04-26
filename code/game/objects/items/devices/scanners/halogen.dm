@@ -10,7 +10,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/halogen_counter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!iscarbon(M))
 		to_chat(user, span_warning("This device can only scan organic beings!"))
 		return

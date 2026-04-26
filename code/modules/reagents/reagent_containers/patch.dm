@@ -19,7 +19,7 @@
 
 	var/pierce_material = FALSE	// If true, the patch can be used through thick material.
 
-/obj/item/reagent_containers/pill/patch/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/pill/patch/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/mob/living/L = user
 
 	if(M == L)

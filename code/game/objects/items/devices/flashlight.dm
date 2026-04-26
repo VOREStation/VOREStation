@@ -121,7 +121,7 @@
 	user.update_mob_action_buttons()
 	return CAN_USE
 
-/obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/flashlight/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
 

@@ -13,6 +13,6 @@
 	reagents.add_reagent(REAGENT_ID_COFFEE, 50)
 
 	//Infinite Coffee
-/obj/item/reagent_containers/food/drinks/bluespace_coffee/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/drinks/bluespace_coffee/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	..()
 	src.reagents.add_reagent(REAGENT_ID_COFFEE, 50)

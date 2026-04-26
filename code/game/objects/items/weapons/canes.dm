@@ -68,7 +68,7 @@
 	desc = "A white cane. They are commonly used by the blind or visually impaired as a mobility tool or as a courtesy to others."
 	icon_state = "whitecane"
 
-/obj/item/cane/white/attack(mob/M as mob, mob/user as mob)
+/obj/item/cane/white/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)
 		user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
 		return TRUE

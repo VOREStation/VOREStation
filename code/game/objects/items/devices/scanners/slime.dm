@@ -11,7 +11,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/slime_scanner/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
 		to_chat(user, span_infoplain(span_bold("This device can only scan lab-grown slimes!")))
 		return
