@@ -114,6 +114,7 @@
 		SSradio.remove_object(src, frequency)
 		for (var/ch_name in channels)
 			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
+	bs_tx_weakref = null
 	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
