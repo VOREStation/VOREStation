@@ -72,17 +72,18 @@
 		// If they re-click, remove the leash
 		if (C == leash_pet && user == leash_master)
 			unleash()
+			return ITEM_INTERACT_SUCCESS
 		else
 			// Dear god not the double leashing
 			to_chat(user, span_notice("[C] has already been leashed."))
-		return
+			return ITEM_INTERACT_FAILURE
 
 	if(!C.mind)
-		return
+		return ITEM_INTERACT_FAILURE
 
-	if (C == user)
+	if(C == user)
 		to_chat(user, span_notice("You cannot leash yourself!"))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	var/leashtime = 35
 
@@ -90,16 +91,16 @@
 		var/mob/living/carbon/human/humantarget = C
 		if (!is_wearing_collar(humantarget))
 			to_chat(user, span_notice("[humantarget] needs a collar before you can attach a leash to it."))
-			return
+			return ITEM_INTERACT_FAILURE
 		if(humantarget.handcuffed)
 			leashtime = 5
 
 	C.visible_message(span_danger("\The [user] is attempting to put the leash on \the [C]!"), span_danger("\The [user] tries to put a leash on you"))
 	add_attack_logs(user,C,"Leashed (attempt)")
 	if(!do_after(user, leashtime, C)) //do_mob adds a progress bar, but then we also check to see if they have a collar
-		return
+		return ITEM_INTERACT_FAILURE
 	if(tgui_alert(C, "Would you like to be leased by [user]? You can OOC escape to escape", "Become Leashed",list("No","Yes")) != "Yes")
-		return
+		return ITEM_INTERACT_FAILURE
 
 	C.visible_message(span_danger("\The [user] puts a leash on \the [C]!"), span_danger("The leash clicks onto your collar!"))
 
@@ -114,6 +115,7 @@
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
 
 	START_PROCESSING(SSobj, src)
+	return ITEM_INTERACT_SUCCESS
 
 //Called when the leash is used in hand
 //Tugs the pet closer

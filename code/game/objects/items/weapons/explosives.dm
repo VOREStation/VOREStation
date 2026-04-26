@@ -92,7 +92,7 @@
 	qdel(src)
 
 /obj/item/plastique/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 /obj/item/plastique/seismic
 	name = "seismic charge"

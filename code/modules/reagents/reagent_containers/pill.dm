@@ -26,41 +26,41 @@
 	if(!M.consume_liquid_belly)
 		if(liquid_belly_check())
 			to_chat(user, span_infoplain("[user == M ? "You can't" : "\The [M] can't"] consume that, it contains something produced from a belly!"))
-			return FALSE
+			return ITEM_INTERACT_FAILURE
 	if(M == user)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(!H.check_has_mouth())
 				to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
-				return
+				return ITEM_INTERACT_FAILURE
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
 				balloon_alert(user, "\the [blocked] is in the way!")
-				return
+				return ITEM_INTERACT_FAILURE
 
 			balloon_alert(user, "swallowed \the [src]")
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
-			return 1
+			return ITEM_INTERACT_SUCCESS
 
 	else if(ishuman(M))
 
 		var/mob/living/carbon/human/H = M
 		if(!H.check_has_mouth())
 			balloon_alert(user, "\the [H] doesn't have a mouth.")
-			return
+			return ITEM_INTERACT_FAILURE
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
 			balloon_alert(user, "\the [blocked] is in the way!")
-			return
+			return ITEM_INTERACT_FAILURE
 
 		user.balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
 
 		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_after(user, 3 SECONDS, M))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		user.drop_from_inventory(src) //icon update
 		user.balloon_alert_visible("[user] forces [M] to swallow \the [src].")
@@ -72,9 +72,9 @@
 			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		qdel(src)
 
-		return 1
+		return ITEM_INTERACT_SUCCESS
 
-	return 0
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return

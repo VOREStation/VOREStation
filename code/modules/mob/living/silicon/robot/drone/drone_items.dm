@@ -13,7 +13,7 @@
 	var/datum/matter_synth/plastic/plastic = null
 
 /obj/item/matter_decompiler/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 /obj/item/matter_decompiler/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)
 

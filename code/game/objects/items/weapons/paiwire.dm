@@ -14,4 +14,4 @@
 		user.visible_message("[user] fumbles to find a place on [M] to plug in [src].", "There aren't any ports on [M] that match the jack belonging to [src].")
 
 /obj/item/pai_cable/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE

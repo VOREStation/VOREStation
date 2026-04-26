@@ -52,6 +52,7 @@
 			user.take_organ_damage(5, 0)
 			call(/obj/effect/rune/proc/runestun)(M)
 			qdel(src)
+			return ITEM_INTERACT_SUCCESS
 		else
 			..()   ///If its some other talisman, use the generic attack code, is this supposed to work this way?
 	else

@@ -61,6 +61,7 @@
 	user.visible_message(span_notice("You show the warrant to [M]."), \
 			span_notice("[user] holds up a warrant projector and shows the contents to [M]."))
 	M.examinate(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/holowarrant/update_icon()
 	if(active)

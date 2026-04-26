@@ -21,14 +21,14 @@
 	if (!ishuman(M))
 		to_chat(user, span_warning("\The [M] does not seem to be compatible with this device."))
 		flick("[icon_state]0",src)
-		return 0
+		return ITEM_INTERACT_FAILURE
 	var/mob/living/carbon/human/target = M
 
 	if(reveal_fingerprints)
 		if((!( istype(target.dna, /datum/dna) ) || target.gloves))
 			to_chat(user, span_notice("No fingerprints found on [target]"))
 			flick("[icon_state]0",src)
-			return 0
+			return ITEM_INTERACT_FAILURE
 		else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 			var/obj/item/sample/print/P = new /obj/item/sample/print(user.loc)
 			P.attack(target, user)
@@ -41,7 +41,7 @@
 			var/list/blooddna = target.forensic_data.get_blooddna()
 			for(var/blood in blooddna)
 				to_chat(user, span_notice("Blood type: [blooddna[blood]]\nDNA: [blood]"))
-	return
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
 	if(!proximity) return

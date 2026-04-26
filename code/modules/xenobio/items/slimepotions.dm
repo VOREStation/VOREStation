@@ -37,6 +37,7 @@
 	xenobio_slime.mutation_chance = between(0, xenobio_slime.mutation_chance - 15, 100)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 
 // The opposite, makes the slime more likely to mutate.
@@ -63,6 +64,7 @@
 	xenobio_slime.mutation_chance = between(0, xenobio_slime.mutation_chance + 12, 100)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 
 // Makes the slime friendly forever.
@@ -85,7 +87,7 @@
 		return
 	if(currently_using)
 		to_chat(user, span_warning("This agent has already been used!")) // Possibly trying to cheese the dialogue box and use same potion on multiple targets.
-		return
+		return ITEM_INTERACT_FAILURE
 
 	currently_using = TRUE
 	var/datum/ai_holder/AI = M.ai_holder
@@ -127,6 +129,7 @@
 		M.name = newname
 		M.real_name = newname
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 
 // Makes slimes make more extracts.
@@ -157,6 +160,7 @@
 	xenobio_slime.cores++
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 
 // Makes slimes not try to murder other slime colors.
@@ -186,6 +190,7 @@
 	xenobio_slime.unify()
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 // Makes slimes not kill (most) humanoids but still fight spiders/carp/bears/etc.
 /obj/item/slimepotion/loyalty
@@ -224,6 +229,7 @@
 		slime.update_mood() //Makes them drop-nomable.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 
 // User befriends the slime with this.
@@ -261,6 +267,7 @@
 	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 
 // Feeds the slime instantly.
@@ -287,3 +294,4 @@
 	xenobio_slime.reproduce()
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS

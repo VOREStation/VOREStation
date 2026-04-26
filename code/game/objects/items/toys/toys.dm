@@ -43,7 +43,7 @@
 	R.my_atom = src
 
 /obj/item/toy/balloon/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return

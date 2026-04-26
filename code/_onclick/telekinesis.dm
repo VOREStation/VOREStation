@@ -139,7 +139,7 @@
 	return
 
 /obj/item/tk_grab/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return NONE
+	return ITEM_INTERACT_FAILURE
 
 
 /obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)

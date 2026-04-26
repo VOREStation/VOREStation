@@ -144,6 +144,7 @@
 			if(uses <= 0)
 				to_chat(user, span_warning("You ate your crayon!"))
 				qdel(src)
+		return ITEM_INTERACT_SUCCESS
 	else
 		..()
 
@@ -244,5 +245,6 @@
 			if(uses <= 0)
 				to_chat(user, span_warning("You ate the marker!"))
 				qdel(src)
+		return ITEM_INTERACT_SUCCESS
 	else
 		..()

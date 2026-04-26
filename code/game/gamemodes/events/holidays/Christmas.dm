@@ -47,7 +47,7 @@
 		other_half.icon_state = "cracker2"
 		target.put_in_active_hand(other_half)
 		playsound(src, 'sound/effects/snap.ogg', 50, 1)
-		return 1
+		return ITEM_INTERACT_SUCCESS
 	return ..()
 
 /obj/item/clothing/head/festive

@@ -237,7 +237,7 @@
 	slot_flags = SLOT_EARS | SLOT_MASK
 
 /obj/item/trash/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 
 /obj/item/trash/beef

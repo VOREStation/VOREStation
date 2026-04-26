@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 		to_chat(usr, span_notice("Camera will now take [size]x[size] photos."))
 
 /obj/item/camera/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 /obj/item/camera/attack_self(mob/user)
 	. = ..(user)

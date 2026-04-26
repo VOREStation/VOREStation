@@ -153,9 +153,9 @@
 		return ..()
 
 	if(standard_feed_mob(user, M))
-		return
+		return ITEM_INTERACT_SUCCESS
 
-	return FALSE
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return

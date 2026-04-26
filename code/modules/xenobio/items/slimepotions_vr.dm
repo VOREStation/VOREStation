@@ -31,6 +31,7 @@
 	xenobio_slime.split_amount = between(2, xenobio_slime.split_amount - 2, 6)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/fertility
 	name = "slime fertility agent"
@@ -55,6 +56,7 @@
 	xenobio_slime.split_amount = between(2, xenobio_slime.split_amount + 2, 6)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/shrink
 	name = "slime shrinking agent"
@@ -79,6 +81,7 @@
 	xenobio_slime.make_baby()
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/death
 	name = "slime death agent"
@@ -100,6 +103,7 @@
 	xenobio_slime.adjustToxLoss(500)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/ferality
 	name = "slime ferality agent"
@@ -125,6 +129,7 @@
 	xenobio_slime.untamable_inheirit = TRUE
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/reinvigoration
 	name = "extract reinvigoration agent"
@@ -148,7 +153,7 @@
 		s.start()
 		qdel(M)
 		qdel(src)
-		return
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/slimepotion/sapience
@@ -182,6 +187,7 @@
 	log_and_message_admins("used a sapience potion on a simple mob: [xenobio_slime]. [ADMIN_FLW(src)]", user)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimepotion/obedience
 	name = "slime obedience agent"
@@ -207,3 +213,4 @@
 		AI.obedience = 10
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
+	return ITEM_INTERACT_SUCCESS

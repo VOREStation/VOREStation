@@ -94,7 +94,7 @@
 	maximum_level = scanner.rating + 5
 
 /obj/item/extrapolator/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/extrapolator/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

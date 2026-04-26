@@ -311,12 +311,12 @@
 
 		if(cig == null)
 			to_chat(user, span_notice("Looks like the packet is out of cigarettes."))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		// Instead of running equip_to_slot_if_possible() we check here first,
 		// to avoid dousing cig with reagents if we're not going to equip it
 		if(!cig.mob_can_equip(user, slot_wear_mask))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		// We call remove_from_storage first to manage the reagent transfer and
 		// UI updates.
@@ -326,6 +326,7 @@
 		reagents.maximum_volume = 15 * contents.len
 		to_chat(user, span_notice("You take a cigarette out of the pack."))
 		update_icon()
+		return ITEM_INTERACT_SUCCESS
 	else
 		..()
 

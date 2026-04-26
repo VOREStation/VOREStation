@@ -44,18 +44,19 @@
 
 /obj/item/lipstick/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!open)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
 			to_chat(user, span_notice("You need to wipe off the old lipstick first!"))
-			return
+			return ITEM_INTERACT_FAILURE
 		if(H == user)
 			user.visible_message(span_notice("[user] does their lips with \the [src]."), \
 									span_notice("You take a moment to apply \the [src]. Perfect!"))
 			H.lip_style = colour
 			H.update_icons_body()
+			return ITEM_INTERACT_SUCCESS
 		else
 			user.visible_message(span_warning("[user] begins to do [H]'s lips with \the [src]."), \
 									span_notice("You begin to apply \the [src]."))
@@ -64,8 +65,10 @@
 										span_notice("You apply \the [src]."))
 				H.lip_style = colour
 				H.update_icons_body()
+				return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_notice("Where are the lips on that?"))
+		return ITEM_INTERACT_FAILURE
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
 

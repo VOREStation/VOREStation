@@ -160,7 +160,7 @@
 			var/mob/living/M = loc // TGMC Ammo HUD
 			if(istype(M)) // TGMC Ammo HUD
 				M?.hud_used.update_ammo_hud(M, src)
-			return
+			return ITEM_INTERACT_SUCCESS
 		else
 			return ..()
 	else

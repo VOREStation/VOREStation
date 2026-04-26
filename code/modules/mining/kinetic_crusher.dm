@@ -93,7 +93,7 @@
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!wielded && requires_wield)
 		to_chat(user, span_warning("[src] is too heavy to use with one hand."))
-		return
+		return ITEM_INTERACT_FAILURE
 	..()
 
 /obj/item/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)

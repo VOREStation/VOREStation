@@ -277,12 +277,14 @@
 /obj/item/gun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
+		return ITEM_INTERACT_SUCCESS
 	else if(user.a_intent == I_HURT) //point blank shooting
 		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
 			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
-			return
+			return ITEM_INTERACT_SUCCESS
 		else
 			Fire(A, user, pointblank=1)
+			return ITEM_INTERACT_SUCCESS
 	else
 		return ..() //Pistolwhippin'
 

@@ -312,6 +312,8 @@ Book Cart End
 			span_notice(" [user] opens up a book and shows it to [M]."))
 		display_content(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /*
 * Book Bundle (Multi-page book)

@@ -226,12 +226,16 @@
 		if(H.isSynthetic())
 			if(H.nutrition <= amount)
 				use(user,H)
+				return ITEM_INTERACT_SUCCESS
 			else
 				to_chat(user,span_warning("The difference in potential is too great. [user == M ? "You have" : "[H] has"] too much charge to use such a small battery."))
+				return ITEM_INTERACT_FAILURE
 		else if(M == user)
 			to_chat(user,span_warning("You lick the cell, and your tongue tingles slightly."))
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user,span_warning("This cell is meant for use on humanoid synthetics only."))
+			return ITEM_INTERACT_FAILURE
 
 	. = ..()
 

@@ -38,7 +38,7 @@
 			H.apply_damage(2*force, BRUTE, BP_HEAD)
 		else
 			user.take_organ_damage(2*force)
-		return
+		return ITEM_INTERACT_SUCCESS
 	return ..()
 
 //Telescopic baton
@@ -101,7 +101,7 @@
 
 /obj/item/melee/telebaton/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(on)
-		if (CLUMSY_FAIL_CHANCE(user))
+		if(CLUMSY_FAIL_CHANCE(user))
 			to_chat(user, span_warning("You club yourself over the head."))
 			user.Weaken(3 * force)
 			if(ishuman(user))
@@ -109,9 +109,5 @@
 				H.apply_damage(2*force, BRUTE, BP_HEAD)
 			else
 				user.take_organ_damage(2*force)
-			return
-		if(..())
-			//playsound(src, "swing_hit", 50, 1, -1)
-			return
-	else
-		return ..()
+			return ITEM_INTERACT_SUCCESS
+	return ..()

@@ -133,7 +133,7 @@
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
 					to_chat(user, span_warning("You're going to need to remove [C.name] first."))
-					return
+					return ITEM_INTERACT_FAILURE
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
@@ -143,14 +143,14 @@
 										span_notice("You direct [src] at [M]'s face."))
 				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!"))
 				user.setClickCooldown(user.get_attack_speed(src))
-				return
+				return ITEM_INTERACT_FAILURE
 
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] to [M]'s eyes."), \
 									span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))
-					return
+					return ITEM_INTERACT_SUCCESS
 				if(XRAY in M.mutations)
 					to_chat(user, span_notice("\The [M] pupils give an eerie glow!"))
 				if(vision.is_bruised())
@@ -171,6 +171,7 @@
 
 			user.setClickCooldown(user.get_attack_speed(src)) //can be used offensively
 			M.flash_eyes()
+			return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
 

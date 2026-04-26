@@ -299,17 +299,18 @@ ADMIN_VERB(check_words, R_ADMIN|R_EVENT, "Check Rune Words", "Check the rune-wor
 	if(isobserver(M))
 		var/mob/observer/dead/D = M
 		D.manifest(user)
-		return
+		return ITEM_INTERACT_SUCCESS
 	if(!istype(M))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(!iscultist(user))
 		return ..()
 	if(iscultist(M))
-		return
+		return ITEM_INTERACT_FAILURE
 	M.take_organ_damage(0,rand(5,20)) //really lucky - 5 hits for a crit
 	for(var/mob/O in viewers(M, null))
 		O.show_message(span_warning("\The [user] beats \the [M] with \the [src]!"), 1)
 	to_chat(M, span_danger("You feel searing heat inside!"))
+	return ITEM_INTERACT_SUCCESS
 
 
 /obj/item/book/tome/attack_self(mob/living/user)

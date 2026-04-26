@@ -318,15 +318,15 @@
 		return ..() //Do a regular attack. Harm intent shocking happens as a hit effect
 
 	if(can_use(user, H))
-		busy = 1
+		busy = TRUE
 		update_icon()
 
 		do_revive(H, user)
 
-		busy = 0
+		busy = FALSE
 		update_icon()
 
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 //Since harm-intent now skips the delay for deliberate placement, you have to be able to hit them in combat in order to shock people.
 /obj/item/shockpaddles/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)

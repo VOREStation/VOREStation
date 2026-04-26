@@ -56,7 +56,7 @@
 		if(C.buckled && C.buckled.buckle_require_restraints)
 			C.buckled.unbuckle_mob()
 		C.update_handcuffed()
-		return
+		return ITEM_INTERACT_SUCCESS
 	else
 		..()
 

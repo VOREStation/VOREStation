@@ -140,7 +140,7 @@
 	else
 		user.visible_message(span_danger("[target] has been harmlessly bonked with [src] by [user]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 75, 1)
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 ///go my hack
 /obj/item/lasertagknife/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

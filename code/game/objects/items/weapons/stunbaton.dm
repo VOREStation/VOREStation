@@ -178,7 +178,7 @@
 		to_chat(user, span_danger("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
 		deductcharge(hitcost)
-		return
+		return ITEM_INTERACT_SUCCESS
 	deductcharge(hitcost)
 	return ..()
 

@@ -108,11 +108,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!force || (flags & NOBLUDGEON))
-		return NONE
+		return ITEM_INTERACT_FAILURE
 	if(M == user && user.a_intent != I_HURT)
-		return NONE
+		return ITEM_INTERACT_FAILURE
 	if(M.is_incorporeal()) // No attacking phased entities :)
-		return NONE
+		return ITEM_INTERACT_FAILURE
 
 	/////////////////////////
 	M.lastattacker = user

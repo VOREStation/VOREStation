@@ -131,6 +131,7 @@
 		if(!use_charge(hitcost))
 			deactivate(user)
 			visible_message(span_notice("\The [src]'s blade flickers, before deactivating."))
+			return ITEM_INTERACT_FAILURE
 	return ..()
 
 /obj/item/melee/energy/attackby(obj/item/W, mob/user)

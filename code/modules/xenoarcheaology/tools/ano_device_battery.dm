@@ -255,3 +255,4 @@
 
 	if(inserted_battery?.battery_effect)
 		add_attack_logs(user,M,"Anobattery tap ([inserted_battery?.battery_effect?.name])")
+	return ITEM_INTERACT_SUCCESS

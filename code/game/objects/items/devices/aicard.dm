@@ -20,6 +20,7 @@
 		var/mob/living/silicon/decoy/decoy = M
 		decoy.death()
 		to_chat(user, span_infoplain(span_bold("ERROR ERROR ERROR")))
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/aicard/attack_self(mob/user)
 	. = ..(user)

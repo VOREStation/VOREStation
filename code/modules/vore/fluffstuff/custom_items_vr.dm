@@ -228,6 +228,7 @@
 
 /obj/item/card/id/centcom/station/fluff/joanbadge/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+	return ITEM_INTERACT_SUCCESS
 
 //JoanRisu:Joan Risu
 /obj/item/pda/heads/hos/joanpda
@@ -298,7 +299,7 @@
 
 /obj/item/flag/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
-
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/flag/federation
 	name = "Federation Banner"
@@ -868,6 +869,7 @@
 	user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff."),span_danger("You invade [M]'s personal space, thrusting [src] into their face with an insistent huff."))
 	user.do_attack_animation(M)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/accessory/badge/holo/detective/ruda/attack_self(mob/user)
 	. = ..(user)
@@ -912,8 +914,10 @@
 			var/mob/living/carbon/human/H = user
 			H.monkeyize()
 			qdel(src) //One time use.
+			return ITEM_INTERACT_SUCCESS
 	else //If not, do nothing.
 		to_chat(user, span_warning("You are unable to inject other people."))
+		return ITEM_INTERACT_FAILURE
 
 /obj/item/fluff/injector/numb_bite
 	name = "Numbing Venom Injector"
@@ -926,8 +930,10 @@
 			var/mob/living/carbon/human/H = user
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
 			qdel(src) //One time use.
+			return ITEM_INTERACT_SUCCESS
 	else //If not, do nothing.
 		to_chat(user, span_warning("You are unable to inject other people."))
+		return ITEM_INTERACT_FAILURE
 
 //For 2 handed fluff weapons.
 /obj/item/material/twohanded/fluff //Twohanded fluff items.

@@ -20,6 +20,7 @@
 
 /obj/item/robotanalyzer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	do_scan(M, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/robotanalyzer/click_alt(mob/user)
 	mode = !mode

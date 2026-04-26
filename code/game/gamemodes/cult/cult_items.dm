@@ -38,7 +38,7 @@
 	var/spooky = pick('sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg', 'sound/hallucinations/growl3.ogg', 'sound/hallucinations/wail.ogg')
 	playsound(src, spooky, 50, 1)
 
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/cultblade/pickup(mob/living/user as mob)
 	if(!iscultist(user) && !istype(user, /mob/living/simple_mob/construct))

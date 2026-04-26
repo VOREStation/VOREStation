@@ -33,11 +33,11 @@
 	max_amount = 5
 
 /obj/item/stack/medical/advanced/clotting/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if(..())
-		return 1
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
 	if(!ishuman(M))
-		return
+		return ITEM_INTERACT_FAILURE
 	var/mob/living/carbon/human/H = M
 
 	var/clotted = 0
@@ -69,6 +69,7 @@
 	use(1)
 	playsound(src, pick(apply_sounds), 25)
 	update_icon()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/medical/advanced/clotting/update_icon()
 	icon_state = "[initial(icon_state)]_[amount]"

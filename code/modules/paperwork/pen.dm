@@ -151,10 +151,6 @@
 	create_reagents(30)
 
 /obj/item/pen/reagent/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-
-	if(!istype(M))
-		return
-
 	. = ..()
 
 	if(M.can_inject(user,1))
@@ -163,6 +159,7 @@
 				var/contained = reagents.get_reagents()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
+				return ITEM_INTERACT_SUCCESS
 
 /*
  * Blade Pens

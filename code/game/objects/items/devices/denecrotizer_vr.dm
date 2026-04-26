@@ -225,6 +225,7 @@
 			ghostjoin_rez(target, user)
 		else
 			basic_rez(target, user)
+		return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
 

@@ -118,9 +118,9 @@
 
 /obj/item/dnainjector/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!user.IsAdvancedToolUser())
-		return
+		return ITEM_INTERACT_FAILURE
 	if (in_use)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	user.visible_message(span_danger("\The [user] is trying to inject \the [M] with \the [src]!"))
 	in_use = TRUE
@@ -129,7 +129,7 @@
 
 	if(!do_after(user, 5 SECONDS, target = src))
 		in_use = FALSE
-		return
+		return ITEM_INTERACT_FAILURE
 
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -140,10 +140,10 @@
 	var/mob/living/carbon/human/H = M
 	if(!istype(H))
 		to_chat(user, span_warning("Apparently it didn't work..."))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	inject(M, user)
-	return
+	return ITEM_INTERACT_SUCCESS
 
 
 // Traitgenes Injectors are randomized now due to no hardcoded genes. Split into good or bad, and then versions that specify what they do on the label.

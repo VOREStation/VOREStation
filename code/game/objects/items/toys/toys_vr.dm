@@ -694,7 +694,7 @@
 		spin_cylinder()
 
 /obj/item/toy/russian_revolver/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 /obj/item/toy/russian_revolver/afterattack(atom/target, mob/user, flag, params)
 	if(flag)
@@ -875,6 +875,9 @@
 			var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
 			s.set_up(5, 1, src)
 			s.start()
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
+	return NONE
 
 /obj/item/toy/snake_popper/emag_act(remaining_charges, mob/user)
 	if(real != 2)

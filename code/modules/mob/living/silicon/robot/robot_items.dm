@@ -206,7 +206,7 @@
 	item_state = "sheet-metal"
 
 /obj/item/form_printer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	return
+	return NONE
 
 /obj/item/form_printer/afterattack(atom/target, mob/living/user, flag, params)
 

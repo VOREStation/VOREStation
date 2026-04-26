@@ -178,7 +178,7 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/target = M
 		if(target.opened)
-			return FALSE
+			return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)

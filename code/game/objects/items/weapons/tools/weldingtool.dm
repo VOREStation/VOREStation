@@ -83,21 +83,21 @@
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 
 		if(!welding)
 			to_chat(user, span_warning("You'll need to turn [src] on to patch the damage on [H]'s [S.name]!"))
-			return TRUE
+			return ITEM_INTERACT_FAILURE
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
 			remove_fuel(1, user)
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 		else
-			return TRUE //Stops you from accidentally harming someone while on help intent.
+			return ITEM_INTERACT_FAILURE //Stops you from accidentally harming someone while on help intent.
 
 	return ..()
 

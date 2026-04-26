@@ -71,7 +71,7 @@
 /obj/item/cane/white/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)
 		user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 	else
 		. = ..()
 

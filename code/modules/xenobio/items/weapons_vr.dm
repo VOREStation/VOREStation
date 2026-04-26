@@ -152,11 +152,11 @@
 
 /obj/item/slime_grinder/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(processing)
-		return
+		return ITEM_INTERACT_FAILURE
 	if(!can_insert(M))
 		to_chat(user, span_warning("\The [src] cannot process \the [M] at this time."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	extract(M, user)
 	return ..()

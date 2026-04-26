@@ -41,7 +41,7 @@
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		playsound(src, tray_sound, 50, 1)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	var/face_hit = FALSE
 
@@ -91,7 +91,7 @@
 	user.visible_message(span_danger("[user] slams [M] [face_hit ? "in the face " : ""]with the tray!"), runemessage = "CLANG!")
 	//user.apply_damage(rand(min_bonus_damage, max_bonus_damage), BRUTE, attack_area)
 	M.take_organ_damage(rand(min_bonus_damage, max_bonus_damage))
-	return
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/tray/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/material/kitchen/rollingpin))

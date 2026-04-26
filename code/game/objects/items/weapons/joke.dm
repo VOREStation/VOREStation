@@ -16,7 +16,7 @@
 	else
 		M.ClearTransform()
 		M.update_transform()
-	return ..()
+	return ITEM_INTERACT_SUCCESS
 
 // Do not ever just leave this laying about, it will go horribly wrong!
 /obj/item/squishhammer/dark
@@ -37,3 +37,4 @@
 	var/turf/T = M.loc
 	if(isturf(T))
 		new /obj/effect/gibspawner/generic(T)
+	return ITEM_INTERACT_SUCCESS

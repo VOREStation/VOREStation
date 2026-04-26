@@ -459,6 +459,7 @@
 /obj/item/pda/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(istype(M, /mob/living/carbon) && scanmode)
 		scanmode.scan_mob(M, user)
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/pda/afterattack(atom/A, mob/user, proximity)
 	if(proximity && scanmode)

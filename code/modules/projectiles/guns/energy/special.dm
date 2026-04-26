@@ -275,7 +275,7 @@
 /obj/item/gun/energy/maghowitzer/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if(power_cycle)
 		to_chat(user, span_notice("\The [src] is already powering up!"))
-		return 0
+		return ITEM_INTERACT_FAILURE
 	var/turf/target_turf = get_turf(A)
 	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 	if(beameffect)
@@ -291,6 +291,7 @@
 					..(rand_target, user, target_zone, attack_modifier)
 				else
 					..(target_turf, user, target_zone, attack_modifier)
+			return ITEM_INTERACT_SUCCESS
 		else
 			if(beameffect)
 				qdel(beameffect)

@@ -85,7 +85,7 @@
 		var/mob/living/T = M
 		T.Weaken(10)
 		T.apply_damage(20)
-		return
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/stool/ex_act(severity)

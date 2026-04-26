@@ -105,7 +105,7 @@
 /obj/item/material/fishing_rod/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(cast)
 		to_chat(user, span_notice("You cannot cast \the [src] when it is already in use!"))
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 	update_bait()
 	return ..()
 
