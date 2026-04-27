@@ -259,7 +259,7 @@ This device records all warnings given and teleport events for admin review in c
 
 /obj/item/perfect_tele/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters, ignore_fail_chance = 0)
 	//No, you can't teleport people from over there.
-	if(!user.Adjacent(target))
+	if(!user.Adjacent(target) && !proximity_flag)
 		return
 	if(!istype(target))
 		return
