@@ -33,8 +33,9 @@
 		return attack_hand(user) //Process as if we're a normal person touching the object.
 	return ..() //Otherwise, treat this as an AI click like usual.
 
-/atom/movable/MouseDrop_T(mob/living/M, mob/living/user)
+/atom/movable/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
 	. = ..()
+	var/mob/living/M = dropping
 	if(can_buckle && istype(M))
 		if(user_buckle_mob(M, user))
 			return TRUE

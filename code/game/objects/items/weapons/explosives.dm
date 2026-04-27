@@ -91,8 +91,8 @@
 		target.cut_overlay(image_overlay)
 	qdel(src)
 
-/obj/item/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
-	return
+/obj/item/plastique/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/plastique/seismic
 	name = "seismic charge"

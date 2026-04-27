@@ -49,11 +49,11 @@
 		else
 			user.visible_message(span_notice("[user] displays their [src.name].\nIt reads: [badge_string]."),span_notice("You display your [src.name]. It reads: [badge_string]."))
 
-/obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
-		user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_danger("You invade [M]'s personal space, thrusting [src] into their face insistently."))
-		user.do_attack_animation(M)
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //NO SPAM
+/obj/item/clothing/accessory/badge/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_danger("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+	user.do_attack_animation(M)
+	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //NO SPAM
+	return ITEM_INTERACT_SUCCESS
 
 // General Badges
 /obj/item/clothing/accessory/badge/old
@@ -210,11 +210,11 @@
 	user.visible_message("[user] shows their sheriff badge. There's a new sheriff in town!",\
 		"You flash the sheriff badge to everyone around you!")
 
-/obj/item/clothing/accessory/badge/sheriff/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
-		user.visible_message(span_danger("[user] invades [M]'s personal space, the sheriff badge into their face!."),span_danger("You invade [M]'s personal space, thrusting the sheriff badge into their face insistently."))
-		user.do_attack_animation(M)
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //NO SPAM
+/obj/item/clothing/accessory/badge/sheriff/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	user.visible_message(span_danger("[user] invades [M]'s personal space, the sheriff badge into their face!."),span_danger("You invade [M]'s personal space, thrusting the sheriff badge into their face insistently."))
+	user.do_attack_animation(M)
+	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //NO SPAM
+	return ITEM_INTERACT_SUCCESS
 
 // Synthmorph bag / Corporation badges. Primarily used on the robobag, but can be worn. Default is NT.
 /obj/item/clothing/accessory/badge/corporate_tag

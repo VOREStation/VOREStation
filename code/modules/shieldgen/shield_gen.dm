@@ -261,13 +261,12 @@
 	if(active)
 		var/list/covered_turfs = get_shielded_turfs()
 		var/turf/T = get_turf(src)
-		var/obj/effect/energy_field/E
 		if(T in covered_turfs)
 			covered_turfs.Remove(T)
 		for(var/turf/O in covered_turfs)
 			if(locate(/obj/effect/energy_field, O) || locate(/obj/machinery/pointdefense, orange(2, O)))
 				continue
-			E = new(O, src)
+			new /obj/effect/energy_field(O, src)
 
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)

@@ -128,7 +128,7 @@
 	allowed_suits = list(/obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/omni)
 
 //We have to do this if(user) check all over the place because for some reason someone broke thrower code. Thanks.
-/obj/item/lasertagknife/attack(target, mob/user)
+/obj/item/lasertagknife/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(user)
 		user.setClickCooldown(user.get_attack_speed(src))
 		user.do_attack_animation(target)
@@ -140,7 +140,7 @@
 	else
 		user.visible_message(span_danger("[target] has been harmlessly bonked with [src] by [user]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 75, 1)
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 ///go my hack
 /obj/item/lasertagknife/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

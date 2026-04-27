@@ -43,22 +43,6 @@
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
 	can_cleave = FALSE
-	var/hits = 0
-
-/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
-	if(hits > 0)
-		return
-	var/obj/item/I = user.get_inactive_hand()
-	if(istype(I, /obj/item/material/knife/machete/hatchet/unathiknife))
-		hits ++
-		var/obj/item/W = I
-		W.attack(M, user)
-		W.afterattack(M, user)
-	..()
-
-/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
-	hits = initial(hits)
-	..()
 
 /obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"

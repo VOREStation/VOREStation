@@ -173,12 +173,12 @@
 			to_chat(user, span_warning("[src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/melee/baton/attack(mob/M, mob/user)
+/obj/item/melee/baton/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(status && CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_danger("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
 		deductcharge(hitcost)
-		return
+		return ITEM_INTERACT_SUCCESS
 	deductcharge(hitcost)
 	return ..()
 

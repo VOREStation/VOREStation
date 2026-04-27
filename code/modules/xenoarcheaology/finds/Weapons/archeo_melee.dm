@@ -86,7 +86,7 @@
 /obj/item/melee/artifact_blade/cultify()
 	return
 
-/obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(M == user) //No accidentally hitting yourself and exploding.
 		return
 	var/zone = (user.hand ? BP_L_ARM:BP_R_ARM) //Which arm we're in!
@@ -106,7 +106,7 @@
 		user.Weaken(5)
 		throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,10),5)
 		user.apply_damage(rand(force/2, force), BURN, zone, FALSE)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	..() //We hit them!
 
@@ -150,7 +150,7 @@
 		playsound(src, spooky, 50, 1)
 
 	force = prior_force //Return our force back.
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/artifact_blade/pickup(mob/living/user as mob)
 	// We check to see if the person picking us up isn't our owner, not a cultist, and they're human.

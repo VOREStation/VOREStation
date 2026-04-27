@@ -64,7 +64,7 @@
 		flags |= OPENCONTAINER
 	update_icon()
 
-/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/glass/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return	..()
 
@@ -73,9 +73,9 @@
 		return attempt_snake_milking(user, M)
 
 	if(standard_feed_mob(user, M))
-		return
+		return ITEM_INTERACT_SUCCESS
 
-	return 0
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
 	if(user.a_intent == I_HURT)
@@ -99,16 +99,16 @@
 
 	if(!reagent || !amount)
 		to_chat(user, span_warning("[target] does not have venom you can express. Open the beaker to drink from it."))
-		return TRUE
+		return ITEM_INTERACT_FAILURE
 
 	if(TIMER_COOLDOWN_RUNNING(target, COOLDOWN_VENOM_MILKING))
 		user.visible_message(span_warning("[user] attempts to express venom from [target], but nothing happens."), span_warning("[target] had their venom expressed too recently, try again later."))
-		return TRUE
+		return ITEM_INTERACT_FAILURE
 
 	TIMER_COOLDOWN_START(target, COOLDOWN_VENOM_MILKING, 30 SECONDS)
 	user.visible_message(span_notice("[user] expresses venom from [target]."))
 	reagents.add_reagent(reagent, amount)
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?

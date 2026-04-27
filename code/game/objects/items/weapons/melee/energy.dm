@@ -126,11 +126,12 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/melee/energy/attack(mob/M, mob/user)
+/obj/item/melee/energy/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(active && use_cell)
 		if(!use_charge(hitcost))
 			deactivate(user)
 			visible_message(span_notice("\The [src]'s blade flickers, before deactivating."))
+			return ITEM_INTERACT_FAILURE
 	return ..()
 
 /obj/item/melee/energy/attackby(obj/item/W, mob/user)

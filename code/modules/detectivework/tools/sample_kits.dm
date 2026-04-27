@@ -80,23 +80,23 @@
 	name = "[initial(name)] (\the [H])"
 	icon_state = "fingerprint1"
 
-/obj/item/sample/print/attack(var/mob/living/M, var/mob/user)
+/obj/item/sample/print/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(!ishuman(M))
 		return ..()
 
 	if(evidence && evidence.len)
-		return 0
+		return ITEM_INTERACT_FAILURE
 
 	var/mob/living/carbon/human/H = M
 
 	if(H.gloves)
 		to_chat(user, span_warning("\The [H] is wearing gloves."))
-		return 1
+		return ITEM_INTERACT_FAILURE
 
 	if(user != H && H.a_intent != I_HELP && !H.lying)
 		user.visible_message(span_danger("\The [user] tries to take prints from \the [H], but they move away."))
-		return 1
+		return ITEM_INTERACT_FAILURE
 
 	if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 		var/has_hand
@@ -109,15 +109,15 @@
 				has_hand = 1
 		if(!has_hand)
 			to_chat(user, span_warning("They don't have any hands."))
-			return 1
+			return ITEM_INTERACT_FAILURE
 		user.visible_message("[user] takes a copy of \the [H]'s fingerprints.")
 		var/fullprint = H.get_full_print()
 		evidence[fullprint] = fullprint
 		copy_evidence(src)
 		name = "[initial(name)] (\the [H])"
 		icon_state = "fingerprint1"
-		return 1
-	return 0
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/sample/print/copy_evidence(var/atom/supplied)
 	var/list/print_data = supplied.forensic_data.get_prints()

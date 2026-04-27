@@ -109,10 +109,10 @@
 		else
 			to_chat(user, span_warning("\The [src] is already full!"))
 
-/obj/item/backup_implanter/attack(mob/M as mob, mob/user as mob)
+/obj/item/backup_implanter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!istype(M, /mob/living/carbon))
-		return
-	if (user && imps.len)
+		return ITEM_INTERACT_FAILURE
+	if(user && imps.len)
 		M.visible_message(span_notice("[user] is injecting a backup implant into [M]."))
 
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -130,6 +130,7 @@
 					add_attack_logs(user,M,"Implanted backup implant")
 
 				update()
+		return ITEM_INTERACT_SUCCESS
 
 //The glass case for the implant
 /obj/item/implantcase/backup

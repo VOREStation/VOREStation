@@ -177,8 +177,9 @@
 	if(Adjacent(user))
 		. += "There is about [src.amount] square units of paper left!"
 
-/obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
-	if(!ishuman(target)) return
+/obj/item/wrapping_paper/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
+	if(!ishuman(target))
+		return ITEM_INTERACT_FAILURE
 	var/mob/living/carbon/human/H = target
 
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || istype(H.wear_suit, /obj/item/clothing/suit/shibari) || H.stat)
@@ -189,10 +190,13 @@
 			H.forceMove(present)
 
 			add_attack_logs(user,H,"Wrapped with [src]")
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_warning("You need more paper."))
+			return ITEM_INTERACT_FAILURE
 	else
 		to_chat(user, "They are moving around too much. A straightjacket would help.")
+		return ITEM_INTERACT_FAILURE
 
 
 /obj/item/a_gift/advanced

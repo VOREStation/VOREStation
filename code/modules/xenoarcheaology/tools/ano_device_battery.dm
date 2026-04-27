@@ -241,9 +241,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/anodevice/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
-	if (!istype(M))
-		return
+/obj/item/anodevice/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(activated && inserted_battery?.battery_effect?.effect == EFFECT_TOUCH && !isnull(inserted_battery))
 		inserted_battery?.battery_effect?.DoEffectTouch(M)
@@ -253,8 +251,8 @@
 		user.visible_message(span_blue("[user] taps [M] with [src], but nothing happens."))
 
 	//admin logging
-	user.lastattacked = M
 	M.lastattacker = user
 
 	if(inserted_battery?.battery_effect)
 		add_attack_logs(user,M,"Anobattery tap ([inserted_battery?.battery_effect?.name])")
+	return ITEM_INTERACT_SUCCESS

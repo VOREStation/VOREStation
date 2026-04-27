@@ -11,36 +11,36 @@
 /obj/item/forensics/swab/proc/is_used()
 	return used
 
-/obj/item/forensics/swab/attack(var/mob/living/M, var/mob/user)
+/obj/item/forensics/swab/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(!ishuman(M))
 		return ..()
 
 	if(is_used())
-		return
+		return ITEM_INTERACT_FAILURE
 
 	var/mob/living/carbon/human/H = M
 	var/sample_type
 
 	if(H.wear_mask)
 		to_chat(user, span_warning("\The [H] is wearing a mask."))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!H.dna || !H.dna.unique_enzymes)
 		to_chat(user, span_warning("They don't seem to have DNA!"))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(user != H && H.a_intent != I_HELP && !H.lying)
 		user.visible_message(span_danger("\The [user] tries to take a swab sample from \the [H], but they move away."))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(user.zone_sel.selecting == O_MOUTH)
 		if(!H.organs_by_name[BP_HEAD])
 			to_chat(user, span_warning("They don't have a head."))
-			return
+			return ITEM_INTERACT_FAILURE
 		if(!H.check_has_mouth())
 			to_chat(user, span_warning("They don't have a mouth."))
-			return
+			return ITEM_INTERACT_FAILURE
 		user.visible_message("[user] swabs \the [H]'s mouth for a saliva sample.")
 		dna = list(H.dna.unique_enzymes)
 		sample_type = "DNA"
@@ -61,12 +61,12 @@
 		sample_type = "GSR"
 		gsr = H.forensic_data?.get_gunshotresidue()
 	else
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(sample_type)
 		set_used(sample_type, H)
-		return
-	return 1
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/forensics/swab/afterattack(var/atom/A, var/mob/user, var/proximity)
 

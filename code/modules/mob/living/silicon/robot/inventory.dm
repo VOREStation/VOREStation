@@ -170,7 +170,7 @@
 		if(material_belt.selected_item == O)
 			return TRUE
 	for(var/obj/item/gripper/gripper in contents)
-		if(gripper.current_pocket == O)
+		if(gripper.current_pocket == O || (O in gripper.current_pocket.contents))
 			return TRUE
 	return FALSE
 

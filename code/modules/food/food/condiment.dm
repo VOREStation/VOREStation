@@ -21,7 +21,7 @@
 /obj/item/reagent_containers/food/condiment/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	return
 
-/obj/item/reagent_containers/food/condiment/attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
+/obj/item/reagent_containers/food/condiment/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(standard_feed_mob(user, M))
 		return
 

@@ -19,7 +19,7 @@
 
 	var/pierce_material = FALSE	// If true, the patch can be used through thick material.
 
-/obj/item/reagent_containers/pill/patch/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/pill/patch/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/mob/living/L = user
 
 	if(M == L)
@@ -28,41 +28,41 @@
 			var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 			if(!affecting)
 				to_chat(user, span_warning("The limb is missing!"))
-				return
+				return ITEM_INTERACT_FAILURE
 			if(affecting.status >= ORGAN_ROBOT)
 				to_chat(user, span_notice("\The [src] won't work on a robotic limb!"))
-				return
+				return ITEM_INTERACT_FAILURE
 
 			if(!H.can_inject(user, FALSE, L.zone_sel.selecting, pierce_material))
 				to_chat(user, span_notice("\The [src] can't be applied through such a thick material!"))
-				return
+				return ITEM_INTERACT_FAILURE
 
 			to_chat(H, span_notice("\The [src] is placed on your [affecting]."))
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)
 			qdel(src)
-			return 1
+			return ITEM_INTERACT_SUCCESS
 
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 		if(!affecting)
 			to_chat(user, span_warning("The limb is missing!"))
-			return
+			return ITEM_INTERACT_FAILURE
 		if(affecting.status >= ORGAN_ROBOT)
 			to_chat(user, span_notice("\The [src] won't work on a robotic limb!"))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		if(!H.can_inject(user, FALSE, L.zone_sel.selecting, pierce_material))
 			to_chat(user, span_notice("\The [src] can't be applied through such a thick material!"))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		user.visible_message(span_warning("[user] attempts to place \the [src] onto [H]`s [affecting]."))
 
 		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_after(user, 3 SECONDS, M))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		user.drop_from_inventory(src) //icon update
 		user.visible_message(span_warning("[user] applies \the [src] to [H]."))
@@ -77,6 +77,6 @@
 			reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)	//CHEM_TOUCH
 		qdel(src)
 
-		return 1
+		return ITEM_INTERACT_SUCCESS
 
-	return 0
+	return ITEM_INTERACT_FAILURE
