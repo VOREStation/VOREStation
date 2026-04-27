@@ -141,6 +141,8 @@
 			return TRUE
 		to_chat(user, span_warning("There is already a pAI inserted, and you don't feel like cooking \the [O]."))
 		return TRUE
+	if(istype(O, /obj/item/gripper)) //Grippers count as 'attacking' before the thing they're holding. Don't send a message.
+		return TRUE
 	to_chat(user, span_warning("You have no idea what you can cook with \the [O]."))
 	..()
 	post_state_change()
