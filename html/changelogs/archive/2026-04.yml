@@ -217,3 +217,8 @@
       you need to handle failed flushes on the object, but everything using it (one
       thing) already tried to handle it this way, so nothing existing needed to be
       changed for this.
+2026-04-27:
+  Diana:
+  - bugfix: Borgs can use material sheets in their grippers once again.
+  - bugfix: Borg grippers work again
+  - qol: You can drag-drop plastic into the autoinjector printer.
