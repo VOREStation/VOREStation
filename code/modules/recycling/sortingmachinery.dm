@@ -45,7 +45,7 @@
 		source.forceMove(src)
 		flush()
 
-/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, attack_modifier, click_parameters, drag_dropped = FALSE)
 	if(!I || !user)
 		return
 
