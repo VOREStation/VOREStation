@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Borg grippers work again"
+  - qol: "You can drag-drop plastic into the autoinjector printer."
