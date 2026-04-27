@@ -67,9 +67,9 @@
 	if(max_fuel && loc == user)
 		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
 
-/obj/item/weldingtool/attack(atom/A, mob/living/user, def_zone)
-	if(ishuman(A) && user.a_intent == I_HELP)
-		var/mob/living/carbon/human/H = A
+/obj/item/weldingtool/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(ishuman(M) && user.a_intent == I_HELP)
+		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
@@ -83,21 +83,21 @@
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 
 		if(!welding)
 			to_chat(user, span_warning("You'll need to turn [src] on to patch the damage on [H]'s [S.name]!"))
-			return TRUE
+			return ITEM_INTERACT_FAILURE
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
 			remove_fuel(1, user)
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 		else
-			return TRUE //Stops you from accidentally harming someone while on help intent.
+			return ITEM_INTERACT_FAILURE //Stops you from accidentally harming someone while on help intent.
 
 	return ..()
 
