@@ -85,6 +85,7 @@
 	pixel_x = -16
 	icon_x = 64
 	icon_y = 32
+	dogborg_sprites = TRUE
 
 	whitelist_ckey = "jademanique"
 	whitelist_charname = "B.A.U-Kingside"
