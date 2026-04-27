@@ -177,3 +177,48 @@
   - bugfix: Glowsticks and flares can not be turned off once on.
   - qol: Xenoarch found organs tell you what they are.
   - bugfix: Jellyfish migration has the proper voice file.
+2026-04-22:
+  ARGUS:
+  - admin: Added a "Convert Player Savefile" verb under the Admin category. Converts
+      a target player's save data between .sav and .json formats. Player must be offline;
+      the verb enforces this with two connection checks and blocks if the player is
+      logged in.
+  - server: Adds export_to_byond_savefile() to datum/json_savefile, the reverse of
+      import_byond_savefile().
+  Diana:
+  - admin: Buildmode is logged now.
+  Will:
+  - code_imp: Cleanup weakref references that were lingering after Destroy()
+  - bugfix: resleeving pod no longer runtime the resleeving console forever if containers
+      are inside it when it is qdeleted
+  zeskorion:
+  - rscadd: shapechange trait
+  - rscadd: Leashes can now work when used by, or on, non-carbons
+  - qol: misc gripper can hold a few more utility items. Pens, paper, leash
+2026-04-23:
+  Will:
+  - code_imp: Slug mob uses weakrefs
+2026-04-24:
+  Diana:
+  - bugfix: Shield gens now properly fill gaps.
+  - bugfix: EMPing circuitry bags no longer cause problems.
+  - qol: Circuitry bag starts with wirer, debugger, and detailer.
+  - qol: Circuitry bag all starts with a detailer.
+  - sound: Soundloops have been added for fridges, tcomms, and shield generators.
+  - code_imp: Falloff variable added for looping sounds.
+  Guti:
+  - rscadd: Added the ability for cyborgs to pick up and wear hats
+  ReoDaProtovali:
+  - rscadd: Added much more in depth toilet gameplay.
+  - rscadd: existing toilets on station maps have been made into bluespace toilets,
+      to mirror preexisting behavior.
+  - code_imp: Removed disposal components automatically handling expelling if it had
+      no trunk to flush into. This means if you add a disposal component to something
+      you need to handle failed flushes on the object, but everything using it (one
+      thing) already tried to handle it this way, so nothing existing needed to be
+      changed for this.
+2026-04-27:
+  Diana:
+  - bugfix: Borgs can use material sheets in their grippers once again.
+  - bugfix: Borg grippers work again
+  - qol: You can drag-drop plastic into the autoinjector printer.

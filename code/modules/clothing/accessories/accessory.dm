@@ -321,7 +321,7 @@
 							sound = "anything"
 
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
-				return
+				return ITEM_INTERACT_SUCCESS
 	return ..(M,user)
 
 //Medals

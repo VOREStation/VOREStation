@@ -219,12 +219,13 @@
 
 
 
-/obj/item/denecrotizer/attack(mob/living/simple_mob/target, mob/living/user)
+/obj/item/denecrotizer/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(check_target(target, user))
 		if(advanced)
 			ghostjoin_rez(target, user)
 		else
 			basic_rez(target, user)
+		return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
 
