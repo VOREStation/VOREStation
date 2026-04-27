@@ -2821,7 +2821,6 @@
 #include "code\modules\eventkit\generic_objects\generic_structure.dm"
 #include "code\modules\eventkit\gm_interfaces\fake_pda_conversations.dm"
 #include "code\modules\eventkit\gm_interfaces\mob_spawner.dm"
-#include "code\modules\events\anomalies.dm"
 #include "code\modules\events\apc_damage.dm"
 #include "code\modules\events\atmos_leak.dm"
 #include "code\modules\events\aurora_caelus.dm"
