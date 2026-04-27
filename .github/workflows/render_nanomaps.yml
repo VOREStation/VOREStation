@@ -9,7 +9,7 @@ on:
     branches:
       - master
     paths:
-      - "maps/**"
+      - "modular_pyraxis/maps/**"
   workflow_dispatch:
 
 permissions: {}
