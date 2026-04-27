@@ -257,7 +257,7 @@ This device records all warnings given and teleport events for admin review in c
 	//Seems okay to me!
 	return TRUE
 
-/obj/item/perfect_tele/afterattack(atom/movable/target, mob/user, proximity_flag, click_parameters, ignore_fail_chance = 0)
+/obj/item/perfect_tele/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters, ignore_fail_chance = 0)
 	//No, you can't teleport people from over there.
 	if(!user.Adjacent(target))
 		return
@@ -315,14 +315,12 @@ This device records all warnings given and teleport events for admin review in c
 	var/televored = FALSE
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
-		if(isliving(target))
-			var/mob/living/living_target = target
-			if(!(living_target.can_be_drop_prey) && B.owner != user)
-				to_chat(target, span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
-				real_dest = dT //Nevermind!
-			else
-				televored = TRUE
-				to_chat(target, span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
+		if(!(target.can_be_drop_prey) && B.owner != user)
+			to_chat(target, span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
+			real_dest = dT //Nevermind!
+		else
+			televored = TRUE
+			to_chat(target, span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
