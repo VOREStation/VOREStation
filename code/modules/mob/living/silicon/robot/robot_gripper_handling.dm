@@ -209,9 +209,6 @@
 
 	var/obj/item/I = target
 
-	if(!isturf(I.loc))
-		return FALSE
-
 	if(I.anchored)
 		to_chat(user, span_notice("You are unable to lift \the [I]."))
 		return FALSE
@@ -225,8 +222,15 @@
 		to_chat(user, span_danger("Your gripper cannot hold \the [I]."))
 		return FALSE
 
+	if(istype(target.loc, /obj/item/storage)) //Updates the HUD and all that.
+		var/obj/item/storage/S = I.loc
+		if(!S.remove_from_storage(I, selected_pocket))
+			to_chat(user, "Something prevents you from taking \the [I] out of \the [S].")
+			return
+	else
+		I.loc = selected_pocket
+
 	to_chat(user, "You collect \the [I].")
-	I.loc = selected_pocket
 	current_pocket = selected_pocket
 	update_ref(WEAKREF(I))
 	return TRUE
