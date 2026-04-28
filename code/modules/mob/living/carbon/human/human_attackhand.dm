@@ -633,6 +633,7 @@
 			emote("gasp")
 		Weaken(rand(10,25))
 		updatehealth()
+		SSrem.add_activity(DEPARTMENT_MEDICAL, -20) // PY Edit - Give them a break
 		//SShaunting.influence(HAUNTING_RESLEEVE) // Used for the Haunting module downstream. Not implemented upstream.
 
 		// This is measures in `Life()` ticks. E.g. 10 minute defib timer = 300 `Life()` ticks.				// Original math was VERY off. Life() tick occurs every ~2 seconds, not every 2 world.time ticks.

@@ -117,6 +117,7 @@
 ///Proc called when the Station (Science techweb specific) researches a node.
 /datum/techweb_node/proc/on_station_research(atom/research_source)
 	SHOULD_CALL_PARENT(TRUE)
+	SSrem.add_activity(DEPARTMENT_RESEARCH, 5) // PY Edit - Science makes REM go crazy
 	// var/channels_to_use = announce_channels
 	// if(length(channels_to_use) && !starting_node)
 	// 	for(var/channel in channels_to_use)

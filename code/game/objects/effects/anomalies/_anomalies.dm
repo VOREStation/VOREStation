@@ -72,6 +72,7 @@
 /obj/effect/anomaly/proc/anomalyEffect(seconds_per_tick)
 	if(prob(move_chance) && !locate(/obj/effect/suspension_field) in get_turf(src))
 		move_anomaly()
+	SSrem.add_activity(DEPARTMENT_RESEARCH, 10) // PY Edit - Make REM got a bit crazy
 
 // Used in anomaly harvesting - Normal anomalies shouldn't pulse
 /obj/effect/anomaly/proc/anomalyPulse()
@@ -84,6 +85,7 @@
 	if(QDELETED(src))
 		return FALSE
 	stats.next_activation = world.time + rand(stats.min_activation, stats.max_activation)
+	SSrem.add_activity(DEPARTMENT_RESEARCH, 5) // PY Edit
 	return TRUE
 
 /obj/effect/anomaly/proc/move_anomaly()
@@ -103,6 +105,7 @@
 	if(!isnull(anomaly_core))
 		anomaly_core.forceMove(get_turf(src))
 		anomaly_core = null
+	SSrem.add_activity(DEPARTMENT_RESEARCH, -20) // PY Edit - They did good! A small break
 	qdel(src)
 
 /obj/effect/anomaly/proc/stabilize(anchor = FALSE, has_core = TRUE, add_stats = FALSE)
@@ -117,6 +120,10 @@
 		stats.attached_anomaly = WEAKREF(src)
 		stats.calculate_points()
 		density = TRUE
+	// PY Edit Start - A bit more dangerous, anomalies should be kept in check
+	SSrem.add_activity(DEPARTMENT_RESEARCH, 20)
+	SSrem.add_permanent_activity(DEPARTMENT_RESEARCH, 5)
+	// PY Edit End
 	return
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)

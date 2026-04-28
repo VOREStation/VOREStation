@@ -339,6 +339,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		if(prob(L.broken_chance))
 			broken(1)
 
+	SSrem.add_activity(DEPARTMENT_ENGINEERING, 2)
 	on = powered()
 	update(0)
 

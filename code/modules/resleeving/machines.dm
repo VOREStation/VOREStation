@@ -519,6 +519,7 @@
 	if(original_occupant)
 		occupant = original_occupant
 
+	SSrem.add_activity(DEPARTMENT_MEDICAL, -20) // PY Edit - Give them a break
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 100, 1) // Play our sound at the end of the mind injection!
 	return 1
 
