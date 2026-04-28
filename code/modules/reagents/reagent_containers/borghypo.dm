@@ -315,6 +315,7 @@
 			saved_recipes -= recipe_name
 			. = TRUE
 
+		/* PY edit - Remove chemistry import files
 		if("select_recipe")
 			// Make sure we actually have a recipe saved with the given name before setting it!
 			var/recipe_name = params["recipe"]
@@ -327,6 +328,7 @@
 			is_dispensing_recipe = TRUE
 			selected_recipe_id = recipe_name
 			. = TRUE
+		*/
 
 		if("set_chemical_search")
 			ui_chemical_search = params["uiChemicalSearch"]

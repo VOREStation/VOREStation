@@ -203,6 +203,7 @@
 				container = null
 			. = TRUE
 
+		/* PY edit - Remove chemistry import files
 		if("import_config")
 			if(import_job && (ui.user.mind.assigned_role != import_job))
 				to_chat(ui.user, span_warning("This option is only available to the job: [import_job]"))
@@ -219,6 +220,7 @@
 			if(length(new_recipes))
 				saved_recipes = new_recipes
 			. = TRUE
+		*/
 
 		if("record_recipe")
 			recording_recipe = list()
