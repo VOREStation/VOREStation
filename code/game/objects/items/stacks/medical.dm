@@ -91,7 +91,7 @@
 	upgrade_to = /obj/item/stack/medical/bruise_pack
 
 /obj/item/stack/medical/crude_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if(..())
+	if(..() == ITEM_INTERACT_FAILURE)
 		return ITEM_INTERACT_FAILURE
 
 	if (ishuman(M))
@@ -160,7 +160,7 @@
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if(..())
+	if(..() == ITEM_INTERACT_FAILURE)
 		return ITEM_INTERACT_FAILURE
 
 	if (ishuman(M))
@@ -234,7 +234,7 @@
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/stack/medical/ointment/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if(..())
+	if(..() == ITEM_INTERACT_FAILURE)
 		return ITEM_INTERACT_FAILURE
 
 	if (ishuman(M))
