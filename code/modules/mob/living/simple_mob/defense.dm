@@ -220,10 +220,22 @@
 // Shot with taser/stunvolver
 /mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	if(taser_kill)
-		var/stunDam = 0
-		var/agonyDam = 0
+		//var/stunDam = 0
+		//var/agonyDam = 0
 		var/armor = run_armor_check(def_zone = null, attack_flag = "energy")
 
+		// PY edit begin - Handle simplemob taser damage as stuns with some damage. Instead of treating a high stun time as insane damage.
+		var/stun_divisor = 6
+		var/damage_divisor = 8
+		if(prob(90))
+			Stun(stun_amount + rand(0, agony_amount/stun_divisor))
+		if(prob(80))
+			Weaken(rand(agony_amount/stun_divisor,agony_amount/(stun_divisor+1)))
+		if(stun_amount)
+			apply_damage(FLOOR( stun_amount / damage_divisor, 1), BURN, null, armor, resistance, FALSE, FALSE, used_weapon)
+		if(agony_amount)
+			apply_damage(FLOOR( agony_amount / damage_divisor, 1), BURN, null, armor, resistance, FALSE, FALSE, used_weapon)
+		/*
 		if(stun_amount)
 			stunDam += stun_amount * 0.5
 			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = used_weapon)
@@ -231,6 +243,8 @@
 		if(agony_amount)
 			agonyDam += agony_amount * 0.5
 			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = used_weapon)
+		*/
+		// PY edit end
 
 
 // Electromagnetism
