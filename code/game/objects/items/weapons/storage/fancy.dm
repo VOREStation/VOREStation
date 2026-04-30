@@ -304,22 +304,19 @@
 		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	return ..()
 
-/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
-		return
-
+/obj/item/storage/fancy/cigarettes/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(M == user && user.zone_sel.selecting == O_MOUTH)
 		// Find ourselves a cig. Note that we could be full of lighters.
 		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 
 		if(cig == null)
 			to_chat(user, span_notice("Looks like the packet is out of cigarettes."))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		// Instead of running equip_to_slot_if_possible() we check here first,
 		// to avoid dousing cig with reagents if we're not going to equip it
 		if(!cig.mob_can_equip(user, slot_wear_mask))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		// We call remove_from_storage first to manage the reagent transfer and
 		// UI updates.
@@ -329,6 +326,7 @@
 		reagents.maximum_volume = 15 * contents.len
 		to_chat(user, span_notice("You take a cigarette out of the pack."))
 		update_icon()
+		return ITEM_INTERACT_SUCCESS
 	else
 		..()
 
