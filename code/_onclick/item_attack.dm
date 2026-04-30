@@ -106,16 +106,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
-/obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+/obj/item/proc/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!force || (flags & NOBLUDGEON))
-		return 0
+		return ITEM_INTERACT_FAILURE
 	if(M == user && user.a_intent != I_HURT)
-		return 0
+		return ITEM_INTERACT_FAILURE
 	if(M.is_incorporeal()) // No attacking phased entities :)
-		return 0
+		return ITEM_INTERACT_FAILURE
 
 	/////////////////////////
-	user.lastattacked = M
 	M.lastattacker = user
 
 	if(!no_attack_log)
@@ -129,7 +128,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone, attack_modifier)
 
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone, var/attack_modifier)

@@ -71,7 +71,7 @@
 		padding_material = null
 	update_icon()
 
-/obj/item/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (prob(5) && isliving(M))
 		user.visible_message(span_danger("[user] breaks [src] over [M]'s back!"))
 		user.setClickCooldown(user.get_attack_speed())
@@ -85,7 +85,7 @@
 		var/mob/living/T = M
 		T.Weaken(10)
 		T.apply_damage(20)
-		return
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/stool/ex_act(severity)
