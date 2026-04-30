@@ -222,3 +222,6 @@
   - bugfix: Borgs can use material sheets in their grippers once again.
   - bugfix: Borg grippers work again
   - qol: You can drag-drop plastic into the autoinjector printer.
+2026-04-29:
+  Diana:
+  - bugfix: Fixes a critical bug that prevented use of items on self or others.
