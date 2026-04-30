@@ -168,6 +168,7 @@
 
 /obj/item/Destroy()
 	d_stage_overlay = null
+	exploit_for = null
 	if(item_tf_spawn_allowed)
 		GLOB.item_tf_spawnpoints -= src
 	if(ismob(loc))
@@ -714,11 +715,11 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
 				to_chat(user, span_warning("You're going to need to remove the eye covering first."))
-				return
+				return ITEM_INTERACT_FAILURE
 
 	if(!M.has_eyes())
 		to_chat(user, span_warning("You cannot locate any eyes on [M]!"))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	//this should absolutely trigger even if not aim-impaired in some way
 	var/hit_zone = get_zone_with_miss_chance(U.zone_sel.selecting, M, U.get_accuracy_penalty(U))
@@ -726,7 +727,7 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 		U.do_attack_animation(M)
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		visible_message(span_danger("\The [U] attempts to stab \the [M] in the eyes, but misses!"))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	add_attack_logs(user,M,"Attack eyes with [name]")
 
@@ -779,7 +780,7 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 	else
 		M.take_organ_damage(7)
 	M.eye_blurry += rand(3,4)
-	return
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)

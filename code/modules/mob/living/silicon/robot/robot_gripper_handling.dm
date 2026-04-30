@@ -366,29 +366,34 @@
 	clear_and_select_pocket()
 	generate_icons()
 
-/obj/item/gripper/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/gripper/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(is_in_use(user))
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/wrapped = get_wrapped_item()
 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 	if(!wrapped)
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	//If our wrapper was deleted OR it's no longer in our internal gripper storage
 	if(item_left_gripper(wrapped))
 		update_ref(null)
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
-	wrapped.attack(M, user)
-	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
-	M.attackby(wrapped, user)
+	//First, we call the item's /attack on the MOB TARGET we are clicking on.
+	if(!(wrapped.attack(M, user, target_zone, attack_modifier) == (ITEM_INTERACT_SUCCESS || ITEM_INTERACT_BLOCKING)))
+		//If we don't get a return value of success/failure, that means we didn't hit them with it/do a special interaction with it.
+		if(item_left_gripper(wrapped))
+			update_ref(null)
+			return ITEM_INTERACT_SUCCESS
+		//Attackby is procced when an object (non living entity) is clicked on by the user.
+		M.attackby(wrapped, user, target_zone, attack_modifier)
 
 	//If our wrapper was deleted OR it's no longer in our internal gripper storage
 	if(item_left_gripper(wrapped))
 		update_ref(null)
 
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gripper/update_icon()
 	cut_overlays()

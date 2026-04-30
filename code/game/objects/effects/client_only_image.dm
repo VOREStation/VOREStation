@@ -15,6 +15,7 @@
 		var/client/C = CW?.resolve()
 		if(C)
 			C.images -= src
+	clients.Cut()
 
 // Mostly for motion echos, but someone will probably find another use for it... So parent type gets it instead!
 /image/client_only/proc/place_from_root(var/turf/At)

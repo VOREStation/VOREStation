@@ -90,6 +90,10 @@
 	var/atom/movable/output_atom = output_dest?.resolve()
 	if(!output_atom)
 		return
+	var/mob/living/attachment_holder //If we have someone holding the vac_attachment, so we don't suck them up by mistake.
+	if(vac_owner) //If we have a vac owner, treat the vac owner as the user.
+		attachment_holder = user
+		user = vac_owner
 	if(istype(output_atom, /obj/item/storage/bag/trash))
 		if(get_turf(output_atom) != get_turf(user))
 			vac_power = 0
@@ -141,7 +145,7 @@
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
 			for(var/mob/living/L in oview(pull_range, target))
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
+				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey || L == attachment_holder)
 					continue
 				L.singularity_pull(target, STAGE_THREE)
 				suckables += L
@@ -154,7 +158,7 @@
 					continue
 				suckables += I
 			for(var/mob/living/L in target)
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
+				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey || L == attachment_holder)
 					continue
 				if(L.size_multiplier < 0.5 || vac_power >= 6)
 					suckables += L
@@ -266,8 +270,14 @@
 
 /obj/item/vac_attachment/proc/prepare_sucking(atom/movable/target, mob/user, turf/target_turf)
 	var/atom/movable/output_atom = output_dest?.resolve()
-	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
+
+	if(vac_owner) //Embedded vacs have special handling.
+		var/turf/item_turf = get_turf(src)
+		if(vac_power < 2 || !output_atom || (!target.Adjacent(user) && !item_turf.Adjacent(target))) //Swoopie vacs check to see if you're adjacent to the person holding the vac OR the swoopie itself.
+			return
+	else if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
 		return
+
 	if(!is_allowed_suck(target, user, output_atom)) //cancel if you're not allowed
 		return
 	target.SpinAnimation(5,1)
@@ -277,8 +287,14 @@
 	if(target_turf && target.loc != target_turf)
 		return
 	var/atom/movable/output_atom = output_dest?.resolve()
-	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
+
+	if(vac_owner)
+		var/turf/item_turf = get_turf(src)
+		if(vac_power < 2 || !output_atom || (!target.Adjacent(user) && !item_turf.Adjacent(target))) //Swoopie vacs check to see if you're adjacent to the person holding the vac OR the swoopie itself.
+			return
+	else if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
 		return
+
 	if(!is_allowed_suck(target, user, output_atom)) //Does it obey restrictions on what the target could otherwise consume?
 		return
 	if(isitem(target))

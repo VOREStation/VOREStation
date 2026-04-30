@@ -137,10 +137,10 @@
 	icon_state = "toilet3"
 	open = 1
 
-/obj/structure/toilet/wooden/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/wooden/attack_hand(mob/living/user)
 	return //No lid
 
-/obj/structure/toilet/wooden/attackby(obj/item/I as obj, mob/living/user as mob) //simpler interactions
+/obj/structure/toilet/wooden/attackby(obj/item/I, mob/living/user) //simpler interactions
 	if(istype(I, /obj/item/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
 		var/obj/item/grab/G = I
@@ -152,14 +152,15 @@
 				if(!GM.loc == get_turf(src))
 					to_chat(user, span_notice("[GM.name] needs to be on the toilet."))
 					return
+				var/mob/living/swirlie = swirlie_mob?.resolve()
 				if(open && !swirlie)
 					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
-					swirlie = GM
+					swirlie_mob = WEAKREF(GM)
 					if(do_after(user, 3 SECONDS, target = GM))
 						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
-					swirlie = null
+					swirlie_mob = null
 				else
 					user.visible_message(span_danger("[user] slams [GM.name] into the [src]!"), span_notice("You slam [GM.name] into the [src]!"))
 					GM.adjustBruteLoss(5)
