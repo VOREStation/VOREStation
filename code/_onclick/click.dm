@@ -137,7 +137,8 @@
 	if(!currently_restrained && ((!isturf(A) && A == loc) || (sdepth <= MAX_STORAGE_REACH)))
 		if(W)
 			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
-			if(!resolved && A && W)
+			//If we got a 'SUCCESS' it means resolve_attackby did something. Don't do afterattack in that case.
+			if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
 			if(ismob(A)) // No instant mob attacking
@@ -150,7 +151,7 @@
 	if(!currently_restrained && isbelly(loc) && (loc == A.loc))
 		if(W)
 			var/resolved = W.resolve_attackby(A,src)
-			if(!resolved && A && W)
+			if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 		else
 			if(ismob(A)) // No instant mob attacking
@@ -176,7 +177,7 @@
 				if(W && !restrained())
 					// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 					var/resolved = W.resolve_attackby(A,src, click_parameters = params)
-					if(!resolved && A && W)
+					if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 						W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 				else
 					if(ismob(A)) // No instant mob attacking
