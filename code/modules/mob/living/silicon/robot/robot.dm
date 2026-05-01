@@ -379,6 +379,9 @@
 	return ..()
 
 /mob/living/silicon/robot/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+	if(module_active && istype(module_active,/obj/item/gripper))
+		var/obj/item/gripper/robot_gripper = module_active
+		robot_gripper.drop_item_nm(target)
 	return FALSE //Dropping things from robots break everything.
 
 // CONTINUE CODING HERE

@@ -352,7 +352,7 @@
 	generate_icons()
 
 //FORCES the item onto the ground and resets.
-/obj/item/gripper/proc/drop_item_nm(atom/taget)
+/obj/item/gripper/proc/drop_item_nm(atom/target)
 	var/obj/item/wrapped = get_wrapped_item()
 	if(!wrapped)
 		return
@@ -362,7 +362,7 @@
 		generate_icons()
 		return
 
-	wrapped.forceMove(taget ? taget : get_turf(src))
+	wrapped.forceMove(target ? target : get_turf(src))
 	clear_and_select_pocket()
 	generate_icons()
 
