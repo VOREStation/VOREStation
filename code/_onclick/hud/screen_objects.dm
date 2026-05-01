@@ -18,15 +18,7 @@
 	//VAR_PRIVATE/datum/hud/hud = null //This SHOULD be converted to private eventually, but we're not there yet.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
-	/// A key for cleaning up references in hud datums
-	var/hud_group_key
-	var/hud_key
-
 /atom/movable/screen/Destroy()
-	if(hud)
-		if (hud_group_key && hud.screen_groups?[hud_group_key])
-			hud.screen_groups?[hud_group_key] -= src
-		hud.screen_objects -= hud_key
 	master_ref = null
 	hud = null
 	return ..()
