@@ -109,7 +109,7 @@
 	has_suit = null
 	if(QDELETED(src))
 		return
-	if(user)
+	if(user && !issilicon(user))
 		user.put_in_hands(src)
 		add_fingerprint(user)
 	else if(get_turf(src))		//We actually exist in space
@@ -316,7 +316,7 @@
 							sound = "anything"
 
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
-				return
+				return ITEM_INTERACT_SUCCESS
 	return ..(M,user)
 
 //Medals

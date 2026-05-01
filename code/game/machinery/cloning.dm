@@ -55,6 +55,14 @@
 	default_apply_parts()
 	update_icon()
 
+/obj/machinery/clonepod/Destroy()
+	for(var/obj/container in containers)
+		container.forceMove(get_turf(src))
+	containers.Cut()
+	locked = FALSE
+	go_out()
+	. = ..()
+
 /obj/machinery/clonepod/proc/set_occupant(var/mob/living/L)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!L)

@@ -72,7 +72,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 
 
 
-/obj/item/sleevemate/attack(mob/living/M, mob/living/user)
+/obj/item/sleevemate/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	// Gather potential subtargets
 	var/list/choices = list(M)
 	if(istype(M))
@@ -83,7 +83,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	if(choices.len > 1)
 		var/mob/living/new_M = tgui_input_list(user, "Ambiguous target. Please validate target:", "Target Validation", choices, M)
 		if(!new_M || !M.Adjacent(user))
-			return
+			return ITEM_INTERACT_FAILURE
 		M = new_M
 
 	if(isrobot(M))
@@ -91,12 +91,14 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 		var/obj/item/dogborg/sleeper/S = locate() in R.module.modules
 		if(S && S.patient)
 			scan_mob(S.patient, user)
-			return
+			return ITEM_INTERACT_SUCCESS
 
 	if(ishuman(M))
 		scan_mob(M, user)
+		return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user,span_warning("Not a compatible subject to work with!"))
+		return ITEM_INTERACT_FAILURE
 
 /obj/item/sleevemate/attack_self(mob/living/user)
 	. = ..(user)

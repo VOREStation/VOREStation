@@ -123,6 +123,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	vis_contents.Cut()
 	QDEL_NULL(pinboard)
 	QDEL_NULL(radio)
+	showing = null
 	return ..()
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/toggle()

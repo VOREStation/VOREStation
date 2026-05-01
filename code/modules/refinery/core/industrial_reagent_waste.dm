@@ -16,6 +16,7 @@
 	// Can't be set on these
 	src.verbs -= /obj/machinery/reagent_refinery/verb/set_APTFT
 	AddElement(/datum/element/climbable)
+	flags |= NOREACT
 
 /obj/machinery/reagent_refinery/waste_processor/process()
 	if(!anchored)
