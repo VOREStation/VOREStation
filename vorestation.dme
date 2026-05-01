@@ -3141,6 +3141,7 @@
 #include "code\modules\integrated_electronics\passive\power.dm"
 #include "code\modules\integrated_electronics\subtypes\arithmetic.dm"
 #include "code\modules\integrated_electronics\subtypes\built_in.dm"
+#include "code\modules\integrated_electronics\subtypes\camera.dm"
 #include "code\modules\integrated_electronics\subtypes\converters.dm"
 #include "code\modules\integrated_electronics\subtypes\cryptography.dm"
 #include "code\modules\integrated_electronics\subtypes\data_transfer.dm"
