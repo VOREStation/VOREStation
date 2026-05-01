@@ -400,58 +400,6 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
 
-/datum/controller/subsystem/internal_wiki/proc/assemble_allergens(allergens,med_allergens)
-	if(allergens > 0 || med_allergens > 0)
-		var/list/allergies = list()
-		// foods
-		if(allergens & ALLERGEN_MEAT)
-			allergies.Add("Meat protein")
-		if(allergens & ALLERGEN_FISH)
-			allergies.Add("Fish protein")
-		if(allergens & ALLERGEN_FRUIT)
-			allergies.Add("Fruit")
-		if(allergens & ALLERGEN_VEGETABLE)
-			allergies.Add("Vegetable")
-		if(allergens & ALLERGEN_GRAINS)
-			allergies.Add("Grain")
-		if(allergens & ALLERGEN_BEANS)
-			allergies.Add("Bean")
-		if(allergens & ALLERGEN_SEEDS)
-			allergies.Add("Nut")
-		if(allergens & ALLERGEN_DAIRY)
-			allergies.Add("Dairy")
-		if(allergens & ALLERGEN_FUNGI)
-			allergies.Add("Fungi")
-		if(allergens & ALLERGEN_COFFEE)
-			allergies.Add("Caffeine")
-		if(allergens & ALLERGEN_SUGARS)
-			allergies.Add("Sugar")
-		if(allergens & ALLERGEN_EGGS)
-			allergies.Add("Egg")
-		if(allergens & ALLERGEN_STIMULANT)
-			allergies.Add("Stimulant")
-		if(allergens & ALLERGEN_CHOCOLATE)
-			allergies.Add("Chocolate")
-		if(allergens & ALLERGEN_POLLEN)
-			allergies.Add("Pollen")
-		if(allergens & ALLERGEN_SALT)
-			allergies.Add("Salt")
-		// meds
-		if(med_allergens & MEDALLERGEN_TRICORD)
-			allergies.Add(REAGENT_TRICORDRAZINE)
-		if(med_allergens & MEDALLERGEN_BICARD)
-			allergies.Add(REAGENT_BICARIDINE)
-		if(med_allergens & MEDALLERGEN_DYLO)
-			allergies.Add(REAGENT_ANTITOXIN)
-		if(med_allergens & MEDALLERGEN_SPACACIL)
-			allergies.Add(REAGENT_SPACEACILLIN)
-		if(med_allergens & MEDALLERGEN_PERIDAX)
-			allergies.Add(REAGENT_PERIDAXON)
-		if(med_allergens & MEDALLERGEN_KELOTANE)
-			allergies.Add(REAGENT_KELOTANE)
-		return allergies
-	return null
-
 /datum/controller/subsystem/internal_wiki/proc/assemble_sintering(var/sinter)
 	if(sinter == REFINERY_SINTERING_EXPLODE)
 		return "violent detonation"
@@ -1190,7 +1138,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["sintering"] = SSinternal_wiki.assemble_sintering(GLOB.reagent_sheets[R.id])
 	data["overdose"] = R.overdose
 	data["flavor"] = R.taste_description
-	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type, R.medallergen_type)
+	data["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/chemical/get_print()
@@ -1238,7 +1186,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type, R.medallergen_type)
+	data["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/food/get_print()
@@ -1265,7 +1213,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	// Get internal data
 	data["description"] = R.description
 	data["flavor"] = R.taste_description
-	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type, R.medallergen_type)
+	data["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
 /datum/internal_wiki/page/drink/get_print()
@@ -1291,7 +1239,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		SSinternal_wiki.add_icon(data, initial(beaker_path.icon), initial(beaker_path.icon_state), "#ffffff")
 	// Get internal data
 	data["description"] = recipe["Desc"]
-	data["allergen"] = SSinternal_wiki.assemble_allergens(recipe["Allergens"], recipe["Medallergens"]) // No med allergens here...
+	data["allergen"] = assembly_allergy_list(recipe["Allergens"], recipe["Medallergens"])
 	var/list/recipe_data = list()
 	var/value = recipe["Price"] ? recipe["Price"] : 0
 	recipe_data["supply_points"] = value
