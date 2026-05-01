@@ -39,12 +39,14 @@
 
 	if(spray_blood && prob(5)) // Make a big mess
 		visible_message("Something flies out of [src]. It seems to be acting oddly.")
-		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(loc)
-		// TODO - I have a feeling weakrefs will not work in ignore_list, verify this ~Leshana
-		var/datum/weakref/g = WEAKREF(gib)
-		ignore_list += g
-		spawn(600)
-			ignore_list -= g
+		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(get_turf(src))
+		ignore_list += gib
+		addtimer(CALLBACK(src,PROC_REF(clear_ignored_gib), gib), 1 MINUTE, TIMER_DELETE_ME)
+
+/mob/living/bot/cleanbot/proc/clear_ignored_gib(var/obj/gibref)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	ignore_list -= gibref
 
 /mob/living/bot/cleanbot/handlePanic()	// Speed modification based on alert level.
 	. = 0

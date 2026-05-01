@@ -321,7 +321,7 @@
 			to_chat(usr, "You press a button on \the [src], [ai.swoop_pests ? "" : "de"]activating it's pest seeking routines!")
 		if("Swoop Trash")
 			ai.swoop_trash = !ai.swoop_trash // invert the option
-			to_chat(usr, "you press a button on \the [src], [ai.swoop_trash ? "" : "de"]activating it's pest seeking routines!")
+			to_chat(usr, "you press a button on \the [src], [ai.swoop_trash ? "" : "de"]activating it's trash seeking routines!")
 
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/swoopie/Login()

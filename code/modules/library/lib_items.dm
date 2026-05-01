@@ -306,12 +306,14 @@ Book Cart End
 	else
 		..()
 
-/obj/item/book/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/book/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.zone_sel.selecting == O_EYES)
 		user.visible_message(span_notice("You open up the book and show it to [M]."), \
 			span_notice(" [user] opens up a book and shows it to [M]."))
 		display_content(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /*
 * Book Bundle (Multi-page book)

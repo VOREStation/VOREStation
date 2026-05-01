@@ -53,7 +53,6 @@ GLOBAL_LIST_EMPTY(mob_hat_cache)
 	var/obj/machinery/drone_fabricator/master_fabricator
 	var/law_type = /datum/ai_laws/drone
 	var/module_type = /obj/item/robot_module/drone
-	var/obj/item/hat
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
 	var/serial_number = 0

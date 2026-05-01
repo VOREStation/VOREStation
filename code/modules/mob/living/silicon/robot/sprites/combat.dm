@@ -46,6 +46,7 @@
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/combat/worm
 	name = "W02M"
@@ -57,6 +58,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 
 /datum/robot_sprite/combat/uptall
@@ -80,6 +82,7 @@
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
 // Tall sprites
 
@@ -140,6 +143,7 @@
 	rest_sprite_options = list("Default")
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat/raptor
 	name = "Raptor V-4"
@@ -148,6 +152,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 	has_eye_light_sprites = TRUE
 	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE
+	hat_offset = RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
@@ -173,6 +178,7 @@
 	has_vore_belly_sprites = TRUE
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat/tall/mmeka
 	name = "NIKO"
@@ -180,6 +186,7 @@
 	has_vore_belly_sprites = TRUE
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat/tall/fmeka
 	name = "NIKA"
@@ -187,6 +194,7 @@
 	has_vore_belly_sprites = TRUE
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/combat/tall/k4t
 	name = "K4T"
@@ -194,6 +202,7 @@
 	has_vore_belly_sprites = FALSE
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = K4T_HAT_OFFSET
 
 //Using our own category wide here not to interfere with upstream in case they add wide sprites under just dogborg.
 /datum/robot_sprite/dogborg/wide/combat

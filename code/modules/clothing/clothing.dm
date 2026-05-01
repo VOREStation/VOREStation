@@ -768,6 +768,8 @@
 
 /obj/item/clothing/shoes/wash()
 	. = ..()
+	blood_color = null
+	track_blood = 0
 	update_icon()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running, var/mob/living/carbon/human/pred)
@@ -1465,3 +1467,21 @@
 	if(istype(wearer))
 		for(var/new_trait in trait_or_traits)
 			REMOVE_CLOTHING_TRAIT(wearer, new_trait)
+
+/obj/item/clothing/head/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	. = ..()
+
+
+/obj/item/clothing/head/attack_robot(mob/living/silicon/robot/user)
+	. = ..()
+
+	if(!Adjacent(user))
+		return
+
+	balloon_alert(user, "picking up hat...")
+	if(!do_after(user, 3 SECONDS, src))
+		return
+	if(QDELETED(src) || !Adjacent(user) || user.incapacitated)
+		return
+	user.place_on_head(src)
+	balloon_alert(user, "picked up hat")

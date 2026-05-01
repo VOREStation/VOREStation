@@ -86,7 +86,7 @@
 		// src = THE PERSON BEING ATTACKED
 		// has_hands = Local variable. If the attacker has hands or not.
 		if(I_HELP)
-			attack_hand_help_intent(H, M, M, has_hands)
+			attack_hand_help_intent(H, M, has_hands)
 
 		if(I_GRAB)
 			attack_hand_grab_intent(H, M, has_hands)
@@ -115,7 +115,7 @@
 		return FALSE;
 
 	//todo: make this whole CPR check into it's own individual proc instead of hogging up attack_hand_help_intent
-	if((istype(H) && (health < get_crit_point()) || stat == DEAD) && !on_fire) //Only humans can do CPR.
+	if((istype(H) && (health < get_crit_point()) || stat == DEAD) && !on_fire && H != src) //Only humans can do CPR.
 		if(!H.check_has_mouth())
 			to_chat(H, span_danger("You don't have a mouth, you cannot perform CPR!"))
 			return FALSE

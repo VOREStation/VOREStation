@@ -245,7 +245,7 @@
 		return TRUE
 	return null
 
-/obj/item/melee/robotic/borg_combat_shocker/attack(mob/M, mob/user)
+/obj/item/melee/robotic/borg_combat_shocker/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	deductcharge(600)
 	return ..()
 
@@ -467,7 +467,7 @@
 		return TRUE
 	return null
 
-/obj/item/melee/robotic/baton/attack(mob/M, mob/user)
+/obj/item/melee/robotic/baton/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(status)
 		deductcharge(hitcost)
 	return ..()
@@ -543,7 +543,7 @@
 	hitcost = 48	//Less zap for less cost
 
 
-/obj/item/melee/robotic/baton/slime/attack(mob/living/L, mob/user, hit_zone)
+/obj/item/melee/robotic/baton/slime/attack(mob/living/L, mob/living/user, target_zone, attack_modifier)
 	if(!istype(L))
 		return ..()
 
