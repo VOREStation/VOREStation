@@ -70,30 +70,30 @@
 	if(storage_slots)
 		src.boxes = new /atom/movable/screen/storage(  )
 		src.boxes.name = "storage"
-		src.boxes.master = src
+		src.boxes.master_ref = WEAKREF(src)
 		src.boxes.icon_state = "block"
 		src.boxes.screen_loc = "7,7 to 10,8"
 	else
 		src.storage_start = new /atom/movable/screen/storage(  )
 		src.storage_start.name = "storage"
-		src.storage_start.master = src
+		src.storage_start.master_ref = WEAKREF(src)
 		src.storage_start.icon_state = "storage_start"
 		src.storage_start.screen_loc = "7,7 to 10,8"
 
 		src.storage_continue = new /atom/movable/screen/storage(  )
 		src.storage_continue.name = "storage"
-		src.storage_continue.master = src
+		src.storage_continue.master_ref = WEAKREF(src)
 		src.storage_continue.icon_state = "storage_continue"
 		src.storage_continue.screen_loc = "7,7 to 10,8"
 
 		src.storage_end = new /atom/movable/screen/storage(  )
 		src.storage_end.name = "storage"
-		src.storage_end.master = src
+		src.storage_end.master_ref = WEAKREF(src)
 		src.storage_end.icon_state = "storage_end"
 		src.storage_end.screen_loc = "7,7 to 10,8"
 
 	src.closer = new /atom/movable/screen/close(  )
-	src.closer.master = src
+	src.closer.master_ref = WEAKREF(src)
 	src.closer.icon_state = "storage_close"
 	src.closer.hud_layerise()
 	orient2hud()

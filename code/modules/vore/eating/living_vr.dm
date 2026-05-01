@@ -653,8 +653,9 @@
 
 	else if(alerts && alerts["leashed"])
 		var/atom/movable/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
-		var/obj/item/leash/owner = pet_alert.master
-		owner.clear_leash()
+		var/obj/item/leash/owner = pet_alert.master_ref?.resolve()
+		if(owner)
+			owner.clear_leash()
 		log_and_message_admins("used the OOC escape button to get out of a leash.", src)
 
 	//Don't appear to be in a vore situation
