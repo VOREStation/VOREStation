@@ -14,3 +14,9 @@
   - rscadd: Added working video circuitry
   Will:
   - qol: Allergies are shown by the bodyscanner
+2026-05-02:
+  Diana:
+  - bugfix: Non-devourable entities can't be televored.
+  - qol: Grippers can grab valid items out of storage space
+  Kashargul:
+  - bugfix: missing param in the mute command
