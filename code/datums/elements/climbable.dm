@@ -127,11 +127,6 @@
 		user.visible_message(span_warning("\The [user] shakes \the [climbed_thing]."), span_notice("You shake \the [climbed_thing]."))
 
 	for(var/mob/living/M in climbers)
-		M.Weaken(1)
-		to_chat(M, span_danger("You topple as you are shaken off \the [climbed_thing]!"))
-		climbers.Cut(1,2)
-
-	for(var/mob/living/M in get_turf(climbed_thing))
 		if(M.is_incorporeal())
 			continue
 		if(M.lying) //No spamming this on people.
@@ -139,42 +134,32 @@
 		if(M.pulling == climbed_thing) // Pulling stuff up stairs can get weird
 			continue
 
+		// Knock off climbers
 		M.Weaken(3)
-		to_chat(M, span_danger("You topple as \the [climbed_thing] moves under you!"))
+		to_chat(M, span_danger("You topple as you are shaken off \the [climbed_thing]!"))
+		climbers -= M
 
-		if(prob(25))
-			var/damage = rand(15,30)
-			var/mob/living/carbon/human/H = M
-			if(!istype(H))
-				to_chat(H, span_danger("You land heavily!"))
-				M.adjustBruteLoss(damage)
-				continue
+		// Tumble down damage
+		if(!prob(25))
+			return
 
-			var/obj/item/organ/external/affecting
+		var/damage = rand(10,20)
+		var/mob/living/carbon/human/H = M
+		if(!istype(H))
+			to_chat(H, span_danger("You land heavily!"))
+			M.adjustBruteLoss(damage)
+			continue
 
-			switch(pick(list("ankle","wrist","head","knee","elbow")))
-				if("ankle")
-					affecting = H.get_organ(pick(BP_L_FOOT, BP_R_FOOT))
-				if("knee")
-					affecting = H.get_organ(pick(BP_L_LEG, BP_R_LEG))
-				if("wrist")
-					affecting = H.get_organ(pick(BP_L_HAND, BP_R_HAND))
-				if("elbow")
-					affecting = H.get_organ(pick(BP_L_ARM, BP_R_ARM))
-				if("head")
-					affecting = H.get_organ(BP_HEAD)
+		var/obj/item/organ/external/affecting = H.get_organ(pick(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_HEAD))
+		if(!affecting)
+			to_chat(H, span_danger("You land heavily!"))
+			H.adjustBruteLoss(damage)
+			return
 
-			if(affecting)
-				to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
-				affecting.take_damage(damage, 0)
-				if(affecting.parent)
-					affecting.parent.add_autopsy_data("Misadventure", damage)
-			else
-				to_chat(H, span_danger("You land heavily!"))
-				H.adjustBruteLoss(damage)
-
-			H.UpdateDamageIcon()
-			H.updatehealth()
+		to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
+		affecting.take_damage(damage, 0)
+		if(affecting.parent)
+			affecting.parent.add_autopsy_data("Misadventure", damage)
 
 /datum/element/climbable/proc/on_examine(datum/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
