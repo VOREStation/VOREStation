@@ -31,6 +31,8 @@
 	source.verbs -= /obj/proc/climb_on
 
 	REMOVE_TRAIT(source, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
+	if(current_climbers)
+		current_climbers -= source
 	return ..()
 
 
@@ -143,6 +145,7 @@
 		if(!prob(25))
 			return
 
+		// Apply damage to simple mobs, if human we go for specific limbs
 		var/damage = rand(10,20)
 		var/mob/living/carbon/human/H = M
 		if(!istype(H))
@@ -150,16 +153,16 @@
 			M.adjustBruteLoss(damage)
 			continue
 
-		var/obj/item/organ/external/affecting = H.get_organ(pick(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_HEAD))
-		if(!affecting)
-			to_chat(H, span_danger("You land heavily!"))
-			H.adjustBruteLoss(damage)
+		// Try to hurt a specific limb
+		var/obj/item/organ/external/affecting = H.get_organ(pick(BP_ALL))
+		if(affecting)
+			to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
+			affecting.take_damage(damage, used_weapon = "Misadventure")
 			return
 
-		to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
-		affecting.take_damage(damage, 0)
-		if(affecting.parent)
-			affecting.parent.add_autopsy_data("Misadventure", damage)
+		// If no limb to hurt, just randomly apply damage
+		to_chat(H, span_danger("You land heavily!"))
+		H.adjustBruteLoss(damage)
 
 /datum/element/climbable/proc/on_examine(datum/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
