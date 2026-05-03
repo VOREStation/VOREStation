@@ -200,6 +200,7 @@ export const BellyOptionsRight = (props: {
       </LabeledList.Item>
       <LabeledList.Item label="Egg Type">
         <VorePanelEditDropdown
+          searchInput
           tooltip="Select the displayed egg type when you encase prey in one."
           action="set_attribute"
           subAction="b_egg_type"

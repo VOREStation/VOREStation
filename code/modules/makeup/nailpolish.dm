@@ -61,25 +61,25 @@
 		icostate = organ_tag
 	return new /datum/nail_polish(ico, icostate, colour)
 
-/obj/item/nailpolish/attack(var/mob/user, var/mob/living/carbon/human/target)
+/obj/item/nailpolish/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!open)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!istype(target))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	var/bp = user.zone_sel.selecting
 	var/obj/item/organ/external/body_part = target.get_organ(bp)
 	if(!body_part)
 		to_chat(user, span_warning("[target] is missing that limb!"))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(body_part.nail_polish)
 		to_chat(user, span_notice("[target]'s [body_part.name] already has nail polish on!"))
-		return
+		return ITEM_INTERACT_FAILURE
 	var/datum/nail_polish/polish = body_part.get_polish(colour)
 	if(!polish)
 		to_chat(user, span_notice("You can't find any nails on [body_part] to paint."))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(user == target)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " paints their nails with \the [src]."), span_infoplain("You paint your nails with \the [src]."))
 	else
@@ -87,8 +87,9 @@
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " paints \the [target]'s nails with \the [src]."), span_infoplain("You paint \the [target]'s nails with \the [src]."))
 		else
 			to_chat(user, span_notice("Both you and [target] must stay still!"))
-			return
+			return ITEM_INTERACT_FAILURE
 	body_part.set_polish(polish)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/organ/external/proc/set_polish(var/datum/nail_polish/polish)
 	nail_polish = polish
@@ -115,21 +116,21 @@
 	. = ..()
 	icon_state = "[initial(icon_state)][open ? "-open" : ""]"
 
-/obj/item/nailpolish_remover/attack(var/mob/user, var/mob/living/carbon/human/target)
+/obj/item/nailpolish_remover/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!open)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!istype(target))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	var/bp = user.zone_sel.selecting
 	var/obj/item/organ/external/body_part = target.get_organ(bp)
 	if(!body_part)
 		to_chat(user, span_warning("[target] is missing that limb!"))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(!body_part.nail_polish)
 		to_chat(user, span_notice("[target]'s [body_part.name] has no nail polish to remove!"))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(user == target)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " removes their nail polish with \the [src]."), span_infoplain("You remove your nail polish with \the [src]."))
 	else
@@ -137,8 +138,9 @@
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " removes \the [target]'s nail polish with \the [src]."), span_infoplain("You remove \the [target]'s nail polish with \the [src]."))
 		else
 			to_chat(user, span_notice("Both you and [target] must stay still!"))
-			return
+			return ITEM_INTERACT_FAILURE
 	body_part.set_polish(null)
+	return ITEM_INTERACT_SUCCESS
 
 /datum/nail_polish
 	var/icon = 'icons/obj/nailpolish_vr.dmi'

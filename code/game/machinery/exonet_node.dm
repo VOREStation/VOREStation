@@ -17,15 +17,35 @@
 	var/list/logs = list() // Gets written to by exonet's send_message() function.
 
 	circuit = /obj/item/circuitboard/telecomms/exonet_node
+
+	var/datum/looping_sound/tcomms/soundloop
+	var/noisy = TRUE
+
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.
 /obj/machinery/exonet_node/Initialize(mapload)
+	soundloop = new(list(src), FALSE)
+	if(prob(60)) // 60% chance to change the midloop
+		if(prob(40))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_02.ogg' = 1)
+			soundloop.mid_length = 40
+		else if(prob(20))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_03.ogg' = 1)
+			soundloop.mid_length = 10
+		else
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_04.ogg' = 1)
+			soundloop.mid_length = 30
+	soundloop.start()
 	. = ..()
 	default_apply_parts()
 	if(mapload)
 		desc = "This machine is one of many, many nodes inside [using_map.starsys_name]'s section of the Exonet, connecting the [using_map.station_short] to the rest of the system, at least \
 		electronically."
+
+/obj/machinery/exonet_node/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 // Proc: update_icon()
 // Parameters: None
@@ -49,12 +69,19 @@
 		if(stat & (BROKEN|NOPOWER|EMPED))
 			on = 0
 			update_idle_power_usage(0)
+			soundloop.stop()
+			noisy = FALSE
 		else
 			on = 1
 			update_idle_power_usage(2500)
 	else
 		on = 0
 		update_idle_power_usage(0)
+		soundloop.stop()
+		noisy = FALSE
+	if(!noisy && on)
+		soundloop.start()
+		noisy = TRUE
 	update_icon()
 
 // Proc: emp_act(severity, recursive)
