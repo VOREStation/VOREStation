@@ -115,6 +115,7 @@
 	sheet_plural_name = "gems"
 	icon_base = "stone"
 	table_icon_base = "stone"
+	supply_conversion_value = 10
 
 /datum/material/verdantium
 	name = MAT_VERDANTIUM

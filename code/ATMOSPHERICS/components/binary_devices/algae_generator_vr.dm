@@ -292,6 +292,7 @@
 	hardness = 10
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
+	supply_conversion_value = 0.25
 
 /obj/item/stack/material/algae
 	name = "algae sheet"
