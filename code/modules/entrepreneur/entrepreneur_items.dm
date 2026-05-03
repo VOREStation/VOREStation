@@ -226,11 +226,11 @@
 	desc = "A small mirror at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_mirror/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_mirror/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You use the mirror to get a good look inside of [M]'s mouth."))
 		to_chat(M, span_notice("[user] uses a small mirror to look inside of your mouth."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/entrepreneur/dentist_probe
@@ -240,11 +240,11 @@
 	desc = "A short stainless steel rod that ends with a narrow pointy bit for poking."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_probe/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_probe/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You use the probe to poke about inside of [M]'s mouth."))
 		to_chat(M, span_notice("[user] examines the inside of your mouth with a sharp probe, it hurts a little being prodded."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/entrepreneur/dentist_sickle
@@ -254,11 +254,11 @@
 	desc = "A narrow, sharp hook at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_sickle/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_sickle/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You loosen some stuck debris from [M]'s mouth with the hook."))
 		to_chat(M, span_notice("[user] uses a hook to scrape out something stuck in your mouth, it's pretty uncomfortable."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/entrepreneur/dentist_scaler
@@ -268,11 +268,11 @@
 	desc = "A flat and thin scraper at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_scaler/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_scaler/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You scrape debris out from [M]'s mouth."))
 		to_chat(M, span_notice("[user] scrapes debris from out of your mouth."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 ////// Exercise mat, yoga and trainer stuff

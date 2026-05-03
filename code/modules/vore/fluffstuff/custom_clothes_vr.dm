@@ -1961,7 +1961,7 @@ Departamental Swimsuits, for general use
 			var/uh_oh = pick(translocator.beacons)
 			user.remove_from_mob(src, get_turf(user))
 			translocator.destination = translocator.beacons[uh_oh]
-			translocator.afterattack(user, user, proximity = 1, ignore_fail_chance = 1)
+			translocator.afterattack(user, user, proximity_flag = 1, ignore_fail_chance = 1)
 			add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported by it (via \the [translocator] within)!")
 			return
 

@@ -45,8 +45,9 @@
 /obj/item/laser_pointer/ultimate/Initialize(mapload)
 	. = ..(mapload, /obj/item/stock_parts/micro_laser/omni)
 
-/obj/item/laser_pointer/attack(mob/living/M, mob/user)
+/obj/item/laser_pointer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	laser_act(M, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/laser_pointer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stock_parts/micro_laser))

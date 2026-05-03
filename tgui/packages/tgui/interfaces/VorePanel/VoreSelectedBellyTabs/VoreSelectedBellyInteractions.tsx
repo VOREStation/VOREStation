@@ -176,6 +176,7 @@ export const VoreSelectedBellyInteractions = (props: {
                   <LabeledList.Divider />
                   <LabeledList.Item label="Primary Transfer Location">
                     <VorePanelEditDropdown
+                      searchInput
                       action="set_attribute"
                       subAction="b_transferlocation"
                       editMode={editMode}
@@ -195,6 +196,7 @@ export const VoreSelectedBellyInteractions = (props: {
                   </LabeledList.Item>
                   <LabeledList.Item label="Secondary Transfer Location">
                     <VorePanelEditDropdown
+                      searchInput
                       action="set_attribute"
                       subAction="b_transferlocation_secondary"
                       editMode={editMode}

@@ -97,6 +97,9 @@
 	else
 		return ..()
 
+/obj/item/perfect_tele/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	afterattack(M, user)
+
 /obj/item/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(battery_lock)
 		to_chat(user,span_notice("[src] does not have a battery port."))
@@ -254,9 +257,11 @@ This device records all warnings given and teleport events for admin review in c
 	//Seems okay to me!
 	return TRUE
 
-/obj/item/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity, var/ignore_fail_chance = 0)
+/obj/item/perfect_tele/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters, ignore_fail_chance = 0)
 	//No, you can't teleport people from over there.
-	if(!proximity)
+	if(!user.Adjacent(target) && !proximity_flag)
+		return
+	if(!istype(target))
 		return
 
 	if(!teleport_checks(target,user))
@@ -310,12 +315,12 @@ This device records all warnings given and teleport events for admin review in c
 	var/televored = FALSE
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
-		if(!(target.can_be_drop_prey) && B.owner != user)
-			to_chat(target,span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
-			real_dest = dT //Nevermind!
-		else
+		if(target.devourable && target.can_be_drop_prey && B.owner != target)
 			televored = TRUE
-			to_chat(target,span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
+			to_chat(target, span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
+		else
+			to_chat(target, span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
+			real_dest = dT //Nevermind!
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
