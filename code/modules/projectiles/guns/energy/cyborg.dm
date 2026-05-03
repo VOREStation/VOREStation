@@ -154,6 +154,8 @@
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
 	pry = 1
+	edge = TRUE
+	sharp = TRUE
 	tool_qualities = list(TOOL_CROWBAR)
 
 /obj/item/melee/robotic/jaws/big

@@ -66,7 +66,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(jumptomob, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to M
 	else
 		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
 
-ADMIN_VERB(jumptocoord, R_ADMIN|R_MOD|R_DEBUG|R_EVENT,"Jump to Coordinate", "Jump to the target coordinates.", ADMIN_CATEGORY_GAME, tx, ty, tz)
+ADMIN_VERB(jumptocoord, R_ADMIN|R_MOD|R_DEBUG|R_EVENT,"Jump to Coordinate", "Jump to the target coordinates.", ADMIN_CATEGORY_GAME, tx as num|null, ty as num|null, tz as num|null)
 	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(user, "Admin jumping disabled")
 		return
