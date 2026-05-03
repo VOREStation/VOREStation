@@ -44,6 +44,10 @@
 	crew_announcement = new()
 	crew_announcement.newscast = TRUE
 
+/datum/tgui_module/communications/Destroy(force)
+	. = ..()
+	ATC = null
+
 /datum/tgui_module/communications/tgui_interact(mob/user, datum/tgui/ui)
 	if(using_map && !(get_z(user) in using_map.contact_levels))
 		to_chat(user, span_danger("Unable to establish a connection: You're too far away from the station!"))

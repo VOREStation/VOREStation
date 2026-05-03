@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
 ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in GLOB.mob_list)
-	var/confirm = tgui_alert(src, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
+	var/confirm = tgui_alert(user, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -159,7 +159,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_godmode, R_HOLDER, "Toggle Godmode", "Togg
 	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/cmd_admin_mute(mob/target, mute_type, automute = 0, mob/user)
+/proc/cmd_admin_mute(mob/target, mute_type, automute = FALSE, mob/user)
 	if(automute)
 		if(!CONFIG_GET(flag/automute_on))
 			return

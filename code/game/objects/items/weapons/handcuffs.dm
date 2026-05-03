@@ -26,28 +26,30 @@
 
 	return ..()
 
-/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/attack(mob/living/carbon/C, mob/living/user, target_zone, attack_modifier)
 	if(!istype(C))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!user.IsAdvancedToolUser())
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		attempt_to_cuff(user, user)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	if(!C.handcuffed)
 		if (C == user)
 			attempt_to_cuff(user, user)
-			return
+			return ITEM_INTERACT_SUCCESS
 
 		//check for an aggressive grab (or robutts)
 		if(can_place(C, user))
 			attempt_to_cuff(C, user)
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
+			return ITEM_INTERACT_FAILURE
 
 /obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(user == target)
@@ -216,28 +218,30 @@
 
 	return ..()
 
-/obj/item/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/legcuffs/attack(mob/living/carbon/C, mob/living/user, target_zone, attack_modifier)
 	if(!istype(C))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!user.IsAdvancedToolUser())
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		place_legcuffs(user, user)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	if(!C.legcuffed)
 		if (C == user)
 			place_legcuffs(user, user)
-			return
+			return ITEM_INTERACT_SUCCESS
 
 		//check for an aggressive grab (or robutts)
 		if(can_place(C, user))
 			place_legcuffs(C, user)
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
+			return ITEM_INTERACT_FAILURE
 
 /obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
