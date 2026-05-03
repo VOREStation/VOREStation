@@ -340,6 +340,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		nif_path = nif_durability = nif_savedata = null //VOREStation Add - Don't copy NIF
 		savefile.set_entry("default_slot", slot)
 
+	// Clear stale data before overwriting.
+	savefile.remove_entry("character[slot]")
+
 	return TRUE
 
 /datum/preferences/proc/sanitize_preferences()

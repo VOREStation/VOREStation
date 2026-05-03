@@ -191,7 +191,7 @@
 
 	var/datum/job/previewJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
-	if(job_civilian_low & ASSISTANT)
+	if(read_preference(/datum/preference/numeric/human/job_civilian_low) & ASSISTANT)
 		previewJob = SSjob.get_job(JOB_ALT_VISITOR)
 	else if(client && ispAI(client.mob))
 		pass() //Don't do anything!
@@ -200,11 +200,11 @@
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
-					job_flag = job_civilian_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_civilian_high)
 				if(MEDSCI)
-					job_flag = job_medsci_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_medsci_high)
 				if(ENGSEC)
-					job_flag = job_engsec_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_engsec_high)
 			if(job.flag == job_flag)
 				previewJob = job
 				break
@@ -239,7 +239,8 @@
 
 	if((equip_preview_mob & EQUIP_PREVIEW_JOB) && previewJob)
 		mannequin.job = previewJob.title
-		previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
+		var/list/alt_titles = read_preference(/datum/preference/player_alt_titles)
+		previewJob.equip_preview(mannequin, islist(alt_titles) ? alt_titles[previewJob.title] : null)
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
@@ -256,18 +257,18 @@
 /datum/preferences/proc/get_highest_job()
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
-	if(job_civilian_low & ASSISTANT)
+	if(read_preference(/datum/preference/numeric/human/job_civilian_low) & ASSISTANT)
 		highJob = SSjob.get_job(JOB_ALT_ASSISTANT)
 	else
 		for(var/datum/job/job in SSjob.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
-					job_flag = job_civilian_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_civilian_high)
 				if(MEDSCI)
-					job_flag = job_medsci_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_medsci_high)
 				if(ENGSEC)
-					job_flag = job_engsec_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_engsec_high)
 			if(job.flag == job_flag)
 				highJob = job
 				break

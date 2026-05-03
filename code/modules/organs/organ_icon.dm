@@ -1,8 +1,5 @@
 GLOBAL_LIST_EMPTY(limb_icon_cache)
 
-/obj/item/organ/external/set_dir()
-	return
-
 /obj/item/organ/external/proc/compile_icon()
 	cut_overlays()
 	// This is a kludge, only one icon has more than one generation of children though.
