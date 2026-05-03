@@ -159,7 +159,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_godmode, R_HOLDER, "Toggle Godmode", "Togg
 	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/cmd_admin_mute(mob/target, mute_type, automute = 0, mob/user)
+/proc/cmd_admin_mute(mob/target, mute_type, automute = FALSE, mob/user)
 	if(automute)
 		if(!CONFIG_GET(flag/automute_on))
 			return
