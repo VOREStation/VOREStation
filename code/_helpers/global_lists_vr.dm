@@ -1214,15 +1214,17 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/book, \
 	/obj/item/newspaper
 
+//Food reagent containers due to having to grind food.
 #define MEDICAL_GRIPPER \
 	/obj/item/reagent_containers/glass, \
+	/obj/item/reagent_containers/food, \
 	/obj/item/storage/pill_bottle, \
 	/obj/item/reagent_containers/pill, \
 	/obj/item/reagent_containers/blood, \
 	/obj/item/nif, \
 	/obj/item/stack/material/phoron, \
 	/obj/item/tank/anesthetic, \
-	/obj/item/disk/body_record
+	/obj/item/disk/body_record, \
 
 #define RESEARCH_GRIPPER \
 	/obj/item/cell, \
@@ -1292,7 +1294,9 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/pen, \
 	/obj/item/leash, \
 	/obj/item/paper, \
-	/obj/item/a_gift
+	/obj/item/a_gift, \
+	/obj/item/remote_scene_tool, \
+
 
 #define ORGAN_GRIPPER \
 	/obj/item/organ, \

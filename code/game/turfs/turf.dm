@@ -177,6 +177,10 @@
 			S.gather_all(src, user)
 	return ..()
 
+/turf/attack_robot(mob/user)
+	if(!isAI(user))
+		attack_hand(user)
+
 // Hits a mob on the tile.
 /turf/proc/attack_tile(obj/item/W, mob/living/user)
 	if(!istype(W))

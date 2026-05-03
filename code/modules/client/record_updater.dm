@@ -109,15 +109,15 @@ GLOBAL_VAR_INIT(client_record_update_lock, FALSE)
 	// Update records in the consoles, remember this can happen a while after a record is closed on the console... Use cached data.
 	switch(console_path)
 		if(/obj/machinery/computer/med_data)
-			P.med_record = new_data
+			P.write_preference_by_type(/datum/preference/text/human/med_record, new_data)
 			if(active)
 				active.fields["notes"] = new_data
 		if(/obj/machinery/computer/skills)
-			P.gen_record = new_data
+			P.write_preference_by_type(/datum/preference/text/human/gen_record, new_data)
 			if(active)
 				active.fields["notes"] = new_data
 		if(/obj/machinery/computer/secure_data)
-			P.sec_record = new_data
+			P.write_preference_by_type(/datum/preference/text/human/sec_record, new_data)
 			if(active)
 				active.fields["notes"] = new_data
 

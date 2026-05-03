@@ -166,6 +166,7 @@ export const ModifyRobot = (props) => {
                 <Stack align="baseline">
                   <Stack.Item>
                     <Dropdown
+                      searchInput
                       selected={target ? target.name : ''}
                       options={all_robots}
                       onSelected={(value) =>
@@ -218,6 +219,7 @@ export const ModifyRobot = (props) => {
                   <Stack align="baseline">
                     <Stack.Item>
                       <Dropdown
+                        searchInput
                         selected={selected_ai || ''}
                         options={active_ais}
                         onSelected={(value) =>

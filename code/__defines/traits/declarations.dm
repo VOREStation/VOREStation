@@ -85,6 +85,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STASIS "in_stasis"
 /// Harmful radiation effects, the toxin damage and the burns, will not occur while this trait is active
 #define TRAIT_HALT_RADIATION_EFFECTS "halt_radiation_effects"
+/// Trait applied to mobs when on Critical condition
+#define TRAIT_CRITICAL_CONDITION "critical_condition"
 
 /**
  *

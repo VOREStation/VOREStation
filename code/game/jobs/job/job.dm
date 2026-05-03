@@ -93,7 +93,7 @@
 
 	var/income = 1
 	if(H.client)
-		switch(H.client.prefs.economic_status)
+		switch(H.client.prefs.read_preference(/datum/preference/choiced/human/economic_status))
 			if(CLASS_UPPER)		income = 1.30
 			if(CLASS_UPMID)		income = 1.15
 			if(CLASS_MIDDLE)	income = 1

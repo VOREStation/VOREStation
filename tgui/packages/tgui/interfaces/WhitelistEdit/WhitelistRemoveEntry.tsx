@@ -59,10 +59,16 @@ export const WhitelistRemoveEntry = (props: {
       >
         <LabeledList>
           <LabeledList.Item label="Ckey">
-            <Dropdown onSelected={handleCkey} options={ckeys} selected={ckey} />
+            <Dropdown
+              searchInput
+              onSelected={handleCkey}
+              options={ckeys}
+              selected={ckey}
+            />
           </LabeledList.Item>
           <LabeledList.Item label="Role">
             <Dropdown
+              searchInput
               onSelected={setSelectedRole}
               options={entries[ckey] ?? []}
               selected={selectedRole}

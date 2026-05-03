@@ -109,7 +109,7 @@
 	has_suit = null
 	if(QDELETED(src))
 		return
-	if(user)
+	if(user && !issilicon(user))
 		user.put_in_hands(src)
 		add_fingerprint(user)
 	else if(get_turf(src))		//We actually exist in space
@@ -254,6 +254,11 @@
 										sound = "a light, rhythmic, mechanical clicking"
 									else
 										sound = span_warning("no heartbeat")
+									if(istype(heart, /obj/item/organ/internal/heart/machine/anomalock))
+										var/obj/item/organ/internal/heart/machine/anomalock/zap_heart = heart
+										if(zap_heart.core)
+											user.electrocute_act(15, src)
+											user.emote("scream")
 								else
 									switch(M.pulse)
 										if(PULSE_NONE)

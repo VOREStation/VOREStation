@@ -840,7 +840,7 @@
 		if(istext(mute_type))	mute_type = text2num(mute_type)
 		if(!isnum(mute_type))	return
 
-		cmd_admin_mute(M, mute_type, usr)
+		cmd_admin_mute(M, mute_type, FALSE, usr)
 
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
