@@ -12,11 +12,15 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
+	/// A reference to the object in the slot. Grabs or items, generally, but any datum will do.
+	var/datum/weakref/master_ref = null
+	/// A reference to the owner HUD, if any.
+	//VAR_PRIVATE/datum/hud/hud = null //This SHOULD be converted to private eventually, but we're not there yet.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
 /atom/movable/screen/Destroy()
-	master = null
+	master_ref = null
+	hud = null
 	return ..()
 
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
@@ -67,6 +71,7 @@
 	name = "close"
 
 /atom/movable/screen/close/Click()
+	var/obj/master = master_ref?.resolve()
 	if(master)
 		if(istype(master, /obj/item/storage))
 			var/obj/item/storage/S = master
@@ -100,6 +105,7 @@
 	name = "grab"
 
 /atom/movable/screen/grab/Click()
+	var/obj/master = master_ref?.resolve()
 	var/obj/item/grab/G = master
 	G.s_click(src)
 	return 1
@@ -121,6 +127,7 @@
 		return 1
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
+	var/obj/master = master_ref?.resolve()
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
 		if(I)

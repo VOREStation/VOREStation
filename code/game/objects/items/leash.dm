@@ -4,8 +4,9 @@
 	icon_state = "leash_master"
 
 /atom/movable/screen/alert/leash_dom/Click()
-	var/obj/item/leash/owner = master
-	owner.unleash()
+	var/obj/item/leash/owner = master_ref?.resolve()
+	if(owner)
+		owner.unleash()
 
 /atom/movable/screen/alert/leash_pet
 	name = "Leashed"
@@ -13,8 +14,9 @@
 	icon_state = "leash_pet"
 
 /atom/movable/screen/alert/leash_dom/Click()
-	var/obj/item/leash/owner = master
-	owner.struggle_leash()
+	var/obj/item/leash/owner = master_ref?.resolve()
+	if(owner)
+		owner.struggle_leash()
 
 ///// OBJECT /////
 //The leash object itself

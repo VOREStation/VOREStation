@@ -51,7 +51,7 @@
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"
 	hud.name = "reinforce grab"
-	hud.master = src
+	hud.master_ref = WEAKREF(src)
 
 	//check if assailant is grabbed by victim as well
 	if(assailant.grabbed_by)
