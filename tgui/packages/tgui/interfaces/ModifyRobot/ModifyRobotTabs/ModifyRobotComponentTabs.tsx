@@ -50,6 +50,7 @@ export const CellCommp = (props: {
         </Stack>
       </Slider>
       <Dropdown
+        searchInput
         width="100%"
         selected={selectedCell}
         options={cell_options}
@@ -127,42 +128,42 @@ export const CompTab = (props: {
   return (
     <Section scrollable fill>
       <Dropdown
-        width="100%"
+        fluid
         selected={selectedAct}
         options={act_options}
         onSelected={onSelectedAct}
       />
       <ComponentInfo comps={acts[selectedAct]} />
       <Dropdown
-        width="100%"
+        fluid
         selected={selectedRad}
         options={rad_options}
         onSelected={onSelectedRad}
       />
       <ComponentInfo comps={rads[selectedRad]} />
       <Dropdown
-        width="100%"
+        fluid
         selected={selectedDiag}
         options={diag_options}
         onSelected={onSelectedDiag}
       />
       <ComponentInfo comps={diags[selectedDiag]} />
       <Dropdown
-        width="100%"
+        fluid
         selected={selectedCam}
         options={cam_options}
         onSelected={onSelectedCam}
       />
       <ComponentInfo comps={cams[selectedCam]} />
       <Dropdown
-        width="100%"
+        fluid
         selected={selectedComm}
         options={comm_options}
         onSelected={onSelectedComm}
       />
       <ComponentInfo comps={comms[selectedComm]} />
       <Dropdown
-        width="100%"
+        fluid
         selected={selectedArm}
         options={arm_options}
         onSelected={onSelectedArm}
