@@ -28,7 +28,7 @@
 		to_chat(target, span_warning("[user] rifles in your pockets!"))
 
 	if(user.a_intent == I_HELP)
-		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target))
+		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target, progress = FALSE))
 			var/obj/item/storage/Backpack = target.back
 			Backpack.open(user)
 		else if(istype(target.belt, /obj/item/storage) && do_after(user, 5 SECONDS, target))
