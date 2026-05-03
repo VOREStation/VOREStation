@@ -23,7 +23,7 @@ export BUN_VERSION=1.3.13
 export SPACEMAN_DMM_VERSION=suite-1.11
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.12.3
+export PYTHON_VERSION=3.13.9
 
 #dreamluau repo
 export DREAMLUAU_REPO="tgstation/dreamluau"
