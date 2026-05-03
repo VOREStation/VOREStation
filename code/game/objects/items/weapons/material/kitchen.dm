@@ -9,7 +9,6 @@
 	pickup_sound = 'sound/items/pickup/knife.ogg'
 	w_class = ITEMSIZE_TINY
 	thrown_force_divisor = 1
-	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = TRUE
 	edge = TRUE
@@ -84,7 +83,7 @@
 		qdel(loading)
 	update_icon()
 
-/obj/item/material/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/material/kitchen/utensil/attack(mob/living/carbon/M, mob/living/user, target_zone, attack_modifier)
 	if(!istype(M))
 		return ..()
 
@@ -107,20 +106,20 @@
 					M.vore_selected.nom_atom(F)
 		if(M == user)
 			if(!M.can_eat(loaded))
-				return
+				return ITEM_INTERACT_FAILURE
 			M.visible_message(span_bold("\The [user]") + " eats some of [loaded] with \the [src].")
 		else
 			user.visible_message(span_warning("\The [user] begins to feed \the [M]!"))
 			if(!(M.can_force_feed(user, loaded) && do_after(user, 5 SECONDS, M)))
-				return
+				return ITEM_INTERACT_FAILURE
 			M.visible_message(span_bold("\The [user]") + " feeds some of [loaded] to \the [M] with \the [src].")
 		playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
 		loaded = null
 		update_icon()
-		return
+		return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_warning("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
-		return
+		return ITEM_INTERACT_FAILURE
 
 /obj/item/material/kitchen/utensil/on_rag_wipe()
 	. = ..()
@@ -211,10 +210,10 @@
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
-/obj/item/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if (CLUMSY_HARM_CHANCE(user))
+/obj/item/material/kitchen/rollingpin/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(CLUMSY_HARM_CHANCE(user))
 		to_chat(user, span_warning("\The [src] slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(2)
-		return
+		return ITEM_INTERACT_SUCCESS
 	return ..()

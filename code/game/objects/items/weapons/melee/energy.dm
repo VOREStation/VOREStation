@@ -126,11 +126,12 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/melee/energy/attack(mob/M, mob/user)
+/obj/item/melee/energy/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(active && use_cell)
 		if(!use_charge(hitcost))
 			deactivate(user)
 			visible_message(span_notice("\The [src]'s blade flickers, before deactivating."))
+			return ITEM_INTERACT_FAILURE
 	return ..()
 
 /obj/item/melee/energy/attackby(obj/item/W, mob/user)
@@ -229,7 +230,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = TRUE
 	edge = TRUE
@@ -264,7 +264,6 @@
  * Energy Sword
  */
 /obj/item/melee/energy/sword
-	color
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "esword"
@@ -279,7 +278,6 @@
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	colorable = TRUE
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
@@ -287,7 +285,7 @@
 
 	projectile_parry_chance = 65
 
-/obj/item/melee/energy/sword/dropped(mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user, equipping, slot)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -408,7 +406,6 @@
 /obj/item/melee/energy/sword/charge
 	name = "charge sword"
 	desc = "A small, handheld device which emits a high-energy 'blade'."
-	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	active_force = 25
 	active_armourpen = 25
 	projectile_parry_chance = 40

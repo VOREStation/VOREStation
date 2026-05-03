@@ -8,7 +8,6 @@
 	icon = 'icons/obj/power_cells_old.dmi' //swap to 'icons/obj/power_cells_.dmi' for new sprites.
 	icon_state = "b_st"
 	item_state = "cell"
-	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3
@@ -175,11 +174,11 @@
 		. += "It has a power rating of [maxcharge]."
 		. += "The charge meter reads [round(src.percent() )]%."
 
-/obj/item/cell/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+/obj/item/cell/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(isrobot(M))
 		var/mob/living/silicon/robot/target = M
 		if(target.opened)
-			return FALSE
+			return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)

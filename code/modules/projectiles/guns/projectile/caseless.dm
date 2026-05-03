@@ -7,7 +7,6 @@
 	item_state = "caseless"
 	w_class = ITEMSIZE_LARGE
 	caliber = "5mm caseless"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = null // R&D builds this. Starts unloaded.

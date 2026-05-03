@@ -12,7 +12,7 @@
 		to_chat(A, span_boldwarning("<br>"))
 
 	if(prob(30))	//most of the time, we don't want an announcement, so as to allow AIs to fake blackouts.
-		GLOB.command_announcement.Announce(alert, new_sound = sound('sound/misc/interference.ogg', volume=25))
+		GLOB.command_announcement.Announce(alert, new_sound = ANNOUNCER_MSG_COMMSBLACKOUT)
 
 
 /datum/event/communications_blackout/start()

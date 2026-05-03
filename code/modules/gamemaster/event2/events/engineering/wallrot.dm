@@ -27,7 +27,7 @@
 /datum/event2/event/wallrot/announce()
 	if(origin && prob(80))
 		GLOB.command_announcement.Announce("Harmful fungi detected on \the [location_name()], near \the [origin.loc]. \
-		Station structural integrity may be compromised.", "Biohazard Alert")
+		Station structural integrity may be compromised.", "Biohazard Alert", ANNOUNCER_MSG_WALLROT)
 
 /datum/event2/event/wallrot/start()
 	if(origin)

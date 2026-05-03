@@ -8,7 +8,6 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
-	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 
 	///Number of times it's been used.
 	var/times_used = 0
@@ -161,24 +160,25 @@
 		return TRUE
 
 //attack_as_weapon
-/obj/item/flash/attack(mob/living/target, mob/living/user, var/target_zone)
+/obj/item/flash/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!user || !target || target.is_incorporeal())
-		return //sanity
+		return ITEM_INTERACT_FAILURE //sanity
 
 	add_attack_logs(user,target,"Flashed (attempt) with [src]")
 
 	user.setClickCooldown(user.get_attack_speed(src))
 	user.do_attack_animation(target)
 
-	if(!clown_check(user))	return
+	if(!clown_check(user))
+		return ITEM_INTERACT_FAILURE
 	if(broken)
 		to_chat(user, span_warning("\The [src] is broken."))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	flash_recharge()
 
 	if(!check_capacitor(user))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 
@@ -197,10 +197,10 @@
 			user.visible_message(span_notice("[user] overloads [target]'s sensors with the flash!"))
 		else
 			user.visible_message(span_disarm("[user] blinds [target] with the flash!"))
-		return
+		return ITEM_INTERACT_SUCCESS
 	//fail message
 	user.visible_message(span_notice("[user] fails to blind [target] with the flash!"))
-	return
+	return ITEM_INTERACT_FAILURE
 
 /// Sees if we can flash the target and if so, does the effects of it.
 /// Returns TRUE if the flash went through, FALSE otherwise.
@@ -312,7 +312,6 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 	base_icon = "sflash"
 	can_repair = FALSE
 	one_use = TRUE

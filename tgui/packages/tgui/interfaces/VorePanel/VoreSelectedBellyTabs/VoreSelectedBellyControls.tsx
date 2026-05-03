@@ -108,6 +108,7 @@ export const VoreSelectedBellyControls = (props: {
       </LabeledList.Item>
       <LabeledList.Item label="Mode">
         <VorePanelEditDropdown
+          searchInput
           editMode={editMode}
           options={mode_options}
           entry={mode}
@@ -128,6 +129,7 @@ export const VoreSelectedBellyControls = (props: {
       </LabeledList.Item>
       <LabeledList.Item label="Item Mode">
         <VorePanelEditDropdown
+          searchInput
           editMode={editMode}
           options={item_mode_options}
           entry={item_mode}

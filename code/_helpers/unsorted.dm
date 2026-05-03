@@ -335,8 +335,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newai.ogg')
+				play_simple_announcement(world, ANNOUNCER_MSG_NEW_AI)
 				// Set eyeobj name
 				A.SetName(newname)
 

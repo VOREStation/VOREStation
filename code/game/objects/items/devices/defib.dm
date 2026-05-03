@@ -14,7 +14,6 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 
 	var/obj/item/shockpaddles/linked/paddle_path = /obj/item/shockpaddles/linked
 	var/obj/item/cell/bcell = null
@@ -137,7 +136,6 @@
 	item_state = "defibcompact"
 	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
 
 /obj/item/defib_kit/compact/loaded
 	bcell = /obj/item/cell/high
@@ -314,21 +312,21 @@
 /obj/item/shockpaddles/proc/checked_use(var/charge_amt)
 	return 0
 
-/obj/item/shockpaddles/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/shockpaddles/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/mob/living/carbon/human/H = M
 	if(!istype(H) || user.a_intent == I_HURT)
 		return ..() //Do a regular attack. Harm intent shocking happens as a hit effect
 
 	if(can_use(user, H))
-		busy = 1
+		busy = TRUE
 		update_icon()
 
 		do_revive(H, user)
 
-		busy = 0
+		busy = FALSE
 		update_icon()
 
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 //Since harm-intent now skips the delay for deliberate placement, you have to be able to hit them in combat in order to shock people.
 /obj/item/shockpaddles/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)

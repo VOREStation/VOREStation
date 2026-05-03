@@ -38,11 +38,11 @@
 /obj/item/inducer/get_cell()
 	return cell
 
-/obj/item/inducer/attack(mob/living/M, mob/living/user)
+/obj/item/inducer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HURT)
 		return ..()
 	else
-		return 0 //No accidental bludgeons!
+		return ITEM_INTERACT_FAILURE //No accidental bludgeons!
 
 /obj/item/inducer/afterattack(atom/A, mob/living/carbon/user, proximity)
 	if(user.a_intent == I_HURT)
@@ -252,6 +252,7 @@
 
 	charge = 100
 	maxcharge = 100
+	item_flags = ABSTRACT
 
 	var/mob/living/carbon/human/hume
 

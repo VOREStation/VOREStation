@@ -7,7 +7,6 @@
 	weight = 50
 	flags = MATERIAL_BRITTLE
 	icon_colour = "#A7A3A6"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/titanium
 	created_fulltile_window = /obj/structure/window/titanium/full
@@ -23,7 +22,6 @@
 	weight = 80
 	flags = MATERIAL_BRITTLE
 	icon_colour = "#676366"
-	stack_origin_tech = list(TECH_MATERIAL = 6)
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/plastitanium
 	created_fulltile_window = /obj/structure/window/plastitanium/full

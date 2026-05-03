@@ -9,7 +9,6 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MAT_STEEL = 500)
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
@@ -27,28 +26,30 @@
 
 	return ..()
 
-/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/attack(mob/living/carbon/C, mob/living/user, target_zone, attack_modifier)
 	if(!istype(C))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!user.IsAdvancedToolUser())
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		attempt_to_cuff(user, user)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	if(!C.handcuffed)
 		if (C == user)
 			attempt_to_cuff(user, user)
-			return
+			return ITEM_INTERACT_SUCCESS
 
 		//check for an aggressive grab (or robutts)
 		if(can_place(C, user))
 			attempt_to_cuff(C, user)
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
+			return ITEM_INTERACT_FAILURE
 
 /obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(user == target)
@@ -205,7 +206,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "legcuff"
-	origin_tech = list(TECH_MATERIAL = 1)
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 	cuff_type = "legcuffs"
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
@@ -218,28 +218,30 @@
 
 	return ..()
 
-/obj/item/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/legcuffs/attack(mob/living/carbon/C, mob/living/user, target_zone, attack_modifier)
 	if(!istype(C))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if(!user.IsAdvancedToolUser())
-		return
+		return ITEM_INTERACT_FAILURE
 
 	if (CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
 		place_legcuffs(user, user)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	if(!C.legcuffed)
 		if (C == user)
 			place_legcuffs(user, user)
-			return
+			return ITEM_INTERACT_SUCCESS
 
 		//check for an aggressive grab (or robutts)
 		if(can_place(C, user))
 			place_legcuffs(C, user)
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
+			return ITEM_INTERACT_FAILURE
 
 /obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
@@ -309,7 +311,9 @@
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
-/obj/item/handcuffs/legcuffs/bola/dropped(mob/user)
+/obj/item/handcuffs/legcuffs/bola/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	visible_message(span_infoplain(span_bold("\The [src]") + " falls apart!"))
 

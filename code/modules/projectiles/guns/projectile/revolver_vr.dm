@@ -9,7 +9,6 @@
 /obj/item/ammo_magazine/m380
 	name = "magazine (.380)"
 	icon_state = "m92"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 480)
 	caliber = ".380"

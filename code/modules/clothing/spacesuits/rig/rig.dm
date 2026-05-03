@@ -225,6 +225,8 @@
 
 /obj/item/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
 	if(!inhands && (slot_name == slot_back_str || slot_name == slot_belt_str))
+		if(body_type == SPECIES_TESHARI || body_type == SPECIES_WEREBEAST) //Until teshari get proper sprites for rigs, they can default to not having the sprite.
+			return null //All other species are 'humanoid enough' to wear the default rig sprite.
 		if(icon_override)
 			return icon_override
 		else if(mob_icon)
@@ -802,7 +804,7 @@
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, H, ONLY_DEPLOY)
 
-/obj/item/rig/dropped(mob/user)
+/obj/item/rig/dropped(mob/user, equipping, slot)
 	. = ..(user)
 	// So the next user will see the boot animation
 	tgui_shared_states?.Cut()

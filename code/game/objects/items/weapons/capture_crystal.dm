@@ -210,22 +210,26 @@
 		return FALSE
 	else return TRUE
 
-/obj/item/capture_crystal/attack(mob/living/M, mob/living/user)
+/obj/item/capture_crystal/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(bound_mob)
 		if(!bound_mob.devourable)	//Don't eat if prefs are bad
-			return
+			return ITEM_INTERACT_FAILURE
 		if(user.zone_sel.selecting == "mouth")	//Click while targetting the mouth and you eat/feed the stored mob to whoever you clicked on
 			if(bound_mob in contents)
 				user.visible_message("\The [user] moves \the [src] to [M]'s [M.vore_selected]...")
 				M.perform_the_nom(M, bound_mob, M, M.vore_selected)
+				return ITEM_INTERACT_SUCCESS
 	else if(M == user)		//You don't have a mob, you ponder the orb instead of trying to capture yourself
 		user.visible_message("\The [user] ponders \the [src]...", "You ponder \the [src]...")
+		return ITEM_INTERACT_FAILURE
 	else if (cooldown_check())	//Try to capture someone without throwing
 		user.visible_message("\The [user] taps \the [M] with \the [src].")
 		activate(user, M)
+		return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_notice("\The [src] emits an unpleasant tone... It is not ready yet."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return ITEM_INTERACT_FAILURE
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
@@ -879,11 +883,11 @@
 	active = TRUE
 	loadout = TRUE
 
-/obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user)
+/obj/item/capture_crystal/loadout/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!bound_mob && M != user)
 		to_chat(user, span_notice("\The [src] emits an unpleasant tone..."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
+		return ITEM_INTERACT_FAILURE
 	. = ..()
 
 

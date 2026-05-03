@@ -6,7 +6,6 @@
 // Shuttle control console. Board tries to auto-link the computer if built on a shuttle.
 //
 /obj/item/circuitboard/shuttle_console
-	origin_tech = list(TECH_DATA = 3)
 	var/shuttle_category = null	// Shuttle datum's category must exactly equal this to auto-detect
 	var/shuttle_tag = null		// If set, link constructed console to this shuttle. If null, auto-detect.
 	hidden = TRUE // todo - Make properly constructable in round
@@ -39,7 +38,6 @@
 /obj/item/circuitboard/shuttle_console/explore
 	name = T_BOARD("long range shuttle control console")
 	build_path = /obj/machinery/computer/shuttle_control/explore
-	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 4)
 	shuttle_category = /datum/shuttle/autodock/overmap
 
 // Multi-shuttle console

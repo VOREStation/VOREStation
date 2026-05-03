@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
 ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in GLOB.mob_list)
-	var/confirm = tgui_alert(src, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
+	var/confirm = tgui_alert(user, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -159,7 +159,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_godmode, R_HOLDER, "Toggle Godmode", "Togg
 	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/cmd_admin_mute(mob/target, mute_type, automute = 0, mob/user)
+/proc/cmd_admin_mute(mob/target, mute_type, automute = FALSE, mob/user)
 	if(automute)
 		if(!CONFIG_GET(flag/automute_on))
 			return
@@ -222,7 +222,7 @@ ADMIN_VERB(cmd_admin_add_random_ai_law, R_ADMIN|R_FUN, "Add Random AI Law", "Add
 	if(!show_log)
 		return
 	if(show_log == "Yes")
-		GLOB.command_announcement.Announce("Ion storm detected near \the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
+		GLOB.command_announcement.Announce("Ion storm detected near \the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_IONSTORM)
 
 	IonStorm(0)
 	feedback_add_details("admin_verb","ION") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -604,7 +604,7 @@ ADMIN_VERB(cmd_admin_add_freeform_ai_law, R_FUN, "Add Custom AI law", "Adds a cu
 
 	var/show_log = tgui_alert(user, "Show ion message?", "Message", list("Yes", "No"))
 	if(show_log == "Yes")
-		GLOB.command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
+		GLOB.command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_IONSTORM)
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_rejuvenate, R_ADMIN|R_FUN|R_MOD, "Rejuvenate", "Fully restores the target mob.", ADMIN_CATEGORY_GAME, mob/living/target_mob in GLOB.mob_list)
@@ -639,10 +639,10 @@ ADMIN_VERB(cmd_admin_create_centcom_report, R_ADMIN|R_SERVER|R_FUN, "Create Comm
 	if(!confirm)
 		return
 	if(confirm == "Yes")
-		GLOB.command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
+		GLOB.command_announcement.Announce(input, customname, new_sound = ANNOUNCER_MSG_NEW_COMMAND_REPORT, msg_sanitized = 1);
 	else
 		to_chat(world, span_boldannounce("New [using_map.company_name] Update available at all communication consoles."))
-		SEND_SOUND(world, sound('sound/AI/commandreport.ogg'))
+		play_simple_announcement(world, ANNOUNCER_MSG_NEW_COMMAND_REPORT)
 
 	log_admin("[key_name(user)] has created a command report: [input]")
 	message_admins("[key_name_admin(user)] has created a command report")

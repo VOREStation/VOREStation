@@ -182,9 +182,6 @@
 #define COMSIG_OBSERVER_TURF_ENTERED "observer_turf_entered"
 #define COMSIG_OBSERVER_TURF_EXITED "observer_turf_exited"
 #define COMSIG_OBSERVER_Z_MOVED "observer_z_moved"
-#define COMSIG_OBSERVER_ITEM_EQUIPPED "observer_item_equipped"
-#define COMSIG_OBSERVER_MOB_UNEQUIPPED "observer_mob_unequipped"
-#define COMSIG_OBSERVER_ITEM_UNEQUIPPED "observer_item_unequipped"
 #define COMSIG_OBSERVER_GLOBALMOVED "observer_global_move"
 
 ///called when teleporting into a protected turf: (channel, turf/origin)

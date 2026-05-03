@@ -90,10 +90,10 @@
 	. += span_notice("Mark a[emagged ? "nything": " creature"] with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.")
 	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
 
-/obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
+/obj/item/kinetic_crusher/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(!wielded && requires_wield)
 		to_chat(user, span_warning("[src] is too heavy to use with one hand."))
-		return
+		return ITEM_INTERACT_FAILURE
 	..()
 
 /obj/item/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
@@ -232,7 +232,7 @@
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 
-/obj/item/kinetic_crusher/machete/gauntlets/dropped(mob/user)
+/obj/item/kinetic_crusher/machete/gauntlets/dropped(mob/user, equipping, slot)
 	ready_toggle(TRUE)
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
@@ -290,7 +290,7 @@
 /obj/item/offhand/crushergauntlets
 	var/obj/item/kinetic_crusher/machete/gauntlets/linked
 
-/obj/item/offhand/crushergauntlets/dropped(mob/user)
+/obj/item/offhand/crushergauntlets/dropped(mob/user, equipping, slot)
 	SHOULD_CALL_PARENT(FALSE)
 	if(linked.wielded)
 		linked.ready_toggle(TRUE)
@@ -299,7 +299,7 @@
 	name = "\improper mounted proto-kinetic gear"
 	var/obj/item/rig_module/gauntlets/storing_module
 
-/obj/item/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user)
+/obj/item/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user, equipping, slot)
 	. = ..(user)
 	if(storing_module)
 		src.forceMove(storing_module)

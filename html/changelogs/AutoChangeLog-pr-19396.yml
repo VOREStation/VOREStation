@@ -1,6 +1,0 @@
-author: "CMDRYouth"
-delete-after: True
-changes:
-  - rscadd: "New Contractor Title for Cargo Technician - Logistics Contractor."
-  - rscadd: "New Contractor Title for Shaft Miner - Mining Contractor."
-  - rscadd: "New Contractor Title for Scientist - Research Contractor."

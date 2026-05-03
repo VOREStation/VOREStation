@@ -6,7 +6,6 @@
 	force = 10
 	throwforce = 7
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	hitsound = 'sound/weapons/whip.ogg'
 	reach = 2
@@ -17,7 +16,6 @@
 	icon_state = "curator_whip"
 	force = 5
 	throwforce = 5
-	origin_tech = list(TECH_COMBAT = 2)
 
 /obj/item/melee/chainofcommand/curator_whip/toy
 	name = "toy whip"

@@ -54,6 +54,7 @@
 
 	var/taste_sensitivity = TASTE_NORMAL							// How sensitive the species is to minute tastes.
 	var/allergens = null									// Things that will make this species very sick
+	var/medallergens = null									// Medication that will makes this species very sick
 	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_BLURRY|AG_CONFUSE	// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses.
 	var/allergen_damage_severity = 2.5							// How bad are reactions to the allergen? Touch with extreme caution.
 	var/allergen_disable_severity = 10							// Whilst this determines how long nonlethal effects last and how common emotes are.
@@ -838,7 +839,7 @@
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
 
-	if(H.species.allergens)
+	if(H.species.allergens || H.species.medallergens)
 		H.AddElement(/datum/element/allergy)
 	else
 		H.RemoveElement(/datum/element/allergy)
@@ -866,3 +867,56 @@
 			vore_belly_default_variant = "T"
 		if("Unathi")
 			vore_belly_default_variant = "L"
+
+/// Returns a list of names for all allergy types, null if no allergies are present
+/proc/assembly_allergy_list(allergens, med_allergens)
+	if(allergens > 0 || med_allergens > 0)
+		var/list/allergies = list()
+		// foods
+		if(allergens & ALLERGEN_MEAT)
+			allergies.Add("Meat protein")
+		if(allergens & ALLERGEN_FISH)
+			allergies.Add("Fish protein")
+		if(allergens & ALLERGEN_FRUIT)
+			allergies.Add("Fruit")
+		if(allergens & ALLERGEN_VEGETABLE)
+			allergies.Add("Vegetable")
+		if(allergens & ALLERGEN_GRAINS)
+			allergies.Add("Grain")
+		if(allergens & ALLERGEN_BEANS)
+			allergies.Add("Bean")
+		if(allergens & ALLERGEN_SEEDS)
+			allergies.Add("Nut")
+		if(allergens & ALLERGEN_DAIRY)
+			allergies.Add("Dairy")
+		if(allergens & ALLERGEN_FUNGI)
+			allergies.Add("Fungi")
+		if(allergens & ALLERGEN_COFFEE)
+			allergies.Add("Caffeine")
+		if(allergens & ALLERGEN_SUGARS)
+			allergies.Add("Sugar")
+		if(allergens & ALLERGEN_EGGS)
+			allergies.Add("Egg")
+		if(allergens & ALLERGEN_STIMULANT)
+			allergies.Add("Stimulant")
+		if(allergens & ALLERGEN_CHOCOLATE)
+			allergies.Add("Chocolate")
+		if(allergens & ALLERGEN_POLLEN)
+			allergies.Add("Pollen")
+		if(allergens & ALLERGEN_SALT)
+			allergies.Add("Salt")
+		// meds
+		if(med_allergens & MEDALLERGEN_TRICORD)
+			allergies.Add(REAGENT_TRICORDRAZINE)
+		if(med_allergens & MEDALLERGEN_BICARD)
+			allergies.Add(REAGENT_BICARIDINE)
+		if(med_allergens & MEDALLERGEN_DYLO)
+			allergies.Add(REAGENT_ANTITOXIN)
+		if(med_allergens & MEDALLERGEN_SPACACIL)
+			allergies.Add(REAGENT_SPACEACILLIN)
+		if(med_allergens & MEDALLERGEN_PERIDAX)
+			allergies.Add(REAGENT_PERIDAXON)
+		if(med_allergens & MEDALLERGEN_KELOTANE)
+			allergies.Add(REAGENT_KELOTANE)
+		return allergies
+	return null

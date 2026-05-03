@@ -15,27 +15,35 @@
 /obj/effect/effect/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
 	if(!target)
 		return
-	for(var/i = 1 to step_count)
-		if(!loc)
+	step_process(target, step_count, delay)
+
+/obj/effect/effect/water/proc/step_process(var/turf/target, var/step_count, var/delay, var/iteration)
+	step_count--
+	if(!loc)
+		qdel(src)
+		return
+	step_towards(src, target)
+	var/turf/T = get_turf(src)
+	if(T && reagents)
+		reagents.touch_turf(T, reagents.total_volume) //VOREStation Add
+		var/mob/M
+		for(var/atom/A in T)
+			if(!ismob(A) && A.simulated) // Mobs are handled differently
+				reagents.touch(A, reagents.total_volume)
+			else if(ismob(A) && !M)
+				M = A
+		if(M)
+			reagents.splash(M, reagents.total_volume)
+			QDEL_IN(src, 1 SECOND)
 			return
-		step_towards(src, target)
-		var/turf/T = get_turf(src)
-		if(T && reagents)
-			reagents.touch_turf(T, reagents.total_volume) //VOREStation Add
-			var/mob/M
-			for(var/atom/A in T)
-				if(!ismob(A) && A.simulated) // Mobs are handled differently
-					reagents.touch(A, reagents.total_volume)
-				else if(ismob(A) && !M)
-					M = A
-			if(M)
-				reagents.splash(M, reagents.total_volume)
-				break
-			if(T == get_turf(target))
-				break
-		sleep(delay)
-	sleep(10)
-	qdel(src)
+		if(T == get_turf(target))
+			QDEL_IN(src, 1 SECOND)
+			return
+
+	if(step_count > 0)
+		addtimer(CALLBACK(src, PROC_REF(step_process), target, step_count, delay, iteration), delay)
+		return
+	QDEL_IN(src, 1 SECOND)
 
 /obj/effect/effect/water/Move(turf/newloc)
 	if(newloc.density)

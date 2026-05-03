@@ -72,7 +72,9 @@
 	icon_state = "[base_icon][wielded]"
 	item_state = icon_state
 
-/obj/item/material/twohanded/dropped(mob/user)
+/obj/item/material/twohanded/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	if(wielded)
 		spawn(0)
@@ -139,7 +141,6 @@
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	force_divisor = 0.65
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 //spears, bay edition

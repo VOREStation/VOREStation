@@ -145,17 +145,12 @@
 
 /obj/item/pen/reagent
 	flags = OPENCONTAINER
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/pen/reagent/Initialize(mapload)
 	. = ..()
 	create_reagents(30)
 
-/obj/item/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
-
-	if(!istype(M))
-		return
-
+/obj/item/pen/reagent/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	. = ..()
 
 	if(M.can_inject(user,1))
@@ -164,6 +159,7 @@
 				var/contained = reagents.get_reagents()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
+				return ITEM_INTERACT_SUCCESS
 
 /*
  * Blade Pens
@@ -261,7 +257,6 @@
  */
 /obj/item/pen/reagent/sleepy
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/pen/reagent/sleepy/Initialize(mapload)
 	. = ..()
@@ -273,7 +268,6 @@
  * Parapens
  */
 /obj/item/pen/reagent/paralysis
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/pen/reagent/paralysis/Initialize(mapload)
 	. = ..()

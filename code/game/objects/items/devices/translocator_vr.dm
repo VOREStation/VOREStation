@@ -5,7 +5,6 @@
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "hand_tele"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
 	var/cell_type = /obj/item/cell/device/weapon
 	var/obj/item/cell/power_source
@@ -97,6 +96,9 @@
 		unload_ammo(user)
 	else
 		return ..()
+
+/obj/item/perfect_tele/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	afterattack(M, user)
 
 /obj/item/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(battery_lock)
@@ -255,9 +257,11 @@ This device records all warnings given and teleport events for admin review in c
 	//Seems okay to me!
 	return TRUE
 
-/obj/item/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity, var/ignore_fail_chance = 0)
+/obj/item/perfect_tele/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters, ignore_fail_chance = 0)
 	//No, you can't teleport people from over there.
-	if(!proximity)
+	if(!user.Adjacent(target) && !proximity_flag)
+		return
+	if(!istype(target))
 		return
 
 	if(!teleport_checks(target,user))
@@ -311,12 +315,12 @@ This device records all warnings given and teleport events for admin review in c
 	var/televored = FALSE
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
-		if(!(target.can_be_drop_prey) && B.owner != user)
-			to_chat(target,span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
-			real_dest = dT //Nevermind!
-		else
+		if(target.devourable && target.can_be_drop_prey && B.owner != target)
 			televored = TRUE
-			to_chat(target,span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
+			to_chat(target, span_vwarning("\The [src] teleports you right into \a [lowertext(real_dest.name)]!"))
+		else
+			to_chat(target, span_vwarning("\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!"))
+			real_dest = dT //Nevermind!
 
 	//Phase-out effect
 	phase_out(target,get_turf(target))
@@ -435,7 +439,6 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
 	cell_type = /obj/item/cell/device
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
 /*
 /obj/item/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)

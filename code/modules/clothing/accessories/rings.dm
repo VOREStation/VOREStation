@@ -51,7 +51,6 @@
 
 /obj/item/clothing/accessory/ring/reagent
 	flags = OPENCONTAINER
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 
 /obj/item/clothing/accessory/ring/reagent/Initialize(mapload)
 	. = ..()
@@ -74,7 +73,6 @@
 	name = "silver ring"
 	desc = "A ring made from what appears to be silver."
 	icon_state = "material"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
 /obj/item/clothing/accessory/ring/reagent/sleepy/Initialize(mapload)
 	. = ..()

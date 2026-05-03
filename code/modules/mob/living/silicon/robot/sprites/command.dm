@@ -63,6 +63,7 @@
 	name = "Borgi"
 	sprite_icon_state = "borgi"
 	has_eye_light_sprites = TRUE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command
 	sprite_hud_icon_state = "clerical"
@@ -77,6 +78,7 @@
 	sprite_hud_icon_state = "clerical"
 	module_type = "Command"
 	sprite_icon = 'icons/mob/robot/raptor.dmi'
+	hat_offset = RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/raptor/command/raptor
 	name = "Raptor"
@@ -86,6 +88,7 @@
 	rest_sprite_options = list("Default", "Bellyup")
 	icon_y = 64
 	vis_height = 64
+	hat_offset = RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command/tall/meka
 	name = "MEKA"
@@ -94,6 +97,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command/tall/mmeka
 	name = "NIKO"
@@ -102,6 +106,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command/tall/fmeka
 	name = "NIKA"
@@ -110,6 +115,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/command/smolraptor
 	name = "Small Raptor"
@@ -119,6 +125,7 @@
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/command/dullataurcommand
 	name = "Dullataur"
@@ -132,3 +139,6 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "maidoutfit")
+	icon_x = 64
+	pixel_x = -16
+	hat_offset = DULLAHAN_TAUR_HAT_OFFSET

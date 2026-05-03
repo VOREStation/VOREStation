@@ -18,7 +18,6 @@
 	w_class = ITEMSIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
@@ -44,22 +43,6 @@
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
 	can_cleave = FALSE
-	var/hits = 0
-
-/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
-	if(hits > 0)
-		return
-	var/obj/item/I = user.get_inactive_hand()
-	if(istype(I, /obj/item/material/knife/machete/hatchet/unathiknife))
-		hits ++
-		var/obj/item/W = I
-		W.attack(M, user)
-		W.afterattack(M, user)
-	..()
-
-/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
-	hits = initial(hits)
-	..()
 
 /obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
@@ -121,7 +104,6 @@
 	default_material = MAT_LEATHER
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	force_divisor = 0.15
 	thrown_force_divisor = 0.25
@@ -227,7 +209,6 @@
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "stone_wood_axe"
 	default_material = MAT_FLINT
-	origin_tech = list()
 	applies_material_colour = FALSE
 
 /obj/item/material/knife/machete/hatchet/stone/bone

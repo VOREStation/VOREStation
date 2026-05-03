@@ -62,15 +62,19 @@
 		for(var/trait in clothing_traits)
 			ADD_CLOTHING_TRAIT(user, trait)
 
-/obj/item/clothing/dropped(mob/user)
+/obj/item/clothing/dropped(mob/user, equipping, slot)
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
 	for(var/trait in clothing_traits)
 		REMOVE_CLOTHING_TRAIT(user, trait)
 
+/obj/item/clothing/click_alt(mob/user)
+	if(Adjacent(user) || user == src.loc)
+		removetie_verb(user)
+
 //BS12: Species-restricted clothing check.
-/obj/item/clothing/mob_can_equip(M as mob, slot, disable_warning = FALSE)
+/obj/item/clothing/mob_can_equip(mob/M, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot)
 
 	//if we can't equip the item anyway, don't bother with species_restricted (cuts down on spam)
 	if (!..())
@@ -375,55 +379,71 @@
 	transfer_blood = 0
 	update_icon()
 
-/obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE)
+/obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = TRUE)
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
 		var/obj/item/clothing/G = H.gloves
-		if(istype(G))
-			ring = H.gloves
+		//Check glove_level, which both accessories and gloves share.
+		if(istype(G, /obj/item/clothing/accessory) || istype(G, /obj/item/clothing/gloves))
+			ring = H.gloves //Ring or gloves both work here. They both have the glove_level var.
 			if(ring.glove_level >= src.glove_level)
-				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
 				ring = null
-				return 0
-			else
-				H.drop_from_inventory(ring)	//Remove the ring (or other under-glove item in the hand slot?) so you can put on the gloves.
-				ring.forceMove(src)
-				to_chat(user, "You slip \the [src] on over \the [src.ring].")
-				if(!(flags & THICKMATERIAL))
-					punch_force += ring.punch_force
-		else
+				return FALSE
 			ring = null
 
-	if(!..())
-		if(ring) //Put the ring back on if the check fails.
-			if(H.equip_to_slot_if_possible(ring, slot_gloves))
-				src.ring = null
-		punch_force = initial(punch_force)
-		return 0
+		//Check overgloves, which only gloves have.
+		if(istype(G, /obj/item/clothing/gloves))
+			gloves = H.gloves
+			if(gloves.overgloves)
+				gloves = null
+				return FALSE
+			gloves = null
 
-	wearer = WEAKREF(H)
-	return 1
+	return ..()
 
-/obj/item/clothing/gloves/dropped(mob/user)
+/obj/item/clothing/gloves/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	return ..()
+
+/obj/item/clothing/gloves/dropped(mob/user, equipping, slot)
 	..()
 
 	punch_force = initial(punch_force)
 	wearer = null
 	if(!ishuman(user))
 		return
-
 	var/mob/living/carbon/human/H = user
-	if(gloves) //We have nested gloves! Gloves under our gloves!
+
+	//Equipping to our glove slot? Cover our former gloves, if applicable.
+	if(equipping && slot && slot == slot_gloves)
+		var/obj/item/clothing/G = H.gloves
+		if(istype(G))
+			to_chat(user, "You slip \the [src] on over \the [H.gloves].")
+			if(istype(G, /obj/item/clothing/gloves))
+				gloves = H.gloves
+			else if(istype(G, /obj/item/clothing/accessory))
+				ring = H.gloves
+			else
+				gloves = H.gloves //Fallback
+			H.unEquip(H.gloves, TRUE, src)
+			if(!(flags & THICKMATERIAL))
+				if(istype(G, /obj/item/clothing/gloves) || istype(G, /obj/item/clothing/accessory)) //Because sometimes you can wear non-glove items on your hands.
+					punch_force += ring.punch_force
+		return
+
+	//Taking our gloves off? Put our former gloves / ring on.
+	if(gloves)
 		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
 			gloves.forceMove(get_turf(src))
-		if(ring)
-			gloves.ring = ring
-		src.gloves = null
-	else if(ring && istype(H)) //We do NOT have gloves under our gloves but have a ring under our glove instead!
+		gloves = null
+		return
+
+	if(ring) //We do NOT have gloves under our gloves but have a ring under our glove instead!
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
 			ring.forceMove(get_turf(src))
-		src.ring = null
+		ring = null
+		return
 
 /obj/item/clothing/gloves
 	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
@@ -752,6 +772,8 @@
 
 /obj/item/clothing/shoes/wash()
 	. = ..()
+	blood_color = null
+	track_blood = 0
 	update_icon()
 
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running, var/mob/living/carbon/human/pred)
@@ -972,7 +994,7 @@
 		RemoveHood()
 	..()
 
-/obj/item/clothing/suit/dropped(mob/user)
+/obj/item/clothing/suit/dropped(mob/user, equipping, slot)
 	RemoveHood()
 	..()
 
@@ -1449,3 +1471,21 @@
 	if(istype(wearer))
 		for(var/new_trait in trait_or_traits)
 			REMOVE_CLOTHING_TRAIT(wearer, new_trait)
+
+/obj/item/clothing/head/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	. = ..()
+
+
+/obj/item/clothing/head/attack_robot(mob/living/silicon/robot/user)
+	. = ..()
+
+	if(!Adjacent(user))
+		return
+
+	balloon_alert(user, "picking up hat...")
+	if(!do_after(user, 3 SECONDS, src))
+		return
+	if(QDELETED(src) || !Adjacent(user) || user.incapacitated)
+		return
+	user.place_on_head(src)
+	balloon_alert(user, "picked up hat")

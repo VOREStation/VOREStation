@@ -8,7 +8,6 @@
 	slot_flags = SLOT_BELT
 	matter = list(MAT_GLASS = 500, MAT_STEEL = 500)
 	w_class = ITEMSIZE_SMALL //Increased to 2, because diodes are w_class 2. Conservation of matter.
-	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
 	var/turf/pointer_loc
 	var/energy = 8
 	var/max_energy = 8
@@ -46,8 +45,9 @@
 /obj/item/laser_pointer/ultimate/Initialize(mapload)
 	. = ..(mapload, /obj/item/stock_parts/micro_laser/omni)
 
-/obj/item/laser_pointer/attack(mob/living/M, mob/user)
+/obj/item/laser_pointer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	laser_act(M, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/laser_pointer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stock_parts/micro_laser))

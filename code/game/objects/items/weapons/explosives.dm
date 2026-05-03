@@ -7,7 +7,6 @@
 	item_state = "plasticx"
 	flags = NOBLUDGEON
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ILLEGAL = 2)
 	var/timer = 10
 	var/atom/target = null
 	var/open_panel = 0
@@ -92,8 +91,8 @@
 		target.cut_overlay(image_overlay)
 	qdel(src)
 
-/obj/item/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
-	return
+/obj/item/plastique/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/plastique/seismic
 	name = "seismic charge"

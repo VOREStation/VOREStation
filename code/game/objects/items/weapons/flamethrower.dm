@@ -16,7 +16,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 1, TECH_PHORON = 1)
 	matter = list(MAT_STEEL = 500)
 	var/status = FALSE
 	var/throw_amount = THROWER_MIN

@@ -12,7 +12,6 @@
 
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'

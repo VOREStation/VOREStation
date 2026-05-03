@@ -177,7 +177,7 @@
 		user.client.screen |= pilot_hud
 		user.client.images |= raw_images
 
-/obj/item/clothing/head/pilot/dropped(mob/user)
+/obj/item/clothing/head/pilot/dropped(mob/user, equipping, slot)
 	. = ..()
 	if(user.client)
 		user.client.screen -= pilot_hud

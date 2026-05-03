@@ -46,7 +46,6 @@
 	throw_range = 5
 	force = 5
 	preserve_item = 1
-	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 	drop_sound = 'sound/items/drop/gun.ogg'
@@ -275,15 +274,17 @@
 	Fire(A,user,params) //Otherwise, fire normally.
 */
 
-/obj/item/gun/attack(atom/A, mob/living/user, def_zone)
+/obj/item/gun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
+		return ITEM_INTERACT_SUCCESS
 	else if(user.a_intent == I_HURT) //point blank shooting
 		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
 			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
-			return
+			return ITEM_INTERACT_SUCCESS
 		else
 			Fire(A, user, pointblank=1)
+			return ITEM_INTERACT_SUCCESS
 	else
 		return ..() //Pistolwhippin'
 
@@ -819,7 +820,7 @@
 
 	return ..()
 
-/obj/item/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
+/obj/item/gun/dropped(mob/user, equipping, slot) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
 	user.hud_used.remove_ammo_hud(user, src)
 
 	..()

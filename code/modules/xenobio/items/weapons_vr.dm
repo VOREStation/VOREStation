@@ -71,7 +71,6 @@
 	desc = "Based on the technology of the 'Bluespace Harpoon' this device can teleport a loaded cube to a given target and rehydrate it."
 	loadable_item = /obj/item/reagent_containers/food/snacks/monkeycube
 	loadable_name = "Monkey Cube"
-	origin_tech = list(TECH_BLUESPACE = 5, TECH_BIO = 6)
 	//projectile_type = /obj/item/projectile/beam/xenobio/monkey
 
 /obj/item/xenobio/monkey_gun/afterattack(atom/A, mob/user as mob)
@@ -151,13 +150,13 @@
 		return TRUE
 	return FALSE
 
-/obj/item/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/slime_grinder/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(processing)
-		return
+		return ITEM_INTERACT_FAILURE
 	if(!can_insert(M))
 		to_chat(user, span_warning("\The [src] cannot process \the [M] at this time."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	extract(M, user)
 	return ..()

@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Clicking an inventory slot with an item now acts as if you were clicking the item in the slot."
-  - bugfix: "Ctrl-clicking doors no longer tries to pull them."

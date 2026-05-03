@@ -3,7 +3,6 @@
 	desc = "An exosuit-mounted Rapid Construction Device. (Can be attached to: Any exosuit)"
 	mech_flags = EXOSUIT_MODULE_WORKING|EXOSUIT_MODULE_COMBAT|EXOSUIT_MODULE_MEDICAL
 	icon_state = "mecha_rcd"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4)
 	equip_cooldown = 10
 	energy_drain = 250
 	range = MECH_MELEE|RANGED
