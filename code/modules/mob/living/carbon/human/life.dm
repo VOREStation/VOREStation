@@ -1251,6 +1251,8 @@
 			set_stat(UNCONSCIOUS)
 			blinded = TRUE
 			in_crit = TRUE
+			if(!HAS_TRAIT(src, TRAIT_CRITICAL_CONDITION))
+				ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
 
 		if(hallucination)
 			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
@@ -1332,6 +1334,8 @@
 		else if(!in_crit)
 			set_stat(CONSCIOUS)
 			clear_alert("asleep")
+			if(HAS_TRAIT(src, TRAIT_CRITICAL_CONDITION))
+				REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
 
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
