@@ -1,0 +1,10 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Fixes a bug with accessories searching for nearby users."
+  - bugfix: "Fixes a bug where partslathe had every part."
+  - bugfix: "Fixes a bug where windows would delete the shield gen containment field"
+  - bugfix: "Attempting to drop non-item entities (unintended) into disposal will no longer runtime."
+  - bugfix: "Fixes a borg runtime"
+  - bugfix: "Horsemask now properly makes you neigh. Also adds an easter egg...This mask isn't ever used, so..."
+  - bugfix: "Fixes some doafters"
