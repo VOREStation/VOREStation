@@ -38,6 +38,7 @@
 		connect_to_network()
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/rotatable)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")

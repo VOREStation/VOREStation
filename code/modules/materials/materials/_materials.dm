@@ -321,6 +321,7 @@ GLOBAL_LIST_INIT(name_to_material, populate_material_list())
 /datum/material/placeholder
 	name = "placeholder"
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = 0
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
 /datum/material/proc/place_dismantled_girder(var/turf/target, var/datum/material/reinf_material, var/datum/material/girder_material)

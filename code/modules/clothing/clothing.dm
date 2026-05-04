@@ -69,6 +69,10 @@
 	for(var/trait in clothing_traits)
 		REMOVE_CLOTHING_TRAIT(user, trait)
 
+/obj/item/clothing/click_alt(mob/user)
+	if(Adjacent(user) || user == src.loc)
+		removetie_proc(user)
+
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(mob/M, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot)
 

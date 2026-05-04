@@ -150,6 +150,7 @@ export const VoreContentsPanel = (props: {
                   <Stack.Item color="label">Destination:</Stack.Item>
                   <Stack.Item>
                     <Dropdown
+                      searchInput
                       onSelected={(value) => onTargetBely(value)}
                       options={bellyDropdownNames!}
                       selected={bellyValueToName(targetBelly)}

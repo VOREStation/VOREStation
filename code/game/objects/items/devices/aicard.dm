@@ -13,12 +13,14 @@
 
 	var/mob/living/silicon/ai/carded_ai
 
-/obj/item/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
-	if (!istype (M, /mob/living/silicon/decoy))
+/obj/item/aicard/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/silicon/decoy))
 		return ..()
 	else
-		M.death()
+		var/mob/living/silicon/decoy/decoy = M
+		decoy.death()
 		to_chat(user, span_infoplain(span_bold("ERROR ERROR ERROR")))
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/aicard/attack_self(mob/user)
 	. = ..(user)

@@ -379,6 +379,9 @@
 	return ..()
 
 /mob/living/silicon/robot/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+	if(module_active && istype(module_active,/obj/item/gripper))
+		var/obj/item/gripper/robot_gripper = module_active
+		robot_gripper.drop_item_nm(target)
 	return FALSE //Dropping things from robots break everything.
 
 // CONTINUE CODING HERE
@@ -1550,6 +1553,8 @@
 
 // We check for the module only here
 /mob/living/silicon/robot/proc/has_upgrade_module(var/given_type)
+	if(!module) //If we don't have a module, don't even bother.
+		return null
 	var/obj/T = locate(given_type) in module
 	if(!T)
 		T = locate(given_type) in module.contents

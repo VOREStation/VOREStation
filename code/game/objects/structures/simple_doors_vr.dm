@@ -14,6 +14,7 @@
 	sheet_singular_name = "quanta"
 	sheet_plural_name = "quanta"
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = 3
 
 /obj/structure/simple_door/flock
 	name = "aperture"

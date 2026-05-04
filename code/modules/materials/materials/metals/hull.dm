@@ -9,6 +9,7 @@
 	icon_colour = "#666677"
 	flags = MATERIAL_UNMELTABLE | MATERIAL_NO_SYNTH
 	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT)
+	supply_conversion_value = 0.25
 
 /datum/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
 	new /obj/item/stack/material/steel(target)

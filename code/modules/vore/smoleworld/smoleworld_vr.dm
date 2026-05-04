@@ -73,6 +73,7 @@
 	destruction_desc = "smashed"
 	sheet_singular_name = "bag"
 	sheet_plural_name = "bags"
+	supply_conversion_value = 1 // The value of smollbricks are only going up! Buy now! Fill your house! THE PLASTIC BRICKS ARE WORTH YOUR CHILD'S COLLEGE MONEY!
 
 //the actual materials
 

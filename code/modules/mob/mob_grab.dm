@@ -51,7 +51,7 @@
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"
 	hud.name = "reinforce grab"
-	hud.master = src
+	hud.master_ref = WEAKREF(src)
 
 	//check if assailant is grabbed by victim as well
 	if(assailant.grabbed_by)
@@ -299,13 +299,13 @@
 
 	return 1
 
-/obj/item/grab/attack(mob/M, mob/living/user)
+/obj/item/grab/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(QDELETED(src))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(!affecting)
-		return
+		return ITEM_INTERACT_FAILURE
 	if(world.time < (last_action + 20))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	last_action = world.time
 	reset_kill_state() //using special grab moves will interrupt choking them
@@ -321,7 +321,6 @@
 					if(force_down)
 						to_chat(assailant, span_warning("You are no longer pinning [affecting] to the ground."))
 						force_down = 0
-						return
 					if(state >= GRAB_AGGRESSIVE)
 						H.apply_pressure(assailant, hit_zone)
 					else
@@ -340,6 +339,8 @@
 
 				if(I_DISARM)
 					pin_down(affecting, assailant)
+			return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)

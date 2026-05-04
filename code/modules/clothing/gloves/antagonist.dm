@@ -28,7 +28,7 @@
 		to_chat(target, span_warning("[user] rifles in your pockets!"))
 
 	if(user.a_intent == I_HELP)
-		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target))
+		if(istype(target.back,/obj/item/storage) && do_after(user, 3 SECONDS, target, progress = FALSE))
 			var/obj/item/storage/Backpack = target.back
 			Backpack.open(user)
 		else if(istype(target.belt, /obj/item/storage) && do_after(user, 5 SECONDS, target))
@@ -85,6 +85,6 @@
 		return 1
 
 /obj/item/clothing/gloves/sterile/thieves/Touch(var/atom/A, var/proximity)
-	if(proximity && ishuman(usr) && do_after(usr, 1 SECOND, target = A))
+	if(proximity && ishuman(usr) && ishuman(A) && do_after(usr, 1 SECOND, target = A))
 		return pickpocket(usr, A, proximity)
 	return 0

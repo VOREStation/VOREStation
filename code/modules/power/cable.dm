@@ -542,7 +542,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 ///////////////////////////////////
 
 //you can use wires to heal robotics
-/obj/item/stack/cable_coil/attack(var/atom/A, var/mob/living/user, var/def_zone)
+/obj/item/stack/cable_coil/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if(ishuman(A) && user.a_intent == I_HELP)
 		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
@@ -558,16 +558,18 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-				return 1
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-				return 1
+				return ITEM_INTERACT_FAILURE
 
 		var/use_amt = min(src.amount, CEILING(S.burn_dam/5, 1), 5)
 		if(can_use(use_amt))
 			if(S.robo_repair(5*use_amt, BURN, "some damaged wiring", src, user))
 				src.use(use_amt)
+				return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
 
 	else
 		return ..()

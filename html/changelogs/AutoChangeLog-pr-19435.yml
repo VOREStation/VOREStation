@@ -1,0 +1,6 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Cargo can now order most materials at a markup and only in full stacks"
+  - balance: "Many material stacks have had their sell prices changed"
+  - bugfix: "Attempting to sell non-material stacks on the supply shuttle no longer runtime"

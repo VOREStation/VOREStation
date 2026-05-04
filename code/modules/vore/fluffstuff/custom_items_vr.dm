@@ -226,9 +226,9 @@
 	if(isliving(user))
 		user.visible_message(span_warning("[user] flashes their golden security badge.\nIt reads:NT Security."),span_warning("You display the faded badge.\nIt reads: NT Security."))
 
-/obj/item/card/id/centcom/station/fluff/joanbadge/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
-		user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+/obj/item/card/id/centcom/station/fluff/joanbadge/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+	return ITEM_INTERACT_SUCCESS
 
 //JoanRisu:Joan Risu
 /obj/item/pda/heads/hos/joanpda
@@ -297,10 +297,9 @@
 	if(isliving(user))
 		user.visible_message(span_warning("[user] waves their Banner around!"),span_warning("You wave your Banner around."))
 
-/obj/item/flag/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
-		user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
-
+/obj/item/flag/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	user.visible_message(span_warning("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_warning("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/flag/federation
 	name = "Federation Banner"
@@ -866,11 +865,11 @@
 	//slot_flags = SLOT_TIE | SLOT_BELT
 	fluff_badge = TRUE
 
-/obj/item/clothing/accessory/badge/holo/detective/ruda/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
-		user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff."),span_danger("You invade [M]'s personal space, thrusting [src] into their face with an insistent huff."))
-		user.do_attack_animation(M)
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+/obj/item/clothing/accessory/badge/holo/detective/ruda/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face with an insistent huff."),span_danger("You invade [M]'s personal space, thrusting [src] into their face with an insistent huff."))
+	user.do_attack_animation(M)
+	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/accessory/badge/holo/detective/ruda/attack_self(mob/user)
 	. = ..(user)
@@ -908,29 +907,33 @@
 	name = "Lesser Form Injector"
 	desc = "Turn the user into their lesser, more primal form."
 
-/obj/item/fluff/injector/monkey/attack(mob/living/M, mob/living/user)
+/obj/item/fluff/injector/monkey/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(user == M) //Is the person using it on theirself?
 		if(ishuman(M)) //If so, monkify them.
 			var/mob/living/carbon/human/H = user
 			H.monkeyize()
 			qdel(src) //One time use.
+			return ITEM_INTERACT_SUCCESS
 	else //If not, do nothing.
 		to_chat(user, span_warning("You are unable to inject other people."))
+		return ITEM_INTERACT_FAILURE
 
 /obj/item/fluff/injector/numb_bite
 	name = "Numbing Venom Injector"
 	desc = "Injects the user with a high dose of some type of chemical, causing any chemical glands they have to kick into overdrive and create the production of a numbing enzyme that is injected via bites.."
 
-/obj/item/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user)
+/obj/item/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(user == M) //Is the person using it on theirself?
 		if(ishuman(M)) //Give them numbing bites.
 			var/mob/living/carbon/human/H = user
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
 			qdel(src) //One time use.
+			return ITEM_INTERACT_SUCCESS
 	else //If not, do nothing.
 		to_chat(user, span_warning("You are unable to inject other people."))
+		return ITEM_INTERACT_FAILURE
 
 //For 2 handed fluff weapons.
 /obj/item/material/twohanded/fluff //Twohanded fluff items.

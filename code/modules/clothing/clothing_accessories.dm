@@ -120,10 +120,14 @@
 	set category = "Object"
 	set src in usr
 
-	if(!isliving(usr))
+	removetie_proc(usr)
+
+/obj/item/clothing/proc/removetie_proc(mob/living/user)
+
+	if(!isliving(user))
 		return
 
-	if(usr.stat)
+	if(user.stat)
 		return
 
 	var/obj/item/clothing/accessory/A
@@ -132,13 +136,13 @@
 		if(accessory_amount == 1)
 			A = accessories[1] // If there's only one accessory, just remove it without any additional prompts.
 		else
-			A = tgui_input_list(usr, "Select an accessory to remove from \the [src]", "Accessory Choice", accessories)
+			A = tgui_input_list(user, "Select an accessory to remove from \the [src]", "Accessory Choice", accessories)
 
 	if(A)
 		if(A.can_remove)
-			remove_accessory(usr,A)
+			remove_accessory(user,A)
 		else
-			to_chat(usr, span_warning("It doesn't look like \the [A] can be taken off \the [src]."))
+			to_chat(user, span_warning("It doesn't look like \the [A] can be taken off \the [src]."))
 
 
 	if(!LAZYLEN(accessories))
