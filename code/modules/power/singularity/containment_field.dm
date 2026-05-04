@@ -58,7 +58,8 @@
 		if(istype(A,/obj/machinery/containment_field) || istype(A,/obj/effect) || istype(A,/obj/singularity))
 			return
 		else
-			Destroy()
+			qdel(A)
+			//Destroy()
 
 /obj/machinery/containment_field/HasProximity(turf/T, datum/weakref/WF, old_loc)
 	if(isnull(WF))

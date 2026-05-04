@@ -73,6 +73,7 @@
 	fields = list()
 	connected_gens = list()
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/machinery/field_generator/process()
 	if(Varedit_start == 1)

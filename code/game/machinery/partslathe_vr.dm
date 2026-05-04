@@ -344,10 +344,10 @@
 /obj/machinery/partslathe/proc/update_recipe_list()
 	if(!partslathe_recipies)
 		partslathe_recipies = list()
-		var/list/paths = subtypesof(/obj/item/stock_parts)
+		var/list/paths = subtypesof(/obj/item/stock_parts) - typesof(/obj/item/stock_parts/subspace)
 		for(var/type in paths)
 			var/obj/item/stock_parts/I = new type()
-			if(!I.matter)
+			if(!I.matter || I.rating > 1)
 				qdel(I)
 				continue // Ignore parts we can't build
 

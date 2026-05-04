@@ -154,9 +154,11 @@
 
 	else if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
-		if(M.voicechange)
+		if(M.voicechange) //only horsemasks do this.
 			message_data[1] = pick(M.say_messages)
 			message_data[2] = pick(M.say_verbs)
+			if(istype(M, /obj/item/clothing/mask/horsehead) && prob(0.5))
+				message_data[2] = "HIIII EVERYPONY"
 			. = 1
 
 	else if((CE_SPEEDBOOST in chem_effects) || (get_jittery() >= 100 && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
