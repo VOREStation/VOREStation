@@ -80,9 +80,12 @@
 
 
 // Money
+/datum/element/sellable/spacecash
+	sale_info = "This can be sold on the cargo shuttle if packed in a crate. Due to taxes, this is worth less than its face value when sold to the cargo shuttle."
+
 /datum/element/sellable/spacecash/calculate_sell_value(obj/source)
 	var/obj/item/spacecash/cashmoney = source
-	return cashmoney.worth * SSsupply.points_per_money
+	return FLOOR((cashmoney.worth / SSsupply.money_per_points),1)
 
 /datum/element/sellable/spacecash/calculate_sell_quantity(obj/source)
 	var/obj/item/spacecash/cashmoney = source
@@ -232,21 +235,33 @@
 	QDEL_IN(faketank,5)
 
 	// Highest pressure must be in tank 1!
-	var/obj/item/tank/tone = TTV.tank_one
-	var/obj/item/tank/ttwo = TTV.tank_two
-	if(tone.air_contents.return_pressure() < ttwo.air_contents.return_pressure())
-		tone = TTV.tank_two
-		ttwo = TTV.tank_one
-	faketank.volume = tone.air_contents.volume + ttwo.air_contents.volume
-	faketank.copy_from(tone.air_contents)
-	var/faketank_integrity = tone.integrity
+	var/obj/item/tank/tank1 = TTV.tank_one
+	var/obj/item/tank/tank2 = TTV.tank_two
+	faketank.volume = tank1.air_contents.volume + tank2.air_contents.volume
+	faketank.copy_from(tank1.air_contents)
+	var/faketank_integrity = tank1.integrity
+	faketank.merge(tank2.air_contents)
 
 	// Perform the explosion
-	faketank.merge(ttwo.air_contents)
+	faketank.merge(tank2.air_contents)
 	faketank.react()
 	var/pressure = faketank.return_pressure()
 	if(pressure <= TANK_FRAGMENT_PRESSURE)
 		return 0
+	var/intervals = 0
+	//Very dumbed down version. Close enough for our purposes.
+	while(faketank_integrity >= 7)
+		if(intervals < 0 || intervals >= 13) //13 because we calculate for adminspawn bombs or pre-welded bombs, too, which start at 20 integrity. If it's losing integrity, it's going to rupture eventually!
+			break
+		intervals++
+		faketank.react()
+		pressure = faketank.return_pressure()
+		if(pressure > TANK_FRAGMENT_PRESSURE)
+			faketank_integrity -= 7
+
+		else if(pressure > TANK_RUPTURE_PRESSURE)
+			faketank_integrity -= 5
+
 	if(faketank_integrity > 7)
 		return 0
 
@@ -258,11 +273,11 @@
 	var/strength = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
 	var/mult = ((faketank.volume/140)**(1/2)) * (faketank.total_moles**(2/3))/((29*0.64) **(2/3)) //Don't ask me what this is, see tanks.dm
 
-	var/dev = round((mult*strength)*1)
-	var/heavy = round((mult*strength)*0.5)
-	var/light = round((mult*strength)*0.25)
+	var/dev_value = round((mult*strength)*1)
+	var/heavy_value = round((mult*strength)*0.5)
+	var/light_value = round((mult*strength)*0.25)
 
-	return FLOOR(dev + heavy + light,1)
+	return FLOOR(dev_value + heavy_value + light_value,1)
 
 /datum/element/sellable/transfer_valve/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
 	. = ..()
