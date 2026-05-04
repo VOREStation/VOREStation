@@ -303,3 +303,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/cargo_scanner
+	name = "cargo scanner"
+	desc = "A device for scanning items for cargo value."
+	id = "cargo_scanner"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 200)
+	build_path = /obj/item/cargo_scanner
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
