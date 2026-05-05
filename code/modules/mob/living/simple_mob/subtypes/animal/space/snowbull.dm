@@ -18,14 +18,6 @@
 	var/static/charge_speed = 2
 	minbodytemp = 0
 	maxbodytemp = 1000
-	min_oxy = 0				// Oxygen in moles, minimum, 0 is 'no minimum'
-	max_oxy = 0					// Oxygen in moles, maximum, 0 is 'no maximum'
-	min_tox = 0					// Phoron min
-	max_tox = 0					// Phoron max
-	min_co2 = 0					// CO2 min
-	max_co2 = 0					// CO2 max
-	min_n2 = 0					// N2 min
-	max_n2 = 0					// N2 max
 	attack_sharp = 1
 	melee_damage_lower = 15
 	melee_damage_upper = 20
