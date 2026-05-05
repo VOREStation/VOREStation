@@ -721,7 +721,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
 	return TRUE
 
-/obj/machinery/light/proc/flicker(amount = rand(10, 20), var/flicker_color)
+/obj/machinery/light/proc/flicker(amount = rand(10, 20), flicker_color)
 	if(flickering) return
 	if(on && status == LIGHT_OK)
 		flickering = 1

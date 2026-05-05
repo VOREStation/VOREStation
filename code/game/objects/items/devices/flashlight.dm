@@ -252,7 +252,7 @@
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
 
-/obj/item/flashlight/proc/flicker(amount = rand(10, 20), var/flicker_color, var/forced)
+/obj/item/flashlight/proc/flicker(amount = rand(10, 20), flicker_color, forced)
 	if(flickering)
 		return
 	if(!flicker_color)
@@ -276,7 +276,7 @@
 /// original_on is if we were originally on or not.
 /// OL is our overlay for lighting.
 /// ticker is how many times we have flickered so far.
-/obj/item/flashlight/proc/do_flicker(amount = rand(10, 20), var/flicker_color, var/original_color, var/original_on, var/datum/component/overlay_lighting/OL, var/ticker)
+/obj/item/flashlight/proc/do_flicker(amount = rand(10, 20), flicker_color, original_color, original_on, datum/component/overlay_lighting/OL, ticker)
 	if(ticker >= amount) //We have flickered enough times. Terminate the cycle.
 		finish_flicker(original_color, original_on, OL)
 		return

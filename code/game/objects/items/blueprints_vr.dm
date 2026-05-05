@@ -671,7 +671,7 @@
 		ChangeArea(T, A)
 
 
-/obj/item/areaeditor/proc/detect_room_ex(turf/first, allowedAreas = AREA_SPACE, list/forbiddenAreas = list(), var/visual)
+/obj/item/areaeditor/proc/detect_room_ex(turf/first, allowedAreas = AREA_SPACE, list/forbiddenAreas = list(), visual)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
 	if(!visual && forbiddenAreas[first.loc.type] || forbiddenAreas[first.type]) //Is the area of the starting turf a banned area? Is the turf a banned area?

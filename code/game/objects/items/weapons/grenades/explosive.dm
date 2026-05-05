@@ -41,7 +41,7 @@
 
 
 
-/obj/proc/fragmentate(turf/T=get_turf(src), var/fragment_number = 30, var/spreading_range = 5, var/list/fragtypes=list(/obj/item/projectile/bullet/pellet/fragment/))
+/obj/proc/fragmentate(turf/T=get_turf(src), fragment_number = 30, spreading_range = 5, list/fragtypes=list(/obj/item/projectile/bullet/pellet/fragment/))
 	set waitfor = 0
 	var/list/target_turfs = getcircle(T, spreading_range)
 	var/fragments_per_projectile = round(fragment_number/target_turfs.len)

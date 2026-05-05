@@ -174,7 +174,7 @@
 	dna.ResetUIFrom(src) // Do not call ready_dna here: it resets ALL SE blocks, wiping trait gene state
 	sync_organ_dna()
 
-/mob/living/carbon/human/proc/generate_valid_species(check_whitelist = 1, list/whitelist = list(), var/list/blacklist = list())
+/mob/living/carbon/human/proc/generate_valid_species(check_whitelist = 1, list/whitelist = list(), list/blacklist = list())
 	var/list/valid_species = new()
 	for(var/current_species_name in GLOB.all_species)
 		var/datum/species/current_species = GLOB.all_species[current_species_name]
