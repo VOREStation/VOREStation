@@ -34,7 +34,7 @@
 	var/list/hit_mobs = list() 	//Mobs which were already hit.
 	var/power = 35				//How hard it will hit for with electrocute_act(), decreases with each bounce.
 
-/obj/item/projectile/beam/chain_lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
+/obj/item/projectile/beam/chain_lightning/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
 	//First we shock the guy we just hit.
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob

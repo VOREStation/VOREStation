@@ -157,7 +157,7 @@
 // Proc: add_to_EPv2()
 // Parameters: 1 (hex - a single hexadecimal character)
 // Description: Called when someone is manually dialing with nanoUI.  Adds colons when appropiate.
-/obj/item/communicator/proc/add_to_EPv2(var/hex)
+/obj/item/communicator/proc/add_to_EPv2(hex)
 	var/length = length(target_address)
 	if(length >= 24)
 		return

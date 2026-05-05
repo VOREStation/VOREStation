@@ -11,7 +11,7 @@
 	slipping_dir = owner.dir
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 
-/datum/component/turfslip/proc/start_slip(var/turf/simulated/start, var/is_dirt)
+/datum/component/turfslip/proc/start_slip(turf/simulated/start, is_dirt)
 	var/slip_stun = 6
 	var/floor_type = "wet"
 	var/already_slipping = (slip_dist > 1)

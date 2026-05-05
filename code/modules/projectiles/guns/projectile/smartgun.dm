@@ -48,13 +48,13 @@
 		return null
 	return ..()
 
-/obj/item/gun/projectile/smartgun/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/smartgun/load_ammo(obj/item/A, mob/user)
 	if(closed)
 		to_chat(user, span_warning("[src] can't be loaded until you un-ready it. (Alt-click)"))
 		return
 	return ..()
 
-/obj/item/gun/projectile/smartgun/unload_ammo(mob/user, var/allow_dump=0)
+/obj/item/gun/projectile/smartgun/unload_ammo(mob/user, allow_dump=0)
 	if(closed)
 		to_chat(user, span_warning("[src] can't be unloaded until you un-ready it. (Alt-click)"))
 		return

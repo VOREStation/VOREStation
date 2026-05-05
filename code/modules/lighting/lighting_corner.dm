@@ -102,7 +102,7 @@
 		light_source.recalc_corner(src)
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b, var/from_sholder = FALSE)
+/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b, from_sholder = FALSE)
 	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
@@ -200,7 +200,7 @@
 
 	return ..()
 
-/datum/lighting_corner/proc/update_sun(var/datum/planet_sunlight_handler/pshandler)
+/datum/lighting_corner/proc/update_sun(datum/planet_sunlight_handler/pshandler)
 	if(!pshandler)
 		return
 	if(sunlight == SUNLIGHT_ONLY)

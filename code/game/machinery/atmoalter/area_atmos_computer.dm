@@ -18,10 +18,10 @@
 	. = ..()
 	scanscrubbers()
 
-/obj/machinery/computer/area_atmos/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/area_atmos/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_hand(mob/user as mob)
 	if(..(user))
 		return
 	tgui_interact(user)
@@ -125,7 +125,7 @@
 /obj/machinery/computer/area_atmos/area/scanscrubbers_user(mob/user) //Used when the user is in the UI and scans for scrubbers.
 	scanscrubbers()
 
-/obj/machinery/computer/area_atmos/area/validscrubber(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
+/obj/machinery/computer/area_atmos/area/validscrubber(obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!istype(scrubber))
 		return FALSE
 

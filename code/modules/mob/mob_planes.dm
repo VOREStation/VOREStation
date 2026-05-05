@@ -57,7 +57,7 @@
 	QDEL_LIST_NULL(plane_masters) //Goodbye my children, be free
 	return ..()
 
-/datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)
+/datum/plane_holder/proc/set_vis(which = null, state = FALSE)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -73,21 +73,21 @@
 	else if(!state && (plane in my_mob.planes_visible))
 		LAZYREMOVE(my_mob.planes_visible, plane)
 
-/datum/plane_holder/proc/set_desired_alpha(var/which = null, var/new_alpha)
+/datum/plane_holder/proc/set_desired_alpha(which = null, new_alpha)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.set_desired_alpha(new_alpha)
 
-/datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
+/datum/plane_holder/proc/set_ao(which = null, enabled = FALSE)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		stack_trace("Tried to set_ao [which] in plane_holder on [my_mob]!")
 	PM.set_ambient_occlusion(enabled)
 
-/datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
+/datum/plane_holder/proc/alter_values(which = null, list/values = null)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -110,13 +110,13 @@
 	var/desired_alpha = 255	//What we go to when we're enabled
 	var/invis_toggle = FALSE
 
-/atom/movable/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
+/atom/movable/screen/plane_master/proc/set_desired_alpha(new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
 		desired_alpha = new_alpha
 		if(alpha) //If we're already visible, update it now.
 			alpha = new_alpha
 
-/atom/movable/screen/plane_master/proc/set_visibility(var/want = FALSE)
+/atom/movable/screen/plane_master/proc/set_visibility(want = FALSE)
 	//Invisibility-managed
 	if(invis_toggle)
 		if(want && invisibility)
@@ -132,12 +132,12 @@
 			alpha = 0
 			mouse_opacity = 0
 
-/atom/movable/screen/plane_master/proc/set_alpha(var/new_alpha = 255)
+/atom/movable/screen/plane_master/proc/set_alpha(new_alpha = 255)
 	if(new_alpha != alpha)
 		new_alpha = sanitize_integer(new_alpha, 0, 255, 255)
 		alpha = new_alpha
 
-/atom/movable/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
+/atom/movable/screen/plane_master/proc/set_ambient_occlusion(enabled = FALSE)
 	filters -= AMBIENT_OCCLUSION
 	if(enabled)
 		filters += AMBIENT_OCCLUSION

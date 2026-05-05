@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 		if(SSair)
 			SSair.mark_for_update(src)
 
-/turf/simulated/mineral/proc/get_cached_border(var/cache_id, var/direction, var/icon_file, var/icon_state, var/offset = 32)
+/turf/simulated/mineral/proc/get_cached_border(cache_id, direction, icon_file, icon_state, offset = 32)
 	//Cache miss
 	if(!GLOB.mining_overlay_cache["[cache_id]_[direction]"])
 		var/image/new_cached_image = image(icon_state, dir = direction, layer = ABOVE_TURF_LAYER)
@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	if(density && mineral)
 		MineralSpread()
 
-/turf/simulated/mineral/update_icon(var/update_neighbors, ignore_list)
+/turf/simulated/mineral/update_icon(update_neighbors, ignore_list)
 	cut_overlays()
 
 	//We are a wall (why does this system work like this??)
@@ -303,7 +303,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 					new oretype(src)
 				resources[ore] = 0
 
-/turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj) // only emitters for now
+/turf/simulated/mineral/bullet_act(obj/item/projectile/Proj) // only emitters for now
 	if(Proj.excavation_amount)
 		var/newDepth = excavation_level + Proj.excavation_amount // Used commonly below
 		if(newDepth >= 200) // first, if the turf is completely drilled then don't bother checking for finds and just drill it
@@ -548,7 +548,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	return attack_hand(user)
 
 //THIS IS THE 'YOU HIT AN ARTIFACT AND ARE GOING TOO DEEP' PROC. This is NOT the 'you destroyed the turf' proc. For that, look at 'GetDrilled'
-/turf/simulated/mineral/proc/wreckfinds(var/destroy = FALSE)
+/turf/simulated/mineral/proc/wreckfinds(destroy = FALSE)
 	if(!destroy) //nondestructive methods have a chance of letting you step away to not trash things
 		if(prob(10))	//This is to keep  you from just running into an artifact turf over and over and over and over while also keeping a small % chance to cause a small rock to drop if you truly accidentally went too deep.
 						//Technically you CAN KEEP RUNNING INTO THE TILE but like, you're wasting so much time at that point. Just buy a pick set from the mining vendor.
@@ -557,7 +557,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 		finds.Remove(finds[1])
 		artifact_debris()
 
-/turf/simulated/mineral/proc/update_archeo_overlays(var/excavation_amount = 0)
+/turf/simulated/mineral/proc/update_archeo_overlays(excavation_amount = 0)
 	var/updateIcon = 0
 
 	//archaeo overlays
@@ -625,7 +625,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 		GetDrilled(1)
 	return
 
-/turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
+/turf/simulated/mineral/proc/GetDrilled(artifact_fail = 0)
 
 	if(!density)
 		if(!sand_dug)
@@ -669,7 +669,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 	make_floor()
 	update_icon(1)
 
-/turf/simulated/mineral/proc/excavate_find(var/is_clean = 0, var/datum/find/F)
+/turf/simulated/mineral/proc/excavate_find(is_clean = 0, datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
 	geologic_data = new /datum/geosample(src)
@@ -700,7 +700,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 
 	finds.Remove(F)
 
-/turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
+/turf/simulated/mineral/proc/artifact_debris(severity = 0)
 	//cael's patented random limited drop componentized loot system!
 	//sky's patented non-mischievious overhaul!
 
@@ -724,7 +724,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 			if(7)
 				new /obj/item/stack/material/uranium(src, rand(5,25))
 
-/turf/simulated/mineral/proc/make_ore(var/rare_ore)
+/turf/simulated/mineral/proc/make_ore(rare_ore)
 	if(mineral || ignore_mapgen || ignore_oregen)
 		return
 

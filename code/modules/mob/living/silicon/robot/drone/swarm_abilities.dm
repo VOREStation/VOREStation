@@ -14,7 +14,7 @@
 
 	hud_state = "swarm_replicate"
 
-/datum/spell/aoe_turf/conjure/swarmer/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+/datum/spell/aoe_turf/conjure/swarmer/conjure_animation(atom/movable/overlay/animation, turf/target)
 	animation.icon_state = "deflect_static"
 	flick("shield2",animation)
 	spawn(1 SECOND)

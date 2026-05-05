@@ -1,4 +1,4 @@
-/datum/persistent/storage/smartfridge/get_storage_list(var/obj/machinery/smartfridge/entry)
+/datum/persistent/storage/smartfridge/get_storage_list(obj/machinery/smartfridge/entry)
 	if(!istype(entry))
 		return ..()
 
@@ -6,7 +6,7 @@
 	for(var/datum/stored_item/I in entry.item_records)
 		.[I.item_path] = I.get_amount()
 
-/datum/persistent/storage/smartfridge/CreateEntryInstance(var/turf/creating, var/list/token)
+/datum/persistent/storage/smartfridge/CreateEntryInstance(turf/creating, list/token)
 	var/obj/machinery/smartfridge/S = find_specific_instance(creating)
 	var/list/L = generate_items(token["items"])
 	for(var/atom/A in L)
@@ -51,7 +51,7 @@
 		"default" = 10
 	)
 
-/datum/persistent/storage/smartfridge/sheet_storage/generate_items(var/list/L)
+/datum/persistent/storage/smartfridge/sheet_storage/generate_items(list/L)
 	. = list()
 	for(var/obj/item/stack/material/S as anything in L)
 		var/real_path = istext(S) ? text2path(S) : S
@@ -93,7 +93,7 @@
 	name = "fruit storage lossy"
 	go_missing_chance = 10 // 10% loss chance between rounds
 
-/datum/persistent/storage/smartfridge/produce/generate_items(var/list/L)			// Mostly same as storage/generate_items() but without converting string to path
+/datum/persistent/storage/smartfridge/produce/generate_items(list/L)			// Mostly same as storage/generate_items() but without converting string to path
 	. = list()
 	for(var/fruit_type in L)
 		for(var/i in 1 to L[fruit_type])
@@ -103,10 +103,10 @@
 			if(!QDELETED(A))
 				. += A
 
-/datum/persistent/storage/smartfridge/produce/create_item(var/seedtype)
+/datum/persistent/storage/smartfridge/produce/create_item(seedtype)
 	return new /obj/item/reagent_containers/food/snacks/grown(null, seedtype) // Smartfridge will be stock()ed with it, loc is unimportant
 
-/datum/persistent/storage/smartfridge/produce/get_storage_list(var/obj/machinery/smartfridge/produce/entry)
+/datum/persistent/storage/smartfridge/produce/get_storage_list(obj/machinery/smartfridge/produce/entry)
 	if(!istype(entry))
 		return ..()
 

@@ -314,7 +314,7 @@ Bonus
 	level = 5
 	severity = 0
 
-/datum/symptom/heal/dna/Heal(var/mob/living/carbon/M, var/datum/disease/advance/A)
+/datum/symptom/heal/dna/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/amt_healed = max(0, (sqrtor0(20+A.stage_rate*(3+rand())))-(sqrtor0(16+A.stealth*rand())))
 	M.adjustBrainLoss(-amt_healed)
 	M.radiation = max(M.radiation - 3, 0)

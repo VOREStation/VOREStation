@@ -39,7 +39,7 @@
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/static/list/weedImageCache
 
-/obj/effect/alien/weeds/Initialize(mapload, var/node, var/newcolor)
+/obj/effect/alien/weeds/Initialize(mapload, node, newcolor)
 	. = ..()
 	if(isspace(loc) || delete_me)
 		return INITIALIZE_HINT_QDEL
@@ -76,7 +76,7 @@
 	var/node_range = NODERANGE
 	var/set_color = "#321D37"
 
-/obj/effect/alien/weeds/node/Initialize(mapload, var/node, var/newcolor)
+/obj/effect/alien/weeds/node/Initialize(mapload, node, newcolor)
 	. = ..()
 
 	for(var/obj/effect/alien/weeds/existing in loc)
@@ -187,7 +187,7 @@
 				qdel(src)
 	return
 
-/obj/effect/alien/weeds/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/alien/weeds/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 	if(LAZYLEN(W.attack_verb))
 		visible_message(span_danger("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
@@ -206,14 +206,14 @@
 	health -= damage
 	healthcheck()
 
-/obj/effect/alien/weeds/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/effect/alien/weeds/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	user.do_attack_animation(src)
 	health -= damage
 	healthcheck()
 	return
 
-/obj/effect/alien/weeds/take_damage(var/damage)
+/obj/effect/alien/weeds/take_damage(damage)
 	health -= damage
 	healthcheck()
 	return

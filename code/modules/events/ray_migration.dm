@@ -28,7 +28,7 @@
 	if(count_spawned_rays() < ray_cap)
 		spawn_fish(rand(3, 3 + severity * 2) - 1, 1, severity + 2)
 
-/datum/event/ray_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
+/datum/event/ray_migration/proc/spawn_fish(num_groups, group_size_min, group_size_max, dir)
 	if(isnull(dir))
 		dir = (victim && prob(80)) ? victim.fore_dir : pick(GLOB.cardinal)
 
@@ -69,7 +69,7 @@
 		i++
 
 // Spawn a single ray at given location.
-/datum/event/ray_migration/proc/spawn_one_ray(var/loc)
+/datum/event/ray_migration/proc/spawn_one_ray(loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/ray(loc)
 	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_ray_destruction))
 	spawned_ray.Add(M)
@@ -83,7 +83,7 @@
 			. += 1
 
 // If ray is bomphed, remove it from the list.
-/datum/event/ray_migration/proc/on_ray_destruction(var/mob/M)
+/datum/event/ray_migration/proc/on_ray_destruction(mob/M)
 	SIGNAL_HANDLER
 	spawned_ray -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)

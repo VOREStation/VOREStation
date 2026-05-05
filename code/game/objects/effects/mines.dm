@@ -40,7 +40,7 @@
 			old_turf.unregister_dangerous_object(src)
 			new_turf.register_dangerous_object(src)
 
-/obj/effect/mine/proc/explode(var/mob/living/M)
+/obj/effect/mine/proc/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -59,7 +59,7 @@
 	qdel(s)
 	qdel(src)
 
-/obj/effect/mine/proc/trigger_trap(var/mob/living/victim)
+/obj/effect/mine/proc/trigger_trap(mob/living/victim)
 	if(istype(trap, /obj/item/grenade))
 		var/obj/item/grenade/G = trap
 		trap = null
@@ -130,7 +130,7 @@
 /obj/effect/mine/dnascramble
 	mineitemtype = /obj/item/mine/dnascramble
 
-/obj/effect/mine/dnascramble/explode(var/mob/living/M)
+/obj/effect/mine/dnascramble/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -149,7 +149,7 @@
 /obj/effect/mine/stun
 	mineitemtype = /obj/item/mine/stun
 
-/obj/effect/mine/stun/explode(var/mob/living/M)
+/obj/effect/mine/stun/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -165,7 +165,7 @@
 /obj/effect/mine/n2o
 	mineitemtype = /obj/item/mine/n2o
 
-/obj/effect/mine/n2o/explode(var/mob/living/M)
+/obj/effect/mine/n2o/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -179,7 +179,7 @@
 /obj/effect/mine/phoron
 	mineitemtype = /obj/item/mine/phoron
 
-/obj/effect/mine/phoron/explode(var/mob/living/M)
+/obj/effect/mine/phoron/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -194,7 +194,7 @@
 /obj/effect/mine/kick
 	mineitemtype = /obj/item/mine/kick
 
-/obj/effect/mine/kick/explode(var/mob/living/M)
+/obj/effect/mine/kick/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -215,7 +215,7 @@
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
 	var/spread_range = 7
 
-/obj/effect/mine/frag/explode(var/mob/living/M)
+/obj/effect/mine/frag/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -235,7 +235,7 @@
 //	desc = "A mine with its payload removed, for EOD training and demonstrations."
 	mineitemtype = /obj/item/mine/training
 
-/obj/effect/mine/training/explode(var/mob/living/M)
+/obj/effect/mine/training/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -248,7 +248,7 @@
 /obj/effect/mine/emp
 	mineitemtype = /obj/item/mine/emp
 
-/obj/effect/mine/emp/explode(var/mob/living/M)
+/obj/effect/mine/emp/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -266,7 +266,7 @@
 /obj/effect/mine/incendiary
 	mineitemtype = /obj/item/mine/incendiary
 
-/obj/effect/mine/incendiary/explode(var/mob/living/M)
+/obj/effect/mine/incendiary/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -283,7 +283,7 @@
 /obj/effect/mine/stripping
 	mineitemtype = /obj/item/mine/stripping
 
-/obj/effect/mine/stripping/explode(var/mob/living/M)
+/obj/effect/mine/stripping/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	triggered = TRUE
@@ -300,7 +300,7 @@
 /obj/effect/mine/gadget
 	mineitemtype = /obj/item/mine/gadget
 
-/obj/effect/mine/gadget/explode(var/mob/living/M)
+/obj/effect/mine/gadget/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -374,7 +374,7 @@
 
 	..()
 
-/obj/item/mine/proc/prime(mob/user as mob, var/explode_now = FALSE)
+/obj/item/mine/proc/prime(mob/user as mob, explode_now = FALSE)
 	visible_message("\The [src.name] beeps as the priming sequence completes.")
 	var/obj/effect/mine/R = new minetype(get_turf(src))
 	src.transfer_fingerprints_to(R)
@@ -456,7 +456,7 @@
 	var/beam_types = list(/obj/item/projectile/bullet/foam_dart_riot) // you fool, you baffoon, you used these, you absolute ignoramous, why did you not read this!
 	var/spread_range = 3
 
-/obj/effect/mine/lasertag/explode(var/mob/living/M)
+/obj/effect/mine/lasertag/explode(mob/living/M)
 	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
 		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()

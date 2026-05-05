@@ -78,7 +78,7 @@
 		message_admins(msg)
 		log_game(msg)
 
-/obj/machinery/pda_multicaster/proc/update_PDAs(var/turn_off)
+/obj/machinery/pda_multicaster/proc/update_PDAs(turn_off)
 	for(var/obj/item/pda/pda in contents)
 		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger/multicast)
 		if(M)

@@ -53,7 +53,7 @@
 	qdel(src)
 
 //Squish code
-/mob/living/simple_mob/animal/passive/cockroach/Crossed(var/atom/movable/AM)
+/mob/living/simple_mob/animal/passive/cockroach/Crossed(atom/movable/AM)
 	if(ismob(AM))
 		if(isliving(AM))
 			var/mob/living/A = AM

@@ -22,7 +22,7 @@ ADMIN_VERB(check_customitem_activity, R_ADMIN|R_MOD|R_SERVER, "Check activity of
 	popup.set_content(dat)
 	popup.open()
 
-/proc/populate_inactive_customitems_list(var/client/C)
+/proc/populate_inactive_customitems_list(client/C)
 	set background = 1
 
 	if(GLOB.checked_for_inactives)

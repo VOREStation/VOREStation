@@ -19,7 +19,7 @@
 	else
 		layer = BELOW_MOB_LAYER
 
-/obj/structure/dancepole/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/structure/dancepole/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		anchored = !anchored
 		playsound(src, O.usesound, 50, 1)

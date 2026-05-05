@@ -17,14 +17,14 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	var/amount = 0
 	var/list/req_one_access
 
-/datum/gear_disp/proc/allowed(var/mob/living/carbon/human/user)
+/datum/gear_disp/proc/allowed(mob/living/carbon/human/user)
 	if(LAZYLEN(req_one_access))
 		var/accesses = user.GetAccess()
 		return has_access(null, req_one_access, accesses)
 
 	return 1
 
-/datum/gear_disp/proc/spawn_gear(var/turf/T, var/mob/living/carbon/human/user)
+/datum/gear_disp/proc/spawn_gear(turf/T, mob/living/carbon/human/user)
 	var/list/spawned = list()
 	for(var/O in to_spawn)
 		spawned += new O(T)
@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	var/ckey_allowed
 	var/character_allowed
 
-/datum/gear_disp/custom/allowed(var/mob/living/carbon/human/user)
+/datum/gear_disp/custom/allowed(mob/living/carbon/human/user)
 	if(ckey_allowed && user.ckey != ckey_allowed)
 		return 0
 
@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	var/life_support = TRUE // try to spawn a tank or suit cooler
 	var/refit = TRUE // should we adapt this to the user's species
 
-/datum/gear_disp/voidsuit/spawn_gear(var/turf/T, var/mob/living/carbon/human/user)
+/datum/gear_disp/voidsuit/spawn_gear(turf/T, mob/living/carbon/human/user)
 	ASSERT(voidsuit_type)
 	. = ..()
 	if(voidsuit_type && !ispath(voidsuit_type, /obj/item/clothing/suit/space/void))
@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	var/ckey_allowed
 	var/character_allowed
 
-/datum/gear_disp/voidsuit/custom/allowed(var/mob/living/carbon/human/user)
+/datum/gear_disp/voidsuit/custom/allowed(mob/living/carbon/human/user)
 	if(ckey_allowed && user.ckey != ckey_allowed)
 		return 0
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	dispenses = real_gear_list
 
 
-/obj/machinery/gear_dispenser/attack_hand(var/mob/living/carbon/human/user)
+/obj/machinery/gear_dispenser/attack_hand(mob/living/carbon/human/user)
 	if(!can_use(user))
 		return
 	dispenser_flags |= GD_BUSY
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 		dispense(one_setting,user)
 
 
-/obj/machinery/gear_dispenser/proc/can_use(var/mob/living/carbon/human/user)
+/obj/machinery/gear_dispenser/proc/can_use(mob/living/carbon/human/user)
 	var/list/used_by = GLOB.gear_distributed_to["[type]"]
 	if(needs_power && inoperable())
 		to_chat(user,span_warning("The machine does not respond to your prodding."))
@@ -232,7 +232,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 		return 0
 
 
-/obj/machinery/gear_dispenser/proc/get_gear_list(var/mob/living/carbon/human/user)
+/obj/machinery/gear_dispenser/proc/get_gear_list(mob/living/carbon/human/user)
 	if(emagged)
 		return dispenses
 
@@ -243,7 +243,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 			choices[choice] = G
 	return choices
 
-/obj/machinery/gear_dispenser/proc/dispense(var/datum/gear_disp/S,var/mob/living/carbon/human/user,var/greet=TRUE)
+/obj/machinery/gear_dispenser/proc/dispense(datum/gear_disp/S,mob/living/carbon/human/user,greet=TRUE)
 	if(!S.amount && !(dispenser_flags & GD_UNLIMITED))
 		to_chat(user,span_warning("There are no more [S.name]s left!"))
 		dispenser_flags &= ~GD_BUSY
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 		if(operable())
 			add_overlay("light2")
 
-/obj/machinery/gear_dispenser/suit_fancy/attack_hand(var/mob/living/carbon/human/user)
+/obj/machinery/gear_dispenser/suit_fancy/attack_hand(mob/living/carbon/human/user)
 	if(held_gear_disp)
 		var/turf/T = get_turf(user)
 		var/list/spawned = held_gear_disp.spawn_gear(T, user)
@@ -348,7 +348,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 		return
 	return ..()
 
-/obj/machinery/gear_dispenser/suit_fancy/dispense(var/datum/gear_disp/S,var/mob/living/carbon/human/user,var/greet=TRUE)
+/obj/machinery/gear_dispenser/suit_fancy/dispense(datum/gear_disp/S,mob/living/carbon/human/user,greet=TRUE)
 	if(!S.amount && !(dispenser_flags & GD_UNLIMITED))
 		to_chat(user,span_warning("There are no more [S.name]s left!"))
 		dispenser_flags &= ~GD_BUSY
@@ -747,7 +747,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	to_spawn = list()
 	amount = 4
 
-/datum/gear_disp/voidsuit/random/spawn_gear(var/turf/T, var/mob/living/carbon/user)
+/datum/gear_disp/voidsuit/random/spawn_gear(turf/T, mob/living/carbon/user)
 	// I copied these from the /obj/random/multiple/voidsuit, but added the "suit" and "helmet"
 	var/list/choice = pick(
 		prob(5);list(
@@ -848,7 +848,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	name = "Weapon"
 	amount = 2
 
-/datum/gear_disp/randomweapons/spawn_gear(var/turf/T, var/mob/living/carbon/user)
+/datum/gear_disp/randomweapons/spawn_gear(turf/T, mob/living/carbon/user)
 	var/choice = pick(
 					prob(3);/obj/random/multiple/gun/projectile/handgun,
 					prob(2);/obj/random/multiple/gun/projectile/smg,
@@ -925,7 +925,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	name = "Ranged Weapon"
 	amount = 1
 //from /obj/random/projectile/random
-/datum/gear_disp/adventure_box/weapon/spawn_gear(var/turf/T, var/mob/living/carbon/user)
+/datum/gear_disp/adventure_box/weapon/spawn_gear(turf/T, mob/living/carbon/user)
 	var/choice = pick(
 					prob(3);/obj/random/multiple/gun/projectile/handgun,
 					prob(2);/obj/random/multiple/gun/projectile/smg,

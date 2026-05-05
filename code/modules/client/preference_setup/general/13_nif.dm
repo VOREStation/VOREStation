@@ -52,7 +52,7 @@
 	if(!islist(pref.nif_savedata))
 		pref.nif_savedata = list()
 
-/datum/category_item/player_setup_item/general/nif/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/nif/copy_to_mob(mob/living/carbon/human/character)
 	//If you had a NIF...
 	if(istype(character) && ispath(pref.nif_path) && pref.nif_durability && !ismannequin(character))
 		new pref.nif_path(character, pref.nif_durability, pref.nif_savedata)

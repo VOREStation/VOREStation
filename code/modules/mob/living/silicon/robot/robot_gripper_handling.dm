@@ -13,7 +13,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/gripper/proc/update_ref(var/datum/weakref/new_ref)
+/obj/item/gripper/proc/update_ref(datum/weakref/new_ref)
 	var/had_item = get_wrapped_item()
 	WR = new_ref
 	var/holding_item = get_wrapped_item()
@@ -107,7 +107,7 @@
 	if(wrapped)
 		return wrapped.attack_self(user)
 
-/obj/item/gripper/attackby(var/obj/item/O, var/mob/user)
+/obj/item/gripper/attackby(obj/item/O, mob/user)
 	if(is_in_use(user))
 		return FALSE
 
@@ -421,7 +421,7 @@
 	return wrapped
 
 /// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
-/obj/item/gripper/proc/consolidate_stacks(var/obj/item/stack/stack_to_consolidate)
+/obj/item/gripper/proc/consolidate_stacks(obj/item/stack/stack_to_consolidate)
 	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
 		return
 

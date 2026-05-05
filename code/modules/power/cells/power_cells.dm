@@ -239,7 +239,7 @@
 
 	. = ..()
 
-/obj/item/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
+/obj/item/fbp_backup_cell/proc/use(mob/living/user, mob/living/target)
 	if(used)
 		return
 	used = TRUE

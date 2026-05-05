@@ -14,17 +14,17 @@
 	. = ..()
 	. += "It has [uses] use\s left."
 
-/obj/item/kit/proc/use(var/amt, var/mob/user)
+/obj/item/kit/proc/use(amt, mob/user)
 	uses -= amt
 	playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 	if(uses<1)
 		user.drop_item()
 		qdel(src)
 
-/obj/item/kit/proc/can_customize(var/obj/item/I)
+/obj/item/kit/proc/can_customize(obj/item/I)
 	return is_type_in_list(I, allowed_types)
 
-/obj/item/kit/proc/set_info(var/kit_name, var/kit_desc, var/kit_icon, var/kit_icon_file = CUSTOM_ITEM_OBJ, var/kit_icon_override_file = CUSTOM_ITEM_MOB, var/additional_data)
+/obj/item/kit/proc/set_info(kit_name, kit_desc, kit_icon, kit_icon_file = CUSTOM_ITEM_OBJ, kit_icon_override_file = CUSTOM_ITEM_MOB, additional_data)
 	new_name = kit_name
 	new_desc = kit_desc
 	new_icon = kit_icon
@@ -34,7 +34,7 @@
 	for(var/path in splittext(additional_data, ", "))
 		allowed_types |= text2path(path)
 
-/obj/item/kit/proc/customize(var/obj/item/I, var/mob/user)
+/obj/item/kit/proc/customize(obj/item/I, mob/user)
 	if(can_customize(I))
 		I.name = new_name ? new_name : I.name
 		I.desc = new_desc ? new_desc : I.desc
@@ -65,16 +65,16 @@
 	uses = 2
 	var/new_light_overlay
 
-/obj/item/kit/suit/can_customize(var/obj/item/I)
+/obj/item/kit/suit/can_customize(obj/item/I)
 	return istype(I, /obj/item/clothing/head/helmet/space/void) || istype(I, /obj/item/clothing/suit/space/void) || istype(I, /obj/item/clothing/suit/storage/hooded)
 
-/obj/item/kit/suit/set_info(var/kit_name, var/kit_desc, var/kit_icon, var/kit_icon_file = CUSTOM_ITEM_OBJ, var/kit_icon_override_file = CUSTOM_ITEM_MOB, var/additional_data)
+/obj/item/kit/suit/set_info(kit_name, kit_desc, kit_icon, kit_icon_file = CUSTOM_ITEM_OBJ, kit_icon_override_file = CUSTOM_ITEM_MOB, additional_data)
 	..()
 
 	new_light_overlay = additional_data
 
 
-/obj/item/kit/suit/customize(var/obj/item/I, var/mob/user)
+/obj/item/kit/suit/customize(obj/item/I, mob/user)
 	if(can_customize(I))
 		if(istype(I, /obj/item/clothing/head/helmet/space/void))
 			var/obj/item/clothing/head/helmet/space/void/helmet = I
@@ -126,21 +126,21 @@
 				suit.species_restricted = list(H.species.get_bodytype(H))
 		use(1,user)
 
-/obj/item/clothing/head/helmet/space/void/attackby(var/obj/item/O, var/mob/user)
+/obj/item/clothing/head/helmet/space/void/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/kit/suit))
 		var/obj/item/kit/suit/kit = O
 		kit.customize(src, user)
 		return
 	return ..()
 
-/obj/item/clothing/suit/space/void/attackby(var/obj/item/O, var/mob/user)
+/obj/item/clothing/suit/space/void/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/kit/suit))
 		var/obj/item/kit/suit/kit = O
 		kit.customize(src, user)
 		return
 	return ..()
 
-/obj/item/clothing/suit/storage/hooded/attackby(var/obj/item/O, var/mob/user)
+/obj/item/clothing/suit/storage/hooded/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/kit/suit))
 		var/obj/item/kit/suit/kit = O
 		kit.customize(src, user)
@@ -152,7 +152,7 @@
 	desc = "A kit for modifying a rigsuit."
 	uses = 1
 
-/obj/item/kit/suit/rig/customize(var/obj/item/I, var/mob/user)
+/obj/item/kit/suit/rig/customize(obj/item/I, mob/user)
 	var/obj/item/rig/RIG = I
 	RIG.suit_state = new_icon
 	RIG.item_state = new_icon
@@ -185,10 +185,10 @@
 		H.light_overlay = new_light_overlay
 	use(1,user)
 
-/obj/item/kit/suit/rig/can_customize(var/obj/item/I)
+/obj/item/kit/suit/rig/can_customize(obj/item/I)
 	return istype(I, /obj/item/rig)
 
-/obj/item/rig/attackby(var/obj/item/O, var/mob/user)
+/obj/item/rig/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/kit/suit))
 		var/obj/item/kit/suit/rig/kit = O
 		kit.customize(src, user)
@@ -204,7 +204,7 @@
 	desc = "A kit containing all the needed tools and parts to repaint a mech."
 	var/removable = null
 
-/obj/item/kit/paint/can_customize(var/obj/mecha/M)
+/obj/item/kit/paint/can_customize(obj/mecha/M)
 	if(!istype(M))
 		return 0
 
@@ -212,7 +212,7 @@
 		if(type == M.initial_icon)
 			return 1
 
-/obj/item/kit/paint/set_info(var/kit_name, var/kit_desc, var/kit_icon, var/kit_icon_file = CUSTOM_ITEM_OBJ, var/kit_icon_override_file = CUSTOM_ITEM_MOB, var/additional_data)
+/obj/item/kit/paint/set_info(kit_name, kit_desc, kit_icon, kit_icon_file = CUSTOM_ITEM_OBJ, kit_icon_override_file = CUSTOM_ITEM_MOB, additional_data)
 	..()
 
 	allowed_types = splittext(additional_data, ", ")
@@ -225,7 +225,7 @@
 	for(var/exotype in allowed_types)
 		. += "- [capitalize(exotype)]"
 
-/obj/item/kit/paint/customize(var/obj/mecha/M, var/mob/user)
+/obj/item/kit/paint/customize(obj/mecha/M, mob/user)
 	if(!can_customize(M))
 		to_chat(user, "That kit isn't meant for use on this class of exosuit.")
 		return
@@ -243,7 +243,7 @@
 	M.update_icon()
 	use(1, user)
 
-/obj/mecha/attackby(var/obj/item/W, var/mob/user)
+/obj/mecha/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/kit/paint))
 		var/obj/item/kit/paint/P = W
 		P.customize(src, user)

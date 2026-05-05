@@ -42,7 +42,7 @@
 	our_db.implants -= src
 	return ..()
 
-/obj/item/implant/backup/post_implant(var/mob/living/carbon/human/H)
+/obj/item/implant/backup/post_implant(mob/living/carbon/human/H)
 	if(istype(H))
 		BITSET(H.hud_updateflag, BACKUP_HUD)
 		our_db.implants |= src

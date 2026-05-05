@@ -298,10 +298,10 @@
 	*/
 	signature = tgui_input_text(user, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature, MAX_MESSAGE_LEN)
 
-/obj/item/pen/proc/get_signature(var/mob/user)
+/obj/item/pen/proc/get_signature(mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/pen/chameleon/get_signature(var/mob/user)
+/obj/item/pen/chameleon/get_signature(mob/user)
 	return signature ? signature : "Anonymous"
 
 /obj/item/pen/chameleon/verb/set_colour()

@@ -434,7 +434,7 @@
 	icon_state = "use"
 	var/next = 0
 
-/atom/movable/screen/useself/proc/can_use(var/mob/living/carbon/human/h, var/obj/item/i)	//Basically trying to use the item this way skips the cooldown
+/atom/movable/screen/useself/proc/can_use(mob/living/carbon/human/h, obj/item/i)	//Basically trying to use the item this way skips the cooldown
 	if(world.time >= next)														//And trying to check the cooldown doesn't work because when you click the UI it sets a cooldown
 		next = h.get_attack_speed(i)											//So instead we'll just put a cooldown on the use button and apply the item's cooldown to the player
 		h.setClickCooldown(next)												//Otherwise you can click the button and yourself faster than the normal cooldown. SO WE SET BOTH!!!!

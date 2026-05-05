@@ -19,7 +19,7 @@
 
 	. = ..()
 
-/mob/living/silicon/robot/platform/proc/can_store_atom(var/atom/movable/storing, var/mob/user)
+/mob/living/silicon/robot/platform/proc/can_store_atom(atom/movable/storing, mob/user)
 
 	if(!istype(storing))
 		var/storing_target = (user == src) ? "yourself" : "\the [src]"
@@ -64,12 +64,12 @@
 		var/storing_target = (user == src) ? "yourself" : "\the [src]"
 		to_chat(user, span_warning("You cannot store \the [storing] inside [storing_target]."))
 
-/mob/living/silicon/robot/platform/proc/store_atom(var/atom/movable/storing, var/mob/user)
+/mob/living/silicon/robot/platform/proc/store_atom(atom/movable/storing, mob/user)
 	if(istype(storing))
 		storing.forceMove(src)
 		LAZYDISTINCTADD(stored_atoms, WEAKREF(storing))
 
-/mob/living/silicon/robot/platform/proc/drop_stored_atom(var/atom/movable/ejecting, var/mob/user)
+/mob/living/silicon/robot/platform/proc/drop_stored_atom(atom/movable/ejecting, mob/user)
 
 	if(!ejecting && length(stored_atoms))
 		var/datum/weakref/stored_ref = stored_atoms[1]
@@ -91,7 +91,7 @@
 		return try_remove_cargo(user)
 	return ..()
 
-/mob/living/silicon/robot/platform/proc/try_remove_cargo(var/mob/user)
+/mob/living/silicon/robot/platform/proc/try_remove_cargo(mob/user)
 	if(!length(stored_atoms) || !istype(user))
 		return FALSE
 	var/datum/weakref/remove_ref = stored_atoms[length(stored_atoms)]
@@ -131,7 +131,7 @@
 		store_atom(dropping, user)
 	return FALSE
 
-/mob/living/silicon/robot/platform/proc/can_mouse_drop(var/atom/dropping, var/mob/user)
+/mob/living/silicon/robot/platform/proc/can_mouse_drop(atom/dropping, mob/user)
 	if(!istype(user) || !istype(dropping) || QDELETED(dropping) || QDELETED(user) || QDELETED(src))
 		return FALSE
 	if(user.incapacitated() || !Adjacent(user) || !dropping.Adjacent(user))

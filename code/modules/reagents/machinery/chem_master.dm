@@ -43,7 +43,7 @@
 /obj/machinery/chem_master/update_icon()
 	icon_state = "mixer[beaker ? "1" : "0"]"
 
-/obj/machinery/chem_master/attackby(var/obj/item/B as obj, var/mob/user as mob)
+/obj/machinery/chem_master/attackby(obj/item/B as obj, mob/user as mob)
 
 	if(istype(B, /obj/item/reagent_containers/glass) || istype(B, /obj/item/reagent_containers/food))
 

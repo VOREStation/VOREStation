@@ -46,7 +46,7 @@
 		for(var/obj/item/I in contents)
 			. += span_notice("\the [I]")
 
-/obj/machinery/particle_smasher/atmosanalyze(var/mob/user)
+/obj/machinery/particle_smasher/atmosanalyze(mob/user)
 	return list(span_notice("\The [src] reads an energy level of [energy]."))
 
 /obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
@@ -139,7 +139,7 @@
 	else
 		set_light(0, 0, "#FFFFFF")
 
-/obj/machinery/particle_smasher/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/particle_smasher/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
 		if(Proj.damage >= 50)
 			TryCraft()
@@ -239,7 +239,7 @@
 				break
 	update_icon()
 
-/obj/machinery/particle_smasher/proc/DoCraft(var/datum/particle_smasher_recipe/recipe)
+/obj/machinery/particle_smasher/proc/DoCraft(datum/particle_smasher_recipe/recipe)
 	if(!successful_craft || !recipe)
 		return
 
@@ -306,7 +306,7 @@
 	var/item_consume_chance = 100		// The probability for the items (not materials) used in the recipe to be consume.
 	var/wiki_flag = NONE
 
-/datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
+/datum/particle_smasher_recipe/proc/check_items(obj/container as obj)
 	. = 1
 	if (items && items.len)
 		var/list/checklist = list()
@@ -329,7 +329,7 @@
 			. = -1
 	return .
 
-/datum/particle_smasher_recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+/datum/particle_smasher_recipe/proc/check_reagents(datum/reagents/avail_reagents)
 	. = 1
 	for (var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)

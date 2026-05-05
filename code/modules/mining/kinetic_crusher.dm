@@ -253,7 +253,7 @@
 			ready_toggle(TRUE) // no? well, shit
 
 /// toggles twohand. if forced is true, forces an unready state
-/obj/item/kinetic_crusher/machete/gauntlets/proc/ready_toggle(var/forced = 0)
+/obj/item/kinetic_crusher/machete/gauntlets/proc/ready_toggle(forced = 0)
 	var/mob/living/M = loc
 	if(istype(M) && forced == 0)
 		if(M.can_wield_item(src) && src.is_held_twohanded(M))
@@ -263,7 +263,7 @@
 	else
 		unwield(M)
 
-/obj/item/kinetic_crusher/machete/gauntlets/proc/wield(var/mob/living/M)
+/obj/item/kinetic_crusher/machete/gauntlets/proc/wield(mob/living/M)
 	name = initial(name)
 	wielded = TRUE
 	to_chat(M, span_notice("You ready [src]."))
@@ -274,7 +274,7 @@
 	M.put_in_inactive_hand(O)
 	offhand = O
 
-/obj/item/kinetic_crusher/machete/gauntlets/proc/unwield(var/mob/living/M)
+/obj/item/kinetic_crusher/machete/gauntlets/proc/unwield(mob/living/M)
 	to_chat(M, span_notice("You unready [src]."))
 	name = "[initial(name)] (unreadied)"
 	wielded = FALSE
@@ -353,7 +353,7 @@
 	hammer_synced = null
 	return ..()
 
-/obj/item/projectile/destabilizer/on_impact(var/atom/A)
+/obj/item/projectile/destabilizer/on_impact(atom/A)
 	if(ismineralturf(A))
 		var/turf/simulated/mineral/M = A
 		new /obj/effect/temp_visual/kinetic_blast(M)

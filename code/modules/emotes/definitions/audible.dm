@@ -24,7 +24,7 @@
 	emote_message_3p = "gasps."
 	conscious = FALSE
 
-/datum/decl/emote/audible/gasp/get_emote_sound(var/atom/user)
+/datum/decl/emote/audible/gasp/get_emote_sound(atom/user)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -334,7 +334,7 @@
 	key = "goodripsound"
 	emote_message_3p = "drips goo."
 
-/datum/decl/emote/audible/goodripsound/do_extra(var/mob/user)
+/datum/decl/emote/audible/goodripsound/do_extra(mob/user)
 	..()
 	var/goo_sounds = list (
 			'sound/mob/spooky/decay1.ogg',

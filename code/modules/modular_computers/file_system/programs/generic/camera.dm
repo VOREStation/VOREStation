@@ -1,5 +1,5 @@
 // Returns which access is relevant to passed network. Used by the program.
-/proc/get_camera_access(var/network)
+/proc/get_camera_access(network)
 	if(!network)
 		return 0
 	. = using_map.get_network_access(network)

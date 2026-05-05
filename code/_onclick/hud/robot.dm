@@ -270,7 +270,7 @@
 	update_robot_modules_display()
 
 
-/datum/hud/proc/update_robot_modules_display(var/reset = FALSE)
+/datum/hud/proc/update_robot_modules_display(reset = FALSE)
 	if(!isrobot(mymob))
 		return
 

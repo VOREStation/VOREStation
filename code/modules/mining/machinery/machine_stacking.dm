@@ -95,7 +95,7 @@
 		src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(src.output) break
 
-/obj/machinery/mineral/stacking_machine/proc/toggle_speed(var/forced)
+/obj/machinery/mineral/stacking_machine/proc/toggle_speed(forced)
 	if(forced)
 		speed_process = forced
 	else

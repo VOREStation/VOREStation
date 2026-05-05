@@ -48,7 +48,7 @@
 	. = ..()
 
 /////Copied from Virgo3b's ore generation, since there was concern about not being able to get the ore they need on V2
-/turf/simulated/mineral/virgo2/make_ore(var/rare_ore)
+/turf/simulated/mineral/virgo2/make_ore(rare_ore)
 	if(mineral)
 		return
 	var/mineral_name

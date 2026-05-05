@@ -108,7 +108,7 @@
 	several TSCs have been trying to get a hold of the blueprints for half a decade."
 	var/unique_reskin
 
-/obj/item/gun/energy/stunrevolver/detective/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/stunrevolver/detective/update_icon(ignore_inhands)
 	if(power_supply == null)
 		if(unique_reskin)
 			icon_state = "[unique_reskin]_open"

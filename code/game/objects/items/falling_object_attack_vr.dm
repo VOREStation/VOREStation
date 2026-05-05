@@ -30,7 +30,7 @@
 	. = ..()
 	icon_state = "[rand(1,33)]"
 
-/obj/effect/illusionary_fall/end_fall(var/crushing = FALSE)
+/obj/effect/illusionary_fall/end_fall(crushing = FALSE)
 	for(var/mob/living/L in loc)
 		var/target_zone = ran_zone()
 		var/blocked = L.run_armor_check(target_zone, "melee")

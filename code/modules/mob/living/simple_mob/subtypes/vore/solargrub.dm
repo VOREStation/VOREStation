@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(moth_amount, 0)
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
 
-/mob/living/simple_mob/vore/solargrub/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/solargrub/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(shock_chance))

@@ -182,7 +182,7 @@
 	deductcharge(hitcost)
 	return ..()
 
-/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -273,7 +273,7 @@
 	agonyforce = 25 // Less efficent than a regular baton.
 	attack_verb = list("poked")
 
-/obj/item/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	..(target, user, hit_zone)
 	if(status && target.has_AI())
 		target.taunt(user)

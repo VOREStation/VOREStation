@@ -9,28 +9,28 @@
 	var/obj/effect/overmap/bluespace_rift/partner
 	var/paused
 
-/obj/effect/overmap/bluespace_rift/Initialize(mapload, var/new_partner)
+/obj/effect/overmap/bluespace_rift/Initialize(mapload, new_partner)
 	. = ..()
 	if(new_partner)
 		pair(new_partner)
 
-/obj/effect/overmap/bluespace_rift/proc/pair(var/obj/effect/overmap/bluespace_rift/new_partner)
+/obj/effect/overmap/bluespace_rift/proc/pair(obj/effect/overmap/bluespace_rift/new_partner)
 	if(istype(new_partner))
 		partner = new_partner
 		new_partner.partner = src
 
-/obj/effect/overmap/bluespace_rift/proc/take_this(var/atom/movable/AM)
+/obj/effect/overmap/bluespace_rift/proc/take_this(atom/movable/AM)
 	paused = TRUE
 	AM.forceMove(get_turf(src))
 	paused = FALSE
 
-/obj/effect/overmap/bluespace_rift/Crossed(var/atom/movable/AM)
+/obj/effect/overmap/bluespace_rift/Crossed(atom/movable/AM)
 	if(istype(AM, /obj/effect/overmap/visitable/ship) && !paused && partner)
 		partner.take_this(AM)
 	else
 		return ..()
 
-/obj/effect/overmap/bluespace_rift/attack_ghost(var/mob/observer/dead/user)
+/obj/effect/overmap/bluespace_rift/attack_ghost(mob/observer/dead/user)
 	if(!partner && check_rights_for(user?.client, R_HOLDER))
 		var/response = tgui_alert(user, "You appear to be staff. This rift has no exit point. If you want to make one, move to where you want it to go, and click 'Make Here', otherwise click 'Cancel'", "Bluespace Rift", list("Cancel","Make Here"))
 		if(response == "Make Here")

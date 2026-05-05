@@ -37,7 +37,7 @@
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 	take_damage(W.force)
 
-/obj/structure/holosign/take_damage(var/damage)
+/obj/structure/holosign/take_damage(damage)
 	health -= damage
 	spawn(1) healthcheck()
 	return 1

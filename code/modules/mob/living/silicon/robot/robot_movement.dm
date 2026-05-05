@@ -6,7 +6,7 @@
 /mob/living/silicon/robot/Check_Shoegrip()
 	return module && module.no_slip
 
-/mob/living/silicon/robot/Process_Spacemove(var/check_drift = 0)
+/mob/living/silicon/robot/Process_Spacemove(check_drift = 0)
 	if(..())//Can move due to other reasons, don't use jetpack fuel
 		return 1
 

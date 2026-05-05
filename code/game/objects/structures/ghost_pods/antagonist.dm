@@ -13,7 +13,7 @@
 	delay_to_try_again = 1 MINUTES //10 minutes for egg to grow, 5 minutes for larva to mature
 	anchored = TRUE
 
-/obj/structure/ghost_pod/automatic/xenomorph_egg/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/automatic/xenomorph_egg/create_occupant(mob/M)
 	var/mob/living/carbon/alien/larva/R = new(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(R)
@@ -45,7 +45,7 @@
 	..()
 	return
 
-/obj/structure/ghost_pod/automatic/xenomorph_egg/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/ghost_pod/automatic/xenomorph_egg/bullet_act(obj/item/projectile/Proj)
 	switch(Proj.damtype)
 		if(BURN)
 			health -= Proj.damage * 1.5 //It burns!

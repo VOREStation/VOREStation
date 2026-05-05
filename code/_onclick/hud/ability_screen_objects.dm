@@ -47,7 +47,7 @@
 
 	toggle_open()
 
-/atom/movable/screen/movable/ability_master/proc/toggle_open(var/forced_state = 0)
+/atom/movable/screen/movable/ability_master/proc/toggle_open(forced_state = 0)
 	if(showing && (forced_state != 2)) // We are closing the ability master, hide the abilities.
 		for(var/atom/movable/screen/ability/O in ability_objects)
 			if(my_mob && my_mob.client)
@@ -105,7 +105,7 @@
 	else
 		invisibility = INVISIBILITY_ABSTRACT
 
-/atom/movable/screen/movable/ability_master/proc/add_ability(var/name_given)
+/atom/movable/screen/movable/ability_master/proc/add_ability(name_given)
 	if(!name) return
 
 //	if(spell.connected_button) //we have one already, for some reason
@@ -140,7 +140,7 @@
 	if(my_mob.client)
 		toggle_open(2) //forces the icons to refresh on screen
 
-/atom/movable/screen/movable/ability_master/proc/remove_ability(var/atom/movable/screen/ability/ability)
+/atom/movable/screen/movable/ability_master/proc/remove_ability(atom/movable/screen/ability/ability)
 	if(!ability)
 		return
 	ability_objects.Remove(ability)
@@ -169,7 +169,7 @@
 			return V
 	return null
 
-/atom/movable/screen/movable/ability_master/proc/get_ability_by_instance(var/obj/instance/)
+/atom/movable/screen/movable/ability_master/proc/get_ability_by_instance(obj/instance/)
 	for(var/atom/movable/screen/ability/obj_based/O in ability_objects)
 		if(O.object == instance)
 			return O
@@ -261,7 +261,7 @@
 //	spell.perform(usr)
 	activate()
 
-/atom/movable/screen/ability/MouseDrop(var/atom/A)
+/atom/movable/screen/ability/MouseDrop(atom/A)
 	if(!A || A == src)
 		return
 	if(istype(A, /atom/movable/screen/ability))
@@ -280,7 +280,7 @@
 /atom/movable/screen/ability/proc/can_activate()
 	return 1
 
-/client/verb/activate_ability(var/slot as num)
+/client/verb/activate_ability(slot as num)
 	set name = ".activate_ability"
 //	set hidden = 1
 	if(!mob)
@@ -314,7 +314,7 @@
 //		else
 //			message_admins("ERROR: activate() on [ability_master.my_mob]'s [src] failed the hascall([object_used],[verb_to_call]) check.")
 
-/atom/movable/screen/movable/ability_master/proc/add_verb_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
+/atom/movable/screen/movable/ability_master/proc/add_verb_ability(object_given, verb_given, name_given, ability_icon_given, arguments)
 	if(!object_given)
 		message_admins("ERROR: add_verb_ability() was not given an object in its arguments.")
 	if(!verb_given)
@@ -338,7 +338,7 @@
 	icon_state = "ling_spell_base"
 	background_base_state = "ling"
 
-/atom/movable/screen/movable/ability_master/proc/add_ling_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
+/atom/movable/screen/movable/ability_master/proc/add_ling_ability(object_given, verb_given, name_given, ability_icon_given, arguments)
 	if(!object_given)
 		message_admins("ERROR: add_ling_ability() was not given an object in its arguments.")
 	if(!verb_given)
@@ -374,7 +374,7 @@
 	icon_state = "wiz_spell_base"
 	background_base_state = "wiz"
 
-/atom/movable/screen/movable/ability_master/proc/add_technomancer_ability(var/obj/object_given, var/ability_icon_given)
+/atom/movable/screen/movable/ability_master/proc/add_technomancer_ability(obj/object_given, ability_icon_given)
 	if(!object_given)
 		message_admins("ERROR: add_technomancer_ability() was not given an object in its arguments.")
 	if(get_ability_by_instance(object_given))

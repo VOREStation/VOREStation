@@ -101,7 +101,7 @@
 	else
 		return ..()
 
-/obj/item/defib_kit/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/defib_kit/emag_act(remaining_charges, mob/user)
 	var/obj/item/shockpaddles/linked/paddles = get_paddles()
 	if(paddles)
 		. = paddles.emag_act(user)
@@ -181,7 +181,7 @@
 	var/cooldown = 0
 	var/busy = 0
 
-/obj/item/shockpaddles/proc/set_cooldown(var/delay)
+/obj/item/shockpaddles/proc/set_cooldown(delay)
 	cooldown = 1
 	update_icon()
 
@@ -306,10 +306,10 @@
 		blood_volume *= 0.8
 	return blood_volume < H.species.blood_volume*H.species.blood_level_fatal
 
-/obj/item/shockpaddles/proc/check_charge(var/charge_amt)
+/obj/item/shockpaddles/proc/check_charge(charge_amt)
 	return 0
 
-/obj/item/shockpaddles/proc/checked_use(var/charge_amt)
+/obj/item/shockpaddles/proc/checked_use(charge_amt)
 	return 0
 
 /obj/item/shockpaddles/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
@@ -329,7 +329,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 //Since harm-intent now skips the delay for deliberate placement, you have to be able to hit them in combat in order to shock people.
-/obj/item/shockpaddles/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/shockpaddles/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(ishuman(target) && can_use(user, target))
 		busy = 1
 		update_icon()
@@ -410,7 +410,7 @@
 	log_and_message_admins("used \a [src] to revive [key_name(H)].")
 
 
-/obj/item/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, var/target_zone)
+/obj/item/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, target_zone)
 	var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 	if(!affecting)
 		to_chat(user, span_warning("They are missing that body part!"))
@@ -497,7 +497,7 @@
 
 	H.setBrainLoss(brain_damage)
 
-/obj/item/shockpaddles/proc/make_announcement(var/message, var/msg_class)
+/obj/item/shockpaddles/proc/make_announcement(message, msg_class)
 	audible_message(span_bold(span_info("\The [src]") + " [message]"), span_info("\The [src] vibrates slightly."), runemessage = "buzz")
 
 /obj/item/shockpaddles/emag_act(mob/user)
@@ -536,12 +536,12 @@
 	item_state = "defibpaddles0"
 	cooldowntime = (3 SECONDS)
 
-/obj/item/shockpaddles/robot/check_charge(var/charge_amt)
+/obj/item/shockpaddles/robot/check_charge(charge_amt)
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return (R.cell && R.cell.check_charge(charge_amt))
 
-/obj/item/shockpaddles/robot/checked_use(var/charge_amt)
+/obj/item/shockpaddles/robot/checked_use(charge_amt)
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return (R.cell && R.cell.checked_use(charge_amt))
@@ -556,15 +556,15 @@
 /*
 	Shockpaddles that are linked to a base unit
 */
-/obj/item/shockpaddles/linked/check_charge(var/charge_amt)
+/obj/item/shockpaddles/linked/check_charge(charge_amt)
 	var/obj/item/defib_kit/base_unit = tethered_host_item
 	return (base_unit.bcell && base_unit.bcell.check_charge(charge_amt))
 
-/obj/item/shockpaddles/linked/checked_use(var/charge_amt)
+/obj/item/shockpaddles/linked/checked_use(charge_amt)
 	var/obj/item/defib_kit/base_unit = tethered_host_item
 	return (base_unit.bcell && base_unit.bcell.checked_use(charge_amt))
 
-/obj/item/shockpaddles/linked/make_announcement(var/message, var/msg_class)
+/obj/item/shockpaddles/linked/make_announcement(message, msg_class)
 	var/obj/item/defib_kit/base_unit = tethered_host_item
 	base_unit.audible_message(span_infoplain(span_bold("\The [base_unit]") + " [message]"), span_info("\The [base_unit] vibrates slightly."))
 
@@ -584,10 +584,10 @@
 	if(fail_counter)
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/shockpaddles/standalone/check_charge(var/charge_amt)
+/obj/item/shockpaddles/standalone/check_charge(charge_amt)
 	return 1
 
-/obj/item/shockpaddles/standalone/checked_use(var/charge_amt)
+/obj/item/shockpaddles/standalone/checked_use(charge_amt)
 	radiation_pulse(
 		src,
 		max_range = 5,

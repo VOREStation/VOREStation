@@ -70,7 +70,7 @@
 /mob/living/silicon/proc/show_laws()
 	return
 
-/mob/living/silicon/drop_item(var/atom/Target)
+/mob/living/silicon/drop_item(atom/Target)
 	return
 
 /mob/living/silicon/emp_act(severity, recursive)
@@ -94,10 +94,10 @@
 	to_chat(src, span_bolddanger("*BZZZT*"))
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 
-/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
+/mob/living/silicon/stun_effect_act(stun_amount, agony_amount, def_zone, used_weapon=null, electric = FALSE)
 	return	//immune
 
-/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 0.0, var/def_zone = null, var/stun = 1)
+/mob/living/silicon/electrocute_act(shock_damage, obj/source, siemens_coeff = 0.0, def_zone = null, stun = 1)
 	if(shock_damage > 0)
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, loc)
@@ -112,13 +112,13 @@
 			Stun(2)
 		return
 
-/mob/living/silicon/proc/damage_mob(var/brute = 0, var/fire = 0, var/tox = 0)
+/mob/living/silicon/proc/damage_mob(brute = 0, fire = 0, tox = 0)
 	return
 
 /mob/living/silicon/IsAdvancedToolUser()
 	return 1
 
-/mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/bullet_act(obj/item/projectile/Proj)
 
 	if(!Proj.nodamage)
 		switch(Proj.damage_type)
@@ -131,11 +131,11 @@
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+/mob/living/silicon/apply_effect(effect = 0,effecttype = STUN, blocked = 0, check_protection = 1)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
 
-/proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
+/proc/islinked(mob/living/silicon/robot/bot, mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))
 		return 0
 	if (bot.connected_ai == ai)
@@ -186,7 +186,7 @@
 */
 
 //can't inject synths
-/mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
+/mob/living/silicon/can_inject(mob/user, error_msg, target_zone, ignore_thickness = FALSE)
 	if(error_msg)
 		to_chat(user, span_warning("The armoured plating is too tough."))
 	return 0
@@ -204,7 +204,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/silicon/add_language(var/language, var/can_speak=1)
+/mob/living/silicon/add_language(language, can_speak=1)
 	var/datum/language/added_language = GLOB.all_languages[language]
 	if(!added_language)
 		return
@@ -214,7 +214,7 @@
 		speech_synthesizer_langs += added_language
 		return 1
 
-/mob/living/silicon/remove_language(var/rem_language)
+/mob/living/silicon/remove_language(rem_language)
 	var/datum/language/removed_language = GLOB.all_languages[rem_language]
 	if(!removed_language)
 		return
@@ -319,7 +319,7 @@
 
 	updatehealth()
 
-/mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
+/mob/living/silicon/proc/receive_alarm(datum/alarm_handler/alarm_handler, datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)
 		next_alarm_notice = world.time + (10 SECONDS)
 	if(alarm.hidden)
@@ -372,10 +372,10 @@
 			var/list/alarms = queued_alarms[AH]
 			alarms.Cut()
 
-/mob/living/silicon/proc/raised_alarm(var/datum/alarm/A)
+/mob/living/silicon/proc/raised_alarm(datum/alarm/A)
 	to_chat(src, span_filter_warning("[A.alarm_name()]!"))
 
-/mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
+/mob/living/silicon/ai/raised_alarm(datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
 		cameratext += "[(cameratext == "")? "" : "|"]<A HREF='byond://?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"

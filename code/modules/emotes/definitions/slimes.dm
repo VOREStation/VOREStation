@@ -2,13 +2,13 @@
 	key = "nomood"
 	var/mood
 
-/datum/decl/emote/slime/do_extra(var/mob/living/simple_mob/slime/user)
+/datum/decl/emote/slime/do_extra(mob/living/simple_mob/slime/user)
 	. = ..()
 	if(istype(user))
 		user.mood = mood
 		user.update_icon()
 
-/datum/decl/emote/slime/mob_can_use(var/atom/user)
+/datum/decl/emote/slime/mob_can_use(atom/user)
 	return ..() && isslime(user)
 
 /datum/decl/emote/slime/pout

@@ -41,7 +41,7 @@
 
 GLOBAL_LIST_EMPTY(flesh_overlay_cache)
 
-/turf/simulated/flesh/update_icon(var/update_neighbors)
+/turf/simulated/flesh/update_icon(update_neighbors)
 	cut_overlays()
 
 	if(density)

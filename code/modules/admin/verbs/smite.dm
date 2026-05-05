@@ -1,4 +1,4 @@
-/client/proc/smite(var/mob/living/carbon/human/target in GLOB.player_list)
+/client/proc/smite(mob/living/carbon/human/target in GLOB.player_list)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
 	set category = "Fun.Do Not"
@@ -290,7 +290,7 @@ GLOBAL_VAR(redspace_abduction_z)
 
 	target.transforming = FALSE
 
-/proc/fake_autosave(var/mob/living/target, var/client/user, var/wide)
+/proc/fake_autosave(mob/living/target, client/user, wide)
 	if(!istype(target) || !target.client)
 		to_chat(user, span_warning("Skipping [target] because they are not a /mob/living or have no client."))
 		return

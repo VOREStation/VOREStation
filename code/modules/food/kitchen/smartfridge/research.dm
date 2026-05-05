@@ -8,7 +8,7 @@
 	req_access = list(ACCESS_RESEARCH)
 	circuit = /obj/item/circuitboard/smartfridge/science
 
-/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/extract/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/slime_extract) || istype(O, /obj/item/slimepotion))
 		return 1
 	return 0

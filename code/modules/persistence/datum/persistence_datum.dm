@@ -28,14 +28,14 @@
 				tokens -= token
 		ProcessAndApplyTokens(tokens)
 
-/datum/persistent/proc/GetValidTurf(var/turf/T, var/list/token)
+/datum/persistent/proc/GetValidTurf(turf/T, list/token)
 	if(T && CheckTurfContents(T, token))
 		return T
 
-/datum/persistent/proc/CheckTurfContents(var/turf/T, var/list/token)
+/datum/persistent/proc/CheckTurfContents(turf/T, list/token)
 	return TRUE
 
-/datum/persistent/proc/CheckTokenSanity(var/list/token)
+/datum/persistent/proc/CheckTokenSanity(list/token)
 	return ( \
 		!isnull(token["x"]) && \
 		!isnull(token["y"]) && \
@@ -45,10 +45,10 @@
 	)
 
 // Restores saved data to world
-/datum/persistent/proc/CreateEntryInstance(var/turf/creating, var/list/token)
+/datum/persistent/proc/CreateEntryInstance(turf/creating, list/token)
 	return
 
-/datum/persistent/proc/ProcessAndApplyTokens(var/list/tokens)
+/datum/persistent/proc/ProcessAndApplyTokens(list/tokens)
 
 	// If it's old enough we start to trim down any textual information and scramble strings.
 	for(var/list/token in tokens)
@@ -76,7 +76,7 @@
 			if(.)
 				CreateEntryInstance(., token)
 
-/datum/persistent/proc/IsValidEntry(var/atom/entry)
+/datum/persistent/proc/IsValidEntry(atom/entry)
 	if(!istype(entry))
 		return FALSE
 	if(GetEntryAge(entry) >= entries_expire_at)
@@ -89,10 +89,10 @@
 		return FALSE
 	return TRUE
 
-/datum/persistent/proc/GetEntryAge(var/atom/entry)
+/datum/persistent/proc/GetEntryAge(atom/entry)
 	return 0
 
-/datum/persistent/proc/CompileEntry(var/atom/entry)
+/datum/persistent/proc/CompileEntry(atom/entry)
 	var/turf/T = get_turf(entry)
 	return list(
 		"x" = T.x,
@@ -114,10 +114,10 @@
 	if(to_store.len)
 		to_file(file(filename), json_encode(to_store))
 
-/datum/persistent/proc/RemoveValue(var/atom/value)
+/datum/persistent/proc/RemoveValue(atom/value)
 	qdel(value)
 
-/datum/persistent/proc/GetAdminSummary(var/mob/user, var/can_modify)
+/datum/persistent/proc/GetAdminSummary(mob/user, can_modify)
 	var/list/my_tracks = SSpersistence.tracking_values[type]
 	if(!my_tracks?.len)
 		return
@@ -133,13 +133,13 @@
 	. += "<tr><td colspan = 4><hr></td></tr>"
 
 
-/datum/persistent/proc/GetAdminDataStringFor(var/thing, var/can_modify, var/mob/user)
+/datum/persistent/proc/GetAdminDataStringFor(thing, can_modify, mob/user)
 	if(can_modify)
 		. = "<td colspan = 3>[thing]</td><td><a href='byond://?src=\ref[src];[HrefToken()];caller=\ref[user];remove_entry=\ref[thing]'>Destroy</a></td>"
 	else
 		. = "<td colspan = 4>[thing]</td>"
 
-/datum/persistent/Topic(var/href, var/href_list)
+/datum/persistent/Topic(href, href_list)
 	. = ..()
 	if(!.)
 		if(href_list["remove_entry"])

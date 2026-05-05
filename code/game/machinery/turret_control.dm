@@ -108,7 +108,7 @@
 		return
 	return ..()
 
-/obj/machinery/turretid/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/turretid/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		to_chat(user, span_danger("You short out the turret controls' access analysis module."))
 		emagged = TRUE

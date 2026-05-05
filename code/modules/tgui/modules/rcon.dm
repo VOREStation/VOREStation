@@ -12,7 +12,7 @@
 	var/current_page = 1
 	var/number_pages = 0
 
-/datum/tgui_module/rcon/proc/filter_smeslist(var/page)
+/datum/tgui_module/rcon/proc/filter_smeslist(page)
 	number_pages = (length(known_SMESs) + SMES_PER_PAGE - 1) / SMES_PER_PAGE
 	var/page_index = page - 1
 
@@ -107,7 +107,7 @@
 // Proc: GetSMESByTag()
 // Parameters: 1 (tag - RCON tag of SMES we want to look up)
 // Description: Looks up and returns SMES which has matching RCON tag
-/datum/tgui_module/rcon/proc/GetSMESByTag(var/tag)
+/datum/tgui_module/rcon/proc/GetSMESByTag(tag)
 	if(!tag)
 		return
 

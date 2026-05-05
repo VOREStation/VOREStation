@@ -335,7 +335,7 @@ I think I covered everything.
 	update_fullness()
 	build_icons()
 
-/mob/living/simple_mob/vore/bigdragon/proc/build_icons(var/random)
+/mob/living/simple_mob/vore/bigdragon/proc/build_icons(random)
 	cut_overlays()
 	if(stat == DEAD)
 		plane = MOB_LAYER
@@ -733,7 +733,7 @@ I think I covered everything.
 ///		AI handling stuff
 ///
 // It hurts me a little to make these mob specific procs instead of effects that can be invoked by any mob, but I'm too lazy to go fix mob attacks like that.
-/mob/living/simple_mob/vore/bigdragon/proc/repulse(var/range = 2)
+/mob/living/simple_mob/vore/bigdragon/proc/repulse(range = 2)
 	var/list/thrownatoms = list()
 	for(var/mob/living/victim in oview(range, src))
 		thrownatoms += victim
@@ -746,7 +746,7 @@ I think I covered everything.
 	playsound(src, "sound/weapons/punchmiss.ogg", 50, 1)
 
 //Split repulse into two parts so I can recycle this later
-/mob/living/simple_mob/vore/bigdragon/proc/yeet(var/atom/movable/AM, var/gentle = 0)
+/mob/living/simple_mob/vore/bigdragon/proc/yeet(atom/movable/AM, gentle = 0)
 	var/maxthrow = 7
 	var/atom/throwtarget
 	var/distfromcaster
@@ -769,7 +769,7 @@ I think I covered everything.
 			playsound(src, get_sfx("punch"), 50, 1)
 		AM.throw_at(throwtarget, maxthrow, 3, src)
 
-/mob/living/simple_mob/vore/bigdragon/proc/chargestart(var/atom/A)
+/mob/living/simple_mob/vore/bigdragon/proc/chargestart(atom/A)
 	if(!enraged)
 		set_AI_busy(TRUE)
 
@@ -778,7 +778,7 @@ I think I covered everything.
 	chargetimer = addtimer(CALLBACK(src, PROC_REF(chargeend), A), charge_warmup, TIMER_STOPPABLE)
 
 
-/mob/living/simple_mob/vore/bigdragon/proc/chargeend(var/atom/A, var/explicit = 0, var/gentle = 0)
+/mob/living/simple_mob/vore/bigdragon/proc/chargeend(atom/A, explicit = 0, gentle = 0)
 	//make sure our target still exists and is on a turf
 	if(QDELETED(A) || !isturf(get_turf(A)))
 		set_AI_busy(FALSE)
@@ -810,7 +810,7 @@ I think I covered everything.
 		yeet(target, gentle)
 	set_AI_busy(FALSE)
 
-/mob/living/simple_mob/vore/bigdragon/proc/firebreathstart(var/atom/A)
+/mob/living/simple_mob/vore/bigdragon/proc/firebreathstart(atom/A)
 	glow_toggle = 1
 	set_light(glow_range, glow_intensity, glow_color) //Setting it here so the light starts immediately
 	if(!enraged)
@@ -820,7 +820,7 @@ I think I covered everything.
 	firebreathtimer = addtimer(CALLBACK(src, PROC_REF(firebreathend), A), charge_warmup, TIMER_STOPPABLE)
 	playsound(src, "sound/magic/Fireball.ogg", 50, 1)
 
-/mob/living/simple_mob/vore/bigdragon/proc/firebreathend(var/atom/A)
+/mob/living/simple_mob/vore/bigdragon/proc/firebreathend(atom/A)
 	//make sure our target still exists and is on a turf
 	if(QDELETED(A) || !isturf(get_turf(A)))
 		set_AI_busy(FALSE)
@@ -860,7 +860,7 @@ I think I covered everything.
 	var/fire_stacks = 1
 
 //Making it so fire passes through mobs but not walls
-/obj/item/projectile/bullet/incendiary/dragonflame/check_penetrate(var/atom/A)
+/obj/item/projectile/bullet/incendiary/dragonflame/check_penetrate(atom/A)
 	if(!A || !A.density) return 1
 
 	if(istype(A, /obj/mecha))
@@ -891,7 +891,7 @@ I think I covered everything.
 	else
 		. = ..()
 
-/mob/living/simple_mob/vore/bigdragon/do_tame(var/obj/O, var/mob/user)
+/mob/living/simple_mob/vore/bigdragon/do_tame(obj/O, mob/user)
 	if(!user)
 		return
 	if(faction == FACTION_NEUTRAL)
@@ -925,7 +925,7 @@ I think I covered everything.
 	var/warnings = 0
 	var/last_warning
 
-/datum/ai_holder/simple_mob/healbelly/proc/confirmPatient(var/mob/living/P)
+/datum/ai_holder/simple_mob/healbelly/proc/confirmPatient(mob/living/P)
 	if(isanimal(holder))
 		var/mob/living/simple_mob/H = holder
 		if(H.will_eat(P))
@@ -984,7 +984,7 @@ I think I covered everything.
 	holder.a_intent = I_HURT
 	return 1
 
-/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/can_attack(atom/movable/the_target, vision_required = TRUE)
 	if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
 		var/mob/living/simple_mob/vore/bigdragon/BG = holder
 		if(holder.IIsAlly(the_target))
@@ -1042,7 +1042,7 @@ I think I covered everything.
 				return
 	return .=..()
 
-/mob/living/simple_mob/vore/bigdragon/proc/enrage(var/atom/movable/attacker)
+/mob/living/simple_mob/vore/bigdragon/proc/enrage(atom/movable/attacker)
 	enraged = 1
 	norange = 0
 	faction = FACTION_DRAGON
@@ -1065,7 +1065,7 @@ I think I covered everything.
 	set_AI_busy(FALSE)
 
 //Smack people it warns
-/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/proc/dissuade(var/chump)
+/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/proc/dissuade(chump)
 	if(chump in check_trajectory(chump, holder, pass_flags = PASSTABLE))
 		if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
 			var/mob/living/simple_mob/vore/bigdragon/H = holder

@@ -178,11 +178,11 @@
 		return
 	. = ..()
 
-/obj/item/bug_monitor/proc/unpair(var/obj/item/camerabug/SB)
+/obj/item/bug_monitor/proc/unpair(obj/item/camerabug/SB)
 	if(SB.camera in cameras)
 		cameras -= SB.camera
 
-/obj/item/bug_monitor/proc/pair(var/obj/item/camerabug/SB)
+/obj/item/bug_monitor/proc/pair(obj/item/camerabug/SB)
 	cameras += SB.camera
 
 /obj/item/bug_monitor/proc/view_cameras(mob/user)

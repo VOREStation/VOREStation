@@ -486,7 +486,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	add_overlay(skin_image)
 	/////HIGHEST LAYER/////
 
-/mob/living/simple_mob/vore/alienanimals/teppi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/alienanimals/teppi/attackby(obj/item/O as obj, mob/user as mob)
 	if(stat == DEAD)
 		return ..()
 	/////GRABS AND HOLDERS/////
@@ -731,7 +731,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	playsound(src, pick(GLOB.teppi_sound), 75, 1)
 
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_shear(var/mob/user as mob, tool)
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_shear(mob/user as mob, tool)
 	var/sheartime = 3 SECONDS
 	if(istype(tool, /obj/item/material/knife))
 		var/obj/item/material/knife/K = tool

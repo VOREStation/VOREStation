@@ -30,7 +30,7 @@
 	if(!pref.antag_vis) pref.antag_vis = "Hidden"
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic_antagonism/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/basic_antagonism/copy_to_mob(mob/living/carbon/human/character)
 	character.exploit_record = pref.exploit_record
 	character.antag_faction = pref.antag_faction
 	character.antag_vis = pref.antag_vis

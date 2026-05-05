@@ -155,7 +155,7 @@
 		return EatTarget()
 	else ..()
 
-/mob/living/simple_mob/animal/passive/cat/Found(var/atom/found_atom)
+/mob/living/simple_mob/animal/passive/cat/Found(atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
 	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
@@ -165,7 +165,7 @@
 	if(will_eat(found_atom))
 		return found_atom
 
-/mob/living/simple_mob/animal/passive/cat/fluff/Found(var/atom/found_atom)
+/mob/living/simple_mob/animal/passive/cat/fluff/Found(atom/found_atom)
 	if (friend == found_atom)
 		return null
 	return ..()
@@ -231,7 +231,7 @@
 	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/animal/space/carp/holographic/set_safety(var/safe)
+/mob/living/simple_mob/animal/space/carp/holographic/set_safety(safe)
 	. = ..()
 	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode

@@ -211,7 +211,7 @@
 		to_chat(usr,span_notice("Mass AI edit done."))
 		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
-/datum/ai_holder/New(var/new_holder)
+/datum/ai_holder/New(new_holder)
 	ASSERT(new_holder)
 	holder = new_holder
 	home_turf = get_turf(holder)
@@ -225,7 +225,7 @@
 	home_turf = null
 	return ..()
 
-/datum/ai_holder/proc/manage_processing(var/desired)
+/datum/ai_holder/proc/manage_processing(desired)
 	if(desired & AI_PROCESSING)
 		START_AIPROCESSING(src)
 	else
@@ -236,7 +236,7 @@
 	else
 		STOP_AIFASTPROCESSING(src)
 
-/datum/ai_holder/proc/holder_stat_change(var/mob, old_stat, new_stat)
+/datum/ai_holder/proc/holder_stat_change(mob, old_stat, new_stat)
 	SIGNAL_HANDLER
 	if(old_stat >= DEAD && new_stat <= DEAD) //Revived
 		manage_processing(AI_PROCESSING)
@@ -259,7 +259,7 @@
 	holder.apply_hud(STATUS_HUD, sleepingimage)
 
 // Now for the actual AI stuff.
-/datum/ai_holder/proc/set_busy(var/value = 0)
+/datum/ai_holder/proc/set_busy(value = 0)
 	busy = value
 	update_paused_hud()
 
@@ -322,7 +322,7 @@
 /datum/ai_holder/proc/handle_special_strategical()
 
 // For setting the stance WITHOUT processing it
-/datum/ai_holder/proc/set_stance(var/new_stance)
+/datum/ai_holder/proc/set_stance(new_stance)
 	if(holder?.key && !autopilot)
 		return
 	if(stance == new_stance)

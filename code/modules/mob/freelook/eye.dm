@@ -58,7 +58,7 @@
 
 // Use this when setting the eye's location.
 // It will also stream the chunk that the new loc is in.
-/mob/observer/eye/proc/setLoc(var/T)
+/mob/observer/eye/proc/setLoc(T)
 	if(owner)
 		T = get_turf(T)
 		if(T != loc)

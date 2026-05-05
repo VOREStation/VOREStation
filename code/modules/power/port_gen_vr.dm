@@ -241,7 +241,7 @@
 		log_and_message_admins("[ADMIN_LOOKUPFLW(Proj.firer)] triggered an Abductor Core explosion at [x],[y],[z] via projectile.", Proj.firer)
 		asplod()
 
-/obj/machinery/power/rtg/abductor/attack_hand(var/mob/living/user)
+/obj/machinery/power/rtg/abductor/attack_hand(mob/living/user)
 	if(!istype(user) || (. = ..()))
 		return
 
@@ -378,7 +378,7 @@
 /obj/machinery/power/rtg/reg/Destroy()
 	. = ..()
 
-/obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
+/obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, forced = FALSE, silent = TRUE)
 	. = ..()
 	M.pixel_y = 8
 	M.visible_message(span_notice("\The [M], hops up onto \the [src] and begins running!"))
@@ -419,7 +419,7 @@
 		power_gen = 0
 	update_icon()
 
-/obj/machinery/power/rtg/reg/proc/runner_process(var/mob/living/runner)
+/obj/machinery/power/rtg/reg/proc/runner_process(mob/living/runner)
 	if(runner.stat != CONSCIOUS)
 		unbuckle_mob(runner)
 		runner.visible_message(span_warning("\The [runner], topples off of \the [src]!"))
@@ -529,7 +529,7 @@
 	else
 		sheet_left -= needed_sheets
 
-/obj/machinery/power/port_gen/large_altevian/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/power/port_gen/large_altevian/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())

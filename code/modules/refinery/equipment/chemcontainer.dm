@@ -38,7 +38,7 @@
 	else
 		. += "It contains [reagents.total_volume] units of liquid."
 
-/obj/item/reagent_containers/chem_canister/proc/set_canister(var/labl,var/reagent_id)
+/obj/item/reagent_containers/chem_canister/proc/set_canister(labl,reagent_id)
 	setLabel(labl)
 	loaded_reagent = reagent_id
 

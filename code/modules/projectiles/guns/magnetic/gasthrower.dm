@@ -67,7 +67,7 @@
 
 	Tank.air_contents.remove(moles_to_pull)
 
-/obj/item/gun/magnetic/gasthrower/show_ammo(var/mob/user)
+/obj/item/gun/magnetic/gasthrower/show_ammo(mob/user)
 	. = ..()
 
 	if(loaded)

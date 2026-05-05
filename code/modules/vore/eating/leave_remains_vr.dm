@@ -41,7 +41,7 @@
 /datum/species/monkey/sergal
 	skull_type = /obj/item/digestion_remains/skull/sergal
 
-/obj/belly/proc/handle_remains_leaving(var/mob/living/M)
+/obj/belly/proc/handle_remains_leaving(mob/living/M)
 	if(!isliving(M))	//Are we even a living thing? (Sorry ghosts)
 		return
 	//Moving some vars here for both borgs and carbons to use
@@ -139,7 +139,7 @@
 	drop_sound = 'sound/items/drop/device.ogg'   //not organic bones, so they get different sounds
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
-/obj/item/digestion_remains/Initialize(mapload, var/mob/living/pred, var/mob/living/prey)
+/obj/item/digestion_remains/Initialize(mapload, mob/living/pred, mob/living/prey)
 	. = ..()
 	if(!mapload)
 		pred_ckey = pred?.ckey

@@ -584,13 +584,13 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 				target.hud_used?.update_robot_modules_display()
 			return TRUE
 
-/datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
+/datum/eventkit/modify_robot/proc/get_target_items(mob/user)
 	var/list/target_items = list()
 	for(var/obj/item in target.module.modules)
 		target_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 	return target_items
 
-/datum/eventkit/modify_robot/proc/get_module_source(var/mob/user, var/datum/asset/spritesheet_batched/robot_icons/spritesheet)
+/datum/eventkit/modify_robot/proc/get_module_source(mob/user, datum/asset/spritesheet_batched/robot_icons/spritesheet)
 	var/list/source_list = list()
 	source_list["model"] = source.module
 	source_list["sprite"] = sanitize_css_class_name("[source.sprite_datum.type]")
@@ -660,7 +660,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 	all_upgrades["restricted_upgrades"] = restricted_upgrades
 	return all_upgrades
 
-/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/gun/energy/kinetic_accelerator/kin)
+/datum/eventkit/modify_robot/proc/get_pka(obj/item/gun/energy/kinetic_accelerator/kin)
 	var/list/pka = list()
 	pka["name"] = kin.name
 	var/list/installed_modkits = list()
@@ -695,7 +695,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 	pka["max_capacity"] = kin.max_mod_capacity
 	return pka
 
-/datum/eventkit/modify_robot/proc/get_mult_belt(var/obj/item/robotic_multibelt/mult_belt)
+/datum/eventkit/modify_robot/proc/get_mult_belt(obj/item/robotic_multibelt/mult_belt)
 	var/list/multi_belt_list = list()
 	multi_belt_list["name"] = mult_belt.name
 	multi_belt_list["ref"] = REF(mult_belt)
@@ -739,7 +739,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 		cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge), "max_damage" = initial(C.robot_durability))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
 	return cell_options
 
-/datum/eventkit/modify_robot/proc/get_component(var/type)
+/datum/eventkit/modify_robot/proc/get_component(type)
 	var/path
 	switch(type)
 		if("camera")
@@ -791,14 +791,14 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 		components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "idle_usage" = C.idle_usage, "active_usage" = C.active_usage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
 	return components
 
-/datum/eventkit/modify_robot/proc/package_laws(var/list/data, var/field, var/list/datum/ai_law/laws)
+/datum/eventkit/modify_robot/proc/package_laws(list/data, field, list/datum/ai_law/laws)
 	var/list/packaged_laws = list()
 	for(var/datum/ai_law/AL in laws)
 		packaged_laws[++packaged_laws.len] = list("law" = AL.law, "index" = AL.get_index(), "state" = target.laws.get_state_law(AL), "ref" = "\ref[AL]")
 	data[field] = packaged_laws
 	data["has_[field]"] = packaged_laws.len
 
-/datum/eventkit/modify_robot/proc/package_multiple_laws(var/list/datum/ai_laws/laws)
+/datum/eventkit/modify_robot/proc/package_multiple_laws(list/datum/ai_laws/laws)
 	var/list/law_sets = list()
 	for(var/datum/ai_laws/ALs in laws)
 		var/list/packaged_laws = list()
@@ -809,8 +809,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modi
 		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
 	return law_sets
 
-/datum/eventkit/modify_robot/proc/is_malf(var/mob/user)
+/datum/eventkit/modify_robot/proc/is_malf(mob/user)
 	return (is_admin(user) && !target.is_slaved()) || is_special_role(user)
 
-/datum/eventkit/modify_robot/proc/is_special_role(var/mob/user)
+/datum/eventkit/modify_robot/proc/is_special_role(mob/user)
 	return user.mind?.special_role ? TRUE : FALSE

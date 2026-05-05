@@ -157,7 +157,7 @@
 		return ITEM_INTERACT_SUCCESS
 	..()
 
-/obj/item/ore/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
+/obj/item/ore/attack_generic(mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
 	if(user.handle_eat_minerals(src))
 		return ITEM_INTERACT_SUCCESS
 	..()

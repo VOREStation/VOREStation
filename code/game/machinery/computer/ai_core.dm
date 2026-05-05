@@ -201,7 +201,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		GLOB.empty_playable_ai_cores -= src
 	return ..()
 
-/obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/aicard/card, var/mob/user)
+/obj/structure/AIcore/deactivated/proc/load_ai(mob/living/silicon/ai/transfer, obj/item/aicard/card, mob/user)
 
 	if(!istype(transfer) || locate(/mob/living/silicon/ai) in src)
 		return
@@ -222,14 +222,14 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 
 	qdel(src)
 
-/obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
+/obj/structure/AIcore/deactivated/proc/check_malf(mob/living/silicon/ai/ai)
 	if(!ai)
 		return
 	for (var/datum/mind/malfai in GLOB.malf.current_antagonists)
 		if (ai.mind == malfai)
 			return 1
 
-/obj/structure/AIcore/deactivated/attackby(var/obj/item/W, var/mob/user)
+/obj/structure/AIcore/deactivated/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/aicard))
 		var/obj/item/aicard/card = W

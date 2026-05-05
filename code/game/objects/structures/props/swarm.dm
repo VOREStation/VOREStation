@@ -32,7 +32,7 @@
 	active_beams = null
 	. = ..()
 
-/obj/structure/cult/pylon/swarm/pylonhit(var/damage)
+/obj/structure/cult/pylon/swarm/pylonhit(damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3))
 			visible_message(span_danger("[shatter_message]"))
@@ -43,7 +43,7 @@
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
-/obj/structure/cult/pylon/swarm/attackpylon(mob/user as mob, var/damage)
+/obj/structure/cult/pylon/swarm/attackpylon(mob/user as mob, damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3))
 			user.visible_message(
@@ -112,7 +112,7 @@
 
 	description_info = "An infinitely small point in space spread upon infinitely many finitely-bounded points in space. Nice."
 
-/obj/structure/cult/pylon/swarm/defender/pylonhit(var/damage)
+/obj/structure/cult/pylon/swarm/defender/pylonhit(damage)
 	if(!isbroken)
 		if(prob(1 + damage * 3) && damage >= 25)
 			visible_message(span_danger("[shatter_message]"))
@@ -123,7 +123,7 @@
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
-/obj/structure/cult/pylon/swarm/defender/attackpylon(mob/user as mob, var/damage)
+/obj/structure/cult/pylon/swarm/defender/attackpylon(mob/user as mob, damage)
 	if(!isbroken)
 		if(prob(1 + damage * 2) && damage >= 15)
 			user.visible_message(

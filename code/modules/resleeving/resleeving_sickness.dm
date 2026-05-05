@@ -30,7 +30,7 @@
 	hidden = TRUE
 	var/datum/mind/cached_mind = null
 
-/datum/modifier/gory_devourment/can_apply(var/mob/living/L)
+/datum/modifier/gory_devourment/can_apply(mob/living/L)
 	if(L.stat == DEAD)
 		return FALSE
 	else

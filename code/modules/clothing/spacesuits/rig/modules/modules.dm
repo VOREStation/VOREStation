@@ -143,7 +143,7 @@
 
 
 // Called when the module is installed into a suit.
-/obj/item/rig_module/proc/installed(var/obj/item/rig/new_holder)
+/obj/item/rig_module/proc/installed(obj/item/rig/new_holder)
 	holder = new_holder
 	return
 
@@ -182,7 +182,7 @@
 	return 1
 
 // Proc for toggling on active abilities.
-/obj/item/rig_module/proc/activate(var/skip_engage = 0) //VOREStation Edit - Allow us to skip the engage call.
+/obj/item/rig_module/proc/activate(skip_engage = 0) //VOREStation Edit - Allow us to skip the engage call.
 	//VOREStation Edit - Allow us to skip the engage call
 	if(active)
 		return 0
@@ -233,7 +233,7 @@
 
 // Called by holder rigsuit attackby()
 // Checks if an item is usable with this module and handles it if it is
-/obj/item/rig_module/proc/accepts_item(var/obj/item/input_device)
+/obj/item/rig_module/proc/accepts_item(obj/item/input_device)
 	return 0
 
 /atom/movable/stat_rig_module
@@ -250,7 +250,7 @@
 	module = null
 	. = ..()
 
-/atom/movable/stat_rig_module/proc/AddHref(var/list/href_list)
+/atom/movable/stat_rig_module/proc/AddHref(list/href_list)
 	return
 
 /atom/movable/stat_rig_module/proc/CanUse()
@@ -332,7 +332,7 @@
 	name = "Change Charge"
 	module_mode = "select_charge_type"
 
-/atom/movable/stat_rig_module/charge/AddHref(var/list/href_list)
+/atom/movable/stat_rig_module/charge/AddHref(list/href_list)
 	var/charge_index = module.charges.Find(module.charge_selected)
 	if(!charge_index)
 		charge_index = 0

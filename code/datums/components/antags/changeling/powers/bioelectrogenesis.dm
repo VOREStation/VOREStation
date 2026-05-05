@@ -111,7 +111,7 @@
 		var/T = get_turf(src)
 		new /obj/effect/effect/sparks(T)
 
-/obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
+/obj/item/electric_hand/afterattack(atom/target, mob/living/carbon/human/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

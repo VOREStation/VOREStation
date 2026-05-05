@@ -12,7 +12,7 @@
 		A.process()
 		check_alarm_cleared(A)
 
-/datum/alarm_handler/proc/triggerAlarm(var/atom/origin, var/atom/source, var/duration = 0, var/severity = 1, var/hidden = 0)
+/datum/alarm_handler/proc/triggerAlarm(atom/origin, atom/source, duration = 0, severity = 1, hidden = 0)
 	var/new_alarm
 	//Proper origin and source mandatory
 	if(!(origin && source))
@@ -36,7 +36,7 @@
 
 	return new_alarm
 
-/datum/alarm_handler/proc/clearAlarm(var/atom/origin, var/source)
+/datum/alarm_handler/proc/clearAlarm(atom/origin, source)
 	//Proper origin and source mandatory
 	if(!(origin && source))
 		return
@@ -47,19 +47,19 @@
 		existing.clear(source)
 		return check_alarm_cleared(existing)
 
-/datum/alarm_handler/proc/major_alarms(var/z)
+/datum/alarm_handler/proc/major_alarms(z)
 	return visible_alarms(z)
 
-/datum/alarm_handler/proc/has_major_alarms(var/z)
+/datum/alarm_handler/proc/has_major_alarms(z)
 	if(!LAZYLEN(alarms))
 		return 0
 
 	return LAZYLEN(major_alarms(z))
 
-/datum/alarm_handler/proc/minor_alarms(var/z)
+/datum/alarm_handler/proc/minor_alarms(z)
 	return visible_alarms(z)
 
-/datum/alarm_handler/proc/check_alarm_cleared(var/datum/alarm/alarm)
+/datum/alarm_handler/proc/check_alarm_cleared(datum/alarm/alarm)
 	if ((alarm.end_time && world.time > alarm.end_time) || !alarm.sources.len)
 		alarms -= alarm
 		alarms_assoc -= alarm.origin
@@ -67,7 +67,7 @@
 		return 1
 	return 0
 
-/datum/alarm_handler/proc/on_alarm_change(var/datum/alarm/alarm, var/was_raised)
+/datum/alarm_handler/proc/on_alarm_change(datum/alarm/alarm, was_raised)
 	for(var/obj/machinery/camera/C in alarm.cameras())
 		if(was_raised && !alarm.hidden)
 			C.add_network(category)
@@ -78,7 +78,7 @@
 #undef ALARM_RAISED
 #undef ALARM_CLEARED
 
-/datum/alarm_handler/proc/get_alarm_severity_for_origin(var/atom/origin)
+/datum/alarm_handler/proc/get_alarm_severity_for_origin(atom/origin)
 	if(!origin)
 		return
 
@@ -95,17 +95,17 @@
 /turf/get_alarm_origin()
 	return get_area(src)
 
-/datum/alarm_handler/proc/register_alarm(var/object, var/procName)
+/datum/alarm_handler/proc/register_alarm(object, procName)
 	listeners[object] = procName
 
-/datum/alarm_handler/proc/unregister_alarm(var/object)
+/datum/alarm_handler/proc/unregister_alarm(object)
 	listeners -= object
 
-/datum/alarm_handler/proc/notify_listeners(var/alarm, var/was_raised)
+/datum/alarm_handler/proc/notify_listeners(alarm, was_raised)
 	for(var/listener in listeners)
 		call(listener, listeners[listener])(src, alarm, was_raised)
 
-/datum/alarm_handler/proc/visible_alarms(var/z)
+/datum/alarm_handler/proc/visible_alarms(z)
 	if(!LAZYLEN(alarms))
 		return list()
 

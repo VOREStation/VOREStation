@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	wrap_buddy = null
 	return ..()
 
-/turf/unsimulated/map/edge/Bumped(var/atom/movable/AM)
+/turf/unsimulated/map/edge/Bumped(atom/movable/AM)
 	if(wrap_buddy?.map_is_to_my)
 		AM.forceMove(get_step(wrap_buddy, wrap_buddy.map_is_to_my))
 	else
@@ -80,12 +80,12 @@ GLOBAL_LIST_EMPTY(map_sectors)
 		add_overlay(I)
 	AddElement(/datum/element/turf_z_transparency)
 
-/turf/unsimulated/map/Entered(var/atom/movable/O, var/atom/oldloc)
+/turf/unsimulated/map/Entered(atom/movable/O, atom/oldloc)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_entered(src, O, oldloc)
 
-/turf/unsimulated/map/Exited(var/atom/movable/O, var/atom/newloc)
+/turf/unsimulated/map/Exited(atom/movable/O, atom/newloc)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_exited(src, O, newloc)

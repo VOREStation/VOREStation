@@ -109,7 +109,7 @@
 		affected_mob.wash(CLEAN_ALL)
 		affected_mob.water_act(2)
 
-/datum/anomalous_weather/proc/do_special(var/turf/simulated/T)
+/datum/anomalous_weather/proc/do_special(turf/simulated/T)
 	return
 
 /datum/anomalous_weather/proc/hear_sounds(mob/M, adding)

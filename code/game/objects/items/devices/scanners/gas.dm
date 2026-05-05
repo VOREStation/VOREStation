@@ -19,7 +19,7 @@
 	///Var for attack_self chain
 	var/special_handling = FALSE
 
-/obj/item/analyzer/atmosanalyze(var/mob/user)
+/obj/item/analyzer/atmosanalyze(mob/user)
 	var/air = user.return_air()
 	if (!air)
 		return
@@ -41,7 +41,7 @@
 	analyze_gases(src, user)
 	return
 
-/obj/item/analyzer/afterattack(var/obj/O, var/mob/user, var/proximity)
+/obj/item/analyzer/afterattack(obj/O, mob/user, proximity)
 	if(proximity)
 		analyze_gases(O, user)
 	return

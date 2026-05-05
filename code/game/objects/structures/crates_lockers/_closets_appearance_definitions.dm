@@ -1,4 +1,4 @@
-/obj/structure/closet/debug/Initialize(mapload, var/newappearance)
+/obj/structure/closet/debug/Initialize(mapload, newappearance)
 	closet_appearance = newappearance
 	. = ..()
 

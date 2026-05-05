@@ -4,7 +4,7 @@
 /// This is called when using the depth_scanner on an artifact tile. It tells you what artifact group type is contained inside.
 /// Previously, we only used MERCURY, IRON, NITROGEN, POTASSIUM, CARBON, PHORON. Now, we expanded!
 /// </summary>
-/proc/get_responsive_reagent(var/find_type)
+/proc/get_responsive_reagent(find_type)
 	switch(find_type)
 		if(ARCHAEO_STATUETTE, ARCHAEO_INSTRUMENT, ARCHAEO_HANDCUFFS, ARCHAEO_BEARTRAP, ARCHAEO_LIGHTER, ARCHAEO_BOX, ARCHAEO_PEN, ARCHAEO_COIN, ARCHAEO_STOCKPARTS)
 			return REAGENT_ID_MERCURY
@@ -25,7 +25,7 @@
 /proc/get_random_digsite_type()
 	return pick(100;DIGSITE_GARDEN, 90;DIGSITE_HOUSE, 85;DIGSITE_TECHNICAL,  85;DIGSITE_MIDDEN, 80;DIGSITE_TEMPLE, 75;DIGSITE_WAR)
 
-/proc/get_random_find_type(var/digsite)
+/proc/get_random_find_type(digsite)
 	. = 0
 	switch(digsite)
 		if(DIGSITE_GARDEN)

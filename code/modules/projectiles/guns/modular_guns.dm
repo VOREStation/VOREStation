@@ -128,7 +128,7 @@
 		new /datum/firemode(src, list(mode_name="[burstmode] shot lethal", projectile_type=beammode_lethal, charge_cost = chargecost_lethal, burst = burstmode)),
 		)
 
-/obj/item/gun/energy/modular/load_ammo(var/obj/item/C, mob/user)
+/obj/item/gun/energy/modular/load_ammo(obj/item/C, mob/user)
 	if(istype(C, cell_type))
 		if(self_recharge || battery_lock)
 			to_chat(user, span_notice("[src] does not have a battery port."))

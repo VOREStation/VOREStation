@@ -31,7 +31,7 @@
 	max_charge = 12e6
 	max_charge_rate = 600000
 
-/obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/shield_capacitor/emag_act(remaining_charges, mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")

@@ -412,10 +412,10 @@
 	else if(spawn_flags & SPECIES_IS_WHITELISTED)
 		sort_hint = SPECIES_SORT_WHITELISTED
 
-/datum/species/proc/sanitize_name(var/name, var/robot = 0)
+/datum/species/proc/sanitize_name(name, robot = 0)
 	return sanitizeName(name, MAX_NAME_LEN, robot)
 
-/datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 0,var/comprehensive = 0)
+/datum/species/proc/equip_survival_gear(mob/living/carbon/human/H,extendedtank = 0,comprehensive = 0)
 	var/boxtype = /obj/item/storage/box/survival //Default survival box
 
 	var/synth = H.isSynthetic()
@@ -500,7 +500,7 @@
 	for(var/obj/item/organ/O in H.internal_organs)
 		O.set_initial_meat()
 
-/datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
+/datum/species/proc/hug(mob/living/carbon/human/H, mob/living/target)
 
 	var/t_him = "them"
 	if(ishuman(target))
@@ -574,35 +574,35 @@
 		H.visible_message(span_notice("[H] hugs [target] to make [t_him] feel better!"), \
 						span_notice("You hug [target] to make [t_him] feel better!"))
 
-/datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
+/datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			remove_verb(H, verb_path)
 	return
 
-/datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
+/datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			add_verb(H, verb_path)
 	return
 
-/datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
+/datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
 	add_inherent_verbs(H)
 	H.mob_bump_flag = bump_flag
 	H.mob_swap_flags = swap_flags
 	H.mob_push_flags = push_flags
 	H.pass_flags = pass_flags
 
-/datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
+/datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
 // Used for traits and species that have special environmental effects.
-/datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_environment_special(mob/living/carbon/human/H)
 	for(var/datum/trait/env_trait in env_traits)
 		env_trait.handle_environment_special(H)
 	return
 
-/datum/species/proc/handle_species_components(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_species_components(mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	//Xenochimera Species Component
@@ -619,24 +619,24 @@
 			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
 
 // Used to update alien icons for aliens.
-/datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_login_special(mob/living/carbon/human/H)
 	return
 
 // As above.
-/datum/species/proc/handle_logout_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_logout_special(mob/living/carbon/human/H)
 	return
 
 // Builds the HUD using species-specific icons and usable slots.
-/datum/species/proc/build_hud(var/mob/living/carbon/human/H)
+/datum/species/proc/build_hud(mob/living/carbon/human/H)
 	return
 
 //Used by xenos understanding larvae and dionaea understanding nymphs.
-/datum/species/proc/can_understand(var/mob/other)
+/datum/species/proc/can_understand(mob/other)
 	return
 
 // Called when using the shredding behavior, returning unarmed damage value
 //CheckHighDamage returns the damage value of the attack if it meets at least the noted value
-/datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent, var/checkhighdamage = 0)
+/datum/species/proc/can_shred(mob/living/carbon/human/H, ignore_intent, checkhighdamage = 0)
 
 	if(!ignore_intent && H.a_intent != I_HURT)
 		return 0
@@ -655,7 +655,7 @@
 	return shreds
 
 // Called in life() when the mob has no client.
-/datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_npc(mob/living/carbon/human/H)
 	if(H.stat == CONSCIOUS && H.ai_holder)
 		if(H.resting)
 			H.resting = FALSE
@@ -671,23 +671,23 @@
 	return bad_swimmer
 
 // Impliments different trails for species depending on if they're wearing shoes.
-/datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
+/datum/species/proc/get_move_trail(mob/living/carbon/human/H)
 	if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
 		return /obj/effect/decal/cleanable/blood/tracks/footprints
 	else
 		return move_trail
 
-/datum/species/proc/update_skin(var/mob/living/carbon/human/H)
+/datum/species/proc/update_skin(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/get_eyes(var/mob/living/carbon/human/H)
+/datum/species/proc/get_eyes(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/can_overcome_gravity(var/mob/living/carbon/human/H)
+/datum/species/proc/can_overcome_gravity(mob/living/carbon/human/H)
 	return FALSE
 
 // Used for any extra behaviour when falling and to see if a species will fall at all.
-/datum/species/proc/can_fall(var/mob/living/carbon/human/H)
+/datum/species/proc/can_fall(mob/living/carbon/human/H)
 	return TRUE
 
 // Used to find a special target for falling on, such as pouncing on someone from above.
@@ -695,14 +695,14 @@
 	return FALSE
 
 // Used to override normal fall behaviour. Use only when the species does fall down a level.
-/datum/species/proc/fall_impact_special(var/mob/living/carbon/human/H, var/atom/A)
+/datum/species/proc/fall_impact_special(mob/living/carbon/human/H, atom/A)
 	return FALSE
 
 // Allow species to display interesting information in the human stat panels
-/datum/species/proc/get_status_tab_items(var/mob/living/carbon/human/H)
+/datum/species/proc/get_status_tab_items(mob/living/carbon/human/H)
 	return ""
 
-/datum/species/proc/handle_water_damage(var/mob/living/carbon/human/H, var/amount = 0)
+/datum/species/proc/handle_water_damage(mob/living/carbon/human/H, amount = 0)
 	amount *= 1 - H.get_water_protection()
 	amount *= water_damage_mod
 	if(amount > 0)
@@ -761,10 +761,10 @@
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/update_misc_tabs(var/mob/living/carbon/human/H)
+/datum/species/proc/update_misc_tabs(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/handle_base_eyes(var/mob/living/carbon/human/H, var/custom_base)
+/datum/species/proc/handle_base_eyes(mob/living/carbon/human/H, custom_base)
 	if(selects_bodytype && custom_base) // only bother if our src species datum allows bases and one is assigned
 		var/datum/species/S = GLOB.all_species[custom_base]
 
@@ -795,12 +795,12 @@
 	for(var/u_type in unarmed_types)
 		unarmed_attacks += new u_type()
 
-/datum/species/proc/apply_components(var/mob/living/carbon/human/H)
+/datum/species/proc/apply_components(mob/living/carbon/human/H)
 	if(LAZYLEN(species_component))
 		for(var/component in species_component)
 			H.LoadComponent(component)
 
-/datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
+/datum/species/proc/produceCopy(list/traits, mob/living/carbon/human/H, custom_base, reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)
 	ASSERT(istype(H))
 	var/datum/species/new_copy = new src.type()
@@ -847,7 +847,7 @@
 	return new_copy
 
 //We REALLY don't need to go through every variable. Doing so makes this lag like hell on 515
-/datum/species/proc/copy_variables(var/datum/species/S, var/list/whitelist)
+/datum/species/proc/copy_variables(datum/species/S, list/whitelist)
 	//List of variables to ignore, trying to copy type will runtime.
 	//var/list/blacklist = list(BLACKLISTED_COPY_VARS)
 	//Makes thorough copy of species datum.

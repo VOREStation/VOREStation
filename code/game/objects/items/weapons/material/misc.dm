@@ -31,7 +31,7 @@
 	item_state = "rock"
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/material/knife/machete/hatchet/stone/set_material(var/new_material)
+/obj/item/material/knife/machete/hatchet/stone/set_material(new_material)
 	var/old_name = name
 	. = ..()
 	name = old_name
@@ -136,7 +136,7 @@
 				user.visible_message(span_warning("\The [AM] is snatched by \the [src]!"))
 				AM.throw_at(user, reach, 0.1, user)
 
-/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
@@ -158,7 +158,7 @@
 
 	..()
 
-/obj/item/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
+/obj/item/material/whip/proc/ranged_disarm(mob/living/carbon/human/H, mob/living/user)
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 40, H.get_inactive_hand() = 20)
 

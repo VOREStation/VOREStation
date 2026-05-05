@@ -23,7 +23,7 @@
 	QDEL_NULL(my_tool)
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/action(var/atom/target)
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/action(atom/target)
 	if(!action_checks(target))
 		return FALSE
 

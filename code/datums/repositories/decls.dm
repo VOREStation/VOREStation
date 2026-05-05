@@ -25,7 +25,7 @@
 	fetched_decl_types = list()
 	fetched_decl_subtypes = list()
 
-/datum/repository/decls/proc/get_decl(var/decl_type)
+/datum/repository/decls/proc/get_decl(decl_type)
 	ASSERT(ispath(decl_type))
 	. = fetched_decls[decl_type]
 	if(!.)
@@ -36,23 +36,23 @@
 		if(istype(decl))
 			decl.Initialize()
 
-/datum/repository/decls/proc/get_decls(var/list/decl_types)
+/datum/repository/decls/proc/get_decls(list/decl_types)
 	. = list()
 	for(var/decl_type in decl_types)
 		.[decl_type] = get_decl(decl_type)
 
-/datum/repository/decls/proc/get_decls_unassociated(var/list/decl_types)
+/datum/repository/decls/proc/get_decls_unassociated(list/decl_types)
 	. = list()
 	for(var/decl_type in decl_types)
 		. += get_decl(decl_type)
 
-/datum/repository/decls/proc/get_decls_of_type(var/decl_prototype)
+/datum/repository/decls/proc/get_decls_of_type(decl_prototype)
 	. = fetched_decl_types[decl_prototype]
 	if(!.)
 		. = get_decls(typesof(decl_prototype))
 		fetched_decl_types[decl_prototype] = .
 
-/datum/repository/decls/proc/get_decls_of_subtype(var/decl_prototype)
+/datum/repository/decls/proc/get_decls_of_subtype(decl_prototype)
 	. = fetched_decl_subtypes[decl_prototype]
 	if(!.)
 		. = get_decls(subtypesof(decl_prototype))

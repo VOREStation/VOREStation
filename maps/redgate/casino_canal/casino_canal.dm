@@ -16,7 +16,7 @@
 	var/amt_chips_to_dispense = 250
 	var/speaking = FALSE // Whether or not we are saying one message (to prevent overlap)
 
-/obj/machinery/oneuse_chipmachine/proc/state_message(var/message, var/delay=0)
+/obj/machinery/oneuse_chipmachine/proc/state_message(message, delay=0)
 	PROTECTED_PROC(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 	// If we don't want a delay, say the message

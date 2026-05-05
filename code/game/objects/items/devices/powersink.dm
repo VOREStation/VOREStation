@@ -31,7 +31,7 @@
 	STOP_PROCESSING_POWER_OBJECT(src)
 	. = ..()
 
-/obj/item/powersink/attackby(var/obj/item/I, var/mob/user)
+/obj/item/powersink/attackby(obj/item/I, mob/user)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(mode == 0)
 			var/turf/T = loc
@@ -67,7 +67,7 @@
 /obj/item/powersink/attack_ai()
 	return
 
-/obj/item/powersink/attack_hand(var/mob/user)
+/obj/item/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()

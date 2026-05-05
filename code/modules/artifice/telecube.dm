@@ -117,7 +117,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/telecube/proc/pair_cube(var/obj/item/telecube/M)
+/obj/item/telecube/proc/pair_cube(obj/item/telecube/M)
 	if(mate)
 		return 0
 	else
@@ -125,7 +125,7 @@
 		update_icon()
 		return 1
 
-/obj/item/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
+/obj/item/telecube/proc/teleport_to_mate(atom/movable/A, areaporting = FALSE)
 	. = FALSE
 
 	if(!istype(A))
@@ -189,7 +189,7 @@
 	. = TRUE
 	return .
 
-/obj/item/telecube/proc/cooldown(var/mate_too = FALSE)
+/obj/item/telecube/proc/cooldown(mate_too = FALSE)
 	if(!ready)
 		return
 
@@ -203,7 +203,7 @@
 	ready = TRUE
 	update_icon()
 
-/obj/item/telecube/proc/animate_out(var/atom/movable/AM)
+/obj/item/telecube/proc/animate_out(atom/movable/AM)
 	//See atom cloak/uncloak animations for comments
 	var/atom/movable/target = AM
 	var/our_filter_index = target.filters.len+1
@@ -214,7 +214,7 @@
 	sleep(5)
 	target.filters -= filter(type="blur", size = 2)
 
-/obj/item/telecube/proc/animate_in(var/atom/movable/AM)
+/obj/item/telecube/proc/animate_in(atom/movable/AM)
 	//See atom cloak/uncloak animations for comments
 	var/atom/movable/target = AM
 	var/our_filter_index = target.filters.len+1
@@ -233,12 +233,12 @@
 	if(Adjacent(user) && swap_with_mate())
 		cooldown(mate_too = TRUE)
 
-/obj/item/telecube/Bump(var/atom/movable/AM)
+/obj/item/telecube/Bump(atom/movable/AM)
 	if(teleport_to_mate(AM))
 		cooldown(mate_too = FALSE)
 	. = ..()
 
-/obj/item/telecube/Bumped(var/atom/movable/M)
+/obj/item/telecube/Bumped(atom/movable/M)
 	if(teleport_to_mate(M))
 		cooldown(mate_too = FALSE)
 	. = ..()

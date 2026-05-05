@@ -453,7 +453,7 @@
 	return ..()
 
 
-/obj/item/medigun_backpack/proc/refill_reagent(var/obj/item/container, mob/user)
+/obj/item/medigun_backpack/proc/refill_reagent(obj/item/container, mob/user)
 	. = FALSE
 	if(!maintenance && (istype(container, /obj/item/reagent_containers/glass/beaker) || istype(container, /obj/item/reagent_containers/glass/bottle)))
 
@@ -566,5 +566,5 @@
 	..()
 	replace_icon()
 
-/obj/item/medigun_backpack/proc/checked_use(var/charge_amt)
+/obj/item/medigun_backpack/proc/checked_use(charge_amt)
 	return (bcell && bcell.checked_use(charge_amt))

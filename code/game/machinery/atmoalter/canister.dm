@@ -243,7 +243,7 @@ update_flag
 		return GM.return_pressure()
 	return 0
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/canister/bullet_act(obj/item/projectile/Proj)
 	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
 		return
 
@@ -252,7 +252,7 @@ update_flag
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WELDER)) //Vorestart: Deconstructable Canisters
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(0, user))
@@ -294,10 +294,10 @@ update_flag
 
 	SStgui.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_hand(mob/user as mob)
 	return tgui_interact(user)
 
 /obj/machinery/portable_atmospherics/canister/tgui_state(mob/user)
@@ -475,6 +475,6 @@ update_flag
 	air_contents.adjust_gas(GAS_PHORON, MolesForPressure())
 	update_icon()
 
-/obj/machinery/portable_atmospherics/canister/take_damage(var/damage)
+/obj/machinery/portable_atmospherics/canister/take_damage(damage)
 	health -= damage
 	healthcheck()

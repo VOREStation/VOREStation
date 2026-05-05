@@ -92,7 +92,7 @@
 	use_power = USE_POWER_OFF
 	flags = WALL_ITEM
 
-/obj/machinery/button/doorbell/Initialize(mapload, var/dir, var/building = FALSE)
+/obj/machinery/button/doorbell/Initialize(mapload, dir, building = FALSE)
 	. = ..()
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)

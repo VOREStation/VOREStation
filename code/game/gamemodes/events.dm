@@ -107,7 +107,7 @@ GLOBAL_VAR_INIT(hadevent, 0)
 		if(H.client && H.appendicitis())
 			break
 
-/proc/alien_infestation(var/spawncount = 1) // -- TLE
+/proc/alien_infestation(spawncount = 1) // -- TLE
 	//command_alert("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert")
 	// play_simple_announcement(world, ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 	var/list/vents = list()

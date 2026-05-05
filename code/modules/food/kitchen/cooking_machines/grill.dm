@@ -50,7 +50,7 @@
 		if(grill_loop)
 			grill_loop.stop(src)
 
-/obj/machinery/appliance/cooker/grill/finish_cooking(var/datum/cooking_item/CI)
+/obj/machinery/appliance/cooker/grill/finish_cooking(datum/cooking_item/CI)
 	..()
 	for(var/obj/item/I in CI.container)
 		SEND_SIGNAL(I, COMSIG_ITEM_BARBEQUE_GRILLED)

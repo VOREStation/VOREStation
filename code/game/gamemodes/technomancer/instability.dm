@@ -16,13 +16,13 @@
 // Proc: adjust_instability()
 // Parameters: 0
 // Description: Does nothing, because inheritence.
-/mob/living/proc/adjust_instability(var/amount)
+/mob/living/proc/adjust_instability(amount)
 	instability = between(0, round(instability + amount, TECHNOMANCER_INSTABILITY_PRECISION), 200)
 
 // Proc: adjust_instability()
 // Parameters: 1 (amount - how much instability to give)
 // Description: Adds or subtracks instability to the mob, then updates the hud.
-/mob/living/carbon/human/adjust_instability(var/amount)
+/mob/living/carbon/human/adjust_instability(amount)
 	..()
 	instability_update_hud()
 

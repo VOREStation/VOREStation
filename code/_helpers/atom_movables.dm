@@ -35,7 +35,7 @@
 	for(A, A && !istype(A, holder_type), A=A.loc);
 	return A
 
-/atom/movable/proc/throw_at_random(var/include_own_turf, var/maxrange, var/speed)
+/atom/movable/proc/throw_at_random(include_own_turf, maxrange, speed)
 	var/list/turfs = trange(maxrange, src)
 	if(!maxrange)
 		maxrange = 1

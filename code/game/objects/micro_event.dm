@@ -6,7 +6,7 @@
 	var/shrinking = TRUE
 	var/size_limit = 0.5
 
-/obj/structure/portal_event/resize/attack_ghost(var/mob/observer/dead/user)
+/obj/structure/portal_event/resize/attack_ghost(mob/observer/dead/user)
 	if(!target && check_rights_for(user?.client, R_HOLDER))
 		if(tgui_alert(user, "Would you like to adjust the portal's size settings?", "Change portal size settings", list("No","Yes")) == "Yes")
 			var/our_message

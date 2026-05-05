@@ -81,7 +81,7 @@
 	update_icon()
 	set_light(0,0)
 
-/obj/item/melee/energy/proc/use_charge(var/cost)
+/obj/item/melee/energy/proc/use_charge(cost)
 	if(active)
 		if(bcell)
 			if(bcell.checked_use(cost))
@@ -305,7 +305,7 @@
 	..()
 	attack_verb = list()
 
-/obj/item/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/sword/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(60))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
@@ -368,7 +368,7 @@
 	lcolor = "#0000FF"
 	projectile_parry_chance = 30	// It's not specifically designed for cutting and slashing, but it can still, maybe, save your life.
 
-/obj/item/melee/energy/sword/ionic_rapier/afterattack(var/atom/movable/AM, var/mob/living/user, var/proximity)
+/obj/item/melee/energy/sword/ionic_rapier/afterattack(atom/movable/AM, mob/living/user, proximity)
 	if(istype(AM, /obj) && proximity && active)
 		// EMP stuff.
 		var/obj/O = AM
@@ -377,7 +377,7 @@
 		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
 
-/obj/item/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	. = ..()
 	if(target.isSynthetic() && active)
 		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
@@ -478,7 +478,7 @@
 			host.drop_from_inventory(src)
 		QDEL_IN(src, 1)
 
-/obj/item/melee/energy/blade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/blade/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(60))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
@@ -546,7 +546,7 @@
 	..()
 	attack_verb = list("whacked", "beat", "slapped", "thonked")
 
-/obj/item/melee/energy/spear/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/spear/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()

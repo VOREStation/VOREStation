@@ -18,7 +18,7 @@
 /// Giving this to any locker will connect it to the network, allowing extra or none at any given point.
 /datum/component/bluespace_connection/permanent_network
 
-/datum/component/bluespace_connection/Initialize(var/list/connections, exit_sound = 'sound/effects/clang.ogg', throw_range = 3, throw_range_x = 5, throw_range_y = 5)
+/datum/component/bluespace_connection/Initialize(list/connections, exit_sound = 'sound/effects/clang.ogg', throw_range = 3, throw_range_x = 5, throw_range_y = 5)
 	assigned_closet = parent
 
 	if(!istype(assigned_closet, /obj/structure/closet)) // Might expand this in the future? For now, it only goes on closets.
@@ -62,7 +62,7 @@
 	playsound(exit_point, exit_sound, 50, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(exit_connection), exit_point, assigned_closet.contents), 1.3 SECONDS)
 
-/datum/component/bluespace_connection/proc/exit_connection(var/atom/exit_point, var/list/contents)
+/datum/component/bluespace_connection/proc/exit_connection(atom/exit_point, list/contents)
 	// Nope, must be closed.
 	if(assigned_closet.opened)
 		return
@@ -102,11 +102,11 @@
 /datum/component/bluespace_connection/proc/throw_target()
 	return get_offset_target_turf(get_turf(assigned_closet), rand(throw_range_x)-rand(throw_range_x), rand(throw_range_y)-rand(throw_range_y))
 
-/datum/component/bluespace_connection/proc/add_exit(var/exit_point)
+/datum/component/bluespace_connection/proc/add_exit(exit_point)
 	connections.Add(exit_point)
 	return TRUE
 
-/datum/component/bluespace_connection/proc/sever_connection(var/removed_exit)
+/datum/component/bluespace_connection/proc/sever_connection(removed_exit)
 	connections -= removed_exit
 
 	do_sparks()

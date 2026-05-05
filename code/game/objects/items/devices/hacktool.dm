@@ -32,7 +32,7 @@
 	hack_state = null
 	return ..()
 
-/obj/item/multitool/hacktool/attackby(var/obj/item/W, var/mob/user)
+/obj/item/multitool/hacktool/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		in_hack_mode = !in_hack_mode
 		playsound(src, W.usesound, 50, 1)
@@ -68,7 +68,7 @@
 			D.close()
 	return 1
 
-/obj/item/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
+/obj/item/multitool/hacktool/proc/attempt_hack(mob/user, atom/target)
 	if(is_hacking)
 		to_chat(user, span_warning("You are already hacking!"))
 		return 0
@@ -137,13 +137,13 @@
 			A.unregister(OBSERVER_EVENT_DESTROY, src)
 		known_targets.Cut(max_known_targets + 1)
 
-/obj/item/multitool/hacktool/proc/on_target_destroy(var/target)
+/obj/item/multitool/hacktool/proc/on_target_destroy(target)
 	known_targets -= target
 
 /datum/tgui_state/default/must_hack
 	var/obj/item/multitool/hacktool/hacktool
 
-/datum/tgui_state/default/must_hack/New(var/hacktool)
+/datum/tgui_state/default/must_hack/New(hacktool)
 	src.hacktool = hacktool
 	..()
 

@@ -115,7 +115,7 @@
 	though it is known to act more calm around those carrying food, which it is quick to steal from people's hands if offered. However, they have been observed to use their tails as weapons when panicked and unable to flee."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/vore/fluffball/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple_mob/vore/fluffball/PounceTarget(mob/living/M, successrate = 100)
 	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
