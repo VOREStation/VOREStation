@@ -13,8 +13,9 @@
 	special_attack_min_range = 3
 	special_attack_max_range = 8
 	special_attack_cooldown = 10 SECONDS
-	var/charging = 0
-	var/charging_warning = 1 SECONDS
+	var/charging = FALSE
+	var/static/charging_warning = 1 SECONDS
+	var/static/charge_speed = 2
 	minbodytemp = 0
 	maxbodytemp = 1000
 	min_oxy = 0				// Oxygen in moles, minimum, 0 is 'no minimum'
@@ -38,35 +39,49 @@
 	..()
 
 
-/mob/living/simple_mob/animal/passive/snowbull/do_special_attack(atom/A)
+/mob/living/simple_mob/animal/passive/snowbull/do_special_attack(atom/target)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
-	charging = 1
+	charging = TRUE
 	movement_shake_radius = 3
 	movement_sound = 'sound/effects/mob_effects/snowbull_charge.ogg'
-	visible_message(span_warning("\The [src] prepares to charge at \the [A]!"))
+	visible_message(span_warning("\The [src] prepares to charge at \the [target]!"))
 	update_icon()
-	sleep(charging_warning)
-	var/chargeturf = get_turf(A)
+	addtimer(CALLBACK(src, PROC_REF(charge_start), target), charging_warning, TIMER_DELETE_ME)
+
+/mob/living/simple_mob/animal/passive/snowbull/proc/charge_start(atom/target)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	var/chargeturf = get_turf(target)
 	if(!chargeturf)
 		return
+
 	var/chargedir = get_dir(src, chargeturf)
 	set_dir(chargedir)
 	var/turf/T = get_ranged_target_turf(chargeturf, chargedir, isDiagonal(chargedir) ? 1 : 2)
 	if(!T)
-		charging = 0
+		charging = FALSE
 		movement_shake_radius = null
 		movement_sound = null
 		update_icon()
-		visible_message(span_warning("\The [src] desists from charging at \the [A]"))
+		visible_message(span_warning("\The [src] desists from charging at \the [target]"))
 		return
-	for(var/distance = get_dist(src.loc, T), src.loc!=T && distance>0, distance--)
-		var/movedir = get_dir(src.loc, T)
-		var/moveturf = get_step(src.loc, movedir)
-		SelfMove(moveturf, movedir, 2)
-		sleep(2 * world.tick_lag) //Speed it will move, default is two server ticks
-	sleep((get_dist(src, T) * 2.2))
-	charging = 0
+
+	addtimer(CALLBACK(src, PROC_REF(charge_attack_handle), chargeturf), charge_speed, TIMER_DELETE_ME)
+
+/mob/living/simple_mob/animal/passive/snowbull/proc/charge_attack_handle(turf/target_turf)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	var/turf/our_turf = get_turf(src)
+	if(get_dist(our_turf, target_turf) > 0)
+		var/movedir = get_dir(our_turf, target_turf)
+		var/moveturf = get_step(our_turf, movedir)
+		if(SelfMove(moveturf, movedir, 2)) // If charge was successful keep looping it, if it was blocked cancel so we don't get stuck in a loop forever!
+			addtimer(CALLBACK(src, PROC_REF(charge_attack_handle), target_turf), charge_speed, TIMER_DELETE_ME)
+			return
+	// End charge
+	charging = FALSE
 	update_icon()
 	movement_shake_radius = 0
 	movement_sound = null
@@ -80,7 +95,7 @@
 			M.Stun(5)
 			M.Weaken(3)
 			var/throwdir = pick(turn(dir, 45), turn(dir, -45))
-			M.throw_at(get_step(src.loc, throwdir), 1, 1, src)
+			M.throw_at(get_step(get_turf(src), throwdir), 1, 1, src)
 			runOver(M) // Actually should not use this, placeholder
 		if(istype(AM, /obj/structure))
 			if(istype(AM, /obj/structure/window))
@@ -108,7 +123,7 @@
 /mob/living/simple_mob/animal/passive/snowbull/proc/runOver(mob/living/M)
 	if(istype(M))
 		visible_message(span_warning("[src] rams [M] over!"))
-		playsound(src, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 100, 1)
 		var/damage = rand(3,4)
 		M.apply_damage(2 * damage, BRUTE, BP_HEAD)
 		M.apply_damage(2 * damage, BRUTE, BP_TORSO)
@@ -215,4 +230,4 @@
 			holder.visible_emote(span_notice("calms down, lowering down their horns"))
 			if(holder.say_list)
 				holder.ISay(safepick(holder.say_list.say_stand_down))
-				playsound(target, holder.say_list.stand_down_sound, 50, 1) // Actual aim-mode also does that so at least it's consistant.
+				playsound(target, holder.say_list.stand_down_sound, 100, 1) // Actual aim-mode also does that so at least it's consistant.
