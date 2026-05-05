@@ -2455,6 +2455,7 @@
 #include "code\modules\client\client procs_vr.dm"
 #include "code\modules\client\movement.dm"
 #include "code\modules\client\persistent_client.dm"
+#include "code\modules\client\save_bundle_export.dm"
 #include "code\modules\client\preferences.dm"
 #include "code\modules\client\preferences_factions.dm"
 #include "code\modules\client\preferences_savefile.dm"
