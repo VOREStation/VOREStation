@@ -305,3 +305,26 @@
 		news.Swap(1, 3) // List is sorted in ascending order of timestamp, we want descending
 
 	return news
+
+/datum/data/pda/app/goals
+	name = "Departmental Goals"
+	icon = "list-check"
+	template = "pda_depgoals"
+
+/datum/data/pda/app/goals/update_ui(mob/user, list/data)
+	data["goals"] = get_goals()
+
+/datum/data/pda/app/goals/proc/get_goals()
+	var/list/goals = list()
+	var/index = 0
+
+	for(var/category in SSdepartmentgoals.active_department_goals)
+		var/list/dept_goal = SSdepartmentgoals.active_department_goals[category]
+		for(var/datum/goal/goal in dept_goal)
+			goals += list(list(
+				"name" = goal.name,
+				"description" = goal.goal_text,
+				"count" = FLOOR((goal.current_count / goal.goal_count) * 100, 1),
+				"index" = ++index
+			))
+	return goals
