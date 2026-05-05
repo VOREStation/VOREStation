@@ -23,7 +23,7 @@
 	src.dir = SOUTH
 	src.pixel_y = 0
 
-/obj/item/cargo_scanner/proc/scan_item_price(var/atom/movable/AM,mob/user)
+/obj/item/cargo_scanner/proc/scan_item_price(atom/movable/AM,mob/user)
 	if(istype(AM,/obj/effect))
 		return 0
 
