@@ -188,7 +188,7 @@
 
 	sharp = TRUE
 
-/obj/item/material/barbedwire/set_material(var/new_material)
+/obj/item/material/barbedwire/set_material(new_material)
 	..()
 
 	if(!QDELETED(src))
@@ -290,7 +290,7 @@
 			update_icon()
 	..()
 
-/obj/item/material/barbedwire/proc/shock(mob/user as mob, prb, var/target_zone = BP_TORSO)
+/obj/item/material/barbedwire/proc/shock(mob/user as mob, prb, target_zone = BP_TORSO)
 	if(!anchored || health == 0)		// anchored/destroyed grilles are never connected
 		return 0
 	if(material.conductivity <= 0)

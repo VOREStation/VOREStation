@@ -4,7 +4,7 @@
 	var/maximum_volume = 100
 	var/atom/my_atom = null
 
-/datum/reagents/New(var/max = 100, atom/A = null)
+/datum/reagents/New(max = 100, atom/A = null)
 	..()
 	maximum_volume = max
 	my_atom = A
@@ -109,7 +109,7 @@
 
 /* Holder-to-chemical */
 
-/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0, var/was_from_belly, var/can_dialysis = TRUE)
+/datum/reagents/proc/add_reagent(id, amount, data = null, safety = 0, was_from_belly, can_dialysis = TRUE)
 	if(!isnum(amount) || amount <= 0)
 		return 0
 
@@ -160,7 +160,7 @@
 			del_reagent(R.id)
 			update_total()
 
-/datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = 0)
+/datum/reagents/proc/remove_reagent(id, amount, safety = 0)
 	if(!isnum(amount))
 		return 0
 	for(var/datum/reagent/current in reagent_list)
@@ -174,7 +174,7 @@
 			return 1
 	return 0
 
-/datum/reagents/proc/del_reagent(var/id)
+/datum/reagents/proc/del_reagent(id)
 	for(var/datum/reagent/current in reagent_list)
 		if (current.id == id)
 			reagent_list -= current
@@ -184,7 +184,7 @@
 				my_atom.on_reagent_change()
 			return 0
 
-/datum/reagents/proc/has_reagent(var/id, var/amount = 0)
+/datum/reagents/proc/has_reagent(id, amount = 0)
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			if(current.volume >= amount)
@@ -193,7 +193,7 @@
 				return 0
 	return 0
 
-/datum/reagents/proc/has_any_reagent(var/list/check_reagents)
+/datum/reagents/proc/has_any_reagent(list/check_reagents)
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id in check_reagents)
 			if(current.volume >= check_reagents[current.id])
@@ -202,7 +202,7 @@
 				return 0
 	return 0
 
-/datum/reagents/proc/has_all_reagents(var/list/check_reagents)
+/datum/reagents/proc/has_all_reagents(list/check_reagents)
 	//this only works if check_reagents has no duplicate entries... hopefully okay since it expects an associative list
 	var/missing = check_reagents.len
 	for(var/datum/reagent/current in reagent_list)
@@ -216,13 +216,13 @@
 		del_reagent(current.id)
 	return
 
-/datum/reagents/proc/get_reagent_amount(var/id)
+/datum/reagents/proc/get_reagent_amount(id)
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			return current.volume
 	return 0
 
-/datum/reagents/proc/get_data(var/id)
+/datum/reagents/proc/get_data(id)
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			return current.get_data()
@@ -236,7 +236,7 @@
 
 /* Holder-to-holder and similar procs */
 
-/datum/reagents/proc/remove_any(var/amount = 1) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
+/datum/reagents/proc/remove_any(amount = 1) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
 	amount = min(amount, total_volume)
 
 	if(!amount)
@@ -252,7 +252,7 @@
 	handle_reactions()
 	return amount
 
-/datum/reagents/proc/trans_to_holder(var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/can_dialysis = TRUE) // Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]).
+/datum/reagents/proc/trans_to_holder(datum/reagents/target, amount = 1, multiplier = 1, copy = 0, can_dialysis = TRUE) // Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]).
 	if(!target || !istype(target))
 		return
 
@@ -286,7 +286,7 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/force_open_container = FALSE)
+/datum/reagents/proc/trans_to(atom/target, amount = 1, multiplier = 1, copy = 0, force_open_container = FALSE)
 	touch(target) //First, handle mere touch effects
 
 	if(ismob(target))
@@ -298,7 +298,7 @@
 	return 0
 
 //Splashing reagents is messier than trans_to, the target's loc gets some of the reagents as well.
-/datum/reagents/proc/splash(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/min_spill=0, var/max_spill=60)
+/datum/reagents/proc/splash(atom/target, amount = 1, multiplier = 1, copy = 0, min_spill=0, max_spill=60)
 	var/spill = 0
 	if(!isturf(target) && target.loc)
 		spill = amount*(rand(min_spill, max_spill)/100)
@@ -309,7 +309,7 @@
 	if(!trans_to(target, amount, multiplier, copy))
 		touch(target, amount)
 
-/datum/reagents/proc/trans_type_to(var/target, var/rtype, var/amount = 1)
+/datum/reagents/proc/trans_type_to(target, rtype, amount = 1)
 	if (!target)
 		return
 
@@ -337,7 +337,7 @@
 	else if (istype(target, /datum/reagents))
 		return F.trans_to_holder(target, amount)
 
-/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1, var/force_open_container = FALSE)
+/datum/reagents/proc/trans_id_to(atom/target, id, amount = 1, force_open_container = FALSE)
 	if (!target || !target.reagents)
 		return
 
@@ -357,7 +357,7 @@
 // This does not handle transferring reagents to things.
 // For example, splashing someone with water will get them wet and extinguish them if they are on fire,
 // even if they are wearing an impermeable suit that prevents the reagents from contacting the skin.
-/datum/reagents/proc/touch(var/atom/target, var/amount)
+/datum/reagents/proc/touch(atom/target, amount)
 	if(ismob(target))
 		touch_mob(target, amount)
 	if(isturf(target))
@@ -366,7 +366,7 @@
 		touch_obj(target, amount)
 	return
 
-/datum/reagents/proc/touch_mob(var/mob/target)
+/datum/reagents/proc/touch_mob(mob/target)
 	if(!target || !istype(target))
 		return
 	if(target.is_incorporeal()) // I really cannot imagine any scenario in which you would want reagent touch clouds to affect phased shadekin, so putting it here instead of higher up.
@@ -377,7 +377,7 @@
 
 	update_total()
 
-/datum/reagents/proc/touch_turf(var/turf/target, var/amount)
+/datum/reagents/proc/touch_turf(turf/target, amount)
 	if(!target || !istype(target))
 		return
 
@@ -386,7 +386,7 @@
 
 	update_total()
 
-/datum/reagents/proc/touch_obj(var/obj/target, var/amount)
+/datum/reagents/proc/touch_obj(obj/target, amount)
 	if(!target || !istype(target))
 		return
 
@@ -398,7 +398,7 @@
 // Attempts to place a reagent on the mob's skin.
 // Reagents are not guaranteed to transfer to the target.
 // Do not call this directly, call trans_to() instead.
-/datum/reagents/proc/splash_mob(var/mob/target, var/amount = 1, var/copy = 0)
+/datum/reagents/proc/splash_mob(mob/target, amount = 1, copy = 0)
 	var/perm = 1
 	if(isliving(target)) //will we ever even need to tranfer reagents to non-living mobs?
 		var/mob/living/L = target
@@ -409,7 +409,7 @@
 		perm = L.reagent_permeability()
 	return trans_to_mob(target, amount, CHEM_TOUCH, perm, copy)
 
-/datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0, var/can_dialysis = TRUE) // Transfer after checking into which holder...
+/datum/reagents/proc/trans_to_mob(mob/target, amount = 1, type = CHEM_BLOOD, multiplier = 1, copy = 0, can_dialysis = TRUE) // Transfer after checking into which holder...
 	if(!target || !istype(target))
 		return
 	if(iscarbon(target))
@@ -428,7 +428,7 @@
 		. = trans_to_holder(R, amount, multiplier, copy, can_dialysis)
 		R.touch_mob(target)
 
-/datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
+/datum/reagents/proc/trans_to_turf(turf/target, amount = 1, multiplier = 1, copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
 	if(!target)
 		return
 
@@ -437,7 +437,7 @@
 	R.touch_turf(target, amount)
 	return
 
-/datum/reagents/proc/trans_to_obj(var/obj/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Objects may or may not; if they do, it's probably a beaker or something and we need to transfer properly; otherwise, just touch.
+/datum/reagents/proc/trans_to_obj(obj/target, amount = 1, multiplier = 1, copy = 0) // Objects may or may not; if they do, it's probably a beaker or something and we need to transfer properly; otherwise, just touch.
 	if(!target)
 		return
 
@@ -451,13 +451,13 @@
 
 /* Atom reagent creation - use it all the time */
 
-/atom/proc/create_reagents(var/max_vol, var/reagents_type = /datum/reagents)
+/atom/proc/create_reagents(max_vol, reagents_type = /datum/reagents)
 	if(!ispath(reagents_type))
 		reagents_type = /datum/reagents
 	reagents = new reagents_type(max_vol, src)
 
 // Aurora Cooking Port
-/datum/reagents/proc/get_reagent(var/id) // Returns reference to reagent matching passed ID
+/datum/reagents/proc/get_reagent(id) // Returns reference to reagent matching passed ID
 	for(var/datum/reagent/A in reagent_list)
 		if (A.id == id)
 			return A
@@ -465,7 +465,7 @@
 	return null
 
 //Spreads the contents of this reagent holder all over the vicinity of the target turf.
-/datum/reagents/proc/splash_area(var/turf/epicentre, var/range = 3, var/portion = 1.0, var/multiplier = 1, var/copy = 0)
+/datum/reagents/proc/splash_area(turf/epicentre, range = 3, portion = 1.0, multiplier = 1, copy = 0)
 	var/list/things = dview(range, epicentre, INVISIBILITY_LIGHTING)
 	var/list/turfs = list()
 	for (var/turf/T in things)
@@ -486,7 +486,7 @@
 
 //Spreads the contents of this reagent holder all over the target turf, dividing among things in it.
 //50% is divided between mobs, 20% between objects, and whatever is left on the turf itself
-/datum/reagents/proc/splash_turf(var/turf/T, var/amount = null, var/multiplier = 1, var/copy = 0)
+/datum/reagents/proc/splash_turf(turf/T, amount = null, multiplier = 1, copy = 0)
 	if (isnull(amount))
 		amount = total_volume
 	else

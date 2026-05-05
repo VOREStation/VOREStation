@@ -44,7 +44,7 @@
 	if(world.time > last_spawn + spawn_delay)
 		spawn_creature(get_turf(src))
 
-/obj/structure/prop/nest/proc/spawn_creature(var/turf/spawnpoint)
+/obj/structure/prop/nest/proc/spawn_creature(turf/spawnpoint)
 	update_creatures() //Paranoia.
 	if(total_creature_max && tally >= total_creature_max)
 		return
@@ -58,7 +58,7 @@
 		den_mobs += L
 		tally++
 
-/obj/structure/prop/nest/proc/remove_creature(var/mob/target)
+/obj/structure/prop/nest/proc/remove_creature(mob/target)
 	den_mobs -= target
 
 /obj/structure/prop/nest/proc/update_creatures()

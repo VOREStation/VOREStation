@@ -13,27 +13,27 @@
 	. = ..()
 	viewers = list()
 
-/obj/effect/landmark/looking_glass/proc/gain_viewer(var/client/C)
+/obj/effect/landmark/looking_glass/proc/gain_viewer(client/C)
 	if(C in viewers)
 		log_mapping("Looking Glass [x],[y],[z] tried to add a duplicate viewer.")
 	viewers |= C
 	if(holding)
 		show_to(C)
 
-/obj/effect/landmark/looking_glass/proc/lose_viewer(var/client/C)
+/obj/effect/landmark/looking_glass/proc/lose_viewer(client/C)
 	if(!(C in viewers))
 		log_mapping("Looking Glass [x],[y],[z] tried to remove a viewer it didn't have")
 	viewers -= C
 	if(holding)
 		unshow_to(C)
 
-/obj/effect/landmark/looking_glass/proc/show_to(var/client/C)
+/obj/effect/landmark/looking_glass/proc/show_to(client/C)
 	C.images |= holding
 
-/obj/effect/landmark/looking_glass/proc/unshow_to(var/client/C)
+/obj/effect/landmark/looking_glass/proc/unshow_to(client/C)
 	C.images -= holding
 
-/obj/effect/landmark/looking_glass/proc/take_image(var/image/newimage)
+/obj/effect/landmark/looking_glass/proc/take_image(image/newimage)
 	if(!istype(newimage))
 		return
 

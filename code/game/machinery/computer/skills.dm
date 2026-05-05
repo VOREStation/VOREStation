@@ -57,7 +57,7 @@
 	active1 = null
 	return ..()
 
-/obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
+/obj/machinery/computer/skills/attackby(obj/item/O as obj, mob/user)
 	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O

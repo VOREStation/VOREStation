@@ -150,7 +150,7 @@
 	//to_world("usr is [usr]") //why was this a thing? -KK.
 	display_data(usr)
 
-/obj/item/detective_scanner/proc/display_data(var/mob/user)
+/obj/item/detective_scanner/proc/display_data(mob/user)
 	if(user && stored && stored.len)
 		for(var/objref in stored)
 			if(!do_after(user, 1 SECOND, target = src)) // So people can move and stop the spam, if they refuse to wipe data.

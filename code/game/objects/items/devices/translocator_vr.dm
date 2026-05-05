@@ -100,7 +100,7 @@
 /obj/item/perfect_tele/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	afterattack(M, user)
 
-/obj/item/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
+/obj/item/perfect_tele/proc/unload_ammo(mob/user, ignore_inactive_hand_check = 0)
 	if(battery_lock)
 		to_chat(user,span_notice("[src] does not have a battery port."))
 		return
@@ -112,14 +112,14 @@
 	else
 		to_chat(user,span_notice("[src] does not have a power cell."))
 
-/obj/item/perfect_tele/proc/check_menu(var/mob/living/user)
+/obj/item/perfect_tele/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 
-/obj/item/perfect_tele/attack_self(mob/user, list/modifiers, var/radial_menu_anchor = src)
+/obj/item/perfect_tele/attack_self(mob/user, list/modifiers, radial_menu_anchor = src)
 	. = ..(user)
 	if(.)
 		return TRUE
@@ -353,7 +353,7 @@ This device records all warnings given and teleport events for admin review in c
 
 	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_dest.name)])" : null]"
 
-/obj/item/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
+/obj/item/perfect_tele/proc/phase_out(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -363,7 +363,7 @@ This device records all warnings given and teleport events for admin review in c
 	playsound(T, "sparks", 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-/obj/item/perfect_tele/proc/phase_in(var/mob/M,var/turf/T)
+/obj/item/perfect_tele/proc/phase_in(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -484,7 +484,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	var/phase_power = 75
 	var/recharging = 0
 
-/obj/item/perfect_tele/frontier/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
+/obj/item/perfect_tele/frontier/unload_ammo(mob/user, ignore_inactive_hand_check = 0)
 	if(recharging)
 		return
 	recharging = 1

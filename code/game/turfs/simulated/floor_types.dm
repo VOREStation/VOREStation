@@ -20,7 +20,7 @@
 		my_turf = get_turf(src)
 		moveToNullspace()
 
-/obj/landed_holder/proc/land_on(var/turf/T)
+/obj/landed_holder/proc/land_on(turf/T)
 	//Gather destination information
 	var/obj/landed_holder/new_holder = new(null)
 	T.lighting_clear_overlay()
@@ -59,7 +59,7 @@
 
 	return new_dest
 
-/obj/landed_holder/proc/leave_turf(var/turf/base_turf = null)
+/obj/landed_holder/proc/leave_turf(turf/base_turf = null)
 	var/turf/new_source
 	//Change our source to whatever it was before
 	if(turf_type)

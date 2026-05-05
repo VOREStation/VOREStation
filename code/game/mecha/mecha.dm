@@ -235,7 +235,7 @@
 	loc.Entered(src)
 	GLOB.mechas_list += src //global mech list
 
-/obj/mecha/drain_power(var/drain_check)
+/obj/mecha/drain_power(drain_check)
 
 	if(drain_check)
 		return 1
@@ -455,7 +455,7 @@
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	return internal_tank
 
-/obj/mecha/proc/add_cell(var/obj/item/cell/C=null)
+/obj/mecha/proc/add_cell(obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -485,7 +485,7 @@
 		return 1
 	return 0
 
-/obj/mecha/proc/enter_after(delay as num, var/mob/user as mob, var/numticks = 5)
+/obj/mecha/proc/enter_after(delay as num, mob/user as mob, numticks = 5)
 	var/delayfraction = delay/numticks
 
 	var/turf/T = user.loc
@@ -553,7 +553,7 @@
 	if(M == occupant && radio.broadcasting)
 		radio.talk_into(M, message_pieces)
 
-/obj/mecha/proc/check_occupant_radial(var/mob/user)
+/obj/mecha/proc/check_occupant_radial(mob/user)
 	if(!user)
 		return FALSE
 	if(user.stat)
@@ -565,7 +565,7 @@
 
 	return TRUE
 
-/obj/mecha/proc/show_radial_occupant(var/mob/user)
+/obj/mecha/proc/show_radial_occupant(mob/user)
 	var/list/choices = list(
 		"Toggle Airtank" = radial_image_airtoggle,
 		"Toggle Light" = radial_image_lighttoggle,
@@ -667,7 +667,7 @@
 		return 1
 	return 0
 
-/obj/mecha/contents_tgui_distance(var/src_object, var/mob/living/user)
+/obj/mecha/contents_tgui_distance(src_object, mob/living/user)
 	. = user.shared_living_tgui_distance(src_object) //allow them to interact with anything they can interact with normally.
 	if(. != STATUS_INTERACTIVE)
 		//Allow interaction with the mecha or anything that is part of the mecha
@@ -914,7 +914,7 @@
 		handle_equipment_movement()
 	return result
 
-/obj/mecha/Bump(var/atom/obstacle)
+/obj/mecha/Bump(atom/obstacle)
 //	src.inertia_dir = null
 	if(istype(obstacle, /mob))//First we check if it is a mob. Mechs mostly shouln't go through them, even while phasing.
 		var/mob/M = obstacle
@@ -957,7 +957,7 @@
 ///////////////////////////////////
 
 //ATM, the ignore_threshold is literally only used for the pulse rifles beams used mostly by deathsquads.
-/obj/mecha/proc/check_for_internal_damage(var/list/possible_int_damage,var/ignore_threshold=null)
+/obj/mecha/proc/check_for_internal_damage(list/possible_int_damage,ignore_threshold=null)
 	if(!islist(possible_int_damage) || isemptylist(possible_int_damage)) return
 	if(prob(30))
 		if(ignore_threshold || src.health*100/initial(src.health) < src.internal_damage_threshold)
@@ -1017,7 +1017,7 @@
 		log_append_to_last("Took [damage] points of damage. Damage type: \"[type]\".",1)
 	return
 
-/obj/mecha/proc/components_handle_damage(var/damage, var/type = BRUTE)
+/obj/mecha/proc/components_handle_damage(damage, type = BRUTE)
 	var/obj/item/mecha_parts/component/armor/AC = internal_components[MECH_ARMOR]
 
 	if(AC)
@@ -1053,7 +1053,7 @@
 /obj/mecha/proc/dynabsorbdamage(damage,damage_type)
 	return damage*(listgetindex(get_damage_absorption(),damage_type) || 1)
 
-/obj/mecha/airlock_crush(var/crush_damage)
+/obj/mecha/airlock_crush(crush_damage)
 	..()
 	take_damage(crush_damage)
 	if(prob(50))	//Try to avoid that.
@@ -1184,7 +1184,7 @@
 	return
 
 
-/obj/mecha/bullet_act(var/obj/item/projectile/Proj) //wrapper
+/obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
 	if(istype(Proj, /obj/item/projectile/test))
 		var/obj/item/projectile/test/Test = Proj
 		Test.hit |= occupant // Register a hit on the occupant, for things like turrets, or in simple-mob cases stopping friendly fire in firing line mode.
@@ -1195,7 +1195,7 @@
 	..()
 	return
 
-/obj/mecha/proc/dynbulletdamage(var/obj/item/projectile/Proj)
+/obj/mecha/proc/dynbulletdamage(obj/item/projectile/Proj)
 	var/obj/item/mecha_parts/component/armor/ArmC = internal_components[MECH_ARMOR]
 
 	var/temp_deflect_chance = deflect_chance
@@ -1630,7 +1630,7 @@
 
 
 /*
-/obj/mecha/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/mecha/attack_ai(mob/living/silicon/ai/user as mob)
 	if(!isAI(user))
 		return
 	var/output = {"<b>Assume direct control over [src]?</b>
@@ -1644,7 +1644,7 @@
 ////////  Brain Stuff  ////////
 ///////////////////////////////
 
-/obj/mecha/proc/mmi_move_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
+/obj/mecha/proc/mmi_move_inside(obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 		to_chat(user, "Consciousness matrix not detected.")
 		return 0
@@ -1671,7 +1671,7 @@
 		to_chat(user, "You stop attempting to install the brain.")
 	return 0
 
-/obj/mecha/proc/mmi_moved_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
+/obj/mecha/proc/mmi_moved_inside(obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(mmi_as_oc && (user in range(1)))
 		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 			to_chat(user, "Consciousness matrix not detected.")
@@ -1919,7 +1919,7 @@
 
 //returns an equipment object if we have one of that type, useful since is_type_in_list won't return the object
 //since is_type_in_list uses caching, this is a slower operation, so only use it if needed
-/obj/mecha/proc/get_equipment(var/equip_type)
+/obj/mecha/proc/get_equipment(equip_type)
 	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 		if(istype(ME,equip_type))
 			return ME
@@ -1983,7 +1983,7 @@
 			to_chat(user, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
+/obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
 		H.stop_pulling()
 		H.forceMove(src)
@@ -2027,7 +2027,7 @@
 	else
 		return 0
 
-/obj/mecha/proc/play_entered_noise(var/mob/who)
+/obj/mecha/proc/play_entered_noise(mob/who)
 	if(!hasInternalDamage()) //Otherwise it's not nominal!
 		switch(mech_faction)
 			if(MECH_FACTION_NT)//The good guys category
@@ -2772,7 +2772,7 @@
 	return 0
 
 //This is for mobs mostly.
-/obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
+/obj/mecha/attack_generic(mob/user, damage, attack_message)
 
 	var/obj/item/mecha_parts/component/armor/ArmC = internal_components[MECH_ARMOR]
 
@@ -2903,7 +2903,7 @@
 			else
 				occupant.clear_alert("mech damage")
 
-/obj/mecha/blob_act(var/obj/structure/blob/B)
+/obj/mecha/blob_act(obj/structure/blob/B)
 	var/datum/blob_type/blob = B?.overmind?.blob_type
 	if(!istype(blob))
 		return FALSE

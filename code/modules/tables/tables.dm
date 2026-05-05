@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(table_icon_cache)
 	visible_message(span_danger("\The [user] tears apart \the [src]!"))
 	src.break_to_parts()
 
-/obj/structure/table/attack_generic(mob/user as mob, var/damage)
+/obj/structure/table/attack_generic(mob/user as mob, damage)
 	if(damage >= 10)
 		if(reinforced && prob(70))
 			visible_message(span_danger("\The [user] smashes against \the [src]!"))
@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(table_icon_cache)
 	qdel(src)
 	return shards
 
-/obj/structure/table/can_visually_connect_to(var/obj/structure/S)
+/obj/structure/table/can_visually_connect_to(obj/structure/S)
 	if(istype(S,/obj/structure/table/bench) && !istype(src,/obj/structure/table/bench))
 		return FALSE
 	if(istype(src,/obj/structure/table/bench) && !istype(S,/obj/structure/table/bench))
@@ -334,7 +334,7 @@ GLOBAL_LIST_EMPTY(table_icon_cache)
 		return TRUE
 	..()
 
-/proc/get_table_image(var/icon/ticon,var/ticonstate,var/tdir,var/tcolor,var/talpha)
+/proc/get_table_image(icon/ticon,ticonstate,tdir,tcolor,talpha)
 	var/icon_cache_key = "\ref[ticon]-[ticonstate]-[tdir]-[tcolor]-[talpha]"
 	var/image/I = GLOB.table_icon_cache[icon_cache_key]
 	if(!I)
@@ -412,7 +412,7 @@ GLOBAL_LIST_EMPTY(table_icon_cache)
 		if(carpeted)
 			add_overlay("carpet_flip[type]")
 
-/obj/structure/table/proc/get_all_connected_tables(var/list/connections)
+/obj/structure/table/proc/get_all_connected_tables(list/connections)
 	if(!connections)
 		connections = list(src)
 	else

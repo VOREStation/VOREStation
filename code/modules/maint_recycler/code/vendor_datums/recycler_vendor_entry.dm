@@ -27,15 +27,15 @@
 		icon_state = pick(icon_state)
 
 
-/datum/maint_recycler_vendor_entry/proc/spawn_at(var/loc)
+/datum/maint_recycler_vendor_entry/proc/spawn_at(loc)
 	var/obj/item/item = new object_type_to_spawn(get_turf(loc))
 	post_purchase_handling(item)
 
-/datum/maint_recycler_vendor_entry/proc/spawn_with_delay(var/loc)
+/datum/maint_recycler_vendor_entry/proc/spawn_with_delay(loc)
 	addtimer(CALLBACK(src, PROC_REF(spawn_at),loc), 0.5 SECONDS)
 
 
-/datum/maint_recycler_vendor_entry/proc/post_purchase_handling(var/obj/bought)
+/datum/maint_recycler_vendor_entry/proc/post_purchase_handling(obj/bought)
 	SHOULD_CALL_PARENT(FALSE)
 
 /datum/maint_recycler_vendor_entry/proc/getPurchasedCount()

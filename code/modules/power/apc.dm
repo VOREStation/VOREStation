@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	if(terminal)
 		terminal.connect_to_network()
 
-/obj/machinery/power/apc/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/machinery/power/apc/drain_power(drain_check, surge, amount = 0)
 
 	if(drain_check)
 		return 1
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		terminal.connect_to_network() // Refresh the network the terminal is connected to.
 	return
 
-/obj/machinery/power/apc/proc/energy_fail(var/duration)
+/obj/machinery/power/apc/proc/energy_fail(duration)
 	failure_timer = max(failure_timer, round(duration))
 
 /obj/machinery/power/apc/proc/make_terminal()
@@ -701,7 +701,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	..()
 	togglelock(user)
 
-/obj/machinery/power/apc/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/apc/emag_act(remaining_charges, mob/user)
 	if(!(emagged || hacker))		// trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "You must close the cover to do that.")
@@ -867,7 +867,7 @@ GLOBAL_LIST_EMPTY(apcs)
 //			to_world("[area.power_equip]")
 	area.power_change()
 
-/obj/machinery/power/apc/proc/can_use(mob/user, var/loud = 0) //used by attack_hand() and Topic()
+/obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
 	if(!user.client)
 		return 0
 	if(isobserver(user) && is_admin(user)) //This is to allow nanoUI interaction by ghost admins.
@@ -1001,7 +1001,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	return (chargemode && charging == 1 && operating)
 
 
-/obj/machinery/power/apc/draw_power(var/amount)
+/obj/machinery/power/apc/draw_power(amount)
 	if(terminal && terminal.powernet)
 		return terminal.powernet.draw_power(amount)
 	return 0
@@ -1168,7 +1168,7 @@ GLOBAL_LIST_EMPTY(apcs)
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff
 // defines a state machine, returns the new state
-/obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
+/obj/machinery/power/apc/proc/autoset(cur_state, on)
 	switch(cur_state)
 		//if(POWERCHAN_OFF); //autoset will never turn on a channel set to off
 		if(POWERCHAN_OFF_AUTO)
@@ -1231,7 +1231,7 @@ GLOBAL_LIST_EMPTY(apcs)
 					cell.ex_act(3)
 	return
 
-/obj/machinery/power/apc/disconnect_terminal(var/obj/machinery/power/terminal/term)
+/obj/machinery/power/apc/disconnect_terminal(obj/machinery/power/terminal/term)
 	if(terminal)
 		terminal.master = null
 		terminal = null
@@ -1247,7 +1247,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 // overload the lights in this APC area
 
-/obj/machinery/power/apc/proc/overload_lighting(var/chance = 100)
+/obj/machinery/power/apc/proc/overload_lighting(chance = 100)
 	if(/* !get_connection() || */ !operating || shorted || grid_check)
 		return
 	if( cell && cell.charge>=20)
@@ -1268,7 +1268,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		return 0
 
 // Malfunction: Transfers APC under AI's control
-/obj/machinery/power/apc/proc/ai_hack(var/mob/living/silicon/ai/A = null)
+/obj/machinery/power/apc/proc/ai_hack(mob/living/silicon/ai/A = null)
 	if(!A || !A.hacked_apcs || hacker || aidisabled || A.stat == DEAD)
 		return 0
 	hacker = A
@@ -1304,7 +1304,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	update_icon()
 	update()
 
-/obj/machinery/power/apc/overload(var/obj/machinery/power/source)
+/obj/machinery/power/apc/overload(obj/machinery/power/source)
 	if(is_critical)
 		return
 
@@ -1342,7 +1342,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		if(src && grid_check == TRUE)
 			grid_check = FALSE
 
-/obj/machinery/power/apc/proc/set_nightshift(on, var/automated)
+/obj/machinery/power/apc/proc/set_nightshift(on, automated)
 	set waitfor = FALSE
 	if(automated && istype(area, /area/shuttle))
 		return

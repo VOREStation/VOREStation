@@ -58,7 +58,7 @@
 	clothing_possibilities |= /obj/item/clothing/shoes/black
 	clothing_possibilities |= /obj/item/radio/headset
 
-/obj/structure/ghost_pod/manual/survivor/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/manual/survivor/create_occupant(mob/M)
 	..()
 	var/turf/T = get_turf(src)
 	var/mob/living/carbon/human/H = new(src)

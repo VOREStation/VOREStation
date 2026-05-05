@@ -77,7 +77,7 @@
 	color = "#6f432a"
 	plank_type = /obj/item/stack/material/wood/hard
 
-/obj/item/stack/material/log/attackby(var/obj/item/W, var/mob/user)
+/obj/item/stack/material/log/attackby(obj/item/W, mob/user)
 	if(!istype(W) || W.force <= 0)
 		return ..()
 	if(W.sharp && W.edge)

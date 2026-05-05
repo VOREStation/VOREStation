@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(transcore)
 
 		databases[key] = SStranscore.databases[key]
 
-/datum/controller/subsystem/transcore/proc/leave_round(var/mob/M)
+/datum/controller/subsystem/transcore/proc/leave_round(mob/M)
 	if(!istype(M))
 		WARNING("Non-mob asked to be removed from transcore: [M] [M?.type]")
 		return
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(transcore)
 			var/datum/transhuman/body_record/BR = db.body_scans[M.mind.name]
 			db.remove_body(BR)
 
-/datum/controller/subsystem/transcore/proc/db_by_key(var/key)
+/datum/controller/subsystem/transcore/proc/db_by_key(key)
 	if(isnull(key))
 		return default_db
 	if(!databases[key])
@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(transcore)
 		return default_db
 	return databases[key]
 
-/datum/controller/subsystem/transcore/proc/db_by_mind_name(var/name)
+/datum/controller/subsystem/transcore/proc/db_by_mind_name(name)
 	if(isnull(name))
 		return null
 	for(var/key in databases)
@@ -183,27 +183,27 @@ SUBSYSTEM_DEF(transcore)
 			return db
 
 // These are now just interfaces to databases
-/datum/controller/subsystem/transcore/proc/m_backup(var/datum/mind/mind, var/obj/item/nif/nif, var/one_time = FALSE, var/database_key)
+/datum/controller/subsystem/transcore/proc/m_backup(datum/mind/mind, obj/item/nif/nif, one_time = FALSE, database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.m_backup(mind=mind, nif=nif, one_time=one_time)
 
-/datum/controller/subsystem/transcore/proc/add_backup(var/datum/transhuman/mind_record/MR, var/database_key)
+/datum/controller/subsystem/transcore/proc/add_backup(datum/transhuman/mind_record/MR, database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.add_backup(MR=MR)
 
-/datum/controller/subsystem/transcore/proc/stop_backup(var/datum/transhuman/mind_record/MR, var/database_key)
+/datum/controller/subsystem/transcore/proc/stop_backup(datum/transhuman/mind_record/MR, database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.stop_backup(MR=MR)
 
-/datum/controller/subsystem/transcore/proc/add_body(var/datum/transhuman/body_record/BR, var/database_key)
+/datum/controller/subsystem/transcore/proc/add_body(datum/transhuman/body_record/BR, database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.add_body(BR=BR)
 
-/datum/controller/subsystem/transcore/proc/remove_body(var/datum/transhuman/body_record/BR, var/database_key)
+/datum/controller/subsystem/transcore/proc/remove_body(datum/transhuman/body_record/BR, database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.remove_body(BR=BR)
 
-/datum/controller/subsystem/transcore/proc/core_dump(var/obj/item/disk/transcore/disk, var/database_key)
+/datum/controller/subsystem/transcore/proc/core_dump(obj/item/disk/transcore/disk, database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
 	db.core_dump(disk=disk)
 
@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(transcore)
 	var/core_dumped = FALSE
 	var/key // Key for this DB
 
-/datum/transcore_db/proc/m_backup(var/datum/mind/mind, var/obj/item/nif/nif, var/one_time = FALSE)
+/datum/transcore_db/proc/m_backup(datum/mind/mind, obj/item/nif/nif, one_time = FALSE)
 	ASSERT(mind)
 	if(!mind.name || core_dumped)
 		return 0
@@ -252,7 +252,7 @@ SUBSYSTEM_DEF(transcore)
 	return 1
 
 // Send a past-due notification to the proper radio channel.
-/datum/transcore_db/proc/notify(var/datum/transhuman/mind_record/MR)
+/datum/transcore_db/proc/notify(datum/transhuman/mind_record/MR)
 	ASSERT(MR)
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(MR.mindname)
 	var/datum/transhuman/body_record/BR = db.body_scans[MR.mindname]
@@ -262,20 +262,20 @@ SUBSYSTEM_DEF(transcore)
 	GLOB.global_announcer.autosay("[MR.mindname] is past-due for a mind backup.", "TransCore Oversight", BR.synthetic ? "Science" : "Medical")
 
 // Called from mind_record to add itself to the transcore.
-/datum/transcore_db/proc/add_backup(var/datum/transhuman/mind_record/MR)
+/datum/transcore_db/proc/add_backup(datum/transhuman/mind_record/MR)
 	ASSERT(MR)
 	backed_up[MR.mindname] = MR
 	backed_up = sortAssoc(backed_up)
 
 // Remove a mind_record from the backup-checking list.  Keeps track of it in has_left // Why do we do that? ~Leshana
-/datum/transcore_db/proc/stop_backup(var/datum/transhuman/mind_record/MR)
+/datum/transcore_db/proc/stop_backup(datum/transhuman/mind_record/MR)
 	ASSERT(MR)
 	has_left[MR.mindname] = MR
 	backed_up.Remove("[MR.mindname]")
 	MR.cryo_at = world.time
 
 // Called from body_record to add itself to the transcore.
-/datum/transcore_db/proc/add_body(var/datum/transhuman/body_record/BR)
+/datum/transcore_db/proc/add_body(datum/transhuman/body_record/BR)
 	ASSERT(BR)
 	if(body_scans[BR.mydna.name])
 		qdel(body_scans[BR.mydna.name])
@@ -283,12 +283,12 @@ SUBSYSTEM_DEF(transcore)
 	body_scans = sortAssoc(body_scans)
 
 // Remove a body record from the database (Usually done when someone cryos)  // Why? ~Leshana
-/datum/transcore_db/proc/remove_body(var/datum/transhuman/body_record/BR)
+/datum/transcore_db/proc/remove_body(datum/transhuman/body_record/BR)
 	ASSERT(BR)
 	body_scans.Remove("[BR.mydna.name]")
 
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
-/datum/transcore_db/proc/core_dump(var/obj/item/disk/transcore/disk)
+/datum/transcore_db/proc/core_dump(obj/item/disk/transcore/disk)
 	ASSERT(disk)
 	GLOB.global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
 	GLOB.global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")

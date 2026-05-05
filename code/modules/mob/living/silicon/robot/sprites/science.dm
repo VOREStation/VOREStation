@@ -106,7 +106,7 @@
 	module_type = "Research"
 	sprite_icon = 'icons/mob/robot/science_wide.dmi'
 
-/datum/robot_sprite/dogborg/science/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/science/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -160,7 +160,7 @@
 	module_type = "Research"
 	sprite_icon = 'icons/mob/robot/science_large.dmi'
 
-/datum/robot_sprite/dogborg/tall/science/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/tall/science/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)

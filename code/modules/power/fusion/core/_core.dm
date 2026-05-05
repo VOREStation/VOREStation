@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	update_use_power(USE_POWER_ACTIVE)
 	. = 1
 
-/obj/machinery/power/fusion_core/proc/Shutdown(var/force_rupture)
+/obj/machinery/power/fusion_core/proc/Shutdown(force_rupture)
 	if(owned_field)
 		icon_state = "core0"
 		if(force_rupture || owned_field.plasma_temperature > 1000)
@@ -106,16 +106,16 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 		owned_field = null
 	update_use_power(USE_POWER_IDLE)
 
-/obj/machinery/power/fusion_core/proc/AddParticles(var/name, var/quantity = 1)
+/obj/machinery/power/fusion_core/proc/AddParticles(name, quantity = 1)
 	if(owned_field)
 		owned_field.AddParticles(name, quantity)
 		. = 1
 
-/obj/machinery/power/fusion_core/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/fusion_core/bullet_act(obj/item/projectile/Proj)
 	if(owned_field)
 		. = owned_field.bullet_act(Proj)
 
-/obj/machinery/power/fusion_core/proc/set_strength(var/value)
+/obj/machinery/power/fusion_core/proc/set_strength(value)
 	value = CLAMP(value, MIN_FIELD_STR, MAX_FIELD_STR)
 
 	if(field_strength != value)
@@ -124,14 +124,14 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 		if(owned_field)
 			owned_field.ChangeFieldStrength(value)
 
-/obj/machinery/power/fusion_core/attack_hand(var/mob/user)
+/obj/machinery/power/fusion_core/attack_hand(mob/user)
 	if(!Adjacent(user)) // As funny as it was for the AI to hug-kill the tokamak field from a distance...
 		return
 	visible_message(span_infoplain(span_bold("\The [user]") + " hugs \the [src] to make it feel better!"))
 	if(owned_field)
 		Shutdown()
 
-/obj/machinery/power/fusion_core/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/fusion_core/attackby(obj/item/W, mob/user)
 
 	if(owned_field)
 		to_chat(user,span_warning("Shut \the [src] off first!"))
@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 
 	return ..()
 
-/obj/machinery/power/fusion_core/proc/jumpstart(var/field_temperature)
+/obj/machinery/power/fusion_core/proc/jumpstart(field_temperature)
 	field_strength = 501 // Generally a good size.
 	Startup()
 	if(!owned_field)

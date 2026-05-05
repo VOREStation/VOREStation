@@ -26,7 +26,7 @@
 	SSplanets.removeTurf(src)
 	return ..()
 
-/turf/unsimulated/wall/planetary/proc/set_temperature(var/new_temperature)
+/turf/unsimulated/wall/planetary/proc/set_temperature(new_temperature)
 	if(new_temperature == temperature)
 		return
 	temperature = new_temperature

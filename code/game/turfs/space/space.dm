@@ -38,7 +38,7 @@
 
 	return ..()
 
-/turf/space/proc/toggle_transit(var/direction)
+/turf/space/proc/toggle_transit(direction)
 	if(edge) //Not a great way to do this yet. Maybe we'll come up with one. We could pre-make sprites... or tile the overlay over it?
 		return
 
@@ -134,7 +134,7 @@
 		// If that's changed, then you'll want to swipe the rest of the roofing code from code/game/turfs/simulated/floor_attackby.dm
 	return
 
-/turf/space/Entered(var/atom/movable/A)
+/turf/space/Entered(atom/movable/A)
 	. = ..()
 
 	if(edge && SSticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
@@ -260,5 +260,5 @@
 					A.loc.Entered(A)
 	return
 
-/turf/space/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
+/turf/space/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
 	return ..(N, tell_universe, 1, preserve_outdoors)

@@ -33,7 +33,7 @@
 	color = "#fff200"
 	wiki_flag = WIKI_DRINK
 
-/datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/lipozine/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjust_nutrition(-20 * removed)
 
 /datum/reagent/ethanol/burnout
@@ -50,7 +50,7 @@
 	glass_name = REAGENT_BURNOUT
 	glass_desc = "A swirling brew of fluids that leaves even the glass itself hot to the touch."
 
-/datum/reagent/ethanol/burnout/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/burnout/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	// Deathbell effects.
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
@@ -85,7 +85,7 @@
 	glass_name = REAGENT_MONSTERTAMER
 	glass_desc = "This looks like a vaguely-alcoholic slurry of meat. Gross."
 
-/datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/monstertamer/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 
 	if(!(M.isSynthetic()))
@@ -113,7 +113,7 @@
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
-/datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/monstertamer/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
@@ -188,11 +188,11 @@
 	glass_name = REAGENT_GALACTICPANIC
 	glass_desc = "Looking into this is like staring at the stars."
 
-/datum/reagent/ethanol/galacticpanic/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/galacticpanic/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	M.Stun(2)
 
-/datum/reagent/ethanol/galacticpanic/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/galacticpanic/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
@@ -285,7 +285,7 @@
 	glass_name = REAGENT_RUSSIANROULETTE
 	glass_desc = "A favorite drink amongst the Pan-Slavic speaking community."
 
-/datum/reagent/ethanol/russianroulette/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/russianroulette/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
@@ -448,7 +448,7 @@
 	glass_name = REAGENT_HAIROFTHERAT
 	glass_desc = "The alcoholic equivalent of saying your burger isn't cooked rare enough."
 
-/datum/reagent/ethanol/hairoftherat/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/hairoftherat/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 
 	if(!(M.isSynthetic()))
@@ -476,7 +476,7 @@
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
-/datum/reagent/ethanol/hairoftherat/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/hairoftherat/affect_blood(mob/living/carbon/M, alien, removed)
 	..()
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
@@ -549,7 +549,7 @@
 	color = "#caa3c9"
 	wiki_flag = WIKI_FOOD|WIKI_SPOILER
 
-/datum/reagent/nutriment/protein/brainzsnax/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/nutriment/protein/brainzsnax/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	if(prob(5) && !(alien == IS_CHIMERA || alien == IS_SLIME || alien == IS_PLANT || alien == IS_DIONA || alien == IS_SHADEKIN && !M.isSynthetic()))
 		M.adjustBrainLoss(removed) //Any other species risks prion disease.
@@ -814,7 +814,7 @@
 	color = "#f4fc03"
 	taste_description = "seeing beyond the margins of this world"
 
-/datum/reagent/drink/coffee/nukie/mega/sight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/sight/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	if(prob(1))
 		if(ishuman(M))
@@ -833,7 +833,7 @@
 	color = "#fc03e7"
 	taste_description = "the end is rapidly approaching, yet remains forever far"
 
-/datum/reagent/drink/coffee/nukie/mega/heart/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/heart/affect_ingest(mob/living/carbon/M, alien, removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
@@ -857,7 +857,7 @@
 	adj_sleepy = 0
 	var/adj_tiredness = 5
 
-/datum/reagent/drink/coffee/nukie/mega/nega/affect_ingest(var/mob/living/carbon/human/M)
+/datum/reagent/drink/coffee/nukie/mega/nega/affect_ingest(mob/living/carbon/human/M)
 	if(M.tiredness < 105)
 		M.tiredness = (M.tiredness + adj_tiredness)
 	..()
@@ -868,7 +868,7 @@
 	color = "#ede500"
 	taste_description = "a thousand volts running down your spine"
 
-/datum/reagent/drink/coffee/nukie/mega/shock/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/shock/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -889,7 +889,7 @@
 	color = "#000000"
 	taste_description = "more, more, now, quick, get yourself some more, don't stop"
 
-/datum/reagent/drink/coffee/nukie/mega/fast/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/fast/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	if(prob(1))
 		M.visible_message(span_danger("\The [M] sizzles!"))
@@ -902,7 +902,7 @@
 	color = "#fafafa"
 	taste_description = "moreishness, you could really go for a proper snack right now"
 
-/datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	var/threshold = 1
 	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
@@ -945,7 +945,7 @@
 	color = "#15ff00"
 	taste_description = "a plastic bag floating gently on the breeze"
 
-/datum/reagent/drink/coffee/nukie/mega/shrink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/shrink/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	var/new_size = clamp((M.size_multiplier - 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
@@ -956,7 +956,7 @@
 	color = "#90ed87"
 	taste_description = "absurd hugeness"
 
-/datum/reagent/drink/coffee/nukie/mega/grow/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/grow/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	var/new_size = clamp((M.size_multiplier + 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
@@ -972,13 +972,13 @@
 	adj_drowsy = -50
 	adj_sleepy = -100
 
-/datum/reagent/drink/coffee/nukie/mega/one/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/one/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
 	M.add_chemical_effect(CE_DARKSIGHT, 1)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 	M.heal_organ_damage(1.5 * removed, 1.5 * removed)
 
-/datum/reagent/drink/coffee/nukie/mega/one/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/coffee/nukie/mega/one/overdose(mob/living/carbon/M, alien, removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.eye_blurry += 20

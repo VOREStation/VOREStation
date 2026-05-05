@@ -67,7 +67,7 @@
 		return chassis.dyngetcharge()
 	return charge
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_power_channel(var/area/A)
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_power_channel(area/A)
 	var/pow_chan
 	if(A)
 		for(var/c in use_channels)

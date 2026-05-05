@@ -3,7 +3,7 @@
 /////////////////////////
 
 // Traitgenes Setup genetics using traits as a foundation for each gene. Basically making genetics automagic instead of something that needs to be maintained...
-/proc/setupgenetics(var/list/trait_list)
+/proc/setupgenetics(list/trait_list)
 	if(!trait_list)
 		return
 	var/list/blocks_remaining = list()

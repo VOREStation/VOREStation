@@ -140,7 +140,7 @@
 	flags = INAUDIBLE
 	ignore_adverb = TRUE
 
-/datum/language/echosong/scramble(var/input, var/list/known_languages)
+/datum/language/echosong/scramble(input, list/known_languages)
 	return stars(input)
 
 /datum/language/lleill
@@ -158,7 +158,7 @@
 	machine_understands = FALSE
 	flags = WHITELISTED
 
-/datum/language/echosong/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+/datum/language/echosong/broadcast(mob/living/speaker, message, speaker_mask)
 	speaker.log_talk("(INAUDIBLE) [message]", LOG_SAY)
 	speaker.say_signlang(format_message(message), pick(signlang_verb), pick(signlang_verb_understood), src, 2)
 

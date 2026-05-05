@@ -51,10 +51,10 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 	wiki_flag = WIKI_SPOILER
 
-/datum/recipe/donkpocket/proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
+/datum/recipe/donkpocket/proc/warm_up(obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 	being_cooked.heat()
 
-/datum/recipe/donkpocket/make_food(var/obj/container as obj)
+/datum/recipe/donkpocket/make_food(obj/container as obj)
 	. = ..(container)
 	for (var/obj/item/reagent_containers/food/snacks/donkpocket/D in .)
 		if (!D.warm)
@@ -67,7 +67,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
-/datum/recipe/donkpocket/warm/make_food(var/obj/container)
+/datum/recipe/donkpocket/warm/make_food(obj/container)
 	var/list/results = list()
 	var/obj/item/reagent_containers/food/snacks/donkpocket/D = locate(/obj/item/reagent_containers/food/snacks/donkpocket) in container
 	if(!D)
@@ -190,7 +190,7 @@ I said no!
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_VODKA = 5, REAGENT_ID_AMATOXIN = 5)
 	result = /obj/item/reagent_containers/food/snacks/amanitajelly
 
-/datum/recipe/amanitajelly/make_food(var/obj/container as obj)
+/datum/recipe/amanitajelly/make_food(obj/container as obj)
 	. = ..(container)
 	for(var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
 		being_cooked.reagents.del_reagent(REAGENT_ID_AMATOXIN)
@@ -495,7 +495,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/dankpocket
 	wiki_flag = WIKI_SPOILER
 
-/datum/recipe/validsalad/make_food(var/obj/container as obj)
+/datum/recipe/validsalad/make_food(obj/container as obj)
 	. = ..(container)
 	for (var/obj/item/reagent_containers/food/snacks/validsalad/being_cooked in .)
 		being_cooked.reagents.del_reagent(REAGENT_ID_TOXIN)

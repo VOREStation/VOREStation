@@ -40,7 +40,7 @@
 
 	default_apply_parts()
 
-/obj/machinery/conveyor/proc/toggle_speed(var/forced)
+/obj/machinery/conveyor/proc/toggle_speed(forced)
 	if(forced)
 		speed_process = forced
 	else
@@ -51,7 +51,7 @@
 		update_active_power_usage(initial(idle_power_usage))
 	update()
 
-/obj/machinery/conveyor/proc/set_operating(var/new_operating)
+/obj/machinery/conveyor/proc/set_operating(new_operating)
 	if(new_operating == operating)
 		return // No change
 	operating = new_operating
@@ -123,7 +123,7 @@
 				break
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
+/obj/machinery/conveyor/attackby(obj/item/I, mob/user)
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	if(I.loc != user)	return // This should stop mounted modules ending up outside the module.
 
@@ -236,7 +236,7 @@
 		if(C.id == id)
 			conveyors += C
 
-/obj/machinery/conveyor_switch/proc/toggle_speed(var/forced)
+/obj/machinery/conveyor_switch/proc/toggle_speed(forced)
 	speed_active = !speed_active // switching gears
 	if(speed_active) // high gear
 		for(var/obj/machinery/conveyor/C in conveyors)
@@ -293,7 +293,7 @@
 			S.position = position
 			S.update()
 
-/obj/machinery/conveyor_switch/attackby(var/obj/item/I, mob/user)
+/obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 

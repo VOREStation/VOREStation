@@ -222,7 +222,7 @@
 
 	return 1
 
-/datum/spell/proc/check_charge(var/skipcharge, mob/user)
+/datum/spell/proc/check_charge(skipcharge, mob/user)
 	if(!skipcharge)
 		switch(charge_type)
 			if(Sp_RECHARGE)
@@ -235,7 +235,7 @@
 					return 0
 	return 1
 
-/datum/spell/proc/take_charge(mob/user = user, var/skipcharge)
+/datum/spell/proc/take_charge(mob/user = user, skipcharge)
 	if(!skipcharge)
 		switch(charge_type)
 			if(Sp_RECHARGE)
@@ -251,7 +251,7 @@
 		return 0
 	return 1
 
-/datum/spell/proc/invocation(mob/user = usr, var/list/targets) //datum/spelling the spell out and setting it on recharge/reducing charges amount
+/datum/spell/proc/invocation(mob/user = usr, list/targets) //datum/spelling the spell out and setting it on recharge/reducing charges amount
 
 	switch(invocation_type)
 		if(SpI_SHOUT)
@@ -271,7 +271,7 @@
 ///UPGRADING PROCS///
 /////////////////////
 
-/datum/spell/proc/can_improve(var/upgrade_type)
+/datum/spell/proc/can_improve(upgrade_type)
 	if(level_max[Sp_TOTAL] <= ( spell_levels[Sp_SPEED] + spell_levels[Sp_POWER] )) //too many levels, can't do it
 		return 0
 
@@ -321,7 +321,7 @@
 
 	return temp
 
-/datum/spell/proc/spell_do_after(var/mob/user as mob, delay as num, var/numticks = 5)
+/datum/spell/proc/spell_do_after(mob/user as mob, delay as num, numticks = 5)
 	if(!user || isnull(user))
 		return 0
 	if(numticks == 0)

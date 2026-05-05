@@ -490,7 +490,7 @@
 			temp = null
 			. = TRUE
 
-/obj/machinery/computer/transhuman/resleeving/proc/dispense_injector(var/obj/item/dnainjector/I)
+/obj/machinery/computer/transhuman/resleeving/proc/dispense_injector(obj/item/dnainjector/I)
 	I.forceMove(loc)
 	gene_sequencing = FALSE
 	set_temp("Injector dispensed...")

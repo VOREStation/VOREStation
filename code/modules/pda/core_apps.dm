@@ -186,7 +186,7 @@
 			to_chat(user, span_notice("You must be holding paper for the pda to print to!"))
 
 
-/datum/data/pda/app/notekeeper/proc/changetonote(var/noteindex)
+/datum/data/pda/app/notekeeper/proc/changetonote(noteindex)
 	// save note to current slot, then load another slot
 	storednotes[currentnote] = note
 	storedtitles[currentnote] = notetitle

@@ -54,7 +54,7 @@
 	if(!tool) return 0
 	return (tool ? tool.attack(M,user) : 0)
 
-/obj/item/combitool/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/combitool/afterattack(atom/target, mob/living/user, proximity, params)
 	if(!proximity)
 		return 0
 	var/obj/item/tool = tools[current_tool]

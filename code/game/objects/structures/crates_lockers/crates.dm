@@ -174,7 +174,7 @@
 	else
 		to_chat(user, span_notice("Access Denied"))
 
-/obj/structure/closet/crate/secure/proc/set_locked(var/newlocked, mob/user = null)
+/obj/structure/closet/crate/secure/proc/set_locked(newlocked, mob/user = null)
 	if(locked == newlocked) return
 
 	locked = newlocked
@@ -214,7 +214,7 @@
 		return
 	return ..()
 
-/obj/structure/closet/crate/secure/emag_act(var/remaining_charges, var/mob/user)
+/obj/structure/closet/crate/secure/emag_act(remaining_charges, mob/user)
 	if(!broken)
 		playsound(src, "sparks", 60, 1)
 		locked = 0
@@ -324,7 +324,7 @@
 		newgas.temperature = target_temp
 	return newgas
 
-/obj/structure/closet/crate/freezer/Entered(var/atom/movable/AM)
+/obj/structure/closet/crate/freezer/Entered(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 1
@@ -332,7 +332,7 @@
 			organ.preserved = 1
 	..()
 
-/obj/structure/closet/crate/freezer/Exited(var/atom/movable/AM)
+/obj/structure/closet/crate/freezer/Exited(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 0

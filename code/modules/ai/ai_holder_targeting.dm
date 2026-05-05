@@ -43,7 +43,7 @@
 			. += HM
 
 // Step 2, filter down possible targets to things we actually care about.
-/datum/ai_holder/proc/find_target(var/list/possible_targets, var/has_targets_list = FALSE)
+/datum/ai_holder/proc/find_target(list/possible_targets, has_targets_list = FALSE)
 	ai_log("find_target() : Entered.", AI_LOG_TRACE)
 	if(!hostile) // So retaliating mobs only attack the thing that hit it.
 		return null
@@ -126,7 +126,7 @@
 			closest_targets += A
 	return closest_targets
 
-/datum/ai_holder/proc/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/proc/can_attack(atom/movable/the_target, vision_required = TRUE)
 	ai_log("can_attack() : Entering.", AI_LOG_TRACE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE
@@ -307,15 +307,15 @@
 	add_attacker(AM)
 
 // Checks to see if an atom attacked us lately
-/datum/ai_holder/proc/check_attacker(var/atom/movable/A)
+/datum/ai_holder/proc/check_attacker(atom/movable/A)
 	return (A.name in attackers)
 
 // We were attacked by this thing recently
-/datum/ai_holder/proc/add_attacker(var/atom/movable/A)
+/datum/ai_holder/proc/add_attacker(atom/movable/A)
 	attackers |= A.name
 
 // Forgive this attacker
-/datum/ai_holder/proc/remove_attacker(var/atom/movable/A)
+/datum/ai_holder/proc/remove_attacker(atom/movable/A)
 	attackers -= A.name
 
 // Causes targeting to prefer targeting the taunter if possible.

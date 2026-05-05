@@ -8,7 +8,7 @@
 	board_type = new /datum/frame/frame_types/machine
 	req_components = list(/obj/item/smes_coil = 1, /obj/item/stack/cable_coil = 30)
 
-/obj/item/circuitboard/smes/construct(var/obj/machinery/power/smes/buildable/S)
+/obj/item/circuitboard/smes/construct(obj/machinery/power/smes/buildable/S)
 	if(..(S))
 		S.output_attempt = 0 //built SMES default to off
 

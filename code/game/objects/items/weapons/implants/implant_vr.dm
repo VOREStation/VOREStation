@@ -86,7 +86,7 @@
 		hear(say_in_me.group[2])
 
 
-/obj/item/implant/sizecontrol/hear(var/msg)
+/obj/item/implant/sizecontrol/hear(msg)
 	if (malfunction)
 		return
 

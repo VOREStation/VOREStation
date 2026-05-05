@@ -42,7 +42,7 @@
 	if(failed)
 		TEST_FAIL("One or more /obj/item/clothing items had invalid flags or icons")
 
-/datum/unit_test/all_clothing_shall_be_valid/proc/test_clothing(var/obj/item/clothing/C,var/obj/storage)
+/datum/unit_test/all_clothing_shall_be_valid/proc/test_clothing(obj/item/clothing/C,obj/storage)
 	var/failed = FALSE
 
 	// Do not test base-types

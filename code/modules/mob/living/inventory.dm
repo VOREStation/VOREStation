@@ -49,7 +49,7 @@
 	else		return l_hand
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
-/mob/living/drop_item(var/atom/Target)
+/mob/living/drop_item(atom/Target)
 	var/obj/item/item_dropped = null
 
 	if (hand)
@@ -71,17 +71,17 @@
 
 
 //Drops the item in our left hand
-/mob/living/drop_l_hand(var/atom/Target)
+/mob/living/drop_l_hand(atom/Target)
 	return drop_from_inventory(l_hand, Target)
 
 //Drops the item in our right hand
-/mob/living/drop_r_hand(var/atom/Target)
+/mob/living/drop_r_hand(atom/Target)
 	return drop_from_inventory(r_hand, Target)
 
 /mob/living/proc/hands_are_full()
 	return (r_hand && l_hand)
 
-/mob/living/proc/item_is_in_hands(var/obj/item/I)
+/mob/living/proc/item_is_in_hands(obj/item/I)
 	return (I == r_hand || I == l_hand)
 
 /mob/living/proc/update_held_icons()
@@ -90,7 +90,7 @@
 	if(r_hand)
 		r_hand.update_held_icon()
 
-/mob/living/proc/get_type_in_hands(var/T)
+/mob/living/proc/get_type_in_hands(T)
 	if(istype(l_hand, T))
 		return l_hand
 	if(istype(r_hand, T))
@@ -118,7 +118,7 @@
 		update_inv_wear_mask()
 	return
 
-/mob/living/get_equipped_item(var/slot)
+/mob/living/get_equipped_item(slot)
 	switch(slot)
 		if(slot_l_hand) return l_hand
 		if(slot_r_hand) return r_hand
@@ -126,7 +126,7 @@
 		if(slot_wear_mask) return wear_mask
 	return null
 
-/mob/living/ret_grab(var/list/L, var/mobchain_limit = 5)
+/mob/living/ret_grab(list/L, mobchain_limit = 5)
 	// We're the first!
 	if(!L)
 		L = list()
@@ -176,7 +176,7 @@
 		update_inv_active_hand()
 	return
 
-/mob/living/abiotic(var/full_body = 0)
+/mob/living/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
 		return 1
 

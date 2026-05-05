@@ -44,7 +44,7 @@
 	///Allows firing without a vest.
 	var/vest_override = FALSE
 
-/obj/item/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
+/obj/item/gun/energy/lasertag/special_check(mob/living/carbon/human/M)
 	if(ishuman(M) && !vest_override)
 		if(!istype(M.wear_suit, required_vest))
 			to_chat(M, span_warning("You need to be wearing your laser tag vest!"))

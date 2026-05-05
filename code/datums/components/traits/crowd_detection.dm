@@ -206,7 +206,7 @@
 
 	increase_discomfort()
 
-/datum/component/crowd_detection/lonely/get_discomfort_message(var/current_discomfort)
+/datum/component/crowd_detection/lonely/get_discomfort_message(current_discomfort)
 	if(current_discomfort >= warning_cap)
 		human_parent.stuttering += 25
 		return span_danger(span_bold(pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")))
@@ -220,7 +220,7 @@
 		return pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")
 	. = ..()
 
-/datum/component/crowd_detection/lonely/calm_discomfort(var/amount = 4, var/message)
+/datum/component/crowd_detection/lonely/calm_discomfort(amount = 4, message)
 	if(!message && !get_calm())
 		message = span_infoplain("The nearby company calms you down...")
 	. = ..(amount, message)

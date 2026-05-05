@@ -123,7 +123,7 @@
 				active_conversation = href_list["target"]
 
 
-/datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/pda/P)
+/datum/data/pda/app/messenger/proc/create_message(mob/living/U, obj/item/pda/P)
 	var/t = tgui_input_text(U, "Please enter message", name, null, MAX_MESSAGE_LEN)
 	if(!t)
 		return

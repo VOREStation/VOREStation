@@ -7,7 +7,7 @@
 	VAR_PRIVATE/climb_delay = 3.5 SECONDS
 	VAR_PRIVATE/climb_to_adjacent_turf = FALSE // for railings
 
-/datum/element/climbable/Attach(obj/target, var/climb_delay = 3.5 SECONDS, var/vaulting = FALSE)
+/datum/element/climbable/Attach(obj/target, climb_delay = 3.5 SECONDS, vaulting = FALSE)
 	. = ..()
 	if(!isobj(target))
 		return ELEMENT_INCOMPATIBLE
@@ -37,14 +37,14 @@
 
 
 /// Starts climbing the object
-/datum/element/climbable/proc/start_climb(var/obj/climbed_thing, mob/user)
+/datum/element/climbable/proc/start_climb(obj/climbed_thing, mob/user)
 	SIGNAL_HANDLER
 	var/mob/living/H = user
 	if(istype(H) && can_climb(climbed_thing,H))
 		addtimer(CALLBACK(src, PROC_REF(do_climb), climbed_thing, user, climb_delay), 0, TIMER_DELETE_ME) // Isolate from signal handler
 
 /// Check if the mob is in any condition to climb the object, if the destination is blocked, and how to climb it
-/datum/element/climbable/proc/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
+/datum/element/climbable/proc/can_climb(obj/climbed_thing, mob/living/user, post_climb_check=0)
 	if(user.is_incorporeal()) // No! Bad shadekin!
 		return FALSE
 
@@ -71,7 +71,7 @@
 	return TRUE
 
 /// Performs the wait and any remaining checks before the climb resolves.
-/datum/element/climbable/proc/do_climb(var/obj/climbed_thing, var/mob/living/user, var/delay_time)
+/datum/element/climbable/proc/do_climb(obj/climbed_thing, mob/living/user, delay_time)
 	if(QDELETED(user) || QDELETED(climbed_thing))
 		return
 
@@ -90,14 +90,14 @@
 	LAZYREMOVEASSOC(current_climbers, climbed_thing, user)
 
 /// Resolve the climb by moving the mob to its final destination.
-/datum/element/climbable/proc/climb_to(var/obj/climbed_thing, var/mob/living/user)
+/datum/element/climbable/proc/climb_to(obj/climbed_thing, mob/living/user)
 	if(climb_to_adjacent_turf && get_turf(user) == get_turf(climbed_thing))
 		user.forceMove(get_step(climbed_thing, climbed_thing.dir))
 	else
 		user.forceMove(get_turf(climbed_thing))
 
 /// Check if a mob is capable of climbing at all
-/datum/element/climbable/proc/can_touch(var/obj/climbed_thing, var/mob/user)
+/datum/element/climbable/proc/can_touch(obj/climbed_thing, mob/user)
 	if (!user)
 		return 0
 	if(!climbed_thing.Adjacent(user))
@@ -119,7 +119,7 @@
 		shaken(climbed_thing, null)
 
 /// Shakes an object, if anyone is climbing it, causes them to fall off it.
-/datum/element/climbable/proc/shaken(var/obj/climbed_thing, var/mob/user)
+/datum/element/climbable/proc/shaken(obj/climbed_thing, mob/user)
 	SIGNAL_HANDLER
 	var/list/climbers = LAZYACCESS(current_climbers, climbed_thing)
 	// You cannot shake yourself
@@ -176,7 +176,7 @@
 		delay_time /= 2
 	. = ..(climbed_thing, user, delay_time)
 
-/datum/element/climbable/cliff/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
+/datum/element/climbable/cliff/can_climb(obj/climbed_thing, mob/living/user, post_climb_check=0)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/shoes/shoes = H.shoes
@@ -188,14 +188,14 @@
 
 
 // Breaks if climbed while unanchored, railings.
-/datum/element/climbable/unanchored_can_break/climb_to(var/obj/climbed_thing, var/mob/living/user)
+/datum/element/climbable/unanchored_can_break/climb_to(obj/climbed_thing, mob/living/user)
 	. = ..()
 	if(!climbed_thing.anchored)
 		climbed_thing.take_damage(9999) // Fatboy, was originally maxhealth, but that var doesn't exist on everything
 
 
 // Table flipping is important!
-/datum/element/climbable/table/climb_to(var/obj/climbed_thing, mob/living/mover)
+/datum/element/climbable/table/climb_to(obj/climbed_thing, mob/living/mover)
 	var/obj/structure/table/TBL = climbed_thing
 	if(TBL.flipped == 1 && mover.loc == TBL.loc)
 		var/turf/T = get_step(climbed_thing, TBL.dir)
@@ -215,7 +215,7 @@
 	SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, usr)
 
 /// Checks if something is blocking our climb destination, ignores climbable objects
-/proc/can_climb_turf(var/obj/climbed_thing)
+/proc/can_climb_turf(obj/climbed_thing)
 	var/turf/T = get_turf(climbed_thing)
 	if(!T || !istype(T))
 		return "empty void"
@@ -227,7 +227,7 @@
 	return 0
 
 /// Check if the destination turf for vaulting is blocked by something. Extremely similar to above.
-/proc/can_climb_neighbor_turf(var/obj/climbed_thing)
+/proc/can_climb_neighbor_turf(obj/climbed_thing)
 	var/turf/T = get_step(climbed_thing, climbed_thing.dir)
 	if(!T || !istype(T))
 		return 0

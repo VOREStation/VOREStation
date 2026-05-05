@@ -106,7 +106,7 @@ GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 		all_zones += new /datum/rogue/zonemaster(A)
 	//decay() //Decay removed for now, since people aren't getting high scores as it is.
 
-/datum/controller/rogue/proc/decay(var/manual = 0)
+/datum/controller/rogue/proc/decay(manual = 0)
 	log_world("RM(stats): DECAY on controller from [difficulty] to [difficulty+(RM_DIFF_DECAY_AMT)] min 100.") //DEBUG code for playtest stats gathering.
 	adjust_difficulty(RM_DIFF_DECAY_AMT)
 
@@ -115,12 +115,12 @@ GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 			decay()
 	return difficulty
 
-/datum/controller/rogue/proc/dbg(var/message)
+/datum/controller/rogue/proc/dbg(message)
 	ASSERT(message) //I want a stack trace if there's no message
 	if(debugging)
 		log_world("[message]")
 
-/datum/controller/rogue/proc/adjust_difficulty(var/amt)
+/datum/controller/rogue/proc/adjust_difficulty(amt)
 	ASSERT(amt)
 
 	difficulty = max(difficulty+amt, diffstep_nums[1]) //Can't drop below the lowest level.
@@ -142,7 +142,7 @@ GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 
 	return oldest_zone
 
-/datum/controller/rogue/proc/mark_clean(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/mark_clean(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		GLOB.rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
 
@@ -151,7 +151,7 @@ GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 
 	clean_zones += ZM
 
-/datum/controller/rogue/proc/mark_ready(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/mark_ready(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		GLOB.rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
 
@@ -160,7 +160,7 @@ GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 
 	ready_zones += ZM
 
-/datum/controller/rogue/proc/unmark_clean(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/unmark_clean(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		GLOB.rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
 
@@ -169,7 +169,7 @@ GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 
 	clean_zones -= ZM
 
-/datum/controller/rogue/proc/unmark_ready(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/unmark_ready(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
 		GLOB.rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
 

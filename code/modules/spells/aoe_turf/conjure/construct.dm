@@ -38,7 +38,7 @@
 
 	hud_state = "const_floor"
 
-/spell/aoe_turf/conjure/floor/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+/spell/aoe_turf/conjure/floor/conjure_animation(atom/movable/overlay/animation, turf/target)
 	animation.icon_state = "cultfloor"
 	flick("cultfloor",animation)
 	spawn(10)
@@ -57,7 +57,7 @@
 
 	hud_state = "const_wall"
 
-/spell/aoe_turf/conjure/wall/conjure_animation(var/atom/movable/overlay/animation, var/turf/target)
+/spell/aoe_turf/conjure/wall/conjure_animation(atom/movable/overlay/animation, turf/target)
 	animation.icon_state = "cultwall"
 	flick("cultwall",animation)
 	spawn(10)

@@ -15,7 +15,7 @@
 /datum/random_map/noise/ore/virgo2/check_map_sanity()
 	return 1 //Totally random, but probably beneficial.
 
-/datum/random_map/noise/ore/virgo2/apply_to_turf(var/x,var/y)			//Same as normal + Rutile
+/datum/random_map/noise/ore/virgo2/apply_to_turf(x,y)			//Same as normal + Rutile
 
 	var/tx = ((origin_x-1)+x)*chunk_size
 	var/ty = ((origin_y-1)+y)*chunk_size

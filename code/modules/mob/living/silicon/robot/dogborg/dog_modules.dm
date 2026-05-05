@@ -280,7 +280,7 @@
 	var/busy
 	var/list/clamps = list()
 
-/obj/item/dogborg/stasis_clamp/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/dogborg/stasis_clamp/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 
@@ -332,7 +332,7 @@
 	var/mob/living/silicon/robot/R = user
 	R.leap(bluespace)
 
-/mob/living/silicon/robot/proc/leap(var/bluespace = FALSE)
+/mob/living/silicon/robot/proc/leap(bluespace = FALSE)
 	if(last_special > world.time)
 		to_chat(src, span_filter_notice("Your leap actuators are still recharging."))
 		return

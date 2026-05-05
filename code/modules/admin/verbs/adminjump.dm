@@ -44,7 +44,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(jumptomob, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Jump to M
 	user.do_jumptomob(M)
 
 /// Performs the jumps, also called from admin Topic() for JMP links
-/client/proc/do_jumptomob(var/mob/M)
+/client/proc/do_jumptomob(mob/M)
 	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
@@ -174,7 +174,7 @@ ADMIN_VERB(Getkey, R_ADMIN|R_MOD|R_DEBUG|R_EVENT, "Get Key",  "Key to teleport."
 	else
 		tgui_alert_async(usr, "Admin jumping disabled")
 
-/client/proc/cmd_admin_move_atom(var/atom/movable/AM, tx as num, ty as num, tz as num)
+/client/proc/cmd_admin_move_atom(atom/movable/AM, tx as num, ty as num, tz as num)
 	set category = "Admin.Game"
 	set name = "Move Atom to Coordinate"
 

@@ -54,7 +54,7 @@
 	for(var/obj/machinery/power/apc/T in picked_apcs)
 		affect_apc(T)
 
-/datum/event/electrical_storm/proc/affect_apc(var/obj/machinery/power/apc/T)
+/datum/event/electrical_storm/proc/affect_apc(obj/machinery/power/apc/T)
 	// Main breaker is turned off. Consider this APC protected.
 	if(!T.operating)
 		return

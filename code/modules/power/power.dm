@@ -24,7 +24,7 @@
 //////////////////////////////
 
 // common helper procs for all power machines
-/obj/machinery/power/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/machinery/power/drain_power(drain_check, surge, amount = 0)
 	if(drain_check)
 		return 1
 
@@ -32,13 +32,13 @@
 		powernet.trigger_warning()
 		return powernet.draw_power(amount)
 
-/obj/machinery/power/proc/add_avail(var/amount)
+/obj/machinery/power/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 		return TRUE
 	return FALSE
 
-/obj/machinery/power/proc/draw_power(var/amount)
+/obj/machinery/power/proc/draw_power(amount)
 	if(powernet)
 		return powernet.draw_power(amount)
 	return 0
@@ -61,7 +61,7 @@
 	else
 		return 0
 
-/obj/machinery/power/proc/disconnect_terminal(var/obj/machinery/power/terminal/term) // machines without a terminal will just return, no harm no fowl.
+/obj/machinery/power/proc/disconnect_terminal(obj/machinery/power/terminal/term) // machines without a terminal will just return, no harm no fowl.
 	return
 
 // connect the machine to a powernet if a node cable is present on the turf
@@ -109,7 +109,7 @@
 	return
 
 // Power machinery should also connect/disconnect from the network.
-/obj/machinery/power/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
+/obj/machinery/power/default_unfasten_wrench(mob/user, obj/item/W, time = 20)
 	if((. = ..()))
 		if(anchored)
 			connect_to_network()
@@ -117,7 +117,7 @@
 			disconnect_from_network()
 
 // Used for power spikes by the engine, has specific effects on different machines.
-/obj/machinery/power/proc/overload(var/obj/machinery/power/source)
+/obj/machinery/power/proc/overload(obj/machinery/power/source)
 	return
 
 // Used by the grid checker upon receiving a power spike.
@@ -185,7 +185,7 @@
 // returns a list of all power-related objects (nodes, cable, junctions) in turf,
 // excluding source, that match the direction d
 // if unmarked==1, only return those with no powernet
-/proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 0)
+/proc/power_list(turf/T, source, d, unmarked=0, cable_only = 0)
 	. = list()
 
 	var/reverse = d ? GLOB.reverse_dir[d] : 0
@@ -209,7 +209,7 @@
 	return .
 
 //remove the old powernet and replace it with a new one throughout the network.
-/proc/propagate_network(var/obj/O, var/datum/powernet/PN)
+/proc/propagate_network(obj/O, datum/powernet/PN)
 	//to_world_log("propagating new network")
 	var/list/worklist = list()
 	var/list/found_machines = list()
@@ -242,7 +242,7 @@
 
 
 //Merge two powernets, the bigger (in cable length term) absorbing the other
-/proc/merge_powernets(var/datum/powernet/net1, var/datum/powernet/net2)
+/proc/merge_powernets(datum/powernet/net1, datum/powernet/net2)
 	if(!net1 || !net2) //if one of the powernet doesn't exist, return
 		return
 
@@ -272,7 +272,7 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
+/proc/electrocute_mob(mob/living/M as mob, power_source, obj/source, siemens_coeff = 1.0)
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	if(issilicon(M))	return 0	//No more robot shocks from machinery
 	var/area/source_area

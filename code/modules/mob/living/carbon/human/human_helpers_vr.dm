@@ -1,7 +1,7 @@
 GLOBAL_DATUM_INIT(ingame_hud_vr, /icon, icon('icons/mob/hud_vr.dmi'))
 GLOBAL_DATUM_INIT(ingame_hud_med_vr, /icon, icon('icons/mob/hud_med_vr.dmi'))
 
-/mob/living/carbon/human/proc/remove_marking(var/datum/sprite_accessory/marking/mark_datum)
+/mob/living/carbon/human/proc/remove_marking(datum/sprite_accessory/marking/mark_datum)
 	if (!mark_datum)
 		return FALSE
 	var/successful = FALSE
@@ -16,7 +16,7 @@ GLOBAL_DATUM_INIT(ingame_hud_med_vr, /icon, icon('icons/mob/hud_med_vr.dmi'))
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/add_marking(var/datum/sprite_accessory/marking/mark_datum, var/mark_color = "#000000")
+/mob/living/carbon/human/proc/add_marking(datum/sprite_accessory/marking/mark_datum, mark_color = "#000000")
 	if (!mark_datum)
 		return FALSE
 	var/success = FALSE
@@ -31,7 +31,7 @@ GLOBAL_DATUM_INIT(ingame_hud_med_vr, /icon, icon('icons/mob/hud_med_vr.dmi'))
 		update_icons_body()
 	return success
 
-/mob/living/carbon/human/proc/change_priority_of_marking(var/datum/sprite_accessory/marking/mark_datum, var/move_down, var/swap = TRUE) //move_down should be true/false
+/mob/living/carbon/human/proc/change_priority_of_marking(datum/sprite_accessory/marking/mark_datum, move_down, swap = TRUE) //move_down should be true/false
 	if (!mark_datum)
 		return FALSE
 	var/change = move_down ? 1 : -1
@@ -58,13 +58,13 @@ GLOBAL_DATUM_INIT(ingame_hud_med_vr, /icon, icon('icons/mob/hud_med_vr.dmi'))
 		update_icons_body()
 	return TRUE
 
-/mob/living/carbon/human/proc/change_priority_marking_to_priority(var/priority, var/to_priority)
+/mob/living/carbon/human/proc/change_priority_marking_to_priority(priority, to_priority)
 	for (var/obj/item/organ/external/O in organs)
 		for (var/marking in O.markings)
 			if (O.markings[marking]["priority"] == priority)
 				O.markings[marking]["priority"] = to_priority
 
-/mob/living/carbon/human/proc/change_marking_color(var/datum/sprite_accessory/marking/mark_datum, var/mark_color = "#000000")
+/mob/living/carbon/human/proc/change_marking_color(datum/sprite_accessory/marking/mark_datum, mark_color = "#000000")
 	if (!mark_datum)
 		return FALSE
 	var/success = FALSE
@@ -119,7 +119,7 @@ GLOBAL_DATUM_INIT(ingame_hud_med_vr, /icon, icon('icons/mob/hud_med_vr.dmi'))
 	//does not really need to happen, that kinda thing will only happen when putting another person's limb onto your own body
 	return sorted
 
-/mob/living/carbon/human/proc/transform_into_other_human(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)
+/mob/living/carbon/human/proc/transform_into_other_human(mob/living/carbon/human/character, copy_name, copy_flavour = TRUE, convert_to_prosthetics = FALSE, apply_bloodtype = TRUE)
 	/*
 	name, nickname, flavour, OOC notes
 	gender, sex

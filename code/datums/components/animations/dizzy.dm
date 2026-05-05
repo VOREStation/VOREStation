@@ -68,7 +68,7 @@ dizzy process - wiggles the client's pixel offset over time
 value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
-/mob/proc/make_dizzy(var/amount)
+/mob/proc/make_dizzy(amount)
 	if(amount < 0 && get_dizzy() == 0) // If removing, check if we're already empty!
 		return
 	var/datum/component/dizzy_shake/DC = LoadComponent(/datum/component/dizzy_shake);
@@ -85,7 +85,7 @@ below 100 is not dizzy
 	return max(DC.dizziness,0)
 
 // Disabled on borgs
-/mob/living/silicon/make_dizzy(var/amount)
+/mob/living/silicon/make_dizzy(amount)
 	return
 
 /mob/living/silicon/get_dizzy()

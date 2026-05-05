@@ -224,7 +224,7 @@
 	siemens_coefficient = 1.5
 	item_icons = null
 
-/obj/item/clothing/head/kitty/update_icon(var/mob/living/carbon/human/user)
+/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
 	if(!istype(user)) return
 	var/icon/ears = new/icon("icon" = 'icons/inventory/head/mob.dmi', "icon_state" = "kitty")
 	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
@@ -272,7 +272,7 @@
 	var/flavor_activate = null // Ditto, for but activating.
 	var/brainloss_cost = 3 // Whenever it activates, inflict this much brainloss on the wearer, as its not good for the mind to wear things that manipulate it.
 
-/obj/item/clothing/head/psy_crown/proc/activate_ability(var/mob/living/wearer)
+/obj/item/clothing/head/psy_crown/proc/activate_ability(mob/living/wearer)
 	cooldown = world.time + cooldown_duration
 	if(flavor_activate)
 		to_chat(wearer, flavor_activate)
@@ -320,7 +320,7 @@
 	flavor_drop = span_notice("You feel much calmer after letting go of the crown.")
 	flavor_activate = span_danger("An otherworldly feeling seems to enter your mind, and it ignites your mind in fury!")
 
-/obj/item/clothing/head/psy_crown/wrath/activate_ability(var/mob/living/wearer)
+/obj/item/clothing/head/psy_crown/wrath/activate_ability(mob/living/wearer)
 	..()
 	wearer.add_modifier(/datum/modifier/berserk, 30 SECONDS)
 
@@ -334,7 +334,7 @@
 	flavor_drop = span_notice("You feel much more sated after letting go of the crown.")
 	flavor_activate = span_danger("An otherworldly feeling seems to enter your mind, and it drives your mind into gluttony!")
 
-/obj/item/clothing/head/psy_crown/gluttony/activate_ability(var/mob/living/wearer)
+/obj/item/clothing/head/psy_crown/gluttony/activate_ability(mob/living/wearer)
 	..()
 	wearer.add_modifier(/datum/modifier/gluttonyregeneration, 45 SECONDS)
 

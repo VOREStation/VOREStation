@@ -31,7 +31,7 @@
 	else
 		return ..()
 
-/obj/item/gun/energy/locked/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/locked/emag_act(remaining_charges,mob/user)
 	..()
 	if(lockable)
 		locked = !locked
@@ -80,7 +80,7 @@
 	)
 	recoil_mode = 0
 
-/obj/item/gun/energy/locked/frontier/unload_ammo(var/mob/user)
+/obj/item/gun/energy/locked/frontier/unload_ammo(mob/user)
 	if(recharging)
 		return
 	recharging = 1

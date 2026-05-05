@@ -2,7 +2,7 @@
 	var/recent_struggle = 0
 
 //This is a crazy 'sideways' override.
-/obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/shoes/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/holder/micro))
 		var/full = 0
 		for(var/mob/M in src)
@@ -28,7 +28,7 @@
 		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_werebeast.dmi')
 
-/obj/item/clothing/relaymove(var/mob/living/user,var/direction)
+/obj/item/clothing/relaymove(mob/living/user,direction)
 
 	if(recent_struggle)
 		return

@@ -26,7 +26,7 @@
 	holdingitems.Cut()
 	. = ..()
 
-/obj/machinery/reagent_refinery/grinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/reagent_refinery/grinder/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -143,6 +143,6 @@
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	tutorial(REFINERY_TUTORIAL_NOINPUT, .)
 
-/obj/machinery/reagent_refinery/grinder/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
+/obj/machinery/reagent_refinery/grinder/handle_transfer(atom/origin_machine, datum/reagents/RT, source_forward_dir, transfer_rate, filter_id = "")
 	// Grinder forbids input
 	return 0

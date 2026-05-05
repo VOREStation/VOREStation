@@ -6,7 +6,7 @@
 	name = "S'randarr"
 	desc = "An orange star, associated with the Tajaran god of life and mercy."
 
-/datum/locations/s_randarr/New(var/creator)
+/datum/locations/s_randarr/New(creator)
 	contents.Add(
 		new /datum/locations/ahdomai(src),
 		new /datum/locations/sranjir(src),
@@ -22,7 +22,7 @@
 	desc = "The Tajaran home planet. It is the smaller of its twin-planet alignment. Its atmosphere is not dissimilar to that of Earth. \
 	Its geography is largely mountainous, with a number of tundras, frozen plains, semi-frozen lakes, and icy seas."
 
-/datum/locations/ahdomai/New(var/creator)
+/datum/locations/ahdomai/New(creator)
 	contents.Add(
 		new /datum/locations/ahdomai_northern_plains(src),
 		new /datum/locations/ahdomai_snowy_mountains(src)
@@ -33,7 +33,7 @@
 	name = "The Northern Plains"
 	desc = "One of the regions of Ahdomai."
 
-/datum/locations/ahdomai_northern_plains/New(var/creator)
+/datum/locations/ahdomai_northern_plains/New(creator)
 	contents.Add(
 		new /datum/locations/mijri_peninsula(src),
 		new /datum/locations/the_slavemaster_strip(src)
@@ -54,7 +54,7 @@
 	Since the fall of the Slavemasters, the Hadii have fought tooth and nail to preserve hold of it, believing S'randarr gave it to them, \
 	and those of Tajr-kii S'randarr must keep it away from the followers of Messa."
 
-/datum/locations/the_slavemaster_strip/New(var/creator)
+/datum/locations/the_slavemaster_strip/New(creator)
 	contents.Add(
 		new /datum/locations/northern_plains_mining_network(src),
 		new /datum/locations/mi_dynh_al_manq(src),
@@ -82,7 +82,7 @@
 	name = "The Snowy Mountains"
 	desc = "One of the regions of Ahdomai."
 
-/datum/locations/ahdomai_snowy_mountains/New(var/creator)
+/datum/locations/ahdomai_snowy_mountains/New(creator)
 	contents.Add(
 		new /datum/locations/rhezars_crown(src),
 		new /datum/locations/rrhazkal_ice_maw(src),

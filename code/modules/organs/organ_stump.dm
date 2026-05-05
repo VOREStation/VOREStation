@@ -3,7 +3,7 @@
 	icon_name = ""
 	dislocated = -1
 
-/obj/item/organ/external/stump/Initialize(mapload, var/internal, var/obj/item/organ/external/limb)
+/obj/item/organ/external/stump/Initialize(mapload, internal, obj/item/organ/external/limb)
 	if(istype(limb))
 		organ_tag = limb.organ_tag
 		body_part = limb.body_part

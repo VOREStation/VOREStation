@@ -265,7 +265,7 @@
 /obj/machinery/porta_turret/lasertag/omni
 	turret_type = "industrial"
 
-/obj/machinery/porta_turret/lasertag/assess_living(var/mob/living/L)
+/obj/machinery/porta_turret/lasertag/assess_living(mob/living/L)
 	if(emagged)	// FUCK YOU, PERISH
 		return L.stat ? TURRET_NOT_TARGET : TURRET_PRIORITY_TARGET //we won't be uber evil though. If you're KO'd, let's let you get back up.
 
@@ -366,7 +366,7 @@
 
 	weapon_setup(installation)
 
-/obj/machinery/porta_turret/proc/weapon_setup(var/guntype)
+/obj/machinery/porta_turret/proc/weapon_setup(guntype)
 	switch(guntype)
 		if(/obj/item/gun/energy/gun/burst)
 			lethal_icon_color = "red"
@@ -603,7 +603,7 @@
 		visible_message(span_infoplain(span_bold("\The [L]") + " bonks \the [src]'s casing!"))
 	return ..()
 
-/obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/porta_turret/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes
 		//the turret shoot much, much faster.
@@ -616,7 +616,7 @@
 		VARSET_IN(src, enabled, TRUE, 6 SECONDS) // Turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 
-/obj/machinery/porta_turret/take_damage(var/force)
+/obj/machinery/porta_turret/take_damage(force)
 	if(!raised && !raising)
 		force = force / 8
 		if(force < 5)
@@ -716,7 +716,7 @@
 
 	slow_process(shot_targets)
 
-/obj/machinery/porta_turret/proc/slow_process(var/shot_targets)
+/obj/machinery/porta_turret/proc/slow_process(shot_targets)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
@@ -732,7 +732,7 @@
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
 
-/obj/machinery/porta_turret/proc/set_processing_speed(var/fast)
+/obj/machinery/porta_turret/proc/set_processing_speed(fast)
 	if(fast == speed_process)
 		return
 	speed_process = fast
@@ -754,7 +754,7 @@
 		if(TURRET_SECONDARY_TARGET)
 			secondarytargets += L
 
-/obj/machinery/porta_turret/proc/assess_living(var/mob/living/L)
+/obj/machinery/porta_turret/proc/assess_living(mob/living/L)
 	if(!istype(L))
 		return TURRET_NOT_TARGET
 
@@ -802,7 +802,7 @@
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
-/obj/machinery/porta_turret/proc/assess_mecha(var/obj/mecha/M)
+/obj/machinery/porta_turret/proc/assess_mecha(obj/mecha/M)
 	if(!istype(M))
 		return TURRET_NOT_TARGET
 
@@ -811,7 +811,7 @@
 
 	return assess_living(M.occupant)
 
-/obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
+/obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/H)
 	if(!H || !istype(H))
 		return 0
 
@@ -820,7 +820,7 @@
 
 	return H.assess_perp(src, check_access, check_weapons, check_records, check_arrest)
 
-/obj/machinery/porta_turret/proc/tryToShootAt(var/list/mob/living/targets)
+/obj/machinery/porta_turret/proc/tryToShootAt(list/mob/living/targets)
 	if(targets.len && last_target && (last_target in targets) && target(last_target))
 		return TRUE
 
@@ -892,12 +892,12 @@
 	set_raised_raising(0, 0)
 	update_icon()
 
-/obj/machinery/porta_turret/proc/set_raised_raising(var/incoming_raised, var/incoming_raising)
+/obj/machinery/porta_turret/proc/set_raised_raising(incoming_raised, incoming_raising)
 	raised = incoming_raised
 	raising = incoming_raising
 	density = raised || raising
 
-/obj/machinery/porta_turret/proc/target(var/mob/living/target)
+/obj/machinery/porta_turret/proc/target(mob/living/target)
 	if(disabled)
 		return FALSE
 	if(target)
@@ -916,7 +916,7 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/porta_turret/proc/shootAt(var/mob/living/target)
+/obj/machinery/porta_turret/proc/shootAt(mob/living/target)
 	//any emagged turrets will shoot extremely fast! This not only is deadly, but drains a lot power!
 	var/current_delay = shot_delay
 	if(emagged || attacked)	//prevents rapid-fire shooting, unless it's been emagged
@@ -985,7 +985,7 @@
 	var/check_all
 	var/ailock
 
-/obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
+/obj/machinery/porta_turret/proc/setState(datum/turret_checks/TC)
 	if(controllock)
 		return
 	enabled = TC.enabled

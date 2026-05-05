@@ -44,7 +44,7 @@
 /datum/category_item/player_setup_item/general/records/sanitize_character()
 	return
 
-/datum/category_item/player_setup_item/general/records/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/records/copy_to_mob(mob/living/carbon/human/character)
 	return
 
 /datum/category_item/player_setup_item/general/records/tgui_data(mob/user)

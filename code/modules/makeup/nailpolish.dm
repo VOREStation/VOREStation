@@ -20,7 +20,7 @@
 	color_underlay = image(icon, "color")
 	update_icon()
 
-/obj/item/nailpolish/proc/set_colour(var/_colour)
+/obj/item/nailpolish/proc/set_colour(_colour)
 	colour = _colour
 	desc = "<font color='[colour]'>Nail polish,</font> " + initial(desc)
 	update_icon()
@@ -41,7 +41,7 @@
 	color_underlay.color = colour
 	underlays = list(color_underlay, top_underlay)
 
-/obj/item/organ/external/proc/get_polish(var/colour)
+/obj/item/organ/external/proc/get_polish(colour)
 	var/static/forbidden_parts = BP_ALL - list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)
 	if(organ_tag in forbidden_parts)
 		return FALSE
@@ -91,7 +91,7 @@
 	body_part.set_polish(polish)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/organ/external/proc/set_polish(var/datum/nail_polish/polish)
+/obj/item/organ/external/proc/set_polish(datum/nail_polish/polish)
 	nail_polish = polish
 	owner?.update_icons_body()
 
@@ -147,7 +147,7 @@
 	var/icon_state
 	var/color
 
-/datum/nail_polish/New(var/_icon, var/_icon_state, var/_color)
+/datum/nail_polish/New(_icon, _icon_state, _color)
 	icon = _icon
 	icon_state = _icon_state
 	color = _color

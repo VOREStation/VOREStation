@@ -33,7 +33,7 @@
 	..()
 	abort_file_download()
 
-/datum/computer_file/program/ntnetdownload/proc/begin_file_download(var/filename)
+/datum/computer_file/program/ntnetdownload/proc/begin_file_download(filename)
 	if(downloaded_file)
 		return 0
 
@@ -56,7 +56,7 @@
 
 	downloaded_file = PRG.clone()
 
-/datum/computer_file/program/ntnetdownload/proc/check_file_download(var/filename)
+/datum/computer_file/program/ntnetdownload/proc/check_file_download(filename)
 	//returns 1 if file can be downloaded, returns 0 if download prohibited
 	var/datum/computer_file/program/PRG = GLOB.ntnet_global.find_ntnet_file_by_name(filename)
 

@@ -154,7 +154,7 @@
 	var/datum/material/material
 	resistance_flags = FLAMMABLE
 
-/obj/item/shovel/wood/Initialize(mapload, var/_mat)
+/obj/item/shovel/wood/Initialize(mapload, _mat)
 	. = ..()
 	material = get_material_by_name(_mat)
 	if(!istype(material))

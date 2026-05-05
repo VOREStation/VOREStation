@@ -16,7 +16,7 @@
 	var/locked = 1
 	var/emagged = 0
 
-/obj/item/airlock_electronics/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/airlock_electronics/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		to_chat(user, span_notice("You remove the access restrictions on [src]!"))
@@ -108,7 +108,7 @@
 
 	attack_self(usr)
 
-/obj/item/airlock_electronics/proc/toggle_access(var/acc)
+/obj/item/airlock_electronics/proc/toggle_access(acc)
 	if (acc == "all")
 		conf_access = null
 	else
@@ -124,7 +124,7 @@
 			if (!conf_access.len)
 				conf_access = null
 
-/obj/item/airlock_electronics/proc/get_available_accesses(var/mob/user)
+/obj/item/airlock_electronics/proc/get_available_accesses(mob/user)
 	var/obj/item/card/id/id
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -150,6 +150,6 @@
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
 	secure = 1
 
-/obj/item/airlock_electronics/secure/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/airlock_electronics/secure/emag_act(remaining_charges, mob/user)
 	to_chat(user, span_warning("You don't appear to be able to bypass this hardened device!"))
 	return -1

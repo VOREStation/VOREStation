@@ -116,14 +116,14 @@ GLOBAL_LIST_INIT(string_slot_flags, list(
 ))
 
 GLOBAL_LIST_EMPTY(mannequins)
-/proc/get_mannequin(var/ckey = "NULL")
+/proc/get_mannequin(ckey = "NULL")
 	var/mob/living/carbon/human/dummy/mannequin/M = GLOB.mannequins[ckey]
 	if(!istype(M))
 		GLOB.mannequins[ckey] = new /mob/living/carbon/human/dummy/mannequin(null)
 		M = GLOB.mannequins[ckey]
 	return M
 
-/proc/del_mannequin(var/ckey = "NULL")
+/proc/del_mannequin(ckey = "NULL")
 	GLOB.mannequins-= ckey
 
 //////////////////////////

@@ -117,7 +117,7 @@
 /mob/living/bot/death()
 	explode()
 
-/mob/living/bot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/attackby(obj/item/O, mob/user)
 	if(O.GetID())
 		if(access_scanner.allowed(user) && !open)
 			locked = !locked
@@ -179,16 +179,16 @@
 	else
 		..()
 
-/mob/living/bot/attack_ai(var/mob/user)
+/mob/living/bot/attack_ai(mob/user)
 	return attack_hand(user)
 
-/mob/living/bot/say_quote(var/message, var/datum/language/speaking = null)
+/mob/living/bot/say_quote(message, datum/language/speaking = null)
 	return "beeps"
 
 /mob/living/bot/speech_bubble_appearance()
 	return "machine"
 
-/mob/living/bot/Bump(var/atom/A)
+/mob/living/bot/Bump(atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
 		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(botcard))
@@ -196,7 +196,7 @@
 	else
 		..()
 
-/mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/emag_act(remaining_charges, mob/user)
 	return 0
 
 /mob/living/bot/proc/handleAI()
@@ -312,7 +312,7 @@
 /mob/living/bot/proc/lookForTargets()
 	return
 
-/mob/living/bot/proc/confirmTarget(var/atom/A)
+/mob/living/bot/proc/confirmTarget(atom/A)
 	if(A.invisibility >= INVISIBILITY_LEVEL_ONE)
 		return 0
 	if(A in ignore_list)
@@ -368,7 +368,7 @@
 		obstacle = null
 	return
 
-/mob/living/bot/proc/makeStep(var/list/path)
+/mob/living/bot/proc/makeStep(list/path)
 	if(!path.len)
 		return 0
 	var/turf/T = path[1]
@@ -421,7 +421,7 @@
 
 // Returns the surrounding GLOB.cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(obj/item/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
@@ -448,7 +448,7 @@
 	return L
 
 // Similar to above but not restricted to just GLOB.cardinal directions.
-/turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
+/turf/proc/TurfsWithAccess(obj/item/card/id/ID)
 	var/L[] = new()
 
 	for(var/d in GLOB.alldirs)
@@ -490,7 +490,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc,dir,obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1
@@ -568,7 +568,7 @@
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
 
-/mob/living/bot/verb/bot_nom(var/mob/living/T in oview(1))
+/mob/living/bot/verb/bot_nom(mob/living/T in oview(1))
 	set name = "Bot Nom"
 	set category = "Bot Commands"
 	set desc = "Allows you to eat someone. Yum."

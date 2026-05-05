@@ -1541,7 +1541,7 @@
 	icon_state = "flag"
 	flagtype = /obj/item/flag
 
-/obj/item/flag/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/flag/afterattack(atom/A, mob/user, adjacent, clickparams)
 	if (!adjacent)
 		return
 
@@ -1638,7 +1638,7 @@
 		add_fingerprint(user)
 		rip()
 
-/obj/structure/sign/flag/proc/rip(var/rip_linked = TRUE)
+/obj/structure/sign/flag/proc/rip(rip_linked = TRUE)
 	var/icon/I = new('icons/obj/flags.dmi', icon_state)
 	var/icon/mask = new('icons/obj/flags.dmi', "ripped")
 	I.AddAlphaMask(mask)

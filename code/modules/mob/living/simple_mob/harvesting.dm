@@ -30,7 +30,7 @@
 
 	if(print_flavor_text()) . += "<br>[print_flavor_text()]"
 
-/mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
+/mob/living/simple_mob/proc/livestock_harvest(obj/item/tool, mob/living/user)
 	if(!LAZYLEN(harvest_results))	// Might be a unique interaction of an object using the proc to do something weird, or just someone's a donk.
 		harvest_recent = world.time
 		return

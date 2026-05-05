@@ -16,7 +16,7 @@
 	special_handling = TRUE
 
 
-/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, var/planttype)
+/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, planttype)
 	. = ..()
 
 	if(!dried_type)
@@ -143,7 +143,7 @@
 		SSplants.plant_icon_cache[icon_key] = plant_icon
 	add_overlay(plant_icon)
 
-/obj/item/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
+/obj/item/reagent_containers/food/snacks/grown/Crossed(mob/living/M)
 	if(M.is_incorporeal())
 		return
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
@@ -170,7 +170,7 @@
 	if(seed) seed.thrown_at(src,hit_atom)
 	..()
 
-/obj/item/reagent_containers/food/snacks/grown/attackby(var/obj/item/W, var/mob/living/user)
+/obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/W, mob/living/user)
 
 	if(seed)
 		if(seed.get_trait(TRAIT_PRODUCES_POWER) && istype(W, /obj/item/stack/cable_coil))
@@ -257,7 +257,7 @@
 
 	. = ..()
 
-/obj/item/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	. = ..()
 
 	if(seed && seed.get_trait(TRAIT_STINGS))
@@ -377,7 +377,7 @@
 
 GLOBAL_LIST_EMPTY(fruit_icon_cache)
 
-/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, var/datum/seed/S)
+/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, datum/seed/S)
 	. = ..()
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))

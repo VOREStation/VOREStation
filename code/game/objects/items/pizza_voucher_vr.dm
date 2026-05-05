@@ -40,7 +40,7 @@
 	else
 		to_chat(user, span_warning("The [src] is spent!"))
 
-/obj/item/pizzavoucher/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/pizzavoucher/emag_act(remaining_charges, mob/user)
 	if(spent)
 		to_chat(user, span_warning("The [src] is spent!"))
 		return

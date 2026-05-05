@@ -60,7 +60,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	else
 		icon_state = "d_analyzer"
 
-/obj/machinery/rnd/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/rnd/destructive_analyzer/attackby(obj/item/O as obj, mob/user as mob)
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy right now."))
 		return

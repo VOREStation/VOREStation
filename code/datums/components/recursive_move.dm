@@ -81,12 +81,12 @@
 	UnregisterSignal(parents[parents.len], COMSIG_ATOM_ENTERING)
 
 //Parent at top of heirarchy moved.
-/datum/component/recursive_move/proc/top_moved(var/atom/movable/am, var/atom/new_loc, var/atom/old_loc)
+/datum/component/recursive_move/proc/top_moved(atom/movable/am, atom/new_loc, atom/old_loc)
 	SIGNAL_HANDLER
 	SEND_SIGNAL(holder, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, new_loc)
 
 //One of the parents other than the top parent moved.
-/datum/component/recursive_move/proc/heirarchy_changed(var/atom/old_loc, var/atom/movable/am, var/atom/new_loc)
+/datum/component/recursive_move/proc/heirarchy_changed(atom/old_loc, atom/movable/am, atom/new_loc)
 	SIGNAL_HANDLER
 	SEND_SIGNAL(holder, COMSIG_MOVABLE_ATTEMPTED_MOVE, old_loc, new_loc)
 	//Rebuild our list of parents
@@ -123,7 +123,7 @@
 	name = "banana peel of testing"
 	desc = "spams world log with debugging information"
 
-/obj/item/bananapeel/test/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
+/obj/item/bananapeel/test/proc/shmove(atom/source, atom/old_loc, atom/new_loc)
 	SIGNAL_HANDLER
 	world.log << "the [source] moved from [old_loc]([old_loc.x],[old_loc.y],[old_loc.z]) to [new_loc]([new_loc.x],[new_loc.y],[new_loc.z])"
 

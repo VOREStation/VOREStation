@@ -25,11 +25,11 @@
 	QDEL_NULL(cerealmaker_loop)
 
 /*
-/obj/machinery/appliance/mixer/cereal/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+/obj/machinery/appliance/mixer/cereal/change_product_strings(obj/item/reagent_containers/food/snacks/product, datum/cooking_item/CI)
 	. = ..()
 	product.name = "box of [CI.object.name] cereal"
 
-/obj/machinery/appliance/mixer/cereal/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product)
+/obj/machinery/appliance/mixer/cereal/change_product_appearance(obj/item/reagent_containers/food/snacks/product)
 	product.icon = 'icons/obj/food.dmi'
 	product.icon_state = "cereal_box"
 	product.filling_color = CI.object.color
@@ -54,7 +54,7 @@
 		if(cerealmaker_loop)
 			cerealmaker_loop.stop(src)
 
-/obj/machinery/appliance/mixer/cereal/combination_cook(var/datum/cooking_item/CI)
+/obj/machinery/appliance/mixer/cereal/combination_cook(datum/cooking_item/CI)
 
 	var/list/images = list()
 	var/num = 0

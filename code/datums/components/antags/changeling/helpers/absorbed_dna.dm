@@ -7,7 +7,7 @@
 	var/list/flavour_texts
 	var/list/genMods
 
-/datum/absorbed_dna/New(var/newName, var/newDNA, var/newSpecies, var/newLanguages, var/newIdentifying_Gender, var/list/newFlavour, var/list/newGenMods)
+/datum/absorbed_dna/New(newName, newDNA, newSpecies, newLanguages, newIdentifying_Gender, list/newFlavour, list/newGenMods)
 	..()
 	name = newName
 	QDEL_SWAP(dna, newDNA)

@@ -96,7 +96,7 @@ Thus, the two variables affect pump operation are set in New():
 	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
 	add_underlay(T, node2, dir, node2?.icon_connect_type)
 
-/obj/machinery/atmospherics/binary/volume_pump/hide(var/i)
+/obj/machinery/atmospherics/binary/volume_pump/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/volume_pump/process()
@@ -260,7 +260,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/binary/volume_pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_WRENCH))
 		wrench_act(W, user)
 
@@ -277,7 +277,7 @@ Thus, the two variables affect pump operation are set in New():
 		. += "Its warning light is on[use_power ? " and it's spewing gas!" : "."]"
 
 
-/obj/machinery/atmospherics/binary/volume_pump/proc/wrench_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/proc/wrench_act(obj/item/W as obj, mob/user as mob)
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, span_warning("You cannot unwrench this [src], turn it off first."))
 		return TRUE
@@ -294,7 +294,7 @@ Thus, the two variables affect pump operation are set in New():
 			"You hear ratchet.")
 		atom_deconstruct()
 
-/obj/machinery/atmospherics/binary/volume_pump/proc/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/proc/multitool_act(obj/item/W as obj, mob/user as mob)
 	if(!overclocked)
 		overclocked = TRUE
 		to_chat(user, span_notice("The pump makes a grinding noise and air starts to hiss out as you disable its pressure limits."))

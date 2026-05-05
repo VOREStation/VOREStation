@@ -10,7 +10,7 @@
 GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 */
 
-/proc/bicon(var/obj, var/use_class = 1, var/custom_classes = "")
+/proc/bicon(obj, use_class = 1, custom_classes = "")
 	return icon2base64html(obj, custom_classes)
 
 	/* Old bicon code

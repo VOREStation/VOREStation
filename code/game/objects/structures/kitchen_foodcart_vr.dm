@@ -22,7 +22,7 @@
 	else
 		return
 
-/obj/structure/foodcart/attack_hand(var/mob/user as mob)
+/obj/structure/foodcart/attack_hand(mob/user as mob)
 	if(contents.len)
 		var/obj/item/reagent_containers/food/choice = tgui_input_list(user, "What would you like to grab from the cart?", "Grab Choice", contents)
 		if(choice)

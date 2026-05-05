@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 		default_skybox = new()
 
 // Gets the current time on a current zlevel, and returns a time datum
-/datum/map/proc/get_zlevel_time(var/z)
+/datum/map/proc/get_zlevel_time(z)
 	if(!z)
 		z = 1
 	var/datum/planet/P = z <= SSplanets.z_to_planet.len ? SSplanets.z_to_planet[z] : null
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 		return T
 
 // Returns a boolean for if it's night or not on a particular zlevel
-/datum/map/proc/get_night(var/z)
+/datum/map/proc/get_night(z)
 	if(!z)
 		z = 1
 	var/datum/time/now = get_zlevel_time(z)
@@ -198,11 +198,11 @@ GLOBAL_LIST_EMPTY(all_maps)
 /datum/map/proc/perform_map_generation()
 	return
 
-/datum/map/proc/get_network_access(var/network)
+/datum/map/proc/get_network_access(network)
 	return 0
 
 // By default transition randomly to another zlevel
-/datum/map/proc/get_transit_zlevel(var/current_z_level)
+/datum/map/proc/get_transit_zlevel(current_z_level)
 	var/list/candidates = using_map.accessible_z_levels.Copy()
 	candidates.Remove(num2text(current_z_level))
 
@@ -223,13 +223,13 @@ GLOBAL_LIST_EMPTY(all_maps)
 		empty_levels += world.maxz
 	return pick_n_take(empty_levels)
 
-/datum/map/proc/cache_empty_zlevel(var/z)
+/datum/map/proc/cache_empty_zlevel(z)
 	if(z) // Else, it's not a valid z and we want to expunge it
 		empty_levels |= z
 
 // Get a list of 'nearby' or 'connected' zlevels.
 // You should at least return a list with the given z if nothing else.
-/datum/map/proc/get_map_levels(var/srcz, var/long_range = FALSE, var/om_range = -1)
+/datum/map/proc/get_map_levels(srcz, long_range = FALSE, om_range = -1)
 	//Get what sector we're in
 	var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
 	if(istype(O))
@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 		else
 			return GetConnectedZlevels(srcz)
 
-/datum/map/proc/get_zlevel_name(var/index)
+/datum/map/proc/get_zlevel_name(index)
 	var/datum/map_z_level/Z = zlevels["[index]"]
 	return Z?.name
 
@@ -308,7 +308,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 	var/datum/skybox_settings/custom_skybox  // Can override skybox type here for this z
 
 // Default constructor applies itself to the parent map datum
-/datum/map_z_level/New(var/datum/map/map)
+/datum/map_z_level/New(datum/map/map)
 	if(!z) return
 	map.zlevels["[z]"] = src
 	if(flags & MAP_LEVEL_STATION) map.station_levels += z
@@ -348,7 +348,7 @@ GLOBAL_LIST_EMPTY(all_maps)
 	if(custom_skybox)
 		custom_skybox = new custom_skybox()
 
-/datum/map_z_level/Destroy(var/force)
+/datum/map_z_level/Destroy(force)
 	stack_trace("Attempt to delete a map_z_level instance [log_info_line(src)]")
 	if(!force)
 		return QDEL_HINT_LETMELIVE // No.

@@ -401,7 +401,7 @@
 	//reagents.add_reagent(REAGENT_ID_ADRENALINE,5) //VOREStation Edit - No thanks.
 	reagents.add_reagent(REAGENT_ID_HYPERZINE,10)
 
-/obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
+/obj/item/reagent_containers/syringe/proc/dirty(mob/living/carbon/human/target, obj/item/organ/external/eo)
 	if(!ishuman(loc))
 		return //Avoid borg syringe problems.
 	LAZYINITLIST(targets)
@@ -438,7 +438,7 @@
 	if(!used)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/reagent_containers/syringe/proc/infect_limb(var/obj/item/organ/external/eo)
+/obj/item/reagent_containers/syringe/proc/infect_limb(obj/item/organ/external/eo)
 	src = null
 	var/datum/weakref/limb_ref = WEAKREF(eo)
 	spawn(rand(5 MINUTES,10 MINUTES))

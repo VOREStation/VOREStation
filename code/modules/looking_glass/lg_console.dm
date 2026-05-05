@@ -49,10 +49,10 @@
 	my_area = null
 	return ..()
 
-/obj/machinery/computer/looking_glass/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/looking_glass/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/looking_glass/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/looking_glass/attack_hand(mob/user as mob)
 	if(..())
 		return
 
@@ -114,7 +114,7 @@
 
 	add_fingerprint(ui.user)
 
-/obj/machinery/computer/looking_glass/emag_act(var/remaining_charges, var/mob/user as mob)
+/obj/machinery/computer/looking_glass/emag_act(remaining_charges, mob/user as mob)
 	if (!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
@@ -123,7 +123,7 @@
 		return 1
 	return
 
-/obj/machinery/computer/looking_glass/proc/load_program(var/prog_name)
+/obj/machinery/computer/looking_glass/proc/load_program(prog_name)
 	ready = FALSE
 	VARSET_IN(src, ready, TRUE, 10 SECONDS)
 
@@ -138,7 +138,7 @@
 
 	my_area.end_program()
 
-/obj/machinery/computer/looking_glass/proc/toggle_gravity(var/area/A)
+/obj/machinery/computer/looking_glass/proc/toggle_gravity(area/A)
 	if(world.time < (last_gravity_change + 3 SECONDS))
 		if(world.time < (last_gravity_change + 1 SECOND))
 			return

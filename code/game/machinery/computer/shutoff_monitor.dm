@@ -15,7 +15,7 @@
 	QDEL_NULL(monitor)
 	. = ..()
 
-/obj/machinery/computer/shutoff_monitor/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/shutoff_monitor/attack_hand(mob/user as mob)
 	..()
 	monitor.tgui_interact(user)
 

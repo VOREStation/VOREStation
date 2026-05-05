@@ -27,7 +27,7 @@
 						the " + JOB_AI + "'s commands, and their own Laws."
 
 // AI procs
-/datum/job/ai/equip(var/mob/living/carbon/human/H)
+/datum/job/ai/equip(mob/living/carbon/human/H)
 	if(!H)	return 0
 	return 1
 
@@ -77,7 +77,7 @@
 					and important piece of station property, and is expected to follow its Laws."
 
 // Cyborg procs
-/datum/job/cyborg/equip(var/mob/living/carbon/human/H)
+/datum/job/cyborg/equip(mob/living/carbon/human/H)
 	if(!H)	return 0
 	return 1
 

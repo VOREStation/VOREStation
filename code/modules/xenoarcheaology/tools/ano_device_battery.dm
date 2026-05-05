@@ -45,7 +45,7 @@
 	p = min(p, 100)
 	icon_state = "anobattery[round(p,25)]"
 
-/obj/item/anobattery/proc/use_power(var/amount)
+/obj/item/anobattery/proc/use_power(amount)
 	stored_charge = max(0, stored_charge - amount)
 
 /obj/item/anodevice
@@ -73,11 +73,11 @@
 	last_user_touched = null
 	. = ..()
 
-/obj/item/anodevice/equipped(var/mob/user, var/slot)
+/obj/item/anodevice/equipped(mob/user, slot)
 	last_user_touched = user
 	..()
 
-/obj/item/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/item/anodevice/attackby(obj/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/anobattery))
 		if(!inserted_battery)
 			to_chat(user, span_blue("You insert the battery."))

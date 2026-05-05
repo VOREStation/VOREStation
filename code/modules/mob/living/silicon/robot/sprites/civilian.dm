@@ -227,19 +227,19 @@
 								  REAGENT_WHISKEYSODA = "boozeorange",
 								  REAGENT_COFFEE = "boozebrown")
 
-/datum/robot_sprite/dogborg/service/booze/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/service/booze/handle_extra_icon_updates(mob/living/silicon/robot/ourborg)
 	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
 		return ..()
 	else
 		ourborg.icon_state = booze_options[ourborg.sprite_extra_customization["boozehound"]]
 
-/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
+/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(mob/living/silicon/robot/ourborg, size = 1, b_class)
 	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"] || b_class != "sleeper")
 		return ..()
 	else
 		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-[b_class]-[size]"
 
-/datum/robot_sprite/dogborg/service/booze/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/service/booze/get_rest_sprite(mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
 		ourborg.rest_style = "Default"
 	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
@@ -247,7 +247,7 @@
 	else
 		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-rest"
 
-/datum/robot_sprite/dogborg/service/booze/handle_extra_customization(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/service/booze/handle_extra_customization(mob/living/silicon/robot/ourborg)
 	var/choice = tgui_input_list(ourborg, "Choose your drink!", "Drink Choice", booze_options)
 	if(ourborg && choice && !ourborg.stat)
 		if(!("boozehound" in ourborg.sprite_extra_customization))

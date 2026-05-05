@@ -116,7 +116,7 @@
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/suit_cooling_unit/proc/turn_off(var/failed)
+/obj/item/suit_cooling_unit/proc/turn_off(failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
 	STOP_PROCESSING(SSobj, src)
@@ -142,7 +142,7 @@
 
 	toggle(user)
 
-/obj/item/suit_cooling_unit/proc/toggle(var/mob/user)
+/obj/item/suit_cooling_unit/proc/toggle(mob/user)
 	if(on)
 		turn_off()
 	else

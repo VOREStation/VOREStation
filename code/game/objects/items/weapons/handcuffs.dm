@@ -20,7 +20,7 @@
 	var/use_time = 30
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 
-/obj/item/handcuffs/get_worn_icon_state(var/slot_name)
+/obj/item/handcuffs/get_worn_icon_state(slot_name)
 	if(slot_name == slot_handcuffed_str)
 		return "handcuff1" //Simple
 
@@ -51,7 +51,7 @@
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
 			return ITEM_INTERACT_FAILURE
 
-/obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
+/obj/item/handcuffs/proc/can_place(mob/target, mob/user)
 	if(user == target)
 		return 1
 	if(isrobot(user))
@@ -63,7 +63,7 @@
 				return 1
 	return 0
 
-/obj/item/handcuffs/proc/attempt_to_cuff(var/mob/living/carbon/victim, var/mob/user)
+/obj/item/handcuffs/proc/attempt_to_cuff(mob/living/carbon/victim, mob/user)
 	if(SEND_SIGNAL(victim, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
 		victim.balloon_alert(user, "can't be handcuffed!")
 		return
@@ -111,14 +111,14 @@
 	victim.stop_pulling()
 	return 1
 
-/obj/item/handcuffs/equipped(var/mob/living/user,var/slot)
+/obj/item/handcuffs/equipped(mob/living/user,slot)
 	. = ..()
 	if(slot == slot_handcuffed)
 		user.drop_r_hand()
 		user.drop_l_hand()
 		user.stop_pulling()
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/human/RestrainedClickOn(atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return
 
@@ -212,7 +212,7 @@
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
-/obj/item/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
+/obj/item/handcuffs/legcuffs/get_worn_icon_state(slot_name)
 	if(slot_name == slot_legcuffed_str)
 		return "legcuff1"
 
@@ -243,7 +243,7 @@
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
 			return ITEM_INTERACT_FAILURE
 
-/obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/proc/place_legcuffs(mob/living/carbon/target, mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -289,7 +289,7 @@
 			target.hud_used.move_intent.icon_state = "walking"
 	return 1
 
-/obj/item/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
+/obj/item/handcuffs/legcuffs/equipped(mob/living/user,slot)
 	. = ..()
 	if(slot == slot_legcuffed)
 		if(user.m_intent != I_WALK)
@@ -307,7 +307,7 @@
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
 	item_flags = DROPDEL
 
-/obj/item/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/bola/can_place(mob/target, mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
@@ -317,7 +317,7 @@
 	..()
 	visible_message(span_infoplain(span_bold("\The [src]") + " falls apart!"))
 
-/obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/bola/place_legcuffs(mob/living/carbon/target, mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target

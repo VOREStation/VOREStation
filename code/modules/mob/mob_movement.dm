@@ -1,4 +1,4 @@
-/mob/proc/setMoveCooldown(var/timeout)
+/mob/proc/setMoveCooldown(timeout)
 	next_move = max(world.time + timeout, next_move)
 
 /mob/proc/checkMoveCooldown()
@@ -479,7 +479,7 @@
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/proc/Process_Spacemove(var/check_drift = 0)
+/mob/proc/Process_Spacemove(check_drift = 0)
 
 	if(is_incorporeal())
 		return

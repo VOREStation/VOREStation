@@ -285,7 +285,7 @@
 	signal.data["command"] = "secure_close"
 	post_signal(signal)
 
-/datum/shuttle/autodock/ferry/emergency/proc/post_signal(datum/signal/signal, var/filter = null)
+/datum/shuttle/autodock/ferry/emergency/proc/post_signal(datum/signal/signal, filter = null)
 	signal.transmission_method = TRANSMISSION_RADIO
 	if(radio_connection)
 		return radio_connection.post_signal(src, signal, filter)
@@ -310,7 +310,7 @@
 	for(var/obj/machinery/computer/shuttle_control/tether_backup/comp in current_area)
 		computer = comp
 
-/datum/shuttle/ferry/tether_backup/process_longjump(var/area/origin, var/area/intended_destination)
+/datum/shuttle/ferry/tether_backup/process_longjump(area/origin, area/intended_destination)
 	var/failures = engines.len
 	for(var/obj/structure/shuttle/engine/E as anything in engines)
 		failures -= E.jump()
@@ -379,7 +379,7 @@
 
 //TODO require a multitool to diagnose and open engine panels or something
 
-/obj/structure/shuttle/engine/proc/repair_welder(var/mob/user, var/obj/item/weldingtool/WT)
+/obj/structure/shuttle/engine/proc/repair_welder(mob/user, obj/item/weldingtool/WT)
 	if(!istype(WT))
 		return 0
 	if(wear <= 20)

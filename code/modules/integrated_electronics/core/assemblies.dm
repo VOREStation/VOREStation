@@ -268,7 +268,7 @@
 		. += part.size
 
 // Returns true if the circuit made it inside.
-/obj/item/electronic_assembly/proc/add_circuit(var/obj/item/integrated_circuit/IC, var/mob/user)
+/obj/item/electronic_assembly/proc/add_circuit(obj/item/integrated_circuit/IC, mob/user)
 	if(!opened)
 		to_chat(user, span_warning("\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar."))
 		return FALSE
@@ -295,7 +295,7 @@
 	return TRUE
 
 // Non-interactive version of above that always succeeds, intended for build-in circuits that get added on assembly initialization.
-/obj/item/electronic_assembly/proc/force_add_circuit(var/obj/item/integrated_circuit/IC)
+/obj/item/electronic_assembly/proc/force_add_circuit(obj/item/integrated_circuit/IC)
 	IC.forceMove(src)
 	IC.assembly = src
 
@@ -313,7 +313,7 @@
 	for(var/obj/item/integrated_circuit/input/reference_grabber/G in contents)
 		G.afterattack(target, user, proximity, null)
 
-/obj/item/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
+/obj/item/electronic_assembly/attackby(obj/item/I, mob/user)
 	if(can_anchor && I.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		to_chat(user, span_notice("You've [anchored ? "" : "un"]secured \the [src] to \the [get_turf(src)]."))
@@ -487,5 +487,5 @@
 	return ..()  // Fall back to default behavior if no access_card
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
-/obj/item/electronic_assembly/proc/is_valid_tool(var/obj/item/I)
+/obj/item/electronic_assembly/proc/is_valid_tool(obj/item/I)
 	return I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/cell/device) || istype(I, /obj/item/integrated_electronics)

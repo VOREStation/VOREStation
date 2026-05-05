@@ -32,14 +32,14 @@
 /obj/item/assembly/proc/holder_movement()
 	return
 
-/obj/item/assembly/proc/pulsed(var/radio = 0)
+/obj/item/assembly/proc/pulsed(radio = 0)
 	if(holder && (wires_type & WIRE_RECEIVE))
 		activate()
 	if(radio && (wires_type & WIRE_RADIO_RECEIVE))
 		activate()
 	return 1
 
-/obj/item/assembly/proc/pulse(var/radio = 0)
+/obj/item/assembly/proc/pulse(radio = 0)
 	if(holder && (wires_type & WIRE_PULSE))
 		holder.process_activation(src, 1, 0)
 	if(holder && (wires_type & WIRE_PULSE_SPECIAL))
@@ -57,7 +57,7 @@
 	update_icon()
 	return secured
 
-/obj/item/assembly/proc/attach_assembly(var/obj/item/assembly/A, var/mob/user)
+/obj/item/assembly/proc/attach_assembly(obj/item/assembly/A, mob/user)
 	holder = new/obj/item/assembly_holder(get_turf(src))
 	if(holder.attach(A,src,user))
 		to_chat(user, span_notice("You attach \the [A] to \the [src]!"))

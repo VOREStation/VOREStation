@@ -14,7 +14,7 @@
 	charge_type = pick(CELL_DRAIN, CELL_CHARGE)
 
 
-/datum/artifact_effect/cell/proc/effect_cells(var/amount = 25, var/effect)
+/datum/artifact_effect/cell/proc/effect_cells(amount = 25, effect)
 	var/atom/holder = get_master_holder()
 	if(!holder)
 		return

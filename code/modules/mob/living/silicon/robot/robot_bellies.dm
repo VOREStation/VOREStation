@@ -18,11 +18,11 @@
 			sprite_datum.belly_light_list = list("sleeper")
 	handle_belly_update() //Set how full the newly defined bellies are, if they're already full
 
-/mob/living/silicon/robot/proc/reset_belly_lights(var/b_class)
+/mob/living/silicon/robot/proc/reset_belly_lights(b_class)
 	if(sprite_datum.belly_light_list.len && sprite_datum.belly_light_list.Find(b_class))
 		vore_light_states[b_class] = 0
 
-/mob/living/silicon/robot/proc/update_belly_lights(var/b_class)
+/mob/living/silicon/robot/proc/update_belly_lights(b_class)
 	if(sprite_datum.belly_light_list.len && sprite_datum.belly_light_list.Find(b_class))
 		vore_light_states[b_class] = 2
 		for (var/belly in vore_organs)
@@ -35,7 +35,7 @@
 						vore_light_states[b_class] = 1
 						return
 
-/mob/living/silicon/robot/vs_animate(var/belly_class)
+/mob/living/silicon/robot/vs_animate(belly_class)
 	if(!sprite_datum.has_vore_struggle_sprite)
 		return
 	if(belly_class == "sleeper" && sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper")
@@ -49,7 +49,7 @@
 		add_overlay("[sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)]-struggle")
 	addtimer(CALLBACK(src, PROC_REF(end_vs_animate), belly_class), 1.2 SECONDS)
 
-/mob/living/silicon/robot/proc/end_vs_animate(var/belly_class)
+/mob/living/silicon/robot/proc/end_vs_animate(belly_class)
 	var/vs_fullness = vore_fullness_ex[belly_class]
 	if(resting)
 		cut_overlay("[sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class)]-struggle")

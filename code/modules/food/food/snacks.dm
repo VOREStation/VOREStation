@@ -60,7 +60,7 @@
 		reagents.add_reagent(REAGENT_ID_NUTRIMENT,(nutriment_amt*2),nutriment_desc)
 
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/eater, var/mob/living/feeder)
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/living/eater, mob/living/feeder)
 	SEND_SIGNAL(src, COMSIG_FOOD_EATEN, eater, feeder)
 	if(food_inserted_micros && food_inserted_micros.len)
 		for(var/mob/living/micro in food_inserted_micros)
@@ -421,7 +421,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
+/obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
 	user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."))
@@ -2008,7 +2008,7 @@
 	flags |= OPENCONTAINER
 	return
 
-/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
+/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
 	var/mob/living/Prey = Expand()
 
 	if(!isliving(M))
@@ -5144,7 +5144,7 @@
 	return . = ..()
 
 //This proc handles drawing coatings out of a container when this food is dipped into it
-/obj/item/reagent_containers/food/snacks/proc/apply_coating(var/datum/reagent/nutriment/coating/C, var/mob/user)
+/obj/item/reagent_containers/food/snacks/proc/apply_coating(datum/reagent/nutriment/coating/C, mob/user)
 	if (coating)
 		to_chat(user, "The [src] is already coated in [coating.name]!")
 		return 0
@@ -5239,7 +5239,7 @@
 			C.data["cooked"] = 1
 			C.name = C.cooked_name
 
-/obj/item/reagent_containers/food/snacks/proc/on_consume(var/mob/eater, var/mob/feeder = null)
+/obj/item/reagent_containers/food/snacks/proc/on_consume(mob/eater, mob/feeder = null)
 	if(!reagents.total_volume)
 		eater.visible_message(span_notice("[eater] finishes eating \the [src]."),span_notice("You finish eating \the [src]."))
 

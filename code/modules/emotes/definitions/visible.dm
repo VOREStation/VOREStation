@@ -53,7 +53,7 @@
 	key = "collapse"
 	emote_message_3p = "collapses!"
 
-/datum/decl/emote/visible/collapse/do_extra(var/mob/user)
+/datum/decl/emote/visible/collapse/do_extra(mob/user)
 	..()
 	if(istype(user))
 		user.Paralyse(2)
@@ -115,7 +115,7 @@
 	key = "faint"
 	emote_message_3p = "faints."
 
-/datum/decl/emote/visible/faint/do_extra(var/mob/user)
+/datum/decl/emote/visible/faint/do_extra(mob/user)
 	. = ..()
 	if(iscarbon(user) && !user.sleeping)
 		user.Sleeping(10)
@@ -227,7 +227,7 @@
 	emote_message_3p = "shakes hands with USER_SELF."
 	check_range = 1
 
-/datum/decl/emote/visible/handshake/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/visible/handshake/get_emote_message_3p(atom/user, atom/target, extra_params)
 	if(target && !user.Adjacent(target))
 		return "holds out USER_THEIR hand out to TARGET."
 	return ..()
@@ -238,7 +238,7 @@
 	emote_message_3p = "signals."
 	check_restraints = TRUE
 
-/datum/decl/emote/visible/signal/get_emote_message_3p(var/mob/living/user, var/atom/target, var/extra_params)
+/datum/decl/emote/visible/signal/get_emote_message_3p(mob/living/user, atom/target, extra_params)
 	if(istype(user) && (!user.get_active_hand() || !user.get_inactive_hand()))
 		var/t1 = round(text2num(extra_params))
 		if(isnum(t1) && t1 <= 5)
@@ -337,7 +337,7 @@
 	key = "goodrip"
 	emote_message_3p = "drips goo."
 
-/datum/decl/emote/visible/goodrip/do_extra(var/mob/user)
+/datum/decl/emote/visible/goodrip/do_extra(mob/user)
 	..()
 	new /obj/effect/decal/cleanable/blood/oil(user)
 	var/goo_sounds = list (

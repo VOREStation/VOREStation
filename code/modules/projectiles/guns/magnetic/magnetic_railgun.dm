@@ -71,7 +71,7 @@
 		list(mode_name="long bursts", burst=6, fire_delay=null, move_delay=10, one_handed_penalty=30, burst_accuracy=list(0,-15,-15,-15,-30), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
 		)
 
-/obj/item/gun/magnetic/railgun/automatic/examine(var/mob/user)
+/obj/item/gun/magnetic/railgun/automatic/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += span_notice("Someone has scratched <i>Ultima Ratio Regum</i> onto the side of the barrel.")

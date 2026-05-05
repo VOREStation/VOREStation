@@ -1,4 +1,4 @@
-/datum/antagonist/proc/get_panel_entry(var/datum/mind/player)
+/datum/antagonist/proc/get_panel_entry(datum/mind/player)
 
 	var/dat = "<tr><td><b>[role_text]:</b>"
 	var/extra = get_extra_panel_options(player)
@@ -17,7 +17,7 @@
 /datum/antagonist/proc/get_extra_panel_options()
 	return
 
-/datum/antagonist/proc/get_check_antag_output(var/datum/admins/requester)
+/datum/antagonist/proc/get_check_antag_output(datum/admins/requester)
 
 	if(!current_antagonists || !current_antagonists.len)
 		return ""
@@ -57,5 +57,5 @@
 	return dat
 
 //Overridden elsewhere.
-/datum/antagonist/proc/get_additional_check_antag_output(var/datum/admins/requester)
+/datum/antagonist/proc/get_additional_check_antag_output(datum/admins/requester)
 	return ""

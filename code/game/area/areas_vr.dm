@@ -8,12 +8,12 @@
 
 	var/no_comms = FALSE	//When true, blocks radios from working in the area
 
-/area/Entered(var/atom/movable/AM, oldLoc)
+/area/Entered(atom/movable/AM, oldLoc)
 	. = ..()
 	if(enter_message && isliving(AM))
 		to_chat(AM, enter_message)
 
-/area/Exited(var/atom/movable/AM, newLoc)
+/area/Exited(atom/movable/AM, newLoc)
 	. = ..()
 	if(exit_message && isliving(AM))
 		to_chat(AM, exit_message)

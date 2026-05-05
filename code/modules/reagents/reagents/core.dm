@@ -20,7 +20,7 @@
 	coolant_modifier = 0.25
 
 
-/datum/reagent/blood/initialize_data(var/newdata)
+/datum/reagent/blood/initialize_data(newdata)
 	..()
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
@@ -34,7 +34,7 @@
 		t["viruses"] = v.Copy()
 	return t
 
-/datum/reagent/blood/touch_turf(var/turf/simulated/T)
+/datum/reagent/blood/touch_turf(turf/simulated/T)
 	if(!istype(T) || volume < 3)
 		return
 
@@ -50,7 +50,7 @@
 		var/obj/effect/decal/cleanable/blood/B = blood_splatter(T, src, 1)
 		B.add_blooddna(null,null)
 
-/datum/reagent/blood/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_ingest(mob/living/carbon/M, alien, removed)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
@@ -90,7 +90,7 @@
 					continue
 				D.try_infect(M)
 
-/datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_touch(mob/living/carbon/M, alien, removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
@@ -155,7 +155,7 @@
 
 		data["viruses"] = preserve
 
-/datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/blood/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_SLIME)	//They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.
 		affect_ingest(M, alien, removed)
 		return
@@ -178,7 +178,7 @@
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
 
-/datum/reagent/blood/proc/changling_blood_test(var/datum/reagents/holder)
+/datum/reagent/blood/proc/changling_blood_test(datum/reagents/holder)
 	if(data["changeling"])
 		var/location = get_turf(holder.my_atom)
 		holder.my_atom.visible_message(span_danger("The blood in \the [holder.my_atom] screams and leaps out!"))
@@ -205,7 +205,7 @@
 	volume_mod = 2
 	coolant_modifier = 0.25
 
-/datum/reagent/blood/synthblood/initialize_data(var/newdata)
+/datum/reagent/blood/synthblood/initialize_data(newdata)
 	..()
 	if(data && !data["blood_type"])
 		data["blood_type"] = "O-"
@@ -234,7 +234,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
-/datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/antibodies/affect_blood(mob/living/carbon/M, alien, removed)
 	if(src.data)
 		M.antibodies |= src.data[REAGENT_ID_ANTIBODIES]
 	..()
@@ -258,7 +258,7 @@
 	industrial_use = REFINERYEXPORT_REASON_RAW
 	coolant_modifier = 1 // Water!
 
-/datum/reagent/water/touch_turf(var/turf/simulated/T)
+/datum/reagent/water/touch_turf(turf/simulated/T)
 	if(!istype(T))
 		return
 
@@ -284,7 +284,7 @@
 	else if(volume >= 10)
 		T.wet_floor(1)
 
-/datum/reagent/water/touch_obj(var/obj/O, var/amount)
+/datum/reagent/water/touch_obj(obj/O, amount)
 	..()
 	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
@@ -296,7 +296,7 @@
 	else
 		O.water_act(amount / 5)
 
-/datum/reagent/water/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/water/touch_mob(mob/living/L, amount)
 	..()
 	if(istype(L))
 		// First, kill slimes.
@@ -322,19 +322,19 @@
 						H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
-/datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
 	else
 		..()
 
-/datum/reagent/water/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/affect_ingest(mob/living/carbon/M, alien, removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
 	else
 		..()
 
-/datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/affect_touch(mob/living/carbon/M, alien, removed)
 	if(alien == IS_SLIME && prob(10))
 		M.visible_message(span_warning("[M]'s flesh sizzles where the water touches it!"), span_danger("Your flesh burns in the water!"))
 	..()
@@ -358,17 +358,17 @@
 	industrial_use = REFINERYEXPORT_REASON_RAW
 	coolant_modifier = 0.15
 
-/datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
+/datum/reagent/fuel/touch_turf(turf/T, amount)
 	..()
 	new /obj/effect/decal/cleanable/liquid_fuel(T, amount, FALSE)
 	remove_self(amount)
 	return
 
-/datum/reagent/fuel/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fuel/affect_blood(mob/living/carbon/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.adjustToxLoss(4 * removed)
 
-/datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/fuel/touch_mob(mob/living/L, amount)
 	..()
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 10) // Splashing people with welding fuel to make them easy to ignite!

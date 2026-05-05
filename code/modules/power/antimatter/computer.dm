@@ -54,10 +54,10 @@
 
 	src.updateUsrDialog(usr)
 
-/obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_hand(mob/user as mob)
 	if(..())
 		return
 	user.machine = src

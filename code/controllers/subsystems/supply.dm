@@ -222,7 +222,7 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will attempt to purchase the specified order, returning TRUE on success, FALSE on failure
-/datum/controller/subsystem/supply/proc/approve_order(var/datum/supply_order/O, var/mob/user)
+/datum/controller/subsystem/supply/proc/approve_order(datum/supply_order/O, mob/user)
 	// Not enough points to purchase the crate
 	if(points <= O.object.cost)
 		return FALSE
@@ -255,7 +255,7 @@ SUBSYSTEM_DEF(supply)
 	return TRUE
 
 // Will deny the specified order. Only useful if the order is currently requested, but available at any status
-/datum/controller/subsystem/supply/proc/deny_order(var/datum/supply_order/O, var/mob/user)
+/datum/controller/subsystem/supply/proc/deny_order(datum/supply_order/O, mob/user)
 	// Based on the current model, there shouldn't be any entries in order_history, requestlist, or shoppinglist, that aren't matched in adm_order_history
 	var/datum/supply_order/adm_order
 	for(var/datum/supply_order/temp in adm_order_history)
@@ -281,13 +281,13 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will deny all requested orders
-/datum/controller/subsystem/supply/proc/deny_all_pending(var/mob/user)
+/datum/controller/subsystem/supply/proc/deny_all_pending(mob/user)
 	for(var/datum/supply_order/O in order_history)
 		if(O.status == SUP_ORDER_REQUESTED)
 			deny_order(O, user)
 
 // Will delete the specified order from the user-side list
-/datum/controller/subsystem/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
+/datum/controller/subsystem/supply/proc/delete_order(datum/supply_order/O, mob/user)
 	// Making sure they know what they're doing
 	if(tgui_alert(user, "Are you sure you want to delete this record? If it has been approved, cargo points will NOT be refunded!", "Delete Record",list("No","Yes")) == "Yes")
 		if(tgui_alert(user, "Are you really sure? There is no way to recover the order once deleted.", "Delete Record", list("No","Yes")) == "Yes")
@@ -296,7 +296,7 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will generate a new, requested order, for the given supply pack type
-/datum/controller/subsystem/supply/proc/create_order(var/datum/supply_pack/S, var/mob/user, var/reason)
+/datum/controller/subsystem/supply/proc/create_order(datum/supply_pack/S, mob/user, reason)
 	var/datum/supply_order/new_order = new()
 	var/datum/supply_order/adm_order = new() // Admin-recorded order must be a separate copy in memory, or user-made edits will corrupt it
 
@@ -331,7 +331,7 @@ SUBSYSTEM_DEF(supply)
 	adm_order_history += adm_order
 
 // Will delete the specified export receipt from the user-side list
-/datum/controller/subsystem/supply/proc/delete_export(var/datum/exported_crate/E, var/mob/user)
+/datum/controller/subsystem/supply/proc/delete_export(datum/exported_crate/E, mob/user)
 	// Making sure they know what they're doing
 	if(tgui_alert(user, "Are you sure you want to delete this record?", "Delete Record",list("No","Yes")) == "Yes")
 		if(tgui_alert(user, "Are you really sure? There is no way to recover the receipt once deleted.", "Delete Record", list("No","Yes")) == "Yes")
@@ -340,7 +340,7 @@ SUBSYSTEM_DEF(supply)
 	return
 
 // Will add an item entry to the specified export receipt on the user-side list
-/datum/controller/subsystem/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
+/datum/controller/subsystem/supply/proc/add_export_item(datum/exported_crate/E, mob/user)
 	var/new_name = tgui_input_text(user, "Name", "Please enter the name of the item.")
 	if(!new_name)
 		return

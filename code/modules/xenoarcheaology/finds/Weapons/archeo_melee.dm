@@ -185,7 +185,7 @@
 					summon_item(user, summoned_item)
 					return
 
-/obj/item/melee/artifact_blade/proc/consecrate_toggle(mob/user as mob, var/toggle)
+/obj/item/melee/artifact_blade/proc/consecrate_toggle(mob/user as mob, toggle)
 	switch(toggle)
 		if("Toggle on")
 			consecrating = TRUE
@@ -202,7 +202,7 @@
 /// The summonables list can be VV'd by admins to allow for adminbus.
 /// To add to the list: Add-Item, Multi-line text (Front-facing name), Associated value = yes, Atom Typepath = whatever you want.
 /// This should appear something like " Paper = /obj/item/paper " if you did it right, and will let them summon paper!
-/obj/item/melee/artifact_blade/proc/summon_item(mob/user as mob, var/selected_item)
+/obj/item/melee/artifact_blade/proc/summon_item(mob/user as mob, selected_item)
 	if(selected_item)
 		if(selected_item == "Soulstone")
 			var/decision2 = tgui_alert(user, "Do you wish to create a redspace gem? This will take 200 lifeforce from the sword.", "Generate Gem", list("YES", "NO"))
@@ -272,7 +272,7 @@
 
 
 /// The fancy animation it plays when you hit something to convert it!
-/obj/item/melee/artifact_blade/proc/conjure_animation(var/turf/target) //Taken from occult wizard code.
+/obj/item/melee/artifact_blade/proc/conjure_animation(turf/target) //Taken from occult wizard code.
 	var/atom/movable/overlay/animation = new /atom/movable/overlay(target)
 	animation.name = "conjure"
 	animation.icon = 'icons/effects/effects.dmi'

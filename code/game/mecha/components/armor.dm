@@ -111,7 +111,7 @@
 		"bomb"=0.8
 		)
 
-/obj/item/mecha_parts/component/armor/military/attach(var/obj/mecha/target, var/mob/living/user)
+/obj/item/mecha_parts/component/armor/military/attach(obj/mecha/target, mob/living/user)
 	. = ..()
 	if(.)
 		var/typepass = FALSE
@@ -148,7 +148,7 @@
 		"bomb"=1
 		)
 
-/obj/item/mecha_parts/component/armor/marshal/attach(var/obj/mecha/target, var/mob/living/user)
+/obj/item/mecha_parts/component/armor/marshal/attach(obj/mecha/target, mob/living/user)
 	. = ..()
 	if(.)
 		var/typepass = FALSE
@@ -199,7 +199,7 @@
 		"bomb"=0.7
 		)
 
-/obj/item/mecha_parts/component/armor/military/marauder/attach(var/obj/mecha/target, var/mob/living/user)
+/obj/item/mecha_parts/component/armor/military/marauder/attach(obj/mecha/target, mob/living/user)
 	. = ..()
 	if(.)
 		var/typepass = FALSE
@@ -224,7 +224,7 @@
 		"bomb"=0.7
 		)
 
-/obj/item/mecha_parts/component/armor/alien/attach(var/obj/mecha/target, var/mob/living/user)
+/obj/item/mecha_parts/component/armor/alien/attach(obj/mecha/target, mob/living/user)
 	. = ..()
 	if(.)
 		if(istype(target, /obj/mecha/combat/phazon/janus))

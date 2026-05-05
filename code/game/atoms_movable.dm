@@ -593,7 +593,7 @@
 
 
 // Animations for cloaking/uncloaking
-/atom/movable/proc/cloak_animation(var/length = 1 SECOND)
+/atom/movable/proc/cloak_animation(length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -614,7 +614,7 @@
 	//Back to original alpha
 	alpha = initial_alpha
 
-/atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
+/atom/movable/proc/uncloak_animation(length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -652,7 +652,7 @@
 /atom/movable/proc/get_cell()
 	return
 
-/atom/movable/proc/emblocker_gc(var/datum/source)
+/atom/movable/proc/emblocker_gc(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_QDELETING)
 	cut_overlay(source)
@@ -672,7 +672,7 @@
 /atom/movable/proc/exit_belly(obj/belly/B)
 	return
 
-/atom/movable/proc/set_listening(var/set_to)
+/atom/movable/proc/set_listening(set_to)
 	if (listening_recursive && !set_to)
 		LAZYREMOVE(recursive_listeners, src)
 		if (!LAZYLEN(recursive_listeners))

@@ -12,7 +12,7 @@
 	var/glass = 1
 	var/datum/tgui_module/appearance_changer/mirror/M
 
-/obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0)
+/obj/structure/mirror/Initialize(mapload, dir, building = 0)
 	. = ..()
 	M = new(src, null)
 	if(building)
@@ -47,7 +47,7 @@
 	desc = "Oh no, seven years of bad luck!"
 
 
-/obj/structure/mirror/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/mirror/bullet_act(obj/item/projectile/Proj)
 
 	if(prob(Proj.get_structure_damage() * 2))
 		if(!shattered)
@@ -107,7 +107,7 @@
 		visible_message(span_warning("[user] hits [src] with [I]!"))
 		playsound(src, 'sound/effects/Glasshit.ogg', 70, 1)
 
-/obj/structure/mirror/attack_generic(var/mob/user, var/damage)
+/obj/structure/mirror/attack_generic(mob/user, damage)
 
 	user.do_attack_animation(src)
 	if(shattered && glass)
@@ -129,7 +129,7 @@
 	icon_state = "mirror_broke"
 	shattered = 1
 
-/obj/structure/mirror/raider/attack_hand(var/mob/living/carbon/human/user)
+/obj/structure/mirror/raider/attack_hand(mob/living/carbon/human/user)
 	if(istype(get_area(src),/area/syndicate_mothership))
 		if(istype(user) && user.mind && user.mind.special_role == "Raider" && user.species.name != SPECIES_VOX && is_alien_whitelisted(user.client, SPECIES_VOX))
 			var/choice = tgui_alert(user, "Do you wish to become a true Vox of the Shoal? This is not reversible.", "Become Vox?", list("No","Yes"))

@@ -16,7 +16,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		linked = sector
 		return 1
 
-/obj/machinery/computer/ship/proc/sync_linked(var/user = null)
+/obj/machinery/computer/ship/proc/sync_linked(user = null)
 	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(z)
 	if(!sector)
 		return
@@ -32,7 +32,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		if((. = .(candidate)))
 			return
 
-/obj/machinery/computer/ship/proc/display_reconnect_dialog(var/mob/user, var/flavor)
+/obj/machinery/computer/ship/proc/display_reconnect_dialog(mob/user, flavor)
 	var/datum/browser/popup = new (user, "[src]", "[src]")
 	if(viewing_overmap(user))
 		user.reset_perspective()
@@ -66,12 +66,12 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 
 // Management of mob view displacement. look to shift view to the ship on the overmap; unlook to shift back.
 
-/obj/machinery/computer/ship/look(var/mob/user)
+/obj/machinery/computer/ship/look(mob/user)
 	if(linked.real_appearance)
 		user.client?.images += linked.real_appearance
 	user.set_viewsize(world.view + extra_view)
 
-/obj/machinery/computer/ship/unlook(var/mob/user)
+/obj/machinery/computer/ship/unlook(mob/user)
 	if(linked && linked.real_appearance && user.client)
 		user.client.images -= linked.real_appearance
 	user.set_viewsize() // reset to default

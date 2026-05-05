@@ -21,7 +21,7 @@
 			visible_message("The [drying] is dry!")
 			update_icon()
 
-/obj/structure/tanning_rack/examine(var/mob/user)
+/obj/structure/tanning_rack/examine(mob/user)
 	. = ..()
 	if(drying)
 		. += "\The [drying] is [drying.get_dryness_text()]."
@@ -34,7 +34,7 @@
 		else
 			add_overlay("leather_dry")
 
-/obj/structure/tanning_rack/attackby(var/atom/A, var/mob/user)
+/obj/structure/tanning_rack/attackby(atom/A, mob/user)
 	if(istype(A, /obj/item/stack/wetleather))
 		if(!drying) // If not drying anything, start drying the thing
 			if(user.unEquip(A, target = src))
@@ -46,7 +46,7 @@
 		return TRUE
 	return ..()
 
-/obj/structure/tanning_rack/attack_hand(var/mob/user)
+/obj/structure/tanning_rack/attack_hand(mob/user)
 	if(drying)
 		var/obj/item/stack/S = drying
 		if(!drying.wetness) // If it's dry, make a stack of dry leather and prepare to put that in their hands
@@ -63,5 +63,5 @@
 		drying = null
 		update_icon()
 
-/obj/structure/tanning_rack/attack_robot(var/mob/user)
+/obj/structure/tanning_rack/attack_robot(mob/user)
 	attack_hand(user) // That has checks to
