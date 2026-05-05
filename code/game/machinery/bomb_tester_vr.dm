@@ -242,7 +242,7 @@
 			var/dev = round((mult*strength)*0.15)
 			var/heavy = round((mult*strength)*0.35)
 			var/light = round((mult*strength)*0.80)
-			simulation_results += "<hr>Final Result: Explosive tank rupture. [dev?"Extreme damage within [2*dev] meters. ":""][heavy?"Heavy damage within [2*heavy] meters. ":""][light?"Light damage within [2*light] meters. ":""]Hazardous shrapnel produced."
+			simulation_results += "<hr>Final Result: Explosive tank rupture. [dev?"Extreme damage within [dev] meters. ":""][heavy?"Heavy damage within [heavy] meters. ":""][light?"Light damage within [light] meters. ":""]Hazardous shrapnel produced."
 			return 1
 		else
 			faketank_integrity -= 7
@@ -254,9 +254,10 @@
 			return 1
 		else
 			faketank_integrity -= 5
-
+	/*
 	else if(pressure > TANK_LEAK_PRESSURE || faketank.temperature - T0C > 173)
 		faketank_integrity -= 1
+	*/
 	return 0
 
 /obj/machinery/bomb_tester/proc/single_tank_sim()

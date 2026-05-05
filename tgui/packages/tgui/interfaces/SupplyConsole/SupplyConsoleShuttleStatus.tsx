@@ -13,7 +13,7 @@ import type { Data } from './types';
 export const SupplyConsoleShuttleStatus = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { supply_points, shuttle, shuttle_auth } = data;
+  const { supply_points, shuttle, shuttle_auth, price_mod, cash_points } = data; // Outpost 21 edit - Points or thalers
 
   let shuttle_buttons: React.JSX.Element | string = '';
   let showShuttleForce = false;
@@ -58,8 +58,17 @@ export const SupplyConsoleShuttleStatus = (props) => {
   return (
     <>
       <LabeledList>
-        <LabeledList.Item label="Supply Points">
-          <AnimatedNumber value={supply_points} />
+        <LabeledList.Item label="Reserve">
+          {' '}
+          <AnimatedNumber
+            value={supply_points * (price_mod ? 1 : cash_points)}
+          />
+          <Button
+            tooltip={price_mod ? 'Supply Points' : 'Thalers'}
+            onClick={() => act('change_cash_mode')}
+          >
+            {price_mod === 1 ? 'SP' : '₮'}
+          </Button>
         </LabeledList.Item>
       </LabeledList>
       <Section title="Supply Shuttle" mt={2}>
