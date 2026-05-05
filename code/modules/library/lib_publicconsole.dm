@@ -30,13 +30,28 @@
 	var/list/inv = list()
 	switch(screenstate)
 		if(SCREEN_PUBLICARCHIVE) // external archive (SSpersistance database)
+			var/list/token
 			if(CONFIG_GET(flag/sql_enabled))
-				to_chat(world, "TODO DATABASE") //-=================================================================================================== TODO HERE
+				var/SQLquery = "SELECT author, title, category, id FROM library WHERE author LIKE '%[author]%' AND title LIKE '%[title]%'"
+				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
+				query.Execute()
+				while(query.NextRow())
+					book["author"] = query.item[1]
+					book["title"] = query.item[2]
+					book["category"] = query.item[3]
+					book["id"] = query.item[4]
+					book["ref"] = query.item[4]
+					book["deleted"] = FALSE
+					book["protected"] = FALSE
+					book["unique"] = TRUE
+					book["type"] = "[/obj/item/book]"
+					inv += list(tgui_add_library_token(token))
+				qdel(query)
 			else
 				for(var/token_id in SSpersistence.all_books)
-					var/list/token = SSpersistence.all_books[token_id]
-					if(token)
-						inv += list(tgui_add_library_token(token))
+					token = SSpersistence.all_books[token_id]
+				if(token)
+					inv += list(tgui_add_library_token(token))
 
 		if(SCREEN_PUBLICONLINE) // internal archive (hardcoded books)
 			for(var/BP in GLOB.all_books)
