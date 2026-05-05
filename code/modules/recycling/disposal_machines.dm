@@ -58,6 +58,7 @@
 	update_icon()
 
 /obj/machinery/disposal/Destroy()
+	SEND_SIGNAL(src, COMSIG_DISPOSAL_UNLINK) //Just to be safe.
 	eject()
 	return ..()
 
@@ -613,6 +614,7 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
 	//..() //*cough
+	SEND_SIGNAL(src, COMSIG_DISPOSAL_UNLINK) //unlinks in destroy, too. Multi-sending shouldnt be too bad.
 	qdel(src) //Parent above should do this, but that's not a thing as of writing this.
 
 
