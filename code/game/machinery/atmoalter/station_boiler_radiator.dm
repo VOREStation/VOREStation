@@ -13,13 +13,13 @@
 	density = FALSE
 	var/target_heat_temperature = T20C //The temperature we want the room to reach
 	var/thermal_energy_change = 4000 //How much energy we can process
-	var/obj/machinery/atmospherics/binary/stationboiler/assignedBoiler
+	var/obj/machinery/atmospherics/binary/stationboiler/assigned_boiler
 
 /obj/machinery/stationboiler_radiator/process()
 	..()
-	if(!assignedBoiler && stationboilers)
-		assignedBoiler = pick(stationboilers)
-	if(!assignedBoiler || !assignedBoiler.is_active)
+	if(!assigned_boiler && stationboilers)
+		assigned_boiler = pick(stationboilers)
+	if(!assigned_boiler || !assigned_boiler.is_active)
 		if(icon_state != "off")
 			icon_state = "off"
 		return
