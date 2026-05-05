@@ -152,23 +152,23 @@
 /////////////
 // Some indigestible stuff
 /////////////
-/obj/item/hand_tele/digest_act(var/atom/movable/item_storage = null)
+/obj/item/hand_tele/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/aicard/digest_act(var/atom/movable/item_storage = null)
+/obj/item/aicard/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/paicard/digest_act(var/atom/movable/item_storage = null)
+/obj/item/paicard/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/gun/digest_act(var/atom/movable/item_storage = null)
+/obj/item/gun/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/pinpointer/digest_act(var/atom/movable/item_storage = null)
+/obj/item/pinpointer/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/areaeditor/blueprints/digest_act(var/atom/movable/item_storage = null)
+/obj/item/areaeditor/blueprints/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/disk/nuclear/digest_act(var/atom/movable/item_storage = null)
+/obj/item/disk/nuclear/digest_act(atom/movable/item_storage = null)
 	return FALSE
-/obj/item/perfect_tele_beacon/digest_act(var/atom/movable/item_storage = null)
+/obj/item/perfect_tele_beacon/digest_act(atom/movable/item_storage = null)
 	return FALSE //Sorta important to not digest your own beacons.
-/obj/item/organ/internal/brain/slime/digest_act(var/atom/movable/item_storage = null)
+/obj/item/organ/internal/brain/slime/digest_act(atom/movable/item_storage = null)
 	return FALSE //so prometheans can be recovered
 
 /////////////

@@ -44,7 +44,7 @@
 							res_name = initial(res.name)
 						to_chat(user, span_notice("- x [material_needs[res]] [res_name]"))
 
-/obj/item/broken_gun/proc/setup_gun(var/obj/item/gun/path)
+/obj/item/broken_gun/proc/setup_gun(obj/item/gun/path)
 	if(ispath(path))
 		name = "[pick("busted", "broken", "shattered", "scrapped")] [initial(path.name)]"
 		icon = initial(path.icon)

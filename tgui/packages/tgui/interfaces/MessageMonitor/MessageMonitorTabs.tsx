@@ -152,7 +152,9 @@ export const MessageMonitorAdmin = (props) => {
     custommessage,
   } = data;
 
-  const recipientOptions = Object.keys(possibleRecipients);
+  const recipientOptions = Object.keys(possibleRecipients).sort((a, b) =>
+    a.localeCompare(b),
+  );
 
   return (
     <Section title="Admin Messaging">
@@ -173,6 +175,7 @@ export const MessageMonitorAdmin = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Recipient">
           <Dropdown
+            searchInput
             autoScroll={false}
             selected={customrecepient}
             options={recipientOptions}

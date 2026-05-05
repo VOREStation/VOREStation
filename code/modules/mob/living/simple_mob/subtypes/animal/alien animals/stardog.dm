@@ -163,7 +163,7 @@
 	. += ""
 	. += "Affinity: [round(affinity)]"
 
-/mob/living/simple_mob/vore/overmap/stardog/start_pulling(var/atom/movable/AM)
+/mob/living/simple_mob/vore/overmap/stardog/start_pulling(atom/movable/AM)
 	if(!istype(loc, /turf/unsimulated/map))	//Don't pull stuff on the overmap
 		..()
 
@@ -370,7 +370,6 @@
 	icon_state = "fur0"
 	edge_blending_priority = 4
 	initial_flooring = /datum/decl/flooring/fur
-	can_dig = FALSE
 	var/tree_chance = 25
 	var/tree_color = null
 	var/tree_type = /obj/structure/flora/tree/fur
@@ -915,7 +914,7 @@
 	requires_power = 0
 	spawnstuff = FALSE
 
-/area/redgate/stardog/flesh_abyss/play_ambience(var/mob/living/L, initial = TRUE)
+/area/redgate/stardog/flesh_abyss/play_ambience(mob/living/L, initial = TRUE)
 	if(!L.check_sound_preference(/datum/preference/toggle/digestion_noises))
 		return
 	..()

@@ -33,7 +33,7 @@
 	temperature	= TCMB
 
 	//This proc is responsible for ore generation on surface turfs
-/turf/simulated/mineral/virgo3b/make_ore(var/rare_ore)
+/turf/simulated/mineral/virgo3b/make_ore(rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
@@ -72,7 +72,7 @@
 		UpdateMineral()
 	update_icon()
 
-/turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
+/turf/simulated/mineral/virgo3b/rich/make_ore(rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
@@ -110,13 +110,13 @@
 
 // Virgo 3b trufs
 /turf/space/transit/south/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/space/transit/east/virgo3b/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/simulated/sky/virgo3b/south/planet_fall/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b
 
 /turf/space/v3b_midpoint/find_planet()
-	return planet_virgo3b
+	return GLOB.planet_virgo3b

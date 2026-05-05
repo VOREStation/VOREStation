@@ -7,7 +7,6 @@
 	icon_state = "mmi_empty"
 	w_class = ITEMSIZE_NORMAL
 	can_speak = 1
-	origin_tech = list(TECH_BIO = 3)
 
 	req_access = list(ACCESS_ROBOTICS)
 
@@ -47,7 +46,7 @@
 	else
 		to_chat (usr, "You were unable to toggle the [src]'s radio.")
 
-/obj/item/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/mmi/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
 
 		var/obj/item/organ/internal/brain/B = O
@@ -130,7 +129,7 @@
 		icon_state = "mmi_empty"
 		name = "Man-Machine Interface"
 
-/obj/item/mmi/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+/obj/item/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -147,7 +146,7 @@
 	locked = 1
 	return
 
-/obj/item/mmi/relaymove(var/mob/user, var/direction)
+/obj/item/mmi/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()
@@ -170,22 +169,20 @@
 /obj/item/mmi/radio_enabled
 	name = "radio-enabled man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio. Wait, don't they all?"
-	origin_tech = list(TECH_BIO = 4)
 
 /obj/item/mmi/emp_act(severity, recursive)
-	if(!brainmob)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !brainmob)
 		return
-	else
-		switch(severity)
-			if(1)
-				brainmob.emp_damage += rand(20,30)
-			if(2)
-				brainmob.emp_damage += rand(10,20)
-			if(3)
-				brainmob.emp_damage += rand(5,10)
-			if(4)
-				brainmob.emp_damage += rand(0,5)
-	..()
+	switch(severity)
+		if(EMP_HEAVY)
+			brainmob.emp_damage += rand(20,30)
+		if(EMP_MEDIUM)
+			brainmob.emp_damage += rand(10,20)
+		if(EMP_LIGHT)
+			brainmob.emp_damage += rand(5,10)
+		if(EMP_HARMLESS)
+			brainmob.emp_damage += rand(0,5)
 
 /obj/item/mmi/digital
 	var/searching = 0
@@ -211,7 +208,7 @@
 	src.brainmob.silent = 0
 	GLOB.dead_mob_list -= src.brainmob
 
-/obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/mmi/digital/attackby(obj/item/O as obj, mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
 
 /obj/item/mmi/digital/examine(mob/user)
@@ -229,7 +226,7 @@
 	else
 		. += span_deadsay("It appears to be completely inactive.")
 
-/obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/transfer_identity(mob/living/carbon/H)
 	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.set_stat(CONSCIOUS)
@@ -277,7 +274,7 @@
 	for (var/mob/M in viewers(T))
 		M.show_message(span_blue("\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
-/obj/item/mmi/digital/proc/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a synthetic brain now.")
 	src.searching = 0
 	if(candidate.mind)
@@ -302,7 +299,6 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/drone_brain
 	is_digital_robot = TRUE
 
@@ -311,7 +307,7 @@
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 
-/obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/robot/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
@@ -325,7 +321,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/posi_brain
 
 /obj/item/mmi/digital/posibrain/request_player()
@@ -333,7 +328,7 @@
 	..()
 
 
-/obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/posibrain/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
@@ -341,7 +336,7 @@
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/mmi/digital/posibrain/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/posibrain/transfer_personality(mob/candidate)
 	..()
 	icon_state = "posibrain-occupied"
 
@@ -365,4 +360,3 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2, TECH_BLUESPACE = 2, TECH_DATA = 3)

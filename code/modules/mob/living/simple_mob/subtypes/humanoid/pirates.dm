@@ -144,7 +144,7 @@
 	icon_living = "piratemelee-shield"
 
 //This Should Allow all childs of the shield priate to block
-/mob/living/simple_mob/humanoid/pirate/shield/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/humanoid/pirate/shield/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.force)
 		if(prob(15))
 			visible_message(span_danger("\The [src] blocks \the [O] with its shield!"))
@@ -157,7 +157,7 @@
 		to_chat(user, span_warning("This weapon is ineffective, it does no damage."))
 		visible_message(span_warning("\The [user] gently taps [src] with \the [O]."))
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(25))
 		visible_message(span_bolddanger("[src] blocks [Proj] with its shield!"))
@@ -451,7 +451,7 @@
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 
-/mob/living/simple_mob/humanoid/pirate/captain/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/humanoid/pirate/captain/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /obj/item/shield_projector/rectangle/automatic/drone

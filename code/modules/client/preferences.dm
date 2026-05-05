@@ -30,7 +30,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/grad_style = "none"				//Gradient style
 	var/f_style = "Shaved"				//Face hair type
 	var/s_tone = -75						//Skin tone
-	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Language prefix keys
@@ -43,11 +42,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/digitigrade = 0
 
 		//Some faction information.
-	var/home_system = "Unset"           //Current home or residence.
-	var/birthplace = "Unset"           //Location of birth.
-	var/citizenship = "None"            //Government or similar entity with which you hold citizenship.
-	var/faction = "None"                //General associated faction.
-	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
 
@@ -63,22 +57,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"PMHjiggle" = "character_preview_map:102,7:107",
 	)
 
-		//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
-
-	var/job_medsci_high = 0
-	var/job_medsci_med = 0
-	var/job_medsci_low = 0
-
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
-
-	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 1
-
 	//character preferences
 	var/slot_randomized //keeps track of round-to-round randomization of the character slot, prevents overwriting
 
@@ -86,9 +64,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)
-	var/list/organ_data = list()
-	var/list/rlimb_data = list()
-	var/list/player_alt_titles = new()		// the default name of a job like JOB_MEDICAL_DOCTOR
 
 	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
 
@@ -96,12 +71,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/flavour_texts_robot = list()
 	var/custom_link = null
 
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
 	var/exploit_record = ""
-
-	var/economic_status = "Average"
 
 	var/client/client = null
 	var/client_ckey = null
@@ -158,7 +128,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Didn't load a character, so let's randomize
 	set_biological_gender(pick(MALE, FEMALE))
-	update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), species))
+	update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
 	b_type = RANDOM_BLOOD_TYPE
 
 	if(client)
@@ -190,7 +160,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_tgui_static_data(user)
 	tgui_interact(user)
 
-/datum/preferences/proc/update_character_previews(var/mob/living/carbon/human/mannequin)
+/datum/preferences/proc/update_character_previews(mob/living/carbon/human/mannequin)
 	if(!client)
 		return
 
@@ -297,10 +267,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	player_setup.sanitize_setup()
 
 	// This needs to happen before anything else becuase it sets some variables.
-	character.set_species(species)
+	character.set_species(read_preference(/datum/preference/choiced/species))
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), species))
+		// write_ instead of update_ to avoid update_preference_by_type calling copy_to again.
+		write_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
@@ -399,14 +370,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
 		overwrite_character(slotnum)
-		save_character()
+		save_character(TRUE)
 		save_preferences()
 		load_preferences(TRUE)
 		load_character()
 		user.client?.prefs_vr.load_vore()
 		ShowChoices(user)
 
-/datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)
+/datum/preferences/proc/vanity_copy_to(mob/living/carbon/human/character, copy_name, copy_flavour = TRUE, copy_ooc_notes = FALSE, convert_to_prosthetics = FALSE, apply_bloodtype = TRUE)
 	//snowflake copy_to, does not copy anything but the vanity things
 	//does not check if the name is the same, do that in any proc that calls this proc
 	/*
@@ -514,6 +485,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// Destroy/cyborgize organs and limbs.
 	if (convert_to_prosthetics) //should only really be run for proteans
+		var/list/pref_organ_data = read_preference(/datum/preference/organ_data)
+		var/list/pref_rlimb_data = read_preference(/datum/preference/rlimb_data)
 		var/list/organs_to_edit = list()
 		for (var/name in list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/O = character.organs_by_name[name]
@@ -524,16 +497,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					organs_to_edit.Insert(x+(O.robotic == ORGAN_NANOFORM ? 1 : 0), name)
 		for(var/name in organs_to_edit)
-			var/status = organ_data[name]
+			var/status = pref_organ_data[name]
 			var/obj/item/organ/external/O = character.organs_by_name[name]
 			if(O)
 				if(status == "amputated")
 					continue
 				else if(status == "cyborg")
-					O.robotize(rlimb_data[name])
+					O.robotize(pref_rlimb_data[name])
 				else
 					var/bodytype
-					var/datum/species/selected_species = GLOB.all_species[species]
+					var/datum/species/selected_species = GLOB.all_species[read_preference(/datum/preference/choiced/species)]
 					if(selected_species.selects_bodytype && custom_base) //Everyone technically has custom_base set to HUMAN, but only some species actually select it.
 						bodytype = custom_base
 					else
@@ -620,7 +593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	character.species?.blood_color = blood_color
 
-	var/datum/species/selected_species = GLOB.all_species[species]
+	var/datum/species/selected_species = GLOB.all_species[read_preference(/datum/preference/choiced/species)]
 	var/bodytype_selected
 	if(selected_species.selects_bodytype && custom_base)
 		bodytype_selected = custom_base
@@ -632,7 +605,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.species.deform = character.species.get_icobase(get_deform = TRUE)
 	character.species.vanity_base_fit = bodytype_selected
 	if(istype(character.species, /datum/species/shapeshifter))
-		wrapped_species_by_ref["\ref[character]"] = bodytype_selected
+		GLOB.wrapped_species_by_ref["\ref[character]"] = bodytype_selected
 
 	character.custom_species	= custom_species
 	character.custom_say		= lowertext(trim(custom_say))

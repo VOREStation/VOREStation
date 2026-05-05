@@ -5,7 +5,6 @@
 	name = "nanite fabrication implant"
 	desc = "A buzzing implant covered in a writhing layer of metal insects."
 	icon_state = "implant_evil"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_BIO = 2, TECH_ILLEGAL = 2)
 
 	var/organ_to_implant = /obj/item/organ/internal/augment/bioaugment/thermalshades
 	var/organ_display_name = "unknown organ"
@@ -23,7 +22,7 @@
 <b>Integrity:</b> N/A"}
 	return dat
 
-/obj/item/implant/organ/post_implant(var/mob/M)
+/obj/item/implant/organ/post_implant(mob/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
@@ -67,7 +66,7 @@
 
 	var/list/possible_targets = list(O_AUG_L_FOREARM, O_AUG_R_FOREARM)
 
-/obj/item/implant/organ/limbaugment/post_implant(var/mob/M)
+/obj/item/implant/organ/limbaugment/post_implant(mob/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
@@ -96,7 +95,7 @@
 			qdel(NewOrgan)
 			to_chat(H, span_warning("You feel a pinching sensation in your [part]. The implant remains."))
 
-/obj/item/implant/organ/limbaugment/proc/setup_augment_slots(var/mob/living/carbon/human/H, var/obj/item/organ/internal/augment/armmounted/I)
+/obj/item/implant/organ/limbaugment/proc/setup_augment_slots(mob/living/carbon/human/H, obj/item/organ/internal/augment/armmounted/I)
 	var/list/Choices = possible_targets.Copy()
 
 	for(var/targ in possible_targets)

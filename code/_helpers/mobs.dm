@@ -145,32 +145,27 @@ Proc for attack log creation, because really why not
 6 is additional information, anything that needs to be added
 */
 
-/proc/add_attack_logs(mob/user, mob/target, what_done, var/admin_notify = TRUE)
+/proc/add_attack_logs(mob/user, mob/target, what_done, admin_notify = TRUE)
 	if(islist(target)) //Multi-victim adding
 		var/list/targets = target
 		for(var/mob/M in targets)
 			add_attack_logs(user,M,what_done,admin_notify)
 		return
 
-	var/user_str = key_name(user)
 	var/target_str = key_name(target)
 
-	if(ismob(user))
-		user.attack_log += text("\[[time_stamp()]\] [span_red("Attacked [target_str]: [what_done]")]")
-	if(ismob(target))
-		target.attack_log += text("\[[time_stamp()]\] [span_orange("Attacked by [user_str]: [what_done]")]")
 	log_combat(user, target, what_done)
 	if(admin_notify)
 		msg_admin_attack("[key_name_admin(user)] vs [target_str]: [what_done]")
 
 //checks whether this item is a module of the robot it is located in.
-/proc/is_robot_module(var/obj/item/thing)
+/proc/is_robot_module(obj/item/thing)
 	if (!thing || !isrobot(thing.loc))
 		return 0
 	var/mob/living/silicon/robot/R = thing.loc
 	return (thing in R.module.modules)
 
-/proc/get_exposed_defense_zone(var/atom/movable/target)
+/proc/get_exposed_defense_zone(atom/movable/target)
 	var/obj/item/grab/G = locate() in target
 	if(G && G.state >= GRAB_NECK) //works because mobs are currently not allowed to upgrade to NECK if they are grabbing two people.
 		return pick(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
@@ -297,7 +292,7 @@ Proc for attack log creation, because really why not
 		LAZYREMOVE(user.do_afters, interaction_key)
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_ENDED)
 
-/atom/proc/living_mobs(var/range = world.view)
+/atom/proc/living_mobs(range = world.view)
 	var/list/viewers = oviewers(src,range)
 	var/list/living = list()
 	for(var/mob/living/L in viewers)
@@ -305,7 +300,7 @@ Proc for attack log creation, because really why not
 
 	return living
 
-/atom/proc/human_mobs(var/range = world.view)
+/atom/proc/human_mobs(range = world.view)
 	var/list/viewers = oviewers(src,range)
 	var/list/humans = list()
 	for(var/mob/living/carbon/human/H in viewers)
@@ -313,7 +308,7 @@ Proc for attack log creation, because really why not
 
 	return humans
 
-/proc/cached_character_icon(var/mob/desired)
+/proc/cached_character_icon(mob/desired)
 	var/cachekey = "\ref[desired][desired.real_name]"
 
 	if(GLOB.cached_character_icons[cachekey])

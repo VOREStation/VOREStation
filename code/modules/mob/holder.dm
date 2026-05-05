@@ -1,5 +1,3 @@
-var/list/holder_mob_icon_cache = list()
-
 //Helper object for picking dionaea (and other creatures) up.
 /obj/item/holder
 	name = "holder"
@@ -16,7 +14,6 @@ var/list/holder_mob_icon_cache = list()
 		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi'
 		)
 
-	origin_tech = null
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_holder.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_holder.dmi',
@@ -161,20 +158,16 @@ var/list/holder_mob_icon_cache = list()
 
 //Mob specific holders.
 /obj/item/holder/diona
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
 	item_state = "diona"
 
 /obj/item/holder/drone
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 	item_state = "repairbot"
 
 /obj/item/holder/drone/swarm
-	origin_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 7, TECH_PRECURSOR = 2, TECH_ARCANE = 1)
 	item_state = "constructiondrone"
 
 /obj/item/holder/pai
-	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/holder/pai/Initialize(mapload, mob/held)
 	. = ..()
@@ -185,7 +178,6 @@ var/list/holder_mob_icon_cache = list()
 	desc = "It's a small rodent."
 	item_state = "mouse_gray"
 	slot_flags = SLOT_EARS | SLOT_HEAD | SLOT_ID
-	origin_tech = list(TECH_BIO = 2)
 	w_class = ITEMSIZE_TINY
 
 /obj/item/holder/mouse/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
@@ -212,89 +204,67 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "mouse_rat"
 
 /obj/item/holder/possum
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "possum"
 
 /obj/item/holder/possum/poppy
-	origin_tech = list(TECH_BIO = 2, TECH_ENGINEERING = 4)
 	item_state = "poppy"
 
 /obj/item/holder/cat
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "cat"
 
 /obj/item/holder/cat/runtime
 
 /obj/item/holder/fennec
-	origin_tech = list(TECH_BIO = 2)
 
 /obj/item/holder/cat/runtime
 
-	origin_tech = list(TECH_BIO = 2, TECH_DATA = 4)
-
 /obj/item/holder/cat/cak
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "cak"
 
 /obj/item/holder/cat/bluespace
-	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 6)
 	item_state = "bscat"
 
 /obj/item/holder/cat/spacecat
-	origin_tech = list(TECH_BIO = 2, TECH_MATERIAL = 4)
 	item_state = "spacecat"
 
 /obj/item/holder/cat/original
-	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 4)
 	item_state = "original"
 
 /obj/item/holder/cat/breadcat
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "breadcat"
 
 /obj/item/holder/corgi
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "corgi"
 
 /obj/item/holder/lisa
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "lisa"
 
 /obj/item/holder/old_corgi
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "old_corgi"
 
 /obj/item/holder/void_puppy
-	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 3)
 	item_state = "void_puppy"
 
 /obj/item/holder/narsian
-	origin_tech = list(TECH_BIO = 2, TECH_ILLEGAL = 3)
 	item_state = "narsian"
 
 /obj/item/holder/bullterrier
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "bullterrier"
 
 /obj/item/holder/fox
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "fox"
 
 /obj/item/holder/pug
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "pug"
 
 /obj/item/holder/sloth
-	origin_tech = list(TECH_BIO = 2)
 	item_state = "sloth"
 
 /obj/item/holder/borer
-	origin_tech = list(TECH_BIO = 6)
 	item_state = "brainslug"
 
 /obj/item/holder/leech
 	color = "#003366"
-	origin_tech = list(TECH_BIO = 5, TECH_PHORON = 2)
 
 /obj/item/holder/cat/fluff/tabiranth
 	name = "Spirit"
@@ -328,9 +298,8 @@ var/list/holder_mob_icon_cache = list()
 	attack_verb = list("fished", "disrespected", "smacked", "smackereled")
 	hitsound = 'sound/effects/slime_squish.ogg'
 	slot_flags = SLOT_HOLSTER
-	origin_tech = list(TECH_BIO = 3)
 
-/obj/item/holder/fish/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/holder/fish/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -347,7 +316,7 @@ var/list/holder_mob_icon_cache = list()
 //Mob procs and vars for scooping up
 /mob/living/var/holder_type
 
-/mob/living/MouseDrop(var/atom/over_object)
+/mob/living/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP)) //VOREStation Edit
 		if(!issmall(H) || !ishuman(src))
@@ -355,7 +324,7 @@ var/list/holder_mob_icon_cache = list()
 		return
 	return ..()
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
+/mob/living/proc/get_scooped(mob/living/carbon/grabber, self_grab)
 
 	if(!holder_type || buckled || pinned.len)
 		return
@@ -386,7 +355,7 @@ var/list/holder_mob_icon_cache = list()
 	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
 	return H
 
-/obj/item/holder/proc/sync(var/mob/living/M)
+/obj/item/holder/proc/sync(mob/living/M)
 	dir = 2
 	overlays.Cut()
 	if(M.item_state)

@@ -110,14 +110,15 @@
 		update_icon()
 
 /obj/machinery/atmospheric_field_generator/emp_act(severity, recursive)
-	if(!(stat & EMPED))
-		stat |= EMPED
-		disable_field() //shutting dowwwwwwn
-		spawn(rand(reboot_delay_min,reboot_delay_max))
-			stat &= ~EMPED
-			if(alwaysactive || wasactive) //reboot after a short delay if we were online before
-				generate_field()
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || (stat & EMPED))
+		return
+	stat |= EMPED
+	disable_field() //shutting dowwwwwwn
+	spawn(rand(reboot_delay_min,reboot_delay_max))
+		stat &= ~EMPED
+		if(alwaysactive || wasactive) //reboot after a short delay if we were online before
+			generate_field()
 
 /obj/machinery/atmospheric_field_generator/ex_act(severity)
 	switch(severity)
@@ -197,6 +198,7 @@
 	light_power = 1
 	light_color = "#FFFFFF"
 	light_on = TRUE
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/atmospheric_retention_field/update_icon()
 	cut_overlays() //overlays.Cut()

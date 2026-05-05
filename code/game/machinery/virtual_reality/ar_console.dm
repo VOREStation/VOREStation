@@ -33,7 +33,7 @@
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
 		perform_exit()
 
-/obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/vr_sleeper/alien/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
 
 	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))
@@ -117,7 +117,7 @@
 
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
-			GLOB.job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+			SSjob.equip_rank(avatar,"Visitor", 1, FALSE)
 		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		avatar.virtual_reality_mob = FALSE //THIS IS THE BIG DIFFERENCE WITH ALIEN VR PODS. THEY ARE NOT VR, THEY ARE REAL.
 

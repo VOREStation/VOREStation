@@ -4,7 +4,7 @@
 	w_class = ITEMSIZE_TINY
 	var/list/evidence = list()
 
-/obj/item/sample/Initialize(mapload, var/atom/supplied)
+/obj/item/sample/Initialize(mapload, atom/supplied)
 	. = ..()
 	if(supplied && supplied.forensic_data)
 		copy_evidence(supplied)
@@ -15,13 +15,13 @@
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"
 
-/obj/item/sample/proc/copy_evidence(var/atom/supplied)
+/obj/item/sample/proc/copy_evidence(atom/supplied)
 	var/list/fibre_data = supplied.forensic_data.get_fibres()
 	if(fibre_data && fibre_data.len)
 		evidence = fibre_data.Copy()
 		supplied.forensic_data.clear_fibres()
 
-/obj/item/sample/proc/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
+/obj/item/sample/proc/merge_evidence(obj/item/sample/supplied, mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
 		return 0
 	evidence |= supplied.evidence
@@ -29,7 +29,7 @@
 	to_chat(user, span_notice("You transfer the contents of \the [supplied] into \the [src]."))
 	return 1
 
-/obj/item/sample/print/merge_evidence(var/obj/item/sample/supplied, var/mob/user)
+/obj/item/sample/print/merge_evidence(obj/item/sample/supplied, mob/user)
 	if(!supplied.evidence || !supplied.evidence.len)
 		return 0
 	for(var/print in supplied.evidence)
@@ -41,7 +41,7 @@
 	to_chat(user, span_notice("You overlay \the [src] and \the [supplied], combining the print records."))
 	return 1
 
-/obj/item/sample/attackby(var/obj/O, var/mob/user)
+/obj/item/sample/attackby(obj/O, mob/user)
 	if(O.type == src.type)
 		user.unEquip(O)
 		if(merge_evidence(O, user))
@@ -80,23 +80,23 @@
 	name = "[initial(name)] (\the [H])"
 	icon_state = "fingerprint1"
 
-/obj/item/sample/print/attack(var/mob/living/M, var/mob/user)
+/obj/item/sample/print/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	if(!ishuman(M))
 		return ..()
 
 	if(evidence && evidence.len)
-		return 0
+		return ITEM_INTERACT_FAILURE
 
 	var/mob/living/carbon/human/H = M
 
 	if(H.gloves)
 		to_chat(user, span_warning("\The [H] is wearing gloves."))
-		return 1
+		return ITEM_INTERACT_FAILURE
 
 	if(user != H && H.a_intent != I_HELP && !H.lying)
 		user.visible_message(span_danger("\The [user] tries to take prints from \the [H], but they move away."))
-		return 1
+		return ITEM_INTERACT_FAILURE
 
 	if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 		var/has_hand
@@ -109,17 +109,17 @@
 				has_hand = 1
 		if(!has_hand)
 			to_chat(user, span_warning("They don't have any hands."))
-			return 1
+			return ITEM_INTERACT_FAILURE
 		user.visible_message("[user] takes a copy of \the [H]'s fingerprints.")
 		var/fullprint = H.get_full_print()
 		evidence[fullprint] = fullprint
 		copy_evidence(src)
 		name = "[initial(name)] (\the [H])"
 		icon_state = "fingerprint1"
-		return 1
-	return 0
+		return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
-/obj/item/sample/print/copy_evidence(var/atom/supplied)
+/obj/item/sample/print/copy_evidence(atom/supplied)
 	var/list/print_data = supplied.forensic_data.get_prints()
 	if(print_data && print_data.len)
 		for(var/print in print_data)
@@ -134,15 +134,15 @@
 	var/evidence_type = "fiber"
 	var/evidence_path = /obj/item/sample/fibers
 
-/obj/item/forensics/sample_kit/proc/can_take_sample(var/mob/user, var/atom/supplied)
+/obj/item/forensics/sample_kit/proc/can_take_sample(mob/user, atom/supplied)
 	return supplied.forensic_data?.has_fibres()
 
-/obj/item/forensics/sample_kit/proc/take_sample(var/mob/user, var/atom/supplied)
+/obj/item/forensics/sample_kit/proc/take_sample(mob/user, atom/supplied)
 	var/obj/item/sample/S = new evidence_path(get_turf(user), supplied)
 	to_chat(user, span_notice("You transfer [S.evidence.len] [S.evidence.len > 1 ? "[evidence_type]s" : "[evidence_type]"] to \the [S]."))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FORENSICS_COLLECTED, supplied, user)
 
-/obj/item/forensics/sample_kit/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/forensics/sample_kit/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	add_fingerprint(user)
@@ -160,5 +160,5 @@
 	evidence_type = "fingerprint"
 	evidence_path = /obj/item/sample/print
 
-/obj/item/forensics/sample_kit/powder/can_take_sample(var/mob/user, var/atom/supplied)
+/obj/item/forensics/sample_kit/powder/can_take_sample(mob/user, atom/supplied)
 	return supplied.forensic_data?.has_prints()

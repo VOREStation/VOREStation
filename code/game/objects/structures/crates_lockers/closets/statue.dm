@@ -14,7 +14,7 @@
 	var/intialOxy = 0
 	var/timer = 240 //eventually the person will be freed
 
-/obj/structure/closet/statue/Initialize(mapload, var/mob/living/L)
+/obj/structure/closet/statue/Initialize(mapload, mob/living/L)
 	. = ..()
 	if(L && (ishuman(L) || L.isMonkey() || iscorgi(L)))
 		if(L.buckled)
@@ -81,13 +81,13 @@
 		for(var/mob/M in src)
 			shatter(M)
 
-/obj/structure/closet/statue/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/closet/statue/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	check_health()
 
 	return
 
-/obj/structure/closet/statue/attack_generic(var/mob/user, damage, attacktext, environment_smash)
+/obj/structure/closet/statue/attack_generic(mob/user, damage, attacktext, environment_smash)
 	if(damage && environment_smash)
 		for(var/mob/M in src)
 			shatter(M)

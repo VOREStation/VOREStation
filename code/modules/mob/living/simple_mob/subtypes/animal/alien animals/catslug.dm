@@ -127,7 +127,7 @@
 		drop_hat()
 	return ..()
 
-/mob/living/simple_mob/vore/alienanimals/catslug/attackby(var/obj/item/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/alienanimals/catslug/attackby(obj/item/reagent_containers/food/snacks/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/clothing/head)) // Handle hat simulator.
 		give_hat(O, user)
 		return
@@ -223,7 +223,7 @@
 		I.blend_mode = BLEND_OVERLAY
 		add_overlay(I)
 
-/mob/living/simple_mob/vore/alienanimals/catslug/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/give_hat(obj/item/clothing/head/new_hat, mob/living/user)
 	if(!istype(new_hat))
 		to_chat(user, span_warning("\The [new_hat] isn't a hat."))
 		return
@@ -240,7 +240,7 @@
 		update_icon()
 		return
 
-/mob/living/simple_mob/vore/alienanimals/catslug/proc/remove_hat(var/mob/living/user)
+/mob/living/simple_mob/vore/alienanimals/catslug/proc/remove_hat(mob/living/user)
 	if(!hat)
 		to_chat(user, span_warning("\The [src] doesn't have a hat to remove."))
 	else
@@ -319,7 +319,6 @@
 	S.speak |= message
 
 /obj/item/holder/catslug
-	origin_tech = list(TECH_BIO = 2)
 	icon = 'icons/mob/alienanimals_x32.dmi'
 	item_state = "catslug"
 
@@ -791,7 +790,7 @@
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
-	myid.access |= get_all_station_access()
+	myid.access |= SSaccess.get_all_station_access()
 
 //Syndicate catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug
@@ -836,7 +835,7 @@
 	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
 	mob_radio.recalculateChannels(TRUE)
-	myid.access |= get_all_station_access()
+	myid.access |= SSaccess.get_all_station_access()
 
 //ERT catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug
@@ -880,7 +879,7 @@
 	mob_radio.ks2type = /obj/item/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
 	mob_radio.recalculateChannels(TRUE)
-	myid.access |= get_all_station_access()
+	myid.access |= SSaccess.get_all_station_access()
 
 //Pilot Catslug
 

@@ -254,7 +254,7 @@
 	step = 1
 
 /datum/preference/numeric/living/jukebox_volume/apply_to_client_updated(client/client, value)
-	client?.media?.update_volume(value)
+	client?.media?.update_volume(value / 100)
 
 /datum/preference/numeric/volume
 	abstract_type = /datum/preference/numeric/volume
@@ -268,4 +268,9 @@
 /datum/preference/numeric/volume/sound_instruments
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "sound_instruments"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/fridge_hum
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "SOUND_FRIDGEHUM"
 	savefile_identifier = PREFERENCE_PLAYER

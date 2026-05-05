@@ -291,7 +291,7 @@
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
 
-/obj/effect/overmap/visitable/ship/admin_use/space_dog/Crossed(var/obj/effect/overmap/visitable/ship/enterer)
+/obj/effect/overmap/visitable/ship/admin_use/space_dog/Crossed(obj/effect/overmap/visitable/ship/enterer)
 	. = ..()
 	if(istype(enterer))
 		for(var/mob/potential_mob as anything in GLOB.player_list)

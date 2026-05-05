@@ -11,7 +11,6 @@
 
 	icon = 'icons/obj/machines/reagent.dmi'
 	icon_state = "hose"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
 	amount = 1
 	max_amount = HOSE_MAX_DISTANCE
 	w_class = ITEMSIZE_SMALL
@@ -30,7 +29,7 @@
 		remembered = null
 	return
 
-/obj/item/stack/hose/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/stack/hose/afterattack(atom/target, mob/living/user, proximity, params)
 	if(!proximity)
 		return
 	if(in_use)

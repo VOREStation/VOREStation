@@ -68,14 +68,14 @@
 	var/mob/living/host = null
 	item_flags = DROPDEL | NOSTRIP
 
-/obj/item/tk_grab/dropped(mob/user)
+/obj/item/tk_grab/dropped(mob/user, equipping, slot)
 	..()
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
 			focus.loc = loc
 
 //stops TK grabs being equipped anywhere but into hands
-/obj/item/tk_grab/equipped(var/mob/user, var/slot)
+/obj/item/tk_grab/equipped(mob/user, slot)
 	..()
 	if( (slot == slot_l_hand) || (slot== slot_r_hand) )	return
 	qdel(src)
@@ -138,11 +138,11 @@
 					qdel(src) // Drop TK
 	return
 
-/obj/item/tk_grab/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
-	return
+/obj/item/tk_grab/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return ITEM_INTERACT_FAILURE
 
 
-/obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)
+/obj/item/tk_grab/proc/focus_object(obj/target, mob/living/user)
 	if(!istype(target,/obj))	return//Cant throw non objects atm might let it do mobs later
 	if(target.anchored || !isturf(target.loc))
 		qdel(src)

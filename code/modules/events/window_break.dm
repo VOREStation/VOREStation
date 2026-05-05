@@ -27,7 +27,7 @@
 			return
 
 //TL;DR: breadth first search for all connected turfs with windows
-/datum/event/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
+/datum/event/window_break/proc/gather_collateral_windows(obj/structure/window/target_window)
 	var/list/turf/frontier_set = list(target_window.loc)
 	var/list/obj/structure/window/result_set = list()
 	var/list/turf/explored_set = list()
@@ -70,4 +70,4 @@
 		current_collateral.take_damage(current_collateral.health - (current_collateral.maxhealth / 5)) //set to 1/5th health
 
 /datum/event/window_break/announce()
-	command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert")
+	command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert", ANNOUNCER_MSG_WINDOWBREAK)

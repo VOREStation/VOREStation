@@ -13,7 +13,6 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/midlaser
 	one_handed_penalty = 30
@@ -68,7 +67,6 @@
 	over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms."
 	icon_state = "lrifle"
 	item_state = "lrifle"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
 /*
  * Retro Laser Rifle
@@ -105,7 +103,6 @@
 
 	projectile_type = /obj/item/projectile/beam/cyan
 	cell_type = /obj/item/cell/device/weapon/recharge/alien // Self charges.
-	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
 	modifystate = "alienpistol"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_pistol
@@ -152,7 +149,6 @@
 	w_class = ITEMSIZE_NORMAL
 	unacidable = TRUE
 	projectile_type = /obj/item/projectile/beam
-	origin_tech = null
 	fire_delay = 10		//Old pistol
 	charge_cost = 480	//to compensate a bit for self-recharging
 	cell_type = /obj/item/cell/device/weapon/recharge/captain
@@ -184,7 +180,7 @@
 	if(remainingshots || failurechance)
 		desc = "A rare weapon, produced by the Lunar Arms Company around 2105 - one of humanity's first wholly extra-terrestrial weapon designs. It's been reasonably well-preserved."
 
-/obj/item/gun/energy/captain/special_check(var/mob/user)
+/obj/item/gun/energy/captain/special_check(mob/user)
 	if(remainingshots)
 		remainingshots -= 1
 		if(!remainingshots) //you've shot your load, sonny
@@ -195,7 +191,7 @@
 		return 0
 	return ..()
 
-/obj/item/gun/energy/captain/proc/burnout(var/mob/user)
+/obj/item/gun/energy/captain/proc/burnout(mob/user)
 	//your gun is now rendered useless
 	projectile_type = /obj/item/projectile/beam/practice //just in case you somehow manage to get it to fire again, its beam type is set to one that sucks
 	power_supply.charge = 0
@@ -208,7 +204,7 @@
 	sparks.start()
 	update_icon()
 
-/obj/item/gun/energy/captain/proc/malfunction(var/mob/user)
+/obj/item/gun/energy/captain/proc/malfunction(mob/user)
 	var/screwup = rand(1,10)
 	switch(screwup)
 		if(1 to 5) //50% of just draining the battery and making future malfunctions more likely
@@ -270,7 +266,6 @@
 	icon_state = "lasercannon"
 	item_state = null
 	wielded_item_state = "mhdhowitzer-wielded" //Placeholder
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	battery_lock = 1
@@ -300,7 +295,6 @@
 	standard photonic beams, resulting in an effective 'anti-armor' energy weapon."
 	icon_state = "xray"
 	item_state = "xray"
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 200
 
@@ -316,7 +310,6 @@
 	item_state = "sniper"
 	item_state_slots = list(slot_r_hand_str = "lsniper", slot_l_hand_str = "lsniper")
 	wielded_item_state = "lsniper-wielded"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	actions_types = list(/datum/action/item_action/use_scope)
@@ -348,7 +341,6 @@
 	item_state = "laser"
 	icon_state = "scatter"
 	desc = "A strange Almachi weapon, utilizing a refracting prism to turn a single laser blast into a diverging cluster."
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
 
 	projectile_type = /obj/item/projectile/scatter/laser
 
@@ -365,7 +357,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 10
-	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	fire_sound = 'sound/weapons/mandalorian.ogg'
 	projectile_type = /obj/item/projectile/beam/imperial
@@ -382,7 +373,6 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	force = 15
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/mininglaser
 
@@ -405,7 +395,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 8
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1) //Older rifle - less tech
 	matter = list(MAT_STEEL = 1500)
 	projectile_type = /obj/item/projectile/beam/midlaser
 
@@ -419,7 +408,6 @@
 	choice \"fight-stopper\" of barkeeps. One shot is all it takes... so they say."
 	icon_state = "mono"
 	item_state = "shotgun"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	actions_types = list(/datum/action/item_action/aim_down_sights)

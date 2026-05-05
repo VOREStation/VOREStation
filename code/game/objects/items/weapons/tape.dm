@@ -9,7 +9,7 @@
 
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
-/obj/item/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/tape_roll/proc/can_place(mob/living/carbon/human/H, mob/user)
 	if(isrobot(user) || user == H)
 		return TRUE
 
@@ -19,38 +19,39 @@
 
 	return FALSE
 
-/obj/item/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
-	if(istype(H))
+/obj/item/tape_roll/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		if(user.a_intent == I_HELP)
-			return
+			return ITEM_INTERACT_FAILURE
 		if(!can_place(H, user))
 			to_chat(user, span_danger("You need to have a firm grip on [H] before you can use \the [src]!"))
-			return
+			return ITEM_INTERACT_FAILURE
 		else
 			if(user.zone_sel.selecting == O_EYES)
 
 				if(!H.organs_by_name[BP_HEAD])
 					to_chat(user, span_warning("\The [H] doesn't have a head."))
-					return
+					return ITEM_INTERACT_FAILURE
 				if(!H.has_eyes())
 					to_chat(user, span_warning("\The [H] doesn't have any eyes."))
-					return
+					return ITEM_INTERACT_FAILURE
 				if(H.glasses)
 					to_chat(user, span_warning("\The [H] is already wearing something on their eyes."))
-					return
+					return ITEM_INTERACT_FAILURE
 				if(H.head && (H.head.body_parts_covered & FACE))
 					to_chat(user, span_warning("Remove their [H.head] first."))
-					return
+					return ITEM_INTERACT_FAILURE
 				user.visible_message(span_danger("\The [user] begins taping over \the [H]'s eyes!"))
 
 				if(!do_after(user, 3 SECONDS, target = src))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				if(!can_place(H, user))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				user.visible_message(span_danger("\The [user] has taped up \the [H]'s eyes!"))
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses, ignore_obstructions = FALSE)
@@ -60,26 +61,26 @@
 			else if(user.zone_sel.selecting == O_MOUTH || user.zone_sel.selecting == BP_HEAD)
 				if(!H.organs_by_name[BP_HEAD])
 					to_chat(user, span_warning("\The [H] doesn't have a head."))
-					return
+					return ITEM_INTERACT_FAILURE
 				if(!H.check_has_mouth())
 					to_chat(user, span_warning("\The [H] doesn't have a mouth."))
-					return
+					return ITEM_INTERACT_FAILURE
 				if(H.wear_mask)
 					to_chat(user, span_warning("\The [H] is already wearing a mask."))
-					return
+					return ITEM_INTERACT_FAILURE
 				if(H.head && (H.head.body_parts_covered & FACE))
 					to_chat(user, span_warning("Remove their [H.head] first."))
-					return
+					return ITEM_INTERACT_FAILURE
 				user.visible_message(span_danger("\The [user] begins taping up \the [H]'s mouth!"))
 
 				if(!do_after(user, 3 SECONDS, target = src))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				if(!can_place(H, user))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || (H.head && (H.head.body_parts_covered & FACE)))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				user.visible_message(span_danger("\The [user] has taped up \the [H]'s mouth!"))
 
@@ -89,7 +90,7 @@
 
 			else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 				if(!can_place(H, user))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				var/obj/item/handcuffs/cable/tape/T = new(user)
 				playsound(src, 'sound/effects/tape.ogg',25)
@@ -99,9 +100,9 @@
 					qdel(T)
 			else
 				return ..()
-			return 1
+			return ITEM_INTERACT_SUCCESS
 
-/obj/item/tape_roll/proc/stick(var/obj/item/W, mob/user)
+/obj/item/tape_roll/proc/stick(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/paper) || istype(W, /obj/item/paper/sticky) || !user.unEquip(W))
 		return
 	user.drop_from_inventory(W)
@@ -127,7 +128,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 	return stuck.examine(user)
 
-/obj/item/ducttape/proc/attach(var/obj/item/W)
+/obj/item/ducttape/proc/attach(obj/item/W)
 	stuck = W
 	W.forceMove(src)
 	icon_state = W.icon_state + "_taped"
@@ -150,7 +151,7 @@
 	overlays = null
 	qdel(src)
 
-/obj/item/ducttape/attackby(var/obj/item/I, var/mob/user)
+/obj/item/ducttape/attackby(obj/item/I, mob/user)
 	if(!(istype(src, /obj/item/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
 		return ..()
 	else
@@ -163,7 +164,7 @@
 	anchored = FALSE
 	return ..() // Pick it up now that it's unanchored.
 
-/obj/item/ducttape/afterattack(var/A, mob/user, flag, params)
+/obj/item/ducttape/afterattack(A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
 		return

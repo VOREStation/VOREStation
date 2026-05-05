@@ -88,7 +88,7 @@ Thus, the two variables affect pump operation are set in New():
 	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
 	add_underlay(T, node2, dir, node2?.icon_connect_type)
 
-/obj/machinery/atmospherics/binary/pump/hide(var/i)
+/obj/machinery/atmospherics/binary/pump/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/pump/process()
@@ -236,7 +236,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/pump/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
@@ -253,7 +253,32 @@ Thus, the two variables affect pump operation are set in New():
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
-		deconstruct()
+		atom_deconstruct()
+
+/obj/machinery/atmospherics/binary/pump/click_alt(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!allowed(user))
+		to_chat(user, span_warning("Access denied."))
+		return CLICK_ACTION_BLOCKING
+
+	to_chat(user, span_notice("You set the [name] to max output"))
+	target_pressure = max_pressure_setting
+	add_fingerprint(user)
+	return CLICK_ACTION_SUCCESS
+
+
+/obj/machinery/atmospherics/binary/pump/click_ctrl(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!allowed(user))
+		to_chat(user, span_warning("Access denied."))
+		return CLICK_ACTION_BLOCKING
+
+	update_use_power(!use_power)
+	update_icon()
+	add_fingerprint(user)
+	to_chat(user, span_notice("You toggle the [name] [use_power ? "on" : "off"]."))
+
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/binary/pump/high_power
 	icon = 'icons/atmos/volume_pump.dmi'

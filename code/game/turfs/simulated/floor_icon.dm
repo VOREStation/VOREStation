@@ -4,7 +4,7 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, new)
 	GLOB.no_ceiling_image = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling")
 	GLOB.no_ceiling_image.plane = PLANE_MESONS
 
-/turf/simulated/floor/update_icon(var/update_neighbors)
+/turf/simulated/floor/update_icon(update_neighbors)
 	cut_overlays()
 
 	if(flooring)
@@ -107,11 +107,11 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, new)
 		// They don't forbid_turf_edge
 		if(istype(T) && T.edge_blending_priority && edge_blending_priority < T.edge_blending_priority && icon_state != T.icon_state && !T.forbid_turf_edge())
 			var/cache_key = "[T.get_edge_icon_state()]-[checkdir]" // Usually [icon_state]-[dirnum]
-			if(!turf_edge_cache[cache_key])
+			if(!GLOB.turf_edge_cache[cache_key])
 				var/image/I = image(icon = T.icon_edge, icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir, layer = ABOVE_TURF_LAYER) // VOREStation Edit - icon_edge
 				I.plane = TURF_PLANE
-				turf_edge_cache[cache_key] = I
-			add_overlay(turf_edge_cache[cache_key])
+				GLOB.turf_edge_cache[cache_key] = I
+			add_overlay(GLOB.turf_edge_cache[cache_key])
 
 // We will take this state and use it for a cache key, and append '-edge' to it to get the edge overlay (edges *from other turfs*, not our own internal edges)
 /turf/simulated/proc/get_edge_icon_state()
@@ -127,7 +127,7 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, new)
 
 //Tests whether this flooring will smooth with the specified turf
 //You can override this if you want a flooring to have super special snowflake smoothing behaviour
-/datum/decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
+/datum/decl/flooring/proc/test_link(turf/origin, turf/T, countercheck = FALSE)
 
 	var/is_linked = FALSE
 	if (countercheck)

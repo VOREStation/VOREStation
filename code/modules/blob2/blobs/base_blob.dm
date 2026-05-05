@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	layer = MOB_LAYER + 0.1
 	var/integrity = 0
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
-	var/max_integrity = 30
+	max_integrity = 30
 	var/health_regen = 2 //how much health this blob regens when pulsed
 	var/pulse_timestamp = 0 //we got pulsed when?
 	var/heal_timestamp = 0 //we got healed when?
@@ -82,8 +82,10 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	return ..()
 
 /obj/structure/blob/emp_act(severity, recursive)
-	if(overmind)
-		overmind.blob_type.on_emp(src, severity)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !overmind)
+		return
+	overmind.blob_type.on_emp(src, severity)
 
 /obj/structure/blob/proc/pulsed()
 	if(pulse_timestamp <= world.time)
@@ -232,7 +234,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	qdel(src)
 	return B
 
-/obj/structure/blob/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/blob/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)
@@ -316,7 +318,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	else
 		attack_generic(M, rand(1,10), "bashed")
 
-/obj/structure/blob/attackby(var/obj/item/W, var/mob/user)
+/obj/structure/blob/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message(span_danger("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
@@ -347,7 +349,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	adjust_integrity(-damage)
 	return
 
-/obj/structure/blob/bullet_act(var/obj/item/projectile/P)
+/obj/structure/blob/bullet_act(obj/item/projectile/P)
 	if(!P)
 		return
 
@@ -377,7 +379,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	if(overmind)
 		overmind.blob_type.on_water(src, amount)
 
-/obj/structure/blob/blob_act(var/obj/structure/blob/B)
+/obj/structure/blob/blob_act(obj/structure/blob/B)
 	. = ..()
 
 	if(B)

@@ -145,7 +145,7 @@
 	. = TRUE
 	return
 
-/obj/item/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
+/obj/item/storage/secure/emag_act(remaining_charges, mob/user, feedback)
 	if(!emagged)
 		emagged = 1
 		src.add_overlay(icon_sparking)
@@ -201,6 +201,7 @@
 	force = 8.0
 	w_class = ITEMSIZE_NO_CONTAINER
 	max_w_class = ITEMSIZE_LARGE // This was 8 previously...
+	flags = WALL_ITEM
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)

@@ -46,7 +46,7 @@
 
 	var/update_adjacent_tiles = TRUE
 
-/obj/machinery/door/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/attack_generic(mob/user, damage)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
@@ -196,7 +196,7 @@
 			do_animate("deny")
 	return
 
-/obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/bullet_act(obj/item/projectile/Proj)
 	..()
 
 	var/damage = Proj.get_structure_damage()
@@ -364,7 +364,7 @@
 
 	return FALSE
 
-/obj/machinery/door/emag_act(var/remaining_charges)
+/obj/machinery/door/emag_act(remaining_charges)
 	if(density && operable())
 		do_animate("spark")
 		addtimer(CALLBACK(src, PROC_REF(trigger_emag)), 0.6 SECONDS)
@@ -376,7 +376,7 @@
 	open()
 	operating = -1
 
-/obj/machinery/door/take_damage(var/damage)
+/obj/machinery/door/take_damage(damage)
 	var/initialhealth = health
 	health = max(0, health - damage)
 	if(health <= 0 && initialhealth > 0)
@@ -413,10 +413,11 @@
 
 
 /obj/machinery/door/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
 		open()
-	..()
-
 
 /obj/machinery/door/ex_act(severity)
 	switch(severity)
@@ -448,7 +449,6 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
-	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
 
@@ -473,7 +473,7 @@
 				playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 	return
 
-/obj/machinery/door/proc/open(var/forced = 0)
+/obj/machinery/door/proc/open(forced = 0)
 	if(!can_open(forced))
 		return
 	operating = 1
@@ -485,14 +485,14 @@
 	set_opacity(0)
 	addtimer(CALLBACK(src, PROC_REF(open_internalsetdensity),forced), anim_length_before_density)
 
-/obj/machinery/door/proc/open_internalsetdensity(var/forced = 0)
+/obj/machinery/door/proc/open_internalsetdensity(forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	SHOULD_NOT_OVERRIDE(TRUE)
 	density = FALSE
 	update_nearby_tiles()
 	addtimer(CALLBACK(src, PROC_REF(open_internalfinish),forced), anim_length_before_finalize)
 
-/obj/machinery/door/proc/open_internalfinish(var/forced = 0)
+/obj/machinery/door/proc/open_internalfinish(forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	SHOULD_NOT_OVERRIDE(TRUE)
 	layer = open_layer
@@ -530,7 +530,7 @@
 		open_speed = 15
 	return (normalspeed ? open_speed : 5)
 
-/obj/machinery/door/proc/close(var/forced = 0, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
+/obj/machinery/door/proc/close(forced = 0, ignore_safties = FALSE, crush_damage = DOOR_CRUSH_DAMAGE)
 	if(!can_close(forced))
 		return
 	operating = 1
@@ -541,7 +541,7 @@
 	do_animate("closing")
 	addtimer(CALLBACK(src, PROC_REF(close_internalsetdensity),forced), anim_length_before_density)
 
-/obj/machinery/door/proc/close_internalsetdensity(var/forced = 0)
+/obj/machinery/door/proc/close_internalsetdensity(forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	SHOULD_NOT_OVERRIDE(TRUE)
 	density = TRUE
@@ -550,7 +550,7 @@
 	update_nearby_tiles()
 	addtimer(CALLBACK(src, PROC_REF(close_internalfinish),forced), anim_length_before_finalize)
 
-/obj/machinery/door/proc/close_internalfinish(var/forced = 0)
+/obj/machinery/door/proc/close_internalfinish(forced = 0)
 	PROTECTED_PROC(TRUE) //do not touch this or BYOND will devour you
 	update_icon()
 	if(visible && !glass)
@@ -588,7 +588,7 @@
 
 	return TRUE
 
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
+/obj/machinery/door/proc/update_heat_protection(turf/simulated/source)
 	if(istype(source))
 		if(density && (opacity || heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT

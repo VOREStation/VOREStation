@@ -16,7 +16,7 @@
 		return 0
 	return affected && affected.open == (affected.encased ? 3 : 2)
 
-/datum/surgery_step/cavity/proc/get_max_wclass(var/obj/item/organ/external/affected)
+/datum/surgery_step/cavity/proc/get_max_wclass(obj/item/organ/external/affected)
 	switch (affected.organ_tag)
 		if (BP_HEAD)
 			return ITEMSIZE_TINY
@@ -26,7 +26,7 @@
 			return ITEMSIZE_SMALL
 	return 0
 
-/datum/surgery_step/cavity/proc/get_cavity(var/obj/item/organ/external/affected)
+/datum/surgery_step/cavity/proc/get_cavity(obj/item/organ/external/affected)
 	switch (affected.organ_tag)
 		if (BP_HEAD)
 			return "cranial"

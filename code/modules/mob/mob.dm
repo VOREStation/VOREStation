@@ -124,7 +124,7 @@
 // message is the message output to anyone who can see e.g. "[src] does something!"
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/mob/visible_message(var/message, var/self_message, var/blind_message, var/list/exclude_mobs = null, var/range = world.view, var/runemessage)
+/mob/visible_message(message, self_message, blind_message, list/exclude_mobs = null, range = world.view, runemessage)
 	if(self_message)
 		if(LAZYLEN(exclude_mobs))
 			exclude_mobs |= src
@@ -139,7 +139,7 @@
 // If drain_check is set it will not actually drain power, just return a value.
 // If surge is set, it will destroy/damage the recipient and not return any power.
 // Not sure where to define this, so it can sit here for the rest of time.
-/atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
+/atom/proc/drain_power(drain_check,surge, amount = 0)
 	return -1
 
 // used for petrification machines
@@ -159,7 +159,7 @@
 // self_message (optional) is what the src mob hears.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message, var/radio_message, var/runemessage)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message, radio_message, runemessage)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -221,7 +221,7 @@
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_KNOCKDOWN)
 
-/mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/mob/proc/incapacitated(incapacitation_flags = INCAPACITATION_DEFAULT)
 	if((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
@@ -403,7 +403,7 @@
 	return
 */
 
-/mob/proc/set_respawn_timer(var/time)
+/mob/proc/set_respawn_timer(time)
 	// Try to figure out what time to use
 
 	// Special cases, can never respawn
@@ -471,7 +471,7 @@
 
 				//Job slot cleanup
 				var/job = mind.assigned_role
-				GLOB.job_master.FreeRole(job)
+				SSjob.free_role(job)
 
 				//Their objectives cleanup
 				if(mind.objectives.len)
@@ -628,7 +628,7 @@
 		if(pullin)
 			pullin.icon_state = "pull0"
 
-/mob/proc/start_pulling(var/atom/movable/AM)
+/mob/proc/start_pulling(atom/movable/AM)
 
 	if ( !AM || src==AM || !isturf(loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
@@ -720,7 +720,7 @@
 		pulled.inertia_dir = 0
 
 // We have pulled something before, so we should be able to safely continue pulling it. This proc is only for portals!
-/mob/proc/continue_pulling(var/atom/movable/AM)
+/mob/proc/continue_pulling(atom/movable/AM)
 
 	if ( !AM || src==AM || !isturf(loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
@@ -803,7 +803,7 @@
 	return canmove
 
 
-/mob/proc/facedir(var/ndir)
+/mob/proc/facedir(ndir)
 	if(!canface() || (client && (client.moving || !checkMoveCooldown())))
 		DEBUG_INPUT("Denying Facedir for [src] (moving=[client?.moving])")
 		return 0
@@ -993,7 +993,7 @@
 /mob/proc/flash_weak_pain()
 	flick("weak_pain",pain)
 
-/mob/proc/get_visible_implants(var/class = 0)
+/mob/proc/get_visible_implants(class = 0)
 	var/list/visible_implants = list()
 	for(var/obj/item/O in embedded)
 		if(O.w_class > class)
@@ -1108,7 +1108,7 @@
 	return 0
 
 // Please always use this proc, never just set the var directly.
-/mob/proc/set_stat(var/new_stat)
+/mob/proc/set_stat(new_stat)
 	. = (stat != new_stat)
 	stat = new_stat
 
@@ -1125,7 +1125,7 @@
 	else
 		to_chat(src, span_filter_notice("You are now facing [dir2text(facing_dir)]."))
 
-/mob/proc/set_face_dir(var/newdir)
+/mob/proc/set_face_dir(newdir)
 	if(newdir == facing_dir)
 		facing_dir = null
 	else if(newdir)
@@ -1230,7 +1230,7 @@
 	return
 
 // Set client view distance (size of client's screen). Returns TRUE if anything changed.
-/mob/proc/set_viewsize(var/new_view = world.view)
+/mob/proc/set_viewsize(new_view = world.view)
 	if (client && new_view != client.view)
 		client.view = new_view
 		client.attempt_auto_fit_viewport()
@@ -1273,7 +1273,7 @@
 /mob/proc/is_muzzled()
 	return 0
 
-/mob/proc/amend_exploitable(var/obj/item/I)
+/mob/proc/amend_exploitable(obj/item/I)
 	if(istype(I))
 		exploit_addons |= I
 		var/exploitmsg = html_decode("\n" + "Has " + I.name + ".")
@@ -1496,12 +1496,12 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 		regenerate_icons()
 
 	if(href_list[VV_HK_PLAYER_PANEL])
-		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
+		return SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_player_panel, src)
 
 	if(href_list[VV_HK_GODMODE])
 		if(!check_rights(R_ADMIN))
 			return
-		usr.client.cmd_admin_godmode(src)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_godmode, src)
 
 	if(href_list[VV_HK_ADDLANGUAGE])
 		if(!check_rights(R_SPAWN))

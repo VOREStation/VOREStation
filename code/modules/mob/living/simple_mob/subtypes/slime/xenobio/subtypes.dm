@@ -193,14 +193,14 @@
 	log_and_message_admins("ignited due to exposure to fire.", src)
 	ignite()
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/simple_mob/slime/xenobio/dark_purple/bullet_act(obj/item/projectile/P, def_zone)
 	if(P.damage_type && P.damage_type == BURN && P.damage) // Most bullets won't trigger the explosion, as a mercy towards Security.
 		log_and_message_admins("ignited due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].", src)
 		ignite()
 	else
 		..()
 
-/mob/living/simple_mob/slime/xenobio/dark_purple/attackby(var/obj/item/W, var/mob/user)
+/mob/living/simple_mob/slime/xenobio/dark_purple/attackby(obj/item/W, mob/user)
 	if(istype(W) && W.force && W.damtype == BURN)
 		log_and_message_admins("ignited due to being hit with a burning weapon ([W]) by [key_name(user)].", src)
 		ignite()
@@ -281,7 +281,7 @@
 			/mob/living/simple_mob/slime/xenobio/amber
 		)
 
-/mob/living/simple_mob/slime/xenobio/silver/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/simple_mob/slime/xenobio/silver/bullet_act(obj/item/projectile/P, def_zone)
 	if(istype(P,/obj/item/projectile/beam) || istype(P, /obj/item/projectile/energy))
 		visible_message(span_danger("\The [src] reflects \the [P]!"))
 
@@ -522,8 +522,14 @@
 	..()
 
 /mob/living/simple_mob/slime/xenobio/green/proc/irradiate()
-	SSradiation.radiate(src, rads)
-
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = rads * 0.5,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = rads
+	)
 
 
 /mob/living/simple_mob/slime/xenobio/pink

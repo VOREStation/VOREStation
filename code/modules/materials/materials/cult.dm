@@ -10,16 +10,17 @@
 	sheet_plural_name = "bricks"
 	conductive = 0
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = 0
 
-/datum/material/cult/place_dismantled_girder(var/turf/target)
+/datum/material/cult/place_dismantled_girder(turf/target)
 	new /obj/structure/girder/cult(target, MAT_CULT)
 
-/datum/material/cult/place_dismantled_product(var/turf/target)
+/datum/material/cult/place_dismantled_product(turf/target)
 	new /obj/effect/decal/cleanable/blood(target)
 
 /datum/material/cult/reinf
 	name = MAT_CULT2
 	display_name = "human remains"
 
-/datum/material/cult/reinf/place_dismantled_product(var/turf/target)
+/datum/material/cult/reinf/place_dismantled_product(turf/target)
 	new /obj/effect/decal/remains/human(target)

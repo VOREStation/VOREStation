@@ -23,7 +23,7 @@
 	industrial_use = REFINERYEXPORT_REASON_RAW
 
 //VOREStation Edit
-/datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/calcium/affect_ingest(mob/living/carbon/M, alien, removed)
 	if(ishuman(M) && rand(1,10000) == 1)
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
@@ -47,7 +47,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
-/datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/carbon/affect_ingest(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
@@ -57,7 +57,7 @@
 				continue
 			M.ingested.remove_reagent(R.id, removed * effect)
 
-/datum/reagent/carbon/touch_turf(var/turf/T)
+/datum/reagent/carbon/touch_turf(turf/T)
 	..()
 	if(!istype(T, /turf/space))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
@@ -79,10 +79,10 @@
 	industrial_use = REFINERYEXPORT_REASON_RAW
 	coolant_modifier = 0.15
 
-/datum/reagent/chlorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/chlorine/affect_blood(mob/living/carbon/M, alien, removed)
 	M.take_organ_damage(1*REM, 0)
 
-/datum/reagent/chlorine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/chlorine/affect_touch(mob/living/carbon/M, alien, removed)
 	M.take_organ_damage(1*REM, 0)
 
 /datum/reagent/copper
@@ -126,12 +126,12 @@
 	industrial_use = REFINERYEXPORT_REASON_FOOD
 	coolant_modifier = 1.15
 
-/datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/ethanol/touch_mob(mob/living/L, amount)
 	..()
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
-/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
+/datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, removed) //This used to do just toxin. That's boring. Let's make this FUN.
 	if(issmall(M))
 		removed *= 2
 
@@ -170,13 +170,13 @@
 		if(halluci)
 			M.hallucination = max(M.hallucination, halluci*3)
 
-/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, removed)
 	var/ep_base_power = 60	//base nutrition gain for ethanol-processing synthetics, reduced by alcohol strength
 	var/ep_final_mod = 30	//final divisor on nutrition gain
 	if(issmall(M))
 		removed *= 2
 
-	if(!(M.species.allergens & allergen_type) && !(M.isSynthetic()))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects - VOREStation Edit (added synth check)
+	if(!(M.species.allergens & allergen_type) && !(M.species.medallergens & medallergen_type) && !(M.isSynthetic()))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects - VOREStation Edit (added synth check)
 		M.adjust_nutrition(nutriment_factor * removed)
 
 	if(M.isSynthetic() && M.nutrition < 500 && M.species.robo_ethanol_proc)
@@ -216,7 +216,7 @@
 		if(adj_temp < 0 && M.bodytemperature > targ_temp)
 			M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
-/datum/reagent/ethanol/touch_obj(var/obj/O)
+/datum/reagent/ethanol/touch_obj(obj/O)
 	..()
 	if(istype(O, /obj/item/paper))
 		var/obj/item/paper/paperaffected = O
@@ -234,7 +234,7 @@
 		to_chat(usr, span_notice("The solution dissolves the ink on the book."))
 	return
 
-/datum/reagent/ethanol/handle_addiction(var/mob/living/carbon/M, var/alien)
+/datum/reagent/ethanol/handle_addiction(mob/living/carbon/M, alien)
 	// A copy of the base with withdrawl, but with much less effects, such as vomiting.
 	var/current_addiction = M.get_addiction_to_reagent(id)
 	var/realistic_addiction = FALSE //DEFAULT set to FALSE. Toggle to TRUE for a more realistic addiction with potentially fatal side effects.
@@ -315,10 +315,10 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
 
-/datum/reagent/fluorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fluorine/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjustToxLoss(removed)
 
-/datum/reagent/fluorine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fluorine/affect_touch(mob/living/carbon/M, alien, removed)
 	M.adjustToxLoss(removed)
 
 /datum/reagent/hydrogen
@@ -355,7 +355,7 @@
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 	coolant_modifier = 0.15
 
-/datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/lithium/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 			step(M, pick(GLOB.cardinal))
@@ -373,7 +373,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
-/datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/mercury/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 			step(M, pick(GLOB.cardinal))
@@ -405,7 +405,7 @@
 	industrial_use = REFINERYEXPORT_REASON_RAW
 	coolant_modifier = 0.25
 
-/datum/reagent/oxygen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/oxygen/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 3)
 
@@ -442,11 +442,11 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
-/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/radium/affect_blood(mob/living/carbon/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.apply_effect(10 * removed, IRRADIATE, 0)
 
-/datum/reagent/radium/touch_turf(var/turf/T)
+/datum/reagent/radium/touch_turf(turf/T)
 	..()
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
@@ -466,11 +466,11 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
-/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/radium/affect_blood(mob/living/carbon/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
 
-/datum/reagent/radium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/radium/affect_touch(mob/living/carbon/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
 
@@ -490,11 +490,11 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
-/datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.take_organ_damage(0, removed * power * 2)
 
-/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // This is the most interesting
+/datum/reagent/acid/affect_touch(mob/living/carbon/M, alien, removed) // This is the most interesting
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
@@ -554,7 +554,7 @@
 		else
 			M.take_organ_damage(0, removed * power * 0.1) // Balance. The damage is instant, so it's weaker. 10 units -> 5 damage, double for pacid. 120 units beaker could deal 60, but a) it's burn, which is not as dangerous, b) it's a one-use weapon, c) missing with it will splash it over the ground and d) clothes give some protection, so not everything will hit
 
-/datum/reagent/acid/touch_obj(var/obj/O)
+/datum/reagent/acid/touch_obj(obj/O)
 	..()
 	if(O.unacidable)
 		return
@@ -607,7 +607,7 @@
 	industrial_use = REFINERYEXPORT_REASON_FOOD
 	coolant_modifier = -0.25
 
-/datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/sugar/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjust_nutrition(removed * 3)
 
 	var/effective_dose = dose

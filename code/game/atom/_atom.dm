@@ -60,6 +60,11 @@
 	/// You will need to manage adding/removing from this yourself, but I'll do the updating for you
 	var/list/image/update_on_z
 
+	/// Radiation insulation types
+	var/rad_insulation = RAD_NO_INSULATION
+
+	var/datum/wires/wires = null
+
 /atom/Destroy()
 	if(reagents)
 		QDEL_NULL(reagents)
@@ -122,7 +127,7 @@
 	return
 
 //Register listeners on turfs in a certain range
-/atom/proc/sense_proximity(var/range = 1, var/callback)
+/atom/proc/sense_proximity(range = 1, callback)
 	ASSERT(callback)
 	ASSERT(isturf(loc))
 	var/list/turfs = trange(range, src)
@@ -131,7 +136,7 @@
 
 //Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
 // really can't, then you can set the center where you moved from.
-/atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
+/atom/proc/unsense_proximity(range = 1, callback, center)
 	ASSERT(isturf(center) || isturf(loc))
 	var/list/turfs = trange(range, center ? center : src)
 	for(var/turf/T as anything in turfs)
@@ -139,14 +144,20 @@
 
 
 /atom/proc/emp_act(severity, recursive)
+	SHOULD_CALL_PARENT(TRUE)
 	recursive++
 	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
 		return
-	for(var/atom/A in contents)
-		if(isbelly(A)) //Prey are protected
-			continue
-		A.emp_act(severity, recursive)
-	return
+	var/protection = SEND_SIGNAL(src, COMSIG_ATOM_PRE_EMP_ACT, severity)
+	if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
+		wires.emp_pulse()
+
+	if(!(protection & EMP_PROTECT_CONTENTS))
+		for(var/atom/A in contents)
+			A.emp_act(severity, recursive)
+
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity, protection)
+	return protection
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) & COMPONENT_CANCEL_ATTACK_CHAIN)
@@ -196,7 +207,7 @@
 	return desc
 
 //All atoms
-/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, infix = "", suffix = "")
 	SHOULD_CALL_PARENT(TRUE)
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
@@ -236,28 +247,33 @@
 
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_PRE_DIR_CHANGE, dir, new_dir) & COMPONENT_ATOM_BLOCK_DIR_CHANGE)
+		new_dir = dir
+		return
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
-	. = new_dir != dir
+	var/oldDir = dir
 	dir = new_dir
+	SEND_SIGNAL(src, COMSIG_ATOM_POST_DIR_CHANGE, oldDir, new_dir)
 
 // Called to set the atom's density and used to add behavior to density changes.
-/atom/proc/set_density(var/new_density)
+/atom/proc/set_density(new_density)
 	if(density == new_density)
 		return FALSE
 	density = !!new_density // Sanitize to be strictly 0 or 1
 	return TRUE
 
 // Called to set the atom's invisibility and usd to add behavior to invisibility changes.
-/atom/proc/set_invisibility(var/new_invisibility)
+/atom/proc/set_invisibility(new_invisibility)
 	if(invisibility == new_invisibility)
 		return FALSE
 	invisibility = new_invisibility
 	return TRUE
 
-/atom/proc/ex_act(var/strength = 3)
+/atom/proc/ex_act(strength = 3)
 	return (SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, strength, src) & COMPONENT_IGNORE_EXPLOSION)
 
-/atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+/atom/proc/emag_act(remaining_charges, mob/user, emag_source)
 	return -1
 
 /**
@@ -320,7 +336,7 @@
 	. = 1
 	return 1
 
-/atom/proc/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
+/atom/proc/on_rag_wipe(obj/item/reagent_containers/glass/rag/R)
 	wash(CLEAN_WASH)
 	R.reagents.splash(src, 1)
 
@@ -353,7 +369,7 @@
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs, var/range = world.view, var/runemessage = "<span style='font-size: 1.5em'>👁</span>")
+/atom/proc/visible_message(message, blind_message, list/exclude_mobs, range = world.view, runemessage = "<span style='font-size: 1.5em'>👁</span>")
 
 	//VOREStation Edit
 	var/list/see
@@ -384,7 +400,7 @@
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance, var/radio_message, var/runemessage)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, radio_message, runemessage)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -405,7 +421,7 @@
 		if(runemessage != -1)
 			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"))
 
-/atom/movable/proc/dropInto(var/atom/destination)
+/atom/movable/proc/dropInto(atom/destination)
 	while(istype(destination))
 		var/atom/drop_destination = destination.onDropInto(src)
 		if(!istype(drop_destination) || drop_destination == destination)
@@ -413,10 +429,10 @@
 		destination = drop_destination
 	return moveToNullspace()
 
-/atom/proc/onDropInto(var/atom/movable/AM)
+/atom/proc/onDropInto(atom/movable/AM)
 	return // If onDropInto returns null, then dropInto will forceMove AM into us.
 
-/atom/movable/onDropInto(var/atom/movable/AM)
+/atom/movable/onDropInto(atom/movable/AM)
 	return loc // If onDropInto returns something, then dropInto will attempt to drop AM there.
 
 /atom/proc/InsertedContents()
@@ -640,3 +656,7 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 	blood_color = null
 	germ_level = 0
 	fluorescent = 0
+
+/// Sets the wire datum of an atom
+/atom/proc/set_wires(datum/wires/new_wires)
+	wires = new_wires

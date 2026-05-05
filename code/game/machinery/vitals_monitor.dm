@@ -1,8 +1,7 @@
 /obj/item/circuitboard/machine/vitals_monitor
-	name = "circuit board (vitals monitor)"
+	name = T_BOARD("vitals monitor")
 	build_path = /obj/machinery/vitals_monitor
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 4, TECH_ENGINEERING = 2)
 	req_components = list(
 		/obj/item/stock_parts/console_screen = 1,
 		/obj/item/cell/high = 1

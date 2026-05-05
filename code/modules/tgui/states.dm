@@ -144,5 +144,5 @@
 	return STATUS_CLOSE // Otherwise, we got nothing.
 
 // Topic Extensions for old UIs
-/datum/proc/CanUseTopic(var/mob/user, var/datum/tgui_state/state)
+/datum/proc/CanUseTopic(mob/user, datum/tgui_state/state)
 	return tgui_status(user, state)

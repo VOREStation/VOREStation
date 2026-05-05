@@ -26,7 +26,7 @@
 	attack_verb = list("smashed", "swung at", "pummelled", "nailed", "crushed", "bonked", "hammered", "cracked")
 	defend_chance = 0
 
-/obj/item/melee/hammer/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone, var/attack_modifier)
+/obj/item/melee/hammer/apply_hit_effect(mob/living/target, mob/living/user, hit_zone, attack_modifier)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(prob(50))

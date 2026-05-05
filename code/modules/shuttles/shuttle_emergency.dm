@@ -7,9 +7,9 @@
 /datum/shuttle/autodock/ferry/emergency/New()
 	..()
 	radio_connection = SSradio.add_object(src, frequency, null)
-	if(GLOB.emergency_shuttle.shuttle)
+	if(SSemergency_shuttle.shuttle)
 		CRASH("An emergency shuttle has already been defined.")
-	GLOB.emergency_shuttle.shuttle = src
+	SSemergency_shuttle.shuttle = src
 
 /datum/shuttle/autodock/ferry/emergency/arrived()
 	. = ..()
@@ -17,9 +17,9 @@
 		var/obj/machinery/computer/shuttle_control/emergency/C = in_use
 		C.reset_authorization()
 
-	GLOB.emergency_shuttle.shuttle_arrived()
+	SSemergency_shuttle.shuttle_arrived()
 
-/datum/shuttle/autodock/ferry/emergency/long_jump(var/destination, var/interim, var/travel_time)
+/datum/shuttle/autodock/ferry/emergency/long_jump(destination, interim, travel_time)
 	if (!location)
 		travel_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	else
@@ -27,30 +27,30 @@
 
 	//update move_time and launch_time so we get correct ETAs
 	move_time = travel_time
-	GLOB.emergency_shuttle.launch_time = world.time
+	SSemergency_shuttle.launch_time = world.time
 
 	..(destination, interim, travel_time, direction)
 
 /datum/shuttle/autodock/ferry/emergency/perform_shuttle_move()
 	if (current_location == landmark_station)	//leaving the station
 		spawn(0)
-			GLOB.emergency_shuttle.departed = 1
-			var/estimated_time = round(GLOB.emergency_shuttle.estimate_arrival_time()/60,1)
+			SSemergency_shuttle.departed = TRUE
+			var/estimated_time = round(SSemergency_shuttle.estimate_arrival_time()/60,1)
 
-			if (GLOB.emergency_shuttle.evac)
-				priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
+			if (SSemergency_shuttle.evac)
+				GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.emergency_shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
 			else
-				priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramdepart.ogg')
+				GLOB.priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_leaving_dock, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", ANNOUNCER_MSG_SHUTTLE_ENDROUND_RETURNING)
 	..()
 
-/datum/shuttle/autodock/ferry/emergency/can_launch(var/user)
+/datum/shuttle/autodock/ferry/emergency/can_launch(user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 		if (!C.has_authorization())
 			return 0
 	return ..()
 
-/datum/shuttle/autodock/ferry/emergency/can_force(var/user)
+/datum/shuttle/autodock/ferry/emergency/can_force(user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 
@@ -60,19 +60,19 @@
 			return 0
 	return ..()
 
-/datum/shuttle/autodock/ferry/emergency/can_cancel(var/user)
+/datum/shuttle/autodock/ferry/emergency/can_cancel(user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 		if (!C.has_authorization())
 			return 0
 	return ..()
 
-/datum/shuttle/autodock/ferry/emergency/launch(var/user)
+/datum/shuttle/autodock/ferry/emergency/launch(user)
 	if (!can_launch(user)) return
 
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
-		if (GLOB.emergency_shuttle.autopilot)
-			GLOB.emergency_shuttle.autopilot = 0
+		if (SSemergency_shuttle.autopilot)
+			SSemergency_shuttle.autopilot = FALSE
 			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	if(usr)
@@ -81,12 +81,12 @@
 
 	..(user)
 
-/datum/shuttle/autodock/ferry/emergency/force_launch(var/user)
+/datum/shuttle/autodock/ferry/emergency/force_launch(user)
 	if (!can_force(user)) return
 
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
-		if (GLOB.emergency_shuttle.autopilot)
-			GLOB.emergency_shuttle.autopilot = 0
+		if (SSemergency_shuttle.autopilot)
+			SSemergency_shuttle.autopilot = FALSE
 			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	if(usr)
@@ -95,12 +95,12 @@
 
 	..(user)
 
-/datum/shuttle/autodock/ferry/emergency/cancel_launch(var/user)
+/datum/shuttle/autodock/ferry/emergency/cancel_launch(user)
 	if (!can_cancel(user)) return
 
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
-		if (GLOB.emergency_shuttle.autopilot)
-			GLOB.emergency_shuttle.autopilot = 0
+		if (SSemergency_shuttle.autopilot)
+			SSemergency_shuttle.autopilot = FALSE
 			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Launch sequence aborted!"))
 
 	if(usr)
@@ -136,7 +136,7 @@
 	authorized = initial(authorized)
 
 //returns 1 if the ID was accepted and a new authorization was added, 0 otherwise
-/obj/machinery/computer/shuttle_control/emergency/proc/read_authorization(var/obj/item/ident)
+/obj/machinery/computer/shuttle_control/emergency/proc/read_authorization(obj/item/ident)
 	if (!ident || !istype(ident))
 		return 0
 	if (authorized.len >= req_authorizations)
@@ -180,7 +180,7 @@
 
 	return 1
 
-/obj/machinery/computer/shuttle_control/emergency/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/shuttle_control/emergency/emag_act(remaining_charges, mob/user)
 	if (!emagged)
 		to_chat(user, span_notice("You short out \the [src]'s authorization protocols."))
 		emagged = 1

@@ -10,7 +10,6 @@
 	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefacts power."
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4, TECH_ARCANE = 1)
 	var/imprinted = "empty"
 	var/possible_constructs = list("Juggernaut","Wraith","Artificer","Harvester")
 
@@ -19,22 +18,22 @@
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/soulstone/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!ishuman(M))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
-		return..()
+		return ..()
 	if(jobban_isbanned(M, JOB_CULTIST))
 		to_chat(user, span_warning("This person's soul is too corrupt and cannot be captured!"))
-		return..()
+		return ..()
 
 	if(M.has_brain_worms()) //Borer stuff - RR
 		to_chat(user, span_warning("This being is corrupted by an alien intelligence and cannot be soul trapped."))
-		return..()
+		return ..()
 
 	add_attack_logs(user,M,"Soulstone'd with [src.name]")
 	transfer_soul("VICTIM", M, user)
-	return
+	return ITEM_INTERACT_SUCCESS
 
 
 ///////////////////Options for using captured souls///////////////////////////////////////
@@ -106,7 +105,7 @@
 
 
 ////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
-/obj/item/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_human(mob/living/carbon/human/T,mob/U)
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")
@@ -159,7 +158,7 @@
 	src.imprinted = "[S.name]"
 	qdel(T)
 
-/obj/item/soulstone/proc/transfer_shade(var/mob/living/simple_mob/construct/shade/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_shade(mob/living/simple_mob/construct/shade/T,mob/U)
 	if(!istype(T))
 		return;
 	if (T.stat == DEAD)
@@ -181,7 +180,7 @@
 	to_chat(T, "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form")
 	to_chat(U, span_notice("Capture successful!") + ": [T.name]'s has been recaptured and stored within the soul stone.")
 
-/obj/item/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_construct(obj/structure/constructshell/T,mob/U)
 	var/mob/living/simple_mob/construct/shade/A = locate() in src
 	if(!A)
 		to_chat(U, span_danger("Capture failed!") + ": The soul stone is empty! Go kill someone!")
@@ -239,7 +238,7 @@
 			Z.cancel_camera()
 			qdel(src)
 
-/obj/item/soulstone/proc/transfer_soul(var/choice as text, var/target, var/mob/U as mob)
+/obj/item/soulstone/proc/transfer_soul(choice as text, target, mob/U as mob)
 	switch(choice)
 		if("VICTIM")
 			transfer_human(target,U)

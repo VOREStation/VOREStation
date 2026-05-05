@@ -134,7 +134,7 @@
 	else
 		..()
 
-/obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()
@@ -162,7 +162,8 @@
 	return
 
 /obj/vehicle/emp_act(severity, recursive)
-	if(!mechanical)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !mechanical)
 		return
 
 	var/was_on = on
@@ -217,7 +218,7 @@
 	set_light(0)
 	update_icon()
 
-/obj/vehicle/emag_act(var/remaining_charges, mob/user as mob)
+/obj/vehicle/emag_act(remaining_charges, mob/user as mob)
 	if(!mechanical)
 		return FALSE
 
@@ -276,7 +277,7 @@
 		turn_on()
 		return
 
-/obj/vehicle/proc/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/proc/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	if(!mechanical)
 		return
 	if(cell)
@@ -290,7 +291,7 @@
 	powercheck()
 	to_chat(H, span_notice("You install [C] in [src]."))
 
-/obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/remove_cell(mob/living/carbon/human/H)
 	if(!mechanical)
 		return
 	if(!cell)
@@ -302,7 +303,7 @@
 	cell = null
 	powercheck()
 
-/obj/vehicle/proc/RunOver(var/mob/living/M)
+/obj/vehicle/proc/RunOver(mob/living/M)
 	return		//write specifics for different vehicles
 
 //-------------------------------------------
@@ -312,7 +313,7 @@
 // the vehicle load() definition before
 // calling this parent proc.
 //-------------------------------------------
-/obj/vehicle/proc/load(var/atom/movable/C, var/mob/living/user)
+/obj/vehicle/proc/load(atom/movable/C, mob/living/user)
 	//This loads objects onto the vehicle so they can still be interacted with.
 	//Define allowed items for loading in specific vehicle definitions.
 	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
@@ -345,7 +346,7 @@
 	return 1
 
 
-/obj/vehicle/proc/unload(var/mob/user, var/direction)
+/obj/vehicle/proc/unload(mob/user, direction)
 	if(!load)
 		return
 
@@ -401,11 +402,11 @@
 /obj/vehicle/proc/update_stats()
 	return
 
-/obj/vehicle/attack_generic(var/mob/user, var/damage, var/attack_message)
+/obj/vehicle/attack_generic(mob/user, damage, attack_message)
 	if(!damage)
 		return
 	visible_message(span_danger("[user] [attack_message] the [src]!"))
-	user.attack_log += text("\[[time_stamp()]\] [span_red("attacked [src.name]")]")
+	add_attack_logs(user, src, "attacked")
 	user.do_attack_animation(src)
 	src.health -= damage
 	if(mechanical && prob(10))
@@ -413,7 +414,7 @@
 	spawn(1) healthcheck()
 	return 1
 
-/obj/vehicle/take_damage(var/damage)
+/obj/vehicle/take_damage(damage)
 	if(!damage)
 		return
 	src.health -= damage

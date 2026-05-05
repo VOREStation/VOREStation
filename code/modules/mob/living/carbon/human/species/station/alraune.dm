@@ -96,7 +96,7 @@
 		)
 
 
-/datum/species/alraune/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/alraune/handle_environment_special(mob/living/carbon/human/H)
 	if(H.inStasisNow()) // if they're in stasis, they won't need this stuff.
 		return
 

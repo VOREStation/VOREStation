@@ -75,7 +75,7 @@
 /datum/say_list/solarmoth
 	emote_see = list("flutters")
 
-/mob/living/simple_mob/vore/solarmoth/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/solarmoth/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(shock_chance))

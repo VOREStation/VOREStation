@@ -28,7 +28,7 @@
 								span_danger("Your face burns up, and shortly after the fire you realise you have the face of a horse!"))
 		target.flash_eyes()
 
-/datum/spell/targeted/equip_item/horsemask/summon_item(var/new_type)
+/datum/spell/targeted/equip_item/horsemask/summon_item(new_type)
 	var/obj/item/new_item = new new_type
 	new_item.canremove = FALSE		//curses!
 	new_item.unacidable = TRUE
@@ -36,4 +36,6 @@
 		var/obj/item/clothing/mask/horsehead/magichead = new_item
 		magichead.flags_inv = null	//so you can still see their face
 		magichead.voicechange = 1	//NEEEEIIGHH
+		magichead.say_verbs = list("neighs", "whinnys", "snorts")
+		magichead.say_messages = list("NEEEEIGH", "KEECHOOOW", "WHIIIINNNY", "NEEEEEEIGHHHH", "KEECHOOOWWW")
 	return new_item

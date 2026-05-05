@@ -63,6 +63,14 @@
 #define ALLERGEN_POLLEN		0x4000  // Teshari sneezes! Grasses and plants make you have a reaction.
 #define ALLERGEN_SALT 		0x8000  // Chefs beware, can't have fast food!
 
+// Medical allergies
+#define MEDALLERGEN_TRICORD		0x1
+#define MEDALLERGEN_BICARD		0x2
+#define MEDALLERGEN_DYLO 		0x4
+#define MEDALLERGEN_SPACACIL	0x8
+#define MEDALLERGEN_PERIDAX		0x10
+#define MEDALLERGEN_KELOTANE	0x20
+
 // Allergen reactions
 #define AG_PHYS_DMG	0x1	// brute
 #define AG_BURN_DMG	0x2	// burns

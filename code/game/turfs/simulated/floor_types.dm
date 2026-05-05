@@ -20,7 +20,7 @@
 		my_turf = get_turf(src)
 		moveToNullspace()
 
-/obj/landed_holder/proc/land_on(var/turf/T)
+/obj/landed_holder/proc/land_on(turf/T)
 	//Gather destination information
 	var/obj/landed_holder/new_holder = new(null)
 	T.lighting_clear_overlay()
@@ -59,7 +59,7 @@
 
 	return new_dest
 
-/obj/landed_holder/proc/leave_turf(var/turf/base_turf = null)
+/obj/landed_holder/proc/leave_turf(turf/base_turf = null)
 	var/turf/new_source
 	//Change our source to whatever it was before
 	if(turf_type)
@@ -91,6 +91,7 @@
 	var/join_flags = 0 //Bitstring to represent adjacency of joining walls
 	var/join_group = "shuttle" //A tag for what other walls to join with. Null if you don't want them to.
 	var/static/list/antilight_cache
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /turf/simulated/shuttle/Initialize(mapload)
 	. = ..()
@@ -312,6 +313,36 @@
 /turf/simulated/floor/tiled/material/uranium
 	icon_state = "uranium"
 	initial_flooring = /datum/decl/flooring/tiling/material/uranium
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
+
+/turf/simulated/floor/tiled/material/uranium/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE, PROC_REF(radiate))
+
+/turf/simulated/floor/tiled/material/uranium/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
+	. = ..()
+
+/turf/simulated/floor/tiled/material/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 1,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 1
+	)
+	propagate_radiation_pulse()
+	last_event = world.time
+	active = FALSE
 
 /datum/decl/flooring/tiling/material/uranium
 	name = "uranium floor"

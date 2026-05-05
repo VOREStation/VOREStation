@@ -60,7 +60,7 @@
 		reagents.add_reagent(REAGENT_ID_NUTRIMENT,(nutriment_amt*2),nutriment_desc)
 
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/eater, var/mob/living/feeder)
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/living/eater, mob/living/feeder)
 	SEND_SIGNAL(src, COMSIG_FOOD_EATEN, eater, feeder)
 	if(food_inserted_micros && food_inserted_micros.len)
 		for(var/mob/living/micro in food_inserted_micros)
@@ -102,20 +102,20 @@
 	if(canned && !user.incapacitated())
 		uncan(user)
 
-/obj/item/reagent_containers/food/snacks/attack(mob/living/eater as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/attack(mob/living/eater, mob/living/user, target_zone, attack_modifier)
 	if(reagents && !reagents.total_volume)
 		balloon_alert(user, "none of \the [src] left!")
 		user.drop_from_inventory(src)
 		qdel(src)
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	if(package)
 		balloon_alert(user, "the package is in the way!")
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	if(canned)
 		balloon_alert(user, "the can is closed!")
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	if(istype(eater, /mob/living/carbon))
 		//TODO: replace with standard_feed_mob() call.
@@ -123,7 +123,7 @@
 		if(!eater.consume_liquid_belly)
 			if(liquid_belly_check())
 				to_chat(user, span_infoplain("[user == eater ? "You can't" : "\The [eater] can't"] consume that, it contains something produced from a belly!"))
-				return FALSE
+				return ITEM_INTERACT_FAILURE
 		var/swallow_whole = FALSE
 		var/obj/belly/belly_target				// These are surprise tools that will help us later
 
@@ -133,7 +133,7 @@
 				var/mob/living/carbon/human/human_eater = eater
 				if(!human_eater.check_has_mouth())
 					balloon_alert(user, "you don't have a mouth!")
-					return
+					return ITEM_INTERACT_FAILURE
 				var/obj/item/blocked = null
 				if(survivalfood)
 					blocked = human_eater.check_mouth_coverage_survival()
@@ -141,7 +141,7 @@
 					blocked = human_eater.check_mouth_coverage()
 				if(blocked)
 					balloon_alert(user, "\the [blocked] is in the way!")
-					return
+					return ITEM_INTERACT_FAILURE
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
@@ -164,7 +164,7 @@
 				to_chat(eater, span_danger("You glug down the bite of [src], you are reaching the very limits of what you can eat, but maybe a few more bites could be managed..."))
 			if (fullness > 6000) // There has to be a limit eventually.
 				to_chat(eater, span_danger("Nope. That's it. You literally cannot force any more of [src] to go down your throat. It's fair to say you're full."))
-				return FALSE
+				return ITEM_INTERACT_FAILURE
 
 		else if(user.a_intent == I_HURT)
 			return ..()
@@ -174,7 +174,7 @@
 				var/mob/living/carbon/human/human_eater = eater
 				if(!human_eater.check_has_mouth())
 					balloon_alert(user, "\the [human_eater] doesn't have a mouth!")
-					return
+					return ITEM_INTERACT_FAILURE
 				var/obj/item/blocked = null
 				var/unconcious = FALSE
 				blocked = human_eater.check_mouth_coverage()
@@ -192,20 +192,20 @@
 
 				if(unconcious)
 					to_chat(user, span_warning("You can't feed [human_eater] through \the [blocked] while they are unconcious!"))
-					return
+					return ITEM_INTERACT_FAILURE
 
 				if(blocked)
 					// to_chat(user, span_warning("\The [blocked] is in the way!"))
 					balloon_alert(user, "\the [blocked] is in the way!")
-					return
+					return ITEM_INTERACT_FAILURE
 
 				if(swallow_whole)
 					if(!(human_eater.feeding))
 						balloon_alert(user, "you can't feed [human_eater] a whole [src] as they refuse to be fed whole things!")
-						return
+						return ITEM_INTERACT_FAILURE
 					if(!belly_target)
 						balloon_alert(user, "you can't feed [human_eater] a whole [src] as they don't appear to have a belly to fit it!")
-						return
+						return ITEM_INTERACT_FAILURE
 
 				if(swallow_whole)
 					user.balloon_alert_visible("[user] attempts to make [human_eater] consume [src] whole into their [belly_target].")
@@ -217,10 +217,13 @@
 					feed_duration = 5 SECONDS
 
 				user.setClickCooldown(user.get_attack_speed(src))
-				if(!do_after(user, feed_duration, human_eater)) return
-				if(!reagents || (reagents && !reagents.total_volume)) return
+				if(!do_after(user, feed_duration, human_eater))
+					return ITEM_INTERACT_FAILURE
+				if(!reagents || (reagents && !reagents.total_volume))
+					return ITEM_INTERACT_FAILURE
 
-				if(swallow_whole && !belly_target) return			// Just in case we lost belly mid-feed
+				if(swallow_whole && !belly_target)
+					return ITEM_INTERACT_FAILURE			// Just in case we lost belly mid-feed
 
 				if(swallow_whole)
 					add_attack_logs(user, human_eater,"Whole-fed with [src.name] containing [reagentlist(src)] into [belly_target]", admin_notify = FALSE)
@@ -233,12 +236,12 @@
 
 			else
 				balloon_alert(user, "this creature does not seem to have a mouth!")
-				return
+				return ITEM_INTERACT_FAILURE
 
 		if(swallow_whole)
 			user.drop_item()
 			forceMove(belly_target)
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 		else if(reagents)								//Handle ingestion of the reagent.
 			playsound(eater, eating_sound, rand(10,50), 1)
 			if(reagents.total_volume)
@@ -252,9 +255,9 @@
 					reagents.trans_to_mob(eater, reagents.total_volume, CHEM_INGEST)
 				bitecount++
 				On_Consume(eater, user)
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 
-	return FALSE
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
@@ -418,7 +421,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
+/obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
 	user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."))
@@ -2005,7 +2008,7 @@
 	flags |= OPENCONTAINER
 	return
 
-/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
+/obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
 	var/mob/living/Prey = Expand()
 
 	if(!isliving(M))
@@ -3760,7 +3763,7 @@
 	icon_state = "buche"
 	slice_path = /obj/item/reagent_containers/food/snacks/bucheslice
 	slices_num = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 20
 	nutriment_desc = list("spongy cake" = 20)
 	bitesize = 3
@@ -3787,7 +3790,7 @@
 	icon_state = "turkey"
 	slice_path = /obj/item/reagent_containers/food/snacks/turkeyslice
 	slices_num = 6
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 20
 	nutriment_desc = list("turkey" = 20)
 	bitesize = 5
@@ -3815,7 +3818,7 @@
 	icon_state = "roastturkey"
 	slice_path = /obj/item/reagent_containers/food/snacks/turkeyslice
 	slices_num = 6
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 20
 	nutriment_desc = list("turkey" = 20)
 	bitesize = 5
@@ -3862,7 +3865,7 @@
 	nutriment_amt = 48
 	nutriment_desc = list("pure power" = 48)
 	bitesize = 12
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/reagent_containers/food/snacks/sliceable/suppermatter/Initialize(mapload)
 	. = ..()
@@ -3890,7 +3893,7 @@
 	nutriment_amt = 60
 	nutriment_desc = list("pure, indescribable power" = 60)
 	bitesize = 12
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/reagent_containers/food/snacks/sliceable/excitingsuppermatter/Initialize(mapload)
 	. = ..()
@@ -5141,7 +5144,7 @@
 	return . = ..()
 
 //This proc handles drawing coatings out of a container when this food is dipped into it
-/obj/item/reagent_containers/food/snacks/proc/apply_coating(var/datum/reagent/nutriment/coating/C, var/mob/user)
+/obj/item/reagent_containers/food/snacks/proc/apply_coating(datum/reagent/nutriment/coating/C, mob/user)
 	if (coating)
 		to_chat(user, "The [src] is already coated in [coating.name]!")
 		return 0
@@ -5236,7 +5239,7 @@
 			C.data["cooked"] = 1
 			C.name = C.cooked_name
 
-/obj/item/reagent_containers/food/snacks/proc/on_consume(var/mob/eater, var/mob/feeder = null)
+/obj/item/reagent_containers/food/snacks/proc/on_consume(mob/eater, mob/feeder = null)
 	if(!reagents.total_volume)
 		eater.visible_message(span_notice("[eater] finishes eating \the [src]."),span_notice("You finish eating \the [src]."))
 
@@ -6569,7 +6572,7 @@
 	icon_state = "admint_pack"
 	item_state = "candy"
 	slot_flags = SLOT_EARS
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/reagent_containers/food/snacks/mint/admints = 6)
 	can_hold = list(/obj/item/reagent_containers/food/snacks/mint/admints)
 	use_sound = 'sound/items/drop/paper.ogg'
@@ -6685,7 +6688,7 @@
 	trash = /obj/item/trash/candy/cb01
 	nutriment_amt = 4
 	nutriment_desc = list("stale chocolate" = 2, "nougat" = 1, "caramel" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb01/Initialize(mapload)
@@ -6702,7 +6705,7 @@
 	trash = /obj/item/trash/candy/cb02
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "caramel" = 1, "puffed rice" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb02/Initialize(mapload)
@@ -6719,7 +6722,7 @@
 	trash = /obj/item/trash/candy/cb03
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 4)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb03/Initialize(mapload)
@@ -6736,7 +6739,7 @@
 	trash = /obj/item/trash/candy/cb04
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "salt = 1", "licorice" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/cb04/Initialize(mapload)
@@ -6753,7 +6756,7 @@
 	trash = /obj/item/trash/candy/cb05
 	nutriment_amt = 3
 	nutriment_desc = list("milk chocolate" = 2)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb05/Initialize(mapload)
@@ -6770,7 +6773,7 @@
 	trash = /obj/item/trash/candy/cb06
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, REAGENT_ID_COFFEE = 1, "vanilla wafer" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb06/Initialize(mapload)
@@ -6788,7 +6791,7 @@
 	trash = /obj/item/trash/candy/cb07
 	nutriment_amt = 4
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "taro" = 2)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb07/Initialize(mapload)
@@ -6805,7 +6808,7 @@
 	trash = /obj/item/trash/candy/cb08
 	nutriment_amt = 3
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "malt puffs" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb08/Initialize(mapload)
@@ -6822,7 +6825,7 @@
 	trash = /obj/item/trash/candy/cb09
 	nutriment_amt = 6
 	nutriment_desc = list("peanuts" = 3, "condensed milk" = 1, "cashews" = 2)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb09/Initialize(mapload)
@@ -6841,7 +6844,7 @@
 	trash = /obj/item/trash/candy/cb10
 	nutriment_amt = 5
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "caramel" = 1, "peanuts" = 1, "nougat" = 1)
-	w_class = 1
+	w_class = ITEMSIZE_TINY
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cb10/Initialize(mapload)

@@ -440,7 +440,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
 		)
 
-/obj/item/toy/flash/attack(mob/living/M, mob/user)
+/obj/item/toy/flash/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!cooldown)
 		playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 		flick("[initial(icon_state)]2", src)
@@ -507,7 +507,7 @@
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
+		if(!player.mind || SSantag_job.player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
 			continue
 		players += player.real_name
 
@@ -693,8 +693,8 @@
 		playsound(src, 'sound/weapons/revolver_spin.ogg', 100, 1)
 		spin_cylinder()
 
-/obj/item/toy/russian_revolver/attack(mob/M, mob/living/user)
-	return
+/obj/item/toy/russian_revolver/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/toy/russian_revolver/afterattack(atom/target, mob/user, flag, params)
 	if(flag)
@@ -851,7 +851,7 @@
 			popped = 0
 			icon_state = "tastybread"
 
-/obj/item/toy/snake_popper/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/toy/snake_popper/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(ishuman(M))
 		if(!popped)
 			to_chat(user, span_warning("A snake popped out of [src]!"))
@@ -875,6 +875,9 @@
 			var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
 			s.set_up(5, 1, src)
 			s.start()
+			return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
+	return NONE
 
 /obj/item/toy/snake_popper/emag_act(remaining_charges, mob/user)
 	if(real != 2)
@@ -1121,7 +1124,7 @@
 	icon_state = "monster_bait"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/toy/monster_bait/afterattack(var/atom/A, var/mob/user)
+/obj/item/toy/monster_bait/afterattack(atom/A, mob/user)
 	var/mob/living/simple_mob/M = A
 	if(M.z != user.z || get_dist(user,M) > 1)
 		to_chat(user, span_notice("You need to stand right next to \the [M] to bait it."))

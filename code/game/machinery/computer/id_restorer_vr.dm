@@ -10,6 +10,7 @@
 	density = FALSE
 	clicksound = null
 	circuit = /obj/item/circuitboard/id_restorer
+	flags = WALL_ITEM
 
 	var/icon_success = "restorer_success"
 	var/icon_fail = "restorer_fail"
@@ -94,5 +95,5 @@
 	y_offset = 30
 	icon_override = 'icons/obj/machines/id_restorer_vr.dmi'
 
-/datum/frame/frame_types/id_restorer/get_icon_state(var/state)
+/datum/frame/frame_types/id_restorer/get_icon_state(state)
 	return "restorer_b[state]"

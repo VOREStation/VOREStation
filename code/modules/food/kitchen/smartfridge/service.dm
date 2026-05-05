@@ -3,8 +3,9 @@
  */
 /obj/machinery/smartfridge/chef
 	desc = "For storing all sorts of delicious foods!"
+	circuit = /obj/item/circuitboard/smartfridge/kitchen
 
-/obj/machinery/smartfridge/chef/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/chef/accept_check(obj/item/O)
 	if(istype(O,/obj/item/reagent_containers/food/snacks))
 		return TRUE
 	return FALSE
@@ -16,8 +17,9 @@
 	name = "\improper Smart Drink Storage"
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 	icon_contents = "drinks"
+	circuit = /obj/item/circuitboard/smartfridge/drinks
 
-/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
 	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return TRUE
 	return FALSE
@@ -26,6 +28,7 @@
 	name = "\improper Drink Showcase"
 	icon_state = "base_showcase"
 	icon_base = "showcase"
+	circuit = /obj/item/circuitboard/smartfridge/drinks/showcase
 
 //Showcase needs a special icon update
 /obj/machinery/smartfridge/drinks/showcase/update_icon()
@@ -54,6 +57,7 @@
 	name = "\improper Smart Produce Storage"
 	desc = "For storing all sorts of perishable produce!"
 	icon_contents = "plants"
+	circuit = /obj/item/circuitboard/smartfridge/produce
 
 /obj/machinery/smartfridge/produce/persistent
 	persistent = /datum/persistent/storage/smartfridge/produce
@@ -61,7 +65,7 @@
 /obj/machinery/smartfridge/produce/persistent_lossy
 	persistent = /datum/persistent/storage/smartfridge/produce/lossy
 
-/obj/machinery/smartfridge/produce/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/produce/accept_check(obj/item/O)
 	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return TRUE
 	return FALSE
@@ -71,7 +75,7 @@
 	desc = "When you need seeds fast!"
 	icon_contents = "petri" //There's no seed base in the current batch
 
-/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/seeds/))
+/obj/machinery/smartfridge/seeds/accept_check(obj/item/O)
+	if(istype(O,/obj/item/seeds))
 		return TRUE
 	return FALSE

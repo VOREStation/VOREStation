@@ -1,4 +1,4 @@
-/obj/belly/proc/put_in_egg(var/atom/movable/M, message=0)
+/obj/belly/proc/put_in_egg(atom/movable/M, message=0)
 	var/mob/living/carbon/human/O = owner
 	var/egg_path = /obj/structure/closet/secure_closet/egg
 	var/egg_name = "odd egg"

@@ -36,7 +36,7 @@
 	else
 		icon_state = "shibari_[rope_mode]"
 
-/obj/item/clothing/suit/shibari/equipped(var/mob/living/user,var/slot)
+/obj/item/clothing/suit/shibari/equipped(mob/living/user,slot)
 	. = ..()
 	if((rope_mode == SHIBARI_ARMS) || (rope_mode == SHIBARI_BOTH))
 		if(slot == slot_wear_suit)
@@ -58,7 +58,7 @@
 					if(user.hud_used && user.hud_used.move_intent)
 						user.hud_used.move_intent.icon_state = "walking"
 
-/obj/item/clothing/suit/shibari/dropped(var/mob/living/user)
+/obj/item/clothing/suit/shibari/dropped(mob/user, equipping, slot)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

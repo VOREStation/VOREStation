@@ -1,10 +1,10 @@
 
-/proc/HasAbove(var/z)
+/proc/HasAbove(z)
 	return 0
-/proc/HasBelow(var/z)
+/proc/HasBelow(z)
 	return 0
 // These give either the turf or null.
-/proc/GetAbove(var/turf/turf)
+/proc/GetAbove(turf/turf)
 	return null
-/proc/GetBelow(var/turf/turf)
+/proc/GetBelow(turf/turf)
 	return null

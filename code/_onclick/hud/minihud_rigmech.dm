@@ -8,7 +8,7 @@
 
 	needs_processing = TRUE
 
-/datum/mini_hud/rig/New(var/datum/hud/other, var/obj/item/rig/owner)
+/datum/mini_hud/rig/New(datum/hud/other, obj/item/rig/owner)
 	owner_rig = owner
 	power = new ()
 	health = new ()
@@ -22,7 +22,7 @@
 	screenobjs += new /atom/movable/screen/rig/deco2_f
 
 	for(var/atom/movable/screen/S as anything in screenobjs)
-		S.master = owner_rig
+		S.master_ref = WEAKREF(owner_rig)
 	..()
 
 /datum/mini_hud/rig/Destroy()
@@ -57,7 +57,7 @@
 
 	needs_processing = TRUE
 
-/datum/mini_hud/mech/New(var/datum/hud/other, var/obj/mecha/owner)
+/datum/mini_hud/mech/New(datum/hud/other, obj/mecha/owner)
 	owner_mech = owner
 	power = new ()
 	health = new ()
@@ -71,7 +71,7 @@
 	screenobjs += new /atom/movable/screen/mech/deco2_f
 
 	for(var/atom/movable/screen/S as anything in screenobjs)
-		S.master = owner_mech
+		S.master_ref = WEAKREF(owner_mech)
 	..()
 
 /datum/mini_hud/mech/Destroy()
@@ -146,7 +146,7 @@
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat || user.incapacitated())
 		return
-	var/obj/item/rig/owner_rig = master
+	var/obj/item/rig/owner_rig = master_ref?.resolve()
 	if(user != owner_rig.wearer)
 		return
 	user.toggle_internals()
@@ -198,7 +198,7 @@
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat || user.incapacitated())
 		return
-	var/obj/mecha/owner_mech = master
+	var/obj/mecha/owner_mech = master_ref?.resolve()
 	if(user != owner_mech.occupant)
 		return
 	owner_mech.toggle_internal_tank()

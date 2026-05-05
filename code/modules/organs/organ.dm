@@ -1,5 +1,3 @@
-var/list/organ_cache = list()
-
 /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
@@ -64,7 +62,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/Initialize(mapload, var/internal)
+/obj/item/organ/Initialize(mapload, internal)
 	. = ..()
 	create_reagents(5)
 
@@ -130,7 +128,7 @@ var/list/organ_cache = list()
 				else
 					meat_type = /obj/item/reagent_containers/food/snacks/meat
 
-/obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
+/obj/item/organ/proc/set_dna(datum/dna/new_dna)
 	if(new_dna)
 		data.setup_from_dna(new_dna)
 		forensic_data?.clear_blooddna()
@@ -146,7 +144,7 @@ var/list/organ_cache = list()
 		owner.can_defib = FALSE
 		owner.death()
 
-/obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
+/obj/item/organ/proc/adjust_germ_level(amount)		// Unless you're setting germ level directly to 0, use this proc instead
 	germ_level = CLAMP(germ_level + amount, 0, INFECTION_LEVEL_MAX)
 
 /obj/item/organ/process()
@@ -327,14 +325,15 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/remove_rejuv()
 	qdel(src)
 
-/obj/item/organ/proc/rejuvenate(var/ignore_prosthetic_prefs)
+/obj/item/organ/proc/rejuvenate(ignore_prosthetic_prefs)
 	damage = 0
 	status = 0
 	germ_level = 0
 	if(owner)
 		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
-		var/status = owner.client.prefs.organ_data[organ_tag]
+		var/list/organ_data = owner.client.prefs.read_preference(/datum/preference/organ_data)
+		var/status = organ_data?[organ_tag]
 		if(status == FBP_ASSISTED)
 			mechassist()
 		else if(status == FBP_MECHANICAL)
@@ -367,7 +366,7 @@ var/list/organ_cache = list()
 			adjust_germ_level(-antibiotics)	// You waited this long to get treated, you don't really deserve this organ
 
 //Adds autopsy data for used_weapon.
-/obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
+/obj/item/organ/proc/add_autopsy_data(used_weapon, damage)
 	var/datum/autopsy_data/W = autopsy_data[used_weapon]
 	if(!W)
 		W = new()
@@ -379,7 +378,7 @@ var/list/organ_cache = list()
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/take_damage(amount, var/silent=0)
+/obj/item/organ/take_damage(amount, silent=0)
 	if(owner)
 		if(SEND_SIGNAL(owner, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, amount, silent) & COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE)
 			return 0
@@ -418,6 +417,9 @@ var/list/organ_cache = list()
 	robotize()
 
 /obj/item/organ/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	for(var/obj/O as anything in src.contents)
 		O.emp_act(severity, recursive)
 
@@ -425,16 +427,16 @@ var/list/organ_cache = list()
 		return
 	for(var/i = 1; i <= robotic; i++)
 		switch (severity)
-			if (1)
+			if (EMP_HEAVY)
 				take_damage(rand(5,9))
-			if (2)
+			if (EMP_MEDIUM)
 				take_damage(rand(3,7))
-			if (3)
+			if (EMP_LIGHT)
 				take_damage(rand(2,5))
-			if (4)
+			if (EMP_HARMLESS)
 				take_damage(rand(1,3))
 
-/obj/item/organ/proc/removed(var/mob/living/user)
+/obj/item/organ/proc/removed(mob/living/user)
 	if(owner)
 		owner.internal_organs_by_name[organ_tag] = null
 		owner.internal_organs_by_name -= organ_tag
@@ -469,7 +471,7 @@ var/list/organ_cache = list()
 	owner = null
 
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/proc/replaced(mob/living/carbon/human/target,obj/item/organ/external/affected)
 
 	if(!istype(target)) return
 
@@ -547,7 +549,7 @@ var/list/organ_cache = list()
 			return
 	return ..()
 
-/obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
+/obj/item/organ/proc/can_butcher(obj/item/O, mob/living/user)
 	if(butcherable && meat_type)
 
 		if(istype(O, /obj/machinery/gibber))	// The great equalizer.
@@ -563,7 +565,7 @@ var/list/organ_cache = list()
 
 	return FALSE
 
-/obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
+/obj/item/organ/proc/butcher(obj/item/O, mob/living/user, atom/newtarget)
 
 	if(user)
 		to_chat(user, span_danger("You are preparing to butcher \the [src]!"))
@@ -604,7 +606,7 @@ var/list/organ_cache = list()
 		return 0
 	return 1
 
-/obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
+/obj/item/organ/proc/handle_organ_mod_special(removed = FALSE)	// Called when created, transplanted, and removed.
 	if(!istype(owner))
 		return
 

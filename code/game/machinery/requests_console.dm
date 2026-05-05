@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 	light_power = 0.25
 	light_color = "#00ff00"
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = WALL_ITEM
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -229,7 +230,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			. = TRUE
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messaging on that console (EXTREME priority...), but the code for that was removed.
-/obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/requests_console/attackby(obj/item/O as obj, mob/user as mob)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
 	if(istype(O, /obj/item/multitool))
@@ -274,7 +275,7 @@ GLOBAL_LIST_EMPTY_TYPED(allConsoles, /obj/machinery/requests_console)
 			SStgui.update_uis(src)
 	return
 
-/obj/machinery/requests_console/proc/reset_message(var/mainmenu = 0)
+/obj/machinery/requests_console/proc/reset_message(mainmenu = 0)
 	message = ""
 	recipient = ""
 	priority = 0

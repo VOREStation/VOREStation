@@ -90,6 +90,6 @@
 				cure()
 	return
 
-/datum/disease/roanoke/proc/fever(var/mob/living/M, var/datum/disease/D)
+/datum/disease/roanoke/proc/fever(mob/living/M, datum/disease/D)
 	M.bodytemperature = min(M.bodytemperature + (2 * stage), BODYTEMP_HEAT_DAMAGE_LIMIT - 1)
 	return TRUE

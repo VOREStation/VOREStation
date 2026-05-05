@@ -94,8 +94,6 @@
 	var/emp_protection = 0
 	item_flags = PHORONGUARD //VOREStation add
 
-	// Wiring! How exciting.
-	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
@@ -106,13 +104,14 @@
 	var/protean = 0
 	var/obj/item/storage/backpack/rig_storage
 	permeability_coefficient = 0  //Protect the squishies, after all this shit should be waterproof.
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/rig/Initialize(mapload)
 	. = ..()
 
 	suit_state = icon_state
 	item_state = icon_state
-	wires = new(src)
+	set_wires(new /datum/wires/rig(src))
 
 	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		locked = 0
@@ -224,8 +223,10 @@
 				M.unEquip(piece)
 			piece.forceMove(src)
 
-/obj/item/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
+/obj/item/rig/get_worn_icon_file(body_type,slot_name,default_icon,inhands)
 	if(!inhands && (slot_name == slot_back_str || slot_name == slot_belt_str))
+		if(body_type == SPECIES_TESHARI || body_type == SPECIES_WEREBEAST) //Until teshari get proper sprites for rigs, they can default to not having the sprite.
+			return null //All other species are 'humanoid enough' to wear the default rig sprite.
 		if(icon_override)
 			return icon_override
 		else if(mob_icon)
@@ -249,7 +250,7 @@
 // Updates pressure protection
 // Seal = 1 sets protection
 // Seal = 0 unsets protection
-/obj/item/rig/proc/update_airtight(var/obj/item/piece, var/seal = 0)
+/obj/item/rig/proc/update_airtight(obj/item/piece, seal = 0)
 	if(seal == 1)
 		piece.min_pressure_protection = rigsuit_min_pressure
 		piece.max_pressure_protection = rigsuit_max_pressure
@@ -423,13 +424,13 @@
 		else
 			update_airtight(piece, 1) // Seal
 
-/obj/item/rig/proc/toggle_cooling(var/mob/user)
+/obj/item/rig/proc/toggle_cooling(mob/user)
 	if(cooling_on)
 		turn_cooling_off(user)
 	else
 		turn_cooling_on(user)
 
-/obj/item/rig/proc/turn_cooling_on(var/mob/user)
+/obj/item/rig/proc/turn_cooling_on(mob/user)
 	if(!cell)
 		return
 	if(cell.charge <= 0)
@@ -443,7 +444,7 @@
 	to_chat(user, span_notice("You switch \the [src]'s cooling system on."))
 
 
-/obj/item/rig/proc/turn_cooling_off(var/mob/user, var/failed)
+/obj/item/rig/proc/turn_cooling_off(mob/user, failed)
 	if(failed)
 		visible_message("\The [src]'s cooling system clicks and whines as it powers down.")
 	else
@@ -579,7 +580,7 @@
 	for(var/obj/item/rig_module/module in installed_modules)
 		cell.use(module.process()*10)
 
-/obj/item/rig/proc/check_power_cost(var/mob/living/user, var/cost, var/use_unconcious, var/obj/item/rig_module/mod, var/user_is_ai)
+/obj/item/rig/proc/check_power_cost(mob/living/user, cost, use_unconcious, obj/item/rig_module/mod, user_is_ai)
 
 	if(!istype(user))
 		return 0
@@ -615,7 +616,7 @@
 	cell.use(cost*10)
 	return 1
 
-/obj/item/rig/update_icon(var/update_mob_icon)
+/obj/item/rig/update_icon(update_mob_icon)
 
 	cut_overlays()
 	if(!mob_icon || update_mob_icon)
@@ -640,7 +641,7 @@
 		wearer.update_inv_back()
 	return
 
-/obj/item/rig/proc/check_suit_access(var/mob/living/carbon/human/user, var/do_message = TRUE)
+/obj/item/rig/proc/check_suit_access(mob/living/carbon/human/user, do_message = TRUE)
 
 	if(!security_check_enabled)
 		return 1
@@ -664,7 +665,7 @@
 
 	return 1
 
-/obj/item/rig/proc/notify_ai(var/message)
+/obj/item/rig/proc/notify_ai(message)
 	for(var/obj/item/rig_module/ai_container/module in installed_modules)
 		if(module.integrated_ai && module.integrated_ai.client && !module.integrated_ai.stat)
 			to_chat(module.integrated_ai, "[message]")
@@ -696,7 +697,7 @@
 		wearer.wearing_rig = src
 		update_icon()
 
-/obj/item/rig/proc/toggle_piece(var/piece, var/mob/living/carbon/human/H, var/deploy_mode, var/forced = FALSE)
+/obj/item/rig/proc/toggle_piece(piece, mob/living/carbon/human/H, deploy_mode, forced = FALSE)
 
 	if((sealing || !cell || !cell.charge) && !forced)
 		return
@@ -803,7 +804,7 @@
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, H, ONLY_DEPLOY)
 
-/obj/item/rig/dropped(mob/user)
+/obj/item/rig/dropped(mob/user, equipping, slot)
 	. = ..(user)
 	// So the next user will see the boot animation
 	tgui_shared_states?.Cut()
@@ -818,6 +819,9 @@
 	return 0
 
 /obj/item/rig/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	//set malfunctioning
 	if(emp_protection < 30) //for ninjas, really.
 		malfunctioning += 10
@@ -883,7 +887,7 @@
 			to_chat(wearer, span_warning("The [source] has damaged your [dam_module.interface_name]!"))
 	dam_module.deactivate()
 
-/obj/item/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
+/obj/item/rig/proc/malfunction_check(mob/living/carbon/human/user)
 	if(malfunction_delay)
 		if(offline)
 			to_chat(user, span_danger("The suit is completely unresponsive."))
@@ -892,7 +896,7 @@
 		return 1
 	return 0
 
-/obj/item/rig/proc/ai_can_move_suit(var/mob/user, var/check_user_module = 0, var/check_for_ai = 0)
+/obj/item/rig/proc/ai_can_move_suit(mob/user, check_user_module = 0, check_for_ai = 0)
 
 	if(check_for_ai)
 		if(!(locate(/obj/item/rig_module/ai_container) in contents))
@@ -929,13 +933,13 @@
 		return 0
 	return 1
 
-/obj/item/rig/proc/force_rest(var/mob/user)
+/obj/item/rig/proc/force_rest(mob/user)
 	if(!ai_can_move_suit(user, check_user_module = 1))
 		return
 	wearer.lay_down()
 	to_chat(user, span_notice("\The [wearer] is now [wearer.resting ? "resting" : "getting up"]."))
 
-/obj/item/rig/proc/forced_move(var/direction, var/mob/user, var/ai_moving = TRUE)
+/obj/item/rig/proc/forced_move(direction, mob/user, ai_moving = TRUE)
 
 	// Why is all this shit in client/Move()? Who knows?
 	if(world.time < wearer_move_delay)
@@ -1007,7 +1011,7 @@
 			wearer_move_delay += 2
 			return wearer.buckled.relaymove(wearer,direction)
 
-	var/power_cost = 200
+	var/power_cost = 50
 	if(!ai_moving)
 		power_cost = 20
 	cell.use(power_cost) //Arbitrary, TODO

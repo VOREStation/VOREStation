@@ -23,7 +23,7 @@
 	return
 
 // Moves the implant where it needs to go, and tells it if there's more to be done in post_implant
-/obj/item/implant/proc/handle_implant(var/mob/source, var/target_zone = BP_TORSO)
+/obj/item/implant/proc/handle_implant(mob/source, target_zone = BP_TORSO)
 	. = TRUE
 	imp_in = source
 	implanted = TRUE
@@ -41,7 +41,7 @@
 	GLOB.listening_objects |= src
 
 // Takes place after handle_implant, if that returns TRUE
-/obj/item/implant/proc/post_implant(var/mob/source)
+/obj/item/implant/proc/post_implant(mob/source)
 
 /obj/item/implant/proc/get_data()
 	return "No information available"
@@ -64,7 +64,7 @@
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
-/obj/item/implant/proc/implant_loadout(var/mob/living/carbon/human/H)
+/obj/item/implant/proc/implant_loadout(mob/living/carbon/human/H)
 	. = istype(H) && handle_implant(H, initialize_loc)
 	if(.)
 		invisibility = initial(invisibility)
@@ -112,7 +112,7 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/implant/tracking)
 	. = ..()
 	id = rand(1, 1000)
 
-/obj/item/implant/tracking/post_implant(var/mob/source)
+/obj/item/implant/tracking/post_implant(mob/source)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/implant/tracking/Destroy()
@@ -155,7 +155,8 @@ Implant Specifics:<BR>"}
 	return dat
 
 /obj/item/implant/tracking/emp_act(severity, recursive)
-	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction) //no, dawg, you can't malfunction while you are malfunctioning
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 
@@ -202,7 +203,7 @@ Implant Specifics:<BR>"}
 	return
 
 
-/obj/item/implant/dexplosive/activate(var/cause)
+/obj/item/implant/dexplosive/activate(cause)
 	if((!cause) || (!src.imp_in))	return 0
 	explosion(src, -1, 0, 2, 3, 0)//This might be a bit much, dono will have to see.
 	if(src.imp_in)
@@ -239,7 +240,7 @@ Implant Specifics:<BR>"}
 	hear(msg)
 	return
 
-/obj/item/implant/explosive/hear(var/msg)
+/obj/item/implant/explosive/hear(msg)
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	msg = replace_characters(msg, replacechars)
 	if(findtext(msg,phrase))
@@ -295,7 +296,8 @@ Implant Specifics:<BR>"}
 	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
 
 /obj/item/implant/explosive/emp_act(severity, recursive)
-	if (malfunction)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
@@ -386,7 +388,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		src.activate(src.reagents.total_volume)
 	return
 
-/obj/item/implant/chem/activate(var/cause)
+/obj/item/implant/chem/activate(cause)
 	if((!cause) || (!src.imp_in))	return 0
 	var/mob/living/carbon/R = src.imp_in
 	src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
@@ -399,7 +401,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	return
 
 /obj/item/implant/chem/emp_act(severity, recursive)
-	if (malfunction)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 
@@ -446,14 +449,14 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	if(!ishuman(M))
 		. = FALSE
 	var/mob/living/carbon/human/H = M
-	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
+	var/datum/antagonist/antag_data = SSantag_job.get_antag_data(H.mind.special_role)
 	if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
 		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [using_map.company_name] try to invade your mind!")
 		. = FALSE
 
 /obj/item/implant/loyalty/post_implant(mob/M)
 	var/mob/living/carbon/human/H = M
-	clear_antag_roles(H.mind, 1)
+	SSantag_job.clear_antag_roles(H.mind, 1)
 	to_chat(H, span_notice("You feel a surge of loyalty towards [using_map.company_name]."))
 
 //////////////////////////////
@@ -499,7 +502,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/death_alarm
 	name = "death alarm implant"
 	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_DATA = 1)
 	known_implant = TRUE
 	var/mobname = "Will Robinson"
 
@@ -516,6 +518,10 @@ the implant may become unstable and either pre-maturely inject the subject or si
 "} + span_bold("Integrity:") + {"Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
+/obj/item/implant/death_alarm/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
 /obj/item/implant/death_alarm/process()
 	if (!implanted) return
 	var/mob/M = imp_in
@@ -525,9 +531,12 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	else if(M.stat == 2)
 		activate("death")
 
-/obj/item/implant/death_alarm/activate(var/cause)
+/obj/item/implant/death_alarm/activate(cause)
 	var/mob/M = imp_in
 	var/area/t = get_area(M)
+	if(!t) // Failsafe
+		STOP_PROCESSING(SSobj, src)
+		return
 	switch (cause)
 		if("death")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
@@ -558,7 +567,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/implant/death_alarm/emp_act(severity, recursive)			//for some reason alarms stop going off in case they are emp'd, even without this
-	if (malfunction)		//so I'm just going to add a meltdown chance here
+	. = ..()
+	if (. & EMP_PROTECT_SELF || malfunction) //so I'm just going to add a meltdown chance here
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 
@@ -586,7 +596,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	icon_state = "implant_evil"
 	var/activation_emote = "sigh"
 	var/obj/item/scanned = null
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BIO = 2, TECH_ILLEGAL = 2)
 
 /obj/item/implant/compressed/get_data()
 	var/dat = {"

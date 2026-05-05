@@ -57,7 +57,7 @@
 		"Adrenal Valve Cluster" = list(/obj/item/organ/internal/heart/replicant/rage, 80)
 		)
 
-/obj/machinery/organ_printer/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/organ_printer/attackby(obj/item/O, mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
@@ -82,7 +82,7 @@
 	default_apply_parts()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/organ_printer/examine(var/mob/user)
+/obj/machinery/organ_printer/examine(mob/user)
 	. = ..()
 	var/biomass = get_biomass_volume()
 	if(biomass)
@@ -209,7 +209,7 @@
 
 	return biomass_count
 
-/obj/machinery/organ_printer/proc/can_print(var/choice, var/masscount = 0)
+/obj/machinery/organ_printer/proc/can_print(choice, masscount = 0)
 	var/biomass = get_biomass_volume()
 	if(biomass < masscount)
 		visible_message(span_infoplain(span_bold("\The [src]") + " displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'"))
@@ -221,7 +221,7 @@
 
 	return 1
 
-/obj/machinery/organ_printer/proc/print_organ(var/choice)
+/obj/machinery/organ_printer/proc/print_organ(choice)
 	var/new_organ = choice
 	var/obj/item/organ/O = new new_organ(get_turf(src))
 	O.status |= ORGAN_CUT_AWAY
@@ -258,7 +258,6 @@
 	name = "bioprinter circuit"
 	build_path = /obj/machinery/organ_printer/flesh
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/stock_parts/matter_bin = 2,
@@ -283,7 +282,7 @@
 			container = null
 	return ..()
 
-/obj/machinery/organ_printer/flesh/print_organ(var/choice)
+/obj/machinery/organ_printer/flesh/print_organ(choice)
 	var/obj/item/organ/O = ..()
 
 	playsound(src, 'sound/machines/ding.ogg', 50, 1)
@@ -321,7 +320,6 @@
 	name = "roboprinter circuit"
 	build_path = /obj/machinery/organ_printer/robot
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/stock_parts/matter_bin = 2,
@@ -347,7 +345,7 @@
 		new /obj/item/stack/material/steel(get_turf(src), FLOOR(stored_matter/matter_amount_per_sheet, 1))
 	return ..()
 
-/obj/machinery/organ_printer/robot/print_organ(var/choice)
+/obj/machinery/organ_printer/robot/print_organ(choice)
 	var/obj/item/organ/O = ..()
 	O.robotize()
 	O.status |= ORGAN_CUT_AWAY  // robotize() resets status to 0
@@ -355,7 +353,7 @@
 	audible_message(span_info("\The [src] dings, then spits out \a [O]."))
 	return O
 
-/obj/machinery/organ_printer/robot/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/organ_printer/robot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == matter_type)
 		if((max_stored_matter-stored_matter) < matter_amount_per_sheet)
 			to_chat(user, span_warning("\The [src] is too full."))

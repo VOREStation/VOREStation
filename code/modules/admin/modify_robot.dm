@@ -1,14 +1,10 @@
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
-	set name = "Modify Robot"
-	set desc = "Allows to add or remove modules to/from robots."
-	set category = "Admin.Silicon"
-	if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT|R_EVENT))
+ADMIN_VERB_AND_CONTEXT_MENU(modify_robot, R_ADMIN|R_FUN|R_VAREDIT|R_EVENT, "Modify Robot", "Allows to add or remove modules to/from robots.", ADMIN_CATEGORY_SILICON, mob/living/silicon/robot/target in GLOB.silicon_mob_list)
+	if(!target)
 		return
-
 	var/datum/eventkit/modify_robot/modify_robot = new()
-	modify_robot.target = isrobot(target) ? target : null
+	modify_robot.target = target
 	modify_robot.selected_ai = target.is_slaved()
-	modify_robot.tgui_interact(src.mob)
+	modify_robot.tgui_interact(user.mob)
 
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
@@ -67,14 +63,14 @@
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
 		for(var/entry in GLOB.robot_modules)
-			if(!target.restrict_modules_to.Find(entry))
+			if(!(target.restrict_modules_to?.Find(entry)))
 				possible_restrictions += entry
 		.["target"]["possible_restrictions"] = possible_restrictions
 		// Target section for options once a module has been selected
 		if(target.module)
 			.["target"]["active"] = target.icon_selected
 			.["target"]["sprite"] = sanitize_css_class_name("[target.sprite_datum.type]")
-			.["target"]["sprite_size"] = spritesheet.icon_size_id(.["target"]["sprite"] + "S")
+			.["target"]["sprite_size"] = spritesheet?.icon_size_id(.["target"]["sprite"] + "S")
 			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
 			for(var/module in GLOB.robot_modules)
@@ -113,7 +109,7 @@
 			.["id_icon"] = icon2html(target.idcard, user, sourceonly=TRUE)
 			var/list/active_access = list()
 			for(var/access in target.idcard?.GetAccess())
-				active_access += list(list("id" = access, "name" = get_access_desc(access)))
+				active_access += list(list("id" = access, "name" = SSaccess.get_access_desc(access)))
 			.["target"]["active_access"] = active_access
 			var/list/access_options = list()
 			for(var/datum/access/acc)
@@ -185,10 +181,16 @@
 			target.crisis_override = !target.crisis_override
 			return TRUE
 		if("add_restriction")
-			target.restrict_modules_to |= params["new_restriction"]
+			var/new_restriction = params["new_restriction"]
+			if(!(new_restriction in GLOB.robot_modules))
+				return FALSE
+			LAZYOR(target.restrict_modules_to, new_restriction)
 			return TRUE
 		if("remove_restriction")
-			target.restrict_modules_to -= params["rem_restriction"]
+			var/rem_restriction = params["rem_restriction"]
+			if(!(rem_restriction in GLOB.robot_modules))
+				return FALSE
+			LAZYREMOVE(target.restrict_modules_to, rem_restriction)
 			return TRUE
 		if("select_source")
 			if(source)
@@ -196,13 +198,15 @@
 			var/module_type = GLOB.robot_modules[params["new_source"]]
 			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
 				source = new /mob/living/silicon/robot/syndicate(null)
+			else if(ispath(module_type, /obj/item/robot_module/robot/malf))
+				source = new /mob/living/silicon/robot/malf(null)
 			else
 				source = new /mob/living/silicon/robot(null)
 			source.modtype = params["new_source"]
 			var/obj/item/robot_module/robot/robot_type = new module_type(source)
 			source.sprite_datum = pick(SSrobot_sprites.get_module_sprites(source.modtype, source))
 			source.update_icon()
-			source.emag_items = 1
+			source.emag_items = TRUE
 			if(!istype(robot_type, /obj/item/robot_module/robot))
 				QDEL_NULL(source)
 				return TRUE
@@ -211,63 +215,14 @@
 			target.module_reset(FALSE)
 			return TRUE
 		if("add_module")
-			var/obj/item/add_item = locate(params["module"])
-			if(!add_item)
+			var/obj/item/selected_item = locate(params["module"])
+			if(!selected_item)
 				return TRUE
-			if(istype(add_item, /obj/item/card/id))
+			if(istype(selected_item, /obj/item/card/id))
 				source.idcard = null
-			source.module.emag.Remove(add_item)
-			source.module.modules.Remove(add_item)
-			source.module.contents.Remove(add_item)
-			if(istype(add_item, /obj/item/card/id))
-				if(target.idcard)
-					qdel(target.idcard)
-				target.idcard = add_item
-			target.module.modules.Add(add_item)
-			target.module.contents.Add(add_item)
-			spawn(0)
-				SEND_SIGNAL(add_item, COMSIG_MOVABLE_ATTEMPTED_MOVE)
-			target.hud_used?.update_robot_modules_display()
-			if(istype(add_item, /obj/item/stack/))
-				var/obj/item/stack/item_with_synth = add_item
-				for(var/synth in item_with_synth.synths)
-					var/found = target.module.synths.Find(synth)
-					if(!found)
-						source.module.synths.Remove(synth)
-						target.module.synths.Add(synth)
-					else
-						item_with_synth.synths = list(target.module.synths[found])
-				return TRUE
-			if(istype(add_item, /obj/item/matter_decompiler/) || istype(add_item, /obj/item/dogborg/sleeper/compactor/decompiler/))
-				var/obj/item/matter_decompiler/item_with_matter = add_item
-				if(item_with_matter.metal)
-					var/found = target.module.synths.Find(item_with_matter.metal)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.metal)
-						target.module.synths.Add(item_with_matter.metal)
-					else
-						item_with_matter.metal = target.module.synths[found]
-				if(item_with_matter.glass)
-					var/found = target.module.synths.Find(item_with_matter.glass)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.glass)
-						target.module.synths.Add(item_with_matter.glass)
-					else
-						item_with_matter.glass = target.module.synths[found]
-				if(item_with_matter.wood)
-					var/found = target.module.synths.Find(item_with_matter.wood)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.wood)
-						target.module.synths.Add(item_with_matter.wood)
-					else
-						item_with_matter.wood = target.module.synths[found]
-				if(item_with_matter.plastic)
-					var/found = target.module.synths.Find(item_with_matter.plastic)
-					if(!found)
-						source.module.synths.Remove(item_with_matter.plastic)
-						target.module.synths.Add(item_with_matter.plastic)
-					else
-						item_with_matter.plastic = target.module.synths[found]
+			source.module.emag -= selected_item
+			source.module.modules -= selected_item
+			target.module.add_item(selected_item, target)
 			return TRUE
 		if("rem_module")
 			var/obj/item/rem_item = locate(params["module"])
@@ -291,7 +246,7 @@
 			new module_type(source)
 			source.sprite_datum = target.sprite_datum
 			source.update_icon()
-			source.emag_items = 1
+			source.emag_items = TRUE
 			// Target
 			target.uneq_all()
 			target.hud_used?.update_robot_modules_display(TRUE)
@@ -477,17 +432,17 @@
 			target.idcard.access -= text2num(params["access"])
 			return TRUE
 		if("add_centcom")
-			target.idcard.access |= get_all_centcom_access()
+			target.idcard.access |= SSaccess.get_all_centcom_access()
 			return TRUE
 		if("rem_centcom")
-			target.idcard.access -= get_all_centcom_access()
+			target.idcard.access -= SSaccess.get_all_centcom_access()
 			return TRUE
 		if("add_station")
-			target.idcard.access |= get_all_station_access()
+			target.idcard.access |= SSaccess.get_all_station_access()
 			target.idcard.access |= ACCESS_SYNTH
 			return TRUE
 		if("rem_station")
-			target.idcard.access -= get_all_station_access()
+			target.idcard.access -= SSaccess.get_all_station_access()
 			target.idcard.access -= ACCESS_SYNTH
 			return TRUE
 		if("law_channel")
@@ -599,25 +554,25 @@
 			if(!our_ai)
 				our_ai = select_active_ai_with_fewest_borgs()
 			if(our_ai)
-				target.lawupdate = 1
+				target.lawupdate = TRUE
 				target.connect_to_ai(our_ai)
 			return TRUE
 		if("disconnect_ai")
 			if(target.is_slaved())
 				target.disconnect_from_ai()
-				target.lawupdate = 0
+				target.lawupdate = FALSE
 			return TRUE
 		if("toggle_emag")
 			if(target.emagged)
-				target.emagged = 0
+				target.emagged = FALSE
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()
-				target.laws = new global.using_map.default_law_type
+				target.laws = new using_map.default_law_type
 				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			else
-				target.emagged = 1
-				target.lawupdate = 0
+				target.emagged = TRUE
+				target.lawupdate = FALSE
 				target.disconnect_from_ai()
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()
@@ -629,17 +584,17 @@
 				target.hud_used?.update_robot_modules_display()
 			return TRUE
 
-/datum/eventkit/modify_robot/proc/get_target_items(var/mob/user)
+/datum/eventkit/modify_robot/proc/get_target_items(mob/user)
 	var/list/target_items = list()
 	for(var/obj/item in target.module.modules)
 		target_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 	return target_items
 
-/datum/eventkit/modify_robot/proc/get_module_source(var/mob/user, var/datum/asset/spritesheet_batched/robot_icons/spritesheet)
+/datum/eventkit/modify_robot/proc/get_module_source(mob/user, datum/asset/spritesheet_batched/robot_icons/spritesheet)
 	var/list/source_list = list()
 	source_list["model"] = source.module
 	source_list["sprite"] = sanitize_css_class_name("[source.sprite_datum.type]")
-	source_list["sprite_size"] = spritesheet.icon_size_id(source_list["sprite"] + "S")
+	source_list["sprite_size"] = spritesheet?.icon_size_id(source_list["sprite"] + "S")
 	var/list/source_items = list()
 	for(var/obj/item in (source.module.modules | source.module.emag))
 		var/exists
@@ -705,7 +660,7 @@
 	all_upgrades["restricted_upgrades"] = restricted_upgrades
 	return all_upgrades
 
-/datum/eventkit/modify_robot/proc/get_pka(var/obj/item/gun/energy/kinetic_accelerator/kin)
+/datum/eventkit/modify_robot/proc/get_pka(obj/item/gun/energy/kinetic_accelerator/kin)
 	var/list/pka = list()
 	pka["name"] = kin.name
 	var/list/installed_modkits = list()
@@ -740,7 +695,7 @@
 	pka["max_capacity"] = kin.max_mod_capacity
 	return pka
 
-/datum/eventkit/modify_robot/proc/get_mult_belt(var/obj/item/robotic_multibelt/mult_belt)
+/datum/eventkit/modify_robot/proc/get_mult_belt(obj/item/robotic_multibelt/mult_belt)
 	var/list/multi_belt_list = list()
 	multi_belt_list["name"] = mult_belt.name
 	multi_belt_list["ref"] = REF(mult_belt)
@@ -784,7 +739,7 @@
 		cell_options += list(initial(C.name) = list("path" = "[C]", "charge" = initial(C.maxcharge), "max_charge" = initial(C.maxcharge), "charge_amount" = initial(C.charge_amount) , "self_charge" = initial(C.self_recharge), "max_damage" = initial(C.robot_durability))) // our cells do not have their charge predefined, they do it on init, so both maaxcharge for now
 	return cell_options
 
-/datum/eventkit/modify_robot/proc/get_component(var/type)
+/datum/eventkit/modify_robot/proc/get_component(type)
 	var/path
 	switch(type)
 		if("camera")
@@ -836,14 +791,14 @@
 		components += list(list("name" = C.name, "ref" = "\ref[C]", "brute_damage" = C.brute_damage, "electronics_damage" = C.electronics_damage, "max_damage" = C.max_damage, "idle_usage" = C.idle_usage, "active_usage" = C.active_usage, "installed" = C.installed, "exists" = (C.wrapped ? TRUE : FALSE)))
 	return components
 
-/datum/eventkit/modify_robot/proc/package_laws(var/list/data, var/field, var/list/datum/ai_law/laws)
+/datum/eventkit/modify_robot/proc/package_laws(list/data, field, list/datum/ai_law/laws)
 	var/list/packaged_laws = list()
 	for(var/datum/ai_law/AL in laws)
 		packaged_laws[++packaged_laws.len] = list("law" = AL.law, "index" = AL.get_index(), "state" = target.laws.get_state_law(AL), "ref" = "\ref[AL]")
 	data[field] = packaged_laws
 	data["has_[field]"] = packaged_laws.len
 
-/datum/eventkit/modify_robot/proc/package_multiple_laws(var/list/datum/ai_laws/laws)
+/datum/eventkit/modify_robot/proc/package_multiple_laws(list/datum/ai_laws/laws)
 	var/list/law_sets = list()
 	for(var/datum/ai_laws/ALs in laws)
 		var/list/packaged_laws = list()
@@ -854,8 +809,8 @@
 		law_sets[++law_sets.len] = list("name" = ALs.name, "header" = ALs.law_header, "ref" = "\ref[ALs]","laws" = packaged_laws)
 	return law_sets
 
-/datum/eventkit/modify_robot/proc/is_malf(var/mob/user)
+/datum/eventkit/modify_robot/proc/is_malf(mob/user)
 	return (is_admin(user) && !target.is_slaved()) || is_special_role(user)
 
-/datum/eventkit/modify_robot/proc/is_special_role(var/mob/user)
+/datum/eventkit/modify_robot/proc/is_special_role(mob/user)
 	return user.mind?.special_role ? TRUE : FALSE

@@ -14,11 +14,12 @@
 	sheet_singular_name = "quanta"
 	sheet_plural_name = "quanta"
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = 3
 
 /obj/structure/simple_door/flock
 	name = "aperture"
 	icon = 'icons/goonstation/featherzone.dmi'
 	icon_state = "flockdoor"
 
-/obj/structure/simple_door/flock/Initialize(mapload, var/newmat)
+/obj/structure/simple_door/flock/Initialize(mapload, newmat)
 	. = ..(mapload, MAT_FLOKIUM)

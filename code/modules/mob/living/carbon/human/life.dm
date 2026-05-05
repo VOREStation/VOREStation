@@ -47,53 +47,46 @@
 
 	voice = GetVoice()
 
-	var/stasis = inStasisNow()
+	var/stasis = (inStasisNow())
 	if(getStasis() > 2)
 		Sleeping(20)
 
 	//No need to update all of these procs if the guy is dead.
 	fall() //Prevents people from floating
-	if(stat != DEAD && !stasis)
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
+	if(!stasis)
+		if(stat != DEAD)
+			//Updates the number of stored chemicals for powers
+			handle_changeling()
 
-		//Organs and blood
-		handle_organs()
-		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain()
-		handle_shock()
+			//Organs and blood
+			handle_organs()
+			stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
+			weightgain()
+			handle_shock()
 
-		handle_pain()
+			handle_pain()
 
-		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
+			SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
-		handle_medical_side_effects()
+			handle_medical_side_effects()
 
-		handle_heartbeat()
-		handle_nif()
-		if(phobias)
-			handle_phobias()
-		if(!client)
-			species.handle_npc(src)
+			handle_heartbeat()
+			handle_nif()
+			if(phobias)
+				handle_phobias()
+			if(!client)
+				species.handle_npc(src)
 
-	else if(stat == DEAD && !stasis)
-		handle_defib_timer()
+		else if(stat == DEAD)
+			handle_defib_timer()
 
 	//Handle any species related components we may have. Ex: Shadekin, Xenochimera, etc. Not STAT checked because those do statchecks in their own code.
 	handle_species_components()
-
-	if(skip_some_updates())
-		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
 	pulse = handle_pulse()
-
-/mob/living/carbon/human/proc/skip_some_updates()
-	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 1
-	return 0
 
 /mob/living/carbon/human/breathe()
 	if(!inStasisNow())
@@ -150,7 +143,7 @@
 	return pressure_adjustment_coefficient
 
 // Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
+/mob/living/carbon/human/calculate_affecting_pressure(pressure)
 	var/pressure_difference
 
 	// First get the absolute pressure difference.
@@ -270,11 +263,12 @@
 	accumulated_rads = CLAMP(accumulated_rads,0,RADIATION_CAP) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
 	var/obj/item/organ/internal/I = null //Used for further down below when an organ is picked.
 	if(!radiation)
+		clear_alert("irradiated")
 		if(accumulated_rads)
 			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
 	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
 
-		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
+		if(HAS_TRAIT(src, TRAIT_HALT_RADIATION_EFFECTS)) //If we have a trait that halts radiation effects, then we just stop here. No need to do any of the checks below.
 			return
 
 		var/damage = 0
@@ -342,6 +336,7 @@
 
 
 		else if (radiation >= GLOB.radiation_levels[species.rad_levels]["danger_3"] && radiation < GLOB.radiation_levels[species.rad_levels]["danger_4"]) //Equivalent of 8.0 to 30 Gy.
+			throw_alert("irradiated", /atom/movable/screen/alert/irradiated)
 			damage = 10
 			radiation -= 100 * RADIATION_SPEED_COEFFICIENT * species.rad_removal_mod
 			accumulated_rads += 100 * RADIATION_SPEED_COEFFICIENT
@@ -464,7 +459,7 @@
 
 	/** breathing **/
 
-/mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
+/mob/living/carbon/human/handle_chemical_smoke(datum/gas_mixture/environment)
 	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
@@ -540,11 +535,6 @@
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
-
-		if(breath && should_have_organ(O_LUNGS))
-			var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
-			if(!L.is_bruised())
-				rupture_lung(TRUE)
 
 		throw_alert("oxy", /atom/movable/screen/alert/not_enough_atmos)
 		return 0
@@ -820,7 +810,7 @@
 	breath.update_values()
 	return 1
 
-/mob/living/carbon/human/proc/play_inhale(var/mob/living/M, var/exhale)
+/mob/living/carbon/human/proc/play_inhale(mob/living/M, exhale)
 	var/suit_inhale_sound
 	if(species.suit_inhale_sound)
 		suit_inhale_sound = species.suit_inhale_sound
@@ -831,7 +821,7 @@
 	if(!exhale) // Did we fail exhale? If no, play it after inhale finishes.
 		addtimer(CALLBACK(src, PROC_REF(play_exhale), M), 5 SECONDS)
 
-/mob/living/carbon/human/proc/play_exhale(var/mob/living/M)
+/mob/living/carbon/human/proc/play_exhale(mob/living/M)
 	var/suit_exhale_sound
 	if(species.suit_exhale_sound)
 		suit_exhale_sound = species.suit_exhale_sound
@@ -996,9 +986,10 @@
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
-		if(stat==DEAD)
+		if(stat == DEAD)
 			pressure_damage = pressure_damage/2
-		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
+		if(!istype(loc, /obj/structure/closet/body_bag/cryobag))
+			take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
 		throw_alert("pressure", /atom/movable/screen/alert/highpressure, 2)
 	else if(adjusted_pressure >= species.warning_high_pressure)
 		throw_alert("pressure", /atom/movable/screen/alert/highpressure, 1)
@@ -1007,7 +998,7 @@
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 1)
 	else
-		if( !(COLD_RESISTANCE in mutations))
+		if(!(COLD_RESISTANCE in mutations) && !istype(loc, /obj/structure/closet/body_bag/cryobag))
 			if(!isSynthetic() || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER))
 				var/pressure_damage = LOW_PRESSURE_DAMAGE
 				if(stat==DEAD)
@@ -1124,7 +1115,7 @@
 	. = 1 - .
 	. = min(., 1.0)
 
-/mob/living/carbon/human/proc/get_thermal_protection(var/flags)
+/mob/living/carbon/human/proc/get_thermal_protection(flags)
 	.=0
 	if(flags)
 		if(flags & HEAD)
@@ -1231,8 +1222,6 @@
 
 //DO NOT CALL handle_statuses() from this proc, it's called from living/Life() as long as this returns a true value.
 /mob/living/carbon/human/handle_regular_status_updates()
-	if(skip_some_updates())
-		return 0
 
 	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 		return 0	// Cancelled by a component
@@ -1262,6 +1251,8 @@
 			set_stat(UNCONSCIOUS)
 			blinded = TRUE
 			in_crit = TRUE
+			if(!HAS_TRAIT(src, TRAIT_CRITICAL_CONDITION))
+				ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
 
 		if(hallucination)
 			if(hallucination >= HALLUCINATION_THRESHOLD && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) && !HAS_TRAIT(src, TRAIT_MADNESS_IMMUNE))
@@ -1343,6 +1334,8 @@
 		else if(!in_crit)
 			set_stat(CONSCIOUS)
 			clear_alert("asleep")
+			if(HAS_TRAIT(src, TRAIT_CRITICAL_CONDITION))
+				REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
 
 		//Periodically double-check embedded_flag
 		if(embedded_flag && !(life_tick % 10))
@@ -1435,7 +1428,7 @@
 
 	return 1
 
-/mob/living/carbon/human/set_stat(var/new_stat)
+/mob/living/carbon/human/set_stat(new_stat)
 	. = ..()
 	if(. && stat)
 		update_skin(1)
@@ -1449,7 +1442,7 @@
 	if(!.)
 		return
 
-	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
+	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense, GLOB.global_hud.heavy_whitense)
 
 	if(istype(client.eye,/obj/machinery/camera))
 		var/obj/machinery/camera/cam = client.eye
@@ -1795,7 +1788,7 @@
 	// Call parent to handle signals
 	..()
 
-/mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
+/mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G)
 	. = FALSE
 	if(G && G.active)
 		if(G.darkness_view)
@@ -1815,7 +1808,7 @@
 		else if(!druggy && !seer)
 			see_invisible = see_invisible_default
 
-/mob/living/carbon/human/proc/process_nifsoft_vision(var/datum/nifsoft/NS)
+/mob/living/carbon/human/proc/process_nifsoft_vision(datum/nifsoft/NS)
 	. = FALSE
 	if(NS && NS.active)
 		if(NS.darkness_view)

@@ -7,7 +7,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 5
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 1000)
 	projectile_type = /obj/item/projectile/beam/meeplaser
 	charge_cost = 400
@@ -20,7 +19,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 4)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/meeplaser/strong
 	charge_cost = 200
@@ -70,7 +68,6 @@
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_HUGE
 	force = 10
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/scatter/ratminer
 	charge_cost = 400
@@ -111,7 +108,7 @@
 	. = ..()
 	strike_thing(A)
 
-/obj/item/projectile/beam/ratminer/proc/strike_thing(var/atom/A)
+/obj/item/projectile/beam/ratminer/proc/strike_thing(atom/A)
 	var/turf/target_turf = get_turf(A)
 	if(!target_turf)
 		target_turf = get_turf(src)
@@ -123,7 +120,7 @@
 			var/turf/simulated/mineral/M = T
 			M.GetDrilled(TRUE)
 	if(firer)
-		var/obj/item/storage/bag/ore/orebag = locate(/obj/item/storage/bag/ore) in firer
+		var/obj/item/ore_bag/orebag = locate(/obj/item/ore_bag) in firer
 		if(orebag)
 			for(var/turf/T in RANGE_TURFS(2, target_turf))
 				orebag.gather_all(T, firer, TRUE)

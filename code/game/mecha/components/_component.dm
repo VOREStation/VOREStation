@@ -4,7 +4,6 @@
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "component"
 	w_class = ITEMSIZE_HUGE
-	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 
 	var/component_type = null
 
@@ -17,7 +16,7 @@
 
 	var/integrity
 	var/integrity_danger_mod = 0.5	// Multiplier for comparison to max_integrity before problems start.
-	var/max_integrity = 100
+	max_integrity = 100
 
 	var/step_delay = 0
 
@@ -55,19 +54,22 @@
 
 // Damage code.
 
-/obj/item/mecha_parts/component/emp_act(severity = 4, recursive)
-	if(severity + emp_resistance > 4)
+/obj/item/mecha_parts/component/emp_act(severity = EMP_HARMLESS, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
+	if(severity + emp_resistance >= EMP_NONE)
 		return
 
 	severity = clamp(severity + emp_resistance, 1, 4)
 
 	take_damage((4 - severity) * round(integrity * 0.1, 0.1))
 
-/obj/item/mecha_parts/component/proc/adjust_integrity(var/amt = 0)
+/obj/item/mecha_parts/component/proc/adjust_integrity(amt = 0)
 	integrity = clamp(integrity + amt, 0, max_integrity)
 	return
 
-/obj/item/mecha_parts/component/proc/damage_part(var/dam_amt = 0, var/type = BRUTE)
+/obj/item/mecha_parts/component/proc/damage_part(dam_amt = 0, type = BRUTE)
 	if(dam_amt <= 0)
 		return FALSE
 
@@ -91,7 +93,7 @@
 
 // Attach/Detach code.
 
-/obj/item/mecha_parts/component/proc/attach(var/obj/mecha/target, var/mob/living/user)
+/obj/item/mecha_parts/component/proc/attach(obj/mecha/target, mob/living/user)
 	if(target)
 		if(!(component_type in target.internal_components))
 			if(user)

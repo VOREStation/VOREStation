@@ -20,7 +20,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
 	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
-/datum/reagent/modapplying/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	M.add_modifier(modifier_to_add, modifier_duration, suppress_failure = TRUE)
@@ -39,17 +39,17 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
 	industrial_use = REFINERYEXPORT_REASON_CLONEDRUG
 
-/datum/reagent/modapplying/cryofluid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/cryofluid/affect_blood(mob/living/carbon/M, alien, removed)
 	..(M, alien, removed)
 	M.bodytemperature -= removed * 20
 
-/datum/reagent/modapplying/cryofluid/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/cryofluid/affect_ingest(mob/living/carbon/M, alien, removed)
 	affect_blood(M, alien, removed * 2.5)
 
-/datum/reagent/modapplying/cryofluid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/cryofluid/affect_touch(mob/living/carbon/M, alien, removed)
 	affect_blood(M, alien, removed * 0.6)
 
-/datum/reagent/modapplying/cryofluid/touch_mob(var/mob/M, var/amount)
+/datum/reagent/modapplying/cryofluid/touch_mob(mob/M, amount)
 	..()
 	if(isliving(M))
 		var/mob/living/L = M
@@ -57,7 +57,7 @@
 			L.add_modifier(modifier_to_add, amount * rand(modifier_duration / 2, modifier_duration * 2))
 	return
 
-/datum/reagent/modapplying/cryofluid/touch_turf(var/turf/T, var/amount)
+/datum/reagent/modapplying/cryofluid/touch_turf(turf/T, amount)
 	..()
 	if(istype(T, /turf/simulated/floor/water) && prob(amount))
 		T.visible_message(span_danger("\The [T] crackles loudly as the cryogenic fluid causes it to boil away, leaving behind a hard layer of ice."))

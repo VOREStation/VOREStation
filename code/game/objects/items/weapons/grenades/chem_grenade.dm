@@ -147,7 +147,7 @@
 
 	return
 
-/obj/item/grenade/chem_grenade/proc/primed(var/primed = 1)
+/obj/item/grenade/chem_grenade/proc/primed(primed = 1)
 	if(active)
 		icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
@@ -201,7 +201,6 @@
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
 	allowed_containers = list(/obj/item/reagent_containers/glass)
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	affected_area = 4
 
 /obj/item/grenade/chem_grenade/metalfoam

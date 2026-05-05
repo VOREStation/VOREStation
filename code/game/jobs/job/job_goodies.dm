@@ -157,7 +157,7 @@
 		/obj/item/clothing/shoes/bhop = 125,
 		/obj/item/inducer = 125,
 		/obj/item/pickaxe/advdrill = 100,
-		/obj/item/storage/bag/ore/holding = 100
+		/obj/item/ore_bag/holding = 100
 	)
 	mail_color = COMMS_COLOR_SUPPLY
 

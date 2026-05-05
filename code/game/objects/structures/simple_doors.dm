@@ -23,6 +23,7 @@
 	var/can_pick = TRUE	//can it be picked/bypassed?
 	var/lock_difficulty = 1	//multiplier to picking/bypassing time
 	var/keysound = 'sound/items/toolbelt_equip.ogg'
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
@@ -31,7 +32,7 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/Initialize(mapload, var/material_name)
+/obj/structure/simple_door/Initialize(mapload, material_name)
 	. = ..()
 	set_material(material_name)
 	if(!material)
@@ -42,7 +43,7 @@
 	update_nearby_tiles()
 	return ..()
 
-/obj/structure/simple_door/proc/set_material(var/material_name)
+/obj/structure/simple_door/proc/set_material(material_name)
 	if(!material_name)
 		material_name = MAT_STEEL
 	material = get_material_by_name(material_name)
@@ -193,15 +194,15 @@
 		attack_hand(user)
 	return
 
-/obj/structure/simple_door/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/simple_door/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.damage/10)
 	CheckHardness()
 
-/obj/structure/simple_door/take_damage(var/damage)
+/obj/structure/simple_door/take_damage(damage)
 	hardness -= damage/10
 	CheckHardness()
 
-/obj/structure/simple_door/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/simple_door/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	if(material == get_material_by_name(MAT_RESIN))
 		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
@@ -240,71 +241,113 @@
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
-	SSradiation.radiate(src, round(material.radioactivity/3))
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = round((material.radioactivity * 0.33), 0.1),
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = material.radioactivity
+	)
 
-/obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/iron/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_IRON)
 
-/obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/silver
+	rad_insulation = RAD_HEAVY_INSULATION
+
+/obj/structure/simple_door/silver/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_SILVER)
 
-/obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/gold
+	rad_insulation = RAD_HEAVY_INSULATION
+
+/obj/structure/simple_door/gold/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_GOLD)
 
-/obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
-	. = ..(mapload, material_name || MAT_URANIUM)
+/obj/structure/simple_door/uranium
+	rad_insulation = RAD_NO_INSULATION
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
-/obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/uranium/Initialize(mapload,material_name)
+	. = ..(mapload, material_name || MAT_URANIUM)
+	START_PROCESSING(SSobj, src)
+
+/obj/structure/simple_door/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 5
+	)
+	last_event = world.time
+	active = FALSE
+
+/obj/structure/simple_door/sandstone/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_SANDSTONE)
 
-/obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/phoron/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_PHORON)
 
-/obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/diamond
+	rad_insulation = RAD_EXTREME_INSULATION
+
+/obj/structure/simple_door/diamond/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_DIAMOND)
 
-/obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
+//I was going to give wooden doors RAD_VERY_LIGHT_INSULATION but they need a proper parent instead of this garbage.
+/obj/structure/simple_door/wood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_WOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/hardwood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_HARDWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/sifwood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_SIFWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/birchwood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/birchwood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_BIRCHWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/pinewood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/pinewood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_PINEWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/oakwood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/oakwood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_OAKWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/acaciawood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/acaciawood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_ACACIAWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/redwood/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/redwood/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_REDWOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/resin/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_RESIN)
 
-/obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/cult/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_CULT)
 
-/obj/structure/simple_door/glamour/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/glamour/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_GLAMOUR)
 
-/obj/structure/simple_door/snowbrick/Initialize(mapload, var/material_name)
+/obj/structure/simple_door/snowbrick/Initialize(mapload, material_name)
 	. = ..(mapload, material_name || MAT_SNOWBRICK)
 
 

@@ -286,7 +286,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 
 	add_fingerprint(ui.user)
 
-/obj/item/tank/proc/toggle_valve(var/mob/user)
+/obj/item/tank/proc/toggle_valve(mob/user)
 	if(istype(loc,/mob/living/carbon))
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
@@ -537,7 +537,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 ///Onetankbombs (added as actual items)
 /////////////////////////////////
 
-/obj/item/tank/proc/onetankbomb(var/fill = 1)
+/obj/item/tank/proc/onetankbomb(fill = 1)
 	var/phoron_amt = 4 + rand(4)
 	var/oxygen_amt = 6 + rand(8)
 
@@ -566,11 +566,11 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	add_overlay("bomb_assembly")
 
 
-/obj/item/tank/phoron/onetankbomb/Initialize(mapload, var/amount = 1)
+/obj/item/tank/phoron/onetankbomb/Initialize(mapload, amount = 1)
 	. = ..()
 	onetankbomb(amount)
 
-/obj/item/tank/oxygen/onetankbomb/Initialize(mapload, var/amount = 1)
+/obj/item/tank/oxygen/onetankbomb/Initialize(mapload, amount = 1)
 	. = ..()
 	onetankbomb(amount)
 
@@ -596,6 +596,7 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 	desc = "Used as a stand in to trigger single tank assemblies... but you shouldn't see this."
 	var/obj/item/tank/tank = null
 	var/obj/item/assembly_holder/assembly = null
+	item_flags = ABSTRACT
 
 
 /obj/item/tankassemblyproxy/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.

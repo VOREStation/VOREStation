@@ -62,7 +62,7 @@
 	else
 		return ..()
 
-/obj/item/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
+/obj/item/integrated_circuit_printer/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/stack = O
 		if(stack.material.name == MAT_STEEL)
@@ -503,7 +503,6 @@
 	icon_state = "upgrade_disk"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 
 /obj/item/disk/integrated_circuit/upgrade/advanced
 	name = "integrated circuit printer upgrade disk - advanced designs"
@@ -513,10 +512,8 @@
 	name = "integrated circuit printer upgrade disk - illegal designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, but illegal designs to the printer."
 	icon_state = "upgrade_disk_illegal"
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4, TECH_ILLEGAL = 1)
 
 /obj/item/disk/integrated_circuit/upgrade/clone
 	name = "integrated circuit printer upgrade disk - circuit cloner"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one allows the printer to duplicate assemblies."
 	icon_state = "upgrade_disk_clone"
-	origin_tech = list(TECH_ENGINEERING = 5, TECH_DATA = 6)

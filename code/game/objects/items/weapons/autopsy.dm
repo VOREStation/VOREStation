@@ -9,7 +9,6 @@
 	icon_state = ""
 	item_state = "autopsy_scanner"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	var/list/datum/autopsy_data_scanner/wdata = list()
 	var/list/datum/autopsy_data_scanner/chemtraces = list()
 	var/target_name = null
@@ -39,7 +38,7 @@
 	W.time_inflicted = time_inflicted
 	return W
 
-/obj/item/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O)
+/obj/item/autopsy_scanner/proc/add_data(obj/item/organ/external/O)
 	if(!O.autopsy_data.len && !O.trace_chemicals.len) return
 
 	for(var/V in O.autopsy_data)

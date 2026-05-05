@@ -8,7 +8,6 @@
 	icon_state = "sizegun-old-0"
 	var/base_icon_state = "sizegun-old"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_BLUESPACE = 4)
 	force = 0
 	slot_flags = SLOT_BELT
 	var/beam_range = 4 // How many tiles away it can scan. Changing this also changes the box size.
@@ -25,7 +24,7 @@
 	if(busy)
 		icon_state = "[icon_state]-active"
 
-/obj/item/slow_sizegun/proc/should_stop(var/mob/living/target, var/mob/living/user, var/active_hand)
+/obj/item/slow_sizegun/proc/should_stop(mob/living/target, mob/living/user, active_hand)
 	if(!target || !user || !active_hand || !istype(target) || !istype(user) || !busy)
 		return TRUE
 

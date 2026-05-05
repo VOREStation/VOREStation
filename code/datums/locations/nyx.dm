@@ -5,7 +5,7 @@
 	desc = "Nyx is most certainly considered an outer system, being on the edge of colonized space.  It's a red dwarf flare star far out in the \
 	frontier. There are four planets orbiting it, not including its sub-stellar companion, Erebus."
 
-/datum/locations/nyx/New(var/creator)
+/datum/locations/nyx/New(creator)
 	contents.Add(
 		new /datum/locations/erebus(src),
 		new /datum/locations/moros(src),
@@ -28,7 +28,7 @@
 	The most notable moon, but not the largest, is Roanake, a dwarf planet in its own right, which orbits with a high enough eccentricity to \
 	have significant volcanic activity due to tidal heating."
 
-/datum/locations/erebus/New(var/creator)
+/datum/locations/erebus/New(creator)
 	contents.Add(
 		new /datum/locations/talons_bull(src),
 		new /datum/locations/exodus(src),

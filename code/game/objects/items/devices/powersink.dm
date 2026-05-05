@@ -12,7 +12,6 @@
 
 	matter = list(MAT_STEEL = 750)
 
-	origin_tech = list(TECH_POWER = 3, TECH_ILLEGAL = 5)
 	var/drain_rate = 1500000		// amount of power to drain per tick
 	var/apc_drain_rate = 5000 		// Max. amount drained from single APC. In Watts.
 	var/dissipation_rate = 20000	// Passive dissipation of drained power. In Watts.
@@ -32,7 +31,7 @@
 	STOP_PROCESSING_POWER_OBJECT(src)
 	. = ..()
 
-/obj/item/powersink/attackby(var/obj/item/I, var/mob/user)
+/obj/item/powersink/attackby(obj/item/I, mob/user)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(mode == 0)
 			var/turf/T = loc
@@ -68,7 +67,7 @@
 /obj/item/powersink/attack_ai()
 	return
 
-/obj/item/powersink/attack_hand(var/mob/user)
+/obj/item/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()

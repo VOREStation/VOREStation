@@ -14,6 +14,7 @@
 
 	var/food_can_insert_micro = FALSE
 	var/list/food_inserted_micros
+	resistance_flags = FLAMMABLE
 
 /obj/item/reagent_containers/food/verb/change_name()
 	set name = "Rename Food"
@@ -22,7 +23,7 @@
 
 	handle_name_change(usr)
 
-/obj/item/reagent_containers/food/proc/handle_name_change(var/mob/living/user)
+/obj/item/reagent_containers/food/proc/handle_name_change(mob/living/user)
 	if(user.stat == DEAD || !(ishuman(user) || isrobot(user)))
 		to_chat(user, span_warning("You can't cook!"))
 		return

@@ -8,7 +8,7 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = 0)
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, sharp = FALSE, edge = FALSE, obj/used_weapon = null, projectile = 0)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, sharp, edge, used_weapon, projectile)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
@@ -95,35 +95,35 @@
 			damage = damage * blocked
 			switch(round(damage))
 				if(91 to INFINITY)
-					emp_act(1)
+					emp_act(EMP_HEAVY)
 				if(76 to 90)
 					if(prob(50))
-						emp_act(1)
+						emp_act(EMP_HEAVY)
 					else
-						emp_act(2)
+						emp_act(EMP_MEDIUM)
 				if(61 to 75)
-					emp_act(2)
+					emp_act(EMP_MEDIUM)
 				if(46 to 60)
 					if(prob(50))
-						emp_act(2)
+						emp_act(EMP_MEDIUM)
 					else
-						emp_act(3)
+						emp_act(EMP_LIGHT)
 				if(31 to 45)
-					emp_act(3)
+					emp_act(EMP_LIGHT)
 				if(16 to 30)
 					if(prob(50))
-						emp_act(3)
+						emp_act(EMP_LIGHT)
 					else
-						emp_act(4)
+						emp_act(EMP_HARMLESS)
 				if(0 to 15)
-					emp_act(4)
+					emp_act(EMP_HARMLESS)
 	flash_weak_pain()
 	updatehealth()
 	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, sharp, edge, used_weapon, projectile)
 	return 1
 
 
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
+/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, halloss = 0, def_zone = null, blocked = 0)
 	if(blocked >= 100)
 		return 0
 	// INSERT MODIFIER CODE HERE... But no, really, only two things in the game use it, quad and viruses. The former is admin-only and the latter wouldn't be affected logically, but would if shield code was inerted here. If you really want, you can copy&paste the above and modify it to adjust brute/burn/etc. I do not advise this however.
@@ -137,7 +137,7 @@
 
 
 
-/mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+/mob/living/proc/apply_effect(effect = 0,effecttype = STUN, blocked = 0, check_protection = 1)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: apply_effect() was called.  The type of effect is [effecttype].  Blocked by [blocked].")
 	if(!effect || (blocked >= 100))
@@ -169,7 +169,7 @@
 	return 1
 
 
-/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/blocked = 0, var/ignite = 0, var/flammable = 0)
+/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, irradiate = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, blocked = 0, ignite = 0, flammable = 0)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_APPLY_EFFECT) & COMSIG_CANCEL_EFFECT)
 		return 0	// Cancelled by a component
 	if(blocked >= 100)

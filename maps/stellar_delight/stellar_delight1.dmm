@@ -10379,7 +10379,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "vd" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/alarm/angled{
@@ -11866,25 +11866,13 @@
 "yq" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/assembly/signaler/anomaly/flux{
-	pixel_y = 13;
-	pixel_x = 7
+/obj/item/storage/box/anomaly{
+	pixel_y = 10;
+	pixel_x = -10
 	},
-/obj/item/anomaly_scanner{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/anomaly_scanner{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/anomaly_releaser/science{
-	pixel_y = -5;
-	pixel_x = -5
-	},
-/obj/item/anomaly_releaser/science{
-	pixel_y = -2;
-	pixel_x = -5
+/obj/item/storage/box/anomaly{
+	pixel_y = 2;
+	pixel_x = -10
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
@@ -17295,7 +17283,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/dorms/dorm6)
 "Ki" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/alarm/angled{

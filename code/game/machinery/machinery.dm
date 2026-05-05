@@ -163,6 +163,9 @@ Class Procs:
 	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(use_power && stat == 0)
 		use_power(7500/severity)
 
@@ -173,7 +176,6 @@ Class Procs:
 		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(GLOB.cardinal))
 		QDEL_IN(pulse2, 1 SECOND)
-	..()
 
 /obj/machinery/ex_act(severity)
 	switch(severity)
@@ -190,7 +192,7 @@ Class Procs:
 				return
 	return
 
-/obj/machinery/vv_edit_var(var/var_name, var/new_value)
+/obj/machinery/vv_edit_var(var_name, new_value)
 	if(var_name == NAMEOF(src, use_power))
 		update_use_power(new_value)
 		return TRUE
@@ -205,10 +207,10 @@ Class Procs:
 		return TRUE
 	return ..()
 
-/obj/machinery/proc/operable(var/additional_flags = 0)
+/obj/machinery/proc/operable(additional_flags = 0)
 	return !inoperable(additional_flags)
 
-/obj/machinery/proc/inoperable(var/additional_flags = 0)
+/obj/machinery/proc/inoperable(additional_flags = 0)
 	return (stat & (NOPOWER | BROKEN | additional_flags))
 
 // Duplicate of below because we don't want to fuck around with CanUseTopic in TGUI
@@ -218,7 +220,7 @@ Class Procs:
 		return STATUS_CLOSE
 	return ..()
 
-/obj/machinery/CanUseTopic(var/mob/user)
+/obj/machinery/CanUseTopic(mob/user)
 	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
 		return STATUS_CLOSE
 	return ..()
@@ -266,7 +268,7 @@ Class Procs:
 	uid = gl_uid
 	gl_uid++
 
-/obj/machinery/proc/state(var/msg)
+/obj/machinery/proc/state(msg)
 	for(var/mob/O in hearers(src, null))
 		O.show_message("[icon2html(src,O.client)] " + span_notice("[msg]"), 2)
 
@@ -313,7 +315,7 @@ Class Procs:
 		RefreshParts()
 		return C
 
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
+/obj/machinery/proc/default_part_replacement(mob/user, obj/item/storage/part_replacer/R)
 	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
@@ -353,7 +355,7 @@ Class Procs:
 	return
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
-/obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
+/obj/machinery/proc/default_unfasten_wrench(mob/user, obj/item/W, time = 0)
 	if(!W.has_tool_quality(TOOL_WRENCH))
 		return FALSE
 	if(panel_open)
@@ -373,14 +375,14 @@ Class Procs:
 		update_icon()
 	return TRUE
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/C)
+/obj/machinery/proc/default_deconstruction_crowbar(mob/user, obj/item/C)
 	if(!C.has_tool_quality(TOOL_CROWBAR))
 		return 0
 	if(!panel_open)
 		return 0
 	. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+/obj/machinery/proc/default_deconstruction_screwdriver(mob/user, obj/item/S)
 	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	playsound(src, S.usesound, 50, 1)
@@ -389,7 +391,7 @@ Class Procs:
 	update_icon()
 	return 1
 
-/obj/machinery/proc/computer_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+/obj/machinery/proc/computer_deconstruction_screwdriver(mob/user, obj/item/S)
 	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	if(!circuit)
@@ -404,7 +406,7 @@ Class Procs:
 			to_chat(user, span_notice("You disconnect the monitor."))
 		. = dismantle()
 
-/obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+/obj/machinery/proc/alarm_deconstruction_screwdriver(mob/user, obj/item/S)
 	if(!S.has_tool_quality(TOOL_SCREWDRIVER))
 		return 0
 	playsound(src, S.usesound, 50, 1)
@@ -413,7 +415,7 @@ Class Procs:
 	update_icon()
 	return 1
 
-/obj/machinery/proc/alarm_deconstruction_wirecutters(var/mob/user, var/obj/item/W)
+/obj/machinery/proc/alarm_deconstruction_wirecutters(mob/user, obj/item/W)
 	if(!W.has_tool_quality(TOOL_WIRECUTTER))
 		return 0
 	if(!panel_open)
@@ -471,7 +473,7 @@ Class Procs:
 	A.update_desc()
 	A.update_icon()
 	M.loc = null
-	M.deconstruct(src)
+	M.atom_deconstruct(TRUE, src)
 	qdel(src)
 	return 1
 
@@ -485,7 +487,7 @@ Class Procs:
  ** severity: Same severities as ex_act (so lower is more destructive)
  ** scatter: If you want the parts to slide around 1 turf in random directions
  */
-/obj/machinery/proc/fall_apart(var/severity = 3, var/scatter = TRUE)
+/obj/machinery/proc/fall_apart(severity = 3, scatter = TRUE)
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)

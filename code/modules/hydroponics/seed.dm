@@ -81,19 +81,19 @@
 		sleep(-1)
 		update_growth_stages()
 
-/datum/seed/proc/get_trait(var/trait)
+/datum/seed/proc/get_trait(trait)
 	return traits["[trait]"]
 
 /datum/seed/proc/get_trash_type()
 	return trash_type
 
-/datum/seed/proc/set_trait(var/trait,var/nval,var/ubound,var/lbound, var/degrade)
+/datum/seed/proc/set_trait(trait,nval,ubound,lbound, degrade)
 	if(!isnull(degrade)) nval *= degrade
 	if(!isnull(ubound))  nval = min(nval,ubound)
 	if(!isnull(lbound))  nval = max(nval,lbound)
 	traits["[trait]"] =  nval
 
-/datum/seed/proc/create_spores(var/turf/T)
+/datum/seed/proc/create_spores(turf/T)
 	if(!T)
 		return
 	if(!istype(T))
@@ -113,7 +113,7 @@
 	S.start()
 
 // Does brute damage to a target.
-/datum/seed/proc/do_thorns(var/mob/living/carbon/human/target, var/obj/item/fruit, var/target_limb)
+/datum/seed/proc/do_thorns(mob/living/carbon/human/target, obj/item/fruit, target_limb)
 
 	if(!get_trait(TRAIT_CARNIVOROUS))
 		return
@@ -157,7 +157,7 @@
 			target.adjustBruteLoss(damage)
 
 // Adds reagents to a target.
-/datum/seed/proc/do_sting(var/mob/living/carbon/human/target, var/obj/item/fruit)
+/datum/seed/proc/do_sting(mob/living/carbon/human/target, obj/item/fruit)
 	if(!get_trait(TRAIT_STINGS))
 		return
 	if(chems && chems.len)
@@ -183,7 +183,7 @@
 					fruit.reagents.remove_reagent(chem, injecting)
 
 //Splatter a turf.
-/datum/seed/proc/splatter(var/turf/T,var/obj/item/thrown)
+/datum/seed/proc/splatter(turf/T,obj/item/thrown)
 	if(splat_type && !(locate(/obj/effect/plant) in T))
 		var/obj/effect/plant/splat = new splat_type(T, src)
 		if(!istype(splat)) // Plants handle their own stuff.
@@ -222,7 +222,7 @@
 					R.add_reagent(chem,min(5,max(1,get_trait(TRAIT_POTENCY)/3)))
 
 //Applies an effect to a target atom.
-/datum/seed/proc/thrown_at(var/obj/item/thrown,var/atom/target, var/force_explode)
+/datum/seed/proc/thrown_at(obj/item/thrown,atom/target, force_explode)
 
 	var/splatted
 	var/turf/origin_turf = get_turf(target)
@@ -289,7 +289,7 @@
 			origin_turf.visible_message(span_danger("The [thrown.name] splatters against [target]!"))
 		qdel(thrown)
 
-/datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only)
+/datum/seed/proc/handle_environment(turf/current_turf, datum/gas_mixture/environment, light_supplied, check_only)
 
 	var/health_change = 0
 	// Handle gas consumption.
@@ -339,7 +339,7 @@
 
 	return health_change
 
-/datum/seed/proc/apply_special_effect(var/mob/living/target,var/obj/item/thrown)
+/datum/seed/proc/apply_special_effect(mob/living/target,obj/item/thrown)
 
 	var/impact = 1
 	do_sting(target,thrown)
@@ -566,7 +566,7 @@
 	return pick(mutants)
 
 //Mutates the plant overall (randomly).
-/datum/seed/proc/mutate(var/degree,var/turf/source_turf)
+/datum/seed/proc/mutate(degree,turf/source_turf)
 
 	if(!degree || get_trait(TRAIT_IMMUTABLE) > 0) return
 
@@ -658,7 +658,7 @@
 	return
 
 //Mutates a specific trait/set of traits.
-/datum/seed/proc/apply_gene(var/datum/plantgene/gene)
+/datum/seed/proc/apply_gene(datum/plantgene/gene)
 
 	if(!gene || !gene.values || get_trait(TRAIT_IMMUTABLE) > 0) return
 
@@ -683,6 +683,10 @@
 				for(var/i=1;i<=gene_chem.len;i++)
 
 					if(isnull(gene_chem[i])) gene_chem[i] = 0
+
+					var/list/chems_rid = chems[rid]
+					if(istype(chems_rid) && (chems_rid.len < i))
+						continue
 
 					if(chems[rid][i])
 						chems[rid][i] = max(1,round((gene_chem[i] + chems[rid][i])/2))
@@ -723,7 +727,7 @@
 	update_growth_stages()
 
 //Returns a list of the desired trait values.
-/datum/seed/proc/get_gene(var/genetype)
+/datum/seed/proc/get_gene(genetype)
 
 	if(!genetype) return 0
 
@@ -768,7 +772,7 @@
 	return (P ? P : 0)
 
 //Place the plant products at the feet of the user.
-/datum/seed/proc/harvest(var/mob/user,var/yield_mod,var/harvest_sample,var/force_amount,var/reagent_mod,var/reagent_mod_amount)
+/datum/seed/proc/harvest(mob/user,yield_mod,harvest_sample,force_amount,reagent_mod,reagent_mod_amount)
 
 	if(!user)
 		return
@@ -809,7 +813,7 @@
 					yield_mod = 0
 					total_yield = get_trait(TRAIT_YIELD)
 				else
-					total_yield = get_trait(TRAIT_YIELD) + rand(yield_mod)
+					total_yield = get_trait(TRAIT_YIELD) + rand(0, yield_mod)
 				total_yield = max(1,total_yield)
 
 		for(var/i = 0;i<total_yield;i++)
@@ -836,13 +840,11 @@
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
 				var/blight = get_trait(TRAIT_BIOLUM)
 				if(blight >= 5)
 					blight = 5
 				product.set_light(blight, 0.5, l_color = clr)
-				//VOREStation Edit End
-			if(get_trait(TRAIT_STINGS))
+			if(get_trait(TRAIT_STINGS) && isitem(product)) //Sometimes the product can be a mob.
 				product.force = 1
 
 			//Handle spawning in living, mobile products (like dionaea).
@@ -853,7 +855,7 @@
 // When the seed in this machine mutates/is modified, the tray seed value
 // is set to a new datum copied from the original. This datum won't actually
 // be put into the global datum list until the product is harvested, though.
-/datum/seed/proc/diverge(var/modified)
+/datum/seed/proc/diverge(modified)
 
 	if(get_trait(TRAIT_IMMUTABLE) > 0) return
 

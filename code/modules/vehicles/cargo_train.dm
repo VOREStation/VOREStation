@@ -86,7 +86,7 @@
 
 /*
 //cargo trains are open topped, so there is a chance the projectile will hit the mob ridding the train instead
-/obj/vehicle/train/cargo/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/train/cargo/bullet_act(obj/item/projectile/Proj)
 	if(has_buckled_mobs() && prob(70))
 		var/mob/living/L = pick(buckled_mobs)
 		L.bullet_act(Proj)
@@ -100,14 +100,14 @@
 		icon_state = initial(icon_state)
 */
 
-/obj/vehicle/train/trolley/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/trolley/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	return
 
-/obj/vehicle/train/engine/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/engine/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	..()
 	update_stats()
 
-/obj/vehicle/train/engine/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/train/engine/remove_cell(mob/living/carbon/human/H)
 	..()
 	update_stats()
 
@@ -155,7 +155,7 @@
 	else
 		verbs += /obj/vehicle/train/engine/verb/stop_engine
 
-/obj/vehicle/train/RunOver(var/mob/living/M)
+/obj/vehicle/train/RunOver(mob/living/M)
 	if(pulledby == M) // Don't destroy people pulling vehicles up stairs
 		return
 
@@ -165,11 +165,11 @@
 	for(var/i = 0, i < rand(1,3), i++)
 		M.apply_damage(rand(1,5), BRUTE, pick(parts))
 
-/obj/vehicle/train/trolley/RunOver(var/mob/living/M)
+/obj/vehicle/train/trolley/RunOver(mob/living/M)
 	..()
 	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
-/obj/vehicle/train/engine/RunOver(var/mob/living/M)
+/obj/vehicle/train/engine/RunOver(mob/living/M)
 	..()
 
 	if(is_train_head() && ishuman(load))
@@ -209,12 +209,14 @@
 	if(Adjacent(user))
 		if(on)
 			stop_engine()
-		else
-			start_engine()
-	else
-		return ..()
+			return CLICK_ACTION_SUCCESS
 
-/obj/vehicle/train/engine/click_alt(var/mob/user)
+		start_engine()
+		return CLICK_ACTION_SUCCESS
+
+	return ..()
+
+/obj/vehicle/train/engine/click_alt(mob/user)
 	if(Adjacent(user))
 		remove_key()
 	else
@@ -283,7 +285,7 @@
 //-------------------------------------------
 // Loading/unloading procs
 //-------------------------------------------
-/obj/vehicle/train/trolley/load(var/atom/movable/C, var/mob/user)
+/obj/vehicle/train/trolley/load(atom/movable/C, mob/user)
 	if(ismob(C) && !passenger_allowed)
 		return 0
 	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !ishuman(C))
@@ -299,7 +301,7 @@
 	if(load)
 		return 1
 
-/obj/vehicle/train/engine/load(var/atom/movable/C, var/mob/user)
+/obj/vehicle/train/engine/load(atom/movable/C, mob/user)
 	if(!ishuman(C))
 		return 0
 
@@ -309,7 +311,7 @@
 //This prevents the object from being interacted with until it has
 // been unloaded. A dummy object is loaded instead so the loading
 // code knows to handle it correctly.
-/obj/vehicle/train/trolley/proc/load_object(var/atom/movable/C)
+/obj/vehicle/train/trolley/proc/load_object(atom/movable/C)
 	if(!isturf(C.loc)) //To prevent loading things from someone's inventory, which wouldn't get handled properly.
 		return 0
 	if(load || C.anchored)
@@ -335,7 +337,7 @@
 		C.pixel_y = initial(C.pixel_y)
 		C.layer = initial(C.layer)
 
-/obj/vehicle/train/trolley/unload(var/mob/user, var/direction)
+/obj/vehicle/train/trolley/unload(mob/user, direction)
 	if(istype(load, /datum/vehicle_dummy_load))
 		var/datum/vehicle_dummy_load/dummy_load = load
 		load = dummy_load.actual_load
@@ -375,7 +377,7 @@
 // more engines increases this limit by car_limit per
 // engine.
 //-------------------------------------------------------
-/obj/vehicle/train/engine/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/engine/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
@@ -388,7 +390,7 @@
 		move_delay += CONFIG_GET(number/run_speed) 											//base reference speed
 		move_delay *= speed_mod																//makes cargo trains 10% slower than running when not overweight
 
-/obj/vehicle/train/trolley/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/trolley/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
@@ -430,7 +432,7 @@
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/sellable/trolley_tank)
 
-/obj/vehicle/train/trolley_tank/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/trolley_tank/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	return
 
 /obj/vehicle/train/trolley_tank/Bump(atom/Obstacle)
@@ -438,7 +440,7 @@
 		return //so people can't knock others over by pushing a trolley around
 	..()
 
-/obj/vehicle/train/trolley_tank/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/vehicle/train/trolley_tank/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(C == user)
 		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
 		return
@@ -452,10 +454,10 @@
 	if(istype(C,/obj/vehicle/train)) // Only allow latching
 		. = ..()
 
-/obj/vehicle/train/trolley_tank/load(var/atom/movable/C, var/mob/living/user)
+/obj/vehicle/train/trolley_tank/load(atom/movable/C, mob/living/user)
 	return FALSE // Cannot load anything onto this
 
-/obj/vehicle/train/trolley_tank/RunOver(var/mob/living/M)
+/obj/vehicle/train/trolley_tank/RunOver(mob/living/M)
 	..()
 	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
@@ -497,7 +499,7 @@
 
 	. = ..()
 
-/obj/vehicle/train/trolley_tank/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/trolley_tank/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 

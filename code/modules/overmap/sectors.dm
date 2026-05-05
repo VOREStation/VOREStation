@@ -59,13 +59,13 @@
 	find_z_levels() // This populates map_z and assigns z levels to the ship.
 	register_z_levels() // This makes external calls to update global z level information.
 
-	if(!global.using_map.overmap_z)
+	if(!using_map.overmap_z)
 		build_overmap()
 
-	start_x = start_x || rand(OVERMAP_EDGE, global.using_map.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, global.using_map.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, using_map.overmap_size - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, using_map.overmap_size - OVERMAP_EDGE)
 
-	forceMove(locate(start_x, start_y, global.using_map.overmap_z))
+	forceMove(locate(start_x, start_y, using_map.overmap_z))
 
 	if(!docking_codes)
 		docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
@@ -104,7 +104,7 @@
 //To be used by GMs and calling through var edits for the overmap object
 //It causes the overmap object to "reinitialize" its real_appearance for known = FALSE objects
 //Includes an argument that allows GMs/Admins to set a previously known sector to unknown. Set to any value except 0/False/Null to activate
-/obj/effect/overmap/visitable/proc/gmtools_update_omobject_vars(var/setToHidden)
+/obj/effect/overmap/visitable/proc/gmtools_update_omobject_vars(setToHidden)
 	real_appearance = image(real_icon, src, real_icon_state)
 	real_appearance.override = TRUE
 	if(setToHidden && known) //
@@ -150,27 +150,27 @@
 	for(var/zlevel in map_z)
 		GLOB.map_sectors["[zlevel]"] = src
 
-	global.using_map.player_levels |= map_z
+	using_map.player_levels |= map_z
 	if(!in_space)
-		global.using_map.sealed_levels |= map_z
+		using_map.sealed_levels |= map_z
 	/* VOREStation Removal - We have a map system that does this already.
 	if(base)
-		global.using_map.station_levels |= map_z
-		global.using_map.contact_levels |= map_z
-		global.using_map.map_levels |= map_z
+		using_map.station_levels |= map_z
+		using_map.contact_levels |= map_z
+		using_map.map_levels |= map_z
 	*/
 
 /obj/effect/overmap/visitable/proc/unregister_z_levels()
 	GLOB.map_sectors -= map_z
 
-	global.using_map.player_levels -= map_z
+	using_map.player_levels -= map_z
 	if(!in_space)
-		global.using_map.sealed_levels -= map_z
+		using_map.sealed_levels -= map_z
 	/* VOREStation Removal - We have a map system that does this already.
 	if(base)
-		global.using_map.station_levels -= map_z
-		global.using_map.contact_levels -= map_z
-		global.using_map.map_levels -= map_z
+		using_map.station_levels -= map_z
+		using_map.contact_levels -= map_z
+		using_map.map_levels -= map_z
 	*/
 
 /obj/effect/overmap/visitable/get_scan_data()
@@ -215,7 +215,7 @@
 	else
 		generic_waypoints -= landmark
 
-/obj/effect/overmap/visitable/proc/get_waypoints(var/shuttle_name)
+/obj/effect/overmap/visitable/proc/get_waypoints(shuttle_name)
 	. = list()
 	for(var/obj/effect/overmap/visitable/contained in src)
 		. += contained.get_waypoints(shuttle_name)
@@ -252,7 +252,7 @@
 	icon_state = "sector"
 	anchored = TRUE
 
-/obj/effect/overmap/visitable/sector/proc/announce_atc(var/atom/movable/AM, var/going = FALSE) //Base proc. Used for virgo3b at this time.
+/obj/effect/overmap/visitable/sector/proc/announce_atc(atom/movable/AM, going = FALSE) //Base proc. Used for virgo3b at this time.
 	return
 // Because of the way these are spawned, they will potentially have their invisibility adjusted by the turfs they are mapped on
 // prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.
@@ -270,7 +270,7 @@
 	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
-		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
+		GLOB.priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = ANNOUNCER_MSG_DISTRESS_SIGNAL, zlevel = zlevel)
 
 	var/image/I = image(icon, icon_state = "distress")
 	I.plane = PLANE_LIGHTING_ABOVE
@@ -288,26 +288,26 @@
 	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
-		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
+		GLOB.priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = ANNOUNCER_MSG_DISTRESS_SIGNAL, zlevel = zlevel)
 
 /proc/build_overmap()
-	if(!global.using_map.use_overmap)
+	if(!using_map.use_overmap)
 		return 1
 
 	testing("Building overmap...")
 	world.increment_max_z()
-	global.using_map.overmap_z = world.maxz
+	using_map.overmap_z = world.maxz
 
-	testing("Putting overmap on [global.using_map.overmap_z]")
+	testing("Putting overmap on [using_map.overmap_z]")
 	var/area/overmap/A = new
-	for(var/turf/T as anything in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
-		if(T.x == 1 || T.y == 1 || T.x == global.using_map.overmap_size || T.y == global.using_map.overmap_size)
+	for(var/turf/T as anything in block(locate(1,1,using_map.overmap_z), locate(using_map.overmap_size,using_map.overmap_size,using_map.overmap_z)))
+		if(T.x == 1 || T.y == 1 || T.x == using_map.overmap_size || T.y == using_map.overmap_size)
 			T = T.ChangeTurf(/turf/unsimulated/map/edge)
 		else
 			T = T.ChangeTurf(/turf/unsimulated/map)
 		ChangeArea(T, A)
 
-	global.using_map.sealed_levels |= global.using_map.overmap_z
+	using_map.sealed_levels |= using_map.overmap_z
 
 	testing("Overmap build complete.")
 	return 1

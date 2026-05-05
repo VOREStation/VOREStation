@@ -19,7 +19,7 @@
 /obj/item/integrated_electronics/wirer/update_icon()
 	icon_state = "wirer-[mode]"
 
-/obj/item/integrated_electronics/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
+/obj/item/integrated_electronics/wirer/proc/wire(datum/integrated_io/io, mob/user)
 	if(!io.holder.assembly)
 		to_chat(user, span_warning("\The [io.holder] needs to be secured inside an assembly first."))
 		return
@@ -112,7 +112,7 @@
 	settings to specific circuits, or for debugging purposes. It can also pulse activation pins."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
 	icon_state = "debugger"
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	var/data_to_write = null
 	var/accepting_refs = 0
 
@@ -155,7 +155,7 @@
 		now off."))
 		accepting_refs = 0
 
-/obj/item/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+/obj/item/integrated_electronics/debugger/proc/write_data(datum/integrated_io/io, mob/user)
 	if(io.io_type == DATA_CHANNEL)
 		io.write_data_to_pin(data_to_write)
 		var/data_to_show = data_to_write
@@ -194,7 +194,7 @@
 		else
 			icon_state = "multitool"
 
-/obj/item/multitool/proc/wire(var/datum/integrated_io/io, mob/user)
+/obj/item/multitool/proc/wire(datum/integrated_io/io, mob/user)
 	if(!io.holder.assembly)
 		to_chat(user, span_warning("\The [io.holder] needs to be secured inside an assembly first."))
 		return
@@ -224,7 +224,7 @@
 	update_icon()
 
 
-/obj/item/multitool/proc/unwire(var/datum/integrated_io/io1, var/datum/integrated_io/io2, mob/user)
+/obj/item/multitool/proc/unwire(datum/integrated_io/io1, datum/integrated_io/io2, mob/user)
 	if(!io1.linked.len || !io2.linked.len)
 		to_chat(user, span_warning("There is nothing connected to the data channel."))
 		return
@@ -253,7 +253,7 @@
 	desc = "This kit's essential for any circuitry projects."
 	icon = 'icons/obj/integrated_electronics/electronic_misc.dmi'
 	icon_state = "circuit_kit"
-	w_class = 3
+	w_class = ITEMSIZE_NORMAL
 	display_contents_with_number = 0
 	can_hold = list(
 		/obj/item/integrated_circuit,
@@ -262,8 +262,17 @@
 		/obj/item/integrated_electronics,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
-		/obj/item/multitool
+		/obj/item/multitool,
+		/obj/item/integrated_electronics/wirer,
+		/obj/item/integrated_electronics/debugger,
+		/obj/item/integrated_electronics/detailer,
 		)
+
+//Emp'ing this one bag causes a recursion loop of over 700 emp_act's,
+//Which is enough to trigger byond's recursion level protection
+/obj/item/storage/bag/circuits/basic/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	. = ..()
 
 /obj/item/storage/bag/circuits/basic/Initialize(mapload)
 	new /obj/item/storage/bag/circuits/mini/arithmetic(src)
@@ -283,6 +292,9 @@
 	new /obj/item/multitool(src)
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/crowbar(src)
+	new /obj/item/integrated_electronics/wirer(src)
+	new /obj/item/integrated_electronics/debugger(src)
+	new /obj/item/integrated_electronics/detailer(src)
 	make_exact_fit()
 	. = ..()
 
@@ -307,6 +319,7 @@
 	new /obj/item/electronic_assembly/drone(src)
 	new /obj/item/integrated_electronics/wirer(src)
 	new /obj/item/integrated_electronics/debugger(src)
+	new /obj/item/integrated_electronics/detailer(src)
 	new /obj/item/tool/crowbar(src)
 	make_exact_fit()
 	. = ..()
@@ -314,7 +327,7 @@
 /obj/item/storage/bag/circuits/mini
 	name = "circuit box"
 	desc = "Used to partition categories of circuits, for a neater workspace."
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	display_contents_with_number = 1
 	can_hold = list(/obj/item/integrated_circuit)
 	var/spawn_flags_to_use = IC_SPAWN_DEFAULT

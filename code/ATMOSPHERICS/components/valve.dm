@@ -37,7 +37,7 @@
 	add_underlay(T, node1, get_dir(src, node1))
 	add_underlay(T, node2, get_dir(src, node2))
 
-/obj/machinery/atmospherics/valve/hide(var/i)
+/obj/machinery/atmospherics/valve/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/valve/init_dir()
@@ -287,7 +287,7 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/valve/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/valve/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/valve/digital) && !src.allowed(user))
@@ -304,7 +304,7 @@
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
-		deconstruct()
+		atom_deconstruct()
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
 	. = ..()

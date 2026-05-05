@@ -23,6 +23,7 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/fulltile = FALSE // Set to true on full-tile variants.
+	rad_insulation = RAD_VERY_LIGHT_INSULATION //Windows can have multiple placed on one tile, meaning you have to account for the potential that someone could just build a bunch of windows on one tile to prevent rads entirely.
 
 /obj/structure/window/examine(mob/user)
 	. = ..()
@@ -50,7 +51,7 @@
 /obj/structure/window/examine_icon()
 	return icon(icon=initial(icon),icon_state=initial(icon_state))
 
-/obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1)
+/obj/structure/window/take_damage(damage = 0,  sound_effect = 1)
 	var/initialhealth = health
 
 	if(silicate)
@@ -74,7 +75,7 @@
 			update_icon()
 	return
 
-/obj/structure/window/proc/apply_silicate(var/amount)
+/obj/structure/window/proc/apply_silicate(amount)
 	if(health < maxhealth) // Mend the damage
 		health = min(health + amount * 3, maxhealth)
 		if(health == maxhealth)
@@ -92,7 +93,7 @@
 	img.alpha = silicate * 255 / 100
 	add_overlay(img)
 
-/obj/structure/window/proc/shatter(var/display_message = 1)
+/obj/structure/window/proc/shatter(display_message = 1)
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
@@ -110,7 +111,7 @@
 	PROTECTED_PROC(TRUE)
 	return TRUE
 
-/obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/window/bullet_act(obj/item/projectile/Proj)
 
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
@@ -212,7 +213,7 @@
 							"You hear a knocking sound.")
 	return
 
-/obj/structure/window/attack_generic(var/mob/user, var/damage)
+/obj/structure/window/attack_generic(mob/user, damage)
 	user.setClickCooldown(user.get_attack_speed())
 	if(!damage)
 		return
@@ -342,7 +343,7 @@
 		..()
 	return
 
-/obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
+/obj/structure/window/proc/hit(damage, sound_effect = 1)
 	if(damage < force_threshold || force_threshold < 0)
 		return
 	if(reinf) damage *= 0.5
@@ -411,7 +412,7 @@
 /obj/structure/window/proc/is_fulltile()
 	return fulltile
 
-/obj/structure/window/is_between_turfs(var/turf/origin, var/turf/target)
+/obj/structure/window/is_between_turfs(turf/origin, turf/target)
 	if(is_fulltile())
 		return TRUE
 	return ..()
@@ -514,6 +515,7 @@
 	maxhealth = 80
 	fulltile = TRUE
 	flags = NONE
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -527,12 +529,14 @@
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 	maxhealth = 80.0
 	force_threshold = 10
+	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/window/phoronreinforced/full
 	icon_state = "phoronrwindow-full"
 	maxhealth = 160
 	fulltile = TRUE
 	flags = NONE
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -578,6 +582,7 @@
 	basestate = "w"
 	dir = 5
 	force_threshold = 7
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 /obj/structure/window/reinforced/polarized
 	name = "electrochromic window"
@@ -629,8 +634,9 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "light0"
 	desc = "A remote control switch for polarized windows."
-	var/range = 7
 	circuit = /obj/item/circuitboard/electrochromic
+	flags = WALL_ITEM
+	var/range = 7
 
 /obj/machinery/button/windowtint/attack_hand(mob/user as mob)
 	if(..())

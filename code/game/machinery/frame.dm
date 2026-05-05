@@ -26,7 +26,7 @@ GLOBAL_LIST(construction_frame_floor)
 	var/y_offset				// For wall frames: pixel_y
 
 // Get the icon state to use at a given state.  Default implementation is based on the frame's name
-/datum/frame/frame_types/proc/get_icon_state(var/state)
+/datum/frame/frame_types/proc/get_icon_state(state)
 	var/type = lowertext(name)
 	type = replacetext(type, " ", "_")
 	return "[type]_[state]"
@@ -41,12 +41,12 @@ GLOBAL_LIST(construction_frame_floor)
 
 /datum/frame/frame_types/computer
 	name = "Computer"
-	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_COMPUTER
 
 /datum/frame/frame_types/machine
 	name = "Machine"
-	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
 	frame_class = FRAME_CLASS_MACHINE
 
 /datum/frame/frame_types/conveyor
@@ -115,6 +115,7 @@ GLOBAL_LIST(construction_frame_floor)
 /datum/frame/frame_types/reagent_distillery
 	name = "Distillery"
 	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/circuitboard/distiller
 	frame_size = 4
 
 /datum/frame/frame_types/display
@@ -213,7 +214,7 @@ GLOBAL_LIST(construction_frame_floor)
 /datum/frame/frame_types/injector_maker
 	name = "Ready-to-Use Medicine 3000"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/machinery/atmospheric_field_generator
+	circuit = /obj/item/circuitboard/injector_maker
 	frame_size = 3
 
 // Refinery machines
@@ -281,6 +282,7 @@ GLOBAL_LIST(construction_frame_floor)
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
+	flags = WALL_ITEM
 	var/state = FRAME_PLACED
 	var/obj/item/circuitboard/circuit = null
 	var/need_circuit = TRUE
@@ -325,7 +327,7 @@ GLOBAL_LIST(construction_frame_floor)
 	for(var/obj/ct as anything in req_components)
 		req_component_names[ct] = initial(ct.name)
 
-/obj/structure/frame/Initialize(mapload, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
+/obj/structure/frame/Initialize(mapload, dir, building = 0, datum/frame/frame_types/type, mob/user as mob)
 	. = ..()
 	if(building)
 		frame_type = type
@@ -644,7 +646,7 @@ GLOBAL_LIST(construction_frame_floor)
 
 	update_icon()
 
-/obj/structure/frame/proc/install_part(var/mob/user, var/obj/item/P, var/defer_feedback = FALSE)
+/obj/structure/frame/proc/install_part(mob/user, obj/item/P, defer_feedback = FALSE)
 	var/installed_part = FALSE
 	for(var/I in req_components)
 		if(!istype(P, I) || (req_components[I] == 0))
@@ -684,7 +686,7 @@ GLOBAL_LIST(construction_frame_floor)
 	to_chat(user, span_warning("You cannot add that component to the machine!"))
 	return FALSE
 
-/obj/structure/frame/proc/mass_install_parts(var/mob/user, var/obj/item/storage/S)
+/obj/structure/frame/proc/mass_install_parts(mob/user, obj/item/storage/S)
 	var/installed_part = FALSE
 	for(var/obj/item/P in S.contents)
 		installed_part |= install_part(user, P, TRUE)

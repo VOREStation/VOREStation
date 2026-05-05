@@ -2,7 +2,7 @@
 #define HUMAN_EATING_NO_MOUTH		1
 #define HUMAN_EATING_BLOCKED_MOUTH	2
 
-/mob/living/carbon/human/can_eat(var/food, var/feedback = 1)
+/mob/living/carbon/human/can_eat(food, feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return 1
@@ -13,7 +13,7 @@
 			balloon_alert(src, "\the [status[2]] is in the way!")
 	return 0
 
-/mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
+/mob/living/carbon/human/can_force_feed(feeder, food, feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return 1
@@ -162,10 +162,10 @@
 	hud_list[IMPTRACK_HUD]    = gen_hud_image(GLOB.ingame_hud, src, "hudblank", plane = PLANE_CH_IMPTRACK)
 	hud_list[SPECIALROLE_HUD] = gen_hud_image(GLOB.ingame_hud, src, "hudblank", plane = PLANE_CH_SPECIAL)
 	hud_list[STATUS_HUD_OOC]  = gen_hud_image(GLOB.ingame_hud, src, "hudhealthy", plane = PLANE_CH_STATUS_OOC)
-	hud_list[HEALTH_VR_HUD]   = gen_hud_image(ingame_hud_med_vr, src, "100", plane = PLANE_CH_HEALTH_VR)
-	hud_list[STATUS_R_HUD]    = gen_hud_image(ingame_hud_vr, src, "hudblank", plane = PLANE_CH_STATUS_R)
-	hud_list[BACKUP_HUD]      = gen_hud_image(ingame_hud_vr, src, "hudblank", plane = PLANE_CH_BACKUP)
-	hud_list[VANTAG_HUD]      = gen_hud_image(ingame_hud_vr, src, "hudblank", plane = PLANE_CH_VANTAG)
+	hud_list[HEALTH_VR_HUD]   = gen_hud_image(GLOB.ingame_hud_med_vr, src, "100", plane = PLANE_CH_HEALTH_VR)
+	hud_list[STATUS_R_HUD]    = gen_hud_image(GLOB.ingame_hud_vr, src, "hudblank", plane = PLANE_CH_STATUS_R)
+	hud_list[BACKUP_HUD]      = gen_hud_image(GLOB.ingame_hud_vr, src, "hudblank", plane = PLANE_CH_BACKUP)
+	hud_list[VANTAG_HUD]      = gen_hud_image(GLOB.ingame_hud_vr, src, "hudblank", plane = PLANE_CH_VANTAG)
 	add_overlay(hud_list)
 
 /mob/living/carbon/human/recalculate_vis()

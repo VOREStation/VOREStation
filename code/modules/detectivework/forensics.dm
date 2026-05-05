@@ -4,7 +4,7 @@
 
 //This is the output of the stringpercent(print) proc, and means about 80% of
 //the print must be there for it to be complete.  (Prints are 32 digits)
-/proc/is_complete_print(var/print)
+/proc/is_complete_print(print)
 	return stringpercent(print) <= FINGERPRINT_COMPLETE
 
 /// Forensics: Returns the object's forensic information datum. If none exists, it makes it.
@@ -78,12 +78,12 @@
 	init_forensic_data().add_hiddenprints(M)
 
 /// Forensics: Adds blood dna to an object, this also usually gives the object a bloody overlay, but that is handled by the object itself. Returns true if this is the first time this dna is being added to this object.
-/atom/proc/add_blooddna(var/datum/dna/dna_data,var/mob/M)
+/atom/proc/add_blooddna(datum/dna/dna_data,mob/M)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return init_forensic_data().add_blooddna(dna_data,M)
 
 /// Forensics: Adds blood dna to an object, this version uses an organ's more restricted dna datum, but it still has all the information needed. Returns true if this is the first time this dna is being added to this object.
-/atom/proc/add_blooddna_organ(var/datum/organ_data/dna_data)
+/atom/proc/add_blooddna_organ(datum/organ_data/dna_data)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return init_forensic_data().add_blooddna_organ(dna_data)
 
@@ -93,7 +93,7 @@
 	init_forensic_data().add_fibres(M)
 
 /// Forensics: Transfers both our normal and hidden fingerprints to the specified object, handles the forensics datum creation itself.
-/atom/proc/transfer_fingerprints_to(var/atom/transfer_to)
+/atom/proc/transfer_fingerprints_to(atom/transfer_to)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!forensic_data)
 		return
@@ -102,20 +102,20 @@
 	C.merge_hiddenprints(forensic_data)
 
 /// Forensics: Transfers our blood dna to the specified object, handles the forensics datum creation itself.
-/atom/proc/transfer_blooddna_to(var/atom/transfer_to)
+/atom/proc/transfer_blooddna_to(atom/transfer_to)
 	if(!forensic_data)
 		return
 	transfer_to.init_forensic_data().merge_blooddna(forensic_data)
 
 /// Forensics: Transfers our stray fibers to the specified object, handles the forensics datum creation itself.
-/atom/proc/transfer_fibres_to(var/atom/transfer_to)
+/atom/proc/transfer_fibres_to(atom/transfer_to)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!forensic_data)
 		return
 	transfer_to.init_forensic_data().merge_fibres(forensic_data)
 
 /// Forensics: Adds gunshot residue from firing boolets
-/atom/proc/add_gunshotresidue(var/obj/item/ammo_casing/shell)
+/atom/proc/add_gunshotresidue(obj/item/ammo_casing/shell)
 	init_forensic_data().add_gunshotresidue(shell.caliber)
 
 
@@ -123,7 +123,7 @@
 	name = "forensic data"
 	var/uid
 
-/datum/data/record/forensic/New(var/atom/A)
+/datum/data/record/forensic/New(atom/A)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
@@ -132,7 +132,7 @@
 	fields["blood"] = A.forensic_data?.get_blooddna().Copy()
 	fields["time"] = world.time
 
-/datum/data/record/forensic/proc/merge(var/datum/data/record/other)
+/datum/data/record/forensic/proc/merge(datum/data/record/other)
 	var/list/prints = fields["fprints"]
 	var/list/o_prints = other.fields["fprints"]
 	for(var/print in o_prints)
@@ -155,7 +155,7 @@
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]
 
-/datum/data/record/forensic/proc/update_prints(var/list/o_prints)
+/datum/data/record/forensic/proc/update_prints(list/o_prints)
 	var/list/prints = fields["fprints"]
 	for(var/print in o_prints)
 		if(prints[print])

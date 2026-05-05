@@ -11,7 +11,6 @@
 	throw_speed = 5
 	throw_range = 10
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 6000)
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 	var/datum/reagents/supply
 	var/efficiency = 15 //How many units reagent per 1 unit nanopaste
 	pickup_sound = 'sound/items/pickup/device.ogg'
@@ -39,7 +38,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/nifrepairer/afterattack(var/atom/target, var/mob/user, var/proximity)
+/obj/item/nifrepairer/afterattack(atom/target, mob/user, proximity)
 	if(!target.is_open_container() || !target.reagents)
 		return 0
 

@@ -11,7 +11,6 @@
 	throw_speed = 4
 	throw_range = 20
 
-	origin_tech = list(TECH_BLUESPACE = 5)
 
 	var/mode = 1  // 1 mode - teleport you to turf  0 mode teleport turf to you
 	var/firable = TRUE
@@ -25,7 +24,7 @@
 	scanmod = new(src)
 	update_fail_chance()
 
-/obj/item/bluespace_harpoon/examine(var/mob/user)
+/obj/item/bluespace_harpoon/examine(mob/user)
 	. = ..()
 	. += "It is currently in [mode ? "transmitting" : "receiving"] mode."
 	. += "Spatial rearrangement is [dropnoms_active ? "active" : "inactive"]."
@@ -38,7 +37,7 @@
 	else
 		failure_chance = 75 // You can't even use it if there's no scanmod, but why not.
 
-/obj/item/bluespace_harpoon/attackby(var/obj/item/I, var/mob/living/user)
+/obj/item/bluespace_harpoon/attackby(obj/item/I, mob/living/user)
 	if(!istype(user))
 		return
 

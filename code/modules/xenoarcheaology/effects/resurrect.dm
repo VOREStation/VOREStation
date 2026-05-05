@@ -8,7 +8,12 @@
 	effect_state = "pulsing"
 	effect_color = "#ff0000"
 
-/datum/artifact_effect/resurrect/proc/steal_life(var/mob/living/target = null)
+/datum/artifact_effect/resurrect/New()
+	..()
+	effect = rand(EFFECT_AURA, EFFECT_PULSE)
+	trigger = pick(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN, TRIGGER_FORCE, TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD) //No trigger touch.
+
+/datum/artifact_effect/resurrect/proc/steal_life(mob/living/target = null)
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
@@ -30,7 +35,7 @@
 
 	return 0
 
-/datum/artifact_effect/resurrect/proc/give_life(var/mob/living/target = null)
+/datum/artifact_effect/resurrect/proc/give_life(mob/living/target = null)
 	var/atom/holder = get_master_holder()
 
 	/// ALRIGHT, LET ME EXPLAIN THIS ABOMINATION.
@@ -62,7 +67,7 @@
 			attempt_revive(target)
 			stored_life = 0
 
-/datum/artifact_effect/resurrect/proc/attempt_revive(var/mob/living/L = null)
+/datum/artifact_effect/resurrect/proc/attempt_revive(mob/living/L = null)
 	var/atom/holder = get_master_holder()
 	spawn()
 		if(isanimal(L))
@@ -102,7 +107,7 @@
 			else
 				holder.visible_message(span_alien("\The [H]'s body stays still...Perhaps their mind was not ready to rejoin their body."))
 
-/datum/artifact_effect/resurrect/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/resurrect/DoEffectTouch(mob/user)
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc

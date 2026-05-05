@@ -13,20 +13,20 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(MAT_STEEL = 500, MAT_GLASS = 200)
 	var/mode = 1;
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	do_scan(M, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/robotanalyzer/click_alt(mob/user)
 	mode = !mode
 	user.show_message(span_blue("[mode ? "Toggled to cyborg analyzing mode." : "Toggled to cyborg upgrade scan mode."]"), 1)
 
-/obj/item/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/proc/do_scan(mob/living/M, mob/living/user)
 	if(CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_red("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))

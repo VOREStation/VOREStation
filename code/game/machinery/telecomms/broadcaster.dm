@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	//Linked bluespace radios
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/radio/R)
+/obj/machinery/telecomms/broadcaster/proc/link_radio(obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/allinone/proc/link_radio(var/obj/item/radio/R)
+/obj/machinery/telecomms/allinone/proc/link_radio(obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -486,34 +486,34 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		//var/blackbox_admin_msg = "[part_a][M.name] (Real name: [M.real_name])[part_blackbox_b][quotedmsg][part_c]"
 
 		//BR.messages_admin += blackbox_admin_msg
-		if(istype(blackbox))
+		if(istype(GLOB.blackbox))
 			switch(display_freq)
 				if(PUB_FREQ)
-					blackbox.msg_common += blackbox_msg
+					GLOB.blackbox.msg_common += blackbox_msg
 				if(SCI_FREQ)
-					blackbox.msg_science += blackbox_msg
+					GLOB.blackbox.msg_science += blackbox_msg
 				if(COMM_FREQ)
-					blackbox.msg_command += blackbox_msg
+					GLOB.blackbox.msg_command += blackbox_msg
 				if(MED_FREQ)
-					blackbox.msg_medical += blackbox_msg
+					GLOB.blackbox.msg_medical += blackbox_msg
 				if(ENG_FREQ)
-					blackbox.msg_engineering += blackbox_msg
+					GLOB.blackbox.msg_engineering += blackbox_msg
 				if(SEC_FREQ)
-					blackbox.msg_security += blackbox_msg
+					GLOB.blackbox.msg_security += blackbox_msg
 				if(DTH_FREQ)
-					blackbox.msg_deathsquad += blackbox_msg
+					GLOB.blackbox.msg_deathsquad += blackbox_msg
 				if(SYND_FREQ)
-					blackbox.msg_syndicate += blackbox_msg
+					GLOB.blackbox.msg_syndicate += blackbox_msg
 				if(RAID_FREQ)
-					blackbox.msg_raider += blackbox_msg
+					GLOB.blackbox.msg_raider += blackbox_msg
 				if(SUP_FREQ)
-					blackbox.msg_cargo += blackbox_msg
+					GLOB.blackbox.msg_cargo += blackbox_msg
 				if(SRV_FREQ)
-					blackbox.msg_service += blackbox_msg
+					GLOB.blackbox.msg_service += blackbox_msg
 				if(EXP_FREQ)
-					blackbox.msg_explorer += blackbox_msg
+					GLOB.blackbox.msg_explorer += blackbox_msg
 				else
-					blackbox.messages += blackbox_msg
+					GLOB.blackbox.messages += blackbox_msg
 
 		//End of research and feedback code.
 
@@ -556,7 +556,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	return 1
 
-/proc/Broadcast_SimpleMessage(var/source, var/frequency, list/message_pieces, var/data, var/mob/M, var/compression, var/level, var/list/forced_radios)
+/proc/Broadcast_SimpleMessage(source, frequency, list/message_pieces, data, mob/M, compression, level, list/forced_radios)
 	var/text = multilingual_to_message(message_pieces)
 	/* ###### Prepare the radio connection ###### */
 
@@ -674,32 +674,32 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		var/blackbox_msg = "[part_a][source][part_blackbox_b]\"[text]\"[part_c]"
 
 		//BR.messages_admin += blackbox_admin_msg
-		if(istype(blackbox))
+		if(istype(GLOB.blackbox))
 			switch(display_freq)
 				if(PUB_FREQ)
-					blackbox.msg_common += blackbox_msg
+					GLOB.blackbox.msg_common += blackbox_msg
 				if(SCI_FREQ)
-					blackbox.msg_science += blackbox_msg
+					GLOB.blackbox.msg_science += blackbox_msg
 				if(COMM_FREQ)
-					blackbox.msg_command += blackbox_msg
+					GLOB.blackbox.msg_command += blackbox_msg
 				if(MED_FREQ)
-					blackbox.msg_medical += blackbox_msg
+					GLOB.blackbox.msg_medical += blackbox_msg
 				if(ENG_FREQ)
-					blackbox.msg_engineering += blackbox_msg
+					GLOB.blackbox.msg_engineering += blackbox_msg
 				if(SEC_FREQ)
-					blackbox.msg_security += blackbox_msg
+					GLOB.blackbox.msg_security += blackbox_msg
 				if(DTH_FREQ)
-					blackbox.msg_deathsquad += blackbox_msg
+					GLOB.blackbox.msg_deathsquad += blackbox_msg
 				if(SYND_FREQ)
-					blackbox.msg_syndicate += blackbox_msg
+					GLOB.blackbox.msg_syndicate += blackbox_msg
 				if(RAID_FREQ)
-					blackbox.msg_raider += blackbox_msg
+					GLOB.blackbox.msg_raider += blackbox_msg
 				if(SUP_FREQ)
-					blackbox.msg_cargo += blackbox_msg
+					GLOB.blackbox.msg_cargo += blackbox_msg
 				if(SRV_FREQ)
-					blackbox.msg_service += blackbox_msg
+					GLOB.blackbox.msg_service += blackbox_msg
 				else
-					blackbox.messages += blackbox_msg
+					GLOB.blackbox.messages += blackbox_msg
 
 		//End of research and feedback code.
 
@@ -740,7 +740,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	var/pos_z = get_z(src)
 	return ((pos_z in signal.data["level"]) && signal.data["done"])
 
-/atom/proc/telecomms_process(var/do_sleep = 1)
+/atom/proc/telecomms_process(do_sleep = 1)
 
 	// First, we want to generate a new radio signal
 	var/datum/signal/signal = new
@@ -761,7 +761,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	signal.frequency = PUB_FREQ// Common channel
 
 	//#### Sending the signal to all subspace receivers ####//
-	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+	for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 		R.receive_signal(signal)
 
 	if(do_sleep)

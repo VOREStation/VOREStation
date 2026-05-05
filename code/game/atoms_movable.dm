@@ -37,20 +37,27 @@
 
 /atom/movable/Initialize(mapload)
 	. = ..()
-	switch(blocks_emissive)
-		if(EMISSIVE_BLOCK_GENERIC)
-			var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = PLANE_EMISSIVE, alpha = src.alpha)
-			gen_emissive_blocker.color = GLOB.em_block_color
-			gen_emissive_blocker.dir = dir
-			gen_emissive_blocker.appearance_flags |= appearance_flags
-			// Note, this should be refactored to drop priority overlays
-			add_overlay(list(gen_emissive_blocker), TRUE)
-		if(EMISSIVE_BLOCK_UNIQUE)
+
+#if EMISSIVE_BLOCK_GENERIC != 0
+	#error EMISSIVE_BLOCK_GENERIC is expected to be 0 to facilitate a weird optimization hack where we rely on it being the most common.
+	#error Read the comment in code/game/atoms_movable.dm for details.
+#endif
+
+	if (blocks_emissive)
+		if (blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
-			em_block = new(src, render_target)
+			em_block = new(null, src)
 			// Note, this should be refactored to drop priority overlays
 			add_overlay(list(em_block), TRUE)
 			RegisterSignal(em_block, COMSIG_QDELETING, PROC_REF(emblocker_gc))
+	else
+		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = PLANE_EMISSIVE, alpha = src.alpha)
+		gen_emissive_blocker.color = GLOB.em_block_color
+		gen_emissive_blocker.dir = dir
+		gen_emissive_blocker.appearance_flags |= appearance_flags
+		// Note, this should be refactored to drop priority overlays
+		add_overlay(list(gen_emissive_blocker), TRUE)
+
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(icon_scale_x != DEFAULT_ICON_SCALE_X || icon_scale_y != DEFAULT_ICON_SCALE_Y || icon_rotation != DEFAULT_ICON_ROTATION)
@@ -586,7 +593,7 @@
 
 
 // Animations for cloaking/uncloaking
-/atom/movable/proc/cloak_animation(var/length = 1 SECOND)
+/atom/movable/proc/cloak_animation(length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -607,7 +614,7 @@
 	//Back to original alpha
 	alpha = initial_alpha
 
-/atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
+/atom/movable/proc/uncloak_animation(length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -645,7 +652,7 @@
 /atom/movable/proc/get_cell()
 	return
 
-/atom/movable/proc/emblocker_gc(var/datum/source)
+/atom/movable/proc/emblocker_gc(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_QDELETING)
 	cut_overlay(source)
@@ -665,7 +672,7 @@
 /atom/movable/proc/exit_belly(obj/belly/B)
 	return
 
-/atom/movable/proc/set_listening(var/set_to)
+/atom/movable/proc/set_listening(set_to)
 	if (listening_recursive && !set_to)
 		LAZYREMOVE(recursive_listeners, src)
 		if (!LAZYLEN(recursive_listeners))

@@ -39,7 +39,6 @@
 	name = T_BOARD("radioisotope TEG")
 	build_path = /obj/machinery/power/rtg
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1,
@@ -48,7 +47,6 @@
 /obj/item/circuitboard/machine/rtg/advanced
 	name = T_BOARD("advanced radioisotope TEG")
 	build_path = /obj/machinery/power/rtg/advanced
-	origin_tech = list(TECH_DATA = 5, TECH_POWER = 5, TECH_PHORON = 5, TECH_ENGINEERING = 5)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1,
@@ -60,20 +58,20 @@
 	name = T_BOARD("void generator")
 	build_path = /obj/machinery/power/rtg/abductor
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor/hyper = 1)
+	hidden = TRUE
 
 /obj/item/circuitboard/machine/abductor/core/hybrid
 	name = T_BOARD("void generator (hybrid)")
 	build_path = /obj/machinery/power/rtg/abductor/hybrid
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor/hyper = 1,
 		/obj/item/stock_parts/micro_laser/hyper = 1)
+	hidden = TRUE
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
@@ -142,7 +140,14 @@
 	..()
 	add_avail(power_gen)
 	if(panel_open && irradiate)
-		SSradiation.radiate(src, 60)
+		radiation_pulse(
+			src,
+			max_range = 3,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = DEFAULT_RADIATION_CHANCE,
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = power_gen * 0.01 //1000 power = 10 rads. 10000 power = 100 rads. You can get creative with rad collectors if you want.
+		)
 
 /obj/machinery/power/rtg/RefreshParts()
 	var/part_level = 0
@@ -227,7 +232,7 @@
 	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
 		span_warningplain("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_gen * 0.05)
+	tesla_zap(src, 5, power_gen * 0.05, current_jumps = 1)
 	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(explosion), get_turf(src), 2, 3, 4, 8), 100) // Not a normal explosion.
 
 /obj/machinery/power/rtg/abductor/bullet_act(obj/item/projectile/Proj)
@@ -236,7 +241,7 @@
 		log_and_message_admins("[ADMIN_LOOKUPFLW(Proj.firer)] triggered an Abductor Core explosion at [x],[y],[z] via projectile.", Proj.firer)
 		asplod()
 
-/obj/machinery/power/rtg/abductor/attack_hand(var/mob/living/user)
+/obj/machinery/power/rtg/abductor/attack_hand(mob/living/user)
 	if(!istype(user) || (. = ..()))
 		return
 
@@ -286,10 +291,6 @@
 		asplod()
 
 /obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
-	asplod()
-
-/obj/machinery/power/rtg/abductor/tesla_act()
-	..() //extend the zap
 	asplod()
 
 // Comes with an installed cell
@@ -346,10 +347,6 @@
 /obj/machinery/power/rtg/kugelblitz/fire_act(exposed_temperature, exposed_volume)
 	asplod()
 
-/obj/machinery/power/rtg/kugelblitz/tesla_act()
-	..() //extend the zap
-	asplod()
-
 /obj/machinery/power/rtg/kugelblitz/bullet_act(obj/item/projectile/Proj)
 	. = ..()
 	if(istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)) && Proj.damage >= 20)
@@ -381,7 +378,7 @@
 /obj/machinery/power/rtg/reg/Destroy()
 	. = ..()
 
-/obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
+/obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, forced = FALSE, silent = TRUE)
 	. = ..()
 	M.pixel_y = 8
 	M.visible_message(span_notice("\The [M], hops up onto \the [src] and begins running!"))
@@ -422,7 +419,7 @@
 		power_gen = 0
 	update_icon()
 
-/obj/machinery/power/rtg/reg/proc/runner_process(var/mob/living/runner)
+/obj/machinery/power/rtg/reg/proc/runner_process(mob/living/runner)
 	if(runner.stat != CONSCIOUS)
 		unbuckle_mob(runner)
 		runner.visible_message(span_warning("\The [runner], topples off of \the [src]!"))
@@ -458,14 +455,10 @@
 	power_gen = cool_rotations
 	runner.nutrition -= nutrition_drain
 
-/obj/machinery/power/rtg/reg/emp_act(severity, recursive)
-	return
-
 /obj/item/circuitboard/machine/reg_d
 	name = T_BOARD("D-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1)
@@ -474,7 +467,6 @@
 	name = T_BOARD("C-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg/c
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/stock_parts/capacitor = 1)
@@ -537,7 +529,7 @@
 	else
 		sheet_left -= needed_sheets
 
-/obj/machinery/power/port_gen/large_altevian/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/power/port_gen/large_altevian/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())
@@ -591,9 +583,15 @@
 	var/turf/T = get_turf(src)
 	qdel(src)
 	if(T)
+		radiation_pulse(
+			T,
+			max_range = 50,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = DEFAULT_RADIATION_CHANCE * 3,
+			strength = power_gen * 0.01 ///1MW = 1000 rads. If you blow up a BLACK HOLE ENGINE, you deserve the radiation that comes with it.
+		)
 		empulse(T, 12, 14, 16, 18)
 		explosion(T, 7, 12, 18, 20)
-		SSradiation.radiate(T, 200)
 		new /obj/effect/bhole(T)
 
 /obj/machinery/power/rtg/antimatter_core/blob_act(obj/structure/blob/B)
@@ -604,10 +602,6 @@
 
 /obj/machinery/power/rtg/antimatter_core/fire_act(exposed_temperature, exposed_volume)
 	return
-
-/obj/machinery/power/rtg/antimatter_core/tesla_act()
-	..() //extend the zap
-	asplod()
 
 /obj/machinery/power/rtg/antimatter_core/bullet_act(obj/item/projectile/Proj)
 	. = ..()

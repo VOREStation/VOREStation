@@ -89,7 +89,7 @@
 				SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 				return TRUE
 
-/datum/tgui_module/uav/proc/set_current(var/obj/item/uav/U)
+/datum/tgui_module/uav/proc/set_current(obj/item/uav/U)
 	if(current_uav == U)
 		return
 

@@ -306,7 +306,7 @@
 
 /* //VOREStation AI Temporary Removal
 //Blue-eyes want to nom people to heal them
-/mob/living/simple_mob/shadekin/Found(var/atom/A)
+/mob/living/simple_mob/shadekin/Found(atom/A)
 	if(specific_targets && isliving(A)) //Healing!
 		var/mob/living/L = A
 		var/health_percent = (L.health/L.getMaxHealth())*100
@@ -407,7 +407,7 @@
 /mob/living/simple_mob/shadekin/speech_bubble_appearance()
 	return "ghost"
 
-/mob/living/simple_mob/shadekin/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/shadekin/apply_melee_effects(atom/A)
 	. = ..(A)
 	if(isliving(A)) //We punched something!
 		var/mob/living/L = A

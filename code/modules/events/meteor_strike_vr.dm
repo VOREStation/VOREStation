@@ -11,7 +11,7 @@
 		kill()
 
 /datum/event/meteor_strike/announce()
-	command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring")
+	GLOB.command_announcement.Announce("A meteoroid has been detected entering the atmosphere on a trajectory that will terminate near the surface facilty. Brace for impact.", "NanoTrasen Orbital Monitoring")
 
 /datum/event/meteor_strike/start()
 	new /obj/effect/meteor_falling(strike_target)
@@ -95,7 +95,7 @@
 /obj/structure/meteorite/ex_act()
 	return
 
-/obj/structure/meteorite/attackby(var/obj/item/I, var/mob/M)
+/obj/structure/meteorite/attackby(obj/item/I, mob/M)
 	if(istype(I, /obj/item/pickaxe))
 		var/obj/item/pickaxe/P = I
 		M.visible_message(span_warning("[M] starts [P.drill_verb] \the [src]."), span_warning("You start [P.drill_verb] \the [src]."))

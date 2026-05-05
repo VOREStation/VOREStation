@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/diona/MouseDrop(var/atom/over_object)
+/mob/living/carbon/alien/diona/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(!istype(H) || !Adjacent(H))
 		return ..()
@@ -11,7 +11,7 @@
 	else
 		return ..()
 
-/mob/living/carbon/alien/diona/attackby(var/obj/item/W, var/mob/user)
+/mob/living/carbon/alien/diona/attackby(obj/item/W, mob/user)
 	if(user.a_intent == I_HELP && istype(W, /obj/item/clothing/head))
 		if(hat)
 			to_chat(user, span_warning("\The [src] is already wearing \the [hat]."))

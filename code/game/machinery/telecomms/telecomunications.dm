@@ -36,6 +36,8 @@
 	var/hide = 0				// Is it a hidden machine?
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
 
+	var/datum/looping_sound/tcomms/soundloop
+	var/noisy = TRUE
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -118,7 +120,7 @@
 
 
 /obj/machinery/telecomms/Initialize(mapload)
-	telecomms_list += src
+	GLOB.telecomms_list += src
 	..()
 	default_apply_parts()
 	return INITIALIZE_HINT_LATELOAD
@@ -137,18 +139,31 @@
 			for(var/obj/machinery/telecomms/T in orange(20, src))
 				add_link(T)
 		else
-			for(var/obj/machinery/telecomms/T in telecomms_list)
+			for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
 				add_link(T)
+	soundloop = new(list(src), FALSE)
+	if(prob(60)) // 60% chance to change the midloop
+		if(prob(40))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_02.ogg' = 1)
+			soundloop.mid_length = 40
+		else if(prob(20))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_03.ogg' = 1)
+			soundloop.mid_length = 10
+		else
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_04.ogg' = 1)
+			soundloop.mid_length = 30
+	soundloop.start()
 
 /obj/machinery/telecomms/Destroy()
-	telecomms_list -= src
-	for(var/obj/machinery/telecomms/comm in telecomms_list)
+	GLOB.telecomms_list -= src
+	for(var/obj/machinery/telecomms/comm in GLOB.telecomms_list)
 		comm.links -= src
 	links = list()
+	QDEL_NULL(soundloop)
 	. = ..()
 
 // Used in auto linking
-/obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
+/obj/machinery/telecomms/proc/add_link(obj/machinery/telecomms/T)
 	var/pos_z = get_z(src)
 	var/tpos_z = get_z(T)
 	if((pos_z == tpos_z) || (src.long_range_link && T.long_range_link))
@@ -167,11 +182,18 @@
 
 	if(toggled)
 		if(stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
-			on = 0
+			on = FALSE
+			soundloop.stop()
+			noisy = FALSE
 		else
-			on = 1
+			on = TRUE
 	else
-		on = 0
+		on = FALSE
+		soundloop.stop()
+		noisy = FALSE
+	if(!noisy)
+		soundloop.start()
+		noisy = TRUE
 
 /obj/machinery/telecomms/process()
 	update_power()
@@ -186,13 +208,16 @@
 		traffic -= netspeed
 
 /obj/machinery/telecomms/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(100/severity))
 		if(!(stat & EMPED))
 			stat |= EMPED
+			playsound(src, 'sound/machines/tcomms/tcomms_pulse.ogg', 70, 1, 30)
 			var/duration = (300 * 10)/severity
 			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
 				stat &= ~EMPED
-	..()
 
 /obj/machinery/telecomms/proc/checkheat()
 	if(QDELETED(src))
@@ -273,7 +298,7 @@
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
+/obj/machinery/telecomms/receiver/proc/link_radio(obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -633,7 +658,7 @@
 				relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
 
-/obj/machinery/telecomms/server/proc/setcode(var/t)
+/obj/machinery/telecomms/server/proc/setcode(t)
 	if(t)
 		if(istext(t))
 			rawcode = t
@@ -652,7 +677,7 @@
 				logs--
 				break
 
-/obj/machinery/telecomms/server/proc/add_entry(var/content, var/input)
+/obj/machinery/telecomms/server/proc/add_entry(content, input)
 	var/datum/comm_log_entry/log = new
 	var/identifier = num2text( rand(-1000,1000) + world.time )
 	log.name = "[input] ([md5(identifier)])"
@@ -674,7 +699,7 @@
 	var/input_type = "Speech File"
 
 //Generic telecomm connectivity test proc
-/proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
+/proc/can_telecomm(atom/A, atom/B, ad_hoc = FALSE)
 	if(!A || !B)
 		log_mapping("can_telecomm(): Undefined endpoints!")
 		return FALSE

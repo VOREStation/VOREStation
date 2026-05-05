@@ -71,6 +71,7 @@ SUBSYSTEM_DEF(research)
 		/obj/item/slime_extract/green = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.75),
 		/obj/item/slime_extract/pink = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.75),
 		/obj/item/slime_extract/gold = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.75),
+		/obj/item/slime_extract/light_pink = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS),
 		/obj/item/slime_extract/oil = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS),
 		/obj/item/slime_extract/sapphire = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS),
 		/obj/item/slime_extract/emerald = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS),

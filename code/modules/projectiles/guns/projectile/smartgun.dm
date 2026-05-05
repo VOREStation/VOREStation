@@ -9,7 +9,6 @@
 	icon_state = "smartgun"
 	icon_override = 'icons/obj/guns/projectile/smartgun_mob.dmi'
 	item_state = "smartgun"
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 4)
 	w_class = ITEMSIZE_LARGE
 	matter = list(MAT_STEEL = 6000, MAT_DIAMOND = 2000, MAT_URANIUM = 2000)
 	recoil = 1
@@ -49,13 +48,13 @@
 		return null
 	return ..()
 
-/obj/item/gun/projectile/smartgun/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/smartgun/load_ammo(obj/item/A, mob/user)
 	if(closed)
 		to_chat(user, span_warning("[src] can't be loaded until you un-ready it. (Alt-click)"))
 		return
 	return ..()
 
-/obj/item/gun/projectile/smartgun/unload_ammo(mob/user, var/allow_dump=0)
+/obj/item/gun/projectile/smartgun/unload_ammo(mob/user, allow_dump=0)
 	if(closed)
 		to_chat(user, span_warning("[src] can't be unloaded until you un-ready it. (Alt-click)"))
 		return

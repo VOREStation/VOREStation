@@ -98,7 +98,7 @@
 /mob/living/simple_mob/vore/aggressive/corrupthound/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/aggressive/corrupthound/apply_melee_effects(atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -123,7 +123,7 @@
 /mob/living/simple_mob/vore/aggressive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/aggressive/corrupthound/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/load_default_bellies()
@@ -345,7 +345,7 @@
 /mob/living/simple_mob/vore/retaliate/corrupthound/janihound/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/simple_mob/vore/retaliate/corrupthound/janihound/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/retaliate/corrupthound/janihound/apply_melee_effects(atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -370,7 +370,7 @@
 /mob/living/simple_mob/vore/retaliate/corrupthound/janihound/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
-/mob/living/simple_mob/vore/retaliate/corrupthound/janihound/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/retaliate/corrupthound/janihound/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/vore/retaliate/corrupthound/janihound/load_default_bellies()

@@ -9,7 +9,7 @@
 #define IMPOSSIBLE 3
 
 
-/proc/GenerateTheft(var/job,var/datum/mind/traitor)
+/proc/GenerateTheft(job,datum/mind/traitor)
 	var/list/datum/objective/objectives = list()
 
 	for(var/o in typesof(/datum/objective/steal))
@@ -19,7 +19,7 @@
 			objectives[target] = target.weight
 	return objectives
 
-/proc/GenerateAssassinate(var/job,var/datum/mind/traitor)
+/proc/GenerateAssassinate(job,datum/mind/traitor)
 	var/list/datum/objective/assassinate/missions = list()
 
 	for(var/datum/mind/target in SSticker.minds)
@@ -30,7 +30,7 @@
 				missions[target_obj] = target_obj.weight
 	return missions
 
-/proc/GenerateFrame(var/job,var/datum/mind/traitor)
+/proc/GenerateFrame(job,datum/mind/traitor)
 	var/list/datum/objective/frame/missions = list()
 
 	for(var/datum/mind/target in SSticker.minds)
@@ -41,7 +41,7 @@
 				missions[target_obj] = target_obj.weight
 	return missions
 
-/proc/GenerateProtection(var/job,var/datum/mind/traitor)
+/proc/GenerateProtection(job,datum/mind/traitor)
 	var/list/datum/objective/frame/missions = list()
 
 	for(var/datum/mind/target in SSticker.minds)
@@ -53,7 +53,7 @@
 	return missions
 
 
-/proc/SelectObjectives(var/job,var/datum/mind/traitor,var/hijack = 0)
+/proc/SelectObjectives(job,datum/mind/traitor,hijack = 0)
 	var/list/chosenobjectives = list()
 	var/list/theftobjectives = GenerateTheft(job,traitor)		//Separated all the objective types so they can be picked independantly of each other.
 	var/list/killobjectives = GenerateAssassinate(job,traitor)
@@ -267,7 +267,7 @@ datum
 				explanation_text = "Frame [target.current.real_name], the [target.assigned_role] for a crime and make sure they are arrested and brought back to the CentCom station alive.  We'll handle the rest from there."
 
 			check_completion()
-				if(!GLOB.emergency_shuttle.returned())
+				if(!SSemergency_shuttle.returned())
 					return 0
 				if(target.current.stat == 2)
 					return 0
@@ -313,7 +313,7 @@ datum
 				explanation_text = "[target.current.real_name], the [target.assigned_role] is a [pick("relative of a","friend of a","") + pick("high ranking","important","well-liked")] mercenary [pick("Leader","Officer","Agent","sympathiser")].  Make sure they get off the station safely, while minimizing intervention."
 
 			check_completion()
-				if(!GLOB.emergency_shuttle.returned())
+				if(!SSemergency_shuttle.returned())
 					return 0
 
 				if(target.current.stat == 2)
@@ -477,7 +477,7 @@ datum
 			explanation_text = "Hijack the emergency shuttle by escaping alone."
 
 			check_completion()
-				if(!GLOB.emergency_shuttle.returned())
+				if(!SSemergency_shuttle.returned())
 					return 0
 
 				if(!owner.current || owner.current.stat == 2)
@@ -512,7 +512,7 @@ datum
 			explanation_text = "Escape on the shuttle alive, without being arrested."
 
 			check_completion()
-				if(!GLOB.emergency_shuttle.returned())
+				if(!SSemergency_shuttle.returned())
 					return 0
 
 				if(!owner.current || owner.current.stat ==2)
@@ -1230,7 +1230,7 @@ datum
 			check_completion()
 				if(!istype(owner.current, /mob/living/silicon))
 					return 0
-				if(!GLOB.emergency_shuttle.returned())
+				if(!SSemergency_shuttle.returned())
 					return 0
 				if(!owner.current)
 					return 0
@@ -1457,7 +1457,7 @@ datum
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 	check_completion()
-		if(!GLOB.emergency_shuttle.returned())
+		if(!SSemergency_shuttle.returned())
 			return 0
 
 		var/area/shuttle = locate(/area/shuttle/escape/centcom)

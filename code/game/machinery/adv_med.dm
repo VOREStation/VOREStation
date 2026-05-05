@@ -40,7 +40,7 @@
 	else
 		set_light(0)
 
-/obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
+/obj/machinery/bodyscanner/attackby(obj/item/G, user as mob)
 	if(istype(G, /obj/item/grab))
 		var/obj/item/grab/H = G
 		if(panel_open)
@@ -241,6 +241,9 @@
 
 		occupantData["hasBorer"] = H.has_brain_worms()
 		occupantData["hasWithdrawl"] = has_withdrawl
+
+		occupantData["allergens"] = assembly_allergy_list(H.species.allergens, H.species.medallergens)
+		occupantData["hasAllergens"] = islist(occupantData["allergens"])
 
 		occupantData["colourblind"] = null
 		for(var/datum/modifier/M in H.modifiers)
@@ -522,6 +525,12 @@
 		dat += "Paralysis Summary %: [occupant_paralysis] ([paralysis_duration] seconds left!)<br>"
 		dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"
 
+		if(ishuman(occupant))
+			var/mob/living/carbon/human/H = occupant
+			var/list/allergen_list = assembly_allergy_list(H.species.allergens, H.species.medallergens)
+			if(length(allergen_list))
+				dat += "Allergens: [english_list(allergen_list)]<BR>"
+
 		dat += "<hr>"
 
 		if(occupant.has_brain_worms())
@@ -714,7 +723,7 @@
 		scanner.console = null
 	return ..()
 
-/obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/body_scanconsole/attackby(obj/item/I, mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else if(istype(I, /obj/item/multitool)) //Did you want to link it?

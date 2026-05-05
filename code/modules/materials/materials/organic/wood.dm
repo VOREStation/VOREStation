@@ -14,12 +14,12 @@
 	conductivity = 1
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
-	stack_origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	dooropen_noise = 'sound/effects/doorcreaky.ogg'
 	door_icon_base = "wood"
 	destruction_desc = "splinters"
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
+	supply_conversion_value = 0.25
 
 /datum/material/wood/generate_recipes()
 	..()
@@ -59,7 +59,6 @@
 	name = MAT_SIFWOOD
 	stack_type = /obj/item/stack/material/wood/sif
 	icon_colour = "#0099cc" // Cyan-ish
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
 
 /datum/material/wood/sif/generate_recipes()
 	..()
@@ -146,7 +145,7 @@
 	sheet_plural_name = "logs"
 	sheet_collective_name = "pile"
 	pass_stack_colors = TRUE
-	supply_conversion_value = 1
+	supply_conversion_value = 0.5
 
 /datum/material/wood/log/generate_recipes()
 	recipes = list(
@@ -157,7 +156,6 @@
 	name = MAT_SIFLOG
 	display_name = MAT_SIFWOOD
 	icon_colour = "#0099cc" // Cyan-ish
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
 
 /datum/material/wood/log/hard
@@ -167,14 +165,14 @@
 	stack_type = /obj/item/stack/material/log/hard
 
 /datum/material/wood/stick
-	name = "wooden stick"
+	name = MAT_WOODEN_STICK
 	icon_colour = "#824B28"
 	display_name = MAT_WOOD
 	icon_base = "stick"
 	stack_type = /obj/item/stack/material/stick
 	sheet_collective_name = "pile"
 	pass_stack_colors = TRUE
-	supply_conversion_value = 1
+	supply_conversion_value = 0.05
 	sheet_singular_name = "stick"
 	sheet_plural_name = "sticks"
 

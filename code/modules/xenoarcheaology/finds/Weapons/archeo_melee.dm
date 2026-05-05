@@ -15,7 +15,6 @@
 	name = "artifact blade"
 	desc = "A mysterious blade that emanates terrifying power"
 	icon_state = "cultblade"
-	origin_tech = list(TECH_COMBAT = 6, TECH_ARCANE = 6, TECH_BIO = 6)
 	w_class = ITEMSIZE_LARGE
 	force = 30
 	throwforce = 10
@@ -87,7 +86,7 @@
 /obj/item/melee/artifact_blade/cultify()
 	return
 
-/obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(M == user) //No accidentally hitting yourself and exploding.
 		return
 	var/zone = (user.hand ? BP_L_ARM:BP_R_ARM) //Which arm we're in!
@@ -107,7 +106,7 @@
 		user.Weaken(5)
 		throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,10),5)
 		user.apply_damage(rand(force/2, force), BURN, zone, FALSE)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	..() //We hit them!
 
@@ -151,7 +150,7 @@
 		playsound(src, spooky, 50, 1)
 
 	force = prior_force //Return our force back.
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/artifact_blade/pickup(mob/living/user as mob)
 	// We check to see if the person picking us up isn't our owner, not a cultist, and they're human.
@@ -186,7 +185,7 @@
 					summon_item(user, summoned_item)
 					return
 
-/obj/item/melee/artifact_blade/proc/consecrate_toggle(mob/user as mob, var/toggle)
+/obj/item/melee/artifact_blade/proc/consecrate_toggle(mob/user as mob, toggle)
 	switch(toggle)
 		if("Toggle on")
 			consecrating = TRUE
@@ -203,7 +202,7 @@
 /// The summonables list can be VV'd by admins to allow for adminbus.
 /// To add to the list: Add-Item, Multi-line text (Front-facing name), Associated value = yes, Atom Typepath = whatever you want.
 /// This should appear something like " Paper = /obj/item/paper " if you did it right, and will let them summon paper!
-/obj/item/melee/artifact_blade/proc/summon_item(mob/user as mob, var/selected_item)
+/obj/item/melee/artifact_blade/proc/summon_item(mob/user as mob, selected_item)
 	if(selected_item)
 		if(selected_item == "Soulstone")
 			var/decision2 = tgui_alert(user, "Do you wish to create a redspace gem? This will take 200 lifeforce from the sword.", "Generate Gem", list("YES", "NO"))
@@ -273,7 +272,7 @@
 
 
 /// The fancy animation it plays when you hit something to convert it!
-/obj/item/melee/artifact_blade/proc/conjure_animation(var/turf/target) //Taken from occult wizard code.
+/obj/item/melee/artifact_blade/proc/conjure_animation(turf/target) //Taken from occult wizard code.
 	var/atom/movable/overlay/animation = new /atom/movable/overlay(target)
 	animation.name = "conjure"
 	animation.icon = 'icons/effects/effects.dmi'

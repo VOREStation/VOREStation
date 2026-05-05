@@ -119,7 +119,7 @@
 	var/revive_time = 30 SECONDS //Don't do this in combat
 	var/advanced = 1 //allows for ghosts to join mobs who get revived by this, and updates their faction to yours
 
-/obj/item/denecrotizer/examine(var/mob/user)
+/obj/item/denecrotizer/examine(mob/user)
 	. = ..()
 	var/cooldowntime = round((cooldown - (world.time - last_used)) * 0.1)
 	if(Adjacent(user))
@@ -219,12 +219,13 @@
 
 
 
-/obj/item/denecrotizer/attack(mob/living/simple_mob/target, mob/living/user)
+/obj/item/denecrotizer/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(check_target(target, user))
 		if(advanced)
 			ghostjoin_rez(target, user)
 		else
 			basic_rez(target, user)
+		return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
 

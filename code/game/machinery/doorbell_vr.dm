@@ -8,6 +8,7 @@
 	idle_power_usage = 10
 	active_power_usage = 200
 	anchored = TRUE
+	flags = WALL_ITEM
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
@@ -89,8 +90,9 @@
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "doorbell-standby"
 	use_power = USE_POWER_OFF
+	flags = WALL_ITEM
 
-/obj/machinery/button/doorbell/Initialize(mapload, var/dir, var/building = FALSE)
+/obj/machinery/button/doorbell/Initialize(mapload, dir, building = FALSE)
 	. = ..()
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)

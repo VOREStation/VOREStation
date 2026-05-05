@@ -90,11 +90,11 @@
 	)
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //Get ya quills done did
 
-/datum/species/vox/get_random_name(var/gender)
+/datum/species/vox/get_random_name(gender)
 	var/datum/language/species_language = GLOB.all_languages[default_language]
 	return species_language.get_random_name(gender)
 
-/datum/species/vox/equip_survival_gear(var/mob/living/carbon/human/H, var/extendedtank = 0,var/comprehensive = 0)
+/datum/species/vox/equip_survival_gear(mob/living/carbon/human/H, extendedtank = 0,comprehensive = 0)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)

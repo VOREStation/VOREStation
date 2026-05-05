@@ -14,7 +14,6 @@
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/loudspeaker = TRUE // Allows borgs to disable canhear_range.
-	var/datum/wires/radio/wires = null
 	var/b_stat = 0
 	var/broadcasting = FALSE
 	var/listening = TRUE
@@ -64,7 +63,7 @@
 	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 
-	wires = new(src)
+	set_wires(new /datum/wires/radio(src))
 	internal_channels = GLOB.default_internal_channels.Copy()
 	GLOB.listening_objects += src
 
@@ -74,14 +73,14 @@
 /obj/item/radio/LateInitialize()
 	if(bs_tx_preload_id)
 		//Try to find a receiver
-		for(var/obj/machinery/telecomms/receiver/RX in telecomms_list)
+		for(var/obj/machinery/telecomms/receiver/RX in GLOB.telecomms_list)
 			if(RX.id == bs_tx_preload_id) //Again, bs_tx is the thing to TRANSMIT TO, so a receiver.
 				bs_tx_weakref = WEAKREF(RX)
 				RX.link_radio(src)
 				break
 		//Hmm, howabout an AIO machine
 		if(!bs_tx_weakref)
-			for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
+			for(var/obj/machinery/telecomms/allinone/AIO in GLOB.telecomms_list)
 				if(AIO.id == bs_tx_preload_id)
 					bs_tx_weakref = WEAKREF(AIO)
 					AIO.link_radio(src)
@@ -92,14 +91,14 @@
 	if(bs_rx_preload_id)
 		var/found = 0
 		//Try to find a transmitter
-		for(var/obj/machinery/telecomms/broadcaster/TX in telecomms_list)
+		for(var/obj/machinery/telecomms/broadcaster/TX in GLOB.telecomms_list)
 			if(TX.id == bs_rx_preload_id) //Again, bs_rx is the thing to RECEIVE FROM, so a transmitter.
 				TX.link_radio(src)
 				found = 1
 				break
 		//Hmm, howabout an AIO machine
 		if(!found)
-			for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
+			for(var/obj/machinery/telecomms/allinone/AIO in GLOB.telecomms_list)
 				if(AIO.id == bs_rx_preload_id)
 					AIO.link_radio(src)
 					found = 1
@@ -115,6 +114,7 @@
 		SSradio.remove_object(src, frequency)
 		for (var/ch_name in channels)
 			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
+	bs_tx_weakref = null
 	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
@@ -179,10 +179,10 @@
 
 	return data
 
-/obj/item/radio/proc/list_channels(var/mob/user)
+/obj/item/radio/proc/list_channels(mob/user)
 	return list_internal_channels(user)
 
-/obj/item/radio/proc/list_secure_channels(var/mob/user)
+/obj/item/radio/proc/list_secure_channels(mob/user)
 	var/dat[0]
 
 	for(var/ch_name in channels)
@@ -193,7 +193,7 @@
 
 	return dat
 
-/obj/item/radio/proc/list_internal_channels(var/mob/user)
+/obj/item/radio/proc/list_internal_channels(mob/user)
 	var/dat[0]
 	for(var/internal_chan in internal_channels)
 		if(has_channel_access(user, internal_chan))
@@ -201,7 +201,7 @@
 
 	return dat
 
-/obj/item/radio/proc/has_channel_access(var/mob/user, var/freq)
+/obj/item/radio/proc/has_channel_access(mob/user, freq)
 	if(!user)
 		return FALSE
 
@@ -210,14 +210,14 @@
 
 	return user.has_internal_radio_channel_access(internal_channels[freq])
 
-/mob/proc/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/proc/has_internal_radio_channel_access(list/req_one_accesses)
 	var/obj/item/card/id/I = GetIdCard()
 	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
 
-/mob/observer/dead/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/observer/dead/has_internal_radio_channel_access(list/req_one_accesses)
 	return can_admin_interact()
 
-/obj/item/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
+/obj/item/radio/proc/text_sec_channel(chan_name, chan_stat)
 	var/list = !!(chan_stat&FREQ_LISTENING)!=0
 	return {"
 			<B>[chan_name]</B><br>
@@ -293,12 +293,12 @@
 
 GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
-/obj/item/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels, var/states)
+/obj/item/radio/proc/autosay(message, from, channel, list/zlevels, states)
 
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
-	if(channel && channels && channels.len > 0)
+	if(channel && channels && LAZYLEN(channels))
 		if(channel == "department")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
@@ -325,7 +325,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		return radio_connection
 
 	// Otherwise, if a channel is specified, look for it.
-	if(channels && channels.len > 0)
+	if(channels && LAZYLEN(channels))
 		if (message_mode == "department") // Department radio shortcut
 			message_mode = channels[1]
 
@@ -335,7 +335,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	// If we were to send to a channel we don't have, drop it.
 	return RADIO_CONNECTION_FAIL
 
-/obj/item/radio/talk_into(mob/living/M as mob, list/message_pieces, channel, var/verb = "says")
+/obj/item/radio/talk_into(mob/living/M as mob, list/message_pieces, channel, verb = "says")
 	if(!on)
 		return FALSE // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
@@ -496,11 +496,11 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 
 		//#### Sending the signal to all subspace receivers ####//
-		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+		for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
 		// Allinone can act as receivers.
-		for(var/obj/machinery/telecomms/allinone/R in telecomms_list)
+		for(var/obj/machinery/telecomms/allinone/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
 		// Receiving code can be located in Telecommunications.dm
@@ -524,14 +524,14 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 		signal.data["compression"] = 0
 
-		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+		for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
 		// Allinone can act as receivers.
-		for(var/obj/machinery/telecomms/allinone/R in telecomms_list)
+		for(var/obj/machinery/telecomms/allinone/R in GLOB.telecomms_list)
 			R.receive_signal(signal)
 
-	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+	for(var/obj/machinery/telecomms/receiver/R in GLOB.telecomms_list)
 		R.receive_signal(signal)
 
 		if(signal.data["done"] && (pos_z in signal.data["level"]))
@@ -547,7 +547,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		filter_type, signal.data["compression"], using_map.get_map_levels(pos_z), connection.frequency, verb)
 
 
-/obj/item/radio/hear_talk(mob/M as mob, list/message_pieces, var/verb = "says")
+/obj/item/radio/hear_talk(mob/M as mob, list/message_pieces, verb = "says")
 	if(broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, message_pieces, null, verb)
@@ -620,11 +620,13 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	else return
 
 /obj/item/radio/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	broadcasting = FALSE
 	listening = FALSE
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
-	..()
 
 /obj/item/radio/start_off
 	listening = FALSE
@@ -647,7 +649,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	myborg = null
 	return ..()
 
-/obj/item/radio/borg/list_channels(var/mob/user)
+/obj/item/radio/borg/list_channels(mob/user)
 	return list_secure_channels(user)
 
 /obj/item/radio/borg/talk_into()
@@ -722,7 +724,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	controller_check(TRUE)
 	return
 
-/obj/item/radio/borg/proc/controller_check(var/initial_run = FALSE)
+/obj/item/radio/borg/proc/controller_check(initial_run = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!SSradio && initial_run)

@@ -51,6 +51,7 @@
 
 	///Var for attack_self chainn
 	var/special_handling = FALSE
+	resistance_flags = FLAMMABLE
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return
@@ -77,6 +78,10 @@
 		var/stamp_count = rand(1, stamp_max)
 		for(var/i = 1, i <= stamp_count, i++)
 			stamps += list("stamp_[rand(2, 8)]")
+
+/obj/item/mail/Destroy()
+	recipient_ref = null
+	. = ..()
 
 /obj/item/mail/blank
 	desc = "A blank envelope."
@@ -112,7 +117,7 @@
 	var/list/recipients = list()
 	var/mob/living/recipient_mob
 	for(var/mob/living/player in GLOB.player_list)
-		if(!player_is_antag(player.mind) && player.mind.show_in_directory)
+		if(!SSantag_job.player_is_antag(player.mind) && player.mind.show_in_directory)
 			recipients += player
 
 	recipient_mob = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
@@ -243,12 +248,12 @@
 	playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
 	qdel(src)
 
-/obj/item/mail/proc/initialize_for_recipient(var/datum/mind/recipient, var/preset_goodies = FALSE)
+/obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient, preset_goodies = FALSE)
 	var/current_title = recipient.role_alt_title ? recipient.role_alt_title : recipient.assigned_role
 	name = "[initial(name)] for [recipient.name] ([current_title])"
 	recipient_ref = WEAKREF(recipient)
 
-	var/datum/job/this_job = SSjob.name_occupations[recipient.assigned_role]
+	var/datum/job/this_job = SSjob.occupations_by_name[recipient.assigned_role]
 
 	var/list/goodies = generic_goodies
 	if(this_job)
@@ -276,13 +281,7 @@
 		disposal_holder.destinationTag = sortTag
 
 // Mail spawn for events
-/datum/admins/proc/spawn_mail(var/object as text)
-	set name = "Spawn Mail"
-	set category = "Fun.Event Kit"
-	set desc = "Spawn mail for a specific player, with a specific item."
-
-	if(!check_rights(R_SPAWN)) return
-
+ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player, with a specific item.", ADMIN_CATEGORY_FUN_EVENT_KIT, object as text)
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
 	var/list/recipients = list()
@@ -298,23 +297,25 @@
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select an atom type", "Spawn Atom in Mail", matches)
+		chosen = tgui_input_list(user, "Select an atom type", "Spawn Atom in Mail", matches)
 		if(!chosen)
 			return
 
 	for(var/mob/living/player in GLOB.player_list)
 		recipients += player
 
-	var/mob/living/chosen_player = tgui_input_list(usr, "Choose recipient", "Recipients", recipients, recipients)
+	var/mob/living/chosen_player = tgui_input_list(user, "Choose recipient", "Recipients", recipients, recipients)
 
 	recipient_mind = chosen_player.mind
 
 	if(!recipient_mind)
 		return
 
-	var/shuttle_spawn = tgui_alert(usr, "Spawn mail at location or in the shuttle?", "Spawn mail", list("Location", "Shuttle"))
+	var/shuttle_spawn = tgui_alert(user, "Spawn mail at location or in the shuttle?", "Spawn mail", list("Location", "Shuttle"))
 	if(!shuttle_spawn)
 		return
+
+	var/mob/user_mob = user.mob
 	if(shuttle_spawn == "Shuttle")
 		var/obj/item/mail/new_mail = new
 		new_mail.initialize_for_recipient(recipient_mind, TRUE)
@@ -322,10 +323,10 @@
 		SSmail.admin_mail += new_mail
 		log_and_message_admins("spawned [chosen] inside an envelope at the shuttle")
 	else
-		var/obj/item/mail/ground_mail = new /obj/item/mail(usr.loc)
+		var/obj/item/mail/ground_mail = new /obj/item/mail(user_mob.loc)
 		ground_mail.initialize_for_recipient(recipient_mind, TRUE)
 		new chosen(ground_mail)
-		log_and_message_admins("spawned [chosen] inside an envelope at ([usr.x],[usr.y],[usr.z])")
+		log_and_message_admins("spawned [chosen] inside an envelope at ([user_mob.x],[user_mob.y],[user_mob.z])")
 
 	feedback_add_details("admin_verb","SM")
 
@@ -404,8 +405,8 @@
 	. = ..()
 	. += span_notice("Scan a letter to log it into the active database, then scan the person you wish to hand the letter to. Correctly scanning the recipient of the letter logged into the active database will add points to the supply budget.")
 
-/obj/item/mail_scanner/attack()
-	return
+/obj/item/mail_scanner/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/mail_scanner/afterattack(atom/A, mob/user)
 	if(istype(A, /obj/item/mail))

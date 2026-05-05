@@ -41,7 +41,7 @@
 /**
  * Prep for save: returns a preferences object if we're ready and allowed to save this mob.
  */
-/proc/prep_for_persist(var/mob/persister)
+/proc/prep_for_persist(mob/persister)
 	if(!istype(persister))
 		stack_trace("Persist (P4P): Given non-mob [persister].")
 		return
@@ -70,13 +70,13 @@
 /**
  * Called when mob despawns early (via cryopod)!
  */
-/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
+/proc/persist_despawned_mob(mob/occupant, obj/machinery/cryopod/pod)
 	ASSERT(istype(pod))
 	ASSERT(ispath(pod.spawnpoint_type, /datum/spawnpoint))
 	persist_interround_data(occupant, pod.spawnpoint_type)
 	return 1
 
-/proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
+/proc/persist_interround_data(mob/occupant, datum/spawnpoint/new_spawn_point_type)
 	if(!istype(occupant))
 		stack_trace("Persist (PID): Given non-mob [occupant].")
 		return
@@ -114,7 +114,7 @@
 
 // Saves mob's current coloration state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_coloration_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_coloration_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character)) return
 	prefs.h_style	= character.h_style
 
@@ -131,7 +131,7 @@
 
 // Saves mob's current custom species, ears, tail, wings and digitigrade legs state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/vore/ears/copy_to_mob() ~Leshana
-/proc/apply_ears_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_ears_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(character.ear_style) prefs.ear_style = character.ear_style.name
 	if(character.tail_style) prefs.tail_style = character.tail_style.name
 	if(character.wing_style) prefs.wing_style = character.wing_style.name
@@ -161,41 +161,45 @@
 
 // Saves mob's current organ state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_organs_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character) || !character.species) return
+	var/list/organ_data = prefs.read_preference(/datum/preference/organ_data) || list()
+	var/list/rlimb_data = prefs.read_preference(/datum/preference/rlimb_data) || list()
 	// Checkify the limbs!
 	for(var/name in character.species.has_limbs)
-		var/obj/item/organ/external/O = character.organs_by_name[name]
-		if(!O)
+		var/obj/item/organ/external/external_organ = character.organs_by_name[name]
+		if(!external_organ)
 			if(name in GLOB.storable_amputated_organs)
-				prefs.organ_data[name] = "amputated"
+				organ_data[name] = "amputated"
 			else
-				prefs.rlimb_data.Remove(name) // Missing limb and not in the global list means default model
-		else if(O.robotic >= ORGAN_ROBOT)
-			prefs.organ_data[name] = "cyborg"
-			if(O.model)
-				prefs.rlimb_data[name] = O.model
+				rlimb_data.Remove(name) // Missing limb and not in the global list means default model
+		else if(external_organ.robotic >= ORGAN_ROBOT)
+			organ_data[name] = "cyborg"
+			if(external_organ.model)
+				rlimb_data[name] = external_organ.model
 			else
-				prefs.rlimb_data.Remove(name) // Missing rlimb_data entry means default model
+				rlimb_data.Remove(name) // Missing rlimb_data entry means default model
 		else
-			prefs.organ_data.Remove(name) // Misisng organ_data entry means normal
+			organ_data.Remove(name) // Misisng organ_data entry means normal
 
 	// Internal organs also
 	for(var/name in character.species.has_organ)
-		var/obj/item/organ/I = character.internal_organs_by_name[name]
-		if(I)
-			if(istype(I, /obj/item/organ/internal/mmi_holder/robot))
-				prefs.organ_data[name] = FBP_DIGITAL // Need a better way to detect this special type
-			else if(I.robotic == ORGAN_ASSISTED)
-				prefs.organ_data[name] = FBP_ASSISTED
-			else if(I.robotic >= ORGAN_ROBOT)
-				prefs.organ_data[name] = FBP_MECHANICAL
+		var/obj/item/organ/internal_organ = character.internal_organs_by_name[name]
+		if(internal_organ)
+			if(istype(internal_organ, /obj/item/organ/internal/mmi_holder/robot))
+				organ_data[name] = FBP_DIGITAL // Need a better way to detect this special type
+			else if(internal_organ.robotic == ORGAN_ASSISTED)
+				organ_data[name] = FBP_ASSISTED
+			else if(internal_organ.robotic >= ORGAN_ROBOT)
+				organ_data[name] = FBP_MECHANICAL
 			else
-				prefs.organ_data.Remove(name) // Missing organ_data entry means normal
+				organ_data.Remove(name) // Missing organ_data entry means normal
+	prefs.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
+	prefs.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
 
 // Saves mob's current body markings state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_markings_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character)) return
 	prefs.body_markings = character.get_prioritised_markings() // Overwrite with new list!
 
@@ -204,7 +208,7 @@
 * Normally this would slowly apply during the round; once we get to the end
 * we need to apply it all at once.
 */
-/proc/resolve_excess_nutrition(var/mob/living/carbon/C)
+/proc/resolve_excess_nutrition(mob/living/carbon/C)
 	if(C.stat == DEAD)
 		return // You don't metabolize if dead
 	if(!C.metabolism || !C.species || !C.species.hunger_factor)

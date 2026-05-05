@@ -36,7 +36,8 @@ export const ModifyRobotModules = (props: {
           <Section title="Source Module" scrollable fill>
             <Box>Robot to salvage</Box>
             <Dropdown
-              width="100%"
+              fluid
+              searchInput
               selected={source ? source.model : ''}
               options={model_options}
               onSelected={(value) =>
@@ -124,8 +125,8 @@ export const ModifyRobotModules = (props: {
 };
 
 const SelectionField = (props: {
-  previewImage: string | undefined;
-  previewImageSize: string | undefined;
+  previewImage?: string;
+  previewImageSize?: string | null;
   searchText: string;
   onSearchText: React.Dispatch<React.SetStateAction<string>>;
   action: string;

@@ -53,31 +53,31 @@
 	var/chunk_passive_ability_cooldown = 5 SECONDS
 
 // Called when a blob receives damage.  This needs to return the final damage or blobs will be immortal.
-/datum/blob_type/proc/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+/datum/blob_type/proc/on_received_damage(obj/structure/blob/B, damage, damage_type)
 	return damage
 
 // Called when a blob dies due to integrity depletion.  Not called if deleted by other means.
-/datum/blob_type/proc/on_death(var/obj/structure/blob/B)
+/datum/blob_type/proc/on_death(obj/structure/blob/B)
 	return
 
 // Called when a blob expands onto another tile.
-/datum/blob_type/proc/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
+/datum/blob_type/proc/on_expand(obj/structure/blob/B, obj/structure/blob/new_B, turf/T, mob/observer/blob/O)
 	return
 
 // Called when blob_act() is called on a living mob.
-/datum/blob_type/proc/on_attack(var/obj/structure/blob/B, var/mob/living/victim, var/def_zone)
+/datum/blob_type/proc/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
 	return
 
 // Called when the blob is pulsed by a node or the core.
-/datum/blob_type/proc/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/proc/on_pulse(obj/structure/blob/B)
 	return
 
 // Called when the core processes.
-/datum/blob_type/proc/on_core_process(var/obj/structure/blob/B)
+/datum/blob_type/proc/on_core_process(obj/structure/blob/B)
 	return
 
 // Called when a node processes.
-/datum/blob_type/proc/on_node_process(var/obj/structure/blob/B)
+/datum/blob_type/proc/on_node_process(obj/structure/blob/B)
 	return
 
 // Called when hit by EMP.
@@ -105,7 +105,7 @@
 	return
 
 // Proc that is unique to the blob type.
-/datum/blob_type/proc/chunk_unique(obj/item/blobcore_chunk/B, var/list/extra_args = null)
+/datum/blob_type/proc/chunk_unique(obj/item/blobcore_chunk/B, list/extra_args = null)
 	return
 
 // Set up the blob type for the chunk.

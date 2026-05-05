@@ -16,9 +16,9 @@
 	var/dirty_synth = 0		//Are you a synth
 	var/gross_meatbag = 0		//Where'd I leave my Voight-Kampff test kit?
 
-/datum/preferences/proc/get_custom_bases_for_species(var/new_species)
+/datum/preferences/proc/get_custom_bases_for_species(new_species)
 	if (!new_species)
-		new_species = species
+		new_species = read_preference(/datum/preference/choiced/species)
 	var/list/choices
 	var/datum/species/spec = GLOB.all_species[new_species]
 	if (spec.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
@@ -33,7 +33,7 @@
 		choices = choices.Copy()
 	return choices
 
-/datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
+/datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(mob/user, datum/trait/trait, preference)
 	if (!trait || !preference)
 		return
 	var/list/trait_prefs
@@ -108,14 +108,15 @@
 	pref.blood_reagents	= sanitize_text(pref.blood_reagents, initial(pref.blood_reagents))
 
 	if(!pref.traits_cheating)
-		var/datum/species/S = GLOB.all_species[pref.species]
+		var/datum/species/S = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 		if(S)
 			pref.starting_trait_points = S.trait_points
 		else
 			pref.starting_trait_points = 0
 		pref.max_traits = MAX_SPECIES_TRAITS
 
-	if(pref.organ_data[O_BRAIN])	//Checking if we have a synth on our hands, boys.
+	var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+	if(organ_data && organ_data[O_BRAIN])	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
 		pref.gross_meatbag = 0
 	else
@@ -123,11 +124,12 @@
 		pref.dirty_synth = 0
 
 	// Clean up positive traits
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
 	for(var/datum/trait/path as anything in pref.pos_traits)
 		if(!(path in GLOB.positive_traits))
 			pref.pos_traits -= path
 			continue
-		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_positive))
+		if(!(pref_species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_positive))
 			pref.pos_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
@@ -139,7 +141,7 @@
 			log_world("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
-		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_neutral))
+		if(!(pref_species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_neutral))
 			log_world("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
@@ -152,14 +154,14 @@
 		if(!(path in GLOB.negative_traits))
 			pref.neg_traits -= path
 			continue
-		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_negative))
+		if(!(pref_species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_negative))
 			pref.neg_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
 			pref.neg_traits -= path
 
-	var/datum/species/selected_species = GLOB.all_species[pref.species]
+	var/datum/species/selected_species = GLOB.all_species[pref_species]
 	if(selected_species.selects_bodytype)
 		if (!(pref.custom_base in pref.get_custom_bases_for_species()))
 			pref.custom_base = selected_species.default_custom_base
@@ -168,7 +170,7 @@
 		pref.custom_base = selected_species.default_custom_base
 
 
-/datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/traits/copy_to_mob(mob/living/carbon/human/character)
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
 		pref.gross_meatbag = 0
@@ -193,7 +195,7 @@
 
 	new_S.species_sounds = species_sounds_to_copy // Now we send our sounds over to the mob
 
-	if(pref.species == SPECIES_CUSTOM)
+	if(pref.read_preference(/datum/preference/choiced/species) == SPECIES_CUSTOM)
 		//Statistics for this would be nice
 		var/english_traits = english_list(new_S.traits, and_text = ";", comma_text = ";")
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
@@ -201,7 +203,7 @@
 /datum/category_item/player_setup_item/general/traits/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
-	var/datum/species/selected_species = GLOB.all_species[pref.species]
+	var/datum/species/selected_species = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 	data["selects_bodytype"] = selected_species.selects_bodytype
 	data["custom_base"] = pref.custom_base
 	data["blood_color"] = pref.blood_color
@@ -252,7 +254,7 @@
 				pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
 			return TOPIC_REFRESH
 		if("blood_reset")
-			var/datum/species/spec = GLOB.all_species[pref.species]
+			var/datum/species/spec = GLOB.all_species[pref.read_preference(/datum/preference/choiced/species)]
 			var/new_blood = spec.blood_color ? spec.blood_color : "#A10808"
 			var/choice = tgui_alert(user, "Reset blood color to species default ([new_blood])?","Reset Blood Color",list("Reset","Cancel"))
 			if(choice == "Reset")
@@ -295,23 +297,24 @@
 			var/mode = text2num(params["add_trait"])
 			var/list/picklist
 			var/list/mylist
+			var/pref_species_for_traits = pref.read_preference(/datum/preference/choiced/species)
 			switch(mode)
 				if(POSITIVE_MODE)
-					if(pref.species == SPECIES_CUSTOM)
+					if(pref_species_for_traits == SPECIES_CUSTOM)
 						picklist = GLOB.positive_traits.Copy() - pref.pos_traits
 						mylist = pref.pos_traits
 					else
 						picklist = GLOB.everyone_traits_positive.Copy() - pref.pos_traits
 						mylist = pref.pos_traits
 				if(NEUTRAL_MODE)
-					if(pref.species == SPECIES_CUSTOM)
+					if(pref_species_for_traits == SPECIES_CUSTOM)
 						picklist = GLOB.neutral_traits.Copy() - pref.neu_traits
 						mylist = pref.neu_traits
 					else
 						picklist = GLOB.everyone_traits_neutral.Copy() - pref.neu_traits
 						mylist = pref.neu_traits
 				if(NEGATIVE_MODE)
-					if(pref.species == SPECIES_CUSTOM)
+					if(pref_species_for_traits == SPECIES_CUSTOM)
 						picklist = GLOB.negative_traits.Copy() - pref.neg_traits
 						mylist = pref.neg_traits
 					else
@@ -375,11 +378,11 @@
 					tgui_alert_async(user, "The trait you've selected can only be taken by synthetic characters!", "Error")
 					return TOPIC_REFRESH
 
-				if(pref.species in instance.banned_species)
+				if(pref_species_for_traits in instance.banned_species)
 					tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 					return TOPIC_REFRESH
 
-				if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species))
+				if( LAZYLEN(instance.allowed_species) && !(pref_species_for_traits in instance.allowed_species))
 					tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 					return TOPIC_REFRESH
 

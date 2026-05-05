@@ -53,7 +53,7 @@
 	overlays = overlays_to_add
 	..()
 
-/obj/item/gun/magnetic/matfed/attack_hand(var/mob/user) // It doesn't keep a loaded item inside.
+/obj/item/gun/magnetic/matfed/attack_hand(mob/user) // It doesn't keep a loaded item inside.
 	if(user.get_inactive_hand() == src)
 		var/obj/item/removing
 
@@ -84,7 +84,7 @@
 		return span_warning("It\'s out of [ammo_material]!")
 
 
-/obj/item/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun/magnetic/matfed/attackby(obj/item/thing, mob/user)
 	. = ..()
 	update_rating_mod()
 	if(removable_components)

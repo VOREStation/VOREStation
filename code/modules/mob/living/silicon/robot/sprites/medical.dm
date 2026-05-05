@@ -50,6 +50,7 @@
 /datum/robot_sprite/medical/handy
 	name = "Handy"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/medical/insekt
 	name = "Insekt"
@@ -81,6 +82,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 // Wide/dogborg sprites
 /*
@@ -103,6 +105,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/newmeka
 	name = "MEKA v2"
@@ -110,6 +113,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/mmeka
 	name = "NIKO"
@@ -117,6 +121,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/fmeka
 	name = "NIKA"
@@ -124,6 +129,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/k4t
 	name = "K4T"
@@ -132,6 +138,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/k4t_alt1
 	name = "K4T Alt"
@@ -140,6 +147,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/dullahanmed
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_med.dmi'
@@ -155,6 +163,7 @@
 	sprite_decals = list("breastplate","loincloth","eyecover")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = DULLAHAN_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/dullataurmed
 	name = "Dullataur"
@@ -170,6 +179,7 @@
 	sprite_decals = list("breastplate")
 	icon_x = 64
 	pixel_x = -16
+	hat_offset = DULLAHAN_TAUR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/medical/dullahanmedv3
 	name = "Dullahan medical v3"
@@ -185,6 +195,7 @@
 	sprite_decals = list("decals")
 	icon_x = 64
 	pixel_x = -16
+	hat_offset = DULLAHAN_HAT_OFFSET
 
 // Surgeon
 
@@ -226,6 +237,7 @@
 	name = "ZOOM-BA - Surgical"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/surgical/uptall
 	name = "Feminine Humanoid - Surgical"
@@ -237,7 +249,7 @@
 	module_type = "Crisis"
 	sprite_icon = 'icons/mob/robot/surgical_wide.dmi'
 
-/datum/robot_sprite/dogborg/surgical/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/surgical/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -257,6 +269,7 @@
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
+	hat_offset = VALE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/surgical/borgi
 	name = "Borgi - Surgical"
@@ -265,11 +278,13 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/surgical/drake
 	name = "Drake - Surgical"
 	sprite_icon_state = "drake"
 	has_vore_belly_resting_sprites = TRUE
+	hat_offset = DRAKE_HAT_OFFSET
 
 // Tall sprites
 
@@ -277,7 +292,7 @@
 	module_type = "Crisis"
 	sprite_icon = 'icons/mob/robot/surgical_large.dmi'
 
-/datum/robot_sprite/dogborg/tall/surgical/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/tall/surgical/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -296,6 +311,7 @@
 	sprite_icon_state = "raptor"
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = RAPTOR_HAT_OFFSET
 
 
 // Crisis
@@ -343,6 +359,7 @@
 	name = "ZOOM-BA - Crisis"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/crisis/uptall
 	name = "Feminine Humanoid - Crisis"
@@ -355,14 +372,14 @@
 	sprite_icon = 'icons/mob/robot/crisis_wide.dmi'
 
 /* //Handled by the normal belly code now.
-/datum/robot_sprite/dogborg/crisis/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/crisis/get_belly_overlay(mob/living/silicon/robot/ourborg)
 	if(has_sleeper_light_indicator)
 		if(ourborg.sleeper_state == 2 && !(ourborg.vore_selected?.silicon_belly_overlay_preference == "Vorebelly")) return "[sprite_icon_state]-sleeper_g"
 		else return "[sprite_icon_state]-sleeper_r"
 	else
 		return ..()
 */
-/datum/robot_sprite/dogborg/crisis/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/crisis/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -396,6 +413,7 @@
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
+	hat_offset = VALE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/crisis/borgi
 	name = "Borgi - Crisis"
@@ -404,11 +422,13 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/crisis/drake
 	name = "Drake - Crisis"
 	sprite_icon_state = "drake"
 	has_vore_belly_resting_sprites = TRUE
+	hat_offset = DRAKE_HAT_OFFSET
 
 // Tall sprites
 
@@ -416,7 +436,7 @@
 	module_type = "Crisis"
 	sprite_icon = 'icons/mob/robot/crisis_large.dmi'
 
-/datum/robot_sprite/dogborg/tall/crisis/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/tall/crisis/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -434,6 +454,7 @@
 	sprite_icon_state = "raptor"
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/crisis/cat
 	name = "Cat"
@@ -460,6 +481,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 	rest_sprite_options = list("Default")
+	hat_offset = VALE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/crisis/cat
 	name = "Cat"
@@ -477,6 +499,7 @@
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/crisis/smolraptor/alt
 	name = "Small Raptor Alt"

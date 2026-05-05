@@ -21,7 +21,7 @@
 
 	return TRUE
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
 		if(attempt_attach_accessory(A, user))
@@ -34,7 +34,7 @@
 
 	..()
 
-/obj/item/clothing/attack_hand(var/mob/user)
+/obj/item/clothing/attack_hand(mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(LAZYLEN(accessories) && src.loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -46,7 +46,7 @@
 			return
 	return ..()
 
-/obj/item/clothing/MouseDrop(var/obj/over_object)
+/obj/item/clothing/MouseDrop(obj/over_object)
 	if (over_object && (ishuman(usr) || issmall(usr)))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
 		if (!(src.loc == usr))
@@ -65,10 +65,10 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/clothing/examine(var/mob/user)
+/obj/item/clothing/examine(mob/user)
 	. = ..(user)
 	if(LAZYLEN(accessories))
-		. += "It has the following attached: [counting_english_list(accessories)]"
+		. += "It has the following attached: [counting_english_list(user.client, accessories)]"
 
 /**
  *  Attach accessory A to src
@@ -120,10 +120,14 @@
 	set category = "Object"
 	set src in usr
 
-	if(!isliving(usr))
+	removetie_proc(usr)
+
+/obj/item/clothing/proc/removetie_proc(mob/living/user)
+
+	if(!isliving(user))
 		return
 
-	if(usr.stat)
+	if(user.stat)
 		return
 
 	var/obj/item/clothing/accessory/A
@@ -132,13 +136,13 @@
 		if(accessory_amount == 1)
 			A = accessories[1] // If there's only one accessory, just remove it without any additional prompts.
 		else
-			A = tgui_input_list(usr, "Select an accessory to remove from \the [src]", "Accessory Choice", accessories)
+			A = tgui_input_list(user, "Select an accessory to remove from \the [src]", "Accessory Choice", accessories)
 
 	if(A)
 		if(A.can_remove)
-			remove_accessory(usr,A)
+			remove_accessory(user,A)
 		else
-			to_chat(usr, span_warning("It doesn't look like \the [A] can be taken off \the [src]."))
+			to_chat(user, span_warning("It doesn't look like \the [A] can be taken off \the [src]."))
 
 
 	if(!LAZYLEN(accessories))

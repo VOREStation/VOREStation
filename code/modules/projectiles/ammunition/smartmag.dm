@@ -64,7 +64,7 @@
 		icon_state = "smartmag-empty"
 
 // Emagging lets you remove bullets from your bullet-making magazine
-/obj/item/ammo_magazine/smart/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/ammo_magazine/smart/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		to_chat(user, span_notice("You overload \the [src]'s security measures causing widespread destabilisation. It is likely you could empty \the [src] now."))
 		emagged = TRUE
@@ -72,7 +72,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/ammo_magazine/smart/attackby(var/obj/item/I as obj, mob/user)
+/obj/item/ammo_magazine/smart/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/cell/device))
 		if(attached_cell)
 			to_chat(user, span_notice("\The [src] already has a [attached_cell.name] attached."))
@@ -131,7 +131,7 @@
 	return attached_cell && attached_cell.checked_use(production_cost)
 
 // Sets how much energy is drained to make each bullet
-/obj/item/ammo_magazine/smart/proc/set_production_cost(var/obj/item/ammo_casing/A)
+/obj/item/ammo_magazine/smart/proc/set_production_cost(obj/item/ammo_casing/A)
 	var/list/matters = GLOB.ammo_repository.get_materials_from_object(A)
 	var/tempcost
 	for(var/key in matters)

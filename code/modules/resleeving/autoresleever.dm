@@ -60,14 +60,14 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	else
 		to_chat(user, span_warning("You need to have been spawned in order to respawn here."))
 
-/obj/machinery/transhuman/autoresleever/attackby(var/mob/user)	//Let's not let people mess with this.
+/obj/machinery/transhuman/autoresleever/attackby(mob/user)	//Let's not let people mess with this.
 	update_icon()
 	if(isobserver(user))
 		attack_ghost(user)
 	else
 		return
 
-/obj/machinery/transhuman/autoresleever/proc/autoresleeve(var/mob/observer/dead/ghost)
+/obj/machinery/transhuman/autoresleever/proc/autoresleeve(mob/observer/dead/ghost)
 	if(stat & (BROKEN | MAINT | EMPED)) // Let it still work when power is just off, it has it's own backup reserve or something.
 		to_chat(ghost, span_warning("This machine is not functioning..."))
 		return
@@ -85,14 +85,15 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 
 	var/client/ghost_client = ghost.client
 
-	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
+	if(!is_alien_whitelisted(ghost.client, GLOB.all_species[ghost_client?.prefs?.read_preference(/datum/preference/choiced/species)]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
 		to_chat(ghost, span_warning("You are not whitelisted to spawn as this species!"))
 		return
 
 	/* // Comments out NO_SLEEVE restriction, as per headmin/maintainer request.
 	var/datum/species/chosen_species
-	if(ghost.client.prefs.species) // In case we somehow don't have a species set here.
-		chosen_species = GLOB.all_species[ghost_client.prefs.species]
+	var/pref_species = ghost.client.prefs.read_preference(/datum/preference/choiced/species)
+	if(pref_species) // In case we somehow don't have a species set here.
+		chosen_species = GLOB.all_species[pref_species]
 
 	if(chosen_species.flags & NO_SLEEVE) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
 		to_chat(ghost, span_warning("This species cannot be resleeved!"))
@@ -180,7 +181,7 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
-		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
+		var/datum/antagonist/antag_data = SSantag_job.get_antag_data(new_character.mind.special_role)
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)
@@ -208,9 +209,9 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	//If desired, apply equipment.
 	if(equip_body)
 		if(charjob)
-			GLOB.job_master.EquipRank(new_character, charjob, 1)
+			SSjob.equip_rank(new_character, charjob, 1)
 			new_character.mind.assigned_role = charjob
-			new_character.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(new_character, charjob)
+			new_character.mind.role_alt_title = SSjob.get_player_alt_title(new_character, charjob)
 
 	//A redraw for good measure
 	new_character.regenerate_icons()

@@ -44,10 +44,10 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 		End()
 	return ..()
 
-/datum/disease/proc/try_infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/proc/try_infect(mob/living/infectee, make_copy = TRUE)
 	infect(infectee, make_copy)
 
-/datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/proc/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/D = make_copy ? Copy() : src
 	infectee.addDisease(D)
 	D.affected_mob = infectee
@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 	return cures_found
 
-/datum/disease/proc/spread(var/force_spread = 0)
+/datum/disease/proc/spread(force_spread = 0)
 	if(!affected_mob)
 		return
 	if(affected_mob.is_incorporeal())

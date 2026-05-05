@@ -58,9 +58,10 @@
 	for(var/obj/item/computer_hardware/CH in src.get_all_components())
 		uninstall_component(null, CH)
 		qdel(CH)
+	paired_uavs.Cut()
 	return ..()
 
-/obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/modular_computer/emag_act(remaining_charges, mob/user)
 	if(computer_emagged)
 		to_chat(user, "\The [src] was already emagged.")
 		return //NO_EMAG_ACT
@@ -101,7 +102,7 @@
 
 	return add_overlay(.)
 
-/obj/item/modular_computer/proc/turn_on(var/mob/user)
+/obj/item/modular_computer/proc/turn_on(mob/user)
 	if(bsod)
 		return
 	if(tesla_link)
@@ -128,7 +129,7 @@
 			to_chat(user, "You press the power button but \the [src] does not respond")
 
 // Relays kill program request to currently active program. Use this to quit current program.
-/obj/item/modular_computer/proc/kill_program(var/forced = 0)
+/obj/item/modular_computer/proc/kill_program(forced = 0)
 	if(active_program)
 		active_program.kill_program(forced)
 		active_program = null
@@ -136,7 +137,7 @@
 	addtimer(CALLBACK(src, PROC_REF(delayed_reopen_ui), user), 1, TIMER_DELETE_ME)
 	update_icon()
 
-/obj/item/modular_computer/proc/delayed_reopen_ui(var/mob/user)
+/obj/item/modular_computer/proc/delayed_reopen_ui(mob/user)
 	// Re-open the UI on this computer. It should show the main screen now.
 	// Expected from kill_program()
 	PRIVATE_PROC(TRUE)
@@ -146,18 +147,18 @@
 	tgui_interact(user)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
-/obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = 0)
+/obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
 	if(network_card)
 		return network_card.get_signal(specific_action)
 	else
 		return 0
 
-/obj/item/modular_computer/proc/add_log(var/text)
+/obj/item/modular_computer/proc/add_log(text)
 	if(!get_ntnet_status())
 		return 0
 	return GLOB.ntnet_global.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(var/loud = 1)
+/obj/item/modular_computer/proc/shutdown_computer(loud = 1)
 	kill_program(1)
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(1)
@@ -167,7 +168,7 @@
 	enabled = 0
 	update_icon()
 
-/obj/item/modular_computer/proc/enable_computer(var/mob/user = null)
+/obj/item/modular_computer/proc/enable_computer(mob/user = null)
 	enabled = 1
 	update_icon()
 
@@ -284,7 +285,7 @@
 	else
 		autorun.stored_data = program
 
-/obj/item/modular_computer/proc/find_file_by_uid(var/uid)
+/obj/item/modular_computer/proc/find_file_by_uid(uid)
 	if(hard_drive)
 		. = hard_drive.find_file_by_uid(uid)
 	if(portable_drive && !.)

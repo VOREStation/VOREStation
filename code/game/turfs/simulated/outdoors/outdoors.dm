@@ -1,4 +1,4 @@
-var/list/turf_edge_cache = list()
+GLOBAL_LIST_EMPTY(turf_edge_cache)
 
 /turf
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,
@@ -24,66 +24,20 @@ var/list/turf_edge_cache = list()
 
 	// When a turf gets demoted or promoted, this list gets adjusted.  The top-most layer is the layer on the bottom of the list, due to how pop() works.
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
-	var/can_dig = FALSE
-	var/loot_count
-
-/turf/simulated/floor/outdoors/proc/get_loot_type()
-	if(loot_count && prob(60))
-		return pick( \
-			12;/obj/item/reagent_containers/food/snacks/worm, \
-			1;/obj/item/material/knife/machete/hatchet/stone  \
-		)
-
-/turf/simulated/floor/outdoors/Initialize(mapload)
-	. = ..()
-	if(can_dig && prob(33))
-		loot_count = rand(1,3)
-
-/turf/simulated/floor/outdoors/attackby(obj/item/C, mob/user)
-
-	if(can_dig && istype(C, /obj/item/shovel))
-		var/obj/item/shovel/our_shovel = C
-		if(our_shovel.grave_mode)
-			if(contents.len > 0)
-				to_chat(user, span_warning("You can't dig here!"))
-				return
-			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
-			var/delay = (5 SECONDS * C.toolspeed)
-			user.setClickCooldown(delay)
-			if(do_after(user, delay, target = src))
-				new/obj/structure/closet/grave/dirthole(src)
-				to_chat(user, span_notice("You dug up a hole!"))
-				return
-		else
-			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
-			var/delay = (3 SECONDS * C.toolspeed)
-			user.setClickCooldown(delay)
-			if(do_after(user, delay, target = src))
-				if(!(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
-					var/obj/machinery/portable_atmospherics/hydroponics/soil/soil = new(src)
-					user.visible_message(span_notice("\The [src] digs \a [soil] into \the [src]."))
-				else
-					var/loot_type = get_loot_type()
-					if(loot_type)
-						loot_count--
-						var/obj/item/loot = new loot_type(src)
-						to_chat(user, span_notice("You dug up \a [loot]!"))
-					else
-						to_chat(user, span_notice("You didn't find anything of note in \the [src]."))
-				return
-
-	. = ..()
-/*	VOREStation remove - handled by parent
-/turf/simulated/floor/Initialize(mapload)
-	if(is_outdoors())
-		SSplanets.addTurf(src)
-	. = ..()
-*/
 
 /turf/simulated/floor/Destroy()
 	if(is_outdoors())
 		SSplanets.removeTurf(src)
 	return ..()
+
+/turf/simulated/floor/outdoors/get_dig_loot_type(mob/user, obj/item/W)
+	return pick( \
+		12;/obj/item/reagent_containers/food/snacks/worm, \
+		1;/obj/item/material/knife/machete/hatchet/stone  \
+	)
+
+/turf/simulated/floor/outdoors/shovel_can_cultivate()
+	return TRUE
 
 // Turfs can decide if they should be indoors or outdoors.
 // By default they choose based on their area's setting.
@@ -130,7 +84,7 @@ var/list/turf_edge_cache = list()
 	icon_state = "mud_dark"
 	edge_blending_priority = 3
 	initial_flooring = /datum/decl/flooring/mud
-	can_dig = TRUE
+	flags = TURF_CAN_DIG_SHOVEL
 
 /turf/simulated/floor/outdoors/rocks
 	name = "rocks"
@@ -138,12 +92,17 @@ var/list/turf_edge_cache = list()
 	icon_state = "rock"
 	edge_blending_priority = 1
 	initial_flooring = /datum/decl/flooring/rock
+	dig_exhaustion_chance = TURF_DIG_LOOT_ENDLESS
+	flags = TURF_CAN_DIG_SHOVEL
+
+/turf/simulated/floor/outdoors/rocks/shovel_can_cultivate()
+	return FALSE // Nope, no growing stuff on rocks
 
 /turf/simulated/floor/outdoors/rocks/caves
 	outdoors = OUTDOORS_NO
 
 // This proc adds a 'layer' on top of the turf.
-/turf/simulated/floor/outdoors/proc/promote(var/new_turf_type)
+/turf/simulated/floor/outdoors/proc/promote(new_turf_type)
 	var/list/new_turf_layer_list = turf_layers.Copy()
 	var/list/coords = list(x, y, z)
 
@@ -215,6 +174,7 @@ var/list/turf_edge_cache = list()
 	icon_state = "dirt0"
 	edge_blending_priority = 2
 	initial_flooring = /datum/decl/flooring/outdoors/newdirt
+	flags = TURF_CAN_DIG_SHOVEL
 
 /datum/decl/flooring/outdoors/newdirt
 	name = "dirt"

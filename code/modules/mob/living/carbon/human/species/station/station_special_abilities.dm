@@ -379,7 +379,7 @@
 
 //Test to see if we can shred a mob. Some child override needs to pass us a target. We'll return it if you can.
 /mob/living/var/vore_shred_time = 45 SECONDS
-/mob/living/proc/can_shred(var/mob/living/carbon/human/target)
+/mob/living/proc/can_shred(mob/living/carbon/human/target)
 	//Needs to have organs to be able to shred them.
 	if(!istype(target))
 		to_chat(src,span_warning("You can't shred that type of creature."))
@@ -414,7 +414,7 @@
 	return ..(G.affecting)
 
 //PAIs, borgs, and animals don't need a grab or anything
-/mob/living/silicon/pai/can_shred(var/mob/living/carbon/human/target)
+/mob/living/silicon/pai/can_shred(mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
@@ -429,7 +429,7 @@
 
 	return ..(target)
 
-/mob/living/silicon/robot/can_shred(var/mob/living/carbon/human/target)
+/mob/living/silicon/robot/can_shred(mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
@@ -444,7 +444,7 @@
 
 	return ..(target)
 
-/mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
+/mob/living/simple_mob/can_shred(mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))
@@ -860,7 +860,7 @@
 			color = originator.appendage_color
 	..()
 
-/obj/item/projectile/beam/appendage/on_hit(var/atom/target)
+/obj/item/projectile/beam/appendage/on_hit(atom/target)
 	if(target == firer) //NO EATING YOURSELF
 		return
 	if(isliving(target))
@@ -1251,7 +1251,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
-/datum/reagent/succubi_aphrodisiac/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/succubi_aphrodisiac/affect_blood(mob/living/carbon/M, alien, removed)
 	if(prob(3))
 		M.show_message(span_warning("You feel funny, and fall in love with the person in front of you"))
 		M.say(pick("!blushes", "!moans", "!giggles", "!turns visibly red")) //using mob say so we dont have to define this dumb one time use emote that equates to just blushing -shark
@@ -1268,7 +1268,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
-/datum/reagent/succubi_numbing/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/succubi_numbing/affect_blood(mob/living/carbon/M, alien, removed)
 
 
 	M.eye_blurry = max(M.eye_blurry, 10)
@@ -1288,7 +1288,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
-/datum/reagent/succubi_paralize/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //will first keep it like that.  lets see what it changes. if nothing, than I will rework the effect again
+/datum/reagent/succubi_paralize/affect_blood(mob/living/carbon/M, alien, removed) //will first keep it like that.  lets see what it changes. if nothing, than I will rework the effect again
 
 	M.Weaken(20)
 	M.eye_blurry = max(M.eye_blurry, 10)
@@ -1406,3 +1406,35 @@
 		to_chat(pred, span_vnotice("Your [belly] manages to [lowertext(belly.vore_verb)] \the [target]."))
 		to_chat(target, span_vwarning("You are [lowertext(belly.vore_verb)]ed by \The [pred]'s [belly]!"))
 		return pred.begin_instant_nom(src, target, pred, belly, FALSE)
+
+/mob/living/proc/name_change_verb()
+	set name = "Change Name"
+	set desc = "Change your name. Notifies admins."
+	set category = "Abilities.Superpower"
+
+	if(last_special > world.time)
+		return
+
+	var/chosen_name = tgui_input_text(src, "What would you like your name to become?", "Name change", name, MAX_NAME_LEN)
+
+	if(!chosen_name || !length(chosen_name))
+		return
+
+	last_special = world.time + (5 SECONDS) //don't spam check the global list pls
+	for(var/mob/checkplayer in GLOB.player_list)
+		if(checkplayer == src)
+			continue
+		if(!checkplayer.client) //no client, no problem
+			continue
+		if(checkplayer.name == chosen_name)
+			if(checkplayer.client.prefs.resleeve_lock)
+				to_chat(src, span_notice("\The [checkplayer]'s preferences forbid you from impersonating them."))
+				log_and_message_admins("[key_name(src)] attempted to impersonate [key_name(checkplayer)], but preferences prevented it.", src)
+				return
+			log_and_message_admins("[key_name(src)] impersonated [key_name(checkplayer)]!", src)
+
+	log_and_message_admins("[key_name(src)] set their name to [chosen_name]", src)
+	if(dna)
+		dna.real_name = chosen_name
+	real_name = chosen_name
+	name = chosen_name

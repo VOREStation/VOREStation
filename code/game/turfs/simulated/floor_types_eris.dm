@@ -1099,10 +1099,10 @@
 
 /* Eris features we lack on flooring decls
 //Hull can upgrade to underplating
-/datum/decl/flooring/reinforced/plating/hull/can_build_floor(var/datum/decl/flooring/newfloor)
+/datum/decl/flooring/reinforced/plating/hull/can_build_floor(datum/decl/flooring/newfloor)
 	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
 
-/datum/decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
+/datum/decl/flooring/reinforced/plating/hull/get_plating_type(turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return null
 	else if (turf_is_upper_hull(location))

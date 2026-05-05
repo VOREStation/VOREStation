@@ -4,15 +4,15 @@
 	endWhen			= 35
 
 /datum/event/clang/announce()
-	command_announcement.Announce("Attention [station_name()]. Unknown ultra-dense high-velocity object entering stratosphere!", "General Alert")
+	GLOB.command_announcement.Announce("Attention [station_name()]. Unknown ultra-dense high-velocity object entering stratosphere!", "General Alert", ANNOUNCER_MSG_CLANG)
 	if(seclevel2num(get_security_level()) < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE) // OHNO
 
 /datum/event/clang/end()
-	command_announcement.Announce("What the fuck was that?!", "General Alert")
+	GLOB.command_announcement.Announce("What the fuck was that?!", "General Alert")
 
 /datum/event/clang/start()
-	affecting_z = global.using_map.station_levels
+	affecting_z = using_map.station_levels
 
 	var/startz = pick(affecting_z)
 	var/startx = 0
@@ -69,7 +69,7 @@
 	name = "Immovable Rod"
 	desc = "What the fuck is that?"
 	icon = 'icons/obj/objects.dmi'
-	w_class = 100 //Affects how much damage it does to stuff
+	w_class = ITEMSIZE_NO_CONTAINER //Affects how much damage it does to stuff
 	icon_state = "immrod"
 	density = TRUE
 	anchored = TRUE
@@ -77,7 +77,7 @@
 	var/turf/despawn_loc = null
 	var/has_hunted_unlucky = FALSE
 
-/obj/effect/immovablerod/proc/TakeFlight(var/turf/end)
+/obj/effect/immovablerod/proc/TakeFlight(turf/end)
 	despawn_loc = end
 	walk_towards(src, despawn_loc, 1)
 	explosion(loc, 2, 3, 5) // start out with a bang

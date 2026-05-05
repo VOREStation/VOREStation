@@ -80,6 +80,9 @@
 //higher sensitivity values incur additional effects, starting with confusion/blinding/knockdown and ending with increasing amounts of damage
 //the degree of damage and duration of effects can be tweaked up or down based on the species emp_dmg_mod and emp_stun_mod vars (default 1) on top of tuning the random ranges
 /mob/living/carbon/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !species)
+		return
 	//pregen our stunning stuff, had to do this seperately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
 	var/agony_str = ((rand(4,6)*15)-(15*severity))*species.emp_stun_mod //big ouchies at high severity, causes 0-75 halloss/agony; shotgun beanbags and revolver rubbers do 60
 	var/deafen_dur = (rand(9,16)-severity)*species.emp_stun_mod //5-15 deafen, on par with a flashbang
@@ -89,13 +92,13 @@
 	if(species.emp_sensitivity) //receive warning message and basic effects
 		to_chat(src, span_bolddanger("*BZZZT*"))
 		switch(severity)
-			if(1)
+			if(EMP_HEAVY)
 				to_chat(src, span_danger("DANGER: Extreme EM flux detected!"))
-			if(2)
+			if(EMP_MEDIUM)
 				to_chat(src, span_danger("Danger: High EM flux detected!"))
-			if(3)
+			if(EMP_LIGHT)
 				to_chat(src, span_danger("Warning: Moderate EM flux detected!"))
-			if(4)
+			if(EMP_HARMLESS)
 				to_chat(src, span_danger("Warning: Minor EM flux detected!"))
 		if(prob(90-(10*severity))) //50-80% chance to fire an emote. most are harmless, but vomit might reduce your nutrition level which could suck (so the whole thing is padded out with extras)
 			src.emote(pick("twitch", "twitch_v", "choke", "pale", "blink", "blink_r", "shiver", "sneeze", "vomit", "gasp", "cough", "drool"))
@@ -127,9 +130,8 @@
 			src.adjustToxLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
 		if(species.emp_sensitivity & EMP_OXY_DMG)
 			src.adjustOxyLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
-	..()
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null, stun = 1)
 	if(SEND_SIGNAL(src, COMSIG_BEING_ELECTROCUTED, shock_damage, source, siemens_coeff, def_zone, stun) & COMPONENT_CARBON_CANCEL_ELECTROCUTE)
 		return 0	// Cancelled by a component
 	if(def_zone == BP_L_HAND || def_zone == BP_R_HAND) //Diona (And any other potential plant people) hands don't get shocked.
@@ -323,7 +325,7 @@
 /mob/living/carbon/proc/getDNA()
 	return dna
 
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
+/mob/living/carbon/proc/setDNA(datum/dna/newDNA)
 	dna = newDNA
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
@@ -364,7 +366,7 @@
 
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
@@ -398,7 +400,7 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+/mob/living/carbon/slip(slipped_on,stun_duration=8)
 	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
 	if(buckled)
 		return FALSE
@@ -412,13 +414,13 @@
 	Weaken(FLOOR(stun_duration/2, 1))
 	return TRUE
 
-/mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+/mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
 
-/mob/living/carbon/proc/remove_chemical_effect(var/effect, var/magnitude)
+/mob/living/carbon/proc/remove_chemical_effect(effect, magnitude)
 	if(effect in chem_effects)
 		chem_effects[effect] = magnitude ? max(0,chem_effects[effect]-magnitude) : 0
 
@@ -434,10 +436,10 @@
 
 	return species.default_language ? GLOB.all_languages[species.default_language] : GLOB.all_languages[LANGUAGE_GIBBERISH]
 
-/mob/living/carbon/proc/should_have_organ(var/organ_check)
+/mob/living/carbon/proc/should_have_organ(organ_check)
 	return 0
 
-/mob/living/carbon/can_feel_pain(var/check_organ)
+/mob/living/carbon/can_feel_pain(check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)
@@ -537,7 +539,7 @@
 			if(src.wear_mask.wash(clean_types))
 				src.update_inv_wear_mask(0)
 
-/mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+/mob/living/carbon/proc/food_preference(allergen_type) //RS edit
 	if(!species) // carbon/brains have no species
 		return FALSE
 
@@ -668,3 +670,19 @@
 		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
 		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
 	*/
+
+/**
+ * This proc is used to determine whether or not the mob can handle touching a burning object.
+ */
+/mob/living/carbon/proc/can_touch_burning(atom/burning_atom, acid_power, acid_volume)
+	// So people can take their own clothes off
+	if((burning_atom == src) || (burning_atom.loc == src))
+		return TRUE
+	if(HAS_TRAIT(src, TRAIT_RESISTHEAT) || HAS_TRAIT(src, TRAIT_RESISTHEATHANDS))
+		return TRUE
+	if(gloves?.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE)
+		return TRUE
+	for(var/obj/item/clothing/clothing in worn_clothing)
+		if(clothing.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE && (clothing.heat_protection & HANDS) && (clothing.body_parts_covered & HANDS))
+			return TRUE
+	return FALSE

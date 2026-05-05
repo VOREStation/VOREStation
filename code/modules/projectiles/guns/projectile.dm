@@ -2,7 +2,6 @@
 	name = "gun"
 	desc = "A gun that fires bullets."
 	icon_state = "revolver"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEMSIZE_NORMAL
 	matter = list(MAT_STEEL = 1000)
 	recoil = 1
@@ -38,7 +37,7 @@
 	///Var for attack_self chain
 	var/special_weapon_handling = FALSE
 
-/obj/item/gun/projectile/Initialize(mapload, var/starts_loaded = 1)
+/obj/item/gun/projectile/Initialize(mapload, starts_loaded = 1)
 	. = ..()
 	if(starts_loaded)
 		if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
@@ -121,7 +120,7 @@
 
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
 //Maybe this should be broken up into separate procs for each load method?
-/obj/item/gun/projectile/proc/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/proc/load_ammo(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber || allowed_magazines && !is_type_in_list(A, allowed_magazines))
@@ -196,7 +195,7 @@
 	user.hud_used.update_ammo_hud(user, src)
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
-/obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/proc/unload_ammo(mob/user, allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 		user.visible_message("[user] removes [ammo_magazine] from [src].", span_notice("You remove [ammo_magazine] from [src]."))
@@ -228,7 +227,7 @@
 	update_icon()
 	user.hud_used.update_ammo_hud(user, src)
 
-/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	..()
 	load_ammo(A, user)
 

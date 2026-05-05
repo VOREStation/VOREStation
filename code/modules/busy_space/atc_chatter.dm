@@ -41,7 +41,7 @@
 	VAR_PROTECTED/short_second_name = ""
 	VAR_PROTECTED/mission_noun = ""
 
-/datum/atc_chatter/New(var/datum/lore/organization/source, var/datum/lore/organization/secondary)
+/datum/atc_chatter/New(datum/lore/organization/source, datum/lore/organization/secondary)
 	if(source && secondary) // Evac shuttle atc passes nothing in and only uses map datum for names!
 		/////////////////////////////////////////////////////////////////////
 		// Get the docking bay or zone in space the ships are passing into
@@ -133,7 +133,7 @@
 	// calls acknowledge at each message phase until final, where it qdel(src)
 	return
 
-/datum/atc_chatter/proc/next(var/multiplier = 1,var/pr_ref = null)
+/datum/atc_chatter/proc/next(multiplier = 1,pr_ref = null)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	if(!pr_ref) // don't advance the section unless we actually call squak(), otherwise it's a submessage override

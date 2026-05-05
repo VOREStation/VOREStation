@@ -3,14 +3,13 @@
 	display_name = "plainleather"
 	icon_colour = "#5C4831"
 	stack_type = /obj/item/stack/material/leather
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
 	conductive = 0
 	integrity = 40
-	supply_conversion_value = 3
+	supply_conversion_value = 2
 
 /datum/material/leather/generate_recipes()
 	recipes = list(

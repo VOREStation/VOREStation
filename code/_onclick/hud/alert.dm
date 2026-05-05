@@ -17,8 +17,9 @@
 	var/atom/movable/screen/alert/alert
 	if(LAZYACCESS(alerts, category))
 		alert = alerts[category]
-		if(new_master && new_master != alert.master)
-			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [alert.master]")
+		var/obj/master = alert.master_ref?.resolve()
+		if(new_master && new_master != master)
+			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [master]")
 			clear_alert(category)
 			return .()
 		else if(alert.type != type)
@@ -39,7 +40,7 @@
 		I.plane = PLANE_PLAYER_HUD_ABOVE
 		I.color = new_master.color
 		alert.add_overlay(I)
-		alert.master = new_master
+		alert.master_ref = WEAKREF(new_master)
 	else
 		alert.icon_state = "[initial(alert.icon_state)][severity]"
 		alert.severity = severity
@@ -307,6 +308,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		var/mob/living/L = usr
 		return L.resist()
 
+/atom/movable/screen/alert/irradiated
+	name = "Irradiated"
+	desc = "You're irradiated! Heal your radiation quick, and stand under a shower to wash some radiation off from yourself!"
+//	use_user_hud_icon = TRUE
+	icon_state = "irradiated"
 
 //ALIENS
 
@@ -409,7 +415,7 @@ so as to remain in compliance with the most up-to-date laws."
 // /atom/movable/screen/alert/notify_jump/Click()
 // 	if(!usr || !usr.client) return
 // 	if(!jump_target) return
-// 	var/mob/dead/observer/G = usr
+// 	var/mob/observer/dead/G = usr
 // 	if(!istype(G)) return
 // 	if(attack_not_jump)
 // 		jump_target.attack_ghost(G)
@@ -501,6 +507,7 @@ so as to remain in compliance with the most up-to-date laws."
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
 		to_chat(usr,span_boldnotice(name) + " - " + span_info(desc))
 		return
+	var/obj/master = master_ref?.resolve()
 	if(master)
 		return usr.client.Click(master, location, control, params)
 	..() // VOREStation Edit: Pass through to click_vr
@@ -508,6 +515,6 @@ so as to remain in compliance with the most up-to-date laws."
 /atom/movable/screen/alert/Destroy()
 	..()
 	severity = 0
-	master = null
+	master_ref = null
 	screen_loc = ""
 	return QDEL_HINT_QUEUE

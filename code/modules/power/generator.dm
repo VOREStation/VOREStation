@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	update_icon()
 
 
-/obj/machinery/power/generator/power_spike(var/announce_prob = 30)
+/obj/machinery/power/generator/power_spike(announce_prob = 30)
 	if(!(effective_gen >= max_power / 2 && powernet)) // Don't make a spike if we're not making a whole lot of power.
 		return
 
@@ -256,9 +256,10 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		found_grid_checker = TRUE
 	if(!found_grid_checker) // Otherwise lets break some stuff.
 		spawn(1)
-			command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
+			GLOB.command_announcement.Announce("Dangerous power spike detected in the power network.  Please check machinery \
 			for electrical damage.",
-			"Critical Power Overload")
+			"Critical Power Overload",
+			ANNOUNCER_MSG_POWERSPIKE)
 			var/i = 0
 			var/limit = rand(30, 50)
 			for(var/obj/machinery/power/P in powernet_union)

@@ -30,7 +30,7 @@ default behaviour is:
 	- passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
 	- if si, the proc returns
 */
-/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = FALSE, passive = FALSE)
+/mob/living/proc/can_move_mob(mob/living/swapped, swapping = FALSE, passive = FALSE)
 	if(!swapped)
 		return TRUE
 	if(!passive)
@@ -210,7 +210,7 @@ default behaviour is:
 	return ..()
 
 // Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
-/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+/mob/living/Crossed(atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 
@@ -252,14 +252,14 @@ default behaviour is:
 	if(s_active && !(s_active in contents) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 
-/mob/living/proc/dragged(var/mob/living/dragger, var/oldloc, forced)
+/mob/living/proc/dragged(mob/living/dragger, oldloc, forced)
 	var/area/A = get_area(src)
 	if(forced || (lying && !buckled && pull_damage() && A.get_gravity() && (prob(getBruteLoss() * 200 / maxHealth))))
 		adjustBruteLoss(2)
 		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"), runemessage = "is dragged, wounds worsening!")
 		return TRUE
 
-/mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
+/mob/living/Moved(atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
 	if(!forced && movetime && !is_incorporeal())
@@ -320,7 +320,7 @@ default behaviour is:
 
 		addtimer(CALLBACK(src, PROC_REF(handle_inertial_drift), loc), 0.5 SECONDS, TIMER_DELETE_ME)
 
-/mob/living/proc/handle_inertial_drift(var/locthen)
+/mob/living/proc/handle_inertial_drift(locthen)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!anchored && !pulledby && loc == locthen)

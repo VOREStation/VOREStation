@@ -2,7 +2,7 @@
  * Procs for counting active players in different situations. Returns the number of active players within the given cutoff.
  */
 
-/datum/metric/proc/count_all_outdoor_mobs(var/cutoff = 75)
+/datum/metric/proc/count_all_outdoor_mobs(cutoff = 75)
 	var/num = 0
 	for(var/mob/living/L in GLOB.player_list)
 		var/turf/T = get_turf(L)
@@ -11,7 +11,7 @@
 				num++
 	return num
 
-/datum/metric/proc/count_all_space_mobs(var/cutoff = 75, var/respect_z = TRUE)
+/datum/metric/proc/count_all_space_mobs(cutoff = 75, respect_z = TRUE)
 	var/num = 0
 	for(var/mob/living/L in GLOB.player_list)
 		var/turf/T = get_turf(L)
@@ -59,7 +59,7 @@
 /datum/metric/proc/get_all_antags(cutoff = 75)
 	. = list()
 	for(var/mob/living/L in GLOB.player_list)
-		if(L.mind && player_is_antag(L.mind) && assess_player_activity(L) >= cutoff)
+		if(L.mind && SSantag_job.player_is_antag(L.mind) && assess_player_activity(L) >= cutoff)
 			. += L
 
 /datum/metric/proc/count_all_antags(cutoff = 75)

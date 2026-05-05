@@ -9,7 +9,6 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	matter = list(MAT_STEEL = 150)
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	var/scan_range = 1
 
@@ -30,7 +29,7 @@
 		return TRUE
 	set_active(!on)
 
-/obj/item/t_scanner/proc/set_active(var/active)
+/obj/item/t_scanner/proc/set_active(active)
 	on = active
 	if(on)
 		START_PROCESSING(SSobj, src)
@@ -103,7 +102,7 @@
 	if(GLOB.overlay_cache.len > overlay_cache_LEN)
 		GLOB.overlay_cache.Cut(1, GLOB.overlay_cache.len-overlay_cache_LEN-1)
 
-/obj/item/t_scanner/proc/get_scanned_objects(var/scan_dist)
+/obj/item/t_scanner/proc/get_scanned_objects(scan_dist)
 	. = list()
 
 	var/turf/center = get_turf(src.loc)
@@ -120,7 +119,7 @@
 				continue //if it's already visible don't need an overlay for it
 			. += O
 
-/obj/item/t_scanner/proc/set_user_client(var/client/new_client)
+/obj/item/t_scanner/proc/set_user_client(client/new_client)
 	if(new_client == user_client)
 		return
 	if(user_client)
@@ -134,7 +133,9 @@
 
 	user_client = new_client
 
-/obj/item/t_scanner/dropped(mob/user)
+/obj/item/t_scanner/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	set_user_client(null)
 	..()
 
@@ -142,14 +143,12 @@
 	name = "Upgraded T-ray Scanner"
 	desc = "An upgraded version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	matter = list(MAT_STEEL = 500, PHORON = 150)
-	origin_tech = list(TECH_MAGNET = 4, TECH_ENGINEERING = 5)
 	scan_range = 3
 
 /obj/item/t_scanner/advanced
 	name = "Advanced T-ray Scanner"
 	desc = "An advanced version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	matter = list(MAT_STEEL = 1500, PHORON = 200, SILVER = 250)
-	origin_tech = list(TECH_MAGNET = 7, TECH_ENGINEERING = 7, TECH_MATERIAL = 6)
 	scan_range = 7
 
 

@@ -15,7 +15,7 @@
 	else if((GLOB.world_time_month == bday_month) && (GLOB.world_time_day > bday_day))	//your birthday was earlier this month
 		birthday()
 
-/mob/living/carbon/human/proc/birthday(var/birthday = 0)
+/mob/living/carbon/human/proc/birthday(birthday = 0)
 	var/msg
 	var/lastyear = read_preference(/datum/preference/numeric/human/last_bday_note)
 	write_preference_directly(/datum/preference/numeric/human/last_bday_note, GLOB.world_time_year, WRITE_PREF_MANUAL)	//We only want to ask once a year per character, this persists, update early in case of shenanigans
@@ -24,7 +24,7 @@
 		if(read_preference(/datum/preference/toggle/human/bday_announce))
 			var/list/sounds = list('sound/voice/birth.ogg')
 			var/oursound = pickweight(sounds)
-			command_announcement.Announce("Confirmed presence of BIRTHDAY aboard the station! It is [src.real_name]'s birthday or similar sort of celebration, name day, hatchday, WHATEVER! We encourage you to go find [src.real_name] and show them how we celebrate around here! Have a secure day!", "BIRTHDAY!", oursound)
+			GLOB.command_announcement.Announce("Confirmed presence of BIRTHDAY aboard the station! It is [src.real_name]'s birthday or similar sort of celebration, name day, hatchday, WHATEVER! We encourage you to go find [src.real_name] and show them how we celebrate around here! Have a secure day!", "BIRTHDAY!", oursound)
 	else
 		msg = "Your birthday has passed! Do you want to increase your character's listed age?"	//sad, but thus is the life of an adult
 	if(tgui_alert(src, msg,"BIRTHDAY! ([read_preference(/datum/preference/numeric/human/bday_month)]/[read_preference(/datum/preference/numeric/human/bday_day)])",list("Level me up, baby","No way, I'mma stay young forever")) == "Level me up, baby")

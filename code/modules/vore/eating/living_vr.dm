@@ -271,7 +271,7 @@
 //
 //	Proc for applying vore preferences, given bellies
 //
-/mob/proc/copy_from_prefs_vr(var/bellies = TRUE, var/full_vorgans = FALSE) // full_vorgans var to bypass 1-belly load optimization.
+/mob/proc/copy_from_prefs_vr(bellies = TRUE, full_vorgans = FALSE) // full_vorgans var to bypass 1-belly load optimization.
 	if(!client || !client.prefs_vr)
 		to_chat(src,span_warning("You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev."))
 		return FALSE
@@ -367,7 +367,7 @@
 
 	return remember_default
 
-/datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
+/datum/preferences/proc/return_to_character_slot(mob/user, remembered_default)
 	load_character(remembered_default)
 	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
@@ -375,7 +375,7 @@
 //
 // Release everything in every vore organ
 //
-/mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
+/mob/living/proc/release_vore_contents(include_absorbed = TRUE, silent = FALSE)
 	for(var/obj/belly/B as anything in vore_organs)
 		B.release_all_contents(include_absorbed, silent)
 
@@ -653,8 +653,9 @@
 
 	else if(alerts && alerts["leashed"])
 		var/atom/movable/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
-		var/obj/item/leash/owner = pet_alert.master
-		owner.clear_leash()
+		var/obj/item/leash/owner = pet_alert.master_ref?.resolve()
+		if(owner)
+			owner.clear_leash()
 		log_and_message_admins("used the OOC escape button to get out of a leash.", src)
 
 	//Don't appear to be in a vore situation
@@ -699,7 +700,7 @@
 /obj/belly/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/belly/return_air_for_internal_lifeform(var/mob/living/lifeform)
+/obj/belly/return_air_for_internal_lifeform(mob/living/lifeform)
 	//Free air until someone wants to code processing it for reals from predbreaths
 	var/air_type = /datum/gas_mixture/belly_air
 	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
@@ -777,7 +778,7 @@
 	gas = list(
 		GAS_CH4 = 100)
 
-/mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+/mob/living/proc/feed_grabbed_to_self_falling_nom(mob/living/user, mob/living/prey)
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
@@ -1579,7 +1580,7 @@
 			if(soundfile)
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 
-/mob/living/proc/vore_bellyrub(var/mob/living/T in view(1,src))
+/mob/living/proc/vore_bellyrub(mob/living/T in view(1,src))
 
 	if(!T)
 		return FALSE

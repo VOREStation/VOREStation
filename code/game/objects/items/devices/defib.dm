@@ -14,7 +14,6 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 
 	var/obj/item/shockpaddles/linked/paddle_path = /obj/item/shockpaddles/linked
 	var/obj/item/cell/bcell = null
@@ -102,7 +101,7 @@
 	else
 		return ..()
 
-/obj/item/defib_kit/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/defib_kit/emag_act(remaining_charges, mob/user)
 	var/obj/item/shockpaddles/linked/paddles = get_paddles()
 	if(paddles)
 		. = paddles.emag_act(user)
@@ -137,7 +136,6 @@
 	item_state = "defibcompact"
 	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
 
 /obj/item/defib_kit/compact/loaded
 	bcell = /obj/item/cell/high
@@ -183,7 +181,7 @@
 	var/cooldown = 0
 	var/busy = 0
 
-/obj/item/shockpaddles/proc/set_cooldown(var/delay)
+/obj/item/shockpaddles/proc/set_cooldown(delay)
 	cooldown = 1
 	update_icon()
 
@@ -308,30 +306,30 @@
 		blood_volume *= 0.8
 	return blood_volume < H.species.blood_volume*H.species.blood_level_fatal
 
-/obj/item/shockpaddles/proc/check_charge(var/charge_amt)
+/obj/item/shockpaddles/proc/check_charge(charge_amt)
 	return 0
 
-/obj/item/shockpaddles/proc/checked_use(var/charge_amt)
+/obj/item/shockpaddles/proc/checked_use(charge_amt)
 	return 0
 
-/obj/item/shockpaddles/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/shockpaddles/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/mob/living/carbon/human/H = M
 	if(!istype(H) || user.a_intent == I_HURT)
 		return ..() //Do a regular attack. Harm intent shocking happens as a hit effect
 
 	if(can_use(user, H))
-		busy = 1
+		busy = TRUE
 		update_icon()
 
 		do_revive(H, user)
 
-		busy = 0
+		busy = FALSE
 		update_icon()
 
-	return 1
+	return ITEM_INTERACT_SUCCESS
 
 //Since harm-intent now skips the delay for deliberate placement, you have to be able to hit them in combat in order to shock people.
-/obj/item/shockpaddles/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/shockpaddles/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(ishuman(target) && can_use(user, target))
 		busy = 1
 		update_icon()
@@ -412,7 +410,7 @@
 	log_and_message_admins("used \a [src] to revive [key_name(H)].")
 
 
-/obj/item/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, var/target_zone)
+/obj/item/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, target_zone)
 	var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 	if(!affecting)
 		to_chat(user, span_warning("They are missing that body part!"))
@@ -499,7 +497,7 @@
 
 	H.setBrainLoss(brain_damage)
 
-/obj/item/shockpaddles/proc/make_announcement(var/message, var/msg_class)
+/obj/item/shockpaddles/proc/make_announcement(message, msg_class)
 	audible_message(span_bold(span_info("\The [src]") + " [message]"), span_info("\The [src] vibrates slightly."), runemessage = "buzz")
 
 /obj/item/shockpaddles/emag_act(mob/user)
@@ -515,6 +513,9 @@
 		return 1
 
 /obj/item/shockpaddles/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/new_safety = rand(0, 1)
 	if(safety != new_safety)
 		safety = new_safety
@@ -525,7 +526,6 @@
 			make_announcement("beeps, \"Safety protocols disabled!\"", "warning")
 			playsound(src, 'sound/machines/defib_safetyoff.ogg', 50, 0)
 		update_icon()
-	..()
 
 /obj/item/shockpaddles/robot
 	name = "defibrillator paddles"
@@ -536,12 +536,12 @@
 	item_state = "defibpaddles0"
 	cooldowntime = (3 SECONDS)
 
-/obj/item/shockpaddles/robot/check_charge(var/charge_amt)
+/obj/item/shockpaddles/robot/check_charge(charge_amt)
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return (R.cell && R.cell.check_charge(charge_amt))
 
-/obj/item/shockpaddles/robot/checked_use(var/charge_amt)
+/obj/item/shockpaddles/robot/checked_use(charge_amt)
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return (R.cell && R.cell.checked_use(charge_amt))
@@ -556,15 +556,15 @@
 /*
 	Shockpaddles that are linked to a base unit
 */
-/obj/item/shockpaddles/linked/check_charge(var/charge_amt)
+/obj/item/shockpaddles/linked/check_charge(charge_amt)
 	var/obj/item/defib_kit/base_unit = tethered_host_item
 	return (base_unit.bcell && base_unit.bcell.check_charge(charge_amt))
 
-/obj/item/shockpaddles/linked/checked_use(var/charge_amt)
+/obj/item/shockpaddles/linked/checked_use(charge_amt)
 	var/obj/item/defib_kit/base_unit = tethered_host_item
 	return (base_unit.bcell && base_unit.bcell.checked_use(charge_amt))
 
-/obj/item/shockpaddles/linked/make_announcement(var/message, var/msg_class)
+/obj/item/shockpaddles/linked/make_announcement(message, msg_class)
 	var/obj/item/defib_kit/base_unit = tethered_host_item
 	base_unit.audible_message(span_infoplain(span_bold("\The [base_unit]") + " [message]"), span_info("\The [base_unit] vibrates slightly."))
 
@@ -575,27 +575,45 @@
 /obj/item/shockpaddles/standalone
 	desc = "A pair of shockpaddles powered by an experimental miniaturized reactor" //Inspired by the advanced e-gun
 	var/fail_counter = 0
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/shockpaddles/standalone/Destroy()
 	. = ..()
 	if(fail_counter)
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/shockpaddles/standalone/check_charge(var/charge_amt)
+/obj/item/shockpaddles/standalone/check_charge(charge_amt)
 	return 1
 
-/obj/item/shockpaddles/standalone/checked_use(var/charge_amt)
-	SSradiation.radiate(src, charge_amt/12) //just a little bit of radiation. It's the price you pay for being powered by magic I guess
+/obj/item/shockpaddles/standalone/checked_use(charge_amt)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 50
+	)
 	return 1
 
 /obj/item/shockpaddles/standalone/process()
 	if(fail_counter > 0)
-		SSradiation.radiate(src, fail_counter--)
+		radiation_pulse(
+			src,
+			max_range = 5,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			strength = 15
+		)
+		fail_counter--
 	else
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/shockpaddles/standalone/emp_act(severity, recursive)
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/new_fail = 0
 	switch(severity)
 		if(1)

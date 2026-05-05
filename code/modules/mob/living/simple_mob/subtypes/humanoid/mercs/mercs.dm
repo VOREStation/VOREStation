@@ -131,7 +131,7 @@
 	loot_list = list(/obj/item/melee/energy/sword = 100, /obj/item/shield/energy = 100)
 
 // They have a shield, so they try to block
-/mob/living/simple_mob/humanoid/merc/melee/sword/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/humanoid/merc/melee/sword/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.force)
 		if(prob(20))
 			visible_message(span_danger("\The [src] blocks \the [O] with its shield!"))
@@ -144,7 +144,7 @@
 		to_chat(user, span_warning("This weapon is ineffective, it does no damage."))
 		visible_message(span_warning("\The [user] gently taps [src] with \the [O]."))
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
 		visible_message(span_bolddanger("[src] blocks [Proj] with its shield!"))
@@ -406,7 +406,7 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/syndicatecommando
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/humanoid/merc/melee/sword/space/Process_Spacemove(check_drift = 0)
 	return
 
 // Ranged Space Merc
@@ -528,7 +528,7 @@
 	grenade_timer = 30 // well, look what you've done, you've grouped up
 
 // being Actual Professionals, they have better (read: player-level) blocking chances
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/attackby(obj/item/O, mob/user)
 	if(O.force)
 		if(prob(50))
 			visible_message(span_danger("\The [src] blocks \the [O] with its shield!"))
@@ -540,7 +540,7 @@
 	else
 		visible_message(span_warning("\The [user] gently taps [src] with \the [O]."))
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/bullet_act(obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(50))
 		visible_message(span_warning("[src] blocks [Proj] with its shield!"))
@@ -550,7 +550,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/humanoid/merc/ranged/space/Process_Spacemove(check_drift = 0)
 	return
 
 ////////////////////////////////
@@ -562,7 +562,7 @@
 	loot_list = list(/obj/item/material/knife/tacknife/combatknife = 100)
 
 /mob/living/simple_mob/humanoid/merc/melee/sword/poi
-	loot_list = list(/obj/item/melee/energy/sword/color = 20,
+	loot_list = list(/obj/item/melee/energy/sword = 20,
 		/obj/item/shield/energy = 40
 		)
 

@@ -27,6 +27,7 @@
 	cold_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	min_pressure_protection = 0.2 * ONE_ATMOSPHERE
 	max_pressure_protection = 20  * ONE_ATMOSPHERE
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/fire/firefighter
 	name = "firesuit"
@@ -51,6 +52,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0
+	resistance_flags = BOMB_PROOF
 
 /obj/item/clothing/suit/bomb_suit
 	name = "bomb suit"
@@ -66,6 +68,7 @@
 	cold_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
+	resistance_flags = BOMB_PROOF
 
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuitsec"
@@ -88,6 +91,11 @@
 	body_parts_covered = HEAD|FACE|EYES
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 
+
+/obj/item/clothing/head/radiation/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/radiation_protected_clothing)
+
 /obj/item/clothing/suit/radiation
 	name = "Radiation suit"
 	desc = "A suit that protects against radiation. Label: Made with lead, do not eat insulation."
@@ -101,6 +109,10 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	item_flags = THICKMATERIAL
+
+/obj/item/clothing/suit/radiation/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/radiation_protected_clothing)
 
 /obj/item/clothing/suit/radiation/teshari
 	name = "Small radiation suit"

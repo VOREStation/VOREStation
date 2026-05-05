@@ -227,7 +227,7 @@
 
 	do_infest(src)
 
-/mob/living/simple_mob/animal/sif/leech/proc/do_infest(var/mob/living/user, var/mob/living/target = null)
+/mob/living/simple_mob/animal/sif/leech/proc/do_infest(mob/living/user, mob/living/target = null)
 	if(host)
 		to_chat(user, span_alien("We are already within a host."))
 		return
@@ -352,7 +352,7 @@
 
 	poison_inject(src, M)
 
-/mob/living/simple_mob/animal/sif/leech/proc/poison_inject(var/mob/living/user, var/mob/living/carbon/L)
+/mob/living/simple_mob/animal/sif/leech/proc/poison_inject(mob/living/user, mob/living/carbon/L)
 	if(!L || !Adjacent(L) || stat)
 		return
 
@@ -390,7 +390,7 @@
 		var/chem = tgui_input_list(src, "Select a chemical to produce.", "Chemicals", produceable_chemicals)
 		inject_meds(chem)
 
-/mob/living/simple_mob/animal/sif/leech/proc/inject_meds(var/chem)
+/mob/living/simple_mob/animal/sif/leech/proc/inject_meds(chem)
 	if(host)
 		chemicals = max(1, chemicals - 50)
 		host.reagents.add_reagent(chem, 5)
@@ -428,7 +428,7 @@
 	else
 		to_chat(src, span_warning("We cannot feed now."))
 
-/mob/living/simple_mob/animal/sif/leech/proc/bite_organ(var/obj/item/organ/internal/O)
+/mob/living/simple_mob/animal/sif/leech/proc/bite_organ(obj/item/organ/internal/O)
 	last_feeding = world.time
 
 	if(O)

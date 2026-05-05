@@ -47,7 +47,7 @@
 	custom_only = FALSE
 	banned_species = list(SPECIES_TESHARI, SPECIES_SHADEKIN_CREW) //These are already this weak.
 
-/datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/endurance_low/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -59,7 +59,7 @@
 	custom_only = FALSE
 	banned_species = list(SPECIES_TESHARI) //These are already this weak.
 
-/datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/endurance_very_low/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -140,7 +140,7 @@
 	cost = -2 //I feel like this should be higher, but let's see where it goes
 	excludes = list(/datum/trait/negative/boneless, /datum/trait/negative/boneless/major, /datum/trait/positive/densebones)
 
-/datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/hollow/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/organ/external/O in H.organs)
 		O.min_broken_damage *= 0.5
@@ -159,7 +159,7 @@
 
 	activation_message="You feel off balance..."
 	primitive_expression_messages=list("staggers")
-	excludes = list(/datum/trait/negative/lightweight_light)
+	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/positive/heavyweight)
 
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
@@ -306,7 +306,7 @@
 	activation_message="You can't seem to see anything."
 	primitive_expression_messages=list("stumbles aimlessly.")
 
-/datum/trait/negative/blindness/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/trait/negative/blindness/handle_environment_special(mob/living/carbon/human/H)
 	H.sdisabilities |= sdisability 		//no matter what you do, the blindess still comes for you // Traitgenes tweaked to be consistant with other gene traits by using var
 
 /datum/trait/negative/agoraphobia
@@ -350,7 +350,7 @@
 	cost = -12 // Similar to Very Low Endurance, this straight up will require you NEVER getting in a fight. This is extremely crippling. I salute the madlad that takes this.
 	var_changes = list("total_health" = 25)
 
-/datum/trait/negative/endurance_glass/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/endurance_glass/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -476,7 +476,7 @@
 	custom_only = FALSE
 	excludes = list(/datum/trait/negative/bad_shooter)
 
-/datum/trait/negative/thick_digits/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/thick_digits/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/thickdigits)
 
@@ -588,7 +588,7 @@
 	hidden = FALSE
 	custom_only = FALSE
 	added_component_path = /datum/component/omen/trait
-	excludes = list(/datum/trait/negative/unlucky/major)
+	excludes = list(/datum/trait/negative/unlucky/major, /datum/trait/neutral/slip_prone)
 
 
 /datum/trait/negative/unlucky/major
@@ -599,7 +599,7 @@
 	is_genetrait = TRUE
 	hidden = TRUE //VOREStation Note: Disabled
 	added_component_path = /datum/component/omen/trait/major
-	excludes = list(/datum/trait/negative/unlucky)
+	excludes = list(/datum/trait/negative/unlucky, /datum/trait/neutral/slip_prone)
 	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
 	primitive_expression_messages=list("unluckily stubs their toe!")
 
@@ -645,7 +645,7 @@
 	limb_health = 0.5
 	excludes = list(/datum/trait/negative/hollow, /datum/trait/positive/densebones, /datum/trait/negative/boneless)
 
-/datum/trait/negative/boneless/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/boneless/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/organ/external/ex_organ in H.organs)
 		ex_organ.cannot_break = TRUE
@@ -694,7 +694,7 @@
 	var_changes = list("emp_dmg_mod" = 1.3, "emp_stun_mod" = 1.3, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE))
 	excludes = list(/datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
 
-/datum/trait/negative/faultwires/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/faultwires/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/empweakness)
 
@@ -707,7 +707,7 @@
 	var_changes = list("emp_dmg_mod" = 1.6, "emp_stun_mod" = 1.6, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE | EMP_WEAKEN))
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
 
-/datum/trait/negative/poorconstruction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/poorconstruction/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/majorempweakness)
 
@@ -732,7 +732,7 @@
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping if you are unprepared)"
 	cost = -1
 	var_changes = list("lightweight_light" = 1)
-	excludes = list(/datum/trait/negative/lightweight)
+	excludes = list(/datum/trait/negative/lightweight, /datum/trait/positive/heavyweight)
 	custom_only = FALSE
 
 /datum/trait/negative/scrawny
@@ -768,3 +768,51 @@
 	desc = "You are approximately 50% more susceptible to radiation, and it dissipates slower from your body."
 	cost = -2
 	var_changes = list("radiation_mod" = 1.5, "rad_removal_mod" = 0.5, "rad_levels" = WEAKENED_RADIATION_RESISTANCE)
+
+// medical allergens
+/datum/trait/negative/medical_allergy
+	name = "Allergy: " + REAGENT_TRICORDRAZINE
+	desc = "You're highly allergic to " + REAGENT_TRICORDRAZINE + " and " + REAGENT_TRICORLIDAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = -1
+	custom_only = FALSE
+	var/medallergen = MEDALLERGEN_TRICORD
+
+	/* Lets show medical some mercy by not making these genes
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Something feels odd..."
+	*/
+
+/datum/trait/negative/medical_allergy/apply(datum/species/S,mob/living/carbon/human/H)
+	S.medallergens |= medallergen
+	..()
+
+/datum/trait/negative/medical_allergy/unapply(datum/species/S,mob/living/carbon/human/H)
+	S.medallergens &= ~medallergen
+	..()
+
+/datum/trait/negative/medical_allergy/bicard
+	name = "Allergy: " + REAGENT_BICARIDINE
+	desc = "You're highly allergic to " + REAGENT_BICARIDINE + " and " + REAGENT_BICARIDAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_BICARD
+
+/datum/trait/negative/medical_allergy/dylo
+	name = "Allergy: " + REAGENT_ANTITOXIN
+	desc = "You're highly allergic to " + REAGENT_ANTITOXIN + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_DYLO
+
+/datum/trait/negative/medical_allergy/spacacillin
+	name = "Allergy: " + REAGENT_SPACEACILLIN
+	desc = "You're highly allergic to " + REAGENT_SPACEACILLIN + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_SPACACIL
+
+/datum/trait/negative/medical_allergy/peridaxon
+	name = "Allergy: " + REAGENT_PERIDAXON
+	desc = "You're highly allergic to " + REAGENT_PERIDAXON + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_PERIDAX
+
+/datum/trait/negative/medical_allergy/kelotane
+	name = "Allergy: " + REAGENT_KELOTANE
+	desc = "You're highly allergic to " + REAGENT_KELOTANE + ", " + REAGENT_DERMALINE + " and " + REAGENT_DERMALAZE + ", be sure to write that in your medical record! NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	medallergen = MEDALLERGEN_KELOTANE

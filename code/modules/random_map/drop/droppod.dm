@@ -24,7 +24,7 @@
 	var/placement_explosion_light = 6
 	var/placement_explosion_flash = 4
 
-/datum/random_map/droppod/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/supplied_drop, var/list/supplied_drops, var/automated)
+/datum/random_map/droppod/New(seed, tx, ty, tz, tlx, tly, do_not_apply, do_not_announce, supplied_drop, list/supplied_drops, automated)
 
 	if(supplied_drop)
 		drop_type = supplied_drop
@@ -87,7 +87,7 @@
 			sleep(15) // Let the explosion finish proccing before we ChangeTurf(), otherwise it might destroy our spawned objects.
 	return ..()
 
-/datum/random_map/droppod/get_appropriate_path(var/value)
+/datum/random_map/droppod/get_appropriate_path(value)
 	if(value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
 		return floor_type
 	else if(value == SD_WALL_TILE)
@@ -97,7 +97,7 @@
 	return null
 
 // Pods are circular. Get the direction this object is facing from the center of the pod.
-/datum/random_map/droppod/get_spawn_dir(var/x, var/y)
+/datum/random_map/droppod/get_spawn_dir(x, y)
 	var/x_midpoint = n_ceil(limit_x / 2)
 	var/y_midpoint = n_ceil(limit_y / 2)
 	if(x == x_midpoint && y == y_midpoint)
@@ -108,7 +108,7 @@
 		return null
 	return get_dir(middle, target)
 
-/datum/random_map/droppod/get_additional_spawns(var/value, var/turf/T, var/spawn_dir)
+/datum/random_map/droppod/get_additional_spawns(value, turf/T, spawn_dir)
 
 	// Splatter anything under us that survived the explosion.
 	if(value != SD_EMPTY_TILE && T.contents.len)
@@ -124,7 +124,7 @@
 	else if(value == SD_SUPPLY_TILE)
 		get_spawned_drop(T)
 
-/datum/random_map/droppod/proc/get_spawned_drop(var/turf/T)
+/datum/random_map/droppod/proc/get_spawned_drop(turf/T)
 	var/obj/structure/bed/chair/C = new(T)
 	C.set_light(3, l_color = "#CC0000")
 	var/mob/living/drop
@@ -189,9 +189,9 @@ ADMIN_VERB(call_drop_pod, R_FUN, "Call Drop Pod", "Call an immediate drop pod on
 
 		// Equip them, if they are human and it is desirable.
 		if(ishuman(spawned_mob))
-			var/antag_type = tgui_input_list(user, "Select an equipment template to use or cancel for nude.", GLOB.all_antag_types)
+			var/antag_type = tgui_input_list(user, "Select an equipment template to use or cancel for nude.", SSantag_job.all_antag_types)
 			if(antag_type)
-				var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
+				var/datum/antagonist/A = SSantag_job.all_antag_types[antag_type]
 				A.equip(spawned_mob)
 
 	if(tgui_alert(user, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) != "Yes")

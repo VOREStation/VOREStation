@@ -1,3 +1,4 @@
+import { sanitizeCssClassName } from 'common/css_sanity';
 import { Icon } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
@@ -32,7 +33,7 @@ export const MaterialIcon = (props: MaterialIconProps) => {
           'FabricatorMaterialIcon__Icon',
           'FabricatorMaterialIcon__Icon--active',
           'sheetmaterials_batched32x32',
-          icon_name,
+          sanitizeCssClassName(icon_name),
         ])}
       />
     </div>

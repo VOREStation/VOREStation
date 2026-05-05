@@ -509,7 +509,7 @@
 		qdel(src)
 	return
 
-/obj/item/hand/update_icon(var/direction = 0)
+/obj/item/hand/update_icon(direction = 0)
 
 	var/cardNumber = cards.len
 
@@ -567,7 +567,7 @@
 		i++
 
 
-/obj/item/hand/dropped(mob/user)
+/obj/item/hand/dropped(mob/user, equipping, slot)
 	..()
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)

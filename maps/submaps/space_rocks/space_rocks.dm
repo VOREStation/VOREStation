@@ -1,6 +1,6 @@
 #include "space_rocks_pois.dm"
 
-/turf/simulated/mineral/vacuum/sdmine/make_ore(var/rare_ore)
+/turf/simulated/mineral/vacuum/sdmine/make_ore(rare_ore)
 	if(mineral)
 		return
 	var/mineral_name

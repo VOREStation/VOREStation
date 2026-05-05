@@ -7,7 +7,7 @@
 	log_game("[usr]([usr.key]) used station map L[z] in [src.loc.loc]")
 	drawmap(usr)
 
-/obj/machinery/computer/security/proc/drawmap(var/mob/user as mob)
+/obj/machinery/computer/security/proc/drawmap(mob/user as mob)
 
 	var/icx = round(world.maxx/16) + 1
 	var/icy = round(world.maxy/16) + 1

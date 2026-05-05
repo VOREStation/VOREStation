@@ -6,10 +6,8 @@
 	w_class = ITEMSIZE_TINY
 	var/tech_level = 0	//base level
 	var/rand_level = 0	//random level between 0 and this value is added during spawn, if the techgroup is randomized
-	var/fixed_tech = null	//do we have a predetermined tech-group, per request? if so, overrides randomization for icon and name
-	var/rand_tech = null	//randomized tech-group from the list below
-	var/list/valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
 	var/supply_value = 5
+	var/fixed_name = FALSE
 
 	persist_storable = FALSE //don't shove hazardous shinies into the item bank!! also their properties are (usually) randomized on creation, so saving them is pointless-- you won't get out what you put in
 
@@ -26,19 +24,10 @@
 
 /obj/item/research_sample/Initialize(mapload)
 	. = ..()
-	var/new_tech
-	if(LAZYLEN(origin_tech))
-		new_tech = origin_tech.Copy()
-	else
-		new_tech = list()
-	var/tech_mod = rand(0, rand_level)
-	var/tech_value = tech_level + tech_mod
-	if(fixed_tech)
-		LAZYSET(new_tech, fixed_tech, tech_value)
-	else	//if we're not a preset, randomize the name, icon, and associated tech, to make sure samples aren't predictable/metagamable
+	if(!fixed_name)
 		var/name_prefix = "[pick("strange","anomalous","exotic","atypical","unusual","incongruous","weird","aberrant","eccentric")]"
 		var/name_suffix		//blank because it's randomized per sample appearance
-		var/sample_icon = rand(1,10)
+		var/sample_icon = rand(1,11)
 		icon_state = "generic_sample[sample_icon]"
 		damage_type = pick("BRUTE","BURN","TOX","OXY","EMP","PAIN")
 		//per-state tweaks, like glows/light emission or narrower valid tech defs, if desired
@@ -66,9 +55,6 @@
 			else	//none
 				name_suffix = "[pick("object","sample","thing","fragment","specimen","element","alloy","chunk","remnant","scrap","sliver")]"
 		name = "[name_prefix] [name_suffix]"
-		rand_tech = pick(valid_techs)	//assign techs last
-		LAZYSET(new_tech, rand_tech, tech_value)
-	origin_tech = new_tech
 	AddElement(/datum/element/sellable/research_sample)
 
 /obj/item/research_sample/attack_hand(mob/user)
@@ -212,22 +198,11 @@
 			SC.update_icon()
 			to_chat(user, span_notice("You store \the [src] in \the [SC]."))
 
-	if(istype(P, /obj/item/cataloguer))
-		to_chat(user, span_notice("You start to scan \the [src] with \the [P]..."))
-		if(do_after(user, 2 SECONDS, target = src))
-			to_chat(user, span_notice("\The [src] seems to have [origin_tech[1]] properties?"))
-
 /obj/item/research_sample/common
-	tech_level = 2 //2~3
-	rand_level = 1
-	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/common)
 	supply_value = 15
 
 /obj/item/research_sample/uncommon
-	tech_level = 4 //4~6
-	rand_level = 2
-	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/uncommon)
 	supply_value = 35
 
@@ -241,9 +216,6 @@
 	resource_list	= list(/obj/item/ore/phoron,/obj/item/ore/silver,/obj/item/ore/gold,/obj/item/ore/osmium,/obj/item/ore/diamond)
 
 /obj/item/research_sample/rare
-	tech_level = 6 //6~8
-	rand_level = 2
-	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/rare)
 	supply_value = 75
 
@@ -260,9 +232,7 @@
 	name = "bluespace anomaly"
 	desc = "A small, solidified fragment of bluespace? It shimmers in and out of phase with reality, flickering ominously."
 	icon_state = "sample_bluespace"
-	tech_level = 6 //always 6
-	rand_level = 0
-	fixed_tech = TECH_BLUESPACE
+	fixed_name = TRUE
 	var/lightcolor = "#0066CC"
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/bluespace)
 	supply_value = 100

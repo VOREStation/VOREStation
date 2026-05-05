@@ -1,4 +1,4 @@
-var/list/department_radio_keys = list(
+GLOBAL_LIST_INIT(department_radio_keys, list(
 	":r" = "right ear",	".r" = "right ear",
 	":l" = "left ear",	".l" = "left ear",
 	":i" = "intercom",	".i" = "intercom",
@@ -16,8 +16,8 @@ var/list/department_radio_keys = list(
 	":u" = CHANNEL_SUPPLY,		".u" = CHANNEL_SUPPLY,
 	":v" = CHANNEL_SERVICE,		".v" = CHANNEL_SERVICE,
 	":p" = CHANNEL_AI_PRIVATE,	".p" = CHANNEL_AI_PRIVATE,
-	":a" = CHANNEL_EXPLORATION,	".a" = CHANNEL_EXPLORATION,	//VOREStation Edit
-	":y" = CHANNEL_TALON,		".y" = CHANNEL_TALON, //VOREStation Add,
+	":a" = CHANNEL_EXPLORATION,	".a" = CHANNEL_EXPLORATION,
+	":y" = CHANNEL_TALON,		".y" = CHANNEL_TALON,
 	":g" = CHANNEL_CASINO,	".g" = CHANNEL_CASINO,
 
 	":R" = "right ear",	".R" = "right ear",
@@ -37,7 +37,7 @@ var/list/department_radio_keys = list(
 	":V" = CHANNEL_SERVICE,		".V" = CHANNEL_SERVICE,
 	":P" = CHANNEL_AI_PRIVATE,	".P" = CHANNEL_AI_PRIVATE,
 	":A" = CHANNEL_EXPLORATION,	".A" = CHANNEL_EXPLORATION,
-	":Y" = CHANNEL_TALON,		".Y" = CHANNEL_TALON, //VOREStation Add,
+	":Y" = CHANNEL_TALON,		".Y" = CHANNEL_TALON,
 	":G" = CHANNEL_CASINO,	".G" = CHANNEL_CASINO,
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
@@ -59,22 +59,21 @@ var/list/department_radio_keys = list(
 	":м" = CHANNEL_SERVICE,        ".м" = CHANNEL_SERVICE,
 	":з" = CHANNEL_AI_PRIVATE,    ".з" = CHANNEL_AI_PRIVATE,
 	":ф" = CHANNEL_EXPLORATION,    ".ф" = CHANNEL_EXPLORATION,
-	":н" = CHANNEL_TALON,        ".н" = CHANNEL_TALON, //VOREStation Add
+	":н" = CHANNEL_TALON,        ".н" = CHANNEL_TALON,
 	":п" = CHANNEL_CASINO,	".п" = CHANNEL_CASINO,
-)
+))
 
-
-var/list/channel_to_radio_key = list()
-/proc/get_radio_key_from_channel(var/channel)
-	var/key = channel_to_radio_key[channel]
+GLOBAL_LIST_EMPTY(channel_to_radio_key)
+/proc/get_radio_key_from_channel(channel)
+	var/key = GLOB.channel_to_radio_key[channel]
 	if(!key)
-		for(var/radio_key in department_radio_keys)
-			if(department_radio_keys[radio_key] == channel)
+		for(var/radio_key in GLOB.department_radio_keys)
+			if(GLOB.department_radio_keys[radio_key] == channel)
 				key = radio_key
 				break
 		if(!key)
 			key = ""
-		channel_to_radio_key[channel] = key
+		GLOB.channel_to_radio_key[channel] = key
 
 	return key
 
@@ -89,7 +88,7 @@ var/list/channel_to_radio_key = list()
 
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise
-/mob/living/proc/handle_speech_problems(var/list/message_data)
+/mob/living/proc/handle_speech_problems(list/message_data)
 	var/list/message_pieces = message_data[1]
 	var/verb = message_data[2]
 	var/whispering = message_data[3]
@@ -144,14 +143,14 @@ var/list/channel_to_radio_key = list()
 	returns[2] = null
 	return returns
 
-/mob/living/proc/get_speech_ending(verb, var/ending)
+/mob/living/proc/get_speech_ending(verb, ending)
 	if(ending == "!")
 		return pick("exclaims","shouts","yells")
 	if(ending == "?")
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/say(message, datum/language/speaking = null, whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)
@@ -174,7 +173,7 @@ var/list/channel_to_radio_key = list()
 		if("^") return custom_emote(VISIBLE_MESSAGE, copytext(message, 2))
 	direct_say(message, speaking, whispering)
 
-/mob/living/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/direct_say(message, datum/language/speaking = null, whispering = 0)
 	// Handle automatic whispering mode
 	if(autowhisper)
 		whispering = 1
@@ -424,12 +423,12 @@ var/list/channel_to_radio_key = list()
 			blooploop(message, extrarange = -6, volume = 25, sound_preference = /datum/preference/toggle/whisper_sounds)
 			// playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/whisper_sounds)
 
-		log_talk(message, LOG_WHISPER)
+		log_talk(message, LOG_WHISPER, color="#aeaeae")
 	else
 		if(do_sound && message)
 			blooploop(message, volume = 75)
 			// playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/say_sounds)
-		log_talk(message, LOG_SAY)
+		log_talk(message, LOG_SAY, color="#c0c0c0")
 	return 1
 
 /*************************************************************************/
@@ -472,7 +471,7 @@ var/list/channel_to_radio_key = list()
 #undef BLOOPER_MAX_BLOOPERS
 #undef BLOOPER_MAX_TIME
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
+/mob/living/proc/say_signlang(message, verb="gestures", verb_understood="gestures", datum/language/language, type = 1)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
 	if(loc != T && !istype(loc, /obj/item/holder)) // Partially fixes sign language while being held.

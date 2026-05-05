@@ -37,7 +37,7 @@
 
 /obj/effect/overmap/Initialize(mapload)
 	. = ..()
-	if(!global.using_map.use_overmap)
+	if(!using_map.use_overmap)
 		return INITIALIZE_HINT_QDEL
 
 	if(render_map) // Initialize map objects
@@ -66,8 +66,7 @@
 
 	if(cam_screen)
 		QDEL_NULL(cam_screen)
-	if(cam_plane_masters)
-		QDEL_LIST(cam_plane_masters)
+	QDEL_LIST_NULL(cam_plane_masters)
 	if(cam_background)
 		QDEL_NULL(cam_background)
 
@@ -105,12 +104,12 @@
 
 	return dat
 
-/obj/effect/overmap/Crossed(var/obj/effect/overmap/visitable/other)
+/obj/effect/overmap/Crossed(obj/effect/overmap/visitable/other)
 	if(istype(other))
 		for(var/obj/effect/overmap/visitable/O in loc)
 			SSskybox.rebuild_skyboxes(O.map_z)
 
-/obj/effect/overmap/Uncrossed(var/obj/effect/overmap/visitable/other)
+/obj/effect/overmap/Uncrossed(obj/effect/overmap/visitable/other)
 	if(istype(other))
 		SSskybox.rebuild_skyboxes(other.map_z)
 		for(var/obj/effect/overmap/visitable/O in loc)

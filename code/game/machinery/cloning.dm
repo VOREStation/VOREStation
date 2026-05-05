@@ -4,7 +4,7 @@
 //Potential replacement for genetics revives or something I dunno (?)
 
 //Find a dead mob with a brain and client.
-/proc/find_dead_player(var/find_key)
+/proc/find_dead_player(find_key)
 	if(isnull(find_key))
 		return
 
@@ -55,7 +55,15 @@
 	default_apply_parts()
 	update_icon()
 
-/obj/machinery/clonepod/proc/set_occupant(var/mob/living/L)
+/obj/machinery/clonepod/Destroy()
+	for(var/obj/container in containers)
+		container.forceMove(get_turf(src))
+	containers.Cut()
+	locked = FALSE
+	go_out()
+	. = ..()
+
+/obj/machinery/clonepod/proc/set_occupant(mob/living/L)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!L)
 		weakref_occupant = null
@@ -82,7 +90,7 @@
 	return
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(var/datum/transhuman/body_record/BR)
+/obj/machinery/clonepod/proc/growclone(datum/transhuman/body_record/BR)
 	if(mess || attempting)
 		return 0
 	var/datum/mind/clonemind = locate(BR.mydna.mind)
@@ -262,7 +270,7 @@
 	else
 		..()
 
-/obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/clonepod/emag_act(remaining_charges, mob/user)
 	if(isnull(get_occupant()))
 		return
 	to_chat(user, "You force an emergency ejection.")
@@ -271,7 +279,7 @@
 	return 1
 
 //Put messages in the connected computer's temp var for display.
-/obj/machinery/clonepod/proc/connected_message(var/message)
+/obj/machinery/clonepod/proc/connected_message(message)
 	if((isnull(connected)) || (!istype(connected, /obj/machinery/computer/cloning)))
 		return 0
 	if(!message)
@@ -342,7 +350,7 @@
 	return biomass_count
 
 // Removes [amount] biomass, spread across all containers. Doesn't have any check that you actually HAVE enough biomass, though.
-/obj/machinery/clonepod/proc/remove_biomass(var/amount = CLONE_BIOMASS)		//Just in case it doesn't get passed a new amount, assume one clone
+/obj/machinery/clonepod/proc/remove_biomass(amount = CLONE_BIOMASS)		//Just in case it doesn't get passed a new amount, assume one clone
 	var/to_remove = 0	// Tracks how much biomass has been found so far
 	if(LAZYLEN(containers))
 		for(var/obj/item/reagent_containers/glass/G in containers)
@@ -402,8 +410,10 @@
 	go_out()
 
 /obj/machinery/clonepod/emp_act(severity, recursive)
-	if(prob(100/severity))
-		malfunction()
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !(prob(100/severity)))
+		return
+	malfunction()
 	..()
 
 /obj/machinery/clonepod/ex_act(severity)

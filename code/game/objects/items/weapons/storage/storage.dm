@@ -70,30 +70,30 @@
 	if(storage_slots)
 		src.boxes = new /atom/movable/screen/storage(  )
 		src.boxes.name = "storage"
-		src.boxes.master = src
+		src.boxes.master_ref = WEAKREF(src)
 		src.boxes.icon_state = "block"
 		src.boxes.screen_loc = "7,7 to 10,8"
 	else
 		src.storage_start = new /atom/movable/screen/storage(  )
 		src.storage_start.name = "storage"
-		src.storage_start.master = src
+		src.storage_start.master_ref = WEAKREF(src)
 		src.storage_start.icon_state = "storage_start"
 		src.storage_start.screen_loc = "7,7 to 10,8"
 
 		src.storage_continue = new /atom/movable/screen/storage(  )
 		src.storage_continue.name = "storage"
-		src.storage_continue.master = src
+		src.storage_continue.master_ref = WEAKREF(src)
 		src.storage_continue.icon_state = "storage_continue"
 		src.storage_continue.screen_loc = "7,7 to 10,8"
 
 		src.storage_end = new /atom/movable/screen/storage(  )
 		src.storage_end.name = "storage"
-		src.storage_end.master = src
+		src.storage_end.master_ref = WEAKREF(src)
 		src.storage_end.icon_state = "storage_end"
 		src.storage_end.screen_loc = "7,7 to 10,8"
 
 	src.closer = new /atom/movable/screen/close(  )
-	src.closer.master = src
+	src.closer.master_ref = WEAKREF(src)
 	src.closer.icon_state = "storage_close"
 	src.closer.hud_layerise()
 	orient2hud()
@@ -301,7 +301,7 @@
 	return
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+/obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
 	src.boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
@@ -333,7 +333,7 @@
 	src.closer.screen_loc = "[4+cols+1]:16,2:16"
 	return
 
-/obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+/obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 	SHOULD_NOT_SLEEP(TRUE)
 
 	/// A prototype for drawing the leftmost border behind each item in storage
@@ -838,7 +838,7 @@
 	return TRUE
 
 //Useful for spilling the contents of containers all over the floor
-/obj/item/storage/proc/spill(var/dist = 2, var/turf/T = null)
+/obj/item/storage/proc/spill(dist = 2, turf/T = null)
 	if (!istype(T))//If its not on the floor this might cause issues
 		T = get_turf(src)
 

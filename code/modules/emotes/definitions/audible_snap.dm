@@ -6,7 +6,7 @@
 	emote_message_3p_target = "snaps USER_THEIR fingers at TARGET."
 	emote_sound = 'sound/effects/fingersnap.ogg'
 
-/datum/decl/emote/audible/snap/proc/can_snap(var/atom/user)
+/datum/decl/emote/audible/snap/proc/can_snap(atom/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		for(var/limb in list(BP_L_HAND, BP_R_HAND))
@@ -22,7 +22,7 @@
 	else						//VOREStation Addition End
 		return FALSE
 
-/datum/decl/emote/audible/snap/do_emote(var/atom/user, var/extra_params)
+/datum/decl/emote/audible/snap/do_emote(atom/user, extra_params)
 	if(!can_snap(user))
 		to_chat(user, span_warning("You need at least one working hand to snap your fingers."))
 		return FALSE

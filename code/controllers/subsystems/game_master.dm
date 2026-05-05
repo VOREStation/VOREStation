@@ -148,17 +148,10 @@ SUBSYSTEM_DEF(game_master)
 	var/ignore_time_restrictions = FALSE 	// Useful for debugging without needing to wait 20 minutes each time.
 	var/ignore_round_chaos = FALSE			// If true, the system will happily choose back to back intense events like meteors and blobs, Dwarf Fortress style.
 
-/client/proc/show_gm_status()
-	set category = "Debug"
-	set name = "Show GM Status"
-	set desc = "Shows you what the GM is thinking.  If only that existed in real life..."
+ADMIN_VERB(show_gm_status, R_ADMIN|R_EVENT|R_DEBUG, "Show GM Status", "Shows you what the GM is thinking. If only that existed in real life...", ADMIN_CATEGORY_DEBUG_GAME)
+	SSgame_master.interact(user)
 
-	if(check_rights(R_ADMIN|R_EVENT|R_DEBUG))
-		SSgame_master.interact(usr)
-	else
-		to_chat(usr, span_warning("You do not have sufficient rights to view the GM panel, sorry."))
-
-/datum/controller/subsystem/game_master/proc/interact(var/client/user)
+/datum/controller/subsystem/game_master/proc/interact(client/user)
 	if(!user)
 		return
 

@@ -41,7 +41,7 @@
 	update_icon()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/space_heater/RefreshParts(var/limited = 0)
+/obj/machinery/space_heater/RefreshParts(limited = 0)
 	min_temperature = DEFAULT_MIN_TEMP
 	max_temperature = DEFAULT_MAX_TEMP
 	heating_power = DEFAULT_HEATING_POWER
@@ -101,7 +101,7 @@
 				if(istype(C))
 					user.drop_item()
 					cell = C
-					C.loc = src
+					C.forceMove(src)
 					C.add_fingerprint(user)
 
 					user.visible_message(span_notice("[user] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))

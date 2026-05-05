@@ -38,7 +38,7 @@ Buildable meters
  * @param loc Location
  * @pipe_type
  */
-/obj/item/pipe/Initialize(mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
+/obj/item/pipe/Initialize(mapload, _pipe_type, _dir, obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
 	else
@@ -66,7 +66,7 @@ Buildable meters
 	if(make_from.mirrored)
 		do_a_flip()
 
-/obj/item/pipe/dropped(mob/user)
+/obj/item/pipe/dropped(mob/user, equipping, slot)
 	if(loc)
 		setPipingLayer(piping_layer)
 	return ..()
@@ -163,12 +163,12 @@ Buildable meters
 	else
 		return ..()
 
-/obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		return wrench_act(user, W)
 	return ..()
 
-/obj/item/pipe/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
+/obj/item/pipe/proc/wrench_act(mob/living/user, obj/item/tool/wrench/W)
 	if(!isturf(loc))
 		return TRUE
 
@@ -252,12 +252,12 @@ Buildable meters
 	w_class = ITEMSIZE_LARGE
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-/obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe_meter/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		return wrench_act(user, W)
 	return ..()
 
-/obj/item/pipe_meter/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
+/obj/item/pipe_meter/proc/wrench_act(mob/living/user, obj/item/tool/wrench/W)
 	var/obj/machinery/atmospherics/pipe/pipe
 	for(var/obj/machinery/atmospherics/pipe/P in loc)
 		if(P.piping_layer == piping_layer)
@@ -271,7 +271,7 @@ Buildable meters
 	to_chat(user, span_notice("You fasten the meter to the pipe."))
 	qdel(src)
 
-/obj/item/pipe_meter/dropped(mob/user)
+/obj/item/pipe_meter/dropped(mob/user, equipping, slot)
 	. = ..()
 	if(loc)
 		setAttachLayer(piping_layer)

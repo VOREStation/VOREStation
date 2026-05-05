@@ -31,10 +31,10 @@
 	var/max_item_count = 1
 	var/upgraded_capacity = FALSE
 	var/gulpsound = 'sound/vore/gulp.ogg'
-	var/datum/matter_synth/metal = null
-	var/datum/matter_synth/glass = null
-	var/datum/matter_synth/wood = null
-	var/datum/matter_synth/plastic = null
+	var/datum/matter_synth/metal/metal = null
+	var/datum/matter_synth/glass/glass = null
+	var/datum/matter_synth/wood/wood = null
+	var/datum/matter_synth/plastic/plastic = null
 	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
@@ -43,8 +43,7 @@
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 	var/obj/item/healthanalyzer/med_analyzer = null
 	var/ore_storage = FALSE
-	var/max_ore_storage = 500
-	var/current_capacity = 0
+	var/obj/item/ore_bag/sleeper/ore_bag //Used by supply compactor
 	flags = NOBLUDGEON
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
@@ -58,11 +57,17 @@
 			config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
 			experiment_signals = destructive_signals, \
 		)
+	if(ore_storage)
+		ore_bag = new(null) //We don't need it inside, just need a reference to it.
 	. = ..()
 	med_analyzer = new /obj/item/healthanalyzer
 
 /obj/item/dogborg/sleeper/Destroy()
 	go_out()
+	if(ore_bag)
+		QDEL_NULL(ore_bag)
+	if(med_analyzer)
+		QDEL_NULL(med_analyzer)
 	. = ..()
 
 /obj/item/dogborg/sleeper/Exit(atom/movable/O)
@@ -75,11 +80,11 @@
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
 
-/obj/item/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)
+/obj/item/dogborg/sleeper/afterattack(atom/movable/target, mob/living/silicon/user, proximity_flag, click_parameters)
 	hound = loc
 	if(!istype(target))
 		return
-	if(!proximity)
+	if(!proximity_flag)
 		return
 	if(target.anchored)
 		return
@@ -156,7 +161,7 @@
 			return
 		user.visible_message(span_warning("[hound.name] is ingesting [H.name] into their [src.name]."), span_notice("You start ingesting [H] into your [src]..."))
 		if(!patient && !H.buckled && do_after (user, 50, H))
-			if(!proximity)
+			if(!proximity_flag)
 				return //If they moved away, you can't eat them.
 			if(patient)
 				return //If you try to eat two people at once, you can only eat one.
@@ -168,7 +173,7 @@
 				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 
-/obj/item/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
+/obj/item/dogborg/sleeper/proc/ingest_atom(atom/ingesting)
 	if (!ingesting || ingesting == hound)
 		return
 	var/obj/belly/belly = hound.vore_selected
@@ -193,7 +198,7 @@
 		to_eat.forceMove(belly)
 		log_admin("VORE: [hound] used their [src] to swallow [to_eat].")
 
-/obj/item/dogborg/sleeper/proc/ingest_living(var/mob/living/victim, var/obj/belly/belly)
+/obj/item/dogborg/sleeper/proc/ingest_living(mob/living/victim, obj/belly/belly)
 	if (victim.devourable && is_vore_predator(hound))
 		belly.nom_atom(victim, hound)
 		add_attack_logs(hound, victim, "Eaten via [belly.name]")
@@ -226,7 +231,7 @@
 	hound.updateVRPanel()
 	update_patient()
 
-/obj/item/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
+/obj/item/dogborg/sleeper/proc/drain(amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
 	if(istype(hound,/obj/item/robot_module))
 		hound = hound.loc
@@ -291,6 +296,11 @@
 			)
 
 	var/datum/component/experiment_handler/handler = get_experiment_handler()
+	var/current_capacity = 0
+	var/max_ore_storage = 0
+	if(ore_storage)
+		current_capacity = ore_bag.current_capacity
+		max_ore_storage = ore_bag.max_storage_space
 	var/list/data = list(
 		"our_patient" = patient_data,
 		"eject_port" = eject_port,

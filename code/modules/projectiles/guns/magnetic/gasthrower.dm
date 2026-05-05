@@ -7,7 +7,6 @@
 	wielded_item_state = "bore-wielded"
 	icon = 'icons/obj/railgun.dmi'
 	one_handed_penalty = 20
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_PHORON = 4)
 	w_class = ITEMSIZE_LARGE
 	slowdown = 1
 
@@ -68,7 +67,7 @@
 
 	Tank.air_contents.remove(moles_to_pull)
 
-/obj/item/gun/magnetic/gasthrower/show_ammo(var/mob/user)
+/obj/item/gun/magnetic/gasthrower/show_ammo(mob/user)
 	. = ..()
 
 	if(loaded)

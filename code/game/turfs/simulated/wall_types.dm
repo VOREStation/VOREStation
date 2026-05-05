@@ -1,5 +1,6 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/r_wall/Initialize(mapload)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL) //3strong
 
@@ -9,30 +10,44 @@
 	. = ..(mapload,  MAT_STEELHULL, null, MAT_STEELHULL)
 /turf/simulated/wall/rshull
 	icon_state = "hull-r_steel"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/rshull/Initialize(mapload)
 	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
 /turf/simulated/wall/pshull
 	icon_state = "hull-plasteel"
+	rad_insulation = RAD_HEAVY_INSULATION
 /turf/simulated/wall/pshull/Initialize(mapload) //Spaaaace-er ship.
 	. = ..(mapload,  MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
 /turf/simulated/wall/rpshull
 	icon_state = "hull-r_plasteel"
 /turf/simulated/wall/rpshull/Initialize(mapload)
 	. = ..(mapload,  MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
+
 /turf/simulated/wall/dshull
 	icon_state = "hull-durasteel"
+	rad_insulation = RAD_HEAVY_INSULATION
+
 /turf/simulated/wall/dshull/Initialize(mapload) //Spaaaace-est ship.
 	. = ..(mapload,  MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
+
 /turf/simulated/wall/rdshull
 	icon_state = "hull-r_durasteel"
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/rdshull/Initialize(mapload)
 	. = ..(mapload,  MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
+
 /turf/simulated/wall/thull
 	icon_state = "hull-titanium"
+	rad_insulation = RAD_HEAVY_INSULATION
+
 /turf/simulated/wall/thull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
+
 /turf/simulated/wall/rthull
 	icon_state = "hull-r_titanium"
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/rthull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
 
@@ -56,8 +71,16 @@
 	. = ..(mapload, MAT_GOLD)
 /turf/simulated/wall/silver/Initialize(mapload)
 	. = ..(mapload, MAT_SILVER)
+
+/turf/simulated/wall/lead
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/lead/Initialize(mapload)
 	. = ..(mapload, MAT_LEAD)
+
+/turf/simulated/wall/r_lead
+	rad_insulation = RAD_EXTREME_INSULATION
+
 /turf/simulated/wall/r_lead/Initialize(mapload)
 	. = ..(mapload, MAT_LEAD, MAT_LEAD)
 /turf/simulated/wall/phoron/Initialize(mapload)
@@ -80,11 +103,13 @@
 
 /turf/simulated/wall/concrete
 	icon_state = "brick"
+	rad_insulation = RAD_HEAVY_INSULATION
 
 /turf/simulated/wall/concrete/Initialize(mapload)
 	. = ..(mapload, MAT_CONCRETE) //3strong
 
 /turf/simulated/wall/r_concrete
+	rad_insulation = RAD_HEAVY_INSULATION
 	icon_state = "rbrick"
 
 /turf/simulated/wall/r_concrete/Initialize(mapload)
@@ -97,6 +122,9 @@
 	return
 /turf/simulated/wall/titanium/Initialize(mapload)
 	. = ..(mapload, MAT_TITANIUM)
+
+/turf/simulated/wall/durasteel
+	rad_insulation = RAD_HEAVY_INSULATION
 
 /turf/simulated/wall/durasteel/Initialize(mapload)
 	. = ..(mapload, MAT_DURASTEEL, MAT_DURASTEEL)
@@ -369,7 +397,7 @@
 	var/list/blend_objects = list(/obj/machinery/door)
 	var/list/noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 
-/turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/eris/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/eris)
 
 /turf/simulated/wall/eris/special_wall_connections(list/dirs, list/inrange)
@@ -408,7 +436,7 @@
 
 	var/stripe_color // Adds a colored stripe to the walls
 
-/turf/simulated/wall/bay/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/bay/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/bay)
 
 /turf/simulated/wall/bay/update_icon()
@@ -532,7 +560,7 @@
 
 	wall_connections = dirs
 
-/turf/simulated/wall/tgmc/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/tgmc/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall)
 
 /turf/simulated/wall/tgmc/rwall

@@ -60,7 +60,7 @@
 	special_callback?.Invoke()
 
 /*
-/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(station_missed=0, override = null)
 	if( cinematic )	return	//already a cinematic in progress!
 
 	//initialise our cinematic screen object

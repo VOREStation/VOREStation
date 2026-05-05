@@ -26,8 +26,8 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/roguezones/LateInitialize()
-	if(!rm_controller)
-		rm_controller = new /datum/controller/rogue()
+	if(!GLOB.rm_controller)
+		GLOB.rm_controller = new /datum/controller/rogue()
 
 /obj/machinery/computer/roguezones/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -45,16 +45,16 @@
 		ui.open()
 
 /obj/machinery/computer/roguezones/tgui_data(mob/user)
-	var/chargePercent = min(100, ((((world.time - rm_controller.last_scan) / 10) / 60) / rm_controller.scan_wait) * 100)
-	var/curZoneOccupied = rm_controller.current_zone ? rm_controller.current_zone.is_occupied() : 0
+	var/chargePercent = min(100, ((((world.time - GLOB.rm_controller.last_scan) / 10) / 60) / GLOB.rm_controller.scan_wait) * 100)
+	var/curZoneOccupied = GLOB.rm_controller.current_zone ? GLOB.rm_controller.current_zone.is_occupied() : 0
 
 	var/list/data = ..()
 	data["timeout_percent"] = chargePercent
-	data["diffstep"] = rm_controller.diffstep
-	data["difficulty"] = rm_controller.diffstep_strs[rm_controller.diffstep]
+	data["diffstep"] = GLOB.rm_controller.diffstep
+	data["difficulty"] = GLOB.rm_controller.diffstep_strs[GLOB.rm_controller.diffstep]
 	data["occupied"] = curZoneOccupied
 	data["scanning"] = scanning
-	data["updated"] = world.time - rm_controller.last_scan < 200 //Very recently scanned (20 seconds)
+	data["updated"] = world.time - GLOB.rm_controller.last_scan < 200 //Very recently scanned (20 seconds)
 	data["debug"] = debug
 
 	if(!shuttle_control)
@@ -102,7 +102,7 @@
 		return
 
 	//Set some kinda scanning var to pause UI input on console
-	rm_controller.last_scan = world.time
+	GLOB.rm_controller.last_scan = world.time
 	scanning = 1
 	sleep(60)
 
@@ -110,7 +110,7 @@
 	shuttle_control.shuttle_tag = null
 
 	//Build and get a new zone.
-	var/datum/rogue/zonemaster/ZM_target = rm_controller.prepare_new_zone()
+	var/datum/rogue/zonemaster/ZM_target = GLOB.rm_controller.prepare_new_zone()
 
 	//Update shuttle destination.
 	var/datum/shuttle/autodock/ferry/S = SSshuttles.shuttles["Belter"]
@@ -121,10 +121,10 @@
 	shuttle_control.shuttle_tag = "Belter"
 
 	//Update rm_previous
-	rm_controller.previous_zone = rm_controller.current_zone
+	GLOB.rm_controller.previous_zone = GLOB.rm_controller.current_zone
 
 	//Update rm_current
-	rm_controller.current_zone = ZM_target
+	GLOB.rm_controller.current_zone = ZM_target
 
 	//Unset scanning
 	scanning = 0
@@ -137,7 +137,7 @@
 		return // Shuttle computer has been destroyed
 	if (!(shuttle_control.z in using_map.belter_belt_z))
 		return // Usable only when shuttle is away
-	if(rm_controller.current_zone && rm_controller.current_zone.is_occupied())
+	if(GLOB.rm_controller.current_zone && GLOB.rm_controller.current_zone.is_occupied())
 		return // Not usable if shuttle is in occupied zone
 	// Okay do it
 	var/datum/shuttle/autodock/ferry/S = SSshuttles.shuttles["Belter"]
@@ -146,7 +146,7 @@
 /obj/item/circuitboard/roguezones
 	name = T_BOARD("asteroid belt scanning computer")
 	build_path = /obj/machinery/computer/roguezones
-	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1)
+	hidden = TRUE // Might have issues on maps without belters?
 
 /obj/item/paper/rogueminer
 	name = "R-38 Scanner Console Guide"

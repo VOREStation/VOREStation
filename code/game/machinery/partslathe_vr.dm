@@ -49,14 +49,6 @@
 	update_icon()
 	update_recipe_list()
 
-/obj/machinery/partslathe/proc/getHighestOriginTechLevel(var/obj/item/I)
-	if(!istype(I) || !I.origin_tech)
-		return 0
-	var/highest = 0
-	for(var/tech in I.origin_tech)
-		highest = max(highest, I.origin_tech[tech])
-	return highest
-
 /obj/machinery/partslathe/RefreshParts()
 	var/mb_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
@@ -86,7 +78,7 @@
 			flick("partslathe-lidopen", src)
 		icon_state = "partslathe-idle"
 
-/obj/machinery/partslathe/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/partslathe/attackby(obj/item/O, mob/user)
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
@@ -118,7 +110,7 @@
 		return
 
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
-/obj/machinery/partslathe/proc/try_load_materials(var/mob/user, var/obj/item/stack/material/S)
+/obj/machinery/partslathe/proc/try_load_materials(mob/user, obj/item/stack/material/S)
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in materials))
@@ -167,22 +159,22 @@
 		update_icon()
 		playsound(src, 'sound/machines/chime.ogg', 50, 0)
 
-/obj/machinery/partslathe/proc/addToQueue(var/datum/category_item/partslathe/D)
+/obj/machinery/partslathe/proc/addToQueue(datum/category_item/partslathe/D)
 	queue += D
 	return
 
-/obj/machinery/partslathe/proc/removeFromQueue(var/index)
+/obj/machinery/partslathe/proc/removeFromQueue(index)
 	if(queue.len >= index)
 		queue.Cut(index, index + 1)
 		return
 
-/obj/machinery/partslathe/proc/canBuild(var/datum/category_item/partslathe/D)
+/obj/machinery/partslathe/proc/canBuild(datum/category_item/partslathe/D)
 	for(var/M in D.resources)
 		if(materials[M] < CEILING((D.resources[M] * mat_efficiency), 1))
 			return 0
 	return 1
 
-/obj/machinery/partslathe/proc/getLackingMaterials(var/datum/category_item/partslathe/D)
+/obj/machinery/partslathe/proc/getLackingMaterials(datum/category_item/partslathe/D)
 	var/ret = ""
 	for(var/M in D.resources)
 		if(materials[M] < CEILING((D.resources[M] * mat_efficiency), 1))
@@ -191,7 +183,7 @@
 			ret += "[CEILING((D.resources[M] * mat_efficiency), 1) - materials[M]] [M]"
 	return ret
 
-/obj/machinery/partslathe/proc/build(var/datum/category_item/partslathe/D)
+/obj/machinery/partslathe/proc/build(datum/category_item/partslathe/D)
 	for(var/M in D.resources)
 		materials[M] = max(0, materials[M] - CEILING((D.resources[M] * mat_efficiency), 1))
 	var/obj/item/new_item = D.build(loc);
@@ -203,7 +195,7 @@
 					new_item.matter[i] = CEILING((new_item.matter[i] * mat_efficiency), 1)
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-/obj/machinery/partslathe/proc/eject_materials(var/material, var/amount)
+/obj/machinery/partslathe/proc/eject_materials(material, amount)
 	var/recursive = amount == -1 ? TRUE : FALSE
 	material = lowertext(material)
 	var/mattype
@@ -352,13 +344,10 @@
 /obj/machinery/partslathe/proc/update_recipe_list()
 	if(!partslathe_recipies)
 		partslathe_recipies = list()
-		var/list/paths = subtypesof(/obj/item/stock_parts)
+		var/list/paths = subtypesof(/obj/item/stock_parts) - typesof(/obj/item/stock_parts/subspace)
 		for(var/type in paths)
 			var/obj/item/stock_parts/I = new type()
-			if(getHighestOriginTechLevel(I) > 1)
-				qdel(I)
-				continue // Ignore high-tech parts
-			if(!I.matter)
+			if(!I.matter || I.rating > 1)
 				qdel(I)
 				continue // Ignore parts we can't build
 
@@ -383,5 +372,5 @@
 /datum/category_item/partslathe/dd_SortValue()
 	return name
 
-/datum/category_item/partslathe/proc/build(var/loc)
+/datum/category_item/partslathe/proc/build(loc)
 	return new path(loc)

@@ -10,7 +10,7 @@
 	radiation_amount = rand(1, 10)
 	effect_type = EFFECT_RADIATE
 
-/datum/artifact_effect/radiate/DoEffectTouch(var/mob/living/user)
+/datum/artifact_effect/radiate/DoEffectTouch(mob/living/user)
 	if(user)
 		user.apply_effect(radiation_amount * 5,IRRADIATE,0)
 		user.updatehealth()
@@ -21,7 +21,14 @@
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
 	if(holder)
-		SSradiation.flat_radiate(holder, radiation_amount, src.effectrange)
+		radiation_pulse(
+			holder,
+			max_range = effectrange,
+			threshold = RAD_LIGHT_INSULATION,
+			chance = chargelevelmax * 0.5,
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = chargelevelmax * 0.5
+		)
 		return 1
 
 /datum/artifact_effect/radiate/DoEffectPulse()
@@ -29,5 +36,11 @@
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
 	if(holder)
-		SSradiation.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange))))
+		radiation_pulse(
+			holder,
+			max_range = effectrange,
+			threshold = RAD_LIGHT_INSULATION,
+			chance = chargelevelmax,
+			strength = chargelevelmax * 2,
+		)
 		return 1

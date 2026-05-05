@@ -9,7 +9,7 @@
 	var/row_options3 = " width='150px'"
 	var/datum/event_container/selected_event_container = null
 
-/datum/controller/subsystem/events/proc/Interact(var/mob/living/user)
+/datum/controller/subsystem/events/proc/Interact(mob/living/user)
 
 	var/html = GetInteractWindow()
 
@@ -222,19 +222,12 @@
 
 	Interact(usr)
 
-/client/proc/forceEvent(var/type in SSevents.allEvents)
-	set name = "Trigger Event (Debug Only)"
-	set category = "Debug.Dangerous"
-
-	if(!check_rights_for(src, R_HOLDER))
+ADMIN_VERB(forceEvent, R_DEBUG, "Trigger Event (Debug Only)", "Immediately triggers an event.", ADMIN_CATEGORY_DEBUG_DANGEROUS, type in SSevents.allEvents)
+	if(!ispath(type))
 		return
+	new type(new /datum/event_meta(EVENT_LEVEL_MAJOR))
+	message_admins("[key_name_admin(user)] has triggered an event. ([type])")
 
-	if(ispath(type))
-		new type(new /datum/event_meta(EVENT_LEVEL_MAJOR))
-		message_admins("[key_name_admin(usr)] has triggered an event. ([type])", 1)
-
-/client/proc/event_manager_panel()
-	set name = "Event Manager Panel"
-	set category = "Admin.Events"
-	SSevents.Interact(usr)
+ADMIN_VERB(event_manager_panel, R_ADMIN|R_EVENT, "Event Manager Panel", "Opens the event manager panel.", ADMIN_CATEGORY_EVENTS)
+	SSevents.Interact(user)
 	feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

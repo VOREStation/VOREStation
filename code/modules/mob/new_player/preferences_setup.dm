@@ -35,7 +35,7 @@
 
 
 
-/datum/preferences/proc/randomize_hair_color(var/target = "hair")
+/datum/preferences/proc/randomize_hair_color(target = "hair")
 	if(prob (75) && target == "facial") // Chance to inherit hair color
 		update_preference_by_type(/datum/preference/color/human/facial_color, read_preference(/datum/preference/color/human/hair_color))
 		return
@@ -181,7 +181,7 @@
 
 	update_preference_by_type(/datum/preference/color/human/skin_color, rgb(red, green, blue))
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
+/datum/preferences/proc/dress_preview_mob(mob/living/carbon/human/mannequin)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)
 	copy_to(mannequin, TRUE)
@@ -191,20 +191,20 @@
 
 	var/datum/job/previewJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
-	if(job_civilian_low & ASSISTANT)
-		previewJob = GLOB.job_master.GetJob(JOB_ALT_VISITOR)
+	if(read_preference(/datum/preference/numeric/human/job_civilian_low) & ASSISTANT)
+		previewJob = SSjob.get_job(JOB_ALT_VISITOR)
 	else if(client && ispAI(client.mob))
 		pass() //Don't do anything!
 	else
-		for(var/datum/job/job in GLOB.job_master.occupations)
+		for(var/datum/job/job in SSjob.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
-					job_flag = job_civilian_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_civilian_high)
 				if(MEDSCI)
-					job_flag = job_medsci_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_medsci_high)
 				if(ENGSEC)
-					job_flag = job_engsec_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_engsec_high)
 			if(job.flag == job_flag)
 				previewJob = job
 				break
@@ -213,7 +213,7 @@
 		var/list/equipped_slots = list()
 		var/list/active_gear_list = LAZYACCESS(gear_list, "[gear_slot]")
 		for(var/thing in active_gear_list)
-			var/datum/gear/G = gear_datums[thing]
+			var/datum/gear/G = GLOB.gear_datums[thing]
 			if(G)
 				var/permitted = 0
 				if(!G.allowed_roles)
@@ -239,7 +239,8 @@
 
 	if((equip_preview_mob & EQUIP_PREVIEW_JOB) && previewJob)
 		mannequin.job = previewJob.title
-		previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
+		var/list/alt_titles = read_preference(/datum/preference/player_alt_titles)
+		previewJob.equip_preview(mannequin, islist(alt_titles) ? alt_titles[previewJob.title] : null)
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
@@ -256,18 +257,18 @@
 /datum/preferences/proc/get_highest_job()
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.
-	if(job_civilian_low & ASSISTANT)
-		highJob = GLOB.job_master.GetJob(JOB_ALT_ASSISTANT)
+	if(read_preference(/datum/preference/numeric/human/job_civilian_low) & ASSISTANT)
+		highJob = SSjob.get_job(JOB_ALT_ASSISTANT)
 	else
-		for(var/datum/job/job in GLOB.job_master.occupations)
+		for(var/datum/job/job in SSjob.occupations)
 			var/job_flag
 			switch(job.department_flag)
 				if(CIVILIAN)
-					job_flag = job_civilian_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_civilian_high)
 				if(MEDSCI)
-					job_flag = job_medsci_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_medsci_high)
 				if(ENGSEC)
-					job_flag = job_engsec_high
+					job_flag = read_preference(/datum/preference/numeric/human/job_engsec_high)
 			if(job.flag == job_flag)
 				highJob = job
 				break
@@ -276,11 +277,12 @@
 
 /datum/preferences/proc/get_valid_hairstyles(mob/user)
 	var/list/valid_hairstyles = list()
+	var/pref_species = read_preference(/datum/preference/choiced/species)
 	for(var/hairstyle in GLOB.hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 		if(S.name == DEVELOPER_WARNING_NAME)
 			continue
-		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
+		if(!(pref_species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue
 		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue
@@ -293,6 +295,7 @@
 /datum/preferences/proc/get_valid_facialhairstyles()
 	var/list/valid_facialhairstyles = list()
 	var/bio_gender = read_preference(/datum/preference/choiced/gender/biological)
+	var/pref_species = read_preference(/datum/preference/choiced/species)
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(S.name == DEVELOPER_WARNING_NAME)
@@ -301,7 +304,7 @@
 			continue
 		if(bio_gender == FEMALE && S.gender == MALE)
 			continue
-		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
+		if(!(pref_species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue
 		if(!S.can_be_selected && (!client || !check_rights_for(client, R_HOLDER)))
 			continue

@@ -7,19 +7,12 @@
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == 0)
 
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-	block( \
-		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-	)
-
 //Returns the middle-most value
-/proc/dd_range(var/low, var/high, var/num)
+/proc/dd_range(low, high, num)
 	return max(low,min(high,num))
 
 //Returns whether or not A is the middle most value
-/proc/InRange(var/A, var/lower, var/upper)
+/proc/InRange(A, lower, upper)
 	if(A < lower) return 0
 	if(A > upper) return 0
 	return 1
@@ -151,7 +144,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return 0
 
 
-/proc/DirBlocked(turf/loc,var/dir)
+/proc/DirBlocked(turf/loc,dir)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1
@@ -203,7 +196,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return line
 
 #define LOCATE_COORDS(X, Y, Z) locate(between(1, X, world.maxx), between(1, Y, world.maxy), Z)
-/proc/getcircle(turf/center, var/radius) //Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.
+/proc/getcircle(turf/center, radius) //Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.
 	if(!radius) return list(center)
 
 	var/x = 0
@@ -246,7 +239,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return 1
 
 //Ensure the frequency is within bounds of what it should be sending/recieving at
-/proc/sanitize_frequency(var/f, var/low = PUBLIC_LOW_FREQ, var/high = PUBLIC_HIGH_FREQ)
+/proc/sanitize_frequency(f, low = PUBLIC_LOW_FREQ, high = PUBLIC_HIGH_FREQ)
 	f = round(f)
 	f = max(low, f)
 	f = min(high, f)
@@ -255,7 +248,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return f
 
 //Turns 1479 into 147.9
-/proc/format_frequency(var/f)
+/proc/format_frequency(f)
 	return "[round(f / 10)].[f % 10]"
 
 //Opposite of format, returns as a number
@@ -267,7 +260,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
-/mob/proc/fully_replace_character_name(var/oldname,var/newname)
+/mob/proc/fully_replace_character_name(oldname,newname)
 	if(!newname)	return 0
 	real_name = newname
 	name = newname
@@ -311,7 +304,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
 //Last modified by Carn
-/mob/proc/rename_self(var/role, var/allow_numbers=0)
+/mob/proc/rename_self(role, allow_numbers=0)
 	spawn(0)
 		var/oldname = real_name
 
@@ -342,8 +335,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newai.ogg')
+				play_simple_announcement(world, ANNOUNCER_MSG_NEW_AI)
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -392,7 +384,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return selected
 
-/proc/select_active_ai(var/mob/user)
+/proc/select_active_ai(mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
 		if(user)	. = tgui_input_list(user, "AI signals detected:", "AI selection", ais)
@@ -472,7 +464,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return "[round((powerused * 0.000000001),0.0001)] GW"
 
 //Forces a variable to be posative
-/proc/modulus(var/M)
+/proc/modulus(M)
 	if(M >= 0)
 		return M
 	if(M < 0)
@@ -480,7 +472,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
-/proc/get_edge_target_turf(var/atom/A, var/direction)
+/proc/get_edge_target_turf(atom/A, direction)
 
 	var/turf/target = locate(A.x, A.y, A.z)
 	if(!A || !target)
@@ -504,7 +496,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 // result is bounded to map size
 // note range is non-pythagorean
 // used for disposal system
-/proc/get_ranged_target_turf(var/atom/A, var/direction, var/range)
+/proc/get_ranged_target_turf(atom/A, direction, range)
 
 	var/x = A.x
 	var/y = A.y
@@ -522,13 +514,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 // returns turf relative to A offset in dx and dy tiles
 // bound to map limits
-/proc/get_offset_target_turf(var/atom/A, var/dx, var/dy)
+/proc/get_offset_target_turf(atom/A, dx, dy)
 	var/x = min(world.maxx, max(1, A.x + dx))
 	var/y = min(world.maxy, max(1, A.y + dy))
 	return locate(x,y,A.z)
 
 //returns random gauss number
-/proc/GaussRand(var/sigma)
+/proc/GaussRand(sigma)
 	var/x,y,rsq
 	do
 		x=2*rand()-1
@@ -538,7 +530,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
-/proc/GaussRandRound(var/sigma,var/roundto)
+/proc/GaussRandRound(sigma,roundto)
 	return round(GaussRand(sigma),roundto)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
@@ -553,7 +545,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return toReturn
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(var/atom/source, var/atom/target, var/length=5) // I couldn't be arsed to do actual raycasting :I This is horribly inaccurate.
+/proc/can_see(atom/source, atom/target, length=5) // I couldn't be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
 	var/steps = 0
@@ -571,7 +563,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return 1
 
-/proc/is_blocked_turf(var/turf/T)
+/proc/is_blocked_turf(turf/T)
 	var/cant_pass = 0
 	if(T.density) cant_pass = 1
 	for(var/atom/A in T)
@@ -582,7 +574,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /* //If you uncomment and use this I will assimilate you. -C.L.
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
-/proc/hasvar(var/datum/A, var/varname)
+/proc/hasvar(datum/A, varname)
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
 */
@@ -600,7 +592,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(var/areatype)
+/proc/get_area_turfs(areatype)
 	if(!areatype) return null
 	if(istext(areatype)) areatype = text2path(areatype)
 	if(isarea(areatype))
@@ -617,7 +609,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Takes: An instance of the area.
 //Returns: A list of all turfs in that area.
 //Side note: I don't know why this was never a thing. Did everyone just ignore the Blueprint item?! - C.L.
-/proc/get_current_area_turfs(var/area/checked_area)
+/proc/get_current_area_turfs(area/checked_area)
 	if(!checked_area)
 		return null
 
@@ -629,7 +621,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.
-/proc/get_area_all_atoms(var/areatype)
+/proc/get_area_all_atoms(areatype)
 	if(!areatype) return null
 	if(istext(areatype)) areatype = text2path(areatype)
 	if(isarea(areatype))
@@ -646,7 +638,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Takes: Area as an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in the selected area.
-/proc/get_current_area_atoms(var/area/checked_area)
+/proc/get_current_area_atoms(area/checked_area)
 	if(!checked_area)
 		return null
 
@@ -660,7 +652,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/y_pos = null
 	var/z_pos = null
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction = null)
+/area/proc/move_contents_to(area/A, turftoleave=null, direction = null)
 	//Takes: Area. Optional: turf type to leave behind.
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
@@ -785,7 +777,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					refined_trg -= B
 					continue moving
 
-/proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
+/proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 	if(!original)
 		return null
 
@@ -805,7 +797,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return O
 
 
-/area/proc/copy_contents_to(var/area/A , var/platingRequired = 0 )
+/area/proc/copy_contents_to(area/A , platingRequired = 0 )
 	//Takes: Area. Optional: If it should copy to areas that don't have plating
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.
@@ -1106,57 +1098,42 @@ GLOBAL_LIST_INIT(common_tools, list(
 /proc/reverse_direction(dir)
 	return GLOB.reverse_dir[dir]
 
-/*
-Checks if that loc and dir has a item on the wall
-TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana
-*/
-var/list/WALLITEMS = list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom, /obj/structure/frame,
-	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
-	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/structure/sign,
-	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/button/remote,
-	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio,
-	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
-	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
-	)
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
-			if(istype(O, item))
-				//Direction works sometimes
-				if(O.dir == dir)
-					return 1
+		if(O.flags & WALL_ITEM)
+			//Direction works sometimes
+			if(O.dir == dir)
+				return 1
 
-				//Some stuff doesn't use dir properly, so we need to check pixel instead
-				switch(dir)
-					if(SOUTH)
-						if(O.pixel_y > 10)
-							return 1
-					if(NORTH)
-						if(O.pixel_y < -10)
-							return 1
-					if(WEST)
-						if(O.pixel_x > 10)
-							return 1
-					if(EAST)
-						if(O.pixel_x < -10)
-							return 1
+			//Some stuff doesn't use dir properly, so we need to check pixel instead
+			switch(dir)
+				if(SOUTH)
+					if(O.pixel_y > 10)
+						return 1
+				if(NORTH)
+					if(O.pixel_y < -10)
+						return 1
+				if(WEST)
+					if(O.pixel_x > 10)
+						return 1
+				if(EAST)
+					if(O.pixel_x < -10)
+						return 1
 
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
-			if(istype(O, item))
-				if(O.pixel_x == 0 && O.pixel_y == 0)
-					return 1
+		if(O.flags & WALL_ITEM)
+			if(O.pixel_x == 0 && O.pixel_y == 0)
+				return 1
 	return 0
 
-/proc/topic_link(var/datum/D, var/arglist, var/content)
+/proc/topic_link(datum/D, arglist, content)
 	if(istype(arglist,/list))
 		arglist = list2params(arglist)
 	return "<a href='byond://?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/get_random_colour(var/simple, var/lower=0, var/upper=255)
+/proc/get_random_colour(simple, lower=0, upper=255)
 	var/colour
 	if(simple)
 		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
@@ -1175,7 +1152,7 @@ var/list/WALLITEMS = list(
 GLOBAL_DATUM(dview_mob, /mob/dview)
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
-/proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
+/proc/dview(range = world.view, center, invis_flags = 0)
 	if(!center)
 		return
 	if(!GLOB.dview_mob) //VOREStation Add: Debugging
@@ -1197,7 +1174,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 
 	see_in_dark = 1e6
 
-/atom/proc/get_light_and_color(var/atom/origin)
+/atom/proc/get_light_and_color(atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
@@ -1216,7 +1193,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 
-/mob/dview/Destroy(var/force)
+/mob/dview/Destroy(force)
 	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")
 	if (!force)
 		return QDEL_HINT_LETMELIVE
@@ -1235,7 +1212,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 	return locate(tX, tY, tZ)
 
 // Displays something as commonly used (non-submultiples) SI units.
-/proc/format_SI(var/number, var/symbol)
+/proc/format_SI(number, symbol)
 	switch(round(abs(number)))
 		if(0 to 1000-1)
 			return "[number] [symbol]"
@@ -1328,7 +1305,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 
 // Returns direction-string, rounded to multiples of 22.5, from the first parameter to the second
 // N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW
-/proc/get_adir(var/turf/A, var/turf/B)
+/proc/get_adir(turf/A, turf/B)
 	var/degree = Get_Angle(A, B)
 	switch(round(degree%360, 22.5))
 		if(0)
@@ -1406,7 +1383,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 			matches[key] = value
 	return matches
 
-/proc/make_types_fancy(var/list/types)
+/proc/make_types_fancy(list/types)
 	if (ispath(types))
 		types = list(types)
 	. = list()
@@ -1529,7 +1506,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-/proc/describeThis(var/datum/D)
+/proc/describeThis(datum/D)
 	if(istype(D))
 		var/msg = "[D.type] - [D]"
 		if(isatom(D))
@@ -1636,3 +1613,59 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 			final_material_list[mat] = mat_per_item[index]
 		object.set_custom_materials(final_material_list, multiplier)
 		index += 1
+
+/proc/spiral_range(dist = 0, center = usr, orange = FALSE)
+	var/list/atom_list = list()
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return list()
+
+	if(!orange)
+		atom_list += t_center
+		atom_list += t_center.contents
+
+	if(!dist)
+		return atom_list
+
+
+	var/turf/checked_turf
+	var/y
+	var/x
+	var/c_dist = 1
+
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x + c_dist)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y - c_dist to y)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x - c_dist to x)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y + c_dist)
+			checked_turf = locate(x, y, t_center.z)
+			if(checked_turf)
+				atom_list += checked_turf
+				atom_list += checked_turf.contents
+		c_dist++
+
+	return atom_list

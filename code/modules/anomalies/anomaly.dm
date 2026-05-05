@@ -65,6 +65,9 @@
 /obj/item/anomaly_scanner
 	name = "anomaly scanner"
 	desc = "A hand-held anomaly scanner, able to distinguish the particles that might affect a stable anomaly."
+	description_info = "Click on an emitter to change into an anomalous emitter.<br>\
+	Click on an anomaly harvester to link the scanned anomaly to it.<br>\
+	Danger type adds severity. Unstable changes state. Containment stabilizes at the cost of health. Transformation adds modifiers."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "anom_scanner"
 	slot_flags = SLOT_BELT
@@ -77,6 +80,10 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 
 	var/datum/weakref/buffered_anomaly = null
+
+/obj/item/anomaly_scanner/Destroy()
+	. = ..()
+	buffered_anomaly = null
 
 /obj/item/anomaly_scanner/attack_self(mob/living/user)
 	. = ..(user)
@@ -98,7 +105,7 @@
 
 /obj/item/anomaly_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
-	var/obj/effect/anomaly/anom = buffered_anomaly.resolve()
+	var/obj/effect/anomaly/anom = buffered_anomaly?.resolve()
 
 	if(!istype(anom))
 		return data
@@ -160,3 +167,53 @@
 	if(particle)
 		projectile.particle_type = particle
 	return projectile
+
+/obj/item/storage/box/anomaly
+	name = "anomaly harvesting kit"
+	desc = "A box, stuffed with the needed tools to start harvesting an anomaly."
+	icon_state = "alien"
+	starts_with = list(
+		/obj/item/anomaly_releaser,
+		/obj/item/anomaly_scanner,
+		/obj/item/assembly/signaler/anomaly/choice,
+		/obj/item/clothing/gloves/black
+	)
+
+/obj/item/assembly/signaler/anomaly/choice
+	name = "latent anomaly core"
+	desc = "A supposedly inert anomaly core. It hums softly if held close."
+	icon = 'icons/obj/assemblies/new_assemblies.dmi'
+	icon_state = "inert"
+	worth = 0
+	var/options = 3
+	var/list/choices
+	var/picked = FALSE
+	anomaly_type = /obj/effect/anomaly/flux // Default
+
+/obj/item/assembly/signaler/anomaly/choice/attack_self(mob/user, modifiers)
+	. = ..(user)
+	if(.)
+		return TRUE
+
+	if(picked)
+		return TRUE
+
+	if(isnull(choices))
+		choices = list()
+		var/list/core_types = subtypesof(/obj/effect/anomaly)
+
+		for(var/i = 0, i < options, i++)
+			var/type = pick_n_take(core_types)
+			var/obj/effect/anomaly/anom = new type
+			choices[capitalize(anom.name)] = type
+
+	var/choice = tgui_input_list(user, "Choose an anomaly core.", "Anomaly Core Selection", choices)
+
+	if(choice && !picked)
+		anomaly_type = choices[choice]
+		picked = TRUE
+
+/obj/item/assembly/signaler/anomaly/choice/Destroy()
+	for(var/obj/effect/anomaly/anom in options)
+		qdel(anom)
+	. = ..()

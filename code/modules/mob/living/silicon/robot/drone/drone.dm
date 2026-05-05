@@ -1,12 +1,13 @@
-var/list/mob_hat_cache = list()
-/proc/get_hat_icon(var/obj/item/hat, var/offset_x = 0, var/offset_y = 0)
+GLOBAL_LIST_EMPTY(mob_hat_cache)
+
+/proc/get_hat_icon(obj/item/hat, offset_x = 0, offset_y = 0)
 	var/t_state = hat.icon_state
 	if(LAZYACCESS(hat.item_state_slots, slot_head_str))
 		t_state = hat.item_state_slots[slot_head_str]
 	else if(hat.item_state)
 		t_state = hat.item_state
 	var/key = "[t_state]_[offset_x]_[offset_y]"
-	if(!mob_hat_cache[key])            // Not ideal as there's no guarantee all hat icon_states
+	if(!GLOB.mob_hat_cache[key])            // Not ideal as there's no guarantee all hat icon_states
 		var/t_icon = INV_HEAD_DEF_ICON // are unique across multiple dmis, but whatever.
 		if(hat.icon_override)
 			t_icon = hat.icon_override
@@ -15,8 +16,8 @@ var/list/mob_hat_cache = list()
 		var/image/I = image(icon = t_icon, icon_state = t_state)
 		I.pixel_x = offset_x
 		I.pixel_y = offset_y
-		mob_hat_cache[key] = I
-	return mob_hat_cache[key]
+		GLOB.mob_hat_cache[key] = I
+	return GLOB.mob_hat_cache[key]
 
 /mob/living/silicon/robot/drone
 	name = "maintenance drone"
@@ -31,7 +32,7 @@ var/list/mob_hat_cache = list()
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Drone"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = TRUE
 	req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS)
 	integrated_light_power = 3
@@ -52,7 +53,6 @@ var/list/mob_hat_cache = list()
 	var/obj/machinery/drone_fabricator/master_fabricator
 	var/law_type = /datum/ai_laws/drone
 	var/module_type = /obj/item/robot_module/drone
-	var/obj/item/hat
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
 	var/serial_number = 0
@@ -208,7 +208,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/pick_module()
 	return
 
-/mob/living/silicon/robot/drone/proc/wear_hat(var/obj/item/new_hat)
+/mob/living/silicon/robot/drone/proc/wear_hat(obj/item/new_hat)
 	if(hat)
 		return
 	hat = new_hat
@@ -216,7 +216,7 @@ var/list/mob_hat_cache = list()
 	update_icon()
 
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
-/mob/living/silicon/robot/drone/attackby(var/obj/item/W, var/mob/user)
+/mob/living/silicon/robot/drone/attackby(obj/item/W, mob/user)
 
 	if(user.a_intent == I_HELP && istype(W, /obj/item/clothing/head))
 		if(hat)
@@ -257,7 +257,7 @@ var/list/mob_hat_cache = list()
 
 	..()
 
-/mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/silicon/robot/drone/emag_act(remaining_charges, mob/user)
 	if(!client || stat == 2)
 		to_chat(user, span_danger("There's not much point subverting this heap of junk."))
 		return
@@ -275,8 +275,8 @@ var/list/mob_hat_cache = list()
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOB.lawchanges.Add("[time] " + span_bold(":") + " [user.name]([user.key]) emagged [name]([key])")
 
-	emagged = 1
-	lawupdate = 0
+	emagged = TRUE
+	lawupdate = FALSE
 	connected_ai = null
 	clear_supplied_laws()
 	clear_inherent_laws()
@@ -338,7 +338,7 @@ var/list/mob_hat_cache = list()
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
 
-/mob/living/silicon/robot/drone/proc/question(var/client/C)
+/mob/living/silicon/robot/drone/proc/question(client/C)
 	spawn(0)
 		if(!C || jobban_isbanned(C,JOB_CYBORG))	return
 		var/response = tgui_alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", list("Yes", "No", "Never for this round"))
@@ -349,7 +349,7 @@ var/list/mob_hat_cache = list()
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
 
-/mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
+/mob/living/silicon/robot/drone/proc/transfer_personality(client/player)
 
 	if(!player) return
 
@@ -358,7 +358,7 @@ var/list/mob_hat_cache = list()
 	if(player.mob && player.mob.mind)
 		player.mob.mind.transfer_to(src)
 
-	lawupdate = 0
+	lawupdate = FALSE
 	to_chat(src, span_infoplain(span_bold("Systems rebooted") + " Loading base pattern maintenance protocol... " + span_bold("loaded") + "."))
 	full_law_reset()
 	welcome_drone()

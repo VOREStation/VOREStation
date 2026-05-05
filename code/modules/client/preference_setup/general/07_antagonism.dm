@@ -30,7 +30,7 @@
 	if(!pref.antag_vis) pref.antag_vis = "Hidden"
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic_antagonism/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/basic_antagonism/copy_to_mob(mob/living/carbon/human/character)
 	character.exploit_record = pref.exploit_record
 	character.antag_faction = pref.antag_faction
 	character.antag_vis = pref.antag_vis
@@ -114,19 +114,19 @@
 				if("desc")
 					t = sanitize(params["desc"], MAX_MESSAGE_LEN * 4)
 					if(!isnull(t) && CanUseTopic(user))
-						pref.update_preference_by_type(/datum/preference/text/pai_description, sanitize(t))
+						pref.update_preference_by_type(/datum/preference/text/pai_description, t)
 				if("ad")
 					t = sanitize(params["ad"])
 					if(!isnull(t) && CanUseTopic(user))
-						pref.update_preference_by_type(/datum/preference/text/pai_ad, sanitize(t))
+						pref.update_preference_by_type(/datum/preference/text/pai_ad, t)
 				if("role")
 					t = sanitize(params["role"])
 					if(!isnull(t) && CanUseTopic(user))
-						pref.update_preference_by_type(/datum/preference/text/pai_role, sanitize(t))
+						pref.update_preference_by_type(/datum/preference/text/pai_role, t)
 				if("ooc")
 					t = sanitize(params["ooc"])
 					if(!isnull(t) && CanUseTopic(user))
-						pref.update_preference_by_type(/datum/preference/text/pai_comments, sanitize(t))
+						pref.update_preference_by_type(/datum/preference/text/pai_comments, t)
 				if("color")
 					var/new_color = sanitize_hexcolor(params["color"])
 					if(new_color && CanUseTopic(user))

@@ -49,7 +49,7 @@
 	to_chat(H,span_notice("Your disable the P.A.T. module."))
 	UnregisterSignal(H, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
-/obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
+/obj/item/rig_module/pat_module/proc/boop(mob/living/carbon/human/user,turf/To,turf/Tn)
 	SIGNAL_HANDLER
 	if(!istype(user) || !istype(To) || !istype(Tn))
 		deactivate() //They were picked up or something, or put themselves in a locker, who knows. Just turn off.

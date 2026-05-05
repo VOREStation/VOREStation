@@ -1,5 +1,3 @@
-var/datum/species/shapeshifter/promethean/prometheans
-
 // Species definition follows.
 /datum/species/shapeshifter/promethean
 	name =             SPECIES_PROMETHEAN
@@ -139,11 +137,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	footstep = FOOTSTEP_MOB_SLIME
 
-/datum/species/shapeshifter/promethean/New()
-	..()
-	prometheans = src
-
-/datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/equip_survival_gear(mob/living/carbon/human/H)
 	var/boxtype = pick(list(/obj/item/storage/toolbox/lunchbox,
 							/obj/item/storage/toolbox/lunchbox/heart,
 							/obj/item/storage/toolbox/lunchbox/cat,
@@ -160,7 +154,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	else
 		H.equip_to_slot_or_del(L, slot_in_backpack)
 
-/datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
+/datum/species/shapeshifter/promethean/hug(mob/living/carbon/human/H, mob/living/target)
 	var/static/list/parent_handles = list("head", "r_hand", "l_hand", "mouth")
 
 	if(H.zone_sel.selecting in parent_handles)
@@ -185,7 +179,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 					span_notice("You glomp [target] to make [t_him] feel better!"))
 	H.apply_stored_shock_to(target)
 
-/datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/handle_death(mob/living/carbon/human/H)
 	if(!H)
 		return // Iono!
 
@@ -198,7 +192,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 		if(H)
 			H.gib()
 
-/datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/handle_environment_special(mob/living/carbon/human/H)
 	var/healing = TRUE	// Switches to FALSE if healing is not possible at all.
 	var/regen_brute = TRUE
 	var/regen_burn = TRUE
@@ -350,15 +344,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if((starve_mod <= 0.5 && (H.getHalLoss() + agony_to_apply) <= 90) || ((H.getHalLoss() + agony_to_apply) <= 70))	// Will max out at applying halloss at 70, unless they are starving; starvation regeneration will bring them up to a maximum of 120, the same amount of agony a human receives from three taser hits.
 				H.apply_damage(agony_to_apply, HALLOSS)
 
-/datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/get_blood_colour(mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
-/datum/species/shapeshifter/promethean/get_flesh_colour(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/get_flesh_colour(mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
-/datum/species/shapeshifter/promethean/get_additional_examine_text(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/get_additional_examine_text(mob/living/carbon/human/H)
 
-	if(!stored_shock_by_ref["\ref[H]"])
+	if(!GLOB.stored_shock_by_ref["\ref[H]"])
 		return
 
 	var/t_she = "She is"
@@ -371,7 +365,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	else if(H.identifying_gender == HERM) //VOREStation Edit
 		t_she = "Shi is"
 
-	switch(stored_shock_by_ref["\ref[H]"])
+	switch(GLOB.stored_shock_by_ref["\ref[H]"])
 		if(1 to 10)
 			return "[t_she] flickering gently with a little electrical activity."
 		if(11 to 20)

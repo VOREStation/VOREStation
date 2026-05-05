@@ -19,7 +19,9 @@
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 /obj/item/organ/internal/cell/emp_act(severity, recursive)
-	..()
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	owner?.adjust_nutrition(-rand(10 / severity, 50 / severity))
 
 /obj/item/organ/internal/cell/machine/handle_organ_proc_special()
@@ -46,7 +48,7 @@
 		stored_mmi = null
 	return ..()
 
-/obj/item/organ/internal/mmi_holder/Initialize(mapload, var/internal, var/obj/item/mmi/installed)
+/obj/item/organ/internal/mmi_holder/Initialize(mapload, internal, obj/item/mmi/installed)
 	. = ..(mapload, internal)
 	if(!ishuman(loc) || ismannequin(loc))
 		return
@@ -95,7 +97,7 @@
 		GLOB.living_mob_list |= owner
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
-/obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)
+/obj/item/organ/internal/mmi_holder/removed(mob/living/user)
 
 	if(stored_mmi)
 		. = stored_mmi //VOREStation Code
@@ -109,11 +111,12 @@
 	if(istype(holder_mob))
 		holder_mob.drop_from_inventory(src)
 	qdel(src)
-
+/*
+// EMP loops inside things, this should still work?
 /obj/item/organ/internal/mmi_holder/emp_act(severity, recursive)
 	if(stored_mmi)
 		stored_mmi.emp_act(severity, recursive)
-
+*/
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
 	brain_type = /obj/item/mmi/digital/posibrain

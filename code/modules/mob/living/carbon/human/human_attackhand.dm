@@ -1,8 +1,9 @@
 /mob/living/carbon/human
 	var/datum/unarmed_attack/default_attack
 
-/mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
-	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
+/mob/living/carbon/human/proc/get_unarmed_attack(mob/living/carbon/human/target, hit_zone)
+	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT))
+		return GLOB.unarmed_hardclaws
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
 		if(HAS_TRAIT(src, TRAIT_NONLETHAL_BLOWS))
 			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
@@ -85,7 +86,7 @@
 		// src = THE PERSON BEING ATTACKED
 		// has_hands = Local variable. If the attacker has hands or not.
 		if(I_HELP)
-			attack_hand_help_intent(H, M, M, has_hands)
+			attack_hand_help_intent(H, M, has_hands)
 
 		if(I_GRAB)
 			attack_hand_grab_intent(H, M, has_hands)
@@ -103,7 +104,7 @@
 /// This condenses them and makes it less of a cluster.
 
 ///Help Intent
-/mob/living/carbon/human/proc/attack_hand_help_intent(var/mob/living/carbon/human/H, var/mob/living/M, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_help_intent(mob/living/carbon/human/H, mob/living/M, has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't help them. If you want to add snowflake stuff that you can do while restrained, add it here.
@@ -114,7 +115,7 @@
 		return FALSE;
 
 	//todo: make this whole CPR check into it's own individual proc instead of hogging up attack_hand_help_intent
-	if((istype(H) && (health < get_crit_point()) || stat == DEAD) && !on_fire) //Only humans can do CPR.
+	if((istype(H) && (health < get_crit_point()) || stat == DEAD) && !on_fire && H != src) //Only humans can do CPR.
 		if(!H.check_has_mouth())
 			to_chat(H, span_danger("You don't have a mouth, you cannot perform CPR!"))
 			return FALSE
@@ -149,7 +150,7 @@
 	return TRUE
 
 //Disarm Intent
-/mob/living/carbon/human/proc/attack_hand_disarm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_disarm_intent(mob/living/carbon/human/H, mob/living/M as mob, has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't disarm them. If you want to add snowflake stuff that you can do while restrained, add it here.
@@ -233,7 +234,7 @@
 	else
 		visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to disarm [src]!"))]"))
 //Grab Intent
-/mob/living/carbon/human/proc/attack_hand_grab_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_grab_intent(mob/living/carbon/human/H, mob/living/M as mob, has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't grab them. If you want to add snowflake stuff that you can do while restrained, add it here.
@@ -263,7 +264,7 @@
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	visible_message(span_warning("[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!"))
 //Harm Intent
-/mob/living/carbon/human/proc/attack_hand_harm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_harm_intent(mob/living/carbon/human/H, mob/living/M as mob, has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	//As a note: This intentionally doesn't immediately return if has_hands is false. This is because you can attack with kicks/bites!
@@ -415,7 +416,7 @@
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/armor_type = "melee", var/armor_pen = 0, var/a_sharp = 0, var/a_edge = 0)
+/mob/living/carbon/human/attack_generic(mob/user, damage, attack_message, armor_type = "melee", armor_pen = 0, a_sharp = 0, a_edge = 0)
 	if(istype(user,/mob/living))
 		var/mob/living/L = user
 		if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
@@ -440,7 +441,7 @@
 	return TRUE
 
 //Used to attack a joint through grabbing
-/mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
+/mob/living/carbon/human/proc/grab_joint(mob/living/user, def_zone)
 	var/has_grab = 0
 	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
 		if(G.affecting == src && G.state == GRAB_NECK)
@@ -494,7 +495,7 @@
 	If you are applying pressure to another and attempt to apply pressure to yourself, you'll have to switch to an empty hand which will also stop do_mob()
 	Changing targeted zones should also stop do_mob(), preventing you from applying pressure to more than one body part at once.
 */
-/mob/living/carbon/human/proc/apply_pressure(mob/living/user, var/target_zone)
+/mob/living/carbon/human/proc/apply_pressure(mob/living/user, target_zone)
 	var/obj/item/organ/external/organ = get_organ(target_zone)
 	if(!organ || !(organ.status & ORGAN_BLEEDING) || (organ.robotic >= ORGAN_ROBOT))
 		return FALSE
@@ -559,10 +560,10 @@
 	else
 		return ..()
 
-/mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
+/mob/living/carbon/human/proc/set_default_attack(datum/unarmed_attack/u_attack)
 	default_attack = u_attack
 
-/mob/living/carbon/human/proc/perform_cpr(var/mob/living/carbon/human/reviver)
+/mob/living/carbon/human/proc/perform_cpr(mob/living/carbon/human/reviver)
 	// Check for sanity
 	if(!istype(reviver,/mob/living/carbon/human))
 		return

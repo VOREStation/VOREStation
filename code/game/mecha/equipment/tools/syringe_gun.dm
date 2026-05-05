@@ -13,9 +13,8 @@
 	energy_drain = 10
 	var/mode = 0 //0 - fire syringe, 1 - analyze reagents.
 	var/datum/global_iterator/mech_synth/synth
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_cooldown = 10
-	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_MAGNET = 4, TECH_DATA = 3)
 	required_type = list(/obj/mecha/medical)
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize(mapload)
@@ -144,7 +143,7 @@
 						<head>
 						<title>Reagent Synthesizer</title>
 						<script language='javascript' type='text/javascript'>
-						[js_byjax]
+						[JS_BYJAX]
 						</script>
 						<style>
 						h3 {margin-bottom:2px;font-size:14px;}
@@ -279,8 +278,7 @@
 	name = "crisis dronebay"
 	desc = "A small shoulder-mounted dronebay containing a rapid response drone capable of moderately stabilizing a patient near the exosuit."
 	icon_state = "mecha_dronebay"
-	origin_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_BIO = 5, TECH_DATA = 4)
-	range = MELEE|RANGED
+	range = MECH_MELEE|RANGED
 	equip_cooldown = 3 SECONDS
 	required_type = list(/obj/mecha/medical)
 
@@ -382,7 +380,7 @@
 	else
 		shut_down()
 
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/valid_target(var/mob/living/L)
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/valid_target(mob/living/L)
 	. = TRUE
 
 	if(!L || !istype(L))
@@ -428,10 +426,10 @@
 	if(MyBeam)
 		QDEL_NULL(MyBeam)
 
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/unique_patient_checks(var/mob/living/L)	// Anything special for subtypes. Does it only work on Robots? Fleshies? A species?
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/unique_patient_checks(mob/living/L)	// Anything special for subtypes. Does it only work on Robots? Fleshies? A species?
 	. = TRUE
 
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/heal_target(var/mob/living/L)	// We've done all our special checks, just get to fixing damage.
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/heal_target(mob/living/L)	// We've done all our special checks, just get to fixing damage.
 	chassis.use_power(energy_drain)
 	if(istype(L))
 		L.adjustBruteLoss(brute_heal * -1)
@@ -493,10 +491,9 @@
 	name = "mounted humanoid scanner"
 	desc = "An exosuit-mounted scanning device."
 	icon_state = "mecha_analyzer_health"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 5, TECH_BIO = 5)
 	equip_cooldown = 5 SECONDS
 	energy_drain = 100
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/weapons/flash.ogg'
 	required_type = list(/obj/mecha/medical)

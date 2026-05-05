@@ -17,7 +17,7 @@
 	var/static/list/locked = list()
 
 
-/datum/datacore/proc/get_manifest(monochrome, OOC,var/snowflake = FALSE)
+/datum/datacore/proc/get_manifest(monochrome, OOC,snowflake = FALSE)
 	var/list/heads = new()
 	var/list/sec = new()
 	var/list/eng = new()
@@ -302,7 +302,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 			manifest_inject(H)
 		return
 
-/datum/datacore/proc/manifest_modify(var/name, var/assignment, var/rank)
+/datum/datacore/proc/manifest_modify(name, assignment, rank)
 	ResetPDAManifest()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
@@ -332,8 +332,8 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
-	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
+	if(H.mind && !SSantag_job.player_is_antag(H.mind, only_offstation_roles = 1))
 		var/assignment = GetAssignment(H)
 		var/hidden
 		var/datum/job/J = SSjob.get_job(H.mind.assigned_role)
@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 /proc/generate_record_id()
 	return add_zero(num2hex(rand(1, 65535), 5), 4)	//no point generating higher numbers because of the limitations of num2hex
 
-/datum/datacore/proc/CreateGeneralRecord(var/mob/living/carbon/human/H, var/id, var/hidden)
+/datum/datacore/proc/CreateGeneralRecord(mob/living/carbon/human/H, id, hidden)
 	ResetPDAManifest()
 	var/icon/front
 	var/icon/side
@@ -486,7 +486,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 
 	return G
 
-/datum/datacore/proc/CreateSecurityRecord(var/name, var/id, var/hidden)
+/datum/datacore/proc/CreateSecurityRecord(name, id, hidden)
 	ResetPDAManifest()
 	var/datum/data/record/R = new /datum/data/record()
 	R.name = "Security Record #[id]"
@@ -507,7 +507,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 
 	return R
 
-/datum/datacore/proc/CreateMedicalRecord(var/name, var/id, var/hidden)
+/datum/datacore/proc/CreateMedicalRecord(name, id, hidden)
 	ResetPDAManifest()
 	var/datum/data/record/M = new()
 	M.name = "Medical Record #[id]"
@@ -552,7 +552,7 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		if(R.fields[field] == value)
 			return R
 
-/proc/GetAssignment(var/mob/living/carbon/human/H)
+/proc/GetAssignment(mob/living/carbon/human/H)
 	if(H.mind.role_alt_title)
 		return H.mind.role_alt_title
 	else if(H.mind.assigned_role)

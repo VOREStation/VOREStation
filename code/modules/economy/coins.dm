@@ -96,6 +96,38 @@
 	desc = "A " + MAT_URANIUM + " coin. You probably don't want to store this in your pants pocket..."
 	icon_state = "coin_uranium"
 	matter = list(MAT_URANIUM = 250)
+	var/last_event = 0
+	var/active = 0
+
+/obj/item/coin/uranium/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/coin/uranium/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/coin/uranium/process()
+	radiate()
+	..()
+
+/obj/item/coin/uranium/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 1,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 2
+	)
+	last_event = world.time
+	active = FALSE
 
 /obj/item/coin/platinum
 	name = MAT_PLATINUM + " coin"

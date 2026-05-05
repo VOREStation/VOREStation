@@ -50,7 +50,7 @@
 /obj/machinery/computer/cryopod/dorms
 	name = "residential oversight console"
 	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the deeper section of the colony."
-	circuit = "/obj/item/circuitboard/robotstoragecontrol"
+	circuit = /obj/item/circuitboard/dormscontrol
 
 	storage_type = "visitors"
 	storage_name = "Residential Oversight Control"
@@ -59,7 +59,7 @@
 /obj/machinery/computer/cryopod/travel
 	name = "docking oversight console"
 	desc = "An interface between visitors and the docking oversight systems tasked with keeping track of all visitors who enter or exit from the docks."
-	circuit = "/obj/item/circuitboard/robotstoragecontrol"
+	circuit = /obj/item/circuitboard/travelcontrol
 
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
@@ -68,7 +68,7 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
-	circuit = "/obj/item/circuitboard/robotstoragecontrol"
+	circuit = /obj/item/circuitboard/gatewaycontrol
 
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
@@ -152,29 +152,29 @@
 	*/
 
 /obj/item/circuitboard/cryopodcontrol
-	name = "Circuit board (Cryogenic Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod"
-	origin_tech = list(TECH_DATA = 3)
+	name = T_BOARD("Cryogenic Oversight Console")
+	build_path = /obj/machinery/computer/cryopod
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/robotstoragecontrol
-	name = "Circuit board (Robotic Storage Console)"
-	build_path = "/obj/machinery/computer/cryopod/robot"
-	origin_tech = list(TECH_DATA = 3)
+	name = T_BOARD("Robotic Storage Console")
+	build_path = /obj/machinery/computer/cryopod/robot
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/dormscontrol
-	name = "Circuit board (Residential Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod/door/dorms"
-	origin_tech = list(TECH_DATA = 3)
+	name = T_BOARD("Residential Oversight Console")
+	build_path = /obj/machinery/computer/cryopod/dorms
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/travelcontrol
-	name = "Circuit board (Travel Oversight Console - Docks)"
-	build_path = "/obj/machinery/computer/cryopod/door/travel"
-	origin_tech = list(TECH_DATA = 3)
+	name = T_BOARD("Travel Oversight Console - Docks")
+	build_path = /obj/machinery/computer/cryopod/travel
+	hidden = TRUE // todo - Make properly constructable in round
 
 /obj/item/circuitboard/gatewaycontrol
-	name = "Circuit board (Travel Oversight Console - Gateway)"
-	build_path = "/obj/machinery/computer/cryopod/door/gateway"
-	origin_tech = list(TECH_DATA = 3)
+	name = T_BOARD("Travel Oversight Console - Gateway")
+	build_path = /obj/machinery/computer/cryopod/gateway
+	hidden = TRUE // todo - Make properly constructable in round
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -356,7 +356,7 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/robot/despawn_occupant(var/mob/to_despawn)
+/obj/machinery/cryopod/robot/despawn_occupant(mob/to_despawn)
 	var/mob/living/silicon/robot/R = to_despawn
 	if(!istype(R)) return ..()
 
@@ -378,7 +378,7 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/proc/despawn_occupant(var/mob/to_despawn)
+/obj/machinery/cryopod/proc/despawn_occupant(mob/to_despawn)
 	//Recursively despawn mobs
 	for(var/mob/M in to_despawn)
 		despawn_occupant(M)
@@ -482,7 +482,7 @@
 
 		//Handle job slot/tater cleanup.
 		var/job = to_despawn.mind.assigned_role
-		GLOB.job_master.FreeRole(job)
+		SSjob.free_role(job)
 		to_despawn.mind.assigned_role = null
 
 		if(to_despawn.mind.objectives.len)
@@ -559,7 +559,7 @@
 	qdel(to_despawn)
 	set_occupant(null)
 
-/obj/machinery/cryopod/attackby(var/obj/item/G as obj, var/mob/user as mob)
+/obj/machinery/cryopod/attackby(obj/item/G as obj, mob/user as mob)
 
 	if(istype(G, /obj/item/grab))
 
@@ -656,12 +656,12 @@
 	for(var/obj/machinery/gateway/G in range(1,src))
 		G.icon_state = "on"
 
-/obj/machinery/cryopod/robot/door/gateway/go_out(var/skip_move = FALSE)
+/obj/machinery/cryopod/robot/door/gateway/go_out(skip_move = FALSE)
 	..(skip_move)
 	for(var/obj/machinery/gateway/G in range(1,src))
 		G.icon_state = "off"
 
-/obj/machinery/cryopod/proc/go_out(var/skip_move = FALSE)
+/obj/machinery/cryopod/proc/go_out(skip_move = FALSE)
 
 	if(!occupant)
 		return
@@ -677,18 +677,18 @@
 
 	return
 
-/obj/machinery/cryopod/proc/set_occupant(var/new_occupant)
+/obj/machinery/cryopod/proc/set_occupant(new_occupant)
 	occupant = new_occupant
 	name = initial(name)
 	if(occupant)
 		name = "[name] ([occupant])"
 
-/obj/machinery/cryopod/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/cryopod/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user))
 		return
 	go_in(target, user)
 
-/obj/machinery/cryopod/proc/go_in(var/mob/M, var/mob/user)
+/obj/machinery/cryopod/proc/go_in(mob/M, mob/user)
 	if(!check_occupant_allowed(M))
 		return
 	if(!M)

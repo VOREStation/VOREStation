@@ -84,7 +84,7 @@
 	else
 		. = PROCESS_KILL
 
-/obj/machinery/atmospherics/pipe/manifold4w/change_color(var/new_color)
+/obj/machinery/atmospherics/pipe/manifold4w/change_color(new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node1)
@@ -96,7 +96,7 @@
 	if(node4)
 		node4.update_underlays()
 
-/obj/machinery/atmospherics/pipe/manifold4w/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/manifold4w/update_icon(safety = 0)
 	alpha = 255
 
 	cut_overlays()

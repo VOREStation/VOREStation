@@ -16,12 +16,12 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
+/atom/Click(location, control, params) // This is their reaction to being clicked on (standard proc)
 	if(src)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
 		usr.ClickOn(src, params)
 
-/atom/DblClick(var/location, var/control, var/params)
+/atom/DblClick(location, control, params)
 	if(src)
 		usr.DblClickOn(src, params)
 
@@ -43,9 +43,11 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn(atom/A, params)
-	if(world.time <= next_click)
+	if(!checkClickCooldown()) return
+	setClickCooldown(1) //1/10 of a second, 10 clicks allowed per second.
+
+	if(check_click_intercept(params,A) || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
 		return
-	next_click = world.time + 1
 
 	if(client && client.buildmode)
 		build_click(src, client.buildmode, params, A)
@@ -135,7 +137,8 @@
 	if(!currently_restrained && ((!isturf(A) && A == loc) || (sdepth <= MAX_STORAGE_REACH)))
 		if(W)
 			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
-			if(!resolved && A && W)
+			//If we got a 'SUCCESS' it means resolve_attackby did something. Don't do afterattack in that case.
+			if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
 			if(ismob(A)) // No instant mob attacking
@@ -148,7 +151,7 @@
 	if(!currently_restrained && isbelly(loc) && (loc == A.loc))
 		if(W)
 			var/resolved = W.resolve_attackby(A,src)
-			if(!resolved && A && W)
+			if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 		else
 			if(ismob(A)) // No instant mob attacking
@@ -174,7 +177,7 @@
 				if(W && !restrained())
 					// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 					var/resolved = W.resolve_attackby(A,src, click_parameters = params)
-					if(!resolved && A && W)
+					if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 						W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 				else
 					if(ismob(A)) // No instant mob attacking
@@ -191,7 +194,7 @@
 				trigger_aiming(TARGET_CAN_CLICK)
 	return 1
 
-/mob/proc/setClickCooldown(var/timeout)
+/mob/proc/setClickCooldown(timeout)
 	next_click = max(world.time + timeout, next_click)
 
 /mob/proc/checkClickCooldown()
@@ -200,7 +203,7 @@
 	return TRUE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
-/mob/proc/DblClickOn(atom/A, var/params)
+/mob/proc/DblClickOn(atom/A, params)
 	return
 
 /*
@@ -213,10 +216,10 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(var/atom/A, var/proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag)
 	return
 
-/mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+/mob/living/UnarmedAttack(atom/A, proximity_flag)
 
 	if(is_incorporeal())
 		return 0
@@ -242,9 +245,9 @@
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
 */
-/mob/proc/RangedAttack(var/atom/A, var/params)
+/mob/proc/RangedAttack(atom/A, params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == I_HURT)
+	if((LASER_EYES in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 	else if(has_telegrip())
 		if(get_dist(src, A) > TK_MAXRANGE)
@@ -257,7 +260,7 @@
 	Used when you are handcuffed and click things.
 	Not currently used by anything but could easily be.
 */
-/mob/proc/RestrainedClickOn(var/atom/A)
+/mob/proc/RestrainedClickOn(atom/A)
 	return
 
 /*
@@ -323,21 +326,32 @@
 		to_chat(src, span_warning("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
-/mob/proc/face_atom(var/atom/A)
-	if(!A || !x || !y || !A.x || !A.y) return
-	var/dx = A.x - x
-	var/dy = A.y - y
-	if(!dx && !dy) return
+/mob/proc/face_atom(atom/atom_to_face)
+	if(buckled || stat != CONSCIOUS || !atom_to_face || !x || !y || !atom_to_face.x || !atom_to_face.y)
+		return
+	var/dx = atom_to_face.x - x
+	var/dy = atom_to_face.y - y
+	if(!dx && !dy) // Wall items are graphically shifted but on the floor
+		if(atom_to_face.pixel_y > 16)
+			set_dir(NORTH)
+		else if(atom_to_face.pixel_y < -16)
+			set_dir(SOUTH)
+		else if(atom_to_face.pixel_x > 16)
+			set_dir(EAST)
+		else if(atom_to_face.pixel_x < -16)
+			set_dir(WEST)
+		return
 
-	var/direction
 	if(abs(dx) < abs(dy))
-		if(dy > 0)	direction = NORTH
-		else		direction = SOUTH
+		if(dy > 0)
+			set_dir(NORTH)
+		else
+			set_dir(SOUTH)
 	else
-		if(dx > 0)	direction = EAST
-		else		direction = WEST
-	if(direction != dir)
-		facedir(direction)
+		if(dx > 0)
+			set_dir(EAST)
+		else
+			set_dir(WEST)
 
 /atom/movable/screen/click_catcher
 	name = "" // Empty string names don't show up in context menu clicks
@@ -372,3 +386,16 @@
 /// MouseWheelOn
 /mob/proc/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	SEND_SIGNAL(src, COMSIG_MOUSE_SCROLL_ON, A, delta_x, delta_y, params)
+
+/mob/proc/check_click_intercept(params,A)
+	//Client level intercept
+	if(client?.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	//Mob level intercept
+	if(click_intercept)
+		if(call(click_intercept, "InterceptClickOn")(src, params, A))
+			return TRUE
+
+	return FALSE

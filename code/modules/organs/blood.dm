@@ -19,7 +19,7 @@ BLOOD_VOLUME_SURVIVE = 40
  * Also called by inject_blood as fallback with amt = injected_amount
  * MUST be followed by calling fixblood() allways.
 ***/
-/mob/living/carbon/human/proc/make_blood(var/amt = 0)
+/mob/living/carbon/human/proc/make_blood(amt = 0)
 
 	if(vessel)
 		return
@@ -276,11 +276,11 @@ BLOOD_VOLUME_SURVIVE = 40
 
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt)
+/mob/living/carbon/human/proc/drip(amt)
 	if(remove_blood(amt))
 		blood_splatter(src,src)
 
-/mob/living/carbon/human/proc/remove_blood(var/amt)
+/mob/living/carbon/human/proc/remove_blood(amt)
 	if(!should_have_organ(O_HEART)) //TODO: Make drips come from the reagents instead.
 		return 0
 
@@ -301,12 +301,12 @@ BLOOD_VOLUME_SURVIVE = 40
 ****************************************************/
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, var/amount)
+/mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, amount)
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
 		B = new /datum/reagent/blood
-	B.holder = container
+	B.holder = container.reagents
 	B.volume += amount
 
 	//set reagent data
@@ -340,7 +340,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, var/amount)
+/mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, amount)
 
 	if(!should_have_organ(O_HEART))
 		return null
@@ -352,7 +352,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	remove_blood(amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/carbon/proc/inject_blood(datum/reagent/blood/injected, amount)
 	if (!injected || !istype(injected))
 		return
 	var/list/sniffles = injected.data["viruses"]
@@ -372,7 +372,7 @@ BLOOD_VOLUME_SURVIVE = 40
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/carbon/human/inject_blood(datum/reagent/blood/injected, amount)
 
 	if(!should_have_organ(O_HEART))
 		reagents.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
@@ -445,7 +445,7 @@ BLOOD_VOLUME_SURVIVE = 40
 		//AB is a universal receiver.
 	return 0
 
-/proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
+/proc/blood_splatter(target,datum/reagent/blood/source,large)
 
 	//Vorestation Edit Start - We're not going to splatter at all because we're in something and that's silly.
 	if(istype(source,/atom/movable))

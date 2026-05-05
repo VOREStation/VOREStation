@@ -30,7 +30,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
-/mob/living/simple_mob/hostile/blob/spore/Initialize(mapload, var/obj/structure/blob/factory/my_factory)
+/mob/living/simple_mob/hostile/blob/spore/Initialize(mapload, obj/structure/blob/factory/my_factory)
 	if(istype(my_factory))
 		factory = my_factory
 		factory.spores += src

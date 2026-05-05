@@ -15,60 +15,61 @@
 
 	var/upgrade_to	// The type path this stack can be upgraded to.
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if (!istype(M))
+/obj/item/stack/medical/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!iscarbon(M))
 		balloon_alert(user, "\the [src] cannot be applied to [M]!")
-		return 1
+		return ITEM_INTERACT_FAILURE
 
 	if (!user.IsAdvancedToolUser())
 		balloon_alert(user, "you don't have the dexterity to do this!")
-		return 1
+		return ITEM_INTERACT_FAILURE
 
 	var/available = get_amount()
 	if(!available)
 		balloon_alert(user, "not enough [uses_charge ? "charge" : "items"] left to use that!")
-		return 1
+		return ITEM_INTERACT_FAILURE
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(!affecting)
 			balloon_alert(user, "no body part there to work on!")
-			return 1
+			return ITEM_INTERACT_FAILURE
 
 		if(affecting.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				balloon_alert(user, "you can't apply [src] through [H.head]!")
-				return 1
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				balloon_alert(user, "you can't apply [src] through [H.wear_suit]!")
-				return 1
+				return ITEM_INTERACT_FAILURE
 
 		if(affecting.robotic == ORGAN_ROBOT)
 			balloon_alert(user, "this isn't useful at all on a robotic limb.")
-			return 1
+			return ITEM_INTERACT_FAILURE
 
 		if(affecting.robotic >= ORGAN_LIFELIKE)
 			balloon_alert(user, "you apply the [src], but it seems to have no effect...")
 			use(1)
-			return 1
+			return ITEM_INTERACT_FAILURE
 
 		H.UpdateDamageIcon()
 
 	else
-
 		M.heal_organ_damage((src.heal_brute/2), (src.heal_burn/2))
 		user.balloon_alert_visible( \
 			"[M] has been applied with [src] by [user].", \
 			"you apply \the [src] to [M]." \
 		)
 		use(1)
+		return ITEM_INTERACT_SUCCESS
 
 	M.updatehealth()
+	return ITEM_INTERACT_SUCCESS
 
-/obj/item/stack/medical/proc/upgrade_stack(var/upgrade_amount)
+/obj/item/stack/medical/proc/upgrade_stack(upgrade_amount)
 	. = FALSE
 
 	var/turf/T = get_turf(src)
@@ -84,15 +85,14 @@
 	singular_name = "crude bandage length"
 	desc = "Some bandages to wrap around bloody stumps."
 	icon_state = "gauze"
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 
 	upgrade_to = /obj/item/stack/medical/bruise_pack
 
-/obj/item/stack/medical/crude_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/crude_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -104,7 +104,7 @@
 
 		if(affecting.is_bandaged())
 			balloon_alert(user, "[M]'s [affecting.name] is already bandaged.")
-			return 1
+			return ITEM_INTERACT_FAILURE
 		else
 			var/available = get_amount()
 			user.balloon_alert_visible("\the [user] starts bandaging [M]'s [affecting.name].", \
@@ -123,7 +123,7 @@
 
 				if(affecting.is_bandaged()) // We do a second check after the delay, in case it was bandaged after the first check.
 					balloon_alert(user, "[M]'s [affecting.name] is already bandaged.")
-					return 1
+					return ITEM_INTERACT_FAILURE
 
 				if(used >= available)
 					balloon_alert(user, "you run out of [src]!")
@@ -145,13 +145,13 @@
 				else
 					balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 			use(used)
+			return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	drop_sound = 'sound/items/drop/gloves.ogg'
@@ -159,9 +159,9 @@
 
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/bruise_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -173,7 +173,7 @@
 
 		if(affecting.is_bandaged())
 			balloon_alert(user, "[M]'s [affecting.name] is already bandaged.")
-			return 1
+			return ITEM_INTERACT_FAILURE
 		else
 			var/available = get_amount()
 			user.balloon_alert_visible("\the [user] starts treating [M]'s [affecting.name].", \
@@ -219,6 +219,7 @@
 				else
 					user.balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 			use(used)
+			return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
@@ -227,15 +228,14 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 1
-	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/ointment.ogg')
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/ointment/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -247,21 +247,22 @@
 
 		if(affecting.is_salved())
 			user.balloon_alert(user, "the wounds on [M]'s [affecting.name] have already been salved.")
-			return 1
+			return ITEM_INTERACT_FAILURE
 		else
 			user.balloon_alert_visible("\the [user] starts salving wounds on [M]'s [affecting.name].", \
 										"salving the wounds on [M]'s [affecting.name]." )
 			if(!do_after(user, 1 SECOND, affecting))
 				user.balloon_alert(user, "stand still to salve wounds.")
-				return 1
+				return ITEM_INTERACT_FAILURE
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
 				user.balloon_alert(user, "[M]'s [affecting.name] have already been salved.")
-				return 1
+				return ITEM_INTERACT_FAILURE
 			user.balloon_alert_visible("[user] salved wounds on [M]'s [affecting.name].", \
 										"salved wounds on [M]'s [affecting.name]." )
 			use(1)
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
+			return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/medical/ointment/simple
 	name = "ointment paste"
@@ -275,14 +276,13 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 7
-	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
@@ -338,6 +338,8 @@
 				else
 					balloon_alert(user, "\the [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 			use(used)
+			return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -345,14 +347,13 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 7
-	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/ointment.ogg')
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/advanced/ointment/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
@@ -361,16 +362,16 @@
 
 		if(affecting.is_salved())
 			user.balloon_alert(user, "[M]'s [affecting.name] has already been salved.")
-			return 1
+			return ITEM_INTERACT_FAILURE
 		else
 			user.balloon_alert_visible("\the [user] starts salving wounds on [M]'s [affecting.name].", \
 										"salving the wounds on [M]'s [affecting.name]." )
 			if(!do_after(user, 1 SECOND, affecting))
 				user.balloon_alert(user, "stand still to salve wounds.")
-				return 1
+				return ITEM_INTERACT_FAILURE
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
 				user.balloon_alert(user, "[M]'s [affecting.name] have already been salved.")
-				return 1
+				return ITEM_INTERACT_FAILURE
 			user.balloon_alert_visible("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.", \
 									"covered wounds on [M]'s [affecting.name] with regenerative membrane." )
 			affecting.heal_damage(0,heal_burn)
@@ -378,6 +379,8 @@
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
 			update_icon()
+			return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
@@ -391,35 +394,35 @@
 
 	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
-	if(..())
-		return 1
+/obj/item/stack/medical/splint/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(..() == ITEM_INTERACT_FAILURE)
+		return ITEM_INTERACT_FAILURE
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in splintable_organs))
 			balloon_alert(user, "you can't use \the [src] to apply a splint there!")
-			return
+			return ITEM_INTERACT_FAILURE
 		if(affecting.splinted)
 			balloon_alert(user, "[M]'s [limb] is already splinted!")
-			return
+			return ITEM_INTERACT_FAILURE
 		if (M != user)
 			user.balloon_alert_visible("[user] starts to apply \the [src] to [M]'s [limb].", "applying \the [src] to [M]'s [limb].", "You hear something being wrapped.")
 		else
 			if(( !user.hand && (affecting.organ_tag in list(BP_R_ARM, BP_R_HAND)) || \
 				user.hand && (affecting.organ_tag in list(BP_L_ARM, BP_L_HAND)) ))
 				balloon_alert(user, "you can't apply a splint to the arm you're using!")
-				return
+				return ITEM_INTERACT_FAILURE
 			user.balloon_alert_visible("[user] starts to apply \the [src] to their [limb].", "applying \the [src] to your [limb].", "You hear something being wrapped.")
 		if(do_after(user, 5 SECONDS, affecting))
 			if(affecting.splinted)
 				balloon_alert(user, "[M]'s [limb] is already splinted!")
-				return
+				return ITEM_INTERACT_FAILURE
 			if(M == user && prob(75))
 				user.balloon_alert_visible("\the [user] fumbles [src].", "fumbling [src].", "You hear something being wrapped.")
-				return
+				return ITEM_INTERACT_FAILURE
 			if(ishuman(user))
 				var/obj/item/stack/medical/splint/S = split(1)
 				if(S)
@@ -429,7 +432,7 @@
 							user.balloon_alert_visible("\the [user] finishes applying [src] to [M]'s [limb].", "finished applying \the [src] to [M]'s [limb].", "You hear something being wrapped.")
 						else
 							user.balloon_alert_visible("\the [user] successfully applies [src] to their [limb].", "successfully applied \the [src] to your [limb].", "You hear something being wrapped.")
-						return
+						return ITEM_INTERACT_FAILURE
 					S.dropInto(src.loc) //didn't get applied, so just drop it
 			if(isrobot(user))
 				var/obj/item/stack/medical/splint/B = src
@@ -438,9 +441,9 @@
 						B.forceMove(affecting)
 						user.balloon_alert_visible("\the [user] finishes applying [src] to [M]'s [limb].", "finish applying \the [src] to [M]'s [limb].", "You hear something being wrapped.")
 						B.use(1)
-						return
+						return ITEM_INTERACT_SUCCESS
 			user.balloon_alert_visible("\the [user] fails to apply [src].", "failed to apply [src].", "You hear something being wrapped.")
-		return
+		return ITEM_INTERACT_FAILURE
 
 
 /obj/item/stack/medical/splint/ghetto

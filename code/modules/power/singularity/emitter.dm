@@ -38,6 +38,7 @@
 		connect_to_network()
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/rotatable)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
@@ -81,10 +82,6 @@
 	else
 		to_chat(user, span_warning("\The [src] needs to be firmly secured to the floor first."))
 		return 1
-
-
-/obj/machinery/power/emitter/emp_act(severity, recursive)
-	return TRUE
 
 /obj/machinery/power/emitter/process()
 	if(stat & (BROKEN))
@@ -231,6 +228,10 @@
 		anomalous = !anomalous
 		burst_delay = anomalous ? 3 : 8
 		to_chat(user, span_notice("The beam is now set to [anomalous ? "anomalous." : "normal."]"))
+		if(anomalous)
+			description_info = "Use a multitool to change the particle type."
+		else
+			description_info = initial(description_info)
 		return
 	if(W.has_tool_quality(TOOL_MULTITOOL) && anomalous)
 		var/chosen_particle = tgui_input_list(user, "Select particle type", "Particle Selection", ANOMALY_PARTICLE_ALL)
@@ -242,14 +243,14 @@
 	..()
 	return
 
-/obj/machinery/power/emitter/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/emitter/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		locked = 0
 		emagged = 1
 		user.visible_message("[user.name] emags [src].",span_warning("You short out the lock."))
 		return 1
 
-/obj/machinery/power/emitter/bullet_act(var/obj/item/projectile/P)
+/obj/machinery/power/emitter/bullet_act(obj/item/projectile/P)
 	if(!P || !P.damage || P.get_structure_damage() <= 0 )
 		return
 
@@ -303,3 +304,12 @@
 		projectile.particle_type = particle
 		return projectile
 	return new /obj/item/projectile/beam/emitter(get_turf(src))
+
+/obj/machinery/power/emitter/pre_mapped
+	anchored = TRUE
+	state = 2
+
+/obj/machinery/power/emitter/pre_mapped/Initialize(mapload)
+	. = ..()
+	connect_to_network()
+	update_icon()

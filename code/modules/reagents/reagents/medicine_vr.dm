@@ -10,7 +10,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
-/datum/reagent/adranol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adranol/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(M.confused)
@@ -34,13 +34,13 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
-/datum/reagent/numbing_enzyme/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/numbing_enzyme/affect_blood(mob/living/carbon/M, alien, removed)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	if(prob(0.01)) //1 in 10000 chance per tick. Extremely rare.
 		to_chat(M,span_warning("Your body feels numb as a light, tingly sensation spreads throughout it, like some odd warmth."))
 	//Not noted here, but a movement debuff of 1.5 is handed out in human_movement.dm when numbing_enzyme is in a person's bloodstream!
 
-/datum/reagent/numbing_enzyme/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/numbing_enzyme/overdose(mob/living/carbon/M, alien)
 	//..() //Add this if you want it to do toxin damage. Personally, let's allow them to have the horrid effects below without toxin damage.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -79,7 +79,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
-/datum/reagent/vermicetol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/vermicetol/affect_blood(mob/living/carbon/M, alien, removed)
 	var/chem_effective = 1
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
@@ -100,7 +100,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 
-/datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/sleevingcure/affect_blood(mob/living/carbon/M, alien, removed)
 	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
 	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)
 
@@ -118,8 +118,9 @@
 	scannable = SCANNABLE_BENEFICIAL
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_DRUG
+	metabolized_traits = list(TRAIT_HALT_RADIATION_EFFECTS)
 
-/datum/reagent/prussian_blue/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/prussian_blue/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(prob(10)) //Miniscule chance of removing some toxins.
@@ -138,7 +139,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_DIET
 
-/datum/reagent/lipozilase/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/lipozilase/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjust_nutrition(-20 * removed)
 	if(M.weight > 50)
 		M.weight -= 0.3
@@ -156,7 +157,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_DIET
 
-/datum/reagent/lipostipo/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/lipostipo/affect_blood(mob/living/carbon/M, alien, removed)
 	M.adjust_nutrition(-20 * removed)
 	if(M.weight < 500)
 		M.weight += 0.3
@@ -225,7 +226,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED // bonus
 	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
-/datum/reagent/polymorph/affect_blood(var/mob/living/carbon/target, var/removed)
+/datum/reagent/polymorph/affect_blood(mob/living/carbon/target, removed)
 	var/mob/living/M = target
 	if(!istype(M))
 		return
@@ -242,7 +243,7 @@
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()
 
-/datum/reagent/polymorph/proc/spawn_mob(var/mob/living/target)
+/datum/reagent/polymorph/proc/spawn_mob(mob/living/target)
 	var/choice = pick(tf_possible_types)
 	tf_type = tf_possible_types[choice]
 	if(!ispath(tf_type))
@@ -262,7 +263,7 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
 	industrial_use = REFINERYEXPORT_REASON_COSMETIC
 
-/datum/reagent/glamour/affect_blood(var/mob/living/carbon/target, var/removed)
+/datum/reagent/glamour/affect_blood(mob/living/carbon/target, removed)
 	add_verb(target, /mob/living/carbon/human/proc/enter_cocoon)
 	target.bloodstr.clear_reagents() //instantly clears reagents afterwards
 	target.ingested.clear_reagents()

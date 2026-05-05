@@ -14,6 +14,7 @@
 		"Stripe" = "stripe",
 		"Vertical Stripe" = "stripe_vertical"
 	)
+	idcard_type = /obj/item/card/id/platform
 
 // Only show on manifest if they have a player.
 /obj/item/robot_module/robot/platform/hide_on_manifest()
@@ -47,7 +48,7 @@
 		CHANNEL_EXPLORATION = 1
 	)
 
-/obj/item/robot_module/robot/platform/explorer/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/platform/explorer/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	modules += new /obj/item/tool/wrench/cyborg(src)
 	modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
@@ -69,7 +70,7 @@
 
 	emag += new /obj/item/chainsaw(src)
 
-/obj/item/robot_module/robot/platform/explorer/respawn_consumable(var/mob/living/silicon/robot/R, rate)
+/obj/item/robot_module/robot/platform/explorer/respawn_consumable(mob/living/silicon/robot/R, rate)
 	. = ..()
 	for(var/obj/item/gun/energy/pew in modules)
 		if(pew.power_supply && pew.power_supply.charge < pew.power_supply.maxcharge)
@@ -88,7 +89,7 @@
 	channels = list(CHANNEL_SUPPLY = 1)
 	networks = list(NETWORK_MINE)
 
-/obj/item/robot_module/robot/platform/cargo/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/platform/cargo/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	modules += new /obj/item/packageWrap(src)
 	modules += new /obj/item/pen/multi(src)

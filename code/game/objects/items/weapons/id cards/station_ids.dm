@@ -53,18 +53,18 @@
 /obj/item/card/id/proc/update_name()
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
-/obj/item/card/id/proc/set_id_photo(var/mob/M)
+/obj/item/card/id/proc/set_id_photo(mob/M)
 	M.ImmediateOverlayUpdate()
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 
-/obj/item/card/id/proc/adjust_mining_points(var/points)
+/obj/item/card/id/proc/adjust_mining_points(points)
 	if(mining_points + points < 0)
 		return FALSE
 	mining_points += points
 	return TRUE
 
-/mob/proc/set_id_info(var/obj/item/card/id/id_card)
+/mob/proc/set_id_info(obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
@@ -77,7 +77,7 @@
 		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
-/mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
+/mob/living/carbon/human/set_id_info(obj/item/card/id/id_card)
 	..()
 	id_card.age = age
 	if(species.name == SPECIES_HANNER)
@@ -134,7 +134,7 @@
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	return
 
-/obj/item/card/id/get_worn_icon_state(var/slot_name)
+/obj/item/card/id/get_worn_icon_state(slot_name)
 	if(slot_name == slot_wear_id_str)
 		return "id" //Legacy, just how it is. There's only one sprite.
 
@@ -142,7 +142,7 @@
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
-	var/datum/job/J = GLOB.job_master.GetJob(rank)
+	var/datum/job/J = SSjob.get_job(rank)
 	if(J)
 		access = J.get_access()
 
@@ -181,7 +181,7 @@
 
 /obj/item/card/id/synthetic/Initialize(mapload)
 	. = ..()
-	access = get_all_station_access().Copy() + ACCESS_SYNTH
+	access = SSaccess.get_all_station_access().Copy() + ACCESS_SYNTH
 
 /obj/item/card/id/lost
 	name = "\improper Unknown ID"
@@ -214,11 +214,11 @@
 
 /obj/item/card/id/centcom/Initialize(mapload)
 	. = ..()
-	access = get_all_centcom_access().Copy()
+	access = SSaccess.get_all_centcom_access().Copy()
 
 /obj/item/card/id/centcom/station/Initialize(mapload)
 	. = ..()
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 /obj/item/card/id/centcom/ert
 	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
@@ -228,7 +228,7 @@
 
 /obj/item/card/id/centcom/ert/Initialize(mapload)
 	. = ..()
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 // Department-flavor IDs
 /obj/item/card/id/medical
@@ -416,8 +416,9 @@
 
 	if(!preset_rank)
 		var/title
-		if(user.client.prefs.player_alt_titles[user.job])
-			title = user.client.prefs.player_alt_titles[user.job]
+		var/list/alt_titles = user.client.prefs.read_preference(/datum/preference/player_alt_titles)
+		if(islist(alt_titles) && alt_titles[user.job])
+			title = alt_titles[user.job]
 		else
 			title = user.job
 		assignment = title
@@ -435,7 +436,7 @@
 	configured = TRUE
 	to_chat(user, span_notice("Card settings set."))
 
-/obj/item/card/id/event/attackby(obj/item/I, var/mob/user)
+/obj/item/card/id/event/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
 		var/obj/item/card/id/O = I
 		access |= O.GetAccess()
@@ -595,7 +596,7 @@
 	desc = "An ID card typically used by contractors."
 	polymorphic_type = 1
 
-/obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
+/obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
 		var/obj/item/card/id/O = I
 		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG

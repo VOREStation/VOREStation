@@ -36,6 +36,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	var/scribble	//Scribble on the back.
 	var/icon/tiny
 	var/photo_size = 3
+	resistance_flags = FLAMMABLE
 
 /obj/item/photo/Initialize(mapload)
 	. = ..()
@@ -148,8 +149,8 @@ GLOBAL_VAR_INIT(photo_count, 0)
 		size = nsize
 		to_chat(usr, span_notice("Camera will now take [size]x[size] photos."))
 
-/obj/item/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	return
+/obj/item/camera/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/camera/attack_self(mob/user)
 	. = ..(user)
@@ -317,7 +318,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(p)
 
-/obj/item/photo/proc/copy(var/copy_id = 0)
+/obj/item/photo/proc/copy(copy_id = 0)
 	var/obj/item/photo/p = new/obj/item/photo()
 
 	p.name = name

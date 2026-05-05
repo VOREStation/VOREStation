@@ -23,7 +23,7 @@
 	..()
 	icon_state = initial(icon_state)
 
-/obj/item/bedsheet/pillow/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/bedsheet/pillow/attackby(obj/item/component, mob/user as mob)
 	if (istype(component,src))
 		to_chat(user, span_notice("You assemble a pillow pile!"))
 		user.drop_item()

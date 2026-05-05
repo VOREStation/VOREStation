@@ -189,7 +189,7 @@
 	give_target(new_target)
 	return new_target
 
-/datum/ai_holder/simple_mob/vore/blaidd/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/vore/blaidd/can_attack(atom/movable/the_target, vision_required = TRUE)
 	ai_log("can_attack() : Entering.", AI_LOG_TRACE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE

@@ -20,7 +20,7 @@
 // Proc: open_connection()
 // Parameters: 2 (user - the person who initiated the connecting being opened, candidate - the communicator or observer that will connect to the device)
 // Description: Typechecks the candidate, then calls the correct proc for further connecting.
-/obj/item/communicator/proc/open_connection(mob/user, var/atom/candidate)
+/obj/item/communicator/proc/open_connection(mob/user, atom/candidate)
 	if(isobserver(candidate))
 		voice_invites.Remove(candidate)
 		open_connection_to_ghost(user, candidate)
@@ -31,7 +31,7 @@
 // Proc: open_connection_to_communicator()
 // Parameters: 2 (user - the person who initiated this and will be receiving feedback information, candidate - someone else's communicator)
 // Description: Adds the candidate and src to each other's communicating lists, allowing messages seen by the devices to be relayed.
-/obj/item/communicator/proc/open_connection_to_communicator(mob/user, var/atom/candidate)
+/obj/item/communicator/proc/open_connection_to_communicator(mob/user, atom/candidate)
 	if(!istype(candidate, /obj/item/communicator))
 		return
 	var/obj/item/communicator/comm = candidate
@@ -56,7 +56,7 @@
 // Proc: open_connection_to_ghost()
 // Parameters: 2 (user - the person who initiated this, candidate - the ghost that will be turned into a voice mob)
 // Description: Pulls the candidate ghost from deadchat, makes a new voice mob, transfers their identity, then their client.
-/obj/item/communicator/proc/open_connection_to_ghost(mob/user, var/mob/candidate)
+/obj/item/communicator/proc/open_connection_to_ghost(mob/user, mob/candidate)
 	if(!isobserver(candidate))
 		return
 	//Handle moving the ghost into the new shell.
@@ -113,7 +113,7 @@
 // Parameters: 3 (user - the user who initiated the disconnect, target - the mob or device being disconnected, reason - string shown when disconnected)
 // Description: Deletes specific voice_mobs or disconnects communicators, and shows a message to everyone when doing so.  If target is null, all communicators
 //				and voice mobs are removed.
-/obj/item/communicator/proc/close_connection(mob/user, var/atom/target, var/reason)
+/obj/item/communicator/proc/close_connection(mob/user, atom/target, reason)
 	if(voice_mobs.len == 0 && communicating.len == 0)
 		return
 
@@ -144,7 +144,7 @@
 // Proc: request()
 // Parameters: 1 (candidate - the ghost or communicator wanting to call the device)
 // Description: Response to a communicator or observer trying to call the device.  Adds them to the list of requesters
-/obj/item/communicator/proc/request(var/atom/candidate)
+/obj/item/communicator/proc/request(atom/candidate)
 	if(candidate in voice_requests)
 		return
 	var/who = null
@@ -179,7 +179,7 @@
 // Proc: del_request()
 // Parameters: 1 (candidate - the ghost or communicator to be declined)
 // Description: Declines a request and cleans up both ends
-/obj/item/communicator/proc/del_request(var/atom/candidate)
+/obj/item/communicator/proc/del_request(atom/candidate)
 	if(!(candidate in voice_requests))
 		return
 
@@ -307,16 +307,16 @@
 		return
 
 	var/list/choices = list()
-	for(var/obj/item/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in GLOB.all_communicators)
 		if(!comm.network_visibility || !comm.exonet || !comm.exonet.address)
 			continue
 		choices.Add(comm)
 
 	if(!choices.len)
-		to_chat(src , span_danger("There are no available communicators, sorry."))
+		to_chat(src, span_danger("There are no available communicators, sorry."))
 		return
 
-	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
+	var/choice = tgui_input_list(src, "Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
 		var/obj/item/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src
@@ -357,12 +357,10 @@
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
-/obj/item/communicator/proc/end_video(var/reason)
+/obj/item/communicator/proc/end_video()
 	UnregisterSignal(video_source, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 	show_static()
 	video_source = null
-
-	. = span_danger("[bicon(src)] [reason ? reason : "Video session ended"].")
 
 	visible_message(.)
 	update_icon()

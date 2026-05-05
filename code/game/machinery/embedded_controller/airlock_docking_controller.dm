@@ -58,7 +58,7 @@
 /datum/embedded_program/docking/airlock
 	var/datum/embedded_program/airlock/docking/airlock_program
 
-/datum/embedded_program/docking/airlock/New(var/obj/machinery/embedded_controller/M, var/datum/embedded_program/airlock/docking/A)
+/datum/embedded_program/docking/airlock/New(obj/machinery/embedded_controller/M, datum/embedded_program/airlock/docking/A)
 	..(M)
 	airlock_program = A
 	airlock_program.master_prog = src
@@ -128,7 +128,7 @@
 	toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "open")
 	toggleDoor(memory["exterior_status"], tag_exterior_door, memory["secure"], "open")
 
-/datum/embedded_program/airlock/docking/cycleDoors(var/target)
+/datum/embedded_program/airlock/docking/cycleDoors(target)
 	if (master_prog.undocked() || master_prog.override_enabled)	//only allow the port to be used as an airlock if nothing is docked here or the override is enabled
 		..(target)
 
@@ -152,7 +152,7 @@
 	set src in view(1)
 	src.program:print_state()
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/spoof_signal(var/command as text, var/sender as text)
+/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/spoof_signal(command as text, sender as text)
 	set category = "Debug"
 	set src in view(1)
 	var/datum/signal/signal = new
@@ -162,7 +162,7 @@
 
 	src.program:receive_signal(signal)
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/debug_init_dock(var/target as text)
+/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/debug_init_dock(target as text)
 	set category = "Debug"
 	set src in view(1)
 	src.program:initiate_docking(target)

@@ -50,7 +50,7 @@
 		log_admin("[key_name(src)] updated their OOC notes mid-round.")
 		ooc_notes_window(src)
 
-/mob/living/proc/set_metainfo_likes(mob/user, var/reopen = TRUE)
+/mob/living/proc/set_metainfo_likes(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE,  prevent_enter = TRUE))
@@ -64,7 +64,7 @@
 		if(reopen)
 			ooc_notes_window(src)
 
-/mob/living/proc/set_metainfo_dislikes(mob/user, var/reopen = TRUE)
+/mob/living/proc/set_metainfo_dislikes(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE,  prevent_enter = TRUE))

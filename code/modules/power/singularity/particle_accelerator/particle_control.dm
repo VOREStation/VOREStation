@@ -19,11 +19,10 @@
 	var/list/obj/structure/particle_accelerator/connected_parts
 	var/assembled = 0
 	var/parts = null
-	var/datum/wires/particle_acc/control_box/wires = null
 
 /obj/machinery/particle_accelerator/control_box/Initialize(mapload)
 	. = ..()
-	wires = new(src)
+	set_wires(new /datum/wires/particle_acc/control_box(src))
 	connected_parts = list()
 	update_active_power_usage(initial(active_power_usage) * (strength + 1))
 
@@ -82,7 +81,7 @@
 		part.strength = strength
 		part.update_icon()
 
-/obj/machinery/particle_accelerator/control_box/proc/add_strength(mob/user, var/s)
+/obj/machinery/particle_accelerator/control_box/proc/add_strength(mob/user, s)
 	if(assembled)
 		strength++
 		if(strength > strength_upper_limit)
@@ -93,7 +92,7 @@
 			investigate_log("increased to " + span_red("[strength]") + " by [user.key]","singulo")
 		strength_change()
 
-/obj/machinery/particle_accelerator/control_box/proc/remove_strength(mob/user, var/s)
+/obj/machinery/particle_accelerator/control_box/proc/remove_strength(mob/user, s)
 	if(assembled)
 		strength--
 		if(strength < 0)
@@ -170,7 +169,7 @@
 
 
 
-/obj/machinery/particle_accelerator/control_box/proc/check_part(var/turf/T, var/type)
+/obj/machinery/particle_accelerator/control_box/proc/check_part(turf/T, type)
 	if(!(T)||!(type))
 		return 0
 
@@ -251,4 +250,12 @@
 			remove_strength(ui.user)
 			. = TRUE
 
+	update_icon()
+
+/obj/machinery/particle_accelerator/control_box/pre_mapped
+	construction_state = 3
+	assembled = TRUE
+
+/obj/machinery/particle_accelerator/control_box/pre_mapped/Initialize(mapload)
+	. = ..()
 	update_icon()

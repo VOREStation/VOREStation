@@ -72,7 +72,7 @@
 	save_data["custom_heat"]		= check_list_copy(pref.custom_heat)
 	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
 
-/datum/category_item/player_setup_item/general/vore_misc/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/vore_misc/copy_to_mob(mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
 
 	character.custom_say		= lowertext(trim(pref.custom_say))

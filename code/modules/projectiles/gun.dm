@@ -46,7 +46,6 @@
 	throw_range = 5
 	force = 5
 	preserve_item = 1
-	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 	drop_sound = 'sound/items/drop/gun.ogg'
@@ -144,6 +143,10 @@
 		verbs -= /obj/item/gun/verb/give_dna
 		verbs -= /obj/item/gun/verb/allow_dna
 
+	if(sel_mode <= length(firemodes))
+		var/datum/firemode/new_mode = firemodes[sel_mode]
+		new_mode.apply_to(src)
+
 /obj/item/gun/update_twohanding()
 	if(one_handed_penalty)
 		var/mob/living/M = loc
@@ -173,7 +176,7 @@
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
-/obj/item/gun/proc/special_check(var/mob/user)
+/obj/item/gun/proc/special_check(mob/user)
 
 	if(!isliving(user))
 		return FALSE
@@ -271,19 +274,21 @@
 	Fire(A,user,params) //Otherwise, fire normally.
 */
 
-/obj/item/gun/attack(atom/A, mob/living/user, def_zone)
+/obj/item/gun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
 		handle_suicide(user)
+		return ITEM_INTERACT_SUCCESS
 	else if(user.a_intent == I_HURT) //point blank shooting
 		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
 			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
-			return
+			return ITEM_INTERACT_SUCCESS
 		else
 			Fire(A, user, pointblank=1)
+			return ITEM_INTERACT_SUCCESS
 	else
 		return ..() //Pistolwhippin'
 
-/obj/item/gun/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/dnalockingchip))
 		if(dna_lock)
 			to_chat(user, span_notice("\The [src] already has a [attached_lock]."))
@@ -314,7 +319,7 @@
 			to_chat(user, span_warning("\The [src] is not accepting modifications at this time."))
 	..()
 
-/obj/item/gun/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/gun/emag_act(remaining_charges, mob/user)
 	if(dna_lock && attached_lock.controller_lock)
 		to_chat(user, span_notice("You short circuit the internal locking mechanisms of \the [src]!"))
 		attached_lock.controller_dna = null
@@ -381,7 +386,7 @@
 	next_fire_time = world.time + shoot_time
 	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
-/obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
+/obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, ticker, recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
@@ -479,7 +484,7 @@
 
 // This is horrible. I tried to keep the old way it had because if I try to use the fancy procs above like handle_post_fire, it expects a user.
 // Which this doesn't have. It's ugly but whatever. This is used in literally one place (sawn off shotguns) and should honestly just be axed.
-/obj/item/gun/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
+/obj/item/gun/proc/handle_userless_gunfire(atom/target, ticker, recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
@@ -536,7 +541,7 @@
 	return null
 
 //used by aiming code
-/obj/item/gun/proc/can_hit(atom/target as mob, var/mob/living/user as mob)
+/obj/item/gun/proc/can_hit(atom/target as mob, mob/living/user as mob)
 	if(!special_check(user))
 		return 2
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
@@ -575,7 +580,7 @@
 	add_attack_logs(user, target, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
 
 //called after successfully firing
-/obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
+/obj/item/gun/proc/handle_post_fire(mob/user, atom/target, pointblank=0, reflex=0)
 	if(fire_anim)
 		flick(fire_anim, src)
 
@@ -632,7 +637,7 @@
 	P.agony *= damage_mult
 	P.damage *= damage_mult
 
-/obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
+/obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, burst, held_twohanded)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -674,7 +679,7 @@
 			P.accuracy -= 35
 
 //does the actual launching of the projectile
-/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, target_zone, params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
@@ -694,7 +699,7 @@
 
 	return launched
 
-/obj/item/gun/proc/play_fire_sound(var/mob/user, var/obj/item/projectile/P)
+/obj/item/gun/proc/play_fire_sound(mob/user, obj/item/projectile/P)
 	var/shot_sound = fire_sound
 
 	if(!shot_sound && istype(P) && P.fire_sound) // If the gun didn't have a fire_sound, but the projectile exists, and has a sound...
@@ -815,7 +820,7 @@
 
 	return ..()
 
-/obj/item/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
+/obj/item/gun/dropped(mob/user, equipping, slot) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
 	user.hud_used.remove_ammo_hud(user, src)
 
 	..()

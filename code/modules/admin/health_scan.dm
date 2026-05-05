@@ -4,7 +4,7 @@
 // showadvscan toggles whether to give additional scan information about chemicals in their body.
 // By default this proc is set to it's most powerful scan.
 
-/mob/living/proc/scan_mob(mob/user, var/mode = 1, var/advscan = SCANNABLE_SECRETIVE, var/showadvscan = 1)
+/mob/living/proc/scan_mob(mob/user, mode = 1, advscan = SCANNABLE_SECRETIVE, showadvscan = 1)
 	var/mob/living/M = src
 	var/dat = ""
 

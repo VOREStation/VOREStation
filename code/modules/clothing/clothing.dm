@@ -3,6 +3,7 @@
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	resistance_flags = FLAMMABLE
 	var/list/species_restricted = null //Only these species can wear this kit.
 
 	var/list/accessories
@@ -53,7 +54,7 @@
 		add_blood()
 	. = ..()
 
-/obj/item/clothing/equipped(var/mob/user,var/slot)
+/obj/item/clothing/equipped(mob/user,slot)
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
@@ -61,15 +62,19 @@
 		for(var/trait in clothing_traits)
 			ADD_CLOTHING_TRAIT(user, trait)
 
-/obj/item/clothing/dropped(mob/user)
+/obj/item/clothing/dropped(mob/user, equipping, slot)
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
 	for(var/trait in clothing_traits)
 		REMOVE_CLOTHING_TRAIT(user, trait)
 
+/obj/item/clothing/click_alt(mob/user)
+	if(Adjacent(user) || user == src.loc)
+		removetie_proc(user)
+
 //BS12: Species-restricted clothing check.
-/obj/item/clothing/mob_can_equip(M as mob, slot, disable_warning = FALSE)
+/obj/item/clothing/mob_can_equip(mob/M, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot)
 
 	//if we can't equip the item anyway, don't bother with species_restricted (cuts down on spam)
 	if (!..())
@@ -107,7 +112,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/clothing/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/clothing/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	. = ..()
 	if((. == 0) && LAZYLEN(accessories))
 		for(var/obj/item/I in accessories)
@@ -118,7 +123,7 @@
 				break
 
 // For now, these two temp procs only return TRUE or FALSE if they can provide resistance to a given temperature.
-/obj/item/clothing/proc/handle_low_temperature(var/tempcheck = T20C)
+/obj/item/clothing/proc/handle_low_temperature(tempcheck = T20C)
 	. = FALSE
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/C in accessories)
@@ -128,7 +133,7 @@
 	if(min_cold_protection_temperature && min_cold_protection_temperature <= tempcheck)
 		. = TRUE
 
-/obj/item/clothing/proc/handle_high_temperature(var/tempcheck = T20C)
+/obj/item/clothing/proc/handle_high_temperature(tempcheck = T20C)
 	. = FALSE
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/C in accessories)
@@ -153,7 +158,7 @@
 		for(var/obj/item/clothing/C in accessories)
 			. |= C.get_heat_protection_flags()
 
-/obj/item/clothing/proc/refit_for_species(var/target_species)
+/obj/item/clothing/proc/refit_for_species(target_species)
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system
 
@@ -252,7 +257,7 @@
 		var/mob/M = src.loc
 		M.update_inv_ears()
 
-/obj/item/clothing/ears/MouseDrop(var/obj/over_object)
+/obj/item/clothing/ears/MouseDrop(obj/over_object)
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		// If this covers both ears, we want to return the result of unequipping the primary object, and kill the off-ear one
@@ -347,7 +352,7 @@
 		M.update_inv_gloves()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
 	return 0 // return 1 to cancel attack_hand()
 
 /*/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
@@ -374,55 +379,71 @@
 	transfer_blood = 0
 	update_icon()
 
-/obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE)
+/obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = TRUE)
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
 		var/obj/item/clothing/G = H.gloves
-		if(istype(G))
-			ring = H.gloves
+		//Check glove_level, which both accessories and gloves share.
+		if(istype(G, /obj/item/clothing/accessory) || istype(G, /obj/item/clothing/gloves))
+			ring = H.gloves //Ring or gloves both work here. They both have the glove_level var.
 			if(ring.glove_level >= src.glove_level)
-				to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
 				ring = null
-				return 0
-			else
-				H.drop_from_inventory(ring)	//Remove the ring (or other under-glove item in the hand slot?) so you can put on the gloves.
-				ring.forceMove(src)
-				to_chat(user, "You slip \the [src] on over \the [src.ring].")
-				if(!(flags & THICKMATERIAL))
-					punch_force += ring.punch_force
-		else
+				return FALSE
 			ring = null
 
-	if(!..())
-		if(ring) //Put the ring back on if the check fails.
-			if(H.equip_to_slot_if_possible(ring, slot_gloves))
-				src.ring = null
-		punch_force = initial(punch_force)
-		return 0
+		//Check overgloves, which only gloves have.
+		if(istype(G, /obj/item/clothing/gloves))
+			gloves = H.gloves
+			if(gloves.overgloves)
+				gloves = null
+				return FALSE
+			gloves = null
 
-	wearer = WEAKREF(H)
-	return 1
+	return ..()
 
-/obj/item/clothing/gloves/dropped(mob/user)
+/obj/item/clothing/gloves/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	return ..()
+
+/obj/item/clothing/gloves/dropped(mob/user, equipping, slot)
 	..()
 
 	punch_force = initial(punch_force)
 	wearer = null
 	if(!ishuman(user))
 		return
-
 	var/mob/living/carbon/human/H = user
-	if(gloves) //We have nested gloves! Gloves under our gloves!
+
+	//Equipping to our glove slot? Cover our former gloves, if applicable.
+	if(equipping && slot && slot == slot_gloves)
+		var/obj/item/clothing/G = H.gloves
+		if(istype(G))
+			to_chat(user, "You slip \the [src] on over \the [H.gloves].")
+			if(istype(G, /obj/item/clothing/gloves))
+				gloves = H.gloves
+			else if(istype(G, /obj/item/clothing/accessory))
+				ring = H.gloves
+			else
+				gloves = H.gloves //Fallback
+			H.unEquip(H.gloves, TRUE, src)
+			if(!(flags & THICKMATERIAL))
+				if(istype(G, /obj/item/clothing/gloves) || istype(G, /obj/item/clothing/accessory)) //Because sometimes you can wear non-glove items on your hands.
+					punch_force += ring.punch_force
+		return
+
+	//Taking our gloves off? Put our former gloves / ring on.
+	if(gloves)
 		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
 			gloves.forceMove(get_turf(src))
-		if(ring)
-			gloves.ring = ring
-		src.gloves = null
-	else if(ring && istype(H)) //We do NOT have gloves under our gloves but have a ring under our glove instead!
+		gloves = null
+		return
+
+	if(ring) //We do NOT have gloves under our gloves but have a ring under our glove instead!
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
 			ring.forceMove(get_turf(src))
-		src.ring = null
+		ring = null
+		return
 
 /obj/item/clothing/gloves
 	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
@@ -493,7 +514,7 @@
 		update_flashlight(user)
 		to_chat(user, "You [light_on ? "enable" : "disable"] the helmet light.")
 
-/obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
+/obj/item/clothing/head/proc/update_flashlight(mob/user = null)
 	set_light_on(!light_on)
 
 	if(light_system == STATIC_LIGHT)
@@ -502,15 +523,15 @@
 	update_icon(user)
 	user.update_mob_action_buttons()
 
-/obj/item/clothing/head/attack_ai(var/mob/user)
+/obj/item/clothing/head/attack_ai(mob/user)
 	if(!mob_wear_hat(user))
 		return ..()
 
-/obj/item/clothing/head/attack_generic(var/mob/user)
+/obj/item/clothing/head/attack_generic(mob/user)
 	if(!mob_wear_hat(user))
 		return ..()
 
-/obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
+/obj/item/clothing/head/proc/mob_wear_hat(mob/user)
 	if(!Adjacent(user))
 		return 0
 	var/success
@@ -537,7 +558,7 @@
 		to_chat(user, span_notice("You crawl under \the [src]."))
 	return 1
 
-/obj/item/clothing/head/update_icon(var/mob/user)
+/obj/item/clothing/head/update_icon(mob/user)
 	var/mob/living/carbon/human/H
 	if(ishuman(user))
 		H = user
@@ -703,13 +724,13 @@
 	update_icon()
 	return
 
-/obj/item/clothing/shoes/attack_hand(var/mob/living/M)
+/obj/item/clothing/shoes/attack_hand(mob/living/M)
 	if(can_hold_knife == 1 && holding && src.loc == M)
 		draw_knife(M)
 		return
 	..()
 
-/obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/shoes/attackby(obj/item/I, mob/user)
 	if((can_hold_knife == 1) && (istype(I, /obj/item/material/shard) || \
 		istype(I, /obj/item/material/butterfly) || \
 		istype(I, /obj/item/material/kitchen/utensil) || \
@@ -751,9 +772,11 @@
 
 /obj/item/clothing/shoes/wash()
 	. = ..()
+	blood_color = null
+	track_blood = 0
 	update_icon()
 
-/obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running, var/mob/living/carbon/human/pred)
+/obj/item/clothing/shoes/proc/handle_movement(turf/walking, running, mob/living/carbon/human/pred)
 	if(!recent_squish && istype(pred))
 		recent_squish = 1
 		VARSET_IN(src, recent_squish, FALSE, 4 SECONDS) // Reset the recent squish timer
@@ -766,7 +789,7 @@
 	return
 
 //In shoe steppies!
-/obj/item/clothing/shoes/proc/handle_inshoe_stepping(var/mob/living/carbon/human/pred, var/mob/living/carbon/human/prey)
+/obj/item/clothing/shoes/proc/handle_inshoe_stepping(mob/living/carbon/human/pred, mob/living/carbon/human/prey)
 	if(!istype(pred)) return //Sorry, inshoe steppies only for carbon/human/ for now. Based on the regular stepping mechanics
 	if(!istype(prey)) return
 	if(!pred.canmove || pred.buckled) return //We can't be stepping on anyone if buckled or incapable of moving
@@ -777,7 +800,7 @@
 	// I_HELP: No painful description, messages only sent to prey. Similar to inshoe steppies from before.
 	// I_DISARM: Painful yet harmless descriptions, weaken on walk. Attack logs on weaken.
 	// I_GRAB: Grabby/Squishing descriptions, weaken on walk. Attack logs on weaken.
-	// I_HARM: Rand .5-1.5 multiplied by .25 min or 1.75 max, multiplied by 3.5 on walk. Ranges from .125 min to 9.1875 max damage to each limb
+	// I_HURT: Rand .5-1.5 multiplied by .25 min or 1.75 max, multiplied by 3.5 on walk. Ranges from .125 min to 9.1875 max damage to each limb
 	var/message_pred = null
 	var/message_prey = null
 
@@ -971,7 +994,7 @@
 		RemoveHood()
 	..()
 
-/obj/item/clothing/suit/dropped(mob/user)
+/obj/item/clothing/suit/dropped(mob/user, equipping, slot)
 	RemoveHood()
 	..()
 
@@ -1029,7 +1052,7 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/suit/equipped(var/mob/user, var/slot)
+/obj/item/clothing/suit/equipped(mob/user, slot)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/taurtail = istaurtail(H.tail_style)
@@ -1038,7 +1061,7 @@
 
 	return ..()
 
-/obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/taur, has_taur_tail = FALSE)
+/obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
 	if(has_taur_tail)
 		var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
 		if(taurtail.suit_sprites && (icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str))))
@@ -1055,14 +1078,14 @@
 		taurized = FALSE
 
 // Taur suits need to be shifted so its centered on their taur half.
-/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask)
+/obj/item/clothing/suit/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer = 0,icon/clip_mask)
 	var/image/standing = ..()
 	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
 		standing.layer = BODY_LAYER + TAIL_UPPER_LAYER + 1
 	return standing
 
-/obj/item/clothing/suit/apply_accessories(var/image/standing)
+/obj/item/clothing/suit/apply_accessories(image/standing)
 	if(LAZYLEN(accessories) && taurized)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			var/image/I = new(A.get_mob_overlay())
@@ -1141,7 +1164,7 @@
 
 	update_icon_define_digi = "icons/inventory/uniform/mob_digi.dmi"
 
-/obj/item/clothing/under/attack_hand(var/mob/user)
+/obj/item/clothing/under/attack_hand(mob/user)
 	if(LAZYLEN(accessories))
 		..()
 	if ((ishuman(user) || issmall(user)) && src.loc == user)
@@ -1383,7 +1406,7 @@
 	wearer = null
 	return ..()
 
-/obj/item/clothing/proc/handle_digitigrade(var/mob/user)
+/obj/item/clothing/proc/handle_digitigrade(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
@@ -1417,15 +1440,15 @@
 				else
 					update_icon_define = null
 
-/obj/item/clothing/shoes/equipped(var/mob/user, var/slot)
+/obj/item/clothing/shoes/equipped(mob/user, slot)
 	. = ..()
 	handle_digitigrade(user)
 
-/obj/item/clothing/suit/equipped(var/mob/user, var/slot)
+/obj/item/clothing/suit/equipped(mob/user, slot)
 	. = ..()
 	handle_digitigrade(user)
 
-/obj/item/clothing/under/equipped(var/mob/user, var/slot)
+/obj/item/clothing/under/equipped(mob/user, slot)
 	. = ..()
 	handle_digitigrade(user)
 
@@ -1448,3 +1471,21 @@
 	if(istype(wearer))
 		for(var/new_trait in trait_or_traits)
 			REMOVE_CLOTHING_TRAIT(wearer, new_trait)
+
+/obj/item/clothing/head/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	. = ..()
+
+
+/obj/item/clothing/head/attack_robot(mob/living/silicon/robot/user)
+	. = ..()
+
+	if(!Adjacent(user))
+		return
+
+	balloon_alert(user, "picking up hat...")
+	if(!do_after(user, 3 SECONDS, src))
+		return
+	if(QDELETED(src) || !Adjacent(user) || user.incapacitated)
+		return
+	user.place_on_head(src)
+	balloon_alert(user, "picked up hat")

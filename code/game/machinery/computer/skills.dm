@@ -57,7 +57,7 @@
 	active1 = null
 	return ..()
 
-/obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
+/obj/machinery/computer/skills/attackby(obj/item/O as obj, mob/user)
 	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
@@ -367,8 +367,8 @@
 		SStgui.update_uis(src)
 
 /obj/machinery/computer/skills/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
@@ -393,8 +393,6 @@
 		else if(prob(1))
 			qdel(R)
 			continue
-
-	..(severity, recursive)
 
 #undef GENERAL_RECORD_LIST
 #undef GENERAL_RECORD_MAINT

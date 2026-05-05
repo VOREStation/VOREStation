@@ -16,7 +16,7 @@
 	special_handling = TRUE
 
 
-/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, var/planttype)
+/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, planttype)
 	. = ..()
 
 	if(!dried_type)
@@ -143,7 +143,7 @@
 		SSplants.plant_icon_cache[icon_key] = plant_icon
 	add_overlay(plant_icon)
 
-/obj/item/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
+/obj/item/reagent_containers/food/snacks/grown/Crossed(mob/living/M)
 	if(M.is_incorporeal())
 		return
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
@@ -170,7 +170,7 @@
 	if(seed) seed.thrown_at(src,hit_atom)
 	..()
 
-/obj/item/reagent_containers/food/snacks/grown/attackby(var/obj/item/W, var/mob/living/user)
+/obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/W, mob/living/user)
 
 	if(seed)
 		if(seed.get_trait(TRAIT_PRODUCES_POWER) && istype(W, /obj/item/stack/cable_coil))
@@ -257,7 +257,7 @@
 
 	. = ..()
 
-/obj/item/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/reagent_containers/food/snacks/grown/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	. = ..()
 
 	if(seed && seed.get_trait(TRAIT_STINGS))
@@ -375,9 +375,9 @@
 	icon = 'icons/obj/hydroponics_misc.dmi'
 	icon_state = ""
 
-var/list/fruit_icon_cache = list()
+GLOBAL_LIST_EMPTY(fruit_icon_cache)
 
-/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, var/datum/seed/S)
+/obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(mapload, datum/seed/S)
 	. = ..()
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))
@@ -391,13 +391,13 @@ var/list/fruit_icon_cache = list()
 	var/rind_colour = S.get_trait(TRAIT_PRODUCT_COLOUR)
 	var/flesh_colour = S.get_trait(TRAIT_FLESH_COLOUR)
 	if(!flesh_colour) flesh_colour = rind_colour
-	if(!fruit_icon_cache["rind-[rind_colour]"])
+	if(!GLOB.fruit_icon_cache["rind-[rind_colour]"])
 		var/image/I = image(icon,"fruit_rind")
 		I.color = rind_colour
-		fruit_icon_cache["rind-[rind_colour]"] = I
-	add_overlay(fruit_icon_cache["rind-[rind_colour]"])
-	if(!fruit_icon_cache["slice-[rind_colour]"])
+		GLOB.fruit_icon_cache["rind-[rind_colour]"] = I
+	add_overlay(GLOB.fruit_icon_cache["rind-[rind_colour]"])
+	if(!GLOB.fruit_icon_cache["slice-[rind_colour]"])
 		var/image/I = image(icon,"fruit_slice")
 		I.color = flesh_colour
-		fruit_icon_cache["slice-[rind_colour]"] = I
-	add_overlay(fruit_icon_cache["slice-[rind_colour]"])
+		GLOB.fruit_icon_cache["slice-[rind_colour]"] = I
+	add_overlay(GLOB.fruit_icon_cache["slice-[rind_colour]"])

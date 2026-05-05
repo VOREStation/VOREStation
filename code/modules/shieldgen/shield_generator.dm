@@ -8,7 +8,6 @@
 	icon_state = "generator0"
 	circuit = /obj/item/circuitboard/shield_generator
 	density = TRUE
-	var/datum/wires/shield_generator/wires = null
 	var/list/field_segments = list()    // List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()  // List of shield segments that have failed and are currently regenerating.
 	var/shield_modes = 0                // Enabled shield mode flags
@@ -52,8 +51,7 @@
 
 /obj/machinery/power/shield_generator/Initialize(mapload)
 	. = ..()
-	if(!wires)
-		wires = new(src)
+	set_wires(new /datum/wires/shield_generator(src))
 	default_apply_parts()
 	connect_to_network()
 
@@ -248,7 +246,7 @@
 	//Phew, update our own icon
 	update_icon()
 
-/obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir, var/force_outside)
+/obj/machinery/power/shield_generator/proc/do_corner_shield(obj/effect/shield/S, new_dir, force_outside)
 	S.enabled_icon_state = "blank"
 	S.set_dir(new_dir)
 	var/inside = force_outside ? FALSE : isspace(get_step(S, new_dir))
@@ -383,7 +381,7 @@
 		for(var/obj/effect/shield/S in field_segments)
 			S.fail(1)
 
-/obj/machinery/power/shield_generator/proc/set_idle(var/new_state)
+/obj/machinery/power/shield_generator/proc/set_idle(new_state)
 	if(new_state)
 		if(running == SHIELD_IDLE)
 			return
@@ -539,7 +537,7 @@
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shield_generator/proc/deal_shield_damage(var/damage, var/shield_damtype)
+/obj/machinery/power/shield_generator/proc/deal_shield_damage(damage, shield_damtype)
 	var/energy_to_use = damage * ENERGY_PER_HP
 	if(check_flag(MODEFLAG_MODULATE))
 		mitigation_em -= MITIGATION_HIT_LOSS
@@ -578,11 +576,11 @@
 
 
 // Checks whether specific flags are enabled
-/obj/machinery/power/shield_generator/proc/check_flag(var/flag)
+/obj/machinery/power/shield_generator/proc/check_flag(flag)
 	return (shield_modes & flag)
 
 
-/obj/machinery/power/shield_generator/proc/toggle_flag(var/flag)
+/obj/machinery/power/shield_generator/proc/toggle_flag(flag)
 	shield_modes ^= flag
 	update_upkeep_multiplier()
 	for(var/obj/effect/shield/S in field_segments)

@@ -34,6 +34,7 @@
 	use_sound = 'sound/items/storage/box.ogg'
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
+	resistance_flags = FLAMMABLE
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/storage/box/attack_self(mob/user)
@@ -432,7 +433,7 @@
 	drop_sound = 'sound/items/drop/matchbox.ogg'
 	pickup_sound =  'sound/items/pickup/matchbox.ogg'
 
-/obj/item/storage/box/matches/attackby(var/obj/item/flame/match/W, var/mob/user)
+/obj/item/storage/box/matches/attackby(obj/item/flame/match/W, mob/user)
 	if(istype(W) && !W.lit && !W.burnt)
 		if(prob(25))
 			W.light(user)
@@ -498,7 +499,7 @@
 /obj/item/storage/box/freezer/red
 	icon_state = "portafreezer_red"
 
-/obj/item/storage/box/freezer/Entered(var/atom/movable/AM)
+/obj/item/storage/box/freezer/Entered(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 1
@@ -506,7 +507,7 @@
 			organ.preserved = 1
 	..()
 
-/obj/item/storage/box/freezer/Exited(var/atom/movable/AM)
+/obj/item/storage/box/freezer/Exited(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 0

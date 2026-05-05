@@ -9,7 +9,7 @@
 	equip_cooldown = 10
 	energy_drain = 100
 	range = RANGED
-	origin_tech = list(TECH_COMBAT = 3, TECH_POWER = 6)
+
 	var/shock_damage = 15
 	var/active
 
@@ -28,7 +28,7 @@
 	return
 */
 
-/obj/item/mecha_parts/mecha_equipment/shocker/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
+/obj/item/mecha_parts/mecha_equipment/shocker/handle_melee_contact(obj/item/W, mob/living/user, inc_damage = null)
 	if(!action_checks(user) || !active)
 		return
 

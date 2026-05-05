@@ -26,6 +26,7 @@
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
+	var/dig_exhaustion_chance = 60 // Chance that the digging loot will be exhausted, if set to TURF_DIG_LOOT_EXHAUSTED then the turf is exhausted of loot. if set to TURF_DIG_LOOT_ENDLESS it will never run out.
 
 	var/list/decals
 
@@ -110,6 +111,9 @@
 	if(Be)
 		Be.multiz_turf_new(src, UP)
 
+	if(uses_integrity)
+		atom_integrity = max_integrity
+
 /turf/Destroy()
 	if (!changing_turf)
 		stack_trace("Improper turf qdel. Do not qdel turfs directly.")
@@ -161,12 +165,21 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return 1
 
-/turf/attackby(obj/item/W as obj, mob/user as mob)
+/turf/attackby(obj/item/W, mob/user)
+	// Check if this turf can be dug up, check initial because we remove the flag when we've exhausted all loot, but still want to keep dig functionality
+	if((flags & TURF_CAN_DIG_SHOVEL) && !density && istype(W, /obj/item/shovel))
+		handle_turf_dig(user, W)
+		return TRUE
+	// Collect objects on turf if the bag supports scooping stuff up
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup && S.collection_mode)
 			S.gather_all(src, user)
 	return ..()
+
+/turf/attack_robot(mob/user)
+	if(!isAI(user))
+		attack_hand(user)
 
 // Hits a mob on the tile.
 /turf/proc/attack_tile(obj/item/W, mob/living/user)
@@ -291,7 +304,7 @@
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
 
-/turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
+/turf/proc/AdjacentTurfs(check_blockage = TRUE)
 	. = list()
 	for(var/turf/T as anything in (trange(1,src) - src))
 		if(check_blockage)
@@ -301,7 +314,7 @@
 		else
 			. += T
 
-/turf/proc/CardinalTurfs(var/check_blockage = TRUE)
+/turf/proc/CardinalTurfs(check_blockage = TRUE)
 	. = list()
 	for(var/turf/T as anything in AdjacentTurfs(check_blockage))
 		if(T.x == src.x || T.y == src.y)
@@ -352,7 +365,7 @@
 /turf/proc/can_engrave()
 	return FALSE
 
-/turf/proc/try_graffiti(var/mob/vandal, var/obj/item/tool, click_parameters)
+/turf/proc/try_graffiti(mob/vandal, obj/item/tool, click_parameters)
 
 	if(!tool || !tool.sharp || !can_engrave())
 		return FALSE
@@ -457,16 +470,16 @@
 	return TRUE
 
 // We're about to be the A-side in a turf translation
-/turf/proc/pre_translate_A(var/turf/B)
+/turf/proc/pre_translate_A(turf/B)
 	return
 // We're about to be the B-side in a turf translation
-/turf/proc/pre_translate_B(var/turf/A)
+/turf/proc/pre_translate_B(turf/A)
 	return
 // We were the the A-side in a turf translation
-/turf/proc/post_translate_A(var/turf/B)
+/turf/proc/post_translate_A(turf/B)
 	return
 // We were the the B-side in a turf translation
-/turf/proc/post_translate_B(var/turf/A)
+/turf/proc/post_translate_B(turf/A)
 	return
 
 /turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE, purge = TRUE)

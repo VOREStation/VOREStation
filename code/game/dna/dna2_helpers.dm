@@ -14,14 +14,14 @@
 
 // DNA Gene activation boundaries, see dna2.dm.
 // Returns a list object with 4 numbers.
-/proc/GetDNABounds(var/block)
-	var/list/BOUNDS=dna_activity_bounds[block]
-	if(!istype(BOUNDS))
+/proc/GetDNABounds(block)
+	var/list/bounds = GLOB.dna_activity_bounds[block]
+	if(!istype(bounds))
 		return DNA_DEFAULT_BOUNDS
-	return BOUNDS
+	return bounds
 
 // Give Random Bad Mutation to M
-/proc/randmutb(var/mob/living/M)
+/proc/randmutb(mob/living/M)
 	if(!M || !(M.dna)) return
 	// Traitgenes NO_DNA and Synthetics cannot be mutated
 	if(M.isSynthetic())
@@ -36,7 +36,7 @@
 	M.dna.SetSEState(T.block, TRUE)
 
 // Give Random Good Mutation to M
-/proc/randmutg(var/mob/living/M)
+/proc/randmutg(mob/living/M)
 	if(!M || !(M.dna)) return
 	// Traitgenes NO_DNA and Synthetics cannot be mutated
 	if(M.isSynthetic())
@@ -51,7 +51,7 @@
 	M.dna.SetSEState(T.block, TRUE)
 
 // Scramble UI or SE.
-/proc/scramble(var/UI, var/mob/M, var/prob)
+/proc/scramble(UI, mob/M, prob)
 	if(!M || !(M.dna))	return
 	// Traitgenes edit begin - NO_DNA and Synthetics cannot be mutated
 	if(M.isSynthetic())
@@ -132,11 +132,11 @@
 	return output
 
 // Use mob.UpdateAppearance()
-/mob/proc/UpdateAppearance(var/list/UI=null)
+/mob/proc/UpdateAppearance(list/UI=null)
 	return FALSE
 
 // Simpler. Don't specify UI in order for the mob to use its own.
-/mob/living/carbon/human/UpdateAppearance(var/list/UI=null)
+/mob/living/carbon/human/UpdateAppearance(list/UI=null)
 	// Rebuild off UI arg if not null
 	if(UI!=null)
 		src.dna.UI=UI
@@ -162,5 +162,5 @@
 	species.post_spawn_special(src)
 
 // Used below, simple injection modifier.
-/proc/probinj(var/pr, var/inj)
+/proc/probinj(pr, inj)
 	return prob(pr+inj*pr)

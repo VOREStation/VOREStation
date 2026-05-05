@@ -36,7 +36,7 @@
 		visible_message(span_danger("\The [src] splashes everywhere as it is disassembled!"))
 		reagents.splash_area(get_turf(src),2)
 
-/obj/machinery/reagent_refinery/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/reagent_refinery/attackby(obj/item/O as obj, mob/user as mob)
 	if (istype(O, /obj/item/multitool)) // Solar grubs
 		return ..()
 	if(O.has_tool_quality(TOOL_WRENCH))
@@ -93,7 +93,7 @@
 		update_icon()
 
 /// Transfers reagents from us to the next machine. Calls handle_transfer() on any target machines to check if they can accept reagents.
-/obj/machinery/reagent_refinery/proc/transfer_tank( var/datum/reagents/RT, var/obj/machinery/reagent_refinery/target, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/proc/transfer_tank( datum/reagents/RT, obj/machinery/reagent_refinery/target, source_forward_dir, filter_id = "")
 	PROTECTED_PROC(TRUE)
 	if(RT.total_volume <= 0 || !anchored || !target.anchored)
 		return 0
@@ -107,7 +107,7 @@
 	return transfered
 
 /// Handles reagent recieving from transfer_tank(), returns how much reagent was transfered if successful. Overriden to prevent access from certain sides or for filtering.
-/obj/machinery/reagent_refinery/proc/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "") // Handle transfers in an override, instead of one monster function that typechecks like transfer_tank() used to be
+/obj/machinery/reagent_refinery/proc/handle_transfer(atom/origin_machine, datum/reagents/RT, source_forward_dir, transfer_rate, filter_id = "") // Handle transfers in an override, instead of one monster function that typechecks like transfer_tank() used to be
 	// Transfer to target in amounts every process tick!
 	if(filter_id == "")
 		var/amount = RT.trans_to_obj(src, transfer_rate)
@@ -129,10 +129,10 @@
 	return transfer_tank( reagents, target, dir)
 
 /// Handle transfers that require a minimum amount of reagents to happen
-/obj/machinery/reagent_refinery/proc/minimum_reagents_for_transfer(var/obj/machinery/reagent_refinery/target)
+/obj/machinery/reagent_refinery/proc/minimum_reagents_for_transfer(obj/machinery/reagent_refinery/target)
 	return 0
 
-/obj/machinery/reagent_refinery/proc/tutorial(var/flags,var/list/examine_list)
+/obj/machinery/reagent_refinery/proc/tutorial(flags,list/examine_list)
 	// Specialty
 	if(flags & REFINERY_TUTORIAL_HUB)
 		examine_list += "A trolly tanker can be drained or filled depending on if this machine is attached to the input or output of another machine. "

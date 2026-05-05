@@ -27,10 +27,10 @@
 	circuit = /obj/item/circuitboard/supplycomp/control
 	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS
 
-/obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/user as mob)
 	if(..())
 		return
 	if(!allowed(user))
@@ -39,7 +39,7 @@
 	tgui_interact(user)
 	return
 
-/obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/supplycomp/emag_act(remaining_charges, mob/user)
 	if(!can_order_contraband)
 		to_chat(user, span_notice("Special supplies unlocked."))
 		authorization |= SUP_CONTRABAND
@@ -255,7 +255,7 @@
 			reqform.info += "RANK: [idrank]<br>"
 			reqform.info += "REASON: [reason]<br>"
 			reqform.info += "SUPPLY CRATE TYPE: [S.name]<br>"
-			reqform.info += "ACCESS RESTRICTION: [get_access_desc(S.access)]<br>"
+			reqform.info += "ACCESS RESTRICTION: [SSaccess.get_access_desc(S.access)]<br>"
 			reqform.info += "AMOUNT: [amount]<br>"
 			reqform.info += "CONTENTS:<br>"
 			reqform.info +=  S.get_html_manifest()
@@ -308,7 +308,7 @@
 			reqform.info += "RANK: [idrank]<br>"
 			reqform.info += "REASON: [reason]<br>"
 			reqform.info += "SUPPLY CRATE TYPE: [S.name]<br>"
-			reqform.info += "ACCESS RESTRICTION: [get_access_desc(S.access)]<br>"
+			reqform.info += "ACCESS RESTRICTION: [SSaccess.get_access_desc(S.access)]<br>"
 			reqform.info += "CONTENTS:<br>"
 			reqform.info +=  S.get_html_manifest()
 			reqform.info += "<hr>"
@@ -486,7 +486,7 @@
 
 	add_fingerprint(ui.user)
 
-/obj/machinery/computer/supplycomp/proc/post_signal(var/command)
+/obj/machinery/computer/supplycomp/proc/post_signal(command)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency) return

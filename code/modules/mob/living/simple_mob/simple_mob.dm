@@ -185,6 +185,7 @@
 
 	//no stripping of simplemobs
 	strip_pref = FALSE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE // Note, this should be refactored to drop priority overlays
 
 /mob/living/simple_mob/Initialize(mapload)
 	remove_verb(src, /mob/verb/observe)
@@ -370,13 +371,13 @@
 	movement_target = null
 
 
-/mob/living/simple_mob/say_quote(var/message, var/datum/language/speaking = null)
+/mob/living/simple_mob/say_quote(message, datum/language/speaking = null)
 	if(speak_emote.len)
 		. = pick(speak_emote)
 	else if(speaking)
 		. = ..()
 
-/mob/living/simple_mob/get_speech_ending(verb, var/ending)
+/mob/living/simple_mob/get_speech_ending(verb, ending)
 	return verb
 
 /mob/living/simple_mob/is_sentient()
@@ -391,7 +392,7 @@
 	add_overlay(hud_list)
 
 //Makes it so that simplemobs can understand galcomm without being able to speak it.
-/mob/living/simple_mob/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/simple_mob/say_understands(mob/other, datum/language/speaking = null)
 	if(understands_common && (speaking?.name == LANGUAGE_GALCOM || !speaking))
 		return TRUE
 	return ..()
@@ -403,7 +404,7 @@
  * How injured are we? Returns a number that is then added to movement cooldown and firing/melee delay respectively.
  * Called by movement_delay and our firing/melee delay checks
 */
-/mob/living/simple_mob/proc/get_injury_level(var/mob/living/simple_mob/M)
+/mob/living/simple_mob/proc/get_injury_level(mob/living/simple_mob/M)
 	var/h = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss // We're not updating our actual health here bc we want updatehealth() and other checks to handle that
 	if(h > 0) 												// Safety to prevent division by 0 errors
 		if((h / getMaxHealth()) <= threshold) 				// Essentially, did our health go down? We don't modify want to modify our total slowdown if we didn't actually take damage, and aren't below our threshold %

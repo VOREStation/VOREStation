@@ -21,7 +21,7 @@
 		if(output)
 			break
 
-/obj/machinery/mineral/unloading_machine/proc/toggle_speed(var/forced)
+/obj/machinery/mineral/unloading_machine/proc/toggle_speed(forced)
 	if(forced)
 		speed_process = forced
 	else

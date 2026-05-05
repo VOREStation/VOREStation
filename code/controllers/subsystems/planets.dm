@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(planets)
 	var/list/planet_datums = using_map.planet_datums_to_make
 	for(var/P in planet_datums)
 		var/datum/planet/NP = new P()
-		planets.Add(NP)
+		planets += NP
 		for(var/index in 1 to length(NP.expected_z_levels))
 			var/Z = NP.expected_z_levels[index]
 			if(!isnum(Z))
@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(planets)
 // DO NOT CALL THIS DIRECTLY UNLESS IT'S IN INITIALIZE,
 // USE turf/simulated/proc/make_indoors() and
 //     turf/simulated/proc/make_outdoors()
-/datum/controller/subsystem/planets/proc/addTurf(var/turf/T)
+/datum/controller/subsystem/planets/proc/addTurf(turf/T)
 	if(length(z_to_planet) >= T.z && z_to_planet[T.z])
 		var/datum/planet/P = z_to_planet[T.z]
 		if(!istype(P))
@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(planets)
 			P.planet_floors += T
 			P.weather_holder.apply_to_turf(T)
 
-/datum/controller/subsystem/planets/proc/removeTurf(var/turf/T,var/is_edge)
+/datum/controller/subsystem/planets/proc/removeTurf(turf/T,is_edge)
 	if(length(z_to_planet) >= T.z)
 		var/datum/planet/P = z_to_planet[T.z]
 		if(!P)
@@ -107,7 +107,7 @@ SUBSYSTEM_DEF(planets)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/planets/proc/updateSunlight(var/datum/planet/P)
+/datum/controller/subsystem/planets/proc/updateSunlight(datum/planet/P)
 	var/new_brightness = P.sun["brightness"]
 	P.sun_holder.update_brightness(new_brightness, P.planet_floors)
 
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(planets)
 	P.sun_holder.update_color(new_color)
 	SSlighting.update_sunlight(SSlighting.get_pshandler_planet(P))
 
-/datum/controller/subsystem/planets/proc/updateTemp(var/datum/planet/P)
+/datum/controller/subsystem/planets/proc/updateTemp(datum/planet/P)
 	//Set new temperatures
 	for(var/turf/unsimulated/wall/planetary/wall as anything in P.planet_walls)
 		wall.set_temperature(P.weather_holder.temperature)

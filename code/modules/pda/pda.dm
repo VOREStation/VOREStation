@@ -107,8 +107,7 @@
 
 /obj/item/pda/Initialize(mapload)
 	. = ..()
-	PDAs += src
-	PDAs = sort_names(PDAs)
+	GLOB.PDAs += src
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
@@ -222,7 +221,7 @@
 	for(var/datum/data/pda/P as anything in programs)
 		P.pda = src
 
-/obj/item/pda/proc/detonate_act(var/obj/item/pda/P)
+/obj/item/pda/proc/detonate_act(obj/item/pda/P)
 	//TODO: sometimes these attacks show up on the message server
 	var/i = rand(1,100)
 	var/j = rand(0,1) //Possibility of losing the PDA after the detonation
@@ -457,9 +456,10 @@
 			add_overlay("pda-pen")
 	return
 
-/obj/item/pda/attack(mob/living/C, mob/living/user)
-	if (istype(C, /mob/living/carbon) && scanmode)
-		scanmode.scan_mob(C, user)
+/obj/item/pda/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(istype(M, /mob/living/carbon) && scanmode)
+		scanmode.scan_mob(M, user)
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/pda/afterattack(atom/A, mob/user, proximity)
 	if(proximity && scanmode)
@@ -474,7 +474,7 @@
 	return
 
 /obj/item/pda/Destroy()
-	PDAs -= src
+	GLOB.PDAs -= src
 	if (id && !delete_id && id.loc == src)
 		id.forceMove(get_turf(loc))
 	else

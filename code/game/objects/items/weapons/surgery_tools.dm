@@ -22,9 +22,9 @@
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	var/helpforce = 0	//For help intent things
 
-/obj/item/surgical/attack(mob/M, mob/user)
+/obj/item/surgical/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
-		return 0
+		return NONE
 	..()
 
 /*
@@ -45,7 +45,6 @@
 	desc = "Retracts stuff."
 	icon_state = "retractor"
 	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
@@ -56,7 +55,6 @@
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
 	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
 	hitsound = 'sound/items/wirecutter.ogg'
 	drop_sound = 'sound/items/drop/scrap.ogg'
@@ -69,7 +67,6 @@
 	desc = "This stops bleeding."
 	icon_state = "cautery"
 	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
@@ -84,7 +81,6 @@
 	matter = list(MAT_STEEL = 15000, MAT_GLASS = 10000)
 	force = 15.0
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
@@ -103,7 +99,6 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -153,7 +148,6 @@
 	item_state = "bone_setter"
 	force = 15.0
 	toolspeed = 0.75
-	origin_tech = list(TECH_MATERIAL = 5, TECH_BIO = 3, TECH_ILLEGAL = 2)
 
 /*
  * Circular Saws
@@ -169,7 +163,6 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MAT_STEEL = 20000,MAT_GLASS = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = TRUE
@@ -183,7 +176,6 @@
 	hitsound = 'sound/weapons/emitter2.ogg'
 	damtype = SEARING
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 6)
 	matter = list(MAT_STEEL = 25000,MAT_GLASS = 20000)
 	attack_verb = list("attacked", "slashed", "seared", "cut")
 	toolspeed = 0.75
@@ -205,7 +197,6 @@
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
-	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
 	var/usage_amount = 10
 	drop_sound = 'sound/items/drop/bottle.ogg'
 

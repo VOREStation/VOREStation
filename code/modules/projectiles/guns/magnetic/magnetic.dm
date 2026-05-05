@@ -12,7 +12,6 @@
 	item_state = "coilgun"
 	icon = 'icons/obj/railgun.dmi'
 //	one_handed_penalty = 15
-	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 
 	var/obj/item/cell/cell                              // Currently installed powercell.
@@ -123,7 +122,7 @@
 
 	return ammotext
 
-/obj/item/gun/magnetic/examine(var/mob/user)
+/obj/item/gun/magnetic/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		. += show_ammo()
@@ -141,7 +140,7 @@
 			else
 				. += span_notice("The capacitor charge indicator is [span_green("green")].")
 
-/obj/item/gun/magnetic/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun/magnetic/attackby(obj/item/thing, mob/user)
 
 	if(removable_components)
 		if(istype(thing, /obj/item/cell))
@@ -201,7 +200,7 @@
 		return
 	. = ..()
 
-/obj/item/gun/magnetic/attack_hand(var/mob/user)
+/obj/item/gun/magnetic/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
 		var/obj/item/removing
 
@@ -253,7 +252,6 @@
 	icon_state = "fuelrodgun"
 	item_state = "coilgun"
 	icon = 'icons/obj/railgun.dmi'
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 4)
 	w_class = ITEMSIZE_LARGE
 
 	removable_components = TRUE

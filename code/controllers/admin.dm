@@ -1,7 +1,7 @@
 // Clickable stat() button.
 /obj/effect/statclick
 	name = "Initializing..."
-	blocks_emissive = FALSE // EMISSIVE_BLOCK_NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 	var/target
 
 INITIALIZE_IMMEDIATE(/obj/effect/statclick)
@@ -53,8 +53,8 @@ ADMIN_VERB(restart_controller, R_DEBUG, "Restart Controller", "Restart one of th
 
 	message_admins("Admin [key_name_admin(user)] has restarted the [controller] controller.")
 
-ADMIN_VERB(debug_antagonist_template, R_DEBUG, "Debug Antagonist", "Debug an antagonist template", ADMIN_CATEGORY_DEBUG_GAME, antag_type in GLOB.all_antag_types)
-	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+ADMIN_VERB(debug_antagonist_template, R_DEBUG, "Debug Antagonist", "Debug an antagonist template", ADMIN_CATEGORY_DEBUG_GAME, antag_type in SSantag_job.all_antag_types)
+	var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 	if(antag)
 		user.debug_variables(antag)
 		message_admins("Admin [key_name_admin(user)] is debugging the [antag.role_text] template.")
@@ -77,11 +77,7 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 			options[strtype] = S
 
 	//Goon PS stuff, and other yet-to-be-subsystem things.
-	options["LEGACY: master_controller"] = GLOB.master_controller
-	options["LEGACY: job_master"] = GLOB.job_master
-	options["LEGACY: emergency_shuttle"] = GLOB.emergency_shuttle
 	options["LEGACY: cameranet"] = GLOB.cameranet
-	options["LEGACY: transfer_controller"] = GLOB.transfer_controller
 
 	var/pick = tgui_input_list(user, "Choose a controller to debug/view variables of.", "VV controller:", options)
 	if(!pick)

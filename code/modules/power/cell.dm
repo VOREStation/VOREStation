@@ -8,14 +8,11 @@
 	icon = 'icons/obj/power_cells_old.dmi' //swap to 'icons/obj/power_cells_.dmi' for new sprites.
 	icon_state = "b_st"
 	item_state = "cell"
-	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	/// Are we EMP immune?
-	var/emp_proof = FALSE
 	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
 	var/c_uid
 	var/charge = 1000	// maximum charge on spawn
@@ -67,7 +64,7 @@
 	else
 		return PROCESS_KILL
 
-/obj/item/cell/drain_power(var/drain_check, var/surge, var/power = 0)
+/obj/item/cell/drain_power(drain_check, surge, power = 0)
 
 	if(drain_check)
 		return 1
@@ -109,7 +106,7 @@
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/cell/proc/check_charge(var/amount)
+/obj/item/cell/proc/check_charge(amount)
 	return (charge >= amount)
 
 // Returns how much charge is missing from the cell, useful to make sure not overdraw from the grid when recharging.
@@ -117,7 +114,7 @@
 	return max(maxcharge - charge, 0)
 
 // use power from a cell, returns the amount actually used
-/obj/item/cell/proc/use(var/amount)
+/obj/item/cell/proc/use(amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -129,14 +126,14 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/cell/proc/checked_use(var/amount)
+/obj/item/cell/proc/checked_use(amount)
 	if(!check_charge(amount))
 		return 0
 	use(amount)
 	return 1
 
 // recharge the cell
-/obj/item/cell/proc/give(var/amount)
+/obj/item/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -177,11 +174,11 @@
 		. += "It has a power rating of [maxcharge]."
 		. += "The charge meter reads [round(src.percent() )]%."
 
-/obj/item/cell/attack(mob/living/M, mob/living/user, var/target_zone, var/attack_modifier)
+/obj/item/cell/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(isrobot(M))
 		var/mob/living/silicon/robot/target = M
 		if(target.opened)
-			return FALSE
+			return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
@@ -234,7 +231,8 @@
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/cell/emp_act(severity, recursive)
-	if(emp_proof)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
 		return
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
@@ -246,7 +244,6 @@
 		charge = 0
 
 	update_icon()
-	..()
 
 /obj/item/cell/ex_act(severity)
 

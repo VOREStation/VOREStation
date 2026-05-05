@@ -44,7 +44,7 @@
 	canhear_range = 1
 	item_flags = NOSTRIP
 
-/obj/item/radio/bluespacehandset/linked/receive_range(var/freq, var/list/level)
+/obj/item/radio/bluespacehandset/linked/receive_range(freq, list/level)
 	//Only care about megabroadcasts or things that are targeted at us
 	if(!(0 in level))
 		return -1
