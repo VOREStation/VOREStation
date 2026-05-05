@@ -391,5 +391,5 @@ SUBSYSTEM_DEF(supply)
 	var/approved_at							// Date and time the order was approved at
 	var/status								// [Requested, Accepted, Denied, Shipped]
 
-/datum/controller/subsystem/supply/proc/points_to_cash(var/val)
+/datum/controller/subsystem/supply/proc/points_to_cash(val)
 	return FLOOR(((val * money_per_points)), 1)
