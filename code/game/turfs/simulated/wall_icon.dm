@@ -30,7 +30,7 @@
 	update_icon()
 
 
-/turf/simulated/wall/proc/set_material(var/datum/material/newmaterial, var/datum/material/newrmaterial, var/datum/material/newgmaterial)
+/turf/simulated/wall/proc/set_material(datum/material/newmaterial, datum/material/newrmaterial, datum/material/newgmaterial)
 	material = newmaterial
 	reinf_material = newrmaterial
 	if(!newgmaterial)
@@ -135,7 +135,7 @@
 				if ((additional_dirs & diag_dir) == diag_dir)
 					dirs += diag_dir
 
-/turf/simulated/wall/proc/can_join_with_wall(var/turf/simulated/wall/W)
+/turf/simulated/wall/proc/can_join_with_wall(turf/simulated/wall/W)
 	//No blending if no material
 	if(!material || !W.material)
 		return 0
@@ -147,5 +147,5 @@
 		return 1
 	return 0
 
-/turf/simulated/wall/proc/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/proc/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return FALSE

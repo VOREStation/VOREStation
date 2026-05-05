@@ -214,7 +214,7 @@
 		icon_state = "cookingpot"
 	return TRUE
 
-/obj/machinery/microwave/cookingpot/broke(var/spark = FALSE)
+/obj/machinery/microwave/cookingpot/broke(spark = FALSE)
 	. = ..()
 
 // Magic bluespace stuff
@@ -304,7 +304,7 @@
 	icon = 'icons/obj/props/fantasy.dmi'
 	icon_state = "page"
 
-/obj/item/perfect_tele/magic/attack_self(mob/user, var/radial_menu_anchor = src)
+/obj/item/perfect_tele/magic/attack_self(mob/user, radial_menu_anchor = src)
 	. = ..(user, radial_menu_anchor)
 	if(.)
 		return TRUE
@@ -369,7 +369,7 @@ This device records all warnings given and teleport events for admin review in c
 
 //locked door
 
-/obj/structure/simple_door/dungeon/Initialize(mapload,var/material_name)
+/obj/structure/simple_door/dungeon/Initialize(mapload,material_name)
 	. = ..(mapload, material_name || MAT_CULT)
 
 /obj/structure/simple_door/dungeon/locked

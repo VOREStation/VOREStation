@@ -13,7 +13,7 @@
  */
 
 /// Returns the base save directory for a given ckey.
-/proc/get_player_save_dir(var/ckey)
+/proc/get_player_save_dir(ckey)
 	return "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]"
 
 ADMIN_VERB(admin_convert_savefile, R_ADMIN, "Convert Player Savefile", "Convert a player's preferences.sav to preferences.json or vice versa. Player must be logged off.", ADMIN_CATEGORY_SERVER_ADMIN)

@@ -38,7 +38,7 @@
 	keyslot2 = null
 	return ..()
 
-/obj/item/radio/headset/list_channels(var/mob/user)
+/obj/item/radio/headset/list_channels(mob/user)
 	return list_secure_channels()
 
 /obj/item/radio/headset/examine(mob/user)
@@ -71,7 +71,7 @@
 			return ..(freq, level)
 	return -1
 
-/obj/item/radio/headset/get_worn_icon_state(var/slot_name)
+/obj/item/radio/headset/get_worn_icon_state(slot_name)
 	var/append = ""
 	if(icon_override)
 		switch(slot_name)
@@ -140,7 +140,7 @@
 
 	return
 
-/obj/item/radio/headset/recalculateChannels(var/setDescription = FALSE)
+/obj/item/radio/headset/recalculateChannels(setDescription = FALSE)
 	src.channels = list()
 	src.translate_binary = FALSE
 	src.translate_hive = FALSE
@@ -180,7 +180,7 @@
 
 	handle_finalize_recalculatechannels(setDescription, TRUE)
 
-/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = FALSE, var/initial_run = FALSE)
+/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(setDescription = FALSE, initial_run = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!SSradio && initial_run)
@@ -212,7 +212,7 @@
 		return ..(freq, level, 1)
 	return -1
 
-/obj/item/radio/headset/mob_headset/afterattack(var/atom/movable/target, mob/living/user, proximity)
+/obj/item/radio/headset/mob_headset/afterattack(atom/movable/target, mob/living/user, proximity)
 	if(!proximity)
 		return
 	if(isanimal(target))

@@ -1,6 +1,6 @@
 
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
-/datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/banip = null, var/bancid = null)
+/datum/admins/proc/DB_ban_record(bantype, mob/banned_mob, duration = -1, reason, job = "", rounds = 0, banckey = null, banip = null, bancid = null)
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
 
@@ -88,7 +88,7 @@
 	qdel(query_insert)
 
 
-/datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
+/datum/admins/proc/DB_ban_unban(ckey, bantype, job = "")
 
 	if(!check_rights(R_BAN))
 		return
@@ -154,7 +154,7 @@
 
 	DB_ban_unban_by_id(ban_id)
 
-/datum/admins/proc/DB_ban_edit(client/user, var/banid = null, var/param = null)
+/datum/admins/proc/DB_ban_edit(client/user, banid = null, param = null)
 
 	if(!check_rights_for(user, R_BAN))
 		return
@@ -217,7 +217,7 @@
 	to_chat(user, span_filter_adminlog("Cancelled"))
 	return
 
-/datum/admins/proc/DB_ban_unban_by_id(var/id)
+/datum/admins/proc/DB_ban_unban_by_id(id)
 
 	if(!check_rights(R_BAN))	return
 
@@ -269,7 +269,7 @@
 	holder.DB_ban_panel(src)
 
 
-/datum/admins/proc/DB_ban_panel(client/user, var/playerckey = null)
+/datum/admins/proc/DB_ban_panel(client/user, playerckey = null)
 	if(!user)
 		return
 

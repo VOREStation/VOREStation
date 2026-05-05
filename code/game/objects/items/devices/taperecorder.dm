@@ -96,7 +96,7 @@
 		mytape.record_speech("[voice] [verb], \"[msg]\"")
 
 
-/obj/item/taperecorder/see_emote(mob/M as mob, text, var/emote_type)
+/obj/item/taperecorder/see_emote(mob/M as mob, text, emote_type)
 	if(emote_type != 2) //only hearable emotes
 		return
 	if(mytape && recording)
@@ -114,7 +114,7 @@
 	if(mytape && recording)
 		mytape.record_noise("[strip_html_properly(recordedtext)]")
 
-/obj/item/taperecorder/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/taperecorder/emag_act(remaining_charges, mob/user)
 	if(emagged == 0)
 		emagged = 1
 		recording = 0

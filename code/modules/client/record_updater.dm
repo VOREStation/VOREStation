@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(client_record_update_lock, FALSE)
 
 // Manually updating records from medical console to a player's save.
-/proc/get_current_mob_from_record(var/datum/data/record/active)
+/proc/get_current_mob_from_record(datum/data/record/active)
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(active.fields["name"])
 	if(db)
 		var/datum/transhuman/mind_record/record = db.backed_up[active.fields["name"]]
@@ -15,7 +15,7 @@ GLOBAL_VAR_INIT(client_record_update_lock, FALSE)
 	return null
 
 
-/proc/client_update_record(var/obj/machinery/computer/COM, var/user)
+/proc/client_update_record(obj/machinery/computer/COM, user)
 	if(!COM || QDELETED(COM))
 		return "Invalid console"
 

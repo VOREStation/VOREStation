@@ -78,7 +78,7 @@
 	minbodytemp = 0
 	maxbodytemp = 700
 
-/mob/living/simple_mob/vore/wolf/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/wolf/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/vore/wolf/direwolf

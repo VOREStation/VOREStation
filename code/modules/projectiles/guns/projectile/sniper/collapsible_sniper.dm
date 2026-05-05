@@ -95,7 +95,7 @@
 
 	update_build(user)
 
-/obj/item/sniper_rifle_part/attackby(var/obj/item/sniper_rifle_part/A as obj, mob/user as mob)
+/obj/item/sniper_rifle_part/attackby(obj/item/sniper_rifle_part/A as obj, mob/user as mob)
 
 	to_chat(user, span_notice("You begin adding \the [A] to \the [src]."))
 	if(!do_after(user, 3 SECONDS, target = src))

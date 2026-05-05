@@ -13,7 +13,7 @@
 	var/able_to_unpetrify = TRUE
 	var/obj/machinery/petrification/linked
 
-/obj/item/petrifier/Initialize(mapload, var/to_link)
+/obj/item/petrifier/Initialize(mapload, to_link)
 	. = ..()
 	linked = to_link
 

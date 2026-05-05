@@ -34,7 +34,7 @@
 	else
 		return master
 
-/datum/artifact_effect/New(var/datum/component/artifact_master/newmaster)
+/datum/artifact_effect/New(datum/component/artifact_master/newmaster)
 	..()
 
 	master = newmaster
@@ -76,7 +76,7 @@
 	if(can_start_activated && prob(50))
 		ToggleActivate(TRUE, TRUE)
 
-/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = TRUE, var/spawn_toggle = FALSE)
+/datum/artifact_effect/proc/ToggleActivate(reveal_toggle = TRUE, spawn_toggle = FALSE)
 	//so that other stuff happens first
 	set waitfor = FALSE
 
@@ -108,9 +108,9 @@
 				toplevelholder = toplevelholder.loc
 			toplevelholder.visible_message(span_filter_notice("[span_red("[icon2html(toplevelholder, viewers(toplevelholder))] [toplevelholder] [display_msg]")]"))
 
-/datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
-/datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
-/datum/artifact_effect/proc/DoEffectPulse(var/atom/holder)
+/datum/artifact_effect/proc/DoEffectTouch(mob/user)
+/datum/artifact_effect/proc/DoEffectAura(atom/holder)
+/datum/artifact_effect/proc/DoEffectPulse(atom/holder)
 /datum/artifact_effect/proc/UpdateMove()
 
 /datum/artifact_effect/process()
@@ -208,7 +208,7 @@
 	. += "<br>"
 
 //returns 0..1, with 1 being no protection and 0 being fully protected
-/proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
+/proc/GetAnomalySusceptibility(mob/living/carbon/human/H)
 	if(!istype(H))
 		return 1
 	var/area/A = get_area(H)

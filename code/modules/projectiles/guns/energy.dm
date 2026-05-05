@@ -103,7 +103,7 @@
 			charge_tick = 0
 	return 1
 
-/obj/item/gun/energy/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/attackby(obj/item/A as obj, mob/user as mob)
 	..()
 
 /obj/item/gun/energy/switch_firemodes(mob/user)
@@ -125,7 +125,7 @@
 		M?.hud_used.update_ammo_hud(M, src)
 	return new projectile_type(src)
 
-/obj/item/gun/energy/proc/load_ammo(var/obj/item/C, mob/user)
+/obj/item/gun/energy/proc/load_ammo(obj/item/C, mob/user)
 	if(istype(C, /obj/item/cell))
 		if(self_recharge || battery_lock)
 			to_chat(user, span_notice("[src] does not have a battery port."))
@@ -165,7 +165,7 @@
 	else
 		to_chat(user, span_notice("[src] does not have a power cell."))
 
-/obj/item/gun/energy/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/attackby(obj/item/A as obj, mob/user as mob)
 	..()
 	load_ammo(A, user)
 
@@ -201,7 +201,7 @@
 		else
 			. += "Does not have a power cell."
 
-/obj/item/gun/energy/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/update_icon(ignore_inhands)
 	if(power_supply == null)
 		if(modifystate)
 			icon_state = "[modifystate]_open"

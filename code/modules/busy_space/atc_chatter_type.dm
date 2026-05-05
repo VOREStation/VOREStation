@@ -1,5 +1,5 @@
 // Override/Replace me downstream if you need different chatter, call parent at end if you want this dialog too! Returns a subtype path of /datum/atc_chatter!
-/datum/atc_chatter_type/proc/chatter_box(var/org_type,var/org_type2)
+/datum/atc_chatter_type/proc/chatter_box(org_type,org_type2)
 	if((org_type == "government" || org_type == "neutral" || org_type == "military" || org_type == "corporate" || org_type == "system defense" || org_type == "spacer") && org_type2 == "pirate") //this is ugly but when I tried to do it with !='s it fired for pirate-v-pirate, still not sure why. might as well stick it up here so it takes priority over other combos.
 		return /datum/atc_chatter/distress
 	if(org_type == "corporate") //corporate-specific subset for the slogan event. despite the relatively high weight it was still quite rare in tests.

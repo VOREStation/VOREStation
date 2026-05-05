@@ -51,7 +51,7 @@
 /obj/structure/window/examine_icon()
 	return icon(icon=initial(icon),icon_state=initial(icon_state))
 
-/obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1)
+/obj/structure/window/take_damage(damage = 0,  sound_effect = 1)
 	var/initialhealth = health
 
 	if(silicate)
@@ -75,7 +75,7 @@
 			update_icon()
 	return
 
-/obj/structure/window/proc/apply_silicate(var/amount)
+/obj/structure/window/proc/apply_silicate(amount)
 	if(health < maxhealth) // Mend the damage
 		health = min(health + amount * 3, maxhealth)
 		if(health == maxhealth)
@@ -93,7 +93,7 @@
 	img.alpha = silicate * 255 / 100
 	add_overlay(img)
 
-/obj/structure/window/proc/shatter(var/display_message = 1)
+/obj/structure/window/proc/shatter(display_message = 1)
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
@@ -111,7 +111,7 @@
 	PROTECTED_PROC(TRUE)
 	return TRUE
 
-/obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/window/bullet_act(obj/item/projectile/Proj)
 
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
@@ -213,7 +213,7 @@
 							"You hear a knocking sound.")
 	return
 
-/obj/structure/window/attack_generic(var/mob/user, var/damage)
+/obj/structure/window/attack_generic(mob/user, damage)
 	user.setClickCooldown(user.get_attack_speed())
 	if(!damage)
 		return
@@ -343,7 +343,7 @@
 		..()
 	return
 
-/obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
+/obj/structure/window/proc/hit(damage, sound_effect = 1)
 	if(damage < force_threshold || force_threshold < 0)
 		return
 	if(reinf) damage *= 0.5
@@ -412,7 +412,7 @@
 /obj/structure/window/proc/is_fulltile()
 	return fulltile
 
-/obj/structure/window/is_between_turfs(var/turf/origin, var/turf/target)
+/obj/structure/window/is_between_turfs(turf/origin, turf/target)
 	if(is_fulltile())
 		return TRUE
 	return ..()

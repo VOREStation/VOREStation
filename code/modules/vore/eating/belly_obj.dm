@@ -1155,7 +1155,7 @@
 	return list("primary" = primary_bellies, "secondary" = secondary_bellies)
 
 //Autotransfer callback
-/obj/belly/proc/check_autotransfer(var/atom/movable/prey, var/list/transfer_locations)
+/obj/belly/proc/check_autotransfer(atom/movable/prey, list/transfer_locations)
 	if(!(prey in contents) || !prey.autotransferable)
 		return FALSE
 	var/obj/belly/dest_belly
@@ -1193,7 +1193,7 @@
 	return TRUE
 
 //Autotransfer filter
-/obj/belly/proc/autotransfer_filter(var/atom/movable/prey, var/whitelist, var/blacklist)
+/obj/belly/proc/autotransfer_filter(atom/movable/prey, whitelist, blacklist)
 	if(ismob(prey))
 		if(blacklist & autotransfer_flags_list["Absorbed"])
 			if(isliving(prey))
@@ -1727,7 +1727,7 @@
 	color = "#664330"
 	w_class = ITEMSIZE_SMALL
 
-/obj/belly/proc/recycle(var/obj/item/O)
+/obj/belly/proc/recycle(obj/item/O)
 	if(!recycling || (!LAZYLEN(O.matter) && !istype(O, /obj/item/ore)))
 		return FALSE
 	if(istype(O, /obj/item/ore))
@@ -1769,7 +1769,7 @@
 			O.possessed_voice = list()
 	return TRUE
 
-/obj/belly/proc/owner_adjust_nutrition(var/amount = 0)
+/obj/belly/proc/owner_adjust_nutrition(amount = 0)
 	if(storing_nutrition && amount > 0)
 		for(var/obj/item/reagent_containers/food/rawnutrition/R in contents)
 			if(istype(R))
@@ -1790,7 +1790,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/stored_nutrition = 0
 
-/obj/item/reagent_containers/food/rawnutrition/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/food/rawnutrition/standard_feed_mob(mob/user, mob/target)
 	if(isliving(target))
 		var/mob/living/L = target
 		L.nutrition += stored_nutrition
@@ -1810,7 +1810,7 @@
 
 // Recursive proc that returns all living mobs directly and indirectly inside a belly
 // This can also be called more generically to get all living mobs not in bellies within any contents list
-/obj/belly/proc/get_belly_surrounding(var/list/C)
+/obj/belly/proc/get_belly_surrounding(list/C)
 	var/list/surrounding = list()
 	for(var/thing in C)
 		if(istype(thing,/mob/living))

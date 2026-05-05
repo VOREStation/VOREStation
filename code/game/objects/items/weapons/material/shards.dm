@@ -17,7 +17,7 @@
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
 
-/obj/item/material/shard/set_material(var/new_material)
+/obj/item/material/shard/set_material(new_material)
 	..(new_material)
 	if(!istype(material))
 		return
@@ -55,7 +55,7 @@
 			return
 	return ..()
 
-/obj/item/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob, proximity)
+/obj/item/material/shard/afterattack(atom/target, mob/living/carbon/human/user as mob, proximity)
 	if(!proximity)
 		return
 	var/active_hand //hand the shard is in

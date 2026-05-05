@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 	var/category = ""
 	var/list/gear = list()
 
-/datum/loadout_category/New(var/cat)
+/datum/loadout_category/New(cat)
 	category = cat
 	..()
 
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 	return data
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(var/datum/gear/G)
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(datum/gear/G)
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 
 	// {"/datum/gear_tweak/custom_name": "" }
@@ -166,14 +166,14 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 	if(!.)
 		. = list()
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(datum/gear/G, datum/gear_tweak/tweak)
 	var/list/metadata = get_gear_metadata(G)
 	. = metadata["[tweak]"]
 	if(isnull(.))
 		. = tweak.get_default()
 		metadata["[tweak]"] = .
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/set_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak, var/new_metadata)
+/datum/category_item/player_setup_item/loadout/loadout/proc/set_tweak_metadata(datum/gear/G, datum/gear_tweak/tweak, new_metadata)
 	var/list/metadata = get_gear_metadata(G)
 	metadata["[tweak]"] = new_metadata
 
@@ -281,11 +281,11 @@ GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 	var/path
 	var/location
 
-/datum/gear_data/New(var/path, var/location)
+/datum/gear_data/New(path, location)
 	src.path = path
 	src.location = location
 
-/datum/gear/proc/spawn_item(var/location, var/metadata)
+/datum/gear/proc/spawn_item(location, metadata)
 	var/datum/gear_data/gd = new(path, location)
 	if(length(gear_tweaks) && metadata)
 		for(var/datum/gear_tweak/gt in gear_tweaks)

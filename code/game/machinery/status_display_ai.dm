@@ -2,7 +2,7 @@
 	var/overlay
 	var/ckey
 
-/datum/ai_emotion/New(var/over, var/key)
+/datum/ai_emotion/New(over, key)
 	overlay = over
 	ckey = key
 
@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(ai_status_emotions, list(
 	"Tribunal Malfunctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
 	))
 
-/proc/get_ai_emotions(var/ckey)
+/proc/get_ai_emotions(ckey)
 	var/list/emotions = list()
 	for(var/emotion_name in GLOB.ai_status_emotions)
 		var/datum/ai_emotion/emotion = GLOB.ai_status_emotions[emotion_name]
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(ai_status_emotions, list(
 		set_picture("ai_bsod")
 		return
 
-/obj/machinery/ai_status_display/proc/set_picture(var/state)
+/obj/machinery/ai_status_display/proc/set_picture(state)
 	picture_state = state
 	cut_overlays()
 	add_overlay(picture_state)

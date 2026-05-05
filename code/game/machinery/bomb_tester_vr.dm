@@ -85,7 +85,7 @@
 		scan_rating += S.rating
 	simulation_delay = 25 SECONDS - scan_rating SECONDS
 
-/obj/machinery/bomb_tester/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/bomb_tester/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))
@@ -106,7 +106,7 @@
 			return
 	..()
 
-/obj/machinery/bomb_tester/attack_hand(var/mob/user)
+/obj/machinery/bomb_tester/attack_hand(mob/user)
 	add_fingerprint(user)
 	tgui_interact(user)
 
@@ -362,7 +362,7 @@
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results
 
-/obj/machinery/bomb_tester/proc/format_gas_for_results(var/datum/gas_mixture/G)
+/obj/machinery/bomb_tester/proc/format_gas_for_results(datum/gas_mixture/G)
 	G.update_values() //Just in case
 	var/results = ""
 	var/pressure = G.return_pressure()

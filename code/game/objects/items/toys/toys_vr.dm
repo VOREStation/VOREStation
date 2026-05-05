@@ -1124,7 +1124,7 @@
 	icon_state = "monster_bait"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/toy/monster_bait/afterattack(var/atom/A, var/mob/user)
+/obj/item/toy/monster_bait/afterattack(atom/A, mob/user)
 	var/mob/living/simple_mob/M = A
 	if(M.z != user.z || get_dist(user,M) > 1)
 		to_chat(user, span_notice("You need to stand right next to \the [M] to bait it."))

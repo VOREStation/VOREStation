@@ -14,7 +14,7 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 
-/obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(mob/M)
 	..()
 	var/choice
 	var/finalized = "No"
@@ -75,7 +75,7 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 
-/obj/structure/ghost_pod/ghost_activated/morphspawn/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/morphspawn/create_occupant(mob/M)
 	..()
 
 	//No OOC notes
@@ -127,7 +127,7 @@
 	var/redgate_restricted = FALSE
 
 //override the standard attack_ghost proc for custom messages
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/attack_ghost(var/mob/observer/dead/user)
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/attack_ghost(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
 		return
@@ -149,7 +149,7 @@
 
 	create_occupant(user)
 
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/create_occupant(mob/M)
 	..()
 
 	var/picked_ckey = M.ckey
@@ -205,7 +205,7 @@
 	desc = "A starting location for characters who exist inside of the redgate!"
 	redgate_restricted = TRUE
 
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate/attack_ghost(var/mob/observer/dead/user)
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate/attack_ghost(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
 		return

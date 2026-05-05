@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(job)
 
 	return department_datums[primary_department]
 
-/datum/controller/subsystem/job/proc/get_ping_role(var/role)
+/datum/controller/subsystem/job/proc/get_ping_role(role)
 	var/datum/job/J = get_job(role)
 	if(J.requestable)
 		return get_primary_department_of_job(J)

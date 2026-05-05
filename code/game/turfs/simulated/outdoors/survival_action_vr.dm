@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(has_rocks, list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9"))
 		return pick(/obj/item/stack/material/flint, /obj/item/ore/iron)
 	. = ..()
 
-/turf/simulated/floor/outdoors/newdirt/examine(var/mob/user)
+/turf/simulated/floor/outdoors/newdirt/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		var/static/list/has_rocks = list("dirt5", "dirt6", "dirt7", "dirt8", "dirt9")

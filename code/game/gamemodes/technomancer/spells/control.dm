@@ -24,7 +24,7 @@
 	var/allowed_mob_classes = MOB_CLASS_ANIMAL|MOB_CLASS_SYNTHETIC
 
 //This unfortunately is gonna be rather messy due to the various mobtypes involved.
-/obj/item/spell/control/proc/select(var/mob/living/L)
+/obj/item/spell/control/proc/select(mob/living/L)
 	if(!(L.mob_class & allowed_mob_classes))
 		return FALSE
 
@@ -45,7 +45,7 @@
 	L.add_overlay(control_overlay, TRUE)
 	controlled_mobs |= L
 
-/obj/item/spell/control/proc/deselect(var/mob/living/L)
+/obj/item/spell/control/proc/deselect(mob/living/L)
 	if(!(L in controlled_mobs))
 		return FALSE
 

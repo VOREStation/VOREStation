@@ -62,60 +62,60 @@ GLOBAL_LIST_INIT(gurgled_overlays, list(
 //////////////
 // Special handling of gurgle_contaminate
 //////////////
-/obj/item/card/id/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/card/id/gurgle_contaminate(atom/movable/item_storage = null)
 	digest_act(item_storage) //Contamination and digestion does same thing to these
 	return TRUE
 
-/obj/item/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/pda/gurgle_contaminate(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/reagent_containers/food/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/reagent_containers/food/gurgle_contaminate(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/storage/vore_egg/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/storage/vore_egg/gurgle_contaminate(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/holder/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/holder/gurgle_contaminate(atom/movable/item_storage = null)
 	if(isbelly(loc))
 		digest_act(item_storage)
 		return TRUE
 	return FALSE
 
-/obj/item/organ/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/organ/gurgle_contaminate(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/cell/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/cell/gurgle_contaminate(atom/movable/item_storage = null)
 	if(!gurgled)
 	//Don't make them wet, just drain
 		var/obj/item/cell/C = src
 		C.charge = 0
 	return TRUE
 
-/obj/item/storage/box/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/storage/box/gurgle_contaminate(atom/movable/item_storage = null)
 	if((. = ..()))
 		name = "soggy [cleanname]"
 		desc = "This soggy box is about to fall apart any time."
 
 //Storages that contaminate contents
-/obj/item/storage/backpack/gurgle_contaminate(var/atom/movable/item_storage = null, var/contamination_flavor = "Generic", var/contamination_color = "green")
+/obj/item/storage/backpack/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green")
 	if(contents)
 		for(var/obj/item/O in contents)
 			O.gurgle_contaminate(item_storage, contamination_flavor, contamination_color)
 	..()
 
-/obj/item/storage/belt/gurgle_contaminate(var/atom/movable/item_storage = null, var/contamination_flavor = "Generic", var/contamination_color = "green")
+/obj/item/storage/belt/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green")
 	if(contents)
 		for(var/obj/item/O in contents)
 			O.gurgle_contaminate(item_storage, contamination_flavor, contamination_color)
 	..()
 
-/obj/item/storage/belt/gurgle_contaminate(var/atom/movable/item_storage = null, var/contamination_flavor = "Generic", var/contamination_color = "green")
+/obj/item/storage/belt/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green")
 	if(contents)
 		for(var/obj/item/O in contents)
 			O.gurgle_contaminate(item_storage, contamination_flavor, contamination_color)
 	..()
 
-/obj/item/clothing/suit/storage/gurgle_contaminate(var/atom/movable/item_storage = null, var/contamination_flavor = "Generic", var/contamination_color = "green")
+/obj/item/clothing/suit/storage/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green")
 	if(pockets)
 		if(pockets.contents)
 			for(var/obj/item/O in pockets.contents)

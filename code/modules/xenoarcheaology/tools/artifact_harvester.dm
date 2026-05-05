@@ -25,7 +25,7 @@
 	default_apply_parts()
 	update_icon()
 
-/obj/machinery/artifact_harvester/RefreshParts(var/limited = 0)
+/obj/machinery/artifact_harvester/RefreshParts(limited = 0)
 	harvesting_speed = 0
 	// Rating goes from 1 to 5 and this bad boy has 5 caps. Let's say we want a normal one to charge a battery in 100 seconds.
 	// Every machine process happens every 2 seconds. So, we should have it do 5 charge every second. So 10 charge a process.
@@ -47,7 +47,7 @@
 				if(5)
 					harvesting_speed += 100
 
-/obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/artifact_harvester/attackby(obj/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/anobattery))
 		if(!inserted_battery)
 			to_chat(user, span_blue("You insert [I] into [src]."))
@@ -67,7 +67,7 @@
 	else
 		return..()
 
-/obj/machinery/artifact_harvester/attack_hand(var/mob/user as mob)
+/obj/machinery/artifact_harvester/attack_hand(mob/user as mob)
 	if(..())
 		return 1
 	add_fingerprint(user)

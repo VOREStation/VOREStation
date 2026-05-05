@@ -26,7 +26,7 @@
 
 	apply_default_language(language)
 
-/mob/living/proc/apply_default_language(var/language)
+/mob/living/proc/apply_default_language(language)
 	if (only_species_language && language != GLOB.all_languages[species_language])
 		to_chat(src, span_notice("You can only speak your species language, [species_language]."))
 		return 0

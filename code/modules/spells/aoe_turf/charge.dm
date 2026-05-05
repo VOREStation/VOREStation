@@ -12,17 +12,17 @@
 
 	hud_state = "wiz_charge"
 
-/datum/spell/aoe_turf/charge/cast(var/list/targets, mob/user)
+/datum/spell/aoe_turf/charge/cast(list/targets, mob/user)
 	for(var/turf/T in targets)
 		depth_cast(T)
 
-/datum/spell/aoe_turf/charge/proc/depth_cast(var/list/targets)
+/datum/spell/aoe_turf/charge/proc/depth_cast(list/targets)
 	for(var/atom/A in targets)
 		if(A.contents.len)
 			depth_cast(A.contents)
 		cast_charge(A)
 
-/datum/spell/aoe_turf/charge/proc/mob_charge(var/mob/living/M)
+/datum/spell/aoe_turf/charge/proc/mob_charge(mob/living/M)
 	if(M.spell_list.len != 0)
 		for(var/datum/spell/S in M.spell_list)
 			if(!istype(S, /datum/spell/aoe_turf/charge))
@@ -32,7 +32,7 @@
 		to_chat(M, span_notice("You feel very strange for a moment, but then it passes."))
 	return M
 
-/datum/spell/aoe_turf/charge/proc/cast_charge(var/atom/target)
+/datum/spell/aoe_turf/charge/proc/cast_charge(atom/target)
 	var/atom/charged_item
 
 	if(isliving(target))

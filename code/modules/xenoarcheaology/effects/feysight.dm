@@ -6,7 +6,7 @@
 	effect_state = "pulsing"
 	effect_color = "#00c763"
 
-/datum/artifact_effect/feysight/proc/apply_modifier(var/mob/living/L)
+/datum/artifact_effect/feysight/proc/apply_modifier(mob/living/L)
 	if(!isliving(L))
 		return FALSE
 
@@ -26,7 +26,7 @@
 			it quickly passes."))
 		return FALSE
 
-/datum/artifact_effect/feysight/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/feysight/DoEffectTouch(mob/toucher)
 	if(toucher && isliving(toucher))
 		apply_modifier(toucher)
 		return TRUE

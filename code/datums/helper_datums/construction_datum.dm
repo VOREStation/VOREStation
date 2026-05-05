@@ -22,10 +22,10 @@
 		set_desc(steps.len)
 	return
 
-/datum/construction/proc/action(var/obj/item/I,mob/user as mob)
+/datum/construction/proc/action(obj/item/I,mob/user as mob)
 	return
 
-/datum/construction/proc/check_step(var/obj/item/I,mob/user as mob) //check last step only
+/datum/construction/proc/check_step(obj/item/I,mob/user as mob) //check last step only
 	var/valid_step = is_right_key(I)
 	if(valid_step)
 		if(custom_action(valid_step, I, user))
@@ -33,7 +33,7 @@
 			return 1
 	return 0
 
-/datum/construction/proc/is_right_key(var/obj/item/I) // returns current step num if I is of the right type.
+/datum/construction/proc/is_right_key(obj/item/I) // returns current step num if I is of the right type.
 	var/list/L = steps[steps.len]
 	switch(L["key"])
 		if(IS_SCREWDRIVER)
@@ -59,7 +59,7 @@
 /datum/construction/proc/custom_action(step, I, user)
 	return 1
 
-/datum/construction/proc/check_all_steps(var/obj/item/I,mob/user as mob) //check all steps, remove matching one.
+/datum/construction/proc/check_all_steps(obj/item/I,mob/user as mob) //check all steps, remove matching one.
 	for(var/i=1;i<=steps.len;i++)
 		var/list/L = steps[i];
 		if(istype(I, L["key"]))
@@ -103,7 +103,7 @@
 		set_desc(index)
 	return
 
-/datum/construction/reversible/is_right_key(var/obj/item/I) // returns index step
+/datum/construction/reversible/is_right_key(obj/item/I) // returns index step
 	var/list/L = steps[index]
 
 	switch(L["key"])
@@ -146,7 +146,7 @@
 		return BACKWARD //to the last step -> backwards
 	return 0
 
-/datum/construction/reversible/check_step(var/obj/item/I,mob/user as mob)
+/datum/construction/reversible/check_step(obj/item/I,mob/user as mob)
 	var/diff = is_right_key(I)
 	if(diff)
 		if(custom_action(index, diff, I, user))

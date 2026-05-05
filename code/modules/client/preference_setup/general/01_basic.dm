@@ -6,7 +6,7 @@
 	var/vore_egg_type = "Egg" //The egg type they have.
 	var/autohiss = "Full"			// VOREStation Add: Whether we have Autohiss on. I'm hijacking the egg panel bc this one has a shitton of unused space.
 
-/datum/preferences/proc/set_biological_gender(var/gender)
+/datum/preferences/proc/set_biological_gender(gender)
 	update_preference_by_type(/datum/preference/choiced/gender/biological, gender)
 	update_preference_by_type(/datum/preference/choiced/gender/identifying, gender)
 
@@ -27,7 +27,7 @@
 	pref.autohiss = sanitize_inlist(pref.autohiss, list("Off", "Basic", "Full"), initial(pref.autohiss))
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/basic/copy_to_mob(mob/living/carbon/human/character)
 	var/char_real_name = pref.read_preference(/datum/preference/name/real_name)
 	var/char_bio_gender = pref.read_preference(/datum/preference/choiced/gender/biological)
 	var/char_id_gender = pref.read_preference(/datum/preference/choiced/gender/identifying)

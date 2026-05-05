@@ -71,7 +71,7 @@
  * * opponent - (optional) the defender controller in the battle, for PvP
  */
 
-/obj/item/toy/mecha/proc/combat_sleep(var/delay, obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
+/obj/item/toy/mecha/proc/combat_sleep(delay, obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
 	if(!attacker_controller) // If the attacker for whatever reason is null, don't continue.
 		return FALSE
 

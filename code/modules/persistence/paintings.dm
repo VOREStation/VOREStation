@@ -21,7 +21,7 @@
 	for(var/obj/structure/sign/painting/P in SSpersistence.painting_frames)
 		P.load_persistent()
 
-/datum/persistent/paintings/CheckTokenSanity(var/list/token)
+/datum/persistent/paintings/CheckTokenSanity(list/token)
 	var/png_filename = "data/paintings/[token["persistence_id"]]/[token["md5"]].png"
 	if(!fexists(png_filename))
 		return FALSE

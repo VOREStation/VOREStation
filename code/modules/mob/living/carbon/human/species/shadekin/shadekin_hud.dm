@@ -28,7 +28,7 @@
 	background_base_state = "grey"
 	icon = 'icons/mob/shadekin_abilities.dmi'
 
-/atom/movable/screen/movable/ability_master/proc/add_shadekin_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
+/atom/movable/screen/movable/ability_master/proc/add_shadekin_ability(object_given, verb_given, name_given, ability_icon_given, arguments)
 	if(!object_given)
 		message_admins("ERROR: add_shadekin_ability() was not given an object in its arguments.")
 	if(!verb_given)
@@ -48,7 +48,7 @@
 		toggle_open(2) //forces the icons to refresh on screen
 
 
-/atom/movable/screen/movable/ability_master/proc/remove_shadekin_ability(var/object_given, var/verb_given, var/arguments)
+/atom/movable/screen/movable/ability_master/proc/remove_shadekin_ability(object_given, verb_given, arguments)
 	if(!object_given)
 		message_admins("ERROR: remove_shadekin_ability() was not given an object in its arguments.")
 	if(!verb_given)

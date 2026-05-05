@@ -146,7 +146,7 @@
 	else
 		..()
 
-/obj/item/eftpos/Topic(var/href, var/href_list)
+/obj/item/eftpos/Topic(href, href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
@@ -222,7 +222,7 @@
 
 	src.attack_self(usr)
 
-/obj/item/eftpos/proc/scan_card(var/obj/item/card/I, var/obj/item/ID_container)
+/obj/item/eftpos/proc/scan_card(obj/item/card/I, obj/item/ID_container)
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		if(I==ID_container || ID_container == null)

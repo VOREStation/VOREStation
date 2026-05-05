@@ -2,7 +2,7 @@
 // Parameters: 4 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received,
 //				  text - message text to send if message is of type "text")
 // Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response and IM function.
-/obj/item/communicator/receive_exonet_message(var/atom/origin_atom, origin_address, message, text)
+/obj/item/communicator/receive_exonet_message(atom/origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(isobserver(origin_atom) || istype(origin_atom, /obj/item/communicator))
 			if(origin_atom in voice_invites)
@@ -53,7 +53,7 @@
 // Parameters: 3 (candidate - the communicator wanting to message the device, origin_address - the address of the sender, text - the message)
 // Description: Response to a communicator trying to message the device.
 //				Adds them to the list of people that have messaged this device and adds the message to the message list.
-/obj/item/communicator/proc/request_im(var/atom/candidate, var/origin_address, var/text)
+/obj/item/communicator/proc/request_im(atom/candidate, origin_address, text)
 	var/who = null
 	if(isobserver(candidate))
 		var/mob/observer/dead/ghost = candidate

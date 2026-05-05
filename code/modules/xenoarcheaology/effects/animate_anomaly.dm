@@ -7,7 +7,7 @@
 	effect_state = "pulsing"
 	effect_color = "#00c3ff"
 
-/datum/artifact_effect/animate_anomaly/ToggleActivate(var/reveal_toggle = 1)
+/datum/artifact_effect/animate_anomaly/ToggleActivate(reveal_toggle = 1)
 	..()
 	find_target()
 
@@ -15,7 +15,7 @@
 	..()
 	effectrange = max(3, effectrange)
 
-/datum/artifact_effect/animate_anomaly/proc/find_target(var/obj/item/anodevice/utilizer)
+/datum/artifact_effect/animate_anomaly/proc/find_target(obj/item/anodevice/utilizer)
 	var/atom/masterholder = get_master_holder()
 	if(utilizer) //We are in an artifact utilizer! Just run from whoever touched us last!
 		masterholder = utilizer
@@ -36,7 +36,7 @@
 
 		target = ClosestMob
 
-/datum/artifact_effect/animate_anomaly/DoEffectTouch(var/mob/living/user)
+/datum/artifact_effect/animate_anomaly/DoEffectTouch(mob/living/user)
 	var/atom/holder = get_master_holder()
 	var/obj/O = holder
 	var/turf/T = get_step_away(O, user)

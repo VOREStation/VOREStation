@@ -89,7 +89,7 @@
 		remote.update_music()
 	//VOREStation Add End
 
-/obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
+/obj/machinery/media/jukebox/proc/set_hacked(newhacked)
 	if(hacked == newhacked)
 		return
 	hacked = newhacked
@@ -247,7 +247,7 @@
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/attack_hand(mob/user as mob)
 	interact(user)
 
 /obj/machinery/media/jukebox/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
@@ -284,7 +284,7 @@
 		return
 	return ..()
 
-/obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
@@ -362,7 +362,7 @@
 	return
 /obj/machinery/media/jukebox/ghost/attack_ai(mob/user as mob)
 	return
-/obj/machinery/media/jukebox/ghost/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/ghost/attack_hand(mob/user as mob)
 	return
 /obj/machinery/media/jukebox/ghost/update_use_power(new_use_power)
 	return
@@ -381,7 +381,7 @@
 		animate(src, alpha = initial(alpha), time = 10)
 // End junk
 
-/obj/machinery/media/jukebox/ghost/attack_ghost(var/mob/observer/dead/M)
+/obj/machinery/media/jukebox/ghost/attack_ghost(mob/observer/dead/M)
 	if(!istype(M))
 		return
 

@@ -11,5 +11,5 @@
 	minbodytemp = 0
 
 // They can also, you know, move around, in space
-/mob/living/simple_mob/animal/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/animal/space/Process_Spacemove(check_drift = 0)
 	return TRUE

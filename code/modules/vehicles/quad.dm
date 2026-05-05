@@ -158,7 +158,7 @@
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
 
-/obj/vehicle/train/engine/quadbike/RunOver(var/mob/living/M)
+/obj/vehicle/train/engine/quadbike/RunOver(mob/living/M)
 	..()
 	var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 	if(!emagged)

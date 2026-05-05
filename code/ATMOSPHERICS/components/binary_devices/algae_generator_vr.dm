@@ -265,7 +265,7 @@
 
 
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
-/obj/machinery/atmospherics/binary/algae_farm/proc/try_load_materials(var/mob/user, var/obj/item/stack/material/S)
+/obj/machinery/atmospherics/binary/algae_farm/proc/try_load_materials(mob/user, obj/item/stack/material/S)
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in stored_material))

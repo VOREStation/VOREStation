@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(civilian_cartridges, list(
 	if(istype(D))
 		D.remote_door_id = initial_remote_door_id
 
-/obj/item/cartridge/proc/post_status(var/command, var/data1, var/data2)
+/obj/item/cartridge/proc/post_status(command, data1, data2)
 
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 	if(!frequency) return

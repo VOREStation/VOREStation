@@ -509,7 +509,7 @@
 		qdel(src)
 	return
 
-/obj/item/hand/update_icon(var/direction = 0)
+/obj/item/hand/update_icon(direction = 0)
 
 	var/cardNumber = cards.len
 

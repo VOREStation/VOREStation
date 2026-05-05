@@ -116,7 +116,7 @@
 	return FALSE
 
 //TL;DR: breadth first search for all connected turfs with windows
-/datum/event2/event/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
+/datum/event2/event/window_break/proc/gather_collateral_windows(obj/structure/window/target_window)
 	var/list/turf/frontier_set = list(target_window.loc)
 	var/list/obj/structure/window/result_set = list()
 	var/list/turf/explored_set = list()

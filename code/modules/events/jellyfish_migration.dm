@@ -28,7 +28,7 @@
 	if(count_spawned_jellyfish() < jellyfish_cap)
 		spawn_fish(rand(3, 3 + severity * 2) - 1, 1, severity + 2)
 
-/datum/event/jellyfish_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
+/datum/event/jellyfish_migration/proc/spawn_fish(num_groups, group_size_min, group_size_max, dir)
 	if(isnull(dir))
 		dir = (victim && prob(80)) ? victim.fore_dir : pick(GLOB.cardinal)
 
@@ -69,7 +69,7 @@
 		i++
 
 // Spawn a single jellyfish at given location.
-/datum/event/jellyfish_migration/proc/spawn_one_jellyfish(var/loc)
+/datum/event/jellyfish_migration/proc/spawn_one_jellyfish(loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/vore/alienanimals/space_jellyfish(loc)
 	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_jellyfish_destruction))
 	spawned_jellyfish.Add(M)
@@ -83,7 +83,7 @@
 			. += 1
 
 // If jellyfish is bomphed, remove it from the list.
-/datum/event/jellyfish_migration/proc/on_jellyfish_destruction(var/mob/M)
+/datum/event/jellyfish_migration/proc/on_jellyfish_destruction(mob/M)
 	SIGNAL_HANDLER
 	spawned_jellyfish -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)

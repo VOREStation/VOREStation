@@ -8,7 +8,7 @@
 	var/list/indexed_pages = list() // Assoc list with search terms pointing to a ref of the page.  It's created on New().
 	var/list/history = list() // List of pages we previously visited. // now a 2D list
 
-/datum/codex_tree/New(var/new_holder, var/new_root_type)
+/datum/codex_tree/New(new_holder, new_root_type)
 	holder = new_holder
 	root_type = new_root_type
 	generate_pages()
@@ -20,13 +20,13 @@
 	indexed_pages = home.index_page() // changed from current_page to home.
 
 // Changes current_page to its parent, assuming one exists.
-/datum/codex_tree/proc/go_to_parent(var/mob/user)
+/datum/codex_tree/proc/go_to_parent(mob/user)
 	var/datum/lore/codex/D = current_page["[user]"]
 	if(istype(D) && D.parent)
 		current_page["[user]"] = D.parent
 
 // Changes current_page to a specific page or category.
-/datum/codex_tree/proc/go_to_page(var/datum/lore/codex/new_page, var/dont_record_history = FALSE, var/mob/user)
+/datum/codex_tree/proc/go_to_page(datum/lore/codex/new_page, dont_record_history = FALSE, mob/user)
 	var/datum/lore/codex/D = current_page["[user]"]
 	if(new_page && istype(D)) // Make sure we're not going to a null page for whatever reason.
 		current_page["[user]"] = new_page
@@ -37,13 +37,13 @@
 			H.Add(new_page)
 			history["[user]"] = H
 
-/datum/codex_tree/proc/quick_link(var/search_word, var/mob/user)
+/datum/codex_tree/proc/quick_link(search_word, mob/user)
 	for(var/word in indexed_pages)
 		if(lowertext(search_word) == lowertext(word)) // Exact matches unfortunately limit our ability to perform SEOs.
 			go_to_page(indexed_pages[word], FALSE, user)
 			return
 
-/datum/codex_tree/proc/get_page_from_type(var/desired_type)
+/datum/codex_tree/proc/get_page_from_type(desired_type)
 	for(var/word in indexed_pages)
 		var/datum/lore/codex/C = indexed_pages[word]
 		if(C.type == desired_type)
@@ -51,7 +51,7 @@
 	return null
 
 // Returns to the last visited page, based on the history list.
-/datum/codex_tree/proc/go_back(var/mob/user)
+/datum/codex_tree/proc/go_back(mob/user)
 	var/list/H = history["[user]"]
 	var/datum/lore/codex/D = current_page["[user]"]
 	if(!LAZYLEN(H) || !istype(D))
@@ -67,7 +67,7 @@
 	else
 		go_to_page(H[H.len], TRUE, user)
 
-/datum/codex_tree/proc/get_tree_position(var/mob/user)
+/datum/codex_tree/proc/get_tree_position(mob/user)
 	var/datum/lore/codex/checked = current_page["[user]"]
 	if(istype(checked))
 		var/output = ""

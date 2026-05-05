@@ -63,7 +63,7 @@
 	has_hood_sprite = TRUE
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(var/atom/movable/item_storage = null)
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
 //ketrai:Ketrai
@@ -671,10 +671,10 @@
 	actions_types = list(/datum/action/item_action/toggle_pom_pom)
 	special_handling = TRUE
 
-/obj/item/clothing/head/fluff/pompom/digest_act(var/atom/movable/item_storage = null)
+/obj/item/clothing/head/fluff/pompom/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/head/fluff/pompom/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/clothing/head/fluff/pompom/gurgle_contaminate(atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
@@ -1464,7 +1464,7 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "phi_ring"
 
-/obj/item/clothing/accessory/ring/seal/signet/fluff/phi/change_name(var/signet_name = "Unknown")
+/obj/item/clothing/accessory/ring/seal/signet/fluff/phi/change_name(signet_name = "Unknown")
 	name = "[signet_name]'s Bone Signet Ring"
 	desc = "A signet ring belonging to [signet_name], carved from the bones of something long extinct, as a ward against bad luck."
 
@@ -1589,10 +1589,10 @@ Departamental Swimsuits, for general use
 	icon_state = "bracer_xander_sthasha"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 
-/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/digest_act(var/atom/movable/item_storage = null)
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(var/atom/movable/item_storage = null)
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(atom/movable/item_storage = null)
 	return FALSE
 
 //Heroman3003:Lauren Zackson
@@ -1659,7 +1659,7 @@ Departamental Swimsuits, for general use
 
 	return 1
 
-/obj/item/clothing/under/fluff/slime_skeleton/digest_act(var/atom/movable/item_storage = null)
+/obj/item/clothing/under/fluff/slime_skeleton/digest_act(atom/movable/item_storage = null)
 	return FALSE	//Indigestible
 
 //Bacon12366:Elly Brown
@@ -1843,7 +1843,7 @@ Departamental Swimsuits, for general use
 	set src in usr
 	translocator_unequip(translocator, usr)
 
-/obj/item/clothing/head/fluff/nikki/proc/translocator_equip(var/obj/item/perfect_tele/T, var/mob/living/carbon/human/user)
+/obj/item/clothing/head/fluff/nikki/proc/translocator_equip(obj/item/perfect_tele/T, mob/living/carbon/human/user)
 	if (do_after(user, 2 SECONDS, target = T))
 		user.unEquip(T)
 		translocator_unequip(translocator, user)
@@ -1852,7 +1852,7 @@ Departamental Swimsuits, for general use
 		user.show_message("[icon2html(src, user.client)]*click!*")
 		playsound(src, 'sound/machines/click.ogg', 30, 1)
 
-/obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(var/obj/item/perfect_tele/T, var/mob/living/carbon/human/user)
+/obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(obj/item/perfect_tele/T, mob/living/carbon/human/user)
 	if (translocator)
 		if (user)
 			user.put_in_hands(T)
@@ -1870,7 +1870,7 @@ Departamental Swimsuits, for general use
 		user.visible_message(span_bold("\The [src]") + " flops over [user]'s' head for a moment, but they seem alright.", \
 		span_notice("\The [src] flops over your head for a moment, but you correct it without issue. There we go!"))
 
-/obj/item/clothing/head/fluff/nikki/proc/hat_warp_checks(var/mob/living/target, mob/user, proximity_flag)
+/obj/item/clothing/head/fluff/nikki/proc/hat_warp_checks(mob/living/target, mob/user, proximity_flag)
 	if (!proximity_flag)
 		return 0
 
@@ -1965,7 +1965,7 @@ Departamental Swimsuits, for general use
 			add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported by it (via \the [translocator] within)!")
 			return
 
-/obj/item/clothing/head/fluff/nikki/afterattack(var/mob/living/target, mob/user, proximity_flag, click_parameters)
+/obj/item/clothing/head/fluff/nikki/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters)
 	// If the hat is willing to cooperate with the holder...
 	if (hat_warp_checks(target, user, proximity_flag))
 		// Silly fluffed up styles of teleporting people based on user intent.

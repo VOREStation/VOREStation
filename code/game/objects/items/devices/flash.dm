@@ -49,7 +49,7 @@
 	. = ..()
 	power_supply = new cell_type(src)
 
-/obj/item/flash/attackby(var/obj/item/W, var/mob/user)
+/obj/item/flash/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && broken)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts trying to repair \the [src]'s bulb."))
 		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed, target = src) && can_repair)
@@ -92,7 +92,7 @@
 					return suit.cell
 	return null
 
-/obj/item/flash/proc/clown_check(var/mob/user)
+/obj/item/flash/proc/clown_check(mob/user)
 	if(user && CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("\The [src] slips out of your hand."))
 		user.drop_item()

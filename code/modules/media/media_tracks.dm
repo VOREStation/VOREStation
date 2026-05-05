@@ -12,7 +12,7 @@
 	var/secret		// Show up in regular playlist or secret playlist?
 	var/lobby		// Be one of the choices for lobby music?
 
-/datum/track/New(var/url, var/title, var/duration, var/artist = "", var/genre = "", var/secret = 0, var/lobby = 0)
+/datum/track/New(url, title, duration, artist = "", genre = "", secret = 0, lobby = 0)
 	src.url = url
 	src.title = title
 	src.artist = artist

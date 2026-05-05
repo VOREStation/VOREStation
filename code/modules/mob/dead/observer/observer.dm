@@ -132,7 +132,7 @@
 /mob/observer/dead/CanPass(atom/movable/mover, turf/target)
 	return TRUE
 
-/mob/observer/dead/set_stat(var/new_stat)
+/mob/observer/dead/set_stat(new_stat)
 	if(new_stat != DEAD)
 		CRASH("It is best if observers stay dead, thank you.")
 
@@ -183,7 +183,7 @@ Works together with spawning an observer, noted above.
 		forceMove(O.loc)
 //RS Port #658 End
 
-/mob/proc/ghostize(var/can_reenter_corpse = 1, var/aghost = FALSE)
+/mob/proc/ghostize(can_reenter_corpse = 1, aghost = FALSE)
 	reset_perspective(src) // End any remoteview we're in
 	if(key)
 		if(ishuman(src))
@@ -450,7 +450,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return ..()
 
 // This is the ghost's follow verb with an argument
-/mob/observer/dead/proc/ManualFollow(var/atom/movable/target)
+/mob/observer/dead/proc/ManualFollow(atom/movable/target)
 	if(!target)
 		return
 
@@ -569,10 +569,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	update_following()
 	return ..()
 
-/mob/proc/check_holy(var/turf/T)
+/mob/proc/check_holy(turf/T)
 	return FALSE
 
-/mob/observer/dead/check_holy(var/turf/T)
+/mob/observer/dead/check_holy(turf/T)
 	if(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT))
 		return FALSE
 
@@ -771,7 +771,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			span_warning("You get the feeling that the ghost can't become any more visible.") \
 		)
 
-/mob/observer/dead/proc/toggle_icon(var/icon)
+/mob/observer/dead/proc/toggle_icon(icon)
 	if(!client)
 		return
 
@@ -807,7 +807,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost.Settings"
 	toggle_ghost_visibility()
 
-/mob/observer/dead/proc/toggle_ghost_visibility(var/forced = FALSE)
+/mob/observer/dead/proc/toggle_ghost_visibility(forced = FALSE)
 	if(!is_manifest)
 		to_chat(src, span_filter_notice("You are not strong enough to pierce the veil..."))
 		return
@@ -875,7 +875,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	plane_holder.set_vis(VIS_LIGHTING, lighting_alpha)
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
-/mob/observer/dead/MayRespawn(var/feedback = FALSE)
+/mob/observer/dead/MayRespawn(feedback = FALSE)
 	if(!client)
 		return FALSE
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
@@ -891,15 +891,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /atom/proc/extra_ghost_link()
 	return
 
-/mob/extra_ghost_link(var/atom/ghost)
+/mob/extra_ghost_link(atom/ghost)
 	if(client && eyeobj)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[eyeobj]'>eye</a>"
 
-/mob/observer/dead/extra_ghost_link(var/atom/ghost)
+/mob/observer/dead/extra_ghost_link(atom/ghost)
 	if(mind && mind.current)
 		return "|<a href='byond://?src=\ref[ghost];track=\ref[mind.current]'>body</a>"
 
-/proc/ghost_follow_link(var/atom/target, var/atom/ghost)
+/proc/ghost_follow_link(atom/target, atom/ghost)
 	if((!target) || (!ghost)) return
 	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>follow</a>"
 	. += target.extra_ghost_link(ghost)
@@ -1009,7 +1009,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 // Lets a ghost know someone's trying to bring them back, and for them to get into their body.
 // Mostly the same as TG's sans the hud element, since we don't have TG huds.
-/mob/observer/dead/proc/notify_revive(var/message, var/sound, flashwindow = TRUE, var/atom/source)
+/mob/observer/dead/proc/notify_revive(message, sound, flashwindow = TRUE, atom/source)
 	if((last_revive_notification + 2 MINUTES) > world.time)
 		return
 	last_revive_notification = world.time

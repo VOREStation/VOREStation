@@ -17,7 +17,7 @@
 	germ_level = 0
 	fingerprint_chance = 10 // They're thieves' gloves. What do you think?
 
-/obj/item/clothing/gloves/sterile/thieves/proc/pickpocket(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/proximity)
+/obj/item/clothing/gloves/sterile/thieves/proc/pickpocket(mob/living/carbon/human/user, mob/living/carbon/human/target, proximity)
 	if(!proximity || !user || !target)
 		return 0
 
@@ -84,7 +84,7 @@
 
 		return 1
 
-/obj/item/clothing/gloves/sterile/thieves/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/sterile/thieves/Touch(atom/A, proximity)
 	if(proximity && ishuman(usr) && ishuman(A) && do_after(usr, 1 SECOND, target = A))
 		return pickpocket(usr, A, proximity)
 	return 0

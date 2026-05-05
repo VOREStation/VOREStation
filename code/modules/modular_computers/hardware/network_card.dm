@@ -21,7 +21,7 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	/// If set, uses the value to funnel connections through another network card.
 	var/proxy_id
 
-/obj/item/computer_hardware/network_card/diagnostics(var/mob/user)
+/obj/item/computer_hardware/network_card/diagnostics(mob/user)
 	..()
 	to_chat(user, "NIX Unique ID: [identification_id]")
 	to_chat(user, "NIX User Tag: [identification_string]")
@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	icon_state = "netcard_advanced"
 	hardware_size = 1
 
-/obj/item/computer_hardware/network_card/quantum/get_signal(var/specific_action = 0)
+/obj/item/computer_hardware/network_card/quantum/get_signal(specific_action = 0)
 	if(!holder2)
 		return 0
 
@@ -87,7 +87,7 @@ GLOBAL_VAR_INIT(ntnet_card_uid, 1)
 	return GLOB.ntnet_global.check_banned(identification_id)
 
 // 0 - No signal, 1 - Low signal, 2 - High signal. 3 - Wired Connection
-/obj/item/computer_hardware/network_card/proc/get_signal(var/specific_action = 0)
+/obj/item/computer_hardware/network_card/proc/get_signal(specific_action = 0)
 	if(!holder2) // Hardware is not installed in anything. No signal. How did this even get called?
 		return 0
 

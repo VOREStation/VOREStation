@@ -84,7 +84,7 @@
 
 	stacks = MODIFIER_STACK_ALLOWED //You have somehow had the surgery done twice. Your brain is very, very fucked, but I won't say no.
 
-/datum/modifier/franken_sickness/can_apply(var/mob/living/L)
+/datum/modifier/franken_sickness/can_apply(mob/living/L)
 	if(!ishuman(L))
 		return FALSE
 	if(L.isSynthetic()) //Nonhumans and Machines cannot be Frankensteined, at this time.
@@ -106,7 +106,7 @@
 
 	stacks = MODIFIER_STACK_ALLOWED
 
-/datum/modifier/franken_recovery/can_apply(var/mob/living/L)
+/datum/modifier/franken_recovery/can_apply(mob/living/L)
 	if(!ishuman(L))
 		return FALSE
 	if(L.isSynthetic()) //Nonhumans and Machines cannot be Frankensteined, at this time.

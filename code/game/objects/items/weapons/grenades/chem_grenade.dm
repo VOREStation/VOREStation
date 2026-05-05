@@ -147,7 +147,7 @@
 
 	return
 
-/obj/item/grenade/chem_grenade/proc/primed(var/primed = 1)
+/obj/item/grenade/chem_grenade/proc/primed(primed = 1)
 	if(active)
 		icon_state = initial(icon_state) + (primed?"_primed":"_active")
 

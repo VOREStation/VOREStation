@@ -131,7 +131,7 @@
 		if(species.emp_sensitivity & EMP_OXY_DMG)
 			src.adjustOxyLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null, stun = 1)
 	if(SEND_SIGNAL(src, COMSIG_BEING_ELECTROCUTED, shock_damage, source, siemens_coeff, def_zone, stun) & COMPONENT_CARBON_CANCEL_ELECTROCUTE)
 		return 0	// Cancelled by a component
 	if(def_zone == BP_L_HAND || def_zone == BP_R_HAND) //Diona (And any other potential plant people) hands don't get shocked.
@@ -325,7 +325,7 @@
 /mob/living/carbon/proc/getDNA()
 	return dna
 
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
+/mob/living/carbon/proc/setDNA(datum/dna/newDNA)
 	dna = newDNA
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
@@ -366,7 +366,7 @@
 
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
@@ -400,7 +400,7 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+/mob/living/carbon/slip(slipped_on,stun_duration=8)
 	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
 	if(buckled)
 		return FALSE
@@ -414,13 +414,13 @@
 	Weaken(FLOOR(stun_duration/2, 1))
 	return TRUE
 
-/mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+/mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
 
-/mob/living/carbon/proc/remove_chemical_effect(var/effect, var/magnitude)
+/mob/living/carbon/proc/remove_chemical_effect(effect, magnitude)
 	if(effect in chem_effects)
 		chem_effects[effect] = magnitude ? max(0,chem_effects[effect]-magnitude) : 0
 
@@ -436,10 +436,10 @@
 
 	return species.default_language ? GLOB.all_languages[species.default_language] : GLOB.all_languages[LANGUAGE_GIBBERISH]
 
-/mob/living/carbon/proc/should_have_organ(var/organ_check)
+/mob/living/carbon/proc/should_have_organ(organ_check)
 	return 0
 
-/mob/living/carbon/can_feel_pain(var/check_organ)
+/mob/living/carbon/can_feel_pain(check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)
@@ -539,7 +539,7 @@
 			if(src.wear_mask.wash(clean_types))
 				src.update_inv_wear_mask(0)
 
-/mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+/mob/living/carbon/proc/food_preference(allergen_type) //RS edit
 	if(!species) // carbon/brains have no species
 		return FALSE
 

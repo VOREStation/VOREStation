@@ -49,7 +49,7 @@ Bonus
 	if(A.resistance >= 9)
 		power = 2
 
-/datum/symptom/deafness/Activate(var/datum/disease/advance/A)
+/datum/symptom/deafness/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob

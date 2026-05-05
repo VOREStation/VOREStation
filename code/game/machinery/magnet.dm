@@ -39,7 +39,7 @@
 	magnetic_process()
 
 // update the invisibility and icon
-/obj/machinery/magnetic_module/hide(var/intact)
+/obj/machinery/magnetic_module/hide(intact)
 	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
@@ -64,7 +64,7 @@
 
 		Cmd(command, modifier)
 
-/obj/machinery/magnetic_module/proc/Cmd(var/command, var/modifier)
+/obj/machinery/magnetic_module/proc/Cmd(command, modifier)
 	if(command)
 		switch(command)
 			if("set-electriclevel")
@@ -157,7 +157,7 @@
 
 	update_icon()
 
-/obj/machinery/magnetic_module/proc/magnetic_process(var/called_back) // proc that actually does the pulling
+/obj/machinery/magnetic_module/proc/magnetic_process(called_back) // proc that actually does the pulling
 	if(called_back)
 		pulling = 0
 

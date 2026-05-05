@@ -293,7 +293,7 @@
 	hud_level = FALSE
 	update_paint()
 
-/obj/item/paint_brush/proc/update_paint(var/new_color)
+/obj/item/paint_brush/proc/update_paint(new_color)
 	if(new_color)
 		selected_color = new_color
 		color_drop.color = new_color
@@ -553,7 +553,7 @@
  * TODO: create a machine in the library for curators to spawn canvases and refactor this to use the proc used there.
  * For now, we do it this way because calling this on a canvas itself might cause issues due to the whole dimension thing.
 */
-/obj/structure/sign/painting/proc/admin_lateload_painting(var/spawn_specific = 0, var/which_painting = 0)
+/obj/structure/sign/painting/proc/admin_lateload_painting(spawn_specific = 0, which_painting = 0)
 	if(!check_rights_for(usr.client, R_HOLDER))
 		return 0
 	if(spawn_specific && isnum(which_painting))

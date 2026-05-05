@@ -33,7 +33,7 @@
 
 	on_tool_switch(user)
 
-/obj/item/tool/transforming/proc/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/proc/on_tool_switch(mob/user)
 	return
 
 /obj/item/tool/transforming/jawsoflife
@@ -51,7 +51,7 @@
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked", "pinched", "nipped")
 	possible_tooltypes = list(TOOL_CROWBAR,TOOL_WIRECUTTER)
 
-/obj/item/tool/transforming/jawsoflife/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/jawsoflife/on_tool_switch(mob/user)
 	switch(possible_tooltypes[current_tooltype])
 		if(TOOL_CROWBAR)
 			desc = initial(desc) + " It's fitted with a prying head."
@@ -89,7 +89,7 @@
 	attack_verb = list("drilled", "screwed", "jabbed", "whacked")
 	possible_tooltypes = list(TOOL_WRENCH,TOOL_SCREWDRIVER)
 
-/obj/item/tool/transforming/powerdrill/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/powerdrill/on_tool_switch(mob/user)
 	switch(possible_tooltypes[current_tooltype])
 		if(TOOL_WRENCH)
 			desc = initial(desc) + " It's fitted with a bolt driver."
@@ -129,7 +129,7 @@
 	possible_tooltypes = list(TOOL_WRENCH,TOOL_CROWBAR,TOOL_WIRECUTTER,TOOL_SCREWDRIVER,TOOL_MULTITOOL,TOOL_WELDER)
 	weldertype = /obj/item/weldingtool/dummy/altevian
 
-/obj/item/tool/transforming/altevian/on_tool_switch(var/mob/user)
+/obj/item/tool/transforming/altevian/on_tool_switch(mob/user)
 	switch(possible_tooltypes[current_tooltype])
 		if(TOOL_WRENCH)
 			desc = initial(desc) + " It's currently in bolting mode."

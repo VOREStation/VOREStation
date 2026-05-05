@@ -75,7 +75,7 @@
 	attack_hand(user)
 	return
 
-/obj/structure/ladder/attack_hand(var/mob/M)
+/obj/structure/ladder/attack_hand(mob/M)
 	if(!M.may_climb_ladders(src))
 		return
 
@@ -88,16 +88,16 @@
 
 	climbLadder(M, target_ladder)
 
-/obj/structure/ladder/attack_ghost(var/mob/M)
+/obj/structure/ladder/attack_ghost(mob/M)
 	var/target_ladder = getTargetLadder(M)
 	if(target_ladder)
 		M.forceMove(get_turf(target_ladder))
 
-/obj/structure/ladder/attack_robot(var/mob/M)
+/obj/structure/ladder/attack_robot(mob/M)
 	attack_hand(M)
 	return
 
-/obj/structure/ladder/proc/getTargetLadder(var/mob/M)
+/obj/structure/ladder/proc/getTargetLadder(mob/M)
 	if((!target_up && !target_down) || (target_up && !istype(target_up.loc, /turf) || (target_down && !istype(target_down.loc,/turf))))
 		to_chat(M, span_notice("\The [src] is incomplete and can't be climbed."))
 		return
@@ -118,7 +118,7 @@
 	else
 		return target_down || target_up
 
-/mob/proc/may_climb_ladders(var/ladder)
+/mob/proc/may_climb_ladders(ladder)
 	if(!Adjacent(ladder))
 		to_chat(src, span_warning("You need to be next to \the [ladder] to start climbing."))
 		return FALSE
@@ -127,10 +127,10 @@
 		return FALSE
 	return TRUE
 
-/mob/observer/dead/may_climb_ladders(var/ladder)
+/mob/observer/dead/may_climb_ladders(ladder)
 	return TRUE
 
-/obj/structure/ladder/proc/climbLadder(var/mob/M, var/obj/target_ladder)
+/obj/structure/ladder/proc/climbLadder(mob/M, obj/target_ladder)
 	var/direction = (target_ladder == target_up ? "up" : "down")
 	M.visible_message(span_infoplain(span_bold("\The [M]") + " begins climbing [direction] \the [src]!"),
 		span_info("You begin climbing [direction] \the [src]!"),

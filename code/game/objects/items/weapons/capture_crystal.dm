@@ -490,14 +490,14 @@
 	thing.overlays += coolanimation
 	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.1 SECOND, TIMER_DELETE_ME)
 
-/obj/item/capture_crystal/proc/animate_action_finished(atom/thing,var/image/coolanimation)
+/obj/item/capture_crystal/proc/animate_action_finished(atom/thing,image/coolanimation)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	thing.overlays -= coolanimation
 	qdel(coolanimation)
 
 //IF the crystal somehow ends up in a tummy and digesting with a bound mob who doesn't want to be eaten, let's move them to the ground
-/obj/item/capture_crystal/digest_act(var/atom/movable/item_storage = null)
+/obj/item/capture_crystal/digest_act(atom/movable/item_storage = null)
 	if(bound_mob)
 		if((bound_mob in contents) && !bound_mob.devourable)
 			bound_mob.forceMove(src.drop_location())

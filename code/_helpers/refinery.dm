@@ -1,5 +1,5 @@
 /// Grinds down various objects into their reagent components. Returns true if any reagents were gained from the attempt.
-/proc/grind_items_to_reagents(var/list/holdingitems,var/datum/reagents/R)
+/proc/grind_items_to_reagents(list/holdingitems,datum/reagents/R)
 	var/start_volume = R.total_volume
 
 	for(var/obj/item/O in holdingitems)

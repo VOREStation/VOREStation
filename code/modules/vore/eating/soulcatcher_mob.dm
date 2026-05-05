@@ -41,12 +41,12 @@
 		client.screen.Remove(GLOB.global_hud.whitense)
 
 // Say proc for captures souls
-/mob/living/carbon/brain/caught_soul/vore/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/carbon/brain/caught_soul/vore/say(message, datum/language/speaking = null, whispering = 0)
 	if(silent) return FALSE
 	gem.use_speech(message, src, eyeobj)
 
 // Emote proc for captured souls
-/mob/living/carbon/brain/caught_soul/vore/custom_emote(var/m_type, var/message)
+/mob/living/carbon/brain/caught_soul/vore/custom_emote(m_type, message)
 	if(silent) return FALSE
 	gem.use_emote(message,src,eyeobj)
 
@@ -93,7 +93,7 @@
 
 	src.nsay_vore_act()
 
-/mob/proc/nsay_vore_act(var/message)
+/mob/proc/nsay_vore_act(message)
 	if(stat != CONSCIOUS)
 		to_chat(src, span_warning("You can't use NSay Vore while unconscious."))
 		return
@@ -124,7 +124,7 @@
 
 	src.nme_vore_act()
 
-/mob/proc/nme_vore_act(var/message)
+/mob/proc/nme_vore_act(message)
 	if(stat != CONSCIOUS)
 		to_chat(src, span_warning("You can't use NMe Vore while unconscious."))
 		return

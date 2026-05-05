@@ -16,7 +16,7 @@
 
 	var/dry_type = /obj/item/stack/material/leather
 
-/obj/item/stack/wetleather/examine(var/mob/user)
+/obj/item/stack/wetleather/examine(mob/user)
 	. = ..()
 	. += description_info
 	. += "\The [src] is [get_dryness_text()]."
@@ -42,7 +42,7 @@
 	use(get_amount())
 	return L
 
-/obj/item/stack/wetleather/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
+/obj/item/stack/wetleather/transfer_to(obj/item/stack/S, tamount=null, type_verified)
 	. = ..()
 	if(.) // If it transfers any, do a weighted average of the wetness
 		var/obj/item/stack/wetleather/W = S

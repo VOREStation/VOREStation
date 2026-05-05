@@ -96,14 +96,14 @@ SUBSYSTEM_DEF(appreciation)
 	var/terrible_factoid = pick(GLOB.loremaster.terrible_factoids)
 	msg("Today is [appreciated] appreciation day! [terrible_factoid] [appreciation_message]")
 
-/datum/controller/subsystem/appreciation/proc/msg(var/message,var/sender)
+/datum/controller/subsystem/appreciation/proc/msg(message,sender)
 	ASSERT(message)
 	GLOB.global_announcer.autosay("[message]", sender ? sender : "Cultural Awareness")
 
 /datum/controller/subsystem/appreciation/proc/is_squelched()
 	return squelched
 
-/datum/controller/subsystem/appreciation/proc/cancel_appreciation(var/yes = 1,var/silent = FALSE)
+/datum/controller/subsystem/appreciation/proc/cancel_appreciation(yes = 1,silent = FALSE)
 	if(yes)
 		if(!squelched && !silent)
 			msg("Today's appreciation day has been suspended.")

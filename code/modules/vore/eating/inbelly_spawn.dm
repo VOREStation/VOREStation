@@ -64,7 +64,7 @@
 		to_chat(potential_prey, span_notice("Inbelly spawn cancelled."))
 		to_chat(src, span_notice("Prey cancelled their inbelly spawn request."))
 
-/proc/inbelly_spawn(client/prey, mob/living/pred, obj/belly/target_belly, var/absorbed = FALSE)
+/proc/inbelly_spawn(client/prey, mob/living/pred, obj/belly/target_belly, absorbed = FALSE)
 	// All this is basically admin late spawn-in, but skipping all parts related to records and equipment and with predteremined location
 	var/player_key = prey.key
 	var/picked_ckey = prey.ckey

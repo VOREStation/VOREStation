@@ -95,7 +95,7 @@
 
 	return ..()
 
-/obj/machinery/air_sensor/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
+/obj/machinery/air_sensor/proc/wrench_act(mob/living/user, obj/item/tool/wrench/W)
 	playsound(src, W.usesound, 50, 1)
 	user.visible_message("[user] unfastens \the [src].", span_notice("You have unfastened \the [src]."), "You hear ratcheting.")
 	var/obj/item/pipe_gsensor/gsensor = new /obj/item/pipe_gsensor(loc)

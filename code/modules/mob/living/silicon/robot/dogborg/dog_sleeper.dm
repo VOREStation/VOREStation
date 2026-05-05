@@ -80,7 +80,7 @@
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
 
-/obj/item/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity_flag, click_parameters)
+/obj/item/dogborg/sleeper/afterattack(atom/movable/target, mob/living/silicon/user, proximity_flag, click_parameters)
 	hound = loc
 	if(!istype(target))
 		return
@@ -173,7 +173,7 @@
 				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 
-/obj/item/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
+/obj/item/dogborg/sleeper/proc/ingest_atom(atom/ingesting)
 	if (!ingesting || ingesting == hound)
 		return
 	var/obj/belly/belly = hound.vore_selected
@@ -198,7 +198,7 @@
 		to_eat.forceMove(belly)
 		log_admin("VORE: [hound] used their [src] to swallow [to_eat].")
 
-/obj/item/dogborg/sleeper/proc/ingest_living(var/mob/living/victim, var/obj/belly/belly)
+/obj/item/dogborg/sleeper/proc/ingest_living(mob/living/victim, obj/belly/belly)
 	if (victim.devourable && is_vore_predator(hound))
 		belly.nom_atom(victim, hound)
 		add_attack_logs(hound, victim, "Eaten via [belly.name]")
@@ -231,7 +231,7 @@
 	hound.updateVRPanel()
 	update_patient()
 
-/obj/item/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
+/obj/item/dogborg/sleeper/proc/drain(amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
 	if(istype(hound,/obj/item/robot_module))
 		hound = hound.loc

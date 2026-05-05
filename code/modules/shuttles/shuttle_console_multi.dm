@@ -2,7 +2,7 @@
 	circuit = /obj/item/circuitboard/shuttle_console/multi
 	tgui_subtemplate = "ShuttleControlConsoleMulti"
 
-/obj/machinery/computer/shuttle_control/multi/shuttlerich_tgui_data(var/datum/shuttle/autodock/multi/shuttle)
+/obj/machinery/computer/shuttle_control/multi/shuttlerich_tgui_data(datum/shuttle/autodock/multi/shuttle)
 	. = ..()
 	if(istype(shuttle))
 		. += list(

@@ -10,7 +10,7 @@
 /obj/item/paicard/sleevecard/attack_ghost(mob/user as mob)
 	return // No ghosts can invite, these are intended for sleevemates only
 
-/obj/item/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
+/obj/item/paicard/sleevecard/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/sleevemate))
 		var/obj/item/sleevemate/S = I
 		if(S.stored_mind && !pai)
@@ -36,7 +36,7 @@
 				our_infomorph.emagged = TRUE
 				to_chat(our_infomorph, span_warning("You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master."))
 
-/obj/item/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
+/obj/item/paicard/sleevecard/proc/sleeveInto(datum/transhuman/mind_record/MR, db_key)
 	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key)
 
 	for(var/datum/language/L in MR.languages)
@@ -84,7 +84,7 @@
 	ram = 35
 	var/emagged = FALSE
 
-/mob/living/silicon/pai/infomorph/Initialize(mapload, var/our_name = "Unknown", var/db_key)
+/mob/living/silicon/pai/infomorph/Initialize(mapload, our_name = "Unknown", db_key)
 	. = ..()
 
 	name = our_name

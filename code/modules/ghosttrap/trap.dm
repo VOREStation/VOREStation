@@ -3,7 +3,7 @@
 
 GLOBAL_LIST(ghost_traps)
 
-/proc/get_ghost_trap(var/trap_key)
+/proc/get_ghost_trap(trap_key)
 	if(!GLOB.ghost_traps)
 		populate_ghost_traps()
 	return GLOB.ghost_traps[trap_key]
@@ -22,7 +22,7 @@ GLOBAL_LIST(ghost_traps)
 	var/ghost_trap_role = "Positronic Brain"
 
 // Check for bans, proper atom types, etc.
-/datum/ghosttrap/proc/assess_candidate(var/mob/observer/dead/candidate)
+/datum/ghosttrap/proc/assess_candidate(mob/observer/dead/candidate)
 	if(!istype(candidate) || !candidate.client || !candidate.ckey)
 		return 0
 	if(!candidate.MayRespawn())
@@ -36,7 +36,7 @@ GLOBAL_LIST(ghost_traps)
 	return 1
 
 // Print a message to all ghosts with the right prefs/lack of bans.
-/datum/ghosttrap/proc/request_player(var/mob/target, var/request_string)
+/datum/ghosttrap/proc/request_player(mob/target, request_string)
 	if(!target)
 		return
 	for(var/mob/observer/dead/O in GLOB.player_list)
@@ -65,7 +65,7 @@ GLOBAL_LIST(ghost_traps)
 		return 1
 
 // Shunts the ckey/mind into the target mob.
-/datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target)
+/datum/ghosttrap/proc/transfer_personality(mob/candidate, mob/target)
 	if(!assess_candidate(candidate))
 		return 0
 	target.ckey = candidate.ckey
@@ -77,7 +77,7 @@ GLOBAL_LIST(ghost_traps)
 	return 1
 
 // Fluff!
-/datum/ghosttrap/proc/welcome_candidate(var/mob/target)
+/datum/ghosttrap/proc/welcome_candidate(mob/target)
 	to_chat(target, span_infoplain(span_bold("You are a positronic brain, brought into existence on [station_name()].")))
 	to_chat(target, span_infoplain(span_bold("As a synthetic intelligence, you answer to all crewmembers, as well as the AI.")))
 	to_chat(target, span_infoplain(span_bold("Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.")))
@@ -92,7 +92,7 @@ GLOBAL_LIST(ghost_traps)
 	P.icon_state = "posibrain-occupied"
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
-/datum/ghosttrap/proc/set_new_name(var/mob/target)
+/datum/ghosttrap/proc/set_new_name(mob/target)
 	var/newname = sanitizeSafe(tgui_input_text(target,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if (newname != "")
 		target.real_name = newname
@@ -106,7 +106,7 @@ GLOBAL_LIST(ghost_traps)
 	ghost_trap_message = "They are occupying a living plant now."
 	ghost_trap_role = "Plant"
 
-/datum/ghosttrap/plant/welcome_candidate(var/mob/target)
+/datum/ghosttrap/plant/welcome_candidate(mob/target)
 	to_chat(target, span_infoplain(span_alium(span_bold("You awaken slowly, stirring into sluggish motion as the air caresses you."))))
 	// This is a hack, replace with some kind of species blurb proc.
 	if(istype(target,/mob/living/carbon/alien/diona))

@@ -246,7 +246,7 @@
 					pay_donation(H.GetIdCard(), ui.user, amount, ui)
 			. = TRUE
 
-/obj/machinery/librarywikicomp/proc/pay_donation(var/obj/item/card/id/I, var/mob/user, var/amount, var/datum/tgui/ui)
+/obj/machinery/librarywikicomp/proc/pay_donation(obj/item/card/id/I, mob/user, amount, datum/tgui/ui)
 	visible_message(span_info("[user] swipes a card through [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(SSinternal_wiki.pay_with_card(I, user, src, amount))

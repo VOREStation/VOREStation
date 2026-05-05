@@ -7,7 +7,7 @@
 	var/hidden = FALSE
 	var/image/compass_overlay
 
-/datum/compass_waypoint/proc/set_values(var/_name, var/_x, var/_y, var/_z, var/_color)
+/datum/compass_waypoint/proc/set_values(_name, _x, _y, _z, _color)
 	name = _name
 	x = _x
 	y = _y
@@ -20,7 +20,7 @@
 	compass_overlay.layer = LAYER_HUD_UNDER
 	compass_overlay.plane = PLANE_PLAYER_HUD
 
-/datum/compass_waypoint/proc/recalculate_heading(var/cx, var/cy)
+/datum/compass_waypoint/proc/recalculate_heading(cx, cy)
 	var/matrix/M = matrix()
 	M.Translate(0, (name ? COMPASS_LABEL_OFFSET-4 : COMPASS_LABEL_OFFSET))
 	M.Turn(ATAN2(cy-y, cx-x)+180)

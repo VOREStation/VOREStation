@@ -46,7 +46,7 @@
 	exonet.address = target_address
 	address_spoofed = TRUE
 
-/obj/item/integrated_circuit/illegal/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+/obj/item/integrated_circuit/illegal/receive_exonet_message(atom/origin_atom, origin_address, message, text)
 	set_pin_data(IC_OUTPUT, 1, origin_address)
 	set_pin_data(IC_OUTPUT, 2, message)
 	set_pin_data(IC_OUTPUT, 3, text)

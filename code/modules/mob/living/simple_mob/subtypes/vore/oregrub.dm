@@ -125,7 +125,7 @@
 /datum/say_list/oregrub
 	emote_see = list("burbles", "chitters", "snuffles around for fresh ore")
 
-/mob/living/simple_mob/vore/oregrub/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/oregrub/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		var/target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)

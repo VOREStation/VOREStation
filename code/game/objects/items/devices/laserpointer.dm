@@ -30,7 +30,7 @@
 /obj/item/laser_pointer/purple
 	pointer_icon_state = "purple_laser"
 
-/obj/item/laser_pointer/Initialize(mapload, var/laser_path)
+/obj/item/laser_pointer/Initialize(mapload, laser_path)
 	. = ..()
 	if(ispath(laser_path))
 		diode = new laser_path
@@ -68,12 +68,12 @@
 		..()
 	return
 
-/obj/item/laser_pointer/afterattack(var/atom/target, var/mob/living/user, flag, params)
+/obj/item/laser_pointer/afterattack(atom/target, mob/living/user, flag, params)
 	if(flag)	//we're placing the object on a table or in backpack
 		return
 	laser_act(target, user)
 
-/obj/item/laser_pointer/proc/laser_act(var/atom/target, var/mob/living/user)
+/obj/item/laser_pointer/proc/laser_act(atom/target, mob/living/user)
 	if(!(user in (viewers(world.view,target))))
 		return
 	if(!(target in view(user, world.view)))

@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	var/obj/item/pipe/construction_type 		// The type PATH to the type of pipe fitting object the recipe makes.
 	var/paintable = FALSE						// If TRUE, allow the RPD to paint this pipe.	// VOREStation Add
 
-/datum/pipe_recipe/pipe/New(var/label, var/obj/machinery/atmospherics/path)
+/datum/pipe_recipe/pipe/New(label, obj/machinery/atmospherics/path)
 	name = label
 	pipe_type = path
 	construction_type = initial(path.construction_type)
@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 /datum/pipe_recipe/disposal
 	var/subtype			// subtype is one of the DISPOSAL_SORT_ constants.
 
-/datum/pipe_recipe/disposal/New(var/label, var/ptype, var/state, dt=PIPE_DIRECTIONAL, var/sort=0)
+/datum/pipe_recipe/disposal/New(label, ptype, state, dt=PIPE_DIRECTIONAL, sort=0)
 	name = label
 	icon_state = state
 	pipe_type = ptype

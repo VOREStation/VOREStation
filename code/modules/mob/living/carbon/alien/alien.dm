@@ -54,7 +54,7 @@
 		return default_language
 	return GLOB.all_languages[LANGUAGE_XENOLINGUA]
 
-/mob/living/carbon/alien/say_quote(var/message, var/datum/language/speaking = null)
+/mob/living/carbon/alien/say_quote(message, datum/language/speaking = null)
 	var/verb = "hisses"
 	var/ending = copytext(message, length(message))
 

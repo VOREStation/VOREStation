@@ -75,5 +75,5 @@
 	icon = 'icons/obj/machines/gateway_vr.dmi'
 
 //No, you can't digest the key to leave the gateway.
-/obj/item/mcguffin/digest_act(var/atom/movable/item_storage = null)
+/obj/item/mcguffin/digest_act(atom/movable/item_storage = null)
 	return FALSE

@@ -21,7 +21,7 @@
 	QDEL_NULL(monitor)
 	. = ..()
 
-/obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
+/obj/machinery/computer/fusion_core_control/attackby(obj/item/thing, mob/user)
 	..()
 	if(istype(thing, /obj/item/multitool))
 		var/new_ident = sanitize_text(tgui_input_text(user, "Enter a new ident tag.", "Core Control", monitor.core_tag))
@@ -32,7 +32,7 @@
 /obj/machinery/computer/fusion_core_control/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/computer/fusion_core_control/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/fusion_core_control/attack_hand(mob/user as mob)
 	..()
 	if(stat & (BROKEN|NOPOWER))
 		return
@@ -40,5 +40,5 @@
 	monitor.tgui_interact(user)
 
 //Returns 1 if the machine can be interacted with via this console.
-/obj/machinery/computer/fusion_core_control/proc/check_core_status(var/obj/machinery/power/fusion_core/C)
+/obj/machinery/computer/fusion_core_control/proc/check_core_status(obj/machinery/power/fusion_core/C)
 	return istype(C) ? C.check_core_status() : FALSE

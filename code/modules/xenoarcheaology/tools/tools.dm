@@ -114,7 +114,7 @@
 	var/record_index = 1
 	var/material = "unknown"
 
-/obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
+/obj/item/depth_scanner/proc/scan_atom(mob/user, atom/A)
 	user.visible_message(span_bold("\The [user]") + " scans \the [A], the air around them humming gently.")
 
 	if(istype(A, /turf/simulated/mineral))

@@ -67,7 +67,7 @@
 	// NORMIE
 	return ..()
 
-/mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/carbon/human/say_understands(mob/other, datum/language/speaking = null)
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
 		return TRUE
 
@@ -128,7 +128,7 @@
 			return formatted_name
 	return real_name
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+/mob/living/carbon/human/proc/SetSpecialVoice(new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
@@ -140,7 +140,7 @@
 /mob/living/carbon/human/proc/GetSpecialVoice()
 	return special_voice
 
-/mob/living/carbon/human/handle_speech_problems(var/list/message_data)
+/mob/living/carbon/human/handle_speech_problems(list/message_data)
 	if(silent || (sdisabilities & MUTE) || is_paralyzed())
 		// MUTE shouldn't suppress noise language (audible say emotes), consistent with * emotes bypassing mute in say().
 		if((sdisabilities & MUTE) && !silent && !is_paralyzed())

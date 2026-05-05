@@ -93,7 +93,7 @@
 
 		VARSET_IN(src, hasShocked, FALSE, 2 SECONDS)
 
-/obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
+/obj/machinery/containment_field/proc/set_master(master1,master2)
 	if(!master1 || !master2)
 		return 0
 	FG1 = master1

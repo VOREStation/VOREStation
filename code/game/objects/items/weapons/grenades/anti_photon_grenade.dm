@@ -7,7 +7,7 @@
 	var/light_sound = 'sound/effects/phasein.ogg'
 	var/blast_sound = 'sound/effects/bang.ogg'
 
-/obj/item/grenade/anti_photon/detonate(var/parent_callback = FALSE)
+/obj/item/grenade/anti_photon/detonate(parent_callback = FALSE)
 	if(parent_callback) // An awful way to do this, but the spawn() setup left me no choice when porting to timers
 		..()
 		return
@@ -17,7 +17,7 @@
 	var/extra_delay = rand(0,90)
 	addtimer(CALLBACK(src, PROC_REF(grenade_light),extra_delay), 200 + extra_delay, TIMER_DELETE_ME)
 
-/obj/item/grenade/anti_photon/proc/grenade_light(var/extra_delay)
+/obj/item/grenade/anti_photon/proc/grenade_light(extra_delay)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(prob(10+extra_delay))

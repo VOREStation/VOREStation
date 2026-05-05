@@ -24,7 +24,7 @@
 	var/ticks_recovering = 10
 	var/max_strength = 10
 
-/obj/effect/energy_field/Initialize(mapload, var/new_gen)
+/obj/effect/energy_field/Initialize(mapload, new_gen)
 	. = ..()
 	my_gen = new_gen
 	update_nearby_tiles()
@@ -47,10 +47,10 @@
 			for(var/obj/effect/energy_field/F in T)
 				F.update_icon()
 
-/obj/effect/energy_field/ex_act(var/severity)
+/obj/effect/energy_field/ex_act(severity)
 	adjust_strength(-(4 - severity) * 4)
 
-/obj/effect/energy_field/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/energy_field/bullet_act(obj/item/projectile/Proj)
 	adjust_strength(-Proj.get_structure_damage() / 10)
 
 /obj/effect/energy_field/attackby(obj/item/W, mob/user)
@@ -66,10 +66,10 @@
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())
 
-/obj/effect/energy_field/take_damage(var/damage)
+/obj/effect/energy_field/take_damage(damage)
 	adjust_strength(-damage / 20)
 
-/obj/effect/energy_field/attack_hand(var/mob/living/user)
+/obj/effect/energy_field/attack_hand(mob/living/user)
 	impact_effect(3) // Harmless, but still produces the 'impact' effect.
 	..()
 
@@ -77,7 +77,7 @@
 	..(A)
 	impact_effect(2)
 
-/obj/effect/energy_field/handle_meteor_impact(var/obj/effect/meteor/meteor)
+/obj/effect/energy_field/handle_meteor_impact(obj/effect/meteor/meteor)
 	var/penetrated = TRUE
 	adjust_strength(-max((meteor.wall_power * meteor.hits) / 800, 0)) // One renwick (strength var) equals one r-wall for the purposes of meteor-stopping.
 	sleep(1)
@@ -113,7 +113,7 @@
 		update_icon()
 		update_nearby_tiles()
 
-/obj/effect/energy_field/update_icon(var/update_neightbors = 0)
+/obj/effect/energy_field/update_icon(update_neightbors = 0)
 	cut_overlays()
 	var/list/adjacent_shields_dir = list()
 	for(var/direction in GLOB.cardinal)
@@ -138,7 +138,7 @@
 
 
 // Small visual effect, makes the shield tiles brighten up by becoming more opaque for a moment, and spreads to nearby shields.
-/obj/effect/energy_field/proc/impact_effect(var/i, var/list/affected_shields = list())
+/obj/effect/energy_field/proc/impact_effect(i, list/affected_shields = list())
 	i = between(1, i, 10)
 	alpha = 200
 	animate(src, alpha = initial(alpha), time = 1 SECOND)

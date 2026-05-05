@@ -39,7 +39,7 @@ ADMIN_VERB(modify_server_news, R_SERVER|R_EVENT, "Modify Public News", "Modify t
 	if(F)
 		return F
 // This is used when submitting the news input, so the safe markup can get past sanitize.
-/proc/paper_markup2html(var/text)
+/proc/paper_markup2html(text)
 	text = replacetext(text, "\n", "<br>")
 	text = replacetext(text, "\[center\]", "<center>")
 	text = replacetext(text, "\[/center\]", "</center>")
@@ -77,7 +77,7 @@ ADMIN_VERB(modify_server_news, R_SERVER|R_EVENT, "Modify Public News", "Modify t
 	return text
 
 // This is used when reading text that went through paper_markup2html(), to reverse it so that edits don't need to replace everything once more to avoid sanitization.
-/proc/html2paper_markup(var/text)
+/proc/html2paper_markup(text)
 	text = replacetext(text, "<br>", "\[br\]")
 	text = replacetext(text, "<center>", "\[center\]")
 	text = replacetext(text, "</center>", "\[/center\]")

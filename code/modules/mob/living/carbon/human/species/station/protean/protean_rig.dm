@@ -33,7 +33,7 @@
 	var/assimilated_rig
 	var/can_assimilate_rig = FALSE
 
-/obj/item/rig/protean/relaymove(mob/user, var/direction)
+/obj/item/rig/protean/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	forced_move(direction, user, 0)
@@ -49,7 +49,7 @@
 /obj/item/rig/protean/ex_act(severity)
 	return
 
-/obj/item/rig/protean/Initialize(mapload, var/mob/living/carbon/human/P)
+/obj/item/rig/protean/Initialize(mapload, mob/living/carbon/human/P)
 	if(P)
 		var/datum/species/protean/S = P.species
 		S.OurRig = src
@@ -73,7 +73,7 @@
 	. = ..()
 
 
-/obj/item/rig/proc/AssimilateBag(var/mob/living/carbon/human/P, var/spawned, var/obj/item/storage/backpack/B)
+/obj/item/rig/proc/AssimilateBag(mob/living/carbon/human/P, spawned, obj/item/storage/backpack/B)
 	if(istype(B,/obj/item/storage/backpack))
 		if(spawned)
 			B = P.back
@@ -373,7 +373,7 @@
 		if(istype(W,/obj/item/storage/backpack))
 			AssimilateBag(user,0,W)
 
-/obj/item/rig/protean/proc/make_alive(var/mob/living/carbon/human/H, var/partial)
+/obj/item/rig/protean/proc/make_alive(mob/living/carbon/human/H, partial)
 	if(H)
 		H.setToxLoss(0)
 		H.setOxyLoss(0)
@@ -429,7 +429,7 @@
 /obj/item/rig/protean/cut_suit()
 	return	//nope
 
-/obj/item/rig/protean/force_rest(var/mob/user)
+/obj/item/rig/protean/force_rest(mob/user)
 	wearer.lay_down()
 	to_chat(user, span_notice("\The [wearer] is now [wearer.resting ? "resting" : "getting up"]."))
 
@@ -510,7 +510,7 @@
 	return results
 
 //Effectively a round about way of letting a Protean wear other rigs.
-/obj/item/rig/protean/proc/AssimilateRig(mob/user, var/obj/item/rig/R)
+/obj/item/rig/protean/proc/AssimilateRig(mob/user, obj/item/rig/R)
 	if(!can_assimilate_rig)
 		to_chat(user, span_warning("You can not place a rig into \the [src]"))
 		return

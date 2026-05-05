@@ -12,7 +12,7 @@
 	var/list/min_job_count = list()
 	var/datum/event/event_type
 
-/datum/event_meta/New(var/event_severity, var/event_name, var/datum/event/type, var/event_weight, var/list/job_weights, var/is_one_shot = 0, var/min_event_weight = 0, var/max_event_weight = 0, var/add_to_queue = 1, var/list/min_jobs)
+/datum/event_meta/New(event_severity, event_name, datum/event/type, event_weight, list/job_weights, is_one_shot = 0, min_event_weight = 0, max_event_weight = 0, add_to_queue = 1, list/min_jobs)
 	name = event_name
 	severity = event_severity
 	event_type = type
@@ -27,7 +27,7 @@
 		min_job_count = min_jobs
 
 
-/datum/event_meta/proc/get_weight(var/list/active_with_role)
+/datum/event_meta/proc/get_weight(list/active_with_role)
 	if(!enabled)
 		return 0
 
@@ -44,7 +44,7 @@
 
 	return total_weight
 
-/datum/event_meta/proc/minimum_active(var/list/active_with_role)
+/datum/event_meta/proc/minimum_active(list/active_with_role)
 	var/can_fire = TRUE
 	for(var/role in min_job_count)
 		if(role in active_with_role)
@@ -165,7 +165,7 @@
 /datum/event/proc/get_skybox_image()
 	return
 
-/datum/event/New(var/datum/event_meta/EM, external_use = FALSE)
+/datum/event/New(datum/event_meta/EM, external_use = FALSE)
 	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
 	if(!external_use)
 		SSevents.active_events += src
