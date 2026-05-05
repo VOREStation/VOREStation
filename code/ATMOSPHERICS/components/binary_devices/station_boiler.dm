@@ -1,5 +1,3 @@
-var/global/list/stationboilers = list() //Should only ever have one, caching to locate easily by radiators
-
 /obj/machinery/atmospherics/binary/stationboiler
 	name = "Station Boiler"
 	desc = "A large, phoron-infused wood powered, super boiler. Capable of keeping a entire colony heated up"
@@ -18,9 +16,13 @@ var/global/list/stationboilers = list() //Should only ever have one, caching to 
 	var/list/stored_material =  list(MAT_LOG = 1HOUR) //1 hour of mats free
 	var/list/storage_capacity = list(MAT_LOG = 4HOUR) //can hold enough for 4 hours
 
-/obj/machinery/atmospherics/binary/stationboiler/New()
-	..()
-	stationboilers.Add(src)
+/obj/machinery/atmospherics/binary/stationboiler/Initialize(mapload)
+	. = ..()
+	SSstationheater.boilers += src
+
+/obj/machinery/atmospherics/binary/stationboiler/Destroy()
+	SSstationheater.boilers -= src
+	. = ..()
 
 /obj/machinery/atmospherics/binary/stationboiler/process()
 	..()

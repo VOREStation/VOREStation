@@ -11,27 +11,18 @@
 	bullet_vulnerability = 0 //Invincible machine
 	anchored = TRUE
 	density = FALSE
-	var/target_heat_temperature = T20C //The temperature we want the room to reach
-	var/thermal_energy_change = 4000 //How much energy we can process
-	var/obj/machinery/atmospherics/binary/stationboiler/assigned_boiler
+	var/actively_radiating = FALSE
 
-/obj/machinery/stationboiler_radiator/process()
-	..()
-	if(!assigned_boiler && stationboilers)
-		assigned_boiler = pick(stationboilers)
-	if(!assigned_boiler || !assigned_boiler.is_active)
-		if(icon_state != "off")
-			icon_state = "off"
-		return
+/obj/machinery/stationboiler_radiator/Initialize(mapload)
+	. = ..()
+	SSstationheater.radiators += src
 
-	if(icon_state != "on")
-		icon_state = "on"
-	if(istype(loc, /turf/simulated/))
-		var/datum/gas_mixture/environment = loc.return_air()
-		var/neededEnergy = environment.get_thermal_energy_change(target_heat_temperature)
-		if(neededEnergy > 0)
-			neededEnergy = min(neededEnergy, thermal_energy_change)
-			environment.add_thermal_energy(neededEnergy)
+/obj/machinery/stationboiler_radiator/Destroy()
+	SSstationheater.radiators -= src
+	. = ..()
+
+/obj/machinery/stationboiler_radiator/update_icon()
+	icon_state = actively_radiating ? "on" : "off"
 
 /obj/machinery/stationboiler_radiator/ex_act(severity)
 	return //Invincible machine

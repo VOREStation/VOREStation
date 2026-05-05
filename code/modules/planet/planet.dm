@@ -28,6 +28,8 @@
 	var/moon_name = null // Purely for flavor. Null means no moon exists.
 	var/moon_phase = null // Set if above is defined.
 
+	var/cryogenic_temp_goal = null // If set, the temperature of every area on the planet will slowly be brought toward this temperature over time... Could even be used for volcanic planets theoretically!
+
 /datum/planet/New()
 	..()
 	weather_holder = new(src)
