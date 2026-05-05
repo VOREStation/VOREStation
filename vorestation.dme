@@ -3800,6 +3800,7 @@
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\ray.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\shark.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\snake_vr.dm"
+#include "code\modules\mob\living\simple_mob\subtypes\animal\space\snowbull.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\space.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\space_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\worm.dm"
