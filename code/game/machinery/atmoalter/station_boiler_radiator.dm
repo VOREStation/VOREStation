@@ -1,7 +1,7 @@
 /obj/machinery/stationboiler_radiator
 	name = "Station Radiator"
 	desc = "A radiator pipe connected to the station boiler, used to keep the rooms warm"
-	icon = 'modular_chomp/icons/obj/machines/floor_radiator_yw.dmi'
+	icon = 'icons/obj/machines/floor_radiator.dmi'
 
 	plane = PLATING_PLANE
 	layer = FLOOR_HEATER_LAYER
@@ -32,6 +32,9 @@
 		if(neededEnergy > 0)
 			neededEnergy = min(neededEnergy, thermal_energy_change)
 			environment.add_thermal_energy(neededEnergy)
+
+/obj/machinery/stationboiler_radiator/ex_act(severity)
+	return //Invincible machine
 
 /obj/machinery/atmospherics/binary/stationboiler/fall_apart(var/severity = 3, scatter = TRUE)
 	return //Invincible machine

@@ -191,6 +191,9 @@ var/global/list/stationboilers = list() //Should only ever have one, caching to 
 	var/hours = FLOOR((org_ticks / 3600), 1)
 	return "[hours]:[minute]:[second]"
 
+/obj/machinery/atmospherics/binary/stationboiler/ex_act(severity)
+	return //Invincible machine
+
 /obj/machinery/atmospherics/binary/stationboiler/fall_apart(var/severity = 3, scatter = TRUE)
 	return //Invincible machine
 
