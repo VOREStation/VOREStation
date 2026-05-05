@@ -8,7 +8,7 @@
 	icon_dead = "snowbull-dead"
 	maxHealth = 300
 	health = 300
-	faction = "snowbull"
+	faction = FACTION_SNOWBULL
 	pixel_x = -16
 	special_attack_min_range = 3
 	special_attack_max_range = 8
