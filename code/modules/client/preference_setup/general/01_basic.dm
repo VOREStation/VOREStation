@@ -82,6 +82,7 @@
 	data["bday_day"] = pref.read_preference(/datum/preference/numeric/human/bday_day)
 	data["bday_announce"] = pref.read_preference(/datum/preference/toggle/human/bday_announce)
 	data["spawnpoint"] = pref.read_preference(/datum/preference/choiced/living/spawnpoint)
+	data["radio_announce"] = pref.read_preference(/datum/preference/toggle/living/radio_announce)
 	data["ooc_notes_length"] = LAZYLEN(pref.read_preference(/datum/preference/text/living/ooc_notes))
 	data["vore_egg_type"] = pref.vore_egg_type
 	data["autohiss"] = pref.autohiss
@@ -315,6 +316,10 @@
 			if(!choice || !GLOB.spawntypes[choice])
 				return TOPIC_NOACTION
 			pref.update_preference_by_type(/datum/preference/choiced/living/spawnpoint, choice)
+			return TOPIC_REFRESH
+
+		if("radio_announce")
+			pref.update_preference_by_type(/datum/preference/toggle/living/radio_announce, !pref.read_preference(/datum/preference/toggle/living/radio_announce))
 			return TOPIC_REFRESH
 
 		if("edit_ooc_notes")

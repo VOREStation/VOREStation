@@ -261,6 +261,15 @@ export const SubtabSettings = (props: {
                       {data.spawnpoint}
                     </Button>
                   </LabeledList.Item>
+                  <LabeledList.Item label="Radio Announcement">
+                    <Button
+                      onClick={() => act('radio_announce')}
+                      selected={data.radio_announce}
+                      tooltip="Select whether arrival and departure announcements are made over radio. Arrivals are only silenced for visitors"
+                    >
+                      {data.radio_announce ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
                 </LabeledList>
               </Stack.Item>
               <Stack.Item>
