@@ -1,30 +1,78 @@
 SUBSYSTEM_DEF(cryoplanets)
 	name = "Cryogenic Planets"
-	wait =  10 SECOND
+	wait = 8 SECOND
 	runlevels = RUNLEVEL_GAME
 	dependencies = list(
 		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/air
 	)
+	var/static/thermal_energy_change = 4000
+	var/list/zones_planet_temperature_to_update = list()
 	var/list/cryoplanets = list()
 	var/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
-		if(!isnull(check.cryogenic_temp_goal))
+		if(check.cryogenic_temp_shift)
 			return SS_INIT_SUCCESS
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
+/datum/controller/subsystem/cryoplanets/stat_entry(msg)
+	msg = " Cr: [length(current_run)] | P: [length(cryoplanets)] | Zs: [length(zones_planet_temperature_to_update)] | Tp: [thermal_energy_change]"
+	return ..()
+
 /datum/controller/subsystem/cryoplanets/fire(resumed)
 	if(!resumed)
-		for(var/datum/planet/check in SSplanets.planets)
-			if(isnull(check.cryogenic_temp_goal))
-				continue
-			current_run += check
+		current_run = zones_planet_temperature_to_update.Copy()
 
 	while(length(current_run))
-		var/datum/planet/check = current_run[current_run.len]
-		current_run.len--
-		// Drag the temp of the world toward the cryogenic_temp_goal
 		if(MC_TICK_CHECK)
 			return
+
+		var/datum/zone/zone = current_run[current_run.len]
+		current_run.len--
+		if(zone.invalid || QDELETED(zone)) // Zone stopped existing so don't bother.
+			zones_planet_temperature_to_update.Remove(zone)
+			continue
+
+		var/turf/T = pick(zone.contents)
+		if(!is_station_temp_change_turf(T)) // Invalid temp shifting zone
+			zones_planet_temperature_to_update.Remove(zone)
+			continue
+
+		var/area/check_area = get_area(T)
+		var/obj/machinery/stationboiler_radiator/radiator = locate() in check_area
+		if(radiator && radiator.actively_radiating) // If we have an active radiator in the area, then there is no point in starting a temperature war
+			continue
+
+		equalize_temperature_to_planet(T, zone, thermal_energy_change)
+
+/datum/controller/subsystem/cryoplanets/proc/equalize_temperature_to_planet(turf/T, datum/zone/zone, max_thermal_change)
+	var/datum/gas_mixture/currentAir = zone.air
+	if(!currentAir)
+		return
+	var/datum/planet/P = SSplanets.z_to_planet[T.z]
+	var/neededEnergy = currentAir.get_thermal_energy_change(P.weather_holder.temperature)
+	if(neededEnergy > 0)
+		neededEnergy = min(neededEnergy, max_thermal_change)
+	else
+		neededEnergy = max(neededEnergy, -max_thermal_change)
+	//testing("Energy: [neededEnergy]")
+	currentAir.add_thermal_energy(neededEnergy)
+
+/datum/controller/subsystem/cryoplanets/proc/is_station_temp_change_turf(turf/T)
+	if(!T || !(T.z in SSplanets.z_to_planet))
+		return FALSE
+
+	var/datum/planet/P = SSplanets.z_to_planet[T.z]
+	if(!P || !P.cryogenic_temp_shift)
+		return FALSE
+
+	var/area/area_check = get_area(T)
+	if(!area_check || (area_check.flags & AREA_CRYOPLANET_SHIELDED)) //Do not freeze dorms
+		return FALSE
+
+	if(T.is_outdoors())
+		return FALSE
+
+	return TRUE

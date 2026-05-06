@@ -120,6 +120,7 @@
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
 #define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
 #define AREA_ALWAYS_HAS_GRAVITY		0x8000	// If an area should always have gravity, even during events that would otherwise remove it.
+#define AREA_CRYOPLANET_SHIELDED   0x10000  // If an area blocks the temperature shift SScryoplanets causes. Not part of normal weather code.
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 #define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.

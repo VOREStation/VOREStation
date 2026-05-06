@@ -380,10 +380,12 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	zones.Add(z)
 	z.name = "Zone [next_id++]"
 	mark_zone_update(z)
+	SScryoplanets.zones_planet_temperature_to_update.Add(z)
 
 /datum/controller/subsystem/air/proc/remove_zone(datum/zone/z)
 	zones.Remove(z)
 	zones_to_update.Remove(z)
+	SScryoplanets.zones_planet_temperature_to_update.Remove(z)
 
 /datum/controller/subsystem/air/proc/air_blocked(turf/A, turf/B)
 	#ifdef ZASDBG

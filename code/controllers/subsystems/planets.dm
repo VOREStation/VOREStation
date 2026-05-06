@@ -116,8 +116,6 @@ SUBSYSTEM_DEF(planets)
 	SSlighting.update_sunlight(SSlighting.get_pshandler_planet(P))
 
 /datum/controller/subsystem/planets/proc/updateTemp(datum/planet/P)
-	if(!isnull(P.cryogenic_temp_goal)) // Cryogenic planets do something else, we don't need the planetary walls fighting with them
-		return
 	//Set new temperatures
 	for(var/turf/unsimulated/wall/planetary/wall as anything in P.planet_walls)
 		wall.set_temperature(P.weather_holder.temperature)
