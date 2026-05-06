@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(stationheater)
 		return SS_INIT_NO_NEED
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/cryoplanets/stat_entry(msg)
+/datum/controller/subsystem/stationheater/stat_entry(msg)
 	msg = " Cr: [length(current_run)] | Br: [length(boilers)] | Rs: [length(radiators)] | Tp: [thermal_energy_change]"
 	return ..()
 
