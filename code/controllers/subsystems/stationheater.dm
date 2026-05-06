@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(stationheater)
-	name = "Cryogenic Planets"
+	name = "Station Boiler"
 	wait =  6 SECOND
 	runlevels = RUNLEVEL_GAME
 	dependencies = list(
