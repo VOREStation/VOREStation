@@ -58,3 +58,6 @@
   - balance: Many material stacks have had their sell prices changed
   - bugfix: Attempting to sell non-material stacks on the supply shuttle no longer
       runtime
+2026-05-06:
+  Kashargul:
+  - code_imp: removes var/ inside of procs
