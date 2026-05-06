@@ -7,8 +7,6 @@ SUBSYSTEM_DEF(cryoplanets)
 		/datum/controller/subsystem/air
 	)
 	var/static/thermal_energy_change = 4000
-	var/list/zones_planet_temperature_to_update = list()
-	var/list/cryoplanets = list()
 	var/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
@@ -18,12 +16,12 @@ SUBSYSTEM_DEF(cryoplanets)
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/cryoplanets/stat_entry(msg)
-	msg = " Cr: [length(current_run)] | P: [length(cryoplanets)] | Zs: [length(zones_planet_temperature_to_update)] | Tp: [thermal_energy_change]"
+	msg = " Cr: [length(current_run)] | Zs: [length(SSair.zones)] | Tp: [thermal_energy_change]"
 	return ..()
 
 /datum/controller/subsystem/cryoplanets/fire(resumed)
 	if(!resumed)
-		current_run = zones_planet_temperature_to_update.Copy()
+		current_run = SSair.zones.Copy() // We need the list of zones anyway, just use the air controller's instead of duplicating another massive list
 
 	while(length(current_run))
 		if(MC_TICK_CHECK)
