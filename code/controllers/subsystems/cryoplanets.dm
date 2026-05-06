@@ -1,12 +1,17 @@
 SUBSYSTEM_DEF(cryoplanets)
 	name = "Cryogenic Planets"
-	wait = 6 SECOND
+	wait = 8 SECOND
 	runlevels = RUNLEVEL_GAME
+	priority = FIRE_PRIORITY_STATIONBOILER
+	flags = SS_BACKGROUND // Extremely low priority
+
 	dependencies = list(
 		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/air
 	)
-	var/static/thermal_energy_change = 4000
+
+	var/list/cryo_zones = list()
+	var/static/thermal_energy_change = 12000
 	var/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
@@ -16,27 +21,28 @@ SUBSYSTEM_DEF(cryoplanets)
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/cryoplanets/stat_entry(msg)
-	msg = " Cr: [length(current_run)] | Zs: [length(SSair.zones)] | Tp: [thermal_energy_change]"
+	msg = " Cr: [length(current_run)] | Zs: [length(cryo_zones)] | Tp: [thermal_energy_change]"
 	return ..()
 
 /datum/controller/subsystem/cryoplanets/fire(resumed)
 	if(!resumed)
-		current_run = SSair.zones.Copy() // We need the list of zones anyway, just use the air controller's instead of duplicating another massive list
+		current_run = cryo_zones.Copy() // We need the list of zones anyway, just use the air controller's instead of duplicating another massive list
 
 	while(length(current_run))
-		if(MC_TICK_CHECK)
-			return
-
 		var/datum/zone/zone = current_run[current_run.len]
 		current_run.len--
-		if(zone.invalid || QDELETED(zone)) // Zone stopped existing so don't bother.
+		if(QDELETED(zone) || zone.invalid)
+			cryo_zones.Remove(zone)
 			continue
 
 		var/turf/T = pick(zone.contents)
-		if(!is_station_temp_change_turf(T)) // Invalid temp shifting zone
+		if(!is_station_temp_change_turf(T))
+			cryo_zones.Remove(zone)
 			continue
 
 		equalize_temperature_to_planet(T, zone, thermal_energy_change)
+		if(MC_TICK_CHECK)
+			return
 
 /datum/controller/subsystem/cryoplanets/proc/equalize_temperature_to_planet(turf/T, datum/zone/zone, max_thermal_change)
 	var/datum/gas_mixture/currentAir = zone.air
@@ -52,18 +58,11 @@ SUBSYSTEM_DEF(cryoplanets)
 	else
 		neededEnergy = max(neededEnergy, -max_thermal_change)
 
-	// Check if this would be affected by the station mainboiler's radiators.
-	if(target_temp < SSstationheater.target_heat_temperature)
-		var/area/check_area = get_area(T) // If we have an active radiator in the area, then there is no point in starting a temperature war....
-		var/obj/machinery/stationboiler_radiator/radiator = locate() in check_area
-		if(radiator && radiator.actively_radiating)
-			return
-
 	//testing("Energy: [neededEnergy]")
 	currentAir.add_thermal_energy(neededEnergy)
 
 /datum/controller/subsystem/cryoplanets/proc/is_station_temp_change_turf(turf/T)
-	if(!T || !(T.z in SSplanets.z_to_planet)) // Not even on a planet
+	if(!T || T.z > length(SSplanets.z_to_planet)) // Not even on a planet
 		return FALSE
 
 	var/datum/planet/P = SSplanets.z_to_planet[T.z]

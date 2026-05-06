@@ -1,7 +1,10 @@
 SUBSYSTEM_DEF(stationheater)
 	name = "Station Boiler"
-	wait =  6 SECOND
+	wait = 8 SECOND
 	runlevels = RUNLEVEL_GAME
+	priority = FIRE_PRIORITY_CRYOPLANETS
+	flags = SS_BACKGROUND // Extremely low priority
+
 	dependencies = list(
 		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/air
@@ -14,7 +17,7 @@ SUBSYSTEM_DEF(stationheater)
 
 	// Radiator power
 	var/static/target_heat_temperature = T20C //The temperature the radiator wants the room to reach
-	var/static/thermal_energy_change = 4000 //How much energy a radiator can produce a tick
+	var/static/thermal_energy_change = 12000 //How much energy a radiator can produce a tick
 
 /datum/controller/subsystem/stationheater/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
