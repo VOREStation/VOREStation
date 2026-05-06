@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(stationheater)
 		current_loop_heater = WEAKREF(pick(boilers))
 
 	// Process the current run until all raditors are done heating
-	var/obj/machinery/atmospherics/binary/stationboiler/current_heater = current_loop_heater?.resolve()
+	var/obj/machinery/atmospherics/binary/stationboiler/current_heater = get_current_boiler()
 	while(length(current_run))
 		var/obj/machinery/stationboiler_radiator/rad = current_run[current_run.len]
 		current_run.len--
@@ -47,6 +47,9 @@ SUBSYSTEM_DEF(stationheater)
 			handle_radiate(rad, current_heater)
 		if(MC_TICK_CHECK)
 			return
+
+/datum/controller/subsystem/stationheater/proc/get_current_boiler()
+	return current_loop_heater?.resolve()
 
 /datum/controller/subsystem/stationheater/proc/handle_radiate(obj/machinery/stationboiler_radiator/radiator, obj/machinery/atmospherics/binary/stationboiler/assigned_boiler)
 	// Update radiator icon
