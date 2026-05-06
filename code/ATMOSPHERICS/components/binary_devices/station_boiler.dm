@@ -92,16 +92,15 @@
 	if(!(S.material.name in stored_material))
 		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
 		return 1
-	var/max_res_amount = storage_capacity[S.material.name]
-	if(stored_material[S.material.name] + S.perunit <= max_res_amount)
+	var/mat_name = S.material.name
+	var/max_res_amount = storage_capacity[mat_name]
+	if(stored_material[mat_name] + S.perunit <= max_res_amount)
 		var/count = 0
-		var/stack_name = S.name
-		while(stored_material[S.material.name] + S.perunit <= max_res_amount && S.get_amount() >= 1)
-			stored_material[S.material.name] += S.perunit
+		while(stored_material[mat_name] + S.perunit <= max_res_amount && S.get_amount() >= 1)
+			stored_material[mat_name] += S.perunit
 			S.use(1)
 			count++
-		user.visible_message("\The [user] inserts [stack_name] into \the [src].", span_notice("You insert [count] [stack_name] into \the [src]."))
-		updateUsrDialog()
+		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [count] [mat_name] into \the [src]."))
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1
