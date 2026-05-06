@@ -95,11 +95,12 @@
 	var/max_res_amount = storage_capacity[S.material.name]
 	if(stored_material[S.material.name] + S.perunit <= max_res_amount)
 		var/count = 0
+		var/stack_name = S.name
 		while(stored_material[S.material.name] + S.perunit <= max_res_amount && S.get_amount() >= 1)
 			stored_material[S.material.name] += S.perunit
 			S.use(1)
 			count++
-		user.visible_message("\The [user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
+		user.visible_message("\The [user] inserts [stack_name] into \the [src].", span_notice("You insert [count] [stack_name] into \the [src]."))
 		updateUsrDialog()
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
