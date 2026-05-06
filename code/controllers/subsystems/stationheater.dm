@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(stationheater)
 	name = "Cryogenic Planets"
-	wait =  5 SECOND
+	wait =  6 SECOND
 	runlevels = RUNLEVEL_GAME
 	dependencies = list(
 		/datum/controller/subsystem/planets,
@@ -13,8 +13,8 @@ SUBSYSTEM_DEF(stationheater)
 	var/datum/weakref/current_loop_heater
 
 	// Radiator power
-	var/target_heat_temperature = T20C //The temperature the radiator wants the room to reach
-	var/thermal_energy_change = 4000 //How much energy a radiator can produce a tick
+	var/static/target_heat_temperature = T20C //The temperature the radiator wants the room to reach
+	var/static/thermal_energy_change = 4000 //How much energy a radiator can produce a tick
 
 /datum/controller/subsystem/stationheater/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
