@@ -99,7 +99,7 @@
 		inserting_sheets = min(inserting_sheets, remaining_stack_space)
 		stored_material[mat_name] += inserting_sheets * S.perunit
 		S.use(inserting_sheets)
-		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name] into \the [src]."))
+		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name]\s into \the [src]."))
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1
