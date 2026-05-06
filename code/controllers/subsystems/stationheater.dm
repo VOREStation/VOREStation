@@ -3,6 +3,7 @@ SUBSYSTEM_DEF(stationheater)
 	wait =  5 SECOND
 	runlevels = RUNLEVEL_GAME
 	dependencies = list(
+		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/air
 	)
 
@@ -16,9 +17,10 @@ SUBSYSTEM_DEF(stationheater)
 	var/thermal_energy_change = 4000 //How much energy a radiator can produce a tick
 
 /datum/controller/subsystem/stationheater/Initialize()
-	if(!length(boilers)) // No boilers? No point.
-		return SS_INIT_NO_NEED
-	return SS_INIT_SUCCESS
+	for(var/datum/planet/check in SSplanets.planets)
+		if(check.cryogenic_temp_shift)
+			return SS_INIT_SUCCESS
+	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/stationheater/stat_entry(msg)
 	msg = " Cr: [length(current_run)] | Br: [length(boilers)] | Rs: [length(radiators)] | Tp: [thermal_energy_change]"
