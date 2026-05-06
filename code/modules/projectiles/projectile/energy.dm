@@ -26,7 +26,7 @@
 	var/light_colour = "#ffffff"
 	hud_state = "grenade_dummy"
 
-/obj/item/projectile/energy/flash/on_impact(var/atom/A)
+/obj/item/projectile/energy/flash/on_impact(atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
 	if(!istype(T)) return
 
@@ -64,7 +64,7 @@
 	flash_strength = 20
 	hud_state = "grenade_dummy"
 
-/obj/item/projectile/energy/flash/flare/on_impact(var/atom/A)
+/obj/item/projectile/energy/flash/flare/on_impact(atom/A)
 	light_colour = pick("#e58775", "#ffffff", "#90ff90", "#a09030")
 
 	..() //initial flash
@@ -241,7 +241,7 @@
 	vacuum_traversal = 0	//Projectile disappears in empty space
 	hud_state = "plasma_rifle_blast"
 
-/obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
+/obj/item/projectile/energy/plasmastun/proc/bang(mob/living/carbon/M)
 
 	to_chat(M, span_danger("You hear a loud roar."))
 	playsound(src, 'sound/effects/bang.ogg', 50, 1)
@@ -266,7 +266,7 @@
 			to_chat(M, span_danger("Your ears start to ring!"))
 	M.update_icons() //Just to apply matrix transform for laying asap
 
-/obj/item/projectile/energy/plasmastun/on_hit(var/atom/target)
+/obj/item/projectile/energy/plasmastun/on_hit(atom/target)
 	bang(target)
 	. = ..()
 

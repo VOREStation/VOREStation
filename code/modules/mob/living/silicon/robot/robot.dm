@@ -272,7 +272,7 @@
 		lawsync()
 		photosync()
 
-/mob/living/silicon/robot/drain_power(var/drain_check, var/surge, var/amount = 0)
+/mob/living/silicon/robot/drain_power(drain_check, surge, amount = 0)
 
 	if(drain_check)
 		return 1
@@ -378,7 +378,7 @@
 
 	return ..()
 
-/mob/living/silicon/robot/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+/mob/living/silicon/robot/drop_from_inventory(obj/item/W, atom/target = null)
 	if(module_active && istype(module_active,/obj/item/gripper))
 		var/obj/item/gripper/robot_gripper = module_active
 		robot_gripper.drop_item_nm(target)
@@ -386,7 +386,7 @@
 
 // CONTINUE CODING HERE
 /*
-/mob/living/silicon/robot/proc/set_module_sprites(var/list/new_sprites)
+/mob/living/silicon/robot/proc/set_module_sprites(list/new_sprites)
 	if(new_sprites && new_sprites.len)
 		module_sprites = new_sprites.Copy()
 		//Custom_sprite check and entry
@@ -427,7 +427,7 @@
 	else
 		braintype = BORG_BRAINTYPE_CYBORG
 
-/mob/living/silicon/robot/proc/updatename(var/prefix as text)
+/mob/living/silicon/robot/proc/updatename(prefix as text)
 	if(prefix)
 		modtype = prefix
 
@@ -594,7 +594,7 @@
 /mob/living/silicon/robot/restrained()
 	return 0
 
-/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/robot/bullet_act(obj/item/projectile/Proj)
 	..(Proj)
 	if(prob(75) && Proj.damage > 0) spark_system.start()
 	return 2
@@ -859,7 +859,7 @@
 
 	return
 
-/mob/living/silicon/robot/proc/module_reset(var/notify = TRUE)
+/mob/living/silicon/robot/proc/module_reset(notify = TRUE)
 	transform_with_anim() //sprite animation
 	uneq_all()
 	hud_used.update_robot_modules_display(TRUE)
@@ -972,7 +972,7 @@
 							return
 
 //Robots take half damage from basic attacks.
-/mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
+/mob/living/silicon/robot/attack_generic(mob/user, damage, attack_message)
 	return ..(user,FLOOR(damage/2, 1),attack_message)
 
 /mob/living/silicon/robot/proc/allowed(mob/M)
@@ -1155,7 +1155,7 @@
 		to_chat(R, span_filter_notice("Buffers flushed and reset. Camera system shutdown. All systems operational."))
 		remove_verb(src, /mob/living/silicon/robot/proc/ResetSecurityCodes)
 
-/mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
+/mob/living/silicon/robot/proc/SetLockdown(state = 1)
 	// They stay locked down if their wire is cut.
 	if(wires.is_cut(WIRE_BORG_LOCKED))
 		state = 1
@@ -1211,7 +1211,7 @@
 
 // Uses power from cyborg's cell. Returns 1 on success or 0 on failure.
 // Properly converts using CELLRATE now! Amount is in Joules.
-/mob/living/silicon/robot/proc/cell_use_power(var/amount = 0)
+/mob/living/silicon/robot/proc/cell_use_power(amount = 0)
 	// No cell inserted
 	if(!cell)
 		return 0
@@ -1228,7 +1228,7 @@
 
 // Function to directly drain power from the robot's cell, allows to set a minimum level beneath which
 // abilities can no longer be used
-/mob/living/silicon/robot/proc/use_direct_power(var/amount = 0, var/lower_limit = 0)
+/mob/living/silicon/robot/proc/use_direct_power(amount = 0, lower_limit = 0)
 	// No cell inserted
 	if(!cell)
 		return FALSE
@@ -1250,7 +1250,7 @@
 		return 1
 	return 0
 
-/mob/living/silicon/robot/proc/notify_ai(var/notifytype, var/first_arg, var/second_arg)
+/mob/living/silicon/robot/proc/notify_ai(notifytype, first_arg, second_arg)
 	if(!connected_ai)
 		return
 	if(shell && notifytype != ROBOT_NOTIFICATION_AI_SHELL)
@@ -1275,7 +1275,7 @@
 		connected_ai.connected_robots -= src
 		connected_ai = null
 
-/mob/living/silicon/robot/proc/connect_to_ai(var/mob/living/silicon/ai/AI)
+/mob/living/silicon/robot/proc/connect_to_ai(mob/living/silicon/ai/AI)
 	if(AI && AI != connected_ai && !shell)
 		disconnect_from_ai()
 		connected_ai = AI
@@ -1283,7 +1283,7 @@
 		notify_ai(ROBOT_NOTIFICATION_NEW_UNIT)
 		sync()
 
-/mob/living/silicon/robot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/silicon/robot/emag_act(remaining_charges, mob/user)
 	if(!opened)//Cover is closed
 		if(locked)
 			if(prob(90))
@@ -1372,7 +1372,7 @@
 	return braintype != BORG_BRAINTYPE_DRONE
 
 
-/mob/living/silicon/robot/drop_item(var/atom/Target)
+/mob/living/silicon/robot/drop_item(atom/Target)
 	if(module_active && istype(module_active,/obj/item/gripper))
 		var/obj/item/gripper/robot_gripper = module_active
 		robot_gripper.drop_item_nm()
@@ -1421,7 +1421,7 @@
 
 	update_icon()
 
-/mob/living/silicon/robot/verb/robot_nom(var/mob/living/T in living_mobs_in_view(1))
+/mob/living/silicon/robot/verb/robot_nom(mob/living/T in living_mobs_in_view(1))
 	set name = "Robot Nom"
 	set category = "Abilities.Vore"
 	set desc = "Allows you to eat someone."
@@ -1497,7 +1497,7 @@
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
 	return
 
-/mob/living/silicon/robot/proc/robot_mount(var/mob/living/M in living_mobs(1))
+/mob/living/silicon/robot/proc/robot_mount(mob/living/M in living_mobs(1))
 	set name = "Robot Mount/Dismount"
 	set category = "Abilities.General"
 	set desc = "Let people ride on you."
@@ -1513,7 +1513,7 @@
 	if(buckle_mob(M))
 		visible_message(span_notice("[M] starts riding [name]!"))
 
-/mob/living/silicon/robot/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
+/mob/living/silicon/robot/get_scooped(mob/living/carbon/grabber, self_drop)
 	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
@@ -1540,7 +1540,7 @@
 	..()
 
 // Those basic ones require quite detailled checks on the robot's vars to see if they are installed!
-/mob/living/silicon/robot/proc/has_basic_upgrade(var/given_type)
+/mob/living/silicon/robot/proc/has_basic_upgrade(given_type)
 	if(given_type == /obj/item/borg/upgrade/basic/vtec)
 		return (/mob/living/silicon/robot/proc/toggle_vtec in verbs)
 	else if(given_type == /obj/item/borg/upgrade/basic/sizeshift)
@@ -1552,7 +1552,7 @@
 	return null
 
 // We check for the module only here
-/mob/living/silicon/robot/proc/has_upgrade_module(var/given_type)
+/mob/living/silicon/robot/proc/has_upgrade_module(given_type)
 	if(!module) //If we don't have a module, don't even bother.
 		return null
 	var/obj/T = locate(given_type) in module
@@ -1563,7 +1563,7 @@
 	return T
 
 // Most of the advanced ones, we can easily check, but a few special cases exist and need to be handled specially
-/mob/living/silicon/robot/proc/has_advanced_upgrade(var/given_type)
+/mob/living/silicon/robot/proc/has_advanced_upgrade(given_type)
 	if(given_type == /obj/item/borg/upgrade/advanced/bellysizeupgrade)
 		var/obj/item/dogborg/sleeper/T = has_upgrade_module(/obj/item/dogborg/sleeper)
 		if(T && T.upgraded_capacity)
@@ -1580,11 +1580,11 @@
 	return null
 
 // Do we support specific upgrades?
-/mob/living/silicon/robot/proc/supports_upgrade(var/given_type)
+/mob/living/silicon/robot/proc/supports_upgrade(given_type)
 	return (given_type in module.supported_upgrades)
 
 // Most of the restricted ones, we can easily check, but a few special cases exist and need to be handled specially
-/mob/living/silicon/robot/proc/has_restricted_upgrade(var/given_type)
+/mob/living/silicon/robot/proc/has_restricted_upgrade(given_type)
 	if(given_type == /obj/item/borg/upgrade/restricted/bellycapupgrade)
 		var/obj/item/dogborg/sleeper/T = has_upgrade_module(/obj/item/dogborg/sleeper)
 		if(T && T.compactor)
@@ -1629,7 +1629,7 @@
 	return null
 
 // Check if we have any non production upgrades
-/mob/living/silicon/robot/proc/has_no_prod_upgrade(var/given_type)
+/mob/living/silicon/robot/proc/has_no_prod_upgrade(given_type)
 	if(given_type == /obj/item/borg/upgrade/no_prod/toygun)
 		return has_upgrade_module(/obj/item/gun/projectile/cyborgtoy)
 	if(given_type == /obj/item/borg/upgrade/no_prod/vision_xray)
@@ -1644,7 +1644,7 @@
 		return has_upgrade_module(/obj/item/borg/sight/anomalous)
 	return null
 
-/mob/living/silicon/robot/proc/has_upgrade(var/given_type)
+/mob/living/silicon/robot/proc/has_upgrade(given_type)
 	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))
 
 #undef CYBORG_POWER_USAGE_MULTIPLIER
@@ -1690,7 +1690,7 @@
 		return
 	module.handle_special_unlocks(src)
 
-/mob/living/silicon/robot/proc/scramble_hardware(var/chance)
+/mob/living/silicon/robot/proc/scramble_hardware(chance)
 	if(prob(chance))  //Small chance to spawn with a scrambled
 		emag_items = TRUE
 

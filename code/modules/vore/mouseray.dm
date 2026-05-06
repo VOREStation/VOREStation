@@ -82,7 +82,7 @@
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
 	impact_type = /obj/effect/projectile/impact/laser_omni
 
-/obj/item/projectile/beam/mouselaser/on_hit(var/atom/target)
+/obj/item/projectile/beam/mouselaser/on_hit(atom/target)
 	var/mob/living/M = target
 	if(!istype(M))
 		return
@@ -102,7 +102,7 @@
 
 		M.tf_into(new_mob)
 
-/obj/item/projectile/beam/mouselaser/proc/spawn_mob(var/mob/living/target)
+/obj/item/projectile/beam/mouselaser/proc/spawn_mob(mob/living/target)
 	if(!ispath(tf_type))
 		return
 	var/new_mob = new tf_type(get_turf(target))
@@ -134,7 +134,7 @@
 	name = "recombobulation beam"
 	tf_admin_pref_override = FALSE
 
-/obj/item/projectile/beam/mouselaser/reversion/on_hit(var/atom/target)
+/obj/item/projectile/beam/mouselaser/reversion/on_hit(atom/target)
 	if(istype(target,/obj/item)) //Are we shooting an item?
 		var/obj/item/O = target
 		if(O.possessed_voice.len) //Does the object have a voice? AKA, if someone inhabiting it?
@@ -257,7 +257,7 @@
 	name = "unstable metamorphosis ray"
 	tf_allow_select = FALSE
 
-/obj/item/gun/energy/mouseray/metamorphosis/advanced/random/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/random/attackby(obj/item/A as obj, mob/user as mob)
 	if(A.has_tool_quality(TOOL_MULTITOOL))
 		if(tf_allow_select)
 			to_chat(user, span_warning("You scramble the stored data on \the [src], making it less reliable."))

@@ -31,7 +31,7 @@
 	update_icon()
 	return secured
 
-/obj/item/assembly/timer/proc/set_state(var/state)
+/obj/item/assembly/timer/proc/set_state(state)
 	if(state && !timing) //Not running, starting though
 		START_PROCESSING(SSobj, src)
 	else if(timing && !state) //Running, stopping though

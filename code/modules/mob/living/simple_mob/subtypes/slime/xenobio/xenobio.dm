@@ -24,7 +24,7 @@
 	var/number = 0 // This is used to make the slime semi-unique for indentification.
 	var/harmless = FALSE // Set to true when pacified. Makes the slime harmless, not get hungry, and not be able to grow/reproduce.
 
-/mob/living/simple_mob/slime/xenobio/Initialize(mapload, var/mob/living/simple_mob/slime/xenobio/my_predecessor)
+/mob/living/simple_mob/slime/xenobio/Initialize(mapload, mob/living/simple_mob/slime/xenobio/my_predecessor)
 	ASSERT(ispath(ai_holder_type, /datum/ai_holder/simple_mob/xenobio_slime))
 	number = rand(1, 1000)
 	update_name()
@@ -41,7 +41,7 @@
 	return ..()
 
 // Called when a slime makes another slime by splitting. The predecessor slime will be deleted shortly afterwards.
-/mob/living/simple_mob/slime/xenobio/proc/inherit_information(var/mob/living/simple_mob/slime/xenobio/predecessor)
+/mob/living/simple_mob/slime/xenobio/proc/inherit_information(mob/living/simple_mob/slime/xenobio/predecessor)
 	if(!predecessor)
 		return
 
@@ -284,7 +284,7 @@
 		to_chat(src, span_warning("I have not evolved enough to reproduce yet..."))
 
 // Used when reproducing or dying.
-/mob/living/simple_mob/slime/xenobio/proc/make_new_slime(var/desired_type, var/no_step)
+/mob/living/simple_mob/slime/xenobio/proc/make_new_slime(desired_type, no_step)
 	var/t = src.type
 	if(desired_type)
 		t = desired_type

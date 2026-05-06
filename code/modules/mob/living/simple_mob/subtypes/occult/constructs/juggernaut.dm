@@ -50,7 +50,7 @@
 	SetWeakened(0)
 	..()
 
-/mob/living/simple_mob/construct/juggernaut/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/construct/juggernaut/bullet_act(obj/item/projectile/P)
 	var/reflectchance = 80 - round(P.damage/3)
 	if(prob(reflectchance))
 		var/damage_mod = rand(2,4)
@@ -124,7 +124,7 @@
 							/datum/spell/targeted/construct_advanced/slam
 							)
 
-/mob/living/simple_mob/construct/juggernaut/behemoth/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/construct/juggernaut/behemoth/bullet_act(obj/item/projectile/P)
 	var/reflectchance = 80 - round(P.damage/3)
 	if(prob(reflectchance))
 		visible_message(span_danger("The [P.name] gets reflected by [src]'s shell!"), \
@@ -160,7 +160,7 @@
 	// loot_list = list(/obj/item/rig/ch/aegis = 100) // Downstream only
 
 
-/mob/living/simple_mob/construct/juggernaut/behemoth/unstoppable/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/construct/juggernaut/behemoth/unstoppable/bullet_act(obj/item/projectile/P)
 	var/reflectchance = 100 - round(P.damage*2)
 	if(prob(reflectchance))
 		visible_message(span_danger("The [P.name] gets reflected by [src]'s shell!"), \

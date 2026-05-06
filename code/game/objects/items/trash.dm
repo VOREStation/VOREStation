@@ -11,7 +11,7 @@
 	matter = list(MAT_STEEL = 30)
 	var/age = 0
 
-/obj/item/trash/Initialize(mapload, var/_age)
+/obj/item/trash/Initialize(mapload, _age)
 	. = ..()
 	if(!isnull(_age))
 		age = _age

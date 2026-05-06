@@ -51,7 +51,7 @@
 	QDEL_NULL(shield_hum)
 	return ..()
 
-/obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/shield_gen/emag_act(remaining_charges, mob/user)
 	if(prob(75))
 		src.locked = !src.locked
 		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
@@ -223,7 +223,7 @@
 			. = TRUE
 
 
-/obj/machinery/shield_gen/ex_act(var/severity)
+/obj/machinery/shield_gen/ex_act(severity)
 	if(active)
 		toggle()
 	return ..()
@@ -310,7 +310,7 @@
 
 	return out
 
-/obj/machinery/shield_gen/proc/get_shielded_turfs_on_z_level(var/turf/gen_turf)
+/obj/machinery/shield_gen/proc/get_shielded_turfs_on_z_level(turf/gen_turf)
 	var/list/out = list()
 
 	if (!gen_turf)

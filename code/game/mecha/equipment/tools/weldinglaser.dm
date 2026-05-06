@@ -11,7 +11,7 @@
 
 	tooltype = /obj/item/weldingtool/electric/mounted/exosuit
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/action(var/atom/target)
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/action(atom/target)
 	..()
 
 	var/datum/beam/weld_beam = null

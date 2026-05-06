@@ -7,7 +7,7 @@
 	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
 
-/datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/ling/broadcast(mob/living/speaker,message,speaker_mask)
 	var/datum/component/antag/changeling/comp = speaker.GetComponent(/datum/component/antag/changeling)
 	if(speaker.mind && comp)
 		..(speaker,message,comp.changelingID)
@@ -25,7 +25,7 @@
 	machine_understands = 0
 	flags = RESTRICTED | HIVEMIND
 
-/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/corticalborer/broadcast(mob/living/speaker,message,speaker_mask)
 
 	var/mob/living/simple_mob/animal/borer/B
 
@@ -95,7 +95,7 @@
 	key = "a"
 	flags = RESTRICTED | HIVEMIND
 
-/datum/language/xenos/check_special_condition(var/mob/other)
+/datum/language/xenos/check_special_condition(mob/other)
 
 	var/mob/living/carbon/M = other
 	if(!istype(M))
@@ -132,7 +132,7 @@
 	"danya","da","mied","zan","das","krem","myka","cyka","blyat","to","st","no","na","ni",
 	"ko","ne","en","po","ra","li","on","byl","cto","eni","ost","ol","ego","ver","stv","pro")
 
-/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/corticalborer/broadcast(mob/living/speaker,message,speaker_mask)
 
 	var/mob/living/simple_mob/animal/borer/B
 

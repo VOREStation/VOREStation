@@ -108,7 +108,7 @@
 	. = ..()
 	strike_thing(A)
 
-/obj/item/projectile/beam/ratminer/proc/strike_thing(var/atom/A)
+/obj/item/projectile/beam/ratminer/proc/strike_thing(atom/A)
 	var/turf/target_turf = get_turf(A)
 	if(!target_turf)
 		target_turf = get_turf(src)

@@ -5,14 +5,14 @@
 	var/list/obj/item/seeds/seeds = list() // Tracks actual objects contained in the pile
 	var/ID
 
-/datum/seed_pile/New(var/obj/item/seeds/O, var/ID)
+/datum/seed_pile/New(obj/item/seeds/O, ID)
 	name = O.name
 	amount = 1
 	seed_type = O.seed
 	seeds += O
 	src.ID = ID
 
-/datum/seed_pile/proc/matches(var/obj/item/seeds/O)
+/datum/seed_pile/proc/matches(obj/item/seeds/O)
 	if (O.seed == seed_type)
 		return 1
 	return 0
@@ -383,7 +383,7 @@
 				return TRUE
 			break
 
-/obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/seed_storage/attackby(obj/item/O as obj, mob/user as mob)
 	if (istype(O, /obj/item/seeds) && !lockdown)
 		add(O)
 		user.visible_message(span_filter_notice("[user] puts \the [O.name] into \the [src]."), span_filter_notice("You put \the [O] into \the [src]."))
@@ -413,7 +413,7 @@
 	else if((O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/multitool)) && panel_open)
 		wires.Interact(user)
 
-/obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/seed_storage/emag_act(remaining_charges, mob/user)
 	if(!src.emagged)
 		emagged = 1
 		if(lockdown)
@@ -430,7 +430,7 @@
 			qdel(sparks)
 		return 1
 
-/obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj, var/contraband = 0)
+/obj/machinery/seed_storage/proc/add(obj/item/seeds/O as obj, contraband = 0)
 	if (istype(O.loc, /mob))
 		var/mob/user = O.loc
 		user.remove_from_mob(O)

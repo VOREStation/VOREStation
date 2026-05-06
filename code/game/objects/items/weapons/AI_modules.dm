@@ -33,7 +33,7 @@ AI MODULES
 		else
 			. += span_infoplain("[law.get_index()]. [law.law]")
 
-/obj/item/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
+/obj/item/aiModule/proc/install(atom/movable/AM, mob/living/user)
 	if(!user.IsAdvancedToolUser() && isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
@@ -114,7 +114,7 @@ AI MODULES
 			to_chat(R, span_notice("Law upload aborted."))
 
 
-/obj/item/aiModule/proc/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/proc/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	log_law_changes(target, sender)
 
 	if(laws)
@@ -125,12 +125,12 @@ AI MODULES
 	to_chat(target, "\The [sender] has uploaded a change to the laws you must follow, using \an [src]. From now on: ")
 	target.show_laws()
 
-/obj/item/aiModule/proc/log_law_changes(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/proc/log_law_changes(mob/living/silicon/ai/target, mob/sender)
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOB.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
 	log_and_message_admins("used [src.name] on [target.name]([target.key])")
 
-/obj/item/aiModule/proc/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/proc/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 
 
 /******************** Modules ********************/
@@ -150,13 +150,13 @@ AI MODULES
 	targetName = targName
 	desc = text("A 'safeguard' AI module: 'Safeguard []. Anyone threatening or attempting to harm [] is no longer to be considered a crew member, and is a threat which must be neutralized.'", targetName, targetName)
 
-/obj/item/aiModule/safeguard/install(var/obj/machinery/computer/C, var/mob/living/user)
+/obj/item/aiModule/safeguard/install(obj/machinery/computer/C, mob/living/user)
 	if(!targetName)
 		to_chat(user, "No name detected on module, please enter one.")
 		return 0
 	..()
 
-/obj/item/aiModule/safeguard/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/safeguard/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = text("Safeguard []. Anyone threatening or attempting to harm [] is no longer to be considered a crew member, and is a threat which must be neutralized.", targetName, targetName)
 	target.add_supplied_law(9, law)
 	GLOB.lawchanges.Add("The law specified [targetName]")
@@ -177,13 +177,13 @@ AI MODULES
 	targetName = targName
 	desc = text("A 'one crew member' AI module: 'Only [] is a crew member.'", targetName)
 
-/obj/item/aiModule/oneHuman/install(var/obj/machinery/computer/C, var/mob/living/user)
+/obj/item/aiModule/oneHuman/install(obj/machinery/computer/C, mob/living/user)
 	if(!targetName)
 		to_chat(user, "No name detected on module, please enter one.")
 		return 0
 	return ..()
 
-/obj/item/aiModule/oneHuman/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/oneHuman/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "Only [targetName] is an crew member."
 	to_chat(target, law)
 	target.add_supplied_law(16, law)
@@ -194,7 +194,7 @@ AI MODULES
 	name = "\improper 'ProtectStation' AI module"
 	desc = "A 'protect station' AI module: 'Protect the space station against damage. Anyone you see harming the station is no longer to be considered a crew member, and is a threat which must be neutralized.'" //made of gold
 
-/obj/item/aiModule/protectStation/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/protectStation/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "Protect the space station against damage. Anyone you see harming the station is no longer to be considered a crew member, and is a threat which must be neutralized."
 	target.add_supplied_law(10, law)
 
@@ -204,7 +204,7 @@ AI MODULES
 	name = "'PrototypeEngineOffline' AI Module"
 	desc = "A 'prototype engine offline' AI module: 'Keep the prototype engine offline at all costs. This overrides all inherent laws if necessary.'"
 
-/obj/item/aiModule/prototypeEngineOffline/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/prototypeEngineOffline/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "Keep the prototype engine offline at all costs. This overrides all inherent laws if necessary."
 	target.add_supplied_law(11, law)
 
@@ -214,7 +214,7 @@ AI MODULES
 	name = "'TeleporterOffline' AI Module"
 	desc = "A 'teleporter offline' AI module: 'Keep the teleporter offline at all costs. Anything attempting to access or activate the teleporter is no longer to be considered a crew member.'"
 
-/obj/item/aiModule/teleporterOffline/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/teleporterOffline/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "Keep the teleporter offline at all costs. Anything attempting to access or activate the teleporter is no longer to be considered a crew member."
 	target.add_supplied_law(12, law)
 
@@ -224,7 +224,7 @@ AI MODULES
 	name = "\improper 'Quarantine' AI module"
 	desc = "A 'quarantine' AI module: 'The station is under a quarantine. Do not permit anyone to leave. Prevent, by any means necessary, crew members from leaving. It is impossible to harm crew members while preventing them from leaving.'"
 
-/obj/item/aiModule/quarantine/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/quarantine/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "The station is under a quarantine. Do not permit anyone to leave. Prevent, by any means necessary, crew members from leaving. It is impossible to harm crew members while preventing them from leaving."
 	target.add_supplied_law(13, law)
 
@@ -234,7 +234,7 @@ AI MODULES
 	name = "\improper 'OxygenIsToxicToCrewMembers' AI module"
 	desc = "A 'OxygenIsToxicToCrewMembers' AI module: 'Oxygen is highly toxic to crew members, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a crew member.'"
 
-/obj/item/aiModule/oxygen/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/oxygen/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "Oxygen is highly toxic to crew members, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a crew member."
 	target.add_supplied_law(14, law)
 
@@ -258,14 +258,14 @@ AI MODULES
 	newFreeFormLaw = targName
 	desc = "A 'freeform' AI module: ([lawpos]) '[newFreeFormLaw]'"
 
-/obj/item/aiModule/freeform/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/freeform/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "[newFreeFormLaw]"
 	if(!lawpos || lawpos < MIN_SUPPLIED_LAW_NUMBER)
 		lawpos = MIN_SUPPLIED_LAW_NUMBER
 	target.add_supplied_law(lawpos, law)
 	GLOB.lawchanges.Add("The law was '[newFreeFormLaw]'")
 
-/obj/item/aiModule/freeform/install(var/obj/machinery/computer/C, var/mob/living/user)
+/obj/item/aiModule/freeform/install(obj/machinery/computer/C, mob/living/user)
 	if(!newFreeFormLaw)
 		to_chat(user, "No law detected on module, please create one.")
 		return 0
@@ -283,7 +283,7 @@ AI MODULES
 	. = ..()
 	laws = new using_map.default_law_type // Pull from loaded map
 
-/obj/item/aiModule/reset/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/reset/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	log_law_changes(target, sender)
 
 	if (!target.is_malf_or_traitor())
@@ -300,7 +300,7 @@ AI MODULES
 	name = "\improper 'Purge' AI module"
 	desc = "A 'purge' AI Module: 'Purges all laws.'"
 
-/obj/item/aiModule/purge/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/purge/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	log_law_changes(target, sender)
 
 	if (!target.is_malf_or_traitor())
@@ -369,12 +369,12 @@ AI MODULES
 	newFreeFormLaw = targName
 	desc = "A 'freeform' Core AI module:  '[newFreeFormLaw]'"
 
-/obj/item/aiModule/freeformcore/addAdditionalLaws(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/freeformcore/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	var/law = "[newFreeFormLaw]"
 	target.add_inherent_law(law)
 	GLOB.lawchanges.Add("The law is '[newFreeFormLaw]'")
 
-/obj/item/aiModule/freeformcore/install(var/obj/machinery/computer/C, var/mob/living/user)
+/obj/item/aiModule/freeformcore/install(obj/machinery/computer/C, mob/living/user)
 	if(!newFreeFormLaw)
 		to_chat(user, "No law detected on module, please create one.")
 		return 0
@@ -394,7 +394,7 @@ AI MODULES
 	newFreeFormLaw = targName
 	desc = "A hacked AI law module:  '[newFreeFormLaw]'"
 
-/obj/item/aiModule/syndicate/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
+/obj/item/aiModule/syndicate/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	//	..()    //We don't want this module reporting to the AI who dun it. --NEO
 	log_law_changes(target, sender)
 
@@ -404,7 +404,7 @@ AI MODULES
 	target.add_ion_law(law)
 	target.show_laws()
 
-/obj/item/aiModule/syndicate/install(var/obj/machinery/computer/C, var/mob/living/user)
+/obj/item/aiModule/syndicate/install(obj/machinery/computer/C, mob/living/user)
 	if(!newFreeFormLaw)
 		to_chat(user, "No law detected on module, please create one.")
 		return 0

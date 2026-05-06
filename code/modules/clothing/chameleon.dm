@@ -2,7 +2,7 @@
 //**Cham Jumpsuit**
 //*****************
 
-/obj/item/proc/disguise(var/newtype)
+/obj/item/proc/disguise(newtype)
 	//this is necessary, unfortunately, as initial() does not play well with list vars
 	var/obj/item/copy = new newtype(null) //so that it is GCed once we exit
 
@@ -20,7 +20,7 @@
 
 	return copy //for inheritance
 
-/proc/generate_chameleon_choices(var/basetype, var/blacklist=list())
+/proc/generate_chameleon_choices(basetype, blacklist=list())
 	. = list()
 
 	var/i = 1 //in case there is a collision with both name AND icon_state
@@ -468,7 +468,7 @@
 		M.update_inv_r_hand()
 		M.update_inv_l_hand()
 
-/obj/item/gun/energy/chameleon/disguise(var/newtype)
+/obj/item/gun/energy/chameleon/disguise(newtype)
 	var/obj/item/gun/copy = ..()
 
 	flags_inv = copy.flags_inv

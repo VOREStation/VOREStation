@@ -11,7 +11,7 @@
 	Returns
 	A number between 0 and 100, with higher numbers resulting in less damage taken.
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", armour_pen = 0, absorb_text = null, soften_text = null)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: getarmor() was called.")
 
@@ -78,7 +78,7 @@
 */
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(var/def_zone, var/type)
+/mob/living/proc/getarmor(def_zone, type)
 	return 0
 
 // Clicking with an empty hand
@@ -94,7 +94,7 @@
 				span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
 				span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
 
-/mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/bullet_act(obj/item/projectile/P, def_zone)
 
 	if(ai_holder && P.firer)
 		ai_holder.react_to_attack(P.firer)
@@ -130,7 +130,7 @@
 //	return absorb
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
+/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone, used_weapon=null, electric = FALSE)
 	flash_pain()
 	SEND_SIGNAL(src, COMSIG_STUN_EFFECT_ACT, stun_amount, agony_amount, def_zone, used_weapon, electric)
 
@@ -145,7 +145,7 @@
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
-/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null, stun = 1)
 	  return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity, recursive)
@@ -162,7 +162,7 @@
 		return
 	..()
 
-/mob/living/blob_act(var/obj/structure/blob/B)
+/mob/living/blob_act(obj/structure/blob/B)
 	if(stat == DEAD || faction == B.faction)
 		return
 
@@ -201,11 +201,11 @@
 
 	apply_damage(damage, damage_type, def_zone, absorb)
 
-/mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
+/mob/living/proc/resolve_item_attack(obj/item/I, mob/living/user, target_zone)
 	return target_zone
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
-/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
 	visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
 	if(ai_holder)
@@ -222,7 +222,7 @@
 	return blocked
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, effective_force, blocked, hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
 	//Apply weapon damage
@@ -300,24 +300,24 @@
 					src.anchored = TRUE
 					src.pinned += O
 
-/mob/living/proc/on_throw_vore_special(var/pred = TRUE, var/mob/living/target)
+/mob/living/proc/on_throw_vore_special(pred = TRUE, mob/living/target)
 	return
 
-/mob/living/proc/embed(var/obj/O, var/def_zone=null)
+/mob/living/proc/embed(obj/O, def_zone=null)
 	O.loc = src
 	src.embedded += O
 	add_verb(src, /mob/proc/yank_out_object)
 	throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(var/turf/T, var/speed)
+/mob/living/proc/turf_collision(turf/T, speed)
 	if(SEND_SIGNAL(src, COMSIG_LIVING_TURF_COLLISION, T, speed) & COMPONENT_LIVING_BLOCK_TURF_COLLISION)
 		return
 	src.take_organ_damage(12)	// used to be 5 * speed. That's a default of 25 and I dont see anything ever changing the "speed" value.
 	//src.Weaken(3)				// That is absurdly high so im just setting it to a flat 12 with a bit of stun ontop. //Stun is too dangerous
 	playsound(src, get_sfx("punch"), 50) //ouch sound
 
-/mob/living/proc/near_wall(var/direction,var/distance=1)
+/mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
 	var/turf/last_turf = src.loc
 	var/i = 1
@@ -333,7 +333,7 @@
 
 // End BS12 momentum-transfer code.
 
-/mob/living/attack_generic(var/mob/user, var/damage, var/attack_message)
+/mob/living/attack_generic(mob/user, damage, attack_message)
 	if(istype(user,/mob/living))
 		var/mob/living/L = user
 		if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
@@ -450,7 +450,7 @@
 	if(amount > 0)
 		adjustToxLoss(amount)
 
-/mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone, ignore_thickness = FALSE)
 	return 1
 
 /mob/living/proc/get_organ_target()
@@ -462,25 +462,25 @@
 	return def_zone
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn)
+/mob/living/proc/heal_organ_damage(brute, burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
+/mob/living/proc/take_organ_damage(brute, burn, emp=0)
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
 
 // heal MANY external organs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+/mob/living/proc/heal_overall_damage(brute, burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
 // damage MANY external organs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+/mob/living/proc/take_overall_damage(brute, burn, used_weapon = null)
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()

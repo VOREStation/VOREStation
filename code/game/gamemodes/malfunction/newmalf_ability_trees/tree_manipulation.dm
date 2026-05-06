@@ -54,7 +54,7 @@
 			AP.set_broken()
 
 
-/datum/game_mode/malfunction/verb/hack_camera(var/obj/machinery/camera/target in GLOB.cameranet.cameras)
+/datum/game_mode/malfunction/verb/hack_camera(obj/machinery/camera/target in GLOB.cameranet.cameras)
 	set name = "Hack Camera"
 	set desc = "100 CPU - Hacks existing camera, allowing you to add upgrade of your choice to it. Alternatively it lets you reactivate broken camera."
 	set category = "Software"
@@ -111,7 +111,7 @@
 				return
 
 
-/datum/game_mode/malfunction/verb/emergency_forcefield(var/turf/T as turf in world)
+/datum/game_mode/malfunction/verb/emergency_forcefield(turf/T as turf in world)
 	set name = "Emergency Forcefield"
 	set desc = "275 CPU - Uses station's emergency shielding system to create temporary barrier which lasts for few minutes, but won't resist gunfire."
 	set category = "Software"

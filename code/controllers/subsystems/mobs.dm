@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(mobs)
 	log_game(msg)
 	log_world(msg)
 
-/datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
+/datum/controller/subsystem/mobs/proc/report_death(mob/living/L)
 	if(!L)
 		return
 	if(!L.key || !L.mind)

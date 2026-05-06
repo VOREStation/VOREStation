@@ -87,7 +87,7 @@
 	eject_occupant()
 	. = ..()
 
-/obj/machinery/dna_scannernew/proc/set_occupant(var/mob/living/L)
+/obj/machinery/dna_scannernew/proc/set_occupant(mob/living/L)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!L)
 		weakref_occupant = null
@@ -139,7 +139,7 @@
 		for(var/mob/M in src)//Failsafe so you can get mobs out
 			M.forceMove(get_turf(src))
 
-/obj/machinery/dna_scannernew/MouseDrop_T(var/mob/target, var/mob/user) //Allows borgs to clone people without external assistance
+/obj/machinery/dna_scannernew/MouseDrop_T(mob/target, mob/user) //Allows borgs to clone people without external assistance
 	var/mob/living/carbon/WC = get_occupant()
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target) || WC)
 		return
@@ -179,7 +179,7 @@
 	add_fingerprint(usr)
 	SStgui.update_uis(src)
 
-/obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
+/obj/machinery/dna_scannernew/attackby(obj/item/item as obj, mob/user as mob)
 	// Traitgenes Deconstructable dna scanner
 	if(default_deconstruction_screwdriver(user, item))
 		return
@@ -248,7 +248,7 @@
 			break
 	. = ..()
 
-/obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
+/obj/machinery/dna_scannernew/proc/put_in(mob/M)
 	M.forceMove(src)
 	set_occupant(M)
 	icon_state = "scanner_1"
@@ -381,13 +381,13 @@
 			break
 	VARSET_IN(src, injector_ready, TRUE, 25 SECONDS)
 
-/obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(var/list/buffer)
+/obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(list/buffer)
 	var/list/arr = list()
 	for(var/i = 1, i <= buffer.len, i++)
 		arr += "[i]:[EncodeDNABlock(buffer[i])]"
 	return arr
 
-/obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(var/obj/item/dnainjector/I, var/blk, var/datum/transhuman/body_record/buffer) // Traitgenes Stores the entire body record
+/obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(obj/item/dnainjector/I, blk, datum/transhuman/body_record/buffer) // Traitgenes Stores the entire body record
 	var/pos = findtext(blk,":")
 	if(!pos) return 0
 	var/id = text2num(copytext(blk,1,pos))
@@ -774,7 +774,7 @@
  * Arguments:
  * * active_br - Body record to print
  */
-/obj/machinery/computer/scan_consolenew/proc/print_sleeve(var/mob/user, var/datum/transhuman/body_record/active_br)
+/obj/machinery/computer/scan_consolenew/proc/print_sleeve(mob/user, datum/transhuman/body_record/active_br)
 	//deleted record
 	if(!istype(active_br))
 		to_chat(user, span_danger( "Error: Data corruption."))
@@ -814,7 +814,7 @@
 		return
 	to_chat(user, span_notice( "Initiating growing cycle..."))
 
-/obj/machinery/computer/scan_consolenew/proc/do_irradiate(var/lock_state, var/block)
+/obj/machinery/computer/scan_consolenew/proc/do_irradiate(lock_state, block)
 	var/mob/living/carbon/WC = connected?.get_occupant()
 	irradiating = 0
 	connected.locked = lock_state
@@ -849,7 +849,7 @@
 		H.sync_organ_dna()
 	WC.regenerate_icons()
 
-/obj/machinery/computer/scan_consolenew/proc/do_pulse(var/lock_state)
+/obj/machinery/computer/scan_consolenew/proc/do_pulse(lock_state)
 	var/mob/living/carbon/WC = connected?.get_occupant()
 	irradiating = 0
 	connected.locked = lock_state
@@ -876,7 +876,7 @@
 	WC.apply_effect(((radiation_intensity*3)+radiation_duration*3), IRRADIATE, check_protection = 0)
 
 
-/obj/machinery/computer/scan_consolenew/proc/do_transfer(var/lock_state, var/bufferId)
+/obj/machinery/computer/scan_consolenew/proc/do_transfer(lock_state, bufferId)
 	irradiating = 0
 	connected.locked = lock_state
 

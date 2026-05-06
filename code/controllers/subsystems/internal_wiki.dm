@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(internal_wiki)
 ///////////////////////////////////////////////////////////////////////////////////
 // Donation system, for the joke of course
 ///////////////////////////////////////////////////////////////////////////////////
-/datum/controller/subsystem/internal_wiki/proc/pay_with_card( var/obj/item/card/id/I, var/mob/M, var/obj/device, var/paying_amount)
+/datum/controller/subsystem/internal_wiki/proc/pay_with_card( obj/item/card/id/I, mob/M, obj/device, paying_amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!purchase_with_id_card(I, M, "Bingle.Co.LLC.UK.M.XM.WMP.AVI.COM", device.name, "Donation", paying_amount))
 		return FALSE
@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	donation_add(paying_amount)
 	return TRUE
 
-/datum/controller/subsystem/internal_wiki/proc/donation_add(var/paying_amount)
+/datum/controller/subsystem/internal_wiki/proc/donation_add(paying_amount)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	var/old_dono = cur_donation
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		if(cur_donation >= donation_goal) // Reached goal!
 			message_admins("Bingle donation goal reached! Winner was [get_highest_donor_name()] with [get_highest_donor_value()]") // TODO - Removed me for something actually interesting
 
-/datum/controller/subsystem/internal_wiki/proc/update_highest_donator(var/no_cache = FALSE)
+/datum/controller/subsystem/internal_wiki/proc/update_highest_donator(no_cache = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(no_cache)
@@ -119,43 +119,43 @@ SUBSYSTEM_DEF(internal_wiki)
 // Accessors for safely talking with the subsystem
 ///////////////////////////////////////////////////////////////////////////////////
 // get a page from a search
-/datum/controller/subsystem/internal_wiki/proc/get_page_food(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_food(search)
 	RETURN_TYPE(/datum/internal_wiki/page/food)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return foodrecipe[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_drink(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_drink(search)
 	RETURN_TYPE(/datum/internal_wiki/page/drink)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return drinkreact[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_chem(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_chem(search)
 	RETURN_TYPE(/datum/internal_wiki/page/chemical)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return chemreact[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_seed(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_seed(search)
 	RETURN_TYPE(/datum/internal_wiki/page/seed)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return botseeds[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_virus(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_virus(search)
 	RETURN_TYPE(/datum/internal_wiki/page/virus)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return viruses[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_gene(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_gene(search)
 	RETURN_TYPE(/datum/internal_wiki/page/gene)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return genes[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_catalog(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_catalog(search)
 	RETURN_TYPE(/datum/internal_wiki/page/catalog)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return catalogs[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_material(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_material(search)
 	RETURN_TYPE(/datum/internal_wiki/page/material)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return materials[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_particle(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_particle(search)
 	RETURN_TYPE(/datum/internal_wiki/page/smasher)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return smashers[search]
-/datum/controller/subsystem/internal_wiki/proc/get_page_ore(var/search)
+/datum/controller/subsystem/internal_wiki/proc/get_page_ore(search)
 	RETURN_TYPE(/datum/internal_wiki/page/ore)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return ores[search]
@@ -164,7 +164,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return appliance_list
-/datum/controller/subsystem/internal_wiki/proc/get_searchcache_food(var/appliance)
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_food(appliance)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_foodrecipe[appliance] || list()
@@ -192,7 +192,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return catalog_list
-/datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(var/section)
+/datum/controller/subsystem/internal_wiki/proc/get_searchcache_catalog(section)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	var/list/known_entries = list()
@@ -216,7 +216,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	return searchcache_ore
 // Donating
-/datum/controller/subsystem/internal_wiki/proc/get_donor_value(var/key)
+/datum/controller/subsystem/internal_wiki/proc/get_donor_value(key)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!length(dono_list) || isnull(dono_list[key]))
 		return 0
@@ -236,7 +236,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	highest_cached_donator = update_highest_donator(FALSE)
 	return get_donor_value(highest_cached_donator)
 // Helpers for formatting wiki data for tgui pages
-/datum/controller/subsystem/internal_wiki/proc/assemble_reaction_data(var/list/data, var/datum/reagent/R)
+/datum/controller/subsystem/internal_wiki/proc/assemble_reaction_data(list/data, datum/reagent/R)
 	var/list/reaction_list = SSchemistry.chemical_reactions_by_product[R.id]
 	var/list/distilled_list = SSchemistry.distilled_reactions_by_product[R.id]
 
@@ -400,7 +400,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	if(length(display_reactions) > 0)
 		data["produces"] = display_reactions
 
-/datum/controller/subsystem/internal_wiki/proc/assemble_sintering(var/sinter)
+/datum/controller/subsystem/internal_wiki/proc/assemble_sintering(sinter)
 	if(sinter == REFINERY_SINTERING_EXPLODE)
 		return "violent detonation"
 	if(sinter == REFINERY_SINTERING_SMOKE)
@@ -409,7 +409,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		return "OH GOD WHY!?"
 	return sinter
 
-/datum/controller/subsystem/internal_wiki/proc/add_icon(var/list/data, var/ic, var/is, var/col)
+/datum/controller/subsystem/internal_wiki/proc/add_icon(list/data, ic, is, col)
 	var/load_data = list()
 	load_data["icon"] = ic // dmi path
 	load_data["state"] = is // string
@@ -720,7 +720,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			pages.Add(P)
 		catalog_list.Add(G.name)
 
-/datum/controller/subsystem/internal_wiki/proc/allow_reagent(var/reagent_id)
+/datum/controller/subsystem/internal_wiki/proc/allow_reagent(reagent_id)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
@@ -750,7 +750,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // ORES
 ////////////////////////////////////////////
-/datum/internal_wiki/page/ore/assemble(var/datum/ore/O)
+/datum/internal_wiki/page/ore/assemble(datum/ore/O)
 	title = O.display_name
 	data["title"] = title
 	var/obj/item/ore/ore_path = O.ore
@@ -829,7 +829,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // MATERIALS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/material/assemble(var/datum/material/M)
+/datum/internal_wiki/page/material/assemble(datum/material/M)
 	title = M.display_name + " "  + M.sheet_singular_name
 	data["title"] = title
 	var/obj/item/stack/stack_path = M.stack_type
@@ -928,7 +928,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // SEEDS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/seed/assemble(var/datum/seed/S)
+/datum/internal_wiki/page/seed/assemble(datum/seed/S)
 	title = S.display_name
 	data["title"] = title
 	SSinternal_wiki.add_icon(data, 'icons/obj/hydroponics_growing.dmi', "[S.get_trait(TRAIT_PLANT_ICON)]-[S.growth_stages]", S.get_trait(TRAIT_PLANT_COLOUR))
@@ -1057,7 +1057,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // PARTICLE SMASHER
 ////////////////////////////////////////////
-/datum/internal_wiki/page/smasher/assemble(var/datum/particle_smasher_recipe/M)
+/datum/internal_wiki/page/smasher/assemble(datum/particle_smasher_recipe/M)
 	title = M.display_name
 	data["title"] = title
 	var/obj/item/stack/material/result_path = M.result
@@ -1119,7 +1119,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // CHEMICALS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/chemical/assemble(var/datum/reagent/R)
+/datum/internal_wiki/page/chemical/assemble(datum/reagent/R)
 	title = R.name
 	data["title"] = title
 	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
@@ -1178,7 +1178,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // FOOD REAGENTS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/food/assemble(var/datum/reagent/R)
+/datum/internal_wiki/page/food/assemble(datum/reagent/R)
 	title = R.name
 	data["title"] = title
 	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
@@ -1199,7 +1199,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // DRINK REAGENTS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/drink/assemble(var/datum/reagent/R)
+/datum/internal_wiki/page/drink/assemble(datum/reagent/R)
 	title = R.name
 	data["title"] = title
 	// Use beaker by default, otherwise try metamorphic glass for icon
@@ -1228,7 +1228,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // FOOD RECIPIE
 ////////////////////////////////////////////
-/datum/internal_wiki/page/recipe/assemble(var/list/recipe)
+/datum/internal_wiki/page/recipe/assemble(list/recipe)
 	title = recipe["Result"]
 	data["title"] = title
 	var/obj/item/path = recipe["ResultPath"]
@@ -1346,7 +1346,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // VIRUSES
 /////////////////////////////////////////////
-/datum/internal_wiki/page/virus/assemble(var/datum/disease/D)
+/datum/internal_wiki/page/virus/assemble(datum/disease/D)
 	title = initial(D.name)
 	data["title"] = title
 	data["description"] = initial(D.desc)
@@ -1445,7 +1445,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // GENES
 /////////////////////////////////////////////
-/datum/internal_wiki/page/gene/assemble(var/datum/gene/G)
+/datum/internal_wiki/page/gene/assemble(datum/gene/G)
 	if(istype(G,/datum/gene/trait))
 		// Trait genetics
 		var/datum/gene/trait/T = G
@@ -1506,7 +1506,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // MISC HELPERS
 ////////////////////////////////////////////
-/datum/internal_wiki/page/proc/print_allergens(var/list/allergens)
+/datum/internal_wiki/page/proc/print_allergens(list/allergens)
 	PROTECTED_PROC(TRUE)
 	var/AG = ""
 	if(allergens && length(allergens) > 0)
@@ -1516,7 +1516,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		AG += "<br>"
 	return AG
 
-/datum/internal_wiki/page/proc/print_reaction_data(var/list/data)
+/datum/internal_wiki/page/proc/print_reaction_data(list/data)
 	var/body = ""
 	var/list/instant = data["instant_reactions"]
 	if(instant && length(instant) > 0)

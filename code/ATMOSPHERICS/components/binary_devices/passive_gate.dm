@@ -50,7 +50,7 @@
 	add_underlay(T, node1, turn(dir, 180))
 	add_underlay(T, node2, dir)
 
-/obj/machinery/atmospherics/binary/passive_gate/hide(var/i)
+/obj/machinery/atmospherics/binary/passive_gate/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/passive_gate/process()
@@ -275,7 +275,7 @@
 	update_icon()
 	add_fingerprint(ui.user)
 
-/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (unlocked)

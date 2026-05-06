@@ -55,7 +55,7 @@
 	ion_trail.set_up(src)
 	ion_trail.stop()
 
-/obj/mecha/combat/fighter/moved_inside(var/mob/living/carbon/human/H)
+/obj/mecha/combat/fighter/moved_inside(mob/living/carbon/human/H)
 	. = ..()
 	consider_gravity()
 
@@ -172,7 +172,7 @@
 	else
 		return TRUE
 
-/obj/mecha/combat/fighter/proc/consider_gravity(var/moved = FALSE)
+/obj/mecha/combat/fighter/proc/consider_gravity(moved = FALSE)
 	var/gravity = get_gravity()
 	if (gravity && !landing_gear_raised)
 		playsound(src, 'sound/effects/roll.ogg', 50, 1)
@@ -226,7 +226,7 @@
 		return 0
 
 
-/obj/mecha/combat/fighter/play_entered_noise(var/mob/who)
+/obj/mecha/combat/fighter/play_entered_noise(mob/who)
 	if(hasInternalDamage())
 		who << sound('sound/mecha/fighter/fighter_entered_bad.ogg',volume=60)
 	else

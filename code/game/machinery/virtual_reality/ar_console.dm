@@ -33,7 +33,7 @@
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
 		perform_exit()
 
-/obj/machinery/vr_sleeper/alien/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/vr_sleeper/alien/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
 
 	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))

@@ -53,7 +53,7 @@
 /obj/item/computer_hardware/battery_module/lambda/Initialize(mapload)
 	. = ..(mapload, /obj/item/cell/infinite)
 
-/obj/item/computer_hardware/battery_module/diagnostics(var/mob/user)
+/obj/item/computer_hardware/battery_module/diagnostics(mob/user)
 	..()
 	to_chat(user, "Internal battery charge: [battery.charge]/[battery.maxcharge] CU")
 

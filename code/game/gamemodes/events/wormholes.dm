@@ -1,4 +1,4 @@
-/proc/wormhole_event(var/set_duration = 5 MINUTES, var/wormhole_duration_modifier = 1)
+/proc/wormhole_event(set_duration = 5 MINUTES, wormhole_duration_modifier = 1)
 	spawn()
 		var/list/pick_turfs = list()
 		var/list/Z_choices = list()
@@ -57,7 +57,7 @@
 
 
 //maybe this proc can even be used as an admin tool for teleporting players without ruining immulsions?
-/proc/create_wormhole(var/turf/enter as turf, var/turf/exit as turf, var/min_duration = 30 SECONDS, var/max_duration = 60 SECONDS)
+/proc/create_wormhole(turf/enter as turf, turf/exit as turf, min_duration = 30 SECONDS, max_duration = 60 SECONDS)
 	set waitfor = FALSE
 	var/obj/effect/portal/P = new /obj/effect/portal( enter )
 	P.target = exit

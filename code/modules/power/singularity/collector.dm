@@ -131,7 +131,7 @@
 
 // Continuing here, SM giving us ~170 rads per pulse, a phoron canister full of 30 mols, and * 20 we get:
 // 102000W per collector...So 10 collectors will give us ~1MW.
-/obj/machinery/power/rad_collector/proc/receive_pulse(var/pulse_strength)
+/obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
 	if(P && active)
 		var/power_produced = 0
 		power_produced = P.air_contents.gas[GAS_PHORON]*pulse_strength*20

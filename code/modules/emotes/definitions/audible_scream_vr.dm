@@ -1,4 +1,4 @@
-/datum/decl/emote/audible/scream/get_emote_sound(var/atom/user)
+/datum/decl/emote/audible/scream/get_emote_sound(atom/user)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

@@ -28,7 +28,7 @@
 	headset_alt = /obj/item/radio/headset/ert
 	headset_earbud = /obj/item/radio/headset/ert
 
-/datum/decl/hierarchy/outfit/job/emergency_responder/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/emergency_responder/post_equip(mob/living/carbon/human/H)
 	..()
 	GLOB.ert.add_antagonist(H.mind)
 
@@ -53,7 +53,7 @@
 	id_type = /obj/item/card/id/civilian/mime
 	pda_type = /obj/item/pda/mime
 
-/datum/decl/hierarchy/outfit/job/mime/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/mime/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/pen/crayon/mime(H), slot_l_hand)

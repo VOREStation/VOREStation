@@ -158,7 +158,7 @@
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/vore/demonAI/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/demonAI/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

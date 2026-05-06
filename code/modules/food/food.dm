@@ -23,7 +23,7 @@
 
 	handle_name_change(usr)
 
-/obj/item/reagent_containers/food/proc/handle_name_change(var/mob/living/user)
+/obj/item/reagent_containers/food/proc/handle_name_change(mob/living/user)
 	if(user.stat == DEAD || !(ishuman(user) || isrobot(user)))
 		to_chat(user, span_warning("You can't cook!"))
 		return

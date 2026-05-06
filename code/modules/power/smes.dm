@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
 	var/grid_check = FALSE // If true, suspends all I/O.
 
-/obj/machinery/power/smes/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/machinery/power/smes/drain_power(drain_check, surge, amount = 0)
 
 	if(drain_check)
 		return 1
@@ -137,13 +137,13 @@ GLOBAL_LIST_EMPTY(smeses)
 		return FALSE
 	return TRUE
 
-/obj/machinery/power/smes/add_avail(var/amount)
+/obj/machinery/power/smes/add_avail(amount)
 	if(..(amount))
 		powernet.smes_newavail += amount
 		return 1
 	return 0
 
-/obj/machinery/power/smes/disconnect_terminal(var/obj/machinery/power/terminal/term)
+/obj/machinery/power/smes/disconnect_terminal(obj/machinery/power/terminal/term)
 	terminals -= term
 	term.master = null
 
@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(smeses)
 /obj/machinery/power/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))
 
-/obj/machinery/power/smes/proc/input_power(var/percentage, var/obj/machinery/power/terminal/term)
+/obj/machinery/power/smes/proc/input_power(percentage, obj/machinery/power/terminal/term)
 	var/to_input = target_load * (percentage/100)
 	to_input = between(0, to_input, target_load)
 	if(percentage == 100)
@@ -184,10 +184,10 @@ GLOBAL_LIST_EMPTY(smeses)
 	input_available += inputted
 
 // Mostly in place due to child types that may store power in other way (PSUs)
-/obj/machinery/power/smes/proc/add_charge(var/amount)
+/obj/machinery/power/smes/proc/add_charge(amount)
 	charge += amount*SMESRATE
 
-/obj/machinery/power/smes/proc/remove_charge(var/amount)
+/obj/machinery/power/smes/proc/remove_charge(amount)
 	charge -= amount*SMESRATE
 
 /obj/machinery/power/smes/process()
@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(smeses)
 
 // called after all power processes are finished
 // restores charge level to smes if there was excess this ptick
-/obj/machinery/power/smes/proc/restore(var/percent_load)
+/obj/machinery/power/smes/proc/restore(percent_load)
 	if(stat & BROKEN)
 		return
 
@@ -289,14 +289,14 @@ GLOBAL_LIST_EMPTY(smeses)
 		return 0
 	return 1
 
-/obj/machinery/power/smes/proc/check_terminal_exists(var/turf/location, var/mob/user, var/direction)
+/obj/machinery/power/smes/proc/check_terminal_exists(turf/location, mob/user, direction)
 	for(var/obj/machinery/power/terminal/term in location)
 		if(term.dir == direction)
 			to_chat(user, span_filter_notice(span_notice("There is already a terminal here.")))
 			return 1
 	return 0
 
-/obj/machinery/power/smes/draw_power(var/amount)
+/obj/machinery/power/smes/draw_power(amount)
 	var/drained = 0
 	for(var/obj/machinery/power/terminal/term in terminals)
 		if(!term.powernet)
@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	tgui_interact(user)
 
 
-/obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return FALSE
 
@@ -493,17 +493,17 @@ GLOBAL_LIST_EMPTY(smeses)
 				set_output(target)
 
 
-/obj/machinery/power/smes/proc/inputting(var/do_input)
+/obj/machinery/power/smes/proc/inputting(do_input)
 	input_attempt = do_input
 	if(!input_attempt)
 		inputting = 0
 
-/obj/machinery/power/smes/proc/outputting(var/do_output)
+/obj/machinery/power/smes/proc/outputting(do_output)
 	output_attempt = do_output
 	if(!output_attempt)
 		outputting = 0
 
-/obj/machinery/power/smes/take_damage(var/amount)
+/obj/machinery/power/smes/take_damage(amount)
 	amount = max(0, round(amount))
 	damage += amount
 	if(damage > maxdamage)
@@ -531,15 +531,15 @@ GLOBAL_LIST_EMPTY(smeses)
 		charge = 0
 	update_icon()
 
-/obj/machinery/power/smes/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/smes/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
 
-/obj/machinery/power/smes/ex_act(var/severity)
+/obj/machinery/power/smes/ex_act(severity)
 	// Two strong explosions will destroy a SMES.
 	// Given the SMES creates another explosion on it's destruction it sounds fairly reasonable.
 	take_damage(250 / severity)
 
-/obj/machinery/power/smes/examine(var/mob/user)
+/obj/machinery/power/smes/examine(mob/user)
 	. = ..()
 	. += span_filter_notice("The service hatch is [panel_open ? "open" : "closed"].")
 	if(!damage)
@@ -573,14 +573,14 @@ GLOBAL_LIST_EMPTY(smeses)
 // Proc: set_input()
 // Parameters: 1 (new_input - New input value in Watts)
 // Description: Sets input setting on this SMES. Trims it if limits are exceeded.
-/obj/machinery/power/smes/proc/set_input(var/new_input = 0)
+/obj/machinery/power/smes/proc/set_input(new_input = 0)
 	input_level = between(0, new_input, input_level_max)
 	update_icon()
 
 // Proc: set_output()
 // Parameters: 1 (new_output - New output value in Watts)
 // Description: Sets output setting on this SMES. Trims it if limits are exceeded.
-/obj/machinery/power/smes/proc/set_output(var/new_output = 0)
+/obj/machinery/power/smes/proc/set_output(new_output = 0)
 	output_level = between(0, new_output, output_level_max)
 	update_icon()
 
@@ -591,7 +591,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	var/recharge_rate = 10000
 	var/overlay_icon = 'icons/obj/power_vr.dmi'
 
-/obj/machinery/power/smes/buildable/hybrid/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/hybrid/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user,span_warning("\The [src] full of weird alien technology that's best not messed with."))
 		return 0

@@ -48,7 +48,7 @@
 	return
 
 /* Leaving this until we are really sure we don't need it for reference.
-/obj/mecha/combat/phazon/Bump(var/atom/obstacle)
+/obj/mecha/combat/phazon/Bump(atom/obstacle)
 	if(phasing && get_charge()>=phasing_energy_drain)
 		spawn()
 			if(can_phase)
@@ -126,7 +126,7 @@
 
 	return
 
-/obj/mecha/combat/phazon/janus/dynbulletdamage(var/obj/item/projectile/Proj)
+/obj/mecha/combat/phazon/janus/dynbulletdamage(obj/item/projectile/Proj)
 	if((Proj.damage && !Proj.nodamage) && !istype(Proj, /obj/item/projectile/beam) && prob(max(1, 33 - round(Proj.damage / 4))))
 		src.occupant_message(span_alien("The armor absorbs the incoming projectile's force, negating it!"))
 		src.visible_message(span_alien("The [src.name] absorbs the incoming projectile's force, negating it!"))

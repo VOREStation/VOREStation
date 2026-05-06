@@ -15,7 +15,7 @@
 /obj/structure/ghost_pod/manual/lost_drone/trigger()
 	..(span_notice("\The [src] appears to be attempting to restart the robot contained inside."), "is attempting to open \a [src].")
 
-/obj/structure/ghost_pod/manual/lost_drone/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/manual/lost_drone/create_occupant(mob/M)
 	density = FALSE
 	var/mob/living/silicon/robot/malf/lost/randomlaws/R = new(get_turf(src))
 	R.adjustBruteLoss(rand(5, 30))
@@ -45,7 +45,7 @@
 	ghost_query_type = /datum/ghost_query/gravekeeper_drone
 	needscharger = TRUE
 
-/obj/structure/ghost_pod/automatic/gravekeeper_drone/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/automatic/gravekeeper_drone/create_occupant(mob/M)
 	density = FALSE
 	var/mob/living/silicon/robot/malf/gravekeeper/R = new(get_turf(src))
 	if(M.mind)
@@ -69,7 +69,7 @@
 	var/drone_class = "general"
 	var/drone_type = /mob/living/silicon/robot/drone/swarm
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/swarm_drone/create_occupant(mob/M)
 	var/mob/living/silicon/robot/drone/swarm/R = new drone_type(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(R)

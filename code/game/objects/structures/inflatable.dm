@@ -17,7 +17,7 @@
 		return FALSE
 	inflate(user,user.loc)
 
-/obj/item/inflatable/afterattack(var/atom/A, var/mob/user)
+/obj/item/inflatable/afterattack(atom/A, mob/user)
 	..(A, user)
 	if(!user)
 		return
@@ -49,7 +49,7 @@
 	update_nearby_tiles()
 	return ..()
 
-/obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/inflatable/bullet_act(obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
 
@@ -90,7 +90,7 @@
 		..()
 	return
 
-/obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
+/obj/structure/inflatable/proc/hit(damage, sound_effect = 1)
 	health = max(0, health - damage)
 	if(sound_effect)
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
@@ -100,7 +100,7 @@
 /obj/structure/inflatable/click_ctrl()
 	hand_deflate()
 
-/obj/item/inflatable/proc/inflate(var/mob/user,var/location)
+/obj/item/inflatable/proc/inflate(mob/user,location)
 	playsound(location, 'sound/items/zip.ogg', 75, 1)
 	to_chat(user, span_notice("You inflate [src]."))
 	var/obj/structure/inflatable/R = new deploy_path(location)
@@ -135,7 +135,7 @@
 	verbs -= /obj/structure/inflatable/verb/hand_deflate
 	deflate()
 
-/obj/structure/inflatable/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/inflatable/attack_generic(mob/user, damage, attack_verb)
 	health -= damage
 	user.do_attack_animation(src)
 	if(health <= 0)
@@ -145,7 +145,7 @@
 		user.visible_message(span_danger("[user] [attack_verb] at [src]!"))
 	return 1
 
-/obj/structure/inflatable/take_damage(var/damage)
+/obj/structure/inflatable/take_damage(damage)
 	health -= damage
 	if(health <= 0)
 		visible_message(span_danger("The [src] deflates!"))

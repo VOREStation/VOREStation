@@ -28,7 +28,7 @@
 	return 1
 // End overrides
 
-/datum/element/sellable/proc/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
+/datum/element/sellable/proc/sell(obj/source, datum/exported_crate/EC, in_crate)
 	SIGNAL_HANDLER
 
 	if(needs_crate && !in_crate)
@@ -160,7 +160,7 @@
 	var/datum/reagent/R = tank.reagents.reagent_list[1]
 	return "[R.name] [tank.reagents.total_volume]u "
 
-/datum/element/sellable/trolley_tank/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
+/datum/element/sellable/trolley_tank/sell(obj/source, datum/exported_crate/EC, in_crate)
 	. = ..()
 	var/obj/vehicle/train/trolley_tank/tank = source
 	if(. && tank.reagents?.reagent_list?.len)

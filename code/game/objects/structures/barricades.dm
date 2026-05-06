@@ -10,7 +10,7 @@
 	var/maxhealth = 100
 	var/datum/material/material
 
-/obj/structure/barricade/Initialize(mapload, var/material_name)
+/obj/structure/barricade/Initialize(mapload, material_name)
 	. = ..()
 	if(!material_name)
 		material_name = MAT_WOOD
@@ -77,12 +77,12 @@
 
 	return
 
-/obj/structure/barricade/take_damage(var/damage)
+/obj/structure/barricade/take_damage(damage)
 	health -= damage
 	CheckHealth()
 	return
 
-/obj/structure/barricade/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/barricade/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	if(material == get_material_by_name(MAT_RESIN))
 		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
@@ -128,7 +128,7 @@
 	icon = 'icons/obj/sandbags.dmi'
 	icon_state = "blank"
 
-/obj/structure/barricade/sandbag/Initialize(mapload, var/material_name)
+/obj/structure/barricade/sandbag/Initialize(mapload, material_name)
 	if(!material_name)
 		material_name = MAT_CLOTH
 	. = ..(mapload, material_name)
@@ -164,7 +164,7 @@
 
 	return
 
-/obj/structure/barricade/sandbag/update_connections(propagate = 0, var/obj/structure/barricade/sandbag/ignore = null)
+/obj/structure/barricade/sandbag/update_connections(propagate = 0, obj/structure/barricade/sandbag/ignore = null)
 	if(!material)
 		return
 	var/list/dirs = list()
@@ -182,7 +182,7 @@
 
 	update_icon()
 
-/obj/structure/barricade/sandbag/proc/can_join_with(var/obj/structure/barricade/sandbag/S)
+/obj/structure/barricade/sandbag/proc/can_join_with(obj/structure/barricade/sandbag/S)
 	if(material == S.material)
 		return 1
 	return 0

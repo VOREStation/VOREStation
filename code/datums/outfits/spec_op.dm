@@ -46,14 +46,14 @@
 /datum/decl/hierarchy/outfit/death_command
 	name = "Spec ops - Death commando"
 
-/datum/decl/hierarchy/outfit/death_command/equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/death_command/equip(mob/living/carbon/human/H)
 	GLOB.deathsquad.equip(H)
 	return 1
 
 /datum/decl/hierarchy/outfit/syndicate_command
 	name = "Spec ops - Syndicate commando"
 
-/datum/decl/hierarchy/outfit/syndicate_command/equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/syndicate_command/equip(mob/living/carbon/human/H)
 	GLOB.commandos.equip(H)
 	return 1
 

@@ -350,7 +350,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/sleevemate/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/sleevemate/emag_act(remaining_charges, mob/user)
 	to_chat(user,span_danger("You hack [src]!"))
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src.loc)

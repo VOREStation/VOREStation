@@ -11,7 +11,7 @@
 	var/datum/reagents/reagents = null
 	var/makes_gurgles = TRUE
 
-/datum/component/hose_connector/Initialize(var/set_unique_name = null)
+/datum/component/hose_connector/Initialize(set_unique_name = null)
 	carrier = parent
 	reagents = new /datum/reagents(60, src)
 	// Handle uniquely named connectors
@@ -73,7 +73,7 @@
 		return
 	handle_pump(connected_to)
 
-/datum/component/hose_connector/proc/handle_pump(var/datum/reagents/connected_to)
+/datum/component/hose_connector/proc/handle_pump(datum/reagents/connected_to)
 	PROTECTED_PROC(TRUE)
 	ASSERT(connected_to)
 	// Drain our connector back into tank, and then fill it randomly. The hose handles swapping.
@@ -88,7 +88,7 @@
 	if(makes_gurgles && prob(5))
 		carrier.visible_message(span_infoplain(span_bold("\The [carrier]") + " gurgles as it pumps fluid."))
 
-/datum/component/hose_connector/proc/valid_connection(var/datum/component/hose_connector/C)
+/datum/component/hose_connector/proc/valid_connection(datum/component/hose_connector/C)
 	if(istype(C))
 		if(C.my_hose)
 			return FALSE
@@ -98,16 +98,16 @@
 			return TRUE
 	return FALSE
 
-/datum/component/hose_connector/proc/disconnect_action(var/user)
+/datum/component/hose_connector/proc/disconnect_action(user)
 	if(carrier.Adjacent(user))
 		carrier.visible_message("[user] disconnects \the hose from \the [carrier].")
 		my_hose.disconnect(user)
 		QDEL_NULL(my_hose)
 
-/datum/component/hose_connector/proc/connect(var/datum/hose/H = null)
+/datum/component/hose_connector/proc/connect(datum/hose/H = null)
 	my_hose = H
 
-/datum/component/hose_connector/proc/setup_hoses(var/datum/component/hose_connector/target, var/distancetonode, var/mob/user)
+/datum/component/hose_connector/proc/setup_hoses(datum/component/hose_connector/target, distancetonode, mob/user)
 	if(!target || QDELETED(target))
 		to_chat(user,span_danger("What you were connecting to has stopped existing! Ohno!"))
 		return FALSE
@@ -216,7 +216,7 @@
 	name = "hose input"
 	flow_direction = HOSE_INPUT
 
-/datum/component/hose_connector/input/handle_pump(var/datum/reagents/connected_to)
+/datum/component/hose_connector/input/handle_pump(datum/reagents/connected_to)
 	ASSERT(connected_to)
 	reagents.trans_to_holder(connected_to, reagents.maximum_volume)
 
@@ -225,7 +225,7 @@
 	name = "hose output"
 	flow_direction = HOSE_OUTPUT
 
-/datum/component/hose_connector/output/handle_pump(var/datum/reagents/connected_to)
+/datum/component/hose_connector/output/handle_pump(datum/reagents/connected_to)
 	ASSERT(connected_to)
 	connected_to.trans_to_holder(reagents, reagents.maximum_volume)
 
@@ -241,7 +241,7 @@
 		return null
 	return reagents // Ourselves, not our carrier
 
-/datum/component/hose_connector/endless_source/handle_pump(var/datum/reagents/connected_to)
+/datum/component/hose_connector/endless_source/handle_pump(datum/reagents/connected_to)
 	ASSERT(connected_to)
 	connected_to.add_reagent(reagent_id,5)
 
@@ -259,7 +259,7 @@
 		return null
 	return reagents // Ourselves, not our carrier
 
-/datum/component/hose_connector/endless_drain/handle_pump(var/datum/reagents/connected_to)
+/datum/component/hose_connector/endless_drain/handle_pump(datum/reagents/connected_to)
 	ASSERT(connected_to)
 	connected_to.clear_reagents()
 
@@ -279,7 +279,7 @@
 	name = "Oil Storage"
 	force_name = TRUE
 
-/datum/component/hose_connector/input/fryer/handle_pump(var/datum/reagents/oil_reagents/connected_to)
+/datum/component/hose_connector/input/fryer/handle_pump(datum/reagents/oil_reagents/connected_to)
 	ASSERT(connected_to)
 	if(connected_to.total_volume >= connected_to.optimal_oil) //Don't overfill it.
 		return

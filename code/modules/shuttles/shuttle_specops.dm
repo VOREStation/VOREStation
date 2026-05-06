@@ -23,12 +23,12 @@
 	announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list(CHANNEL_RESPONSE_TEAM = 0))
 
-/datum/shuttle/autodock/ferry/specops/proc/radio_announce(var/message)
+/datum/shuttle/autodock/ferry/specops/proc/radio_announce(message)
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 
 
-/datum/shuttle/autodock/ferry/specops/launch(var/user)
+/datum/shuttle/autodock/ferry/specops/launch(user)
 	if (!can_launch())
 		return
 
@@ -206,7 +206,7 @@
 	brightness_color = "#DA0205"
 	var/state = 0
 
-/obj/machinery/light/small/readylight/proc/set_state(var/new_state)
+/obj/machinery/light/small/readylight/proc/set_state(new_state)
 	state = new_state
 	if(state)
 		brightness_color = "00FF00"

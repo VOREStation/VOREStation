@@ -4,7 +4,7 @@
 	circuit = /obj/item/circuitboard/shuttle_console/explore
 	tgui_subtemplate = "ShuttleControlConsoleExploration"
 
-/obj/machinery/computer/shuttle_control/explore/shuttlerich_tgui_data(var/datum/shuttle/autodock/overmap/shuttle)
+/obj/machinery/computer/shuttle_control/explore/shuttlerich_tgui_data(datum/shuttle/autodock/overmap/shuttle)
 	. = ..()
 	if(istype(shuttle))
 		var/total_gas = 0

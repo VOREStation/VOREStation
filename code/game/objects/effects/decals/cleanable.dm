@@ -16,7 +16,7 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	///The type of cleaning required to clean the decal, CLEAN_TYPE_LIGHT_DECAL can be cleaned with mops and soap, CLEAN_TYPE_HARD_DECAL can be cleaned by soap, see __DEFINES/cleaning.dm for the others
 	var/clean_type = CLEAN_TYPE_LIGHT_DECAL
 
-/obj/effect/decal/cleanable/Initialize(mapload, var/_age)
+/obj/effect/decal/cleanable/Initialize(mapload, _age)
 	if(!isnull(_age))
 		age = _age
 	if(random_icon_states && length(src.random_icon_states) > 0)

@@ -156,7 +156,7 @@
 	go_out()
 	return
 
-/obj/machinery/recharge_station/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/recharge_station/attackby(obj/item/O as obj, mob/user as mob)
 	if(!occupant)
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -173,7 +173,7 @@
 
 	..()
 
-/obj/machinery/recharge_station/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/recharge_station/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user))
 		return
 
@@ -237,10 +237,10 @@
 	if(icon_update_tick == 0)
 		build_overlays()
 
-/obj/machinery/recharge_station/Bumped(var/mob/living/L)
+/obj/machinery/recharge_station/Bumped(mob/living/L)
 	go_in(L)
 
-/obj/machinery/recharge_station/proc/go_in(var/mob/living/L)
+/obj/machinery/recharge_station/proc/go_in(mob/living/L)
 
 	if(occupant)
 		return

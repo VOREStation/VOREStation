@@ -103,7 +103,7 @@
 	return
 
 
-/mob/living/simple_mob/vore/greatwolf/attackby(var/obj/item/O, var/mob/user) // Trade food for people!
+/mob/living/simple_mob/vore/greatwolf/attackby(obj/item/O, mob/user) // Trade food for people!
 	if(istype(O, /obj/item/reagent_containers/food))
 		qdel(O)
 		playsound(src,'sound/vore/gulp.ogg', rand(10,50), 1)

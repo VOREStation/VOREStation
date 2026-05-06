@@ -15,7 +15,7 @@
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)
 
-/obj/machinery/clonepod/transhuman/growclone(var/datum/transhuman/body_record/current_project)
+/obj/machinery/clonepod/transhuman/growclone(datum/transhuman/body_record/current_project)
 	//Manage machine-specific stuff.
 	if(mess || attempting)
 		return 0
@@ -194,7 +194,7 @@
 
 	return
 
-/obj/machinery/transhuman/synthprinter/proc/print(var/datum/weakref/BR)
+/obj/machinery/transhuman/synthprinter/proc/print(datum/weakref/BR)
 	if(!BR?.resolve() || busy)
 		return 0
 
@@ -323,7 +323,7 @@
 	. = ..()
 
 
-/obj/machinery/transhuman/resleever/proc/set_occupant(var/mob/living/carbon/human/H)
+/obj/machinery/transhuman/resleever/proc/set_occupant(mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!H)
 		weakref_occupant = null
@@ -428,7 +428,7 @@
 
 	add_fingerprint(user)
 
-/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null, var/db_key)
+/obj/machinery/transhuman/resleever/proc/putmind(datum/transhuman/mind_record/MR, mode = 1, mob/living/carbon/human/override = null, db_key)
 	var/mob/living/carbon/human/occupant = get_occupant()
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0

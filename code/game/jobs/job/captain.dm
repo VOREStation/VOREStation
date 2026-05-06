@@ -41,7 +41,7 @@ GLOBAL_DATUM_INIT(captain_announcement, /datum/announcement/minor, new(do_newsca
 
 
 /*
-/datum/job/captain/equip(var/mob/living/carbon/human/H)
+/datum/job/captain/equip(mob/living/carbon/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(src)

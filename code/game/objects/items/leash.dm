@@ -266,7 +266,7 @@
 	to_chat(leash_pet, span_userdanger("You have been released!"))
 	clear_leash()
 
-/obj/item/leash/proc/is_wearing_collar(var/mob/living/carbon/human/human)
+/obj/item/leash/proc/is_wearing_collar(mob/living/carbon/human/human)
 	if (!istype(human))
 		return FALSE
 	for (var/obj/item/clothing/worn in human.worn_clothing)

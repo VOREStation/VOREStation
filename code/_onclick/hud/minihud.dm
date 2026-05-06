@@ -3,7 +3,7 @@
 	var/list/screenobjs
 	var/needs_processing = FALSE
 
-/datum/mini_hud/New(var/datum/hud/other)
+/datum/mini_hud/New(datum/hud/other)
 	apply_to_hud(other)
 	if(needs_processing)
 		START_PROCESSING(SSprocessing, src)
@@ -16,7 +16,7 @@
 	return ..()
 
 // Apply to a real /datum/hud
-/datum/mini_hud/proc/apply_to_hud(var/datum/hud/other)
+/datum/mini_hud/proc/apply_to_hud(datum/hud/other)
 	if(main_hud)
 		unapply_to_hud(main_hud)
 	main_hud = other
@@ -32,5 +32,5 @@
 	return PROCESS_KILL // You shouldn't be here!
 
 // Return a list of screen objects we use
-/datum/mini_hud/proc/get_screen_objs(var/mob/M)
+/datum/mini_hud/proc/get_screen_objs(mob/M)
 	return screenobjs.Copy()
