@@ -13,8 +13,8 @@
 	var/ignited = TRUE
 	var/target_heat_temperature = T20C //The temperature we want the pipes to be heated to
 	var/wood_per_process = 1SECOND
-	var/list/stored_material =  list(MAT_LOG = 1HOUR) //1 hour of mats free
-	var/list/storage_capacity = list(MAT_LOG = 4HOUR) //can hold enough for 4 hours
+	var/list/stored_material =  list(MAT_LOG = 1 HOUR) //1 hour of mats free
+	var/list/storage_capacity = list(MAT_LOG = 4 HOUR) //can hold enough for 4 hours
 
 /obj/machinery/atmospherics/binary/stationboiler/Initialize(mapload)
 	. = ..()
@@ -68,8 +68,7 @@
 	is_active = 1
 
 	//STEP 3 - Consume the resources
-	stored_material[MAT_LOG] -= wood_per_process
-	stored_material[MAT_LOG] = max(stored_material[MAT_LOG], 0)
+	stored_material[MAT_LOG] = max(stored_material[MAT_LOG] - wood_per_process, 0)
 
 	//Heat up the air instantly, magically
 	if(sink)
@@ -92,15 +91,15 @@
 	if(!(S.material.name in stored_material))
 		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
 		return 1
+
 	var/mat_name = S.material.name
-	var/max_res_amount = storage_capacity[mat_name]
-	if(stored_material[mat_name] + S.perunit <= max_res_amount)
-		var/count = 0
-		while(stored_material[mat_name] + S.perunit <= max_res_amount && S.get_amount() >= 1)
-			stored_material[mat_name] += S.perunit
-			S.use(1)
-			count++
-		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [count] [mat_name] into \the [src]."))
+	var/inserting_sheets = S.get_amount()
+	var/remaining_stack_space = FLOOR((storage_capacity[mat_name] - stored_material[mat_name]) / S.perunit, 1)
+	if(remaining_stack_space >= 1)
+		inserting_sheets = min(inserting_sheets, remaining_stack_space)
+		stored_material[mat_name] += inserting_sheets * S.perunit
+		S.use(inserting_sheets)
+		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name] into \the [src]."))
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1
@@ -206,16 +205,19 @@
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 /obj/machinery/atmospherics/binary/stationboiler/proc/eject_materials(material_name, amount)
-	var/recursive = amount == -1 ? 1 : 0
 	var/datum/material/matdata = get_material_by_name(material_name)
-	var/stack_type = matdata.stack_type
-	var/obj/item/stack/material/S = new stack_type(loc)
-	if(amount <= 0)
-		amount = S.max_amount
-	var/ejected = min(round(stored_material[material_name] / S.perunit), amount)
-	if(!S.set_amount(min(ejected, amount)))
+	var/obj/item/stack/material/stack_type = matdata.stack_type
+	var/stack_units = initial(stack_type.perunit)
+
+	var/sheets_loaded = FLOOR(stored_material[material_name] / stack_units, 1)
+	if(sheets_loaded < 1)
 		return
-	S.update_icon()
-	stored_material[material_name] -= ejected * S.perunit
-	if(recursive && stored_material[material_name] >= S.perunit)
-		eject_materials(material_name, -1)
+	if(amount <= 0)
+		amount = sheets_loaded
+	// Drop stacks of sheets till empty
+	while(amount >= 1)
+		var/obj/item/stack/material/S = new stack_type(get_turf(src))
+		var/export_amount = min(amount, S.max_amount)
+		S.add(export_amount)
+		stored_material[material_name] -= stack_units * export_amount
+		amount -= export_amount
