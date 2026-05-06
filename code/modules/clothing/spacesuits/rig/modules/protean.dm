@@ -31,7 +31,7 @@ These should come standard with the Protean rigsuit, unless you want them to wor
 	else
 		return 0
 
-/obj/item/rig_module/protean/syphon/deactivate(var/forced)
+/obj/item/rig_module/protean/syphon/deactivate(forced)
 	if(!..())
 		return 0
 	if(forced)
@@ -106,7 +106,7 @@ These should come standard with the Protean rigsuit, unless you want them to wor
 	else
 		return 0
 
-/obj/item/rig_module/protean/armor/deactivate(var/forced)
+/obj/item/rig_module/protean/armor/deactivate(forced)
 	if(!..(1))
 		return 0
 	if(forced)
@@ -201,7 +201,7 @@ These should come standard with the Protean rigsuit, unless you want them to wor
 			deactivate()
 			return
 
-/obj/item/rig_module/protean/healing/accepts_item(var/obj/item/stack/material/steel/S, var/mob/living/user)
+/obj/item/rig_module/protean/healing/accepts_item(obj/item/stack/material/steel/S, mob/living/user)
 
 	if(!istype(S) || !istype(user))
 		return 0

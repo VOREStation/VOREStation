@@ -36,7 +36,7 @@ Slime cube lives here.
 		for(var/mob/M in viewers(T))
 			M.show_message(span_warning("The activity in the cube dies down. Maybe it will spark another time."))
 
-/obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
+/obj/item/slime_cube/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))

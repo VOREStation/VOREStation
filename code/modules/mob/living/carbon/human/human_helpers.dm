@@ -2,7 +2,7 @@
 #define HUMAN_EATING_NO_MOUTH		1
 #define HUMAN_EATING_BLOCKED_MOUTH	2
 
-/mob/living/carbon/human/can_eat(var/food, var/feedback = 1)
+/mob/living/carbon/human/can_eat(food, feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return 1
@@ -13,7 +13,7 @@
 			balloon_alert(src, "\the [status[2]] is in the way!")
 	return 0
 
-/mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
+/mob/living/carbon/human/can_force_feed(feeder, food, feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
 		return 1

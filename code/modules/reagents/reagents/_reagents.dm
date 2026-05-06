@@ -62,24 +62,24 @@
 	///This is for chemicals that don't have any special touch effects.
 	var/dermal_absorption = 0
 
-/datum/reagent/proc/remove_self(var/amount) // Shortcut
+/datum/reagent/proc/remove_self(amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)
 
 // This doesn't apply to skin contact - this is for, e.g. extinguishers and sprays. The difference is that reagent is not directly on the mob's skin - it might just be on their clothing.
-/datum/reagent/proc/touch_mob(var/mob/M, var/amount)
+/datum/reagent/proc/touch_mob(mob/M, amount)
 	SEND_SIGNAL(M, COMSIG_REAGENT_EXPOSE_MOB, src, amount)
 	return
 
-/datum/reagent/proc/touch_obj(var/obj/O, var/amount) // Acid melting, cleaner cleaning, etc
+/datum/reagent/proc/touch_obj(obj/O, amount) // Acid melting, cleaner cleaning, etc
 	SEND_SIGNAL(O, COMSIG_REAGENT_EXPOSE_OBJ, src, amount)
 	return
 
-/datum/reagent/proc/touch_turf(var/turf/T, var/amount) // Cleaner cleaning, lube lubbing, etc, all go here
+/datum/reagent/proc/touch_turf(turf/T, amount) // Cleaner cleaning, lube lubbing, etc, all go here
 	SEND_SIGNAL(T, COMSIG_REAGENT_EXPOSE_TURF, src, amount)
 	return
 
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+/datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien, datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD && !M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
@@ -202,20 +202,20 @@
 	remove_self(removed)
 	return
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, removed)
 	return
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, removed)
 	M.bloodstr.add_reagent(id, removed)
 	if(src.id == M.species.blood_reagents)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 	return
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, removed)
 	M.bloodstr.add_reagent(id, removed * dermal_absorption)
 	return
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
+/datum/reagent/proc/overdose(mob/living/carbon/M, alien, removed) // Overdose effect.
 	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
@@ -226,12 +226,12 @@
 	// Overall, max damage is slightly less effective than hydrophoron, and 1/5 as effective as cyanide.
 	M.adjustToxLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 3.6))
 
-/datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
+/datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
 		data = newdata
 	return
 
-/datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
+/datum/reagent/proc/mix_data(newdata, newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
 	return
 
 /datum/reagent/proc/get_data() // Just in case you have a reagent that handles data differently.

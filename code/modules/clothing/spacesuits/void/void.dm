@@ -68,7 +68,7 @@
 	if(tank && in_range(src,user))
 		. += span_notice("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
-/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
+/obj/item/clothing/suit/space/void/refit_for_species(target_species)
 	..()
 	if(istype(hood))
 		hood.refit_for_species(target_species)
@@ -132,7 +132,7 @@
 		cooler.canremove = TRUE
 		cooler.forceMove(src)
 
-/obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
+/obj/item/clothing/suit/space/void/proc/attach_helmet(obj/item/clothing/head/helmet/space/void/helm)
 	if(!istype(helm) || hood)
 		return
 

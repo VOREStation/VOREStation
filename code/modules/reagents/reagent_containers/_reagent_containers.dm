@@ -42,7 +42,7 @@
 		return reagents.get_reagents()
 	return "No reagent holder"
 
-/obj/item/reagent_containers/proc/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target) // This goes into afterattack
+/obj/item/reagent_containers/proc/standard_dispenser_refill(mob/user, obj/structure/reagent_dispensers/target) // This goes into afterattack
 	if(!istype(target))
 		return 0
 
@@ -61,7 +61,7 @@
 	balloon_alert(user, "[trans] units transfered to \the [src]")
 	return 1
 
-/obj/item/reagent_containers/proc/standard_splash_mob(var/mob/user, var/mob/target) // This goes into afterattack
+/obj/item/reagent_containers/proc/standard_splash_mob(mob/user, mob/target) // This goes into afterattack
 	if(!istype(target))
 		return
 
@@ -79,19 +79,19 @@
 	reagents.splash(target, reagents.total_volume)
 	return 1
 
-/obj/item/reagent_containers/proc/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/proc/self_feed_message(mob/user)
 	balloon_alert(user, "you eat \the [src]")
 
-/obj/item/reagent_containers/proc/other_feed_message_start(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/proc/other_feed_message_start(mob/user, mob/target)
 	balloon_alert_visible(user, "[user] is trying to feed [target] \the [src]!")
 
-/obj/item/reagent_containers/proc/other_feed_message_finish(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/proc/other_feed_message_finish(mob/user, mob/target)
 	balloon_alert_visible(user, "[user] has fed [target] \the [src]!")
 
-/obj/item/reagent_containers/proc/feed_sound(var/mob/user)
+/obj/item/reagent_containers/proc/feed_sound(mob/user)
 	return
 
-/obj/item/reagent_containers/proc/standard_feed_mob(var/mob/user, var/mob/target) // This goes into attack
+/obj/item/reagent_containers/proc/standard_feed_mob(mob/user, mob/target) // This goes into attack
 	if(!istype(target) || !target.can_feed())
 		return FALSE
 
@@ -134,7 +134,7 @@
 		feed_sound(user)
 		return TRUE
 
-/obj/item/reagent_containers/proc/standard_pour_into(var/mob/user, var/atom/target) // This goes into afterattack and yes, it's atom-level
+/obj/item/reagent_containers/proc/standard_pour_into(mob/user, atom/target) // This goes into afterattack and yes, it's atom-level
 	if(!target.is_open_container() || !target.reagents)
 		return 0
 
@@ -164,7 +164,7 @@
 	var/datum/reagent/blood/blood = reagents.get_reagent(REAGENT_ID_BLOOD)
 	EXTRAPOLATOR_ACT_ADD_DISEASES(., blood?.get_diseases())
 
-/obj/item/reagent_containers/proc/attempt_changeling_test(var/obj/item/W,var/mob/user)
+/obj/item/reagent_containers/proc/attempt_changeling_test(obj/item/W,mob/user)
 	if(is_open_container() && W.is_hot())
 		var/datum/reagent/blood/B = reagents.get_reagent("blood")
 		if(B)

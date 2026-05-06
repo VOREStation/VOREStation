@@ -46,7 +46,7 @@
 	SetWeakened(0)
 	..()
 
-/mob/living/simple_mob/construct/cardinal/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/construct/cardinal/bullet_act(obj/item/projectile/P)
 	var/reflectchance = 100 - round(P.damage)
 	if(prob(reflectchance))
 		var/damage_mod = rand(2,4)

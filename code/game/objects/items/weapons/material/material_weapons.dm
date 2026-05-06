@@ -27,7 +27,7 @@
 	var/datum/material/material
 	var/drops_debris = 1
 
-/obj/item/material/Initialize(mapload, var/material_key)
+/obj/item/material/Initialize(mapload, material_key)
 	. = ..()
 	if(!material_key)
 		material_key = default_material
@@ -59,7 +59,7 @@
 	//spawn(1)
 	//	to_world("[src] has force [force] and throwforce [throwforce] when made from default material [material.name]")
 
-/obj/item/material/proc/set_material(var/new_material)
+/obj/item/material/proc/set_material(new_material)
 	material = get_material_by_name(new_material)
 	if(!material)
 		qdel(src)
@@ -94,7 +94,7 @@
 		repair(SK.repair_amount, SK.repair_time, user)
 	..()
 
-/obj/item/material/proc/check_health(var/consumed)
+/obj/item/material/proc/check_health(consumed)
 	if(health<=0)
 		health = 0
 
@@ -103,7 +103,7 @@
 		else if(!dulled && can_dull)
 			dull()
 
-/obj/item/material/proc/shatter(var/consumed)
+/obj/item/material/proc/shatter(consumed)
 	var/turf/T = get_turf(src)
 	T.visible_message(span_danger("\The [src] [material.destruction_desc]!"))
 	if(isliving(loc))
@@ -122,7 +122,7 @@
 		sharp = FALSE
 		edge = FALSE
 
-/obj/item/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
+/obj/item/material/proc/repair(repair_amount, repair_time, mob/living/user)
 	if(!fragile)
 		if(health < initial(health))
 			user.visible_message("[user] begins repairing \the [src].", "You begin repairing \the [src].")
@@ -138,7 +138,7 @@
 		to_chat(user, span_warning("You can't repair \the [src]."))
 		return
 
-/obj/item/material/proc/sharpen(var/material, var/sharpen_time, var/kit, mob/living/M)
+/obj/item/material/proc/sharpen(material, sharpen_time, kit, mob/living/M)
 	if(!fragile && src.material.can_sharpen)
 		if(health < initial(health))
 			to_chat(M, "You should repair [src] first. Try using [kit] on it.")

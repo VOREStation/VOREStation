@@ -182,7 +182,7 @@
 	return max_fuel
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(amount)
@@ -265,7 +265,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weldingtool/proc/setWelding(set_welding, mob/M)
 	if(!status)	return
 
 	var/turf/T = get_turf(src)
@@ -583,7 +583,7 @@
 		return power_supply.maxcharge
 	return 0
 
-/obj/item/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/electric/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
@@ -691,7 +691,7 @@
 /obj/item/weldingtool/dummy/get_fuel()
 	return get_max_fuel()
 
-/obj/item/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/dummy/remove_fuel(amount = 1, mob/M = null)
 	return TRUE
 
 /obj/item/weldingtool/dummy/isOn()

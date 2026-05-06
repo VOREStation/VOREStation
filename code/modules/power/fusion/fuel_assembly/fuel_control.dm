@@ -19,17 +19,17 @@
 	QDEL_NULL(monitor)
 	. = ..()
 
-/obj/machinery/computer/fusion_fuel_control/attack_ai(var/mob/user)
+/obj/machinery/computer/fusion_fuel_control/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/computer/fusion_fuel_control/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/fusion_fuel_control/attack_hand(mob/user as mob)
 	..()
 	if(stat & (BROKEN|NOPOWER))
 		return
 
 	monitor.tgui_interact(user)
 
-/obj/machinery/computer/fusion_fuel_control/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/computer/fusion_fuel_control/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "Fuel Control", monitor.fuel_tag, MAX_NAME_LEN)

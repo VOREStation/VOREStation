@@ -92,7 +92,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	data["turrets"] = turrets
 	return data
 
-/obj/machinery/pointdefense_control/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/pointdefense_control/attackby(obj/item/W, mob/user)
 	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
@@ -170,7 +170,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 
-/obj/machinery/pointdefense/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/pointdefense/attackby(obj/item/W, mob/user)
 	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src))
@@ -192,7 +192,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 			return FALSE
 	return TRUE
 
-/obj/machinery/pointdefense/proc/Shoot(var/datum/weakref/target)
+/obj/machinery/pointdefense/proc/Shoot(datum/weakref/target)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
 		engaging = null
@@ -206,7 +206,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 
 	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
-/obj/machinery/pointdefense/proc/finish_shot(var/datum/weakref/target)
+/obj/machinery/pointdefense/proc/finish_shot(datum/weakref/target)
 
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	engaging = null
@@ -273,7 +273,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 			Shoot(target)
 			return
 
-/obj/machinery/pointdefense/proc/targeting_check(var/obj/effect/meteor/M)
+/obj/machinery/pointdefense/proc/targeting_check(obj/effect/meteor/M)
 	// Target in range
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
 	if(!(M.z in connected_z_levels))

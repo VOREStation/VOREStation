@@ -159,7 +159,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_admin_godmode, R_HOLDER, "Toggle Godmode", "Togg
 	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/cmd_admin_mute(mob/target, mute_type, automute = 0, mob/user)
+/proc/cmd_admin_mute(mob/target, mute_type, automute = FALSE, mob/user)
 	if(automute)
 		if(!CONFIG_GET(flag/automute_on))
 			return
@@ -232,7 +232,7 @@ Allow admins to set players to be able to respawn/bypass 30 min wait, without th
 Ccomp's first proc.
 */
 
-/client/proc/get_ghosts(var/notify = 0,var/what = 2)
+/client/proc/get_ghosts(notify = 0,what = 2)
 	// what = 1, return ghosts ass list.
 	// what = 2, return mob list
 

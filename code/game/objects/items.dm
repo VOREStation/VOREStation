@@ -481,7 +481,7 @@
 // slot uses the slot_X defines found in setup.dm
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
-/obj/item/proc/equipped(var/mob/user, var/slot)
+/obj/item/proc/equipped(mob/user, slot)
 	// Give out actions our item has to people who equip it.
 	for(var/datum/action/action as anything in actions)
 		give_item_action(action, user, slot)
@@ -523,7 +523,7 @@
 	return TRUE
 
 // As above but for items being equipped to an active module on a robot.
-/obj/item/proc/equipped_robot(var/mob/user)
+/obj/item/proc/equipped_robot(mob/user)
 	return
 
 //Defines which slots correspond to which slot flags
@@ -697,7 +697,7 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 //If a negative value is returned, it should be treated as a special return value for bullet_act() and handled appropriately.
 //For non-projectile attacks this usually means the attack is blocked.
 //Otherwise should return 0 to indicate that the attack is not affected in any way.
-/obj/item/proc/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/proc/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	return 0
 
 /obj/item/proc/get_loc_turf()
@@ -842,7 +842,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		I.showoff(src)
 
 /// For zooming with scope or binoculars. Uses remote_view/item component for disabling when you move or drop the item
-/obj/item/proc/zoom(var/mob/living/M, var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(mob/living/M, tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	SIGNAL_HANDLER
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
@@ -883,7 +883,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 
 // Used for non-adjacent melee attacks with specific weapons capable of reaching more than one tile.
 // This uses changeling range string A* but for this purpose its also applicable.
-/obj/item/proc/attack_can_reach(var/atom/us, var/atom/them, var/range)
+/obj/item/proc/attack_can_reach(atom/us, atom/them, range)
 	if(us.Adjacent(them))
 		return TRUE // Already adjacent.
 	if(AStar(get_turf(us), get_turf(them), /turf/proc/AdjacentTurfsRangedSting, /turf/proc/Distance, max_nodes=25, max_node_depth=range))
@@ -908,7 +908,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		return FALSE
 
 //Worn icon generation for on-mob sprites
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
+/obj/item/proc/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer,icon/clip_mask = null)
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
@@ -957,7 +957,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	return standing
 
 //Returns the icon object that should be used for the worn icon
-/obj/item/proc/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
+/obj/item/proc/get_worn_icon_file(body_type,slot_name,default_icon,inhands)
 
 	//1: icon_override var
 	if(icon_override)
@@ -1004,7 +1004,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	return
 
 //Returns the state that should be used for the worn icon
-/obj/item/proc/get_worn_icon_state(var/slot_name)
+/obj/item/proc/get_worn_icon_state(slot_name)
 
 	//1: slot-specific sprite sheets
 	if(LAZYLEN(item_state_slots))
@@ -1021,7 +1021,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		return icon_state
 
 //Returns the layer that should be used for the worn icon (as a FLOAT_LAYER layer, so negative)
-/obj/item/proc/get_worn_layer(var/default_layer = 0)
+/obj/item/proc/get_worn_layer(default_layer = 0)
 
 	//1: worn_layer variable
 	if(!isnull(worn_layer)) //Can be zero, so...
@@ -1031,7 +1031,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	return BODY_LAYER+default_layer
 
 //Apply the addblend blends onto the icon
-/obj/item/proc/apply_addblends(var/source_icon, var/icon/standing_icon)
+/obj/item/proc/apply_addblends(source_icon, icon/standing_icon)
 
 	//If we have addblends, blend them onto the provided icon
 	if(addblends && standing_icon && source_icon)
@@ -1039,18 +1039,18 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		standing_icon.Blend(addblend_icon, ICON_ADD)
 
 //STUB
-/obj/item/proc/apply_custom(var/icon/standing_icon)
+/obj/item/proc/apply_custom(icon/standing_icon)
 	return standing_icon
 
 //STUB
-/obj/item/proc/apply_blood(var/image/standing)
+/obj/item/proc/apply_blood(image/standing)
 	return standing
 
 //STUB
-/obj/item/proc/apply_accessories(var/image/standing)
+/obj/item/proc/apply_accessories(image/standing)
 	return standing
 
-/obj/item/proc/apply_overlays(var/image/standing)
+/obj/item/proc/apply_overlays(image/standing)
 	if(!blocks_emissive)
 		return standing
 
@@ -1107,7 +1107,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 /obj/item/var/center_of_mass_x = 16
 /obj/item/var/center_of_mass_y = 16
 
-/proc/auto_align(obj/item/W, click_parameters, var/animate = FALSE)
+/proc/auto_align(obj/item/W, click_parameters, animate = FALSE)
 	if(!W.center_of_mass_x && !W.center_of_mass_y)
 		W.randpixel_xy()
 		return
@@ -1139,10 +1139,10 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 #undef CELLSIZE
 
 // this gets called when the item gets chucked by the vending machine
-/obj/item/proc/vendor_action(var/obj/machinery/vending/V)
+/obj/item/proc/vendor_action(obj/machinery/vending/V)
 	return
 
-/obj/item/proc/on_holder_escape(var/obj/item/holder/H)
+/obj/item/proc/on_holder_escape(obj/item/holder/H)
 	return
 
 /obj/item/proc/get_welder()

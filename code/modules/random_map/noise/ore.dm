@@ -36,7 +36,7 @@
 	else
 		return 1
 
-/datum/random_map/noise/ore/apply_to_turf(var/x,var/y)
+/datum/random_map/noise/ore/apply_to_turf(x,y)
 
 	var/tx = ((origin_x-1)+x)*chunk_size
 	var/ty = ((origin_y-1)+y)*chunk_size
@@ -111,7 +111,7 @@
 				T.resources[ORE_PAINITE] = rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
 	return
 
-/datum/random_map/noise/ore/get_map_char(var/value)
+/datum/random_map/noise/ore/get_map_char(value)
 	if(value < rare_val)
 		return "S"
 	else if(value < deep_val)

@@ -29,7 +29,7 @@
 		icon_override = sprite_sheets[H.species.get_bodytype(H)]
 		update_clothing_icon()
 
-/obj/item/clothing/accessory/choker/on_attached(var/obj/item/clothing/S, var/mob/user)
+/obj/item/clothing/accessory/choker/on_attached(obj/item/clothing/S, mob/user)
 	if(!istype(S))
 		return
 	has_suit = S
@@ -67,7 +67,7 @@
 		icon_override = sprite_sheets[H.species.get_bodytype(H)]
 		update_clothing_icon()
 
-/obj/item/clothing/accessory/collar/on_attached(var/obj/item/clothing/S, var/mob/user)
+/obj/item/clothing/accessory/collar/on_attached(obj/item/clothing/S, mob/user)
 	if(!istype(S))
 		return
 	has_suit = S
@@ -265,7 +265,7 @@
 /obj/item/clothing/accessory/collar/holo/indigestible
 	desc = "A special variety of the holo-collar that seems to be made of a very durable fabric that fits around the neck."
 //Make indigestible
-/obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
+/obj/item/clothing/accessory/collar/holo/indigestible/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/clothing/accessory/collar/attack_self(mob/user)
@@ -292,12 +292,12 @@
 		to_chat(user,span_notice("You set the [name]'s tag to '[str]'."))
 		initialize_tag(str)
 
-/obj/item/clothing/accessory/collar/proc/initialize_tag(var/tag)
+/obj/item/clothing/accessory/collar/proc/initialize_tag(tag)
 		name = initial(name) + " ([tag])"
 		desc = initial(desc) + " \"[tag]\" has been engraved on the tag."
 		writtenon = 1
 
-/obj/item/clothing/accessory/collar/holo/initialize_tag(var/tag)
+/obj/item/clothing/accessory/collar/holo/initialize_tag(tag)
 		..()
 		desc = initial(desc) + " The tag says \"[tag]\"."
 
@@ -315,7 +315,7 @@
 
 	to_chat(user,span_notice("You need a pen or a screwdriver to edit the tag on this collar."))
 
-/obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
+/obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, erasemethod, erasing, writemethod)
 	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
 		return
 
@@ -418,10 +418,10 @@
 			s.start()
 	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/relaymove(var/mob/living/user,var/direction)
+/obj/item/clothing/accessory/collar/shock/bluespace/relaymove(mob/living/user,direction)
 	return //For some reason equipping this item was triggering this proc, putting the wearer inside of the collars belly for some reason.
 
-/obj/item/clothing/accessory/collar/shock/bluespace/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/clothing/accessory/collar/shock/bluespace/attackby(obj/item/component, mob/user as mob)
 	if (component.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, span_notice("You crack the bluespace crystal [src]."))
 		var/turf/T = get_turf(src)
@@ -452,7 +452,7 @@
 	target_size = 1
 	on = 1
 
-/obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(obj/item/component, mob/user as mob)
 	if (component.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, span_notice("You crack the bluespace crystal [src], the attached signaler disconnects."))
 		var/turf/T = get_turf(src)
@@ -533,7 +533,7 @@
 	on = 1
 	var/currently_shrinking = 0
 
-/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attackby(obj/item/component, mob/user as mob)
 	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return

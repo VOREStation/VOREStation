@@ -24,7 +24,7 @@
 	. = ..()
 	target_word = SSnerdle.target_word
 
-/datum/data/pda/app/nerdle/proc/try_guess(var/guess)
+/datum/data/pda/app/nerdle/proc/try_guess(guess)
 	if(completed)
 		return FALSE
 
@@ -54,7 +54,7 @@
 /datum/data/pda/app/nerdle/proc/report_guesses()
 	SSnerdle.report_winner_or_loser(LAZYLEN(guesses),failure)
 
-/datum/data/pda/app/nerdle/proc/serialize_guess(var/guess)
+/datum/data/pda/app/nerdle/proc/serialize_guess(guess)
 	// We assume that there's 5 letters here, both for the guess and the target word.
 	// If we're getting runtimes and someone forwarded "butt" to here I'm going to smite them down.
 	var/list/out[5]

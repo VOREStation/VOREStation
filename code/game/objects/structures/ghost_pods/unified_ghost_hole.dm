@@ -15,7 +15,7 @@
 	attack_ghost(user)
 
 //override the standard attack_ghost proc for custom messages
-/obj/structure/ghost_pod/ghost_activated/unified_hole/attack_ghost(var/mob/observer/dead/user)
+/obj/structure/ghost_pod/ghost_activated/unified_hole/attack_ghost(mob/observer/dead/user)
 	var/choice
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
@@ -48,7 +48,7 @@
 	update_icon()
 	GLOB.active_ghost_pods -= src
 
-/obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(mob/M)
 	var/choice
 	var/finalized = FALSE
 	GLOB.active_ghost_pods -= src
@@ -90,7 +90,7 @@
 			newPred.vore_selected = newPred.vore_organs[1]
 	qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_morph(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_morph(mob/M)
 	GLOB.active_ghost_pods -= src
 	var/mob/living/simple_mob/vore/morph/newMorph = new /mob/living/simple_mob/vore/morph(get_turf(src))
 	newMorph.voremob_loaded = TRUE // On-demand belly loading.
@@ -112,7 +112,7 @@
 			newMorph.vore_selected = newMorph.vore_organs[1]
 	qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_lurker(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_lurker(mob/M)
 	var/picked_ckey = M.ckey
 	var/picked_slot = M.client.prefs.default_slot
 	GLOB.active_ghost_pods -= src

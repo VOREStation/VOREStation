@@ -1476,7 +1476,7 @@
 			return TRUE
 	return FALSE
 
-/datum/vore_look/proc/sanitize_fixed_list(var/list/messages, type, delim = "\n\n", limit)
+/datum/vore_look/proc/sanitize_fixed_list(list/messages, type, delim = "\n\n", limit)
 	if(!limit)
 		CRASH("[type] set message called without limit!")
 	VPPREF_MESSAGE_SANITY(type)

@@ -50,7 +50,7 @@
 				targets[option] = H
 	return targets
 
-/obj/machinery/petrification/proc/is_valid_target(var/mob/living/carbon/human/H)
+/obj/machinery/petrification/proc/is_valid_target(mob/living/carbon/human/H)
 	if (QDELETED(H) || !istype(H) || !H.client)
 		return FALSE
 	var/turf/T = H.loc
@@ -64,13 +64,13 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/petrification/proc/popup_msg(var/mob/user, var/message, var/notice = TRUE)
+/obj/machinery/petrification/proc/popup_msg(mob/user, message, notice = TRUE)
 	if (notice)
 		message = "A notice pops up on the interface: \"[message]\""
 	if (target)
 		to_chat(user, span_notice("[message]"))
 
-/obj/machinery/petrification/proc/petrify(var/mob/user, var/obj/item/petrifier/petrifier = null)
+/obj/machinery/petrification/proc/petrify(mob/user, obj/item/petrifier/petrifier = null)
 	. = FALSE
 	var/mat = material
 	var/idt = identifier
@@ -139,7 +139,7 @@
 	SStgui.update_uis(src)
 	return TRUE
 
-/obj/machinery/petrification/attack_hand(var/mob/user as mob)
+/obj/machinery/petrification/attack_hand(mob/user as mob)
 	if(..())
 		return
 	tgui_interact(user)
@@ -164,7 +164,7 @@
 	data["can_remote"] = is_valid_target(target) && istext(material) && istext(identifier) && istext(adjective) && istext(tint)
 	return data
 
-/obj/machinery/petrification/proc/set_input(var/option, mob/user)
+/obj/machinery/petrification/proc/set_input(option, mob/user)
 	var/list/only_these = list("tint","material","identifier","adjective","able_to_unpetrify","discard_clothes","target")
 	if (!(option in only_these))
 		return

@@ -27,7 +27,7 @@
 	if(!fixed_name)
 		var/name_prefix = "[pick("strange","anomalous","exotic","atypical","unusual","incongruous","weird","aberrant","eccentric")]"
 		var/name_suffix		//blank because it's randomized per sample appearance
-		var/sample_icon = rand(1,10)
+		var/sample_icon = rand(1,11)
 		icon_state = "generic_sample[sample_icon]"
 		damage_type = pick("BRUTE","BURN","TOX","OXY","EMP","PAIN")
 		//per-state tweaks, like glows/light emission or narrower valid tech defs, if desired

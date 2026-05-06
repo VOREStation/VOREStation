@@ -37,7 +37,7 @@
 	if(wrapped)
 		slot_flags = null
 
-/obj/item/clothing/mask/chewable/equipped(var/mob/living/user, var/slot)
+/obj/item/clothing/mask/chewable/equipped(mob/living/user, slot)
 	..()
 	if(slot == slot_wear_mask)
 		var/mob/living/carbon/human/C = user
@@ -82,7 +82,7 @@
 	brand = "tobacco"
 
 
-/obj/item/clothing/mask/chewable/proc/spitout(var/transfer_color = 1, var/no_message = 0)
+/obj/item/clothing/mask/chewable/proc/spitout(transfer_color = 1, no_message = 0)
 	if(type_butt)
 		var/obj/item/butt = new type_butt(src.loc)
 		transfer_fingerprints_to(butt)

@@ -40,7 +40,7 @@
 	base_name = name
 	base_desc = desc
 
-/obj/item/reagent_containers/glass/examine(var/mob/user)
+/obj/item/reagent_containers/glass/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		if(reagents && reagents.reagent_list.len)
@@ -77,12 +77,12 @@
 
 	return ITEM_INTERACT_FAILURE
 
-/obj/item/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/glass/standard_feed_mob(mob/user, mob/target)
 	if(user.a_intent == I_HURT)
 		return 1
 	return ..()
 
-/obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/glass/self_feed_message(mob/user)
 	balloon_alert(user, "swallowed from \the [src]")
 
 /obj/item/reagent_containers/glass/proc/attempt_snake_milking(mob/living/user, mob/living/target)
@@ -110,7 +110,7 @@
 	reagents.add_reagent(reagent, amount)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
 	for(var/type in GLOB.reagent_containers_can_be_placed_into[container_can_be_placed_into]) //Is it something it can be placed into?
@@ -305,7 +305,7 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 
-/obj/item/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user as mob)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/D, mob/user as mob)
 	if(isprox(D))
 		to_chat(user, "You add [D] to [src].")
 		qdel(D)
@@ -364,7 +364,7 @@
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
-/obj/item/reagent_containers/glass/bucket/wood/attackby(var/obj/D, mob/user as mob)
+/obj/item/reagent_containers/glass/bucket/wood/attackby(obj/D, mob/user as mob)
 	if(isprox(D))
 		to_chat(user, "This wooden bucket doesn't play well with electronics.")
 		return

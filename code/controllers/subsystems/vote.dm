@@ -266,7 +266,7 @@ SUBSYSTEM_DEF(vote)
 		return 1
 	return 0
 
-/datum/controller/subsystem/vote/proc/interface(var/client/C)
+/datum/controller/subsystem/vote/proc/interface(client/C)
 	if(!istype(C))
 		return
 	var/admin = FALSE

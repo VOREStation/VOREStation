@@ -10,7 +10,7 @@
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
 
-/mob/observer/dead/DblClickOn(var/atom/A, var/params)
+/mob/observer/dead/DblClickOn(atom/A, params)
 	if(check_click_intercept(params,A))
 		return
 	if(client.buildmode)

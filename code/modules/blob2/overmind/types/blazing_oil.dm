@@ -24,7 +24,7 @@
 	spawn(1)
 		B.adjust_integrity(-(amount * 5))
 
-/datum/blob_type/blazing_oil/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/blazing_oil/on_pulse(obj/structure/blob/B)
 	var/turf/T = get_turf(B)
 	if(!T)
 		return

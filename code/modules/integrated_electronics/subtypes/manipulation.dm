@@ -29,7 +29,7 @@
 	installed_gun = null // It will be qdel'd by ..() if still in our contents
 	return ..()
 
-/obj/item/integrated_circuit/manipulation/weapon_firing/attackby(var/obj/O, var/mob/user)
+/obj/item/integrated_circuit/manipulation/weapon_firing/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/gun))
 		var/obj/item/gun/gun = O
 		if(installed_gun)
@@ -181,7 +181,7 @@
 	detach_grenade()
 	. =..()
 
-/obj/item/integrated_circuit/manipulation/grenade/attackby(var/obj/item/grenade/G, var/mob/user)
+/obj/item/integrated_circuit/manipulation/grenade/attackby(obj/item/grenade/G, mob/user)
 	if(istype(G))
 		if(attached_grenade)
 			to_chat(user, span_warning("There is already a grenade attached!"))
@@ -213,7 +213,7 @@
 		log_and_message_admins("activated a grenade assembly. Last touches: Assembly: [holder.forensic_data?.get_lastprint()] Circuit: [forensic_data?.get_lastprint()] Grenade: [attached_grenade.forensic_data?.get_lastprint()]")
 
 // These procs do not relocate the grenade, that's the callers responsibility
-/obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/grenade/G)
+/obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(obj/item/grenade/G)
 	attached_grenade = G
 	RegisterSignal(attached_grenade, COMSIG_OBSERVER_DESTROYED, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
 	size += G.w_class

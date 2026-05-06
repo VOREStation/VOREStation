@@ -77,7 +77,7 @@
 	min_pressure_protection = null
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-/obj/item/clothing/suit/space/rig/attack_hand(var/mob/living/M)
+/obj/item/clothing/suit/space/rig/attack_hand(mob/living/M)
 	if(tacknife)
 		tacknife.loc = get_turf(src)
 		if(M.put_in_active_hand(tacknife))
@@ -88,7 +88,7 @@
 		return
 	..()
 
-/obj/item/clothing/suit/space/rig/attackby(var/obj/item/I, var/mob/living/M)
+/obj/item/clothing/suit/space/rig/attackby(obj/item/I, mob/living/M)
 	if(istype(I, /obj/item/material/knife/tacknife))
 		if(tacknife)
 			return
@@ -104,7 +104,7 @@
 /obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
 	return 0
 
-/obj/item/clothing/gloves/gauntlets/rig/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/gauntlets/rig/Touch(atom/A, proximity)
 
 	if(!A || !proximity)
 		return 0

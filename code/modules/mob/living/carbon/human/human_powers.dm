@@ -132,7 +132,7 @@
 	set category = "Abilities.Diona"
 	diona_split_into_nymphs(5)	// Separate proc to void argments being supplied when used as a verb
 
-/mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
+/mob/living/carbon/human/proc/diona_split_into_nymphs(number_of_resulting_nymphs)
 	var/turf/T = get_turf(src)
 
 	var/mob/living/carbon/alien/diona/S = new(T)

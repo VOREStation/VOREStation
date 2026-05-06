@@ -420,6 +420,8 @@
 	if(ishuman(user))
 		to_chat(user, span_narsie(span_bolddanger("HOR-SIE HAS RISEN")))
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
+		magichead.say_verbs = list("neighs", "whinnys", "snorts")
+		magichead.say_messages = list("NEEEEIGH", "KEECHOOOW", "WHIIIINNNY", "NEEEEEEIGHHHH", "KEECHOOOWWW")
 		magichead.canremove = FALSE		//curses!
 		magichead.flags_inv = null	//so you can still see their face
 		magichead.voicechange = 1	//NEEEEIIGHH

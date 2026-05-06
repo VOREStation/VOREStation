@@ -35,7 +35,7 @@
 
 // Update when moving between areas.
 // TODO - While this direct override might technically be faster, probably better code to use observer or hooks ~Leshana
-/area/Entered(var/mob/M)
+/area/Entered(mob/M)
 	// Note, we cannot call ..() first, because it would update lastarea.
 	if(!istype(M) || isEye(M))
 		return ..()
@@ -58,7 +58,7 @@
 	set desc = "Set jukebox volume"
 	set_new_volume(usr)
 
-/client/proc/set_new_volume(var/mob/user)
+/client/proc/set_new_volume(mob/user)
 	if(QDELETED(src.media) || !istype(src.media))
 		to_chat(user, span_warning("You have no media datum to change, if you're not in the lobby tell an admin."))
 		return
@@ -79,7 +79,7 @@
 /mob/proc/stop_all_music()
 	client?.media.stop_music()
 
-/mob/proc/force_music(var/url, var/start, var/volume=1)
+/mob/proc/force_music(url, start, volume=1)
 	if (client?.media)
 		if(url == "")
 			client.media.forced = 0
@@ -114,7 +114,7 @@
 	var/playerstyle				// Choice of which player plugin to use
 	var/const/WINDOW_ID = "rpane.mediapanel"	// Which elem in skin.dmf to use
 
-/datum/media_manager/New(var/client/C)
+/datum/media_manager/New(client/C)
 	ASSERT(istype(C))
 	src.owner = C
 
@@ -138,7 +138,7 @@
 	MP_DEBUG(span_good("Sending update to mediapanel ([url], [(world.time - start_time) / 10], [volume * source_volume])..."))
 	owner << output(list2params(list(url, (world.time - start_time) / 10, volume * source_volume)), "[WINDOW_ID]:SetMusic")
 
-/datum/media_manager/proc/push_music(var/targetURL, var/targetStartTime, var/targetVolume)
+/datum/media_manager/proc/push_music(targetURL, targetStartTime, targetVolume)
 	if (url != targetURL || abs(targetStartTime - start_time) > 1 || abs(targetVolume - source_volume) > 0.1 /* 10% */)
 		url = targetURL
 		start_time = targetStartTime
@@ -148,7 +148,7 @@
 /datum/media_manager/proc/stop_music()
 	push_music("", 0, 1)
 
-/datum/media_manager/proc/update_volume(var/value)
+/datum/media_manager/proc/update_volume(value)
 	volume = value
 	send_update()
 

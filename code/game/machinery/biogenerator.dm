@@ -218,7 +218,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/biogenerator/attackby(obj/item/O, mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))

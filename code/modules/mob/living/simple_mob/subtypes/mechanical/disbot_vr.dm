@@ -55,7 +55,7 @@
 	say_maybe_target = list("BIOLOGICAL TRACES FOUND, ATTEMTPTING TO LOCATE SOURCE.","TRACE SOURCES FOUND, POWERING SCANNERS.",)
 	say_got_target = list("LIFEFORM LOCATED, ATTEMPTING TO COLLECT SAMPLE","CREATURE SPOTTED, PHEROMONE GENERATORS DAMAGED, ATTEMPTING TO COLLECT GENETIC SAMPLE.")
 
-/mob/living/simple_mob/mechanical/infectionbot/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/mechanical/infectionbot/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

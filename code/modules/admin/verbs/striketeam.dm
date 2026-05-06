@@ -153,7 +153,7 @@ ADMIN_VERB(response_team, R_ADMIN|R_MOD|R_EVENT, "Dispatch Emergency Response Te
 		sleep(600 * 3) // Minute * Number of Minutes
 
 
-/proc/trigger_armed_response_team(var/force = 0)
+/proc/trigger_armed_response_team(force = 0)
 	if(!GLOB.can_call_ert && !force)
 		return
 	if(GLOB.send_emergency_team)

@@ -22,7 +22,7 @@
 			stored_research = tool.buffer
 			balloon_alert(user, "techweb connected")
 
-/obj/machinery/computer/rdservercontrol/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+/obj/machinery/computer/rdservercontrol/emag_act(remaining_charges, mob/user, emag_source)
 	if(emagged)
 		return FALSE
 	emagged = TRUE

@@ -5,7 +5,7 @@
 	effect_state = "pulsing"
 	effect_color = "#88ffdb"
 
-/datum/artifact_effect/teleport/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/teleport/DoEffectTouch(mob/user)
 	var/atom/holder = get_master_holder()
 	var/weakness = GetAnomalySusceptibility(user)
 	if(prob(100 * weakness))

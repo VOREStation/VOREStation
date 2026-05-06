@@ -3,7 +3,7 @@
 /datum/game_mode/var/max_autotraitor_delay = 12000 // Approx 20 minutes.
 /datum/game_mode/var/process_count = 0
 
-/datum/game_mode/proc/get_usable_templates(var/list/supplied_templates)
+/datum/game_mode/proc/get_usable_templates(list/supplied_templates)
 	var/list/usable_templates = list()
 	for(var/datum/antagonist/A in supplied_templates)
 		if(A.can_late_spawn())
@@ -20,13 +20,13 @@
 		process_count = 0
 		try_latespawn()
 
-/datum/game_mode/proc/latespawn(var/mob/living/carbon/human/character)
+/datum/game_mode/proc/latespawn(mob/living/carbon/human/character)
 	if(!character.mind)
 		return
 	try_latespawn(character.mind)
 	return 0
 
-/datum/game_mode/proc/try_latespawn(var/datum/mind/player, var/latejoin_only)
+/datum/game_mode/proc/try_latespawn(datum/mind/player, latejoin_only)
 
 	if(SSemergency_shuttle.departed || !round_autoantag)
 		return

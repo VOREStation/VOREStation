@@ -101,7 +101,7 @@
 
 // Checks to make sure everything is fine to continue playing.
 
-/mob/living/carbon/human/proc/hand_games_check(var/mob/living/carbon/human/player1, var/mob/living/carbon/human/player2)
+/mob/living/carbon/human/proc/hand_games_check(mob/living/carbon/human/player1, mob/living/carbon/human/player2)
 	if(!istype(player1) || !istype(player2))
 		return 0
 	if(player1.stat || player2.stat) //Make sure they're still standing
@@ -113,7 +113,7 @@
 
 ///// A simple game of rock paper scissors, each player chooses an option and the choices are declared simultaneously.
 
-/mob/living/carbon/human/proc/game_rps(var/mob/living/carbon/human/player1, var/mob/living/carbon/human/player2)
+/mob/living/carbon/human/proc/game_rps(mob/living/carbon/human/player1, mob/living/carbon/human/player2)
 	if(!hand_games_check(player1,player2))
 		return
 	to_chat(player1, span_notice("Asking [player2] if they want to play Rock, Paper, Scissors!"))
@@ -143,7 +143,7 @@
 
 /////// Arm wrestling! Each player gets a modifier based on their size and can choose the strength of their character, then a weighted roll is made.
 
-/mob/living/carbon/human/proc/game_armwrestle(var/mob/living/carbon/human/player1, var/mob/living/carbon/human/player2)
+/mob/living/carbon/human/proc/game_armwrestle(mob/living/carbon/human/player1, mob/living/carbon/human/player2)
 	if(!hand_games_check(player1,player2))
 		return
 	to_chat(player1, span_notice("Asking [player2] if they want to play Arm Wrestling!"))
@@ -188,7 +188,7 @@
 
 /////// Slap Hands! Each player gets a modifier based on their size and can choose the reaction time of their character, then a weighted roll is made. This one gives the advantage to smaller players.
 
-/mob/living/carbon/human/proc/game_slaphands(var/mob/living/carbon/human/player1, var/mob/living/carbon/human/player2)
+/mob/living/carbon/human/proc/game_slaphands(mob/living/carbon/human/player1, mob/living/carbon/human/player2)
 	if(!hand_games_check(player1,player2))
 		return
 	to_chat(player1, span_notice("Asking [player2] if they want to play Slap Hands!"))
@@ -236,7 +236,7 @@
 
 ///// Thumb wars! This one is just pure chance to allow people to do just quick RNG.
 
-/mob/living/carbon/human/proc/game_thumbwars(var/mob/living/carbon/human/player1, var/mob/living/carbon/human/player2)
+/mob/living/carbon/human/proc/game_thumbwars(mob/living/carbon/human/player1, mob/living/carbon/human/player2)
 	if(!hand_games_check(player1,player2))
 		return
 	to_chat(player1, span_notice("Asking [player2] if they want to play Thumb Wars!"))

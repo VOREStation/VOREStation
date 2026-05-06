@@ -248,7 +248,7 @@
 	playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
 	qdel(src)
 
-/obj/item/mail/proc/initialize_for_recipient(var/datum/mind/recipient, var/preset_goodies = FALSE)
+/obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient, preset_goodies = FALSE)
 	var/current_title = recipient.role_alt_title ? recipient.role_alt_title : recipient.assigned_role
 	name = "[initial(name)] for [recipient.name] ([current_title])"
 	recipient_ref = WEAKREF(recipient)

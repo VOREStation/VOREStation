@@ -54,7 +54,7 @@
 		trigger()
 
 // Helper proc to optimize the use of effects by making sure they do not run if nobody is around to perceive it.
-/proc/check_for_player_proximity(var/atom/proximity_to, var/radius = 12, var/ignore_ghosts = FALSE, var/ignore_afk = TRUE)
+/proc/check_for_player_proximity(atom/proximity_to, radius = 12, ignore_ghosts = FALSE, ignore_afk = TRUE)
 	if(!proximity_to)
 		return FALSE
 

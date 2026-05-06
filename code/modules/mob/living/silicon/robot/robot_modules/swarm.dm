@@ -3,7 +3,7 @@
 	var/obj/item/card/id/drone_id
 	idcard_type = /obj/item/card/id/syndicate
 
-/obj/item/robot_module/drone/swarm/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/drone/swarm/create_equipment(mob/living/silicon/robot/robot)
 	..()
 
 	var/obj/item/card/id/robot_id = robot.idcard
@@ -20,12 +20,12 @@
 /obj/item/robot_module/drone/swarm/ranged
 	name = "swarm gunner module"
 
-/obj/item/robot_module/drone/swarm/ranged/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/drone/swarm/ranged/create_equipment(mob/living/silicon/robot/robot)
 	..()
 
 	src.modules += new /obj/item/gun/energy/xray/swarm(src)
 
-/obj/item/robot_module/drone/swarm/melee/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/drone/swarm/melee/create_equipment(mob/living/silicon/robot/robot)
 	..()
 
 	src.modules += new /obj/item/melee/robotic/blade/ionic/lance(src)

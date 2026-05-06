@@ -23,7 +23,7 @@
 	if(written_text)
 		icon_state = "[icon_state]_writing"
 
-/obj/item/sticky_pad/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/sticky_pad/attackby(obj/item/thing, mob/user)
 	if(istype(thing, /obj/item/pen))
 
 		if(jobban_isbanned(user, JOB_GRAFFITI))
@@ -47,12 +47,12 @@
 		return
 	..()
 
-/obj/item/sticky_pad/examine(var/mob/user)
+/obj/item/sticky_pad/examine(mob/user)
 	. = ..()
 	if(.)
 		to_chat(user, span_notice("It has [papers] sticky note\s left."))
 
-/obj/item/sticky_pad/attack_hand(var/mob/user)
+/obj/item/sticky_pad/attack_hand(mob/user)
 	var/obj/item/paper/paper = new paper_type(get_turf(src))
 	paper.set_content(written_text, "sticky note")
 	paper.last_modified_ckey = written_by
@@ -121,7 +121,7 @@
 	if(!istype(loc, /turf))
 		reset_persistence_tracking()
 
-/obj/item/paper/sticky/afterattack(var/A, var/mob/user, var/flag, var/params)
+/obj/item/paper/sticky/afterattack(A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || icon_state == "scrap")
 		return

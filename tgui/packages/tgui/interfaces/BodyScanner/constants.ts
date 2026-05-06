@@ -54,6 +54,11 @@ export const abnormalities: (string | ((occupant: occupant) => string))[][] = [
     'bad',
     (occupant) => 'Experiencing withdrawal! Inaprovaline can reduce symptoms.',
   ],
+  [
+    'hasAllergens',
+    'average',
+    (occupant) => 'Allergic sensitivity to specific compounds detected.',
+  ],
 ];
 
 export const damages: string[][] = [

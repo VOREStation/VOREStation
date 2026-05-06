@@ -18,7 +18,7 @@
 /obj/item/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
 
-/obj/item/stool/Initialize(mapload, var/new_material, var/new_padding_material)
+/obj/item/stool/Initialize(mapload, new_material, new_padding_material)
 	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL
@@ -31,7 +31,7 @@
 	force = round(material.get_blunt_damage()*0.4)
 	update_icon()
 
-/obj/item/stool/padded/Initialize(mapload, var/new_material)
+/obj/item/stool/padded/Initialize(mapload, new_material)
 	. = ..(mapload, MAT_STEEL, MAT_CARPET)
 
 /obj/item/stool/update_icon()
@@ -61,7 +61,7 @@
 		name = "[material.display_name] [initial(name)]"
 		desc = "A stool. Apply butt with care. It's made of [material.use_name]."
 
-/obj/item/stool/proc/add_padding(var/padding_type)
+/obj/item/stool/proc/add_padding(padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 

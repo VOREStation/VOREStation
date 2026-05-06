@@ -24,7 +24,7 @@
 	if(busy)
 		icon_state = "[icon_state]-active"
 
-/obj/item/slow_sizegun/proc/should_stop(var/mob/living/target, var/mob/living/user, var/active_hand)
+/obj/item/slow_sizegun/proc/should_stop(mob/living/target, mob/living/user, active_hand)
 	if(!target || !user || !active_hand || !istype(target) || !istype(user) || !busy)
 		return TRUE
 

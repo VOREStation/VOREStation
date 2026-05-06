@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 				linked.accelerate(direction, accellimit)
 		return
 
-/obj/machinery/computer/ship/helm/relaymove(var/mob/user, direction)
+/obj/machinery/computer/ship/helm/relaymove(mob/user, direction)
 	if(viewing_overmap(user) && linked)
 		linked.relaymove(user, direction, accellimit)
 		return 1

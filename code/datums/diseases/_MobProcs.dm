@@ -53,7 +53,7 @@
 
 	return TRUE
 
-/mob/proc/ContractDisease(datum/disease/D, var/target_zone)
+/mob/proc/ContractDisease(datum/disease/D, target_zone)
 	if(!CanContractDisease(D))
 		return FALSE
 	D.try_infect(src)
@@ -204,7 +204,7 @@
 	LAZYINITLIST(resistances)
 	return resistances
 
-/mob/proc/AddResistances(var/list/resistance)
+/mob/proc/AddResistances(list/resistance)
 	LAZYINITLIST(resistances)
 	resistances |= resistance
 	return TRUE

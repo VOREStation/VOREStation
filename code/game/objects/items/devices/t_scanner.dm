@@ -29,7 +29,7 @@
 		return TRUE
 	set_active(!on)
 
-/obj/item/t_scanner/proc/set_active(var/active)
+/obj/item/t_scanner/proc/set_active(active)
 	on = active
 	if(on)
 		START_PROCESSING(SSobj, src)
@@ -102,7 +102,7 @@
 	if(GLOB.overlay_cache.len > overlay_cache_LEN)
 		GLOB.overlay_cache.Cut(1, GLOB.overlay_cache.len-overlay_cache_LEN-1)
 
-/obj/item/t_scanner/proc/get_scanned_objects(var/scan_dist)
+/obj/item/t_scanner/proc/get_scanned_objects(scan_dist)
 	. = list()
 
 	var/turf/center = get_turf(src.loc)
@@ -119,7 +119,7 @@
 				continue //if it's already visible don't need an overlay for it
 			. += O
 
-/obj/item/t_scanner/proc/set_user_client(var/client/new_client)
+/obj/item/t_scanner/proc/set_user_client(client/new_client)
 	if(new_client == user_client)
 		return
 	if(user_client)

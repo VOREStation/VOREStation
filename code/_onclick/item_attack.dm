@@ -56,7 +56,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return FALSE //return TRUE to avoid calling attackby after this proc does stuff
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
-/obj/item/proc/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
+/obj/item/proc/resolve_attackby(atom/A, mob/user, attack_modifier = 1, click_parameters)
 	add_fingerprint(user)
 	. = pre_attack(A, user, click_parameters)
 	if(.)	// We're returning the value of pre_attack, important if it has a special return.
@@ -69,7 +69,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return TRUE
 	return FALSE
 
-/mob/living/attackby(obj/item/I, mob/user, var/attack_modifier, var/click_parameters)
+/mob/living/attackby(obj/item/I, mob/user, attack_modifier, click_parameters)
 	if(!ismob(user))
 		return FALSE
 
@@ -91,7 +91,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Same as above but actually does useful things.
 // W is the item being used in the attack, if any. modifier is if the attack should be longer or shorter than usual, for whatever reason.
-/mob/living/get_attack_speed(var/obj/item/W)
+/mob/living/get_attack_speed(obj/item/W)
 	var/speed = base_attack_cooldown
 	if(W && istype(W))
 		speed = W.attackspeed
@@ -131,7 +131,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return ITEM_INTERACT_SUCCESS
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
-/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone, var/attack_modifier)
+/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, hit_zone, attack_modifier)
 	user.break_cloak()
 	if(hitsound)
 		playsound(src, hitsound, 50, 1, -1)

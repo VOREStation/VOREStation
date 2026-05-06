@@ -374,7 +374,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return 1
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
+/mob/living/carbon/human/slot_is_accessible(slot, obj/item/I, mob/user=null)
 	var/obj/item/covering = null
 	var/check_flags = 0
 
@@ -393,7 +393,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return 0
 	return 1
 
-/mob/living/carbon/human/get_equipped_item(var/slot)
+/mob/living/carbon/human/get_equipped_item(slot)
 	switch(slot)
 		if(slot_back)       return back
 		if(slot_legcuffed)  return legcuffed
@@ -431,7 +431,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(r_hand)
 		. += r_hand
 
-/mob/living/carbon/human/proc/drop_all_clothing(var/remove_underwear = FALSE)
+/mob/living/carbon/human/proc/drop_all_clothing(remove_underwear = FALSE)
 	for(var/obj/item/equipped_thing in worn_clothing)
 		if(istype(equipped_thing,/obj/item/clothing/accessory/collar/shock/bluespace))
 			continue

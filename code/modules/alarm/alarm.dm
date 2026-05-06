@@ -8,7 +8,7 @@
 	var/start_time	= 0		// When this source began alarming.
 	var/end_time	= 0		// Use to set when this trigger should clear, in case the source is lost.
 
-/datum/alarm_source/New(var/atom/source)
+/datum/alarm_source/New(atom/source)
 	src.source = source
 	start_time = world.time
 	source_name = source.get_source_name()
@@ -24,7 +24,7 @@
 	var/end_time					//Used to set when this alarm should clear, in case the origin is lost.
 	var/hidden = FALSE				//If this alarm can be seen from consoles or other things.
 
-/datum/alarm/New(var/atom/origin, var/atom/source, var/duration, var/severity, var/hidden)
+/datum/alarm/New(atom/origin, atom/source, duration, severity, hidden)
 	src.origin = origin
 
 	cameras()	// Sets up both cameras and last alarm area.
@@ -45,7 +45,7 @@
 
 #undef ALARM_RESET_DELAY
 
-/datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity, var/hidden)
+/datum/alarm/proc/set_source_data(atom/source, duration, severity, hidden)
 	var/datum/alarm_source/AS = sources_assoc[source]
 	if(!AS)
 		AS = new/datum/alarm_source(source)
@@ -59,7 +59,7 @@
 	AS.severity = severity
 	src.hidden = min(src.hidden, hidden)
 
-/datum/alarm/proc/clear(var/source)
+/datum/alarm/proc/clear(source)
 	var/datum/alarm_source/AS = sources_assoc[source]
 	sources -= AS
 	sources_assoc -= source

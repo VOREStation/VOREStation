@@ -37,7 +37,7 @@
 	return ..() | initialize_directions_he
 
 // Use initialize_directions_he to connect to neighbors instead.
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/can_be_node(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target)
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/can_be_node(obj/machinery/atmospherics/pipe/simple/heat_exchanging/target)
 	if(!istype(target))
 		return FALSE
 	return (target.initialize_directions_he & get_dir(target,src)) && check_connectable(target) && target.check_connectable(src)
@@ -70,7 +70,7 @@
 	handle_leaking()
 	return
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/set_leaking(var/new_leaking) // They already process, no need for manual processing toggles.
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/set_leaking(new_leaking) // They already process, no need for manual processing toggles.
 	if(new_leaking && !leaking)
 		leaking = TRUE
 		if(parent)

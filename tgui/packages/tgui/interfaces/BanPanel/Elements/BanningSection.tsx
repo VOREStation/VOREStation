@@ -85,6 +85,7 @@ export const BanningSection = (props: { possibleJobs: string[] }) => {
                 </LabeledList.Item>
                 <LabeledList.Item label="Job">
                   <Dropdown
+                    searchInput
                     fluid
                     onSelected={(value) => {
                       setBanJob(value);

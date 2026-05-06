@@ -18,7 +18,7 @@
 GLOBAL_DATUM(banlistjob, /savefile)
 
 
-/proc/_jobban_isbanned(var/client/clientvar, var/rank)
+/proc/_jobban_isbanned(client/clientvar, rank)
 	if(!clientvar) return 1
 	ClearTempbansjob()
 	var/id = clientvar.computer_id

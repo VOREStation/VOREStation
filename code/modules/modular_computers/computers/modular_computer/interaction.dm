@@ -97,7 +97,7 @@
 	uninstall_component(user, portable_drive)
 	update_uis()
 
-/obj/item/modular_computer/attack_ghost(var/mob/observer/dead/user)
+/obj/item/modular_computer/attack_ghost(mob/observer/dead/user)
 	if(enabled)
 		tgui_interact(user)
 	else if(check_rights_for(user.client, R_ADMIN|R_EVENT|R_DEBUG))
@@ -105,10 +105,10 @@
 		if(response == "Yes")
 			turn_on(user)
 
-/obj/item/modular_computer/attack_ai(var/mob/user)
+/obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
-/obj/item/modular_computer/attack_hand(var/mob/user)
+/obj/item/modular_computer/attack_hand(mob/user)
 	if(anchored || ispAI(user))
 		return attack_self(user)
 	return ..()
@@ -134,7 +134,7 @@
 			return
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(var/obj/item/W, var/mob/user)
+/obj/item/modular_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
 		var/obj/item/card/id/I = W
 		if(!card_slot)

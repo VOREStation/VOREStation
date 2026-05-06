@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	QDEL_NULL(compass)
 	. = ..()
 
-/obj/item/gps/proc/can_track(var/obj/item/gps/other, var/reachable_z_levels)
+/obj/item/gps/proc/can_track(obj/item/gps/other, reachable_z_levels)
 	if(!other.tracking || other.emped || other.hide_signal || is_vore_jammed(other))
 		return FALSE
 	var/turf/origin = get_turf(src)
@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	reachable_z_levels = reachable_z_levels || using_map.get_map_levels(origin.z, long_range)
 	return (target.z in reachable_z_levels)
 
-/obj/item/gps/proc/update_compass(atom/movable/source, var/update_compass_icon)
+/obj/item/gps/proc/update_compass(atom/movable/source, update_compass_icon)
 	SIGNAL_HANDLER
 	compass.hide_waypoints(FALSE)
 	var/turf/my_turf = get_turf(src)

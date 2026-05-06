@@ -416,7 +416,7 @@
 	. = ..()
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!
-/obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
+/obj/shuttle_connector/proc/setup_routes(new_shuttle)
 	SIGNAL_HANDLER
 	var/datum/shuttle/autodock/web_shuttle/ES = SSshuttles.shuttles[shuttle_name]
 	if(ES != new_shuttle)
