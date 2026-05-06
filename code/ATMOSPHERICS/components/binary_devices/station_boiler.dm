@@ -214,10 +214,12 @@
 		return
 	if(amount <= 0)
 		amount = sheets_loaded
+
 	// Drop stacks of sheets till empty
 	while(amount >= 1)
 		var/obj/item/stack/material/S = new stack_type(get_turf(src))
 		var/export_amount = min(amount, S.max_amount)
-		S.add(export_amount)
+		S.set_amount(export_amount)
+		S.update_icon()
 		stored_material[material_name] -= stack_units * export_amount
 		amount -= export_amount
