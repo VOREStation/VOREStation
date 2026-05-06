@@ -30,12 +30,10 @@ SUBSYSTEM_DEF(cryoplanets)
 		var/datum/zone/zone = current_run[current_run.len]
 		current_run.len--
 		if(zone.invalid || QDELETED(zone)) // Zone stopped existing so don't bother.
-			zones_planet_temperature_to_update.Remove(zone)
 			continue
 
 		var/turf/T = pick(zone.contents)
 		if(!is_station_temp_change_turf(T)) // Invalid temp shifting zone
-			zones_planet_temperature_to_update.Remove(zone)
 			continue
 
 		equalize_temperature_to_planet(T, zone, thermal_energy_change)
