@@ -196,7 +196,7 @@
 /obj/machinery/atmospherics/binary/stationboiler/ex_act(severity)
 	return //Invincible machine
 
-/obj/machinery/atmospherics/binary/stationboiler/fall_apart(var/severity = 3, scatter = TRUE)
+/obj/machinery/atmospherics/binary/stationboiler/fall_apart(severity = 3, scatter = TRUE)
 	return //Invincible machine
 
 /obj/machinery/atmospherics/binary/stationboiler/proc/try_ignite()
@@ -205,7 +205,7 @@
 		update_icon()
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-/obj/machinery/atmospherics/binary/stationboiler/proc/eject_materials(var/material_name, amount)
+/obj/machinery/atmospherics/binary/stationboiler/proc/eject_materials(material_name, amount)
 	var/recursive = amount == -1 ? 1 : 0
 	var/datum/material/matdata = get_material_by_name(material_name)
 	var/stack_type = matdata.stack_type
