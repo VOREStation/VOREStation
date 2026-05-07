@@ -144,6 +144,11 @@
 /obj/structure/stationboiler/proc/is_heating()
 	return is_active
 
+/obj/structure/stationboiler/proc/is_on_same_planet(obj/machinery/stationboiler_radiator/rad)
+	var/turf/rad_turf = get_turf(rad)
+	var/turf/our_turf = get_turf(src)
+	return AreConnectedZLevels(rad_turf.z,our_turf.z)
+
 /obj/structure/stationboiler/proc/try_load_materials(mob/user, obj/item/stack/material/S)
 	if(!istype(S))
 		return FALSE

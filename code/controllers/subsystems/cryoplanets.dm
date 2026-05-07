@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(cryoplanets)
 			continue
 
 		var/turf/T = pick(zone.contents)
-		if(!is_station_temp_change_turf(T))
+		if(!SScryoplanets.is_station_temp_change_turf(T))
 			cryo_zones.Remove(zone)
 			continue
 
@@ -71,8 +71,11 @@ SUBSYSTEM_DEF(cryoplanets)
 	//testing("Energy: [neededEnergy]")
 	currentAir.add_thermal_energy(neededEnergy)
 
-/proc/is_station_temp_change_turf(turf/T)
+/datum/controller/subsystem/cryoplanets/proc/is_station_temp_change_turf(turf/T)
 	if(!issimulatedturf(T)) // What are you even doing?
+		return FALSE
+
+	if(T.is_outdoors()) // Radiators can't help you outside
 		return FALSE
 
 	if(T.z > length(SSplanets.z_to_planet)) // Not even on a planet
@@ -84,9 +87,6 @@ SUBSYSTEM_DEF(cryoplanets)
 
 	var/area/area_check = get_area(T) //Do not freeze dorms
 	if(!area_check || (area_check.flags & AREA_CRYOPLANET_SHIELDED))
-		return FALSE
-
-	if(T.is_outdoors()) // Outdoors is already affected by weather from the border walls
 		return FALSE
 
 	return TRUE

@@ -1,3 +1,4 @@
+/// A floor radiator made to work with the station_boiler. If none are on the map then they are purely asthetic and safe to map.
 /obj/machinery/stationboiler_radiator
 	name = "Station Radiator"
 	desc = "A radiator pipe connected to the station boiler, used to keep the rooms warm"
@@ -24,6 +25,7 @@
 /obj/machinery/stationboiler_radiator/update_icon()
 	icon_state = actively_radiating ? "on" : "off"
 
+// TODO - Make a viable sane construction method for these
 /obj/machinery/stationboiler_radiator/ex_act(severity)
 	return //Invincible machine
 

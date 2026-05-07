@@ -52,14 +52,17 @@ SUBSYSTEM_DEF(stationheater)
 	return current_loop_heater?.resolve()
 
 /datum/controller/subsystem/stationheater/proc/handle_radiate(obj/machinery/stationboiler_radiator/radiator, obj/structure/stationboiler/assigned_boiler)
-	// Update radiator icon
+	// Check if this boiler is OUR boiler..... And by that just see if it's in the same zlevel complex.
+	if(!assigned_boiler?.is_on_same_planet(radiator))
+		return
+
+	// Update radiator icon if the main boiler is functioning or not
 	radiator.actively_radiating = assigned_boiler?.is_heating()
 	radiator.update_icon()
 
-	// Do nothing in unsimmed, infact remove us from the potential processing list. this is stupid.
+	// Remove us if we are in an invalid radiator turf
 	var/turf/radiator_turf = get_turf(radiator)
-	if(!is_station_temp_change_turf(radiator_turf))
-		radiators -= radiator
+	if(!SScryoplanets.is_station_temp_change_turf(radiator_turf))
 		return
 
 	// If the temp is colder than the radiator, begin heating!
