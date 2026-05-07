@@ -61,20 +61,18 @@
 	//STEP 2 - Check if we can heat the gas
 	if(!ignited || stored_material[MAT_LOG] < wood_per_process) //Out of wood
 		ignited = FALSE
-		is_active = 0
+		is_active = FALSE
 		update_icon()
 		return
-
-	is_active = 1
 
 	//STEP 3 - Consume the resources
 	stored_material[MAT_LOG] = max(stored_material[MAT_LOG] - wood_per_process, 0)
 
 	//Heat up the air instantly, magically
-	if(sink)
+	if(sink && sink.temperature < target_heat_temperature)
 		sink.temperature = target_heat_temperature
-	else
-		air2.temperature = target_heat_temperature
+
+	is_active = TRUE
 	update_icon()
 
 /obj/machinery/atmospherics/binary/stationboiler/update_icon()
@@ -84,35 +82,6 @@
 		icon_state = "boiler_off"
 	return 1
 
-// Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
-/obj/machinery/atmospherics/binary/stationboiler/proc/try_load_materials(mob/user, obj/item/stack/material/S)
-	if(!istype(S))
-		return 0
-	if(!(S.material.name in stored_material))
-		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
-		return 1
-
-	var/mat_name = S.material.name
-	var/inserting_sheets = S.get_amount()
-	var/remaining_stack_space = FLOOR((storage_capacity[mat_name] - stored_material[mat_name]) / S.perunit, 1)
-	if(remaining_stack_space >= 1)
-		inserting_sheets = min(inserting_sheets, remaining_stack_space)
-		stored_material[mat_name] += inserting_sheets * S.perunit
-		S.use(inserting_sheets)
-		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name]\s into \the [src]."))
-	else
-		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
-	return 1
-
-/obj/machinery/atmospherics/binary/stationboiler/attackby(obj/item/W as obj, mob/user as mob)
-	add_fingerprint(user)
-	if(try_load_materials(user, W))
-		return
-	else
-		to_chat(user, span_notice("You cannot insert this item into \the [src]!"))
-		return
-
-// Start of "TGUI stuff"
 /obj/machinery/atmospherics/binary/stationboiler/attack_ai(mob/user)
 	add_hiddenprint(user)
 	tgui_interact(user)
@@ -181,7 +150,6 @@
 			"temp" = convert_k2c(air2.temperature))
 
 	return data
-// End of "TGUI stuff"
 
 /obj/machinery/atmospherics/binary/stationboiler/proc/get_time_left()
 	var/org_ticks = 0
@@ -190,6 +158,10 @@
 	var/second = org_ticks % 60
 	var/minute = FLOOR((org_ticks / 60), 1) % 60
 	var/hours = FLOOR((org_ticks / 3600), 1)
+	if(second < 10)
+		second = "0[second]"
+	if(minute < 10)
+		minute = "0[minute]"
 	return "[hours]:[minute]:[second]"
 
 /obj/machinery/atmospherics/binary/stationboiler/ex_act(severity)
@@ -202,6 +174,34 @@
 	if(stored_material[MAT_LOG] >= wood_per_process)
 		ignited = TRUE
 		update_icon()
+
+// Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
+/obj/machinery/atmospherics/binary/stationboiler/proc/try_load_materials(mob/user, obj/item/stack/material/S)
+	if(!istype(S))
+		return 0
+	if(!(S.material.name in stored_material))
+		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
+		return 1
+
+	var/mat_name = S.material.name
+	var/inserting_sheets = S.get_amount()
+	var/remaining_stack_space = FLOOR((storage_capacity[mat_name] - stored_material[mat_name]) / S.perunit, 1)
+	if(remaining_stack_space >= 1)
+		inserting_sheets = min(inserting_sheets, remaining_stack_space)
+		stored_material[mat_name] += inserting_sheets * S.perunit
+		S.use(inserting_sheets)
+		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name]\s into \the [src]."))
+	else
+		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
+	return 1
+
+/obj/machinery/atmospherics/binary/stationboiler/attackby(obj/item/W as obj, mob/user as mob)
+	add_fingerprint(user)
+	if(try_load_materials(user, W))
+		return
+	else
+		to_chat(user, span_notice("You cannot insert this item into \the [src]!"))
+		return
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 /obj/machinery/atmospherics/binary/stationboiler/proc/eject_materials(material_name, amount)
