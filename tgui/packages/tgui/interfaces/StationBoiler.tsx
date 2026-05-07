@@ -35,10 +35,9 @@ export const StationBoiler = (props) => {
           buttons={<Button onClick={() => act('ignite')}>Ignite</Button>}
         >
           <LabeledList>
-            <LabeledList.Item label="Time Left">{timeleft}</LabeledList.Item>
-            <LabeledList.Item label="Storage">
+            <LabeledList.Item label="Time Left">
               <ProgressBar value={stored} maxValue={max}>
-                {stored} / {max}
+                {timeleft}
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Divider size={1} />
