@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(stationheater)
 		return
 
 	// Update radiator icon if the main boiler is functioning or not
-	radiator.actively_radiating = assigned_boiler?.is_heating()
+	radiator.set_state(assigned_boiler?.is_heating())
 	radiator.update_icon()
 
 	// Remove us if we are in an invalid radiator turf

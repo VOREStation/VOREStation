@@ -12,7 +12,7 @@
 	bullet_vulnerability = 0 //Invincible machine
 	anchored = TRUE
 	density = FALSE
-	var/actively_radiating = FALSE
+	VAR_PRIVATE/actively_radiating = FALSE
 
 /obj/machinery/stationboiler_radiator/Initialize(mapload)
 	. = ..()
@@ -22,6 +22,13 @@
 	SSstationheater.radiators -= src
 	. = ..()
 
+/obj/machinery/stationboiler_radiator/proc/set_state(activate)
+	if(actively_radiating == activate)
+		return
+	actively_radiating = activate
+	update_icon()
+	set_light(1, 0.9, "#e9400dff", l_on = actively_radiating)
+
 /obj/machinery/stationboiler_radiator/update_icon()
 	icon_state = actively_radiating ? "on" : "off"
 
@@ -29,5 +36,5 @@
 /obj/machinery/stationboiler_radiator/ex_act(severity)
 	return //Invincible machine
 
-/obj/machinery/stationboiler_radiato/fall_apart(severity = 3, scatter = TRUE)
+/obj/machinery/stationboiler_radiator/fall_apart(severity = 3, scatter = TRUE)
 	return //Invincible machine

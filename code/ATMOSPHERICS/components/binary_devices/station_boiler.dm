@@ -8,7 +8,7 @@
 	pixel_x = -32
 	layer = UNDER_JUNK_LAYER
 
-	VAR_PRIVATE/is_active = TRUE
+	VAR_PRIVATE/is_active = FALSE // Check init for actual auto startup
 	VAR_PRIVATE/target_heat_temperature = T20C //The temperature we want the pipes to be heated to
 	VAR_PRIVATE/wood_per_process = 1SECOND
 	VAR_PRIVATE/list/stored_material =  list(
@@ -27,14 +27,18 @@
 			MAT_REDWOOD			= 0,
 		)
 	VAR_PRIVATE/storage_capacity = 4 HOURS
+	VAR_PRIVATE/datum/looping_sound/oven/boiler_loop
 
 /obj/structure/stationboiler/Initialize(mapload)
 	. = ..()
 	SSstationheater.boilers += src
 	update_icon()
 	START_PROCESSING(SSobj, src)
+	boiler_loop = new(list(src), FALSE)
+	set_state(TRUE)
 
 /obj/structure/stationboiler/Destroy()
+	QDEL_NULL(boiler_loop)
 	STOP_PROCESSING(SSobj, src)
 	SSstationheater.boilers -= src
 	. = ..()
@@ -47,13 +51,23 @@
 		available_mats += mat_check
 
 	if(!length(available_mats)) //Out of wood
-		if(is_active)
-			is_active = FALSE
-			update_icon()
+		set_state(FALSE)
 		return
 
 	var/mat_drain = pick(available_mats)
 	stored_material[mat_drain] = max(stored_material[mat_drain] - wood_per_process, 0)
+
+/obj/structure/stationboiler/proc/set_state(activated)
+	if(activated == is_active)
+		return
+	is_active = activated
+	update_icon()
+	if(is_active)
+		set_light(4, 3, "#e9400dff")
+		boiler_loop.start(src)
+	else
+		set_light(0)
+		boiler_loop.stop(src)
 
 /obj/structure/stationboiler/update_icon()
 	if(is_active)
@@ -139,8 +153,7 @@
 
 /obj/structure/stationboiler/proc/try_ignite()
 	if(stored_material[MAT_LOG] >= wood_per_process)
-		is_active = TRUE
-		update_icon()
+		set_state(TRUE)
 
 /obj/structure/stationboiler/proc/is_heating()
 	return is_active
