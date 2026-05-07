@@ -1,102 +1,80 @@
-/obj/machinery/atmospherics/binary/stationboiler
+/obj/structure/stationboiler
 	name = "Station Boiler"
 	desc = "A large, phoron-infused wood powered, super boiler. Capable of keeping a entire colony heated up"
 	icon = 'icons/obj/machines/heat_boiler.dmi'
 	icon_state = "boiler_off"
-	use_power = USE_POWER_OFF
-	bullet_vulnerability = 0
 	anchored = TRUE
 	density = TRUE
 	pixel_x = -32
+	layer = UNDER_JUNK_LAYER
 
-	var/is_active = FALSE
-	var/ignited = TRUE
-	var/target_heat_temperature = T20C //The temperature we want the pipes to be heated to
-	var/wood_per_process = 1SECOND
-	var/list/stored_material =  list(MAT_LOG = 1 HOUR) //1 hour of mats free
-	var/list/storage_capacity = list(MAT_LOG = 4 HOUR) //can hold enough for 4 hours
+	VAR_PRIVATE/is_active = TRUE
+	VAR_PRIVATE/target_heat_temperature = T20C //The temperature we want the pipes to be heated to
+	VAR_PRIVATE/wood_per_process = 1SECOND
+	VAR_PRIVATE/list/stored_material =  list(
+			MAT_LOG 			= 1 HOUR, //1 hour of mats free
+			MAT_WOODEN_STICK	= 0,
+			MAT_WOOD			= 0,
+			MAT_SIFWOOD			= 0,
+			MAT_SIFLOG			= 0,
+			MAT_HARDWOOD		= 0,
+			MAT_HARDLOG			= 0,
+			MAT_WOODEN_STICK	= 0,
+			MAT_BIRCHWOOD		= 0,
+			MAT_PINEWOOD		= 0,
+			MAT_OAKWOOD			= 0,
+			MAT_ACACIAWOOD		= 0,
+			MAT_REDWOOD			= 0,
+		)
+	VAR_PRIVATE/storage_capacity = 4 HOURS
 
-/obj/machinery/atmospherics/binary/stationboiler/Initialize(mapload)
+/obj/structure/stationboiler/Initialize(mapload)
 	. = ..()
 	SSstationheater.boilers += src
+	update_icon()
+	START_PROCESSING(SSobj, src)
 
-/obj/machinery/atmospherics/binary/stationboiler/Destroy()
+/obj/structure/stationboiler/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	SSstationheater.boilers -= src
 	. = ..()
 
-/obj/machinery/atmospherics/binary/stationboiler/process()
-	..()
-	//STEP 1 - Pump gas through - using the passive gate method
-	var/output_starting_pressure = air2.return_pressure()
-	var/input_starting_pressure = air1.return_pressure()
-	var/pressure_delta = input_starting_pressure - output_starting_pressure
-	var/datum/gas_mixture/source = air1
-	var/datum/gas_mixture/sink = air2
+/obj/structure/stationboiler/process()
+	var/list/available_mats = list()
+	for(var/mat_check in stored_material)
+		if(stored_material[mat_check] <= 0)
+			continue
+		available_mats += mat_check
 
-	if((pressure_delta > 0.01) && (air1.temperature > 0 || air2.temperature > 0))
-		// If node1 is a network of more than 1 pipe, we want to transfer from that whole network, otw use just node1, as current
-		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			var/obj/machinery/atmospherics/pipe/p = node1
-			if(istype(p.parent, /datum/pipeline)) // Nested if-blocks to avoid the mystical :
-				var/datum/pipeline/l = p.parent
-				if(istype(l.air, /datum/gas_mixture))
-					source = l.air
-		// If node2 is a network of more than 1 pipe, we want to transfer to that whole network, otw use just node2, as current
-		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			var/obj/machinery/atmospherics/pipe/p = node2
-			if(istype(p.parent, /datum/pipeline))
-				var/datum/pipeline/l = p.parent
-				if(istype(l.air, /datum/gas_mixture))
-					sink = l.air
-
-		var/transfer_moles = max(0, calculate_equalize_moles(source, sink)) // Not regulated, don't care about flow rate
-		var/returnval = pump_gas_passive(src, source, sink, transfer_moles)
-
-		if(returnval >= 0)
-			if(network1)
-				network1.update = 1
-			if(network2)
-				network2.update = 1
-
-	//STEP 2 - Check if we can heat the gas
-	if(!ignited || stored_material[MAT_LOG] < wood_per_process) //Out of wood
-		ignited = FALSE
+	if(is_active && !length(available_mats)) //Out of wood
 		is_active = FALSE
 		update_icon()
 		return
 
-	//STEP 3 - Consume the resources
-	stored_material[MAT_LOG] = max(stored_material[MAT_LOG] - wood_per_process, 0)
+	var/mat_drain = pick(available_mats)
+	stored_material[mat_drain] = max(stored_material[mat_drain] - wood_per_process, 0)
 
-	//Heat up the air instantly, magically
-	if(sink && sink.temperature < target_heat_temperature)
-		sink.temperature = target_heat_temperature
-
-	is_active = TRUE
-	update_icon()
-
-/obj/machinery/atmospherics/binary/stationboiler/update_icon()
-	if(ignited)
+/obj/structure/stationboiler/update_icon()
+	if(is_active)
 		icon_state = "boiler_on"
-	else
-		icon_state = "boiler_off"
-	return 1
+		return
+	icon_state = "boiler_off"
 
-/obj/machinery/atmospherics/binary/stationboiler/attack_ai(mob/user)
+/obj/structure/stationboiler/attack_ai(mob/user)
 	add_hiddenprint(user)
 	tgui_interact(user)
 
-/obj/machinery/atmospherics/binary/stationboiler/attack_hand(mob/user)
+/obj/structure/stationboiler/attack_hand(mob/user)
 	add_fingerprint(user)
 	tgui_interact(user)
 
-/obj/machinery/atmospherics/binary/stationboiler/tgui_interact(mob/user, datum/tgui/ui)
+/obj/structure/stationboiler/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StationBoiler", name)
 		ui.open()
 
-/obj/machinery/atmospherics/binary/stationboiler/tgui_act(action, params)
+/obj/structure/stationboiler/tgui_act(action, params)
 	if(..())
 		return TRUE
 	add_fingerprint(usr)
@@ -105,53 +83,44 @@
 		if("ejectMaterial")
 			var/matName = params["mat"]
 			if(!(matName in stored_material))
-				return
-			var/choice = tgui_alert(usr, "Would you like to eject a stack, everything or a specific amount from the boiler ","Station Boiler - Eject",list("Stack","Everything","Specific Amount"))
-			switch(choice)
-				if("Stack")
-					eject_materials(matName, 0)
-					. = TRUE
-				if("Everything")
-					eject_materials(matName, -1)
-					. = TRUE
-				if("Specific Amount")
-					var/amount = tgui_input_number(usr, "How many logs would you like to Eject", "Station Boiler - Eject")
-					if(amount <= 0)
-						return
-					eject_materials(matName, amount)
-					. = TRUE
+				return FALSE
+			eject_materials(matName)
+			return TRUE
 
 		if("ignite")
 			try_ignite()
-			. = TRUE
+			return TRUE
 
-/obj/machinery/atmospherics/binary/stationboiler/tgui_data(mob/user)
-	var/data[0]
-
-	var/materials_ui[0]
+/obj/structure/stationboiler/tgui_data(mob/user)
+	var/list/data = list()
+	var/list/materials_ui = list()
 	for(var/M in stored_material)
-		materials_ui[++materials_ui.len] = list(
+		if(stored_material[M] > 0)
+			var/datum/material/matdata = get_material_by_name(M)
+			var/obj/item/stack/material/stack_type = matdata.stack_type
+			var/stack_units = initial(stack_type.perunit)
+			var/sheet_count = FLOOR(stored_material[M] / stack_units, 1)
+			materials_ui[++materials_ui.len] = list(
 				"name" = M,
 				"display" = material_display_name(M),
-				"qty" = stored_material[M],
-				"max" = storage_capacity[M],
-				"percent" = (stored_material[M] / storage_capacity[M] * 100))
+				"qty" = "[sheet_count] [sheet_count > 1 ? matdata.sheet_plural_name : matdata.sheet_singular_name]", // Show the number of sheets
+				"can_eject" = (stored_material[M] >= stack_units))
 	data["materials"] = materials_ui
 
+	var/mat_store = get_total_stored_mats()
+	data["stored"] = mat_store
+	data["max"] = storage_capacity
 	data["timeleft"] = get_time_left()
-
-	if(air1 && network1 && node1)
-		data["input"] = list(
-			"pressure" = air1.return_pressure(),
-			"temp" = convert_k2c(air1.temperature))
-	if(air2 && network2 && node2)
-		data["output"] = list(
-			"pressure" = air2.return_pressure(),
-			"temp" = convert_k2c(air2.temperature))
 
 	return data
 
-/obj/machinery/atmospherics/binary/stationboiler/proc/get_time_left()
+/obj/structure/stationboiler/proc/get_total_stored_mats()
+	var/mat_store = 0
+	for(var/mat_check in stored_material)
+		mat_store += stored_material[mat_check]
+	return mat_store
+
+/obj/structure/stationboiler/proc/get_time_left()
 	var/org_ticks = 0
 	if(MAT_LOG in stored_material)
 		org_ticks = stored_material[MAT_LOG]/wood_per_process
@@ -164,38 +133,42 @@
 		minute = "0[minute]"
 	return "[hours]:[minute]:[second]"
 
-/obj/machinery/atmospherics/binary/stationboiler/ex_act(severity)
-	return //Invincible machine
+/obj/structure/stationboiler/ex_act(severity)
+	return
 
-/obj/machinery/atmospherics/binary/stationboiler/fall_apart(severity = 3, scatter = TRUE)
-	return //Invincible machine
-
-/obj/machinery/atmospherics/binary/stationboiler/proc/try_ignite()
+/obj/structure/stationboiler/proc/try_ignite()
 	if(stored_material[MAT_LOG] >= wood_per_process)
-		ignited = TRUE
+		is_active = TRUE
 		update_icon()
 
-// Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
-/obj/machinery/atmospherics/binary/stationboiler/proc/try_load_materials(mob/user, obj/item/stack/material/S)
+/obj/structure/stationboiler/proc/is_heating()
+	return is_active
+
+/obj/structure/stationboiler/proc/try_load_materials(mob/user, obj/item/stack/material/S)
 	if(!istype(S))
-		return 0
+		return FALSE
+
+	// Can we even put the material in?
 	if(!(S.material.name in stored_material))
 		to_chat(user, span_warning("\The [src] doesn't accept [material_display_name(S.material)]!"))
-		return 1
+		return TRUE
 
+	// Check if there is room left to store a sheet of the material
+	var/remaining_stack_space = FLOOR((storage_capacity - get_total_stored_mats()) / S.perunit, 1)
+	if(remaining_stack_space < 1)
+		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
+		return TRUE
+
+	// Put the material in, convert the sheet into material units
 	var/mat_name = S.material.name
 	var/inserting_sheets = S.get_amount()
-	var/remaining_stack_space = FLOOR((storage_capacity[mat_name] - stored_material[mat_name]) / S.perunit, 1)
-	if(remaining_stack_space >= 1)
-		inserting_sheets = min(inserting_sheets, remaining_stack_space)
-		stored_material[mat_name] += inserting_sheets * S.perunit
-		S.use(inserting_sheets)
-		user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name]\s into \the [src]."))
-	else
-		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
-	return 1
+	inserting_sheets = min(inserting_sheets, remaining_stack_space)
+	stored_material[mat_name] += inserting_sheets * S.perunit
+	S.use(inserting_sheets)
+	user.visible_message("\The [user] inserts [mat_name] into \the [src].", span_notice("You insert [inserting_sheets] [mat_name]\s into \the [src]."))
+	return TRUE
 
-/obj/machinery/atmospherics/binary/stationboiler/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/stationboiler/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(try_load_materials(user, W))
 		return
@@ -204,7 +177,7 @@
 		return
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-/obj/machinery/atmospherics/binary/stationboiler/proc/eject_materials(material_name, amount)
+/obj/structure/stationboiler/proc/eject_materials(material_name)
 	var/datum/material/matdata = get_material_by_name(material_name)
 	var/obj/item/stack/material/stack_type = matdata.stack_type
 	var/stack_units = initial(stack_type.perunit)
@@ -212,8 +185,7 @@
 	var/sheets_loaded = FLOOR(stored_material[material_name] / stack_units, 1)
 	if(sheets_loaded < 1)
 		return
-	if(amount <= 0)
-		amount = sheets_loaded
+	var/amount = sheets_loaded
 
 	// Drop stacks of sheets till empty
 	while(amount >= 1)

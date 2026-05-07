@@ -61,8 +61,8 @@ SUBSYSTEM_DEF(cryoplanets)
 	// Check if this would be affected by the station mainboiler's radiators.
 	var/area/check_area = get_area(T) // If we have an active radiator in the area, then there is no point in starting a temperature war....
 	if(check_area && length(SSstationheater.radiators) && target_temp < SSstationheater.target_heat_temperature)
-		var/obj/machinery/atmospherics/binary/stationboiler/current_heater = SSstationheater.get_current_boiler()
-		if(current_heater?.is_active) // If the current boiler isn't on... It won't matter.
+		var/obj/structure/stationboiler/current_heater = SSstationheater.get_current_boiler()
+		if(current_heater?.is_heating()) // If the current boiler isn't on... It won't matter.
 			for(var/obj/machinery/stationboiler_radiator/radiator in SSstationheater.radiators)
 				CHECK_TICK
 				if(get_area(radiator) != check_area)
@@ -71,8 +71,11 @@ SUBSYSTEM_DEF(cryoplanets)
 	//testing("Energy: [neededEnergy]")
 	currentAir.add_thermal_energy(neededEnergy)
 
-/datum/controller/subsystem/cryoplanets/proc/is_station_temp_change_turf(turf/T)
-	if(!T || T.z > length(SSplanets.z_to_planet)) // Not even on a planet
+/proc/is_station_temp_change_turf(turf/T)
+	if(!issimulatedturf(T)) // What are you even doing?
+		return FALSE
+
+	if(T.z > length(SSplanets.z_to_planet)) // Not even on a planet
 		return FALSE
 
 	var/datum/planet/P = SSplanets.z_to_planet[T.z]

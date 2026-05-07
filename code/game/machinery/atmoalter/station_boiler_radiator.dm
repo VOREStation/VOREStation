@@ -27,5 +27,5 @@
 /obj/machinery/stationboiler_radiator/ex_act(severity)
 	return //Invincible machine
 
-/obj/machinery/atmospherics/binary/stationboiler/fall_apart(severity = 3, scatter = TRUE)
+/obj/machinery/stationboiler_radiato/fall_apart(severity = 3, scatter = TRUE)
 	return //Invincible machine

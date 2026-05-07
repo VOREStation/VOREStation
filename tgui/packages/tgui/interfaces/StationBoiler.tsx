@@ -1,83 +1,69 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  AnimatedNumber,
-  Box,
   Button,
   LabeledList,
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
+type Data = {
+  materials: MaterialStack[];
+  stored: number;
+  max: number;
+  percent: number;
+  timeleft: string;
+};
+
+type MaterialStack = {
+  name: string;
+  display: string;
+  qty: string;
+  can_eject: BooleanLike;
+};
+
 export const StationBoiler = (props) => {
-  const { act, data } = useBackend();
-  const { input, output, materials, timeleft } = data;
+  const { act, data } = useBackend<Data>();
+  const { materials, timeleft, stored, max } = data;
   return (
-    <Window width={320} height={340}>
+    <Window width={320} height={440}>
       <Window.Content>
         <Section
           title="Station Boiler"
           buttons={<Button onClick={() => act('ignite')}>Ignite</Button>}
         >
           <LabeledList>
+            <LabeledList.Item label="Time Left">{timeleft}</LabeledList.Item>
+            <LabeledList.Item label="Storage">
+              <ProgressBar value={stored} maxValue={max}>
+                {stored} / {max}
+              </ProgressBar>
+            </LabeledList.Item>
             <LabeledList.Divider size={1} />
             {materials.map((material) => (
               <LabeledList.Item
                 key={material.name}
                 label={capitalize(material.display)}
+                buttons={
+                  <Button
+                    ml={1}
+                    disabled={!material.can_eject}
+                    onClick={() =>
+                      act('ejectMaterial', {
+                        mat: material.name,
+                      })
+                    }
+                  >
+                    Eject
+                  </Button>
+                }
               >
-                <ProgressBar
-                  width="70%"
-                  value={material.qty}
-                  maxValue={material.max}
-                >
-                  {material.qty}/{material.max}
-                </ProgressBar>
-                <Button
-                  ml={1}
-                  onClick={() =>
-                    act('ejectMaterial', {
-                      mat: material.name,
-                    })
-                  }
-                >
-                  Eject
-                </Button>
+                {material.qty}
               </LabeledList.Item>
             ))}
-            <LabeledList.Item label="Time Left">
-              <AnimatedNumber value={timeleft} />
-            </LabeledList.Item>
           </LabeledList>
-          <Section title="Input Pipe">
-            {input ? (
-              <LabeledList>
-                <LabeledList.Item label="Total Pressure">
-                  {input.pressure} kPa
-                </LabeledList.Item>
-                <LabeledList.Item label="Temperature">
-                  {input.temp}C
-                </LabeledList.Item>
-              </LabeledList>
-            ) : (
-              <Box color="bad">No connection detected.</Box>
-            )}
-          </Section>
-          <Section title="Output Pipe">
-            {output ? (
-              <LabeledList>
-                <LabeledList.Item label="Total Pressure">
-                  {output.pressure} kPa
-                </LabeledList.Item>
-                <LabeledList.Item label="Temperature">
-                  {output.temp}C
-                </LabeledList.Item>
-              </LabeledList>
-            ) : (
-              <Box color="bad">No connection detected.</Box>
-            )}
-          </Section>
         </Section>
       </Window.Content>
     </Window>
