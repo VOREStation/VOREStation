@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(cryoplanets)
 	var/area/check_area = get_area(T) // If we have an active radiator in the area, then there is no point in starting a temperature war....
 	if(check_area && length(SSstationheater.radiators) && target_temp < SSstationheater.target_heat_temperature)
 		var/obj/machinery/atmospherics/binary/stationboiler/current_heater = SSstationheater.get_current_boiler()
-		if(current_heater.is_active) // If the current boiler isn't on... It won't matter.
+		if(current_heater?.is_active) // If the current boiler isn't on... It won't matter.
 			for(var/obj/machinery/stationboiler_radiator/radiator in SSstationheater.radiators)
 				CHECK_TICK
 				if(get_area(radiator) != check_area)
