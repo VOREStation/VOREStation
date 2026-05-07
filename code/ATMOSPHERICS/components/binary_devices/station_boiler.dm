@@ -134,9 +134,7 @@
 	return mat_store
 
 /obj/structure/stationboiler/proc/get_time_left()
-	var/org_ticks = 0
-	if(MAT_LOG in stored_material)
-		org_ticks = stored_material[MAT_LOG]/wood_per_process
+	var/org_ticks = get_total_stored_mats()/wood_per_process
 	var/second = org_ticks % 60
 	var/minute = FLOOR((org_ticks / 60), 1) % 60
 	var/hours = FLOOR((org_ticks / 3600), 1)
