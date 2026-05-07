@@ -46,9 +46,10 @@
 			continue
 		available_mats += mat_check
 
-	if(is_active && !length(available_mats)) //Out of wood
-		is_active = FALSE
-		update_icon()
+	if(!length(available_mats)) //Out of wood
+		if(is_active)
+			is_active = FALSE
+			update_icon()
 		return
 
 	var/mat_drain = pick(available_mats)
