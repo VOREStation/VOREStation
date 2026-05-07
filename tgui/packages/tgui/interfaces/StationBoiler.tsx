@@ -33,6 +33,8 @@ export const StationBoiler = (props) => {
         <Section
           title="Station Boiler"
           buttons={<Button onClick={() => act('ignite')}>Ignite</Button>}
+          fill
+          scrollable
         >
           <LabeledList>
             <LabeledList.Item label="Time Left">
