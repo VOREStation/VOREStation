@@ -18,11 +18,12 @@ SUBSYSTEM_DEF(cryoplanets)
 	for(var/datum/planet/check in SSplanets.planets)
 		if(check.cryogenic_temp_shift)
 			return SS_INIT_SUCCESS
+	can_fire = FALSE
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/cryoplanets/stat_entry(msg)
 	msg = " Cr: [length(current_run)] | Zs: [length(cryo_zones)] | Tp: [thermal_energy_change]"
-	return ..()
+	. = ..()
 
 /datum/controller/subsystem/cryoplanets/fire(resumed)
 	if(!resumed)
