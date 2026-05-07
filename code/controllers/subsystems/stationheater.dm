@@ -12,8 +12,8 @@ SUBSYSTEM_DEF(stationheater)
 
 	var/list/boilers = list()
 	var/list/radiators = list()
-	var/list/current_run = list()
-	var/datum/weakref/current_loop_heater
+	VAR_PRIVATE/list/current_run = list()
+	VAR_PRIVATE/datum/weakref/current_loop_heater
 
 	// Radiator power
 	var/static/target_heat_temperature = T20C //The temperature the radiator wants the room to reach

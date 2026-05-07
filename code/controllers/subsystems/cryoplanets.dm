@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(cryoplanets)
 
 	var/list/cryo_zones = list()
 	var/static/thermal_energy_change = 12000
-	var/list/current_run = list()
+	VAR_PRIVATE/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)

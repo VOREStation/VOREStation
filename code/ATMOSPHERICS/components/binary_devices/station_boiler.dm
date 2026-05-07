@@ -92,8 +92,6 @@
 /obj/structure/stationboiler/tgui_act(action, params)
 	if(..())
 		return TRUE
-	add_fingerprint(usr)
-
 	switch(action)
 		if("ejectMaterial")
 			var/matName = params["mat"]
