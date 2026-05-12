@@ -158,10 +158,10 @@
 		return
 	update_ref(WEAKREF(wrapped))
 
-	if(pick_up_item(target, user))
+	if(handle_afterattack_special(target, user))
 		return
 
-	if(handle_afterattack_special(target, user))
+	if(pick_up_item(target, user))
 		return
 
 	if(item_left_gripper(wrapped))
@@ -281,6 +281,9 @@
 			"You remove the power cell."
 		)
 
+		return TRUE
+
+	if(istype(target, /obj/item/stack) && QDELETED(target)) //We handle the special stuff above already.
 		return TRUE
 
 	return FALSE
@@ -421,13 +424,13 @@
 	return wrapped
 
 /// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
-/obj/item/gripper/proc/consolidate_stacks(obj/item/stack/stack_to_consolidate)
+/obj/item/gripper/proc/consolidate_stacks(obj/item/stack/stack_to_consolidate, mob/user)
 	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
-		return
+		return FALSE
 
 	var/obj/item/current_item = get_wrapped_item()
 	if(current_item?.type == stack_to_consolidate.type)
-		return
+		return FALSE
 
 	for(var/obj/item/storage/internal/gripper/pocket in pockets)
 		if(!LAZYLEN(pocket.contents))
@@ -435,7 +438,8 @@
 		for(var/obj/item/stack/stack in pocket.contents)
 			if(istype(stack_to_consolidate, stack))
 				stack_to_consolidate.transfer_to(stack)
-				return
+				to_chat(user, "You collect \the [stack_to_consolidate] and consolidate it.")
+				return TRUE
 
 /obj/item/gripper/proc/grab_cell(obj/item/cell, mob/user)
 	var/obj/item/storage/internal/gripper/P = find_empty_pocket()
