@@ -10,7 +10,7 @@
 	energy_conversion_rate = 0.0012
 
 //Search for space turfs within range that are adjacent to a simulated turf.
-/obj/machinery/shield_gen/external/get_shielded_turfs_on_z_level(var/turf/gen_turf)
+/obj/machinery/shield_gen/external/get_shielded_turfs_on_z_level(turf/gen_turf)
 	var/list/out = list()
 
 	if (!gen_turf)

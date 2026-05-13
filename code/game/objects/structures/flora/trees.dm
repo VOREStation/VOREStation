@@ -30,13 +30,13 @@
 /obj/structure/flora/tree/proc/choose_icon_state()
 	return icon_state
 
-/obj/structure/flora/tree/can_harvest(var/obj/item/I)
+/obj/structure/flora/tree/can_harvest(obj/item/I)
 	. = FALSE
 	if(!is_stump && harvest_tool && istype(I, harvest_tool) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
 		. = TRUE
 	return .
 
-/obj/structure/flora/tree/attackby(var/obj/item/W, var/mob/living/user)
+/obj/structure/flora/tree/attackby(obj/item/W, mob/living/user)
 	if(can_harvest(W))
 		..(W, user)
 		return
@@ -81,7 +81,7 @@
 	animate(transform=M, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
 
 // Used when the tree gets hurt.
-/obj/structure/flora/tree/proc/adjust_health(var/amount, var/damage_wood = FALSE)
+/obj/structure/flora/tree/proc/adjust_health(amount, damage_wood = FALSE)
 	if(is_stump || indestructable)
 		return
 
@@ -117,10 +117,10 @@
 	cut_overlays() // For the Sif tree and other future glowy trees.
 	set_light(0)
 
-/obj/structure/flora/tree/ex_act(var/severity)
+/obj/structure/flora/tree/ex_act(severity)
 	adjust_health(-(max_health / severity), TRUE)
 
-/obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/flora/tree/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		adjust_health(-Proj.get_structure_damage(), TRUE)
 

@@ -32,7 +32,7 @@
 	var/minimum_xgm_pressure = null
 	var/consumes_xgm_gas = 0 // Mols of gas consumed during reaction
 
-/datum/decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/distilling/can_happen(datum/reagents/holder)
 	if(!istype(holder, /datum/reagents/distilling))
 		return FALSE
 
@@ -68,7 +68,7 @@
 
 	return ..()
 
-/datum/decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/on_reaction(datum/reagents/holder, created_volume)
 	// Handle gas consumption
 	var/datum/gas_mixture/GM = holder.my_atom.return_air()
 	if(consumes_xgm_gas != 0 && GM)
@@ -215,7 +215,7 @@
 	temp_range = list(T0C + 600, T0C + 700)
 	temp_shift = 4
 
-/datum/decl/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/berserkjuice/on_reaction(datum/reagents/holder, created_volume)
 	..()
 
 	if(prob(1))
@@ -234,7 +234,7 @@
 	temp_range = list(0, 15)
 	temp_shift = 20
 
-/datum/decl/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/distilling/cryogel/on_reaction(datum/reagents/holder, created_volume)
 	..()
 
 	if(prob(1))

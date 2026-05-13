@@ -13,7 +13,7 @@
 	effect_state = "gravisphere"
 	effect_color = "#ff0000"
 
-/datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
+/datum/artifact_effect/vampire/proc/bloodcall(mob/living/carbon/human/M)
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
@@ -40,7 +40,7 @@
 			/// In testing, (with it set to effect = 1 aka AURA, it got ~18 charges with 300 anobattery usage, 22% blood loss from the person being drained, and 41 damage to them (plus the resulting 20 oxyloss from low blood)
 			/// I feel like 22% blood loss and 41 damage is a good exchange for 18 charges. If this seems to be too strong later down the line, just  change that /10 above to a /15 (33% less per blood) or /20 (50% less per blood)
 
-/datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/vampire/DoEffectTouch(mob/user)
 	if(world.time - bloodcall_interval*2 > last_bloodcall) //The artifact harvester works by having you massively targeted if you use it as a 'on touch' artifact.
 		bloodcall(user) // Due to such, things like the 'harm artifact' will just annihilate you if you set it high enough. This will also annihilate you, but it feels really cheesey, so let's not do that, as DoEffectTouch calls DoEffectAura already.
 		// Additionally, it requires the *2 or it will ALWAYS target the person who activated it

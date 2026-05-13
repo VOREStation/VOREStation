@@ -60,7 +60,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			burn_out()
 	return ..()
 
-/obj/item/flame/match/proc/light(var/mob/user)
+/obj/item/flame/match/proc/light(mob/user)
 	playsound(src, 'sound/items/cigs_lighters/matchstick_lit.ogg', 25, 0, -1)
 	lit = 1
 	damtype = "burn"
@@ -165,7 +165,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				. += "[src] is nearly burnt out!"
 
-/obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
+/obj/item/clothing/mask/smokable/proc/light(flavor_text = "[usr] lights the [name].")
 	if(!src.lit)
 		src.lit = 1
 		playsound(src, 'sound/items/cigs_lighters/cig_light.ogg', 75, 1, -1)
@@ -190,7 +190,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		set_light(2, 0.25, "#E38F46")
 		START_PROCESSING(SSobj, src)
 
-/obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
+/obj/item/clothing/mask/smokable/proc/die(nomessage = 0)
 	var/turf/T = get_turf(src)
 	set_light(0)
 	playsound(src, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
@@ -258,7 +258,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		text = replacetext(text, "FLAME", "[W.name]")
 		light(text)
 
-/obj/item/clothing/mask/smokable/attack(var/mob/living/M, var/mob/living/user, def_zone)
+/obj/item/clothing/mask/smokable/attack(mob/living/M, mob/living/user, def_zone)
 	if(istype(M) && M.on_fire)
 		user.do_attack_animation(M)
 		light(span_notice("[user] coldly lights the [name] with the burning body of [M]."))

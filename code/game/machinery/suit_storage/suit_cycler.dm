@@ -255,7 +255,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	..()
 
-/obj/machinery/suit_cycler/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/suit_cycler/emag_act(remaining_charges, mob/user)
 	if(emagged)
 		to_chat(user, span_danger("The cycler has already been subverted."))
 		return

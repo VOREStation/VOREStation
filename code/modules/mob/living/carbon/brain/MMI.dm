@@ -46,7 +46,7 @@
 	else
 		to_chat (usr, "You were unable to toggle the [src]'s radio.")
 
-/obj/item/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/mmi/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
 
 		var/obj/item/organ/internal/brain/B = O
@@ -129,7 +129,7 @@
 		icon_state = "mmi_empty"
 		name = "Man-Machine Interface"
 
-/obj/item/mmi/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+/obj/item/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -146,7 +146,7 @@
 	locked = 1
 	return
 
-/obj/item/mmi/relaymove(var/mob/user, var/direction)
+/obj/item/mmi/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()
@@ -208,7 +208,7 @@
 	src.brainmob.silent = 0
 	GLOB.dead_mob_list -= src.brainmob
 
-/obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/mmi/digital/attackby(obj/item/O as obj, mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
 
 /obj/item/mmi/digital/examine(mob/user)
@@ -226,7 +226,7 @@
 	else
 		. += span_deadsay("It appears to be completely inactive.")
 
-/obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/transfer_identity(mob/living/carbon/H)
 	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.set_stat(CONSCIOUS)
@@ -274,7 +274,7 @@
 	for (var/mob/M in viewers(T))
 		M.show_message(span_blue("\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
-/obj/item/mmi/digital/proc/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a synthetic brain now.")
 	src.searching = 0
 	if(candidate.mind)
@@ -307,7 +307,7 @@
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 
-/obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/robot/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
@@ -328,7 +328,7 @@
 	..()
 
 
-/obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/posibrain/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
@@ -336,7 +336,7 @@
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/mmi/digital/posibrain/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/posibrain/transfer_personality(mob/candidate)
 	..()
 	icon_state = "posibrain-occupied"
 

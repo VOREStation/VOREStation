@@ -44,7 +44,7 @@
 		return FALSE
 	. = ..()
 
-/mob/living/proc/is_allowed_vent_crawl_item(var/obj/carried_item)
+/mob/living/proc/is_allowed_vent_crawl_item(obj/carried_item)
 	//Ability master easy test for allowed (cheaper than istype)
 	if(carried_item == ability_master)
 		return TRUE
@@ -66,12 +66,12 @@
 	if(listed/* && !get_inventory_slot(carried_item)*/)
 		return TRUE
 
-/mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/carbon/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(carried_item in internal_organs)
 		return TRUE
 	return ..()
 
-/mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/carbon/human/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if(carried_item in organs)
 		return TRUE
 	if(species.name == SPECIES_REPLICANT_CREW)
@@ -109,7 +109,7 @@
 				return FALSE
 	return TRUE
 
-/mob/living/simple_mob/protean_blob/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/simple_mob/protean_blob/is_allowed_vent_crawl_item(obj/item/carried_item)
 	if((carried_item in humanform.organs) || (carried_item in humanform.internal_organs))
 		return TRUE
 	if(istype(carried_item, /obj/item/clothing/under))
@@ -120,7 +120,7 @@
 			return TRUE //Allow them to carry items that fit in pockets
 	return ..()
 
-/mob/living/AltClickOn(var/atom/A)
+/mob/living/AltClickOn(atom/A)
 	if(is_type_in_list(A, GLOB.ventcrawl_machinery))
 		handle_ventcrawl(A)
 		return 1
@@ -147,7 +147,7 @@
 
 /mob/living/var/ventcrawl_layer = 3
 
-/mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
+/mob/living/proc/handle_ventcrawl(atom/clicked_on)
 	if(!can_ventcrawl() || prepping_to_ventcrawl)
 		return
 

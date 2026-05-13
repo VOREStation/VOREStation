@@ -198,7 +198,7 @@
 		control_mode = MODE_NONE
 
 
-/datum/embedded_program/docking/proc/initiate_docking(var/target)
+/datum/embedded_program/docking/proc/initiate_docking(target)
 	if (dock_state != STATE_UNDOCKED || control_mode == MODE_SERVER)	//must be undocked and not serving another request to begin a new docking handshake
 		return
 
@@ -274,7 +274,7 @@
 /datum/embedded_program/docking/proc/can_launch()
 	return undocked()
 
-/datum/embedded_program/docking/proc/send_docking_command(var/recipient, var/command)
+/datum/embedded_program/docking/proc/send_docking_command(recipient, command)
 	var/datum/signal/signal = new
 	signal.data["tag"] = id_tag
 	signal.data["command"] = command

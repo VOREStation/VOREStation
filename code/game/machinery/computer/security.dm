@@ -73,7 +73,7 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/secure_data/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/computer/secure_data/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
@@ -476,10 +476,10 @@
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/secure_data/proc/is_not_allowed(var/mob/user)
+/obj/machinery/computer/secure_data/proc/is_not_allowed(mob/user)
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
 
-/obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
+/obj/machinery/computer/secure_data/proc/get_photo(mob/user)
 	if(istype(user.get_active_hand(), /obj/item/photo))
 		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img

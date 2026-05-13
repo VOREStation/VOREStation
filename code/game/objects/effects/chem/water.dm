@@ -12,12 +12,12 @@
 /obj/effect/effect/water/proc/set_color() // Call it after you move reagents to it
 	icon += reagents.get_color()
 
-/obj/effect/effect/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
+/obj/effect/effect/water/proc/set_up(turf/target, step_count = 5, delay = 5)
 	if(!target)
 		return
 	step_process(target, step_count, delay)
 
-/obj/effect/effect/water/proc/step_process(var/turf/target, var/step_count, var/delay, var/iteration)
+/obj/effect/effect/water/proc/step_process(turf/target, step_count, delay, iteration)
 	step_count--
 	if(!loc)
 		qdel(src)

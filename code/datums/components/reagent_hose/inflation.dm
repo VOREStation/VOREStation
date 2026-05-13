@@ -43,7 +43,7 @@
 	. = ..()
 
 // Succ command center
-/datum/component/hose_connector/inflation/proc/inflation_setup(var/mob/user,var/datum/component/hose_connector/other)
+/datum/component/hose_connector/inflation/proc/inflation_setup(mob/user,datum/component/hose_connector/other)
 	if(!other || QDELETED(other))
 		to_chat(user,span_danger("You couldn't connect the hose, as the connection stopped existing! Ohno!"))
 		return FALSE
@@ -109,7 +109,7 @@
 				return human_owner.vessel // Suck blood
 			return human_owner.bloodstr // Suck reagents from blood
 
-/datum/component/hose_connector/inflation/handle_pump(var/datum/reagents/connected_to)
+/datum/component/hose_connector/inflation/handle_pump(datum/reagents/connected_to)
 	ASSERT(connected_to)
 	var/datum/component/hose_connector/other = get_pairing()
 	var/rate = reagents.maximum_volume * 0.5

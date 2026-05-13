@@ -18,7 +18,7 @@
 	var/type_to_spawn = tgui_input_number(usr, "Desired type to spawn. Consult xenoarcheaology.dm for the spawn list", "Spawn Artifact", 0)
 	new /obj/item/archaeological_find(src.loc, type_to_spawn)
 
-/obj/item/archaeological_find/Initialize(mapload, var/new_item_type)
+/obj/item/archaeological_find/Initialize(mapload, new_item_type)
 	. = ..()
 	if(new_item_type)
 		find_type = new_item_type

@@ -1,7 +1,7 @@
 /obj/structure/ghost_pod/manual/lost_drone/dogborg			// name is just legacy now
 	remains_active = TRUE
 
-/obj/structure/ghost_pod/manual/lost_drone/dogborg/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/manual/lost_drone/dogborg/create_occupant(mob/M)
 	var/response = tgui_alert(M, "What sort of laws do you wish to have as Lost Drone (they will still be random)", "Drone Type", list("Regular", "Vore"))
 	if(!(response == "Vore"))	// No response somehow or Regular
 		return ..()

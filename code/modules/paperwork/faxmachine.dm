@@ -315,7 +315,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 
 	return ..()
 
-/obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
+/obj/machinery/photocopier/faxmachine/proc/sendfax(destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -332,7 +332,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/receivefax(var/obj/item/incoming)
+/obj/machinery/photocopier/faxmachine/proc/receivefax(obj/item/incoming)
 	if(stat & (BROKEN|NOPOWER))
 		return 0
 
@@ -358,7 +358,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	use_power(active_power_usage)
 	return 1
 
-/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(var/mob/sender, var/destination)
+/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(mob/sender, destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -413,7 +413,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 				. += "PAGE [i] - [P.name]<br>"
 				. += P.info
 
-/obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
+/obj/machinery/photocopier/faxmachine/proc/message_admins(mob/sender, faxname, obj/item/sent, reply_type, font_colour="#006100")
 	var/msg = "<font color='[font_colour]'>[faxname]: </font>[get_options_bar(sender, 2,1,1)]"
 	msg += "(<a href='byond://?_src_=holder;[HrefToken()];FaxReply=\ref[sender];originfax=\ref[src];replyorigin=[reply_type]'>REPLY</a>)"
 	msg = span_bold(msg) + ": "
@@ -488,7 +488,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 /**
  * Call the chat webhook to transmit a notification of an admin fax to the admin chat.
  */
-/obj/machinery/photocopier/faxmachine/proc/message_chat_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/faxid, font_colour="#006100")
+/obj/machinery/photocopier/faxmachine/proc/message_chat_admins(mob/sender, faxname, obj/item/sent, faxid, font_colour="#006100")
 	if (CONFIG_GET(string/chat_webhook_url))
 		spawn(0)
 			var/query_string = "type=fax"
@@ -506,7 +506,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 /**
  * Call the chat webhook to transmit a notification of a job request
  */
-/obj/machinery/photocopier/faxmachine/proc/message_chat_rolerequest(var/font_colour="#006100", var/role_to_ping, var/reason, var/jobname)
+/obj/machinery/photocopier/faxmachine/proc/message_chat_rolerequest(font_colour="#006100", role_to_ping, reason, jobname)
 	if(CONFIG_GET(string/chat_webhook_url))
 		spawn(0)
 			var/query_string = "type=rolerequest"

@@ -58,3 +58,13 @@
   - balance: Many material stacks have had their sell prices changed
   - bugfix: Attempting to sell non-material stacks on the supply shuttle no longer
       runtime
+2026-05-06:
+  Kashargul:
+  - code_imp: removes var/ inside of procs
+2026-05-13:
+  ReoDaProtovali:
+  - qol: stools face the direction you're facing when you drop them
+  Will:
+  - rscadd: Upports snowbulls from yawnwider
+  tacoguy7765093:
+  - balance: RMS material cost changed.

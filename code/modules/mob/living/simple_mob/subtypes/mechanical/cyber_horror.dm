@@ -94,7 +94,7 @@
 /datum/say_list/cyber_horror/plasma
 	threaten_sound = 'sound/mob/robots/Cyber_Horror_Plasma.ogg'
 
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -379,7 +379,7 @@
 /datum/say_list/cyber_horror/cat
 	threaten_sound = 'sound/mob/robots/Cyber_Horror_Cat.ogg'
 
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

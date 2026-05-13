@@ -101,7 +101,7 @@
 	else
 		icon_state = "aicard"
 
-/obj/item/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
+/obj/item/aicard/proc/grab_ai(mob/living/silicon/ai/ai, mob/living/user)
 	if(!ai.client && !ai.deployed_shell)
 		to_chat(user, span_danger("ERROR:") + " AI [ai.name] is offline. Unable to transfer.")
 		return 0
@@ -166,7 +166,7 @@
 		carded_ai.show_message(rendered, type)
 	..()
 
-/obj/item/aicard/relaymove(var/mob/user, var/direction)
+/obj/item/aicard/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()

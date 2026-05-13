@@ -25,7 +25,7 @@
 /datum/artifact_effect/generator/ToggleActivate()
 	return //We can not be turned off.
 
-/datum/artifact_effect/generator/DoEffectTouch(var/mob/living/carbon/human/user)
+/datum/artifact_effect/generator/DoEffectTouch(mob/living/carbon/human/user)
 	var/obj/holder = get_master_holder()
 	if (..())
 		return
@@ -53,7 +53,7 @@
 		// playsound(holder, 'X', 75, TRUE, 0, 2) //TODO: Get sounds here
 		holder.set_light(FALSE)
 
-/datum/artifact_effect/generator/process(var/obj/holder)
+/datum/artifact_effect/generator/process(obj/holder)
 	holder = get_master_holder()
 	if(attached)
 		var/datum/powernet/PN = attached.powernet

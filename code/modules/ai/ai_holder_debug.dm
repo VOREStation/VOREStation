@@ -25,7 +25,7 @@
 	return ..()
 
 //For debug purposes!
-/datum/ai_holder/proc/ai_log_output(var/msg = "missing message", var/ver = AI_LOG_INFO)
+/datum/ai_holder/proc/ai_log_output(msg = "missing message", ver = AI_LOG_INFO)
 	var/span_type
 	switch(ver)
 		if(AI_LOG_OFF)

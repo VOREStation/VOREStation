@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(atc)
 	var/path = chatter_datum.chatter_box(source.org_type,secondary.org_type)
 	new path(source,secondary)
 
-/datum/controller/subsystem/atc/proc/reroute_traffic(var/yes = 1,var/silent = FALSE)
+/datum/controller/subsystem/atc/proc/reroute_traffic(yes = 1,silent = FALSE)
 	if(yes)
 		if(!squelched && !silent)
 			msg("Rerouting traffic away from [using_map.station_name].")
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(atc)
 			msg("Resuming normal traffic routing around [using_map.station_name].")
 		squelched = 0
 
-/datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
+/datum/controller/subsystem/atc/proc/msg(message,sender)
 	ASSERT(message)
 	GLOB.global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
 

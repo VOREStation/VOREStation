@@ -47,7 +47,7 @@
 	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
 
 //Constructor accepts the NIF it's being loaded into
-/datum/nifsoft/New(var/obj/item/nif/nif_load)
+/datum/nifsoft/New(obj/item/nif/nif_load)
 	ASSERT(nif_load)
 
 	nif = nif_load
@@ -80,11 +80,11 @@
 		qdel(src)
 
 //Called every life() tick on a mob on active implants
-/datum/nifsoft/proc/life(var/mob/living/carbon/human/human)
+/datum/nifsoft/proc/life(mob/living/carbon/human/human)
 	return TRUE
 
 //Called when attempting to activate an implant (could be a 'pulse' activation or toggling it on)
-/datum/nifsoft/proc/activate(var/force = FALSE)
+/datum/nifsoft/proc/activate(force = FALSE)
 	if(active && !force)
 		return
 	var/nif_result = nif.activate(src)
@@ -116,7 +116,7 @@
 	return nif_result
 
 //Called when attempting to deactivate an implant
-/datum/nifsoft/proc/deactivate(var/force = FALSE)
+/datum/nifsoft/proc/deactivate(force = FALSE)
 	if(!active && !force)
 		return
 	var/nif_result = nif.deactivate(src)
@@ -149,7 +149,7 @@
 	return
 
 //Called when installed from a disk
-/datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
+/datum/nifsoft/proc/disk_install(mob/living/carbon/human/target,mob/living/carbon/human/user)
 	return TRUE
 
 //Status text for menu
@@ -166,7 +166,7 @@
 	wear = 0 //Packages don't cause wear themselves, the software does
 
 //Constructor accepts a NIF and loads all the software
-/datum/nifsoft/package/New(var/obj/item/nif/nif_load)
+/datum/nifsoft/package/New(obj/item/nif/nif_load)
 	ASSERT(nif_load)
 
 	for(var/P in software)
@@ -198,7 +198,7 @@
 	var/datum/nifsoft/stored_organic = null
 	var/datum/nifsoft/stored_synthetic = null
 
-/obj/item/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
+/obj/item/disk/nifsoft/afterattack(A, mob/user, flag, params)
 	if(!in_range(user, A))
 		return
 
@@ -258,7 +258,7 @@
 	stored_synthetic = /datum/nifsoft/compliance
 	var/laws
 
-/obj/item/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
+/obj/item/disk/nifsoft/compliance/afterattack(A, mob/user, flag, params)
 	if(!ishuman(A))
 		return
 	if(!laws)

@@ -261,7 +261,7 @@
 
 ///// PROCS /////
 
-/obj/machinery/computer/stockexchange/proc/sell_some_shares(var/datum/stock/S, var/mob/user)
+/obj/machinery/computer/stockexchange/proc/sell_some_shares(datum/stock/S, mob/user)
 	if (!user || !S)
 		return
 	var/li = logged_in
@@ -295,7 +295,7 @@
 	to_chat(user, span_notice("Sold [amt] shares of [S.name] at [S.current_value] a share for [total] credits."))
 	GLOB.stockExchange.add_log(/datum/stock_log/sell, user.name, S.name, amt, S.current_value, total)
 
-/obj/machinery/computer/stockexchange/proc/buy_some_shares(var/datum/stock/S, var/mob/user)
+/obj/machinery/computer/stockexchange/proc/buy_some_shares(datum/stock/S, mob/user)
 	if (!user || !S)
 		return
 	var/li = logged_in
@@ -330,7 +330,7 @@
 	to_chat(user, span_notice("Bought [amt] shares of [S.name] at [S.current_value] a share for [total] credits."))
 	GLOB.stockExchange.add_log(/datum/stock_log/buy, user.name, S.name, amt, S.current_value,  total)
 
-/obj/machinery/computer/stockexchange/proc/do_borrowing_deal(var/datum/borrow/B, var/mob/user)
+/obj/machinery/computer/stockexchange/proc/do_borrowing_deal(datum/borrow/B, mob/user)
 	if (B.stock.borrow(B, logged_in))
 		to_chat(user, span_notice("You successfully borrowed [B.share_amount] shares. Deposit: [B.deposit]."))
 		GLOB.stockExchange.add_log(/datum/stock_log/borrow, user.name, B.stock.name, B.share_amount, B.deposit)

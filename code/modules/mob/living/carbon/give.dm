@@ -1,10 +1,10 @@
-/mob/living/verb/give(var/mob/living/target in living_mobs_in_view(1))
+/mob/living/verb/give(mob/living/target in living_mobs_in_view(1))
 	set category = "IC.Game"
 	set name = "Give"
 
 	do_give(target)
 
-/mob/living/proc/do_give(var/mob/living/carbon/human/target)
+/mob/living/proc/do_give(mob/living/carbon/human/target)
 
 	if(src.incapacitated())
 		return

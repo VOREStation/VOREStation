@@ -36,7 +36,7 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/mtg)
 	load_method = MAGAZINE
 
-/obj/item/gun/projectile/automatic/stg/update_icon(var/ignore_inhands)
+/obj/item/gun/projectile/automatic/stg/update_icon(ignore_inhands)
 	..()
 	icon_state = (ammo_magazine)? "stg60" : "stg60-empty"
 	item_state = (ammo_magazine)? "arifle" : "arifle-empty"

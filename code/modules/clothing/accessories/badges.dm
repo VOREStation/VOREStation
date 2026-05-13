@@ -20,11 +20,11 @@
 	var/fluff_badge = FALSE
 	var/holo = FALSE
 
-/obj/item/clothing/accessory/badge/proc/set_name(var/new_name)
+/obj/item/clothing/accessory/badge/proc/set_name(new_name)
 	stored_name = new_name
 	name = "[initial(name)] ([stored_name])"
 
-/obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/carbon/human/H)
+/obj/item/clothing/accessory/badge/proc/set_desc(mob/living/carbon/human/H)
 
 /obj/item/clothing/accessory/badge/attack_self(mob/user)
 	. = ..(user)
@@ -104,7 +104,7 @@
 	icon_state = "holobadge-cord"
 	slot_flags = SLOT_MASK | SLOT_TIE | SLOT_BELT
 
-/obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/clothing/accessory/badge/holo/emag_act(remaining_charges, mob/user)
 	if (emagged)
 		to_chat(user, span_danger("\The [src] is already cracked."))
 		return
@@ -113,7 +113,7 @@
 		to_chat(user, span_danger("You crack the holobadge security checks."))
 		return 1
 
-/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/clothing/accessory/badge/holo/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
 
 		var/obj/item/card/id/id_card = null

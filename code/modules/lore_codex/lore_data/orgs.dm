@@ -2,7 +2,7 @@
 /datum/lore/codex/category/auto_org
 	var/desired_type = null // Exclude other types of organizations
 
-/datum/lore/codex/category/auto_org/New(var/new_holder, var/new_parent)
+/datum/lore/codex/category/auto_org/New(new_holder, new_parent)
 	..(new_holder, new_parent)
 	for(var/path in GLOB.loremaster.organizations)
 		var/datum/lore/organization/O = GLOB.loremaster.organizations[path]

@@ -28,7 +28,7 @@
 	if(!cell && cell_type)
 		cell = new cell_type
 
-/obj/item/inducer/proc/induce(var/obj/item/cell/target, coefficient)
+/obj/item/inducer/proc/induce(obj/item/cell/target, coefficient)
 	var/totransfer = min(cell.charge,(powertransfer * coefficient))
 	var/transferred = target.give(totransfer)
 	cell.use(transferred)
@@ -256,7 +256,7 @@
 
 	var/mob/living/carbon/human/hume
 
-/obj/item/cell/standin/Initialize(mapload, var/mob/living/carbon/human/H)
+/obj/item/cell/standin/Initialize(mapload, mob/living/carbon/human/H)
 	. = ..()
 	if(!istype(H))
 		return INITIALIZE_HINT_QDEL
@@ -267,7 +267,7 @@
 	QDEL_IN(src, 20 SECONDS)
 
 
-/obj/item/cell/standin/give(var/amount)
+/obj/item/cell/standin/give(amount)
 	. = ..(amount * NUTRITION_COEFF) //Shrink amount to store
 	hume.adjust_nutrition(.) //Add the amount we really stored
 	. /= NUTRITION_COEFF //Inflate amount to take from the giver

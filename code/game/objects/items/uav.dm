@@ -75,7 +75,7 @@
 	else if(health <= (initial(health)/2))
 		. += span_warning("It looks pretty beaten up...")
 
-/obj/item/uav/attack_hand(var/mob/user)
+/obj/item/uav/attack_hand(mob/user)
 	//Has to be on the ground to work with it properly
 	if(!isturf(loc))
 		return ..()
@@ -110,7 +110,7 @@
 			if(can_transition_to(state == UAV_PAIRING ? UAV_OFF : UAV_PAIRING, user))
 				return toggle_pairing(user)
 
-/obj/item/uav/attackby(var/obj/item/I, var/mob/user)
+/obj/item/uav/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/modular_computer) && state == UAV_PAIRING)
 		var/obj/item/modular_computer/MC = I
 		LAZYDISTINCTADD(MC.paired_uavs, WEAKREF(src))
@@ -146,7 +146,7 @@
 	else
 		return ..()
 
-/obj/item/uav/proc/can_transition_to(var/new_state, var/mob/user)
+/obj/item/uav/proc/can_transition_to(new_state, mob/user)
 	switch(state) //Current one
 		if(UAV_ON)
 			if(new_state == UAV_OFF || new_state == UAV_PACKED)
@@ -264,7 +264,7 @@
 /obj/item/uav/get_cell()
 	return cell
 
-/obj/item/uav/relaymove(var/mob/user, direction, signal = 1)
+/obj/item/uav/relaymove(mob/user, direction, signal = 1)
 	if(signal && state == UAV_ON && (WEAKREF(user) in masters))
 		if(next_move <= world.time)
 			next_move = world.time + (1 SECOND/signal)
@@ -275,10 +275,10 @@
 /obj/item/uav/proc/get_status_string()
 	return "[nickname] - [get_x(src)],[get_y(src)],[get_z(src)] - I:[health]/[initial(health)] - C:[cell ? "[cell.charge]/[cell.maxcharge]" : "Not Installed"]"
 
-/obj/item/uav/proc/add_master(var/mob/living/M)
+/obj/item/uav/proc/add_master(mob/living/M)
 	LAZYDISTINCTADD(masters, WEAKREF(M))
 
-/obj/item/uav/proc/remove_master(var/mob/living/M)
+/obj/item/uav/proc/remove_master(mob/living/M)
 	LAZYREMOVE(masters, WEAKREF(M))
 
 /obj/item/uav/proc/start_hover()
@@ -301,7 +301,7 @@
 		ion_trail.stop()
 		animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
 
-/obj/item/uav/hear_talk(var/mob/M, list/message_pieces, verb)
+/obj/item/uav/hear_talk(mob/M, list/message_pieces, verb)
 	var/name_used = M.GetVoice()
 	for(var/wr_master in masters)
 		var/datum/weakref/wr = wr_master
@@ -311,7 +311,7 @@
 		var/rendered = span_game(span_say(span_italics("UAV received: " + span_name("[name_used]") + " [message]")))
 		master.show_message(rendered, 2)
 
-/obj/item/uav/see_emote(var/mob/living/M, text)
+/obj/item/uav/see_emote(mob/living/M, text)
 	for(var/wr_master in masters)
 		var/datum/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
@@ -325,12 +325,12 @@
 		var/rendered = span_game(span_say(span_italics("UAV received, " + span_message("[msg]"))))
 		master.show_message(rendered, type)
 
-/obj/item/uav/take_damage(var/damage)
+/obj/item/uav/take_damage(damage)
 	health -= damage
 	CheckHealth()
 	return
 
-/obj/item/uav/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/item/uav/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 	user.do_attack_animation(src)

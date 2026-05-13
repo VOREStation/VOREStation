@@ -23,7 +23,7 @@
 	var/obj/structure/reagent_dispensers/watertank/tank
 
 
-/mob/living/bot/farmbot/Initialize(mapload, var/newTank)
+/mob/living/bot/farmbot/Initialize(mapload, newTank)
 	. = ..()
 	if(!newTank)
 		newTank = new /obj/structure/reagent_dispensers/watertank(src)
@@ -70,7 +70,7 @@
 		return
 	tgui_interact(user)
 
-/mob/living/bot/farmbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/farmbot/emag_act(remaining_charges, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -172,7 +172,7 @@
 	makeStep(target_path)
 	return
 
-/mob/living/bot/farmbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/farmbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 
@@ -290,7 +290,7 @@
 	return ..()
 
 
-/mob/living/bot/farmbot/confirmTarget(var/atom/targ)
+/mob/living/bot/farmbot/confirmTarget(atom/targ)
 	if(!..())
 		return 0
 
@@ -338,7 +338,7 @@
 	w_class = ITEMSIZE_NORMAL
 
 
-/obj/item/farmbot_arm_assembly/Initialize(mapload, var/theTank)
+/obj/item/farmbot_arm_assembly/Initialize(mapload, theTank)
 	. = ..()
 	if(!theTank) // If an admin spawned it, it won't have a watertank it, so lets make one for em!
 		tank = new /obj/structure/reagent_dispensers/watertank(src)
@@ -346,7 +346,7 @@
 		tank = theTank
 		tank.forceMove(src)
 
-/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/robot_parts/S, mob/user as mob)
+/obj/structure/reagent_dispensers/watertank/attackby(obj/item/robot_parts/S, mob/user as mob)
 	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return
@@ -359,7 +359,7 @@
 
 	new /obj/item/farmbot_arm_assembly(loc, src)
 
-/obj/structure/reagent_dispensers/watertank/attackby(var/obj/item/organ/external/S, mob/user as mob)
+/obj/structure/reagent_dispensers/watertank/attackby(obj/item/organ/external/S, mob/user as mob)
 	if ((!istype(S, /obj/item/organ/external/arm)) || S.robotic != ORGAN_ROBOT)
 		..()
 		return

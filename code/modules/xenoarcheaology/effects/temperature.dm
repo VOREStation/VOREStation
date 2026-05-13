@@ -19,7 +19,7 @@
 		target_temp = rand (0, 150)
 	effect_type = EFFECT_TEMPERATURE
 
-/datum/artifact_effect/temperature/DoEffectTouch(var/mob/user) //This still exists in case you VV it.
+/datum/artifact_effect/temperature/DoEffectTouch(mob/user) //This still exists in case you VV it.
 	var/atom/holder = get_master_holder()
 	if(holder)
 		to_chat(user, span_blue("A chill passes up your spine!"))

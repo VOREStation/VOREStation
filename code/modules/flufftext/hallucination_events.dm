@@ -160,7 +160,7 @@
 
 	our_human.playsound_local(get_turf(our_human), send_sound, vol = 75, channel = CHANNEL_AMBIENCE_FORCED)
 
-/datum/component/hallucinations/proc/secondary_sound(var/sound_path)
+/datum/component/hallucinations/proc/secondary_sound(sound_path)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	our_human.playsound_local(get_turf(our_human), sound_path, vol = 75, channel = CHANNEL_AMBIENCE_FORCED)

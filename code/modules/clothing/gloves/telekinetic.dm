@@ -15,7 +15,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/gloves/telekinetic/proc/use_grip_power(var/mob/user,var/play_sound)
+/obj/item/clothing/gloves/telekinetic/proc/use_grip_power(mob/user,play_sound)
 	if(cell)
 		cell.checked_use(use_power_amount)
 		if(play_sound)

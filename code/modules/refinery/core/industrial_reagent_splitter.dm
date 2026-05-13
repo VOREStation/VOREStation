@@ -59,7 +59,7 @@
 			total_transfered += transfer_tank(reagents, scan_targ, scan_dir)
 	return total_transfered
 
-/obj/machinery/reagent_refinery/splitter/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
+/obj/machinery/reagent_refinery/splitter/handle_transfer(atom/origin_machine, datum/reagents/RT, source_forward_dir, transfer_rate, filter_id = "")
 	// pumps, furnaces, splitters and filters can only be FED in a straight line
 	if(source_forward_dir != dir)
 		return 0

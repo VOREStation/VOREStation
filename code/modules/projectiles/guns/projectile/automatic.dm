@@ -110,7 +110,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15,-30), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
+/obj/item/gun/projectile/automatic/sts35/update_icon(ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/m545/small))
 		icon_state = "arifle-small" // If using the small magazines, use the small magazine sprite.
@@ -139,7 +139,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15,-30), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
+/obj/item/gun/projectile/automatic/pdw/update_icon(ignore_inhands)
 	..()
 	if(ammo_magazine)
 		icon_state = "pdw"
@@ -232,7 +232,7 @@
 	else
 		..()
 
-/obj/item/gun/projectile/automatic/z8/update_icon(var/ignore_inhands)
+/obj/item/gun/projectile/automatic/z8/update_icon(ignore_inhands)
 	..()
 	if(ammo_magazine)
 		icon_state = "carbine-[round(ammo_magazine.stored_ammo.len,2)]"
@@ -320,13 +320,13 @@
 		item_state = "l6[cover_open ? "open" : "closed"][ammo_magazine ? "" : "-empty"]"
 	update_held_icon()
 
-/obj/item/gun/projectile/automatic/l6_saw/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/automatic/l6_saw/load_ammo(obj/item/A, mob/user)
 	if(!cover_open)
 		to_chat(user, span_warning("You need to open the cover to load [src]."))
 		return
 	..()
 
-/obj/item/gun/projectile/automatic/l6_saw/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/automatic/l6_saw/unload_ammo(mob/user, allow_dump=1)
 	if(!cover_open)
 		to_chat(user, span_warning("You need to open the cover to unload [src]."))
 		return
@@ -475,7 +475,7 @@
 		list(mode_name="2-round bursts", burst=2, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15), dispersion=list(0.0, 0.6))
 		)
 
-/obj/item/gun/projectile/automatic/bullpup/update_icon(var/ignore_inhands)
+/obj/item/gun/projectile/automatic/bullpup/update_icon(ignore_inhands)
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762))
 		icon_state = "bullpup-small"

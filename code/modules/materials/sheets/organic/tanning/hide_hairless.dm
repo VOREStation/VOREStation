@@ -11,11 +11,11 @@
 	max_amount = 20
 	stacktype = "hairlesshide"
 
-/obj/item/stack/hairlesshide/examine(var/mob/user)
+/obj/item/stack/hairlesshide/examine(mob/user)
 	. = ..()
 	. += description_info
 
-/obj/item/stack/hairlesshide/water_act(var/wateramount)
+/obj/item/stack/hairlesshide/water_act(wateramount)
 	. = ..()
 	wateramount = min(amount, round(wateramount))
 	for(var/i in 1 to wateramount)
@@ -35,7 +35,7 @@
 		// Increment the amount
 		src.use(1)
 
-/obj/item/stack/hairlesshide/proc/rapidcure(var/stacknum = 1)
+/obj/item/stack/hairlesshide/proc/rapidcure(stacknum = 1)
 	stacknum = min(stacknum, amount)
 
 	while(stacknum)

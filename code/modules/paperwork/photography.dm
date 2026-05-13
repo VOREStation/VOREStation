@@ -318,7 +318,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(p)
 
-/obj/item/photo/proc/copy(var/copy_id = 0)
+/obj/item/photo/proc/copy(copy_id = 0)
 	var/obj/item/photo/p = new/obj/item/photo()
 
 	p.name = name

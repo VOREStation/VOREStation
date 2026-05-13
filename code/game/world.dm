@@ -523,7 +523,7 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 			GLOB.master_mode = Lines[1]
 			log_world("## MISC Saved mode is '[GLOB.master_mode]'")
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode

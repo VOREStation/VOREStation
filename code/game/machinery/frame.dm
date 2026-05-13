@@ -26,7 +26,7 @@ GLOBAL_LIST(construction_frame_floor)
 	var/y_offset				// For wall frames: pixel_y
 
 // Get the icon state to use at a given state.  Default implementation is based on the frame's name
-/datum/frame/frame_types/proc/get_icon_state(var/state)
+/datum/frame/frame_types/proc/get_icon_state(state)
 	var/type = lowertext(name)
 	type = replacetext(type, " ", "_")
 	return "[type]_[state]"
@@ -327,7 +327,7 @@ GLOBAL_LIST(construction_frame_floor)
 	for(var/obj/ct as anything in req_components)
 		req_component_names[ct] = initial(ct.name)
 
-/obj/structure/frame/Initialize(mapload, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
+/obj/structure/frame/Initialize(mapload, dir, building = 0, datum/frame/frame_types/type, mob/user as mob)
 	. = ..()
 	if(building)
 		frame_type = type
@@ -646,7 +646,7 @@ GLOBAL_LIST(construction_frame_floor)
 
 	update_icon()
 
-/obj/structure/frame/proc/install_part(var/mob/user, var/obj/item/P, var/defer_feedback = FALSE)
+/obj/structure/frame/proc/install_part(mob/user, obj/item/P, defer_feedback = FALSE)
 	var/installed_part = FALSE
 	for(var/I in req_components)
 		if(!istype(P, I) || (req_components[I] == 0))
@@ -686,7 +686,7 @@ GLOBAL_LIST(construction_frame_floor)
 	to_chat(user, span_warning("You cannot add that component to the machine!"))
 	return FALSE
 
-/obj/structure/frame/proc/mass_install_parts(var/mob/user, var/obj/item/storage/S)
+/obj/structure/frame/proc/mass_install_parts(mob/user, obj/item/storage/S)
 	var/installed_part = FALSE
 	for(var/obj/item/P in S.contents)
 		installed_part |= install_part(user, P, TRUE)

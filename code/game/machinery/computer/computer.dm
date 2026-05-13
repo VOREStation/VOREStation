@@ -56,7 +56,7 @@
 				set_broken()
 	return
 
-/obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
 	if(prob(Proj.get_structure_damage()))
 		set_broken()
 	..()

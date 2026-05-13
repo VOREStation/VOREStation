@@ -9,7 +9,7 @@
 
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
-/obj/item/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/tape_roll/proc/can_place(mob/living/carbon/human/H, mob/user)
 	if(isrobot(user) || user == H)
 		return TRUE
 
@@ -102,7 +102,7 @@
 				return ..()
 			return ITEM_INTERACT_SUCCESS
 
-/obj/item/tape_roll/proc/stick(var/obj/item/W, mob/user)
+/obj/item/tape_roll/proc/stick(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/paper) || istype(W, /obj/item/paper/sticky) || !user.unEquip(W))
 		return
 	user.drop_from_inventory(W)
@@ -128,7 +128,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 	return stuck.examine(user)
 
-/obj/item/ducttape/proc/attach(var/obj/item/W)
+/obj/item/ducttape/proc/attach(obj/item/W)
 	stuck = W
 	W.forceMove(src)
 	icon_state = W.icon_state + "_taped"
@@ -151,7 +151,7 @@
 	overlays = null
 	qdel(src)
 
-/obj/item/ducttape/attackby(var/obj/item/I, var/mob/user)
+/obj/item/ducttape/attackby(obj/item/I, mob/user)
 	if(!(istype(src, /obj/item/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
 		return ..()
 	else
@@ -164,7 +164,7 @@
 	anchored = FALSE
 	return ..() // Pick it up now that it's unanchored.
 
-/obj/item/ducttape/afterattack(var/A, mob/user, flag, params)
+/obj/item/ducttape/afterattack(A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
 		return

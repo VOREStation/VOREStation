@@ -1,4 +1,4 @@
-/mob/new_player/proc/spawn_checks_vr(var/rank)
+/mob/new_player/proc/spawn_checks_vr(rank)
 	var/pass = TRUE
 	var/datum/job/J = SSjob.get_job(rank)
 

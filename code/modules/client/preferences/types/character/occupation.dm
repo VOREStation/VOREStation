@@ -434,7 +434,7 @@
 	pref.write_preference_by_type(/datum/preference/numeric/human/job_talon_high, 0) //VOREStation Add
 
 // Level is equal to the desired new level of the job. So for a value of 4, we want to disable the job.
-/datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(var/datum/job/job, var/level)
+/datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(datum/job/job, level)
 	if(!job || !level)
 		return 0
 
@@ -505,7 +505,7 @@
 	var/list/alt_titles = read_preference(/datum/preference/player_alt_titles)
 	return (islist(alt_titles) && (job.title in alt_titles)) ? alt_titles[job.title] : job.title
 
-/datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
+/datum/preferences/proc/GetJobDepartment(datum/job/job, level)
 	if(!job || !level)	return 0
 	switch(job.department_flag)
 		if(CIVILIAN)

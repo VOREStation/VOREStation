@@ -41,13 +41,13 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/cap/change_color(var/new_color)
+/obj/machinery/atmospherics/pipe/cap/change_color(new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node)
 		node.update_underlays()
 
-/obj/machinery/atmospherics/pipe/cap/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/cap/update_icon(safety = 0)
 	alpha = 255
 
 	cut_overlays()

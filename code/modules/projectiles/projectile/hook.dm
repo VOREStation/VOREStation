@@ -71,15 +71,15 @@
 			chain.Draw()
 	return
 
-/obj/item/projectile/energy/hook/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+/obj/item/projectile/energy/hook/on_hit(atom/target, blocked = 0, def_zone = null)
 	if(..())
 		perform_intent_unique(target)
 
 
-/obj/item/projectile/energy/hook/on_impact(var/atom/A)
+/obj/item/projectile/energy/hook/on_impact(atom/A)
 	perform_intent_unique(get_turf(A))
 
-/obj/item/projectile/energy/hook/proc/ranged_disarm(var/mob/living/carbon/human/H)
+/obj/item/projectile/energy/hook/proc/ranged_disarm(mob/living/carbon/human/H)
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 60, H.get_inactive_hand() = 40)
 

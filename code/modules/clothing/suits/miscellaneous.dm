@@ -270,7 +270,7 @@
 			return
 	..()
 
-/obj/item/clothing/suit/straight_jacket/equipped(var/mob/living/user,var/slot)
+/obj/item/clothing/suit/straight_jacket/equipped(mob/living/user,slot)
 	. = ..()
 	if(slot == slot_wear_suit)
 		user.drop_l_hand()
