@@ -14,7 +14,7 @@
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/datum/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
+/datum/material/phoron/combustion_effect(turf/T, temperature, effect_multiplier)
 	if(isnull(ignition_point))
 		return 0
 	if(temperature < ignition_point)
@@ -115,6 +115,7 @@
 	sheet_plural_name = "gems"
 	icon_base = "stone"
 	table_icon_base = "stone"
+	supply_conversion_value = 10
 
 /datum/material/verdantium
 	name = MAT_VERDANTIUM

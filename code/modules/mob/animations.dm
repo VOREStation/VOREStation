@@ -2,7 +2,7 @@
 /mob/var/is_floating = 0
 /mob/var/floatiness = 0
 
-/mob/proc/update_floating(var/dense_object=0)
+/mob/proc/update_floating(dense_object=0)
 
 	if(anchored||buckled)
 		make_floating(0)
@@ -32,7 +32,7 @@
 	make_floating(1)
 	return
 
-/mob/proc/make_floating(var/n)
+/mob/proc/make_floating(n)
 	if(buckled)
 		if(is_floating)
 			stop_floating()
@@ -65,7 +65,7 @@
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/fade_towards(atom/A,var/time = 2)
+/atom/movable/proc/fade_towards(atom/A,time = 2)
 	set waitfor = FALSE
 
 	var/pixel_x_diff = 0

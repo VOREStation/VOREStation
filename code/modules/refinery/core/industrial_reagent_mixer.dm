@@ -102,7 +102,7 @@
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT, .)
 
-/obj/machinery/reagent_refinery/mixer/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
+/obj/machinery/reagent_refinery/mixer/handle_transfer(atom/origin_machine, datum/reagents/RT, source_forward_dir, transfer_rate, filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
 	if(mixer_angle % 90 != 0) // Only handle proper directions
 		return 0

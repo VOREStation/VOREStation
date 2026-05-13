@@ -38,7 +38,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/nifrepairer/afterattack(var/atom/target, var/mob/user, var/proximity)
+/obj/item/nifrepairer/afterattack(atom/target, mob/user, proximity)
 	if(!target.is_open_container() || !target.reagents)
 		return 0
 

@@ -31,7 +31,7 @@
 
 	loot_list = list(/obj/item/ectoplasm = 100)
 
-/mob/living/simple_mob/construct/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/construct/shade/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/soulstone))
 		var/obj/item/soulstone/S = O;
 		S.transfer_soul("SHADE", src, user)

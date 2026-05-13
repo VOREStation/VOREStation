@@ -85,7 +85,7 @@ Pipelines + Other Objects -> Pipe network
 		return
 	..()
 
-/obj/machinery/atmospherics/proc/add_underlay(var/turf/T, var/obj/machinery/atmospherics/node, var/direction, var/icon_connect_type)
+/obj/machinery/atmospherics/proc/add_underlay(turf/T, obj/machinery/atmospherics/node, direction, icon_connect_type)
 	if(node)
 		if(!T.is_plating() && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			//underlays += icon_manager.get_atmos_icon("underlay_down", direction, color_cache_name(node))
@@ -100,7 +100,7 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/update_underlays()
 	return TRUE
 
-/obj/machinery/atmospherics/proc/color_cache_name(var/obj/machinery/atmospherics/node)
+/obj/machinery/atmospherics/proc/color_cache_name(obj/machinery/atmospherics/node)
 	//Don't use this for standard pipes
 	if(!istype(node))
 		return null
@@ -121,7 +121,7 @@ Pipelines + Other Objects -> Pipe network
 
 	return null
 
-/obj/machinery/atmospherics/proc/build_network(var/new_attachment)
+/obj/machinery/atmospherics/proc/build_network(new_attachment)
 	// Called to build a network from this node
 
 	return null

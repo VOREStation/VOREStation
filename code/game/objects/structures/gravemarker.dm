@@ -18,7 +18,7 @@
 
 	var/datum/material/material
 
-/obj/structure/gravemarker/Initialize(mapload, var/material_name)
+/obj/structure/gravemarker/Initialize(mapload, material_name)
 	. = ..()
 	if(!material_name)
 		material_name = MAT_WOOD
@@ -75,7 +75,7 @@
 			dismantle()
 	..()
 
-/obj/structure/gravemarker/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/gravemarker/bullet_act(obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage)
 		return
@@ -99,7 +99,7 @@
 				qdel(src)
 			return
 
-/obj/structure/gravemarker/proc/damage(var/damage)
+/obj/structure/gravemarker/proc/damage(damage)
 	health -= damage
 	if(health <= 0)
 		visible_message(span_danger("\The [src] falls apart!"))

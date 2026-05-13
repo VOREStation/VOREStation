@@ -201,7 +201,7 @@
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
-/mob/living/proc/calculate_affecting_pressure(var/pressure)
+/mob/living/proc/calculate_affecting_pressure(pressure)
 	return
 
 
@@ -260,7 +260,7 @@
 	return getBruteLoss()
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
-/mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
+/mob/living/proc/adjustBruteLoss(amount,include_robo)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_BRUTE_DAMAGE, amount) & COMSIG_CANCEL_BRUTE_DAMAGE)
 		return 0	// Cancelled by a component
 
@@ -290,7 +290,7 @@
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 
-/mob/living/proc/adjustOxyLoss(var/amount)
+/mob/living/proc/adjustOxyLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_OXY_DAMAGE, amount) & COMSIG_CANCEL_OXY_DAMAGE)
 		return 0	// Cancelled by a component
 
@@ -312,7 +312,7 @@
 	oxyloss = min(max(oxyloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
-/mob/living/proc/setOxyLoss(var/amount)
+/mob/living/proc/setOxyLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_OXY_DAMAGE, amount) & COMSIG_CANCEL_OXY_DAMAGE)
 		return 0	// Cancelled by a component
 	oxyloss = amount
@@ -320,7 +320,7 @@
 /mob/living/proc/getToxLoss()
 	return toxloss
 
-/mob/living/proc/adjustToxLoss(var/amount)
+/mob/living/proc/adjustToxLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_TOX_DAMAGE, amount) & COMSIG_CANCEL_TOX_DAMAGE)
 		return 0	// Cancelled by a component
 
@@ -342,7 +342,7 @@
 	toxloss = min(max(toxloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
-/mob/living/proc/setToxLoss(var/amount)
+/mob/living/proc/setToxLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_TOX_DAMAGE, amount) & COMSIG_CANCEL_TOX_DAMAGE)
 		return 0	// Cancelled by a component
 	toxloss = amount
@@ -357,7 +357,7 @@
 	return getFireLoss()
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
-/mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
+/mob/living/proc/adjustFireLoss(amount,include_robo)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_FIRE_DAMAGE, amount) & COMSIG_CANCEL_FIRE_DAMAGE)
 		return 0	// Cancelled by a component
 	if(amount > 0)
@@ -384,7 +384,7 @@
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
-/mob/living/proc/adjustCloneLoss(var/amount)
+/mob/living/proc/adjustCloneLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_CLONE_DAMAGE, amount) & COMSIG_CANCEL_CLONE_DAMAGE)
 		return 0	// Cancelled by a component
 
@@ -406,7 +406,7 @@
 	cloneloss = min(max(cloneloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
-/mob/living/proc/setCloneLoss(var/amount)
+/mob/living/proc/setCloneLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_CLONE_DAMAGE, amount) & COMSIG_CANCEL_CLONE_DAMAGE)
 		return 0	// Cancelled by a component
 	cloneloss = amount
@@ -414,12 +414,12 @@
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
-/mob/living/proc/adjustBrainLoss(var/amount)
+/mob/living/proc/adjustBrainLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_BRAIN_DAMAGE, amount) & COMSIG_CANCEL_BRAIN_DAMAGE)
 		return 0	// Cancelled by a component
 	brainloss = min(max(brainloss + amount, 0),(getMaxHealth()*2))
 
-/mob/living/proc/setBrainLoss(var/amount)
+/mob/living/proc/setBrainLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_BRAIN_DAMAGE, amount) & COMSIG_CANCEL_BRAIN_DAMAGE)
 		return 0	// Cancelled by a component
 	brainloss = amount
@@ -427,7 +427,7 @@
 /mob/living/proc/getHalLoss()
 	return halloss
 
-/mob/living/proc/adjustHalLoss(var/amount)
+/mob/living/proc/adjustHalLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_HALO_DAMAGE, amount) & COMSIG_CANCEL_HALO_DAMAGE)
 		return 0	// Cancelled by a component
 	if(amount > 0)
@@ -448,7 +448,7 @@
 	halloss = min(max(halloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
-/mob/living/proc/setHalLoss(var/amount)
+/mob/living/proc/setHalLoss(amount)
 	if(SEND_SIGNAL(src, COMSIG_TAKING_HALO_DAMAGE, amount) & COMSIG_CANCEL_HALO_DAMAGE)
 		return 0	// Cancelled by a component
 	halloss = amount
@@ -476,7 +476,7 @@
 		crit_point *= species.crit_mod
 	return crit_point
 
-/mob/living/proc/setMaxHealth(var/newMaxHealth)
+/mob/living/proc/setMaxHealth(newMaxHealth)
 	var/h_mult = maxHealth / newMaxHealth	//Calculate change multiplier
 	if(bruteloss)							//In case a damage value is 0, divide by 0 bad
 		bruteloss = round(bruteloss / h_mult)		//Health is calculated on life based on damage types, so we update the damage and let life handle health
@@ -652,7 +652,7 @@
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/storage/Storage = null)
+/mob/living/get_contents(obj/item/storage/Storage = null)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -915,10 +915,10 @@
 
 	return FALSE
 
-/mob/living/proc/slip(var/slipped_on,stun_duration=8)
+/mob/living/proc/slip(slipped_on,stun_duration=8)
 	return 0
 
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+/mob/living/carbon/drop_from_inventory(obj/item/W, atom/target = null)
 	return !(W in internal_organs) && ..()
 
 /mob/living/proc/drop_both_hands()
@@ -949,7 +949,7 @@
 	..()
 
 //damage/heal the mob ears and adjust the deaf amount
-/mob/living/adjustEarDamage(var/damage, var/deaf)
+/mob/living/adjustEarDamage(damage, deaf)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max(0, ear_deaf + deaf)
 	/* //Segment here used downstream. Enable when deaf_loop is added.
@@ -960,7 +960,7 @@
 	*/
 
 //pass a negative argument to skip one of the variable
-/mob/living/setEarDamage(var/damage, var/deaf)
+/mob/living/setEarDamage(damage, deaf)
 	if(damage >= 0)
 		ear_damage = damage
 	if(deaf >= 0)
@@ -1177,7 +1177,7 @@
 /mob/living/proc/update_water() // Involves overlays for humans.  Maybe we'll get submerged sprites for borgs in the future?
 	return
 
-/mob/living/proc/can_feel_pain(var/check_organ)
+/mob/living/proc/can_feel_pain(check_organ)
 	if(isSynthetic())
 		return FALSE
 	return TRUE
@@ -1202,7 +1202,7 @@
 		if(!isnull(M.icon_scale_y_percent))
 			. *= M.icon_scale_y_percent
 
-/mob/living/update_transform(var/instant = FALSE)
+/mob/living/update_transform(instant = FALSE)
 	// First, get the correct size.
 	var/desired_scale_x = size_multiplier * icon_scale_x
 	var/desired_scale_y = size_multiplier * icon_scale_y
@@ -1277,7 +1277,7 @@
 		I.in_inactive_hand(src)	//This'll do specific things, determined by the item
 	return
 
-/mob/living/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+/mob/living/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 
 	if(istext(selhand))
 		selhand = lowertext(selhand)
@@ -1369,7 +1369,7 @@
 	item.throw_at(target, throw_range, item.throw_speed, src)
 	return TRUE
 
-/mob/living/get_sound_env(var/spot, var/pressure_factor)
+/mob/living/get_sound_env(spot, pressure_factor)
 	if (hallucination)
 		return SOUND_ENVIRONMENT_PSYCHOTIC
 	else if (druggy)
@@ -1384,7 +1384,7 @@
 		return ..()
 
 //Add an entry to overlays, assuming it exists
-/mob/living/proc/apply_hud(cache_index, var/image/I)
+/mob/living/proc/apply_hud(cache_index, image/I)
 	hud_list[cache_index] = I
 	if((. = hud_list[cache_index]))
 		//underlays += .
@@ -1508,7 +1508,7 @@
 	icon_state = "character"
 	screen_loc = ui_smallquad
 
-/mob/living/set_dir(var/new_dir)
+/mob/living/set_dir(new_dir)
 	. = ..()
 	if(size_multiplier != 1 || icon_scale_x != DEFAULT_ICON_SCALE_X && center_offset > 0)
 		update_transform(TRUE)
@@ -1526,7 +1526,7 @@
 	if(toggled_sleeping)
 		Sleeping(1)
 
-/mob/living/proc/set_metainfo_favs(var/mob/user, var/reopen = TRUE)
+/mob/living/proc/set_metainfo_favs(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your FAVOURITE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_favs), multiline = TRUE,  prevent_enter = TRUE))
@@ -1540,7 +1540,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/living/proc/set_metainfo_maybes(var/mob/user, var/reopen = TRUE)
+/mob/living/proc/set_metainfo_maybes(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(user, "Enter any information you'd like others to see relating to your MAYBE roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_maybes), multiline = TRUE,  prevent_enter = TRUE))
@@ -1554,7 +1554,7 @@
 		if(reopen)
 			ooc_notes_window(user)
 
-/mob/living/proc/set_metainfo_ooc_style(var/mob/user, var/reopen = TRUE)
+/mob/living/proc/set_metainfo_ooc_style(mob/user, reopen = TRUE)
 	if(user != src)
 		return
 	ooc_notes_style = !ooc_notes_style

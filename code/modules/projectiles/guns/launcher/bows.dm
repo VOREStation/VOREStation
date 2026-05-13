@@ -94,7 +94,7 @@
 	else
 		draw(user)
 
-/obj/item/gun/launcher/crossbow/bow/draw(var/mob/user)
+/obj/item/gun/launcher/crossbow/bow/draw(mob/user)
 	if(!bolt)
 		to_chat(user, span_infoplain("You don't have anything nocked to [src]."))
 		return

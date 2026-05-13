@@ -16,10 +16,10 @@
 /obj/machinery/smartfridge/sheets/persistent_lossy
 	persistent = /datum/persistent/storage/smartfridge/sheet_storage/lossy
 
-/obj/machinery/smartfridge/sheets/accept_check(var/obj/item/O)
+/obj/machinery/smartfridge/sheets/accept_check(obj/item/O)
 	return istype(O, /obj/item/stack/material) && !istype(O, /obj/item/stack/material/cyborg)
 
-/obj/machinery/smartfridge/sheets/vend(datum/stored_item/stack/I, var/count)
+/obj/machinery/smartfridge/sheets/vend(datum/stored_item/stack/I, count)
 	var/amount = I.get_amount()
 	if(amount < 1)
 		return
@@ -31,7 +31,7 @@
 		count -= S.get_amount()
 	SStgui.update_uis(src)
 
-/obj/machinery/smartfridge/sheets/find_record(var/obj/item/O)
+/obj/machinery/smartfridge/sheets/find_record(obj/item/O)
 	for(var/datum/stored_item/stack/I as anything in item_records)
 		if(O.type == I.item_path) // Typecheck should evaluate material-specific subtype
 			return I

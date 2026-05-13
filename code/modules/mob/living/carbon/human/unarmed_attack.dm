@@ -23,7 +23,7 @@
 			GLOB.sparring_attack_cache[sparring_variant_type] = new sparring_variant_type()
 		return GLOB.sparring_attack_cache[sparring_variant_type]
 
-/datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user, mob/living/carbon/human/target, zone)
 	if(user.restrained())
 		return FALSE
 
@@ -38,12 +38,12 @@
 
 	return FALSE
 
-/datum/unarmed_attack/proc/get_unarmed_damage(var/mob/living/carbon/human/user)
+/datum/unarmed_attack/proc/get_unarmed_damage(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_NONLETHAL_BLOWS))//don't add extra species strength when pulling punches
 		return damage
 	return damage + user.species.unarmed_bonus
 
-/datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
+/datum/unarmed_attack/proc/apply_effects(mob/living/carbon/human/user,mob/living/carbon/human/target,armour,attack_damage,zone)
 
 	var/stun_chance = rand(0, 100)
 
@@ -89,12 +89,12 @@
 			target.visible_message(span_danger("[target] has been weakened!"))
 		target.apply_effect(3, WEAKEN, armour)
 
-/datum/unarmed_attack/proc/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/proc/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message(span_warning("[user] [pick(attack_verb)] [target] in the [affecting.name]!"))
 	playsound(user, attack_sound, 25, 1, -1)
 
-/datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
+/datum/unarmed_attack/proc/handle_eye_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/obj/item/organ/internal/eyes/eyes = target.internal_organs_by_name[O_EYES]
 	if(eyes)
 		eyes.take_damage(rand(3,4), 1)
@@ -104,7 +104,7 @@
 		return
 	user.visible_message(span_danger("[user] attempts to press [p_their()] [eye_attack_text] into [target]'s eyes, but [target.p_they()] [target.p_do()]n't have any!"))
 
-/datum/unarmed_attack/proc/unarmed_override(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/zone)
+/datum/unarmed_attack/proc/unarmed_override(mob/living/carbon/human/user,mob/living/carbon/human/target,zone)
 	return FALSE //return true if the unarmed override prevents further attacks
 
 /datum/unarmed_attack/bite
@@ -117,7 +117,7 @@
 
 /datum/unarmed_attack/bite/event1
 
-/datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/bite/is_usable(mob/living/carbon/human/user, mob/living/carbon/human/target, zone)
 	if (user.is_muzzled() || user.buckled)
 		return FALSE
 	if (user == target && ((zone == BP_GROIN && (prob(98)) || (zone == BP_HEAD || zone == O_EYES || zone == O_MOUTH)))) //biting your own groin is hard. 2% hit chance.
@@ -138,7 +138,7 @@
 
 /datum/unarmed_attack/punch/event1
 
-/datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/punch/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 
@@ -189,7 +189,7 @@
 
 /datum/unarmed_attack/kick/event1
 
-/datum/unarmed_attack/kick/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/kick/is_usable(mob/living/carbon/human/user, mob/living/carbon/human/target, zone)
 	if(user.legcuffed || user.buckled)
 		return FALSE
 
@@ -206,7 +206,7 @@
 
 	return FALSE
 
-/datum/unarmed_attack/kick/get_unarmed_damage(var/mob/living/carbon/human/user)
+/datum/unarmed_attack/kick/get_unarmed_damage(mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
 	if(!istype(shoes))
 		return user.species.unarmed_bonus + damage
@@ -214,7 +214,7 @@
 		return damage + (shoes ? shoes.force : 0)
 	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
-/datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/kick/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 
@@ -234,7 +234,7 @@
 
 /datum/unarmed_attack/stomp/event1
 
-/datum/unarmed_attack/stomp/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/stomp/is_usable(mob/living/carbon/human/user, mob/living/carbon/human/target, zone)
 
 	if (user.legcuffed || user.buckled)
 		return FALSE
@@ -255,13 +255,13 @@
 
 		return FALSE
 
-/datum/unarmed_attack/stomp/get_unarmed_damage(var/mob/living/carbon/human/user)
+/datum/unarmed_attack/stomp/get_unarmed_damage(mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
 	if(HAS_TRAIT(user, TRAIT_NONLETHAL_BLOWS))//don't add extra species strength when pulling punches
 		return damage + (shoes ? shoes.force : 0)
 	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
-/datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/stomp/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 	var/obj/item/clothing/shoes = user.shoes

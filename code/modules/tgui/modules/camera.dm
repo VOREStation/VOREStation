@@ -317,4 +317,7 @@
 /datum/tgui_module/camera/bigscreen/tgui_state(mob/user)
 	return GLOB.tgui_physical_state_bigscreen
 
+/datum/tgui_module/camera/virtual/tgui_state(mob/user)
+	return GLOB.tgui_camera_view
+
 #undef DEFAULT_MAP_SIZE

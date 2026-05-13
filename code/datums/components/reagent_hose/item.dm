@@ -29,7 +29,7 @@
 		remembered = null
 	return
 
-/obj/item/stack/hose/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/stack/hose/afterattack(atom/target, mob/living/user, proximity, params)
 	if(!proximity)
 		return
 	if(in_use)

@@ -3,7 +3,7 @@
 	name = "gas thruster"
 	var/obj/machinery/atmospherics/unary/engine/nozzle
 
-/datum/ship_engine/gas_thruster/New(var/obj/machinery/_holder)
+/datum/ship_engine/gas_thruster/New(obj/machinery/_holder)
 	..()
 	nozzle = _holder
 
@@ -20,7 +20,7 @@
 /datum/ship_engine/gas_thruster/burn()
 	return nozzle.thrust_burn()
 
-/datum/ship_engine/gas_thruster/set_thrust_limit(var/new_limit)
+/datum/ship_engine/gas_thruster/set_thrust_limit(new_limit)
 	nozzle.thrust_limit = new_limit
 
 /datum/ship_engine/gas_thruster/get_thrust_limit()
@@ -189,7 +189,7 @@
 	light_color = "#ed9200"
 	anchored = TRUE
 
-/obj/effect/engine_exhaust/Initialize(mapload, var/ndir, var/flame)
+/obj/effect/engine_exhaust/Initialize(mapload, ndir, flame)
 	. = ..()
 	if(flame)
 		icon_state = "exhaust"

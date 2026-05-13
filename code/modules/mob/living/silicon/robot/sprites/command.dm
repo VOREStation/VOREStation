@@ -36,7 +36,7 @@
 	pto_type = PTO_CIVILIAN
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/chound/create_equipment(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/robot/chound/create_equipment(mob/living/silicon/robot/R)
 	src.modules += new /obj/item/pen/robopen(src)
 	src.modules += new /obj/item/form_printer(src)
 	src.modules += new /obj/item/gripper/paperwork(src)

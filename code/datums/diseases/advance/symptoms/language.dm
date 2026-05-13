@@ -42,7 +42,7 @@ Bonus
 	if(A.resistance)
 		gibberish = TRUE
 
-/datum/symptom/language/Activate(var/datum/disease/advance/A)
+/datum/symptom/language/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/L = A.affected_mob

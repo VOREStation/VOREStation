@@ -173,7 +173,7 @@
 	return 1
 
 //Cham Projector Exception
-/obj/structure/closet/proc/store_misc(var/stored_units)
+/obj/structure/closet/proc/store_misc(stored_units)
 	var/added_units = 0
 	for(var/obj/effect/dummy/chameleon/AD in loc)
 		if((stored_units + added_units) > storage_capacity)
@@ -182,7 +182,7 @@
 		added_units++
 	return added_units
 
-/obj/structure/closet/proc/store_items(var/stored_units)
+/obj/structure/closet/proc/store_items(stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
@@ -193,7 +193,7 @@
 			added_units += item_size
 	return added_units
 
-/obj/structure/closet/proc/store_mobs(var/stored_units)
+/obj/structure/closet/proc/store_mobs(stored_units)
 	var/added_units = 0
 	for(var/mob/living/M in loc)
 		if(M.buckled || M.pinned.len)
@@ -204,7 +204,7 @@
 		added_units += M.mob_size
 	return added_units
 
-/obj/structure/closet/proc/store_closets(var/stored_units)
+/obj/structure/closet/proc/store_closets(stored_units)
 	var/added_units = 0
 	for(var/obj/structure/closet/C in loc)
 		if(C == src)	//Don't store ourself
@@ -250,14 +250,14 @@
 /obj/structure/closet/blob_act()
 	damage(100)
 
-/obj/structure/closet/proc/damage(var/damage)
+/obj/structure/closet/proc/damage(damage)
 	health -= damage
 	if(health <= 0)
 		for(var/atom/movable/A in src)
 			A.forceMove(loc)
 		qdel(src)
 
-/obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage)
 		return
@@ -414,7 +414,7 @@
 	else
 		icon_state = "closed_unlocked[sealed ? "_welded" : ""]"
 
-/obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys")
+/obj/structure/closet/attack_generic(mob/user, damage, attack_message = "destroys")
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return
 	user.do_attack_animation(src)
@@ -430,7 +430,7 @@
 		return 0 //closed but not sealed...
 	return 1
 
-/obj/structure/closet/container_resist(var/mob/living/escapee)
+/obj/structure/closet/container_resist(mob/living/escapee)
 	if(breakout || !req_breakout())
 		return
 
@@ -475,19 +475,19 @@
 		BD.unwrap()
 	open()
 
-/obj/structure/closet/onDropInto(var/atom/movable/AM)
+/obj/structure/closet/onDropInto(atom/movable/AM)
 	return
 
 /obj/structure/closet/AllowDrop()
 	return TRUE
 
-/obj/structure/closet/return_air_for_internal_lifeform(var/mob/living/L)
+/obj/structure/closet/return_air_for_internal_lifeform(mob/living/L)
 	if(loc)
 		if(istype(loc, /obj/structure/closet))
 			return (loc.return_air_for_internal_lifeform(L))
 	return return_air()
 
-/obj/structure/closet/take_damage(var/damage)
+/obj/structure/closet/take_damage(damage)
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return
 	dump_contents()

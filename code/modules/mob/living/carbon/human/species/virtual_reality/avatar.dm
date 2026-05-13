@@ -45,10 +45,10 @@
 		)
 
 
-/datum/species/shapeshifter/promethean/avatar/handle_death(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/avatar/handle_death(mob/living/carbon/human/H)
 	return
 
-/datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/avatar/handle_environment_special(mob/living/carbon/human/H)
 	//Traits like anxiety won't apply here, but that's the issue with them being a subtype of Promethean.
 	return
 
@@ -71,7 +71,7 @@
 
 
 // enter_vr is called on the original mob, and puts the mind into the supplied vr mob
-/mob/living/carbon/human/proc/enter_vr(var/mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
+/mob/living/carbon/human/proc/enter_vr(mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
 	if(!istype(avatar))
 		return
 

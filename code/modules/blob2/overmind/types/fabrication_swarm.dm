@@ -22,7 +22,7 @@
 	ai_aggressiveness = 50 //Really doesn't like you near it.
 	spore_type = /mob/living/simple_mob/mechanical/hivebot/swarm
 
-/datum/blob_type/fabrication_swarm/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+/datum/blob_type/fabrication_swarm/on_received_damage(obj/structure/blob/B, damage, damage_type, mob/living/attacker)
 	if(istype(B, /obj/structure/blob/normal))
 		if(damage > 0)
 			var/reinforce_probability = min(damage, 70)

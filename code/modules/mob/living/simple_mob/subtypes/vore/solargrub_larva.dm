@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 
 	return FALSE
 
-/mob/living/simple_mob/animal/solargrub_larva/proc/enter_machine(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/enter_machine(obj/machinery/M)
 	if(!istype(M))
 		return
 	set_AI_busy(TRUE)
@@ -129,13 +129,13 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 	for(var/mob/L in GLOB.player_list)				//because nearly every machine updates its icon by removing all overlays first
 		L << machine_effect
 
-/mob/living/simple_mob/animal/solargrub_larva/proc/generate_machine_effect(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/generate_machine_effect(obj/machinery/M)
 	var/icon/I = new /icon(M.icon, M.icon_state)
 	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
 	I.Blend(new /icon('icons/effects/alert.dmi', "_red"),ICON_MULTIPLY)
 	GLOB.grub_machine_overlays[M.type] = I
 
-/mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(obj/machinery/M)
 	if(!M)
 		if(istype(loc, /obj/machinery))
 			M = loc
@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 	spawn(30)
 		set_AI_busy(FALSE)
 
-/mob/living/simple_mob/animal/solargrub_larva/proc/do_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent)
+/mob/living/simple_mob/animal/solargrub_larva/proc/do_ventcrawl(obj/machinery/atmospherics/unary/vent_pump/vent)
 	if(!vent)
 		return
 	var/obj/machinery/atmospherics/unary/vent_pump/end_vent = get_safe_ventcrawl_target(vent)
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(grub_machine_overlays)
 		actual_targets += M
 	return actual_targets
 
-/datum/ai_holder/simple_mob/solargrub_larva/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/solargrub_larva/can_attack(atom/movable/the_target, vision_required = TRUE)
 	.=..()
 	var/obj/machinery/M = the_target
 	if(!istype(M))

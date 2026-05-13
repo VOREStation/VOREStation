@@ -432,3 +432,20 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/anomalock
+	name = "Voltaic combat cyberheart"
+	desc = "A cutting-edge cyberheart. Voltaic technology allows the heart to keep the body upright in dire circumstances, alongside redirecting anomalous flux energy to fully shield the user from shocks and electro-magnetic pulses. Does nothing without a flux anomaly core."
+	id = "cybernetic_heart_anomalock"
+	construction_time = 5 SECONDS
+	materials = list(
+		MAT_STEEL = 2500,
+		MAT_GLASS = 2500,
+		MAT_TITANIUM = 10000,
+		MAT_DIAMOND = 5000
+	)
+	build_path = /obj/item/organ/internal/heart/machine/anomalock
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

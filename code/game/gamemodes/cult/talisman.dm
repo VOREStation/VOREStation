@@ -59,7 +59,7 @@
 		..()
 
 
-/obj/item/paper/talisman/proc/supply(var/key)
+/obj/item/paper/talisman/proc/supply(key)
 	if (!src.uses)
 		qdel(src)
 		return

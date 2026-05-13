@@ -29,7 +29,7 @@
 	UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
 	. = ..()
 
-/obj/item/motiontracker/proc/handle_motion_tracking(mob/source, var/datum/weakref/RW, var/turf/T)
+/obj/item/motiontracker/proc/handle_motion_tracking(mob/source, datum/weakref/RW, turf/T)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)

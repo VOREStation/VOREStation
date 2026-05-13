@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 
 			teleatom.buckle_mob(rider, TRUE)
 
-/proc/tele_play_specials(atom/movable/teleatom, atom/location, var/datum/effect/effect/system/effect, sound)
+/proc/tele_play_specials(atom/movable/teleatom, atom/location, datum/effect/effect/system/effect, sound)
 	if(!location)
 		return
 

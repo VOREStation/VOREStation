@@ -80,7 +80,7 @@
 	..()
 
 // Hat simulator
-/mob/living/simple_mob/animal/passive/armadillo/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+/mob/living/simple_mob/animal/passive/armadillo/proc/give_hat(obj/item/clothing/head/new_hat, mob/living/user)
 	if(!istype(new_hat))
 		to_chat(user, span_warning("\The [new_hat] isn't a hat."))
 		return
@@ -95,7 +95,7 @@
 		update_icon()
 		return
 
-/mob/living/simple_mob/animal/passive/armadillo/proc/remove_hat(var/mob/living/user)
+/mob/living/simple_mob/animal/passive/armadillo/proc/remove_hat(mob/living/user)
 	if(!hat)
 		to_chat(user, span_warning("\The [src] doesn't have a hat to remove."))
 	else
@@ -146,7 +146,7 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(grande), message), 1 SECOND)
 
-/datum/ai_holder/simple_mob/armadillo/torta/proc/grande(var/message)
+/datum/ai_holder/simple_mob/armadillo/torta/proc/grande(message)
 	var/mob/living/simple_mob/animal/passive/armadillo/bol = holder
 	if(!istype(bol))
 		return

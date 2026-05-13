@@ -28,7 +28,7 @@
 /obj/effect/overmap/visitable/sector/temporary/find_z_levels()
 	LAZYADD(map_z, using_map.get_empty_zlevel())
 
-/obj/effect/overmap/visitable/sector/temporary/proc/is_empty(var/mob/observer)
+/obj/effect/overmap/visitable/sector/temporary/proc/is_empty(mob/observer)
 	if(!LAZYLEN(map_z))
 		log_and_message_admins("CANARY: [src] tried to check is_empty, but map_z is `[map_z || "null"]`")
 		return TRUE
@@ -89,7 +89,7 @@
 	return FALSE
 	// return isnull(client) && !key && stat == DEAD // Allows bodies that players have ghosted from to be deleted - Ater
 
-/proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
+/proc/overmap_spacetravel(turf/space/T, atom/movable/A)
 	if (!T || !A)
 		return
 

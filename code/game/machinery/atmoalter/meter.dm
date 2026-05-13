@@ -105,7 +105,7 @@
 
 	return ..()
 
-/obj/machinery/meter/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/meter/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
@@ -148,5 +148,5 @@
 /obj/machinery/meter/turf/select_target()
 	return loc
 
-/obj/machinery/meter/turf/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/meter/turf/attackby(obj/item/W as obj, mob/user as mob)
 	return

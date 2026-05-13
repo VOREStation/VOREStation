@@ -95,7 +95,7 @@
 		add_overlay(gradient)
 
 
-/obj/machinery/body_scanconsole/update_icon(var/h_ratio)
+/obj/machinery/body_scanconsole/update_icon(h_ratio)
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
 		set_light(0)

@@ -436,7 +436,7 @@ GLOBAL_LIST_INIT(species_sound_map, list(
  * If your species has a gendered sound, DON'T PANIC. Simply set the gender_specific_species_sounds var on the species to true, and when you call this, do it like so:
  * get_species_sound(H.species.species_sounds_male)["emote"] // If we're male, and want an emote sound gendered correctly.
 */
-/proc/get_species_sound(var/sounds)
+/proc/get_species_sound(sounds)
 	if(!islist(GLOB.species_sound_map[sounds])) // We check here if this list actually has anything in it, or if we're about to return a null index
 		return null // Shitty failsafe but better than rewriting an entire litany of procs rn when I'm low on time - Rykka // list('sound/voice/silence.ogg')
 	return GLOB.species_sound_map[sounds] // Otherwise, successfully return our sound
@@ -445,7 +445,7 @@ GLOBAL_LIST_INIT(species_sound_map, list(
  * The following helper proc will select a species' default sounds - useful for if we're set to "Unset"
  * This is ONLY called by Unset, meaning we haven't chosen a species sound.
 */
-/proc/select_default_species_sound(var/datum/preferences/pref) // Called in character setup. This is similar to check_gendered_sounds, except here we pull from the prefs.
+/proc/select_default_species_sound(datum/preferences/pref) // Called in character setup. This is similar to check_gendered_sounds, except here we pull from the prefs.
 	// First, we determine if we're custom-choosing a body or if we're a base game species.
 	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
 	var/datum/species/valid = GLOB.all_species[pref_species]
@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(species_sound_map, list(
 	else
 		return valid.species_sounds
 
-/proc/get_gendered_sound(var/mob/living/user) // Called anywhere we need gender-specific species sounds. Gets the gender-specific sound if one exists, but otherwise, will return the species-generic sound list.
+/proc/get_gendered_sound(mob/living/user) // Called anywhere we need gender-specific species sounds. Gets the gender-specific sound if one exists, but otherwise, will return the species-generic sound list.
 	var/mob/living/carbon/human/H = user
 	if(ishuman(H))
 		if(H.species.gender_specific_species_sounds) // Do we have gender-specific sounds?

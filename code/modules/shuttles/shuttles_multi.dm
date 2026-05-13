@@ -27,7 +27,7 @@
 	start_location = current_location
 	last_location = current_location
 
-/datum/shuttle/autodock/multi/proc/set_destination(var/destination_key, mob/user)
+/datum/shuttle/autodock/multi/proc/set_destination(destination_key, mob/user)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 	next_location = destinations_cache[destination_key]

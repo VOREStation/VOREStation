@@ -3,7 +3,7 @@
 	var/metabolism_speed = 1	// Multiplicative, 1 is full speed, 0.5 is half, etc.
 	var/mob/living/carbon/parent
 
-/datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class = null)
+/datum/reagents/metabolism/New(max = 100, mob/living/carbon/parent_mob, met_class = null)
 	..(max, parent_mob)
 
 	if(met_class)

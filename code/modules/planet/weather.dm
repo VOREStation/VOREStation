@@ -17,7 +17,7 @@
 
 	var/firework_override = FALSE
 
-/datum/weather_holder/New(var/source)
+/datum/weather_holder/New(source)
 	..()
 	our_planet = source
 	for(var/A in allowed_weather_types)
@@ -41,7 +41,7 @@
 	T.vis_contents -= visuals
 	T.vis_contents -= special_visuals
 
-/datum/weather_holder/proc/change_weather(var/new_weather)
+/datum/weather_holder/proc/change_weather(new_weather)
 	var/old_light_modifier = null
 	var/datum/weather/old_weather = null
 	if(current_weather)
@@ -86,7 +86,7 @@
 
 // Used to determine what the weather will be soon, in a semi-random fashion.
 // The forecast is made by calling this repeatively, from the bottom (highest index) of the forecast list.
-/datum/weather_holder/proc/get_next_weather(var/datum/weather/W)
+/datum/weather_holder/proc/get_next_weather(datum/weather/W)
 	if(!current_weather) // At roundstart, choose a suitable initial weather.
 		return pickweight(roundstart_weather_chances)
 	return pickweight(W.transition_chances)

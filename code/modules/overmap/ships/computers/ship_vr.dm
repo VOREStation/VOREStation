@@ -4,7 +4,7 @@ Ships can now be hijacked!
 /obj/machinery/computer/ship
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-/obj/machinery/computer/ship/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/ship/emag_act(remaining_charges, mob/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()

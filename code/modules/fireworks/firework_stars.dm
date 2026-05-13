@@ -7,7 +7,7 @@
 	icon_state = "star"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/firework_star/proc/trigger_firework(var/datum/weather_holder/w_holder)
+/obj/item/firework_star/proc/trigger_firework(datum/weather_holder/w_holder)
 	return
 
 
@@ -16,7 +16,7 @@
 	desc = "A firework star designed to alter a weather, rather than put on a show."
 	var/weather_type
 
-/obj/item/firework_star/weather/trigger_firework(var/datum/weather_holder/w_holder)
+/obj/item/firework_star/weather/trigger_firework(datum/weather_holder/w_holder)
 	if(!w_holder)						// Sanity
 		return
 	if(w_holder.firework_override)		// Make sure weather-based events can't be interfered with
@@ -91,7 +91,7 @@
 	var/list/firework_adjectives = list("beautiful", "pretty", "fancy", "colorful", "bright", "shimmering")
 	var/list/firework_colors = list("red", "orange", "yellow", "green", "cyan", "blue", "purple", "pink", "beige", "white")
 
-/obj/item/firework_star/aesthetic/trigger_firework(var/datum/weather_holder/w_holder)
+/obj/item/firework_star/aesthetic/trigger_firework(datum/weather_holder/w_holder)
 	if(!w_holder)
 		return
 	w_holder.message_all_outdoor_players(get_firework_message())

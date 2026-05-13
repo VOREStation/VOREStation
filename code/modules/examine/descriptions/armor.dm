@@ -1,4 +1,4 @@
-/obj/item/clothing/proc/describe_armor(var/armor_type, var/descriptive_attack_type)
+/obj/item/clothing/proc/describe_armor(armor_type, descriptive_attack_type)
 	if(armor[armor_type])
 		switch(armor[armor_type])
 			if(1 to 20)

@@ -1,7 +1,7 @@
 /*
 	Animals
 */
-/mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/simple_mob/UnarmedAttack(atom/A, proximity)
 	if(!(. = ..()))
 		return
 
@@ -49,7 +49,7 @@
 			else
 				attack_target(A)
 
-/mob/living/simple_mob/RangedAttack(var/atom/A)
+/mob/living/simple_mob/RangedAttack(atom/A)
 //	setClickCooldown(get_attack_speed())
 
 	if(can_special_attack(A) && special_attack_target(A))

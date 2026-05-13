@@ -404,7 +404,7 @@
 		return
 	setEmotion(16)
 
-/obj/item/paicard/attackby(var/obj/item/I as obj, mob/user as mob)
+/obj/item/paicard/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/tool/screwdriver))
 		if(panel_open)
 			panel_open = FALSE
@@ -882,6 +882,6 @@
 /obj/random/paicard/item_to_spawn()
 	return pick(/obj/item/paicard ,/obj/item/paicard/typeb)
 
-/obj/item/paicard/digest_act(var/atom/movable/item_storage = null)
+/obj/item/paicard/digest_act(atom/movable/item_storage = null)
 	if(pai.digestable)
 		return ..()

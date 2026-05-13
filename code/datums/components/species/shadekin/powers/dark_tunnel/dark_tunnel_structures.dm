@@ -190,11 +190,11 @@ GLOBAL_LIST_BOILERPLATE(all_darkportal_minions, /obj/structure/dark_portal/minio
 	else
 		to_chat(user, span_notice("You touch the portal, your hand able to pass through without harm."))
 
-/obj/structure/dark_portal/proc/check_to_close(var/obj/structure/dark_portal/target)
+/obj/structure/dark_portal/proc/check_to_close(obj/structure/dark_portal/target)
 	if(locked == target)
 		close_portal()
 
-/obj/structure/dark_portal/proc/check_to_close_desc(var/old_locked)
+/obj/structure/dark_portal/proc/check_to_close_desc(old_locked)
 	if(locked == old_locked)
 		close_portal()
 

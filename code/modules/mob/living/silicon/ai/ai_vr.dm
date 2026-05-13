@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Initialize(mapload, is_decoy, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = FALSE)
+/mob/living/silicon/ai/Initialize(mapload, is_decoy, datum/ai_laws/L, obj/item/mmi/B, safety = FALSE)
 	. = ..()
 	add_language(LANGUAGE_BIRDSONG,		1)
 	add_language(LANGUAGE_SAGARU,		1)
@@ -9,7 +9,7 @@
 	add_language(LANGUAGE_DRUDAKAR,		1)
 	add_language(LANGUAGE_TAVAN,		1)
 
-/mob/AIize(var/move = TRUE)
+/mob/AIize(move = TRUE)
 	. = ..()
 	add_language(LANGUAGE_BIRDSONG,		1)
 	add_language(LANGUAGE_SAGARU,		1)

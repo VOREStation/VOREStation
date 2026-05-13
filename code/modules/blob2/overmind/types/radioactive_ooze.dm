@@ -20,7 +20,7 @@
 	attack_message_synth = ", and your internal systems are bombarded by ionizing radiation"
 	attack_verb = "splashes"
 
-/datum/blob_type/radioactive_ooze/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/radioactive_ooze/on_pulse(obj/structure/blob/B)
 	radiation_pulse(
 		src,
 		max_range = 5,

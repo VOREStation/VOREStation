@@ -119,7 +119,7 @@ ADMIN_VERB(intercom_view, R_DEBUG, "Intercom Range Display", "Displays the inter
 /client/var/usedZAScolors = 0
 /client/var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/datum/zone/Z, var/recurse_level =1)
+/client/proc/recurse_zone(datum/zone/Z, recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return

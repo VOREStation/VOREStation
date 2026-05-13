@@ -16,7 +16,7 @@
 	else
 		effect_color = "#3879ad"
 
-/datum/artifact_effect/robohealth/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/robohealth/DoEffectTouch(mob/user)
 	if(user)
 		if(isrobot(user))
 			var/mob/living/silicon/robot/R = user

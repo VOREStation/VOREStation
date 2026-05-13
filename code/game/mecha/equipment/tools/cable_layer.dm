@@ -14,7 +14,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/MoveAction()
 	layCable()
 
-/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/action(var/obj/item/stack/cable_coil/target)
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/action(obj/item/stack/cable_coil/target)
 	if(!action_checks(target))
 		return
 	var/result = load_cable(target)
@@ -53,7 +53,7 @@
 		return "[output] \[Cable: [cable ? cable.get_amount() : 0] m\][(cable && cable.get_amount()) ? "- <a href='byond://?src=\ref[src];toggle=1'>[!equip_ready?"Dea":"A"]ctivate</a>|<a href='byond://?src=\ref[src];cut=1'>Cut</a>" : null]"
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/load_cable(obj/item/stack/cable_coil/CC)
 	if(istype(CC) && CC.get_amount())
 		var/cur_amount = cable? cable.get_amount() : 0
 		var/to_load = max(max_cable - cur_amount,0)
@@ -85,7 +85,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/reset()
 	last_piece = null
 
-/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/dismantleFloor(var/turf/new_turf)
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/dismantleFloor(turf/new_turf)
 	new_turf = get_turf(chassis)
 	if(istype(new_turf, /turf/simulated/floor))
 		var/turf/simulated/floor/T = new_turf
@@ -93,7 +93,7 @@
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/layCable(var/turf/new_turf)
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/layCable(turf/new_turf)
 	new_turf = get_turf(chassis)
 	if(equip_ready || !istype(new_turf, /turf/simulated/floor) || !dismantleFloor(new_turf))
 		return reset()

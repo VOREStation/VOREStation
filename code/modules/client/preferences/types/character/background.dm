@@ -123,7 +123,7 @@
 /datum/category_item/player_setup_item/general/background/sanitize_character()
 	return
 
-/datum/category_item/player_setup_item/general/background/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/background/copy_to_mob(mob/living/carbon/human/character)
 	return
 
 /datum/category_item/player_setup_item/general/background/tgui_data(mob/user)

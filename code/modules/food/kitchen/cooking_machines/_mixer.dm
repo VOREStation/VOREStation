@@ -16,7 +16,7 @@ fundamental differences
 	var/datum/looping_sound/mixer/mixer_loop
 	tgui_id = "KitchenMixer"
 
-/obj/machinery/appliance/mixer/examine(var/mob/user)
+/obj/machinery/appliance/mixer/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += span_notice("It is currently set to make a [selected_option]")
@@ -51,7 +51,7 @@ fundamental differences
 	CI.combine_target = selected_option
 
 
-/obj/machinery/appliance/mixer/has_space(var/obj/item/I)
+/obj/machinery/appliance/mixer/has_space(obj/item/I)
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if (!CI || !CI.container)
 		return 0
@@ -62,7 +62,7 @@ fundamental differences
 	return 0
 
 
-/obj/machinery/appliance/mixer/can_remove_items(var/mob/user, show_warning = TRUE)
+/obj/machinery/appliance/mixer/can_remove_items(mob/user, show_warning = TRUE)
 	if(stat)
 		return 1
 	else
@@ -120,14 +120,14 @@ fundamental differences
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)
+/obj/machinery/appliance/mixer/can_insert(obj/item/I, mob/user)
 	if(!stat)
 		to_chat(user, span_warning(",You can't add items while \the [src] is running. Wait for it to finish or turn the power off to abort."))
 		return 0
 	else
 		return ..()
 
-/obj/machinery/appliance/mixer/finish_cooking(var/datum/cooking_item/CI)
+/obj/machinery/appliance/mixer/finish_cooking(datum/cooking_item/CI)
 	..()
 	stat |= POWEROFF
 	playsound(src, 'sound/machines/click.ogg', 40, 1)

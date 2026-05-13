@@ -7,7 +7,7 @@
 	var/area_path = null
 	var/expectation = UT_NORMAL
 
-/datum/unit_test/zas_area_test/proc/test_air_in_area(var/test_area, var/expectation = UT_NORMAL)
+/datum/unit_test/zas_area_test/proc/test_air_in_area(test_area, expectation = UT_NORMAL)
 	var/test_result = list("result" = 0, "msg" = "")
 
 	var/area/A = locate(test_area)

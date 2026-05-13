@@ -12,7 +12,7 @@
 	return 0
 
 //returns the number of size categories between two mob_sizes, rounded. Positive means A is larger than B
-/proc/mob_size_difference(var/mob_size_A, var/mob_size_B)
+/proc/mob_size_difference(mob_size_A, mob_size_B)
 	return round(log(2, mob_size_A/mob_size_B), 1)
 
 /mob/proc/can_wield_item(obj/item/W)
@@ -64,7 +64,7 @@
 			return 1
 	return 0
 
-/proc/hassensorlevel(A, var/level)
+/proc/hassensorlevel(A, level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -79,7 +79,7 @@
 	return SUIT_SENSOR_OFF
 
 
-/proc/is_admin(var/mob/user)
+/proc/is_admin(mob/user)
 	return check_rights_for(user.client, R_ADMIN|R_EVENT) != 0
 
 /**
@@ -384,7 +384,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 0
 
 
-/mob/proc/abiotic(var/full_body = 0)
+/mob/proc/abiotic(full_body = 0)
 	return 0
 
 //converts intent-strings into numbers and back
@@ -439,7 +439,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			return 1
 	return 0
 
-/proc/mobs_in_area(var/area/A)
+/proc/mobs_in_area(area/A)
 	var/list/mobs = list()
 	for(var/M in GLOB.mob_list)
 		if(get_area(M) == A)
@@ -449,7 +449,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 //Direct dead say used both by emote and say
 //It is somewhat messy. I don't know what to do.
 //I know you can't see the change, but I rewrote the name code. It is significantly less messy now
-/proc/say_dead_direct(var/message, var/mob/subject = null)
+/proc/say_dead_direct(message, mob/subject = null)
 	var/name
 	var/keyname
 	if(subject && subject.client)
@@ -502,7 +502,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 				lname = span_name("[lname]") + " "
 			to_chat(M, span_deadsay("" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]"))
 
-/proc/say_dead_object(var/message, var/obj/subject = null)
+/proc/say_dead_object(message, obj/subject = null)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (check_rights_for(M.client, R_HOLDER) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
@@ -517,7 +517,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			to_chat(M, span_deadsay(create_text_tag("event_dead", "EVENT:", M.client) + " [lname][follow][message]"))
 
 //Announces that a ghost has joined/left, mainly for use with wizards
-/proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
+/proc/announce_ghost_joinleave(O, joined_ghosts = 1, message = "")
 	var/client/C
 	//Accept any type, sort what we want here
 	if(istype(O, /mob))
@@ -552,12 +552,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		else
 			say_dead_direct(span_name("[name]") + " no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
-/mob/proc/switch_to_camera(var/obj/machinery/camera/C)
+/mob/proc/switch_to_camera(obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || !check_current_machine(src) || blinded || !canmove))
 		return 0
 	return 1
 
-/mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
+/mob/living/silicon/ai/switch_to_camera(obj/machinery/camera/C)
 	if(!C.can_use() || !is_in_chassis())
 		return 0
 
@@ -565,7 +565,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 1
 
 // Returns true if the mob has a client which has been active in the last given X minutes.
-/mob/proc/is_client_active(var/active = 1)
+/mob/proc/is_client_active(active = 1)
 	return client && client.inactivity < active MINUTES
 
 /mob/proc/can_eat()
@@ -575,19 +575,19 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 1
 
 #define SAFE_PERP -50
-/mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/proc/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(stat == DEAD)
 		return SAFE_PERP
 
 	return 0
 
-/mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
-/mob/living/carbon/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -630,7 +630,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 	return threatcount
 
-/mob/living/simple_mob/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_mob/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -640,7 +640,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return threatcount
 
 // Beepsky will (try to) only beat 'bad' slimes.
-/mob/living/simple_mob/slime/xenobio/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_mob/slime/xenobio/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = 0
 
 	if(stat == DEAD)
@@ -736,14 +736,14 @@ GLOBAL_DATUM_INIT(backplane, /image, generate_backplane())
 
 	return backplane
 
-/mob/proc/get_sound_env(var/spot, var/pressure_factor)
+/mob/proc/get_sound_env(spot, pressure_factor)
 	if (pressure_factor < 0.5)
 		return SPACE
 	else
 		var/area/A = get_area(spot)
 		return A.sound_env
 
-/mob/proc/position_hud_item(var/obj/item/item, var/slot)
+/mob/proc/position_hud_item(obj/item/item, slot)
 	if(!istype(hud_used) || !slot || !LAZYLEN(hud_used.slot_info))
 		return
 
@@ -768,7 +768,7 @@ GLOBAL_DATUM_INIT(backplane, /image, generate_backplane())
 	return TRUE
 
 
-/atom/proc/living_mobs_in_view(var/range = world.view, var/count_held = FALSE, var/needs_client = FALSE)
+/atom/proc/living_mobs_in_view(range = world.view, count_held = FALSE, needs_client = FALSE)
 	var/list/viewers = oviewers(src, range)
 	if(count_held)
 		viewers = viewers(src,range)
