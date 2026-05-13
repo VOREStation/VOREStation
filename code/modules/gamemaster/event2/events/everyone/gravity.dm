@@ -19,7 +19,7 @@
 /datum/event2/event/gravity/announce()
 	command_announcement.Announce("Feedback surge detected in mass-distributions systems. \
 	Artificial gravity has been disabled whilst the system reinitializes. \
-	Please stand by while the gravity system reinitializes.", "Gravity Failure")
+	Please stand by while the gravity system reinitializes.", "Gravity Failure", ANNOUNCER_MSG_GRAVITY_OFF)
 
 /datum/event2/event/gravity/start()
 	for(var/area/A in world)
@@ -31,4 +31,4 @@
 		if(!(A.flags & AREA_ALWAYS_HAS_GRAVITY) && A.z in get_location_z_levels(space_only = TRUE))
 			A.gravitychange(TRUE)
 
-	command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+	command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored", ANNOUNCER_MSG_GRAVITY_ON)

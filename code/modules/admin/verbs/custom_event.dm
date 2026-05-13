@@ -1,21 +1,14 @@
 // verb for admins to set custom event
-/client/proc/cmd_admin_change_custom_event()
-	set category = "Fun.Event Kit"
-	set name = "Change Custom Event"
-
-	if(!check_rights_for(src, R_HOLDER))
-		to_chat(src, "Only administrators may use this command.")
+ADMIN_VERB(cmd_admin_change_custom_event, R_ADMIN|R_FUN|R_SERVER|R_EVENT, "Change Custom Event", "Change custom event message.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/input = tgui_input_text(user, "Enter the description of the custom event. Be descriptive. To cancel the event, make this blank or hit cancel.", "Custom Event", GLOB.custom_event_msg, MAX_PAPER_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+	if(isnull(input))
 		return
-
-	var/input = tgui_input_text(usr, "Enter the description of the custom event. Be descriptive. To cancel the event, make this blank or hit cancel.", "Custom Event", GLOB.custom_event_msg, MAX_PAPER_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
-	if(!input || input == "")
+	if(input == "")
 		GLOB.custom_event_msg = null
-		log_admin("[usr.key] has cleared the custom event text.")
-		message_admins("[key_name_admin(usr)] has cleared the custom event text.")
+		log_and_message_admins("has cleared the custom event text.", user)
 		return
 
-	log_admin("[usr.key] has changed the custom event text.")
-	message_admins("[key_name_admin(usr)] has changed the custom event text.")
+	log_and_message_admins("has changed the custom event text.", user)
 
 	GLOB.custom_event_msg = input
 

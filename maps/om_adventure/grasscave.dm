@@ -58,7 +58,7 @@
 /obj/effect/overmap/visitable/simplemob/spacewhale/grasscave
 	initial_generic_waypoints = list("om-grasscave-center", "om-grasscave-center2", "om-grasscave-southeast", "om-grasscave-southeast2")
 
-/turf/simulated/mineral/omadventure/make_ore(var/rare_ore)
+/turf/simulated/mineral/omadventure/make_ore(rare_ore)
 	if(mineral)
 		return
 	var/mineral_name

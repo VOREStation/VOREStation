@@ -12,7 +12,7 @@
 	var/travel_time = 0							// How long it takes to move from start to end, or end to start.  Set to 0 for instant travel.
 	var/one_way = FALSE							// If true, you can't travel from end to start.
 
-/datum/shuttle_route/New(var/_start, var/_end, var/_interim, var/_time = 0, var/_oneway = FALSE)
+/datum/shuttle_route/New(_start, _end, _interim, _time = 0, _oneway = FALSE)
 	start = _start
 	end = _end
 	if(_interim)
@@ -25,14 +25,14 @@
 	end.routes -= src
 	return ..()
 
-/datum/shuttle_route/proc/get_other_side(var/datum/shuttle_destination/PoV)
+/datum/shuttle_route/proc/get_other_side(datum/shuttle_destination/PoV)
 	if(PoV == start)
 		return end
 	if(PoV == end)
 		return start
 	return null
 
-/datum/shuttle_route/proc/display_route(var/datum/shuttle_destination/PoV)
+/datum/shuttle_route/proc/display_route(datum/shuttle_destination/PoV)
 	var/datum/shuttle_destination/target = null
 	if(PoV == start)
 		target = end
@@ -69,7 +69,7 @@
 	// The list format is '/datum/shuttle_destination/subtype = 1 MINUTES'
 	var/list/routes_to_make = list()
 
-/datum/shuttle_destination/New(var/new_master)
+/datum/shuttle_destination/New(new_master)
 	my_landmark = SSshuttles.get_landmark(my_landmark)
 	if(!my_landmark)
 		log_mapping("Web shuttle destination '[name]' could not find its landmark '[my_landmark]'.") // Important error message
@@ -84,7 +84,7 @@
 //	build_destinations()
 
 // This builds destination instances connected to this instance, recursively.
-/datum/shuttle_destination/proc/build_destinations(var/list/already_made = list())
+/datum/shuttle_destination/proc/build_destinations(list/already_made = list())
 	already_made += src.type
 	to_chat(world, "SHUTTLES: [name] is going to build destinations.  already_made list is \[[english_list(already_made)]\]")
 	for(var/type_to_make in destinations_to_create)
@@ -105,10 +105,10 @@
 	to_chat(world, "SHUTTLES: [name] has finished building destinations.  already_made list is \[[english_list(already_made)]\].")
 	return already_made
 
-/datum/shuttle_destination/proc/enter(var/datum/shuttle_destination/old_destination)
+/datum/shuttle_destination/proc/enter(datum/shuttle_destination/old_destination)
 	announce_arrival()
 
-/datum/shuttle_destination/proc/exit(var/datum/shuttle_destination/new_destination)
+/datum/shuttle_destination/proc/exit(datum/shuttle_destination/new_destination)
 	announce_departure()
 
 /datum/shuttle_destination/proc/get_departure_message()
@@ -135,7 +135,7 @@
 	else
 		GLOB.global_announcer.autosay(get_arrival_message(),(announcer ? announcer : "[using_map.boss_name]"))
 
-/datum/shuttle_destination/proc/link_destinations(var/datum/shuttle_destination/other_place, var/interim_tag, var/travel_time = 0)
+/datum/shuttle_destination/proc/link_destinations(datum/shuttle_destination/other_place, interim_tag, travel_time = 0)
 	// First, check to make sure this doesn't cause a duplicate route.
 	for(var/datum/shuttle_route/R in routes)
 		if(R.start == other_place || R.end == other_place)
@@ -177,7 +177,7 @@
 	var/list/autopaths = list()									// Potential autopaths the autopilot can use. The autopath's start var must equal current_destination to be viable.
 	var/autopath_class = null									// Similar to destination_class, used for typesof().
 
-/datum/shuttle_web_master/New(var/new_shuttle, var/new_destination_class = null)
+/datum/shuttle_web_master/New(new_shuttle, new_destination_class = null)
 	my_shuttle = new_shuttle
 	if(new_destination_class)
 		destination_class = new_destination_class
@@ -223,7 +223,7 @@
 	RETURN_TYPE(/datum/shuttle_destination)
 	return current_destination
 
-/datum/shuttle_web_master/proc/get_destination_by_type(var/type_to_get)
+/datum/shuttle_web_master/proc/get_destination_by_type(type_to_get)
 	return locate(type_to_get) in destinations
 
 // Autopilot stuff.

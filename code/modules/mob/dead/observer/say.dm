@@ -1,4 +1,4 @@
-/mob/observer/dead/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/observer/dead/say(message, datum/language/speaking = null, whispering = 0)
 	message = sanitize(message)
 
 	if(!message)

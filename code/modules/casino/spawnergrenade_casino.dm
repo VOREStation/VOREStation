@@ -4,7 +4,6 @@
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "casino_delivery"
 	item_state = "flashbang"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2)
 	spawner_type = /mob/living/simple_mob/animal/passive/cat
 
 //

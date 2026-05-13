@@ -68,7 +68,6 @@
 	name = T_BOARD("power compressor")
 	build_path = /obj/machinery/compressor
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/manipulator = 6)
 	hidden = TRUE // todo - Make properly constructable in round
 
@@ -76,7 +75,6 @@
 	name = T_BOARD("power turbine")
 	build_path = /obj/machinery/power/turbine
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 4)
 	req_components = list(/obj/item/stack/cable_coil = 5, /obj/item/stock_parts/capacitor = 6)
 	hidden = TRUE // todo - Make properly constructable in round
 
@@ -132,7 +130,7 @@
 		return
 	return ..()
 
-/obj/machinery/compressor/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
+/obj/machinery/compressor/default_unfasten_wrench(mob/user, obj/item/W, time = 20)
 	if((. = ..()))
 		turbine = null
 		if(anchored)
@@ -230,7 +228,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/turbine/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 20)
+/obj/machinery/power/turbine/default_unfasten_wrench(mob/user, obj/item/W, time = 20)
 	if((. = ..()))
 		compressor = null
 		if(anchored)
@@ -275,7 +273,7 @@
 	if(lastgen > 100)
 		add_overlay(image('icons/obj/pipes.dmi', "turb-o", FLY_LAYER))
 
-/obj/machinery/power/turbine/attack_hand(var/mob/user as mob)
+/obj/machinery/power/turbine/attack_hand(mob/user as mob)
 	if((. = ..()))
 		return
 	tgui_interact(user)
@@ -340,7 +338,7 @@
 			id = new_ident
 		return
 
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/turbine_computer/attack_hand(mob/user as mob)
 	if((. = ..()))
 		return
 	tgui_interact(user)

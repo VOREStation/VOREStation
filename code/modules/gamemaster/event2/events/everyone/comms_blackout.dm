@@ -19,7 +19,7 @@
 					"Ionospheri:%£ MCayj^j<.3-BZZZZZZT", \
 					"#4nd%;f4y6,>£%-BZZZZZZZT")
 	if(prob(33))
-		GLOB.command_announcement.Announce(alert, new_sound = 'sound/misc/interference.ogg')
+		GLOB.command_announcement.Announce(alert, new_sound = ANNOUNCER_MSG_COMMSBLACKOUT)
 	// AIs will always know if there's a comm blackout, rogue AIs could then lie about comm blackouts in the future while they shutdown comms
 	for(var/mob/living/silicon/ai/A in GLOB.player_list)
 		to_chat(A, span_boldwarning("<br>"))

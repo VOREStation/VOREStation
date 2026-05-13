@@ -54,7 +54,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
-/datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
+/datum/species/monkey/handle_npc(mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
 		return
 	// Traitgenes Monkeys perform emotes based on their traits
@@ -77,7 +77,7 @@
 						H.emote(pick("scratch","jump","roll","tail"))
 		// More... intense, expressions...
 		if(prob(5) && H.mutations.len)
-			if((LASER in H.mutations))
+			if((LASER_EYES in H.mutations))
 				// zappy monkeys
 				var/list/targs = list()
 				for(var/atom/X in orange(7, H))
@@ -90,7 +90,7 @@
 /datum/species/monkey/get_random_name()
 	return "[lowertext(name)] ([rand(100,999)])"
 
-/datum/species/monkey/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/monkey/handle_post_spawn(mob/living/carbon/human/H)
 	if(!H.ckey)
 		H.can_be_drop_prey = TRUE
 		H.digest_leave_remains = TRUE

@@ -91,6 +91,7 @@
 /datum/robot_sprite/security/handy
 	name = "Handy"
 	sprite_icon_state = "handy"
+	hat_offset = BORG_HAT_OFFSET_NONE
 
 /datum/robot_sprite/security/mechoid
 	name = "Acheron"
@@ -105,6 +106,7 @@
 	name = "ZOOM-BA"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
+	hat_offset = ZOOMBA_HAT_OFFSET
 
 /datum/robot_sprite/security/worm
 	name = "W02M"
@@ -114,6 +116,7 @@
 	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
+	hat_offset = WORM_HAT_OFFSET
 
 /datum/robot_sprite/security/uptall
 	name = "Feminine Humanoid"
@@ -145,6 +148,7 @@
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	sprite_flags = ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = VALE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/security/borgi
 	name = "Borgi"
@@ -153,6 +157,7 @@
 	has_eye_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	hat_offset = BORGI_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/security/otie
 	name = "Otieborg"
@@ -160,12 +165,14 @@
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	sprite_flags = ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = OTIE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/security/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
 	has_vore_belly_resting_sprites = TRUE
 	sprite_flags = ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+	hat_offset = DRAKE_HAT_OFFSET
 
 // Tall sprites
 
@@ -179,6 +186,7 @@
 	has_custom_equipment_sprites = TRUE
 	sprite_flags = ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/meka
 	name = "MEKA"
@@ -187,6 +195,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/newmeka
 	name = "MEKA v2"
@@ -194,6 +203,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/mmeka
 	name = "NIKO"
@@ -201,6 +211,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/fmeka
 	name = "NIKA"
@@ -208,6 +219,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+	hat_offset = MEKA_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/k4t
 	name = "K4T"
@@ -216,6 +228,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = K4T_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/dullahan
 	name = "Dullahan"
@@ -232,6 +245,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 32
 	pixel_x = 0
+	hat_offset = DULLAHAN_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/dullataur
 	name = "Dullataur"
@@ -247,6 +261,7 @@
 	sprite_decals = list("breastplate")
 	icon_x = 64
 	pixel_x = -16
+	hat_offset = DULLAHAN_TAUR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/security/dullahanv3
 	name = "Dullahan security v3"
@@ -261,6 +276,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	icon_x = 64
 	pixel_x = -16
+	hat_offset = DULLAHAN_HAT_OFFSET
 
 
 /datum/robot_sprite/dogborg/security/vale2
@@ -270,6 +286,7 @@
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default")
+	hat_offset = VALE_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/security/cat
 	name = "Cat"
@@ -287,6 +304,7 @@
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/security/smolraptor/alt
 	name = "Small Raptor Alt"

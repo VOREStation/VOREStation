@@ -1,6 +1,5 @@
 /datum/material/cloth
 	name = MAT_CLOTH
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
 	ignition_point = T0C+232
 	melting_point = T0C+300
@@ -47,7 +46,6 @@
 
 /datum/material/cloth/syncloth
 	name = MAT_SYNCLOTH
-	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 2)
 	ignition_point = T0C+532
 	melting_point = T0C+600
 	integrity = 200
@@ -142,6 +140,7 @@
 	conductive = 0
 	hardness = 5
 	integrity = 40
+	supply_conversion_value = 0.25
 	wiki_flag = WIKI_SPOILER
 
 /datum/material/cotton
@@ -155,6 +154,7 @@
 	conductive = 0
 	hardness = 5
 	integrity = 10
+	supply_conversion_value = 1
 	stack_type = /obj/item/stack/material/cotton
 
 /datum/material/fibers
@@ -171,3 +171,4 @@
 	pass_stack_colors = TRUE
 	hardness = 5
 	integrity = 5
+	supply_conversion_value = 1

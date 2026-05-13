@@ -242,8 +242,8 @@
 	var/data = " - Mundane object: [scanned_item.desc ? scanned_item.desc : "No information on record."]<br>"
 	var/datum/geosample/G
 	switch(scanned_item.type)
-		if(/obj/item/ore)
-			var/obj/item/ore/O = scanned_item
+		if(/obj/item/ore/archeology_debris)
+			var/obj/item/ore/archeology_debris/O = scanned_item
 			if(O.geologic_data)
 				G = O.geologic_data
 

@@ -1004,35 +1004,6 @@ h2.alert {
   font-style: italic;
 }
 
-.hypnophrase {
-  color: hsl(0, 0%, 5%);
-  font-weight: bold;
-  animation: hypnocolor 1500ms infinite;
-  animation-direction: alternate;
-}
-
-@keyframes hypnocolor {
-  0% {
-    color: hsl(0, 0%, 5%);
-  }
-
-  25% {
-    color: hsl(266, 99%, 29%);
-  }
-
-  50% {
-    color: hsl(272, 81%, 47%);
-  }
-
-  75% {
-    color: hsl(266, 99%, 29%);
-  }
-
-  100% {
-    color: hsl(192, 63%, 53%);
-  }
-}
-
 .phobia {
   color: hsl(0, 100%, 43%);
   font-weight: bold;
@@ -1522,6 +1493,35 @@ $border-width-px: $border-width * 1px;
 .wingdings {
   color: hsl(212, 100%, 50%);
   font-family: Wingdings, Webdings;
+}
+
+.hypnophrase {
+  color: hsl(0, 0%, 5.1%);
+  font-weight: bold;
+  animation: hypnocolor 1500ms infinite;
+  animation-direction: alternate;
+}
+
+@keyframes hypnocolor {
+  0% {
+    color: hsl(0, 0%, 5.1%);
+  }
+
+  25% {
+    color: hsl(266.1, 98.7%, 29.2%);
+  }
+
+  50% {
+    color: hsl(272.3, 80.8%, 46.9%);
+  }
+
+  75% {
+    color: hsl(266.1, 98.7%, 29.2%);
+  }
+
+  100% {
+    color: hsl(191.8, 63.3%, 52.9%);
+  }
 }
 
 .rainbow {

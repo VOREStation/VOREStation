@@ -17,30 +17,31 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/detective_scanner/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!ishuman(M))
 		to_chat(user, span_warning("\The [M] does not seem to be compatible with this device."))
 		flick("[icon_state]0",src)
-		return 0
+		return ITEM_INTERACT_FAILURE
+	var/mob/living/carbon/human/target = M
 
 	if(reveal_fingerprints)
-		if((!( istype(M.dna, /datum/dna) ) || M.gloves))
-			to_chat(user, span_notice("No fingerprints found on [M]"))
+		if((!( istype(target.dna, /datum/dna) ) || target.gloves))
+			to_chat(user, span_notice("No fingerprints found on [target]"))
 			flick("[icon_state]0",src)
-			return 0
+			return ITEM_INTERACT_FAILURE
 		else if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
 			var/obj/item/sample/print/P = new /obj/item/sample/print(user.loc)
-			P.attack(M, user)
+			P.attack(target, user)
 			to_chat(user, span_notice("Done printing."))
 	//		to_chat(user, span_notice("[M]'s Fingerprints: [md5(M.dna.uni_identity)]"))
 
-	if(reveal_blood && M.forensic_data?.has_blooddna())
-		to_chat(user, span_notice("Blood found on [M]. Analysing..."))
+	if(reveal_blood && target.forensic_data?.has_blooddna())
+		to_chat(user, span_notice("Blood found on [target]. Analysing..."))
 		spawn(15)
-			var/list/blooddna = M.forensic_data.get_blooddna()
+			var/list/blooddna = target.forensic_data.get_blooddna()
 			for(var/blood in blooddna)
 				to_chat(user, span_notice("Blood type: [blooddna[blood]]\nDNA: [blood]"))
-	return
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
 	if(!proximity) return
@@ -149,7 +150,7 @@
 	//to_world("usr is [usr]") //why was this a thing? -KK.
 	display_data(usr)
 
-/obj/item/detective_scanner/proc/display_data(var/mob/user)
+/obj/item/detective_scanner/proc/display_data(mob/user)
 	if(user && stored && stored.len)
 		for(var/objref in stored)
 			if(!do_after(user, 1 SECOND, target = src)) // So people can move and stop the spam, if they refuse to wipe data.

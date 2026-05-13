@@ -19,4 +19,4 @@
 /datum/event2/event/security_drill/announce()
 	GLOB.command_announcement.Announce("[pick("A NanoTrasen security director", "A Vir-Gov correspondant", "Local Sif authoritiy")] \
 	has advised the enactment of [pick("a rampant wildlife", "a fire", "a hostile boarding", \
-	"a bomb", "an emergent intelligence")] drill with the personnel onboard \the [location_name()].", "Security Advisement")
+	"a bomb", "an emergent intelligence")] drill with the personnel onboard \the [location_name()].", "Security Advisement", new_sound = ANNOUNCER_MSG_SECURITY_ADVISEMENT)

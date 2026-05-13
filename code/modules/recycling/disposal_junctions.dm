@@ -56,7 +56,6 @@
 	var/last_sort = FALSE
 	var/sort_scan = TRUE
 	var/panel_open = FALSE
-	var/datum/wires/wires = null // ...Why isnt this defined on /atom...
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
@@ -90,7 +89,7 @@
 	if(sortType)
 		LAZYADD(GLOB.tagger_locations["[sortType]"], get_z(src))
 
-	wires = new /datum/wires/disposals(src)
+	set_wires(new /datum/wires/disposals(src))
 
 	updatedir()
 	updatename()
@@ -217,13 +216,13 @@
 		H.destinationTag = check_for_corpse_or_id(H)
 	. = ..()
 
-/obj/structure/disposalpipe/sortjunction/bodies/divert_check(var/checkTag)
+/obj/structure/disposalpipe/sortjunction/bodies/divert_check(checkTag)
 	return checkTag == CORPSE_SORT_TAG
 
 /obj/structure/disposalpipe/sortjunction/bodies/flipped
 	icon_state = "pipe-j2s"
 
-/obj/structure/disposalpipe/sortjunction/bodies/proc/check_for_corpse_or_id(var/obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/sortjunction/bodies/proc/check_for_corpse_or_id(obj/structure/disposalholder/H)
 	for(var/mob/living/L in H)
 		if(iscarbon(L)) // only living carbons count not silicons, drones can control their own mailing destination...
 			return CORPSE_SORT_TAG

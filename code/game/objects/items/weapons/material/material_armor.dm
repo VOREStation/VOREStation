@@ -35,7 +35,7 @@ Protectiveness | Armor %
 	var/material_slowdown_modifier = 0
 	var/material_slowdown_multiplier = 0.5
 
-/obj/item/clothing/Initialize(mapload, var/material_key)
+/obj/item/clothing/Initialize(mapload, material_key)
 	. = ..()
 	if(!material_key)
 		material_key = default_material
@@ -46,7 +46,7 @@ Protectiveness | Armor %
 	return material
 
 // Debating if this should be made an /obj/item/ proc.
-/obj/item/clothing/proc/set_material(var/new_material)
+/obj/item/clothing/proc/set_material(new_material)
 	material = get_material_by_name(new_material)
 	if(!material)
 		qdel(src)
@@ -61,11 +61,11 @@ Protectiveness | Armor %
 
 // This is called when someone wearing the object gets hit in some form (melee, bullet_act(), etc).
 // Note that this cannot change if someone gets hurt, as it merely reacts to being hit.
-/obj/item/clothing/proc/clothing_impact(var/obj/source, var/damage)
+/obj/item/clothing/proc/clothing_impact(obj/source, damage)
 	if(material && damage)
 		material_impact(source, damage)
 
-/obj/item/clothing/proc/material_impact(var/obj/source, var/damage)
+/obj/item/clothing/proc/material_impact(obj/source, damage)
 	if(!material || unbreakable)
 		return
 
@@ -99,7 +99,7 @@ Protectiveness | Armor %
 	qdel(src)
 
 // Might be best to make ablative vests a material armor using a new material to cut down on this copypaste.
-/obj/item/clothing/suit/armor/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/clothing/suit/armor/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(!material) // No point checking for reflection.
 		return ..()
 
@@ -288,7 +288,7 @@ Protectiveness | Armor %
 	name = "plate insert"
 	desc = "used to craft armor plates for a plate carrier. Trim with a welder for light armor or add a second for heavy armor"
 
-/obj/item/material/armor_plating/attackby(var/obj/O, mob/user)
+/obj/item/material/armor_plating/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O
 		if(wired)
@@ -320,7 +320,7 @@ Protectiveness | Armor %
 		..()
 
 //Make plating inserts for modular armour.
-/obj/item/material/armor_plating/insert/attackby(var/obj/item/O, mob/user)
+/obj/item/material/armor_plating/insert/attackby(obj/item/O, mob/user)
 
 	. = ..()
 
@@ -380,7 +380,7 @@ Protectiveness | Armor %
 	name = "wooden bucket"
 	icon_state = "woodbucket"
 
-/obj/item/clothing/head/helmet/bucket/attackby(var/obj/O, mob/user)
+/obj/item/clothing/head/helmet/bucket/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/stack/material))
 		var/obj/item/stack/material/S = O
 		if(S.use(2))

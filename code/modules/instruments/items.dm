@@ -121,7 +121,7 @@
 	. = ..()
 	AddComponent(/datum/component/spooky)
 */
-/obj/item/instrument/trumpet/spectral/attack(mob/living/carbon/C, mob/user)
+/obj/item/instrument/trumpet/spectral/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	playsound (src, 'sound/runtime/instruments/trombone/En4.mid', 100,1,-1)
 	..()
 
@@ -144,7 +144,7 @@
 	AddComponent(/datum/component/spooky)
 */
 
-/obj/item/instrument/saxophone/spectral/attack(mob/living/carbon/C, mob/user)
+/obj/item/instrument/saxophone/spectral/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	playsound (src, 'sound/runtime/instruments/saxophone/En4.mid', 100,1,-1)
 	..()
 
@@ -167,7 +167,7 @@
 	AddComponent(/datum/component/spooky)
 */
 
-/obj/item/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
+/obj/item/instrument/trombone/spectral/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	playsound (src, 'sound/runtime/instruments/trombone/Cn4.mid', 100,1,-1)
 	..()
 

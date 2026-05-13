@@ -104,22 +104,12 @@
 	icon_state = "health"
 	w_class = ITEMSIZE_SMALL
 	var/static/list/possible_states = list("health", "spider", "slime", "emp", "species", "egg", "vent", "mindshock", "viral", "gland")
-	var/static/list/possible_tech = list(TECH_MATERIAL, TECH_ENGINEERING, TECH_PHORON, TECH_POWER, TECH_BIO, TECH_COMBAT, TECH_MAGNET, TECH_DATA)
 
 /obj/item/prop/alien/junk/Initialize(mapload)
 	. = ..()
 	icon_state = pick(possible_states)
-	var/list/techs = possible_tech.Copy()
-	origin_tech = list()
-	for(var/i = 1 to rand(1, 4))
-		var/new_tech = pick(techs)
-		techs -= new_tech
-		origin_tech[new_tech] = rand(5, 9)
-
-	origin_tech[TECH_PRECURSOR] = rand(0,2)
 
 /obj/item/prop/alien/phasecoil
 	name = "reverberating device"
 	desc = "A device pulsing with an ominous energy."
 	icon_state = "circuit_phase"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_PHORON = 3, TECH_POWER = 5, TECH_MAGNET = 5, TECH_DATA = 5, TECH_PRECURSOR = 2, TECH_ARCANE = 1)

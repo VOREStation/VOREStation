@@ -54,7 +54,7 @@
 /datum/modifier/changeling_camouflage/recursive
 	must_walk = FALSE
 
-/datum/modifier/changeling_camouflage/can_apply(var/mob/living/L, var/suppress_failure = FALSE)
+/datum/modifier/changeling_camouflage/can_apply(mob/living/L, suppress_failure = FALSE)
 	comp = L.GetComponent(/datum/component/antag/changeling)
 	if(!comp)
 		return FALSE

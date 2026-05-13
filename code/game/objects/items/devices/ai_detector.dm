@@ -11,7 +11,6 @@
 	var/range_alert = 7			// Will turn red if the AI can observe its holder.
 	var/range_warning = 14		// Will turn yellow if the AI's eye is near the holder.
 	var/detect_state = PROXIMITY_NONE
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
 	description_antag = "Functions as a normal multitool with one added benefit.<br>\
 	This will change colors and make sounds (that only you can hear) during various events.<br>\
 	BLUE: You are outside of camera range.<br>\
@@ -81,7 +80,7 @@
 /obj/item/multitool/ai_detector/update_icon()
 	icon_state = "[initial(icon_state)][detect_state]"
 
-/obj/item/multitool/ai_detector/proc/update_warning(var/old_state, var/new_state)
+/obj/item/multitool/ai_detector/proc/update_warning(old_state, new_state)
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// Now to warn our holder, if the state changes.

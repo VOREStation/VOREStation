@@ -104,12 +104,12 @@
 
 	return dat
 
-/obj/effect/overmap/Crossed(var/obj/effect/overmap/visitable/other)
+/obj/effect/overmap/Crossed(obj/effect/overmap/visitable/other)
 	if(istype(other))
 		for(var/obj/effect/overmap/visitable/O in loc)
 			SSskybox.rebuild_skyboxes(O.map_z)
 
-/obj/effect/overmap/Uncrossed(var/obj/effect/overmap/visitable/other)
+/obj/effect/overmap/Uncrossed(obj/effect/overmap/visitable/other)
 	if(istype(other))
 		SSskybox.rebuild_skyboxes(other.map_z)
 		for(var/obj/effect/overmap/visitable/O in loc)

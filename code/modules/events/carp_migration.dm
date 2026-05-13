@@ -28,7 +28,7 @@
 	if(count_spawned_carps() < carp_cap)
 		spawn_fish(rand(3, 3 + severity * 2) - 1, 1, severity + 2)
 
-/datum/event/carp_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
+/datum/event/carp_migration/proc/spawn_fish(num_groups, group_size_min, group_size_max, dir)
 	if(isnull(dir))
 		dir = (victim && prob(80)) ? victim.fore_dir : pick(GLOB.cardinal)
 
@@ -69,7 +69,7 @@
 		i++
 
 // Spawn a single carp at given location.
-/datum/event/carp_migration/proc/spawn_one_carp(var/loc)
+/datum/event/carp_migration/proc/spawn_one_carp(loc)
 	var/mob/living/simple_mob/animal/carp_to_spawn = new /mob/living/simple_mob/animal/space/carp/event(loc)
 	RegisterSignal(carp_to_spawn, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_carp_destruction))
 	spawned_carp.Add(carp_to_spawn)

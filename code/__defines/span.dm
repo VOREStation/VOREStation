@@ -163,6 +163,8 @@
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
 #define span_darkpink(str) ("<span class='darkpink'>" + str + "</span>")
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
+#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
+
 
 /* System and Debug */
 // System filter

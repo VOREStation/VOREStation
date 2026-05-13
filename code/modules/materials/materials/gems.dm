@@ -7,7 +7,6 @@
 	icon_colour = "#FC2BC5"
 	shard_type = SHARD_SHARD
 	hardness = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_PHORON = 2)
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
@@ -15,7 +14,7 @@
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/datum/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
+/datum/material/phoron/combustion_effect(turf/T, temperature, effect_multiplier)
 	if(isnull(ignition_point))
 		return 0
 	if(temperature < ignition_point)
@@ -43,7 +42,6 @@
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
-	stack_origin_tech = list(TECH_MATERIAL = 6)
 	supply_conversion_value = 8
 	icon_base = "stone"
 	table_icon_base = "stone"
@@ -89,7 +87,6 @@
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
-	stack_origin_tech = list(TECH_ARCANE = 1, TECH_MATERIAL = 6)
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
 	supply_conversion_value = 30	// These are hilariously rare.
@@ -114,11 +111,11 @@
 	reflectivity = 0.5
 	radiation_resistance = 20
 	spatial_instability = 30
-	stack_origin_tech = list(TECH_MATERIAL = 7, TECH_PHORON = 5, TECH_BLUESPACE = 5)
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
 	icon_base = "stone"
 	table_icon_base = "stone"
+	supply_conversion_value = 10
 
 /datum/material/verdantium
 	name = MAT_VERDANTIUM
@@ -136,7 +133,6 @@
 	conductivity = 60
 	reflectivity = 0.3
 	radiation_resistance = 5
-	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 5, TECH_BIO = 4)
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
 	supply_conversion_value = 8
@@ -161,7 +157,6 @@
 	explosion_resistance = 85
 	reflectivity = 0.2
 	radiation_resistance = 10
-	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 4, TECH_BLUESPACE = 4)
 	supply_conversion_value = 13
 	icon_base = "stone"
 	table_icon_base = "stone"
@@ -184,7 +179,6 @@
 	explosion_resistance = 20
 	reflectivity = 1
 	radiation_resistance = 100
-	stack_origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 8)
 	supply_conversion_value = 15
 	icon_base = "stone"
 	table_icon_base = "stone"

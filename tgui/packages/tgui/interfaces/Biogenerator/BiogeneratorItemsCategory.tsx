@@ -71,7 +71,7 @@ const BiogeneratorItemsEntry = (props: {
               icon="basket-shopping"
               disabled={
                 !canBuyItem(item, beaker) &&
-                (item.price / build_eff) * amount > points
+                Math.ceil(item.price / build_eff) * amount > points
               }
               textAlign="right"
               onClick={() =>
@@ -82,7 +82,7 @@ const BiogeneratorItemsEntry = (props: {
                 })
               }
             >
-              {`${((item.price * amount) / build_eff).toFixed()}`}
+              {`${(Math.ceil(item.price / build_eff) * amount).toFixed()}`}
             </Button>
           </Stack.Item>
         </Stack>
@@ -91,7 +91,7 @@ const BiogeneratorItemsEntry = (props: {
         Price:
       </Table.Cell>
       <Table.Cell collapsing color="label" textAlign="right" width="30px">
-        {`${(item.price / build_eff).toFixed()}`}
+        {`${Math.ceil(item.price / build_eff).toFixed()}`}
       </Table.Cell>
     </Table.Row>
   );

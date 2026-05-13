@@ -93,17 +93,15 @@
 	name = "broken cryptographic sequencer"
 	icon_state = "emag-spent"
 	item_state = "card-id"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 
 /obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
-/obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, var/click_parameters)
+/obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, click_parameters)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
 		return ..(A, user, click_parameters)
@@ -142,7 +140,7 @@
 	uses = 12
 	var/burnt_out = FALSE
 
-/obj/item/card/emag/borg/afterattack(atom/A, mob/user, proximity, var/click_parameters)
+/obj/item/card/emag/borg/afterattack(atom/A, mob/user, proximity, click_parameters)
 	if(!proximity || burnt_out) return
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)

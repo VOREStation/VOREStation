@@ -3,6 +3,7 @@
 	name = DEVELOPER_WARNING_NAME
 	desc = "An earring of some kind."
 	icon = 'icons/inventory/ears/item.dmi'
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/ears/earring/stud
 	name = "pearl stud earrings"
@@ -17,6 +18,7 @@
 /obj/item/clothing/ears/earring/stud/wood
 	name = "wood stud earrings"
 	color = "#824b28"
+	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/ears/earring/stud/iron
 	name = "iron stud earrings"

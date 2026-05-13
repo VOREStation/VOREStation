@@ -35,6 +35,7 @@
 	var/power_usage = 1
 	var/power_use = 1
 	var/flickering = FALSE
+	var/single_use = FALSE
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -96,6 +97,8 @@
 	. = ..(user)
 	if(.)
 		return TRUE
+	if(single_use && on)
+		return FALSE
 	if(special_handling)
 		return FALSE
 	if(flickering)
@@ -118,7 +121,7 @@
 	user.update_mob_action_buttons()
 	return CAN_USE
 
-/obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/flashlight/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == O_EYES)
 
@@ -130,7 +133,7 @@
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
 					to_chat(user, span_warning("You're going to need to remove [C.name] first."))
-					return
+					return ITEM_INTERACT_FAILURE
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
@@ -140,14 +143,14 @@
 										span_notice("You direct [src] at [M]'s face."))
 				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!"))
 				user.setClickCooldown(user.get_attack_speed(src))
-				return
+				return ITEM_INTERACT_FAILURE
 
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] to [M]'s eyes."), \
 									span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))
-					return
+					return ITEM_INTERACT_SUCCESS
 				if(XRAY in M.mutations)
 					to_chat(user, span_notice("\The [M] pupils give an eerie glow!"))
 				if(vision.is_bruised())
@@ -168,6 +171,7 @@
 
 			user.setClickCooldown(user.get_attack_speed(src)) //can be used offensively
 			M.flash_eyes()
+			return ITEM_INTERACT_SUCCESS
 	else
 		return ..()
 
@@ -248,7 +252,7 @@
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
 
-/obj/item/flashlight/proc/flicker(var/amount = rand(10, 20), var/flicker_color, var/forced)
+/obj/item/flashlight/proc/flicker(amount = rand(10, 20), flicker_color, forced)
 	if(flickering)
 		return
 	if(!flicker_color)
@@ -272,7 +276,7 @@
 /// original_on is if we were originally on or not.
 /// OL is our overlay for lighting.
 /// ticker is how many times we have flickered so far.
-/obj/item/flashlight/proc/do_flicker(var/amount = rand(10, 20), var/flicker_color, var/original_color, var/original_on, var/datum/component/overlay_lighting/OL, var/ticker)
+/obj/item/flashlight/proc/do_flicker(amount = rand(10, 20), flicker_color, original_color, original_on, datum/component/overlay_lighting/OL, ticker)
 	if(ticker >= amount) //We have flickered enough times. Terminate the cycle.
 		finish_flicker(original_color, original_on, OL)
 		return
@@ -282,7 +286,7 @@
 		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 	addtimer(CALLBACK(src, PROC_REF(do_flicker), amount, flicker_color, original_color, original_on, OL, ++ticker), rand(5,15), TIMER_DELETE_ME)
 
-/obj/item/flashlight/proc/finish_flicker(var/original_color, var/original_on, var/datum/component/overlay_lighting/OL)
+/obj/item/flashlight/proc/finish_flicker(original_color, original_on, datum/component/overlay_lighting/OL)
 	set_light_color(original_color)
 	OL.directional_atom?.color = original_color
 	on = original_on
@@ -409,16 +413,17 @@
 	icon_state = "flare"
 	item_state = "flare"
 	actions_types = list() //just pull it manually, neckbeard.
-	var/fuel = 0
+	var/fuel = 800
 	var/on_damage = 7
 	var/produce_heat = 1500
 	power_use = 0
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
+	single_use = TRUE
 
 /obj/item/flashlight/flare/Initialize(mapload)
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel += rand(0, 200)
 	. = ..()
 
 /obj/item/flashlight/flare/process()
@@ -443,10 +448,8 @@
 	if(.)
 		return TRUE
 	// Usual checks
-	if(!fuel)
+	if(!fuel || on)
 		to_chat(user, span_notice("It's out of fuel."))
-		return
-	if(on)
 		return
 	// All good, turn it on.
 	if(. == CAN_USE)
@@ -477,11 +480,12 @@
 	light_color = "#49F37C"
 	icon_state = "glowstick_green"
 	item_state = "glowstick_green"
-	var/fuel = 0
-	power_use = 0
+	var/fuel = 1600
+	power_use = FALSE
+	single_use = TRUE
 
 /obj/item/flashlight/glowstick/Initialize(mapload)
-	fuel = rand(1600, 2000)
+	fuel += rand(0, 400)
 	. = ..()
 
 /obj/item/flashlight/glowstick/process()
@@ -493,17 +497,15 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/glowstick/proc/turn_off()
-	on = 0
+	on = FALSE
 	update_brightness()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(!fuel)
+	if(!fuel || on)
 		to_chat(user, span_notice("The glowstick has already been turned on."))
-		return
-	if(on)
 		return
 
 	if(. == CAN_USE)

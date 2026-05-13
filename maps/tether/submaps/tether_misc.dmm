@@ -811,7 +811,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm5)
 "cH" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm5)
 "cI" = (
@@ -832,7 +832,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm6)
 "cL" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm6)
 "cM" = (
@@ -3030,7 +3030,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
 "Sq" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
 "Sr" = (
@@ -3166,7 +3166,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
 "Tb" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
 "Tc" = (
@@ -3309,7 +3309,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "TQ" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "TR" = (
@@ -3440,7 +3440,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
 "UC" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
 "UD" = (

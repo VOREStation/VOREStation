@@ -29,7 +29,7 @@
 	if(prob(85) && explosive)
 		explosion(loc, 0, 2, 4, /*flame_range = 2,*/ adminlog = FALSE/*, smoke = FALSE*/) // VOREStation Edit - No devastation range
 	else if(prob(50))
-		emp_act(2)
+		emp_act(EMP_MEDIUM)
 	else
 		ex_act(2)
 

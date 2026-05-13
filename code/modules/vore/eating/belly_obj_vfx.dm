@@ -1,7 +1,7 @@
 // SEND_SIGNAL(COMSIG_BELLY_UPDATE_VORE_FX) is sometimes used when calling vore_fx() to send belly visuals
 // to certain non-belly atoms. Not called here as vore_fx() is usually only called if a mob is in the belly.
 // Don't forget it if you need to rework vore_fx().
-/obj/belly/proc/vore_fx(mob/living/living_prey, var/severity = 0)
+/obj/belly/proc/vore_fx(mob/living/living_prey, severity = 0)
 	if(!istype(living_prey))
 		return
 	if(!living_prey.client)
@@ -114,7 +114,7 @@
 	fullscreen_overlay.update_for_view(living_prey.client.view)
 	check_hud_disable(living_prey)
 
-/obj/belly/proc/check_hud_disable(var/mob/living/living_prey)
+/obj/belly/proc/check_hud_disable(mob/living/living_prey)
 	if(disable_hud && living_prey != owner)
 		if(living_prey?.hud_used?.hud_shown)
 			to_chat(living_prey, span_vnotice("((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))"))

@@ -33,13 +33,16 @@
 	return dat
 
 /obj/item/implant/integrated_circuit/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	IC.emp_act(severity, recursive)
 
 /obj/item/implant/integrated_circuit/examine(mob/user)
 	. = ..()
 	. += IC.examine(user)
 
-/obj/item/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
+/obj/item/implant/integrated_circuit/attackby(obj/item/O, mob/user)
 	if(O.has_tool_quality(TOOL_CROWBAR) || istype(O, /obj/item/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || O.has_tool_quality(TOOL_SCREWDRIVER) || istype(O, /obj/item/cell/device) )
 		IC.attackby(O, user)
 	else

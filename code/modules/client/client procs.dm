@@ -609,14 +609,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 /mob/proc/MayRespawn()
-	return 0
+	return FALSE
 
 /client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
-	return 0
+	return FALSE
 
 /client/verb/character_setup()
 	set name = "Character Setup"
@@ -712,7 +712,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		ip_reputation = score
 		return TRUE
 
-/client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
+/client/proc/disconnect_with_message(message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
 	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center>" + span_bold("[message]") + "</center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
 	window_flash(src)
 	src << browse("<html>[message]</html>","window=dropmessage;size=480x360;can_close=1")

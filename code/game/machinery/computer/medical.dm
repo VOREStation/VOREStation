@@ -85,7 +85,7 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/med_data/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/computer/med_data/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
@@ -479,8 +479,8 @@
 		SStgui.update_uis(src)
 
 /obj/machinery/computer/med_data/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.medical)
@@ -505,9 +505,6 @@
 		else if(prob(1))
 			qdel(R)
 			continue
-
-	..(severity, recursive)
-
 
 /obj/machinery/computer/med_data/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers
 	name = "\improper Medical Laptop"

@@ -97,7 +97,7 @@
 				toner -= 5
 			. = TRUE
 
-/obj/machinery/photocopier/proc/copy_operation(var/mob/user)
+/obj/machinery/photocopier/proc/copy_operation(mob/user)
 	if(copying)
 		return FALSE
 	copying = TRUE
@@ -193,7 +193,7 @@
 					toner = 0
 	return
 
-/obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy, var/need_toner=1)
+/obj/machinery/photocopier/proc/copy(obj/item/paper/copy, need_toner=1)
 	var/obj/item/paper/c = new /obj/item/paper (loc)
 	if(toner > 10)	//lots of toner, make it dark
 		c.info = "<font color = #101010>"
@@ -234,7 +234,7 @@
 	return c
 
 
-/obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy, var/need_toner=1)
+/obj/machinery/photocopier/proc/photocopy(obj/item/photo/photocopy, need_toner=1)
 	var/obj/item/photo/p = photocopy.copy()
 	p.loc = src.loc
 
@@ -348,7 +348,7 @@
 // VOREStation Edit Stop
 
 //If need_toner is 0, the copies will still be lightened when low on toner, however it will not be prevented from printing. TODO: Implement print queues for fax machines and get rid of need_toner
-/obj/machinery/photocopier/proc/bundlecopy(var/obj/item/paper_bundle/bundle, var/need_toner=1)
+/obj/machinery/photocopier/proc/bundlecopy(obj/item/paper_bundle/bundle, need_toner=1)
 	var/obj/item/paper_bundle/p = new /obj/item/paper_bundle (src)
 	for(var/obj/item/W in bundle.pages)
 		if(toner <= 0 && need_toner)

@@ -6,6 +6,7 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 	coin_type = /obj/item/coin/phoron
+	resistance_flags = FLAMMABLE
 
 /obj/item/stack/material/diamond
 	name = MAT_DIAMOND

@@ -2396,7 +2396,7 @@
 	},
 /area/groundbase/command/tcomms/chamber)
 "fj" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small,
@@ -2978,7 +2978,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
@@ -7062,7 +7062,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halle)
 "po" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "z1stall3";
@@ -8347,7 +8347,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/groundbase/civilian/gameroom)
 "sr" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "z1stall1";
@@ -14217,7 +14217,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
@@ -17154,7 +17154,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
 "Mv" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small,
@@ -18959,7 +18959,7 @@
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/cafe)
 "QV" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /obj/machinery/button/remote/airlock{
 	dir = 4;
 	id = "z1stall2";
@@ -20692,7 +20692,7 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
 "UO" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small,

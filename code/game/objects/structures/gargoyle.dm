@@ -13,7 +13,7 @@
 	var/flapping
 	var/obj_integrity = 100
 	var/original_int = 100
-	var/max_integrity = 100
+	max_integrity = 100
 	var/stored_examine
 	var/identifier = "statue"
 	var/material = "stone"
@@ -25,7 +25,7 @@
 	var/can_revert = TRUE
 	var/was_rayed = FALSE
 
-/obj/structure/gargoyle/Initialize(mapload, var/mob/living/carbon/human/H, var/ident_ovr, var/mat_ovr, var/adj_ovr, var/tint_ovr, var/revert = TRUE, var/discard_clothes)
+/obj/structure/gargoyle/Initialize(mapload, mob/living/carbon/human/H, ident_ovr, mat_ovr, adj_ovr, tint_ovr, revert = TRUE, discard_clothes)
 	. = ..()
 	if(isspace(loc) || isopenspace(loc))
 		anchored = FALSE
@@ -182,7 +182,7 @@
 		. += stored_examine
 	return
 
-/obj/structure/gargoyle/proc/unpetrify(var/deal_damage = TRUE, var/deleting = FALSE)
+/obj/structure/gargoyle/proc/unpetrify(deal_damage = TRUE, deleting = FALSE)
 	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(!gargoyle)
 		return
@@ -227,29 +227,29 @@
 /obj/structure/gargoyle/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/structure/gargoyle/return_air_for_internal_lifeform(var/mob/living/lifeform)
+/obj/structure/gargoyle/return_air_for_internal_lifeform(mob/living/lifeform)
 	var/air_type = /datum/gas_mixture/belly_air
 	if(istype(lifeform))
 		air_type = lifeform.get_perfect_belly_air_type()
 	var/air = new air_type(1000)
 	return air
 
-/obj/structure/gargoyle/proc/damage(var/damage)
+/obj/structure/gargoyle/proc/damage(damage)
 	if(was_rayed)
 		return //gargoyle quick regenerates, the others don't, so let's not have them getting too damaged
 	obj_integrity = min(obj_integrity-damage, max_integrity)
 	if(obj_integrity <= 0)
 		qdel(src)
 
-/obj/structure/gargoyle/take_damage(var/damage)
+/obj/structure/gargoyle/take_damage(damage)
 	damage(damage)
 
-/obj/structure/gargoyle/attack_generic(var/mob/user, var/damage, var/attack_message = "hits")
+/obj/structure/gargoyle/attack_generic(mob/user, damage, attack_message = "hits")
 	user.do_attack_animation(src)
 	visible_message(span_danger("[user] [attack_message] the [src]!"))
 	damage(damage)
 
-/obj/structure/gargoyle/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
+/obj/structure/gargoyle/attackby(obj/item/W as obj, mob/living/user as mob)
 	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(W.is_wrench())
 		if(isspace(loc) || isopenspace(loc))
@@ -278,7 +278,7 @@
 	else
 		return ..()
 
-/obj/structure/gargoyle/set_dir(var/new_dir)
+/obj/structure/gargoyle/set_dir(new_dir)
 	. = ..()
 	if(. && tail_image)
 		cut_overlay(tail_image)

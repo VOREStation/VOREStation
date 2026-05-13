@@ -94,7 +94,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_DEBUG_ASSETS "Debug.Assets"
 #define ADMIN_CATEGORY_DEBUG_INVESTIGATE "Debug.Investigate"
 #define ADMIN_CATEGORY_DEBUG_DANGEROUS "Debug.Dangerous"
-#define ADMIN_CATEGORY_DEBUG_EVENTS "Debug.Evemts"
+#define ADMIN_CATEGORY_DEBUG_EVENTS "Debug.Events"
 #define ADMIN_CATEGORY_DEBUG_GAME "Debug.Game"
 #define ADMIN_CATEGORY_DEBUG_SERVER "Debug.Server"
 #define ADMIN_CATEGORY_DEBUG_SPRITES "Debug.Sprites"

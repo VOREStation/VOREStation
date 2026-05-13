@@ -43,12 +43,7 @@ jobs:
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
     name: Completion Gate
-    needs:
-      [
-        run_all_tests,
-        run_extra_map_tests,
-        run_linters,
-      ]
+    needs: [run_all_tests, run_extra_map_tests, run_linters]
     runs-on: ubuntu-24.04
     steps:
       - name: Decide whether the needed jobs succeeded or failed

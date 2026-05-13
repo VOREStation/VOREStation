@@ -29,7 +29,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/material/fishing_net/afterattack(atom/A, mob/user, proximity)
 	if(get_dist(get_turf(src), A) > reach)
 		return
 
@@ -77,7 +77,7 @@
 	update_weight()
 	return
 
-/obj/item/material/fishing_net/attackby(var/obj/item/W, var/mob/user)
+/obj/item/material/fishing_net/attackby(obj/item/W, mob/user)
 	if(contents)
 		for(var/mob/living/L in contents)
 			if(prob(25))
@@ -139,7 +139,7 @@
 
 	special_handling = TRUE
 
-/obj/item/material/fishing_net/butterfly_net/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/material/fishing_net/butterfly_net/afterattack(atom/A, mob/user, proximity)
 	if(get_dist(get_turf(src), A) > reach)
 		return
 

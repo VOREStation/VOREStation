@@ -62,7 +62,7 @@
 
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
-	var/obj/item/storage/bag/ore/my_storage = null
+	var/obj/item/ore_bag/my_storage = null
 
 	var/last_search = 0
 	var/search_cooldown = 5 SECONDS
@@ -74,7 +74,7 @@
 	ion_trail.set_up(src)
 	ion_trail.start()
 
-	my_storage = new /obj/item/storage/bag/ore(src)
+	my_storage = new /obj/item/ore_bag(src)
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 
@@ -90,7 +90,7 @@
 	..(null,"suddenly breaks apart.")
 	qdel(src)
 
-/mob/living/simple_mob/mechanical/mining_drone/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/mechanical/mining_drone/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/mechanical/mining_drone/IIsAlly(mob/living/L)
@@ -137,12 +137,12 @@
 		if(ai_holder)
 			ai_holder.add_attacker(L)
 
-/mob/living/simple_mob/mechanical/mining_drone/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/simple_mob/mechanical/mining_drone/bullet_act(obj/item/projectile/P, def_zone)
 	..()
 	if(ai_holder && P.firer)
 		ai_holder.add_attacker(P.firer)
 
-/mob/living/simple_mob/mechanical/mining_drone/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_mob/mechanical/mining_drone/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
 	..()
 	if(ai_holder)
 		ai_holder.add_attacker(user)

@@ -17,3 +17,34 @@
 		//	continue
 
 		TEST_FAIL(log_entry)
+
+/* Should probably be done as a linter thing instead
+/// Checks all machines for legal access numbers
+/datum/unit_test/all_access_id_must_have_existing_datums
+
+/datum/unit_test/all_access_id_must_have_existing_datums/Run()
+	var/failed = FALSE
+	var/list/access_datums = SSaccess.get_all_access_datums_by_id()
+
+	for(var/obj/machinery/thing in world)
+		failed += validate_list(thing.req_access, thing, "req_access")
+		failed += validate_list(thing.req_one_access, thing, "req_one_access")
+	if(failed)
+		TEST_FAIL("Machinery had an illegal access id.")
+
+/datum/unit_test/proc/validate_list(list/access_list, obj/machinery/thing, name_list)
+	if(!access_list)
+		return FALSE // null is legal
+
+	if(!islist(access_list))
+		TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a [name_list] that was not a list or null.")
+		return TRUE // Was something other than null or a list... illegal
+
+	var/failed = FALSE
+	for(var/access in access_list)
+		if(!SSaccess.get_access_by_id(access))
+			TEST_NOTICE(src, "Access - [thing] ([thing.x].[thing.y].[thing.z]) had a [name_list] with a non-existant id [access].")
+			failed = TRUE // has a non-existant id, illegal
+
+	return failed
+*/

@@ -165,6 +165,7 @@ const SuitCyclerContent = (props: {
           </LabeledList.Item>
           <LabeledList.Item label="Target Species">
             <Dropdown
+              searchInput
               autoScroll={false}
               width="150px"
               maxHeight="160px"

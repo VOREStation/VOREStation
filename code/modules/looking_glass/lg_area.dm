@@ -24,19 +24,19 @@
 	our_turfs.Cut()
 	return ..()
 
-/area/looking_glass/Entered(var/atom/movable/AM)
+/area/looking_glass/Entered(atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.client)
 			our_landmark?.gain_viewer(L.client)
 
-/area/looking_glass/Exited(var/atom/movable/AM)
+/area/looking_glass/Exited(atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.client)
 			our_landmark?.lose_viewer(L.client)
 
-/area/looking_glass/proc/begin_program(var/image/newimage)
+/area/looking_glass/proc/begin_program(image/newimage)
 	if(!active)
 		for(var/turf/simulated/floor/looking_glass/lgt as anything in our_turfs)
 			lgt.activate()
@@ -54,7 +54,7 @@
 	spawn(2 SECONDS)
 		our_landmark.drop_image()
 
-/area/looking_glass/proc/toggle_optional(var/transparent)
+/area/looking_glass/proc/toggle_optional(transparent)
 	for(var/turf/simulated/floor/looking_glass/lgt as anything in our_optional_turfs)
 		lgt.center = !transparent
 		if(active)

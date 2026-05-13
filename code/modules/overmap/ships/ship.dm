@@ -91,7 +91,7 @@
 
 //Does actual burn and returns the resulting acceleration
 /obj/effect/overmap/visitable/ship/proc/get_burn_acceleration()
-	return round(burn() / get_vessel_mass(), SHIP_MOVE_RESOLUTION)
+	return round(thrust_burn() / get_vessel_mass(), SHIP_MOVE_RESOLUTION)
 
 /obj/effect/overmap/visitable/ship/proc/get_vessel_mass()
 	. = vessel_mass
@@ -245,7 +245,7 @@
 /obj/effect/overmap/visitable/ship/set_dir(new_dir)
 	return ..(NORTH) // NO! We always face north.
 
-/obj/effect/overmap/visitable/ship/proc/burn()
+/obj/effect/overmap/visitable/ship/proc/thrust_burn()
 	for(var/datum/ship_engine/E in engines)
 		. += E.burn()
 

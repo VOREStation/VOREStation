@@ -231,7 +231,7 @@
 		update_icon()
 		system_error("Resources depleted.")
 
-/obj/machinery/mining/drill/attack_ai(var/mob/user as mob)
+/obj/machinery/mining/drill/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
@@ -366,7 +366,7 @@
 
 	update_icon()
 
-/obj/machinery/mining/drill/proc/system_error(var/error)
+/obj/machinery/mining/drill/proc/system_error(error)
 
 	if(error)
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " flashes a '[error]' warning."))

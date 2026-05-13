@@ -10,7 +10,6 @@
 	force = 10
 	slot_flags = SLOT_BACK
 	actions_types = list(/datum/action/item_action/use_scope)
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "14.5mm"
 	recoil = 5 //extra kickback
 	handle_casings = HOLD_CASINGS
@@ -56,12 +55,12 @@
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/heavysniper/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/heavysniper/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/heavysniper/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/heavysniper/unload_ammo(mob/user, allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
@@ -88,7 +87,6 @@
 	force = 10
 	slot_flags = SLOT_BACK // Needs a sprite.
 	actions_types = list(/datum/action/item_action/use_scope)
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "7.62mm"
 	load_method = MAGAZINE
 	accuracy = -45 //shooting at the hip

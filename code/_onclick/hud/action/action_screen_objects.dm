@@ -29,6 +29,7 @@
 		viewer.update_action_buttons()
 		our_hud = null
 	linked_action = null
+	last_hovored_ref = null
 	return ..()
 
 /atom/movable/screen/movable/action_button/proc/can_use(mob/user)

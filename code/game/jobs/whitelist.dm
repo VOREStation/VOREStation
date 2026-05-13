@@ -35,7 +35,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 
 /datum/whitelist_editor/tgui_static_data(mob/user)
 	var/list/whitelist_jobs = list()
-	for(var/datum/job/our_job in GLOB.job_master.occupations)
+	for(var/datum/job/our_job in SSjob.occupations)
 		if(our_job.whitelist_only)
 			whitelist_jobs += our_job.title
 
@@ -75,7 +75,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 			var/role = params["role"]
 			switch(kind)
 				if("job")
-					var/datum/job/job = GLOB.job_master.GetJob(role)
+					var/datum/job/job = SSjob.get_job(role)
 					if(!job)
 						to_chat(ui.user, span_warning("Error, invalid job entered. Check spelling and capitalization."))
 						return FALSE
@@ -155,7 +155,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 	GLOB.whitelist = world.file2list(WHITELISTFILE)
 	if(!GLOB.whitelist.len)	GLOB.whitelist = null
 
-/proc/check_whitelist(mob/M /*, var/rank*/)
+/proc/check_whitelist(mob/M /*, rank*/)
 	if(!GLOB.whitelist)
 		return 0
 	return ("[M.ckey]" in GLOB.whitelist)
@@ -223,7 +223,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 	GLOB.robot_whitelist.Cut()
 	load_alienwhitelist()
 
-/proc/is_alien_whitelisted(client/C, var/datum/species/species)
+/proc/is_alien_whitelisted(client/C, datum/species/species)
 	//They are admin or the whitelist isn't in use
 	if(whitelist_overrides(C))
 		return TRUE
@@ -290,9 +290,9 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 	GLOB.job_whitelist.Cut()
 	load_jobwhitelist()
 
-/proc/is_job_whitelisted(mob/M, var/rank)
+/proc/is_job_whitelisted(mob/M, rank)
 	// Check if the job actually requires a whitelist
-	var/datum/job/job = GLOB.job_master.GetJob(rank)
+	var/datum/job/job = SSjob.get_job(rank)
 	if(!job.whitelist_only)
 		return TRUE
 
@@ -318,7 +318,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 
 	return FALSE
 
-/proc/is_lang_whitelisted(mob/M, var/datum/language/language)
+/proc/is_lang_whitelisted(mob/M, datum/language/language)
 	//They are admin or the whitelist isn't in use
 	if(whitelist_overrides(M))
 		return TRUE
@@ -340,7 +340,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 
 	return FALSE
 
-/proc/is_borg_whitelisted(mob/M, var/module)
+/proc/is_borg_whitelisted(mob/M, module)
 	//They are admin or the whitelist isn't in use
 	if(whitelist_overrides(M))
 		return 1

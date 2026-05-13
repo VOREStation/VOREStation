@@ -18,10 +18,10 @@ GLOBAL_DATUM(xenomorphs, /datum/antagonist/xenos)
 
 	spawn_announcement = "Unidentified lifesigns detected coming aboard the station. Secure any exterior access, including ducting and ventilation."
 	spawn_announcement_title = "Lifesign Alert"
-	spawn_announcement_sound = 'sound/AI/aliens.ogg'
+	spawn_announcement_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS
 	spawn_announcement_delay = 5000
 
-/datum/antagonist/xenos/New(var/no_reference)
+/datum/antagonist/xenos/New(no_reference)
 	..()
 	if(!no_reference)
 		GLOB.xenomorphs = src
@@ -37,11 +37,11 @@ GLOBAL_DATUM(xenomorphs, /datum/antagonist/xenos)
 				vents += temp_vent
 	return vents
 
-/datum/antagonist/xenos/create_objectives(var/datum/mind/player)
+/datum/antagonist/xenos/create_objectives(datum/mind/player)
 	if(!..())
 		return
 	player.objectives += new /datum/objective/survive()
 	player.objectives += new /datum/objective/escape()
 
-/datum/antagonist/xenos/place_mob(var/mob/living/player)
+/datum/antagonist/xenos/place_mob(mob/living/player)
 	player.forceMove(get_turf(pick(get_vents())))

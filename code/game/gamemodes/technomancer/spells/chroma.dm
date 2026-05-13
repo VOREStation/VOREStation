@@ -24,7 +24,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 	time_to_die = 2 MINUTES //Despawn after this time, if set.
 
-/obj/effect/temporary_effect/chroma/Initialize(mapload, var/new_color = "#FFFFFF")
+/obj/effect/temporary_effect/chroma/Initialize(mapload, new_color = "#FFFFFF")
 	. = ..()
 	set_light(6, 5, l_color = new_color)
 

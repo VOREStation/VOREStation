@@ -31,7 +31,7 @@
 
 //	environment_smash = 1	// Whatever this gets renamed to, Wraiths need to break things
 
-/mob/living/simple_mob/construct/bishop/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/construct/bishop/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		L.add_modifier(/datum/modifier/deep_wounds, 30 SECONDS)

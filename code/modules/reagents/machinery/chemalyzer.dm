@@ -102,7 +102,7 @@
 		subdata["sintering"] = SSinternal_wiki.assemble_sintering(GLOB.reagent_sheets[R.id])
 		subdata["overdose"] = R.overdose
 		subdata["flavor"] = R.taste_description
-		subdata["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
+		subdata["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 		subdata["beakerAmount"] = found_reagents[ID]
 		total_vol += found_reagents[ID]
 		SSinternal_wiki.assemble_reaction_data(subdata, R)

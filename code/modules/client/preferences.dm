@@ -42,11 +42,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/digitigrade = 0
 
 		//Some faction information.
-	var/home_system = "Unset"           //Current home or residence.
-	var/birthplace = "Unset"           //Location of birth.
-	var/citizenship = "None"            //Government or similar entity with which you hold citizenship.
-	var/faction = "None"                //General associated faction.
-	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
 
@@ -62,22 +57,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"PMHjiggle" = "character_preview_map:102,7:107",
 	)
 
-		//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
-
-	var/job_medsci_high = 0
-	var/job_medsci_med = 0
-	var/job_medsci_low = 0
-
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
-
-	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 1
-
 	//character preferences
 	var/slot_randomized //keeps track of round-to-round randomization of the character slot, prevents overwriting
 
@@ -85,7 +64,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)
-	var/list/player_alt_titles = new()		// the default name of a job like JOB_MEDICAL_DOCTOR
 
 	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
 
@@ -93,12 +71,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/flavour_texts_robot = list()
 	var/custom_link = null
 
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
 	var/exploit_record = ""
-
-	var/economic_status = "Average"
 
 	var/client/client = null
 	var/client_ckey = null
@@ -187,7 +160,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_tgui_static_data(user)
 	tgui_interact(user)
 
-/datum/preferences/proc/update_character_previews(var/mob/living/carbon/human/mannequin)
+/datum/preferences/proc/update_character_previews(mob/living/carbon/human/mannequin)
 	if(!client)
 		return
 
@@ -297,7 +270,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.set_species(read_preference(/datum/preference/choiced/species))
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
-		update_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
+		// write_ instead of update_ to avoid update_preference_by_type calling copy_to again.
+		write_preference_by_type(/datum/preference/name/real_name, random_name(read_preference(/datum/preference/choiced/gender/identifying), read_preference(/datum/preference/choiced/species)))
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
@@ -403,7 +377,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		user.client?.prefs_vr.load_vore()
 		ShowChoices(user)
 
-/datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)
+/datum/preferences/proc/vanity_copy_to(mob/living/carbon/human/character, copy_name, copy_flavour = TRUE, copy_ooc_notes = FALSE, convert_to_prosthetics = FALSE, apply_bloodtype = TRUE)
 	//snowflake copy_to, does not copy anything but the vanity things
 	//does not check if the name is the same, do that in any proc that calls this proc
 	/*

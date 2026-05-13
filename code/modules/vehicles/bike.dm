@@ -57,7 +57,7 @@
 
 /obj/vehicle/bike/click_ctrl(mob/user)
 	if(Adjacent(user) && anchored)
-		toggle()
+		return toggle_proc(user)
 	else
 		return ..()
 
@@ -65,26 +65,31 @@
 	set name = "Toggle Engine"
 	set category = "Vehicle"
 	set src in view(0)
+	toggle_proc(usr)
 
-	if(!isliving(usr) || HAS_TRAIT(usr, TRAIT_AMBIENT_PEST_MOB))
-		return
+/obj/vehicle/bike/proc/toggle_proc(mob/user)
+	if(!isliving(user) || HAS_TRAIT(user, TRAIT_AMBIENT_PEST_MOB))
+		return CLICK_ACTION_BLOCKING
 
-	if(usr.incapacitated()) return
+	if(user.incapacitated())
+		return CLICK_ACTION_BLOCKING
 
 	if(!on && cell && cell.charge > charge_use)
 		turn_on()
-		src.visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		visible_message("\The [src] rumbles to life.", "You hear something rumble deeply.")
+		return CLICK_ACTION_SUCCESS
 	else
 		turn_off()
-		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
+		visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
+		return CLICK_ACTION_SUCCESS
 
-/obj/vehicle/bike/click_alt(var/mob/user)
+/obj/vehicle/bike/click_alt(mob/user)
 	if(Adjacent(user))
 		kickstand(user)
 	else
 		return ..()
 
-/obj/vehicle/bike/verb/kickstand(var/mob/user as mob)
+/obj/vehicle/bike/verb/kickstand(mob/user as mob)
 	set name = "Toggle Kickstand"
 	set category = "Vehicle"
 	set src in view(0)
@@ -107,19 +112,19 @@
 	kickstand = !kickstand
 	anchored = (kickstand || on)
 
-/obj/vehicle/bike/load(var/atom/movable/C, var/mob/user as mob)
+/obj/vehicle/bike/load(atom/movable/C, mob/user as mob)
 	var/mob/living/M = C
 	if(!istype(C)) return 0
 	if(M.buckled || M.restrained() || !Adjacent(M) || !M.Adjacent(src))
 		return 0
 	return ..(M, user)
 
-/obj/vehicle/bike/MouseDrop_T(var/atom/movable/C, var/mob/user as mob)
+/obj/vehicle/bike/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(!load(C, user))
 		to_chat(user, span_warning(" You were unable to load \the [C] onto \the [src]."))
 		return
 
-/obj/vehicle/bike/attack_hand(var/mob/user as mob)
+/obj/vehicle/bike/attack_hand(mob/user as mob)
 	if(user == load)
 		unload(load, user)
 		to_chat(user, "You unbuckle yourself from \the [src].")
@@ -173,7 +178,7 @@
 
 	..()
 
-/obj/vehicle/bike/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/bike/bullet_act(obj/item/projectile/Proj)
 	if(has_buckled_mobs() && prob(protection_percent))
 		var/mob/living/L = pick(buckled_mobs)
 		L.bullet_act(Proj)

@@ -9,6 +9,7 @@
 	item_state_slots = list(slot_r_hand_str = "earmuffs", slot_l_hand_str = "earmuffs")
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 	ear_protection = 2
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/ears/earmuffs/headphones
 	name = "headphones"
@@ -48,6 +49,7 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	species_restricted = list(SPECIES_SKRELL)
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/ears/skrell/chain
 	name = "Gold headtail chains"

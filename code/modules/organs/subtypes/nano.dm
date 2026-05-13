@@ -126,12 +126,12 @@
 	. = ..()
 	icon_state = "refactory"
 
-/obj/item/organ/internal/nano/refactory/proc/get_stored_material(var/material)
+/obj/item/organ/internal/nano/refactory/proc/get_stored_material(material)
 	if(status & ORGAN_DEAD)
 		return 0
 	return materials[material] || 0
 
-/obj/item/organ/internal/nano/refactory/proc/add_stored_material(var/material,var/amt)
+/obj/item/organ/internal/nano/refactory/proc/add_stored_material(material,amt)
 	if(status & ORGAN_DEAD)
 		return 0
 	var/increase = min(amt,max(max_storage-materials[material],0))
@@ -142,7 +142,7 @@
 
 	return increase
 
-/obj/item/organ/internal/nano/refactory/proc/use_stored_material(var/material,var/amt)
+/obj/item/organ/internal/nano/refactory/proc/use_stored_material(material,amt)
 	if(status & ORGAN_DEAD)
 		return 0
 
@@ -184,10 +184,10 @@
 	icon_state = "posi1"
 	stored_mmi.icon_state = "posi1"
 	stored_mmi.brainmob.languages = owner.languages
-
+/*
 /obj/item/organ/internal/mmi_holder/posibrain/nano/emp_act(severity, recursive)
 	return	//Proteans handle EMP's differently
-
+*/
 // The 'out on the ground' object, not the organ holder
 /obj/item/mmi/digital/posibrain/nano
 	name = "protean posibrain"

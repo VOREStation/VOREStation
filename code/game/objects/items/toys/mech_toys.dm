@@ -71,7 +71,7 @@
  * * opponent - (optional) the defender controller in the battle, for PvP
  */
 
-/obj/item/toy/mecha/proc/combat_sleep(var/delay, obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
+/obj/item/toy/mecha/proc/combat_sleep(delay, obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
 	if(!attacker_controller) // If the attacker for whatever reason is null, don't continue.
 		return FALSE
 
@@ -143,16 +143,16 @@
 /**
  * Attack is called from the user's toy, aimed at target(another human), checking for target's toy.
  */
-/obj/item/toy/mecha/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+/obj/item/toy/mecha/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(target == user)
 		to_chat(user, span_notice("Target another toy mech if you want to start a battle with yourself."))
-		return
+		return ITEM_INTERACT_FAILURE
 	else if(user.a_intent != I_HURT)
 		if(wants_to_battle) //prevent spamming someone with offers
 			to_chat(user, span_notice("You already are offering battle to someone!"))
-			return
+			return ITEM_INTERACT_FAILURE
 		if(!check_battle_start(user)) //if the user's mech isn't ready, don't bother checking
-			return
+			return ITEM_INTERACT_FAILURE
 
 		for(var/obj/item/I in target.get_all_held_items())
 			if(istype(I, /obj/item/toy/mecha)) //if you attack someone with a mech who's also holding a mech, offer to battle them
@@ -164,14 +164,14 @@
 				if(M.wants_to_battle) //if the target mech wants to battle, initiate the battle from their POV
 					mecha_brawl(M, target, user) //P = defender's mech / SRC = attacker's mech / target = defender / user = attacker
 					M.wants_to_battle = FALSE
-					return
+					return ITEM_INTERACT_SUCCESS
 
 		//extend the offer of battle to the other mech
 		to_chat(user, span_notice("You offer battle to [target.name]!"))
 		to_chat(target, span_notice(span_bold("[user.name] wants to battle with [user.p_their()] [name]!") + " " + span_italics("Attack them with a toy mech to initiate combat.")))
 		wants_to_battle = TRUE
 		addtimer(CALLBACK(src, PROC_REF(withdraw_offer), user), 6 SECONDS)
-		return
+		return ITEM_INTERACT_SUCCESS
 
 	..()
 

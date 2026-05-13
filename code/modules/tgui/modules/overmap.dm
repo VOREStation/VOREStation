@@ -60,12 +60,12 @@
 		linked = sector
 		return 1
 
-/datum/tgui_module/ship/look(var/mob/user)
+/datum/tgui_module/ship/look(mob/user)
 	user.set_viewsize(world.view + extra_view)
 	if(!map_view_used)
 		map_view_used = TRUE
 
-/datum/tgui_module/ship/unlook(var/mob/user)
+/datum/tgui_module/ship/unlook(mob/user)
 	user.set_viewsize() // reset to default
 	if(map_view_used)
 		map_view_used = FALSE
@@ -185,7 +185,7 @@
 			sensors = S
 			break
 
-/datum/tgui_module/ship/fullmonty/relaymove(var/mob/user, direction)
+/datum/tgui_module/ship/fullmonty/relaymove(mob/user, direction)
 	if(viewing_overmap(user) && linked)
 		direction = turn(direction,pick(90,-90))
 		linked.relaymove(user, direction, accellimit)

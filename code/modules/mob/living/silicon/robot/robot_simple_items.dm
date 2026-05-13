@@ -118,7 +118,7 @@
 	color = chosen_item.color
 	selected_item = chosen_item
 
-/obj/item/robotic_multibelt/dropped(mob/user)
+/obj/item/robotic_multibelt/dropped(mob/user, equipping, slot)
 	..()
 	//We go back to our initial values.
 	original_state()
@@ -345,23 +345,26 @@
 /obj/item/material/minihoe/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_cultivator"
+	applies_material_colour = FALSE
 
 /obj/item/material/knife/machete/hatchet/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_hatchet"
+	applies_material_colour = FALSE
 
 /obj/item/analyzer/plant_analyzer/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_secateur"
 
-
 /obj/item/material/knife/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_knife"
+	applies_material_colour = FALSE
 
 /obj/item/material/kitchen/rollingpin/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_rolling_pin"
+	applies_material_colour = FALSE
 
 /obj/item/robotic_multibelt/syndicate
 	name = "Syndicate Robotic multitool"
@@ -417,7 +420,7 @@
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our handstory
 		mat_belt.generate_tools()
 
-/mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
+/mob/living/silicon/robot/proc/can_install_synth(datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
 		return FALSE
 	for(var/datum/matter_synth/synth in module.synths)
@@ -714,7 +717,7 @@
 
 	can_hold = list(ORGAN_GRIPPER)
 
-/obj/item/gripper/no_use/organ/Entered(var/atom/movable/AM)
+/obj/item/gripper/no_use/organ/Entered(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 1
@@ -722,7 +725,7 @@
 			organ.preserved = 1
 	..()
 
-/obj/item/gripper/no_use/organ/Exited(var/atom/movable/AM)
+/obj/item/gripper/no_use/organ/Exited(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 0

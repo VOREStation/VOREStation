@@ -15,7 +15,6 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 80)
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
@@ -45,7 +44,10 @@
 	if (prob(75))
 		pixel_y = rand(0, 16)
 
-/obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/tool/wirecutters/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!iscarbon(M))
+		return ..()
+	var/mob/living/carbon/C = M
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		user.visible_message("\The [user] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
@@ -54,7 +56,7 @@
 		if(C.buckled && C.buckled.buckle_require_restraints)
 			C.buckled.unbuckle_mob()
 		C.update_handcuffed()
-		return
+		return ITEM_INTERACT_SUCCESS
 	else
 		..()
 
@@ -78,7 +80,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters"
 	toolspeed = 0.1
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
 /obj/item/tool/wirecutters/hybrid
@@ -87,7 +88,6 @@
 	icon_state = "hybcutters"
 	random_color = FALSE
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("pinched", "nipped", "warped", "blasted")
 	usesound = 'sound/effects/stealthoff.ogg'
 	toolspeed = 0.4

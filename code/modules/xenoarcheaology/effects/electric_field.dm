@@ -7,7 +7,7 @@
 	var/last_used = 0
 	var/use_delay = 5 SECONDS //Time between uses.
 
-/datum/artifact_effect/electric_field/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/electric_field/DoEffectTouch(mob/user)
 	var/atom/holder = get_master_holder()
 	if(last_used >= world.time + use_delay)
 		return

@@ -100,7 +100,7 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-/obj/machinery/scale/attack_hand(var/mob/living/user)
+/obj/machinery/scale/attack_hand(mob/living/user)
 	if(user.loc != loc)
 		to_chat(user, span_notice("You need to be standing on top of the scale for it to work!"))
 		return

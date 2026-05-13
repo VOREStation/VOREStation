@@ -299,7 +299,7 @@
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 	shoes = /obj/item/clothing/shoes/boots/workboots
-	r_pocket = /obj/item/storage/bag/ore
+	r_pocket = /obj/item/ore_bag
 	l_pocket = /obj/item/tool/crowbar
 	head = /obj/item/clothing/head/soft/talon/refreshed
 	uniform = /obj/item/clothing/under/rank/talon/basic/refreshed

@@ -17,7 +17,6 @@
 	center_of_mass_y = 0
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MAT_STEEL = 18750)
 	var/deployed = 0
 	var/camo_net = FALSE
@@ -168,8 +167,6 @@
 	camo_net = TRUE
 	color = "#C9DCE1"
 
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 1)
-
 /*
  * Barbed-Wire.
  * Slows individuals crossing it. Barefoot individuals will be cut. Can be electrified by placing over a cable node.
@@ -191,7 +188,7 @@
 
 	sharp = TRUE
 
-/obj/item/material/barbedwire/set_material(var/new_material)
+/obj/item/material/barbedwire/set_material(new_material)
 	..()
 
 	if(!QDELETED(src))
@@ -293,7 +290,7 @@
 			update_icon()
 	..()
 
-/obj/item/material/barbedwire/proc/shock(mob/user as mob, prb, var/target_zone = BP_TORSO)
+/obj/item/material/barbedwire/proc/shock(mob/user as mob, prb, target_zone = BP_TORSO)
 	if(!anchored || health == 0)		// anchored/destroyed grilles are never connected
 		return 0
 	if(material.conductivity <= 0)

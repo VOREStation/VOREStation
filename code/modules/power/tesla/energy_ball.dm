@@ -48,7 +48,7 @@
 	..()
 
 
-/obj/singularity/energy_ball/process(var/wait = 20)
+/obj/singularity/energy_ball/process(wait = 20)
 	set waitfor = FALSE
 	if(!orbiting)
 		if (handle_energy())
@@ -71,7 +71,7 @@
 	if(orbiting_balls.len)
 		. += "The amount of orbiting mini-balls is [orbiting_balls.len]."
 
-/obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
+/obj/singularity/energy_ball/proc/move_the_basket_ball(move_amount)
 	//we face the last thing we zapped, so this lets us favor that direction a bit
 	var/move_bias = dir
 	for(var/i in 0 to move_amount)
@@ -295,7 +295,7 @@
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if(stun_mobs)
-				S.emp_act(3 /*EMP_LIGHT*/)
+				S.emp_act(EMP_LIGHT)
 			tesla_zap(closest_mob, 7, power / 1.5, explosive, stun_mobs, current_jumps = current_jumps) // metallic folks bounce it further
 		else
 			tesla_zap(closest_mob, 5, power / 1.5, explosive, stun_mobs, current_jumps = current_jumps)

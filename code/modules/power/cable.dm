@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	color = COLOR_RED
 	var/obj/machinery/power/breakerbox/breaker_box
 
-/obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
+/obj/structure/cable/drain_power(drain_check, surge, amount = 0)
 	if(drain_check)
 		return 1
 
@@ -118,6 +118,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // Rotating cables requires d1 and d2 to be rotated
 /obj/structure/cable/set_dir(new_dir)
+	. = ..()
 	if(powernet)
 		cut_cable_from_powernet() // Remove this cable from the powernet so the connections update
 
@@ -149,7 +150,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 ///////////////////////////////////
 
 //If underfloor, hide the cable
-/obj/structure/cable/hide(var/i)
+/obj/structure/cable/hide(i)
 	if(istype(loc, /turf))
 		invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
@@ -241,7 +242,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	src.add_fingerprint(user)
 
 // shock the user with probability prb
-/obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)
+/obj/structure/cable/proc/shock(mob/user, prb, siemens_coeff = 1.0)
 	if(!prob(prb))
 		return 0
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
@@ -268,7 +269,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				qdel(src)
 	return
 
-/obj/structure/cable/proc/cableColor(var/colorC)
+/obj/structure/cable/proc/cableColor(colorC)
 	var/color_n = "#DD0000"
 	if(colorC)
 		color_n = colorC
@@ -280,7 +281,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 //handles merging diagonally matching cables
 //for info : direction^3 is flipping horizontally, direction^12 is flipping vertically
-/obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
+/obj/structure/cable/proc/mergeDiagonalsNetworks(direction)
 	if(SSmachines.powernet_is_defered()) return;
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
@@ -325,7 +326,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				C.powernet.add_cable(src) //else, we simply connect to the matching cable powernet
 
 // merge with the powernets of power objects in the given direction
-/obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
+/obj/structure/cable/proc/mergeConnectedNetworks(direction)
 	if(SSmachines.powernet_is_defered()) return;
 
 	var/fdir = direction ? GLOB.reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
@@ -402,7 +403,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //////////////////////////////////////////////
 
 //if powernetless_only = 1, will only get connections without powernet
-/obj/structure/cable/proc/get_connections(var/powernetless_only = 0)
+/obj/structure/cable/proc/get_connections(powernetless_only = 0)
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
@@ -526,7 +527,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	tool_qualities = list(TOOL_CABLE_COIL)
 	singular_name = "cable"
 
-/obj/item/stack/cable_coil/Initialize(mapload, length = MAXCOIL, var/param_color = null)
+/obj/item/stack/cable_coil/Initialize(mapload, length = MAXCOIL, param_color = null)
 	. = ..()
 	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
@@ -541,7 +542,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 ///////////////////////////////////
 
 //you can use wires to heal robotics
-/obj/item/stack/cable_coil/attack(var/atom/A, var/mob/living/user, var/def_zone)
+/obj/item/stack/cable_coil/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if(ishuman(A) && user.a_intent == I_HELP)
 		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
@@ -557,16 +558,18 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-				return 1
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-				return 1
+				return ITEM_INTERACT_FAILURE
 
 		var/use_amt = min(src.amount, CEILING(S.burn_dam/5, 1), 5)
 		if(can_use(use_amt))
 			if(S.robo_repair(5*use_amt, BURN, "some damaged wiring", src, user))
 				src.use(use_amt)
+				return ITEM_INTERACT_SUCCESS
+		return ITEM_INTERACT_FAILURE
 
 	else
 		return ..()
@@ -584,7 +587,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		icon_state = "coil"
 		name = initial(name)
 
-/obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
+/obj/item/stack/cable_coil/proc/set_cable_color(selected_color, user)
 	if(!selected_color)
 		return
 
@@ -948,7 +951,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	stacktype = null
 	toolspeed = 0.25
 
-/obj/item/stack/cable_coil/alien/Initialize(mapload, length = MAXCOIL, var/param_color = null)		//There has to be a better way to do this.
+/obj/item/stack/cable_coil/alien/Initialize(mapload, length = MAXCOIL, param_color = null)		//There has to be a better way to do this.
 	. = ..()
 	if(embed_chance == -1)		//From /obj/item, don't want to do what the normal cable_coil does
 		if(sharp)
@@ -960,7 +963,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 /obj/item/stack/cable_coil/alien/update_icon()
 	icon_state = initial(icon_state)
 
-/obj/item/stack/cable_coil/alien/can_use(var/used)
+/obj/item/stack/cable_coil/alien/can_use(used)
 	return 1
 
 /obj/item/stack/cable_coil/alien/use()	//It's endless

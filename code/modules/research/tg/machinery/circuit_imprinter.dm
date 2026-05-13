@@ -8,7 +8,7 @@
 
 /obj/machinery/rnd/production/circuit_imprinter/Initialize(mapload)
 	. = ..()
-	wires = new /datum/wires/circuit_imprinter(src)
+	set_wires(new /datum/wires/circuit_imprinter(src))
 
 /obj/machinery/rnd/production/circuit_imprinter/compute_efficiency()
 	var/rating = 0

@@ -81,7 +81,7 @@
 	update_icon()
 	set_light(0,0)
 
-/obj/item/melee/energy/proc/use_charge(var/cost)
+/obj/item/melee/energy/proc/use_charge(cost)
 	if(active)
 		if(bcell)
 			if(bcell.checked_use(cost))
@@ -126,11 +126,12 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/melee/energy/attack(mob/M, mob/user)
+/obj/item/melee/energy/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(active && use_cell)
 		if(!use_charge(hitcost))
 			deactivate(user)
 			visible_message(span_notice("\The [src]'s blade flickers, before deactivating."))
+			return ITEM_INTERACT_FAILURE
 	return ..()
 
 /obj/item/melee/energy/attackby(obj/item/W, mob/user)
@@ -229,7 +230,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = TRUE
 	edge = TRUE
@@ -264,7 +264,6 @@
  * Energy Sword
  */
 /obj/item/melee/energy/sword
-	color
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "esword"
@@ -279,7 +278,6 @@
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	colorable = TRUE
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
@@ -287,7 +285,7 @@
 
 	projectile_parry_chance = 65
 
-/obj/item/melee/energy/sword/dropped(mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user, equipping, slot)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -307,7 +305,7 @@
 	..()
 	attack_verb = list()
 
-/obj/item/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/sword/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(60))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
@@ -370,20 +368,20 @@
 	lcolor = "#0000FF"
 	projectile_parry_chance = 30	// It's not specifically designed for cutting and slashing, but it can still, maybe, save your life.
 
-/obj/item/melee/energy/sword/ionic_rapier/afterattack(var/atom/movable/AM, var/mob/living/user, var/proximity)
+/obj/item/melee/energy/sword/ionic_rapier/afterattack(atom/movable/AM, mob/living/user, proximity)
 	if(istype(AM, /obj) && proximity && active)
 		// EMP stuff.
 		var/obj/O = AM
-		O.emp_act(3) // A weaker severity is used because this has infinite uses.
+		O.emp_act(EMP_LIGHT) // A weaker severity is used because this has infinite uses.
 		playsound(O, 'sound/effects/EMPulse.ogg', 100, 1)
 		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
 
-/obj/item/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/energy/sword/ionic_rapier/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	. = ..()
 	if(target.isSynthetic() && active)
 		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
-		target.emp_act(3) // A weaker severity is used because this has infinite uses.
+		target.emp_act(EMP_LIGHT) // A weaker severity is used because this has infinite uses.
 		playsound(target, 'sound/effects/EMPulse.ogg', 100, 1)
 		target.adjustFireLoss(force * 3) // 15 Burn, for 20 total.
 		playsound(target, 'sound/weapons/blade1.ogg', 100, 1)
@@ -408,7 +406,6 @@
 /obj/item/melee/energy/sword/charge
 	name = "charge sword"
 	desc = "A small, handheld device which emits a high-energy 'blade'."
-	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	active_force = 25
 	active_armourpen = 25
 	projectile_parry_chance = 40
@@ -481,7 +478,7 @@
 			host.drop_from_inventory(src)
 		QDEL_IN(src, 1)
 
-/obj/item/melee/energy/blade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/blade/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(60))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
@@ -549,7 +546,7 @@
 	..()
 	attack_verb = list("whacked", "beat", "slapped", "thonked")
 
-/obj/item/melee/energy/spear/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/energy/spear/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()

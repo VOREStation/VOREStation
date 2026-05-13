@@ -56,6 +56,10 @@
 	var/list/turfs_to_process
 	var/strength
 
+/datum/radiation_pulse_information/Destroy(force)
+	. = ..()
+	source_ref = null
+
 #define MEDIUM_RADIATION_THRESHOLD_RANGE 0.5
 #define EXTREME_RADIATION_CHANCE 30
 

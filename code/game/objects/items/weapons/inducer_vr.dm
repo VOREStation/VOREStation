@@ -28,7 +28,7 @@
 	if(!cell && cell_type)
 		cell = new cell_type
 
-/obj/item/inducer/proc/induce(var/obj/item/cell/target, coefficient)
+/obj/item/inducer/proc/induce(obj/item/cell/target, coefficient)
 	var/totransfer = min(cell.charge,(powertransfer * coefficient))
 	var/transferred = target.give(totransfer)
 	cell.use(transferred)
@@ -38,11 +38,11 @@
 /obj/item/inducer/get_cell()
 	return cell
 
-/obj/item/inducer/attack(mob/living/M, mob/living/user)
+/obj/item/inducer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HURT)
 		return ..()
 	else
-		return 0 //No accidental bludgeons!
+		return ITEM_INTERACT_FAILURE //No accidental bludgeons!
 
 /obj/item/inducer/afterattack(atom/A, mob/living/carbon/user, proximity)
 	if(user.a_intent == I_HURT)
@@ -252,10 +252,11 @@
 
 	charge = 100
 	maxcharge = 100
+	item_flags = ABSTRACT
 
 	var/mob/living/carbon/human/hume
 
-/obj/item/cell/standin/Initialize(mapload, var/mob/living/carbon/human/H)
+/obj/item/cell/standin/Initialize(mapload, mob/living/carbon/human/H)
 	. = ..()
 	if(!istype(H))
 		return INITIALIZE_HINT_QDEL
@@ -266,7 +267,7 @@
 	QDEL_IN(src, 20 SECONDS)
 
 
-/obj/item/cell/standin/give(var/amount)
+/obj/item/cell/standin/give(amount)
 	. = ..(amount * NUTRITION_COEFF) //Shrink amount to store
 	hume.adjust_nutrition(.) //Add the amount we really stored
 	. /= NUTRITION_COEFF //Inflate amount to take from the giver

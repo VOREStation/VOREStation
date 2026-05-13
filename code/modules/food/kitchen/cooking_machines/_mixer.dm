@@ -14,8 +14,9 @@ fundamental differences
 	active_power_usage = 3000
 	idle_power_usage = 50
 	var/datum/looping_sound/mixer/mixer_loop
+	tgui_id = "KitchenMixer"
 
-/obj/machinery/appliance/mixer/examine(var/mob/user)
+/obj/machinery/appliance/mixer/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += span_notice("It is currently set to make a [selected_option]")
@@ -25,6 +26,8 @@ fundamental differences
 	cooking_objs += new /datum/cooking_item(new /obj/item/reagent_containers/cooking_container(src))
 	cooking = FALSE
 	selected_option = pick(output_options)
+	var/datum/cooking_item/CI = cooking_objs[1]
+	CI.combine_target = selected_option
 
 	mixer_loop = new(list(src), FALSE)
 
@@ -34,30 +37,21 @@ fundamental differences
 	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
-/obj/machinery/appliance/mixer/choose_output()
-	set src in view(1)
-	set name = "Choose output"
-	set category = "Object"
-
-	if (!isliving(usr))
+/obj/machinery/appliance/mixer/choose_output(mob/user, new_output)
+	if (!user.IsAdvancedToolUser())
+		to_chat(user, span_notice("You can't operate [src]."))
 		return
 
-	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, span_notice("You can't operate [src]."))
+	if(!output_options[new_output])
 		return
 
-	if(LAZYLEN(output_options))
-		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options)
-		if(!choice)
-			return
-		else
-			selected_option = choice
-			to_chat(usr, span_notice("You prepare \the [src] to make \a [selected_option]."))
-			var/datum/cooking_item/CI = cooking_objs[1]
-			CI.combine_target = selected_option
+	selected_option = new_output
+	to_chat(user, span_notice("You prepare \the [src] to make \a [selected_option]."))
+	var/datum/cooking_item/CI = cooking_objs[1]
+	CI.combine_target = selected_option
 
 
-/obj/machinery/appliance/mixer/has_space(var/obj/item/I)
+/obj/machinery/appliance/mixer/has_space(obj/item/I)
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if (!CI || !CI.container)
 		return 0
@@ -68,7 +62,7 @@ fundamental differences
 	return 0
 
 
-/obj/machinery/appliance/mixer/can_remove_items(var/mob/user, show_warning = TRUE)
+/obj/machinery/appliance/mixer/can_remove_items(mob/user, show_warning = TRUE)
 	if(stat)
 		return 1
 	else
@@ -77,7 +71,7 @@ fundamental differences
 		return 0
 
 //Container is not removable
-/obj/machinery/appliance/mixer/removal_menu(var/mob/user)
+/obj/machinery/appliance/mixer/removal_menu(mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
 		for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -98,6 +92,9 @@ fundamental differences
 		return 1
 	return 0
 
+/obj/machinery/appliance/mixer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	.["icon_used"] = off_icon
 
 /obj/machinery/appliance/mixer/toggle_power()
 	set src in view(1)
@@ -123,14 +120,14 @@ fundamental differences
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/mixer/can_insert(var/obj/item/I, var/mob/user)
+/obj/machinery/appliance/mixer/can_insert(obj/item/I, mob/user)
 	if(!stat)
 		to_chat(user, span_warning(",You can't add items while \the [src] is running. Wait for it to finish or turn the power off to abort."))
 		return 0
 	else
 		return ..()
 
-/obj/machinery/appliance/mixer/finish_cooking(var/datum/cooking_item/CI)
+/obj/machinery/appliance/mixer/finish_cooking(datum/cooking_item/CI)
 	..()
 	stat |= POWEROFF
 	playsound(src, 'sound/machines/click.ogg', 40, 1)

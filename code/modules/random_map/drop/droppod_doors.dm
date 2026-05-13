@@ -10,20 +10,20 @@
 	var/deploying
 	var/deployed
 
-/obj/structure/droppod_door/Initialize(mapload, var/autoopen)
+/obj/structure/droppod_door/Initialize(mapload, autoopen)
 	. = ..()
 	if(autoopen)
 		addtimer(CALLBACK(src, PROC_REF(deploy)), 10 SECONDS)
 
-/obj/structure/droppod_door/attack_ai(var/mob/user)
+/obj/structure/droppod_door/attack_ai(mob/user)
 	if(!user.Adjacent(src))
 		return
 	attack_hand(user)
 
-/obj/structure/droppod_door/attack_generic(var/mob/user)
+/obj/structure/droppod_door/attack_generic(mob/user)
 	attack_hand(user)
 
-/obj/structure/droppod_door/attack_hand(var/mob/user)
+/obj/structure/droppod_door/attack_hand(mob/user)
 	if(deploying) return
 	deploying = TRUE
 	to_chat(user, span_danger("You prime the explosive bolts. Better get clear!"))

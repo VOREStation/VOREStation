@@ -31,6 +31,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
 	show_examine = FALSE
+	w_class = ITEMSIZE_NO_CONTAINER
 	item_flags = DROPDEL | NOSTRIP
 
 /obj/item/finger_lockpick/Initialize(mapload)
@@ -38,11 +39,13 @@
 	if(ismob(loc))
 		to_chat(loc, span_notice("We shape our finger to fit inside electronics, and are ready to force them open."))
 
-/obj/item/finger_lockpick/dropped(mob/user)
+/obj/item/finger_lockpick/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	to_chat(user, span_notice("We discreetly shape our finger back to a less suspicious form."))
 
-/obj/item/finger_lockpick/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/finger_lockpick/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

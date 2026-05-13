@@ -1,5 +1,5 @@
 // Those turfs replace the fall from sky step striggers
-/turf/Entered(var/atom/movable/am, var/atom/old_loc)
+/turf/Entered(atom/movable/am, atom/old_loc)
 	..()
 	if(!am.can_fall())
 		return
@@ -12,7 +12,7 @@
 		return
 	trigger_fall(am, planet)
 
-/turf/proc/trigger_fall(var/atom/movable/am, var/datum/planet/destination)
+/turf/proc/trigger_fall(atom/movable/am, datum/planet/destination)
 	if(!destination)
 		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
 		return

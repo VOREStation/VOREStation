@@ -132,6 +132,7 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	snow_speed = -1
 	step_volume_mod = 0.8
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/boots/winter/security
 	name = "security winter boots"

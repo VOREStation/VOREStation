@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
  * This is used for general exclusion, such as preventing insertions into other items
  * Basically, these aren't "real" items. <= wow thanks for the fucking insight sherlock
 */
-#define ABSTRACT				(1<<9)
+#define ABSTRACT (1<<9)
 
 // Flags for pass_flags. - Used in /atom/var/pass_flags
 #define PASSTABLE				(1<<0)

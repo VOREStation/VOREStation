@@ -28,10 +28,7 @@
 	qdel(dna)
 	return ..()
 
-/mob/living/carbon/brain/emp_act(severity, recursive) //Brains can't be EMP'd...
-	return
-
-/mob/living/carbon/brain/say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
+/mob/living/carbon/brain/say_understands(other)//Goddamn is this hackish, but this say code is so odd
 	if(istype(container, /obj/item/mmi))
 		if(issilicon(other))
 			return TRUE

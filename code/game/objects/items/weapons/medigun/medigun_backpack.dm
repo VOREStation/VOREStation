@@ -12,7 +12,6 @@
 	preserve_item = TRUE
 	w_class = ITEMSIZE_HUGE
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2, TECH_BLUESPACE = 4)
 
 	var/obj/item/bork_medigun/linked/medigun_path = /obj/item/bork_medigun/linked
 	var/obj/item/cell/bcell = /obj/item/cell
@@ -256,6 +255,8 @@
 
 /obj/item/medigun_backpack/emp_act(severity)
 	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(bcell)
 		bcell.emp_act(severity)
 
@@ -452,7 +453,7 @@
 	return ..()
 
 
-/obj/item/medigun_backpack/proc/refill_reagent(var/obj/item/container, mob/user)
+/obj/item/medigun_backpack/proc/refill_reagent(obj/item/container, mob/user)
 	. = FALSE
 	if(!maintenance && (istype(container, /obj/item/reagent_containers/glass/beaker) || istype(container, /obj/item/reagent_containers/glass/bottle)))
 
@@ -561,9 +562,9 @@
 		return TRUE
 	return FALSE
 
-/obj/item/medigun_backpack/dropped(mob/user)
+/obj/item/medigun_backpack/dropped(mob/user, equipping, slot)
 	..()
 	replace_icon()
 
-/obj/item/medigun_backpack/proc/checked_use(var/charge_amt)
+/obj/item/medigun_backpack/proc/checked_use(charge_amt)
 	return (bcell && bcell.checked_use(charge_amt))

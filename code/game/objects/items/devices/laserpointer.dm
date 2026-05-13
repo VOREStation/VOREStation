@@ -7,8 +7,7 @@
 	var/pointer_icon_state
 	slot_flags = SLOT_BELT
 	matter = list(MAT_GLASS = 500, MAT_STEEL = 500)
-	w_class = 2 //Increased to 2, because diodes are w_class 2. Conservation of matter.
-	origin_tech = list(TECH_MAGNET = 2, TECH_COMBAT = 1)
+	w_class = ITEMSIZE_SMALL //Increased to 2, because diodes are w_class 2. Conservation of matter.
 	var/turf/pointer_loc
 	var/energy = 8
 	var/max_energy = 8
@@ -31,7 +30,7 @@
 /obj/item/laser_pointer/purple
 	pointer_icon_state = "purple_laser"
 
-/obj/item/laser_pointer/Initialize(mapload, var/laser_path)
+/obj/item/laser_pointer/Initialize(mapload, laser_path)
 	. = ..()
 	if(ispath(laser_path))
 		diode = new laser_path
@@ -46,8 +45,9 @@
 /obj/item/laser_pointer/ultimate/Initialize(mapload)
 	. = ..(mapload, /obj/item/stock_parts/micro_laser/omni)
 
-/obj/item/laser_pointer/attack(mob/living/M, mob/user)
+/obj/item/laser_pointer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	laser_act(M, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/laser_pointer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stock_parts/micro_laser))
@@ -68,12 +68,12 @@
 		..()
 	return
 
-/obj/item/laser_pointer/afterattack(var/atom/target, var/mob/living/user, flag, params)
+/obj/item/laser_pointer/afterattack(atom/target, mob/living/user, flag, params)
 	if(flag)	//we're placing the object on a table or in backpack
 		return
 	laser_act(target, user)
 
-/obj/item/laser_pointer/proc/laser_act(var/atom/target, var/mob/living/user)
+/obj/item/laser_pointer/proc/laser_act(atom/target, mob/living/user)
 	if(!(user in (viewers(world.view,target))))
 		return
 	if(!(target in view(user, world.view)))

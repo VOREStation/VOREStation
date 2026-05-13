@@ -50,11 +50,11 @@
 	src.icon_state += "_[active]"
 	return
 
-/obj/item/implanter/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!istype(M, /mob/living/carbon))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(active)
-		if (imp)
+		if(imp)
 			M.visible_message(span_warning("[user] is attempting to implant [M]."))
 
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -75,11 +75,12 @@
 							BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 							BITSET(H.hud_updateflag, BACKUP_HUD) //VOREStation Add - Backup HUD updates
 
-					src.imp = null
+					imp = null
 					update()
+					return ITEM_INTERACT_SUCCESS
 	else
 		to_chat(user, span_warning("You need to activate \the [src.name] first."))
-	return
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/implanter/loyalty
 	name = "implanter-loyalty"
@@ -125,12 +126,13 @@
 		icon_state = "cimplanter0"
 	return
 
-/obj/item/implanter/compressed/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/compressed/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	var/obj/item/implant/compressed/c = imp
-	if (!c)	return
-	if (c.scanned == null)
+	if(!c)
+		return ITEM_INTERACT_FAILURE
+	if(c.scanned == null)
 		to_chat(user, "Please scan an object with the implanter first.")
-		return
+		return ITEM_INTERACT_FAILURE
 	..()
 
 /obj/item/implanter/compressed/afterattack(atom/A, mob/user as mob, proximity)

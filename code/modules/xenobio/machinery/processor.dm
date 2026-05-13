@@ -16,7 +16,6 @@
 /obj/item/circuitboard/processor
 	name = T_BOARD("slime processor")
 	build_path = /obj/machinery/processor
-	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/machinery/processor/attack_hand(mob/living/user)
 	if(processing)
@@ -49,7 +48,7 @@
 		AM.forceMove(get_turf(src))
 
 // Ejects all the things out of the machine.
-/obj/machinery/processor/proc/insert(var/atom/movable/AM, var/mob/living/user)
+/obj/machinery/processor/proc/insert(atom/movable/AM, mob/living/user)
 	if(!Adjacent(AM))
 		return
 	if(!can_insert(AM))
@@ -78,7 +77,7 @@
 	processing = FALSE
 	playsound(src, 'sound/machines/ding.ogg', 50, 1)
 
-/obj/machinery/processor/proc/extract(var/atom/movable/AM)
+/obj/machinery/processor/proc/extract(atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
@@ -98,7 +97,7 @@
 		monkeys_recycled++
 		sleep(1 SECOND)
 
-/obj/machinery/processor/proc/can_insert(var/atom/movable/AM)
+/obj/machinery/processor/proc/can_insert(atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		if(S.stat != DEAD)
@@ -113,7 +112,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/processor/MouseDrop_T(var/atom/movable/AM, var/mob/living/user)
+/obj/machinery/processor/MouseDrop_T(atom/movable/AM, mob/living/user)
 	if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !istype(user))
 		return
 	insert(AM, user)

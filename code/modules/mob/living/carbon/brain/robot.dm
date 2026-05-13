@@ -4,7 +4,6 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	is_digital_robot = TRUE
 
 /obj/item/mmi/digital/robot/Initialize(mapload)
@@ -13,7 +12,7 @@
 	brainmob.real_name = brainmob.name
 	name = "robotic intelligence circuit ([brainmob.name])"
 
-/obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/robot/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE

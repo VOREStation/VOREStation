@@ -142,7 +142,7 @@
 
 	return
 
-/mob/living/simple_mob/vore/morph/proc/restore(var/silent = FALSE)
+/mob/living/simple_mob/vore/morph/proc/restore(silent = FALSE)
 	if(!morphed)
 		to_chat(src, span_warning("You're already in your normal form!"))
 		return
@@ -196,7 +196,7 @@
 /mob/living/simple_mob/vore/morph/will_show_tooltip()
 	return (!morphed)
 
-/mob/living/simple_mob/vore/morph/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
+/mob/living/simple_mob/vore/morph/resize(new_size, animate = TRUE, uncapped = FALSE, ignore_prefs = FALSE, aura_animation = TRUE, allow_stripping = FALSE)
 	if(morphed && !ismob(form))
 		return
 	return ..()

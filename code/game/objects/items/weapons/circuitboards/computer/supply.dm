@@ -5,19 +5,17 @@
 /obj/item/circuitboard/supplycomp
 	name = T_BOARD("supply ordering console")
 	build_path = /obj/machinery/computer/supplycomp
-	origin_tech = list(TECH_DATA = 2)
 	var/contraband_enabled = 0
 
 /obj/item/circuitboard/supplycomp/control
 	name = T_BOARD("supply ordering console")
 	build_path = /obj/machinery/computer/supplycomp/control
-	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/circuitboard/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
+/obj/item/circuitboard/supplycomp/construct(obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		SC.can_order_contraband = contraband_enabled
 
-/obj/item/circuitboard/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
+/obj/item/circuitboard/supplycomp/atom_deconstruct(disassembled = TRUE, obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		contraband_enabled = SC.can_order_contraband
 

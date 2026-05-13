@@ -11,7 +11,7 @@
 	conductive = 0
 	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
-	stack_origin_tech = list(TECH_MATERIAL = 3)
+	supply_conversion_value = 0.5
 
 /datum/material/plastic/generate_recipes()
 	..()
@@ -70,11 +70,11 @@
 	conductive = 0
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
-	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	radiation_resistance = 1
 	pass_stack_colors = TRUE
+	supply_conversion_value = 0.05
 
 /datum/material/cardboard/generate_recipes()
 	..()
@@ -98,9 +98,9 @@
 	)
 
 /datum/material/toy_foam
-	name = "foam"
-	display_name = "foam"
-	use_name = "foam"
+	name = MAT_FOAM
+	display_name = MAT_FOAM
+	use_name = MAT_FOAM
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
@@ -110,3 +110,4 @@
 	protectiveness = 0 // 0%
 	conductive = 0
 	can_sharpen = FALSE
+	supply_conversion_value = 0

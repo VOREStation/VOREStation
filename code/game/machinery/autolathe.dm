@@ -23,8 +23,6 @@
 	///Are we currently printing something
 	var/busy = FALSE
 
-	var/datum/wires/autolathe/wires = null
-
 	///Coefficient applied to consumed materials. Lower values result in lower material consumption.
 	var/creation_efficiency = 1
 	///modifier for lathe build speed. Lower values are faster.
@@ -51,7 +49,7 @@
 	)
 	. = ..()
 
-	wires = new(src)
+	set_wires(new /datum/wires/autolathe(src))
 
 	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe])
 		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/autolathe] = new /datum/techweb/autounlocking/autolathe
@@ -399,7 +397,7 @@
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/autolathe/attackby(obj/item/O as obj, mob/user as mob)
 	if(is_robot_module(O))
 		return
 

@@ -79,6 +79,6 @@
 		infected.remove_modifiers_of_type(/datum/modifier/redspace_drain/lesser)
 	..()
 
-/datum/disease/fleshy_spread/proc/fever(var/mob/living/M)
+/datum/disease/fleshy_spread/proc/fever(mob/living/M)
 	M.bodytemperature = min(M.bodytemperature + (2 * stage), BODYTEMP_HEAT_DAMAGE_LIMIT - 1)
 	return TRUE

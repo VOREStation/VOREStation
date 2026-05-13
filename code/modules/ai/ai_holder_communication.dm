@@ -123,7 +123,7 @@
 	return
 
 // This is to make responses feel a bit more natural and not instant.
-/datum/ai_holder/proc/delayed_say(var/message, var/mob/speak_to)
+/datum/ai_holder/proc/delayed_say(message, mob/speak_to)
 	spawn(rand(1 SECOND, 2 SECONDS))
 		if(!src || !holder || !can_act())  // We might've died/got deleted/etc in the meantime.
 			return

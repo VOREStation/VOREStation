@@ -49,8 +49,8 @@
 	return
 
 /obj/machinery/portable_atmospherics/powered/pump/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(prob(50/severity))
@@ -61,8 +61,6 @@
 
 	target_pressure = rand(0,1300)
 	update_icon()
-
-	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/pump/process()
 	..()
@@ -113,14 +111,14 @@
 /obj/machinery/portable_atmospherics/powered/pump/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ai(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_ghost(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/pump/attack_hand(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/pump/attack_hand(mob/user)
 	tgui_interact(user)
 
 /obj/machinery/portable_atmospherics/powered/pump/tgui_interact(mob/user, datum/tgui/ui)

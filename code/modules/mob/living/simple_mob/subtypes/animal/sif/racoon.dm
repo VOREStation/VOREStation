@@ -71,7 +71,7 @@
 
 	drop_hat(usr)
 
-/mob/living/simple_mob/animal/sif/sakimm/proc/drop_hat(var/mob/user)
+/mob/living/simple_mob/animal/sif/sakimm/proc/drop_hat(mob/user)
 	if(hat)
 		hat.forceMove(get_turf(user))
 		hat = null
@@ -94,7 +94,7 @@
 
 	take_hat(usr)
 
-/mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(var/mob/user)
+/mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(mob/user)
 	if(hat)
 		if(user == src)
 			to_chat(user, span_notice("You already have a hat!"))
@@ -240,7 +240,7 @@
 
 	. -= holder.contents
 
-/datum/ai_holder/simple_mob/intentional/sakimm/find_target(var/list/possible_targets, var/has_targets_list = FALSE)
+/datum/ai_holder/simple_mob/intentional/sakimm/find_target(list/possible_targets, has_targets_list = FALSE)
 	var/can_pick_mobs = TRUE
 
 	if(!hostile)

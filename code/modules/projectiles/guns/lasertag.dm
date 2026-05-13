@@ -36,7 +36,6 @@
 	icon = 'icons/obj/gun_toy.dmi'
 	item_state = "omnitag"
 	item_state = "retro"
-	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/lasertag/omni
 	cell_type = /obj/item/cell/device/weapon/recharge
@@ -45,7 +44,7 @@
 	///Allows firing without a vest.
 	var/vest_override = FALSE
 
-/obj/item/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
+/obj/item/gun/energy/lasertag/special_check(mob/living/carbon/human/M)
 	if(ishuman(M) && !vest_override)
 		if(!istype(M.wear_suit, required_vest))
 			to_chat(M, span_warning("You need to be wearing your laser tag vest!"))
@@ -129,7 +128,7 @@
 	allowed_suits = list(/obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/omni)
 
 //We have to do this if(user) check all over the place because for some reason someone broke thrower code. Thanks.
-/obj/item/lasertagknife/attack(target, mob/user)
+/obj/item/lasertagknife/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 	if(user)
 		user.setClickCooldown(user.get_attack_speed(src))
 		user.do_attack_animation(target)
@@ -141,7 +140,7 @@
 	else
 		user.visible_message(span_danger("[target] has been harmlessly bonked with [src] by [user]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 75, 1)
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 ///go my hack
 /obj/item/lasertagknife/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

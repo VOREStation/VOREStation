@@ -6,7 +6,6 @@
 	icon = 'icons/obj/robobag.dmi'
 	icon_state = "bodybag_folded"
 	item_state = "bodybag_cryo_folded"
-	origin_tech = list(TECH_ENGINEERING = 3)
 	robotic = TRUE
 	cryogenic = FALSE
 

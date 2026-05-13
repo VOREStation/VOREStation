@@ -8,7 +8,6 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 6
-	origin_tech = list(TECH_BIO = 4)
 	var/uses = 1 // uses before it goes inert
 	var/enhanced = 0 //has it been enhanced before?
 	flags = OPENCONTAINER
@@ -321,7 +320,6 @@
 	throwforce = 1.0
 	throw_speed = 2
 	throw_range = 6
-	origin_tech = list(TECH_BIO = 4)
 	var/POWERFLAG = 0 // sshhhhhhh
 	var/Flush = 30
 	var/Uses = 5 // uses before it goes inert
@@ -353,7 +351,6 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "slime egg-growing"
 	bitesize = 12
-	origin_tech = list(TECH_BIO = 4)
 	var/grown = 0
 
 /obj/item/reagent_containers/food/snacks/egg/slime/Initialize(mapload)

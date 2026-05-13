@@ -230,7 +230,7 @@
 		var/turf/T = get_turf(victim)
 		expand_blob(T)
 
-/mob/observer/blob/proc/can_attack(var/mob/living/L)
+/mob/observer/blob/proc/can_attack(mob/living/L)
 	if(!istype(L))
 		return FALSE
 	if(L.faction == blob_type.faction)

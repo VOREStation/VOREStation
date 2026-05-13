@@ -64,11 +64,15 @@
 /obj/machinery/disposal/singularity_pull(S, current_size)
 	..()
 	if(current_size >= STAGE_FIVE)
-		deconstruct()
+		atom_deconstruct(TRUE)
+
+/obj/machinery/disposal/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
+	if(Adjacent(user) && Adjacent(dropping) && isobj(dropping) && isturf(dropping.loc))
+		attackby(dropping, user, drag_dropped = TRUE)
 
 // attack by item places it in to disposal
-/obj/machinery/disposal/attackby(obj/item/I, mob/user)
-	if(stat & BROKEN || !I || !user)
+/obj/machinery/disposal/attackby(obj/item/I, mob/user, attack_modifier, click_parameters, drag_dropped = FALSE)
+	if(stat & BROKEN || !I || !user || !istype(I))
 		return
 
 	add_fingerprint(user)
@@ -102,7 +106,7 @@
 				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 					if(!src || !W.isOn()) return
 					to_chat(user, "You sliced the floorweld off the disposal unit.")
-					deconstruct()
+					atom_deconstruct(TRUE)
 				return
 			else
 				to_chat(user, "You need more welding fuel to complete this task.")
@@ -143,12 +147,13 @@
 				add_attack_logs(user,GM,"Disposals dunked")
 		return
 
-	if(isrobot(user))
+	if(isrobot(user) && !drag_dropped) //Borgs are allowed to drag-drop items into the disposal unit.
 		return
 	if(!I || I.anchored || !I.canremove)
 		return
 
-	user.drop_item()
+	if(!drag_dropped)
+		user.drop_item()
 	if(I)
 		if(istype(I, /obj/item/holder))
 			var/obj/item/holder/holder = I
@@ -262,9 +267,11 @@
 
 // mouse drop another mob or self
 //
-/obj/machinery/disposal/MouseDrop_T(mob/living/target, mob/living/user)
-	if(istype(target))
-		stuff_mob_in(target, user)
+/obj/machinery/disposal/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
+	if(isliving(dropping))
+		stuff_mob_in(dropping, user)
+	else if(isobj(dropping) && isturf(dropping.loc))
+		attackby(dropping, user, drag_dropped = TRUE)
 
 /obj/machinery/disposal/proc/stuff_mob_in(mob/living/target, mob/living/user)
 	//animals cannot put mobs other than themselves into disposal
@@ -584,7 +591,7 @@
 
 // Ideally, deconstruct would be a proc on /machinery, but you cant have nice things with polaris.
 // AKA: FUKKIN CHANGE THIS WHEN THAT HAPPENS!!!!!1!!   pls. -Reo
-/obj/machinery/disposal/proc/deconstruct(disassembled = TRUE)
+/obj/machinery/disposal/atom_deconstruct(disassembled = TRUE)
 	var/turf/T = loc
 	/* // More nice things... Someday we'll have flags_1 and then have proper support for anything being a hologram.
 	if(!(flags_1 & NODECONSTRUCT_1))

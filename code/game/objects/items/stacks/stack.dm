@@ -11,7 +11,6 @@
 
 /obj/item/stack
 	gender = PLURAL
-	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
 	randpixel = 7
 	center_of_mass_x = 0
@@ -35,7 +34,7 @@
 	var/beacons = FALSE
 	var/sandbags = FALSE
 
-/obj/item/stack/Initialize(mapload, var/starting_amount)
+/obj/item/stack/Initialize(mapload, starting_amount)
 	. = ..()
 	if(!stacktype)
 		stacktype = type
@@ -168,7 +167,7 @@
 
 	return FALSE
 
-/obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
+/obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
@@ -259,7 +258,7 @@
 
 //Return 1 if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
-/obj/item/stack/proc/can_use(var/used)
+/obj/item/stack/proc/can_use(used)
 	if(used < 0 || (used != round(used)))
 		stack_trace("Tried to use a bad stack amount: [used]")
 		return 0
@@ -267,7 +266,7 @@
 		return 0
 	return 1
 
-/obj/item/stack/proc/use(var/used)
+/obj/item/stack/proc/use(used)
 	if(!can_use(used))
 		return 0
 	if(!uses_charge)
@@ -288,7 +287,7 @@
 			S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
 		return 1
 
-/obj/item/stack/proc/add(var/extra)
+/obj/item/stack/proc/add(extra)
 	if(extra < 0 || (extra != round(extra)))
 		stack_trace("Tried to add a bad stack amount: [extra]")
 		return 0
@@ -306,7 +305,7 @@
 			var/datum/matter_synth/S = synths[i]
 			S.add_charge(charge_costs[i] * extra)
 
-/obj/item/stack/proc/set_amount(var/new_amount, var/no_limits = FALSE)
+/obj/item/stack/proc/set_amount(new_amount, no_limits = FALSE)
 	if(new_amount < 0 || (new_amount != round(new_amount)))
 		stack_trace("Tried to set a bad stack amount: [new_amount]")
 		return 0
@@ -334,7 +333,7 @@
 */
 
 //attempts to transfer amount to S, and returns the amount actually transferred
-/obj/item/stack/proc/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
+/obj/item/stack/proc/transfer_to(obj/item/stack/S, tamount=null, type_verified)
 	if (!get_amount())
 		return 0
 	if ((stacktype != S.stacktype) && !type_verified)
@@ -361,7 +360,7 @@
 	return 0
 
 //creates a new stack with the specified amount
-/obj/item/stack/proc/split(var/tamount)
+/obj/item/stack/proc/split(tamount)
 	if (!amount)
 		return null
 	if(uses_charge)
@@ -461,7 +460,7 @@
 /obj/item/stack/proc/combine_in_loc()
 	return //STUBBED for now, as it seems to randomly delete stacks
 
-/obj/item/stack/dropped(atom/old_loc)
+/obj/item/stack/dropped(mob/user, equipping, slot)
 	. = ..()
 	if(isturf(loc))
 		combine_in_loc()

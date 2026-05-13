@@ -162,6 +162,7 @@
 	slot_flags = SLOT_BACK
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
+	unacidable = TRUE
 	var/obj/item/ghost_catcher/who_ya_gunna_call = /obj/item/ghost_catcher
 
 /obj/item/proton_pack/Initialize(mapload)
@@ -173,3 +174,13 @@
 	if(SEND_SIGNAL(src,COMSIG_ITEM_ATTACK_SELF,user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
 	. = ..()
+
+/obj/item/proton_pack/MouseDrop()
+	if(ismob(src.loc))
+		if(!CanMouseDrop(src))
+			return
+		var/mob/M = src.loc
+		if(!M.unEquip(src))
+			return
+		src.add_fingerprint(usr)
+		M.put_in_any_hand_if_possible(src)
