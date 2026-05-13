@@ -61,6 +61,10 @@
 		name = "[material.display_name] [initial(name)]"
 		desc = "A stool. Apply butt with care. It's made of [material.use_name]."
 
+/obj/item/stool/dropped(mob/user, equipping, slot)
+	. = ..()
+	set_dir(user.dir) //Face the way we're facing when we drop it.
+
 /obj/item/stool/proc/add_padding(padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
