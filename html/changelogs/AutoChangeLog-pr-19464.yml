@@ -1,0 +1,4 @@
+author: "Cerami"
+delete-after: True
+changes:
+  - bugfix: "adjusts mob vore pref to only be for mobs as preds"
