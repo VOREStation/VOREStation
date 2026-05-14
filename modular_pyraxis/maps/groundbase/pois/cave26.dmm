@@ -1,0 +1,82 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"X" = (
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+X
+X
+X
+X
+X
+a
+a
+"}
+(2,1,1) = {"
+X
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+X
+a
+a
+a
+X
+X
+X
+"}
+(4,1,1) = {"
+a
+a
+X
+X
+X
+a
+X
+"}
+(5,1,1) = {"
+a
+X
+X
+X
+a
+a
+X
+"}
+(6,1,1) = {"
+a
+X
+X
+X
+a
+a
+X
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+X
+"}
+(8,1,1) = {"
+X
+X
+a
+a
+X
+X
+X
+"}

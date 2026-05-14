@@ -1,0 +1,144 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"c" = (
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/poi/outdoor)
+"g" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"l" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"q" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"u" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"z" = (
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"B" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"G" = (
+/obj/structure/table/standard,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"L" = (
+/obj/structure/bed/chair/sofa/right/black,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"O" = (
+/obj/structure/bed/chair/sofa/left/black,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"T" = (
+/turf/simulated/wall/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"V" = (
+/obj/structure/bed/chair/sofa/black,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+"Y" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin2)
+
+(1,1,1) = {"
+a
+T
+T
+T
+a
+a
+"}
+(2,1,1) = {"
+T
+T
+G
+T
+T
+a
+"}
+(3,1,1) = {"
+T
+u
+z
+Y
+T
+c
+"}
+(4,1,1) = {"
+B
+L
+z
+z
+T
+c
+"}
+(5,1,1) = {"
+B
+V
+z
+z
+b
+c
+"}
+(6,1,1) = {"
+B
+O
+z
+z
+T
+c
+"}
+(7,1,1) = {"
+T
+q
+z
+l
+T
+c
+"}
+(8,1,1) = {"
+T
+T
+g
+T
+T
+a
+"}
+(9,1,1) = {"
+a
+T
+T
+T
+a
+a
+"}

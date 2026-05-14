@@ -1,0 +1,94 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"l" = (
+/obj/random/crate,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/maintenance/groundbase/poi/caves)
+"x" = (
+/turf/simulated/floor/outdoors/newdirt_nograss{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"G" = (
+/obj/random/maintenance/misc,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/maintenance/groundbase/poi/caves)
+"K" = (
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/maintenance/groundbase/poi/caves)
+
+(1,1,1) = {"
+a
+a
+G
+a
+a
+"}
+(2,1,1) = {"
+G
+x
+x
+x
+G
+"}
+(3,1,1) = {"
+x
+x
+K
+x
+x
+"}
+(4,1,1) = {"
+x
+K
+K
+K
+x
+"}
+(5,1,1) = {"
+K
+K
+l
+K
+K
+"}
+(6,1,1) = {"
+x
+K
+K
+K
+x
+"}
+(7,1,1) = {"
+x
+x
+K
+x
+x
+"}
+(8,1,1) = {"
+G
+x
+x
+x
+G
+"}
+(9,1,1) = {"
+a
+a
+G
+a
+a
+"}
