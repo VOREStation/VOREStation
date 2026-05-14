@@ -29,9 +29,7 @@ SUBSYSTEM_DEF(cryoplanets)
 
 /datum/controller/subsystem/cryoplanets/fire(resumed)
 	if(!resumed)
-		if(!cryo_zones) // Incase anyone decides to forcestart this subsystem, lets NOT kill the server
-			cryo_zones = SSair.zones.Copy()
-		current_run = cryo_zones.Copy() // We need the list of zones anyway, just use the air controller's instead of duplicating another massive list
+		current_run = cryo_zones.Copy()
 
 	while(length(current_run))
 		var/datum/zone/zone = current_run[length(current_run)]
