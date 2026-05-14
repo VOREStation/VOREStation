@@ -12,12 +12,13 @@ SUBSYSTEM_DEF(cryoplanets)
 		/datum/controller/subsystem/air
 	)
 
-	var/list/cryo_zones = list()
+	var/list/cryo_zones = null // Intentional to init this during setup. If the system is disabled we don't want to keep a massive list we're updating and doing nothing with
 	VAR_PRIVATE/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
 		if(check.cryogenic_temp_shift)
+			cryo_zones = list()
 			return SS_INIT_SUCCESS
 	flags |= SS_NO_FIRE
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
@@ -28,6 +29,8 @@ SUBSYSTEM_DEF(cryoplanets)
 
 /datum/controller/subsystem/cryoplanets/fire(resumed)
 	if(!resumed)
+		if(!cryo_zones) // Incase anyone decides to forcestart this subsystem, lets NOT kill the server
+			cryo_zones = SSair.zones.Copy()
 		current_run = cryo_zones.Copy() // We need the list of zones anyway, just use the air controller's instead of duplicating another massive list
 
 	while(length(current_run))
