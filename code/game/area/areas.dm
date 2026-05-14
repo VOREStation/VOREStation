@@ -586,7 +586,3 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 /area/proc/get_color_tint()
 	SHOULD_CALL_PARENT(TRUE)
 	return color_grading
-
-/// If true, the planet is NOT affected by SScryoplanet's planet wide temperature lowering effects (if the subsystem is enabled)
-/area/proc/is_cryoplanet_shielded()
-	return FALSE

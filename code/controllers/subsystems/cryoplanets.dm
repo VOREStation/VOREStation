@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(cryoplanets)
 		return FALSE
 
 	var/area/area_check = get_area(T) //Do not freeze dorms
-	if(!area_check || area_check.is_cryoplanet_shielded())
+	if(!area_check || (area_check.flags & AREA_CRYOPLANET_SHIELDED))
 		return FALSE
 
 	return TRUE

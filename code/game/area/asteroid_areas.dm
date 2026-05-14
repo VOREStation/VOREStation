@@ -3,10 +3,7 @@
 /area/mine
 	icon_state = "mining"
 	sound_env = ASTEROID
-	flags = AREA_FLAG_IS_NOT_PERSISTENT
-
-/area/mine/is_cryoplanet_shielded()
-	return TRUE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_CRYOPLANET_SHIELDED
 
 /area/mine/explored
 	name = "Mine"

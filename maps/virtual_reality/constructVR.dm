@@ -162,10 +162,7 @@
 /area/vr/powered/mall/dorms
 	name = "VR Mall Dorms"
 	icon_state = "Sleep"
-	flags = RAD_SHIELDED | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_LIMIT_DARK_RESPITE
-
-/area/vr/powered/mall/dorms/is_cryoplanet_shielded()
-	return TRUE
+	flags = RAD_SHIELDED | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_LIMIT_DARK_RESPITE | AREA_CRYOPLANET_SHIELDED
 
 /area/vr/powered/mall/dorms/dorms1
 

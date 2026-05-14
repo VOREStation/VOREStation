@@ -28,7 +28,7 @@
 	var/moon_name = null // Purely for flavor. Null means no moon exists.
 	var/moon_phase = null // Set if above is defined.
 
-	var/cryogenic_temp_shift = FALSE // If true, ALL areas that are not is_cryoplanet_shielded() will be brought toward the current weather's temperature. Causing indoor station areas to slowly match the planet's environment.
+	var/cryogenic_temp_shift = FALSE // If true, ALL areas that are not AREA_CRYOPLANET_SHIELDED will be brought toward the current weather's temperature. Causing indoor station areas to slowly match the planet's environment.
 
 /datum/planet/New()
 	..()
