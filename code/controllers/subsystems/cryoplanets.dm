@@ -20,6 +20,7 @@ SUBSYSTEM_DEF(cryoplanets)
 		if(check.cryogenic_temp_shift)
 			return SS_INIT_SUCCESS
 	flags |= SS_NO_FIRE
+	cryo_zones.Cut() // Populated by Zone/add_zone() which is done by SSair before this. Clear those hardrefs if we are not gonna use them!
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/cryoplanets/stat_entry(msg)
