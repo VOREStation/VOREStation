@@ -61,3 +61,19 @@
 2026-05-06:
   Kashargul:
   - code_imp: removes var/ inside of procs
+2026-05-13:
+  ReoDaProtovali:
+  - qol: stools face the direction you're facing when you drop them
+  Will:
+  - rscadd: Upports snowbulls from yawnwider
+  tacoguy7765093:
+  - balance: RMS material cost changed.
+2026-05-14:
+  Diana:
+  - image: Adds a new 'chu' tail
+  - bugfix: Borg wires no longer become EMP'd.
+  - bugfix: Fixes borg gripper interactions with stacks of items.
+  Kashargul:
+  - code_imp: dependency up
+  - code_imp: typescript 6
+  - qol: updates chat highlights
