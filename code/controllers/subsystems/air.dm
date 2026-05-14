@@ -362,8 +362,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 
 	// Reset all the lists
 	zones.Cut()
-	if(SScryoplanets.cryo_zones)
-		SScryoplanets.cryo_zones.Cut()
+	SScryoplanets.cryo_zones.Cut()
 	edges.Cut()
 	tiles_to_update.Cut()
 	zones_to_update.Cut()
@@ -382,14 +381,12 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	zones.Add(z)
 	z.name = "Zone [next_id++]"
 	mark_zone_update(z)
-	if(SScryoplanets.cryo_zones)
-		SScryoplanets.cryo_zones.Add(z)
+	SScryoplanets.cryo_zones.Add(z)
 
 /datum/controller/subsystem/air/proc/remove_zone(datum/zone/z)
 	zones.Remove(z)
 	zones_to_update.Remove(z)
-	if(SScryoplanets.cryo_zones)
-		SScryoplanets.cryo_zones.Remove(z)
+	SScryoplanets.cryo_zones.Remove(z)
 
 /datum/controller/subsystem/air/proc/air_blocked(turf/A, turf/B)
 	#ifdef ZASDBG

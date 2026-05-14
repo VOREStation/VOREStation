@@ -12,13 +12,12 @@ SUBSYSTEM_DEF(cryoplanets)
 		/datum/controller/subsystem/air
 	)
 
-	var/list/cryo_zones = null // Intentional to init this during setup. If the system is disabled we don't want to keep a massive list we're updating and doing nothing with
+	var/list/cryo_zones = list()
 	VAR_PRIVATE/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
 		if(check.cryogenic_temp_shift)
-			cryo_zones = list()
 			return SS_INIT_SUCCESS
 	flags |= SS_NO_FIRE
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
