@@ -194,7 +194,7 @@
 /datum/gear/suit/roles/surgical_apron
 	display_name = "surgical apron"
 	path = /obj/item/clothing/suit/surgicalapron
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER)
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER, JOB_ROBOTICIST) // PY Edit - Roboticist
 
 /datum/gear/suit/overalls
 	display_name = "overalls"
@@ -441,13 +441,13 @@
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST, JOB_ROBOTICIST) // PY Edit - Roboticist
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/alt
 	display_name = "winter coat, medical alt"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST, JOB_ROBOTICIST) // PY Edit - Roboticist
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/medical/viro
@@ -501,7 +501,7 @@
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
-	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER)
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER, JOB_MECHATRONIC_ENGINEER) // PY Edit - Mech Eng
 	show_roles = FALSE
 
 /datum/gear/suit/wintercoat/engineering/atmos
@@ -700,7 +700,7 @@
 /datum/gear/suit/snowsuit/engineering
 	display_name = "snowsuit, engineering"
 	path = /obj/item/clothing/suit/storage/snowsuit/engineering
-	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER)
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER, JOB_MECHATRONIC_ENGINEER) // PY Edit - Mech Eng
 	show_roles = FALSE
 
 /datum/gear/suit/snowsuit/cargo
@@ -823,7 +823,7 @@
 	path = /obj/item/clothing/suit/storage/toggle/bomber/pilot
 
 /datum/gear/suit/snowsuit/medical
-	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST)
+	allowed_roles = list(JOB_MEDICAL_DOCTOR,JOB_CHIEF_MEDICAL_OFFICER,JOB_CHEMIST,JOB_PARAMEDIC,JOB_GENETICIST, JOB_PSYCHIATRIST, JOB_ROBOTICIST) // PY Edit - Roboticist
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -1200,4 +1200,4 @@ Talon winter coat
 /datum/gear/suit/neo_medical_coat
 	display_name = "medical coat"
 	path = /obj/item/clothing/suit/neo_medical_coat
-	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR,JOB_ROBOTICIST) // PY Edit - Roboticist

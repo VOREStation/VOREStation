@@ -304,7 +304,7 @@
 #define JOB_ROBOTICIST "Roboticist"
 	// Roboticist alt titles
 	#define JOB_ALT_ASSEMBLY_TECHNICIAN "Assembly Technician"
-	#define JOB_ALT_BIOMECHANICAL_ENGINEER "Biomechanical Engineer"
+	#define JOB_ALT_BIOMECHANICAL_ENGINEER "Biomechanical Surgeon" // PY Edit - Change to Surgeon
 	#define JOB_ALT_MECHATRONIC_ENGINEER "Mechatronic Engineer"
 	#define JOB_ALT_SOFTWARE_ENGINEER "Software Engineer"
 
@@ -387,6 +387,9 @@
 	#define JOB_ALT_TALON_EXCAVATOR "Talon Excavator"
 //___________________________________________________________
 
+// PY Edit Start - Mechatronic Engineer
+#define JOB_MECHATRONIC_ENGINEER "Mechatronic Engineer"
+// PY Edit End
 
 // Mind jobs
 #define JOB_SLIME "slime"
@@ -480,6 +483,7 @@
 #define EXPLORER (1<<12)
 #define SAR (1<<13)
 #define XENOBOTANIST (1<<14)
+#define MECHENG (1<<15) // PY Add - Mech Eng
 
 #define CIVILIAN (1<<2)
 

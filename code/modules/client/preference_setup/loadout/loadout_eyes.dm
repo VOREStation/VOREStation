@@ -233,7 +233,7 @@
 /datum/gear/eyes/arglasses_eng
 	display_name = "AR-Engineering glasses"
 	path = /obj/item/clothing/glasses/omnihud/eng
-	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN)
+	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_MECHATRONIC_ENGINEER) // PY Edit - Mech Eng
 
 /datum/gear/eyes/arglasses_eng/New()
 	..()
@@ -303,7 +303,7 @@
 	display_name = "Augmented Reality Mantle (Eng)"
 	description = "A full-face, partially-obscuring visor. Covers the face and eyes. Has an engineering-oriented augmented-reality display on the inside, and can be toggled into a corrective vision mode. UV lining blocks flashes and welding glare."
 	path = /obj/item/clothing/glasses/omnihud/mantle/eng
-	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN)
+	allowed_roles = list(JOB_ENGINEER,JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_MECHATRONIC_ENGINEER) // PY Edit - Mech Eng
 
 /datum/gear/eyes/ar_mantle_cmd
 	display_name = "Augmented Reality Mantle (Command)"
