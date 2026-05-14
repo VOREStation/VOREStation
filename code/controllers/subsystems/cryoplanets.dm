@@ -1,3 +1,5 @@
+#define THERMAL_ENERGY_CHANGE 12000
+
 SUBSYSTEM_DEF(cryoplanets)
 	name = "Cryogenic Planets"
 	wait = 8 SECOND
@@ -11,18 +13,17 @@ SUBSYSTEM_DEF(cryoplanets)
 	)
 
 	var/list/cryo_zones = list()
-	var/static/thermal_energy_change = 12000
 	VAR_PRIVATE/list/current_run = list()
 
 /datum/controller/subsystem/cryoplanets/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
 		if(check.cryogenic_temp_shift)
 			return SS_INIT_SUCCESS
-	can_fire = FALSE
+	flags |= SS_NO_FIRE
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/cryoplanets/stat_entry(msg)
-	msg = " Cr: [length(current_run)] | Zs: [length(cryo_zones)] | Tp: [thermal_energy_change]"
+	msg = " Cr: [length(current_run)] | Zs: [length(cryo_zones)]"
 	. = ..()
 
 /datum/controller/subsystem/cryoplanets/fire(resumed)
@@ -30,7 +31,7 @@ SUBSYSTEM_DEF(cryoplanets)
 		current_run = cryo_zones.Copy() // We need the list of zones anyway, just use the air controller's instead of duplicating another massive list
 
 	while(length(current_run))
-		var/datum/zone/zone = current_run[current_run.len]
+		var/datum/zone/zone = current_run[length(current_run)]
 		current_run.len--
 		if(QDELETED(zone) || zone.invalid)
 			cryo_zones.Remove(zone)
@@ -41,7 +42,7 @@ SUBSYSTEM_DEF(cryoplanets)
 			cryo_zones.Remove(zone)
 			continue
 
-		equalize_temperature_to_planet(T, zone, thermal_energy_change)
+		equalize_temperature_to_planet(T, zone, THERMAL_ENERGY_CHANGE)
 		if(MC_TICK_CHECK)
 			return
 
@@ -50,7 +51,7 @@ SUBSYSTEM_DEF(cryoplanets)
 	if(!currentAir)
 		return
 
-	// Get the temperature energy needed to shift the zones' temp toward our goal... Maxes out at thermal_energy_change per subsystem tick
+	// Get the temperature energy needed to shift the zones' temp toward our goal... Maxes out at THERMAL_ENERGY_CHANGE per subsystem tick
 	var/datum/planet/P = SSplanets.z_to_planet[T.z]
 	var/target_temp = P.weather_holder.temperature
 	var/neededEnergy = currentAir.get_thermal_energy_change(target_temp)
@@ -91,3 +92,5 @@ SUBSYSTEM_DEF(cryoplanets)
 		return FALSE
 
 	return TRUE
+
+#undef THERMAL_ENERGY_CHANGE

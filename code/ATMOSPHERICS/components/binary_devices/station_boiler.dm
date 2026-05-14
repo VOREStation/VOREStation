@@ -65,9 +65,9 @@
 	if(is_active)
 		set_light(4, 3, "#e9400dff")
 		boiler_loop.start(src)
-	else
-		set_light(0)
-		boiler_loop.stop(src)
+		return
+	set_light(0)
+	boiler_loop.stop(src)
 
 /obj/structure/stationboiler/update_icon()
 	if(is_active)

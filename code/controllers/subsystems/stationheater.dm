@@ -1,3 +1,5 @@
+#define THERMAL_ENERGY_CHANGE 12000
+
 SUBSYSTEM_DEF(stationheater)
 	name = "Station Boiler"
 	wait = 8 SECOND
@@ -17,17 +19,16 @@ SUBSYSTEM_DEF(stationheater)
 
 	// Radiator power
 	var/static/target_heat_temperature = T20C //The temperature the radiator wants the room to reach
-	var/static/thermal_energy_change = 12000 //How much energy a radiator can produce a tick
 
 /datum/controller/subsystem/stationheater/Initialize()
 	for(var/datum/planet/check in SSplanets.planets)
 		if(check.cryogenic_temp_shift)
 			return SS_INIT_SUCCESS
-	can_fire = FALSE
+	flags |= SS_NO_FIRE
 	return SS_INIT_NO_NEED // No cryoplanets to deal with!
 
 /datum/controller/subsystem/stationheater/stat_entry(msg)
-	msg = " Cr: [length(current_run)] | Br: [length(boilers)] | Rs: [length(radiators)] | Tp: [thermal_energy_change]"
+	msg = " Cr: [length(current_run)] | Br: [length(boilers)] | Rs: [length(radiators)]"
 	. = ..()
 
 /datum/controller/subsystem/stationheater/fire(resumed)
@@ -42,7 +43,7 @@ SUBSYSTEM_DEF(stationheater)
 	// Process the current run until all raditors are done heating
 	var/obj/structure/stationboiler/current_heater = get_current_boiler()
 	while(length(current_run))
-		var/obj/machinery/stationboiler_radiator/rad = current_run[current_run.len]
+		var/obj/machinery/stationboiler_radiator/rad = current_run[length(current_run)]
 		current_run.len--
 		if(!QDELETED(rad))
 			handle_radiate(rad, current_heater)
@@ -70,5 +71,7 @@ SUBSYSTEM_DEF(stationheater)
 	var/datum/gas_mixture/environment = radiator_turf.return_air()
 	var/neededEnergy = environment.get_thermal_energy_change(target_heat_temperature)
 	if(neededEnergy > 0)
-		neededEnergy = min(neededEnergy, thermal_energy_change)
+		neededEnergy = min(neededEnergy, THERMAL_ENERGY_CHANGE)
 		environment.add_thermal_energy(neededEnergy)
+
+#undef THERMAL_ENERGY_CHANGE
