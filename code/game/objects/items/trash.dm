@@ -11,7 +11,7 @@
 	matter = list(MAT_STEEL = 30)
 	var/age = 0
 
-/obj/item/trash/Initialize(mapload, var/_age)
+/obj/item/trash/Initialize(mapload, _age)
 	. = ..()
 	if(!isnull(_age))
 		age = _age
@@ -236,8 +236,8 @@
 	pickup_sound = 'sound/items/pickup/flesh.ogg'
 	slot_flags = SLOT_EARS | SLOT_MASK
 
-/obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
-	return
+/obj/item/trash/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 
 /obj/item/trash/beef

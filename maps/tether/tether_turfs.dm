@@ -33,7 +33,7 @@
 	temperature	= TCMB
 
 	//This proc is responsible for ore generation on surface turfs
-/turf/simulated/mineral/virgo3b/make_ore(var/rare_ore)
+/turf/simulated/mineral/virgo3b/make_ore(rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
@@ -72,7 +72,7 @@
 		UpdateMineral()
 	update_icon()
 
-/turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
+/turf/simulated/mineral/virgo3b/rich/make_ore(rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name

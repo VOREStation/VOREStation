@@ -139,7 +139,7 @@
 	target_temp += rand(0, 1000)
 	update_icon()
 
-/obj/machinery/power/thermoregulator/overload(var/obj/machinery/power/source)
+/obj/machinery/power/thermoregulator/overload(obj/machinery/power/source)
 	if(!anchored || !powernet)
 		return
 	var/power_avail = draw_power(active_power_usage*10)

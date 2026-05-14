@@ -19,7 +19,7 @@
 	sprite_icon_state = "droid"
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
-/datum/robot_sprite/combat/droid/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/combat/droid/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
@@ -91,7 +91,7 @@
 	sprite_icon = 'icons/mob/robot/combat_large.dmi'
 	has_custom_equipment_sprites = TRUE
 
-/datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -117,14 +117,14 @@
 	rest_sprite_options = list("Default", "Sit")
 	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
-/datum/robot_sprite/dogborg/tall/combat/derg/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/derg/handle_extra_icon_updates(mob/living/silicon/robot/ourborg)
 	..()
 	if(ourborg.resting)
 		return
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		ourborg.add_overlay("[sprite_icon_state]-roll")
 
-/datum/robot_sprite/dogborg/tall/combat/derg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/derg/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
@@ -154,17 +154,17 @@
 	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE
 	hat_offset = RAPTOR_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
-/datum/robot_sprite/dogborg/tall/combat/raptor/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/raptor/get_eye_light_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
-/datum/robot_sprite/dogborg/tall/combat/raptor/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/raptor/get_belly_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
@@ -210,7 +210,7 @@
 	has_custom_equipment_sprites = TRUE
 	has_eye_sprites = FALSE
 
-/datum/robot_sprite/dogborg/wide/combat/blade/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/wide/combat/blade/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)

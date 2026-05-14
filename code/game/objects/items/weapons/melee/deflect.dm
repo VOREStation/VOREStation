@@ -6,7 +6,7 @@
 	var/defend_chance = 5	// The base chance for the weapon to parry.
 	var/projectile_parry_chance = 0	// The base chance for a projectile to be deflected.
 
-/obj/item/melee/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(.)
 		return .
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))

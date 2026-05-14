@@ -111,7 +111,7 @@
 	eat_attempts = 0
 	return null
 
-/datum/ai_holder/simple_mob/vore/gryphon/proc/possibly_eat(var/target, var/alone)
+/datum/ai_holder/simple_mob/vore/gryphon/proc/possibly_eat(target, alone)
 	if (target != maybe_eating)
 		eat_attempts = 0
 

@@ -390,19 +390,19 @@ GLOBAL_LIST_EMPTY(icon_state_lists)
 	return FALSE
 
 GLOBAL_LIST_EMPTY(cached_examine_icons)
-/proc/set_cached_examine_icon(var/atom/A, var/icon/I, var/expiry = 12000)
+/proc/set_cached_examine_icon(atom/A, icon/I, expiry = 12000)
 	GLOB.cached_examine_icons[WEAKREF(A)] = I
 	if(expiry)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(uncache_examine_icon), WEAKREF(A)), expiry, TIMER_UNIQUE)
 
-/proc/get_cached_examine_icon(var/atom/A)
+/proc/get_cached_examine_icon(atom/A)
 	var/datum/weakref/WR = WEAKREF(A)
 	return GLOB.cached_examine_icons[WR]
 
-/proc/uncache_examine_icon(var/datum/weakref/WR)
+/proc/uncache_examine_icon(datum/weakref/WR)
 	GLOB.cached_examine_icons -= WR
 
-/proc/adjust_brightness(var/color, var/value)
+/proc/adjust_brightness(color, value)
 	if (!color) return "#FFFFFF"
 	if (!value) return color
 
@@ -412,7 +412,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 	RGB[3] = CLAMP(RGB[3]+value,0,255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
-/proc/sort_atoms_by_layer(var/list/atoms)
+/proc/sort_atoms_by_layer(list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()
 	var/gap = result.len
@@ -431,7 +431,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 				swapped = 1
 	return result
 
-/proc/gen_hud_image(var/file, var/person, var/state, var/plane)
+/proc/gen_hud_image(file, person, state, plane)
 	var/image/img = image(file, person, state)
 	img.plane = plane //Thanks Byond.
 	img.layer = MOB_LAYER-0.2
@@ -453,7 +453,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 * @param grow_to Relative to the size of the icon, how big the halo grows while fading (don't use negatives for inward halos, use < 1)
 * @param pixel_scale If you'd like the halo to use pixel scale or the default 'fuzzy' scale
 */
-/proc/animate_aura(var/atom/A, var/simple_icons, var/color = "#00FF22", var/anim_duration = 5, var/offset = 1, var/loops = 1, var/grow_to = 2, var/pixel_scale = FALSE)
+/proc/animate_aura(atom/A, simple_icons, color = "#00FF22", anim_duration = 5, offset = 1, loops = 1, grow_to = 2, pixel_scale = FALSE)
 	ASSERT(A)
 
 	//Take a guess at this, if they didn't set it
@@ -772,7 +772,7 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 		return SSassets.transport.get_asset_url(key)
 	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
 
-/proc/icon2base64html(target, var/custom_classes = "")
+/proc/icon2base64html(target, custom_classes = "")
 	if (!target)
 		return
 	var/static/list/bicon_cache = list()

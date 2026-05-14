@@ -19,7 +19,7 @@
 /obj/item/integrated_electronics/wirer/update_icon()
 	icon_state = "wirer-[mode]"
 
-/obj/item/integrated_electronics/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
+/obj/item/integrated_electronics/wirer/proc/wire(datum/integrated_io/io, mob/user)
 	if(!io.holder.assembly)
 		to_chat(user, span_warning("\The [io.holder] needs to be secured inside an assembly first."))
 		return
@@ -155,7 +155,7 @@
 		now off."))
 		accepting_refs = 0
 
-/obj/item/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+/obj/item/integrated_electronics/debugger/proc/write_data(datum/integrated_io/io, mob/user)
 	if(io.io_type == DATA_CHANNEL)
 		io.write_data_to_pin(data_to_write)
 		var/data_to_show = data_to_write
@@ -194,7 +194,7 @@
 		else
 			icon_state = "multitool"
 
-/obj/item/multitool/proc/wire(var/datum/integrated_io/io, mob/user)
+/obj/item/multitool/proc/wire(datum/integrated_io/io, mob/user)
 	if(!io.holder.assembly)
 		to_chat(user, span_warning("\The [io.holder] needs to be secured inside an assembly first."))
 		return
@@ -224,7 +224,7 @@
 	update_icon()
 
 
-/obj/item/multitool/proc/unwire(var/datum/integrated_io/io1, var/datum/integrated_io/io2, mob/user)
+/obj/item/multitool/proc/unwire(datum/integrated_io/io1, datum/integrated_io/io2, mob/user)
 	if(!io1.linked.len || !io2.linked.len)
 		to_chat(user, span_warning("There is nothing connected to the data channel."))
 		return

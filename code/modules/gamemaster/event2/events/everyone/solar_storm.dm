@@ -33,7 +33,7 @@
 	Please report to medbay if you experience any unusual symptoms.", "Anomaly Alert")
 	adjust_solar_output(1)
 
-/datum/event2/event/solar_storm/proc/adjust_solar_output(var/mult = 1)
+/datum/event2/event/solar_storm/proc/adjust_solar_output(mult = 1)
 	if(isnull(base_solar_gen_rate))
 		base_solar_gen_rate = GLOB.solar_gen_rate
 	GLOB.solar_gen_rate = mult * base_solar_gen_rate

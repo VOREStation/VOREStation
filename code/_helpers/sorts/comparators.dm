@@ -36,7 +36,7 @@
 		. = B.qdels - A.qdels
 
 // Sorts jobs by department, and then by flag within department
-/proc/cmp_job_datums(var/datum/job/a, var/datum/job/b)
+/proc/cmp_job_datums(datum/job/a, datum/job/b)
 	. = 0
 	if( LAZYLEN(a.departments) && LAZYLEN(b.departments) )
 		var/list/common_departments = a.departments & b.departments // Makes a list that contains only departments that were in both.
@@ -49,7 +49,7 @@
 	if(. == 0) //Already in same sorting order, sort by name
 		. = sorttext(b.title, a.title)
 
-/proc/cmp_department_datums(var/datum/department/a, var/datum/department/b)
+/proc/cmp_department_datums(datum/department/a, datum/department/b)
 	. = b.sorting_order - a.sorting_order // First, sort by the sorting order vars.
 	if(. == 0) // If they have the same var, then sort by name.
 		. = sorttext(b.name, a.name)

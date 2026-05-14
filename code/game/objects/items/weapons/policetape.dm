@@ -283,7 +283,7 @@ GLOBAL_LIST_EMPTY(tape_roll_applications)
 		to_chat(user, span_notice("You finish placing \the [src]."))
 		return
 
-/obj/item/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/taperoll/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 

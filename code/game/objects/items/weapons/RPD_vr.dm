@@ -267,7 +267,7 @@
 			else
 				return ..()
 
-/obj/item/pipe_dispenser/proc/build_effect(var/obj/P, var/time = 1.5)
+/obj/item/pipe_dispenser/proc/build_effect(obj/P, time = 1.5)
 	set waitfor = FALSE
 	P.filters += filter(type = "angular_blur", size = 30)
 	animate(P.filters[P.filters.len], size = 0, time = time)
@@ -277,7 +277,7 @@
 	P.filters -= outline
 	P.filters -= filter(type = "angular_blur", size = 0)
 
-/obj/item/pipe_dispenser/proc/animate_deletion(var/obj/P, var/time = 1.5)
+/obj/item/pipe_dispenser/proc/animate_deletion(obj/P, time = 1.5)
 	set waitfor = FALSE
 	P.filters += filter(type = "angular_blur", size = 0)
 	animate(P.filters[P.filters.len], size = 30, time = time)
@@ -289,7 +289,7 @@
 /obj/item/pipe_dispenser/proc/activate()
 	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 
-/obj/item/pipe_dispenser/proc/do_wrench(var/atom/target, mob/user)
+/obj/item/pipe_dispenser/proc/do_wrench(atom/target, mob/user)
 	var/resolved = target.attackby(tool,user)
 	if(!resolved && tool && target)
 		tool.afterattack(target,user,1)

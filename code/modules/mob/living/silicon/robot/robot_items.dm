@@ -37,7 +37,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "autoharvester"
 
-/obj/item/robot_harvester/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/robot_harvester/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -205,8 +205,8 @@
 			)
 	item_state = "sheet-metal"
 
-/obj/item/form_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	return
+/obj/item/form_printer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/form_printer/afterattack(atom/target, mob/living/user, flag, params)
 
@@ -496,7 +496,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/borg/combat/shield/attack_self(var/mob/living/user)
+/obj/item/borg/combat/shield/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
 		return TRUE
@@ -516,7 +516,7 @@
 		user.visible_message(span_danger("[user]'s shield reactivates!"), span_danger("Your shield reactivates!"))
 		user.update_icon()
 
-/obj/item/borg/combat/shield/proc/adjust_flash_count(var/mob/living/user, amount)
+/obj/item/borg/combat/shield/proc/adjust_flash_count(mob/living/user, amount)
 	if(active)			//Can't destabilize a shield that's not on
 		flash_count += amount
 
@@ -525,7 +525,7 @@
 			if(flash_count >= overload_threshold)
 				overload(user)
 
-/obj/item/borg/combat/shield/proc/overload(var/mob/living/user)
+/obj/item/borg/combat/shield/proc/overload(mob/living/user)
 	active = 0
 	user.visible_message(span_danger("[user]'s shield destabilizes!"), span_danger("Your shield destabilizes!"))
 	user.update_icon()
@@ -566,7 +566,7 @@
 	max_walls = 10
 	max_doors = 5
 
-/obj/item/inflatable_dispenser/examine(var/mob/user)
+/obj/item/inflatable_dispenser/examine(mob/user)
 	. = ..()
 	. += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored."
 	. += "It is set to deploy [mode ? "doors" : "walls"]"
@@ -578,7 +578,7 @@
 	mode = !mode
 	to_chat(user, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
 
-/obj/item/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
+/obj/item/inflatable_dispenser/afterattack(atom/A, mob/user)
 	..(A, user)
 	if(!user)
 		return
@@ -590,7 +590,7 @@
 	if(istype(A, /obj/item/inflatable) || istype(A, /obj/structure/inflatable))
 		pick_up(A, user)
 
-/obj/item/inflatable_dispenser/proc/try_deploy_inflatable(var/turf/T, var/mob/living/user)
+/obj/item/inflatable_dispenser/proc/try_deploy_inflatable(turf/T, mob/living/user)
 	if(mode) // Door deployment
 		if(!stored_doors)
 			to_chat(user, span_filter_notice("\The [src] is out of doors!"))
@@ -612,7 +612,7 @@
 	playsound(T, 'sound/items/zip.ogg', 75, 1)
 	to_chat(user, span_filter_notice("You deploy the inflatable [mode ? "door" : "wall"]!"))
 
-/obj/item/inflatable_dispenser/proc/pick_up(var/obj/A, var/mob/living/user)
+/obj/item/inflatable_dispenser/proc/pick_up(obj/A, mob/living/user)
 	if(istype(A, /obj/structure/inflatable))
 		if(!istype(A, /obj/structure/inflatable/door))
 			if(stored_walls >= max_walls)

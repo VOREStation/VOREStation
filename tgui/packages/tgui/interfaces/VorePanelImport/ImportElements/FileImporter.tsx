@@ -63,6 +63,7 @@ export const FileImport = (props: {
         </Stack.Item>
         <Stack.Item>
           <Dropdown
+            searchInput
             onSelected={onSelectedCharacter}
             options={ourCharacters}
             selected={selectedCharacter}

@@ -101,7 +101,7 @@
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
 
-/obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
+/obj/item/clothing/shoes/clown_shoes/handle_movement(turf/walking, running)
 	if(running)
 		if(footstep >= 2)
 			footstep = 0

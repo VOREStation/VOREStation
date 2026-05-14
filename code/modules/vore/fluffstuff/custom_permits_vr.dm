@@ -2,7 +2,7 @@
 	owner = 1 // These permits already have owners.
 	desc = "A card indicating that the owner is allowed to carry a firearm/sidearm. It is issued by CentCom, so it is valid until it expires. This one is just a sample, so it belongs to no one."
 
-/obj/item/clothing/accessory/permit/gun/fluff/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/clothing/accessory/permit/gun/fluff/emag_act(remaining_charges, mob/user)
 	to_chat(user, "You cannot reset the naming locks on [src]. It's issued by CentCom and totally tamper-proof!")
 	return
 

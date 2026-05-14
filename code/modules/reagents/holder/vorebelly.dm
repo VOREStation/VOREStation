@@ -1,4 +1,4 @@
-/datum/reagents/proc/vore_trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_VORE, var/multiplier = 1, var/copy = 0, var/obj/belly/target_belly = null) // Transfer after checking into which holder...
+/datum/reagents/proc/vore_trans_to_mob(mob/target, amount = 1, type = CHEM_VORE, multiplier = 1, copy = 0, obj/belly/target_belly = null) // Transfer after checking into which holder...
 	if(!target || !istype(target))
 		return
 
@@ -19,7 +19,7 @@
 		. = trans_to_holder(R, amount, multiplier, copy)
 		R.touch_mob(target)
 
-/datum/reagents/proc/vore_trans_to_con(var/obj/item/reagent_containers/T, var/amount = 1, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
+/datum/reagents/proc/vore_trans_to_con(obj/item/reagent_containers/T, amount = 1, multiplier = 1, copy = 0) // Transfer after checking into which holder...
 	if(!T || !istype(T))
 		return
 

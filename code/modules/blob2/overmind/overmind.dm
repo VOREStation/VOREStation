@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(overminds)
 	. += "Power Stored: [blob_points]/[max_blob_points]"
 	. += "Total Blobs: [GLOB.all_blobs.len]"
 
-/mob/observer/blob/Move(var/atom/NewLoc, Dir = 0)
+/mob/observer/blob/Move(atom/NewLoc, Dir = 0)
 	if(placed)
 		var/obj/structure/blob/B = (locate() in view("5x5", NewLoc))
 		if(B)
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(overminds)
 			if(!auto_factory() && !auto_resource())
 				auto_node()
 
-/mob/observer/blob/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/observer/blob/say(message, datum/language/speaking = null, whispering = 0)
 	message = sanitize(message)
 
 	if(!message)

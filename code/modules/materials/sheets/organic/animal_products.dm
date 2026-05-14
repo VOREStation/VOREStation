@@ -40,7 +40,7 @@
 	stack_type = /obj/item/stack/material/fur
 	sheet_collective_name = "pile"
 	pass_stack_colors = TRUE
-	supply_conversion_value = 1
+	supply_conversion_value = 0.5
 	sheet_singular_name = "bundle"
 	sheet_plural_name = "bundles"
 	ignition_point = T0C+232

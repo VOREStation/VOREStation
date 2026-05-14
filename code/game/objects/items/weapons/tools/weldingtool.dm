@@ -67,9 +67,9 @@
 	if(max_fuel && loc == user)
 		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
 
-/obj/item/weldingtool/attack(atom/A, mob/living/user, def_zone)
-	if(ishuman(A) && user.a_intent == I_HELP)
-		var/mob/living/carbon/human/H = A
+/obj/item/weldingtool/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(ishuman(M) && user.a_intent == I_HELP)
+		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
@@ -83,21 +83,21 @@
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 
 		if(!welding)
 			to_chat(user, span_warning("You'll need to turn [src] on to patch the damage on [H]'s [S.name]!"))
-			return TRUE
+			return ITEM_INTERACT_FAILURE
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
 			remove_fuel(1, user)
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 		else
-			return TRUE //Stops you from accidentally harming someone while on help intent.
+			return ITEM_INTERACT_FAILURE //Stops you from accidentally harming someone while on help intent.
 
 	return ..()
 
@@ -182,7 +182,7 @@
 	return max_fuel
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(amount)
@@ -265,7 +265,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weldingtool/proc/setWelding(set_welding, mob/M)
 	if(!status)	return
 
 	var/turf/T = get_turf(src)
@@ -583,7 +583,7 @@
 		return power_supply.maxcharge
 	return 0
 
-/obj/item/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/electric/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
@@ -691,7 +691,7 @@
 /obj/item/weldingtool/dummy/get_fuel()
 	return get_max_fuel()
 
-/obj/item/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/dummy/remove_fuel(amount = 1, mob/M = null)
 	return TRUE
 
 /obj/item/weldingtool/dummy/isOn()

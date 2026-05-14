@@ -110,7 +110,7 @@
 
 GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 
-/obj/effect/engine_setup/proc/activate(var/last = 0)
+/obj/effect/engine_setup/proc/activate(last = 0)
 	return 1
 
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 	name = "Supermatter Core Marker"
 	var/energy_setting = 0
 
-/obj/effect/engine_setup/core/activate(var/last = 0)
+/obj/effect/engine_setup/core/activate(last = 0)
 	if(!last)
 		return SETUP_DELAYED
 	..()

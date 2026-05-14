@@ -54,7 +54,7 @@
 	material_slowdown_multiplier = 0
 	slowdown = 0
 
-/obj/item/clothing/accessory/bracelet/material/Initialize(mapload, var/new_material)
+/obj/item/clothing/accessory/bracelet/material/Initialize(mapload, new_material)
 	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL

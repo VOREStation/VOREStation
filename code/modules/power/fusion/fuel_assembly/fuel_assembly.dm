@@ -40,7 +40,7 @@
 	return ..()
 
 
-/obj/item/fuel_assembly/Initialize(mapload, var/_material, var/_colour)
+/obj/item/fuel_assembly/Initialize(mapload, _material, _colour)
 	. = ..()
 	fuel_type = _material
 	fuel_colour = _colour

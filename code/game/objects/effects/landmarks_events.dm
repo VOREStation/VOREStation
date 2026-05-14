@@ -45,7 +45,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 		GLOB.event_triggers[creator_ckey] -= src
 	. = ..()
 
-/obj/effect/landmark/event_trigger/Crossed(var/atom/movable/AM)
+/obj/effect/landmark/event_trigger/Crossed(atom/movable/AM)
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
@@ -109,7 +109,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 
 
 
-/obj/effect/landmark/event_trigger/auto_narrate/Crossed(var/atom/movable/AM)
+/obj/effect/landmark/event_trigger/auto_narrate/Crossed(atom/movable/AM)
 	. = ..()	//Checks if AM is mob/living and notifies admin(s)
 	if(!.)
 		return

@@ -1,5 +1,5 @@
 // Hit by a projectile.
-/mob/living/simple_mob/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/bullet_act(obj/item/projectile/P)
 	//Projectiles with bonus SA damage
 	if(!P.nodamage && P.mob_bonus_damage && !mind) //If the projectile is NOT a nodamage projectile, we HAVE A BONUS damage, AND the mob is not player controlled (it has no mind), we do bonus damage
 		P.damage += P.mob_bonus_damage
@@ -80,7 +80,7 @@
 
 
 // When somoene clicks us with an item in hand
-/mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			// This could be done better.
@@ -116,7 +116,7 @@
 
 
 // Handles the actual harming by a melee weapon.
-/mob/living/simple_mob/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_mob/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	effective_force = O.force
 
 	//Animals can't be stunned(?)
@@ -192,7 +192,7 @@
 	. = min(., 1.0)
 
 // Electricity
-/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+/mob/living/simple_mob/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null, stun = 1)
 	shock_damage *= siemens_coeff
 	if(shock_damage < 1)
 		return 0
@@ -218,12 +218,24 @@
 	. = min(., 1.0)
 
 // Shot with taser/stunvolver
-/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
+/mob/living/simple_mob/stun_effect_act(stun_amount, agony_amount, def_zone, used_weapon=null, electric = FALSE)
 	if(taser_kill)
-		var/stunDam = 0
-		var/agonyDam = 0
+		//var/stunDam = 0
+		//var/agonyDam = 0
 		var/armor = run_armor_check(def_zone = null, attack_flag = "energy")
 
+		// PY edit begin - Handle simplemob taser damage as stuns with some damage. Instead of treating a high stun time as insane damage.
+		var/stun_divisor = 6
+		var/damage_divisor = 8
+		if(prob(90))
+			Stun(stun_amount + rand(0, agony_amount/stun_divisor))
+		if(prob(80))
+			Weaken(rand(agony_amount/stun_divisor,agony_amount/(stun_divisor+1)))
+		if(stun_amount)
+			apply_damage(FLOOR( stun_amount / damage_divisor, 1), BURN, null, armor, resistance, FALSE, FALSE, used_weapon)
+		if(agony_amount)
+			apply_damage(FLOOR( agony_amount / damage_divisor, 1), BURN, null, armor, resistance, FALSE, FALSE, used_weapon)
+		/*
 		if(stun_amount)
 			stunDam += stun_amount * 0.5
 			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = used_weapon)
@@ -231,6 +243,8 @@
 		if(agony_amount)
 			agonyDam += agony_amount * 0.5
 			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = used_weapon)
+		*/
+		// PY edit end
 
 
 // Electromagnetism

@@ -28,7 +28,7 @@
 			if(O.client.prefs.be_special & BE_ALIEN)
 				question(O.client)
 
-/obj/item/slime_cube/proc/question(var/client/C)
+/obj/item/slime_cube/proc/question(client/C)
 	spawn(0)
 		if(!C)
 			return
@@ -50,7 +50,7 @@
 		for (var/mob/M in viewers(T))
 			M.show_message(span_warning("The activity in the cube dies down. Maybe it will spark another time."))
 
-/obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
+/obj/item/slime_cube/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
@@ -81,7 +81,7 @@
 	w_class = ITEMSIZE_TINY
 	force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 
-/obj/item/slime_crystal/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/slime_crystal/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	target.visible_message(span_warning("\The [target] has been teleported with \the [src] by \the [user]!"))
 	safe_blink(target, 14)
 	qdel(src)

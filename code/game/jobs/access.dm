@@ -15,7 +15,7 @@
 /obj/proc/check_access(obj/item/I)
 	return check_access_list(I ? I.GetAccess() : null)
 
-/obj/proc/check_access_list(var/list/L)
+/obj/proc/check_access_list(list/L)
 	// We don't require access
 	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		return TRUE
@@ -27,7 +27,7 @@
 	// Run list comparisons
 	return has_access(req_access, req_one_access, L)
 
-/proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
+/proc/has_access(list/req_access, list/req_one_access, list/accesses)
 	// req_access list has priority if set
 	// Requires at least every access in list
 	for(var/req in req_access)
@@ -87,7 +87,7 @@
 /mob/living/silicon/GetIdCard()
 	return idcard
 
-/proc/FindNameFromID(var/mob/living/carbon/human/H)
+/proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/card/id/C = H.GetIdCard()
 	if(C)

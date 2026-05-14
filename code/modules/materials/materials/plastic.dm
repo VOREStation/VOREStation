@@ -11,6 +11,7 @@
 	conductive = 0
 	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
+	supply_conversion_value = 0.5
 
 /datum/material/plastic/generate_recipes()
 	..()
@@ -73,6 +74,7 @@
 	destruction_desc = "crumples"
 	radiation_resistance = 1
 	pass_stack_colors = TRUE
+	supply_conversion_value = 0.05
 
 /datum/material/cardboard/generate_recipes()
 	..()
@@ -96,9 +98,9 @@
 	)
 
 /datum/material/toy_foam
-	name = "foam"
-	display_name = "foam"
-	use_name = "foam"
+	name = MAT_FOAM
+	display_name = MAT_FOAM
+	use_name = MAT_FOAM
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
@@ -108,3 +110,4 @@
 	protectiveness = 0 // 0%
 	conductive = 0
 	can_sharpen = FALSE
+	supply_conversion_value = 0

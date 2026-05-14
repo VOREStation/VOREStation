@@ -7,7 +7,7 @@
 	var/loaded_item = null
 	var/loadable_name = null
 	var/firable = TRUE
-/obj/item/xenobio/examine(var/mob/user)
+/obj/item/xenobio/examine(mob/user)
 	. = ..()
 	if(loaded_item)
 		.+= "A [loaded_item] is slotted into the side."
@@ -107,7 +107,7 @@
 	var/monkeys_recycled = 0
 	description_info = "Click a monkey or slime to begin processing."
 
-/obj/item/slime_grinder/proc/extract(var/atom/movable/AM, var/mob/living/user)
+/obj/item/slime_grinder/proc/extract(atom/movable/AM, mob/living/user)
 	processing = TRUE
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
@@ -135,7 +135,7 @@
 			sleep(1 SECOND)
 	processing = FALSE
 
-/obj/item/slime_grinder/proc/can_insert(var/atom/movable/AM)
+/obj/item/slime_grinder/proc/can_insert(atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		if(S.stat != DEAD)
@@ -150,13 +150,13 @@
 		return TRUE
 	return FALSE
 
-/obj/item/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/slime_grinder/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(processing)
-		return
+		return ITEM_INTERACT_FAILURE
 	if(!can_insert(M))
 		to_chat(user, span_warning("\The [src] cannot process \the [M] at this time."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	extract(M, user)
 	return ..()

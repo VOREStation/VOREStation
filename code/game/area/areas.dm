@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 // Changes the area of T to A. Do not do this manually.
 // Area is expected to be a non-null instance.
-/proc/ChangeArea(var/turf/T, var/area/A)
+/proc/ChangeArea(turf/T, area/A)
 	if(!istype(A))
 		CRASH("Area change attempt failed: invalid area supplied.")
 	var/area/old_area = get_area(T)
@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 		cameras += C
 	return cameras
 
-/area/proc/atmosalert(danger_level, var/alarm_source)
+/area/proc/atmosalert(danger_level, alarm_source)
 	if (danger_level == 0)
 		GLOB.atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
@@ -255,7 +255,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	//	new lighting behaviour with obj lights
 		icon_state = null
 
-/area/proc/powered(var/chan)		// return true if the area has power to given channel
+/area/proc/powered(chan)		// return true if the area has power to given channel
 
 	if(!requires_power)
 		return 1
@@ -278,7 +278,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	if (fire || eject || party)
 		update_icon()
 
-/area/proc/usage(var/chan, var/include_static = TRUE)
+/area/proc/usage(chan, include_static = TRUE)
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	oneoff_environ = 0
 
 // Use this for a one-time power draw from the area, typically for non-machines.
-/area/proc/use_power_oneoff(var/amount, var/chan)
+/area/proc/use_power_oneoff(amount, chan)
 	switch(chan)
 		if(EQUIP)
 			oneoff_equip += amount
@@ -315,7 +315,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	use_power_static(new_amount - old_amount, chan) // Simultaneously subtract old_amount and add new_amount.
 
 // Not a proc you want to use directly unless you know what you are doing; see use_power_oneoff above instead.
-/area/proc/use_power_static(var/amount, var/chan)
+/area/proc/use_power_static(amount, chan)
 	switch(chan)
 		if(EQUIP)
 			static_equip += amount
@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 // Debugging proc to report if static power is correct or not.
-/area/proc/check_static_power(var/user)
+/area/proc/check_static_power(user)
 	set name = "Check Static Power"
 	var/actual_static_equip = static_equip
 	var/actual_static_light = static_light
@@ -397,7 +397,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 	if(L.client && L.client.color != get_color_tint()) // Try to check if we should bother changing before doing blending
 		L.update_client_color()
 
-/area/proc/play_ambience(var/mob/living/L, initial = TRUE)
+/area/proc/play_ambience(mob/living/L, initial = TRUE)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!L?.read_preference(/datum/preference/toggle/play_ambience))
 		return
@@ -428,7 +428,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 			L << sound(sound, repeat = 0, wait = 0, volume = 50 * volume_mod, channel = CHANNEL_AMBIENCE)
 			L.client.time_last_ambience_played = world.time
 
-/area/proc/gravitychange(var/gravitystate = 0)
+/area/proc/gravitychange(gravitystate = 0)
 	src.has_gravity = gravitystate
 
 	for(var/mob/M in src)
@@ -557,12 +557,12 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 	else
 		cut_overlay(GLOB.spoiler_obfuscation_image)
 
-/area/proc/flag_check(var/flag, var/match_all = FALSE)
+/area/proc/flag_check(flag, match_all = FALSE)
 	if(match_all)
 		return (flags & flag) == flag
 	return flags & flag
 
-/area/proc/check_phase_shift(var/mob/living/ourmob)
+/area/proc/check_phase_shift(mob/living/ourmob)
 	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.is_incorporeal())
 		return
 	if(!isliving(ourmob))

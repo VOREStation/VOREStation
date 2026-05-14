@@ -4,7 +4,7 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, new)
 	GLOB.no_ceiling_image = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling")
 	GLOB.no_ceiling_image.plane = PLANE_MESONS
 
-/turf/simulated/floor/update_icon(var/update_neighbors)
+/turf/simulated/floor/update_icon(update_neighbors)
 	cut_overlays()
 
 	if(flooring)
@@ -127,7 +127,7 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, new)
 
 //Tests whether this flooring will smooth with the specified turf
 //You can override this if you want a flooring to have super special snowflake smoothing behaviour
-/datum/decl/flooring/proc/test_link(var/turf/origin, var/turf/T, var/countercheck = FALSE)
+/datum/decl/flooring/proc/test_link(turf/origin, turf/T, countercheck = FALSE)
 
 	var/is_linked = FALSE
 	if (countercheck)

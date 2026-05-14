@@ -10,7 +10,7 @@
 	force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 	custom_handling = TRUE
 
-/obj/item/stack/telecrystal/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/stack/telecrystal/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(amount >= 5)
 		target.visible_message(span_warning("\The [target] has been transported with \the [src] by \the [user]."))
 		safe_blink(target, 14)

@@ -10,10 +10,6 @@
 	var/auto_backup_implant = FALSE //Whether someone starts with a backup implant or not.
 	var/borg_petting = TRUE //Whether someone can be petted as a borg or not.
 
-	var/job_talon_high = 0
-	var/job_talon_med = 0
-	var/job_talon_low = 0
-
 //Why weren't these in game toggles already?
 /client/verb/toggle_capture_crystal()
 	set name = "Toggle Catchable"

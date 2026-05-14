@@ -17,7 +17,7 @@
 	blend_mode = BLEND_MULTIPLY // You actually need to do it this way or you see it in occlusion.
 
 // Adjust transform property to scale for client's view var. We assume the skybox is 736x736 px
-/atom/movable/screen/skybox/proc/scale_to_view(var/view)
+/atom/movable/screen/skybox/proc/scale_to_view(view)
 	var/matrix/M = matrix()
 	// Translate to center the icon over us!
 	M.Translate(-(SKYBOX_PIXELS - WORLD_ICON_SIZE) / 2)

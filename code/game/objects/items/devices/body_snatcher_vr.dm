@@ -12,30 +12,30 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 	flags = NOBLUDGEON
 
-/obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)
+/obj/item/bodysnatcher/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(user == M)
 			to_chat(user,span_warning("A message pops up on the LED display, informing you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		if(!M.mind) //Do they have a mind?
 			to_chat(user,span_warning("A warning pops up on the device, informing you that [M] appears braindead."))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		if(!M.allow_mind_transfer)
 			to_chat(user,span_danger("The target's mind is too complex to be affected!"))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.resleeve_lock && user.ckey != H.resleeve_lock)
 				to_chat(src, span_danger("[H] cannot be impersonated!"))
-				return
+				return ITEM_INTERACT_FAILURE
 
 		if(M.stat == DEAD) //Are they dead?
 			to_chat(user,span_warning("A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done."))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		var/choice = tgui_alert(user,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation",list("Continue","Cancel"))
 		if(choice == "Continue" && user.get_active_hand() == src && user.Adjacent(M))
@@ -99,9 +99,12 @@
 						M.SetSleeping(10)
 						M.eye_blurry = 30
 						M.slurring = 50
+					return ITEM_INTERACT_SUCCESS
+				return ITEM_INTERACT_BLOCKING
 
 	else
 		to_chat(user,span_warning(" A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!"))
+		return ITEM_INTERACT_FAILURE
 
 /obj/item/bodysnatcher/attack_self(mob/user)
 	. = ..(user)

@@ -29,7 +29,7 @@
 	return 1
 
 // This is to allow xenobio to activate slime cores via remote.
-/obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+/obj/item/projectile/bullet/chemdart/on_hit(atom/target, blocked = 0, def_zone = null)
 	..()
 	if(blocked < 2)
 		if(istype(target, /obj/item/reagent_containers/food) || istype(target, /obj/item/slime_extract))

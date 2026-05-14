@@ -335,7 +335,7 @@
 
 	return
 
-/datum/component/omen/proc/check_roll(mob/living/unlucky_soul, var/obj/item/dice/the_dice, silent, result)
+/datum/component/omen/proc/check_roll(mob/living/unlucky_soul, obj/item/dice/the_dice, silent, result)
 	SIGNAL_HANDLER
 	if(prob(20 * luck_mod))
 		//unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_boldwarning("You feel dreadfully unlucky as you roll the dice!"))

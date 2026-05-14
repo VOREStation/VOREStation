@@ -1214,8 +1214,10 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/book, \
 	/obj/item/newspaper
 
+//Food reagent containers due to having to grind food.
 #define MEDICAL_GRIPPER \
 	/obj/item/reagent_containers/glass, \
+	/obj/item/reagent_containers/food, \
 	/obj/item/storage/pill_bottle, \
 	/obj/item/reagent_containers/pill, \
 	/obj/item/reagent_containers/blood, \
@@ -1293,6 +1295,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/paper, \
 	/obj/item/a_gift
 // /obj/item/disk/nifsoft/compliance, \ PY edit - Nif removal
+
 
 #define ORGAN_GRIPPER \
 	/obj/item/organ,

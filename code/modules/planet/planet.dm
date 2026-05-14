@@ -62,7 +62,7 @@
 	if(weather_holder)
 		weather_holder.process()
 
-/datum/planet/proc/update_sun_deferred(var/new_brightness, var/new_color)
+/datum/planet/proc/update_sun_deferred(new_brightness, new_color)
 	sun["brightness"] = CLAMP01(new_brightness)
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN

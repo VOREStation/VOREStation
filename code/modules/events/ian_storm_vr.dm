@@ -21,7 +21,7 @@
 				continue
 			place_ian(T)
 
-/datum/event/ianstorm/proc/place_ian(var/turf/T)
+/datum/event/ianstorm/proc/place_ian(turf/T)
 	// Try three times to place an Ian
 	for(var/i = 0, i < 3, i++)
 		var/turf/target = get_step(T, pick(GLOB.alldirs))

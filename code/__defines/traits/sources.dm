@@ -9,3 +9,5 @@
 #define ACTION_TRAIT "action"
 /// Trait that is given by unholy effects or corruption. Can be dispelled by a chaplain with a nullrod.
 #define UNHOLY_TRAIT "unholy"
+/// trait associated to a stat value or range of
+#define STAT_TRAIT "stat"

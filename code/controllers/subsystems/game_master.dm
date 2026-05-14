@@ -151,7 +151,7 @@ SUBSYSTEM_DEF(game_master)
 ADMIN_VERB(show_gm_status, R_ADMIN|R_EVENT|R_DEBUG, "Show GM Status", "Shows you what the GM is thinking. If only that existed in real life...", ADMIN_CATEGORY_DEBUG_GAME)
 	SSgame_master.interact(user)
 
-/datum/controller/subsystem/game_master/proc/interact(var/client/user)
+/datum/controller/subsystem/game_master/proc/interact(client/user)
 	if(!user)
 		return
 

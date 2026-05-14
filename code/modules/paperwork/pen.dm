@@ -150,11 +150,7 @@
 	. = ..()
 	create_reagents(30)
 
-/obj/item/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
-
-	if(!istype(M))
-		return
-
+/obj/item/pen/reagent/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	. = ..()
 
 	if(M.can_inject(user,1))
@@ -163,6 +159,7 @@
 				var/contained = reagents.get_reagents()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
+				return ITEM_INTERACT_SUCCESS
 
 /*
  * Blade Pens
@@ -301,10 +298,10 @@
 	*/
 	signature = tgui_input_text(user, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature, MAX_MESSAGE_LEN)
 
-/obj/item/pen/proc/get_signature(var/mob/user)
+/obj/item/pen/proc/get_signature(mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/pen/chameleon/get_signature(var/mob/user)
+/obj/item/pen/chameleon/get_signature(mob/user)
 	return signature ? signature : "Anonymous"
 
 /obj/item/pen/chameleon/verb/set_colour()

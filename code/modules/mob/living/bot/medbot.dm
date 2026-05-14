@@ -126,7 +126,7 @@
 				last_newpatient_speak = world.time
 			break
 
-/mob/living/bot/medbot/UnarmedAttack(var/mob/living/carbon/human/H)
+/mob/living/bot/medbot/UnarmedAttack(mob/living/carbon/human/H)
 	if(!..())
 		return
 
@@ -248,7 +248,7 @@
 		ui = new(user, src, "Medbot", name)
 		ui.open()
 
-/mob/living/bot/medbot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/medbot/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers/glass))
 		if(locked)
 			to_chat(user, span_notice("You cannot insert a beaker because the panel is locked."))
@@ -311,7 +311,7 @@
 			declare_treatment = !declare_treatment
 			. = TRUE
 
-/mob/living/bot/medbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/medbot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -433,7 +433,7 @@
 		if(MEDBOT_PANIC_FUCK to INFINITY)
 			. += span_boldwarning("They are freaking out from being tipped over!")
 
-/mob/living/bot/medbot/confirmTarget(var/mob/living/carbon/human/H)
+/mob/living/bot/medbot/confirmTarget(mob/living/carbon/human/H)
 	if(!..())
 		return 0
 
@@ -470,7 +470,7 @@
 
 /* Construction */
 
-/obj/item/storage/firstaid/attackby(var/obj/item/robot_parts/S, mob/user as mob)
+/obj/item/storage/firstaid/attackby(obj/item/robot_parts/S, mob/user as mob)
 	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return
@@ -493,7 +493,7 @@
 	user.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/storage/firstaid/attackby(var/obj/item/organ/external/S, mob/user as mob)
+/obj/item/storage/firstaid/attackby(obj/item/organ/external/S, mob/user as mob)
 	if (!istype(S, /obj/item/organ/external/arm) || S.robotic != ORGAN_ROBOT)
 		..()
 		return

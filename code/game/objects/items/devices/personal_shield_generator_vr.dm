@@ -223,7 +223,7 @@
 // Making it so emagging the weapon it comes with would also be a good idea. Different modes, perhaps?
 
 /*
-/obj/item/personal_shield_generator/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/personal_shield_generator/emag_act(remaining_charges, mob/user)
 	if(active_weapon)
 		. = active_weapon.emag_act(user)
 		update_icon()
@@ -437,16 +437,16 @@
 	if(shield_generator)
 		shield_generator.reattach_gun(user)
 
-/obj/item/gun/energy/proc/check_charge(var/charge_amt) //In case using any other guns.
+/obj/item/gun/energy/proc/check_charge(charge_amt) //In case using any other guns.
 	return 0
 
-/obj/item/gun/energy/proc/checked_use(var/charge_amt) //In case using any other guns.
+/obj/item/gun/energy/proc/checked_use(charge_amt) //In case using any other guns.
 	return 0
 
-/obj/item/gun/energy/gun/generator/check_charge(var/charge_amt)
+/obj/item/gun/energy/gun/generator/check_charge(charge_amt)
 	return (shield_generator.bcell && shield_generator.bcell.check_charge(charge_amt))
 
-/obj/item/gun/energy/gun/generator/checked_use(var/charge_amt)
+/obj/item/gun/energy/gun/generator/checked_use(charge_amt)
 	return (shield_generator.bcell && shield_generator.bcell.checked_use(charge_amt))
 
 

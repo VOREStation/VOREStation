@@ -95,7 +95,7 @@
 		src.overlays += banknote
 	src.desc = "They are worth [worth] casino credits."
 
-/obj/item/spacecasinocash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
+/obj/item/spacecasinocash/proc/adjust_worth(adjust_worth = 0, update = 1)
 	worth += adjust_worth
 	if(worth > 0)
 		if(update)
@@ -105,7 +105,7 @@
 		qdel(src)
 		return 0
 
-/obj/item/spacecasinocash/proc/set_worth(var/new_worth = 0, var/update = 1)
+/obj/item/spacecasinocash/proc/set_worth(new_worth = 0, update = 1)
 	worth = max(0, new_worth)
 	if(update)
 		update_icon()
@@ -176,7 +176,7 @@
 	desc = "It's worth 1000 credits."
 	worth = 1000
 
-/proc/spawn_casinochips(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
+/proc/spawn_casinochips(sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/spacecasinocash/SC = new (spawnloc)
 
 	SC.set_worth(sum, TRUE)
@@ -276,7 +276,7 @@
 		src.overlays += banknote
 	src.desc = "They are worth [worth] replica casino credits."
 
-/obj/item/spacecasinocash_fake/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
+/obj/item/spacecasinocash_fake/proc/adjust_worth(adjust_worth = 0, update = 1)
 	worth += adjust_worth
 	if(worth > 0)
 		if(update)
@@ -286,7 +286,7 @@
 		qdel(src)
 		return 0
 
-/obj/item/spacecasinocash_fake/proc/set_worth(var/new_worth = 0, var/update = 1)
+/obj/item/spacecasinocash_fake/proc/set_worth(new_worth = 0, update = 1)
 	worth = max(0, new_worth)
 	if(update)
 		update_icon()

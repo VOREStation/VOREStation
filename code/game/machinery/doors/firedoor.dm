@@ -193,7 +193,7 @@
 				nextstate = FIREDOOR_CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attack_alien(var/mob/user) //Familiar, right? Doors.
+/obj/machinery/door/firedoor/attack_alien(mob/user) //Familiar, right? Doors.
 	if(ishuman(user))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -218,7 +218,7 @@
 			return
 	..()
 
-/obj/machinery/door/firedoor/attack_generic(var/mob/living/user, var/damage)
+/obj/machinery/door/firedoor/attack_generic(mob/living/user, damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			var/time_to_force = (2 + (2 * blocked)) * 5
@@ -422,7 +422,7 @@
 	if(density)
 		START_MACHINE_PROCESSING(src)
 
-/obj/machinery/door/firedoor/open(var/forced = 0)
+/obj/machinery/door/firedoor/open(forced = 0)
 	if(hatch_open)
 		hatch_open = 0
 		visible_message("The maintenance hatch of \the [src] closes.")
