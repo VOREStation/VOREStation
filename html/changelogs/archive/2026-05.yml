@@ -77,3 +77,6 @@
   - code_imp: dependency up
   - code_imp: typescript 6
   - qol: updates chat highlights
+2026-05-15:
+  Cerami:
+  - bugfix: adjusts mob vore pref to only be for mobs as preds
