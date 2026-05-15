@@ -1910,21 +1910,6 @@
 	icon_state = "dark"
 	},
 /area/antag/antag_base)
-"cK" = (
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 8
-	},
-/obj/machinery/vending/nifsoft_shop{
-	categories = 111;
-	emagged = 1;
-	name = "Hacked NIFSoft Shop";
-	prices = list()
-	},
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/antag/antag_base)
 "cL" = (
 /obj/machinery/telecomms/allinone{
 	intercept = 1
@@ -5691,7 +5676,7 @@ cf
 cn
 ah
 cz
-cK
+dh
 cR
 bq
 dd

@@ -538,11 +538,6 @@
 /obj/item/cell/emergency_light{
 	pixel_x = -4
 	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_x = 4;
-	pixel_y = -3
-	},
 /turf/simulated/floor/outdoors/grass/forest,
 /area/tether_away/beach/resort)
 "xS" = (

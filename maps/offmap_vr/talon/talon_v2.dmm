@@ -987,9 +987,6 @@
 /obj/structure/closet/walllocker/medical/south,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "cg" = (
@@ -1849,9 +1846,6 @@
 	},
 /obj/effect/floor_decal/corner/black/diagonal,
 /obj/structure/table/marble,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
 "eY" = (
@@ -4094,9 +4088,6 @@
 /area/talon_v2/crew_quarters/sec_room)
 "ng" = (
 /obj/structure/closet/secure_closet/talon_guard,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /obj/item/storage/box/nifsofts_security,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/sec_room)
@@ -4139,9 +4130,6 @@
 /area/talon_v2/engineering/port_store)
 "nq" = (
 /obj/structure/closet/secure_closet/talon_doctor,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /obj/item/storage/box/nifsofts_medical,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/med_room)
@@ -4542,9 +4530,6 @@
 /obj/machinery/alarm/talon{
 	dir = 4;
 	pixel_x = -22
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/crew_quarters/restrooms)
@@ -5489,9 +5474,6 @@
 	pixel_y = -32
 	},
 /obj/structure/table/steel,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "sf" = (
@@ -5986,9 +5968,6 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/firstaid/fire,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/brig)
 "tJ" = (
@@ -7310,9 +7289,6 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2,
 /obj/structure/closet/walllocker/medical/north,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/bridge)
 "yu" = (
@@ -7855,21 +7831,6 @@
 /obj/item/bluespaceradio/talon_prelinked{
 	pixel_y = 10
 	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_x = -6
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_x = 5
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_x = 10
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/eva_storage)
 "AB" = (
@@ -8263,9 +8224,6 @@
 /area/talon_v2/eva_storage)
 "Cd" = (
 /obj/structure/closet/secure_closet/talon_pilot,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -8416,9 +8374,6 @@
 /obj/item/cell/apc,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /obj/item/clothing/suit/radiation,
 /obj/item/clothing/head/radiation,
 /obj/structure/cable/green{
@@ -8717,9 +8672,6 @@
 /area/talon_v2/maintenance/wing_starboard)
 "DZ" = (
 /obj/structure/closet/secure_closet/talon_captain,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "Ea" = (
@@ -8829,9 +8781,6 @@
 	},
 /obj/structure/closet/secure_closet/talon_miner,
 /obj/item/storage/box/nifsofts_mining,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/mine_room)
 "Ev" = (
@@ -9101,9 +9050,6 @@
 /obj/structure/closet/walllocker/medical/north,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "Fk" = (
@@ -10784,10 +10730,6 @@
 	pixel_y = 24
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/radio/off{
-	channels = list("Talon" = 1);
-	pixel_x = 10
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "Kz" = (
@@ -10859,9 +10801,6 @@
 	id = "talon_boat_cockpit";
 	pixel_x = 6;
 	pixel_y = 28
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1381;
@@ -11349,9 +11288,6 @@
 /obj/structure/closet/walllocker/medical/west,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_starboard)
 "Mc" = (
@@ -14648,9 +14584,6 @@
 /area/talon_v2/hangar)
 "Xh" = (
 /obj/structure/closet/secure_closet/talon_engineer,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /obj/item/storage/box/nifsofts_engineering,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/eng_room)
@@ -14897,9 +14830,6 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/o2,
 /obj/structure/closet/walllocker/medical/east,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_port)
 "Yb" = (

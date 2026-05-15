@@ -719,21 +719,15 @@
 	},
 /obj/structure/table/steel,
 /obj/item/radio/off{
-	channels = list("Talon" = 1);
 	pixel_y = 6
 	},
 /obj/item/radio/off{
-	channels = list("Talon" = 1);
 	pixel_x = -6;
 	pixel_y = 4
 	},
 /obj/item/radio/off{
-	channels = list("Talon" = 1);
 	pixel_x = 6;
 	pixel_y = 4
-	},
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/space)

@@ -404,13 +404,6 @@
 	base_turf = /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
-#include "../expedition_vr/aerostat/_aerostat.dm"
-/datum/map_template/common_lateload/away_aerostat
-	name = Z_NAME_AEROSTAT
-	desc = "The Virgo 2 Aerostat away mission."
-	mappath = "maps/expedition_vr/aerostat/aerostat.dmm"
-	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
-
 ////////////////////////////////////////////////////////////////////////
 
 /datum/map_template/gb_lateload/wilds

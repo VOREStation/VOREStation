@@ -1314,7 +1314,6 @@
 /obj/effect/floor_decal/corner/green/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/computer/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "eF" = (
@@ -2801,17 +2800,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/security)
-"jY" = (
-/obj/machinery/computer/diseasesplicer,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/obj/machinery/camera/network/crescent,
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
 "jZ" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -3307,10 +3295,6 @@
 /obj/item/pen,
 /turf/simulated/floor/tiled,
 /area/centcom/command)
-"lD" = (
-/obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/wood,
-/area/centcom/restaurant)
 "lG" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/freezer,
@@ -4950,12 +4934,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
-"qT" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/blue/border,
-/obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/tiled,
-/area/centcom/security)
 "qU" = (
 /obj/machinery/door/airlock/research{
 	id_tag = "researchdoor";
@@ -7814,24 +7792,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/security)
-"At" = (
-/obj/machinery/vending/nifsoft_shop{
-	categories = 111;
-	emagged = 1;
-	name = "Hacked NIFSoft Shop"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/centcom/specops)
-"Au" = (
-/obj/machinery/disease2/incubator,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
 "Aw" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
@@ -11928,7 +11888,6 @@
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/ccboat)
 "NZ" = (
-/obj/machinery/disease2/isolator,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -12101,7 +12060,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "OG" = (
-/obj/machinery/disease2/diseaseanalyser,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -25096,7 +25054,7 @@ ZX
 bR
 bR
 wY
-jY
+DM
 we
 pb
 pb
@@ -25238,7 +25196,7 @@ ZX
 bR
 bR
 wY
-Au
+OG
 dh
 aH
 Iw
@@ -27681,7 +27639,7 @@ dR
 dR
 dR
 Ls
-lD
+DF
 DF
 DF
 Bm
@@ -30604,7 +30562,7 @@ Bh
 Bh
 Bh
 Bh
-At
+wZ
 wZ
 wZ
 Bh
@@ -33208,7 +33166,7 @@ vM
 vM
 be
 be
-qT
+oC
 rV
 Lu
 bm

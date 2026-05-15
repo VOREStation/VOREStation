@@ -982,11 +982,6 @@
 	dir = 8;
 	pixel_x = 26
 	},
-/obj/machinery/vending/nifsoft_shop{
-	categories = 111;
-	emagged = 1;
-	name = "Hacked NIFSoft Shop"
-	},
 /obj/machinery/light_switch{
 	pixel_y = 23
 	},
