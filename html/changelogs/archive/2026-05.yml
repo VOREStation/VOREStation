@@ -77,3 +77,11 @@
   - code_imp: dependency up
   - code_imp: typescript 6
   - qol: updates chat highlights
+2026-05-15:
+  TheCaramelion:
+  - rscadd: Moved Roboticists to Medical
+  - rscadd: Added Mechatronic Engineer job
+  - rscadd: Map system
+  - rscadd: Map!
+  Will:
+  - bugfix: Removed NIFs
