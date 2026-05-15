@@ -1400,14 +1400,6 @@
 	icon_state = "floor_red"
 	},
 /area/shuttle/escape)
-"ev" = (
-/obj/machinery/vending/nifsoft_shop{
-	categories = 111;
-	emagged = 1;
-	name = "Hacked NIFSoft Shop"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/centcom/specops)
 "ew" = (
 /obj/machinery/atm{
 	pixel_y = 26
@@ -6002,17 +5994,6 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "yY" = (
-/obj/machinery/disease2/diseaseanalyser,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
-"yZ" = (
-/obj/machinery/disease2/incubator,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -6880,7 +6861,6 @@
 /obj/effect/floor_decal/corner/green/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/computer/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "DH" = (
@@ -9853,17 +9833,6 @@
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"Lu" = (
-/obj/machinery/computer/diseasesplicer,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/obj/machinery/camera/network/crescent,
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
 "Lv" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-22"
@@ -10218,12 +10187,6 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 10
 	},
-/turf/simulated/floor/tiled,
-/area/centcom/security)
-"Mq" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/blue/border,
-/obj/machinery/vending/nifsoft_shop,
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "Mr" = (
@@ -11934,10 +11897,6 @@
 "QT" = (
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"QU" = (
-/obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/wood,
-/area/centcom/restaurant)
 "QV" = (
 /obj/structure/sign/double/barsign{
 	dir = 1
@@ -13772,7 +13731,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "Vt" = (
-/obj/machinery/disease2/isolator,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -25134,7 +25092,7 @@ al
 ZQ
 ZQ
 aw
-Lu
+yT
 kC
 SJ
 SJ
@@ -25276,7 +25234,7 @@ al
 ZQ
 ZQ
 aw
-yZ
+yY
 lS
 Ib
 DH
@@ -27719,7 +27677,7 @@ vu
 vu
 vu
 An
-QU
+Am
 Am
 Am
 xR
@@ -30642,7 +30600,7 @@ bY
 bY
 bY
 bY
-ev
+aX
 aX
 aX
 bY
@@ -33246,7 +33204,7 @@ Kx
 Kx
 Uk
 Uk
-Mq
+SL
 MN
 Ll
 OA

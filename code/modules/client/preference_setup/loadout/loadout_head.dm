@@ -292,7 +292,7 @@
 	description = "Select from a range of welding masks (engineering crew/roboticists only)"
 	path = /obj/item/clothing/head/welding
 	cost = 2
-	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST)
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST,JOB_MECHATRONIC_ENGINEER) // PY Edit - Mech Eng
 
 /datum/gear/head/welding/New()
 	..()

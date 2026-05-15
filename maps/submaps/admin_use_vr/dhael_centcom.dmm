@@ -9061,12 +9061,6 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
-"sx" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/blue/border,
-/obj/machinery/vending/nifsoft_shop,
-/turf/unsimulated/floor/steel,
-/area/centcom/security)
 "sy" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/floor_decal/borderfloor,
@@ -10513,10 +10507,6 @@
 /area/centcom/restaurant)
 "vD" = (
 /obj/structure/closet/crate/bin,
-/turf/unsimulated/floor/wood,
-/area/centcom/restaurant)
-"vE" = (
-/obj/machinery/vending/nifsoft_shop,
 /turf/unsimulated/floor/wood,
 /area/centcom/restaurant)
 "vF" = (
@@ -15250,18 +15240,6 @@
 /obj/machinery/power/thermoregulator,
 /turf/unsimulated/floor{
 	icon_state = "dark"
-	},
-/area/centcom/specops)
-"Ka" = (
-/obj/machinery/vending/nifsoft_shop{
-	categories = 111;
-	emagged = 1;
-	name = "Hacked NIFSoft Shop";
-	prices = list()
-	},
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
 	},
 /area/centcom/specops)
 "Kd" = (
@@ -24818,7 +24796,7 @@ dk
 dk
 dk
 vt
-vE
+vG
 vG
 vG
 xj
@@ -27741,7 +27719,7 @@ ah
 ah
 ah
 ah
-Ka
+aX
 aX
 aX
 ah
@@ -30345,7 +30323,7 @@ qI
 qI
 kp
 kp
-sx
+nG
 sT
 tj
 ty

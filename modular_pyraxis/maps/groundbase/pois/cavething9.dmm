@@ -1,0 +1,95 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"f" = (
+/obj/structure/bed/double,
+/turf/simulated/floor/reinforced{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"o" = (
+/obj/structure/table/rack,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/reinforced{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"R" = (
+/turf/simulated/floor/reinforced{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"X" = (
+/turf/simulated/wall,
+/area/maintenance/groundbase/poi/caves)
+
+(1,1,1) = {"
+a
+a
+X
+X
+X
+a
+a
+"}
+(2,1,1) = {"
+a
+X
+X
+R
+X
+X
+a
+"}
+(3,1,1) = {"
+X
+X
+o
+R
+o
+X
+X
+"}
+(4,1,1) = {"
+X
+f
+R
+R
+R
+R
+X
+"}
+(5,1,1) = {"
+X
+X
+o
+R
+o
+X
+X
+"}
+(6,1,1) = {"
+a
+X
+X
+R
+X
+X
+a
+"}
+(7,1,1) = {"
+a
+a
+X
+X
+X
+a
+a
+"}

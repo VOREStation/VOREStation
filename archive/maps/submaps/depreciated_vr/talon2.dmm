@@ -164,9 +164,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_captain,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/space)
 "aN" = (
@@ -341,9 +338,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_engineer,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/space)
 "bg" = (
@@ -351,9 +345,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_pilot,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/space)
 "bh" = (
@@ -506,9 +497,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_doctor,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/space)
 "bx" = (
@@ -530,9 +518,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_guard,
-/obj/item/radio/off{
-	channels = list("Talon" = 1)
-	},
 /turf/simulated/floor/wood,
 /area/space)
 "bz" = (

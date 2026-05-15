@@ -857,15 +857,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
-"bI" = (
-/obj/machinery/vending/nifsoft_shop{
-	categories = 111;
-	emagged = 1;
-	name = "Hacked NIFSoft Shop";
-	prices = list()
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/specops/centcom)
 "bJ" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	req_access = list(103)
@@ -3250,7 +3241,7 @@ ap
 ba
 bn
 by
-bI
+aH
 bd
 ch
 ch

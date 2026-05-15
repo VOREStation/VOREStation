@@ -1949,3 +1949,12 @@
 	ani_state = "xenotail_fullcolouralt_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/chu
+	name = "chu tail"
+	desc = ""
+	icon_state = "chu"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "chu_markings"
+	extra_overlay2 = "chu_tipmarkings"

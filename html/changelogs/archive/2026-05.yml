@@ -68,3 +68,20 @@
   - rscadd: Upports snowbulls from yawnwider
   tacoguy7765093:
   - balance: RMS material cost changed.
+2026-05-14:
+  Diana:
+  - image: Adds a new 'chu' tail
+  - bugfix: Borg wires no longer become EMP'd.
+  - bugfix: Fixes borg gripper interactions with stacks of items.
+  Kashargul:
+  - code_imp: dependency up
+  - code_imp: typescript 6
+  - qol: updates chat highlights
+2026-05-15:
+  TheCaramelion:
+  - rscadd: Moved Roboticists to Medical
+  - rscadd: Added Mechatronic Engineer job
+  - rscadd: Map system
+  - rscadd: Map!
+  Will:
+  - bugfix: Removed NIFs

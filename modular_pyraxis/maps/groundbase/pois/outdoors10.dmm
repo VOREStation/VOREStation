@@ -1,0 +1,203 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"c" = (
+/obj/structure/bed/chair/sofa/brown,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"e" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"g" = (
+/obj/structure/table/standard,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"h" = (
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"m" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/groundbase/poi/outdoor)
+"q" = (
+/obj/structure/bed/chair/sofa/corner/brown{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"w" = (
+/obj/structure/bed/chair/sofa/right/brown{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"B" = (
+/obj/structure/table/glass,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"G" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"I" = (
+/obj/structure/bed/chair/sofa/left/brown{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"J" = (
+/obj/structure/table/glass,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"K" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"N" = (
+/obj/random/crate,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"Q" = (
+/obj/structure/bed/chair/sofa/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"R" = (
+/obj/structure/table/glass,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"W" = (
+/obj/structure/bed/chair/sofa/right/brown,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"X" = (
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"Y" = (
+/obj/structure/bed/chair/sofa/corner/brown{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+"Z" = (
+/obj/structure/bed/chair/sofa/left/brown,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin5)
+
+(1,1,1) = {"
+a
+a
+a
+a
+m
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+h
+X
+a
+m
+a
+X
+N
+a
+"}
+(3,1,1) = {"
+e
+g
+X
+a
+G
+a
+X
+K
+e
+"}
+(4,1,1) = {"
+a
+N
+X
+G
+X
+G
+X
+K
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+X
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+W
+X
+X
+X
+X
+I
+q
+a
+"}
+(7,1,1) = {"
+e
+c
+X
+X
+X
+X
+B
+Q
+e
+"}
+(8,1,1) = {"
+a
+Z
+X
+R
+J
+X
+w
+Y
+a
+"}
+(9,1,1) = {"
+a
+a
+e
+e
+a
+e
+e
+a
+a
+"}

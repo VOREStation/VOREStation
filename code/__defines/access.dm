@@ -60,7 +60,7 @@
 #define ACCESS_MINING_OFFICE 49
 #define ACCESS_MAILSORTING 50
 
-// #define UNUSED 51
+#define ACCESS_MECHA 51 // PY Edit - Mech Engineer jobs
 // #define UNUSED 52
 
 #define ACCESS_HEADS_VAULT 53

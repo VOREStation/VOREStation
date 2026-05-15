@@ -437,18 +437,18 @@
 		..()
 	return
 
-/obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/gripper))
 		var/obj/item/gripper/G = W
-		G.consolidate_stacks(src)
+		G.consolidate_stacks(src, user)
 		if(QDELETED(src))
-			return
+			return TRUE
 
 	else if(istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)
 		if(QDELETED(src))
-			return
+			return TRUE
 
 		if (S && user.check_current_machine(S))
 			S.interact(user)

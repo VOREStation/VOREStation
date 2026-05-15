@@ -1,0 +1,115 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"e" = (
+/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
+/area/submap/groundbase/poi/outdoor)
+"j" = (
+/obj/random/crate,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"n" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"o" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"q" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"r" = (
+/obj/structure/table/standard,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"A" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"H" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"N" = (
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"O" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+"S" = (
+/turf/simulated/wall/wood,
+/area/submap/groundbase/poi/outdoor/cabin3)
+
+(1,1,1) = {"
+S
+S
+o
+S
+o
+S
+S
+a
+"}
+(2,1,1) = {"
+S
+N
+b
+b
+b
+O
+S
+e
+"}
+(3,1,1) = {"
+S
+r
+b
+b
+A
+b
+q
+e
+"}
+(4,1,1) = {"
+S
+j
+b
+n
+H
+r
+S
+e
+"}
+(5,1,1) = {"
+S
+S
+o
+S
+o
+S
+S
+a
+"}
