@@ -121,15 +121,15 @@
 	set_wires(new /datum/wires/camera(src))
 	c_tag = "IC Camera #[rand(1000, 9999)]"
 	name = c_tag
-	GLOB.cameranet.addCamera(src)
+	SScameras.add_camera_to_chunk(src)
 	return ..()
 
 /obj/machinery/camera/intcircuit/Destroy()
-	GLOB.cameranet.removeCamera(src)
+	SScameras.remove_camera_from_chunk(src)
 	return ..()
 
 /obj/machinery/camera/intcircuit/update_coverage(network_change = 0)
-	GLOB.cameranet.updateVisibility(src, 0)
+	SScameras.update_visibility(src)
 
 /obj/machinery/camera/intcircuit/can_use()
 	// Ensures circuit is in a powered assembly to work.
@@ -243,3 +243,15 @@
 	if(action == "switch_camera")
 		last_camera_turf = null
 	. = ..()
+
+/mob/living/silicon/proc/provides_camera_vision()
+	return FALSE
+
+/mob/living/silicon/ai/provides_camera_vision()
+	return stat != DEAD
+
+/mob/living/silicon/robot/provides_camera_vision()
+	return src.camera && src.camera.network.len && (z in using_map.contact_levels)
+
+/mob/living/silicon/ai/proc/seen_camera_turfs()
+	return seen_turfs_in_range(src, world.view)

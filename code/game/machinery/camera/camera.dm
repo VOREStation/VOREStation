@@ -38,18 +38,19 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
+	SScameras.cameras += src
 	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
 	LAZYOR(client_huds, GLOB.global_hud.whitense)
 
 	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for(var/obj/machinery/camera/C in SScameras.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
 			to_world_log("[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
 	*/
-	if(!src.network || src.network.len < 1)
+	if(!src.network || length(src.network) < 1)
 		if(loc)
 			log_world("## ERROR [src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
@@ -68,6 +69,7 @@
 	// VOREStation Edit End
 
 /obj/machinery/camera/Destroy()
+	SScameras.cameras -= src
 	if(isMotion())
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	deactivate(null, 0) //kick anyone viewing out
@@ -77,6 +79,10 @@
 	qdel(wires)
 	wires = null
 	return ..()
+
+/obj/machinery/camera/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	SScameras.camera_moved(src, get_turf(old_loc), get_turf(loc))
 
 /obj/machinery/camera/process()
 	if((stat & EMPED) && world.time >= affected_by_emp_until)
@@ -132,7 +138,7 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+	SScameras.update_visibility(src)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if(!istype(user))
@@ -465,12 +471,12 @@
 		var/list/open_networks = difflist(network, GLOB.restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary
 		if(on_open_network && !open_networks.len)
-			GLOB.cameranet.removeCamera(src)
+			SScameras.remove_camera_from_chunk(src)
 		else if(!on_open_network && open_networks.len)
 			on_open_network = 1
-			GLOB.cameranet.addCamera(src)
+			SScameras.add_camera_to_chunk(src)
 	else
-		GLOB.cameranet.updateVisibility(src, 0)
+		SScameras.update_visibility(src)
 
 // Resets the camera's wires to fully operational state. Used by one of Malfunction abilities.
 /obj/machinery/camera/proc/reset_wires()

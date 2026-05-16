@@ -1669,3 +1669,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 		c_dist++
 
 	return atom_list
+
+/// Orders cameras by their `c_tag` ascending
+/proc/cmp_camera_ctag_asc(obj/machinery/camera/a, obj/machinery/camera/b)
+	return sorttext(b.c_tag, a.c_tag)
