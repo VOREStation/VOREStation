@@ -151,17 +151,15 @@
 			icon_state = "synthtongue"
 		update_icon()
 
-/obj/item/robot_tongue/afterattack(atom/target, mob/user, proximity)
-	if(!proximity)
-		return
+/obj/item/robot_tongue/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(busy)
 		to_chat(user, span_warning("You are already licking something else."))
-		return
+		return ITEM_INTERACT_FAILURE
 	if(user.client && (target in user.client.screen))
 		to_chat(user, span_warning("You need to take \the [target.name] off before cleaning it!"))
-		return
+		return ITEM_INTERACT_FAILURE
 	else if(istype(target,/obj/item))
 		if(istype(target,/obj/item/trash))
 			user.visible_message(span_filter_notice("[user] nibbles away at \the [target.name]."), span_notice("You begin to nibble away at \the [target.name]..."))
@@ -172,8 +170,10 @@
 				qdel(target)
 				var/mob/living/silicon/robot/R = user
 				R.cell.charge += 250
+				busy = 0
+				return ITEM_INTERACT_SUCCESS
 			busy = 0
-			return
+			return ITEM_INTERACT_FAILURE
 		if(istype(target,/obj/item/cell))
 			user.visible_message(span_filter_notice("[user] begins cramming \the [target.name] down its throat."), span_notice("You begin cramming \the [target.name] down your throat..."))
 			busy = 1
@@ -184,8 +184,10 @@
 				var/obj/item/cell/C = target
 				R.cell.charge += C.charge / 3
 				qdel(target)
+				busy = 0
+				return ITEM_INTERACT_SUCCESS
 			busy = 0
-			return
+			return ITEM_INTERACT_FAILURE
 	else if(ishuman(target))
 		if(src.emagged)
 			var/mob/living/silicon/robot/R = user
@@ -199,13 +201,15 @@
 			L.visible_message(span_danger("[user] has shocked [L] with its tongue!"), \
 								span_userdanger("[user] has shocked you with its tongue! You can feel the betrayal."))
 			playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
+			return ITEM_INTERACT_SUCCESS
 		else
 			user.visible_message(span_notice("\The [user] affectionately licks all over \the [target]'s face!"), span_notice("You affectionately lick all over \the [target]'s face!"))
 			playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 			var/mob/living/carbon/human/H = target
 			if(H.species.lightweight == 1)
 				H.Weaken(3)
-	return
+			return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/pupscrubber
 	name = "floor scrubber"
