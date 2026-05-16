@@ -116,7 +116,7 @@
 
 
 // Handles the actual harming by a melee weapon.
-/mob/living/simple_mob/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+/mob/living/simple_mob/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone, hide_attack_message)
 	effective_force = O.force
 
 	//Animals can't be stunned(?)
