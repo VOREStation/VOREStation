@@ -401,6 +401,12 @@
 	icon_state = "handcuff"
 	starts_with = list(/obj/item/handcuffs = 7)
 
+/obj/item/storage/box/legcuffs
+	name = "box of spare legcuffs"
+	desc = "A box full of legcuffs."
+	icon_state = "handcuff"
+	starts_with = list(/obj/item/handcuffs/legcuffs = 7)
+
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
 	desc = span_red(span_bold("WARNING:")) + " " + span_italics("Keep out of reach of children") + "."
