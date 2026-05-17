@@ -266,7 +266,7 @@
 				"Low" = planet.weather_holder.current_weather.temp_low - T0C,
 				"WindDir" = planet.weather_holder.wind_dir ? dir2text(planet.weather_holder.wind_dir) : "None",
 				"WindSpeed" = planet.weather_holder.wind_speed ? "[planet.weather_holder.wind_speed > 2 ? "Severe" : "Normal"]" : "None",
-				"Forecast" = english_list(planet.weather_holder.forecast, and_text = "&#8594;", comma_text = "&#8594;", final_comma_text = "&#8594;") // Unicode RIGHTWARDS ARROW.
+				"Forecast" = english_list(list("\[[planet.weather_holder.current_weather?.name]\]") + planet.weather_holder.get_forecast_data(), and_text = "&#8594;", comma_text = "&#8594;", final_comma_text = "&#8594;") // Unicode RIGHTWARDS ARROW.
 				)
 			weather.Add(list(W))
 
