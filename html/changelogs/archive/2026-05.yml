@@ -85,3 +85,10 @@
   - bugfix: Beakers can splash people again
   Kashargul:
   - bugfix: gps entries using a stable key
+2026-05-18:
+  Cerami:
+  - bugfix: Adds an emergency failsafe to the fulton if it doesn't see a valid tile
+      to transport to.
+  Will:
+  - rscadd: Upports yawnwider cryogenic planets
+  - rscadd: Upports yawnwider station boiler and radiators

@@ -1,4 +1,0 @@
-author: "Cerami"
-delete-after: True
-changes:
-  - bugfix: "Adds an emergency failsafe to the fulton if it doesn't see a valid tile to transport to."
