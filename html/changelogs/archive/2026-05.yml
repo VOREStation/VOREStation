@@ -92,3 +92,11 @@
   Will:
   - rscadd: Upports yawnwider cryogenic planets
   - rscadd: Upports yawnwider station boiler and radiators
+2026-05-19:
+  Will:
+  - bugfix: wearing a mask no longer prevent stuttering, hyperzine, and wingding say
+      modifiers
+  - bugfix: Scrubbers no longer rarely divide by 0 when calculating scrubbing power
+      used on their first tick if the pipe network is in a certain state
+  - code_imp: gas mixture datum inits temp to TCMB instead of 0
+  - bugfix: shuttles and elevators are ignored by the cryoplanets subsystem

@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "wearing a mask no longer prevent stuttering, hyperzine, and wingding say modifiers"

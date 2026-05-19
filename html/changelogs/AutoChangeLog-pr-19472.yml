@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Scrubbers no longer rarely divide by 0 when calculating scrubbing power used on their first tick if the pipe network is in a certain state"
-  - code_imp: "gas mixture datum inits temp to TCMB instead of 0"
