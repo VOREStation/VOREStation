@@ -29,6 +29,9 @@
 	update_icon()
 	set_light(actively_radiating, 0.9, "#e9400dff")
 
+/obj/machinery/stationboiler_radiator/proc/get_radiating()
+	return actively_radiating
+
 /obj/machinery/stationboiler_radiator/update_icon()
 	icon_state = actively_radiating ? "on" : "off"
 
