@@ -78,7 +78,21 @@ Pipelines + Other Objects -> Pipe network
 
 /** Check if this machine is willing to connect with the target machine. */
 /obj/machinery/atmospherics/proc/check_connectable(obj/machinery/atmospherics/target)
-	return (src.connect_types & target.connect_types)
+	return (src.connect_types & target.connect_types) && !check_if_side_in_use(target)
+
+/** Returns true if a pipe is already connected to the same side of the target as ourselves. This is a hack to prevent multi-connection from the same turf. Our atmopipes do not have support for multiple connections, this requires a major refactor or replacement port from TG in the future. */
+/obj/machinery/atmospherics/proc/check_if_side_in_use(obj/machinery/atmospherics/target)
+	var/list/node_list = target.get_neighbor_nodes_for_init()
+	if(!length(node_list)) // Preserving original behavior
+		return TRUE
+	// By default, do not allow connections from the same side.
+	var/turf/our_turf = get_turf(src)
+	for(var/obj/machinery/atmospherics/check_node in node_list)
+		if(QDELETED(check_node) || check_node == src)
+			continue
+		if(get_turf(check_node) == our_turf)
+			return TRUE
+	return FALSE
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/pipe_painter))
