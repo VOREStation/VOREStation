@@ -24,6 +24,7 @@ Thus, the two variables affect pump operation are set in New():
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume"
 
+	pipe_flags = NONE // Other pumps can be on other layers
 	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 15000	//15000 W ~ 20.4 HP
@@ -97,7 +98,7 @@ Thus, the two variables affect pump operation are set in New():
 	else
 		icon_state = "[use_power ? "[base_icon]-on" : "[base_icon]-off"]"
 
-	overclock_overlay = mutable_appearance('icons/atmos/volume_pump_overclock.dmi', "vpumpoverclock")
+	overclock_overlay = mutable_appearance('icons/atmos/volume_pump_overclock.dmi', "vpumpoverclock[icon_connect_type]")
 	if(powered() && use_power && overclocked)
 		add_overlay(overclock_overlay)
 	else
@@ -109,8 +110,10 @@ Thus, the two variables affect pump operation are set in New():
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
-	add_underlay(T, node2, dir, node2?.icon_connect_type)
+	if(node1)
+		add_underlay(T, node1, turn(dir, -180), icon_connect_type)
+	if(node2)
+		add_underlay(T, node2, dir, icon_connect_type)
 
 /obj/machinery/atmospherics/binary/volume_pump/hide(i)
 	update_underlays()
