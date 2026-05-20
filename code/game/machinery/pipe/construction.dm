@@ -32,6 +32,9 @@ Buildable meters
 	var/mirrored = FALSE
 /obj/item/pipe/quaternary
 	dispenser_class = PIPE_ONEDIR
+/obj/item/pipe/directional/tank // lorge
+	w_class = ITEMSIZE_COST_HUGE
+	dispenser_class = PIPE_DIRECTIONAL
 
 /**
  * Call constructor with:

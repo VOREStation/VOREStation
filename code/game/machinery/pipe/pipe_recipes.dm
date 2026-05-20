@@ -15,6 +15,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_recipe/pipe("Upward Pipe",			/obj/machinery/atmospherics/pipe/zpipe/up),
 		new /datum/pipe_recipe/pipe("Downward Pipe",		/obj/machinery/atmospherics/pipe/zpipe/down),
 		new /datum/pipe_recipe/pipe("Universal Pipe Adaptor",/obj/machinery/atmospherics/pipe/simple/visible/universal),
+		new /datum/pipe_recipe/pipe("Pressure Tank",		/obj/machinery/atmospherics/pipe/tank/custom),
 	),
 	"Devices" = list(
 		new /datum/pipe_recipe/pipe("Connector",			/obj/machinery/atmospherics/portables_connector),
