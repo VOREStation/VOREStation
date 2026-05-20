@@ -94,6 +94,30 @@ Pipelines + Other Objects -> Pipe network
 			return TRUE
 	return FALSE
 
+/// Prioritize pipes that are already trying to link to us, prevents mismatching when both sides call atmo_init() on their own
+/obj/machinery/atmospherics/proc/get_prioritized_nodes(turf/at_loc)
+	RETURN_TYPE(/list)
+
+	var/priority_target = null
+	var/list/viable_nodes = list()
+	for(var/obj/machinery/atmospherics/checking in at_loc)
+		var/list/node_list = checking.get_neighbor_nodes_for_init()
+		if(!priority_target) // Check for pipes already linking to us from their side. We want them to be priority to link back.
+			for(var/obj/machinery/atmospherics/node_check in node_list)
+				if(!priority_target && node_check == src)
+					priority_target = checking
+					break
+		// Otherwise we just want a list of all the viable targets we COULD link to. check_connectable() will be called after to see if they can be linked to properly.
+		if(checking != priority_target)
+			viable_nodes += checking
+
+	// So the goal of this proc is to organize the list so that the one trying to link to us will be FIRST, but the list of targets is always all available nodes
+	if(priority_target) // Put the priority target at the head
+		viable_nodes = list(priority_target) + viable_nodes
+
+	return viable_nodes
+
+
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/pipe_painter))
 		return

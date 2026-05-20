@@ -143,12 +143,12 @@
 	var/node2_connect = turn(dir, -90)
 	var/node1_connect = turn(dir, 90)
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node1_connect)))
 		if(can_be_node(target, 1))
 			node1 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node2_connect)))
 		if(can_be_node(target, 2))
 			node2 = target
 			break
