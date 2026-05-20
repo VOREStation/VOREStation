@@ -19,7 +19,6 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 	"Devices" = list(
 		new /datum/pipe_recipe/pipe("Connector",			/obj/machinery/atmospherics/portables_connector),
 		new /datum/pipe_recipe/pipe("Unary Vent",			/obj/machinery/atmospherics/unary/vent_pump),
-		new /datum/pipe_recipe/pipe("Aux Vent",				/obj/machinery/atmospherics/unary/vent_pump/aux),
 		new /datum/pipe_recipe/pipe("Passive Vent",			/obj/machinery/atmospherics/pipe/vent),
 		new /datum/pipe_recipe/pipe("Injector",				/obj/machinery/atmospherics/unary/outlet_injector),
 		new /datum/pipe_recipe/pipe("Gas Pump",				/obj/machinery/atmospherics/binary/pump),
