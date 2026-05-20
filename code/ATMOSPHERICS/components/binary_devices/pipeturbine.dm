@@ -144,12 +144,12 @@
 	var/node1_connect = turn(dir, 90)
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
+		if(can_be_node(target, 1))
 			node1 = target
 			break
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
+		if(can_be_node(target, 2))
 			node2 = target
 			break
 
