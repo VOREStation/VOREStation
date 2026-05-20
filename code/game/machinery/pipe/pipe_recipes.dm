@@ -23,8 +23,6 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_recipe/pipe("Passive Vent",			/obj/machinery/atmospherics/pipe/vent),
 		new /datum/pipe_recipe/pipe("Injector",				/obj/machinery/atmospherics/unary/outlet_injector),
 		new /datum/pipe_recipe/pipe("Gas Pump",				/obj/machinery/atmospherics/binary/pump),
-		new /datum/pipe_recipe/pipe("Fuel Pump",			/obj/machinery/atmospherics/binary/pump/fuel),
-		new /datum/pipe_recipe/pipe("Aux Pump",				/obj/machinery/atmospherics/binary/pump/aux),
 		new /datum/pipe_recipe/pipe("Pressure Regulator",	/obj/machinery/atmospherics/binary/passive_gate),
 		new /datum/pipe_recipe/pipe("High Power Gas Pump",	/obj/machinery/atmospherics/binary/pump/high_power),
 		new /datum/pipe_recipe/pipe("Volumetric Gas Pump",	/obj/machinery/atmospherics/binary/volume_pump),

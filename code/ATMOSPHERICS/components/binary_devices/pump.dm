@@ -18,7 +18,6 @@ Thus, the two variables affect pump operation are set in New():
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"
 	level = 1
-	var/base_icon = "pump"
 
 	name = "gas pump"
 	desc = "A pump that moves gas from one place to another."
@@ -40,7 +39,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/Initialize(mapload)
 	. = ..()
-
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	if(frequency)
@@ -56,7 +54,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/fuel
 	icon_state = "map_off-fuel"
-	base_icon = "pump-fuel"
 	icon_connect_type = "-fuel"
 	connect_types = CONNECT_TYPE_FUEL
 
@@ -66,7 +63,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/aux
 	icon_state = "map_off-aux"
-	base_icon = "pump-aux"
 	icon_connect_type = "-aux"
 	connect_types = CONNECT_TYPE_AUX
 
@@ -75,6 +71,7 @@ Thus, the two variables affect pump operation are set in New():
 	use_power = USE_POWER_IDLE
 
 /obj/machinery/atmospherics/binary/pump/update_icon()
+	var/base_icon = "pump[icon_connect_type]"
 	if(!powered())
 		icon_state = "[base_icon]-off"
 	else
