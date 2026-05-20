@@ -20,7 +20,6 @@ Thus, the two variables affect pump operation are set in New():
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "volumepump"
 	level = 1
-	var/base_icon = "pump"
 
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume"
@@ -57,7 +56,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/fuel
 	icon_state = "map_off-fuel"
-	base_icon = "pump-fuel"
 	icon_connect_type = "-fuel"
 	connect_types = CONNECT_TYPE_FUEL
 
@@ -67,7 +65,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/aux
 	icon_state = "map_off-aux"
-	base_icon = "pump-aux"
 	icon_connect_type = "-aux"
 	connect_types = CONNECT_TYPE_AUX
 
@@ -75,11 +72,30 @@ Thus, the two variables affect pump operation are set in New():
 	icon_state = "map_on-aux"
 	use_power = USE_POWER_IDLE
 
+/obj/machinery/atmospherics/binary/volume_pump/scrubbers
+	icon_state = "map_off-scrubbers"
+	icon_connect_type = "-scrubbers"
+	connect_types = CONNECT_TYPE_SCRUBBER
+
+/obj/machinery/atmospherics/binary/volume_pump/scrubbers/on
+	icon_state = "map_on-scrubbers"
+	use_power = USE_POWER_IDLE
+
+/obj/machinery/atmospherics/binary/volume_pump/supply
+	icon_state = "map_off-supply"
+	icon_connect_type = "-supply"
+	connect_types = CONNECT_TYPE_SUPPLY
+
+/obj/machinery/atmospherics/binary/volume_pump/supply/on
+	icon_state = "map_on-supply"
+	use_power = USE_POWER_IDLE
+
 /obj/machinery/atmospherics/binary/volume_pump/update_icon()
+	var/base_icon = "pump[icon_connect_type]"
 	if(!powered())
-		icon_state = "off"
+		icon_state = "[base_icon]-off"
 	else
-		icon_state = "[use_power ? "on" : "off"]"
+		icon_state = "[use_power ? "[base_icon]-on" : "[base_icon]-off"]"
 
 	overclock_overlay = mutable_appearance('icons/atmos/volume_pump_overclock.dmi', "vpumpoverclock")
 	if(powered() && use_power && overclocked)
