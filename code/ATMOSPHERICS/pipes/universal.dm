@@ -17,8 +17,11 @@
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/Initialize(mapload)
 	. = ..()
-	for(var/index in 1 to length(universal_nodes))
-		universal_nodes[index] = new/list(2) // node1, node2
+	universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
+	universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
+	universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
+	universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
+	universal_nodes[PIPING_LAYER_AUX] = list(null, null)
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/Destroy()
 	. = ..()
@@ -62,8 +65,11 @@
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/Initialize(mapload)
 	. = ..()
-	for(var/index in 1 to length(universal_nodes))
-		universal_nodes[index] = new/list(2) // node1, node2
+	universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
+	universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
+	universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
+	universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
+	universal_nodes[PIPING_LAYER_AUX] = list(null, null)
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/Destroy()
 	. = ..()
