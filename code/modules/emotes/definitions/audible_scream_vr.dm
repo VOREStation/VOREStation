@@ -13,4 +13,5 @@
 /datum/decl/emote/audible/malehumanscream
 	key = "malehumanscream"
 	emote_message_3p = "screams!"
+	emote_message_mute_3p = "screams silently!"
 	emote_sound = 'sound/voice/malescream_2.ogg'
