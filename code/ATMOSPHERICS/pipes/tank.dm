@@ -178,8 +178,12 @@
 	name = "Pressure Tank"
 	icon_state = "air_map"
 
+/obj/machinery/atmospherics/pipe/tank/custom/atmos_init()
+	. = ..()
+	icon_state = "air" // Forces air for the proper blending, we don't want -scrubbers!
+	update_icon()
+
 /obj/machinery/atmospherics/pipe/tank/custom/update_icon()
-	icon_state = "air" // assume the correct state, we don't want to use the -aux version when we lack one
 	cut_overlays()
 	if(!pipe_color)
 		return
