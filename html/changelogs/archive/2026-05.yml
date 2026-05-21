@@ -77,3 +77,26 @@
   - code_imp: dependency up
   - code_imp: typescript 6
   - qol: updates chat highlights
+2026-05-15:
+  Cerami:
+  - bugfix: adjusts mob vore pref to only be for mobs as preds
+2026-05-17:
+  Diana:
+  - bugfix: Beakers can splash people again
+  Kashargul:
+  - bugfix: gps entries using a stable key
+2026-05-18:
+  Cerami:
+  - bugfix: Adds an emergency failsafe to the fulton if it doesn't see a valid tile
+      to transport to.
+  Will:
+  - rscadd: Upports yawnwider cryogenic planets
+  - rscadd: Upports yawnwider station boiler and radiators
+2026-05-19:
+  Will:
+  - bugfix: wearing a mask no longer prevent stuttering, hyperzine, and wingding say
+      modifiers
+  - bugfix: Scrubbers no longer rarely divide by 0 when calculating scrubbing power
+      used on their first tick if the pipe network is in a certain state
+  - code_imp: gas mixture datum inits temp to TCMB instead of 0
+  - bugfix: shuttles and elevators are ignored by the cryoplanets subsystem

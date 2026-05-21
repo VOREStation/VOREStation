@@ -120,11 +120,14 @@
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
 #define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
 #define AREA_ALWAYS_HAS_GRAVITY		0x8000	// If an area should always have gravity, even during events that would otherwise remove it.
-// The 0x800000 is blocked by INITIALIZED, do NOT use it!
-
+#define AREA_CRYOPLANET_SHIELDED	0x10000 // If an area is protected from SScryoplanet temperature shifts
+// UNUSED 0x20000
+// UNUSED 0x40000
+// UNUSED 0x80000
 #define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
 #define AREA_LIMIT_DARK_RESPITE		0x200000 // Shadekin will die normally in those areas //VOREStation Note: Not implemented on VS. Used downstream.
 #define AREA_ALLOW_CLOCKOUT			0x400000 // The PDA timeclock app can only be used in these areas //VOREStation Note: Not implemented on VS. Used downstream.
+// The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 // OnTopic return values
 #define TOPIC_NOACTION 0
