@@ -82,6 +82,11 @@ Pipelines + Other Objects -> Pipe network
 
 /** Returns true if a pipe is already connected to the same side of the target as ourselves. This is a hack to prevent multi-connection from the same turf. Our atmopipes do not have support for multiple connections, this requires a major refactor or replacement port from TG in the future. */
 /obj/machinery/atmospherics/proc/check_if_side_in_use(obj/machinery/atmospherics/target)
+	if(istype(src, /obj/machinery/atmospherics/pipe/simple/hidden/universal) \
+	|| istype(src, /obj/machinery/atmospherics/pipe/simple/visible/universal) \
+	|| istype(target, /obj/machinery/atmospherics/pipe/simple/visible/universal) \
+	|| istype(target, /obj/machinery/atmospherics/pipe/simple/visible/universal))
+		return FALSE // Snowflake to allow univerals pipe adaptors to bridge the gap on the same side
 	var/list/node_list = target.get_neighbor_nodes_for_init()
 	if(!length(node_list)) // Preserving original behavior
 		return TRUE
