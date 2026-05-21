@@ -275,7 +275,7 @@
 	)
 	mail_color = COMMS_COLOR_SERVICE
 
-/datum/alt_title/clown
+/datum/job/clown
 	mail_goodies = list(
 		/obj/fruitspawner/banana = 200,
 		/obj/item/pen/crayon/rainbow = 200,
@@ -286,13 +286,15 @@
 		/obj/item/reagent_containers/food/snacks/pie = 100
 	)
 
-/datum/alt_title/mime
+/datum/job/mime
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/drinks/bottle/wine = 250,
 		/obj/item/reagent_containers/glass/bottle/nothing = 250,
 		/obj/item/reagent_containers/food/snacks/baguette = 200,
 		/obj/item/pen/crayon/mime = 200
 	)
+	mail_color = COLOR_WHITE
+
 /datum/job/entrepreneur // Same for these guys! What could they get?
 	mail_goodies = list(
 		/obj/item/entrepreneur/crystal_ball = 40,

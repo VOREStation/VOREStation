@@ -16,6 +16,9 @@
 	var/emote_message_synthetic_1p                      // First person message for robits.
 	var/emote_message_synthetic_3p                      // Third person message for robits.
 
+	var/emote_message_mute_1p							// First person message for mutes.
+	var/emote_message_mute_3p							// Third person message for mutes.
+
 	var/emote_message_impaired                          // Deaf/blind message ('You hear someone flipping out.', 'You see someone opening and closing their mouth')
 
 	var/emote_message_1p_target                         // 'You do a flip at Urist McTarget!'
@@ -40,6 +43,7 @@
 	var/check_range                                     // falsy, or a range outside which the emote will not work
 	var/conscious = TRUE                                // Do we need to be awake to emote this?
 	var/emote_range = 0                                 // If >0, restricts emote visibility to viewers within range.
+	var/able_mute = FALSE								// If it this emote doesn't require vocal chords.
 
 	var/sound_preferences = list(/datum/preference/toggle/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = FALSE
@@ -54,6 +58,11 @@
 		if(emote_message_synthetic_1p_target && check_synthetic(user))
 			return emote_message_synthetic_1p_target
 		return emote_message_1p_target
+	var/mob/living/mob
+	if(isliving(user))
+		mob = user
+	if(emote_message_mute_1p && HAS_MIND_TRAIT(mob, TRAIT_MIMING))
+		return emote_message_mute_1p
 	if(emote_message_synthetic_1p && check_synthetic(user))
 		return emote_message_synthetic_1p
 	return emote_message_1p
@@ -63,6 +72,11 @@
 		if(emote_message_synthetic_3p_target && check_synthetic(user))
 			return emote_message_synthetic_3p_target
 		return emote_message_3p_target
+	var/mob/living/mob
+	if(isliving(user))
+		mob = user
+	if(emote_message_mute_3p && HAS_MIND_TRAIT(mob, TRAIT_MIMING))
+		return emote_message_mute_3p
 	if(emote_message_synthetic_3p && check_synthetic(user))
 		return emote_message_synthetic_3p
 	return emote_message_3p
@@ -146,7 +160,10 @@
 			M.visible_message(message = use_3p, self_message = use_1p, blind_message = emote_message_impaired, range = use_range, runemessage = prefinal_3p)
 
 	do_extra(user, target)
-	do_sound(user)
+	if(isliving(user))
+		var/mob/living/mob = user
+		if(!(HAS_MIND_TRAIT(mob, TRAIT_MIMING) && !able_mute))
+			do_sound(user)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EMOTE_PERFORMED, user, extra_params)
 
 /datum/decl/emote/proc/replace_target_tokens(msg, atom/target)
