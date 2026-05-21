@@ -1,3 +1,6 @@
+#define LIST_NODE1 1
+#define LIST_NODE2 2
+
 //
 // Universal Pipe Adapter - Designed for connecting scrubbers, normal, and supply pipes together.
 // Visible varient
@@ -14,11 +17,12 @@
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/Initialize(mapload)
 	. = ..()
-	universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
-	universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
-	universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
-	universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
-	universal_nodes[PIPING_LAYER_AUX] = list(null, null)
+	for(var/index in 1 to length(universal_nodes))
+		universal_nodes[index] = new/list(2) // node1, node2
+
+/obj/machinery/atmospherics/pipe/simple/visible/universal/Destroy()
+	. = ..()
+	universal_destroy(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/atmos_init()
 	universal_atmos_init(universal_nodes)
@@ -35,20 +39,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal/get_neighbor_nodes_for_init()
 	return pipeline_expansion()
 
-/obj/machinery/atmospherics/pipe/simple/visible/universal/Destroy()
-	. = ..()
-	for(var/list/sublist in universal_nodes)
-		sublist.Cut()
-	universal_nodes.Cut()
-	universal_nodes = null
-
 /obj/machinery/atmospherics/pipe/simple/visible/universal/update_icon(safety = 0)
 	universal_node_update_icon(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/update_underlays()
 	..()
 	update_icon()
-
 
 //
 // Universal Pipe Adapter - Designed for connecting scrubbers, normal, and supply pipes together.
@@ -66,11 +62,12 @@
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/Initialize(mapload)
 	. = ..()
-	universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
-	universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
-	universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
-	universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
-	universal_nodes[PIPING_LAYER_AUX] = list(null, null)
+	for(var/index in 1 to length(universal_nodes))
+		universal_nodes[index] = new/list(2) // node1, node2
+
+/obj/machinery/atmospherics/pipe/simple/hidden/universal/Destroy()
+	. = ..()
+	universal_destroy(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/atmos_init()
 	universal_atmos_init(universal_nodes)
@@ -87,13 +84,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/get_neighbor_nodes_for_init()
 	return pipeline_expansion()
 
-/obj/machinery/atmospherics/pipe/simple/hidden/universal/Destroy()
-	. = ..()
-	for(var/list/sublist in universal_nodes)
-		sublist.Cut()
-	universal_nodes.Cut()
-	universal_nodes = null
-
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/update_icon(safety = 0)	// Doesn't leak. It's a special pipe.
 	universal_node_update_icon(universal_nodes)
 
@@ -104,6 +94,8 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Shared universal pipe adaptor procs
+//
+// TODO : universal should be unified into it's own subtype and changed on all maps with hidden and visible subtypes... this is awful
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/machinery/atmospherics/pipe/simple/proc/universal_atmos_init(list/universal_nodes)
 	normalize_dir()
@@ -124,12 +116,12 @@
 		// Each node layer expects the target to be on the same layer!
 		for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node1_dir)))
 			if(target.piping_layer == node_index && can_be_node(target, 1))
-				node_layer[1] = target
+				node_layer[LIST_NODE1] = target
 				has_any_nodes = TRUE
 				break
 		for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node2_dir)))
 			if(target.piping_layer == node_index && can_be_node(target, 2))
-				node_layer[2] = target
+				node_layer[LIST_NODE2] = target
 				has_any_nodes = TRUE
 				break
 	if(!has_any_nodes)
@@ -141,18 +133,28 @@
 		hide(1)
 	update_icon()
 
+/obj/machinery/atmospherics/pipe/simple/proc/universal_destroy(list/universal_nodes)
+	for(var/list/sublist in universal_nodes)
+		var/obj/machinery/atmospherics/nodeone = sublist[LIST_NODE1]
+		var/obj/machinery/atmospherics/nodetwo = sublist[LIST_NODE2]
+		nodeone?.disconnect(src)
+		nodetwo?.disconnect(src)
+		sublist.Cut()
+	universal_nodes.Cut()
+	universal_nodes = null
+
 /obj/machinery/atmospherics/pipe/simple/proc/universal_disconnect(list/universal_nodes, obj/machinery/atmospherics/reference)
 	for(var/list/node_layer in universal_nodes)
-		var/obj/machinery/atmospherics/node_one = node_layer[1]
-		var/obj/machinery/atmospherics/node_two = node_layer[2]
+		var/obj/machinery/atmospherics/node_one = node_layer[LIST_NODE1]
+		var/obj/machinery/atmospherics/node_two = node_layer[LIST_NODE2]
 
 		if(reference == node_one)
 			node_one.disconnect(src)
-			node_layer[1] = null
+			node_layer[LIST_NODE1] = null
 
 		if(reference == node_two)
 			node_two.disconnect(src)
-			node_layer[2] = null
+			node_layer[LIST_NODE2] = null
 
 	update_icon()
 	return null
@@ -167,8 +169,8 @@
 	var/layer_index = 0
 	for(var/list/node_layer in universal_nodes)
 		layer_index++
-		var/obj/machinery/atmospherics/node_one = node_layer[1]
-		var/obj/machinery/atmospherics/node_two = node_layer[2]
+		var/obj/machinery/atmospherics/node_one = node_layer[LIST_NODE1]
+		var/obj/machinery/atmospherics/node_two = node_layer[LIST_NODE2]
 
 		if (node_one)
 			universal_underlays(node_one, null, layer_index)
@@ -207,3 +209,6 @@
 			underlays += GLOB.icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "intact" + icon_connect_type)
 	else
 		underlays += GLOB.icon_manager.get_atmos_icon("underlay", direction, color_cache_name(node), "retracted" + icon_connect_type)
+
+#undef LIST_NODE1
+#undef LIST_NODE2
