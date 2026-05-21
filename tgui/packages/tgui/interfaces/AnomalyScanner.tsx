@@ -45,11 +45,11 @@ export const AnomalyScanner = (props) => {
 
   return (
     <Window width={400} height={325} theme={theme}>
-      <Window.Content>
+      <Window.Content scrollable>
         {anomaly_name ? (
           <Stack vertical fill>
             <Stack.Item grow>
-              <Section title={capitalizeAll(anomaly_name)} fill scrollable>
+              <Section title={capitalizeAll(anomaly_name)} fill>
                 <LabeledList>
                   <LabeledList.Item label="Current severity">
                     {severity}%
@@ -70,7 +70,7 @@ export const AnomalyScanner = (props) => {
               </Section>
             </Stack.Item>
             <Stack.Item grow>
-              <Section title="Particle Reaction Analysis" fill scrollable>
+              <Section title="Particle Reaction Analysis" fill>
                 <LabeledList>
                   <LabeledList.Item label="Danger Type" color="red">
                     {danger_type}

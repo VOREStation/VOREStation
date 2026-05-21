@@ -3,7 +3,7 @@
 	//Gases with 0 moles are not tracked and are pruned by update_values()
 	var/list/gas
 	//Temperature in Kelvin of this gas mix.
-	var/temperature = 0
+	var/temperature = TCMB
 
 	//Sum of all the gas moles in this mix.  Updated by update_values()
 	var/total_moles = 0
