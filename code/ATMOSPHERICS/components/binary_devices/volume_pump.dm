@@ -51,7 +51,7 @@ Thus, the two variables affect pump operation are set in New():
 	unregister_radio(src, frequency)
 	. = ..()
 
-/obj/machinery/atmospherics/binary/pump/on
+/obj/machinery/atmospherics/binary/volume_pump/on
 	icon_state = "map_on"
 	use_power = USE_POWER_IDLE
 
