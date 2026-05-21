@@ -60,11 +60,8 @@ SUBSYSTEM_DEF(stationheater)
 
 	// Update radiator icon if the main boiler is functioning or not
 	radiator.set_state(assigned_boiler?.is_heating())
-	radiator.update_icon()
-
-	// Remove us if we are in an invalid radiator turf
 	var/turf/radiator_turf = get_turf(radiator)
-	if(!SScryoplanets.is_station_temp_change_turf(radiator_turf))
+	if(!radiator.get_radiating() || !SScryoplanets.is_station_temp_change_turf(radiator_turf))
 		return
 
 	// If the temp is colder than the radiator, begin heating!

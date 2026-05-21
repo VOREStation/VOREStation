@@ -209,12 +209,19 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	var/list/message_pieces = parse_languages(message)
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
+		if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
+			to_chat(src, span_green("You stop yourself from signing in favor of the art of mimery!"))
+			return FALSE
 		S.speaking.broadcast(src, S.message)
 		return 1
 
 	if(!LAZYLEN(message_pieces))
 		log_runtime(EXCEPTION("Message failed to generate pieces. [message] - [json_encode(message_pieces)]"))
 		return 0
+
+	if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
+		to_chat(src, span_green("Your vow of silence prevents you from speaking!"))
+		return
 
 	// If you're muzzled, you can only speak sign language
 	// However, sign language is handled above.
