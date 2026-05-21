@@ -205,8 +205,9 @@
 	return target_zone
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
-/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
-	visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
+/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
+	if(!hide_attack_message)
+		visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
 	if(ai_holder)
 		ai_holder.react_to_attack(user)

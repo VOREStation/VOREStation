@@ -79,7 +79,7 @@
 
 /obj/item/reagent_containers/glass/standard_feed_mob(mob/user, mob/target)
 	if(user.a_intent == I_HURT)
-		return 1
+		return FALSE
 	return ..()
 
 /obj/item/reagent_containers/glass/self_feed_message(mob/user)

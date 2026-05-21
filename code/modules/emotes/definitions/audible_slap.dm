@@ -7,6 +7,7 @@
 	emote_sound = 'sound/effects/snap.ogg'
 	check_restraints = TRUE
 	check_range = 1
+	able_mute = TRUE
 
 /datum/decl/emote/audible/slap/New()
 	..()

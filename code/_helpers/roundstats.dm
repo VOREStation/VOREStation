@@ -90,13 +90,26 @@ GLOBAL_LIST_EMPTY(refined_chems_sold)
 			points += GLOB.refined_chems_sold[D]["value"]
 
 			if(GLOB.refined_chems_sold[D]["units"] >= 1000) // Don't spam the list
-				var/dols = GLOB.refined_chems_sold[D]["value"] * SSsupply.points_per_money
+				var/dols = GLOB.refined_chems_sold[D]["value"] * SSsupply.money_per_points
 				dols = FLOOR(dols * 100,1) / 100 // Truncate decimals
 				valid_stats_list.Add("[GLOB.refined_chems_sold[D]["units"]]u of [D], for [GLOB.refined_chems_sold[D]["value"]] points! A total of [dols] [dols > 1 ? "thalers" : "thaler"]")
 
-		var/end_dols = points * SSsupply.points_per_money
+		var/end_dols = points * SSsupply.money_per_points
 		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
 		valid_stats_list.Add("For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
+
+	if(SSsupply.warheads_sold > 0)
+		var/end_dols = SSsupply.warheads_value * SSsupply.money_per_points
+		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
+		valid_stats_list.Add("[SSsupply.warheads_sold] TTV warheads were sold! For a total of: [SSsupply.warheads_value] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
+
+	//NYI
+	if(SSsupply.watts_sold >= 1 GIGAWATTS)
+		var/gws = FLOOR(SSsupply.watts_sold / (1 GIGAWATTS),1) // Truncate decimals
+		points = FLOOR(SSsupply.watts_sold / SSsupply.points_per_watt,1)
+		var/end_dols = points * SSsupply.money_per_points
+		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
+		valid_stats_list.Add("[gws] gigawatt[gws > 1 ? "s" : ""] of power were sold! For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
 
 	if(SSnerdle)
 		var/word_export = "This shift's nerdle Was: [SSnerdle.target_word]! <br>"
