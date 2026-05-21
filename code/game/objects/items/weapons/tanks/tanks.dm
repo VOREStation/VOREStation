@@ -510,9 +510,10 @@ GLOBAL_LIST_EMPTY(tank_gauge_cache)
 				log_world(span_warning("[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"))
 				#endif
 
-
+		/* //This resulted in tanks going into negative values of integrity forever. Integrity should only be lost if the tank is moving towards exploding.
 		else
 			integrity-= 1
+		*/
 
 
 	else
