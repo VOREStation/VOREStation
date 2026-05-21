@@ -51,8 +51,8 @@
 	mask = /obj/item/clothing/mask/gas/mime
 	backpack_contents = list(
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 1,
-		/obj/item/stamp/mime = 1,
-		/obj/item/spellbook/oneuse/mime/mimery = 1)
+		/obj/item/stamp/mime = 1)
+		// /obj/item/spellbook/oneuse/mime/mimery = 1) //Disabled on Virgo - No magic
 	id_type = /obj/item/card/id/civilian/mime
 	pda_type = /obj/item/pda/mime
 	l_hand = /obj/item/storage/backpack/mime
