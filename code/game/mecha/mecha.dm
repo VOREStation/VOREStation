@@ -235,6 +235,8 @@
 	loc.Entered(src)
 	GLOB.mechas_list += src //global mech list
 
+	AddElement(/datum/element/sellable/mecha)
+
 /obj/mecha/drain_power(drain_check)
 
 	if(drain_check)

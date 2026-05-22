@@ -5,6 +5,7 @@
 	emote_message_1p_target = "You snap your fingers at TARGET."
 	emote_message_3p_target = "snaps USER_THEIR fingers at TARGET."
 	emote_sound = 'sound/effects/fingersnap.ogg'
+	able_mute = TRUE
 
 /datum/decl/emote/audible/snap/proc/can_snap(atom/user)
 	if(ishuman(user))

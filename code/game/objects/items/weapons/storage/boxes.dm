@@ -401,6 +401,12 @@
 	icon_state = "handcuff"
 	starts_with = list(/obj/item/handcuffs = 7)
 
+/obj/item/storage/box/legcuffs
+	name = "box of spare legcuffs"
+	desc = "A box full of legcuffs."
+	icon_state = "handcuff"
+	starts_with = list(/obj/item/handcuffs/legcuffs = 7)
+
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
 	desc = span_red(span_bold("WARNING:")) + " " + span_italics("Keep out of reach of children") + "."
@@ -638,3 +644,20 @@
 	desc = "A box full of weapon power cells. For all your portable energy storage needs."
 	icon_state = "secbox"
 	starts_with = list(/obj/item/cell/device/weapon = 7)
+
+/obj/item/storage/box/mime
+	name = "invisible box"
+	desc = "Unfortunately not large enough to trap the mime."
+	foldable = null
+	icon_state = "box"
+	alpha = 0
+
+/obj/item/storage/box/mime/attack_hand(mob/user)
+	..()
+	if(HAS_MIND_TRAIT(user, TRAIT_MIMING))
+		alpha = 255
+
+/obj/item/storage/box/mime/Moved(atom/old_loc, direction, forced, movetime)
+	if(iscarbon(old_loc))
+		alpha = 0
+	return ..()

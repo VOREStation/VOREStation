@@ -100,6 +100,12 @@
 	outfit_type = /datum/decl/hierarchy/outfit/job/mime
 	pto_type = PTO_CIVILIAN
 
+/datum/job/mime/equip(mob/living/carbon/human/H, alt_title)
+	. = ..()
+	if(H.mind)
+		var/datum/action/innate/vow_of_silence/vow = new(H)
+		vow.Grant(H)
+
 /datum/alt_title/poseur
 	title = JOB_ALT_PASEUR
 

@@ -208,6 +208,7 @@
 
 	AddComponent(/datum/component/hose_connector/input/borg)
 	AddComponent(/datum/component/hose_connector/output/borg)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 /mob/living/silicon/robot/LateInitialize()
 	pick_module()
