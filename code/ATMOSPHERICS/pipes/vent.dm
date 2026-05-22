@@ -60,7 +60,7 @@
 /obj/machinery/atmospherics/pipe/vent/atmos_init()
 	var/connect_direction = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,connect_direction)))
 		if (can_be_node(target, 1))
 			node1 = target
 			break

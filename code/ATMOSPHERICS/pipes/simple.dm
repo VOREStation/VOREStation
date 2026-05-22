@@ -136,11 +136,11 @@
 			else if (!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node1_dir)))
 		if(can_be_node(target, 1))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node2_dir)))
 		if(can_be_node(target, 2))
 			node2 = target
 			break
