@@ -11,7 +11,7 @@
 
 // Adds a list of pre-disabled events to the available events list.
 // This keeps them in the rotation, but disabled, so they can be enabled with a click if desired that round.
-/datum/event_container/proc/add_disabled_events(var/list/disabled_events)
+/datum/event_container/proc/add_disabled_events(list/disabled_events)
 	for(var/datum/event_meta/EM in disabled_events)
 		EM.enabled = 0
 		available_events += EM

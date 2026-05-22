@@ -420,7 +420,7 @@
 	for(var/obj/item/robotic_multibelt/materials/mat_belt in contents) //If it's in our handstory
 		mat_belt.generate_tools()
 
-/mob/living/silicon/robot/proc/can_install_synth(var/datum/matter_synth/type_to_check)
+/mob/living/silicon/robot/proc/can_install_synth(datum/matter_synth/type_to_check)
 	if(!ispath(type_to_check, /datum/matter_synth))
 		return FALSE
 	for(var/datum/matter_synth/synth in module.synths)
@@ -563,6 +563,12 @@
 	var/in_radial_menu = FALSE
 
 	var/mob/living/silicon/robot/our_robot
+
+	//If we allow using our gripper at range at all . Adminbus only.
+	var/allow_ranged_usage = FALSE
+
+	//If we allow using our gripper at range to pick up things. Adminbus only.
+	var/allow_ranged_pickup = FALSE
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -717,7 +723,7 @@
 
 	can_hold = list(ORGAN_GRIPPER)
 
-/obj/item/gripper/no_use/organ/Entered(var/atom/movable/AM)
+/obj/item/gripper/no_use/organ/Entered(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 1
@@ -725,7 +731,7 @@
 			organ.preserved = 1
 	..()
 
-/obj/item/gripper/no_use/organ/Exited(var/atom/movable/AM)
+/obj/item/gripper/no_use/organ/Exited(atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
 		O.preserved = 0

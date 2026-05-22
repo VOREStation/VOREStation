@@ -58,7 +58,7 @@
 
 //special behaviours for particle guns below
 
-/obj/item/gun/energy/particle/special_check(var/mob/user)
+/obj/item/gun/energy/particle/special_check(mob/user)
 	if (..())
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/environment = T ? T.return_air() : null
@@ -80,7 +80,7 @@
 		return 1
 	return 0
 
-/obj/item/gun/energy/particle/proc/pressuremalfunction(severity, var/mob/user, var/turf/T)
+/obj/item/gun/energy/particle/proc/pressuremalfunction(severity, mob/user, turf/T)
 	if (severity <= 10) // just doesn't fire. 10% chance in 100 atmo.
 		user.visible_message(span_warning("*click*"), span_danger("\The [src] jams."))
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
@@ -126,7 +126,7 @@
 	..(severity*2, user, T)
 
 
-/obj/item/gun/energy/particle/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/particle/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/pressurelock))
 		if(safetycatch)
 			to_chat(user, span_notice("\The [src] already has a [attached_safety]."))
@@ -179,7 +179,7 @@
 	light_power = 1
 	light_color = "#CCFFFF"
 
-/turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
+/turf/simulated/mineral/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/bullet/particle))
 		if(prob(Proj.damage))
 			GetDrilled()

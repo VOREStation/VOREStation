@@ -1,0 +1,15 @@
+author: "Will, Reo"
+delete-after: True
+changes:
+  - rscadd: "multiple atmo pumps can be constructed on the same turf"
+  - rscadd: "atmo pumps can be constructed on all pipe layers"
+  - rscadd: "canister connectors can be constructed for all pipe layers"
+  - rscadd: "vents and scrubbers support aux and fuel pipe layers"
+  - rscadd: "pressure tanks can be constructed and destructed, and now support all pipe layers"
+  - rscadd: "rpd and pipe dispenser can produce pressure tanks"
+  - rscadd: "all connections into a universal pipe adaptor function, and are no longer limited to one per side when building the network"
+  - bugfix: "bad recipes removed from the rpd and pipe dispenser (use the correct layer select for them instead)"
+  - bugfix: "atmo machines that support multiple pipe layer connections now properly link to pipes nearby if more than one compatible type of pipe is present in the linking direction"
+  - bugfix: "aux, fuel, scrubber, and supply pipes no longer reset their color (and ignore RPD color) when deconstructed"
+  - bugfix: "volume pumps no longer have broken map icons"
+  - bugfix: "added missing volume pump on prefab"

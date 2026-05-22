@@ -169,7 +169,7 @@
 		message2 = ""
 		index2 = 0
 
-/obj/machinery/status_display/proc/display_alert(var/newlevel)
+/obj/machinery/status_display/proc/display_alert(newlevel)
 	remove_display()
 	if(seclevel != newlevel)
 		seclevel = newlevel

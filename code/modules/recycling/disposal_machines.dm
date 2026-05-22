@@ -73,7 +73,7 @@
 
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, attack_modifier, click_parameters, drag_dropped = FALSE)
-	if(stat & BROKEN || !I || !user)
+	if(stat & BROKEN || !I || !user || !istype(I))
 		return
 
 	add_fingerprint(user)

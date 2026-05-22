@@ -119,7 +119,7 @@
 	if(flash_prot && ishuman(loc))
 		to_chat(loc, span_warning("Your [src.name] darken to try and protect your eyes!"))
 
-/obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
+/obj/item/clothing/glasses/omnihud/prescribe(mob/user)
 	prescription = !prescription
 	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 	if(prescription)
@@ -214,7 +214,7 @@
 
 
 
-/obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/proc/ar_interact(mob/living/carbon/human/user)
 	return 0 //The base models do nothing.
 
 /obj/item/clothing/glasses/omnihud/visor
@@ -236,7 +236,7 @@
 	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
-/obj/item/clothing/glasses/omnihud/med/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/med/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -252,7 +252,7 @@
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
-/obj/item/clothing/glasses/omnihud/sec/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/sec/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -267,7 +267,7 @@
 	actions_types = list(/datum/action/item_action/ar_console_station_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
 
-/obj/item/clothing/glasses/omnihud/eng/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/eng/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -332,7 +332,7 @@
 	actions_types = list(/datum/action/item_action/ar_console_all_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
 
-/obj/item/clothing/glasses/omnihud/all/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/all/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -459,7 +459,7 @@
 	flags_inv = HIDEFACE
 	can_shade = FALSE
 
-/obj/item/clothing/glasses/omnihud/mantle/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/mantle/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -486,7 +486,7 @@
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
-/obj/item/clothing/glasses/omnihud/mantle/sec/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/mantle/sec/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -499,7 +499,7 @@
 	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
-/obj/item/clothing/glasses/omnihud/mantle/med/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/mantle/med/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -512,7 +512,7 @@
 	actions_types = list(/datum/action/item_action/ar_console_station_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
 
-/obj/item/clothing/glasses/omnihud/mantle/med/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/mantle/med/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1
@@ -526,7 +526,7 @@
 	actions_types = list(/datum/action/item_action/ar_console_all_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
 
-/obj/item/clothing/glasses/omnihud/mantle/cmd/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/mantle/cmd/ar_interact(mob/living/carbon/human/user)
 	if(tgarscreen)
 		tgarscreen.tgui_interact(user)
 	return 1

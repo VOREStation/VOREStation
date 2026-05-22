@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 
 	enter_tunnel(user)
 
-/obj/structure/micro_tunnel/proc/can_enter(var/mob/living/user)
+/obj/structure/micro_tunnel/proc/can_enter(mob/living/user)
 	if(user.mob_size <= MOB_TINY || user.get_effective_size(TRUE) <= micro_accepted_scale)
 		return TRUE
 
@@ -259,7 +259,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 	to_chat(k,span_notice("You are inside of \the [src]. It's dark and gloomy inside of here. You can click upon the tunnel to exit, or travel to another tunnel if there are other tunnels linked to it."))
 	tunnel_notify(k)
 
-/obj/structure/micro_tunnel/proc/tunnel_notify(var/mob/living/user)
+/obj/structure/micro_tunnel/proc/tunnel_notify(mob/living/user)
 	to_chat(user, span_notice("You arrive inside \the [src]."))
 	var/our_message = "You can see "
 	var/found_stuff = FALSE

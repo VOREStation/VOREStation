@@ -200,7 +200,7 @@ GLOBAL_LIST_EMPTY(blob_cores)
 
 
 
-/obj/structure/blob/core/proc/overmind_creation(var/client/new_overmind)
+/obj/structure/blob/core/proc/overmind_creation(client/new_overmind)
 	if(new_overmind)
 		if(!desired_blob_type && !isnull(difficulty_threshold))
 			desired_blob_type = get_random_blob_type()

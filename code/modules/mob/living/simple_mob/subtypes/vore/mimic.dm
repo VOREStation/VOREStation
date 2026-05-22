@@ -55,7 +55,7 @@
 	qdel(src)
 	return
 
-/obj/structure/closet/crate/mimic/damage(var/damage)
+/obj/structure/closet/crate/mimic/damage(damage)
 	if(contents.len)
 		visible_message(span_bolddanger("[src] makes out a crunchy noise as its contents are destroyed!"))
 		for(var/obj/O in src.contents)
@@ -133,7 +133,7 @@
 	wander = FALSE
 	hostile = TRUE
 
-/mob/living/simple_mob/vore/aggressive/mimic/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/aggressive/mimic/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
@@ -193,7 +193,7 @@
 	qdel(src)
 	return
 
-/obj/structure/closet/crate/mimic/airlock/damage(var/damage)
+/obj/structure/closet/crate/mimic/airlock/damage(damage)
 	if(contents.len)
 		visible_message(span_bolddanger("The [src] let's out an enraged screach!"))
 		for(var/obj/O in src.contents)
@@ -287,7 +287,7 @@
 	qdel(src)
 	return
 
-/obj/structure/closet/crate/mimic/closet/damage(var/damage)
+/obj/structure/closet/crate/mimic/closet/damage(damage)
 	if(contents.len)
 		visible_message(span_bolddanger("The [src] makes out a crunchy noise as its contents are destroyed!"))
 		for(var/obj/O in src.contents)

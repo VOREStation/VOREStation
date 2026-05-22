@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(redspace_areas, list(
 	holder.vis_enabled -= VIS_GHOSTS
 	holder.recalculate_vis()
 
-/datum/modifier/redsight/can_apply(var/mob/living/L)
+/datum/modifier/redsight/can_apply(mob/living/L)
 	if(L.stat)
 		to_chat(L, span_warning("You can't be unconscious or dead to see the unknown."))
 		return FALSE
@@ -640,7 +640,7 @@ GLOBAL_LIST_INIT(redspace_areas, list(
 		qdel(blade) //failed, sad.
 
 //shamelessly stolen from changeling/armor.dm
-/datum/modifier/redspace_corruption/proc/equip_flesh_armor(var/armor_type, var/helmet_type, var/boot_type, var/glove_type)
+/datum/modifier/redspace_corruption/proc/equip_flesh_armor(armor_type, helmet_type, boot_type, glove_type)
 
 	var/mob/living/carbon/human/M = unfortunate_soul
 

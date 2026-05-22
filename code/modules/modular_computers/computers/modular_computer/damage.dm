@@ -1,4 +1,4 @@
-/obj/item/modular_computer/examine(var/mob/user)
+/obj/item/modular_computer/examine(mob/user)
 	. = ..()
 	if(damage > broken_damage)
 		. += span_danger("It is heavily damaged!")
@@ -16,7 +16,7 @@
 			H.take_damage(rand(10,30))
 	qdel()
 
-/obj/item/modular_computer/take_damage(var/amount, var/component_probability, var/damage_casing = 1, var/randomize = 1)
+/obj/item/modular_computer/take_damage(amount, component_probability, damage_casing = 1, randomize = 1)
 	if(randomize)
 		// 75%-125%, rand() works with integers, apparently.
 		amount *= (rand(75, 125) / 100.0)
@@ -35,7 +35,7 @@
 
 // Stronger explosions cause serious damage to internal components
 // Minor explosions are mostly mitigitated by casing.
-/obj/item/modular_computer/ex_act(var/severity)
+/obj/item/modular_computer/ex_act(severity)
 	take_damage(rand(100,200) / severity, 30 / severity)
 
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
@@ -48,7 +48,7 @@
 // "Stun" weapons can cause minor damage to components (short-circuits?)
 // "Burn" damage is equally strong against internal components and exterior casing
 // "Brute" damage mostly damages the casing.
-/obj/item/modular_computer/bullet_act(var/obj/item/projectile/Proj)
+/obj/item/modular_computer/bullet_act(obj/item/projectile/Proj)
 	switch(Proj.damage_type)
 		if(BRUTE)
 			take_damage(Proj.damage, Proj.damage / 2)

@@ -128,7 +128,7 @@
 /obj/structure/bonfire/permanent/add_fuel(mob/user)
 	to_chat(user, span_warning("\The [src] has plenty of fuel and doesn't need more fuel."))
 
-/obj/structure/bonfire/proc/consume_fuel(var/obj/item/stack/consumed_fuel)
+/obj/structure/bonfire/proc/consume_fuel(obj/item/stack/consumed_fuel)
 	if(!istype(consumed_fuel))
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE
@@ -328,7 +328,7 @@
 		to_chat(user, span_warning("\The [src] needs raw wood to burn, \a [new_fuel] won't work."))
 		return FALSE
 
-/obj/structure/fireplace/proc/consume_fuel(var/obj/item/stack/consumed_fuel)
+/obj/structure/fireplace/proc/consume_fuel(obj/item/stack/consumed_fuel)
 	if(!istype(consumed_fuel))
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE

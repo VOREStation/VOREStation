@@ -70,7 +70,7 @@
 
 	update_icon()
 
-/obj/item/assembly/signaler/attackby(var/obj/item/W, mob/user, params)
+/obj/item/assembly/signaler/attackby(obj/item/W, mob/user, params)
 	if(issignaler(W))
 		var/obj/item/assembly/signaler/signaler2 = W
 		if(secured && signaler2.secured)
@@ -95,7 +95,7 @@
 	radio_connection.post_signal(src, signal)
 	COOLDOWN_START(src, next_activate, activation_cooldown)
 
-/obj/item/assembly/signaler/pulse(var/radio = 0)
+/obj/item/assembly/signaler/pulse(radio = 0)
 	if(is_jammed(src))
 		return FALSE
 	if(connected && wires)

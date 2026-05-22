@@ -62,7 +62,7 @@
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/Initialize(mapload, var/internal)
+/obj/item/organ/Initialize(mapload, internal)
 	. = ..()
 	create_reagents(5)
 
@@ -128,7 +128,7 @@
 				else
 					meat_type = /obj/item/reagent_containers/food/snacks/meat
 
-/obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
+/obj/item/organ/proc/set_dna(datum/dna/new_dna)
 	if(new_dna)
 		data.setup_from_dna(new_dna)
 		forensic_data?.clear_blooddna()
@@ -144,7 +144,7 @@
 		owner.can_defib = FALSE
 		owner.death()
 
-/obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
+/obj/item/organ/proc/adjust_germ_level(amount)		// Unless you're setting germ level directly to 0, use this proc instead
 	germ_level = CLAMP(germ_level + amount, 0, INFECTION_LEVEL_MAX)
 
 /obj/item/organ/process()
@@ -325,7 +325,7 @@
 /obj/item/organ/proc/remove_rejuv()
 	qdel(src)
 
-/obj/item/organ/proc/rejuvenate(var/ignore_prosthetic_prefs)
+/obj/item/organ/proc/rejuvenate(ignore_prosthetic_prefs)
 	damage = 0
 	status = 0
 	germ_level = 0
@@ -366,7 +366,7 @@
 			adjust_germ_level(-antibiotics)	// You waited this long to get treated, you don't really deserve this organ
 
 //Adds autopsy data for used_weapon.
-/obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
+/obj/item/organ/proc/add_autopsy_data(used_weapon, damage)
 	var/datum/autopsy_data/W = autopsy_data[used_weapon]
 	if(!W)
 		W = new()
@@ -378,7 +378,7 @@
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/take_damage(amount, var/silent=0)
+/obj/item/organ/take_damage(amount, silent=0)
 	if(owner)
 		if(SEND_SIGNAL(owner, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, amount, silent) & COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE)
 			return 0
@@ -436,7 +436,7 @@
 			if (EMP_HARMLESS)
 				take_damage(rand(1,3))
 
-/obj/item/organ/proc/removed(var/mob/living/user)
+/obj/item/organ/proc/removed(mob/living/user)
 	if(owner)
 		owner.internal_organs_by_name[organ_tag] = null
 		owner.internal_organs_by_name -= organ_tag
@@ -471,7 +471,7 @@
 	owner = null
 
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/proc/replaced(mob/living/carbon/human/target,obj/item/organ/external/affected)
 
 	if(!istype(target)) return
 
@@ -549,7 +549,7 @@
 			return
 	return ..()
 
-/obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
+/obj/item/organ/proc/can_butcher(obj/item/O, mob/living/user)
 	if(butcherable && meat_type)
 
 		if(istype(O, /obj/machinery/gibber))	// The great equalizer.
@@ -565,7 +565,7 @@
 
 	return FALSE
 
-/obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
+/obj/item/organ/proc/butcher(obj/item/O, mob/living/user, atom/newtarget)
 
 	if(user)
 		to_chat(user, span_danger("You are preparing to butcher \the [src]!"))
@@ -606,7 +606,7 @@
 		return 0
 	return 1
 
-/obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
+/obj/item/organ/proc/handle_organ_mod_special(removed = FALSE)	// Called when created, transplanted, and removed.
 	if(!istype(owner))
 		return
 

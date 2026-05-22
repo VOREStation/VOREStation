@@ -12,7 +12,7 @@
 	else
 		write_data_to_pin(null)
 
-/datum/integrated_io/ref/write_data_to_pin(var/new_data)
+/datum/integrated_io/ref/write_data_to_pin(new_data)
 	if(isnull(new_data) || isweakref(new_data))
 		data = new_data
 		holder.on_data_written()

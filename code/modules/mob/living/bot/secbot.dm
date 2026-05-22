@@ -122,7 +122,7 @@
 
 	return data
 
-/mob/living/bot/secbot/attack_hand(var/mob/user)
+/mob/living/bot/secbot/attack_hand(mob/user)
 	tgui_interact(user)
 
 /mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -164,7 +164,7 @@
 			declare_arrests = !declare_arrests
 			. = TRUE
 
-/mob/living/bot/secbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/secbot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -176,13 +176,13 @@
 	else
 		to_chat(user, span_notice("\The [src] is already corrupt."))
 
-/mob/living/bot/secbot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/secbot/attackby(obj/item/O, mob/user)
 	var/curhealth = health
 	. = ..()
 	if(health < curhealth && on == TRUE)
 		react_to_attack(user)
 
-/mob/living/bot/secbot/bullet_act(var/obj/item/projectile/P)
+/mob/living/bot/secbot/bullet_act(obj/item/projectile/P)
 	var/curhealth = health
 	var/mob/shooter = P.firer
 	. = ..()
@@ -190,7 +190,7 @@
 	if(!target && health < curhealth && shooter && (shooter in view(world.view, src)))
 		react_to_attack(shooter)
 
-/mob/living/bot/secbot/attack_generic(var/mob/attacker)
+/mob/living/bot/secbot/attack_generic(mob/attacker)
 	if(attacker)
 		react_to_attack(attacker)
 	..()
@@ -206,7 +206,7 @@
 	attacked = TRUE
 
 // Say "freeze!" and demand surrender
-/mob/living/bot/secbot/proc/demand_surrender(mob/target, var/threat)
+/mob/living/bot/secbot/proc/demand_surrender(mob/target, threat)
 	var/suspect_name = target_name(target)
 	if(declare_arrests)
 		GLOB.global_announcer.autosay("[src] is [arrest_type ? "detaining" : "arresting"] a level [threat] suspect <b>[suspect_name]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
@@ -236,7 +236,7 @@
 		return
 	..()
 
-/mob/living/bot/secbot/confirmTarget(var/atom/A)
+/mob/living/bot/secbot/confirmTarget(atom/A)
 	if(!..())
 		return FALSE
 	check_threat(A)
@@ -297,7 +297,7 @@
 	return .
 
 // So Beepsky talks while beating up simple mobs.
-/mob/living/bot/secbot/proc/insult(var/mob/living/L)
+/mob/living/bot/secbot/proc/insult(mob/living/L)
 	if(can_next_insult > world.time)
 		return
 	if(threat >= 10)
@@ -308,7 +308,7 @@
 		can_next_insult = world.time + 5 SECONDS
 
 
-/mob/living/bot/secbot/UnarmedAttack(var/mob/M, var/proximity)
+/mob/living/bot/secbot/UnarmedAttack(mob/M, proximity)
 	if(!..())
 		return
 
@@ -357,7 +357,7 @@
 		visible_message(span_warning("\The [M] was beaten by \the [src] with a stun baton!"))
 		insult(L)
 
-/mob/living/bot/secbot/slime/UnarmedAttack(var/mob/living/L, var/proximity)
+/mob/living/bot/secbot/slime/UnarmedAttack(mob/living/L, proximity)
 	..()
 
 	if(istype(L, /mob/living/simple_mob/slime/xenobio))
@@ -391,7 +391,7 @@
 		return H.get_id_name("unidentified person")
 	return "unidentified lifeform"
 
-/mob/living/bot/secbot/proc/check_threat(var/mob/living/M)
+/mob/living/bot/secbot/proc/check_threat(mob/living/M)
 	if(!M || !istype(M) || M.stat == DEAD || src == M)
 		threat = 0
 
@@ -405,7 +405,7 @@
 
 //Secbot Construction
 
-/obj/item/clothing/head/helmet/attackby(var/obj/item/assembly/signaler/S, mob/user as mob)
+/obj/item/clothing/head/helmet/attackby(obj/item/assembly/signaler/S, mob/user as mob)
 	..()
 	if(!issignaler(S))
 		..()
@@ -437,7 +437,7 @@
 	var/build_step = 0
 	var/created_name = "Securitron"
 
-/obj/item/secbot_assembly/attackby(var/obj/item/W, var/mob/user)
+/obj/item/secbot_assembly/attackby(obj/item/W, mob/user)
 	..()
 	if(W.has_tool_quality(TOOL_WELDER) && !build_step)
 		var/obj/item/weldingtool/WT = W.get_welder()

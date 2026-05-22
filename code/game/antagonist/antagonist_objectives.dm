@@ -5,7 +5,7 @@
 		return 0
 	return 1
 
-/datum/antagonist/proc/create_objectives(var/datum/mind/player)
+/datum/antagonist/proc/create_objectives(datum/mind/player)
 	if(CONFIG_GET(flag/objectives_disabled))
 		return 0
 	if(create_global_objectives() || global_objectives.len)

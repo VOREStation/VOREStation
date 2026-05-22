@@ -8,7 +8,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 
 	if(!..())
 		return
@@ -27,7 +27,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/human/RestrainedClickOn(atom/A)
 	return
 
 /mob/proc/has_telegrip()
@@ -40,7 +40,7 @@
 			return TRUE
 	return ..()
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
+/mob/living/carbon/human/RangedAttack(atom/A)
 	if(!gloves && !mutations.len && !spitting)
 		return
 	var/obj/item/clothing/gloves/G = gloves
@@ -63,17 +63,17 @@
 	else if(spitting) //Only used by xenos right now, can be expanded.
 		Spit(A)
 
-/mob/living/RestrainedClickOn(var/atom/A)
+/mob/living/RestrainedClickOn(atom/A)
 	return
 
 /*
 	Aliens
 */
 
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/alien/RestrainedClickOn(atom/A)
 	return
 
-/mob/living/carbon/alien/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/alien/UnarmedAttack(atom/A, proximity)
 
 	if(!..())
 		return 0

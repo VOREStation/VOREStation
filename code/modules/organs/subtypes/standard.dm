@@ -297,7 +297,7 @@
 		cannot_gib = FALSE
 	return ..()
 
-/obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
+/obj/item/organ/external/head/robotize(company, skip_prosthetics, keep_organs)
 	. = ..(company, skip_prosthetics, 1)
 	if(model)
 		var/datum/robolimb/robohead = GLOB.all_robolimbs[model]
@@ -349,7 +349,7 @@
 		span_notice("You make \the [I] kiss \the [src]!."))
 	return ..()
 
-/obj/item/organ/external/head/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
+/obj/item/organ/external/head/get_icon(skeletal, can_apply_transparency = TRUE)
 	..()
 
 	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item

@@ -163,7 +163,7 @@
 	. = ..()
 
 // Used in auto linking
-/obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
+/obj/machinery/telecomms/proc/add_link(obj/machinery/telecomms/T)
 	var/pos_z = get_z(src)
 	var/tpos_z = get_z(T)
 	if((pos_z == tpos_z) || (src.long_range_link && T.long_range_link))
@@ -298,7 +298,7 @@
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
+/obj/machinery/telecomms/receiver/proc/link_radio(obj/item/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= WEAKREF(R)
@@ -658,7 +658,7 @@
 				relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
 
-/obj/machinery/telecomms/server/proc/setcode(var/t)
+/obj/machinery/telecomms/server/proc/setcode(t)
 	if(t)
 		if(istext(t))
 			rawcode = t
@@ -677,7 +677,7 @@
 				logs--
 				break
 
-/obj/machinery/telecomms/server/proc/add_entry(var/content, var/input)
+/obj/machinery/telecomms/server/proc/add_entry(content, input)
 	var/datum/comm_log_entry/log = new
 	var/identifier = num2text( rand(-1000,1000) + world.time )
 	log.name = "[input] ([md5(identifier)])"
@@ -699,7 +699,7 @@
 	var/input_type = "Speech File"
 
 //Generic telecomm connectivity test proc
-/proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
+/proc/can_telecomm(atom/A, atom/B, ad_hoc = FALSE)
 	if(!A || !B)
 		log_mapping("can_telecomm(): Undefined endpoints!")
 		return FALSE

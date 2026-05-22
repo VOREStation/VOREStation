@@ -7,7 +7,7 @@
 	var/mutable_appearance/marked_underlay
 	var/obj/item/kinetic_crusher/hammer_synced
 
-/datum/modifier/crusher_mark/New(var/new_holder, var/new_origin)
+/datum/modifier/crusher_mark/New(new_holder, new_origin)
 	. = ..()
 	if(isliving(new_origin))
 		var/mob/living/origin = new_origin

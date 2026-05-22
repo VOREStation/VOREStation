@@ -420,6 +420,8 @@
 	if(ishuman(user))
 		to_chat(user, span_narsie(span_bolddanger("HOR-SIE HAS RISEN")))
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
+		magichead.say_verbs = list("neighs", "whinnys", "snorts")
+		magichead.say_messages = list("NEEEEIGH", "KEECHOOOW", "WHIIIINNNY", "NEEEEEEIGHHHH", "KEECHOOOWWW")
 		magichead.canremove = FALSE		//curses!
 		magichead.flags_inv = null	//so you can still see their face
 		magichead.voicechange = 1	//NEEEEIIGHH
@@ -439,3 +441,28 @@
 	..()
 	to_chat(user, span_warning("[src] suddenly feels very warm!"))
 	empulse(src, 1, 1, 1, 1)
+
+/obj/item/spellbook/oneuse/mime
+	name = "Guide to Mimery Vol 0"
+	desc = "The missing entry into the legendary saga. Unfortunately it doesn't teach you anything."
+	icon_state ="bookmime"
+
+/obj/item/spellbook/oneuse/mime/mimery
+	name = "Guide to Dank Mimery"
+	desc = "Teaches three classic pantomime routines, allowing a practiced mime to conjure invisible objects into corporeal existence. One use only."
+	spell = /datum/spell/aoe_turf/conjure/forcewall/mime
+	spellname = ""
+
+/obj/item/spellbook/oneuse/mime/mimery/onlearned(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/human = user
+		var/datum/spell/chair = new /datum/spell/aoe_turf/conjure/invisible_chair
+		var/datum/spell/box = new /datum/spell/aoe_turf/conjure/invisible_box
+		human.add_spell(chair)
+		human.add_spell(box)
+		var/datum/action/innate/vow_of_silence/vow = locate() in human.actions
+		if(!vow && human.mind)
+			vow = new(human.mind)
+			vow.Grant(human)
+	to_chat(user, span_warning("The book disappears into thin air."))
+	qdel(src)

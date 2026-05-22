@@ -21,7 +21,7 @@
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
 
-/obj/item/storage/backpack/equipped(var/mob/user, var/slot)
+/obj/item/storage/backpack/equipped(mob/user, slot)
 	if (slot == slot_back && src.use_sound)
 		playsound(src, src.use_sound, 50, 1, -5)
 	..(user, slot)
@@ -101,6 +101,11 @@
 	name = "Giggles von Honkerton"
 	desc = "It's a backpack made by Honk! Co."
 	icon_state = "backpack_clown"
+
+/obj/item/storage/backpack/mime
+	name = "Parcel Parceaux"
+	desc = "A silent backpack made for those silent workers. Silence Co."
+	icon_state = "backpack_mime"
 
 /obj/item/storage/backpack/white
 	name = "white backpack"

@@ -106,10 +106,10 @@
 */
 
 
-/obj/machinery/computer/pod/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/pod/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/pod/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/pod/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -194,7 +194,7 @@
 	title = "External Airlock Controls"
 	req_access = list(ACCESS_SYNDICATE)
 
-/obj/machinery/computer/pod/old/syndicate/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/pod/old/syndicate/attack_hand(mob/user as mob)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access Denied"))
 		return

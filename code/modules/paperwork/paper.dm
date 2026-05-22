@@ -98,7 +98,7 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/paper/Initialize(mapload, var/text, var/title)
+/obj/item/paper/Initialize(mapload, text, title)
 	. = ..()
 
 	if(istext(title))
@@ -139,7 +139,7 @@
 		return
 	icon_state = "paper"
 
-/obj/item/paper/proc/update_space(var/new_text)
+/obj/item/paper/proc/update_space(new_text)
 	if(!new_text)
 		return
 
@@ -152,7 +152,7 @@
 	else
 		. += span_notice("You have to go closer if you want to read it.")
 
-/obj/item/paper/proc/show_content(var/mob/user, var/forceshow=0)
+/obj/item/paper/proc/show_content(mob/user, forceshow=0)
 	if(!(forceshow || (ishuman(user) || isobserver(user) || issilicon(user) || (istype(user) && user.universal_understand))))
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
@@ -204,7 +204,7 @@
 				spam_flag = 0
 	return
 
-/obj/item/paper/attack_ai(var/mob/living/silicon/ai/user)
+/obj/item/paper/attack_ai(mob/living/silicon/ai/user)
 	var/dist
 	if(istype(user) && user.camera) //is AI
 		dist = get_dist(src, user.camera)
@@ -252,7 +252,7 @@
 	update_space(info)
 	updateinfolinks()
 
-/obj/item/paper/proc/addtofield(var/id, var/text, var/links = 0)
+/obj/item/paper/proc/addtofield(id, text, links = 0)
 	var/locid = 0
 	var/laststart = 1
 	var/textindex = 1
@@ -306,12 +306,12 @@
 	updateinfolinks()
 	update_icon()
 
-/obj/item/paper/proc/get_signature(var/obj/item/pen/P, mob/user as mob)
+/obj/item/paper/proc/get_signature(obj/item/pen/P, mob/user as mob)
 	if(P && istype(P, /obj/item/pen))
 		return P.get_signature(user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/paper/proc/parsepencode(var/t, var/obj/item/pen/P, mob/user as mob, var/iscrayon = 0)
+/obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user as mob, iscrayon = 0)
 //	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 	t = replacetext(t, "\[center\]", "<center>")
@@ -508,7 +508,7 @@
 
 		update_icon()
 
-/obj/item/paper/get_worn_icon_state(var/slot_name)
+/obj/item/paper/get_worn_icon_state(slot_name)
 	if(slot_name == slot_head_str)
 		return "paper" //Gross, but required for now.
 	return ..()

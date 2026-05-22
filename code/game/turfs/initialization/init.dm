@@ -1,4 +1,4 @@
-/datum/turf_initializer/proc/InitializeTurf(var/turf/T)
+/datum/turf_initializer/proc/InitializeTurf(turf/T)
 	return
 
 /area

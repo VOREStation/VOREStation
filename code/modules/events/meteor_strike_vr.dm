@@ -95,7 +95,7 @@
 /obj/structure/meteorite/ex_act()
 	return
 
-/obj/structure/meteorite/attackby(var/obj/item/I, var/mob/M)
+/obj/structure/meteorite/attackby(obj/item/I, mob/M)
 	if(istype(I, /obj/item/pickaxe))
 		var/obj/item/pickaxe/P = I
 		M.visible_message(span_warning("[M] starts [P.drill_verb] \the [src]."), span_warning("You start [P.drill_verb] \the [src]."))

@@ -65,7 +65,7 @@
 	sharp = FALSE
 	check_armour = "melee"
 
-/obj/item/projectile/bullet/stripper/on_hit(var/atom/stripped)
+/obj/item/projectile/bullet/stripper/on_hit(atom/stripped)
 	if(ishuman(stripped))
 		var/mob/living/carbon/human/H = stripped
 		if(H.wear_suit)
@@ -99,7 +99,7 @@
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
 	impact_type = /obj/effect/projectile/impact/laser_omni
 
-/obj/item/projectile/beam/final_option/on_hit(var/atom/impacted)
+/obj/item/projectile/beam/final_option/on_hit(atom/impacted)
 	if(isliving(impacted))
 		var/mob/living/L = impacted
 		if(L.mind)

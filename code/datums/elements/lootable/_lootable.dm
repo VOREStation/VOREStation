@@ -29,7 +29,7 @@
 	UnregisterSignal(target, COMSIG_LOOT_REWARD)
 
 /// Calculates and drops loot, the source's turf is where it will be dropped, L is the searching mob, and searched_by is a passed list for storing who has searched a loot pile.
-/datum/element/lootable/proc/loot(atom/source,mob/living/L,var/list/searched_by, wake_chance = 0)
+/datum/element/lootable/proc/loot(atom/source,mob/living/L,list/searched_by, wake_chance = 0)
 	SIGNAL_HANDLER
 	// The loot's all gone.
 	if(loot_depletion)
@@ -153,6 +153,6 @@
 	return produce_rare_item(source)
 
 /// Restores a removed gamma loot item back to the loot table
-/proc/restore_gamma_loot(var/w_type)
+/proc/restore_gamma_loot(w_type)
 	GLOB.allocated_gamma_loot -= w_type
 	GLOB.unique_gamma_loot += w_type

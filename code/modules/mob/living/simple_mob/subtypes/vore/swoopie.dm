@@ -229,7 +229,7 @@
 	say_maybe_target = list("Pest detected?")
 	say_got_target = list("PEST DETECTED!")
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/swoopie/ClickOn(var/atom/A, var/params)
+/mob/living/simple_mob/vore/aggressive/corrupthound/swoopie/ClickOn(atom/A, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] || modifiers["ctrl"] || modifiers["middle"] || modifiers["alt"])
 		return ..()
@@ -370,7 +370,7 @@
 
 	return ..(targets)
 
-/datum/ai_holder/simple_mob/retaliate/swoopie/find_target(var/list/possible_targets, var/has_targets_list = FALSE)
+/datum/ai_holder/simple_mob/retaliate/swoopie/find_target(list/possible_targets, has_targets_list = FALSE)
 	ai_log("find_target() : Entered.", AI_LOG_TRACE)
 	if(!hostile) // So retaliating mobs only attack the thing that hit it.
 		return null

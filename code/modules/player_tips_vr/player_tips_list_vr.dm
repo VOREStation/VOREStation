@@ -5,7 +5,7 @@ prob(50) makes it half as likely to appear and so forth.
 When editing the list, please try and keep similar probabilities near each other. High on top, low on bottom */
 
 //argument determines if to pick a random tip or use a forced choice.
-/datum/player_tips/proc/pick_tip(var/isSpecific)
+/datum/player_tips/proc/pick_tip(isSpecific)
 	var/choice = null
 	if(!(isSpecific == "none" || isSpecific == "general" || isSpecific == "gameplay" || isSpecific == "roleplay" || isSpecific == "lore" ))
 		choice = "none" //Making sure that wrong arguments still give tips.

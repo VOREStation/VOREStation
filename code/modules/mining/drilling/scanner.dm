@@ -30,7 +30,7 @@
 	to_chat(usr, span_notice("\The [src] will [sediment_scan ? "no longer" : "now"] scan for reagents."))
 	sediment_scan = !sediment_scan
 
-/obj/item/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user)
+/obj/item/mining_scanner/proc/ScanTurf(atom/target, mob/user)
 	var/list/metals = list(
 		"surface minerals" = 0,
 		"industrial metals" = 0,

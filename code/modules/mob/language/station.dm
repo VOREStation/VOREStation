@@ -64,7 +64,7 @@
 	"ka","aasi","far","wa","baq","ara","qara","zir","saam","mak","hrar","nja","rir","khan","jun","dar","rik","kah",
 	"hal","ket","jurl","mah","tul","cresh","azu","ragh","mro","mra","mrro","mrra")
 
-/datum/language/tajaran/get_random_name(var/gender)
+/datum/language/tajaran/get_random_name(gender)
 	var/new_name = ..(gender,1)
 	if(prob(50))
 		new_name += " [pick(list("Hadii","Kaytam","Nazkiin","Zhan-Khazan","Hharar","Njarir'Akhan","Faaira'Nrezi","Rhezar","Mi'dynh","Rrhazkal","Bayan","Al'Manq","Mi'jri","Chur'eech","Sanu'dra","Ii'rka"))]"
@@ -95,12 +95,12 @@
 	key = "l"
 	flags = WHITELISTED | SIGNLANG | NO_STUTTER //nonverbal define was not needed here, and i need to use it ~Layne
 
-/datum/language/tajsign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+/datum/language/tajsign/broadcast(mob/living/speaker, message, speaker_mask)
 	speaker.log_talk("(SIGN) [message]", LOG_SAY)
 	var/verb_to_use = pick(signlang_verb)
 	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
 
-/datum/language/tajsign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
+/datum/language/tajsign/can_speak_special(mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/list/allowed_species = list(SPECIES_TAJARAN, SPECIES_TESHARI)	// Need a tail and ears and such to use this.
 	if(iscarbon(speaker))
 		var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
@@ -126,7 +126,7 @@
 	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
-/datum/language/skrell/get_random_name(var/gender)
+/datum/language/skrell/get_random_name(gender)
 	var/list/first_names = world.file2list('strings/names/first_name_skrell.txt')
 	var/list/last_names = world.file2list('strings/names/last_name_skrell.txt')
 	return "[pick(first_names)] [pick(last_names)]"
@@ -141,7 +141,7 @@
 	flags = WHITELISTED
 	//syllables are at the bottom of the file
 
-/datum/language/human/get_spoken_verb(var/msg_end)
+/datum/language/human/get_spoken_verb(msg_end)
 	switch(msg_end)
 		if("!")
 			return pick("exclaims","shouts","yells") //TODO: make the basic proc handle lists of verbs.
@@ -149,7 +149,7 @@
 			return ask_verb
 	return speech_verb
 
-/datum/language/human/get_random_name(var/gender)
+/datum/language/human/get_random_name(gender)
 	if (prob(80))
 		if(gender==FEMALE)
 			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))

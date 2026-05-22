@@ -192,7 +192,7 @@ GLOBAL_DATUM_INIT(vsc, /datum/vs_control, new)
 	for(var/V in plc.settings)
 		plc.Randomize(V)
 
-/datum/vs_control/proc/SetDefault(var/mob/user)
+/datum/vs_control/proc/SetDefault(mob/user)
 	var/list/setting_choices = list("Phoron - Standard", "Phoron - Low Hazard", "Phoron - High Hazard", "Phoron - Oh Shit!",\
 	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish", "ZAS/Phoron - Initial")
 	var/def = tgui_input_list(user, "Which of these presets should be used?", "Setting Choice", setting_choices)

@@ -17,8 +17,9 @@
 	var/atom/movable/screen/alert/alert
 	if(LAZYACCESS(alerts, category))
 		alert = alerts[category]
-		if(new_master && new_master != alert.master)
-			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [alert.master]")
+		var/obj/master = alert.master_ref?.resolve()
+		if(new_master && new_master != master)
+			WARNING("[src] threw alert [category] with new_master [new_master] while already having that alert with master [master]")
 			clear_alert(category)
 			return .()
 		else if(alert.type != type)
@@ -39,7 +40,7 @@
 		I.plane = PLANE_PLAYER_HUD_ABOVE
 		I.color = new_master.color
 		alert.add_overlay(I)
-		alert.master = new_master
+		alert.master_ref = WEAKREF(new_master)
 	else
 		alert.icon_state = "[initial(alert.icon_state)][severity]"
 		alert.severity = severity
@@ -506,6 +507,7 @@ so as to remain in compliance with the most up-to-date laws."
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
 		to_chat(usr,span_boldnotice(name) + " - " + span_info(desc))
 		return
+	var/obj/master = master_ref?.resolve()
 	if(master)
 		return usr.client.Click(master, location, control, params)
 	..() // VOREStation Edit: Pass through to click_vr
@@ -513,6 +515,6 @@ so as to remain in compliance with the most up-to-date laws."
 /atom/movable/screen/alert/Destroy()
 	..()
 	severity = 0
-	master = null
+	master_ref = null
 	screen_loc = ""
 	return QDEL_HINT_QUEUE

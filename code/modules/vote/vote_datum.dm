@@ -20,7 +20,7 @@
 	// For how long will it be up
 	var/vote_time = 60 SECONDS
 
-/datum/vote/New(var/_initiator, var/_question, list/_choices, var/_is_custom = FALSE)
+/datum/vote/New(_initiator, _question, list/_choices, _is_custom = FALSE)
 	if(SSvote.active_vote)
 		CRASH("Attempted to start another vote with one already in progress!")
 
@@ -63,7 +63,7 @@
 	return calculate_vote_result(voted, choices, vote_result_type)
 
 
-/datum/vote/proc/calculate_vote_result(var/list/voted, var/list/choices, var/vote_result_type)
+/datum/vote/proc/calculate_vote_result(list/voted, list/choices, vote_result_type)
 	var/list/results = list()
 
 	for(var/ck in voted)
@@ -117,7 +117,7 @@
 
 	return null
 
-/datum/vote/proc/announce(start_text, var/time = vote_time)
+/datum/vote/proc/announce(start_text, time = vote_time)
 	to_chat(world, span_lightpurple("Type <b>vote</b> or click <a href='byond://?src=\ref[src];[HrefToken()];vote=open'>here</a> to place your vote. \
 		You have [time/10] seconds to vote."))
 	world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)

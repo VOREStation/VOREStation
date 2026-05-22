@@ -72,7 +72,7 @@
 		"The fox's stomach churns hungrily over your form, trying to take you.",
 		"With a loud glorp, the stomach spills more acids onto you.")
 
-/mob/living/simple_mob/animal/passive/fox/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/animal/passive/fox/apply_melee_effects(atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -91,7 +91,7 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/animal/passive/fox/get_scooped(var/mob/living/carbon/grabber)
+/mob/living/simple_mob/animal/passive/fox/get_scooped(mob/living/carbon/grabber)
 	if (stat >= DEAD)
 		return //since the holder icon looks like a living cat
 	..()

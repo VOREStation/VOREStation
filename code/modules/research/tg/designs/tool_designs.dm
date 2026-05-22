@@ -1208,7 +1208,7 @@
 	name = "Rapid Material Synthesizer"
 	desc = "A device used to rapidly synthesize materials."
 	id = "rms"
-	materials = list(MAT_STEEL = 62500, MAT_GLASS = 15000)
+	materials = list(MAT_STEEL = 62500, MAT_GLASS = 15000, MAT_SILVER = 7500)
 	build_path = /obj/item/rms
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(

@@ -101,7 +101,7 @@
 // Returns TRUE/FALSE on power state changing
 // var/target = target power state
 // var/message = TRUE/FALSE whether to make a message about state change
-/obj/machinery/pump/proc/set_state(var/target, var/message = TRUE)
+/obj/machinery/pump/proc/set_state(target, message = TRUE)
 	if(target == on)
 		return FALSE
 
@@ -181,12 +181,12 @@
 /turf/proc/pump_reagents()
 	return
 
-/turf/simulated/floor/lava/pump_reagents(var/datum/reagents/R, var/volume)
+/turf/simulated/floor/lava/pump_reagents(datum/reagents/R, volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_MINERALIZEDFLUID, round(volume / 2, 0.1))
 
 
-/turf/simulated/floor/water/pump_reagents(var/datum/reagents/R, var/volume)
+/turf/simulated/floor/water/pump_reagents(datum/reagents/R, volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_WATER, round(volume, 0.1))
 
@@ -198,19 +198,19 @@
 		if(M.mineral && prob(40) && M.mineral.reagent) // v
 			R.add_reagent(M.mineral.reagent, round(volume / 5, 0.1)) // Was the turf's reagents variable not the R argument, and changed ore_reagent to M.mineral.reagent because of above change. Also nerfed amount to 1/5 instead of 1/2
 
-/turf/simulated/floor/water/pool/pump_reagents(var/datum/reagents/R, var/volume)
+/turf/simulated/floor/water/pool/pump_reagents(datum/reagents/R, volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_CHLORINE, round(volume / 10, 0.1))
 
-/turf/simulated/floor/water/deep/pool/pump_reagents(var/datum/reagents/R, var/volume)
+/turf/simulated/floor/water/deep/pool/pump_reagents(datum/reagents/R, volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_CHLORINE, round(volume / 10, 0.1))
 
-/turf/simulated/floor/water/contaminated/pump_reagents(var/datum/reagents/R, var/volume)
+/turf/simulated/floor/water/contaminated/pump_reagents(datum/reagents/R, volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_VATSTABILIZER, round(volume / 2, 0.1))
 
-/turf/simulated/mineral/pump_reagents(var/datum/reagents/R, var/volume)
+/turf/simulated/mineral/pump_reagents(datum/reagents/R, volume)
 	. = ..()
 	if(density)
 		return

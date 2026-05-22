@@ -249,7 +249,7 @@
 		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads, 0, RADIATION_CAP)
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
-/datum/component/radiation_effects/proc/handle_irradiate_effect(var/mob/living/living_guy, var/effect, var/effecttype, var/blocked, var/check_protection, var/rad_protection)
+/datum/component/radiation_effects/proc/handle_irradiate_effect(mob/living/living_guy, effect, effecttype, blocked, check_protection, rad_protection)
 	SIGNAL_HANDLER
 	///If we're not contaminating, don't worry about this. Proceed like normal.
 	if(!contamination || (contamination && living_guy.radiation < contamination_threshold))

@@ -28,6 +28,8 @@
 	var/moon_name = null // Purely for flavor. Null means no moon exists.
 	var/moon_phase = null // Set if above is defined.
 
+	var/cryogenic_temp_shift = FALSE // If true, ALL areas that are not AREA_CRYOPLANET_SHIELDED will be brought toward the current weather's temperature. Causing indoor station areas to slowly match the planet's environment.
+
 /datum/planet/New()
 	..()
 	weather_holder = new(src)
@@ -62,7 +64,7 @@
 	if(weather_holder)
 		weather_holder.process()
 
-/datum/planet/proc/update_sun_deferred(var/new_brightness, var/new_color)
+/datum/planet/proc/update_sun_deferred(new_brightness, new_color)
 	sun["brightness"] = CLAMP01(new_brightness)
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN

@@ -68,7 +68,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/list/planes_visible = list()
 
 //Constructor comes with a free AR HUD
-/obj/item/nif/Initialize(mapload,var/wear,var/list/load_data)
+/obj/item/nif/Initialize(mapload,wear,list/load_data)
 	. = ..()
 
 	//First one to spawn in the game, make a big icon
@@ -117,7 +117,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return ..()
 
 //Being implanted in some mob
-/obj/item/nif/proc/implant(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/implant(mob/living/carbon/human/H)
 	var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
 	if(istype(brain))
 		should_be_in = brain.parent_organ
@@ -141,7 +141,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return FALSE
 
 //For debug or antag purposes
-/obj/item/nif/proc/quick_implant(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/quick_implant(mob/living/carbon/human/H)
 	if(istype(H))
 		var/obj/item/organ/external/parent
 		//Try to find their brain and put it near that
@@ -160,7 +160,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	return FALSE
 
-/obj/item/nif/proc/quick_install(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/quick_install(mob/living/carbon/human/H)
 	if(QDELETED(H)) //Or letting them get deleted
 		return
 	if(H.mind)
@@ -169,7 +169,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	implant(H)
 
 //Being removed from some mob
-/obj/item/nif/proc/unimplant(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/unimplant(mob/living/carbon/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
 		QDEL_LIST_NULL(SC.brainmobs)
@@ -207,7 +207,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			wear(rand(1,8))
 
 //Wear update/check proc
-/obj/item/nif/proc/wear(var/wear = 0)
+/obj/item/nif/proc/wear(wear = 0)
 	wear *= (rand(85,115) / 100) //Apparently rand() only takes integers.
 	durability -= wear
 
@@ -224,7 +224,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			to_chat(human,span_danger("Your NIF vision overlays disappear and your head suddenly seems very quiet..."))
 
 //Repair update/check proc
-/obj/item/nif/proc/repair(var/repair = 0)
+/obj/item/nif/proc/repair(repair = 0)
 	durability = min(durability + repair, initial(durability))
 
 	if(human)
@@ -392,7 +392,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			return FALSE
 
 //Prints 'AR' messages to the user
-/obj/item/nif/proc/notify(var/message,var/alert = 0)
+/obj/item/nif/proc/notify(message,alert = 0)
 	if(!human || stat == NIF_TEMPFAIL) return
 
 	last_notification = message // TGUI Hook
@@ -405,7 +405,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human << good_sound
 
 //Called to spend nutrition, returns 1 if it was able to
-/obj/item/nif/proc/use_charge(var/use_charge)
+/obj/item/nif/proc/use_charge(use_charge)
 	if(stat != NIF_WORKING) return FALSE
 
 	//You don't want us to take any? Well okay.
@@ -423,7 +423,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 // This operates on a nifsoft *path*, not an instantiation.
 // It tells the nifsoft shop if it's installation will succeed, to prevent it
 // from charging the user for incompatible software.
-/obj/item/nif/proc/can_install(var/datum/nifsoft/path)
+/obj/item/nif/proc/can_install(datum/nifsoft/path)
 	if(stat == NIF_TEMPFAIL)
 		return FALSE
 
@@ -444,7 +444,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return TRUE
 
 //Install a piece of software
-/obj/item/nif/proc/install(var/datum/nifsoft/new_soft)
+/obj/item/nif/proc/install(datum/nifsoft/new_soft)
 	if(stat == NIF_TEMPFAIL) return FALSE
 
 	if(nifsofts[new_soft.list_pos])
@@ -470,7 +470,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return TRUE
 
 //Uninstall a piece of software
-/obj/item/nif/proc/uninstall(var/datum/nifsoft/old_soft)
+/obj/item/nif/proc/uninstall(datum/nifsoft/old_soft)
 	var/datum/nifsoft/NS
 	if(nifsofts)
 		NS = nifsofts[old_soft.list_pos]
@@ -494,7 +494,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return TRUE
 
 //Activate a nifsoft
-/obj/item/nif/proc/activate(var/datum/nifsoft/soft)
+/obj/item/nif/proc/activate(datum/nifsoft/soft)
 	if(stat != NIF_WORKING) return FALSE
 
 	if(human)
@@ -523,7 +523,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return TRUE
 
 //Deactivate a nifsoft
-/obj/item/nif/proc/deactivate(var/datum/nifsoft/soft)
+/obj/item/nif/proc/deactivate(datum/nifsoft/soft)
 	if(human)
 		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 		human << click_sound
@@ -536,14 +536,14 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	return TRUE
 
 //Deactivate several nifsofts
-/obj/item/nif/proc/deactivate_these(var/list/turn_off)
+/obj/item/nif/proc/deactivate_these(list/turn_off)
 	for(var/N in turn_off)
 		var/datum/nifsoft/NS = nifsofts[N]
 		if(NS)
 			NS.deactivate()
 
 //Add a flag to one of the holders
-/obj/item/nif/proc/set_flag(var/flag,var/hint)
+/obj/item/nif/proc/set_flag(flag,hint)
 	ASSERT(flag != null && hint)
 
 	switch(hint)
@@ -559,7 +559,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			CRASH("Not a valid NIF set_flag hint: [hint]")
 
 //Clear a flag from one of the holders
-/obj/item/nif/proc/clear_flag(var/flag,var/hint)
+/obj/item/nif/proc/clear_flag(flag,hint)
 	ASSERT(flag != null && hint)
 
 	switch(hint)
@@ -575,7 +575,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			CRASH("Not a valid NIF clear_flag hint: [hint]")
 
 //Check for an installed implant
-/obj/item/nif/proc/imp_check(var/soft)
+/obj/item/nif/proc/imp_check(soft)
 	if(stat != NIF_WORKING) return FALSE
 	ASSERT(soft)
 
@@ -587,7 +587,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		return entry
 
 //Check for a set flag
-/obj/item/nif/proc/flag_check(var/flag,var/hint)
+/obj/item/nif/proc/flag_check(flag,hint)
 	if(stat != NIF_WORKING) return FALSE
 
 	ASSERT(flag && hint)
@@ -613,12 +613,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	return planes_visible
 
-/obj/item/nif/proc/add_plane(var/planeid = null)
+/obj/item/nif/proc/add_plane(planeid = null)
 	if(!planeid)
 		return
 	planes_visible |= planeid
 
-/obj/item/nif/proc/del_plane(var/planeid = null)
+/obj/item/nif/proc/del_plane(planeid = null)
 	if(!planeid)
 		return
 	planes_visible -= planeid

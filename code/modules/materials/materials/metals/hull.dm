@@ -9,8 +9,9 @@
 	icon_colour = "#666677"
 	flags = MATERIAL_UNMELTABLE | MATERIAL_NO_SYNTH
 	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT)
+	supply_conversion_value = 0.25
 
-/datum/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
+/datum/material/steel/hull/place_sheet(turf/target) //Deconstructed into normal steel sheets.
 	new /obj/item/stack/material/steel(target)
 
 /datum/material/plasteel/hull
@@ -25,7 +26,7 @@
 	flags = MATERIAL_UNMELTABLE | MATERIAL_NO_SYNTH
 	composite_material = list(MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT)
 
-/datum/material/plasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+/datum/material/plasteel/hull/place_sheet(turf/target) //Deconstructed into normal plasteel sheets.
 	new /obj/item/stack/material/plasteel(target)
 
 /datum/material/durasteel/hull //The 'Hardball' of starship hulls.
@@ -40,7 +41,7 @@
 	flags = MATERIAL_UNMELTABLE | MATERIAL_NO_SYNTH
 	composite_material = list(MAT_DURASTEEL = SHEET_MATERIAL_AMOUNT)
 
-/datum/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
+/datum/material/durasteel/hull/place_sheet(turf/target) //Deconstructed into normal durasteel sheets.
 	new /obj/item/stack/material/durasteel(target)
 
 /datum/material/titanium/hull
@@ -52,7 +53,7 @@
 	flags = MATERIAL_UNMELTABLE | MATERIAL_NO_SYNTH
 	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT)
 
-/datum/material/titanium/hull/place_sheet(var/turf/target) //Deconstructed into normal titanium sheets.
+/datum/material/titanium/hull/place_sheet(turf/target) //Deconstructed into normal titanium sheets.
 	new /obj/item/stack/material/titanium(target)
 
 /datum/material/morphium/hull
@@ -64,7 +65,7 @@
 	flags = MATERIAL_UNMELTABLE | MATERIAL_NO_SYNTH
 	composite_material = list(MAT_MORPHIUM = SHEET_MATERIAL_AMOUNT)
 
-/datum/material/morphium/hull/place_sheet(var/turf/target)
+/datum/material/morphium/hull/place_sheet(turf/target)
 	new /obj/item/stack/material/morphium(target)
 
 /datum/material/plastitanium/hull
@@ -78,7 +79,7 @@
 	flags = MATERIAL_NO_SYNTH
 	composite_material = list(MAT_PLASTITANIUM = SHEET_MATERIAL_AMOUNT)
 
-/datum/material/plastitanium/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+/datum/material/plastitanium/hull/place_sheet(turf/target) //Deconstructed into normal plasteel sheets.
 	new /obj/item/stack/material/plastitanium(target)
 
 /datum/material/gold/hull
@@ -91,5 +92,5 @@
 	flags = MATERIAL_NO_SYNTH
 	composite_material = list(MAT_GOLD = SHEET_MATERIAL_AMOUNT)
 
-/datum/material/gold/hull/place_sheet(var/turf/target) //Deconstructed into normal gold sheets.
+/datum/material/gold/hull/place_sheet(turf/target) //Deconstructed into normal gold sheets.
 	new /obj/item/stack/material/gold(target)

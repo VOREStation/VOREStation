@@ -172,7 +172,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 
-/obj/item/sword/fluff/joanaria/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/sword/fluff/joanaria/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
@@ -185,7 +185,7 @@
 	name = "tactical Knife"
 	desc = "A tactical knife with a small butterly engraved on the blade."
 
-/obj/item/material/knife/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/knife/tacknife/combatknife/fluff/katarina/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
@@ -595,7 +595,7 @@
 	name = "broken [initial(name)]"
 	desc = "This seems like a necklace, but the actual pendant is missing."
 
-/obj/item/clothing/accessory/collar/khcrystal/proc/update_state(var/tostate)
+/obj/item/clothing/accessory/collar/khcrystal/proc/update_state(tostate)
 	state = tostate
 	icon_state = "[initial(icon_state)][tostate]"
 	update_icon()
@@ -988,7 +988,7 @@
 	update_icon()
 	..()
 
-/obj/item/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/baton/fluff/stunstaff/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)

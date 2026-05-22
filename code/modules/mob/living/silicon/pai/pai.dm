@@ -169,7 +169,7 @@
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add
 
 /// Load pref save data from client and apply it to the pai.
-/mob/living/silicon/pai/proc/apply_preferences(client/cli, var/silent = 1)
+/mob/living/silicon/pai/proc/apply_preferences(client/cli, silent = 1)
 	if(!cli?.prefs)
 		return FALSE
 	var/datum/preferences/pref = cli.prefs
@@ -382,7 +382,7 @@
 
 // Allow card inhabited machines to be interacted with
 // This has to override ClickOn because of storage depth nonsense with how pAIs are in cards in GLOB.machines
-/mob/living/silicon/pai/ClickOn(var/atom/A, var/params)
+/mob/living/silicon/pai/ClickOn(atom/A, params)
 	if(istype(A, /obj/machinery))
 		var/obj/machinery/M = A
 		if(M.paicard == card)
@@ -391,7 +391,7 @@
 	return ..()
 
 // Handle being picked up.
-/mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
+/mob/living/silicon/pai/get_scooped(mob/living/carbon/grabber, self_drop)
 	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
@@ -631,7 +631,7 @@
 	holo_icon_west = new_holo_west
 	return TRUE
 
-/mob/living/silicon/pai/set_dir(var/new_dir)
+/mob/living/silicon/pai/set_dir(new_dir)
 	. = ..()
 	if(. && SSpai.chassis_data(chassis_name).holo_projector)
 		switch(dir)
