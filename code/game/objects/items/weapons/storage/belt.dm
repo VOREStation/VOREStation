@@ -764,7 +764,6 @@
 		/obj/item/pickaxe,
 		/obj/item/paper,
 		/obj/item/paper_bundle,
-		/obj/item/paper_bundle,
 		/obj/item/photo,
 		/obj/item/folder,
 		/obj/item/pen,
