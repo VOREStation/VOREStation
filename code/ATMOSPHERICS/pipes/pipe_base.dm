@@ -123,9 +123,6 @@
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
-		return ..()
-
 	if(istype(W,/obj/item/pipe_painter))
 		return 0
 
