@@ -1,4 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - bugfix: "Fixes a hard del caused by disposal bins not trying to unlink on destruction, resulting in uncleared refs."
