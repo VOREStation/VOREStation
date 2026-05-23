@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Small chance for pain emote when taking a painful attack."
+  - bugfix: "Fixes a bug where pain would spam your chat with pain messages if they were significantly strong."
+  - bugfix: "Pain messages have proper times now, instead of having possibly 0 times per message."
