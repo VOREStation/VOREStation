@@ -15,6 +15,68 @@
 	var/override_health_hud = FALSE
 	var/override_darkvision_hud = FALSE
 
+/datum/remote_view_config/proc/register_signals(mob/host_mob, datum/component/remote_view/component)
+	// Basic handling
+	if(forbid_movement)
+		component.RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/component/remote_view, handle_hostmob_moved))
+	else
+		component.RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, TYPE_PROC_REF(/datum/component/remote_view, handle_hostmob_moved))
+	// Upon any disruptive status effects
+	if(will_stun)
+		component.RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, TYPE_PROC_REF(/datum/component/remote_view, handle_status_effects))
+	if(will_weaken)
+		component.RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, TYPE_PROC_REF(/datum/component/remote_view, handle_status_effects))
+	if(will_paralyze)
+		component.RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, TYPE_PROC_REF(/datum/component/remote_view, handle_status_effects))
+	if(will_sleep)
+		component.RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, TYPE_PROC_REF(/datum/component/remote_view, handle_status_effects))
+	if(will_blind)
+		component.RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, TYPE_PROC_REF(/datum/component/remote_view, handle_status_effects))
+	if(will_death)
+		component.RegisterSignal(host_mob, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/component/remote_view, handle_endview))
+	// Handle relayed movement
+	if(relay_movement)
+		component.RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, TYPE_PROC_REF(/datum/component/remote_view, handle_relay_movement))
+	component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, TYPE_PROC_REF(/datum/component/remote_view, handle_mob_vision_update))
+	// Hud overrides
+	if(override_entire_hud)
+		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD, TYPE_PROC_REF(/datum/component/remote_view, handle_hud_override))
+	if(override_health_hud)
+		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON, TYPE_PROC_REF(/datum/component/remote_view, handle_hud_health))
+	if(override_darkvision_hud)
+		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT, TYPE_PROC_REF(/datum/component/remote_view, handle_hud_darkvision))
+
+/datum/remote_view_config/proc/unregister_signals(mob/host_mob, datum/component/remote_view/component)
+	// Basic handling
+	if(forbid_movement)
+		component.UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
+	else
+		component.UnregisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED)
+	// Status effects
+	if(will_stun)
+		component.UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
+	if(will_weaken)
+		component.UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
+	if(will_paralyze)
+		component.UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
+	if(will_sleep)
+		component.UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
+	if(will_blind)
+		component.UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
+	if(will_death)
+		component.UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
+	// Handle relayed movement
+	if(relay_movement)
+		component.UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
+	component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION)
+	// Hud overrides
+	if(override_entire_hud)
+		component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD)
+	if(override_health_hud)
+		component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON)
+	if(override_darkvision_hud)
+		component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
+
 /// Called when remote view component finishes attaching to the mob
 /datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
 	RETURN_TYPE(null)
