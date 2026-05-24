@@ -149,3 +149,12 @@
       ignore RPD color) when deconstructed
   - bugfix: volume pumps no longer have broken map icons
   - bugfix: added missing volume pump on prefab
+2026-05-24:
+  Diana:
+  - rscadd: Small chance for pain emote when taking a painful attack.
+  - bugfix: Fixes a bug where pain would spam your chat with pain messages if they
+      were significantly strong.
+  - bugfix: Pain messages have proper times now, instead of having possibly 0 times
+      per message.
+  Willburd:
+  - bugfix: borgs can pick up stacks of paper with misc gripper

@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "borgs can pick up stacks of paper with misc gripper"
