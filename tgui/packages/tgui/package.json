@@ -15,7 +15,7 @@
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",
 		"react-json-tree": "^0.20.0",
-		"tgui-core": "^5.11.0",
+		"tgui-core": "^6.0.0",
 		"tgui-dev-server": "workspace:*"
 	},
 	"private": true
