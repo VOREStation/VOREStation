@@ -6,13 +6,12 @@
 	VAR_PROTECTED/mob/host_mob
 	VAR_PROTECTED/atom/remote_view_target
 	// Specialty remote views that rely on another object to manage them
-	VAR_PROTECTED/uses_zoom = FALSE
+	VAR_PROTECTED/show_message = FALSE
 	VAR_PRIVATE/obj/item/host_item
 	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
 	VAR_PRIVATE/list/coordinated_viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator!
-	VAR_PRIVATE/show_message = FALSE
 
-/datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path, tileoffset, show_visible_messages, datum/coordinator, list/viewer_list)
+/datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path, obj/item/managing_item, tileoffset, show_visible_messages, datum/coordinator, list/viewer_list)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(parent == focused_on)
@@ -31,23 +30,22 @@
 		settings.forbid_movement = TRUE
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
 
-	// Coordinated viewer handling
+	// If a complex datum with a viewer list is coordinating this view (shuttle consoles)
 	if(coordinator)
 		if(!islist(viewer_list)) // BAD BAD BAD NO
-			CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view/viewer_managed component. Ensure the viewer_list exists before passing it into AddComponent.")
+			CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view component. Ensure the viewer_list exists before passing it into AddComponent.")
 		coordinated_viewers = viewer_list
 		view_coordinator = coordinator
 		view_coordinator.look(host_mob)
 		LAZYDISTINCTADD(coordinated_viewers, WEAKREF(host_mob))
-		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
-	// Item handling
-	if(isitem(focused_on))
-		host_item = focused_on
+	// If an item is coordinating this view (scopes/binoculars)
+	if(isitem(managing_item))
+		host_item = managing_item
 		// Unfortunately too many things read this to control item state for me to remove this.
 		// Oh well! better than GetComponent() everywhere. Lets just manage item/zoom in this component though...
-		if(uses_zoom)
-			host_item.zoom = TRUE
+		host_item.zoom = TRUE
 		// Feedback
 		show_message = show_visible_messages
 		if(show_message)
@@ -72,8 +70,7 @@
 /datum/component/remote_view/Destroy(force)
 	// Clear item
 	if(host_item)
-		if(uses_zoom)
-			host_item.zoom = FALSE
+		host_item.zoom = FALSE
 		// Feedback
 		if(show_message)
 			host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
@@ -109,13 +106,13 @@
 
 /datum/component/remote_view/RegisterWithParent()
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
-	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	if(host_item)
 		RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_endview))
-		RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+		RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
 	settings.register_signals(host_mob, src)
 
@@ -283,11 +280,6 @@
 // Prefabs
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Scopes/binoculars
-/datum/component/remote_view/item_zoom
-	uses_zoom = TRUE
-	show_message = TRUE
-
 // Gene remote view
 /datum/component/remote_view/mremote_mutation
 
@@ -320,6 +312,4 @@
 
 
 /// TODO - EXODIA OBLITERATE
-/datum/component/remote_view/viewer_managed
-
 /datum/component/remote_view/mob_holding_item
