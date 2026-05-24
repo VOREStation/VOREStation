@@ -14,8 +14,6 @@
 /datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path, obj/item/managing_item, tileoffset, show_visible_messages, datum/coordinator, list/viewer_list)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
-	if(parent == focused_on)
-		CRASH("Remote view attempted to focus on itself, target [focused_on]")
 	. = ..()
 
 	// Set config
@@ -38,7 +36,6 @@
 		view_coordinator = coordinator
 		view_coordinator.look(host_mob)
 		LAZYDISTINCTADD(coordinated_viewers, WEAKREF(host_mob))
-		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
 	// If an item is coordinating this view (scopes/binoculars)
 	if(isitem(managing_item))
@@ -78,7 +75,6 @@
 
 	// clear coordinator
 	if(view_coordinator)
-		UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 		view_coordinator.unlook(host_mob, FALSE)
 		LAZYREMOVE(coordinated_viewers, WEAKREF(host_mob))
 		view_coordinator = null
@@ -107,13 +103,18 @@
 /datum/component/remote_view/RegisterWithParent()
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	if(host_mob != remote_view_target) // Some items just offset our view, so we set ourselves as the view target, don't double dip if so!
+		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
+		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
+		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	if(host_item)
 		RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
-
+	if(coordinator)
+		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	settings.register_signals(host_mob, src)
 
 	// Update the mob's vision after we attach everything
@@ -124,13 +125,18 @@
 /datum/component/remote_view/UnregisterFromParent()
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
+	if(host_mob != remote_view_target) // If target is not ourselves
+		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
+		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
+		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	if(host_item)
 		UnregisterSignal(host_item, COMSIG_QDELETING)
 		UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
 		UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
 		UnregisterSignal(host_item, COMSIG_ITEM_EQUIPPED)
 		UnregisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR)
-
+	if(view_coordinator)
+		UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 	settings.unregister_signals(host_mob, src)
 
 
