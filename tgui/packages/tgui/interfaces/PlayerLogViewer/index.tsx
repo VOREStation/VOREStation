@@ -69,6 +69,7 @@ export const PlayerLogViewer = (props) => {
                   <Stack.Item>
                     <Dropdown
                       searchInput
+                      styledInput
                       disabled={!!on_cooldown}
                       selected={view_client ? ckey : undefined}
                       options={Object.keys(all_clients)}

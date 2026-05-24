@@ -51,7 +51,9 @@ export const CellCommp = (props: {
       </Slider>
       <Dropdown
         searchInput
+        styledInput
         width="100%"
+        displayText={selectedCell}
         selected={selectedCell}
         options={cell_options}
         onSelected={onSelectedCell}
