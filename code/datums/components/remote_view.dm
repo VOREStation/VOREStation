@@ -14,6 +14,8 @@
 /datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path, obj/item/managing_item, tileoffset, show_visible_messages, datum/coordinator, list/viewer_list)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
+	to_chat(world, "STARTED VIEW on: [focused_on]")
+
 	. = ..()
 
 	// Set config
@@ -100,6 +102,7 @@
 	. = ..()
 
 	// Finish cleanup
+	to_chat(world, "ENDED VIEW on: [host_mob]")
 	QDEL_NULL(settings)
 	host_mob = null
 	remote_view_target = null
@@ -120,6 +123,10 @@
 	if(view_coordinator)
 		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	settings.register_signals(host_mob, src)
+
+	if(settings.release_view_to_turf) // So it triggers if we are inside an item too
+		host_mob.AddComponent(/datum/component/recursive_move) // Calls COMSIG_MOVABLE_ATTEMPTED_MOVE
+		RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_recursive_move))
 
 	// Update the mob's vision after we attach everything
 	host_mob.handle_vision()
@@ -142,7 +149,8 @@
 	if(view_coordinator)
 		UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 	settings.unregister_signals(host_mob, src)
-
+	if(settings.release_view_to_turf)
+		UnregisterSignal(host_item, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Signal handlers
@@ -200,24 +208,28 @@
 	host_mob.client.eye = remote_view_mob.client.eye
 	host_mob.client.perspective = remote_view_mob.client.perspective
 
+/datum/component/remote_view/proc/handle_recursive_move(datum/source, atom/old_loc, atom/current_loc)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
+	release_remote_view()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Horrible byond hack
+// This is only here to solve an issue where dropping a held mob while inside a mob will linger on the turf of that mob forever
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/remote_view/proc/release_remote_view()
+	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	var/mob/cache_mob = host_mob
 	var/releases_to_turf = settings.release_view_to_turf
 	// Delete here so the remote view is nice and clean
 	qdel(src)
-	// Decoupling is broken by a byond bug, where dropping a held mob while inside a mob will linger on the turf of that mob forever
 	if(QDELETED(cache_mob) || !cache_mob.client)
 		return
 	if(releases_to_turf) // Focus on the turf, this prevents the view lingering on a mob forever
 		cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
-		cache_mob.AddComponent(/datum/component/recursive_move) // So it triggers if we are inside an item too
-		return
-	// Otherwise we handle this sanely
-	cache_mob.reset_perspective()
+	cache_mob.reset_perspective() // Yes this is terrible with the above line if you are still not fully released to a turf and on the move, but I don't have achoice here due to a byond issue.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Accessors
