@@ -264,7 +264,7 @@
 		// to_chat(world, "--DELETED")
 		return
 
-	// We're nothing special, ask the mob to check if it should start a new remote view
+	// We're nothing special, ask the mob to check if it should start a new remote view (like if we were dropped into a belly from being held by another mob!)
 	if(!releases_to_turf && !force_turf_decouple)
 		// to_chat(world, "--Reset perspective")
 		cache_mob.reset_perspective()
