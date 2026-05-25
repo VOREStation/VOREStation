@@ -1,4 +1,4 @@
-#define END_REMOTE_VIEW host_mob.reset_perspective();qdel(src);
+#define END_REMOTE_VIEW var/mob/temp_host=host_mob;qdel(src);temp_host.reset_perspective();
 
 /**
  * Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.

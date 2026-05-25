@@ -39,14 +39,14 @@
 	// Handle relayed movement
 	if(relay_movement)
 		component.RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
-	component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, PROC_REF(handle_apply_visuals))
+	RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, PROC_REF(handle_apply_visuals))
 	// Hud overrides
 	if(override_entire_hud)
-		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD, PROC_REF(handle_hud_override))
+		RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD, PROC_REF(handle_hud_override))
 	if(override_health_hud)
-		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
+		RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
 	if(override_darkvision_hud)
-		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
+		RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
 
 /datum/remote_view_config/proc/unregister_signals(mob/host_mob, datum/component/remote_view/component)
 	RETURN_TYPE(null)
@@ -72,14 +72,14 @@
 	// Handle relayed movement
 	if(relay_movement)
 		component.UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
-	component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION)
+	UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION)
 	// Hud overrides
 	if(override_entire_hud)
-		component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD)
+		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD)
 	if(override_health_hud)
-		component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON)
+		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON)
 	if(override_darkvision_hud)
-		component.UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
+		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
 
 /// Called when remote view component finishes attaching to the mob
 /datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
