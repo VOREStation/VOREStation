@@ -16,6 +16,9 @@
 	var/override_darkvision_hud = FALSE
 
 /datum/remote_view_config/proc/register_signals(mob/host_mob, datum/component/remote_view/component)
+	RETURN_TYPE(null)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// Basic handling
 	if(forbid_movement)
 		component.RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/component/remote_view, handle_hostmob_moved))
@@ -36,17 +39,20 @@
 		component.RegisterSignal(host_mob, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/component/remote_view, handle_endview))
 	// Handle relayed movement
 	if(relay_movement)
-		component.RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, TYPE_PROC_REF(/datum/component/remote_view, handle_relay_movement))
-	component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, TYPE_PROC_REF(/datum/component/remote_view, handle_mob_vision_update))
+		component.RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
+	component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, PROC_REF(handle_apply_visuals))
 	// Hud overrides
 	if(override_entire_hud)
-		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD, TYPE_PROC_REF(/datum/component/remote_view, handle_hud_override))
+		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD, PROC_REF(handle_hud_override))
 	if(override_health_hud)
-		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON, TYPE_PROC_REF(/datum/component/remote_view, handle_hud_health))
+		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
 	if(override_darkvision_hud)
-		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT, TYPE_PROC_REF(/datum/component/remote_view, handle_hud_darkvision))
+		component.RegisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
 
 /datum/remote_view_config/proc/unregister_signals(mob/host_mob, datum/component/remote_view/component)
+	RETURN_TYPE(null)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	// Basic handling
 	if(forbid_movement)
 		component.UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)

@@ -204,41 +204,6 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Optional signal handlers for more advanced remote views
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
-	SIGNAL_HANDLER
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	return settings.handle_relay_movement(src, host_mob, direction)
-
-/datum/component/remote_view/proc/handle_hud_override(datum/source)
-	SIGNAL_HANDLER
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	return settings.handle_hud_override(src, host_mob)
-
-/datum/component/remote_view/proc/handle_hud_health(datum/source)
-	SIGNAL_HANDLER
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	return settings.handle_hud_health(src, host_mob)
-
-/datum/component/remote_view/proc/handle_hud_darkvision(datum/source)
-	SIGNAL_HANDLER
-	SHOULD_NOT_OVERRIDE(TRUE)
-	RETURN_TYPE(null)
-	PRIVATE_PROC(TRUE)
-	settings.handle_hud_darkvision(src, host_mob)
-
-/datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
-	SIGNAL_HANDLER
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	return settings.handle_apply_visuals(src, host_mob)
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Accessors
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/remote_view/proc/get_host()
