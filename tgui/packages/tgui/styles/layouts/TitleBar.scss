@@ -10,7 +10,7 @@
   position: fixed;
   display: flex;
   align-items: center;
-  width: vp(100vw);
+  width: 100vw;
   height: fn.rem(32px);
   background-color: var(--titlebar-background);
   border-bottom: var(--border-thickness-tiny) solid var(--titlebar-shadow-core);
