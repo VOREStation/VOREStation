@@ -64,9 +64,12 @@ SUBSYSTEM_DEF(cryoplanets)
 	// Check if this would be affected by the station mainboiler's radiators.
 	// If we have an active radiator in the area, then there is no point in starting a temperature war....
 	var/area/check_area = get_area(T)
-	var/obj/structure/stationboiler/current_heater = SSstationheater.get_current_boiler()
-	if(current_heater?.is_heating() && check_area && length(check_area.radiators) && target_temp < SSstationheater.target_heat_temperature)
-		return
+	if(check_area && length(check_area.radiators) && target_temp < SSstationheater.target_heat_temperature)
+		var/obj/machinery/stationboiler_radiator/check_rad = check_area.radiators[1] // It won't matter which radiator in the area, as they're all on the same planet anyway
+		if(check_rad.get_radiating())
+			return
+
+	// Time to chill the area...
 	//testing("Energy: [neededEnergy]")
 	currentAir.add_thermal_energy(neededEnergy)
 
