@@ -15,6 +15,7 @@
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
+	// to_chat(world, "======================================== STARTED VIEW on: [focused_on]")
 
 	// Set config
 	if(!vconfig_path)
@@ -98,6 +99,7 @@
 		host_mob.handle_regular_hud_updates()
 
 	// Unregister remaining signals
+	// to_chat(world, "======================================== ENDED VIEW on: [remote_view_target]")
 	. = ..()
 
 	// Finish cleanup
@@ -219,14 +221,17 @@
 /datum/component/remote_view/proc/release_remote_view(force_turf_decouple = FALSE)
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
+	// to_chat(world, "RELEASING: [remote_view_target] : forced turf decouple? [force_turf_decouple]")
 	var/mob/cache_mob = host_mob
 	var/releases_to_turf = settings.release_view_to_turf
 	qdel(src) // Delete here so the remote view is nice and clean
 	if(QDELETED(cache_mob) || !cache_mob.client)
+		// to_chat(world, "--DELETED")
 		return
 
 	// We're nothing special, ask the mob to check if it should start a new remote view
 	if(!releases_to_turf && !force_turf_decouple)
+		// to_chat(world, "--Reset perspective")
 		cache_mob.reset_perspective()
 		return
 
@@ -237,12 +242,14 @@
 	if(!force_turf_decouple && !isturf(recursive_scan)) // If our actual mob was placed on a turf, skip all of this recursion checking. We're good to decouple.
 		while(recursive_scan && !isturf(recursive_scan) && emergency++ < 64)
 			if(ismob(recursive_scan))
+				// to_chat(world, "--held by mob still")
 				cache_mob.reset_perspective() // We're still inside another mob... Do not decouple to turf. Hold onto our current target.
 				return
 			recursive_scan = recursive_scan.loc
 
 	// Decouple to turf, this is a hack.
 	// Yes this is required.
+	// to_chat(world, "--turf decouple")
 	spawn(0) // Yes I hate it.
 		cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
 	// Good luck refactoring this until the byond issue is fixed. This needs to happen AFTER the move resolves, but needs to be called by recursive move...
