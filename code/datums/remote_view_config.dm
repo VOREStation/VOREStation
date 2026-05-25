@@ -38,7 +38,7 @@
 		component.RegisterSignal(host_mob, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/component/remote_view, handle_endview))
 	// Handle relayed movement
 	if(relay_movement)
-		component.RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
+		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
 	RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, PROC_REF(handle_apply_visuals))
 	// Hud overrides
 	if(override_entire_hud)
@@ -71,7 +71,7 @@
 		component.UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	// Handle relayed movement
 	if(relay_movement)
-		component.UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
+		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
 	UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION)
 	// Hud overrides
 	if(override_entire_hud)
