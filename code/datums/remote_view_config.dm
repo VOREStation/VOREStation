@@ -18,7 +18,6 @@
 /datum/remote_view_config/proc/register_signals(mob/host_mob, datum/component/remote_view/component)
 	RETURN_TYPE(null)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
 	// Basic handling
 	if(forbid_movement)
 		component.RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/component/remote_view, handle_hostmob_moved))
@@ -52,7 +51,6 @@
 /datum/remote_view_config/proc/unregister_signals(mob/host_mob, datum/component/remote_view/component)
 	RETURN_TYPE(null)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
 	// Basic handling
 	if(forbid_movement)
 		component.UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
