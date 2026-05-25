@@ -95,7 +95,6 @@
 /obj/item/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
-		var/mob/cached_mob = held_mob
 		dump_mob()
 	if(ismob(loc))
 		var/mob/M = loc
