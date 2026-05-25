@@ -123,7 +123,8 @@
 	if(view_coordinator)
 		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	settings.register_signals(host_mob, src)
-
+	if(settings.relay_movement) // Handle relayed movement
+		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
 	if(settings.release_view_to_turf || isturf(remote_view_target)) // So it triggers if we are inside an item too... And if the item is being moved around by pull...
 		RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_recursive_move))
 
@@ -148,6 +149,8 @@
 	if(view_coordinator)
 		UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 	settings.unregister_signals(host_mob, src)
+	if(settings.relay_movement) // Handle relayed movement
+		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
 	if(settings.release_view_to_turf || isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
@@ -213,6 +216,13 @@
 	RETURN_TYPE(null)
 	var/needs_to_force_turf_decouple = ismob(old_loc) && isturf(current_loc) // Handle an edge case where another mob is dropped by a mob with someone else inside them
 	release_remote_view(needs_to_force_turf_decouple)
+
+/datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	// I'd move this into the config datum if it didn't require the component to also be passed too. Lets avoid GetComponent on a hotpath.
+	return settings.handle_relay_movement(src, host_mob, direction)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Horrible byond hack

@@ -38,9 +38,6 @@
 		component.RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, TYPE_PROC_REF(/datum/component/remote_view, handle_status_effects))
 	if(will_death)
 		component.RegisterSignal(host_mob, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/component/remote_view, handle_endview))
-	// Handle relayed movement
-	if(relay_movement)
-		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
 	RegisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION, PROC_REF(handle_apply_visuals))
 	// Hud overrides
 	if(override_entire_hud)
@@ -71,9 +68,6 @@
 		component.UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(will_death)
 		component.UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
-	// Handle relayed movement
-	if(relay_movement)
-		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
 	UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_VISION)
 	// Hud overrides
 	if(override_entire_hud)
@@ -84,50 +78,52 @@
 		UnregisterSignal(host_mob, COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
 
 /// Called when remote view component finishes attaching to the mob
-/datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/attached_to_mob(datum/component/remote_view/owner_component, mob/host_mob)
 	RETURN_TYPE(null)
 	return
 
 /// Called when remote view component is destroyed
-/datum/remote_view_config/proc/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/detatch_from_mob(datum/component/remote_view/owner_component, mob/host_mob)
 	RETURN_TYPE(null)
 	return
 
 /// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
-/datum/remote_view_config/proc/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
+/datum/remote_view_config/proc/handle_relay_movement(datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
 	SIGNAL_HANDLER
-	// By default, we ask our remote_view_target to handle relaymove for us.
-	if(!remote_view_target)
-		return FALSE
 	return remote_view_target.relaymove(host_mob, direction)
 
 /// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
-/datum/remote_view_config/proc/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/handle_apply_visuals(mob/host_mob)
 	SIGNAL_HANDLER
 	RETURN_TYPE(null)
 	return
 
 /// Handles visual changes when ending the view
-/datum/remote_view_config/proc/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/handle_remove_visuals(datum/component/remote_view/owner_component, mob/host_mob)
 	SIGNAL_HANDLER
 	RETURN_TYPE(null)
 	return
 
 /// Handles hud health indicator being replaced with a custom one (like showing the remote_view_target's health).
-/datum/remote_view_config/proc/handle_hud_override( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/handle_hud_override(mob/host_mob)
 	SIGNAL_HANDLER
 	return COMSIG_COMPONENT_HANDLED_HUD
 
 /// Handles hud health indicator being replaced with a custom one (like showing the remote_view_target's health).
-/datum/remote_view_config/proc/handle_hud_health( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/handle_hud_health(mob/host_mob)
 	SIGNAL_HANDLER
 	return COMSIG_COMPONENT_HANDLED_HEALTH_ICON
 
 /// Handles hud darkvision for if the remote view uses it's own logic for darkvision, or asks the remote_view_target to calculate it.
-/datum/remote_view_config/proc/handle_hud_darkvision( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/proc/handle_hud_darkvision(mob/host_mob)
 	SIGNAL_HANDLER
 	RETURN_TYPE(null)
 	return
+
+/datum/remote_view_config/proc/get_component_coordinator(mob/host_mob)
+	RETURN_TYPE(/atom)
+	var/datum/component/remote_view/owner_component = host_mob.GetComponent(/datum/component/remote_view)
+	return owner_component.get_coordinator()
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
