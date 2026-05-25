@@ -11,20 +11,33 @@
 	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
 	VAR_PRIVATE/list/coordinated_viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator!
 
-/datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path, obj/item/managing_item, tileoffset, show_visible_messages, datum/coordinator, list/viewer_list)
+/datum/component/remote_view/Initialize(atom/focused_on = null, viewsize = null, vconfig_path = null, obj/item/managing_item = null, tileoffset = 0, show_visible_messages = TRUE, datum/coordinator = null, list/viewer_list = null)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 	// to_chat(world, "======================================== STARTED VIEW on: [focused_on]")
 
-	// Set config
+	/**
+	 * Set config
+	 * All remote views use a vconfig_path to create a settings datum. This datum controls most features of the remote view.
+	 * It also allows for unique overrides per view type, such as the UAV overriding the hud for special effects, without
+	 * needing to make an entirely new type of remote view to do so. See code\datums\remote_view_config.dm
+	 */
 	if(!vconfig_path)
 		vconfig_path = /datum/remote_view_config
 	settings = new vconfig_path
 
-	// Safety check, focus on our own turf if the target is deleted, and flag any movement to end the view.
+	/**
+	 * Safety check, focus on our own turf if the target is deleted, and flag any movement to end the view.
+	 *
+	 * IMPORTANT:
+	 * Passing null for the focused_on target of the remote view will use the turf of the mob creating the view.
+	 * This behavior is called "turf decoupling" and is used to correct a byond issue where mobs dropping mobs lock
+	 * the view to the mob that dropped them. See release_remote_view() below. Creating a remote_view with no
+	 * arguments will just cause turf decoupling behavior, and is safe to do.
+	 */
 	host_mob = parent
-	if(QDELETED(focused_on))
+	if(!focused_on || QDELETED(focused_on))
 		focused_on = get_turf(host_mob)
 		settings.forbid_movement = TRUE
 	// Focus on remote view
@@ -32,7 +45,12 @@
 	host_mob.reset_perspective(remote_view_target) // Must be done before registering the signals
 	host_mob.AddComponent(/datum/component/recursive_move) // Updates our parent tree if we already have it
 
-	// If a complex datum with a viewer list is coordinating this view (shuttle consoles)
+	/**
+	 * If a complex datum with a viewer list is coordinating this view (shuttle consoles for example)
+	 * This is intended for views that required a managed list of coordinated_viewers.
+	 * This allows the view_coordinator to decide things, like maximum number of viewers, or if actions disconnect all viewers at once.
+	 * Calls look() and unlook() on the coordinator when the view starts and ends.
+	 */
 	if(coordinator)
 		if(!islist(viewer_list)) // BAD BAD BAD NO
 			CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view component. Ensure the viewer_list exists before passing it into AddComponent.")
@@ -41,7 +59,11 @@
 		view_coordinator.look(host_mob)
 		LAZYDISTINCTADD(coordinated_viewers, WEAKREF(host_mob))
 
-	// If an item is coordinating this view (scopes/binoculars)
+	/**
+	 * If an item is coordinating this view (scopes/binoculars)
+	 * Handles remote views that are managed by a held item. The held item must remain in the mob's
+	 * inventory, and will call zoom() and unzoom() when it starts and ends. Optionally showing a message.
+	 */
 	if(isitem(managing_item))
 		host_item = managing_item
 		// Unfortunately too many things read this to control item state for me to remove this.
@@ -52,7 +74,10 @@
 		if(show_message)
 			host_mob.visible_message(span_filter_notice("[host_mob] peers through the [host_item.zoomdevicename ? "[host_item.zoomdevicename] of the [host_item.name]" : "[host_item.name]"]."))
 
-	// Offset view
+	/**
+	 * Offset view, optionally offset the final view. Used by binoculars.
+	 * Having the target of the view, and the owner mob of the view be the same thing allows you to offset the view as desired from the view owner.
+	 */
 	var/viewoffset = WORLD_ICON_SIZE * tileoffset
 	switch(host_mob.dir)
 		if (NORTH)
@@ -245,7 +270,6 @@
 		cache_mob.reset_perspective()
 		return
 
-	// Focus on the turf, this prevents the view lingering on a mob forever
 	// Check to see if it's legal to release the view. Our top level object MUST NOT be a mob!
 	var/emergency = 0
 	var/atom/movable/recursive_scan = cache_mob.loc
@@ -257,11 +281,12 @@
 				return
 			recursive_scan = recursive_scan.loc
 
+	// Focus on the turf, this prevents the view lingering on a mob forever
+	// to_chat(world, "--turf decouple")
 	// Decouple to turf, this is a hack.
 	// Yes this is required.
-	// to_chat(world, "--turf decouple")
 	spawn(0) // Yes I hate it.
-		cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
+		cache_mob.AddComponent(/datum/component/remote_view)
 	// Good luck refactoring this until the byond issue is fixed. This needs to happen AFTER the move resolves, but needs to be called by recursive move...
 
 
