@@ -62,11 +62,11 @@ SUBSYSTEM_DEF(cryoplanets)
 		neededEnergy = max(neededEnergy, -max_thermal_change)
 
 	// Check if this would be affected by the station mainboiler's radiators.
-	var/area/check_area = get_area(T) // If we have an active radiator in the area, then there is no point in starting a temperature war....
-	if(check_area && length(check_area.radiators) && target_temp < SSstationheater.target_heat_temperature)
-		var/obj/structure/stationboiler/current_heater = SSstationheater.get_current_boiler()
-		if(current_heater?.is_heating()) // If the current boiler isn't on... It won't matter.
-			return // Area had an active radiator, we'll drop out!
+	// If we have an active radiator in the area, then there is no point in starting a temperature war....
+	var/area/check_area = get_area(T)
+	var/obj/structure/stationboiler/current_heater = SSstationheater.get_current_boiler()
+	if(current_heater?.is_heating() && check_area && length(check_area.radiators) && target_temp < SSstationheater.target_heat_temperature)
+		return
 	//testing("Energy: [neededEnergy]")
 	currentAir.add_thermal_energy(neededEnergy)
 
