@@ -11,6 +11,9 @@
 @include meta.load-css('~tgui-core/styles/all-themes.scss');
 @include meta.load-css('~tgui-core/styles/reset.scss');
 
+// Non core atomic
+@include meta.load-css('./atomic/text.scss');
+
 // Local Themes
 @include meta.load-css('./themes/nuclear.scss');
 @include meta.load-css('./themes/crtsoul.scss');

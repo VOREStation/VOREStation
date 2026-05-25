@@ -1563,16 +1563,6 @@ $border-width-px: $border-width * 1px;
   }
 }
 
-.spoiler {
-  background-color: hsl(0, 0%, 50%);
-  color: transparent;
-}
-
-.spoiler:hover {
-  background-color: inherit;
-  color: inherit;
-}
-
 details {
   width: 80%;
   background: hsl(202, 44%, 96%);
