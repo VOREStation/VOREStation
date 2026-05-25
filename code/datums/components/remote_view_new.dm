@@ -1,3 +1,5 @@
+#define END_REMOTE_VIEW host_mob.reset_perspective();qdel(src);
+
 /**
  * Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
  */
@@ -26,7 +28,9 @@
 	if(QDELETED(focused_on))
 		focused_on = get_turf(host_mob)
 		settings.forbid_movement = TRUE
-	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
+	// Focus on remote view
+	remote_view_target = focused_on
+	host_mob.reset_perspective(remote_view_target) // Must be done before registering the signals
 
 	// If a complex datum with a viewer list is coordinating this view (shuttle consoles)
 	if(coordinator)
@@ -94,11 +98,13 @@
 		host_mob.handle_vision()
 		host_mob.handle_regular_hud_updates()
 
-	// Clear settings
+	// Unregister remaining signals
+	. = ..()
+
+	// Finish cleanup
 	QDEL_NULL(settings)
 	host_mob = null
 	remote_view_target = null
-	. = ..()
 
 /datum/component/remote_view/RegisterWithParent()
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
@@ -147,27 +153,19 @@
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
-	if(!host_mob)
-		return
-	end_view()
-	qdel(src)
+	END_REMOTE_VIEW
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(null)
-	if(!host_mob)
-		return
-	end_view()
-	qdel(src)
+	END_REMOTE_VIEW
 
 /datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
-	if(!host_mob)
-		return
 	// We don't really care what effect was caused, just that it was increasing the value and thus negatively affecting us.
 	if(amount <= 0)
 		return
@@ -179,11 +177,6 @@
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(null)
-	if(!host_mob)
-		return
-	// Check if we're still remote viewing the SAME target!
-	if(host_mob.client.eye == remote_view_target)
-		return
 	// The object already changed it's view, lets not interupt it like the others
 	qdel(src)
 
@@ -192,15 +185,12 @@
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(null)
 	// Non-mobs can't do this anyway
-	if(!host_mob)
-		return
 	if(!ismob(remote_view_target))
 		return
 	var/mob/remote_view_mob = remote_view_target
 	// This is an ugly one, but if we want to follow the other object properly we need to copy its state!
 	if(!remote_view_mob.client || !host_mob.client)
-		end_view()
-		qdel(src)
+		END_REMOTE_VIEW
 		return
 	// Only continue to observe if their view location is the same as their turf. otherwise they are doing their own ACTUALLY-REMOTE viewing
 	// we just won't update it if you're trying to look at the remote view target of another mob as they remote view someone else!
@@ -212,11 +202,6 @@
 	host_mob.client.eye = remote_view_mob.client.eye
 	host_mob.client.perspective = remote_view_mob.client.perspective
 
-/datum/component/remote_view/proc/end_view()
-	PROTECTED_PROC(TRUE)
-	RETURN_TYPE(null)
-	host_mob.reset_perspective()
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Optional signal handlers for more advanced remote views
@@ -225,24 +210,18 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	if(!host_mob)
-		return FALSE
 	return settings.handle_relay_movement(src, host_mob, direction)
 
 /datum/component/remote_view/proc/handle_hud_override(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	if(!host_mob)
-		return
 	return settings.handle_hud_override(src, host_mob)
 
 /datum/component/remote_view/proc/handle_hud_health(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	if(!host_mob)
-		return
 	return settings.handle_hud_health(src, host_mob)
 
 /datum/component/remote_view/proc/handle_hud_darkvision(datum/source)
@@ -250,16 +229,12 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	RETURN_TYPE(null)
 	PRIVATE_PROC(TRUE)
-	if(!host_mob)
-		return
 	settings.handle_hud_darkvision(src, host_mob)
 
 /datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	if(!host_mob)
-		return
 	return settings.handle_apply_visuals(src, host_mob)
 
 
@@ -302,13 +277,10 @@
 /datum/component/remote_view/mremote_mutation/proc/on_mutation(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
-	if(!host_mob)
-		return
 	var/mob/remote_mob = remote_view_target
 	if(host_mob.stat == CONSCIOUS && (mRemote in host_mob.mutations) && remote_mob && remote_mob.stat == CONSCIOUS)
 		return
-	end_view()
-	qdel(src)
+	END_REMOTE_VIEW
 
 
 
@@ -319,3 +291,6 @@
 
 /// TODO - EXODIA OBLITERATE
 /datum/component/remote_view/mob_holding_item
+
+
+#undef END_REMOTE_VIEW
