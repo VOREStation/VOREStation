@@ -209,13 +209,14 @@
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
-	release_remote_view()
+	var/needs_to_force_turf_decouple = ismob(old_loc) && isturf(current_loc) // Handle an edge case where another mob is dropped by a mob with someone else inside them
+	release_remote_view(needs_to_force_turf_decouple)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Horrible byond hack
 // This is only here to solve an issue where dropping a held mob while inside a mob will linger on the turf of that mob forever
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/component/remote_view/proc/release_remote_view()
+/datum/component/remote_view/proc/release_remote_view(force_turf_decouple = FALSE)
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
 	var/mob/cache_mob = host_mob
@@ -225,7 +226,7 @@
 		return
 
 	// We're nothing special, ask the mob to check if it should start a new remote view
-	if(!releases_to_turf)
+	if(!releases_to_turf && !force_turf_decouple)
 		cache_mob.reset_perspective()
 		return
 
@@ -233,10 +234,10 @@
 	// Check to see if it's legal to release the view. Our top level object MUST NOT be a mob!
 	var/emergency = 0
 	var/atom/movable/recursive_scan = cache_mob.loc
-	if(!isturf(recursive_scan)) // If our actual mob was placed on a turf, skip all of this recursion checking. We're good to decouple.
+	if(!force_turf_decouple && !isturf(recursive_scan)) // If our actual mob was placed on a turf, skip all of this recursion checking. We're good to decouple.
 		while(recursive_scan && !isturf(recursive_scan) && emergency++ < 64)
 			if(ismob(recursive_scan))
-				cache_mob.reset_perspective() // We're still inside another mob... Do not decouple to turf. Just update the target if we need to.
+				cache_mob.reset_perspective() // We're still inside another mob... Do not decouple to turf. Hold onto our current target.
 				return
 			recursive_scan = recursive_scan.loc
 
