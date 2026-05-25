@@ -150,7 +150,7 @@
 		UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 	settings.unregister_signals(host_mob, src)
 	if(settings.release_view_to_turf)
-		UnregisterSignal(host_item, COMSIG_MOVABLE_ATTEMPTED_MOVE)
+		UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Signal handlers
@@ -228,7 +228,11 @@
 	if(QDELETED(cache_mob) || !cache_mob.client)
 		return
 	if(releases_to_turf) // Focus on the turf, this prevents the view lingering on a mob forever
-		cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
+		spawn(0) // Yes this is required. Yes I hate it. Good luck refactoring this until the byond issue is fixed. This needs to happen AFTER the move resolves, but needs to be called by recursive move...
+			to_chat(world, "RELEASED [cache_mob] TO TURF")
+			cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
+		return
+	to_chat(world, "RELEASED [cache_mob]")
 	cache_mob.reset_perspective() // Yes this is terrible with the above line if you are still not fully released to a turf and on the move, but I don't have achoice here due to a byond issue.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
