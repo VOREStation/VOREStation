@@ -1,5 +1,3 @@
-#define END_REMOTE_VIEW var/mob/temp_host=host_mob;qdel(src);temp_host.reset_perspective();
-
 /**
  * Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
  */
@@ -153,14 +151,14 @@
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
-	END_REMOTE_VIEW
+	release_remote_view()
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(null)
-	END_REMOTE_VIEW
+	release_remote_view()
 
 /datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
@@ -190,7 +188,7 @@
 	var/mob/remote_view_mob = remote_view_target
 	// This is an ugly one, but if we want to follow the other object properly we need to copy its state!
 	if(!remote_view_mob.client || !host_mob.client)
-		END_REMOTE_VIEW
+		release_remote_view()
 		return
 	// Only continue to observe if their view location is the same as their turf. otherwise they are doing their own ACTUALLY-REMOTE viewing
 	// we just won't update it if you're trying to look at the remote view target of another mob as they remote view someone else!
@@ -202,6 +200,24 @@
 	host_mob.client.eye = remote_view_mob.client.eye
 	host_mob.client.perspective = remote_view_mob.client.perspective
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Horrible byond hack
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/component/remote_view/proc/release_remote_view()
+	var/mob/cache_mob = host_mob
+	var/releases_to_turf = settings.release_view_to_turf
+	// Delete here so the remote view is nice and clean
+	qdel(src)
+	// Decoupling is broken by a byond bug, where dropping a held mob while inside a mob will linger on the turf of that mob forever
+	if(QDELETED(cache_mob) || !cache_mob.client)
+		return
+	if(releases_to_turf) // Focus on the turf, this prevents the view lingering on a mob forever
+		cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
+		cache_mob.AddComponent(/datum/component/recursive_move) // So it triggers if we are inside an item too
+		return
+	// Otherwise we handle this sanely
+	cache_mob.reset_perspective()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Accessors
@@ -245,17 +261,4 @@
 	var/mob/remote_mob = remote_view_target
 	if(host_mob.stat == CONSCIOUS && (mRemote in host_mob.mutations) && remote_mob && remote_mob.stat == CONSCIOUS)
 		return
-	END_REMOTE_VIEW
-
-
-
-
-
-
-
-
-/// TODO - EXODIA OBLITERATE
-/datum/component/remote_view/mob_holding_item
-
-
-#undef END_REMOTE_VIEW
+	release_remote_view()

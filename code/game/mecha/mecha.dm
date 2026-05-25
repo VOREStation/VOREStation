@@ -9,6 +9,7 @@
 	desc = "Exosuit"
 	description_info = "Alt click to strafe."
 	icon = 'icons/mecha/mecha.dmi'
+	flags = REMOTEVIEW_ON_ENTER
 	density = TRUE							//Dense. To raise the heat.
 	opacity = 1							//Opaque. Menacing.
 	anchored = TRUE						//No pulling around.

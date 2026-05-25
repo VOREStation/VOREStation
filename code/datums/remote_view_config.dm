@@ -14,6 +14,8 @@
 	var/override_entire_hud = FALSE // Overrides all others, only this needs to be set if you do a fully custom hud
 	var/override_health_hud = FALSE
 	var/override_darkvision_hud = FALSE
+	// turf release flag
+	var/release_view_to_turf = FALSE
 
 /datum/remote_view_config/proc/register_signals(mob/host_mob, datum/component/remote_view/component)
 	RETURN_TYPE(null)
@@ -152,6 +154,7 @@
 	will_paralyze = FALSE
 	will_sleep = FALSE
 	will_blind = FALSE
+	release_view_to_turf = TRUE
 
 /// Remote view that only allows decoupling a turf view by movement. Seperate from effect_immune to allow for easier removal in the future if the underlying issue that makes this needed is someday fixed
 /datum/remote_view_config/turf_decoupling
