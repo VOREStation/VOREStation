@@ -158,3 +158,10 @@
       per message.
   Willburd:
   - bugfix: borgs can pick up stacks of paper with misc gripper
+2026-05-25:
+  Diana:
+  - bugfix: You can tug leashes again.
+  Will:
+  - rscadd: Pipe connected gas meters can no be built on each pipe layer (fuel, aux,
+      scrubber, etc)
+  - qol: Pipe connected gas meters can be examined from further away

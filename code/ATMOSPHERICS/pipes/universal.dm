@@ -13,21 +13,20 @@
 	pipe_flags = PIPING_ALL_LAYER|PIPING_CARDINAL_AUTONORMALIZE
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "universal"
-	var/list/universal_nodes = new/list(PIPING_LAYER_AUX)
-
-/obj/machinery/atmospherics/pipe/simple/visible/universal/Initialize(mapload)
-	. = ..()
-	universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
-	universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
-	universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
-	universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
-	universal_nodes[PIPING_LAYER_AUX] = list(null, null)
+	var/list/universal_nodes
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/Destroy()
 	. = ..()
 	universal_destroy(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/atmos_init()
+	if(!universal_nodes) // Done here, because other things can remotely call atmos_init() from around this pipe
+		universal_nodes = new/list(PIPING_LAYER_AUX)
+		universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
+		universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
+		universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
+		universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
+		universal_nodes[PIPING_LAYER_AUX] = list(null, null)
 	universal_atmos_init(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal/disconnect(obj/machinery/atmospherics/reference)
@@ -61,21 +60,20 @@
 	pipe_flags = PIPING_ALL_LAYER|PIPING_CARDINAL_AUTONORMALIZE
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "universal"
-	var/list/universal_nodes = new/list(PIPING_LAYER_AUX)
-
-/obj/machinery/atmospherics/pipe/simple/hidden/universal/Initialize(mapload)
-	. = ..()
-	universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
-	universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
-	universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
-	universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
-	universal_nodes[PIPING_LAYER_AUX] = list(null, null)
+	var/list/universal_nodes
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/Destroy()
 	. = ..()
 	universal_destroy(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/atmos_init()
+	if(!universal_nodes) // Done here, because other things can remotely call atmos_init() from around this pipe
+		universal_nodes = new/list(PIPING_LAYER_AUX)
+		universal_nodes[PIPING_LAYER_SUPPLY] = list(null, null)
+		universal_nodes[PIPING_LAYER_REGULAR] = list(null, null)
+		universal_nodes[PIPING_LAYER_SCRUBBER] = list(null, null)
+		universal_nodes[PIPING_LAYER_FUEL] = list(null, null)
+		universal_nodes[PIPING_LAYER_AUX] = list(null, null)
 	universal_atmos_init(universal_nodes)
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal/disconnect(obj/machinery/atmospherics/reference)
@@ -140,6 +138,8 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/proc/universal_destroy(list/universal_nodes)
+	if(!universal_nodes)
+		return
 	for(var/list/sublist in universal_nodes)
 		var/obj/machinery/atmospherics/nodeone = sublist[LIST_NODE1]
 		var/obj/machinery/atmospherics/nodetwo = sublist[LIST_NODE2]
@@ -150,6 +150,8 @@
 	universal_nodes = null
 
 /obj/machinery/atmospherics/pipe/simple/proc/universal_disconnect(list/universal_nodes, obj/machinery/atmospherics/reference)
+	if(!universal_nodes)
+		return
 	for(var/list/node_layer in universal_nodes)
 		var/obj/machinery/atmospherics/node_one = node_layer[LIST_NODE1]
 		var/obj/machinery/atmospherics/node_two = node_layer[LIST_NODE2]
