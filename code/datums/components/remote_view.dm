@@ -14,8 +14,6 @@
 /datum/component/remote_view/Initialize(atom/focused_on, viewsize, vconfig_path, obj/item/managing_item, tileoffset, show_visible_messages, datum/coordinator, list/viewer_list)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
-	to_chat(world, "STARTED VIEW on: [focused_on]")
-
 	. = ..()
 
 	// Set config
@@ -31,6 +29,7 @@
 	// Focus on remote view
 	remote_view_target = focused_on
 	host_mob.reset_perspective(remote_view_target) // Must be done before registering the signals
+	host_mob.AddComponent(/datum/component/recursive_move) // Updates our parent tree if we already have it
 
 	// If a complex datum with a viewer list is coordinating this view (shuttle consoles)
 	if(coordinator)
@@ -102,7 +101,6 @@
 	. = ..()
 
 	// Finish cleanup
-	to_chat(world, "ENDED VIEW on: [host_mob]")
 	QDEL_NULL(settings)
 	host_mob = null
 	remote_view_target = null
@@ -124,8 +122,7 @@
 		RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	settings.register_signals(host_mob, src)
 
-	if(settings.release_view_to_turf) // So it triggers if we are inside an item too
-		host_mob.AddComponent(/datum/component/recursive_move) // Calls COMSIG_MOVABLE_ATTEMPTED_MOVE
+	if(settings.release_view_to_turf || isturf(remote_view_target)) // So it triggers if we are inside an item too... And if the item is being moved around by pull...
 		RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_recursive_move))
 
 	// Update the mob's vision after we attach everything
@@ -149,7 +146,7 @@
 	if(view_coordinator)
 		UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 	settings.unregister_signals(host_mob, src)
-	if(settings.release_view_to_turf)
+	if(settings.release_view_to_turf || isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,21 +216,36 @@
 // This is only here to solve an issue where dropping a held mob while inside a mob will linger on the turf of that mob forever
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/remote_view/proc/release_remote_view()
-	PRIVATE_PROC(TRUE)
+	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
 	var/mob/cache_mob = host_mob
 	var/releases_to_turf = settings.release_view_to_turf
-	// Delete here so the remote view is nice and clean
-	qdel(src)
+	qdel(src) // Delete here so the remote view is nice and clean
 	if(QDELETED(cache_mob) || !cache_mob.client)
 		return
-	if(releases_to_turf) // Focus on the turf, this prevents the view lingering on a mob forever
-		spawn(0) // Yes this is required. Yes I hate it. Good luck refactoring this until the byond issue is fixed. This needs to happen AFTER the move resolves, but needs to be called by recursive move...
-			to_chat(world, "RELEASED [cache_mob] TO TURF")
-			cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
+
+	// We're nothing special, ask the mob to check if it should start a new remote view
+	if(!releases_to_turf)
+		cache_mob.reset_perspective()
 		return
-	to_chat(world, "RELEASED [cache_mob]")
-	cache_mob.reset_perspective() // Yes this is terrible with the above line if you are still not fully released to a turf and on the move, but I don't have achoice here due to a byond issue.
+
+	// Focus on the turf, this prevents the view lingering on a mob forever
+	// Check to see if it's legal to release the view. Our top level object MUST NOT be a mob!
+	var/emergency = 0
+	var/atom/movable/recursive_scan = cache_mob.loc
+	if(!isturf(recursive_scan)) // If our actual mob was placed on a turf, skip all of this recursion checking. We're good to decouple.
+		while(recursive_scan && !isturf(recursive_scan) && emergency++ < 64)
+			if(ismob(recursive_scan))
+				cache_mob.reset_perspective() // We're still inside another mob... Do not decouple to turf. Just update the target if we need to.
+				return
+			recursive_scan = recursive_scan.loc
+
+	// Decouple to turf, this is a hack.
+	// Yes this is required.
+	spawn(0) // Yes I hate it.
+		cache_mob.AddComponent(/datum/component/remote_view, focused_on = get_turf(cache_mob))
+	// Good luck refactoring this until the byond issue is fixed. This needs to happen AFTER the move resolves, but needs to be called by recursive move...
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Accessors
