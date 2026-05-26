@@ -41,6 +41,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/music = null
 	var/has_gravity = TRUE // Don't check this var directly; use get_gravity() instead
 	var/obj/machinery/power/apc/apc = null
+	var/list/radiators = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
 	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
