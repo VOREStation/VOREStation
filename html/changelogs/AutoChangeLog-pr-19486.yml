@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "update tgui-core to 6.0.0"
-  - bugfix: "searchable dropdown display"

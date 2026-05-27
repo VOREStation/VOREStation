@@ -1,4 +1,0 @@
-author: "SabreKnight"
-delete-after: True
-changes:
-  - bugfix: "TEG tgui crash when unlinked"
