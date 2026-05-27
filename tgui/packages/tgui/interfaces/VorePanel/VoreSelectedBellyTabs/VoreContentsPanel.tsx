@@ -151,9 +151,11 @@ export const VoreContentsPanel = (props: {
                   <Stack.Item>
                     <Dropdown
                       searchInput
+                      styledInput
                       onSelected={(value) => onTargetBely(value)}
                       options={bellyDropdownNames!}
                       selected={bellyValueToName(targetBelly)}
+                      displayText={bellyValueToName(targetBelly)}
                     />
                   </Stack.Item>
                 </>

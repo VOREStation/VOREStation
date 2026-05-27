@@ -10,13 +10,10 @@
 @use '~tgui-core/styles';
 
 // Core styles
-@include meta.load-css('~tgui/styles/reset.scss');
+@include meta.load-css('~tgui-core/styles/reset.scss');
+@include meta.load-css('~tgui-core/styles/all-atomic.scss');
 
-// Atomic classes
-@include meta.load-css('~tgui/styles/atomic/candystripe.scss');
-@include meta.load-css('~tgui/styles/atomic/color.scss');
-@include meta.load-css('~tgui/styles/atomic/debug-layout.scss');
-@include meta.load-css('~tgui/styles/atomic/outline.scss');
+// Non core atomic
 @include meta.load-css('~tgui/styles/atomic/text.scss');
 
 // Components specific to tgui-panel
