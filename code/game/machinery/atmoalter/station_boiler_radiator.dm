@@ -17,10 +17,23 @@
 /obj/machinery/stationboiler_radiator/Initialize(mapload)
 	. = ..()
 	SSstationheater.radiators += src
+	var/area/new_area = get_area(src)
+	if(new_area)
+		LAZYADD(new_area.radiators, src)
 
 /obj/machinery/stationboiler_radiator/Destroy()
 	SSstationheater.radiators -= src
+	var/area/our_area = get_area(src)
+	if(our_area)
+		LAZYREMOVE(our_area.radiators, src)
 	. = ..()
+
+/obj/machinery/stationboiler_radiator/area_changed(area/old_area, area/new_area)
+	. = ..()
+	if(old_area)
+		LAZYREMOVE(old_area.radiators, src)
+	if(new_area)
+		LAZYADD(new_area.radiators, src)
 
 /obj/machinery/stationboiler_radiator/proc/set_state(activate)
 	if(actively_radiating == activate)
