@@ -72,7 +72,6 @@
 	return atmosanalyzer_scan(src, src.output.air, user)
 
 /obj/machinery/meter/atmosanalyze(mob/user)
-	var/obj/machinery/atmospherics/pipe/target = select_target()
 	var/datum/gas_mixture/mixture = null
 	if(target && target.parent)
 		mixture = target.parent.air
