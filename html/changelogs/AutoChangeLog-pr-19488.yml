@@ -1,6 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - refactor: "Remote view code cleanup"
-  - bugfix: "Several remote view bugs where the screen would turn black or be left behind"
-  - code_imp: "duplicated health hud code removed"

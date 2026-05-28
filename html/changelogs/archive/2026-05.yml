@@ -174,3 +174,12 @@
   Will:
   - bugfix: multiple universal pipe connections properly init during map loading
   - refactor: Optimizes cryoplanet subsystem
+2026-05-28:
+  Will:
+  - refactor: Remote view code cleanup
+  - bugfix: Several remote view bugs where the screen would turn black or be left
+      behind
+  - code_imp: duplicated health hud code removed
+  - bugfix: Fixes universal pipe init again
+  - bugfix: Reverts gas meter pipe attachment to how it was before, but keeps visual
+      offset
