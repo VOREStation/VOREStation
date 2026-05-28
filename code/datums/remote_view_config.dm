@@ -88,7 +88,7 @@
 	return
 
 /// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
-/datum/remote_view_config/proc/handle_relay_movement(datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
+/datum/remote_view_config/proc/handle_relay_movement(datum/component/remote_view/owner_component, mob/host_mob, direction)
 	SIGNAL_HANDLER
 	return remote_view_target.relaymove(host_mob, direction)
 
