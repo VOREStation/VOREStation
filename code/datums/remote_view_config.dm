@@ -181,7 +181,8 @@
 /datum/remote_view_config/camera_standard
 	use_zoom_hud = TRUE
 
-/datum/remote_view_config/camera_standard/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/camera_standard/handle_apply_visuals(mob/host_mob)
+	var/datum/component/remote_view/owner_component = host_mob.GetComponent(/datum/component/remote_view)
 	var/obj/machinery/camera/view_camera = owner_component.get_target()
 	if(!view_camera || !view_camera.can_use())
 		host_mob.reset_perspective()
