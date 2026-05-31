@@ -466,8 +466,8 @@
 				SSjob.free_role(job)
 
 				//Their objectives cleanup
-				if(mind.objectives.len)
-					qdel(mind.objectives)
+				if(length(mind.objectives))
+					QDEL_LIST(mind.objectives)
 					mind.special_role = null
 
 				//Cut the PDA manifest (ugh)
