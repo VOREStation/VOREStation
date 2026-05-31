@@ -183,3 +183,11 @@
   - bugfix: Fixes universal pipe init again
   - bugfix: Reverts gas meter pipe attachment to how it was before, but keeps visual
       offset
+2026-05-31:
+  Cerami:
+  - bugfix: Fix morph's body takeover to work on bellies beyond the first
+  Will:
+  - code_imp: corrects base arguments of remote_view_config/handle_relay_movement()
+      proc
+  - bugfix: remote views with hud modifiers end correctly instead of waiting an extra
+      life tick

@@ -1,4 +1,0 @@
-author: "Cerami"
-delete-after: True
-changes:
-  - bugfix: "Fix morph's body takeover to work on bellies beyond the first"
