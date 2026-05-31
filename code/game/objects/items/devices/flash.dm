@@ -1,6 +1,7 @@
 /obj/item/flash
 	name = "flash"
 	desc = "Used for blinding and disorienting."
+	description_info = "If the device 'clicks' it has either been used too much recently or is out of charge - requiring a recharger. If the bulb is burnt out or broken, it needs to be repaired using a screwdriver."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
 	item_state = "flashtool"
@@ -58,8 +59,9 @@
 				broken = FALSE
 				update_icon()
 			playsound(src, W.usesound, 50, 1)
-		else
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " fails to repair \the [src]."))
+		else
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " stops attempting to repair \the [src]."))
 	else
 		..()
 
