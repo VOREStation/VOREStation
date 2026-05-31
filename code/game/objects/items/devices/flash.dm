@@ -1,7 +1,6 @@
 /obj/item/flash
 	name = "flash"
 	desc = "Used for blinding and disorienting."
-	description_info = "If the device 'clicks' it has either been used too much recently or is out of charge - requiring a recharger. If the bulb is burnt out or broken, it needs to be repaired using a screwdriver."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
 	item_state = "flashtool"
@@ -49,6 +48,9 @@
 /obj/item/flash/Initialize(mapload)
 	. = ..()
 	power_supply = new cell_type(src)
+	if(can_repair)
+		description_info = "If the device 'clicks' it has either been used too much recently or is out of charge - requiring a recharger. If the bulb is burnt out or broken, it needs to be repaired using a screwdriver."
+
 
 /obj/item/flash/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && broken)
