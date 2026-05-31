@@ -236,7 +236,16 @@ GLOBAL_LIST_INIT(lightclawfootstep, list(
 ))
 
 //heavy footsteps list
-GLOBAL_LIST_INIT(heavyfootstep, list(
+GLOBAL_LIST_INIT(heavyaltfootstep, list(
+	FOOTSTEP_WOOD_BAREFOOT = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg'), 100, 2),
+	FOOTSTEP_HARD_BAREFOOT = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg'), 100, 2),
+	FOOTSTEP_CARPET_BAREFOOT = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg'), 100, 2),
 	FOOTSTEP_GENERIC_HEAVY = list(list(
 		'sound/effects/footstep/heavy1.ogg',
 		'sound/effects/footstep/heavy2.ogg'), 100, 2),
@@ -254,7 +263,7 @@ GLOBAL_LIST_INIT(heavyfootstep, list(
 ))
 
 //heavy alt footsteps list
-GLOBAL_LIST_INIT(heavyaltfootstep, list(
+GLOBAL_LIST_INIT(heavyfootstep, list(
 	FOOTSTEP_WOOD_BAREFOOT = list(list(
 		'sound/mob/footstep_large.ogg',
 		'sound/mob/footstep_large2.ogg'), 90, 1),
@@ -310,13 +319,25 @@ GLOBAL_LIST_INIT(mechfootstep, list(
 //slime footsteps list
 GLOBAL_LIST_INIT(slimefootstep, list(
 	FOOTSTEP_WOOD_BAREFOOT = list(list(
-		'sound/effects/footstep/slime1.ogg'), 90, 1),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, 1),
 	FOOTSTEP_HARD_BAREFOOT = list(list(
-		'sound/effects/footstep/slime1.ogg'), 90, 1),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, 1),
 	FOOTSTEP_CARPET_BAREFOOT = list(list(
-		'sound/effects/footstep/slime1.ogg'), 75, -2),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, -2),
 	FOOTSTEP_GRASS = list(list(
-		'sound/effects/footstep/slime1.ogg'), 75, 0),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, 0),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
