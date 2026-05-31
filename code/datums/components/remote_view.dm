@@ -114,6 +114,10 @@
 	if(settings.use_zoom_hud && !host_mob.hud_used.hud_shown)
 		host_mob.toggle_zoom_hud()
 
+	// Unregister remaining signals
+	// to_chat(world, "======================================== ENDED VIEW on: [remote_view_target]")
+	. = ..()
+
 	// Update the mob's vision right away if it still exists
 	if(!QDELETED(host_mob) && host_mob.client)
 		settings.detatch_from_mob(src, host_mob)
@@ -122,10 +126,6 @@
 		host_mob.client.pixel_y = 0
 		host_mob.handle_vision()
 		host_mob.handle_regular_hud_updates()
-
-	// Unregister remaining signals
-	// to_chat(world, "======================================== ENDED VIEW on: [remote_view_target]")
-	. = ..()
 
 	// Finish cleanup
 	QDEL_NULL(settings)
