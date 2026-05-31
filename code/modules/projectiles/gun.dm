@@ -712,19 +712,14 @@
 	else
 		playsound(src, shot_sound, 50, 1)
 
-//Suicide handling.
-/obj/item/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
-
 /obj/item/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/M = user
 
-	mouthshoot = 1
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
-		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
@@ -732,7 +727,6 @@
 		play_fire_sound(M, in_chamber)
 		if(istype(in_chamber, /obj/item/projectile/beam/lasertag))
 			user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
-			mouthshoot = 0
 			return
 
 		in_chamber.on_hit(M)
@@ -744,11 +738,9 @@
 			to_chat(user, span_notice("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
-		mouthshoot = 0
 		return
 	else
 		handle_click_empty(user)
-		mouthshoot = 0
 		return
 
 /obj/item/gun/proc/toggle_scope(zoom_amount=2.0)
