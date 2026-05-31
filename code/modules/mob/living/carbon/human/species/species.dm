@@ -402,8 +402,6 @@
 
 	update_sort_hint()
 
-/datum/species/proc/get_footsep_sounds()
-	return footstep
 
 /datum/species/proc/update_sort_hint()
 	if(spawn_flags & SPECIES_IS_RESTRICTED)
