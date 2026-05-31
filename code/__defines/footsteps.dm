@@ -239,16 +239,16 @@ GLOBAL_LIST_INIT(lightclawfootstep, list(
 GLOBAL_LIST_INIT(heavyaltfootstep, list(
 	FOOTSTEP_WOOD_BAREFOOT = list(list(
 		'sound/effects/footstep/heavy1.ogg',
-		'sound/effects/footstep/heavy2.ogg'), 75, 2),
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
 	FOOTSTEP_HARD_BAREFOOT = list(list(
 		'sound/effects/footstep/heavy1.ogg',
-		'sound/effects/footstep/heavy2.ogg'), 75, 2),
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
 	FOOTSTEP_CARPET_BAREFOOT = list(list(
 		'sound/effects/footstep/heavy1.ogg',
-		'sound/effects/footstep/heavy2.ogg'), 75, 2),
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
 	FOOTSTEP_GENERIC_HEAVY = list(list(
 		'sound/effects/footstep/heavy1.ogg',
-		'sound/effects/footstep/heavy2.ogg'), 75, 2),
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
