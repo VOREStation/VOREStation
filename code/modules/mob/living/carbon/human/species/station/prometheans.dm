@@ -135,8 +135,6 @@
 		/datum/decl/emote/visible/vibrate
 	)
 
-	footstep = FOOTSTEP_MOB_SLIME
-
 /datum/species/shapeshifter/promethean/equip_survival_gear(mob/living/carbon/human/H)
 	var/boxtype = pick(list(/obj/item/storage/toolbox/lunchbox,
 							/obj/item/storage/toolbox/lunchbox/heart,

@@ -99,7 +99,6 @@
 	var/death_volume = 50 // Self-explanatory, define this separately on your species if the sound files are louder.
 	// var/species_sounds_herm // If you want a custom sound played for other genders, just add them like so
 
-	var/footstep = FOOTSTEP_MOB_HUMAN
 	var/list/special_step_sounds = null
 
 	// Combat/health/chem/etc. vars.

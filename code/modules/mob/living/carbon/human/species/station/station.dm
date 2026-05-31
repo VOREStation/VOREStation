@@ -196,8 +196,6 @@
 		/datum/decl/emote/human/stopsway
 	)
 
-	footstep = FOOTSTEP_MOB_CLAW
-
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
 	wikilink="https://wiki.vore-station.net/Unathi"
 
@@ -1230,8 +1228,6 @@
 		/datum/decl/emote/audible/teshchirp,
 		/datum/decl/emote/audible/teshtrill
 	)
-
-	footstep = FOOTSTEP_MOB_TESHARI
 
 /datum/species/teshari/equip_survival_gear(mob/living/carbon/human/H)
 	..()
