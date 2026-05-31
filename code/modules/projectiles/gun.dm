@@ -274,7 +274,7 @@
 */
 
 /obj/item/gun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
-	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
+	if (A == user && user.zone_sel.selecting == O_MOUTH)
 		handle_suicide(user)
 		return ITEM_INTERACT_SUCCESS
 	else if(user.a_intent == I_HURT) //point blank shooting
