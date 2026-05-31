@@ -84,10 +84,6 @@
 	hud_state = "taser"
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
-/obj/item/projectile/energy/electrode/strong
-	agony = 55
-	hud_state = "taser"
-
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
 	damage = 5
