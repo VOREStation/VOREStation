@@ -21,7 +21,7 @@
 	hitsound_wall = null
 	damage = 5
 	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
-	var/flash_range = 0
+	var/flash_range = 1
 	var/brightness = 7
 	var/light_colour = "#ffffff"
 	hud_state = "grenade_dummy"
@@ -59,7 +59,7 @@
 /obj/item/projectile/energy/flash/flare
 	fire_sound = 'sound/weapons/grenade_launcher.ogg'
 	damage = 10
-	flash_range = 1
+	flash_range = 2
 	brightness = 15
 	flash_strength = 20
 	hud_state = "grenade_dummy"
@@ -311,10 +311,6 @@
 	flash_strength = 10
 	hud_state = "taser"
 
-/obj/item/projectile/energy/flash
-	flash_range = 1
-	hud_state = "grenade_dummy"
-
 /obj/item/projectile/energy/flash/strong
 	name = "chemical shell"
 	icon_state = "bullet"
@@ -322,10 +318,6 @@
 	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	flash_strength = 15
 	brightness = 15
-	hud_state = "grenade_dummy"
-
-/obj/item/projectile/energy/flash/flare
-	flash_range = 2
 	hud_state = "grenade_dummy"
 
 /obj/item/projectile/energy/anomaly
