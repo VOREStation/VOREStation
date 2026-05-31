@@ -23,7 +23,7 @@
 	mob_size =		MOB_MEDIUM
 	push_flags =	~HEAVY
 	swap_flags =	~HEAVY
-	flags =			NO_DNA | NO_SLEEVE | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_DEFIB
+	flags =			NO_DNA | NO_SLEEVE | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_DEFIB | SHOCK_ABSORB
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
 	spawn_flags = SPECIES_CAN_JOIN
 	health_hud_intensity = 2
@@ -74,7 +74,7 @@
 	body_temperature = T20C	// Room temperature
 
 	rarity_value = 5
-	siemens_coefficient = 0.8
+	siemens_coefficient = 0
 
 	water_resistance = 0
 	water_damage_mod = 0
