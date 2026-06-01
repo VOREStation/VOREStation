@@ -21,31 +21,6 @@
 /atom/proc/become_anomalous()
 	if(!is_anomalous())
 		AddComponent(/datum/component/artifact_master)
-		if(istype(src, /obj/item))
-			var/obj/item/I = src
-			var/list/new_tech
-			if(I.origin_tech)
-				new_tech = I.origin_tech.Copy()
-			else
-				new_tech = list()
-			if(prob(50))
-				new_tech[TECH_PRECURSOR] += 1
-			else
-				new_tech[TECH_ARCANE] += 1
-			var/rand_tech = pick(\
-				TECH_MATERIAL,\
-				TECH_ENGINEERING,\
-				TECH_PHORON,\
-				TECH_POWER,\
-				TECH_BLUESPACE,\
-				TECH_BIO,\
-				TECH_COMBAT,\
-				TECH_MAGNET,\
-				TECH_DATA,\
-				TECH_ILLEGAL\
-				)
-			LAZYSET(new_tech, rand_tech, rand(4,7))
-			I.origin_tech = new_tech
 
 /datum/component/artifact_master
 	var/atom/holder

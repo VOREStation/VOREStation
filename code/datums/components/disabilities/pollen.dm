@@ -59,7 +59,9 @@
 		if(locate(/obj/effect/plant) in things)
 			trigger_allergy()
 			return
-		if(locate(/obj/item/toy/bouquet) in things)
+		for(var/obj/item/toy/bouquet/flowers in things)
+			if(istype(flowers, /obj/item/toy/bouquet/fake)) //Plastic doesn't trigger pollen.
+				continue
 			trigger_allergy()
 			return
 		for(var/obj/machinery/portable_atmospherics/hydroponics/irritant_tray in things)

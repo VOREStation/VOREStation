@@ -11,7 +11,6 @@
 	weight = 23
 	protectiveness = 20 // 50%
 	conductivity = 13 // For the purposes of balance.
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	supply_conversion_value = 6
 
 /datum/material/plasteel/generate_recipes()

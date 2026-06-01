@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(processing)
 		msg += "---\n"
 	log_world(msg)
 
-/datum/proc/DebugSubsystemProcess(var/wait, var/times_fired, var/datum/controller/subsystem/processing/subsystem)
+/datum/proc/DebugSubsystemProcess(wait, times_fired, datum/controller/subsystem/processing/subsystem)
 	subsystem.debug_last_thing = src
 	var/start_tick = world.time
 	var/start_tick_usage = world.tick_usage

@@ -9,12 +9,12 @@
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
-	stack_origin_tech = list(TECH_MATERIAL = 1)
 	melting_point = T0C+1
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
 	sheet_plural_name = "pile" //Just a bigger pile
 	radiation_resistance = 1
+	supply_conversion_value = 0
 
 /datum/material/snow/generate_recipes()
 	recipes = list(
@@ -37,12 +37,12 @@
 	weight = 2
 	hardness = 2
 	protectiveness = 0 // 0%
-	stack_origin_tech = list(TECH_MATERIAL = 1)
 	melting_point = T0C+1
 	destruction_desc = "crumbles"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
 	radiation_resistance = 1
+	supply_conversion_value = 0
 
 /datum/material/snowbrick/generate_recipes()
 	recipes = list(

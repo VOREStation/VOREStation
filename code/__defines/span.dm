@@ -163,6 +163,8 @@
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
 #define span_darkpink(str) ("<span class='darkpink'>" + str + "</span>")
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
+#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
+
 
 /* System and Debug */
 // System filter
@@ -255,7 +257,7 @@
 #define span_subheader_announcement_text(str) ("<span class='subheader_announcement_text'>" + str + "</span>")
 
 // special spans
-#define span_spoiler(str) ("<span class='spoiler'>" + str + "</span>")
+#define span_spoiler(str) ("<span class='text-spoiler'>" + str + "</span>")
 
 // damage type spans, mostly used for admin for now
 #define span_brute(str) ("<span class='brute'>" + str + "</span>")

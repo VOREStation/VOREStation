@@ -25,7 +25,7 @@
 
 	return include_template("Autowiki/SymptomTableTemplate", list("content" = output))
 
-/datum/autowiki/symptom/proc/generate_thresholds(var/list/thresholds)
+/datum/autowiki/symptom/proc/generate_thresholds(list/thresholds)
 	var/compiled_thresholds = ""
 
 	for(var/threshold in thresholds)

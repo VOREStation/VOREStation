@@ -146,7 +146,7 @@ SUBSYSTEM_DEF(lighting)
 	if (i)
 		queue.Cut(1, i + 1)
 
-/datum/controller/subsystem/lighting/proc/update_sunlight(var/datum/planet_sunlight_handler/pshandler)
+/datum/controller/subsystem/lighting/proc/update_sunlight(datum/planet_sunlight_handler/pshandler)
 	if(istype(pshandler))
 		pshandler.update_sun()
 		sunlight_queue_active |= pshandler.shandlers
@@ -156,14 +156,14 @@ SUBSYSTEM_DEF(lighting)
 			planet_shandler.update_sun()
 		sunlight_queue_active = sunlight_queue.Copy()
 
-/datum/controller/subsystem/lighting/proc/get_pshandler_planet(var/datum/planet/planet)
+/datum/controller/subsystem/lighting/proc/get_pshandler_planet(datum/planet/planet)
 	if(!planet_shandlers[planet])
 		planet_shandlers[planet] = new /datum/planet_sunlight_handler(planet)
 	return planet_shandlers[planet]
 
 //Wrapper for the list, because these type of lists are just awful to work with
 //Also takes care of initialization order issues
-/datum/controller/subsystem/lighting/proc/get_pshandler_z(var/z)
+/datum/controller/subsystem/lighting/proc/get_pshandler_z(z)
 	if(z > length(z_to_pshandler))
 		z_to_pshandler.len = z
 	var/datum/planet_sunlight_handler/pshandler = z_to_pshandler[z]

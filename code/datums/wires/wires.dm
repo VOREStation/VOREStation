@@ -1,3 +1,4 @@
+#define MAXIMUM_EMP_WIRES 3
 
 /datum/wires
 	/// TRUE if the wires will be different every time a new wire datum is created.
@@ -476,3 +477,16 @@
 /datum/wires/proc/is_attached(color)
 	if(assemblies[color])
 		return TRUE
+
+/datum/wires/proc/emp_pulse()
+	var/list/possible_wires = shuffle(wires)
+	var/remaining_pulses = MAXIMUM_EMP_WIRES
+
+	for(var/wire in possible_wires)
+		if(prob(33))
+			pulse(wire)
+			remaining_pulses--
+			if(!remaining_pulses)
+				break
+
+#undef MAXIMUM_EMP_WIRES

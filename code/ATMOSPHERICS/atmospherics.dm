@@ -78,14 +78,57 @@ Pipelines + Other Objects -> Pipe network
 
 /** Check if this machine is willing to connect with the target machine. */
 /obj/machinery/atmospherics/proc/check_connectable(obj/machinery/atmospherics/target)
-	return (src.connect_types & target.connect_types)
+	return (src.connect_types & target.connect_types) && !check_if_side_in_use(target)
+
+/** Returns true if a pipe is already connected to the same side of the target as ourselves. This is a hack to prevent multi-connection from the same turf. Our atmopipes do not have support for multiple connections, this requires a major refactor or replacement port from TG in the future. */
+/obj/machinery/atmospherics/proc/check_if_side_in_use(obj/machinery/atmospherics/target)
+	if(istype(src, /obj/machinery/atmospherics/pipe/simple/hidden/universal) \
+	|| istype(src, /obj/machinery/atmospherics/pipe/simple/visible/universal) \
+	|| istype(target, /obj/machinery/atmospherics/pipe/simple/visible/universal) \
+	|| istype(target, /obj/machinery/atmospherics/pipe/simple/visible/universal))
+		return FALSE // Snowflake to allow univerals pipe adaptors to bridge the gap on the same side
+	var/list/node_list = target.get_neighbor_nodes_for_init()
+	if(!length(node_list)) // Preserving original behavior
+		return TRUE
+	// By default, do not allow connections from the same side.
+	var/turf/our_turf = get_turf(src)
+	for(var/obj/machinery/atmospherics/check_node in node_list)
+		if(QDELETED(check_node) || check_node == src)
+			continue
+		if(get_turf(check_node) == our_turf)
+			return TRUE
+	return FALSE
+
+/// Prioritize pipes that are already trying to link to us, prevents mismatching when both sides call atmo_init() on their own
+/obj/machinery/atmospherics/proc/get_prioritized_nodes(turf/at_loc)
+	RETURN_TYPE(/list)
+
+	var/priority_target = null
+	var/list/viable_nodes = list()
+	for(var/obj/machinery/atmospherics/checking in at_loc)
+		var/list/node_list = checking.get_neighbor_nodes_for_init()
+		if(!priority_target) // Check for pipes already linking to us from their side. We want them to be priority to link back.
+			for(var/obj/machinery/atmospherics/node_check in node_list)
+				if(!priority_target && node_check == src)
+					priority_target = checking
+					break
+		// Otherwise we just want a list of all the viable targets we COULD link to. check_connectable() will be called after to see if they can be linked to properly.
+		if(checking != priority_target)
+			viable_nodes += checking
+
+	// So the goal of this proc is to organize the list so that the one trying to link to us will be FIRST, but the list of targets is always all available nodes
+	if(priority_target) // Put the priority target at the head
+		viable_nodes = list(priority_target) + viable_nodes
+
+	return viable_nodes
+
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/pipe_painter))
 		return
 	..()
 
-/obj/machinery/atmospherics/proc/add_underlay(var/turf/T, var/obj/machinery/atmospherics/node, var/direction, var/icon_connect_type)
+/obj/machinery/atmospherics/proc/add_underlay(turf/T, obj/machinery/atmospherics/node, direction, icon_connect_type)
 	if(node)
 		if(!T.is_plating() && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
 			//underlays += icon_manager.get_atmos_icon("underlay_down", direction, color_cache_name(node))
@@ -100,7 +143,7 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/update_underlays()
 	return TRUE
 
-/obj/machinery/atmospherics/proc/color_cache_name(var/obj/machinery/atmospherics/node)
+/obj/machinery/atmospherics/proc/color_cache_name(obj/machinery/atmospherics/node)
 	//Don't use this for standard pipes
 	if(!istype(node))
 		return null
@@ -121,7 +164,7 @@ Pipelines + Other Objects -> Pipe network
 
 	return null
 
-/obj/machinery/atmospherics/proc/build_network(var/new_attachment)
+/obj/machinery/atmospherics/proc/build_network(new_attachment)
 	// Called to build a network from this node
 
 	return null
@@ -157,7 +200,7 @@ Pipelines + Other Objects -> Pipe network
 	return TRUE
 
 // Deconstruct into a pipe item.
-/obj/machinery/atmospherics/proc/deconstruct()
+/obj/machinery/atmospherics/atom_deconstruct()
 	if(QDELETED(src))
 		return
 	if(construction_type)
@@ -258,7 +301,7 @@ Pipelines + Other Objects -> Pipe network
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = our_turf.return_air()
 	var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
-	deconstruct()
+	atom_deconstruct()
 	// Release pressure
 	playsound(our_turf, 'sound/effects/bang.ogg', 70, 0, 0)
 	playsound(our_turf, 'sound/effects/clang2.ogg', 70, 0, 0)

@@ -15,6 +15,8 @@ NOTICE: Do not leave trailing commas!!!!
 #define POCKET_GENERIC \
 	/obj/item/pen, \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
+	/obj/item/paper_bundle, \
 	/obj/item/book, \
 	/obj/item/flashlight, \
 	/obj/item/storage/fancy/cigarettes, \
@@ -94,7 +96,7 @@ NOTICE: Do not leave trailing commas!!!!
 #define POCKET_MINING \
 	/obj/item/storage/excavation, \
 	/obj/item/storage/briefcase/inflatable, \
-	/obj/item/storage/bag/ore, \
+	/obj/item/ore_bag, \
 	/obj/item/pickaxe, \
 	/obj/item/shovel, \
 	/obj/item/stack/marker_beacon, \

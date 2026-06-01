@@ -39,7 +39,7 @@
 	result = null
 	required_reagents = list(REAGENT_ID_MICROCILLIN = 1, REAGENT_ID_MACROCILLIN = 1)
 
-/datum/decl/chemical_reaction/instant/dontcrossthebeams/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/dontcrossthebeams/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	playsound(location, 'sound/weapons/gauss_shoot.ogg', 50, 1)
 	var/datum/effect/effect/system/grav_pull/s = new /datum/effect/effect/system/grav_pull

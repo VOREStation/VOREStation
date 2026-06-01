@@ -109,7 +109,7 @@
 		affected_mob.wash(CLEAN_ALL)
 		affected_mob.water_act(2)
 
-/datum/anomalous_weather/proc/do_special(var/turf/simulated/T)
+/datum/anomalous_weather/proc/do_special(turf/simulated/T)
 	return
 
 /datum/anomalous_weather/proc/hear_sounds(mob/M, adding)
@@ -157,12 +157,12 @@
 		T.wet_floor(1)
 	if(prob(0.025) && !isopenturf(T))
 		lightning_strike(T)
-
+/*
 /datum/anomalous_weather/rain/acid
 	name = "Acid Rain"
 	reagent_id = REAGENT_ID_SACID
 	telegraph_message = "Strange clouds begin to cover the ceiling, an acidid tinge on them..."
-
+*/
 /datum/anomalous_weather/hail
 	name = "Hail"
 	icon_state = "snowfall_heavy_old"

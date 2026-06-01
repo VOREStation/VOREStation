@@ -38,14 +38,12 @@
 	glow_color = "#33ccff" //Same glow color as Sif trees.
 	glow_intensity = 1
 
-
-	var/list/my_slime = list()
+	var/slime_count = 0
 	var/slime_max = 35 //With a slug which moves once every 10 seconds and a 5 minute delete timer, this should never exceed 30.
-	var/mob/living/vore_memory = null
+	var/datum/weakref/last_prey = null
 
 	can_be_drop_prey = FALSE
 
-/mob/living/simple_mob/vore/slug //I guess separating the vore variables is a little more organized?
 	vore_bump_chance = 100 //Always attempt a bump nom if possible...
 	vore_bump_emote = "knocks over and begins slowly engulfing"
 	vore_active = 1
@@ -55,6 +53,10 @@
 	vore_ignores_undigestable = 0
 	swallowTime = 100 //10 seconds. Easy to crawl away from when knocked over.
 	vore_default_mode = DM_DIGEST
+
+/mob/living/simple_mob/vore/slug/Destroy()
+	. = ..()
+	last_prey = null
 
 /mob/living/simple_mob/vore/slug/load_default_bellies()
 	. = ..()
@@ -92,21 +94,15 @@
 	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/vore/slug/proc/spread_slime()
-	if(my_slime.len >= slime_max)
+	if(slime_count >= slime_max)
 		return
 	if(istype(get_turf(src), /turf/simulated/floor/water)) //Important to stop my_slime from filling with null entries in water.
 		return
 	if(locate(/obj/effect/slug_glue) in get_turf(src)) // Don't stack slime forever
 		return
 	var/obj/effect/slug_glue/G = new /obj/effect/slug_glue/(get_turf(src))
-	G.my_slug = src
-	my_slime += G
-
-/mob/living/simple_mob/vore/slug/death()
-	..()
-	for(var/obj/effect/slug_glue/G in my_slime)
-		G.my_slug = null
-		my_slime -= G //No point in keeping these loaded in the list when the slug dies if somehow the list sticks around after death.
+	G.owner_slug = WEAKREF(src)
+	slime_count++
 
 /mob/living/simple_mob/vore/slug/Moved()
 	. = ..()
@@ -135,7 +131,7 @@
 
 /mob/living/simple_mob/vore/slug/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
 	..()
-	vore_memory = prey
+	last_prey = WEAKREF(prey)
 
 /datum/ai_holder/simple_mob/passive/slug_ch
 	wander = TRUE
@@ -157,7 +153,7 @@
 	buckle_lying = TRUE
 
 	var/persist_time = 5 MINUTES //How long until we cease existing.
-	var/mob/living/simple_mob/vore/slug/my_slug = null //This should be set by the slug.
+	var/datum/weakref/owner_slug = null
 	var/turf/my_turf = null //The turf we spawn on.
 	var/base_escape_time = 1 MINUTE //How long does it take to struggle free? Affected by the victim's size_multiplier.
 
@@ -178,8 +174,10 @@
 
 /obj/effect/slug_glue/Destroy()
 	. = ..()
+	var/mob/living/simple_mob/vore/slug/my_slug = owner_slug?.resolve()
 	if(my_slug)
-		my_slug.my_slime -= src //Remove the slime from the slug's list when destroyed.
+		my_slug.slime_count--
+	owner_slug = null
 
 //This could probably be applied to spideweb code to make it work as intended again.
 /obj/effect/slug_glue/Uncross(atom/movable/AM, atom/newloc)
@@ -218,14 +216,16 @@
 			alert_slug(L)
 
 /obj/effect/slug_glue/proc/alert_slug(mob/living/victim as mob)
+	var/mob/living/simple_mob/vore/slug/my_slug = owner_slug?.resolve()
 	if(!my_slug || !has_buckled_mobs() || isbelly(my_slug.loc)) //Otherwise if you eat the slug it will infinitely attempt to eat you if you trip in glue.
 		return
-	if(my_slug.vore_memory == victim) //Getting eaten lets you get stuck once without alerting the slug. This is to prevent instantly getting eaten again if you struggle free with run intent on.
-		my_slug.vore_memory = null
+	if(my_slug.last_prey?.resolve() == victim) //Getting eaten lets you get stuck once without alerting the slug. This is to prevent instantly getting eaten again if you struggle free with run intent on.
+		my_slug.last_prey = null
 		return
 	my_slug.ai_holder.give_target(victim)
 
 /obj/effect/slug_glue/proc/unalert_slug(mob/living/victim as mob)
+	var/mob/living/simple_mob/vore/slug/my_slug = owner_slug?.resolve()
 	if(!my_slug)
 		return
 	if(my_slug.ai_holder.target == victim)

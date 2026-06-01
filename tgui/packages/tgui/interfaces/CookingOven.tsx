@@ -1,6 +1,8 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
+  Box,
+  Button,
   DmIcon,
   ProgressBar,
   Section,
@@ -8,17 +10,17 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 
-import { CookingApplianceStatus, type Data } from './CookingAppliance';
+import { ApplianceStatus, type Data } from './Appliance';
 
 export const CookingOven = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { containersRemovable, our_contents } = data;
+  const { containersRemovable, our_contents, is_open } = data;
 
   return (
     <Window width={600} height={600}>
       <Window.Content scrollable>
-        <CookingApplianceStatus />
+        <ApplianceStatus />
         <Section title="Containers">
           <Stack align="center" justify="center">
             <Stack.Item position="relative">
@@ -127,10 +129,48 @@ export const CookingOven = (props) => {
                     </Stack.Item>
                   );
                 })}
+                <Stack.Item>
+                  <Button
+                    left="30px"
+                    height="150px"
+                    tooltip={`Click to ${is_open ? 'close' : 'open'}.`}
+                    width="50px"
+                    color="transparent"
+                    onClick={() => act('toggle_door')}
+                    textColor="white"
+                  >
+                    <Box backgroundColor="black">
+                      <Stack
+                        mt="20px"
+                        fill
+                        vertical
+                        align="center"
+                        verticalAlign="center"
+                      >
+                        {is_open ? (
+                          <>
+                            <Stack.Item bold>C</Stack.Item>
+                            <Stack.Item bold>L</Stack.Item>
+                            <Stack.Item bold>O</Stack.Item>
+                            <Stack.Item bold>S</Stack.Item>
+                            <Stack.Item bold>E</Stack.Item>
+                          </>
+                        ) : (
+                          <>
+                            <Stack.Item bold>O</Stack.Item>
+                            <Stack.Item bold>P</Stack.Item>
+                            <Stack.Item bold>E</Stack.Item>
+                            <Stack.Item bold>N</Stack.Item>
+                          </>
+                        )}
+                      </Stack>
+                    </Box>
+                  </Button>
+                </Stack.Item>
               </Stack>
               <DmIcon
                 icon="icons/obj/cooking_machines.dmi"
-                icon_state="ovenopen"
+                icon_state={is_open ? 'ovenopen' : 'ovenclosed_on'}
                 width={30}
               />
             </Stack.Item>

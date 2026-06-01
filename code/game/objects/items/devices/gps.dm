@@ -7,7 +7,6 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-gen"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 2, TECH_MAGNET = 1)
 	matter = list(MAT_STEEL = 500)
 
 	var/gps_tag = "GEN0"
@@ -82,7 +81,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	. = ..()
 	update_holder()
 
-/obj/item/gps/dropped(mob/user)
+/obj/item/gps/dropped(mob/user, equipping, slot)
 	. = ..()
 	update_holder()
 
@@ -102,7 +101,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	QDEL_NULL(compass)
 	. = ..()
 
-/obj/item/gps/proc/can_track(var/obj/item/gps/other, var/reachable_z_levels)
+/obj/item/gps/proc/can_track(obj/item/gps/other, reachable_z_levels)
 	if(!other.tracking || other.emped || other.hide_signal || is_vore_jammed(other))
 		return FALSE
 	var/turf/origin = get_turf(src)
@@ -116,7 +115,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	reachable_z_levels = reachable_z_levels || using_map.get_map_levels(origin.z, long_range)
 	return (target.z in reachable_z_levels)
 
-/obj/item/gps/proc/update_compass(atom/movable/source, var/update_compass_icon)
+/obj/item/gps/proc/update_compass(atom/movable/source, update_compass_icon)
 	SIGNAL_HANDLER
 	compass.hide_waypoints(FALSE)
 	var/turf/my_turf = get_turf(src)
@@ -167,7 +166,8 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	update_icon()
 
 /obj/item/gps/emp_act(severity, recursive)
-	if(emped) // Without a fancy callback system, this will have to do.
+	. = ..()
+	if (. & EMP_PROTECT_SELF || emped)
 		return
 	var/severity_modifier = severity ? severity : 4 // In case emp_act gets called without any arguments.
 	var/duration = 5 MINUTES / severity_modifier
@@ -452,7 +452,6 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-syndie"
 	gps_tag = "NULL"
 	desc = "A positioning system that has extended range and can detect other GPS device signals without revealing its own. How that works is best left a mystery. Alt+click to toggle power."
-	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	long_range = TRUE
 	hide_signal = TRUE
 	can_hide_signal = TRUE

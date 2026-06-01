@@ -132,14 +132,14 @@
 	spawn(25)
 	qdel(src)
 
-/mob/living/simple_mob/vore/alienanimals/succlet/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/vore/alienanimals/succlet/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/newspaper) && !ckey && isturf(user.loc))
 		user.visible_message(span_info("[user] swats [src] with [O]!"))
 		release_vore_contents()
 	else
 		..()
 
-/mob/living/simple_mob/vore/alienanimals/succlet/proc/succlet_move(var/target)
+/mob/living/simple_mob/vore/alienanimals/succlet/proc/succlet_move(target)
 	if(!target)
 		return
 	if(isbelly(loc))	//No teleporting out of bellies

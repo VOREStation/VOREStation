@@ -179,7 +179,7 @@
 	if(Adjacent(L))	//We leapt at them but we didn't manage to hit them, let's see if we're next to them
 		L.Weaken(2)	//get knocked down, idiot
 
-/mob/living/simple_mob/vore/ddraig/proc/firebreathstart(var/atom/A) //Borrowed from le big dragon
+/mob/living/simple_mob/vore/ddraig/proc/firebreathstart(atom/A) //Borrowed from le big dragon
 	glow_toggle = 1
 	set_light(glow_range, glow_intensity, glow_color) //Setting it here so the light starts immediately
 	flames = 1
@@ -189,7 +189,7 @@
 	firebreathtimer = addtimer(CALLBACK(src, PROC_REF(firebreathend), A), charge_warmup, TIMER_STOPPABLE)
 	playsound(src, "sound/magic/Fireball.ogg", 50, 1)
 
-/mob/living/simple_mob/vore/ddraig/proc/firebreathend(var/atom/A)
+/mob/living/simple_mob/vore/ddraig/proc/firebreathend(atom/A)
 	//make sure our target still exists and is on a turf
 	if(QDELETED(A) || !isturf(get_turf(A)))
 		set_AI_busy(FALSE)
@@ -202,7 +202,7 @@
 	glow_toggle = 0
 	flames = 0
 
-/mob/living/simple_mob/vore/ddraig/proc/tfbeam(var/atom/A)
+/mob/living/simple_mob/vore/ddraig/proc/tfbeam(atom/A)
 	if(!isturf(get_turf(A)))
 		return
 	set_AI_busy(TRUE)
@@ -222,7 +222,7 @@
 	tracer_type = /obj/effect/projectile/tracer/rainbow
 	impact_type = /obj/effect/projectile/impact/rainbow
 
-/obj/item/projectile/beam/mouselaser/ddraig/on_hit(var/atom/target)
+/obj/item/projectile/beam/mouselaser/ddraig/on_hit(atom/target)
 	var/mob/living/M = target
 	if(!istype(M))
 		return
@@ -241,7 +241,7 @@
 
 		addtimer(CALLBACK(new_mob, TYPE_PROC_REF(/mob/living, revert_mob_tf)), 30 SECONDS, TIMER_DELETE_ME)
 
-/obj/item/projectile/beam/mouselaser/ddraig/spawn_mob(var/mob/living/target)
+/obj/item/projectile/beam/mouselaser/ddraig/spawn_mob(mob/living/target)
 	var/list/tf_list = list(/mob/living/simple_mob/animal/passive/mouse,
 		/mob/living/simple_mob/animal/passive/mouse/rat/strong,
 		/mob/living/simple_mob/vore/alienanimals/dustjumper,
@@ -459,7 +459,7 @@
 			transfer_mob_identity(new_mob)
 			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
 
-/mob/living/proc/spawn_polymorph_mob(var/chosen_beast)
+/mob/living/proc/spawn_polymorph_mob(chosen_beast)
 	var/tf_type = chosen_beast
 	if(!ispath(tf_type))
 		return

@@ -54,9 +54,7 @@
 		if(prob(15))
 			person.Stun(2)
 			to_chat(person, span_danger(pick("You have a coughing fit!", "You can't stop coughing!")))
-			addtimer(CALLBACK(person, TYPE_PROC_REF(/mob, emote), "cough"), 1 SECONDS)
-			addtimer(CALLBACK(person, TYPE_PROC_REF(/mob, emote), "cough"), 3 SECONDS)
-			addtimer(CALLBACK(person, TYPE_PROC_REF(/mob, emote), "cough"), 6 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(extraCough), person), 3 SECONDS)
 
 	for(var/turf/simulated/floor/ground in circleviewturfs(src, 3))
 		if(ground.can_dirty)
@@ -68,6 +66,10 @@
 
 		if(prob(2))
 			new /obj/effect/decal/cleanable/filth(ground)
+
+/obj/effect/anomaly/dust/proc/extraCough(mob/living/coughing)
+	coughing.emote("cough")
+	addtimer(CALLBACK(coughing, TYPE_PROC_REF(/mob, emote), "cough"), 3 SECONDS)
 
 /obj/effect/anomaly/dust/detonate()
 	COOLDOWN_RESET(src, pulse_cooldown)

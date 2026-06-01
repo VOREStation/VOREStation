@@ -35,6 +35,8 @@ GLOBAL_PROTECT(href_token)
 	var/datum/spawn_menu/spawn_menu
 	var/datum/spawnpanel/spawn_panel
 
+	var/datum/access_viewer/access_view_menu
+
 	/// A lazylist of tagged datums, for quick reference with the View Tags verb
 	var/list/tagged_datums
 

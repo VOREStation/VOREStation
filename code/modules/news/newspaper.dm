@@ -18,6 +18,7 @@
 	var/scribble_page = null
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/newspaper/attack_self(mob/user)
 	. = ..(user)

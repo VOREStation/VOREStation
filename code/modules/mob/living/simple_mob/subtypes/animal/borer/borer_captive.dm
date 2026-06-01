@@ -5,7 +5,7 @@
 	real_name = "host brain"
 	universal_understand = 1
 
-/mob/living/captive_brain/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/captive_brain/say(message, datum/language/speaking = null, whispering = 0)
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
@@ -35,7 +35,7 @@
 	to_chat(src, span_danger("You cannot emote as a captive mind."))
 	return
 
-/mob/living/captive_brain/emote(var/message)
+/mob/living/captive_brain/emote(message)
 	to_chat(src, span_danger("You cannot emote as a captive mind."))
 	return
 

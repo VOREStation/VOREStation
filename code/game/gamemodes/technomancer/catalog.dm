@@ -62,7 +62,7 @@ GLOBAL_LIST_INIT(all_technomancer_assistance, subtypesof(/datum/technomancer/ass
 // Proc: bind_to_owner()
 // Parameters: 1 (new_owner - mob that the book is trying to bind to)
 // Description: Links the catalog to hopefully the technomancer, so that only they can access it.
-/obj/item/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
+/obj/item/technomancer_catalog/proc/bind_to_owner(mob/living/carbon/human/new_owner)
 	if(!owner && (GLOB.technomancers.is_antagonist(new_owner.mind) || universal)) //VOREStation Edit - Universal catalogs
 		owner = new_owner
 
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(all_technomancer_assistance, subtypesof(/datum/technomancer/ass
 // Parameters: 1 (category - the category link to display)
 // Description: Shows an href link to go to a spell subcategory if the category is not already selected, otherwise is bold, to reduce
 // code duplicating.
-/obj/item/technomancer_catalog/proc/show_categories(var/category)
+/obj/item/technomancer_catalog/proc/show_categories(category)
 	if(category)
 		if(spell_tab != category)
 			return "<a href='byond://?src=\ref[src];spell_category=[category]'>[category]</a>"
@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(all_technomancer_assistance, subtypesof(/datum/technomancer/ass
 							break
 		attack_self(H)
 
-/obj/item/technomancer_catalog/attackby(var/atom/movable/AM, var/mob/user)
+/obj/item/technomancer_catalog/attackby(atom/movable/AM, mob/user)
 	var/turf/T = get_turf(user)
 	if(T.z in using_map.player_levels)
 		to_chat(user, span_danger("You can only refund at your base, it's too late now!"))

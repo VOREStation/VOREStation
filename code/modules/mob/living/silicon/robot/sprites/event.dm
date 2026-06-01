@@ -19,7 +19,7 @@
 	module_type = "Lost"
 	sprite_icon = 'icons/mob/robot/lost_wide.dmi'
 
-/datum/robot_sprite/dogborg/lost/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/lost/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)
@@ -50,6 +50,7 @@
 	sprite_icon_state = "raptor"
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_LASER_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = RAPTOR_HAT_OFFSET
 
 
 // Gravekeeper
@@ -84,3 +85,4 @@
 	sprite_icon_state = "raptor"
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_LASER_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
+	hat_offset = RAPTOR_HAT_OFFSET

@@ -20,6 +20,10 @@
 	. = ..()
 	pursuit_target = WEAKREF(find_nearest_target())
 
+/obj/effect/anomaly/bioscrambler/Destroy()
+	. = ..()
+	pursuit_target = null
+
 /obj/effect/anomaly/bioscrambler/anomalyEffect(seconds_per_tick)
 	. = ..()
 	if(stats)

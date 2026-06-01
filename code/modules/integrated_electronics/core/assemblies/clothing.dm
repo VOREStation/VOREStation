@@ -104,7 +104,7 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/under/circuitry/dropped(mob/user) // Remove wearer var.
+/obj/item/clothing/under/circuitry/dropped(mob/user, equipping, slot) // Remove wearer var.
 	wearer = null
 	..()
 
@@ -125,7 +125,7 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/gloves/circuitry/dropped(mob/user)
+/obj/item/clothing/gloves/circuitry/dropped(mob/user, equipping, slot)
 	wearer = null
 	..()
 
@@ -146,7 +146,7 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/glasses/circuitry/dropped(mob/user)
+/obj/item/clothing/glasses/circuitry/dropped(mob/user, equipping, slot)
 	wearer = null
 	..()
 
@@ -167,7 +167,7 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/shoes/circuitry/dropped(mob/user)
+/obj/item/clothing/shoes/circuitry/dropped(mob/user, equipping, slot)
 	wearer = null
 	..()
 
@@ -188,7 +188,7 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/head/circuitry/dropped(mob/user)
+/obj/item/clothing/head/circuitry/dropped(mob/user, equipping, slot)
 	wearer = null
 	..()
 
@@ -211,7 +211,7 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/ears/circuitry/dropped(mob/user)
+/obj/item/clothing/ears/circuitry/dropped(mob/user, equipping, slot)
 	wearer = null
 	..()
 
@@ -232,6 +232,6 @@
 	wearer = WEAKREF(user)
 	..()
 
-/obj/item/clothing/suit/circuitry/dropped(mob/user)
+/obj/item/clothing/suit/circuitry/dropped(mob/user, equipping, slot)
 	wearer = null
 	..()

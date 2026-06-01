@@ -5,7 +5,7 @@
 /image/client_only
 	var/list/clients = list()
 
-/image/client_only/proc/append_client(var/client/C)
+/image/client_only/proc/append_client(client/C)
 	C.images += src
 	clients.Add(WEAKREF(C))
 
@@ -15,9 +15,9 @@
 		var/client/C = CW?.resolve()
 		if(C)
 			C.images -= src
+	clients.Cut()
 
 // Mostly for motion echos, but someone will probably find another use for it... So parent type gets it instead!
-/image/client_only/proc/place_from_root(var/turf/At)
-	var/rand_limit = 12
-	pixel_x += ((At.x - loc.x) * 32) + rand(-rand_limit,rand_limit)
-	pixel_y += ((At.y - loc.y) * 32) + rand(-rand_limit,rand_limit)
+/image/client_only/proc/place_from_root(turf/At)
+	pixel_x = ((At.x - loc.x) * 32)
+	pixel_y = ((At.y - loc.y) * 32)

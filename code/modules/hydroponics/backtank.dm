@@ -49,7 +49,7 @@
 /obj/item/watertank/ui_action_click(mob/user)
 	toggle_mister(user)
 
-/obj/item/watertank/attack_hand(var/mob/user)
+/obj/item/watertank/attack_hand(mob/user)
 	if(loc == user)
 		toggle_mister()
 	else
@@ -98,7 +98,7 @@
 	if(slot != slot_back)
 		remove_noz()
 
-/obj/item/watertank/proc/remove_noz(var/mob/user)
+/obj/item/watertank/proc/remove_noz(mob/user)
 	if(!noz) return
 
 	if(ismob(noz.loc))
@@ -115,7 +115,7 @@
 	else
 		return ..()
 
-/obj/item/watertank/dropped(mob/user)
+/obj/item/watertank/dropped(mob/user, equipping, slot)
 	..()
 	remove_noz(user)
 

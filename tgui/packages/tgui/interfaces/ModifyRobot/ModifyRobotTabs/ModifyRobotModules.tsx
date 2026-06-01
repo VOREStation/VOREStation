@@ -36,8 +36,11 @@ export const ModifyRobotModules = (props: {
           <Section title="Source Module" scrollable fill>
             <Box>Robot to salvage</Box>
             <Dropdown
-              width="100%"
+              fluid
+              searchInput
+              styledInput
               selected={source ? source.model : ''}
+              displayText={source ? source.model : ''}
               options={model_options}
               onSelected={(value) =>
                 act('select_source', {

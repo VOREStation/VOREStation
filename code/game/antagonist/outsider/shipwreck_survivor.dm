@@ -33,7 +33,7 @@ GLOBAL_DATUM(survivors, /datum/antagonist/shipwreck_survivor)
 	..()
 	GLOB.survivors = src
 
-/datum/antagonist/survivor/greet(var/datum/mind/player)
+/datum/antagonist/survivor/greet(datum/mind/player)
 	to_chat(player.current, span_warning("You are a <b>NOT</b> an antagonist! All rules apply to you as well. Your job is to help make the world seem more alive. \n \
 	You are not an existing station character, but some average person who has suffered a terrible accident. \
 	Feel free to make up what happened to the ship you awakened on as you please, \

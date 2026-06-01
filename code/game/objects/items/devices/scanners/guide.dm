@@ -12,7 +12,7 @@
 	guide = TRUE
 	icon_state = "health-g"
 
-/obj/item/healthanalyzer/proc/guide(var/mob/living/carbon/human/M, mob/living/user)
+/obj/item/healthanalyzer/proc/guide(mob/living/carbon/human/M, mob/living/user)
 
 /* Enable this if you want non-medical users to be blocked from the guide. Kind of pointless, since the only ones that would really NEED the guide are non-medical users.
 	var/obj/item/card/id/ourid = user?.GetIdCard()

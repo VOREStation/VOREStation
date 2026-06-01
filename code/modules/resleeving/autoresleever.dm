@@ -60,14 +60,14 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	else
 		to_chat(user, span_warning("You need to have been spawned in order to respawn here."))
 
-/obj/machinery/transhuman/autoresleever/attackby(var/mob/user)	//Let's not let people mess with this.
+/obj/machinery/transhuman/autoresleever/attackby(mob/user)	//Let's not let people mess with this.
 	update_icon()
 	if(isobserver(user))
 		attack_ghost(user)
 	else
 		return
 
-/obj/machinery/transhuman/autoresleever/proc/autoresleeve(var/mob/observer/dead/ghost)
+/obj/machinery/transhuman/autoresleever/proc/autoresleeve(mob/observer/dead/ghost)
 	if(stat & (BROKEN | MAINT | EMPED)) // Let it still work when power is just off, it has it's own backup reserve or something.
 		to_chat(ghost, span_warning("This machine is not functioning..."))
 		return
@@ -209,9 +209,9 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	//If desired, apply equipment.
 	if(equip_body)
 		if(charjob)
-			GLOB.job_master.EquipRank(new_character, charjob, 1)
+			SSjob.equip_rank(new_character, charjob, 1)
 			new_character.mind.assigned_role = charjob
-			new_character.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(new_character, charjob)
+			new_character.mind.role_alt_title = SSjob.get_player_alt_title(new_character, charjob)
 
 	//A redraw for good measure
 	new_character.regenerate_icons()

@@ -10,7 +10,7 @@
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
 
-/mob/observer/dead/DblClickOn(var/atom/A, var/params)
+/mob/observer/dead/DblClickOn(atom/A, params)
 	if(check_click_intercept(params,A))
 		return
 	if(client.buildmode)
@@ -20,7 +20,8 @@
 		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
 			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
 			return
-
+	if(isghosttrap(src.loc))
+		return
 	// Things you might plausibly want to follow
 	if(istype(A,/atom/movable))
 		ManualFollow(A)

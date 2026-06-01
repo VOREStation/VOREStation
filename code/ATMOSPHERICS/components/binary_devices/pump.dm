@@ -18,7 +18,6 @@ Thus, the two variables affect pump operation are set in New():
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"
 	level = 1
-	var/base_icon = "pump"
 
 	name = "gas pump"
 	desc = "A pump that moves gas from one place to another."
@@ -27,6 +26,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	//var/max_volume_transfer = 10000
 
+	pipe_flags = NONE // Other pumps can be on other layers
 	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
@@ -39,7 +39,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/Initialize(mapload)
 	. = ..()
-
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	if(frequency)
@@ -55,7 +54,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/fuel
 	icon_state = "map_off-fuel"
-	base_icon = "pump-fuel"
 	icon_connect_type = "-fuel"
 	connect_types = CONNECT_TYPE_FUEL
 
@@ -65,7 +63,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/aux
 	icon_state = "map_off-aux"
-	base_icon = "pump-aux"
 	icon_connect_type = "-aux"
 	connect_types = CONNECT_TYPE_AUX
 
@@ -73,7 +70,26 @@ Thus, the two variables affect pump operation are set in New():
 	icon_state = "map_on-aux"
 	use_power = USE_POWER_IDLE
 
+/obj/machinery/atmospherics/binary/pump/scrubbers
+	icon_state = "map_off-scrubbers"
+	icon_connect_type = "-scrubbers"
+	connect_types = CONNECT_TYPE_SCRUBBER
+
+/obj/machinery/atmospherics/binary/pump/scrubbers/on
+	icon_state = "map_on-scrubbers"
+	use_power = USE_POWER_IDLE
+
+/obj/machinery/atmospherics/binary/pump/supply
+	icon_state = "map_off-supply"
+	icon_connect_type = "-supply"
+	connect_types = CONNECT_TYPE_SUPPLY
+
+/obj/machinery/atmospherics/binary/pump/supply/on
+	icon_state = "map_on-supply"
+	use_power = USE_POWER_IDLE
+
 /obj/machinery/atmospherics/binary/pump/update_icon()
+	var/base_icon = "pump[icon_connect_type]"
 	if(!powered())
 		icon_state = "[base_icon]-off"
 	else
@@ -85,10 +101,12 @@ Thus, the two variables affect pump operation are set in New():
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
-	add_underlay(T, node2, dir, node2?.icon_connect_type)
+	if(node1)
+		add_underlay(T, node1, turn(dir, -180), icon_connect_type)
+	if(node2)
+		add_underlay(T, node2, dir, icon_connect_type)
 
-/obj/machinery/atmospherics/binary/pump/hide(var/i)
+/obj/machinery/atmospherics/binary/pump/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/pump/process()
@@ -236,7 +254,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/pump/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
@@ -253,7 +271,7 @@ Thus, the two variables affect pump operation are set in New():
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
-		deconstruct()
+		atom_deconstruct()
 
 /obj/machinery/atmospherics/binary/pump/click_alt(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -295,9 +313,3 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/pump/high_power/on
 	use_power = USE_POWER_IDLE
 	icon_state = "map_on"
-
-/obj/machinery/atmospherics/binary/pump/high_power/update_icon()
-	if(!powered())
-		icon_state = "off"
-	else
-		icon_state = "[use_power ? "on" : "off"]"

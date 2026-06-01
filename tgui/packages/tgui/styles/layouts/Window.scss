@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use '../base';
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .Window {
   position: fixed;
@@ -21,7 +21,7 @@
 .Window__rest.Window__restwithTitlebar {
   position: fixed;
   top: 32px;
-  top: base.rem(32px);
+  top: fn.rem(32px);
   bottom: 0;
   left: 0;
   right: 0;
@@ -54,8 +54,8 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: base.rem(20px);
-  height: base.rem(20px);
+  width: fn.rem(20px);
+  height: fn.rem(20px);
 }
 
 .Window__resizeHandle__s {
@@ -64,7 +64,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: base.rem(6px);
+  height: fn.rem(6px);
 }
 
 .Window__resizeHandle__e {
@@ -73,5 +73,5 @@
   top: 0;
   bottom: 0;
   right: 0;
-  width: base.rem(3px);
+  width: fn.rem(3px);
 }

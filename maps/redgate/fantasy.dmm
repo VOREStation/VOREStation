@@ -2118,7 +2118,7 @@
 /area/redgate/fantasy/house)
 "nn" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/storage/bag/ore,
+/obj/item/ore_bag,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "nr" = (
@@ -6060,7 +6060,7 @@
 /area/redgate/fantasy/church)
 "LN" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/storage/bag/ore,
+/obj/item/ore_bag,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/mininghouse)
 "LR" = (

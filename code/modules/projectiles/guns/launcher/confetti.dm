@@ -6,7 +6,6 @@
 	icon_state = "confetti_cannon"
 	item_state = "confetti_cannon"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 2)
 	throw_distance = 7
 	release_force = 5
 	var/obj/item/grenade/confetti/party_ball/chambered = null

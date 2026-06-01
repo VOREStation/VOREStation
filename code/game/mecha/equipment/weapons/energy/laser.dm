@@ -7,8 +7,6 @@
 	projectile = /obj/item/projectile/beam
 	fire_sound = 'sound/weapons/Laser.ogg'
 
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 3, TECH_MAGNET = 3)
-
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
 	equip_cooldown = 6
 	name = "\improper CH-XS \"Penetrator\" laser"
@@ -17,8 +15,6 @@
 	energy_drain = 150
 	projectile = /obj/item/projectile/beam/xray
 	fire_sound = 'sound/weapons/eluger.ogg'
-
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_PHORON = 3, TECH_POWER = 3)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray/rigged
 	equip_cooldown = 12
@@ -41,8 +37,6 @@
 
 	equip_type = EQUIP_UTILITY
 
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 2, TECH_MAGNET = 2)
-
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
 	name = "\improper CH-LC \"Solaris\" laser cannon"
@@ -53,8 +47,6 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 	step_delay = 1
-
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 4, TECH_MAGNET = 4)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/rigged
 	equip_cooldown = 25
@@ -67,8 +59,6 @@
 
 	equip_type = EQUIP_UTILITY
 
-	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 4, TECH_PHORON = 3, TECH_ILLEGAL = 1)
-
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/gamma
 	equip_cooldown = 5
 	name = "\improper GA-X \"Render\" Experimental Gamma Laser"
@@ -77,5 +67,3 @@
 	energy_drain = 80
 	projectile = /obj/item/projectile/beam/gamma
 	fire_sound = 'sound/weapons/emitter.ogg'
-
-	origin_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 4, TECH_PHORON = 4, TECH_POWER = 4, TECH_ILLEGAL = 3)

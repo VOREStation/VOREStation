@@ -83,22 +83,22 @@
 
 
 /obj/machinery/power/am_control_unit/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			if(active)	toggle_power()
 			stability -= rand(15,30)
-		if(2)
+		if(EMP_MEDIUM)
 			if(active)	toggle_power()
 			stability -= rand(10,20)
-		if(3)
+		if(EMP_LIGHT)
 			if(active)	toggle_power()
 			stability -= rand(8,15)
-		if(4)
+		if(EMP_HARMLESS)
 			if(active)	toggle_power()
 			stability -= rand(5,10)
-	..()
-	return FALSE
-
 
 /obj/machinery/power/am_control_unit/ex_act(severity)
 	switch(severity)
@@ -112,7 +112,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/am_control_unit/bullet_act(obj/item/projectile/Proj)
 	if(Proj.check_armour != "bullet")
 		stability -= Proj.force
 	return 0
@@ -178,7 +178,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/proc/add_shielding(var/obj/machinery/am_shielding/AMS, var/AMS_linking = 0)
+/obj/machinery/power/am_control_unit/proc/add_shielding(obj/machinery/am_shielding/AMS, AMS_linking = 0)
 	if(!istype(AMS)) return 0
 	if(!anchored) return 0
 	if(!AMS_linking && !AMS.link_control(src)) return 0
@@ -187,7 +187,7 @@
 	return 1
 
 
-/obj/machinery/power/am_control_unit/proc/remove_shielding(var/obj/machinery/am_shielding/AMS)
+/obj/machinery/power/am_control_unit/proc/remove_shielding(obj/machinery/am_shielding/AMS)
 	if(!istype(AMS)) return 0
 	linked_shielding.Remove(AMS)
 	update_shield_icons = 2

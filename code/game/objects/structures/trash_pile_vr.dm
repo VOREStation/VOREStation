@@ -73,7 +73,7 @@
 		to_chat(user, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
 		return
 
-	if(!user.MayRespawn(1))
+	if(!user.MayRespawn(TRUE))
 		return
 
 	var/turf/T = get_turf(src)
@@ -162,11 +162,11 @@
 		"trashbag",
 		"brokecomp")
 
-/obj/structure/mob_spawner/mouse_nest/do_spawn(var/mob_path)
+/obj/structure/mob_spawner/mouse_nest/do_spawn(mob_path)
 	. = ..()
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[.] crawls out of \the [src].")
 
-/obj/structure/mob_spawner/mouse_nest/get_death_report(var/mob/living/L)
+/obj/structure/mob_spawner/mouse_nest/get_death_report(mob/living/L)
 	..()
 	last_spawn = rand(world.time - spawn_delay, world.time)

@@ -18,7 +18,6 @@
 	w_class = ITEMSIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
@@ -32,7 +31,7 @@
 	item_state = "rock"
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/material/knife/machete/hatchet/stone/set_material(var/new_material)
+/obj/item/material/knife/machete/hatchet/stone/set_material(new_material)
 	var/old_name = name
 	. = ..()
 	name = old_name
@@ -44,22 +43,6 @@
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
 	can_cleave = FALSE
-	var/hits = 0
-
-/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
-	if(hits > 0)
-		return
-	var/obj/item/I = user.get_inactive_hand()
-	if(istype(I, /obj/item/material/knife/machete/hatchet/unathiknife))
-		hits ++
-		var/obj/item/W = I
-		W.attack(M, user)
-		W.afterattack(M, user)
-	..()
-
-/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
-	hits = initial(hits)
-	..()
 
 /obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
@@ -121,7 +104,6 @@
 	default_material = MAT_LEATHER
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	force_divisor = 0.15
 	thrown_force_divisor = 0.25
@@ -154,7 +136,7 @@
 				user.visible_message(span_warning("\The [AM] is snatched by \the [src]!"))
 				AM.throw_at(user, reach, 0.1, user)
 
-/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
@@ -176,7 +158,7 @@
 
 	..()
 
-/obj/item/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
+/obj/item/material/whip/proc/ranged_disarm(mob/living/carbon/human/H, mob/living/user)
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 40, H.get_inactive_hand() = 20)
 
@@ -227,7 +209,6 @@
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "stone_wood_axe"
 	default_material = MAT_FLINT
-	origin_tech = list()
 	applies_material_colour = FALSE
 
 /obj/item/material/knife/machete/hatchet/stone/bone

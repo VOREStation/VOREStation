@@ -20,7 +20,6 @@
 
 	charge_cost = 600
 
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 5)
 
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
@@ -36,7 +35,7 @@
 	vacuum_traversal = 0
 	range = 6 //Scary name, but just deletes the projectile after this range
 
-/obj/item/projectile/pummel/on_hit(var/atom/movable/target, var/blocked = 0)
+/obj/item/projectile/pummel/on_hit(atom/movable/target, blocked = 0)
 	if(isliving(target))
 		var/mob/living/L = target
 		var/throwdir = get_dir(firer,L)

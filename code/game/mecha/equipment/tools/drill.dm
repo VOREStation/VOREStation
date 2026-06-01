@@ -82,7 +82,6 @@
 	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens!"
 	icon_state = "mecha_diamond_drill"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	equip_cooldown = 10
 	force = 15
 	advanced = 1

@@ -15,8 +15,6 @@
 	var/datum/techweb/stored_research
 	///The item loaded inside the machine, used by experimentors and destructive analyzers only.
 	var/datum/weakref/loaded_item
-	/// Wires for hacking, not every rnd machine has this set
-	var/datum/wires/protolathe/wires = null
 
 /obj/machinery/rnd/Initialize(mapload)
 	. = ..()
@@ -24,12 +22,14 @@
 		CONNECT_TO_RND_SERVER_ROUNDSTART(stored_research, src)
 	if(stored_research)
 		on_connected_techweb()
+	set_wires(new /datum/wires/rnd(src))
 
 /obj/machinery/rnd/Destroy()
 	if(stored_research)
 		log_research("[src] disconnected from techweb [stored_research] (destroyed).")
 		stored_research = null
 	QDEL_NULL(wires)
+	loaded_item = null
 	return ..()
 
 /obj/machinery/rnd/tgui_status(mob/user)

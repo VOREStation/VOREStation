@@ -138,7 +138,7 @@
 	mauling = TRUE
 	base_wander_delay = 50
 
-/datum/ai_holder/simple_mob/melee/spacewhale/set_stance(var/new_stance)
+/datum/ai_holder/simple_mob/melee/spacewhale/set_stance(new_stance)
 	. = ..()
 	var/mob/living/simple_mob/vore/overmap/spacewhale/W = holder
 	if(stance == STANCE_FIGHT)
@@ -152,7 +152,7 @@
 		W.movement_cooldown = initial(W.movement_cooldown)
 		W.child_om_marker.glide_size = 0.384
 
-/mob/living/simple_mob/vore/overmap/spacewhale/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/overmap/spacewhale/apply_melee_effects(atom/A)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A

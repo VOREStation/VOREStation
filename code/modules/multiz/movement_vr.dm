@@ -1,5 +1,5 @@
 
-/mob/living/handle_fall(var/turf/landing)
+/mob/living/handle_fall(turf/landing)
 	var/mob/living/drop_mob = locate(/mob/living, landing)
 
 	if(locate(/obj/structure/stairs) in landing)
@@ -54,7 +54,7 @@
 
 	// Then call parent to have us actually fall
 	return ..()
-/mob/CheckFall(var/atom/movable/falling_atom)
+/mob/CheckFall(atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
 /mob/observer/dead/CheckFall()

@@ -11965,7 +11965,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/external)
 "auX" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 1
 	},
 /obj/machinery/light/small{
@@ -19636,7 +19636,7 @@
 /area/tether/surfacebase/cargostore)
 "aHB" = (
 /obj/effect/floor_decal/rust,
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -19782,7 +19782,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aHO" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /turf/simulated/floor/plating,
@@ -22060,7 +22060,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_8)
 "aLX" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /obj/machinery/alarm{
@@ -23338,7 +23338,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_6)
 "aOv" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /obj/machinery/alarm{
@@ -24433,7 +24433,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_4)
 "aQn" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /obj/machinery/alarm{
@@ -25545,7 +25545,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_2)
 "aSv" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /obj/machinery/alarm{
@@ -28569,7 +28569,7 @@
 /turf/simulated/floor/tiled/white,
 /area/vacant/vacant_bar)
 "aYs" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -28661,7 +28661,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "aYE" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	pixel_y = 10
 	},
 /turf/simulated/floor/plating,

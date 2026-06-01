@@ -7,8 +7,8 @@
 	layer = ABOVE_WINDOW_LAYER
 	flags = WALL_ITEM
 	var/desiredstate = 0
-	var/exposedwires = 0
-	var/wires = 3
+	var/exposedwires_num = 0
+	var/wires_num = 3
 	/*
 	Bitflag,	1=checkID
 				2=Network Access
@@ -20,7 +20,7 @@
 	active_power_usage = 4
 
 /obj/machinery/button/remote/attack_ai(mob/user as mob)
-	if(wires & 2)
+	if(wires_num & 2)
 		return attack_hand(user)
 	else
 		to_chat(user, "Error, no route to host.")
@@ -28,7 +28,7 @@
 /obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/button/remote/emag_act(remaining_charges, mob/user)
 	if(LAZYLEN(req_access) || LAZYLEN(req_one_access))
 		LAZYCLEARLIST(req_access)
 		LAZYCLEARLIST(req_one_access)
@@ -43,7 +43,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if(!allowed(user) && (wires & 1))
+	if(!allowed(user) && (wires_num & 1))
 		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
@@ -221,7 +221,7 @@
 	desc = "It controls shields, remotely."
 	icon = 'icons/obj/stationobjs.dmi'
 
-/obj/machinery/button/remote/shields/trigger(var/mob/user)
+/obj/machinery/button/remote/shields/trigger(mob/user)
 	for(var/obj/machinery/shield_gen/SG in GLOB.machines)
 		if(SG.id == id)
 			if(SG?.anchored)

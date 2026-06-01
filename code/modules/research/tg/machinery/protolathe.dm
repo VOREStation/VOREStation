@@ -8,4 +8,4 @@
 
 /obj/machinery/rnd/production/protolathe/Initialize(mapload)
 	. = ..()
-	wires = new /datum/wires/protolathe(src)
+	set_wires(new /datum/wires/protolathe(src))

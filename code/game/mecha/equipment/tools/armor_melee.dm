@@ -2,7 +2,6 @@
 	name = "\improper CCW armor booster"
 	desc = "Close-combat armor booster. Boosts exosuit armor against armed melee attacks. Requires energy to operate."
 	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(TECH_MATERIAL = 3)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
@@ -17,7 +16,7 @@
 	if(!chassis) return
 	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name]"
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(obj/item/W, mob/living/user, inc_damage = null)
 	if(!action_checks(user))
 		return inc_damage
 	chassis.log_message("Attacked by [W]. Attacker - [user]", LOG_GAME)

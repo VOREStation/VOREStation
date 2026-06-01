@@ -112,7 +112,6 @@
 /obj/item/ammo_magazine/m38/makarov
 	name = "makarov magazine (.38)"
 	icon_state = "45"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 480)
 	caliber = ".38"
@@ -128,7 +127,6 @@
 /obj/item/ammo_magazine/m38/giskard
 	name = "magazine (.38)"
 	icon_state = "m91"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 540)
 	caliber = ".38"
@@ -304,7 +302,6 @@
 /obj/item/ammo_magazine/m9mm
 	name = "magazine (9mm)"
 	icon_state = "m91"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 600)
 	caliber = "9mm"
@@ -332,7 +329,6 @@
 	name = "extended magazine (9mm)"
 	desc = "\"FOR LAW ENFORCEMENT/MILITARY USE ONLY\" is clearly etched on the magazine. This is probably illegal for you to have." // Remember, Security is not Law Enforcement, so it's illegal for Security to use as well.
 	icon_state = "m93"
-	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 1000)
 	caliber = "9mm"
@@ -354,7 +350,6 @@
 /obj/item/ammo_magazine/m9mm/compact
 	name = "compact magazine (9mm)"
 	icon_state = "m92"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 480)
 	caliber = "9mm"
@@ -381,7 +376,6 @@
 /obj/item/ammo_magazine/m9mm/luger
 	name = "\improper \"Mäuse\" magazine (9mm)"
 	icon_state = "9x19p"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	matter = list(MAT_STEEL = 480)
 	caliber = "9mm"
@@ -473,7 +467,6 @@
 	matter = list(MAT_STEEL = 1200)
 	caliber = "9mm"
 	max_ammo = 21
-	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/m9mmAdvanced/ap
@@ -490,7 +483,6 @@
 /obj/item/ammo_magazine/m10mm
 	name = "magazine (10mm)"
 	icon_state = "10mm"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
 	matter = list(MAT_STEEL = 1500)
@@ -545,7 +537,6 @@
 /obj/item/ammo_magazine/m545
 	name = "magazine (5.45mm)"
 	icon_state = "m545"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "5.45mm"
 	matter = list(MAT_STEEL = 1800)
@@ -637,7 +628,6 @@
 /obj/item/ammo_magazine/m545saw
 	name = "magazine box (5.45mm)"
 	icon_state = "a545"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "5.45mm"
 	matter = list(MAT_STEEL = 10000)
@@ -662,7 +652,6 @@
 /obj/item/ammo_magazine/m44
 	name = "magazine (.44)"
 	icon_state = "m44"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".44"
 	matter = list(MAT_STEEL = 1260)

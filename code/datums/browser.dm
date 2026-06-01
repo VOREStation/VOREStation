@@ -31,6 +31,10 @@
 	if (source)
 		src.source_ref = WEAKREF(source)
 
+/datum/browser/Destroy(force)
+	. = ..()
+	source_ref = null
+
 /datum/browser/proc/user_deleted(datum/source)
 	SIGNAL_HANDLER
 	user = null

@@ -226,11 +226,11 @@
 	desc = "A small mirror at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_mirror/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_mirror/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You use the mirror to get a good look inside of [M]'s mouth."))
 		to_chat(M, span_notice("[user] uses a small mirror to look inside of your mouth."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/entrepreneur/dentist_probe
@@ -240,11 +240,11 @@
 	desc = "A short stainless steel rod that ends with a narrow pointy bit for poking."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_probe/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_probe/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You use the probe to poke about inside of [M]'s mouth."))
 		to_chat(M, span_notice("[user] examines the inside of your mouth with a sharp probe, it hurts a little being prodded."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/entrepreneur/dentist_sickle
@@ -254,11 +254,11 @@
 	desc = "A narrow, sharp hook at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_sickle/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_sickle/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You loosen some stuck debris from [M]'s mouth with the hook."))
 		to_chat(M, span_notice("[user] uses a hook to scrape out something stuck in your mouth, it's pretty uncomfortable."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 /obj/item/entrepreneur/dentist_scaler
@@ -268,11 +268,11 @@
 	desc = "A flat and thin scraper at the end of a short, stainless steel rod."
 	w_class = ITEMSIZE_TINY
 
-/obj/item/entrepreneur/dentist_scaler/attack(mob/M, mob/user)
+/obj/item/entrepreneur/dentist_scaler/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		to_chat(user, span_notice("You scrape debris out from [M]'s mouth."))
 		to_chat(M, span_notice("[user] scrapes debris from out of your mouth."))
-		return 0
+		return ITEM_INTERACT_SUCCESS
 	..()
 
 ////// Exercise mat, yoga and trainer stuff
@@ -283,7 +283,7 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "exercise_mat"
 
-/obj/item/bedsheet/pillow/exercise/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/bedsheet/pillow/exercise/attackby(obj/item/component, mob/user as mob)
 	return
 
 /obj/item/entrepreneur/dumbbell
@@ -315,31 +315,86 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "emf"
 	var/emf = 5
-	var/turf/last_used = 0
-	var/emf_change = 0
+	///If our scanner will accurately detect ghosts or not.
+	var/advanced = FALSE
+	///How far our we search. 0 = own turf.
+	var/detection_range = 0
+
+	///How often we can use the EMF actively.
+	COOLDOWN_DECLARE(scan_cooldown)
+
+/obj/item/entrepreneur/emf/examine(mob/user)
+	. = ..()
+	switch(emf)
+		if(-1000 to 20)
+			. += span_info("The EMF reader is very low, reading [emf]mG.")
+		if(20 to 40)
+			. += span_info("The EMF reader is low, reading [emf]mG.")
+		if(40 to 60)
+			. += span_info(span_red("The EMF reader is reading moderate interference, reading [emf]mG."))
+		if(60 to 80)
+			. += span_info(span_red("The EMF reader is reading high interference, reading [emf]mG."))
+		if(80 to 1000)
+			. += span_info(span_red("The EMF reader is reading extremely high interference, reading [emf]mG."))
+
+/obj/item/entrepreneur/emf/Initialize(mapload)
+	. = ..()
+	emf = rand(1,100)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/entrepreneur/emf/process()
+	search_for_ghosts()
 
 /obj/item/entrepreneur/emf/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(!last_used)
-		emf = rand(1,100)
-		last_used = get_turf(user)
-	var/current_used = get_turf(user)
-	var/mob/observer/spooky = locate() in current_used
-	if(last_used != current_used)
-		if(emf >= 100)
-			emf = 100
-		if(emf <= 20)
-			emf = 20
-		if(spooky)
+	if(COOLDOWN_FINISHED(src, scan_cooldown))
+		search_for_ghosts(user)
+	else
+		to_chat(user, span_warning("Your EMF scanner is recharging. The current reading is [emf]mG."))
+
+/obj/item/entrepreneur/emf/proc/search_for_ghosts(mob/user)
+	var/turf/our_turf = get_turf(src)
+	if(!our_turf)
+		return
+
+	///How many ghosts are around us.
+	var/ghosts_present = 0
+	///How much we'll increase/decrease the EMF reading.
+	var/emf_change = 0
+
+	//Loop for the 'advanced' emfs, which detect actual ghosts/phasers.
+	if(advanced)
+		for(var/mob/entity in range(detection_range, our_turf))
+			if(isobserver(entity))
+				var/mob/observer/dead/ghost = entity
+				if(ghost.following || !ghost.interact_with_world || ghost.admin_ghosted) //Ghosts orbiting us or someone else, or have opted out of interactions.
+					continue
+				ghosts_present++
+			if(entity.is_incorporeal())
+				ghosts_present++
+
+	if(emf >= 100)
+		emf = 100
+	if(emf <= 20)
+		emf = 20
+
+	if(ghosts_present)
+		if(advanced)
+			emf_change = rand(3 * ghosts_present, 10 * ghosts_present)
+		else
 			emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
+	else
+		if(advanced)
+			emf_change = rand(-5, -1)
 		else
 			emf_change = rand(-20,15) //Trend downwards
-		last_used = get_turf(user)
-		emf = (emf + emf_change)
-		update_icon()
-	to_chat(user, span_notice("You update the EMF scanner and check the reading. It reads [emf]mG!"))
+	emf = (emf + emf_change)
+	update_icon()
+	if(user)
+		to_chat(user, span_notice("You update the EMF scanner and check the reading. It reads [emf]mG!"))
+		COOLDOWN_START(src, scan_cooldown, 5 SECONDS)
 
 /obj/item/entrepreneur/emf/update_icon()
 	switch(emf)
@@ -361,10 +416,14 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "spirit_board"
 	var/list/possible_results = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Yes","No","1","2","3","4","5","6","7","8","9","0","Nothing")
+	///What the next letter/number will be.
 	var/next_result = 0
+	///If ghosts can interact with it.
 	var/ghost_enabled = 1
+	///If the board will always display what ghosts put
+	var/accurate = FALSE
 
-/obj/item/entrepreneur/spirit_board/attackby(obj/item/reagent_containers/food/drinks/W as obj, mob/living/user as mob)
+/obj/item/entrepreneur/spirit_board/attackby(obj/item/reagent_containers/food/drinks/W, mob/living/user)
 	if(!istype(user))
 		return 0
 	if(!istype(W))
@@ -385,14 +444,14 @@
 		return 0
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
 
-/obj/item/entrepreneur/spirit_board/attack_ghost(var/mob/observer/dead/user)
+/obj/item/entrepreneur/spirit_board/attack_ghost(mob/observer/dead/user)
 	if(!ghost_enabled)
 		return
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_warning("You cannot interact with this board because you are banned from playing ghost roles."))
 		return
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
-	if(!is_admin(user)) //admins can bypass this for event stuff
+	if(!is_admin(user) || !accurate) //admins can bypass this for event stuff
 		if(prob(25))
 			next_result = 0 //25% chance for the ghost to fail to manipulate the board
 

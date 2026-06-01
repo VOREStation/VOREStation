@@ -130,7 +130,8 @@
 	hitsound = 'sound/effects/attackblob.ogg'
 	var/emagged = 0
 	var/busy = 0 	//prevents abuse and runtimes
-	flags = NOBLUDGEON //No more attack messages
+	flags = NOBLUDGEON | ALLOW_ATTACK_ANIMATIONS | HIDE_ATTACK_MESSAGE
+	no_attack_log = TRUE
 
 /obj/item/robot_tongue/attack_self(mob/user)
 	. = ..(user)
@@ -144,12 +145,37 @@
 			desc = "Your tongue has been upgraded successfully. Congratulations."
 			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "syndietongue"
+			no_attack_log = FALSE
 		else
 			name = "synthetic tongue"
 			desc = "Useful for slurping mess off the floor before affectionately licking the crew members in the face."
 			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "synthtongue"
 		update_icon()
+
+/obj/item/robot_tongue/attack(mob/living/target, mob/living/user, target_zone, attack_modifier)
+	. = ..()
+	if(. != ITEM_INTERACT_SUCCESS)
+		return
+	if(emagged)
+		var/mob/living/silicon/robot/R = user
+		if(!R.use_direct_power(666, 100))
+			to_chat(user, span_warning("Warning, low power detected. Aborting action."))
+			return ITEM_INTERACT_SUCCESS //Still a success, even if we ran out of power.
+		target.Stun(1)
+		target.Weaken(1)
+		target.apply_effect(STUTTER, 1)
+		target.visible_message(span_danger("[user] has shocked [target] with its tongue!"), \
+							span_userdanger("[user] has shocked you with its tongue! You can feel the betrayal."))
+		playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
+		return ITEM_INTERACT_SUCCESS
+
+	user.visible_message(span_notice("\The [user] affectionately licks all over \the [target]'s face!"), span_notice("You affectionately lick all over \the [target]'s face!"))
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.species.lightweight == 1)
+			H.Weaken(3)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/robot_tongue/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
@@ -186,25 +212,6 @@
 				qdel(target)
 			busy = 0
 			return
-	else if(ishuman(target))
-		if(src.emagged)
-			var/mob/living/silicon/robot/R = user
-			var/mob/living/L = target
-			if(!R.use_direct_power(666, 100))
-				to_chat(user, span_warning("Warning, low power detected. Aborting action."))
-				return
-			L.Stun(1)
-			L.Weaken(1)
-			L.apply_effect(STUTTER, 1)
-			L.visible_message(span_danger("[user] has shocked [L] with its tongue!"), \
-								span_userdanger("[user] has shocked you with its tongue! You can feel the betrayal."))
-			playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
-		else
-			user.visible_message(span_notice("\The [user] affectionately licks all over \the [target]'s face!"), span_notice("You affectionately lick all over \the [target]'s face!"))
-			playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
-			var/mob/living/carbon/human/H = target
-			if(H.species.lightweight == 1)
-				H.Weaken(3)
 	return
 
 /obj/item/pupscrubber
@@ -280,7 +287,7 @@
 	var/busy
 	var/list/clamps = list()
 
-/obj/item/dogborg/stasis_clamp/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/dogborg/stasis_clamp/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 
@@ -332,7 +339,7 @@
 	var/mob/living/silicon/robot/R = user
 	R.leap(bluespace)
 
-/mob/living/silicon/robot/proc/leap(var/bluespace = FALSE)
+/mob/living/silicon/robot/proc/leap(bluespace = FALSE)
 	if(last_special > world.time)
 		to_chat(src, span_filter_notice("Your leap actuators are still recharging."))
 		return

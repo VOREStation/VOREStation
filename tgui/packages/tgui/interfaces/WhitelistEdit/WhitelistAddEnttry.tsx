@@ -43,9 +43,12 @@ export const WhitelistAddEnttry = (props: {
         <LabeledList>
           <LabeledList.Item label="Role">
             <Dropdown
+              searchInput
+              styledInput
               onSelected={setSelectedRole}
               options={entries}
               selected={selectedRole}
+              displayText={selectedRole}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Ckey">

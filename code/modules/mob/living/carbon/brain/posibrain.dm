@@ -4,7 +4,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
 
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
@@ -36,7 +35,7 @@
 			if(O.client.prefs.be_special & BE_AI)
 				question(O.client)
 
-/obj/item/mmi/digital/posibrain/proc/question(var/client/C)
+/obj/item/mmi/digital/posibrain/proc/question(client/C)
 	spawn(0)
 		if(!C)	return
 		var/response = tgui_alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", list("Yes", "No", "Never for this round"))
@@ -49,7 +48,7 @@
 			C.prefs.be_special ^= BE_AI
 
 
-/obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/posibrain/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
@@ -57,7 +56,7 @@
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/mmi/digital/posibrain/proc/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/posibrain/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a positronic brain now.")
 	src.searching = 0
 	src.brainmob.mind = candidate.mind
@@ -90,19 +89,18 @@
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
 /obj/item/mmi/digital/posibrain/emp_act(severity, recursive)
-	if(!src.brainmob)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !brainmob)
 		return
-	else
-		switch(severity)
-			if(1)
-				src.brainmob.emp_damage += rand(20,30)
-			if(2)
-				src.brainmob.emp_damage += rand(10,20)
-			if(3)
-				src.brainmob.emp_damage += rand(5,10)
-			if(4)
-				src.brainmob.emp_damage += rand(0,5)
-	..()
+	switch(severity)
+		if(EMP_HEAVY)
+			src.brainmob.emp_damage += rand(20,30)
+		if(EMP_MEDIUM)
+			src.brainmob.emp_damage += rand(10,20)
+		if(EMP_LIGHT)
+			src.brainmob.emp_damage += rand(5,10)
+		if(EMP_HARMLESS)
+			src.brainmob.emp_damage += rand(0,5)
 
 /obj/item/mmi/digital/posibrain/Initialize(mapload)
 	. = ..()

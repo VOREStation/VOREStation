@@ -18,7 +18,7 @@
 	var/list/generators = list()
 
 /datum/event2/event/gravity/announce()
-	GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure")
+	GLOB.command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled. Please wait for the system to reinitialize, or contact your engineering department.", "Gravity Failure", ANNOUNCER_MSG_GRAVITY_OFF)
 
 /datum/event2/event/gravity/start()
 	GLOB.gravity_is_on = FALSE
@@ -42,4 +42,4 @@
 			did_anything = TRUE
 
 	if(did_anything)
-		GLOB.command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+		GLOB.command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored", ANNOUNCER_MSG_GRAVITY_ON)

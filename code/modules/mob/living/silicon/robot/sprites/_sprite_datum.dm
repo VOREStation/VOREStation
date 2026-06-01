@@ -39,11 +39,13 @@
 	var/list/sprite_decals = list() // Allow extra decals
 	var/list/sprite_animations = list() // Allows to flick animations
 
+	var/list/hat_offset = list("north" = list(0, -3), "south" = list(0, -3), "east" = list(4, -3), "west" = list(-4, -3))
+
 /// Determines if the borg has the proper flags to show an overlay.
-/datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
+/datum/robot_sprite/proc/sprite_flag_check(flag_to_check)
 	return (sprite_flags & flag_to_check)
 
-/datum/robot_sprite/proc/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/handle_extra_icon_updates(mob/living/silicon/robot/ourborg)
 	if(ourborg.resting) //Don't do ANY of the overlay code if we're resting. It just won't look right!
 		return
 	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPEED_SPRITE))
@@ -102,7 +104,7 @@
 					ourborg.add_overlay("[sprite_icon_state]-melee")
 					continue
 
-/datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
+/datum/robot_sprite/proc/get_belly_overlay(mob/living/silicon/robot/ourborg, size = 1, b_class)
 	//Size
 	if(has_sleeper_light_indicator || belly_light_list.len)
 		if(belly_light_list.len)
@@ -124,7 +126,7 @@
 			return "[sprite_icon_state]-[b_class]-[size]-[sleeperColor]"
 	return "[sprite_icon_state]-[b_class]-[size]"
 
-/datum/robot_sprite/proc/get_belly_resting_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
+/datum/robot_sprite/proc/get_belly_resting_overlay(mob/living/silicon/robot/ourborg, size = 1, b_class)
 	if(!(ourborg.rest_style in rest_sprite_options))
 		ourborg.rest_style = "Default"
 	switch(ourborg.rest_style)
@@ -135,12 +137,12 @@
 		else
 			return "[get_belly_overlay(ourborg, size, b_class)]-rest"
 
-/datum/robot_sprite/proc/get_glow_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_glow_overlay(mob/living/silicon/robot/ourborg)
 	if(!ourborg.resting)
 		return "[sprite_icon_state]-glow"
 	return "[get_rest_sprite(ourborg)]-glow"
 
-/datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-eyes"
 	else if(ourborg.resting && has_rest_eyes_sprites)
@@ -148,7 +150,7 @@
 	else
 		return
 
-/datum/robot_sprite/proc/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_eye_light_overlay(mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
 		return "[sprite_icon_state]-lights"
 	else if(ourborg.resting && has_rest_lights_sprites)
@@ -157,7 +159,7 @@
 		return
 
 // This can not use the get_rest_sprite function as it could use belly overlays as decals
-/datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg, var/type)
+/datum/robot_sprite/proc/get_robotdecal_overlay(mob/living/silicon/robot/ourborg, type)
 	if(LAZYLEN(sprite_decals))
 		if(!ourborg.resting)
 			return "[sprite_icon_state]-[type]"
@@ -170,7 +172,7 @@
 				return "[sprite_icon_state]-[type]-rest"
 
 
-/datum/robot_sprite/proc/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_rest_sprite(mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
 		ourborg.rest_style = "Default"
 	switch(ourborg.rest_style)
@@ -181,13 +183,13 @@
 		else
 			return "[sprite_icon_state]-rest"
 
-/datum/robot_sprite/proc/get_dead_sprite(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_dead_sprite(mob/living/silicon/robot/ourborg)
 	return "[sprite_icon_state]-wreck"
 
-/datum/robot_sprite/proc/get_dead_sprite_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_dead_sprite_overlay(mob/living/silicon/robot/ourborg)
 	return "wreck-overlay"
 
-/datum/robot_sprite/proc/get_open_sprite(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/get_open_sprite(mob/living/silicon/robot/ourborg)
 	if(!ourborg.opened)
 		return
 	if(ourborg.wiresexposed)
@@ -202,10 +204,10 @@
 
 	return
 
-/datum/robot_sprite/proc/handle_extra_customization(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/proc/handle_extra_customization(mob/living/silicon/robot/ourborg)
 	return
 
-/datum/robot_sprite/proc/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/proc/do_equipment_glamour(obj/item/robot_module/module)
 	if(!dogborg_sprites)
 		var/obj/item/melee/robotic/jaws/small/small_jaws = locate() in module.modules
 		if(small_jaws)

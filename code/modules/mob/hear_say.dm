@@ -1,5 +1,5 @@
 // At minimum every mob has a hear_say proc.
-/mob/proc/combine_message(var/list/message_pieces, var/verb, var/mob/speaker, always_stars = FALSE, var/radio = FALSE)
+/mob/proc/combine_message(list/message_pieces, verb, mob/speaker, always_stars = FALSE, radio = FALSE)
 	var/iteration_count = 0
 	var/msg = "" // This is to make sure that the pieces have actually added something
 	var/raw_msg = ""
@@ -62,7 +62,7 @@
 	else
 		return stars(SP.message)
 
-/mob/proc/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(list/message_pieces, verb = "says", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol)
 	if(!client && !teleop)
 		return FALSE
 
@@ -132,12 +132,12 @@
 	return TRUE
 
 // Done here instead of on_hear_say() since that is NOT called if the mob is clientless (which includes most AI mobs).
-/mob/living/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/living/hear_say(list/message_pieces, verb = "says", italics = 0, mob/speaker = null, sound/speech_sound, sound_vol)
 	.=..()
 	if(has_AI()) // Won't happen if no ai_holder exists or there's a player inside w/o autopilot active.
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 
-/mob/proc/on_hear_say(var/message, var/mob/speaker = null)
+/mob/proc/on_hear_say(message, mob/speaker = null)
 	if(client)
 		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
@@ -150,7 +150,7 @@
 	else
 		to_chat(src, span_game(span_say(message)))
 
-/mob/living/silicon/on_hear_say(var/message, var/mob/speaker = null)
+/mob/living/silicon/on_hear_say(message, mob/speaker = null)
 	if(client)
 		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
@@ -164,7 +164,7 @@
 		to_chat(src, span_game(span_say(message)))
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
-/mob/proc/check_mentioned(var/message)
+/mob/proc/check_mentioned(message)
 	var/not_included = list("A", "The", "Of", "In", "For", "Through", "Throughout", "Therefore", "Here", "There", "Then", "Now", "I", "You", "They", "He", "She", "By")
 	var/list/valid_names = splittext(real_name, " ") // Should output list("John", "Doe") as an example.
 	valid_names -= not_included
@@ -192,7 +192,7 @@
 
 	return tagged_message
 
-/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/part_d, var/part_e, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
+/mob/proc/hear_radio(list/message_pieces, verb = "says", part_a, part_b, part_c, part_d, part_e, mob/speaker = null, hard_to_hear = 0, vname = "")
 	if(!client)
 		return
 
@@ -249,7 +249,7 @@
 		final_message = "[time][part_a][final_message][part_e]"
 	to_chat(src, final_message)
 
-/mob/proc/hear_signlang(var/message, var/verb = "gestures", var/verb_understood = "gestures", var/datum/language/language, var/mob/speaker = null, var/speech_type = 1)
+/mob/proc/hear_signlang(message, verb = "gestures", verb_understood = "gestures", datum/language/language, mob/speaker = null, speech_type = 1)
 	if(!client)
 		return
 
@@ -270,7 +270,7 @@
 
 	show_message(message, type = speech_type) // Type 1 is visual message
 
-/mob/proc/hear_sleep(var/message)
+/mob/proc/hear_sleep(message)
 	var/heard = ""
 	if(prob(15))
 		var/list/punctuation = list(",", "!", ".", ";", "?")
@@ -309,7 +309,7 @@
 /mob/proc/handle_track(message, verb = "says", mob/speaker = null, speaker_name, hard_to_hear)
 	return
 
-/mob/proc/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
+/mob/proc/hear_holopad_talk(list/message_pieces, verb = "says", mob/speaker = null)
 	var/list/combined = combine_message(message_pieces, verb, speaker)
 	var/message = combined["formatted"]
 

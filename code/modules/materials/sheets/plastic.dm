@@ -13,3 +13,4 @@
 	strict_color_stacking = TRUE
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
+	resistance_flags = FLAMMABLE

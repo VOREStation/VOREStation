@@ -18,7 +18,7 @@
 
 /datum/event2/event/radiation_storm/announce()
 	GLOB.command_announcement.Announce("High levels of radiation detected near \the [location_name()]. \
-	Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_RADIATION)
 	make_maint_all_access()
 
 /datum/event2/event/radiation_storm/start()

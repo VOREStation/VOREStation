@@ -40,14 +40,13 @@ export const setGradientSpace = (
   space: number,
 ) => {
   let found = false;
-  gradient?.map((entry) => {
+  gradient?.forEach((entry) => {
     if (typeof entry === 'object') {
       if (Object.keys(entry)[0] === 'space') {
         entry.space = space;
         found = true;
       }
     }
-    return undefined;
   });
   if (!found) {
     gradient.push({ space: space });

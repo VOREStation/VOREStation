@@ -37,6 +37,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define IS_BUSY					(1<<8)	// Atom has a TASK_TARGET_EXCLUSIVE do_after with it as the target.
 #define REMOTEVIEW_ON_ENTER		(1<<9)	// Object starts a remoteview of itself for any mob that enters it with a client. Items will automatically handle their own remoteview, and ignore this.
 #define WALL_ITEM				(1<<10) // Wall mounted objects
+#define ALLOW_ATTACK_ANIMATIONS	(1<<11)	// Allow /attack proc to be used if the item is a nobludgeon.
+#define HIDE_ATTACK_MESSAGE		(1<<12) // Hides the 'X has been hit by Y' attack message.
 #define ADMIN_SPAWNED			(1<<22) // Admin Spawned
 #define ATOM_INITIALIZED		(1<<23) // Atom has been initialized. Using a flag instead of a variable saves ~25mb total.
 
@@ -50,6 +52,13 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define INFINITE_AIR			(1<<6)	// Provides an infinite air supply.
 #define NOSTRIP					(1<<7)  // Items that should never get stripped
 #define DROPDEL 				(1<<8)  // Items that delete upon being dropped
+/**
+ * for all things that are technically items but don't want to be treated as such, given on a case-by-case basis
+ * examples of use are hand items, omni-toolsets, non-limb limbs (hand eater, mounted chainsaw, many null rods), borg modules, bodyparts, organs, etc.
+ * This is used for general exclusion, such as preventing insertions into other items
+ * Basically, these aren't "real" items. <= wow thanks for the fucking insight sherlock
+*/
+#define ABSTRACT (1<<9)
 
 // Flags for pass_flags. - Used in /atom/var/pass_flags
 #define PASSTABLE				(1<<0)

@@ -159,6 +159,14 @@
 /datum/supply_pack/sci/anomaly_harvesting
 	name = "Anomaly Harvesting crate"
 	desc = "Contains the tools to start anomaly harvesting. Requires Research access."
-	cost = 300
+	cost = 350
 	containertype = /obj/structure/largecrate/anomaly
+	access = ACCESS_RESEARCH
+
+/datum/supply_pack/sci/latent_anomaly
+	name = "Latent Anomaly crate"
+	desc = "Contains a latent anomaly core."
+	cost = 300
+	contains = list(/obj/item/assembly/signaler/anomaly/choice)
+	containertype = /obj/structure/closet/crate/secure/science
 	access = ACCESS_RESEARCH

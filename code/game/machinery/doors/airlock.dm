@@ -45,7 +45,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
 	var/security_level = 1 //Acts as a multiplier on the time required to hack an airlock with a hacktool
-	var/datum/wires/airlock/wires = null
 
 	var/open_sound_powered = 'sound/machines/door/covert1o.ogg'
 	var/open_sound_unpowered = 'sound/machines/door/airlockforced.ogg'
@@ -75,7 +74,7 @@
 		/obj/item = 12,
 	)
 
-/obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
+/obj/machinery/door/airlock/attack_generic(mob/living/user, damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			if(locked || welded)
@@ -100,7 +99,7 @@
 		return
 	..()
 
-/obj/machinery/door/airlock/attack_alien(var/mob/user) //Familiar, right? Doors. -Mechoid
+/obj/machinery/door/airlock/attack_alien(mob/user) //Familiar, right? Doors. -Mechoid
 	if(!ishuman(user))
 		return ..()
 	var/mob/living/carbon/human/X = user
@@ -297,7 +296,7 @@ About the new airlock wires panel:
 
 	update_icon()
 
-/obj/machinery/door/airlock/proc/electrify(var/duration, var/feedback = 0)
+/obj/machinery/door/airlock/proc/electrify(duration, feedback = 0)
 	var/message = ""
 	if(wires.is_cut(WIRE_ELECTRIFY) && arePowerSystemsOn())
 		message = text("The electrification wire is cut - Door permanently electrified.")
@@ -323,7 +322,7 @@ About the new airlock wires panel:
 	if(feedback && message)
 		to_chat(usr,message)
 
-/obj/machinery/door/airlock/proc/set_idscan(var/activate, var/feedback = 0)
+/obj/machinery/door/airlock/proc/set_idscan(activate, feedback = 0)
 	var/message = ""
 	if(wires.is_cut(WIRE_IDSCAN))
 		message = "The IdScan wire is cut - IdScan feature permanently disabled."
@@ -337,7 +336,7 @@ About the new airlock wires panel:
 	if(feedback && message)
 		to_chat(usr,message)
 
-/obj/machinery/door/airlock/proc/set_safeties(var/activate, var/feedback = 0)
+/obj/machinery/door/airlock/proc/set_safeties(activate, feedback = 0)
 	var/message = ""
 	// Safeties!  We don't need no stinking safeties!
 	if (wires.is_cut(WIRE_SAFETY))
@@ -559,10 +558,10 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/click_ctrl(mob/user) //Hold door open
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.is_incorporeal())
-		return
+		return CLICK_ACTION_BLOCKING
 
 	if(!Adjacent(user))
-		return
+		return CLICK_ACTION_BLOCKING
 
 	if(user.a_intent == I_HURT)
 		visible_message(span_warning("[user] hammers on \the [src]!"), span_warning("Someone hammers loudly on \the [src]!"))
@@ -570,13 +569,13 @@ About the new airlock wires panel:
 		if(icon_state == "door_closed" && arePowerSystemsOn())
 			flick("door_deny", src)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(user.a_intent == I_GRAB) //Hold door open
 		hold_open = user
 		visible_message(span_info("[user] begins holding \the [src] open."), span_info("Someone has started holding \the [src] open."))
 		attack_hand(user)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(arePowerSystemsOn())
 		if(isElectrified())
@@ -591,11 +590,12 @@ About the new airlock wires panel:
 		if(icon_state == "door_closed")
 			flick("door_deny", src)
 		playsound(src, knock_sound, 50, 0, 3)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	visible_message(span_info("[user] knocks on \the [src]."), span_info("Someone knocks on \the [src]."))
 	add_fingerprint(user)
 	playsound(src, knock_unpowered_sound, 50, 0, 3)
+	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/door/airlock/tgui_act(action, params, datum/tgui/ui)
 	if(..())
@@ -926,6 +926,10 @@ About the new airlock wires panel:
 				volume = 75
 
 		var/turf/T = get_turf(M)
+		if(isAI(M)) // AI holograms can listen too
+			var/mob/living/silicon/ai/A = M
+			if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
+				T = get_turf(A.holo)
 		var/distance = get_dist(T, get_turf(src))
 		if(distance <= world.view * 2)
 			if(T && T.z == get_z(src))
@@ -972,25 +976,25 @@ About the new airlock wires panel:
 /mob/living/blocks_airlock()
 	return !is_incorporeal()
 
-/atom/movable/proc/airlock_crush(var/crush_damage)
+/atom/movable/proc/airlock_crush(crush_damage)
 	return FALSE
 
-/obj/machinery/portable_atmospherics/canister/airlock_crush(var/crush_damage)
+/obj/machinery/portable_atmospherics/canister/airlock_crush(crush_damage)
 	. = ..()
 	health -= crush_damage
 	healthcheck()
 
-/obj/effect/energy_field/airlock_crush(var/crush_damage)
+/obj/effect/energy_field/airlock_crush(crush_damage)
 	adjust_strength(crush_damage)
 
-/obj/structure/closet/airlock_crush(var/crush_damage)
+/obj/structure/closet/airlock_crush(crush_damage)
 	..()
 	damage(crush_damage)
 	for(var/atom/movable/AM in src)
 		AM.airlock_crush()
 	return TRUE
 
-/mob/living/airlock_crush(var/crush_damage)
+/mob/living/airlock_crush(crush_damage)
 	if(is_incorporeal())
 		return FALSE
 	. = ..()
@@ -1002,12 +1006,12 @@ About the new airlock wires panel:
 		T.add_blood(src)
 	return TRUE
 
-/mob/living/carbon/airlock_crush(var/crush_damage)
+/mob/living/carbon/airlock_crush(crush_damage)
 	. = ..()
 	if(. && can_feel_pain()) // Only scream if actually crushed!
 		emote("scream")
 
-/mob/living/silicon/robot/airlock_crush(var/crush_damage)
+/mob/living/silicon/robot/airlock_crush(crush_damage)
 	adjustBruteLoss(crush_damage)
 	return FALSE
 
@@ -1068,6 +1072,11 @@ About the new airlock wires panel:
 				volume = 75
 
 		var/turf/T = get_turf(M)
+		if(isAI(M)) // AI holograms can listen too
+			var/mob/living/silicon/ai/A = M
+			if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
+				T = get_turf(A.holo)
+
 		var/distance = get_dist(T, get_turf(src))
 		if(distance <= world.view * 2)
 			if(T && T.z == get_z(src))
@@ -1081,7 +1090,7 @@ About the new airlock wires panel:
 			killthis.ex_act(2)//Smashin windows
 	. = ..()
 
-/obj/machinery/door/airlock/proc/lock(var/forced=0)
+/obj/machinery/door/airlock/proc/lock(forced=0)
 	if(locked)
 		return FALSE
 
@@ -1095,7 +1104,7 @@ About the new airlock wires panel:
 	update_icon()
 	return TRUE
 
-/obj/machinery/door/airlock/proc/unlock(var/forced=0)
+/obj/machinery/door/airlock/proc/unlock(forced=0)
 	if(!locked)
 		return
 
@@ -1115,7 +1124,7 @@ About the new airlock wires panel:
 		return FALSE
 	. = ..()
 
-/obj/machinery/door/airlock/Initialize(mapload, var/obj/structure/door_assembly/assembly=null)
+/obj/machinery/door/airlock/Initialize(mapload, obj/structure/door_assembly/assembly=null)
 	//if assembly is given, create the new door from the assembly
 	if (assembly && istype(assembly))
 		assembly_type = assembly.type
@@ -1186,11 +1195,13 @@ About the new airlock wires panel:
 		electronics.one_access = 1
 
 /obj/machinery/door/airlock/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	if(prob(40/severity))
 		var/duration = world.time + ((30 / severity) SECONDS)
 		if(duration > electrified_until)
 			electrify(duration)
-	..()
 
 /obj/machinery/door/airlock/power_change() //putting this is obj/machinery/door itself makes non-airlock doors turn invisible for some reason
 	..()

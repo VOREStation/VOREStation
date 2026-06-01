@@ -163,7 +163,7 @@
 	sparring_variant_type = /datum/unarmed_attack/holopugilism
 	is_punch = TRUE
 
-/datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/zone)
+/datum/unarmed_attack/holopugilism/unarmed_override(mob/living/carbon/human/user,mob/living/carbon/human/target,zone)
 	user.do_attack_animation(src)
 	var/damage = rand(0, 9)
 	if(!damage)
@@ -234,7 +234,7 @@
 		..()
 	return
 
-/obj/structure/window/reinforced/holowindow/shatter(var/display_message = 1)
+/obj/structure/window/reinforced/holowindow/shatter(display_message = 1)
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] fades away as it shatters!")
@@ -269,7 +269,7 @@
 
 	return
 
-/obj/machinery/door/window/holowindoor/shatter(var/display_message = 1)
+/obj/machinery/door/window/holowindoor/shatter(display_message = 1)
 	src.density = FALSE
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
@@ -316,7 +316,7 @@
 /obj/item/holo/esword/red
 	lcolor = "#FF0000"
 
-/obj/item/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/holo/esword/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 
@@ -513,7 +513,7 @@
 	. = ..()
 	set_light(2) //hologram lighting
 
-/mob/living/simple_mob/animal/space/carp/holodeck/proc/set_safety(var/safe)
+/mob/living/simple_mob/animal/space/carp/holodeck/proc/set_safety(safe)
 	if (safe)
 		faction = FACTION_NEUTRAL
 		melee_damage_lower = 0

@@ -3,6 +3,7 @@
 	var/datum/looping_sound/geiger/sound
 
 	var/last_parent = null
+	var/wall_mounted = FALSE
 
 /datum/component/geiger_sound/Initialize(...)
 	if (!isatom(parent))
@@ -19,7 +20,8 @@
 	return ..()
 
 /datum/component/geiger_sound/RegisterWithParent()
-	sound = new(list(parent), TRUE)
+	if(!wall_mounted)
+		sound = new(list(parent), TRUE)
 
 	RegisterSignal(parent, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(on_pre_potential_irradiation))
 
@@ -76,15 +78,20 @@
 
 	var/datum/radiation_pulse_information/last_radiation_pulse
 	var/last_insulation_to_target
+	var/wall_mounted = FALSE
 
 /datum/looping_sound/geiger/Destroy()
 	last_radiation_pulse = null
 	return ..()
 
-/datum/looping_sound/geiger/get_sound(starttime, _mid_sounds)
+/datum/looping_sound/geiger/get_sound(starttime, _mid_sounds, danger)
+	if(wall_mounted) //Child does all the work.
+		return ..(starttime, mid_sounds[danger])
+
 	if (isnull(last_radiation_pulse))
 		return null
-	var/danger = get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)
+	danger = get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)
+
 	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
 		chance = 100
 	else
@@ -97,3 +104,29 @@
 	. = ..()
 
 	last_radiation_pulse = null
+
+/datum/component/geiger_sound/wall
+	wall_mounted = TRUE
+
+/datum/component/geiger_sound/wall/RegisterWithParent()
+	sound = new /datum/looping_sound/geiger/wall(list(parent), TRUE)
+	..()
+
+//Subtype for wall mounted geiger counters, which should be quieter and not have the chance to play when radiation is low.
+/datum/looping_sound/geiger/wall
+	wall_mounted = TRUE
+
+/datum/looping_sound/geiger/wall/get_sound(starttime, _mid_sounds)
+	if (isnull(last_radiation_pulse))
+		return null
+
+	var/danger = get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)
+
+	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
+		chance = 100
+		volume = (danger * 5)
+	else
+		chance = 0
+		volume = 0
+
+	return ..(starttime, mid_sounds[danger], danger)

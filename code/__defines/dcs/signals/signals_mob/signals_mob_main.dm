@@ -310,7 +310,6 @@
 #define COMSIG_GHOST_QUERY_COMPLETE "ghost_query_complete"
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
-#define COMSIG_OBSERVER_MOB_EQUIPPED "observer_mob_equipped"
 ///from end of revival_healing_action(): ()
 #define COMSIG_LIVING_AHEAL "living_post_aheal"
 

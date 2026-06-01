@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 
 			teleatom.buckle_mob(rider, TRUE)
 
-/proc/tele_play_specials(atom/movable/teleatom, atom/location, var/datum/effect/effect/system/effect, sound)
+/proc/tele_play_specials(atom/movable/teleatom, atom/location, datum/effect/effect/system/effect, sound)
 	if(!location)
 		return
 
@@ -192,3 +192,46 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 		return FALSE
 
 	return TRUE
+
+// Gets the topmost teleportable container
+/proc/get_teleportable_container(atom/movable/teleportable, container_flags = ALL)
+	while(ismovable(teleportable.loc))
+		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_STORAGE) && isitem(teleportable))
+			var/obj/item/item = teleportable
+			if(item.storage_depth(item.loc))
+				break
+		var/atom/movable/movable = teleportable.loc
+		if(movable.anchored)
+			break
+		if(isliving(movable))
+			var/mob/living/living = movable
+			if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_INVENTORY))
+				var/list/equipped = living.get_equipped_items(INCLUDE_HELD|INCLUDE_POCKETS)
+				if((teleportable in equipped) && !HAS_TRAIT(teleportable, TRAIT_NODROP))
+					if(istype(teleportable, /obj/item/rig) && (container_flags & TELEPORT_CONTAINER_INCLUDE_SEALED_RIGSUIT))
+						var/obj/item/rig/rigsuit = teleportable
+						var/sealed = TRUE
+						for(var/obj/item/clothing/part as anything in rigsuit)
+							if((part == rigsuit || part.loc != rigsuit) && rigsuit.offline)
+								sealed = FALSE
+								break
+						if(!sealed)
+							break
+					else
+						break
+			if(living.buckled)
+				if(living.buckled.anchored)
+					break
+				else
+					var/obj/buckle_obj = living.buckled
+					buckle_obj.unbuckle_mob(living)
+		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_CLOSET) && istype(movable, /obj/structure/closet))
+			break
+		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_MECH_EQUIPMENT) && istype(movable, /obj/item/mecha_parts/mecha_equipment))
+			break
+		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_VEHICLE) && istype(movable, /obj/vehicle))
+			var/obj/vehicle/vehicle = movable
+			if(vehicle.load)
+				break
+		teleportable = movable
+	return teleportable

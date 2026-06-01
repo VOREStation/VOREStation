@@ -55,7 +55,7 @@ export const TGUI_CHAT_ATTRIBUTES_TO_PROPS = {
 function createHighlightNode(text: string, color: string): HTMLElement {
   const node = document.createElement('span');
   node.className = 'Chat__highlight';
-  node.setAttribute('style', `background-color:${color}`);
+  node.setAttribute('style', `--highlight-color:${color}`);
   node.textContent = text;
   return node;
 }
@@ -176,6 +176,7 @@ class ChatRenderer {
         highlightWholeMessage: boolean;
         highlightBlacklist: boolean;
         blacklistregex: RegExp;
+        enabled: boolean;
       }[]
     | null;
   databaseBackendEnabled: boolean;
@@ -288,6 +289,7 @@ class ChatRenderer {
       const highlightWholeMessage = setting.highlightWholeMessage;
       const matchWord = setting.matchWord;
       const matchCase = setting.matchCase;
+      const enabled = setting.enabled;
       const allowedRegex = /^[a-zа-яё0-9_\-$/^[\s\]\\]+$/gi;
       const regexEscapeCharacters = /[!#$%^&*)(+=.<>{}[\]:;'"|~`_\-\\/]/g;
       // Reset lastIndex so it does not mess up the next word
@@ -397,6 +399,7 @@ class ChatRenderer {
         this.highlightParsers = [];
       }
       this.highlightParsers.push({
+        enabled,
         highlightWords,
         highlightRegex,
         highlightColor,
@@ -640,31 +643,36 @@ class ChatRenderer {
 
         // Highlight text
         if (!message.avoidHighlighting && this.highlightParsers) {
-          this.highlightParsers.map((parser) => {
-            const ourUser = node.getElementsByClassName('name');
-            const isEmote = node.getElementsByClassName('emote');
-            if (
-              !(
-                parser.highlightBlacklist &&
-                parser.blacklistregex &&
-                ((ourUser.length > 0 &&
-                  parser.blacklistregex.test(ourUser[0].textContent)) ||
-                  (isEmote.length > 0 &&
-                    parser.blacklistregex.test(isEmote[0].textContent)))
-              )
-            ) {
-              const highlighted = highlightNode(
-                node,
-                parser.highlightRegex,
-                parser.highlightWords,
-                (text) => createHighlightNode(text, parser.highlightColor),
-              );
-              if (highlighted && parser.highlightWholeMessage) {
-                node.className += ' ChatMessage--highlighted';
+          this.highlightParsers
+            .filter((parser) => parser.enabled)
+            .forEach((parser) => {
+              const ourUser = node.getElementsByClassName('name');
+              const isEmote = node.getElementsByClassName('emote');
+              if (
+                !(
+                  parser.highlightBlacklist &&
+                  parser.blacklistregex &&
+                  ((ourUser.length > 0 &&
+                    parser.blacklistregex.test(ourUser[0].textContent)) ||
+                    (isEmote.length > 0 &&
+                      parser.blacklistregex.test(isEmote[0].textContent)))
+                )
+              ) {
+                const highlighted = highlightNode(
+                  node,
+                  parser.highlightRegex,
+                  parser.highlightWords,
+                  (text) => createHighlightNode(text, parser.highlightColor),
+                );
+                if (highlighted && parser.highlightWholeMessage) {
+                  node.className += ' ChatMessage--highlighted';
+                  node.style.setProperty(
+                    '--highlight-color',
+                    parser.highlightColor,
+                  );
+                }
               }
-            }
-            return undefined;
-          });
+            });
         }
         // Linkify text
         const linkifyNodes = node.querySelectorAll('.linkify');

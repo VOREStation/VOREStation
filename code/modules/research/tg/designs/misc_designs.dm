@@ -328,7 +328,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/sticky_tape
-	name = "tape role"
+	name = "tape roll"
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
 	id = "sticky_tape"
 	build_type = AUTOLATHE | PROTOLATHE
@@ -431,3 +431,16 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/hoist_kit
+	name = "hoist kit"
+	desc = "A setup kit for a hoist that can be used to lift things."
+	id = "hoist_kit"
+	materials = list(MAT_STEEL = 9000)
+	build_path = /obj/item/hoist_kit
+	build_type = AUTOLATHE | PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO

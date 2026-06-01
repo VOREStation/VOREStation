@@ -20,7 +20,7 @@
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/mass_driver/attackby(var/obj/item/I, mob/user)
+/obj/machinery/mass_driver/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))
@@ -56,7 +56,7 @@
 	return
 
 /obj/machinery/mass_driver/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 	drive()
-	..(severity, recursive)

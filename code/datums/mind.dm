@@ -65,11 +65,15 @@
 
 	var/datum/religion/my_religion
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 	purchase_log = list()
 	antag_holder = new
 	..()
+
+/datum/mind/Destroy(force)
+	. = ..()
+	original_character = null
 
 /datum/mind/proc/transfer_to(mob/living/new_character, force = FALSE)
 	if(!istype(new_character))
@@ -194,7 +198,7 @@
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
-		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, GLOB.joblist)
+		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, SSjob.occupations_by_name)
 		if (!new_role) return
 		assigned_role = new_role
 

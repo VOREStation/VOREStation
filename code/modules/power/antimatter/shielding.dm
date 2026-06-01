@@ -1,5 +1,5 @@
 //like orange but only checks north/south/east/west for one step
-/proc/cardinalrange(var/center)
+/proc/cardinalrange(center)
 	var/list/things = list()
 	for(var/direction in GLOB.cardinal)
 		var/turf/T = get_step(center, direction)
@@ -89,7 +89,7 @@
 
 
 /obj/machinery/am_shielding/emp_act(severity, recursive)//Immune due to not really much in the way of electronics.
-	return FALSE
+	return
 
 
 /obj/machinery/am_shielding/ex_act(severity)
@@ -104,7 +104,7 @@
 	return
 
 
-/obj/machinery/am_shielding/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/am_shielding/bullet_act(obj/item/projectile/Proj)
 	if(Proj.check_armour != "bullet")
 		stability -= Proj.force/2
 	return 0
@@ -134,7 +134,7 @@
 
 
 //Call this to link a detected shilding unit to the controller
-/obj/machinery/am_shielding/proc/link_control(var/obj/machinery/power/am_control_unit/AMC)
+/obj/machinery/am_shielding/proc/link_control(obj/machinery/power/am_control_unit/AMC)
 	if(!istype(AMC))	return 0
 	if(control_unit && control_unit != AMC) return 0//Already have one
 	control_unit = AMC
@@ -168,7 +168,7 @@
 	return
 
 
-/obj/machinery/am_shielding/proc/check_stability(var/injecting_fuel = 0)
+/obj/machinery/am_shielding/proc/check_stability(injecting_fuel = 0)
 	if(stability > 0) return
 	if(injecting_fuel && control_unit)
 		control_unit.exploding = 1
@@ -177,7 +177,7 @@
 	return
 
 
-/obj/machinery/am_shielding/proc/recalc_efficiency(var/new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
+/obj/machinery/am_shielding/proc/recalc_efficiency(new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
 	if(!control_unit || !processing) return
 	if(stability < 50)
 		new_efficiency /= 2
@@ -199,7 +199,7 @@
 	throw_range = 2
 	matter = list(MAT_STEEL = 100)
 
-/obj/item/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
+/obj/item/am_shielding_container/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/multitool) && istype(src.loc,/turf))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)

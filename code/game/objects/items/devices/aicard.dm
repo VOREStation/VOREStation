@@ -10,16 +10,17 @@
 	preserve_item = 1
 
 	var/flush = null
-	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 
 	var/mob/living/silicon/ai/carded_ai
 
-/obj/item/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
-	if (!istype (M, /mob/living/silicon/decoy))
+/obj/item/aicard/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(!istype(M, /mob/living/silicon/decoy))
 		return ..()
 	else
-		M.death()
+		var/mob/living/silicon/decoy/decoy = M
+		decoy.death()
 		to_chat(user, span_infoplain(span_bold("ERROR ERROR ERROR")))
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/aicard/attack_self(mob/user)
 	. = ..(user)
@@ -100,7 +101,7 @@
 	else
 		icon_state = "aicard"
 
-/obj/item/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
+/obj/item/aicard/proc/grab_ai(mob/living/silicon/ai/ai, mob/living/user)
 	if(!ai.client && !ai.deployed_shell)
 		to_chat(user, span_danger("ERROR:") + " AI [ai.name] is offline. Unable to transfer.")
 		return 0
@@ -165,7 +166,7 @@
 		carded_ai.show_message(rendered, type)
 	..()
 
-/obj/item/aicard/relaymove(var/mob/user, var/direction)
+/obj/item/aicard/relaymove(mob/user, direction)
 	if(user.stat || user.stunned)
 		return
 	var/obj/item/rig/rig = src.get_rig()

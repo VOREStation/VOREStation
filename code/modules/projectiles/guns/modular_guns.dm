@@ -128,7 +128,7 @@
 		new /datum/firemode(src, list(mode_name="[burstmode] shot lethal", projectile_type=beammode_lethal, charge_cost = chargecost_lethal, burst = burstmode)),
 		)
 
-/obj/item/gun/energy/modular/load_ammo(var/obj/item/C, mob/user)
+/obj/item/gun/energy/modular/load_ammo(obj/item/C, mob/user)
 	if(istype(C, cell_type))
 		if(self_recharge || battery_lock)
 			to_chat(user, span_notice("[src] does not have a battery port."))
@@ -153,7 +153,6 @@
 	icon_state = "mod_pistol"
 	max_components = 6
 	desc = "A bulky modular pistol frame. This only only accepts six parts."
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	burst_delay = 2
 
 /obj/item/gun/energy/modular/carbine
@@ -161,7 +160,6 @@
 	icon_state = "mod_carbine"
 	max_components = 8
 	desc = "A modular version of the standard laser carbine. This one can hold 8 components."
-	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3, TECH_MATERIAL = 3)
 	burst_delay = 2
 
 /obj/item/gun/energy/modular/cannon
@@ -171,5 +169,4 @@
 	desc = "Say hello, to my little friend!"
 	one_handed_penalty = 4 //dual wielding = no.
 	cell_type = /obj/item/cell //We're bigger. We can use much larger power cells.
-	origin_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 4) //its a damn cannon capable of holding a huge amount of parts.
 	burst_delay = 4 //preventing extreme silliness.

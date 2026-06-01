@@ -13,7 +13,6 @@
 	var/uses = 3.0
 	w_class = ITEMSIZE_TINY
 	item_state = "paper"
-	origin_tech = list(TECH_BLUESPACE = 4, TECH_POWER = 3)
 
 //This one is what the wizard starts with.  The above is a better version that can be purchased.
 /obj/item/disposable_teleporter/free

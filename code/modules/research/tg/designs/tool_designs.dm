@@ -1009,8 +1009,9 @@
 	id = "floor_painter"
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 500)
 	build_path = /obj/item/floor_painter
-	build_type = PROTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
@@ -1207,7 +1208,7 @@
 	name = "Rapid Material Synthesizer"
 	desc = "A device used to rapidly synthesize materials."
 	id = "rms"
-	materials = list(MAT_STEEL = 62500, MAT_GLASS = 15000)
+	materials = list(MAT_STEEL = 62500, MAT_GLASS = 15000, MAT_SILVER = 7500)
 	build_path = /obj/item/rms
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(

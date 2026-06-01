@@ -1,11 +1,11 @@
 // Shortcuts for above proc
-/mob/proc/visible_emote(var/act_desc)
+/mob/proc/visible_emote(act_desc)
 	custom_emote(VISIBLE_MESSAGE, act_desc)
 
-/mob/proc/audible_emote(var/act_desc)
+/mob/proc/audible_emote(act_desc)
 	custom_emote(AUDIBLE_MESSAGE, act_desc)
 
-/mob/proc/emote_dead(var/message)
+/mob/proc/emote_dead(message)
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
 		to_chat(src, span_danger("You cannot send deadchat emotes (muted)."))

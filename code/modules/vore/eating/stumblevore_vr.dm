@@ -7,7 +7,7 @@
 				AM.stumble_into(src)
 	return ..()
 // Because flips toggle density
-/mob/living/Crossed(var/atom/movable/AM)
+/mob/living/Crossed(atom/movable/AM)
 	if(isliving(AM) && isturf(loc) && AM != src)
 		var/mob/living/AMV = AM
 		if(AMV.buckled != src && (((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent==I_RUN) || AMV.flying && AMV.flight_vore))

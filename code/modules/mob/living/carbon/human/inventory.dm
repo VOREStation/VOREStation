@@ -3,9 +3,6 @@ Add fingerprints to items when we put them in our hands.
 This saves us from having to call add_fingerprint() any time something is put in a human's hands programmatically.
 */
 
-/mob/living/carbon/human
-	var/list/worn_clothing = list()	//Contains all CLOTHING items worn
-
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = 1
@@ -227,7 +224,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
 
 	if(!slot)
 		return
@@ -239,6 +236,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return
 
 	W.loc = src
+	has_unequipped(W, TRUE, slot) //TG calls attempt_insert -> transferItemToLoc -> doUnEquip -> has_unequipped. This is where we do it instead since we don't have storage datums.
 	switch(slot)
 		if(slot_back)
 			src.back = W
@@ -376,7 +374,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return 1
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
+/mob/living/carbon/human/slot_is_accessible(slot, obj/item/I, mob/user=null)
 	var/obj/item/covering = null
 	var/check_flags = 0
 
@@ -395,7 +393,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return 0
 	return 1
 
-/mob/living/carbon/human/get_equipped_item(var/slot)
+/mob/living/carbon/human/get_equipped_item(slot)
 	switch(slot)
 		if(slot_back)       return back
 		if(slot_legcuffed)  return legcuffed
@@ -433,7 +431,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(r_hand)
 		. += r_hand
 
-/mob/living/carbon/human/proc/drop_all_clothing(var/remove_underwear = FALSE)
+/mob/living/carbon/human/proc/drop_all_clothing(remove_underwear = FALSE)
 	for(var/obj/item/equipped_thing in worn_clothing)
 		if(istype(equipped_thing,/obj/item/clothing/accessory/collar/shock/bluespace))
 			continue

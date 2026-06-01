@@ -283,7 +283,7 @@
 		"large_Grenade",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	// required_experiments = list(/datum/experiment/ordnance/explosive/lowyieldbomb)
+	required_experiments = list(/datum/experiment/ordnance/lowyieldbomb)
 	announce_channels = list(CHANNEL_SECURITY, CHANNEL_MEDICAL)
 
 /datum/techweb_node/exotic_ammo
@@ -308,7 +308,7 @@
 		// "techshotshell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
-	// discount_experiments = list(/datum/experiment/ordnance/explosive/highyieldbomb = TECHWEB_TIER_4_POINTS)
+	discount_experiments = list(/datum/experiment/ordnance/highyieldbomb = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)
 
 /datum/techweb_node/electric_weapons

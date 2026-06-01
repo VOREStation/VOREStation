@@ -16,7 +16,7 @@
 	var/dirty_synth = 0		//Are you a synth
 	var/gross_meatbag = 0		//Where'd I leave my Voight-Kampff test kit?
 
-/datum/preferences/proc/get_custom_bases_for_species(var/new_species)
+/datum/preferences/proc/get_custom_bases_for_species(new_species)
 	if (!new_species)
 		new_species = read_preference(/datum/preference/choiced/species)
 	var/list/choices
@@ -33,7 +33,7 @@
 		choices = choices.Copy()
 	return choices
 
-/datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
+/datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(mob/user, datum/trait/trait, preference)
 	if (!trait || !preference)
 		return
 	var/list/trait_prefs
@@ -170,7 +170,7 @@
 		pref.custom_base = selected_species.default_custom_base
 
 
-/datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/traits/copy_to_mob(mob/living/carbon/human/character)
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
 		pref.gross_meatbag = 0

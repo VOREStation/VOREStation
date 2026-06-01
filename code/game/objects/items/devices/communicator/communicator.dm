@@ -23,7 +23,6 @@
 	slot_flags = SLOT_ID | SLOT_BELT
 	show_messages = 1
 
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2, TECH_DATA = 2)
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
 
 	var/video_range = 3
@@ -150,12 +149,15 @@
 // Parameters: None
 // Description: Drops all calls when EMPed, so the holder can then get murdered by the antagonist.
 /obj/item/communicator/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	close_connection(reason = "Hardware error de%#_^@%-BZZZZZZZT")
 
 // Proc: add_to_EPv2()
 // Parameters: 1 (hex - a single hexadecimal character)
 // Description: Called when someone is manually dialing with nanoUI.  Adds colons when appropiate.
-/obj/item/communicator/proc/add_to_EPv2(var/hex)
+/obj/item/communicator/proc/add_to_EPv2(hex)
 	var/length = length(target_address)
 	if(length >= 24)
 		return

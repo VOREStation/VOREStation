@@ -72,18 +72,21 @@
 			. += span_notice("The generator is off.")
 
 /obj/machinery/power/port_gen/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/duration = 6000 //ten minutes
 	switch(severity)
-		if(1)
+		if(EMP_HEAVY)
 			stat &= BROKEN
 			if(prob(75)) explode()
-		if(2)
+		if(EMP_MEDIUM)
 			if(prob(50)) stat &= BROKEN
 			if(prob(10)) explode()
-		if(3)
+		if(EMP_LIGHT)
 			if(prob(25)) stat &= BROKEN
 			duration = 300
-		if(4)
+		if(EMP_HARMLESS)
 			if(prob(10)) stat &= BROKEN
 			duration = 300
 
@@ -259,7 +262,7 @@
 	sheet_left = 0
 	..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/port_gen/pacman/emag_act(remaining_charges, mob/user)
 	if (active && prob(25))
 		explode() //if they're foolish enough to emag while it's running
 
@@ -267,7 +270,7 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())

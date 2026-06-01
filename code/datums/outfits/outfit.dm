@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(outfits_decls)
 GLOBAL_LIST_EMPTY(outfits_decls_by_type)
 GLOBAL_DATUM_INIT(outfits_decls_root, /datum/decl/hierarchy/outfit, new) // Rewuires the above lists
 
-/proc/outfit_by_type(var/outfit_type)
+/proc/outfit_by_type(outfit_type)
 	return GLOB.outfits_decls_by_type[outfit_type]
 
 /proc/outfits()
@@ -87,7 +87,7 @@ GLOBAL_DATUM_INIT(outfits_decls_root, /datum/decl/hierarchy/outfit, new) // Rewu
 		J.toggle()
 		J.toggle_valve()
 
-/datum/decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment)
+/datum/decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, rank, assignment)
 	equip_base(H)
 
 	rank = rank || id_pda_assignment

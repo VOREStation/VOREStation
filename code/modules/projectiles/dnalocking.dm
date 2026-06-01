@@ -4,7 +4,6 @@
 	icon_state = "dnalockchip"
 	desc = "A state of the art technological chip that can be installed in a firearm. It allows the user to store their DNA and lock the gun's use from unwanted users."
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_COMBAT = 4, TECH_DATA = 4, TECH_BIO = 4)
 
 	var/list/stored_dna = list()	//list of the dna stored in the gun, used to allow users to use it or not
 	var/safety_level = 0			//either 0 or 1, at 0 the game buzzes and tells the user they can't use it, at 1 it self destructs after 10 seconds

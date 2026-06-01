@@ -6,7 +6,7 @@
 /datum/chunk/camera
 	var/list/cameras = list()
 
-/datum/chunk/camera/acquireVisibleTurfs(var/list/visible)
+/datum/chunk/camera/acquireVisibleTurfs(list/visible)
 	for(var/obj/machinery/camera/c as anything in cameras)
 
 		if(!istype(c))

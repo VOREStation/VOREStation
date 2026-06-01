@@ -25,7 +25,7 @@
 		..()
 
 // Handles the actual harming by a melee weapon.
-/mob/living/simple_mob/slime/xenobio/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
+/mob/living/simple_mob/slime/xenobio/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
 	..() // Apply damage and etc.
 	if(!stat && effective_force > 0)
 		if(!is_justified_to_discipline()) // Wow, buddy, why am I getting attacked??

@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(simple_mob_default_emotes, list(
 	popup.set_content(HTML)
 	popup.open()
 
-/mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)
+/mob/living/carbon/human/proc/toggle_tail(setting,message = 0)
 	if(!tail_style || !tail_style.ani_state)
 		if(message)
 			to_chat(src, span_warning("You don't have a tail that supports this."))
@@ -469,7 +469,7 @@ GLOBAL_LIST_INIT(simple_mob_default_emotes, list(
 		update_tail_showing()
 	return 1
 
-/mob/living/carbon/human/proc/toggle_wing(var/setting,var/message = 0)
+/mob/living/carbon/human/proc/toggle_wing(setting,message = 0)
 	if(!wing_style || !wing_style.ani_state)
 		if(message)
 			to_chat(src, span_warning("You don't have a wingtype that supports this."))

@@ -39,6 +39,8 @@ export type occupant = {
   weight: number;
   husked: BooleanLike;
   hasWithdrawl: BooleanLike;
+  hasAllergens: BooleanLike;
+  allergens: string[] | null;
 };
 
 type reagent = { name: string; amount: number; overdose: BooleanLike };

@@ -16,7 +16,6 @@
 	weight = 28
 	protectiveness = 60 // 75%
 	reflectivity = 0.7 // Not a perfect mirror, but close.
-	stack_origin_tech = list(TECH_MATERIAL = 8)
 	supply_conversion_value = 9
 
 /datum/material/durasteel/generate_recipes()
@@ -33,6 +32,7 @@
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
+	supply_conversion_value = 4
 
 /datum/material/titanium/generate_recipes()
 	..()
@@ -48,6 +48,7 @@
 	conductivity = 10
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	supply_conversion_value = 0.25
 
 /datum/material/lead
 	name = MAT_LEAD
@@ -58,7 +59,7 @@
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	radiation_resistance = 25 // Lead is Special and so gets to block more radiation than it normally would with just weight, totalling in 48 protection.
-	supply_conversion_value = 2
+	supply_conversion_value = 0.5
 
 /datum/material/gold
 	name = MAT_GOLD
@@ -67,7 +68,6 @@
 	weight = 24
 	hardness = 40
 	conductivity = 41
-	stack_origin_tech = list(TECH_MATERIAL = 4)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	supply_conversion_value = 2
@@ -79,10 +79,9 @@
 	weight = 22
 	hardness = 50
 	conductivity = 63
-	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	supply_conversion_value = 2
+	supply_conversion_value = 1
 
 /datum/material/platinum
 	name = MAT_PLATINUM
@@ -90,7 +89,6 @@
 	icon_colour = "#9999FF"
 	weight = 27
 	conductivity = 9.43
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	supply_conversion_value = 5
@@ -103,15 +101,14 @@
 	icon_reinf = "reinf_stone"
 	icon_colour = "#007A00"
 	weight = 22
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	door_icon_base = "stone"
 	supply_conversion_value = 2
 
 /datum/material/mhydrogen
 	name = MAT_METALHYDROGEN
+	display_name = "metallic hydrogen"
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
-	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 	conductivity = 100
 	is_fusion_fuel = 1
 	supply_conversion_value = 6
@@ -120,27 +117,26 @@
 	name = MAT_DEUTERIUM
 	stack_type = /obj/item/stack/material/deuterium
 	icon_colour = "#999999"
-	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
 	conductive = 0
+	supply_conversion_value = 3
 
 /datum/material/tritium
 	name = MAT_TRITIUM
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
 	conductive = 0
+	supply_conversion_value = 4
 
 /datum/material/osmium
 	name = MAT_OSMIUM
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
-	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	conductivity = 100
@@ -161,7 +157,7 @@
 	conductivity = 18
 	melting_point = T0C+3600
 	radiation_resistance = 15
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2)
+	supply_conversion_value = 0.5
 
 /datum/material/bronze
 	name = MAT_BRONZE
@@ -172,6 +168,7 @@
 	integrity = 120
 	conductivity = 12
 	protectiveness = 9 // 33%
+	supply_conversion_value = 1
 
 /datum/material/tin
 	name = MAT_TIN
@@ -181,7 +178,7 @@
 	icon_colour = "#b2afaf"
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	supply_conversion_value = 1
+	supply_conversion_value = 0.5
 	hardness = 50
 	weight = 13
 
@@ -194,7 +191,7 @@
 	icon_colour = "#af633e"
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	supply_conversion_value = 1
+	supply_conversion_value = 0.5
 	weight = 13
 	hardness = 50
 
@@ -206,5 +203,5 @@
 	stack_type = /obj/item/stack/material/aluminium
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	supply_conversion_value = 2
+	supply_conversion_value = 1
 	weight = 10

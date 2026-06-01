@@ -1,8 +1,4 @@
-@use 'sass:color';
-
-@use '../base.scss';
-@use '../colors.scss';
-@use '../functions.scss' as *;
+@use '~tgui-core/styles/functions.scss';
 
 :root {
   --nuclear-beige: hsl(50, 33%, 84%);

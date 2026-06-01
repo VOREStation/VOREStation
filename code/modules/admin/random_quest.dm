@@ -1,4 +1,4 @@
-/mob/proc/quest_from_above(var/specific_quest)
+/mob/proc/quest_from_above(specific_quest)
 	var/list/quests = list("Search",
 							"Collect",
 							"Drink",

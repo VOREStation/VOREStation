@@ -30,8 +30,6 @@
 	desc = "A grenade launcher produced for use by government uprising subjugation forces, or that's what you might guess; fires matryoshka flashbangs."
 	projectile = /obj/item/grenade/flashbang/clusterbang
 
-	origin_tech = list(TECH_COMBAT= 5, TECH_MATERIAL = 5, TECH_ILLEGAL = 3)
-
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
 	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[chassis.selected==src?"<b>":"<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]\[[src.projectiles]\]"
 
@@ -48,8 +46,6 @@
 	equip_cooldown = 50
 	det_time = 25
 
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_ILLEGAL = 1)
-
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/frag
 	name = "\improper HEP-I 5 grenade launcher"
 	desc = "A military-grade grenade launcher that fires anti-personnel fragmentation grenades."
@@ -58,13 +54,9 @@
 	projectiles = 4
 	missile_speed = 1
 
-	origin_tech = list(TECH_COMBAT = 5, TECH_ENGINEERING = 5, TECH_MATERIAL = 5, TECH_ILLEGAL = 3)
-
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/frag/mini
 	name = "\improper HEP-MI 6 grenade launcher"
 	desc = "A military-grade grenade launcher that fires miniaturized anti-personnel fragmentation grenades."
 	projectile = /obj/item/grenade/explosive/mini
 	projectile_energy_cost = 500
 	equip_cooldown = 25
-
-	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 2, TECH_MATERIAL = 3, TECH_ILLEGAL = 2)

@@ -1,4 +1,4 @@
-/datum/antagonist/proc/can_become_antag(var/datum/mind/player, var/ignore_role)
+/datum/antagonist/proc/can_become_antag(datum/mind/player, ignore_role)
 	if(player.current)
 		if(jobban_isbanned(player.current, bantype))
 			return FALSE
@@ -16,7 +16,7 @@
 				if(J.mob_type & JOB_SILICON)
 					return FALSE
 			else // If SSjob couldn't find a job, they don't have one yet, so the next best thing we can switch on are job preferences
-				if((player.current.client.prefs.job_engsec_high | player.current.client.prefs.job_engsec_med | player.current.client.prefs.job_engsec_low) & (AI_DEPT | CYBORG)) // If they have ANY chance of being silicon
+				if((player.current.client.prefs.read_preference(/datum/preference/numeric/human/job_engsec_high) | player.current.client.prefs.read_preference(/datum/preference/numeric/human/job_engsec_med) | player.current.client.prefs.read_preference(/datum/preference/numeric/human/job_engsec_low)) & (AI_DEPT | CYBORG)) // If they have ANY chance of being silicon
 					return FALSE
 	return TRUE
 
@@ -32,11 +32,11 @@
 /datum/antagonist/proc/get_antag_count()
 	return current_antagonists ? current_antagonists.len : 0
 
-/datum/antagonist/proc/is_antagonist(var/datum/mind/player)
+/datum/antagonist/proc/is_antagonist(datum/mind/player)
 	if(player in current_antagonists)
 		return 1
 
-/datum/antagonist/proc/is_type(var/antag_type)
+/datum/antagonist/proc/is_type(antag_type)
 	if(antag_type == id || antag_type == role_text)
 		return 1
 	return 0

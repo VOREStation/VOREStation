@@ -13,7 +13,7 @@
 	interface_name = "VOID-shift phase projector"
 	interface_desc = "An advanced teleportation system. It is capable of pinpoint precision or random leaps forward."
 
-/obj/item/rig_module/teleporter/proc/phase_in(var/mob/M,var/turf/T)
+/obj/item/rig_module/teleporter/proc/phase_in(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -23,7 +23,7 @@
 	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 
-/obj/item/rig_module/teleporter/proc/phase_out(var/mob/M,var/turf/T)
+/obj/item/rig_module/teleporter/proc/phase_out(mob/M,turf/T)
 
 	if(!M || !T)
 		return
@@ -31,7 +31,7 @@
 	playsound(T, "sparks", 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-/obj/item/rig_module/teleporter/engage(var/atom/target, var/notify_ai)
+/obj/item/rig_module/teleporter/engage(atom/target, notify_ai)
 
 	var/mob/living/carbon/human/H = holder.wearer
 

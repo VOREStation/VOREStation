@@ -19,7 +19,7 @@
 	spore_type = /mob/living/simple_mob/blob/spore/weak
 	chunk_active_ability_cooldown = 60 SECONDS
 
-/datum/blob_type/fulminant_organism/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
+/datum/blob_type/fulminant_organism/on_expand(obj/structure/blob/B, obj/structure/blob/new_B, turf/T, mob/observer/blob/O)
 	if(prob(10)) // 10% chance to make a weak spore when expanding.
 		var/mob/living/simple_mob/blob/spore/S = new spore_type(T)
 		if(istype(S))

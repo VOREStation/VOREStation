@@ -15,7 +15,11 @@
 	level = 1
 	dir = SOUTH
 	initialize_directions = SOUTH
-	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
+	construction_type = /obj/item/pipe/directional/tank // special lorge pipe
+	pipe_state = "tank"
+
+	pipe_flags = PIPING_ONE_PER_TURF
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_AUX
 	density = TRUE
 
 /obj/machinery/atmospherics/pipe/tank/Initialize(mapload)
@@ -42,7 +46,8 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	add_underlay(T, node1, dir)
+	if(node1)
+		add_underlay(T, node1, dir, node1.icon_connect_type)
 
 /obj/machinery/atmospherics/pipe/tank/hide()
 	update_underlays()
@@ -50,7 +55,7 @@
 /obj/machinery/atmospherics/pipe/tank/atmos_init()
 	var/connect_direction = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,connect_direction)))
 		if (can_be_node(target, 1))
 			node1 = target
 			break
@@ -66,10 +71,6 @@
 	update_underlays()
 
 	return null
-
-/obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/pipe_painter))
-		return
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
@@ -172,3 +173,20 @@
 
 	air_temporary.adjust_gas(GAS_CH4, (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
 	icon_state = "ch4"
+
+/obj/machinery/atmospherics/pipe/tank/custom
+	name = "Pressure Tank"
+	icon_state = "air_map"
+
+/obj/machinery/atmospherics/pipe/tank/custom/atmos_init()
+	. = ..()
+	icon_state = "air" // Forces air for the proper blending, we don't want -scrubbers!
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/tank/custom/update_icon()
+	cut_overlays()
+	if(!pipe_color)
+		return
+	var/image/I = image(icon, icon_state = "custom")
+	I.color = pipe_color
+	add_overlay(I)

@@ -19,7 +19,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/regen/equipped(var/mob/user)
+/obj/item/clothing/gloves/regen/equipped(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.gloves == src)
@@ -30,12 +30,14 @@
 	..()
 
 
-/obj/item/clothing/gloves/regen/dropped(var/mob/user)
+/obj/item/clothing/gloves/regen/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
+
 	..()
 
 	if(!ishuman(user))
 		return
-
 	var/mob/living/carbon/human/H = user
 	if(H.can_feel_pain())
 		to_chat(H, span_danger("You feel the hypodermic needles as you slide \the [src] off!"))

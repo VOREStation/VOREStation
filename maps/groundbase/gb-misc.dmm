@@ -472,7 +472,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
 "bz" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
 "bA" = (
@@ -597,7 +597,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "bR" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "bS" = (
@@ -710,7 +710,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
 "cg" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
 "ch" = (
@@ -1768,7 +1768,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
 "fx" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
 "fy" = (
@@ -1813,7 +1813,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm5)
 "fF" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm5)
 "fG" = (
@@ -2071,7 +2071,7 @@
 	},
 /area/beach)
 "gv" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm6)
 "gw" = (

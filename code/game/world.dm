@@ -172,11 +172,7 @@ GLOBAL_VAR(restart_counter)
 	log_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
 #endif
 
-	GLOB.master_controller = new /datum/controller/game_controller()
 	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit
-
-	spawn(1)
-		GLOB.master_controller.setup()
 
 	RunUnattendedFunctions()
 
@@ -527,7 +523,7 @@ GLOBAL_VAR_INIT(world_topic_spam_protect_time, world.timeofday)
 			GLOB.master_mode = Lines[1]
 			log_world("## MISC Saved mode is '[GLOB.master_mode]'")
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode

@@ -143,8 +143,11 @@ const VoreSoulcatcherSection = (props: {
                 <Stack align="center">
                   <Stack.Item>
                     <Dropdown
+                      searchInput
+                      styledInput
                       width="200px"
                       selected={selected_soul}
+                      displayText={selected_soul}
                       options={caught_souls}
                       onSelected={(value) =>
                         act('soulcatcher_select', {
@@ -180,6 +183,7 @@ const VoreSoulcatcherSection = (props: {
               />
               <LabeledList.Item label="Interior SFX">
                 <VorePanelEditDropdown
+                  searchInput
                   action="soulcatcher_sfx"
                   editMode={editMode}
                   options={overlayBellies}

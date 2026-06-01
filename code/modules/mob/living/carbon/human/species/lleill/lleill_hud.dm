@@ -28,7 +28,7 @@
 	icon_state = "grey_spell_base"
 	background_base_state = "grey"
 
-/atom/movable/screen/movable/ability_master/proc/add_lleill_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
+/atom/movable/screen/movable/ability_master/proc/add_lleill_ability(object_given, verb_given, name_given, ability_icon_given, arguments)
 	if(!object_given)
 		message_admins("ERROR: add_lleill_ability() was not given an object in its arguments.")
 	if(!verb_given)

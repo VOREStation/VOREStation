@@ -8,7 +8,7 @@
 	item_state = "sucker"
 	slot_flags = SLOT_BELT | SLOT_BACK
 	var/vac_power = 0
-	var/output_dest = null
+	var/datum/weakref/output_dest
 	var/list/vac_settings = list(
 			"power off" = 0,
 			"dust and grime" = 1,
@@ -29,12 +29,16 @@
 	var/max_items = 20
 	flags = NOBLUDGEON
 
+/obj/item/vac_attachment/Destroy()
+	output_dest = null
+	. = ..()
+
 /obj/item/vac_attachment/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
 	var/set_input = null
-	if(!output_dest)
+	if(!output_dest?.resolve())
 		set_input = "output destination"
 	if(!set_input)
 		set_input = tgui_input_list(user, "Set your [suckverb] attachment's power level or output mode.", "Vac Settings", vac_settings)
@@ -54,7 +58,7 @@
 						var/obj/item/robot_module/M = R.module
 						for(var/obj/item/dogborg/sleeper/S in M.modules)
 							if(istype(S))
-								output_dest = S
+								output_dest = WEAKREF(S)
 								return
 					to_chat(user, span_warning("Borg belly not found."))
 				if("Trash Bag")
@@ -63,16 +67,16 @@
 						var/obj/item/robot_module/M = R.module
 						for(var/obj/item/storage/bag/trash/T in M.modules)
 							if(istype(T))
-								output_dest = T
+								output_dest = WEAKREF(T)
 								return
 					for(var/obj/item/storage/bag/trash/T in user.contents)
 						if(istype(T))
-							output_dest = T
+							output_dest = WEAKREF(T)
 							return
 					to_chat(user, span_warning("Trash bag not found."))
 				if("Vore Belly")
 					if(user.vore_selected)
-						output_dest = user.vore_selected
+						output_dest = WEAKREF(user.vore_selected)
 			return
 		else
 			vac_power = vac_settings[set_input]
@@ -83,33 +87,38 @@
 		return
 	if(!proximity)
 		return
-	if(!output_dest)
+	var/atom/movable/output_atom = output_dest?.resolve()
+	if(!output_atom)
 		return
-	if(istype(output_dest,/obj/item/storage/bag/trash))
-		if(get_turf(output_dest) != get_turf(user))
+	var/mob/living/attachment_holder //If we have someone holding the vac_attachment, so we don't suck them up by mistake.
+	if(vac_owner) //If we have a vac owner, treat the vac owner as the user.
+		attachment_holder = user
+		user = vac_owner
+	if(istype(output_atom, /obj/item/storage/bag/trash))
+		if(get_turf(output_atom) != get_turf(user))
 			vac_power = 0
 			icon_state = "sucker-0"
 			output_dest = null
 			to_chat(user, span_warning("Trash bag not found. Shutting down."))
 			return
-		var/obj/item/storage/bag/trash/B = output_dest
+		var/obj/item/storage/bag/trash/B = output_atom
 		var/total_storage_space = 0
 		for(var/obj/item/thing in B.contents)//no more leniency on this one. We check it all. B
 			total_storage_space += thing.get_storage_cost()
 			if(total_storage_space >= B.max_storage_space)
 				to_chat(user, span_warning("Trash bag full. Empty trash bag contents to continue."))
 				return
-	if(istype(output_dest,/obj/item/dogborg/sleeper))
-		var/obj/item/dogborg/sleeper/B = output_dest
+	if(istype(output_atom, /obj/item/dogborg/sleeper))
+		var/obj/item/dogborg/sleeper/B = output_atom
 		if(LAZYLEN(B.contents) >= B.max_item_count)
 			to_chat(user, span_warning("[B.name] full. Empty or process contents to continue."))
 			return
 		if(B.ore_storage)
-			if(B.current_capacity >= B.max_ore_storage)
+			if(B.ore_bag.current_capacity >= B.ore_bag.max_storage_space)
 				to_chat(user, span_warning("Ore storage full. Deposit ore contents to a box continue."))
 				return
-	if(isbelly(output_dest))
-		var/turf/T = get_turf(output_dest)
+	if(isbelly(output_atom))
+		var/turf/T = get_turf(output_atom)
 		if(!T.Adjacent(user)) //Can still be used as a feeding tube by another adjacent player.
 			if(vac_owner && user != vac_owner)
 				return
@@ -131,12 +140,12 @@
 		if(vac_power == 8)
 			playsound(src, 'sound/machines/hiss.ogg', 100, 1, -1)
 			for(var/obj/item/I in oview(pull_range, target))
-				if(I.anchored || !is_allowed_suck(I, user))
+				if(I.anchored || !is_allowed_suck(I, user, output_atom))
 					continue
 				I.singularity_pull(target, STAGE_THREE)
 				suckables += I
 			for(var/mob/living/L in oview(pull_range, target))
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
+				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey || L == attachment_holder)
 					continue
 				L.singularity_pull(target, STAGE_THREE)
 				suckables += L
@@ -149,7 +158,7 @@
 					continue
 				suckables += I
 			for(var/mob/living/L in target)
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
+				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey || L == attachment_holder)
 					continue
 				if(L.size_multiplier < 0.5 || vac_power >= 6)
 					suckables += L
@@ -184,13 +193,13 @@
 				if(is_type_in_list(F, GLOB.item_vore_blacklist))
 					continue
 				if(istype(F,/obj/effect/decal/cleanable))
-					if(isbelly(output_dest))
-						var/obj/belly/B = output_dest
+					if(isbelly(output_atom))
+						var/obj/belly/B = output_atom
 						B.owner_adjust_nutrition(1)
 					qdel(F)
 					continue
-				if(istype(output_dest,/obj/item/storage/bag/trash))
-					var/obj/item/storage/bag/trash/B = output_dest
+				if(istype(output_atom,/obj/item/storage/bag/trash))
+					var/obj/item/storage/bag/trash/B = output_atom
 					if(LAZYLEN(B.contents) >= B.max_storage_space)
 						to_chat(user, span_warning("Trash bag full. Empty trash bag contents to continue."))
 						break
@@ -199,15 +208,15 @@
 					if(vac_conga < 100)
 						vac_conga += 3
 					addtimer(CALLBACK(src, PROC_REF(prepare_sucking), F, user, auto_setting, target), 0.3 SECONDS + vac_conga)
-				else if(is_allowed_suck(target, user))
+				else if(is_allowed_suck(target, user, output_atom))
 					handle_consumption(F, user, auto_setting)
 			if(vac_conga > 0)
 				var/obj/effect/vac_visual/V = new(target)
 				V.ready(0.5 SECONDS + vac_conga)
 			if(istype(target, /turf/simulated))
 				var/turf/simulated/T = target
-				if(isbelly(output_dest) && T.dirt > 50)
-					var/obj/belly/B = output_dest
+				if(isbelly(output_atom) && T.dirt > 50)
+					var/obj/belly/B = output_atom
 					B.owner_adjust_nutrition((T.dirt - 50) / 10) //Max tile dirt is 101. so about 5 nutrition from a disgusting floor, I think that's okay.
 				T.dirt = 0
 				T.wash(CLEAN_WASH)
@@ -220,7 +229,7 @@
 		var/obj/item/I = target
 		if(is_type_in_list(I, GLOB.item_vore_blacklist) || I.w_class >= ITEMSIZE_HUGE)
 			return
-		if(!is_allowed_suck(target, user)) //cancel if you're not allowed
+		if(!is_allowed_suck(target, user, output_atom)) //cancel if you're not allowed
 			return
 		if(vac_power > I.w_class)
 			if(vac_power == 7)
@@ -252,7 +261,7 @@
 		if(vac_power >= 6)
 			valid_to_suck = TRUE
 			auto_setting = 6
-		if(valid_to_suck && is_allowed_suck(target, user))
+		if(valid_to_suck && is_allowed_suck(target, user, output_atom))
 			playsound(src, sucksound, auto_setting * 20, 1, -1)
 			user.visible_message(span_filter_notice("[user] [suckverb]s up \the [target.name]."), span_notice("You [suckverb] up \the [target.name]..."))
 			if(suckanim)
@@ -260,9 +269,16 @@
 			addtimer(CALLBACK(src, PROC_REF(handle_consumption), L, user, auto_setting), 0.5 SECONDS)
 
 /obj/item/vac_attachment/proc/prepare_sucking(atom/movable/target, mob/user, turf/target_turf)
-	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_dest) //Cancel if moved/unpowered/dropped
+	var/atom/movable/output_atom = output_dest?.resolve()
+
+	if(vac_owner) //Embedded vacs have special handling.
+		var/turf/item_turf = get_turf(src)
+		if(vac_power < 2 || !output_atom || (!target.Adjacent(user) && !item_turf.Adjacent(target))) //Swoopie vacs check to see if you're adjacent to the person holding the vac OR the swoopie itself.
+			return
+	else if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
 		return
-	if(!is_allowed_suck(target, user)) //cancel if you're not allowed
+
+	if(!is_allowed_suck(target, user, output_atom)) //cancel if you're not allowed
 		return
 	target.SpinAnimation(5,1)
 	addtimer(CALLBACK(src, PROC_REF(handle_consumption), target, user, target_turf), 0.5 SECONDS)
@@ -270,26 +286,33 @@
 /obj/item/vac_attachment/proc/handle_consumption(atom/movable/target, mob/user, auto_setting, turf/target_turf)
 	if(target_turf && target.loc != target_turf)
 		return
-	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_dest) //Cancel if moved/unpowered/dropped
+	var/atom/movable/output_atom = output_dest?.resolve()
+
+	if(vac_owner)
+		var/turf/item_turf = get_turf(src)
+		if(vac_power < 2 || !output_atom || (!target.Adjacent(user) && !item_turf.Adjacent(target))) //Swoopie vacs check to see if you're adjacent to the person holding the vac OR the swoopie itself.
+			return
+	else if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_atom) //Cancel if moved/unpowered/dropped
 		return
-	if(!is_allowed_suck(target, user)) //Does it obey restrictions on what the target could otherwise consume?
+
+	if(!is_allowed_suck(target, user, output_atom)) //Does it obey restrictions on what the target could otherwise consume?
 		return
 	if(isitem(target))
 		var/obj/item/target_item = target
 		if(target_item.drop_sound)
 			playsound(src, target_item.drop_sound, vac_power * 5, 1, -1)
 	playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
-	if(isbelly(output_dest))
-		var/obj/belly/output_belly = output_dest
+	if(isbelly(output_atom))
+		var/obj/belly/output_belly = output_atom
 		output_belly.nom_atom(target)
 		return
-	target.forceMove(output_dest)
+	target.forceMove(output_atom)
 
-/obj/item/vac_attachment/proc/is_allowed_suck(atom/movable/target, mob/user) //a ray of light in this inscrutible file. Check if we *can* fit what we want to fit, where we want to fit it. This does NOT check all the sanity checks n stuff
+/obj/item/vac_attachment/proc/is_allowed_suck(atom/movable/target, mob/user, atom/movable/output_atom) //a ray of light in this inscrutible file. Check if we *can* fit what we want to fit, where we want to fit it. This does NOT check all the sanity checks n stuff
 	if(isitem(target))
 		var/obj/item/target_item = target
-		if(istype(output_dest, /obj/item/storage))//if it's storage, does it fit?
-			var/obj/item/storage/target_storage = output_dest
+		if(istype(output_atom, /obj/item/storage))//if it's storage, does it fit?
+			var/obj/item/storage/target_storage = output_atom
 			if(target_storage.can_be_inserted(target_item, TRUE))
 				return TRUE
 		else//if it's not a trash bag, it's a vorebelly or borg belly. Check trash eat
@@ -302,8 +325,8 @@
 	if(isliving(target)) //quick prefs test. Better safe than sorry
 		var/mob/living/caneat = target
 		if(caneat.devourable && caneat.can_be_drop_prey)
-			if(istype(output_dest, /obj/item/storage))//check if a mob holder's gonna fit there!
-				var/obj/item/storage/target_storage = output_dest
+			if(istype(output_atom, /obj/item/storage))//check if a mob holder's gonna fit there!
+				var/obj/item/storage/target_storage = output_atom
 				var/total_storage_space = ITEMSIZE_COST_SMALL
 				for(var/obj/item/thing in target_storage.contents)
 					total_storage_space += thing.get_storage_cost()
@@ -312,7 +335,7 @@
 			return TRUE
 	return FALSE
 
-/obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
+/obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, attack_modifier = 1, click_parameters)
 	if(istype(A,/obj/structure) && vac_power > 0)
 		afterattack(A.loc, user, click_parameters)
 		return TRUE
@@ -326,8 +349,8 @@
 	.=..()
 	icon_state = "sucker-[vac_power]"
 
-/obj/item/vac_attachment/dropped(mob/user as mob)
-	.=..()
+/obj/item/vac_attachment/dropped(mob/user, equipping, slot)
+	. = ..()
 	icon_state = "sucker_drop"
 
 /obj/item/vac_attachment/verb/hide_pack()

@@ -23,11 +23,11 @@ GLOBAL_LIST_EMPTY(env_messages)
 	for(var/tckey in message_list)
 		. += message_list[tckey]
 
-/obj/effect/env_message/proc/add_message(var/tckey, var/message)
+/obj/effect/env_message/proc/add_message(tckey, message)
 	message_list[tckey] = message
 	update_message()
 
-/obj/effect/env_message/proc/remove_message(var/tckey)
+/obj/effect/env_message/proc/remove_message(tckey)
 	message_list -= tckey
 	if(!message_list.len)
 		qdel(src)
@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 
 	..()
 
-/proc/clear_env_message(var/tckey)
+/proc/clear_env_message(tckey)
 	for(var/obj/effect/env_message/EM in GLOB.env_messages)
 		if(tckey in EM.message_list)
 			EM.remove_message(tckey)
@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 	if(!istype(src) || !get_turf(src) || !src.ckey)
 		return
 
-	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message", MAX_MESSAGE_LEN)
+	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message", max_length = MAX_MESSAGE_LEN)
 
 	if(!new_message)
 		return

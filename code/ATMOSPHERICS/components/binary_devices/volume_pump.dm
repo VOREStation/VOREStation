@@ -20,11 +20,11 @@ Thus, the two variables affect pump operation are set in New():
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "volumepump"
 	level = 1
-	var/base_icon = "pump"
 
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume"
 
+	pipe_flags = NONE // Other pumps can be on other layers
 	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 15000	//15000 W ~ 20.4 HP
@@ -51,13 +51,12 @@ Thus, the two variables affect pump operation are set in New():
 	unregister_radio(src, frequency)
 	. = ..()
 
-/obj/machinery/atmospherics/binary/pump/on
+/obj/machinery/atmospherics/binary/volume_pump/on
 	icon_state = "map_on"
 	use_power = USE_POWER_IDLE
 
 /obj/machinery/atmospherics/binary/volume_pump/fuel
 	icon_state = "map_off-fuel"
-	base_icon = "pump-fuel"
 	icon_connect_type = "-fuel"
 	connect_types = CONNECT_TYPE_FUEL
 
@@ -67,7 +66,6 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/aux
 	icon_state = "map_off-aux"
-	base_icon = "pump-aux"
 	icon_connect_type = "-aux"
 	connect_types = CONNECT_TYPE_AUX
 
@@ -75,13 +73,32 @@ Thus, the two variables affect pump operation are set in New():
 	icon_state = "map_on-aux"
 	use_power = USE_POWER_IDLE
 
-/obj/machinery/atmospherics/binary/volume_pump/update_icon()
-	if(!powered())
-		icon_state = "off"
-	else
-		icon_state = "[use_power ? "on" : "off"]"
+/obj/machinery/atmospherics/binary/volume_pump/scrubbers
+	icon_state = "map_off-scrubbers"
+	icon_connect_type = "-scrubbers"
+	connect_types = CONNECT_TYPE_SCRUBBER
 
-	overclock_overlay = mutable_appearance('icons/atmos/volume_pump_overclock.dmi', "vpumpoverclock")
+/obj/machinery/atmospherics/binary/volume_pump/scrubbers/on
+	icon_state = "map_on-scrubbers"
+	use_power = USE_POWER_IDLE
+
+/obj/machinery/atmospherics/binary/volume_pump/supply
+	icon_state = "map_off-supply"
+	icon_connect_type = "-supply"
+	connect_types = CONNECT_TYPE_SUPPLY
+
+/obj/machinery/atmospherics/binary/volume_pump/supply/on
+	icon_state = "map_on-supply"
+	use_power = USE_POWER_IDLE
+
+/obj/machinery/atmospherics/binary/volume_pump/update_icon()
+	var/base_icon = "pump[icon_connect_type]"
+	if(!powered())
+		icon_state = "[base_icon]-off"
+	else
+		icon_state = "[use_power ? "[base_icon]-on" : "[base_icon]-off"]"
+
+	overclock_overlay = mutable_appearance('icons/atmos/volume_pump_overclock.dmi', "vpumpoverclock[icon_connect_type]")
 	if(powered() && use_power && overclocked)
 		add_overlay(overclock_overlay)
 	else
@@ -93,10 +110,12 @@ Thus, the two variables affect pump operation are set in New():
 	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
-	add_underlay(T, node1, turn(dir, -180), node1?.icon_connect_type)
-	add_underlay(T, node2, dir, node2?.icon_connect_type)
+	if(node1)
+		add_underlay(T, node1, turn(dir, -180), icon_connect_type)
+	if(node2)
+		add_underlay(T, node2, dir, icon_connect_type)
 
-/obj/machinery/atmospherics/binary/volume_pump/hide(var/i)
+/obj/machinery/atmospherics/binary/volume_pump/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/binary/volume_pump/process()
@@ -260,7 +279,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/binary/volume_pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_WRENCH))
 		wrench_act(W, user)
 
@@ -277,7 +296,7 @@ Thus, the two variables affect pump operation are set in New():
 		. += "Its warning light is on[use_power ? " and it's spewing gas!" : "."]"
 
 
-/obj/machinery/atmospherics/binary/volume_pump/proc/wrench_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/proc/wrench_act(obj/item/W as obj, mob/user as mob)
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, span_warning("You cannot unwrench this [src], turn it off first."))
 		return TRUE
@@ -292,9 +311,9 @@ Thus, the two variables affect pump operation are set in New():
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
-		deconstruct()
+		atom_deconstruct()
 
-/obj/machinery/atmospherics/binary/volume_pump/proc/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/proc/multitool_act(obj/item/W as obj, mob/user as mob)
 	if(!overclocked)
 		overclocked = TRUE
 		to_chat(user, span_notice("The pump makes a grinding noise and air starts to hiss out as you disable its pressure limits."))

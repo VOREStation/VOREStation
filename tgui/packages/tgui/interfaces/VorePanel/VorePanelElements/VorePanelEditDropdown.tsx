@@ -18,6 +18,8 @@ export const VorePanelEditDropdown = (
   } & Partial<{
     /** Our secondary backend action on selection */
     subAction: string;
+    /** Allows to turn the dropdown to a searchable one */
+    searchInput: boolean;
     /** Color of the dropdown and text */
     color: string;
     /** Icon of the dropdown */
@@ -36,6 +38,7 @@ export const VorePanelEditDropdown = (
     options,
     action,
     subAction = '',
+    searchInput,
     color,
     icon,
     tooltip,
@@ -58,10 +61,13 @@ export const VorePanelEditDropdown = (
       <Stack.Item grow>
         <Dropdown
           fluid
+          searchInput={searchInput}
+          styledInput={searchInput}
           color={color}
           onSelected={saneAct}
           options={options}
           selected={entry}
+          displayText={entry}
           icon={icon}
         />
       </Stack.Item>

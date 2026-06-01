@@ -8,7 +8,6 @@
 	item_state = "electronic"
 	actions_types = list(/datum/action/item_action/toggle_uv_light)
 	matter = list(MAT_STEEL = 150)
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	var/list/scanned = list()
 	var/list/stored_alpha = list()

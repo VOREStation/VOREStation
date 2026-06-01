@@ -67,7 +67,7 @@
 	// NORMIE
 	return ..()
 
-/mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/carbon/human/say_understands(mob/other, datum/language/speaking = null)
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
 		return TRUE
 
@@ -128,7 +128,7 @@
 			return formatted_name
 	return real_name
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+/mob/living/carbon/human/proc/SetSpecialVoice(new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
@@ -140,7 +140,7 @@
 /mob/living/carbon/human/proc/GetSpecialVoice()
 	return special_voice
 
-/mob/living/carbon/human/handle_speech_problems(var/list/message_data)
+/mob/living/carbon/human/handle_speech_problems(list/message_data)
 	if(silent || (sdisabilities & MUTE) || is_paralyzed())
 		// MUTE shouldn't suppress noise language (audible say emotes), consistent with * emotes bypassing mute in say().
 		if((sdisabilities & MUTE) && !silent && !is_paralyzed())
@@ -150,16 +150,18 @@
 				if(istype(first) && first.speaking == GLOB.all_languages["Noise"])
 					return ..()
 		message_data[1] = ""
-		. = 1
+		return 1
 
-	else if(istype(wear_mask, /obj/item/clothing/mask))
+	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
-		if(M.voicechange)
+		if(M.voicechange) //only horsemasks do this.
 			message_data[1] = pick(M.say_messages)
 			message_data[2] = pick(M.say_verbs)
-			. = 1
+			if(istype(M, /obj/item/clothing/mask/horsehead) && prob(0.5))
+				message_data[2] = "HIIII EVERYPONY"
+			return 1
 
-	else if((CE_SPEEDBOOST in chem_effects) || (get_jittery() >= 100 && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
+	if((CE_SPEEDBOOST in chem_effects) || (get_jittery() >= 100 && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
 		// Despite trying to url/html decode these, byond is just being bad and I dunno.
 		var/static/regex/speedboost_initial = new (@"&[a-z]{2,5};|&#\d{2};","g")
 		// Not herestring because bad vs code syntax highlight panics at apostrophe
@@ -167,9 +169,9 @@
 		for(var/datum/multilingual_say_piece/S in message_data[1])
 			S.message = speedboost_initial.Replace(S.message, "")
 			S.message = speedboost_main.Replace(S.message, "")
-		. = 1
-	else
-		. = ..(message_data)
+		return 1
+
+	. = ..(message_data)
 
 /mob/living/carbon/human/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	switch(message_mode)

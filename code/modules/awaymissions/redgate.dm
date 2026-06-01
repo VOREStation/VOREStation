@@ -28,7 +28,7 @@
 
 	return ..()
 
-/obj/structure/redgate/proc/teleport(var/mob/M as mob)
+/obj/structure/redgate/proc/teleport(mob/M as mob)
 	var/keycheck = TRUE
 	if (!isliving(M))		//We only want mob/living, no bullets or mechs or AI eyes or items
 		if(is_type_in_list(M, exceptions))
@@ -78,7 +78,7 @@
 	else
 		to_chat(M, span_notice("Something blocks your way."))
 
-/obj/structure/redgate/proc/find_our_turf(var/atom/movable/AM)	//This finds the turf on the opposite side of the target gate from where you are
+/obj/structure/redgate/proc/find_our_turf(atom/movable/AM)	//This finds the turf on the opposite side of the target gate from where you are
 	var/offset_x = x - AM.x										//used for more smooth teleporting
 	var/offset_y = y - AM.y
 
@@ -132,7 +132,7 @@
 			to_chat(M, span_warning("The [src] remains off... seems like it doesn't have a destination."))
 
 
-/obj/structure/redgate/attack_ghost(var/mob/observer/dead/user)
+/obj/structure/redgate/attack_ghost(mob/observer/dead/user)
 
 	if(target)
 		if(!(secret || target.secret) || check_rights_for(user?.client, R_HOLDER))
@@ -1535,7 +1535,7 @@
 
 /*
 //TODO - make this not trigger when the flag is returned to its original location
-/obj/item/laserdome_flag/dropped(mob/user)
+/obj/item/laserdome_flag/dropped(mob/user, equipping, slot)
 	. = ..()
 	GLOB.global_announcer.autosay("[src] dropped!","Laserdome Announcer","Entertainment")
 */
@@ -1700,7 +1700,7 @@
 
 /*
 //TODO- make this not trigger when the ball is thrown or dunked, only when it's actually dropped
-/obj/item/laserdome_hyperball/dropped(mob/user)
+/obj/item/laserdome_hyperball/dropped(mob/user, equipping, slot)
 	. = ..()
 	GLOB.global_announcer.autosay("[capitalize(last_team)] fumble!","Laserdome Announcer","Entertainment")
 */

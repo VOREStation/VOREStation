@@ -86,7 +86,7 @@
 
 	return 1
 
-/obj/machinery/vr_sleeper/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/vr_sleeper/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
 
 	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))
@@ -103,14 +103,14 @@
 		return
 
 
-/obj/machinery/vr_sleeper/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/vr_sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !isliving(target))
 		return
 	go_in(target, user)
 
 
 
-/obj/machinery/vr_sleeper/relaymove(var/mob/user)
+/obj/machinery/vr_sleeper/relaymove(mob/user)
 	..()
 	if(user.incapacitated())
 		return
@@ -119,8 +119,8 @@
 
 
 /obj/machinery/vr_sleeper/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(occupant)
@@ -133,8 +133,6 @@
 			smoke.set_up(severity, 0, src)
 			smoke.start("#202020")
 		perform_exit()
-
-	..(severity, recursive)
 
 /obj/machinery/vr_sleeper/verb/eject()
 	set src in view(1)
@@ -165,7 +163,7 @@
 		return 0 //maybe they should be able to get out with cuffs, but whatever
 	perform_exit()
 
-/obj/machinery/vr_sleeper/proc/go_in(var/mob/M, var/mob/user)
+/obj/machinery/vr_sleeper/proc/go_in(mob/M, mob/user)
 	if(!M)
 		return
 	if(stat & (BROKEN|NOPOWER))
@@ -293,7 +291,7 @@
 
 		occupant.enter_vr(avatar)
 		if(spawn_with_clothing)
-			GLOB.job_master.EquipRank(avatar,"Visitor", 1, FALSE)
+			SSjob.equip_rank(avatar,"Visitor", 1, FALSE)
 		add_verb(avatar,/mob/living/carbon/human/proc/perform_exit_vr)
 		add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 		add_verb(avatar,/mob/living/proc/set_size)

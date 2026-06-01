@@ -43,7 +43,7 @@
 	var/datum/planet_sunlight_handler/pshandler
 	var/sleeping = FALSE
 
-/datum/sunlight_handler/New(var/parent)
+/datum/sunlight_handler/New(parent)
 	. = ..()
 	holder = parent
 
@@ -81,7 +81,7 @@
 	if(affected_SE) affected += affected_SE
 	return affected
 
-/datum/sunlight_handler/proc/add_to_affected(var/datum/lighting_corner/corner)
+/datum/sunlight_handler/proc/add_to_affected(datum/lighting_corner/corner)
 	if(holder.lighting_corner_NE == corner)
 		affected_NE = corner
 		return
@@ -95,7 +95,7 @@
 		affected_SE = corner
 		return
 
-/datum/sunlight_handler/proc/remove_from_affected(var/datum/lighting_corner/corner)
+/datum/sunlight_handler/proc/remove_from_affected(datum/lighting_corner/corner)
 	if(affected_NE == corner)
 		affected_NE = null
 		return
@@ -117,7 +117,7 @@
 	if(only_sun_SE) only_sun += only_sun_SE
 	return only_sun
 
-/datum/sunlight_handler/proc/add_to_only_sun(var/datum/lighting_corner/corner)
+/datum/sunlight_handler/proc/add_to_only_sun(datum/lighting_corner/corner)
 	if(holder.lighting_corner_NE == corner)
 		only_sun_NE = corner
 		return
@@ -131,7 +131,7 @@
 		only_sun_SE = corner
 		return
 
-/datum/sunlight_handler/proc/remove_from_only_sun(var/datum/lighting_corner/corner)
+/datum/sunlight_handler/proc/remove_from_only_sun(datum/lighting_corner/corner)
 	if(only_sun_NE == corner)
 		only_sun_NE = null
 		return
@@ -145,7 +145,7 @@
 		only_sun_SE = null
 		return
 
-/datum/sunlight_handler/proc/turf_update(var/old_density, var/turf/new_turf, var/above)
+/datum/sunlight_handler/proc/turf_update(old_density, turf/new_turf, above)
 	if(above)
 		sunlight_check()
 		sunlight_update()
@@ -346,7 +346,7 @@
 	effect_str_g = green
 	effect_str_b = blue
 
-/datum/sunlight_handler/proc/corner_sunlight_change(var/datum/lighting_corner/sender)
+/datum/sunlight_handler/proc/corner_sunlight_change(datum/lighting_corner/sender)
 	if(only_sun_object)
 		only_sun_object.set_sunonly(FALSE, pshandler)
 		only_sun_object = null
@@ -363,7 +363,7 @@
 	remove_from_only_sun(sender)
 	add_to_affected(sender)
 
-/datum/sunlight_handler/proc/set_sleeping(var/val)
+/datum/sunlight_handler/proc/set_sleeping(val)
 	if(sleeping == val)
 		return
 	sleeping = val
@@ -374,7 +374,7 @@
 		pshandler.shandlers |= src
 		SSlighting.sunlight_queue |= src //Just in case somehow gets set to false twice use |=
 
-/datum/sunlight_handler/proc/wake_sleepers(var/val)
+/datum/sunlight_handler/proc/wake_sleepers(val)
 	var/list/corners = list(holder.lighting_corner_NE,holder.lighting_corner_NW,holder.lighting_corner_SE,holder.lighting_corner_SW)
 	for(var/datum/lighting_corner/corner in corners)
 		corner.wake_sleepers()

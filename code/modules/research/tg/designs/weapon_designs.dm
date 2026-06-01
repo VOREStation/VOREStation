@@ -1103,3 +1103,60 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+//Standalone photon rifle. Not unlockable for now.
+/datum/design_techweb/photon_rifle
+	name = "Photon Rifle"
+	id = "ghost_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 8000, MAT_GLASS = 8000, MAT_PHORON = 8000, MAT_DIAMOND = 6000, MAT_VERDANTIUM = 6000) //Expensive.
+	build_path = /obj/item/ghost_catcher
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/photon_pack
+	name = "Proton Pack"
+	id = "ghost_pack"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_PHORON = 4000, MAT_DIAMOND = 2000, MAT_VERDANTIUM = 2000) //Expensive.
+	build_path = /obj/item/proton_pack
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/spectral_trap
+	name = "Spectral Trap"
+	id = "ghost_trap"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_PHORON = 1000, MAT_DIAMOND = 500)
+	build_path = /obj/item/ghost_trap
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+
+/datum/design_techweb/advanced_emf
+	name = "Advanced EMF Reader"
+	id = "ghost_emf"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/entrepreneur/emf/professional
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/spectral_goggles
+	name = "Spectral Goggles"
+	id = "ghost_goggles"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_PHORON = 2000, MAT_DIAMOND = 500) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/clothing/glasses/ghost
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

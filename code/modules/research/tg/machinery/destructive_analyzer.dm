@@ -38,6 +38,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	)
 	. = ..()
 	default_apply_parts()
+	ADD_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER, ROUNDSTART_TRAIT)
 
 /obj/machinery/rnd/destructive_analyzer/Destroy()
 	rmat = null
@@ -59,7 +60,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	else
 		icon_state = "d_analyzer"
 
-/obj/machinery/rnd/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/rnd/destructive_analyzer/attackby(obj/item/O as obj, mob/user as mob)
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy right now."))
 		return
@@ -86,8 +87,15 @@ It is used to destroy hand-held objects and advance technological research. Used
 				to_chat(user, span_notice("The machine rejects \the [O]!"))
 				return
 			if(LAZYLEN(O.contents))
-				to_chat(user, span_notice("The machine rejects \the [O]! You need to clear it of all items first!"))
-				return
+				var/bad_item = FALSE
+				for(var/obj/item/thing in O.contents)
+					if(thing.item_flags & ABSTRACT)
+						continue
+					bad_item = TRUE
+					break
+				if(bad_item)
+					to_chat(user, span_notice("The machine rejects \the [O]! You need to clear it of all items first!"))
+					return
 			busy = TRUE
 			loaded_item = WEAKREF(O)
 			user.drop_item()
