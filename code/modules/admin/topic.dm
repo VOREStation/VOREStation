@@ -1399,7 +1399,7 @@
 		to_chat(src.owner, span_filter_adminlog("You sent [input] to [H] via a secure channel."))
 		log_admin("[src.owner] replied to [key_name(H)]'s illegal message with the message [input].")
 		to_chat(H, "<span class='filter_notice'>You hear something crackle in your headset for a moment before a voice speaks.  \
-					\"Please stand by for a message from <b><font color='red'><i>Syndicate</i></font></b>. Message as follows, agent. <b>\"[input]\"</b> End of transmission.\"</span>")
+					\"Please stand by for a message from <b><font color='red'><i>Syndicate</i></font></b>. Message as follows, agent. <b>\"[input]\"</b>  End of transmission.\"</span>")
 
 	else if(href_list["AdminFaxView"])
 		var/obj/item/fax = locate(href_list["AdminFaxView"])
