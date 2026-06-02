@@ -1404,9 +1404,6 @@
 		to_chat(H, span_info("Message as follows, agent."))
 		to_chat(H, span_notice("[input]"))
 		to_chat(H, span_info("End of transmission."))
-		else
-			to_chat(src.owner, span_filter_adminlog("The person you are trying to contact does not have functional radio equipment."))
-
 
 	else if(href_list["AdminFaxView"])
 		var/obj/item/fax = locate(href_list["AdminFaxView"])
