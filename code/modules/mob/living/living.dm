@@ -1561,3 +1561,6 @@
 	client.prefs.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, ooc_notes_style)
 	if(reopen)
 		ooc_notes_window(user)
+
+/mob/living/proc/CanObtainCentcommMessage()
+	return FALSE
