@@ -1398,8 +1398,15 @@
 
 		to_chat(src.owner, span_filter_adminlog("You sent [input] to [H] via a secure channel."))
 		log_admin("[src.owner] replied to [key_name(H)]'s illegal message with the message [input].")
-		to_chat(H, "<span class='filter_notice'>You hear something crackle in your headset for a moment before a voice speaks.  \
-					\"Please stand by for a message from <b><font color='red'><i>Syndicate</i></font></b>. Message as follows, agent. <b>\"[input]\"</b>  End of transmission.\"</span>")
+		if(!isAI(H))
+			to_chat(H, span_info("<span class='filter_notice'>You hear something crackle in your headset for a moment before a voice speaks."))
+		to_chat(H, span_info("Please stand by for a message from <b><font color='red'><i>Syndicate</i></font></b>."))
+		to_chat(H, span_info("Message as follows, agent."))
+		to_chat(H, span_notice("[input]"))
+		to_chat(H, span_info("End of transmission."))
+		else
+			to_chat(src.owner, span_filter_adminlog("The person you are trying to contact does not have functional radio equipment."))
+
 
 	else if(href_list["AdminFaxView"])
 		var/obj/item/fax = locate(href_list["AdminFaxView"])
