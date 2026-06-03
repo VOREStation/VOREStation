@@ -1372,7 +1372,7 @@
 			message_admins("[src.owner] replied to [key_name(L)]'s CentCom message with: \"[input]\"")
 			if(!isAI(L))
 				to_chat(L, span_info("You hear something crackle in your headset for a moment before a voice speaks."))
-			to_chat(L, span_info("Please stand by for a message from <b><font color='blue'>Central Command</font></b>.</span>."))
+			to_chat(L, span_info("Please stand by for a message from <b><font color='blue'>Central Command</font></b>."))
 			to_chat(L, span_info("Message as follows."))
 			to_chat(L, span_notice("[input]"))
 			to_chat(L, span_info("End of transmission."))
