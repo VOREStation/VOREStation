@@ -1,0 +1,4 @@
+author: "NateSaruli"
+delete-after: True
+changes:
+  - bugfix: "Adds checks to Glowing Eyes code to check for dispersed eyes."
