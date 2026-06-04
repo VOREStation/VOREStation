@@ -1,0 +1,6 @@
+[package]
+name = "argus-json"
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+description = "ARGUS JSON Tool — save bundle debundler + generic JSON utility. Zero dependencies."
