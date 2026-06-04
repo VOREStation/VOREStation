@@ -3,3 +3,9 @@
   - bugfix: bad list del
   Will:
   - bugfix: corrected spybug runtime when remote viewing
+2026-06-04:
+  Diana:
+  - bugfix: Temp Adapted cold now properly lowers the threshold before you start taking
+      damage.
+  NateSaruli:
+  - bugfix: Adds checks to Glowing Eyes code to check for dispersed eyes.

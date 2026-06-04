@@ -40,7 +40,7 @@
 	name = "Temp. Adapted, Cold"
 	desc = "You are able to withstand much colder temperatures than other species. You are also more vulnerable to hot environments."
 	cost = 0
-	var_changes = list("cold_level_1" = 220,  "cold_level_2" = 190, "cold_level_3" = 160, "breath_cold_level_1" = 200, "breath_cold_level_2" = 170, "breath_cold_level_3" = 140, "cold_discomfort_level" = 253, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295)
+	var_changes = list("cold_level_1" = 220,  "cold_level_2" = 160, "cold_level_3" = 80, "breath_cold_level_1" = 200, "breath_cold_level_2" = 170, "breath_cold_level_3" = 140, "cold_discomfort_level" = 253, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295)
 	can_take = ORGANICS // just in case following hot adapt
 	excludes = list(/datum/trait/neutral/hotadapt, /datum/trait/neutral/notadapt)
 
