@@ -55,7 +55,6 @@
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
-	var/move_delay = 1
 	var/fire_sound = null // This is handled by projectile.dm's fire_sound var now, but you can override the projectile's fire_sound with this one if you want to.
 	var/fire_sound_text = "gunshot"
 	var/fire_anim = null
@@ -72,7 +71,6 @@
 	var/wielded_item_state
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
 	var/atom/movable/screen/auto_target/auto_target
-	var/shooting = 0
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
@@ -275,7 +273,7 @@
 */
 
 /obj/item/gun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
-	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
+	if (A == user && user.zone_sel.selecting == O_MOUTH)
 		handle_suicide(user)
 		return ITEM_INTERACT_SUCCESS
 	else if(user.a_intent == I_HURT) //point blank shooting
@@ -712,19 +710,14 @@
 	else
 		playsound(src, shot_sound, 50, 1)
 
-//Suicide handling.
-/obj/item/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
-
 /obj/item/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/M = user
 
-	mouthshoot = 1
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
-		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
@@ -732,7 +725,6 @@
 		play_fire_sound(M, in_chamber)
 		if(istype(in_chamber, /obj/item/projectile/beam/lasertag))
 			user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
-			mouthshoot = 0
 			return
 
 		in_chamber.on_hit(M)
@@ -744,11 +736,9 @@
 			to_chat(user, span_notice("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
-		mouthshoot = 0
 		return
 	else
 		handle_click_empty(user)
-		mouthshoot = 0
 		return
 
 /obj/item/gun/proc/toggle_scope(zoom_amount=2.0)
