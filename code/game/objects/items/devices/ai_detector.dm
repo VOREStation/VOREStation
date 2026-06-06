@@ -58,10 +58,10 @@
 	// Now for the somewhat harder AI GLOB.cameranet checks.
 
 	// Check if we are even on the GLOB.cameranet.
-	if(!GLOB.cameranet.checkVis(T))
+	if(!SScameras.turf_visible_by_cameras(T))
 		return PROXIMITY_OFF_CAMERANET
 
-	var/datum/chunk/chunk = GLOB.cameranet.getChunk(T.x, T.y, T.z)
+	var/datum/chunk/chunk = SScameras.get_camera_chunk(T.x, T.y, T.z)
 	if(!chunk)
 		return PROXIMITY_OFF_CAMERANET
 

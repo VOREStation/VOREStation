@@ -1,3 +1,4 @@
+// TODO: Migrate to SSMapping
 // If you add a more comprehensive system, just untick this file.
 GLOBAL_LIST_EMPTY(z_levels)// Each bit re... haha just kidding this is a list of bools now
 
@@ -34,6 +35,22 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/map_data)
 	if(!turf)
 		return null
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
+
+/proc/get_lowest_turf(atom/ref)
+	var/turf/us = get_turf(ref)
+	var/turf/next = GetBelow(us)
+	while(next)
+		us = next
+		next = GetBelow(us)
+	return us
+
+/proc/get_highest_turf(atom/ref)
+	var/turf/us = get_turf(ref)
+	var/turf/next = GetAbove(us)
+	while(next)
+		us = next
+		next = GetAbove(us)
+	return us
 
 /proc/GetConnectedZlevels(z)
 	. = list(z)
