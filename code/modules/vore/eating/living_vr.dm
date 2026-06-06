@@ -16,7 +16,7 @@
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/stuffing_feeder = FALSE			// Can feed foods to others whole, like trash eater can eat them on their own.
-	var/adminbus_trash = FALSE			// Allows eating anything that is not blacklisted, even if it fails criteria..
+	var/expanded_trasheat = FALSE			// Allows eating anything that is not blacklisted, even if it fails criteria..
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
@@ -1610,8 +1610,8 @@
 	set name = "Restrict Trash Eater"
 	set category = "Abilities.Vore"
 	set desc = "Toggle Trash Eater restriction level."
-	adminbus_trash = !adminbus_trash
-	to_chat(src, span_vwarning("Trash Eater restriction level set to [adminbus_trash ? "everything not blacklisted" : "only whitelisted items"]."))
+	expanded_trasheat = !expanded_trasheat
+	to_chat(src, span_vwarning("Trash Eater restriction level set to [expanded_trasheat ? "everything not blacklisted" : "only whitelisted items"]."))
 
 /mob/living/proc/liquidbelly_visuals()
 	set name = "Toggle Liquidbelly Visuals"

@@ -13,7 +13,7 @@
 		to_chat(user, span_warning("You are not allowed to eat \the [item_found]."))
 		return FALSE
 
-	if(!trash_eatable) //OOC pref. This /IS/ respected, even if adminbus_trash is enabled
+	if(!trash_eatable) //OOC pref. This /IS/ respected, even if expanded_trasheat is enabled
 		to_chat(user, span_warning("You can't eat that so casually!"))
 		return FALSE
 
@@ -27,7 +27,7 @@
 ///Checks to see if the item fails critieria to allow it to be eaten. Does NOT check the blacklist, as it's checked before this is called.
 /obj/item/proc/check_item_devourability(mob/living/user)
 	//If we've been admin enabled, eat anything that isn't blacklisted.
-	if(user.adminbus_trash)
+	if(user.expanded_trasheat)
 		return TRUE
 
 	//If it's whitelisted, eat it.
