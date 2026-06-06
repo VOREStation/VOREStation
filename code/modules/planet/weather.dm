@@ -9,7 +9,7 @@
 	var/list/roundstart_weather_chances = list() // Assoc list of weather identifiers and their odds of being picked to happen at roundstart.
 	var/next_weather_shift = null // world.time when the weather subsystem will advance the forecast.
 	var/imminent_weather_shift = null // world.time when weather will shift towards pre-set imminent weather type.
-	var/list/forecast = list() // A list of what the weather will be in the future. This allows it to be pre-determined and planned around.
+	VAR_PROTECTED/list/forecast = list() // A list of what the weather will be in the future. This allows it to be pre-determined and planned around.
 
 	// Holds the weather icon, using vis_contents. Documentation says an /atom/movable is required for placing inside another atom's vis_contents.
 	var/atom/movable/weather_visuals/visuals = null
@@ -132,7 +132,8 @@
 	forecast.Cut()
 	build_forecast()
 
-
+/datum/weather_holder/proc/get_forecast_data()
+	return forecast
 
 /datum/weather_holder/proc/update_icon_effects()
 	visuals.icon_state = current_weather.icon_state

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use '../base';
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .NtosWindow__header {
   position: absolute;
@@ -14,12 +14,12 @@
   line-height: 1.928em;
   background-color: hsla(0, 0%, 0%, 0.5);
   font-family: var(--font-family-mono);
-  font-size: base.em(14px);
+  font-size: fn.em(14px);
   user-select: none;
 }
 
 .NtosWindow__content .Layout__content {
   margin-top: 2em;
   font-family: var(--font-family-mono);
-  font-size: base.em(14px);
+  font-size: fn.em(14px);
 }

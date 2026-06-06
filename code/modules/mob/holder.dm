@@ -95,9 +95,7 @@
 /obj/item/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
-		var/mob/cached_mob = held_mob
 		dump_mob()
-		cached_mob.reset_perspective() // This case cannot be handled gracefully, make sure the mob view is cleaned up.
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src, loc)

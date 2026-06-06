@@ -195,14 +195,14 @@
 	override_health_hud = TRUE
 	var/original_health_hud_icon
 
-/datum/remote_view_config/uav_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
+/datum/remote_view_config/uav_control/handle_relay_movement(datum/component/remote_view/owner_component, mob/host_mob, direction)
 	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
 	if(tgui_owner?.current_uav)
 		return tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
 	return FALSE
 
-/datum/remote_view_config/uav_control/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
-	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+/datum/remote_view_config/uav_control/handle_apply_visuals(mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = get_component_coordinator(host_mob)
 	if(!tgui_owner)
 		return
 	if(get_dist(host_mob, tgui_owner.tgui_host()) > 1 || !tgui_owner.current_uav)
@@ -216,24 +216,24 @@
 	else
 		host_mob.clear_fullscreen("whitenoise", 0)
 
-/datum/remote_view_config/uav_control/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/handle_remove_visuals(datum/component/remote_view/owner_component, mob/host_mob)
 	// Clear hud
 	host_mob.clear_fullscreen("fishbed",0)
 	host_mob.clear_fullscreen("scanlines",0)
 	host_mob.clear_fullscreen("whitenoise",0)
 
 // We are responsible for restoring the health UI's icons on removal
-/datum/remote_view_config/uav_control/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/attached_to_mob(datum/component/remote_view/owner_component, mob/host_mob)
 	original_health_hud_icon = host_mob.healths?.icon
 
-/datum/remote_view_config/uav_control/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/detatch_from_mob(datum/component/remote_view/owner_component, mob/host_mob)
 	if(host_mob.healths && original_health_hud_icon)
 		host_mob.healths.icon = original_health_hud_icon
 		host_mob.healths.appearance = null
 
 // Show the uav health instead of the mob's while it is viewing
-/datum/remote_view_config/uav_control/handle_hud_health( datum/component/remote_view/owner_component, mob/host_mob)
-	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+/datum/remote_view_config/uav_control/handle_hud_health(mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = get_component_coordinator(host_mob)
 
 	var/mutable_appearance/MA = new (host_mob.healths)
 	MA.icon = 'icons/mob/screen1_robot_minimalist.dmi'

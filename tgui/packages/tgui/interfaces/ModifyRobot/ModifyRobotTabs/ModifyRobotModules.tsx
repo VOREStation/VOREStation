@@ -38,7 +38,9 @@ export const ModifyRobotModules = (props: {
             <Dropdown
               fluid
               searchInput
+              styledInput
               selected={source ? source.model : ''}
+              displayText={source ? source.model : ''}
               options={model_options}
               onSelected={(value) =>
                 act('select_source', {

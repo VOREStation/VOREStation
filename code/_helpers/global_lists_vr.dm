@@ -321,6 +321,7 @@ GLOBAL_LIST_INIT(edible_trash, list(/obj/item/broken_device,
 				/obj/item/newspaper,
 				/obj/item/paper,
 				/obj/item/paperplane,
+				/obj/item/paper_bundle,
 				/obj/item/pen,
 				/obj/item/photo,
 				/obj/item/reagent_containers/food,
@@ -1198,6 +1199,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 
 #define SECURITY_GRIPPER \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
 	/obj/item/paper_bundle, \
 	/obj/item/pen, \
 	/obj/item/sample, \
@@ -1209,6 +1211,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 #define PAPERWORK_GRIPPER \
 	/obj/item/clipboard, \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
 	/obj/item/paper_bundle, \
 	/obj/item/card/id, \
 	/obj/item/book, \
@@ -1294,6 +1297,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/pen, \
 	/obj/item/leash, \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
+	/obj/item/paper_bundle, \
 	/obj/item/a_gift, \
 	/obj/item/remote_scene_tool, \
 

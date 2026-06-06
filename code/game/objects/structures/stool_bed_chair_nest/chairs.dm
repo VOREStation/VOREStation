@@ -515,3 +515,10 @@
 
 /obj/structure/bed/chair/sofa/corner/orange
 	sofa_material = MAT_CLOTH_ORANGE
+
+/obj/structure/bed/chair/mime
+	name = "invisible chair"
+	desc = "The mime needs to sit down and shut up."
+	anchored = FALSE
+	icon_state = null
+	alpha = 0

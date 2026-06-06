@@ -4,6 +4,8 @@
 	emote_message_1p_target = "You cough on TARGET!"
 	emote_message_3p = "coughs!"
 	emote_message_3p_target = "coughs on TARGET!"
+	emote_message_mute_1p = "You cough silently!"
+	emote_message_mute_3p = "coughs silently!"
 	emote_message_synthetic_1p_target = "You emit a robotic cough towards TARGET."
 	emote_message_synthetic_1p = "You emit a robotic cough."
 	emote_message_synthetic_3p_target = "emits a robotic cough towards TARGET."

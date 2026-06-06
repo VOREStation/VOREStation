@@ -316,7 +316,7 @@
 				var/limb_path = organ_data["path"]
 				var/obj/item/organ/O = new limb_path(src)
 				organ_data["descriptor"] = O.name
-				to_chat(src, span_notice("You feel a slithering sensation as your [O.name] reform."))
+				to_chat(src, span_notice("You feel a slithering sensation as your [O.name] reforms."))
 
 				var/agony_to_apply = round(0.66 * O.max_damage) // 66% of the limb's health is converted into pain.
 				src.apply_damage(agony_to_apply, HALLOSS)
