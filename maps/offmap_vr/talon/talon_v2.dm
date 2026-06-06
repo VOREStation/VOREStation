@@ -145,22 +145,6 @@
 	network = "Talon"
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
-/obj/machinery/telecomms/allinone/talon/receive_signal(datum/signal/signal)
-	if(!on || !signal)
-		return
-	if(signal.frequency == PUB_FREQ || signal.frequency == TALON_FREQ)
-		signal.data["done"] = 1
-		signal.data["compression"] = 0
-
-		var/datum/signal/original = signal.data["original"]
-		if(original)
-			original.data["done"] = 1
-		signal.data["level"] = list(z)
-		if(signal.data["slow"] > 0)
-			addtimer(CALLBACK(src, PROC_REF(broadcast_signal), signal), signal.data["slow"], TIMER_DELETE_ME)
-		else
-			broadcast_signal(signal)
-
 /obj/item/paper/secret_vendornote
 	name = "secret note"
 	info = {"well, if you're reading this note, then I've managed to install, a couple of funny things inside the vending machine.<br>\
