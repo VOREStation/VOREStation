@@ -24,7 +24,7 @@
 
 	return TRUE
 
-///Checks to see if the item fails critieria to allow it to be eaten.
+///Checks to see if the item fails critieria to allow it to be eaten. Does NOT check the blacklist, as it's checked before this is called.
 /obj/item/proc/check_item_devourability(mob/living/user)
 	if(user.adminbus_trash)
 		return TRUE
