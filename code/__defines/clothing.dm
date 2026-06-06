@@ -15,6 +15,8 @@ NOTICE: Do not leave trailing commas!!!!
 #define POCKET_GENERIC \
 	/obj/item/pen, \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
+	/obj/item/paper_bundle, \
 	/obj/item/book, \
 	/obj/item/flashlight, \
 	/obj/item/storage/fancy/cigarettes, \

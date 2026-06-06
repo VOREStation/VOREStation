@@ -211,9 +211,10 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	data["maxTotalOutput"] = max_power
 	data["thermalOutput"] = last_thermal_gen
 
-	data["primary"] = list()
+	data["primary"] = null
 	if(circ1)
 		//The one on the left (or top)
+		data["primary"] = list()
 		data["primary"]["dir"] = vertical ? "top" : "left"
 		data["primary"]["output"] = last_circ1_gen
 		data["primary"]["flowCapacity"] = circ1.volume_capacity_used*100
@@ -222,9 +223,10 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["primary"]["outletPressure"] = circ1.air2.return_pressure()
 		data["primary"]["outletTemperature"] = circ1.air2.temperature
 
-	data["secondary"] = list()
+	data["secondary"] = null
 	if(circ2)
 		//Now for the one on the right (or bottom)
+		data["secondary"] = list()
 		data["secondary"]["dir"] = vertical ? "bottom" : "right"
 		data["secondary"]["output"] = last_circ2_gen
 		data["secondary"]["flowCapacity"] = circ2.volume_capacity_used*100

@@ -43,16 +43,16 @@
 			footstep_ret = GLOB.lightclawfootstep
 		if(FOOTSTEP_MOB_CLAW)
 			footstep_ret = GLOB.clawfootstep
-		if(FOOTSTEP_MOB_HEAVY)
-			footstep_ret = GLOB.heavyfootstep
+		if(FOOTSTEP_MOB_HEAVY_ALT)
+			footstep_ret = GLOB.heavyaltfootstep
 		if(FOOTSTEP_MOB_SHOE)
 			footstep_ret = GLOB.footstep
 		if(FOOTSTEP_MOB_SLIME)
 			footstep_ret = GLOB.slimefootstep
 		if(FOOTSTEP_MOB_SLITHER)
 			footstep_ret = GLOB.slitherfootstep
-		if(FOOTSTEP_MOB_HEAVY_ALT)
-			footstep_ret = GLOB.heavyaltfootstep
+		if(FOOTSTEP_MOB_HEAVY)
+			footstep_ret = GLOB.heavyfootstep
 		if(FOOTSTEP_MOB_MECHY)
 			footstep_ret = GLOB.mechfootstep
 		else

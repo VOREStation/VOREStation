@@ -1556,16 +1556,6 @@ $border-width-px: $border-width * 1px;
   }
 }
 
-.spoiler {
-  background-color: hsl(0, 0%, 50%);
-  color: transparent;
-}
-
-.spoiler:hover {
-  background-color: inherit;
-  color: inherit;
-}
-
 .nif {
   color: hsla(180, 100%, 50%, 0.801);
 }

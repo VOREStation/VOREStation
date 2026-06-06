@@ -198,7 +198,7 @@
 	filled = TRUE
 
 /obj/item/storage/toolbox/lunchbox/mars
-	name = "\improper Mojave university lunchbox"
+	name = "Mojave university lunchbox"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "lunchbox_marsuniversity"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
@@ -208,7 +208,7 @@
 	filled = TRUE
 
 /obj/item/storage/toolbox/lunchbox/cti
-	name = "\improper CTI lunchbox"
+	name = "CTI lunchbox"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "lunchbox_cti"
 	item_state_slots = list(slot_r_hand_str = "toolbox_blue", slot_l_hand_str = "toolbox_blue")
@@ -218,7 +218,7 @@
 	filled = TRUE
 
 /obj/item/storage/toolbox/lunchbox/nymph
-	name = "\improper Diona nymph lunchbox"
+	name = "Diona nymph lunchbox"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "lunchbox_dionanymph"
 	item_state_slots = list(slot_r_hand_str = "toolbox_yellow", slot_l_hand_str = "toolbox_yellow")

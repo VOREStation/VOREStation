@@ -117,22 +117,22 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/atmos_init()
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, NORTH))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, NORTH)))
 		if (can_be_node(target, 1))
 			node1 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, SOUTH))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, SOUTH)))
 		if (can_be_node(target, 2))
 			node2 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, EAST))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, EAST)))
 		if (can_be_node(target, 3))
 			node3 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, WEST))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, WEST)))
 		if (can_be_node(target, 4))
 			node4 = target
 			break

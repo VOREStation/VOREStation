@@ -6,6 +6,8 @@
 	emote_message_synthetic_1p_target = "You emit a robotic sneeze towards TARGET."
 	emote_message_synthetic_3p = "emits a robotic sneeze."
 	emote_message_synthetic_3p_target = "emits a robotic sneeze towards TARGET."
+	emote_message_mute_1p = "You act out an exaggerated silent sneeze."
+	emote_message_mute_3p = "acts out an exaggerated silent sneeze."
 
 /datum/decl/emote/audible/sneeze/get_emote_sound(atom/user)
 	if(ishuman(user) && !check_synthetic(user))
