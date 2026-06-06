@@ -123,6 +123,14 @@
 			if(H.real_name == owner && H.client)
 				watching = TRUE
 				break
+		if(!watching) //Check if they're in our bellies if we don't see them in our sight.
+			if(user.vore_organs)
+				for(var/obj/belly/B in user.vore_organs)
+					for(var/mob/living/content in B.contents)
+						if(content.real_name == owner && content.client)
+							watching = TRUE
+							break
+
 		if(!watching)
 			return FALSE
 		else
