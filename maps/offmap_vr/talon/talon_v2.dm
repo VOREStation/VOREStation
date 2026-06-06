@@ -141,7 +141,25 @@
 ///////////////////////////
 //// The Various Machines
 /obj/machinery/telecomms/allinone/talon
-	freq_listening = list(PUB_FREQ, TALON_FREQ)
+	id = "talon_aio"
+	network = "Talon"
+	freq_listening = list(1459, 1363)
+
+/obj/machinery/telecomms/allinone/talon/receive_signal(datum/signal/signal)
+	if(!on || !signal)
+		return
+	if(signal.frequency == 1459 || signal.frequency == 1363)
+		signal.data["done"] = 1
+		signal.data["compression"] = 0
+
+		var/datum/signal/original = signal.data["original"]
+		if(original)
+			original.data["done"] = 1
+		signal.data["level"] = list(z)
+		if(signal.data["slow"] > 0)
+			addtimer(CALLBACK(src, PROC_REF(broadcast_signal), signal), signal.data["slow"], TIMER_DELETE_ME)
+		else
+			broadcast_signal(signal)
 
 /obj/item/paper/secret_vendornote
 	name = "secret note"
