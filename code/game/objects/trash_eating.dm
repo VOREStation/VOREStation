@@ -29,13 +29,14 @@
 	if(user.adminbus_trash)
 		return TRUE
 
-	//
+	//If it's whitelisted, eat it.
 	if(is_type_in_list(src, GLOB.edible_trash))
 		return TRUE
 
 	if(is_type_in_list(src, GLOB.edible_tech) && user.isSynthetic())
 		return TRUE
 
+	//If it's not whitelisted, check criteria.
 	if(force > 30 || throwforce > 30) //Swords, etc.
 		to_chat(user, span_warning("The [src] is too powerful to eat."))
 		return FALSE
