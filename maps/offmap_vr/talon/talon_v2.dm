@@ -148,7 +148,7 @@
 /obj/machinery/telecomms/allinone/talon/receive_signal(datum/signal/signal)
 	if(!on || !signal)
 		return
-	if(signal.frequency == 1459 || signal.frequency == 1363)
+	if(signal.frequency == PUB_FREQ || signal.frequency == TALON_FREQ)
 		signal.data["done"] = 1
 		signal.data["compression"] = 0
 
