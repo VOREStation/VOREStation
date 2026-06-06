@@ -7,15 +7,16 @@
 		return FALSE
 	if(signal_results & COMSIG_ITEM_TRASH_EAT_FORCED) // Ignore everything including blacklist, prefs and adminbus. Component is handling the rules.
 		return TRUE
-	if(!user.adminbus_trash) //If someone has adminbus, they can eat whatever they want.
-		var/item_found = recursive_trash_eat_search(user)
-		if(item_found) //Checks for blacklisted items.
-			to_chat(user, span_warning("You are not allowed to eat \the [item_found]."))
-			return FALSE
+
+	var/item_found = recursive_trash_eat_search(user)
+	if(item_found) //Checks for blacklisted items.
+		to_chat(user, span_warning("You are not allowed to eat \the [item_found]."))
+		return FALSE
 
 	if(!trash_eatable) //OOC pref. This /IS/ respected, even if adminbus_trash is enabled
 		to_chat(user, span_warning("You can't eat that so casually!"))
 		return FALSE
+
 	if(hidden_uplink)
 		to_chat(user, span_warning("You really should not be eating this."))
 		message_admins("[key_name(user)] has attempted to ingest an uplink item. ([user ? ADMIN_JMP(user) : "null"])")
@@ -23,10 +24,12 @@
 
 	return TRUE
 
-/obj/item/proc/check_item_blacklist(mob/living/user)
+///Checks to see if the item fails critieria to allow it to be eaten.
+/obj/item/proc/check_item_devourability(mob/living/user)
 	if(user.adminbus_trash)
 		return TRUE
 
+	//
 	if(is_type_in_list(src, GLOB.edible_trash))
 		return TRUE
 
@@ -50,7 +53,7 @@
 		return FALSE
 	if(is_type_in_list(src, GLOB.item_vore_blacklist)) //Blacklisted item. Stop the loop here.
 		return src
-	if(check_item_blacklist(user))
+	if(check_item_devourability(user))
 		return src
 	for(var/obj/item/next_item_to_search in contents)
 		if(recursive_trash_eat_search(next_item_to_search, depth + 1))

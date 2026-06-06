@@ -16,7 +16,7 @@
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/stuffing_feeder = FALSE			// Can feed foods to others whole, like trash eater can eat them on their own.
-	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/adminbus_trash = FALSE			// Allows eating anything that is not blacklisted, even if it fails criteria..
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
@@ -855,7 +855,7 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(I.check_item_blacklist(src))
+	if(I.check_item_devourability(src))
 		return
 
 	if(!I.on_trash_eaten(src)) // shows object's rejection message itself
