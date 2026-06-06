@@ -57,7 +57,9 @@ GLOBAL_LIST_INIT(item_vore_blacklist, list(
 		/obj/item/disk/nuclear,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz,
 		/obj/item/bluespace_harpoon,
-		/obj/item/storage/belt/utility/chief/full))
+		/obj/item/storage/belt/utility/chief/full,
+		/obj/item/storage/bag/circuits,
+		/obj/item/telecube))
 
 //Classic Vore sounds
 GLOBAL_LIST_INIT(classic_vore_sounds, list(

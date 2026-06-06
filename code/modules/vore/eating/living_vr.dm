@@ -855,7 +855,7 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(I.check_item_devourability(src))
+	if(!I.check_item_devourability(src))
 		return
 
 	if(!I.on_trash_eaten(src)) // shows object's rejection message itself

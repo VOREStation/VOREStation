@@ -37,14 +37,19 @@
 	if(is_type_in_list(src, GLOB.edible_tech) && user.isSynthetic())
 		return TRUE
 
-	//If it's not whitelisted, check criteria.
+	return FALSE
+	/*
+	//The below allows checks for certain crtieria to decline it, otherwise allow it. Comented out until
 	if(force > 30 || throwforce > 30) //Swords, etc.
 		to_chat(user, span_warning("The [src] is too powerful to eat."))
 		return FALSE
 
-	if(w_class >= ITEMSIZE_LARGE)
+	if(w_class >= ITEMSIZE_NORMAL)
 		to_chat(user, span_warning("The [src] is too large to eat."))
 		return FALSE
+
+	return TRUE
+	*/
 
 ///Recursively searches through items for invalid items.
 ///Returns the blacklisted item.
@@ -55,7 +60,7 @@
 		return FALSE
 	if(is_type_in_list(src, GLOB.item_vore_blacklist)) //Blacklisted item. Stop the loop here.
 		return src
-	if(check_item_devourability(user))
+	if(!check_item_devourability(user))
 		return src
 	for(var/obj/item/next_item_to_search in contents)
 		if(recursive_trash_eat_search(next_item_to_search, depth + 1))
