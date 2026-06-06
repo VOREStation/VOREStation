@@ -143,7 +143,7 @@
 /obj/machinery/telecomms/allinone/talon
 	id = "talon_aio"
 	network = "Talon"
-	freq_listening = list(1459, 1363)
+	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
 /obj/machinery/telecomms/allinone/talon/receive_signal(datum/signal/signal)
 	if(!on || !signal)
