@@ -1,4 +1,0 @@
-author: "Zerum"
-delete-after: True
-changes:
-  - bugfix: "Lunchboxes from loadout correctly spawn (CTI, Mojave, Diona)"

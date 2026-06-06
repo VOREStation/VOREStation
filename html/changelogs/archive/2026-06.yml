@@ -20,3 +20,7 @@
   - balance: Promthean's shock ability now does halloss instead of burn.
   - balance: Prometheans now have a siemens of 0, down from the bugged 0.8 but not
       the -1 as intended.
+2026-06-06:
+  Zerum:
+  - rscadd: New Anthro Skeleton undersuit in Xenowear tab for prometheans.
+  - bugfix: Lunchboxes from loadout correctly spawn (CTI, Mojave, Diona)
