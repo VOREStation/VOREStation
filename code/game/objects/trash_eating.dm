@@ -7,10 +7,12 @@
 		return FALSE
 	if(signal_results & COMSIG_ITEM_TRASH_EAT_FORCED) // Ignore everything including blacklist, prefs and adminbus. Component is handling the rules.
 		return TRUE
+	if(!user.adminbus_trash) //If someone has adminbus, they can eat whatever they want.
+		var/item_found = recursive_trash_eat_search(user)
+		if(item_found) //Checks for blacklisted items.
+			to_chat(user, span_warning("You are not allowed to eat \the [item_found]."))
+			return FALSE
 
-	if(is_type_in_list(src, GLOB.item_vore_blacklist) && !user.adminbus_trash) //If someone has adminbus, they can eat whatever they want.
-		to_chat(user, span_warning("You are not allowed to eat this."))
-		return FALSE
 	if(!trash_eatable) //OOC pref. This /IS/ respected, even if adminbus_trash is enabled
 		to_chat(user, span_warning("You can't eat that so casually!"))
 		return FALSE
@@ -20,6 +22,40 @@
 		return FALSE
 
 	return TRUE
+
+/obj/item/proc/check_item_blacklist(mob/living/user)
+	if(user.adminbus_trash)
+		return TRUE
+
+	if(is_type_in_list(src, GLOB.edible_trash))
+		return TRUE
+
+	if(is_type_in_list(src, GLOB.edible_tech) && user.isSynthetic())
+		return TRUE
+
+	if(force > 30 || throwforce > 30) //Swords, etc.
+		to_chat(user, span_warning("The [src] is too powerful to eat."))
+		return FALSE
+
+	if(w_class >= ITEMSIZE_LARGE)
+		to_chat(user, span_warning("The [src] is too large to eat."))
+		return FALSE
+
+///Recursively searches through items for invalid items.
+///Returns the blacklisted item.
+/obj/item/proc/recursive_trash_eat_search(mob/living/user, depth = 0)
+	if(depth > 25) //Probably a loop.
+		return src
+	if(item_flags & ABSTRACT) //Abstract items are fine.
+		return FALSE
+	if(is_type_in_list(src, GLOB.item_vore_blacklist)) //Blacklisted item. Stop the loop here.
+		return src
+	if(check_item_blacklist(user))
+		return src
+	for(var/obj/item/next_item_to_search in contents)
+		if(recursive_trash_eat_search(next_item_to_search, depth + 1))
+			return next_item_to_search
+	return FALSE
 
 /// Override this for post-swallow messages. Returns true if components on mob or item allow trash eating messages
 /obj/proc/after_trash_eaten(mob/living/user)

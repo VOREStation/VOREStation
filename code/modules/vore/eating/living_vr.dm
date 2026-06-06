@@ -855,17 +855,17 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(is_type_in_list(I, GLOB.edible_trash) || adminbus_trash || is_type_in_list(I,GLOB.edible_tech) && isSynthetic()) // adds edible tech for synth
-		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
-			return
-		drop_item()
-		vore_selected.nom_atom(I)
-		updateVRPanel()
-		log_admin("VORE: [src] used Eat Trash to swallow [I].")
-		I.after_trash_eaten(src)
-		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
+	if(I.check_item_blacklist(src))
 		return
-	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
+
+	if(!I.on_trash_eaten(src)) // shows object's rejection message itself
+		return
+	drop_item()
+	vore_selected.nom_atom(I)
+	updateVRPanel()
+	log_admin("VORE: [src] used Eat Trash to swallow [I].")
+	I.after_trash_eaten(src)
+	visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
 	return
 
 /mob/living/proc/toggle_trash_catching() //Ported from chompstation
