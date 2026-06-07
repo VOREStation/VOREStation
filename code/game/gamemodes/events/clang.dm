@@ -114,7 +114,7 @@
 		qdel(src)
 		return
 
-	if(prob(10) && !has_hunted_unlucky)
+	if(!has_hunted_unlucky)
 		hunt_unlucky()
 
 /obj/effect/immovablerod/proc/hunt_unlucky()
