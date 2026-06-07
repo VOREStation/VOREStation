@@ -24,3 +24,13 @@
   Zerum:
   - rscadd: New Anthro Skeleton undersuit in Xenowear tab for prometheans.
   - bugfix: Lunchboxes from loadout correctly spawn (CTI, Mojave, Diona)
+2026-06-07:
+  Diana:
+  - bugfix: Absorbed prey now show the proper name when emoting while absorbed.
+  - bugfix: Removing a jumpsuit no longer drops your belt slot.
+  - qol: You can now move and shoot at the same time. No longer will you shoot and
+      get stuck in place.
+  - bugfix: Allow TTS while laying down
+  ItsSelis:
+  - bugfix: Labcoats no longer turn invisible when worn and toggled buttons with having
+      digitigrade turned on.
