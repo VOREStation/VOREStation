@@ -96,7 +96,7 @@
 /datum/component/remote_view/Destroy(force)
 	// Clear item
 	if(host_item)
-		host_item.zoom = FALSE
+		host_item.zoom(host_mob)
 		// Feedback
 		if(show_message)
 			host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
