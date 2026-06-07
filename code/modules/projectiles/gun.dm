@@ -606,6 +606,8 @@
 					to_chat(user, span_warning("You struggle to hold \the [src] steady!"))
 
 	if(recoil)
+		if(recoil > 5)
+			recoil = 5 //Prevents crashing user client.
 		shake_camera(user, recoil+1, recoil)
 	update_icon()
 

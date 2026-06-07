@@ -876,6 +876,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(!zoom && can_zoom)
 		M.AddComponent(/datum/component/remote_view, focused_on = M, vconfig_path = /datum/remote_view_config/zoomed_item, managing_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
 		return
+	zoom = FALSE
 	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /obj/item/proc/pwr_drain()
