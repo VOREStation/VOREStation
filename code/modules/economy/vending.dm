@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			tilt(TRUE)
 		return
 
-	if(user.a_intent == I_HURT)
+	if(user.a_intent == I_HURT && density)
 		punch_machine(user)
 		return
 
@@ -778,7 +778,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		tilted = FALSE
 
 /obj/machinery/vending/proc/punch_machine(mob/living/stupid_person)
-	var/obj/item/throw_item = null
+	stupid_person.visible_message(span_danger("[stupid_person] kicks \the [src]!"), span_danger("You kick \the [src]"))
 	playsound(src, 'sound/effects/clang2.ogg', 25, TRUE)
 	animate_shake()
 
@@ -787,6 +787,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 
 	if(prob(5))
+		var/obj/item/throw_item = null
 		for(var/datum/stored_item/vending_product/R in shuffle(product_records))
 			throw_item = R.get_product(loc)
 			if(!throw_item)

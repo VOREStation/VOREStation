@@ -228,7 +228,7 @@
 				darth_vendor.visible_message(span_warning("[darth_vendor] suddenly clunks and the delivery chute raises up!"))
 				darth_vendor.throw_item(living_guy)
 			else
-				if(darth_vendor.tilted)
+				if(darth_vendor.tilted || !darth_vendor.density)
 					continue
 				darth_vendor.crush_under(living_guy)
 			consume_omen()
