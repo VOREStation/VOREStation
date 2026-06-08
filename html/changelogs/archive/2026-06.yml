@@ -34,3 +34,8 @@
   ItsSelis:
   - bugfix: Labcoats no longer turn invisible when worn and toggled buttons with having
       digitigrade turned on.
+2026-06-08:
+  Diana:
+  - bugfix: Clamps recoil
+  Kashargul:
+  - code_imp: updates tgui dependencies
