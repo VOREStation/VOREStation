@@ -763,6 +763,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	for(var/mob/living/mob in get_turf(unlucky))
 		mob.take_overall_damage(30)
 		mob.Stun(2)
+		mob.Weaken(10)
 	tilt()
 
 /obj/machinery/vending/proc/tilt(upright = FALSE)
