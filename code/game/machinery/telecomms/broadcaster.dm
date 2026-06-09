@@ -191,7 +191,9 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 		if(signal.data["slow"] > 0)
 			addtimer(CALLBACK(src, PROC_REF(broadcast_signal), signal), signal.data["slow"], TIMER_DELETE_ME)
+			return
 
+		broadcast_signal(signal)
 
 /obj/machinery/telecomms/allinone/proc/broadcast_signal(datum/signal/signal)
 	/* ###### Broadcast a message using signal.data ###### */
