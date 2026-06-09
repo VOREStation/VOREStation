@@ -763,7 +763,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	for(var/mob/living/mob in get_turf(unlucky))
 		mob.take_overall_damage(30)
 		mob.Stun(2)
-		mob.Weaken(10)
+		mob.Weaken(5)
 	tilt()
 
 /obj/machinery/vending/proc/tilt(upright = FALSE)
@@ -774,9 +774,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 		playsound(src, 'sound/effects/meteorimpact.ogg', 50, 1)
 		tilted = TRUE
 		anchored = FALSE
+		plane = ABOVE_MOB_PLANE
 	else
 		animate(src, transform = matrix(), time = 0.4 SECOND)
 		tilted = FALSE
+		plane = initial(plane)
 
 /obj/machinery/vending/proc/punch_machine(mob/living/stupid_person)
 	stupid_person.visible_message(span_danger("[stupid_person] kicks \the [src]!"), span_danger("You kick \the [src]"))
