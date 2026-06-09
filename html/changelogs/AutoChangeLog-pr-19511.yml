@@ -1,0 +1,4 @@
+author: "Azzy.Dreemurr & Kashargul"
+delete-after: True
+changes:
+  - bugfix: "Talon channel work again"
