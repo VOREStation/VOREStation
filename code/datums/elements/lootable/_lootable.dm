@@ -54,10 +54,10 @@
 	var/obj/item/loot = null
 	var/span = "notice" // Blue
 
-	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len) // If you're unlucky, you will always find bad stuff.
+	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len && prob(15)) // If you're unlucky, you will probably find bad stuff.
 		loot = produce_unlucky_item(source)
 		span = "cult" // Purple and bold.
-		if(prob(1))
+		if(prob(6))
 			to_chat(L, span_danger("You cut your hand on something in the trash!"))
 			L.apply_damage(2, BRUTE, pick(BP_L_HAND, BP_R_HAND), used_weapon = "sharp object")
 			var/datum/disease/advance/random/random_disease = new /datum/disease/advance/random()
