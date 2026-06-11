@@ -78,6 +78,7 @@
 	var/req_log_access = ACCESS_CARGO //default access for checking logs is cargo
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
+	var/tilted = FALSE
 
 
 /obj/machinery/vending/Initialize(mapload)
@@ -357,6 +358,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(seconds_electrified != 0)
 		if(shock(user, 100))
 			return
+
+	if(tilted)
+		balloon_alert(user, "setting upright")
+		if(do_after(user, 2 SECONDS, src))
+			tilt(TRUE)
+		return
+
+	if(user.a_intent == I_HURT && density)
+		punch_machine(user)
+		return
 
 	wires.Interact(user)
 	tgui_interact(user)
@@ -743,5 +754,51 @@ GLOBAL_LIST_EMPTY(vending_products)
 	INVOKE_ASYNC(throw_item, TYPE_PROC_REF(/atom/movable, throw_at), target, rand(3, 10), rand(1, 3), src)
 	visible_message(span_warning("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
+
+/obj/machinery/vending/proc/crush_under(mob/living/unlucky)
+	if(!unlucky)
+		return
+	visible_message(span_warning("\The [src] tilts over, falling on [unlucky]!"))
+	forceMove(get_turf(unlucky))
+	for(var/mob/living/mob in get_turf(unlucky))
+		mob.take_overall_damage(30)
+		mob.Stun(2)
+		mob.Weaken(5)
+	tilt()
+
+/obj/machinery/vending/proc/tilt(upright = FALSE)
+	if(!upright)
+		var/matrix/M = matrix()
+		M.Turn(90)
+		animate(src, transform = M, time = 0.25 SECOND)
+		playsound(src, 'sound/effects/meteorimpact.ogg', 50, 1)
+		tilted = TRUE
+		anchored = FALSE
+		plane = ABOVE_MOB_PLANE
+	else
+		animate(src, transform = matrix(), time = 0.4 SECOND)
+		tilted = FALSE
+		plane = initial(plane)
+
+/obj/machinery/vending/proc/punch_machine(mob/living/stupid_person)
+	stupid_person.visible_message(span_danger("[stupid_person] kicks \the [src]!"), span_danger("You kick \the [src]"))
+	playsound(src, 'sound/effects/clang2.ogg', 25, TRUE)
+	animate_shake()
+
+	if(prob(10))
+		crush_under(stupid_person)
+		return
+
+	if(prob(5))
+		var/obj/item/throw_item = null
+		for(var/datum/stored_item/vending_product/R in shuffle(product_records))
+			throw_item = R.get_product(loc)
+			if(!throw_item)
+				continue
+			break
+		if(!throw_item)
+			return FALSE
+		throw_item.vendor_action(src)
+		playsound(src, vending_sound, 50, TRUE)
 
 //Actual machines are in vending_machines.dm
