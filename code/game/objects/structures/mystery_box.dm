@@ -214,9 +214,6 @@
 	shrink_back.Scale(0.5,0.5)
 	animate(src, pixel_z = -4, transform = shrink_back, time = MBOX_DURATION_EXPIRING)
 
-/obj/structure/mystery_box/test/generate_valid_types()
-	valid_types = list(/obj/item/anomaly_scanner, /obj/item/anomaly_neutralizer, /obj/item/anomaly_releaser)
-
 /obj/structure/mystery_box/mothroach/generate_valid_types()
 	valid_types = list(/mob/living/simple_mob/animal/passive/mothroach)
 
