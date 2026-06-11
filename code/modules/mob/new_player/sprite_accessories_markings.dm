@@ -3127,23 +3127,9 @@ includes scars and tattoos
 	body_parts = list(BP_HEAD)
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/marking/teshtalons
-	name = "Teshari Talons"
-	icon_state = "tesh-talons"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
-	species_allowed = list(SPECIES_TESHARI)
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/marking/teshhands
-	name = "Teshari Hands"
-	icon_state = "tesh-hands"
-	body_parts = list(BP_L_HAND, BP_R_HAND)
-	species_allowed = list(SPECIES_TESHARI)
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/marking/teshface
-	name = "Teshari Featherless Face"
-	icon_state = "tesh-facemark"
-	body_parts = list(BP_HEAD)
+/datum/sprite_accessory/marking/teshari_accents
+	name = "Teshari - Raptor Accents"
+	icon_state = "tesh-accents"
+	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG,BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 	color_blend_mode = ICON_MULTIPLY
