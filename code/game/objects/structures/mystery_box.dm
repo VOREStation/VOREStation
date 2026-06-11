@@ -45,6 +45,8 @@
 	var/selectable_base_type = /obj/item
 	/// The instantiated list that contains all of the valid items that can be chosen from. Generated in [/obj/structure/mystery_box/proc/generate_valid_types]
 	var/list/valid_types
+	/// Stores the current sound channel we're using so we can cut off our own sounds as needed. Randomized after each roll
+	var/current_sound_channel
 	/// How many time can it still be used?
 	var/uses_left = INFINITY
 	/// A list of weakrefs to mind datums of people that opened it and how many times.
@@ -56,6 +58,8 @@
 
 /obj/structure/mystery_box/Destroy()
 	QDEL_NULL(presented_item)
+	if(current_sound_channel)
+		SSsounds.free_sound_channel(current_sound_channel)
 	minds_that_opened_us = null
 	return ..()
 
@@ -84,7 +88,8 @@
 	presented_item.vis_flags = VIS_INHERIT_PLANE
 	vis_contents += presented_item
 	presented_item.start_animation(src)
-	playsound(src, open_sound, 70, FALSE)
+	current_sound_channel = SSsounds.reserve_sound_channel(src)
+	playsound(src, open_sound, 70, FALSE, channel = current_sound_channel, falloff = 10)
 	playsound(src, crate_open_sound, 80)
 	if(user.mind)
 		LAZYINITLIST(minds_that_opened_us)
@@ -115,11 +120,13 @@
 	box_expire_timer = null
 	addtimer(CALLBACK(src, PROC_REF(ready_again)), MBOX_DURATION_STANDBY)
 	if(uses_left <= 0)
-		visible_message("[src] breaks down.")
+		visible_message(span_danger("[src] breaks down."))
 		qdel(src)
 
 /// The cooldown between activations has finished, shake to show that
 /obj/structure/mystery_box/proc/ready_again()
+	SSsounds.free_sound_channel(current_sound_channel)
+	current_sound_channel = null
 	box_state = MYSTERY_BOX_STANDBY
 	Shake(3, 0, 0.5 SECONDS)
 
@@ -127,6 +134,7 @@
 /obj/structure/mystery_box/proc/grant_weapon(mob/living/user)
 	var/atom/movable/instantiated_weapon = new presented_item.selected_path(loc)
 	user.visible_message(span_notice("[user] takes [presented_item] from [src]."), span_notice("You take [presented_item] from [src]."))
+	playsound(src, grant_sound, 70, FALSE, channel = current_sound_channel, falloff = 10)
 	close_box()
 
 	if(!isitem(instantiated_weapon))
@@ -206,8 +214,38 @@
 	shrink_back.Scale(0.5,0.5)
 	animate(src, pixel_z = -4, transform = shrink_back, time = MBOX_DURATION_EXPIRING)
 
-/obj/structure/mystery_box/test
+/obj/structure/mystery_box/test/generate_valid_types()
 	valid_types = list(/obj/item/anomaly_scanner, /obj/item/anomaly_neutralizer, /obj/item/anomaly_releaser)
+
+/obj/structure/mystery_box/mothroach/generate_valid_types()
+	valid_types = list(/mob/living/simple_mob/animal/passive/mothroach)
+
+/obj/structure/mystery_box/fishing
+	name = "treasure chest"
+	desc = "A piratey coffer equally magical and mysterious, capable of granting different pieces of gear to whoever opens it."
+	icon_state = "treasure"
+	uses_left = 18
+	max_integrity = 100
+	damage_deflection = 30
+	anchored = FALSE
+
+/obj/structure/mystery_box/fishing/activate(mob/living/user)
+	if(user.mind && minds_that_opened_us?[WEAKREF(user.mind)] >= 3)
+		to_chat(user, span_warning("[src] refuses to open to you anymore. Perhaps you should present it to someone else..."))
+		return
+	return ..()
+
+/obj/structure/mystery_box/fishing/generate_valid_types()
+	valid_types = list(
+		/obj/item/material/sword/sabre,
+		/obj/item/reagent_containers/food/drinks/bottle/rum,
+		/obj/item/clothing/suit/pirate,
+		/obj/item/clothing/suit/hgpirate,
+		/obj/item/clothing/head/pirate,
+		/obj/item/clothing/head/hgpiratecap,
+		/obj/item/clothing/head/bandana,
+		/obj/item/material/fishing_rod/modern
+	)
 
 #undef MYSTERY_BOX_COOLING_DOWN
 #undef MYSTERY_BOX_STANDBY
