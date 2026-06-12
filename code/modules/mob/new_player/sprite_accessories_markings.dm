@@ -3126,3 +3126,10 @@ includes scars and tattoos
 	icon_state = "moreeyes"
 	body_parts = list(BP_HEAD)
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/teshari_accents
+	name = "Teshari - Raptor Accents"
+	icon_state = "tesh-accents"
+	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG,BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+	color_blend_mode = ICON_MULTIPLY
