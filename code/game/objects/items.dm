@@ -874,12 +874,15 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 
 	if(!zoom && can_zoom)
 		user.AddComponent(/datum/component/remote_view, focused_on = user, vconfig_path = /datum/remote_view_config/zoomed_item, managing_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		zoom = TRUE
 		return
 	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /// Called by remote view when the view is ended. Do not call manually.
 /obj/item/proc/unzoom(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SIGNAL_HANDLER
+	zoom = FALSE
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill

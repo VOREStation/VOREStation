@@ -66,7 +66,6 @@
 	 */
 	if(isitem(managing_item))
 		host_item = managing_item
-		host_item.zoom = TRUE
 		// Feedback
 		show_message = show_visible_messages
 		if(show_message)
@@ -94,7 +93,6 @@
 /datum/component/remote_view/Destroy(force)
 	// Clear item
 	if(host_item)
-		host_item.zoom = FALSE
 		host_item.unzoom(host_mob)
 		// Feedback
 		if(show_message)
