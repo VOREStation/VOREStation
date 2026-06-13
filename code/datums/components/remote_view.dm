@@ -243,6 +243,9 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	// Don't forward movement to ourselves if we're using a spyglass or something
+	if(host_mob == remote_view_target)
+		return
 	// I'd move this into the config datum if it didn't require the component to also be passed too. Lets avoid GetComponent on a hotpath.
 	return settings.handle_relay_movement(src, host_mob, direction)
 
