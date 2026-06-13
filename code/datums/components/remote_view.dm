@@ -62,12 +62,10 @@
 	/**
 	 * If an item is coordinating this view (scopes/binoculars)
 	 * Handles remote views that are managed by a held item. The held item must remain in the mob's
-	 * inventory, and will call zoom() and unzoom() when it starts and ends. Optionally showing a message.
+	 * inventory, and will call unzoom() when it ends. Optionally showing a message.
 	 */
 	if(isitem(managing_item))
 		host_item = managing_item
-		// Unfortunately too many things read this to control item state for me to remove this.
-		// Oh well! better than GetComponent() everywhere. Lets just manage item/zoom in this component though...
 		host_item.zoom = TRUE
 		// Feedback
 		show_message = show_visible_messages
@@ -96,7 +94,8 @@
 /datum/component/remote_view/Destroy(force)
 	// Clear item
 	if(host_item)
-		host_item.zoom(host_mob)
+		host_item.zoom = FALSE
+		host_item.unzoom(host_mob)
 		// Feedback
 		if(show_message)
 			host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
