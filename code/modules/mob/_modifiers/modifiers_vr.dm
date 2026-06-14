@@ -156,8 +156,13 @@
 /datum/modifier/shield_projection/tick() //When the shield generator runs out of charge, it'll remove this naturally.
 	if(holder.stat == DEAD)
 		expire(silent = TRUE) //If you're dead the generator stops protecting you but keeps running.
+		return
 	if(!shield_generator || !shield_generator.slot_check()) //No shield to begin with/shield is not on them any longer.
 		expire(silent = FALSE)
+		return
+	if(!energy_source || !energy_source.charge)
+		expire(silent = FALSE)
+		return
 
 	var/shield_efficiency = (energy_source.charge/energy_source.maxcharge) //1 = complete resistance. 0 = no resistance. Must be adjusted for subtypes!
 	if(!isnull(effective_damage_resistance))
