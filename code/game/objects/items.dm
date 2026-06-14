@@ -61,7 +61,7 @@
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoom = FALSE // if the item is currently zoomed in with a remote view, do not set manually. Handled by remote_view component.
 
 	var/embed_chance = -1	//0 won't embed, and 100 will always embed
 
@@ -841,19 +841,18 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(I && !I.abstract)
 		I.showoff(src)
 
-/// For zooming with scope or binoculars. Uses remote_view/item component for disabling when you move or drop the item
-/obj/item/proc/zoom(mob/living/M, tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/// For zooming with scope or binoculars. Starts a remote_view when called, which calls unzoom when called again or dropped
+/obj/item/proc/toggle_zoom(mob/living/user, tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	SHOULD_CALL_PARENT(TRUE)
 	SIGNAL_HANDLER
-	if(isliving(usr)) //Always prefer usr if set
-		M = usr
-	if(!M.client)
+	if(!user.client)
 		return FALSE
-	if(!isliving(M))
+	if(!isliving(user))
 		return FALSE
-	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
+	if(isbelly(user.loc) || istype(user.loc,/obj/item/dogborg/sleeper))
 		return FALSE
-	if(M.is_remote_viewing())
-		to_chat(M, span_warning("You are too distracted to do that."))
+	if(user.is_remote_viewing())
+		to_chat(user, span_warning("You are too distracted to do that."))
 		return FALSE
 
 	var/devicename
@@ -863,21 +862,27 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		devicename = src.name
 
 	var/can_zoom = TRUE
-	if((M.stat && !zoom) || !(ishuman(M)))
-		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
+	if((user.stat && !zoom) || !(ishuman(user)))
+		to_chat(user, span_filter_notice("You are unable to focus through the [devicename]."))
 		can_zoom = FALSE
-	else if(!zoom && (GLOB.global_hud.darkMask[1] in M.client.screen))
-		to_chat(M, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
+	else if(!zoom && (GLOB.global_hud.darkMask[1] in user.client.screen))
+		to_chat(user, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
 		can_zoom = FALSE
-	else if(!zoom && M.get_active_hand() != src)
-		to_chat(M, span_filter_notice("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
+	else if(!zoom && user.get_active_hand() != src)
+		to_chat(user, span_filter_notice("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
 		can_zoom = FALSE
 
 	if(!zoom && can_zoom)
-		M.AddComponent(/datum/component/remote_view, focused_on = M, vconfig_path = /datum/remote_view_config/zoomed_item, managing_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		user.AddComponent(/datum/component/remote_view, focused_on = user, vconfig_path = /datum/remote_view_config/zoomed_item, managing_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		zoom = TRUE
 		return
-	zoom = FALSE
 	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
+
+/// Called by remote view when the view is ended. Do not call manually.
+/obj/item/proc/unzoom(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	SIGNAL_HANDLER
+	zoom = FALSE
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
