@@ -69,7 +69,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	M.soulcatcher_pref_flags = soulcatcher_pref_flags
 	if(ishuman(M)) //Has to be done here since making someone a changeling requires an active mind.
 		var/mob/living/carbon/human/ling_test = M
-		if(ling_test.changeling_locked)
+		if(ling_test.changeling_locked || stored_mind.antag_holder.changeling)
 			M.make_changeling()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()

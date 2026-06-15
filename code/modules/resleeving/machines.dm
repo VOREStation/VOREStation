@@ -514,8 +514,7 @@
 		if(occupant.mind.antag_holder)
 			occupant.mind.antag_holder.apply_antags(occupant)
 
-		//Only channgelings can be put in changeling locked bodies, meaning the mind is also a ling.
-		if(occupant.changeling_locked)
+		if(occupant.changeling_locked || occupant.mind.antag_holder.changeling)
 			occupant.make_changeling()
 
 	if(original_occupant)
