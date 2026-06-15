@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - refactor: "Cleans up remote view code on items with zooms"
-  - bugfix: "taurs using scopes or binoculars no longer attempt to relay move themselves"
