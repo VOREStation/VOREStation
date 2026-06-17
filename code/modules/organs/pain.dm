@@ -45,7 +45,7 @@
 		last_pain_message = message
 		to_chat(src,message)
 		next_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
-		multilimb_pain_time = clamp(world.time + (200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
+		multilimb_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
 		if(prob(power / 10) && !isbelly(loc)) // No pain noises inside bellies.
 			emote("pain")
 
