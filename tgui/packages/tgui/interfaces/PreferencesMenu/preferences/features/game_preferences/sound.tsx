@@ -99,6 +99,13 @@ export const SUBTLE_SOUNDS: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const LOOC_SOUNDS: FeatureToggle = {
+  name: 'LOOC Sounds',
+  category: 'SOUNDS',
+  description: 'Enable hearing a sound when somebody uses LOOC.',
+  component: CheckboxInput,
+};
+
 export const SOUND_AIRPUMP: FeatureToggle = {
   name: 'Air Pump Ambient Noise',
   category: 'SOUNDS',
