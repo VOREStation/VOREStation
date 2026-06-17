@@ -149,6 +149,7 @@
 			living_guy.Paralyse(5)
 			living_guy.Sleeping(5)
 			slam_airlock(darth_airlock)
+			darth_airlock.close()
 			consume_omen()
 			return
 
