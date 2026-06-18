@@ -18,6 +18,8 @@ GLOBAL_LIST_INIT(radiochannels, list(
 	CHANNEL_SECURITY_1		= SEC_I_FREQ,
 	CHANNEL_TALON			= TALON_FREQ, //VOREStation Add
 	CHANNEL_CASINO			= CSN_FREQ,
+	CHANNEL_ATC				= ATC_FREQ,	//VOREStation ADD
+	CHANNEL_CULTURE			= CULTURE_FREQ	//VOREStation ADD
 ))
 
 // Hey, if anyone ever needs to update tgui/packages/tgui/constants.js with new radio channels
