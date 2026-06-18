@@ -1034,6 +1034,20 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/kitchen/backroom)
+"cb" = (
+/obj/structure/table/bench/padded,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/item/radio/intercom/culture{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "cc" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
@@ -7356,20 +7370,6 @@
 /obj/machinery/appliance/mixer/candy,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
-"ui" = (
-/obj/structure/table/bench/padded,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/item/radio/intercom/culture{
-	dir = 1;
-	pixel_y = 24
-	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/civilian/bar)
 "uj" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -23713,7 +23713,7 @@ xE
 xE
 xE
 FF
-ui
+cb
 LS
 Ny
 YO

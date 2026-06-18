@@ -9959,6 +9959,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
+"aqm" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/item/radio/intercom/culture{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "aqn" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -38908,16 +38918,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
-"fdO" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/obj/item/radio/intercom/culture{
-	dir = 1;
-	pixel_y = 21
-	},
-/turf/simulated/floor/lino,
-/area/crew_quarters/bar)
 "feu" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -62356,7 +62356,7 @@ bge
 bgA
 bgA
 aru
-fdO
+aqm
 bgz
 bgz
 baX
