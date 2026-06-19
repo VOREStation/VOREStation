@@ -139,6 +139,10 @@
 
 	if(!isitem(instantiated_weapon))
 		return
+	if(istype(instantiated_weapon, /obj/item/clothing/head) && prob(1))
+		var/obj/item/clothing/head/hat = instantiated_weapon
+		hat.AddComponent(/datum/component/unusual_effect, color = "#FFEA0030", include_particles = TRUE)
+		hat.name = "unusual [hat.name]"
 	user.put_in_hands(instantiated_weapon)
 
 /obj/effect/abstract/mystery_box_item
@@ -243,6 +247,18 @@
 		/obj/item/clothing/head/bandana,
 		/obj/item/material/fishing_rod/modern
 	)
+
+/obj/structure/mystery_box/hat
+	name = "hat box"
+	desc = "A wooden crate, filled with hats. There's a sticker on the side that says \"May contain an exceedingly rare special hat!\""
+	uses_left = 5
+	anchored = FALSE
+
+/obj/structure/mystery_box/hat/generate_valid_types()
+	valid_types = subtypesof(/obj/item/clothing/head)
+	for(var/obj/item/hat as anything in valid_types)
+		if(ispath(hat, /obj/item/clothing/head/helmet) || ispath(hat, /obj/item/clothing/head/hood) || ispath(hat, /obj/item/clothing/head/tesh_hood || ispath(hat, /obj/item/clothing/head/chameleon)))
+			valid_types -= hat
 
 #undef MYSTERY_BOX_COOLING_DOWN
 #undef MYSTERY_BOX_STANDBY
