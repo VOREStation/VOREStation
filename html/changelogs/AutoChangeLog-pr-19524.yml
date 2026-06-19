@@ -1,0 +1,16 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Picking yourself up off the ground now lowers your weaken by a small amount."
+  - bugfix: "Picking yourself up off the ground by grabbing another person's hand properly lifts you up"
+  - bugfix: "Shield gens go down properly."
+  - bugfix: "Multiple synthetic organs no longer shows up as an ERROR icon"
+  - spellcheck: "Fevers no longer made your 'blod' boil."
+  - bugfix: "Lighters can be used to light other people's cigs again"
+  - bugfix: "Welding fuel no longer can be infinitely stacked on a tile. (Welding fuel has liquid dynamics and will still spread)"
+  - bugfix: "Borgs can no longer touch walls from afar"
+  - bugfix: "Cloning a changeling carries its changeling lock over properly"
+  - qol: "Extinguisher foam will clean up welding fuel spills."
+  - bugfix: "Some changeling related sleevemate+resleeving bugs have been fixed."
+  - bugfix: "Pain will no longer spam your chat."
+  - qol: "Internal organs will no longer spam your chat that they're damaged unless the damage is significant."
