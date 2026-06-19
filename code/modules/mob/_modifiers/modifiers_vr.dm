@@ -160,7 +160,7 @@
 	if(!shield_generator || !shield_generator.slot_check()) //No shield to begin with/shield is not on them any longer.
 		expire(silent = FALSE)
 		return
-	if(!energy_source || QDELETED(energy_source) || !energy_source.charge)
+	if(QDELETED(energy_source) || !energy_source.charge)
 		expire(silent = FALSE)
 		return
 
