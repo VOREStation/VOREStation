@@ -58,7 +58,6 @@
 	conductivity = 10
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
-	radiation_resistance = 25 // Lead is Special and so gets to block more radiation than it normally would with just weight, totalling in 48 protection.
 	supply_conversion_value = 0.5
 
 /datum/material/gold
@@ -156,7 +155,6 @@
 	protectiveness = 15
 	conductivity = 18
 	melting_point = T0C+3600
-	radiation_resistance = 15
 	supply_conversion_value = 0.5
 
 /datum/material/bronze
