@@ -1,0 +1,5 @@
+author: "Very-Soft"
+delete-after: True
+changes:
+  - rscadd: "Sound effect to LOOC messages"
+  - rscadd: "Preference for LOOC sound"
