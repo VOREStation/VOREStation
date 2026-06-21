@@ -21,10 +21,8 @@
 	//Be absorbed by any other liquid fuel in the tile.
 	for(var/obj/effect/decal/cleanable/liquid_fuel/other in loc)
 		if(other != src)
-			other.amount += src.amount
-			other.Spread()
-			has_spread = 1
-			break
+			amount += other.amount
+			qdel(other)
 
 	. = ..()
 	if(!has_spread)

@@ -126,6 +126,9 @@
 						s.set_up(5, 1, src)
 						s.start()
 						shield_active = 0
+						if(isliving(loc))
+							var/mob/living/our_user = loc
+							our_user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 						if(bcell.charge_delay) //It WILL blow up soon. Downside of self-charging cells.
 							to_chat(src.loc, span_critical("Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
 							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'"))

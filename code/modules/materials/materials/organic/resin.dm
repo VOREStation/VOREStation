@@ -11,7 +11,6 @@
 	sheet_plural_name = "blobs"
 	conductive = 0
 	explosion_resistance = 60
-	radiation_resistance = 10
 	stack_type = /obj/item/stack/material/resin
 	supply_conversion_value = 2
 
