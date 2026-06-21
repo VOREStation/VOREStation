@@ -1,0 +1,6 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - rscadd: "Added vending machine tilt crits"
+  - rscadd: "Added atom crushing proc, for things falling on others."
+  - refactor: "Refactored vending machine tilting"
