@@ -85,3 +85,14 @@
       the damage is significant.
   Guti:
   - rscadd: Added "hat mystery box" to Cargo's supply packs
+2026-06-21:
+  Diana:
+  - bugfix: Borgs can use pens in their gripper.
+  TheCaramelion:
+  - code_imp: Merged hood_vr path into hood
+  Very-Soft:
+  - rscadd: Sound effect to LOOC messages
+  - rscadd: Preference for LOOC sound
+  Will:
+  - bugfix: You can no longer insert buckled players into multiple cryocells at once
+  - bugfix: Fix a runtime in brain mob's lifetick with reagents
