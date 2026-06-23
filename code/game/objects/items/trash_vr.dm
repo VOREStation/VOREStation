@@ -25,6 +25,20 @@
 	desc = "Contains every type of scrap material your robot puppy needs to grow big and strong."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "kibble"
+	var/bitecount = 0
+	var/bites = 5
+
+/obj/item/trash/rkibble/attack_ai(mob/user as mob)
+	. = ..()
+	if(isrobot(user))
+		bitecount++
+		user.setClickCooldown(user.get_attack_speed(user))
+		//TODO I want to give borgs charge here but I don't know how to do that yet.
+		if(bitecount>=5)
+			user.visible_message(span_infoplain(span_bold("[user]") + " finishes eating \the [src]."),span_info("You finish eating \the [src]."), runemessage = "[user] finishes eating \the [src].")
+			qdel(src)
+			return
+		user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."), runemessage = "[user] nibbles away at \the [src].")
 
 /obj/item/trash/fancyplate
 	name = "dirty fancy plate"
