@@ -424,7 +424,6 @@
 /obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."))
 	user.balloon_alert_visible("nibbles away at \the [src].","nibbled away at \the [src].")
 	bitecount++
 	if(reagents)
