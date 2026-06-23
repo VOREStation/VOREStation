@@ -89,6 +89,8 @@
 			var/obj/item/TrashItem = new trash(eater)
 			eater.put_in_hands(TrashItem)
 		qdel(src)
+		return
+	eater.balloon_alert_visible("nibbles away at \the [src].","nibbled away at \the [src].")
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user)
 	. = ..(user)
@@ -424,7 +426,6 @@
 /obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.balloon_alert_visible("nibbles away at \the [src].","nibbled away at \the [src].")
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
