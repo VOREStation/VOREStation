@@ -65,6 +65,36 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	icon_state = ""
 	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
 
+/area/message_test_area
+	name = "Message Test area"
+	var/random_message_chance = 10
+
+/area/message_test_area/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+
+/area/message_test_area/process()
+	if(prob(random_message_chance))
+		var/list/message_pieces = list("This is a test message from the area.","This is another test message from the area.","This is yet another test message from the area.")
+		for(var/mob/living/carbon/human/H in contents)
+			to_chat(H, pick(message_pieces))
+
+/area/message_test_area/Entered(mob/M)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(message_mob), M), 5 SECONDS, TIMER_DELETE_ME)
+
+/area/message_test_area/proc/message_mob(mob/M)
+	if(!QDELETED(M) && (M in contents))
+		to_chat(M, "This is a test message from the area, sent to you when you entered it.")
+
+/area/message_test_area/Exited(atom/movable/AM, newLoc)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(message_mob_exit), AM), 5 SECONDS, TIMER_DELETE_ME)
+
+/area/message_test_area/proc/message_mob_exit(mob/M)
+	if(!QDELETED(M) && !(M in contents))
+		to_chat(M, "This is a test message from the area, sent to you when you exited it.")
+
 /area/LateInitialize()
 	if(!requires_power || !apc)
 		power_light = 0
