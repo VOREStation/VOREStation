@@ -275,7 +275,8 @@
 	return FALSE
 
 /datum/modifier/redspace_corruption/proc/deploy_armblade()
-	var/obj/item/melee/changeling/arm_blade/horror/blade = new /obj/item/melee/changeling/arm_blade/horror(unfortunate_soul)
+	var/obj/item/melee/changeling/arm_blade/blade = new /obj/item/melee/changeling/arm_blade(unfortunate_soul)
+	var/datum/disease/fleshy_spread/flesh_disease = new /datum/disease/fleshy_spread
 	blade.AddComponent(/datum/component/infective, \
 	flesh_disease, \
 	weak = FALSE)
