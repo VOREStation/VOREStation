@@ -378,7 +378,7 @@ ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "A
 						//dat+="-[MESSAGE.body] <br>"
 						var/pic_data
 						if(MESSAGE.img)
-							user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							send_rsc(user, MESSAGE.img, "tmp_photo[i].png")
 							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
 						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
 						dat+="<br>"
@@ -493,7 +493,7 @@ ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "A
 				"} + span_bold("Photo:") + {":
 			"}
 			if(GLOB.news_network.wanted_issue.img)
-				user << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
+				send_rsc(user, GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 				dat+="<br><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"

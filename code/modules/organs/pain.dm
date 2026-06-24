@@ -45,7 +45,7 @@
 		last_pain_message = message
 		to_chat(src,message)
 		next_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
-		multilimb_pain_time = clamp(world.time + (200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
+		multilimb_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
 		if(prob(power / 10) && !isbelly(loc)) // No pain noises inside bellies.
 			emote("pain")
 
@@ -68,9 +68,9 @@
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
-			if(ishuman(src)) //VOREStation Edit Start
+			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				maxdam *= H.species.trauma_mod //VOREStation edit end
+				maxdam *= H.species.trauma_mod
 	if(damaged_organ && chem_effects[CE_PAINKILLER] < maxdam)
 		if(maxdam > 10 && paralysis)
 			AdjustParalysis(-round(maxdam/10))
@@ -92,7 +92,7 @@
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/I in internal_organs)
 		if((I.status & ORGAN_DEAD) || I.robotic >= ORGAN_ROBOT) continue
-		if(I.damage > 2) if(prob(2))
+		if(I.is_bruised() && prob(2))
 			var/obj/item/organ/external/parent = get_organ(I.parent_organ)
 			src.custom_pain("You feel a sharp pain in your [parent.name]", 50)
 

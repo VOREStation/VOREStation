@@ -245,6 +245,7 @@ GLOBAL_LIST(construction_frame_floor)
 
 /datum/frame/frame_types/industrial_reagent_pipe
 	name = "Industrial Chemical Pipe"
+	circuit = /obj/item/circuitboard/industrial_reagent_pipe // Comes with it's own circuitboard now
 	icon_override = 'icons/obj/stock_parts_refinery.dmi'
 	frame_class = FRAME_CLASS_MACHINE
 
