@@ -21,6 +21,24 @@
 	var/deployed = 0
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
+	slot_flags = SLOT_MASK
+	item_icons = list(
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
+		)
+
+/obj/item/beartrap/equipped()
+	if(ishuman(src.loc))
+		var/mob/living/carbon/human/H = src.loc
+		if(H.wear_mask == src)
+			add_verb(H, /mob/living/proc/shred_limb_temp)
+		else
+			remove_verb(H, /mob/living/proc/shred_limb_temp)
+	..()
+
+/obj/item/beartrap/dropped(mob/user, equipping, slot)
+	remove_verb(user, /mob/living/proc/shred_limb_temp)
+	..()
+
 
 /obj/item/beartrap/start_active
 	deployed = TRUE
