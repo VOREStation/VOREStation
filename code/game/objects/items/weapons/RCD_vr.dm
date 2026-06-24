@@ -52,14 +52,14 @@
 
 	add_overlay("[initial(icon_state)]_charge[nearest_ten]")
 
-/obj/item/rcd/proc/perform_effect(var/atom/A, var/time_taken)
+/obj/item/rcd/proc/perform_effect(atom/A, time_taken)
 	effects[A] = new /obj/effect/constructing_effect(get_turf(A), time_taken, modes[mode_index])
 
 /obj/item/rcd/use_rcd(atom/A, mob/living/user)
 	. = ..()
 	cleanup_effect(A)
 
-/obj/item/rcd/proc/cleanup_effect(var/atom/A)
+/obj/item/rcd/proc/cleanup_effect(atom/A)
 	if(A in effects)
 		qdel(effects[A])
 		effects -= A

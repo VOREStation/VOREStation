@@ -10,7 +10,7 @@
 	var/obj/item/stored_item = null
 
 
-/obj/item/evidencebag/MouseDrop(var/obj/item/I)
+/obj/item/evidencebag/MouseDrop(obj/item/I)
 	if (!ishuman(usr))
 		return
 	if(!istype(I) || I.anchored)

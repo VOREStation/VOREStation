@@ -140,7 +140,7 @@
 	REAGENT_ID_PITCHERNECTAR =  1
 	)
 
-/obj/machinery/portable_atmospherics/hydroponics/click_alt(var/mob/living/user)
+/obj/machinery/portable_atmospherics/hydroponics/click_alt(mob/living/user)
 	if(!istype(user))
 		return
 	if(mechanical && !user.incapacitated() && Adjacent(user))
@@ -148,7 +148,7 @@
 		return 1
 	return ..()
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_ghost(var/mob/observer/dead/user)
+/obj/machinery/portable_atmospherics/hydroponics/attack_ghost(mob/observer/dead/user)
 
 	if(!(harvest && seed && seed.has_mob_product))
 		return
@@ -161,7 +161,7 @@
 		harvest()
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_generic(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/attack_generic(mob/user)
 
 	// Why did I ever think this was a good idea. TODO: move this onto the nymph mob.
 	if(istype(user,/mob/living/carbon/alien/diona))
@@ -201,7 +201,7 @@
 	if(S)
 		plant_seeds(S)
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/plant_seeds(var/obj/item/seeds/S)
+/obj/machinery/portable_atmospherics/hydroponics/proc/plant_seeds(obj/item/seeds/S)
 	lastproduce = 0
 	seed = S.seed //Grab the seed datum.
 	dead = 0
@@ -217,7 +217,7 @@
 	check_health()
 	update_icon()
 
-/obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/hydroponics/bullet_act(obj/item/projectile/Proj)
 
 	//Don't act on seeds like dionaea that shouldn't change.
 	if(seed && seed.get_trait(TRAIT_IMMUTABLE) > 0)
@@ -343,7 +343,7 @@
 	check_health()
 
 //Harvests the product of a plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(mob/user)
 
 	//Harvest the product of the plant,
 	if(!seed || !harvest)
@@ -375,7 +375,7 @@
 	return
 
 //Clears out a dead plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(mob/user)
 	if(!user || !dead) return
 
 	if(closed_system)
@@ -420,7 +420,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(var/severity)
+/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(severity)
 
 	// No seed, no mutations.
 	if(!seed)
@@ -509,7 +509,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/O as obj, mob/user as mob)
 
 	if(O.is_open_container())
 		return 0
@@ -717,7 +717,7 @@
 		close_lid(usr)
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/close_lid(var/mob/living/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/close_lid(mob/living/user)
 	closed_system = !closed_system
 	to_chat(user, span_filter_notice("You [closed_system ? "close" : "open"] the tray's lid."))
 	update_icon()

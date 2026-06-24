@@ -41,7 +41,7 @@
 /**
  * Prep for save: returns a preferences object if we're ready and allowed to save this mob.
  */
-/proc/prep_for_persist(var/mob/persister)
+/proc/prep_for_persist(mob/persister)
 	if(!istype(persister))
 		stack_trace("Persist (P4P): Given non-mob [persister].")
 		return
@@ -70,13 +70,13 @@
 /**
  * Called when mob despawns early (via cryopod)!
  */
-/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
+/proc/persist_despawned_mob(mob/occupant, obj/machinery/cryopod/pod)
 	ASSERT(istype(pod))
 	ASSERT(ispath(pod.spawnpoint_type, /datum/spawnpoint))
 	persist_interround_data(occupant, pod.spawnpoint_type)
 	return 1
 
-/proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
+/proc/persist_interround_data(mob/occupant, datum/spawnpoint/new_spawn_point_type)
 	if(!istype(occupant))
 		stack_trace("Persist (PID): Given non-mob [occupant].")
 		return
@@ -114,7 +114,7 @@
 
 // Saves mob's current coloration state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_coloration_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_coloration_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character)) return
 	prefs.h_style	= character.h_style
 
@@ -131,7 +131,7 @@
 
 // Saves mob's current custom species, ears, tail, wings and digitigrade legs state to prefs
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/vore/ears/copy_to_mob() ~Leshana
-/proc/apply_ears_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_ears_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(character.ear_style) prefs.ear_style = character.ear_style.name
 	if(character.tail_style) prefs.tail_style = character.tail_style.name
 	if(character.wing_style) prefs.wing_style = character.wing_style.name
@@ -161,7 +161,7 @@
 
 // Saves mob's current organ state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_organs_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character) || !character.species) return
 	var/list/organ_data = prefs.read_preference(/datum/preference/organ_data) || list()
 	var/list/rlimb_data = prefs.read_preference(/datum/preference/rlimb_data) || list()
@@ -199,7 +199,7 @@
 
 // Saves mob's current body markings state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_markings_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character)) return
 	prefs.body_markings = character.get_prioritised_markings() // Overwrite with new list!
 
@@ -208,7 +208,7 @@
 * Normally this would slowly apply during the round; once we get to the end
 * we need to apply it all at once.
 */
-/proc/resolve_excess_nutrition(var/mob/living/carbon/C)
+/proc/resolve_excess_nutrition(mob/living/carbon/C)
 	if(C.stat == DEAD)
 		return // You don't metabolize if dead
 	if(!C.metabolism || !C.species || !C.species.hunger_factor)

@@ -154,14 +154,14 @@
 	icon_state = "lightreplacer[emagged]"
 
 
-/obj/item/lightreplacer/proc/Use(var/mob/user)
+/obj/item/lightreplacer/proc/Use(mob/user)
 
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	add_uses(-1)
 	return 1
 
 // Negative numbers will subtract
-/obj/item/lightreplacer/proc/add_uses(var/amount = 1)
+/obj/item/lightreplacer/proc/add_uses(amount = 1)
 	uses = min(max(uses + amount, 0), max_uses)
 
 
@@ -173,13 +173,13 @@
 	bulb_shards = bulb_shards % shards_required
 	return new_bulbs
 
-/obj/item/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
+/obj/item/lightreplacer/proc/Charge(mob/user, amount = 1)
 	charge += amount
 	if(charge > 6)
 		add_uses(1)
 		charge = 0
 
-/obj/item/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
+/obj/item/lightreplacer/proc/ReplaceLight(obj/machinery/light/target, mob/living/U)
 
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
@@ -211,7 +211,7 @@
 		to_chat(U, "There is a working [target.get_fitting_name()] already inserted.")
 		return
 
-/obj/item/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/lightreplacer/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
 	playsound(src, "sparks", 100, 1)
 	update_icon()
@@ -219,7 +219,7 @@
 
 //Can you use it?
 
-/obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
+/obj/item/lightreplacer/proc/CanUse(mob/living/user)
 	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)
@@ -277,7 +277,7 @@
 			to_chat(user, span_infoplain("Painter color set."))
 
 
-/obj/item/lightpainter/proc/ColorLight(var/obj/machinery/light/target, var/mob/living/U)
+/obj/item/lightpainter/proc/ColorLight(obj/machinery/light/target, mob/living/U)
 
 	src.add_fingerprint(U)
 

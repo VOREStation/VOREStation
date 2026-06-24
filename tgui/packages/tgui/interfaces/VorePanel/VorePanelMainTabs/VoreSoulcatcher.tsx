@@ -144,8 +144,10 @@ const VoreSoulcatcherSection = (props: {
                   <Stack.Item>
                     <Dropdown
                       searchInput
+                      styledInput
                       width="200px"
                       selected={selected_soul}
+                      displayText={selected_soul}
                       options={caught_souls}
                       onSelected={(value) =>
                         act('soulcatcher_select', {

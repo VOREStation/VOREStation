@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 ))
 
 GLOBAL_LIST_EMPTY(channel_to_radio_key)
-/proc/get_radio_key_from_channel(var/channel)
+/proc/get_radio_key_from_channel(channel)
 	var/key = GLOB.channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in GLOB.department_radio_keys)
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise
-/mob/living/proc/handle_speech_problems(var/list/message_data)
+/mob/living/proc/handle_speech_problems(list/message_data)
 	var/list/message_pieces = message_data[1]
 	var/verb = message_data[2]
 	var/whispering = message_data[3]
@@ -143,14 +143,14 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	returns[2] = null
 	return returns
 
-/mob/living/proc/get_speech_ending(verb, var/ending)
+/mob/living/proc/get_speech_ending(verb, ending)
 	if(ending == "!")
 		return pick("exclaims","shouts","yells")
 	if(ending == "?")
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/say(message, datum/language/speaking = null, whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		if("^") return custom_emote(VISIBLE_MESSAGE, copytext(message, 2))
 	direct_say(message, speaking, whispering)
 
-/mob/living/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/direct_say(message, datum/language/speaking = null, whispering = 0)
 	// Handle automatic whispering mode
 	if(autowhisper)
 		whispering = 1
@@ -209,12 +209,19 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	var/list/message_pieces = parse_languages(message)
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
+		if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
+			to_chat(src, span_green("You stop yourself from signing in favor of the art of mimery!"))
+			return FALSE
 		S.speaking.broadcast(src, S.message)
 		return 1
 
 	if(!LAZYLEN(message_pieces))
 		log_runtime(EXCEPTION("Message failed to generate pieces. [message] - [json_encode(message_pieces)]"))
 		return 0
+
+	if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
+		to_chat(src, span_green("Your vow of silence prevents you from speaking!"))
+		return
 
 	// If you're muzzled, you can only speak sign language
 	// However, sign language is handled above.
@@ -471,7 +478,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 #undef BLOOPER_MAX_BLOOPERS
 #undef BLOOPER_MAX_TIME
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
+/mob/living/proc/say_signlang(message, verb="gestures", verb_understood="gestures", datum/language/language, type = 1)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
 	if(loc != T && !istype(loc, /obj/item/holder)) // Partially fixes sign language while being held.

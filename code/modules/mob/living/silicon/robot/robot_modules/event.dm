@@ -8,7 +8,7 @@
 /obj/item/robot_module/robot/malf/lost
 	name = "lost robot module"
 
-/obj/item/robot_module/robot/malf/lost/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/malf/lost/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	// Sec
 	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
@@ -54,7 +54,7 @@
 /obj/item/robot_module/robot/malf/gravekeeper
 	name = "gravekeeper robot module"
 
-/obj/item/robot_module/robot/malf/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/malf/gravekeeper/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	// For fending off animals and looters
 	src.modules += new /obj/item/melee/robotic/baton/shocker(src)

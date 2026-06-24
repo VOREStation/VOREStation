@@ -156,7 +156,7 @@
 /datum/embedded_program/airlock/phoron
 	var/tag_scrubber
 
-/datum/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
+/datum/embedded_program/airlock/phoron/New(obj/machinery/embedded_controller/M)
 	..(M)
 	memory["chamber_sensor_phoron"] = 0
 	memory["external_sensor_pressure"] = VIRGO3B_ONE_ATMOSPHERE
@@ -263,7 +263,7 @@
 	signalPump(tag_airpump, 0)
 	signalScrubber(tag_scrubber, 0)
 
-/datum/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
+/datum/embedded_program/airlock/phoron/proc/signalScrubber(tag, power)
 	var/datum/signal/signal = new
 	signal.data = list(
 		"tag" = tag,

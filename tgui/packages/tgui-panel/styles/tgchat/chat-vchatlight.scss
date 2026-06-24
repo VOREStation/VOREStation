@@ -266,6 +266,16 @@ a:visited {
   background: yellow;
 }
 
+.Chat__highlight {
+  color: oklch(from var(--highlight-color) min(l, 0.45) c h);
+  background: oklch(from var(--highlight-color) min(l, 0.45) c h / 25%);
+}
+
+.ChatMessage--highlighted {
+  border-left-color: oklch(from var(--highlight-color) min(l, 0.45) c h);
+  background: oklch(from var(--highlight-color) min(l, 0.45) c h / 14%);
+}
+
 h1,
 h2,
 h3,
@@ -1551,16 +1561,6 @@ $border-width-px: $border-width * 1px;
   50% {
     background-position: 100% 0;
   }
-}
-
-.spoiler {
-  background-color: hsl(0, 0%, 50%);
-  color: transparent;
-}
-
-.spoiler:hover {
-  background-color: inherit;
-  color: inherit;
 }
 
 details {

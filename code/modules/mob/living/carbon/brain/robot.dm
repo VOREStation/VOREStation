@@ -12,7 +12,7 @@
 	brainmob.real_name = brainmob.name
 	name = "robotic intelligence circuit ([brainmob.name])"
 
-/obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/robot/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE

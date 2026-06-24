@@ -51,7 +51,7 @@
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"
 	hud.name = "reinforce grab"
-	hud.master = src
+	hud.master_ref = WEAKREF(src)
 
 	//check if assailant is grabbed by victim as well
 	if(assailant.grabbed_by)
@@ -156,7 +156,7 @@
 
 	adjust_position()
 
-/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, target_zone)
 	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
 	last_hit_zone = target_zone
 

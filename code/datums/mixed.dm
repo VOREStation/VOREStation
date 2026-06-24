@@ -25,7 +25,7 @@
 
 // Mostly used for data_core records, but unfortuantely used some other places too.  But mostly here, so lets make a good effort.
 // TODO - Some machines/computers might be holding references to us.  Lets look into that, but at least for now lets make sure that the manifest is cleaned up.
-/datum/data/record/Destroy(var/force)
+/datum/data/record/Destroy(force)
 	if(GLOB.data_core.locked.Find(src))
 		if(!force)
 			stack_trace("Someone tried to qdel a record that was in GLOB.data_core.locked [log_info_line(src)]")

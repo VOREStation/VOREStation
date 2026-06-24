@@ -68,7 +68,7 @@
 			update_state(2)
 			desc = "This seems like a dosimeter, but the film has turned black."
 
-/obj/item/clothing/accessory/dosimeter/proc/update_state(var/tostate)
+/obj/item/clothing/accessory/dosimeter/proc/update_state(tostate)
 	if(current_film)
 		current_film.state = tostate
 		icon_state = "[initial(icon_state)][tostate]"
@@ -85,7 +85,7 @@
 	icon_state = "dosimeter_film0"
 	var/state = 0 //0 - White, 1 - Darker, 2 - Black (same as iconstates)
 
-/obj/item/dosimeter_film/proc/update_state(var/tostate)
+/obj/item/dosimeter_film/proc/update_state(tostate)
 	icon_state = tostate
 	update_icon()
 

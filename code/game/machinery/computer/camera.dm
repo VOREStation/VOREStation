@@ -31,6 +31,9 @@
 /obj/machinery/computer/security/tgui_interact(mob/user, datum/tgui/ui = null)
 	camera.tgui_interact(user, ui)
 
+/obj/machinery/computer/security/tgui_state(mob/user)
+	return GLOB.tgui_camera_view
+
 /obj/machinery/computer/security/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER))
@@ -45,9 +48,6 @@
 	..()
 
 /obj/machinery/computer/security/attack_ai(mob/user)
-	if(isAI(user))
-		to_chat(user, span_notice("You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips"))
-		return
 	attack_hand(user)
 
 /obj/machinery/computer/security/proc/set_network(list/new_network)
@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
 	circuit = /obj/item/circuitboard/security/telescreen/entertainment
-	camera_datum_type = /datum/tgui_module/camera/bigscreen
+	camera_datum_type = /datum/tgui_module/camera/virtual
 
 	var/obj/item/radio/radio = null
 	var/obj/effect/overlay/vis/pinboard

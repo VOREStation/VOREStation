@@ -376,12 +376,12 @@
 /// Begin coordinated remote viewing, this will call look() when the view begins, and unlook() when it ends.
 /datum/proc/start_coordinated_remoteview(mob/user, atom/target, list/viewer_managed_list, remote_view_config_path = null)
 	ASSERT(islist(viewer_managed_list))
-	user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = target, viewsize = null, vconfig_path = remote_view_config_path, coordinator = src, viewer_list = viewer_managed_list)
+	user.AddComponent(/datum/component/remote_view, focused_on = target, viewsize = null, vconfig_path = remote_view_config_path, coordinator = src, viewer_list = viewer_managed_list)
 
-/// Called from /datum/component/remote_view/viewer_managed during Initilize().
+/// Called from /datum/component/remote_view during Initilize().
 /datum/proc/look(mob/user)
 	return
 
-/// Called from /datum/component/remote_view/viewer_managed during Destroy()
+/// Called from /datum/component/remote_view during Destroy()
 /datum/proc/unlook(mob/user)
 	return

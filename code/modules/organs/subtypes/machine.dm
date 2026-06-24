@@ -48,7 +48,7 @@
 		stored_mmi = null
 	return ..()
 
-/obj/item/organ/internal/mmi_holder/Initialize(mapload, var/internal, var/obj/item/mmi/installed)
+/obj/item/organ/internal/mmi_holder/Initialize(mapload, internal, obj/item/mmi/installed)
 	. = ..(mapload, internal)
 	if(!ishuman(loc) || ismannequin(loc))
 		return
@@ -97,7 +97,7 @@
 		GLOB.living_mob_list |= owner
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
-/obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)
+/obj/item/organ/internal/mmi_holder/removed(mob/living/user)
 
 	if(stored_mmi)
 		. = stored_mmi //VOREStation Code

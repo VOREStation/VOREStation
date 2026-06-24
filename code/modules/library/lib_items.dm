@@ -56,7 +56,7 @@
 	else
 		..()
 
-/obj/structure/bookcase/attack_hand(var/mob/user)
+/obj/structure/bookcase/attack_hand(mob/user)
 	if(contents.len)
 		var/obj/item/book/choice = tgui_input_list(user, "Which book would you like to remove from the shelf?", "Book Selection", contents)
 		if(choice)
@@ -350,7 +350,7 @@ Book Cart End
 		user << browse(dat, "window=[name]")
 	else if(istype(pages[page], /obj/item/photo))
 		var/obj/item/photo/P = W
-		user << browse_rsc(P.img, "tmp_photo.png")
+		send_rsc(user, P.img, "tmp_photo.png")
 		user << browse("<html>" + dat + "<head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \

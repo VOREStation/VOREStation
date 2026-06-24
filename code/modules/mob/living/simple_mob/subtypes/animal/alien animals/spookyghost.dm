@@ -87,7 +87,7 @@
 	violent_breakthrough = TRUE
 	speak_chance = 0
 
-/mob/living/simple_mob/vore/alienanimals/space_ghost/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/alienanimals/space_ghost/apply_melee_effects(atom/A)
 	var/mob/living/L = A
 	if(L.hallucination <= 100)
 		L.hallucination += rand(1,10)
@@ -189,7 +189,7 @@
 	. = ..()
 	qdel(src)
 
-/mob/living/simple_mob/vore/alienanimals/spooky_ghost/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/alienanimals/spooky_ghost/apply_melee_effects(atom/A)
 	var/mob/living/L = A
 	if(L && istype(L))
 		if(L.hallucination <= 100)

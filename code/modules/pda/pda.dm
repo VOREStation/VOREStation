@@ -49,7 +49,8 @@
 		new/datum/data/pda/app/nerdle,
 		new/datum/data/pda/app/game_launcher,
 		new/datum/data/pda/utility/scanmode/notes,
-		new/datum/data/pda/utility/flashlight)
+		new/datum/data/pda/utility/flashlight,
+		new/datum/data/pda/app/goals)
 	var/list/shortcut_cache = list()
 	var/list/shortcut_cat_order = list()
 	var/list/notifying_programs = list()
@@ -221,7 +222,7 @@
 	for(var/datum/data/pda/P as anything in programs)
 		P.pda = src
 
-/obj/item/pda/proc/detonate_act(var/obj/item/pda/P)
+/obj/item/pda/proc/detonate_act(obj/item/pda/P)
 	//TODO: sometimes these attacks show up on the message server
 	var/i = rand(1,100)
 	var/j = rand(0,1) //Possibility of losing the PDA after the detonation

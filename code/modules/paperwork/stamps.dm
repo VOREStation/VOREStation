@@ -61,6 +61,10 @@
 	name = "clown's rubber stamp"
 	icon_state = "stamp-clown"
 
+/obj/item/stamp/mime
+	name = "mime's rubber stamp"
+	icon_state = "stamp-mime"
+
 /obj/item/stamp/internalaffairs
 	name = "internal affairs rubber stamp"
 	icon_state = "stamp-intaff"

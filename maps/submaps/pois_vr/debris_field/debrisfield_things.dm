@@ -51,7 +51,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/tomato/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/tomato/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 //Begin tourist ship stuff
@@ -66,7 +66,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/animal/giant_spider/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/animal/giant_spider/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/nurse/space
@@ -80,7 +80,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/animal/giant_spider/nurse/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/animal/giant_spider/nurse/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/hunter/space
@@ -94,7 +94,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/animal/giant_spider/hunter/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/animal/giant_spider/hunter/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/tunneler/space
@@ -108,7 +108,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/animal/giant_spider/tunneler/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /obj/structure/ghost_pod/manual/survivor/spidership

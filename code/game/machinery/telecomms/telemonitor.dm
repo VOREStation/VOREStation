@@ -116,12 +116,12 @@
 			. = TRUE
 
 
-/obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/telecomms/monitor/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, span_notice("You you disable the security protocols"))
 		return 1
 
-/obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")
+/obj/machinery/computer/telecomms/monitor/proc/set_temp(text, color = "average")
 	temp = list("color" = color, "text" = text)

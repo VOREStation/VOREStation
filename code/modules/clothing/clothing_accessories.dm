@@ -21,7 +21,7 @@
 
 	return TRUE
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 		var/obj/item/clothing/accessory/A = I
 		if(attempt_attach_accessory(A, user))
@@ -34,7 +34,7 @@
 
 	..()
 
-/obj/item/clothing/attack_hand(var/mob/user)
+/obj/item/clothing/attack_hand(mob/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(LAZYLEN(accessories) && src.loc == user)
 		for(var/obj/item/clothing/accessory/A in accessories)
@@ -46,7 +46,7 @@
 			return
 	return ..()
 
-/obj/item/clothing/MouseDrop(var/obj/over_object)
+/obj/item/clothing/MouseDrop(obj/over_object)
 	if (over_object && (ishuman(usr) || issmall(usr)))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
 		if (!(src.loc == usr))
@@ -115,13 +115,14 @@
 	for(var/obj/item/clothing/accessory/A in accessories)
 		slowdown += A.slowdown
 
-/obj/item/clothing/proc/removetie_verb(mob/user)
+/obj/item/clothing/proc/removetie_verb()
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
 
-	if(!user)
-		user = usr
+	removetie_proc(usr)
+
+/obj/item/clothing/proc/removetie_proc(mob/living/user)
 
 	if(!isliving(user))
 		return

@@ -1,59 +1,59 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
 	rad_insulation = RAD_HEAVY_INSULATION
-/turf/simulated/wall/r_wall/Initialize(mapload)
+/turf/simulated/wall/r_wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL) //3strong
 
 /turf/simulated/wall/shull
 	icon_state = "hull-steel"
-/turf/simulated/wall/shull/Initialize(mapload) //Spaaaace ship.
+/turf/simulated/wall/shull/Initialize(mapload, materialtype, rmaterialtype, girdertype) //Spaaaace ship.
 	. = ..(mapload,  MAT_STEELHULL, null, MAT_STEELHULL)
 /turf/simulated/wall/rshull
 	icon_state = "hull-r_steel"
 	rad_insulation = RAD_HEAVY_INSULATION
-/turf/simulated/wall/rshull/Initialize(mapload)
+/turf/simulated/wall/rshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
 /turf/simulated/wall/pshull
 	icon_state = "hull-plasteel"
 	rad_insulation = RAD_HEAVY_INSULATION
-/turf/simulated/wall/pshull/Initialize(mapload) //Spaaaace-er ship.
+/turf/simulated/wall/pshull/Initialize(mapload, materialtype, rmaterialtype, girdertype) //Spaaaace-er ship.
 	. = ..(mapload,  MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
 /turf/simulated/wall/rpshull
 	icon_state = "hull-r_plasteel"
-/turf/simulated/wall/rpshull/Initialize(mapload)
+/turf/simulated/wall/rpshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
 
 /turf/simulated/wall/dshull
 	icon_state = "hull-durasteel"
 	rad_insulation = RAD_HEAVY_INSULATION
 
-/turf/simulated/wall/dshull/Initialize(mapload) //Spaaaace-est ship.
+/turf/simulated/wall/dshull/Initialize(mapload, materialtype, rmaterialtype, girdertype) //Spaaaace-est ship.
 	. = ..(mapload,  MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
 
 /turf/simulated/wall/rdshull
 	icon_state = "hull-r_durasteel"
 	rad_insulation = RAD_EXTREME_INSULATION
 
-/turf/simulated/wall/rdshull/Initialize(mapload)
+/turf/simulated/wall/rdshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
 
 /turf/simulated/wall/thull
 	icon_state = "hull-titanium"
 	rad_insulation = RAD_HEAVY_INSULATION
 
-/turf/simulated/wall/thull/Initialize(mapload)
+/turf/simulated/wall/thull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
 
 /turf/simulated/wall/rthull
 	icon_state = "hull-r_titanium"
 	rad_insulation = RAD_EXTREME_INSULATION
 
-/turf/simulated/wall/rthull/Initialize(mapload)
+/turf/simulated/wall/rthull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
 
 /turf/simulated/wall/cult
 	icon_state = "cult"
-/turf/simulated/wall/cult/Initialize(mapload)
+/turf/simulated/wall/cult/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_CULT,MAT_CULT2,MAT_CULT)
 /turf/unsimulated/wall/cult
 	name = "cult wall"
@@ -61,102 +61,102 @@
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "cult"
 
-/turf/simulated/wall/iron/Initialize(mapload)
+/turf/simulated/wall/iron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_IRON)
-/turf/simulated/wall/uranium/Initialize(mapload)
+/turf/simulated/wall/uranium/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_URANIUM)
-/turf/simulated/wall/diamond/Initialize(mapload)
+/turf/simulated/wall/diamond/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_DIAMOND)
-/turf/simulated/wall/gold/Initialize(mapload)
+/turf/simulated/wall/gold/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_GOLD)
-/turf/simulated/wall/silver/Initialize(mapload)
+/turf/simulated/wall/silver/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_SILVER)
 
 /turf/simulated/wall/lead
 	rad_insulation = RAD_EXTREME_INSULATION
 
-/turf/simulated/wall/lead/Initialize(mapload)
+/turf/simulated/wall/lead/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_LEAD)
 
 /turf/simulated/wall/r_lead
 	rad_insulation = RAD_EXTREME_INSULATION
 
-/turf/simulated/wall/r_lead/Initialize(mapload)
+/turf/simulated/wall/r_lead/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_LEAD, MAT_LEAD)
-/turf/simulated/wall/phoron/Initialize(mapload)
+/turf/simulated/wall/phoron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PHORON)
-/turf/simulated/wall/sandstone/Initialize(mapload)
+/turf/simulated/wall/sandstone/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_SANDSTONE)
-/turf/simulated/wall/ironphoron/Initialize(mapload)
+/turf/simulated/wall/ironphoron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_IRON,MAT_PHORON)
-/turf/simulated/wall/golddiamond/Initialize(mapload)
+/turf/simulated/wall/golddiamond/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_GOLD,MAT_DIAMOND)
-/turf/simulated/wall/silvergold/Initialize(mapload)
+/turf/simulated/wall/silvergold/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_SILVER,MAT_GOLD)
-/turf/simulated/wall/sandstonediamond/Initialize(mapload)
+/turf/simulated/wall/sandstonediamond/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_SANDSTONE,MAT_DIAMOND)
-/turf/simulated/wall/snowbrick/Initialize(mapload)
+/turf/simulated/wall/snowbrick/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_SNOWBRICK)
 
-/turf/simulated/wall/resin/Initialize(mapload)
+/turf/simulated/wall/resin/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_RESIN,null,MAT_RESIN)
 
 /turf/simulated/wall/concrete
 	icon_state = "brick"
 	rad_insulation = RAD_HEAVY_INSULATION
 
-/turf/simulated/wall/concrete/Initialize(mapload)
+/turf/simulated/wall/concrete/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_CONCRETE) //3strong
 
 /turf/simulated/wall/r_concrete
 	rad_insulation = RAD_HEAVY_INSULATION
 	icon_state = "rbrick"
 
-/turf/simulated/wall/r_concrete/Initialize(mapload)
+/turf/simulated/wall/r_concrete/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_CONCRETE,MAT_PLASTEELREBAR) //3strong
 
 // Kind of wondering if this is going to bite me in the butt.
-/turf/simulated/wall/skipjack/Initialize(mapload)
+/turf/simulated/wall/skipjack/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_ALIENALLOY)
 /turf/simulated/wall/skipjack/attackby()
 	return
-/turf/simulated/wall/titanium/Initialize(mapload)
+/turf/simulated/wall/titanium/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_TITANIUM)
 
 /turf/simulated/wall/durasteel
 	rad_insulation = RAD_HEAVY_INSULATION
 
-/turf/simulated/wall/durasteel/Initialize(mapload)
+/turf/simulated/wall/durasteel/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_DURASTEEL, MAT_DURASTEEL)
 
-/turf/simulated/wall/wood/Initialize(mapload)
+/turf/simulated/wall/wood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_WOOD)
 
-/turf/simulated/wall/hardwood/Initialize(mapload)
+/turf/simulated/wall/hardwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_HARDWOOD)
 
-/turf/simulated/wall/sifwood/Initialize(mapload)
+/turf/simulated/wall/sifwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_SIFWOOD)
 
-/turf/simulated/wall/birchwood/Initialize(mapload)
+/turf/simulated/wall/birchwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_BIRCHWOOD)
 
-/turf/simulated/wall/pinewood/Initialize(mapload)
+/turf/simulated/wall/pinewood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_PINEWOOD)
 
-/turf/simulated/wall/oakwood/Initialize(mapload)
+/turf/simulated/wall/oakwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_OAKWOOD)
 
-/turf/simulated/wall/acaciawood/Initialize(mapload)
+/turf/simulated/wall/acaciawood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_ACACIAWOOD)
 
-/turf/simulated/wall/redwood/Initialize(mapload)
+/turf/simulated/wall/redwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_REDWOOD)
 
-/turf/simulated/wall/log/Initialize(mapload)
+/turf/simulated/wall/log/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_LOG)
 
-/turf/simulated/wall/log_sif/Initialize(mapload)
+/turf/simulated/wall/log_sif/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_SIFLOG)
 
 // Shuttle Walls
@@ -397,7 +397,7 @@
 	var/list/blend_objects = list(/obj/machinery/door)
 	var/list/noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 
-/turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/eris/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/eris)
 
 /turf/simulated/wall/eris/special_wall_connections(list/dirs, list/inrange)
@@ -423,7 +423,7 @@
 
 /turf/simulated/wall/eris/r_wall
 	icon_state = "rgeneric"
-/turf/simulated/wall/eris/r_wall/Initialize(mapload)
+/turf/simulated/wall/eris/r_wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 // Bay walls
@@ -436,7 +436,7 @@
 
 	var/stripe_color // Adds a colored stripe to the walls
 
-/turf/simulated/wall/bay/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/bay/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/bay)
 
 /turf/simulated/wall/bay/update_icon()
@@ -471,7 +471,7 @@
 
 /turf/simulated/wall/bay/r_wall
 	icon_state = "rgeneric"
-/turf/simulated/wall/bay/r_wall/Initialize(mapload)
+/turf/simulated/wall/bay/r_wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 /turf/simulated/wall/tgmc
@@ -560,29 +560,30 @@
 
 	wall_connections = dirs
 
-/turf/simulated/wall/tgmc/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+/turf/simulated/wall/tgmc/can_join_with_low_wall(obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall)
 
 /turf/simulated/wall/tgmc/rwall
 	icon_state = "rwall0"
 	wall_base_state = "rwall"
 	wall_blend_category = "rwall"
-/turf/simulated/wall/tgmc/rwall/Initialize(mapload)
+/turf/simulated/wall/tgmc/rwall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 /turf/simulated/wall/tgmc/gray
 	icon_state = "gray0"
 	wall_base_state = "gray"
 	wall_blend_category = "gray"
-/turf/simulated/wall/tgmc/gwall/Initialize(mapload)
+/turf/simulated/wall/tgmc/gwall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 /turf/simulated/wall/tgmc/darkwall
 	icon_state = "darkwall0"
 	wall_base_state = "darkwall"
 	wall_blend_category = "darkwall"
-/turf/simulated/wall/tgmc/darkwall/Initialize(mapload)
+/turf/simulated/wall/tgmc/darkwall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
+
 /turf/simulated/wall/tgmc/darkwall/deco0
 	icon_state = "darkwall_deco0"
 	force_icon = "_deco0"
@@ -604,14 +605,14 @@
 	icon_state = "white0"
 	wall_base_state = "white"
 	wall_blend_category = "white"
-/turf/simulated/wall/tgmc/whitewall/Initialize(mapload)
+/turf/simulated/wall/tgmc/whitewall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_STEEL,MAT_PLASTIC)
 
 /turf/simulated/wall/tgmc/durawall
 	icon_state = "darkband0"
 	wall_base_state = "darkband"
 	wall_blend_category = "darkband"
-/turf/simulated/wall/tgmc/durawall/Initialize(mapload)
+/turf/simulated/wall/tgmc/durawall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_DURASTEEL,MAT_DURASTEEL)
 /turf/simulated/wall/tgmc/durawall/deco0
 	icon_state = "darkband_deco0"
@@ -630,14 +631,14 @@
 	icon_state = "whiteband0"
 	wall_base_state = "whiteband"
 	wall_blend_category = "whiteband"
-/turf/simulated/wall/tgmc/sanitary/Initialize(mapload)
+/turf/simulated/wall/tgmc/sanitary/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 /turf/simulated/wall/tgmc/chigusa
 	icon_state = "chigusa0"
 	wall_base_state = "chigusa"
 	wall_blend_category = "chigusa"
-/turf/simulated/wall/tgmc/chigusa/Initialize(mapload)
+/turf/simulated/wall/tgmc/chigusa/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_CHITIN,MAT_CHITIN)
 /turf/simulated/wall/tgmc/chigusa/deco0
 	icon_state = "chigusa_deco0"
@@ -653,28 +654,28 @@
 	icon_state = "redstripe0"
 	wall_base_state = "redstripe"
 	wall_blend_category = "redstripe"
-/turf/simulated/wall/tgmc/redstripe/Initialize(mapload)
+/turf/simulated/wall/tgmc/redstripe/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEELHULL,MAT_PLASTEELHULL)
 
 /turf/simulated/wall/tgmc/redstripe_r
 	icon_state = "redstriper0"
 	wall_base_state = "redstriper"
 	wall_blend_category = "redstriper"
-/turf/simulated/wall/tgmc/redstripe_r/Initialize(mapload)
+/turf/simulated/wall/tgmc/redstripe_r/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_DURASTEELHULL,MAT_DURASTEELHULL)
 
 /turf/simulated/wall/tgmc/plain_redstripe
 	icon_state = "predstripe0"
 	wall_base_state = "predstripe"
 	wall_blend_category = "predstripe"
-/turf/simulated/wall/tgmc/plain_redstripe/Initialize(mapload)
+/turf/simulated/wall/tgmc/plain_redstripe/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 /turf/simulated/wall/tgmc/plain_redstripe_r
 	icon_state = "predstriper0"
 	wall_base_state = "predstriper"
 	wall_blend_category = "predstriper"
-/turf/simulated/wall/tgmc/plain_redstripe_r/Initialize(mapload)
+/turf/simulated/wall/tgmc/plain_redstripe_r/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload, MAT_DURASTEEL,MAT_DURASTEEL)
 
 #define WINDOW_GLASS 0x1

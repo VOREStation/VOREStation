@@ -3,15 +3,15 @@
 	"version": "6.0.0",
 	"dependencies": {
 		"common": "workspace:*",
-		"dompurify": "^3.4.0",
-		"es-toolkit": "^1.45.1",
-		"jotai": "^2.19.1",
-		"react": "^19.2.5",
-		"react-dom": "^19.2.5",
+		"dompurify": "^3.4.8",
+		"es-toolkit": "^1.47.0",
+		"jotai": "^2.20.0",
+		"react": "^19.2.7",
+		"react-dom": "^19.2.7",
 		"tgui": "workspace:*",
-		"tgui-core": "^5.10.0",
+		"tgui-core": "^6.0.0",
 		"tgui-dev-server": "workspace:*",
-		"zod": "^4.3.6"
+		"zod": "^4.4.3"
 	},
 	"private": true
 }

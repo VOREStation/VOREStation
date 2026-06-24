@@ -100,7 +100,7 @@
 	..()
 	update_icon()
 
-/mob/living/simple_mob/proc/will_eat(var/mob/living/M)
+/mob/living/simple_mob/proc/will_eat(mob/living/M)
 	if(client) //You do this yourself, dick!
 		//ai_log("vr/wont eat [M] because we're player-controlled", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
@@ -152,7 +152,7 @@
 		return ..()
 
 
-/mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
+/mob/living/simple_mob/proc/CanPounceTarget(mob/living/M) //returns either FALSE or a %chance of success
 	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
 	if(M.is_incorporeal())
@@ -168,7 +168,7 @@
 		return max(0,(vore_pounce_successrate - (vore_pounce_falloff * TargetHealthPercent)))
 
 
-/mob/living/simple_mob/proc/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple_mob/proc/PounceTarget(mob/living/M, successrate = 100)
 	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
@@ -185,7 +185,7 @@
 
 // Attempt to eat target
 // TODO - Review this.  Could be some issues here
-/mob/living/simple_mob/proc/EatTarget(var/mob/living/M)
+/mob/living/simple_mob/proc/EatTarget(mob/living/M)
 	//ai_log("vr/EatTarget() [M]",2) //VORESTATION AI TEMPORARY REMOVAL
 	//stop_automated_movement = 1 //VORESTATION AI TEMPORARY REMOVAL
 	var/old_target = M
@@ -285,12 +285,12 @@
 	B.belly_fullscreen_color = "#823232"
 	B.belly_fullscreen_color2 = "#823232"
 
-/mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
+/mob/living/simple_mob/Bumped(atom/movable/AM, yes)
 	if(tryBumpNom(AM))
 		return
 	..()
 
-/mob/living/simple_mob/proc/tryBumpNom(var/mob/tmob)
+/mob/living/simple_mob/proc/tryBumpNom(mob/tmob)
 	//returns TRUE if we actually start an attempt to bumpnom, FALSE if checks fail or the random bump nom chance fails
 	if(istype(tmob) && will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
 		if(!faction_bump_vore && faction == tmob.faction)
@@ -384,7 +384,7 @@
 	else
 		. = ..()
 
-/mob/living/simple_mob/proc/animal_mount(var/mob/living/M in living_mobs(1))
+/mob/living/simple_mob/proc/animal_mount(mob/living/M in living_mobs(1))
 	set name = "Animal Mount/Dismount"
 	set category = "Abilities.Mob"
 	set desc = "Let people ride on you."

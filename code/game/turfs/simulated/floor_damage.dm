@@ -15,7 +15,7 @@
 		broken = 0
 	update_icon()
 
-/turf/simulated/floor/proc/burn_tile(var/exposed_temperature)
+/turf/simulated/floor/proc/burn_tile(exposed_temperature)
 	if(!flooring || !(flooring.flags & TURF_CAN_BURN) || !isnull(burnt))
 		return
 	if(flooring.has_burn_range)

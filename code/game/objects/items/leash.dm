@@ -4,8 +4,9 @@
 	icon_state = "leash_master"
 
 /atom/movable/screen/alert/leash_dom/Click()
-	var/obj/item/leash/owner = master
-	owner.unleash()
+	var/obj/item/leash/owner = master_ref?.resolve()
+	if(owner)
+		owner.unleash()
 
 /atom/movable/screen/alert/leash_pet
 	name = "Leashed"
@@ -13,8 +14,9 @@
 	icon_state = "leash_pet"
 
 /atom/movable/screen/alert/leash_dom/Click()
-	var/obj/item/leash/owner = master
-	owner.struggle_leash()
+	var/obj/item/leash/owner = master_ref?.resolve()
+	if(owner)
+		owner.struggle_leash()
 
 ///// OBJECT /////
 //The leash object itself
@@ -125,7 +127,7 @@
 		return TRUE
 	var/mob/living/leash_pet = leash_pet_ref?.resolve()
 	var/mob/living/leash_master = leash_master_ref?.resolve()
-	if(!leash_pet || leash_master) //No pet, no tug.
+	if(!leash_pet || !leash_master) //No pet, no tug.
 		return
 	if(leash_pet.absorbed) //Glrk'd.
 		clear_leash()
@@ -264,7 +266,7 @@
 	to_chat(leash_pet, span_userdanger("You have been released!"))
 	clear_leash()
 
-/obj/item/leash/proc/is_wearing_collar(var/mob/living/carbon/human/human)
+/obj/item/leash/proc/is_wearing_collar(mob/living/carbon/human/human)
 	if (!istype(human))
 		return FALSE
 	for (var/obj/item/clothing/worn in human.worn_clothing)

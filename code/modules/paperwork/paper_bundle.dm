@@ -58,7 +58,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/sheet)
+/obj/item/paper_bundle/proc/insert_sheet_at(mob/user, index, obj/item/sheet)
 	if(istype(sheet, /obj/item/paper))
 		to_chat(user, span_notice("You add [(sheet.name == "paper") ? "the paper" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
 	else if(istype(sheet, /obj/item/photo))
@@ -131,7 +131,7 @@
 		user << browse(dat, "window=[name]")
 	else if(istype(pages[page], /obj/item/photo))
 		var/obj/item/photo/P = W
-		user << browse_rsc(P.img, "tmp_photo.png")
+		send_rsc(user, P.img, "tmp_photo.png")
 		user << browse("<html>" + dat + "<head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \

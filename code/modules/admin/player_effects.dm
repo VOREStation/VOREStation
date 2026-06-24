@@ -268,7 +268,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			if(H.wear_suit)
 				H.unEquip(H.wear_suit)
 			var/obj/item/clothing/suit = new /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog
-			var/obj/item/clothing/hood = new /obj/item/clothing/head/hood_vr/hotdog_hood
+			var/obj/item/clothing/hood = new /obj/item/clothing/head/hood/hotdog_hood
 			H.equip_to_slot_if_possible(suit, slot_wear_suit, 0, 0, 1)
 			H.equip_to_slot_if_possible(hood, slot_head, 0, 0, 1)
 			sleep(5 SECONDS)

@@ -48,8 +48,11 @@
 /obj/item/flash/Initialize(mapload)
 	. = ..()
 	power_supply = new cell_type(src)
+	if(can_repair)
+		description_info = "If the device 'clicks' it has either been used too much recently or is out of charge - requiring a recharger. If the bulb is burnt out or broken, it needs to be repaired using a screwdriver."
 
-/obj/item/flash/attackby(var/obj/item/W, var/mob/user)
+
+/obj/item/flash/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && broken)
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts trying to repair \the [src]'s bulb."))
 		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed, target = src) && can_repair)
@@ -58,8 +61,9 @@
 				broken = FALSE
 				update_icon()
 			playsound(src, W.usesound, 50, 1)
-		else
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " fails to repair \the [src]."))
+		else
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " stops attempting to repair \the [src]."))
 	else
 		..()
 
@@ -92,7 +96,7 @@
 					return suit.cell
 	return null
 
-/obj/item/flash/proc/clown_check(var/mob/user)
+/obj/item/flash/proc/clown_check(mob/user)
 	if(user && CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_warning("\The [src] slips out of your hand."))
 		user.drop_item()

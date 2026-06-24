@@ -708,7 +708,7 @@
 		user.forceMove(src)
 		to_chat(user, span_vnotice("You have been swallowed alive by the rubber ducky. Your entire body compacted up and squeezed into the tiny space that makes up the oddly realistic and not at all rubbery stomach. The walls themselves are kneading over you, grinding some sort of fluids into your trapped body. You can even hear the sound of bodily functions echoing around you..."))
 
-/obj/item/bikehorn/rubberducky/pink/container_resist(var/mob/living/escapee)
+/obj/item/bikehorn/rubberducky/pink/container_resist(mob/living/escapee)
 	if(isdisposalpacket(loc))
 		escapee.forceMove(loc)
 	else
@@ -909,7 +909,7 @@
 	AddComponent(/datum/component/hose_connector/endless_source/water)
 	AddComponent(/datum/component/hose_connector/endless_drain)
 
-/obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
+/obj/structure/sink/MouseDrop_T(obj/item/thing, mob/user)
 	..()
 	if(!istype(thing) || !thing.is_open_container())
 		return ..()

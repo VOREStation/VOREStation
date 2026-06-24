@@ -243,7 +243,7 @@
 	sprite_hud_icon_state = "malf"
 	hat_offset = VALE_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(var/obj/item/robot_module/module)
+/datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
 	if(!has_custom_equipment_sprites)

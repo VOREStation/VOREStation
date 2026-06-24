@@ -73,7 +73,7 @@ BONUS
 				phagecounter += 5
 				Burst(A, M)
 
-/datum/symptom/macrophage/proc/Burst(datum/disease/advance/A, var/mob/living/M, var/gigagerms = FALSE)
+/datum/symptom/macrophage/proc/Burst(datum/disease/advance/A, mob/living/M, gigagerms = FALSE)
 	var/mob/living/simple_mob/vore/aggressive/macrophage/phage
 
 	if(gigagerms)

@@ -166,11 +166,13 @@ const SuitCyclerContent = (props: {
           <LabeledList.Item label="Target Species">
             <Dropdown
               searchInput
+              styledInput
               autoScroll={false}
               width="150px"
               maxHeight="160px"
               options={species}
               selected={props.selectedSpecies}
+              displayText={props.selectedSpecies}
               onSelected={(val) => {
                 props.onSelectedSpecies(val);
                 act('species', { species: val });

@@ -10,7 +10,7 @@
 	. = ..()
 	UnregisterSignal(target, COMSIG_HANDLE_ALLERGENS)
 
-/datum/element/allergy/proc/handle_allergic_reaction(datum/source,var/allergen_CE_amount)
+/datum/element/allergy/proc/handle_allergic_reaction(datum/source,allergen_CE_amount)
 	SIGNAL_HANDLER
 	if(allergen_CE_amount <= 0)
 		return
@@ -76,14 +76,14 @@
 				H.drop_item()
 
 // Helpers for delayed actions
-/datum/element/allergy/proc/allergy_sneeze(var/mob/living/carbon/human/H)
+/datum/element/allergy/proc/allergy_sneeze(mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	H.emote("sneeze")
 	if(prob(23))
 		H.drop_item()
 
-/datum/element/allergy/proc/allergy_gib(var/mob/living/carbon/human/H,var/remaining)
+/datum/element/allergy/proc/allergy_gib(mob/living/carbon/human/H,remaining)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(remaining > 0)

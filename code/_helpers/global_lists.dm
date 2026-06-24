@@ -116,14 +116,14 @@ GLOBAL_LIST_INIT(string_slot_flags, list(
 ))
 
 GLOBAL_LIST_EMPTY(mannequins)
-/proc/get_mannequin(var/ckey = "NULL")
+/proc/get_mannequin(ckey = "NULL")
 	var/mob/living/carbon/human/dummy/mannequin/M = GLOB.mannequins[ckey]
 	if(!istype(M))
 		GLOB.mannequins[ckey] = new /mob/living/carbon/human/dummy/mannequin(null)
 		M = GLOB.mannequins[ckey]
 	return M
 
-/proc/del_mannequin(var/ckey = "NULL")
+/proc/del_mannequin(ckey = "NULL")
 	GLOB.mannequins-= ckey
 
 //////////////////////////
@@ -347,7 +347,10 @@ GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
 	"Mech" = FOOTSTEP_MOB_MECHY,
-	"Heavy" = FOOTSTEP_MOB_HEAVY_ALT
+	"Heavy" = FOOTSTEP_MOB_HEAVY,
+	"Heavy Alt" = FOOTSTEP_MOB_HEAVY_ALT,
+	"Slime" = FOOTSTEP_MOB_SLIME,
+
 ))
 
 // Put any artifact effects that are duplicates, unique, or otherwise unwated in here! This prevents them from spawning via RNG.

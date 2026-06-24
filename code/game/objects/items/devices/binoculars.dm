@@ -17,7 +17,7 @@
 	. = ..(user)
 	if(.)
 		return TRUE
-	zoom()
+	toggle_zoom(user)
 
 /obj/item/binoculars/spyglass
 	name = "spyglass"

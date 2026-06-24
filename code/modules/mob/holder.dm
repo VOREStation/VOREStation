@@ -95,9 +95,7 @@
 /obj/item/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
-		var/mob/cached_mob = held_mob
 		dump_mob()
-		cached_mob.reset_perspective() // This case cannot be handled gracefully, make sure the mob view is cleaned up.
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src, loc)
@@ -299,7 +297,7 @@
 	hitsound = 'sound/effects/slime_squish.ogg'
 	slot_flags = SLOT_HOLSTER
 
-/obj/item/holder/fish/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/holder/fish/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -316,7 +314,7 @@
 //Mob procs and vars for scooping up
 /mob/living/var/holder_type
 
-/mob/living/MouseDrop(var/atom/over_object)
+/mob/living/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP)) //VOREStation Edit
 		if(!issmall(H) || !ishuman(src))
@@ -324,7 +322,7 @@
 		return
 	return ..()
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
+/mob/living/proc/get_scooped(mob/living/carbon/grabber, self_grab)
 
 	if(!holder_type || buckled || pinned.len)
 		return
@@ -355,7 +353,7 @@
 	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
 	return H
 
-/obj/item/holder/proc/sync(var/mob/living/M)
+/obj/item/holder/proc/sync(mob/living/M)
 	dir = 2
 	overlays.Cut()
 	if(M.item_state)

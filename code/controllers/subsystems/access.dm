@@ -87,13 +87,13 @@ SUBSYSTEM_DEF(access)
 	RETURN_TYPE(/list)
 	return priv_private_access
 
-/datum/controller/subsystem/access/proc/get_region_accesses(var/code)
+/datum/controller/subsystem/access/proc/get_region_accesses(code)
 	if(code == ACCESS_REGION_ALL)
 		return get_all_station_access()
 
 	return priv_region_access["[code]"]
 
-/datum/controller/subsystem/access/proc/get_region_accesses_name(var/code)
+/datum/controller/subsystem/access/proc/get_region_accesses_name(code)
 	switch(code)
 		if(ACCESS_REGION_ALL)
 			return "All"

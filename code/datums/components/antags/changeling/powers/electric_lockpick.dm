@@ -45,7 +45,7 @@
 	..()
 	to_chat(user, span_notice("We discreetly shape our finger back to a less suspicious form."))
 
-/obj/item/finger_lockpick/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/finger_lockpick/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

@@ -67,6 +67,10 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_style = ooc_notes_style
 	M.soulcatcher_pref_flags = soulcatcher_pref_flags
+	if(ishuman(M)) //Has to be done here since making someone a changeling requires an active mind.
+		var/mob/living/carbon/human/ling_test = M
+		if(ling_test.changeling_locked)
+			M.make_changeling()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()
 
@@ -350,7 +354,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/sleevemate/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/sleevemate/emag_act(remaining_charges, mob/user)
 	to_chat(user,span_danger("You hack [src]!"))
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src.loc)

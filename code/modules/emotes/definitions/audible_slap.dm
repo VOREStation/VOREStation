@@ -7,6 +7,7 @@
 	emote_sound = 'sound/effects/snap.ogg'
 	check_restraints = TRUE
 	check_range = 1
+	able_mute = TRUE
 
 /datum/decl/emote/audible/slap/New()
 	..()
@@ -15,7 +16,7 @@
 	emote_message_3p_target = span_danger(emote_message_3p_target)
 	emote_message_3p =        span_danger(emote_message_3p)
 
-/datum/decl/emote/audible/slap/do_extra(var/atom/user, var/atom/target)
+/datum/decl/emote/audible/slap/do_extra(atom/user, atom/target)
 	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target

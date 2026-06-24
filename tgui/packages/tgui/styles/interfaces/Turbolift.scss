@@ -1,6 +1,4 @@
-@use 'sass:color';
-@use '../base.scss';
-@use '../colors.scss';
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .Section--elevator--fire {
   background-color: hsl(
@@ -12,5 +10,5 @@
 
 .Section--elevator--fire > .Section__title {
   padding: 0.5em;
-  border-bottom: base.em(2px) solid var(--turbolift-separator);
+  border-bottom: fn.em(2px) solid var(--turbolift-separator);
 }

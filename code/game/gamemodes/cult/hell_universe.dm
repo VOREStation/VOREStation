@@ -12,7 +12,7 @@ In short:
 
 	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
-/datum/universal_state/hell/OnShuttleCall(var/mob/user)
+/datum/universal_state/hell/OnShuttleCall(mob/user)
 	return 1
 	/*
 	if(user)
@@ -20,7 +20,7 @@ In short:
 	return 0
 	*/
 
-/datum/universal_state/hell/DecayTurf(var/turf/T)
+/datum/universal_state/hell/DecayTurf(turf/T)
 	if(!T.holy)
 		T.cultify()
 		for(var/obj/machinery/light/L in T.contents)
@@ -29,7 +29,7 @@ In short:
 	return
 
 
-/datum/universal_state/hell/OnTurfChange(var/turf/T)
+/datum/universal_state/hell/OnTurfChange(turf/T)
 	var/turf/space/S = T
 	if(istype(S))
 		S.color = "#FF0000"

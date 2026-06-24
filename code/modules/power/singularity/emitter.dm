@@ -38,6 +38,7 @@
 		connect_to_network()
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/rotatable)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
@@ -242,14 +243,14 @@
 	..()
 	return
 
-/obj/machinery/power/emitter/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/power/emitter/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		locked = 0
 		emagged = 1
 		user.visible_message("[user.name] emags [src].",span_warning("You short out the lock."))
 		return 1
 
-/obj/machinery/power/emitter/bullet_act(var/obj/item/projectile/P)
+/obj/machinery/power/emitter/bullet_act(obj/item/projectile/P)
 	if(!P || !P.damage || P.get_structure_damage() <= 0 )
 		return
 

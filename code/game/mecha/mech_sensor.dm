@@ -63,7 +63,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/mech_sensor/update_icon(var/safety = 0)
+/obj/machinery/mech_sensor/update_icon(safety = 0)
 	if (enabled())
 		icon_state = "airlock_sensor_standby"
 	else

@@ -13,7 +13,7 @@
 	destruction_desc = "crumples"
 	sheet_singular_name = "pile"
 	sheet_plural_name = "pile" //Just a bigger pile
-	radiation_resistance = 1
+	supply_conversion_value = 0
 
 /datum/material/snow/generate_recipes()
 	recipes = list(
@@ -40,7 +40,7 @@
 	destruction_desc = "crumbles"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
-	radiation_resistance = 1
+	supply_conversion_value = 0
 
 /datum/material/snowbrick/generate_recipes()
 	recipes = list(

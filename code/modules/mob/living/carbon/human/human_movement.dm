@@ -138,6 +138,9 @@
 		pose_move = FALSE
 		remove_pose_indicator()
 
+	if(client && !is_incorporeal() && isturf(loc))
+		GLOB.step_taken_shift_roundstat++
+
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.
@@ -271,7 +274,7 @@
 			return v.tank
 
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
+/mob/living/carbon/human/Process_Spacemove(check_drift = 0)
 	//Can we act?
 	if(restrained())	return 0
 
@@ -295,13 +298,13 @@
 	return FALSE
 
 // Handle footstep sounds
-/mob/living/carbon/human/handle_footstep(var/turf/T)
+/mob/living/carbon/human/handle_footstep(turf/T)
 	if(shoes && loc == T && get_gravity(loc) && !flying)
 		if(SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION, m_intent))
 			return
 	return
 
-/mob/living/carbon/human/set_dir(var/new_dir)
+/mob/living/carbon/human/set_dir(new_dir)
 	. = ..()
 	if(. && (species.tail || tail_style))
 		//update_tail_showing() this is already called by update_inv_wear_suit

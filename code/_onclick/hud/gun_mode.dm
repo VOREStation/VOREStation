@@ -1,7 +1,7 @@
 /atom/movable/screen/gun
 	name = "gun"
 	icon = 'icons/mob/screen1.dmi'
-	master = null
+	master_ref = null
 	dir = 2
 
 /atom/movable/screen/gun/Click(location, control, params)

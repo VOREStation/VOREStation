@@ -79,6 +79,11 @@
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
+	var/tilted = FALSE
+	var/tilted_rotation = 0
+	var/tiltable = TRUE
+	var/squish_damage = 25
+	var/crit_chance = 15
 
 /obj/machinery/vending/Initialize(mapload)
 	. = ..()
@@ -182,7 +187,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 	return
 
-/obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/vending/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		to_chat(user, span_filter_notice("You short out \the [src]'s product lock."))
@@ -269,7 +274,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  *
  *  user is the mob who gets the change.
  */
-/obj/machinery/vending/proc/pay_with_cash(var/obj/item/spacecash/cashmoney, mob/user)
+/obj/machinery/vending/proc/pay_with_cash(obj/item/spacecash/cashmoney, mob/user)
 	if(currently_vending.price > cashmoney.worth)
 
 		// This is not a status display message, since it's something the character
@@ -298,7 +303,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  * Takes payment for whatever is the currently_vending item. Returns 1 if
  * successful, 0 if failed.
  */
-/obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet, mob/user)
+/obj/machinery/vending/proc/pay_with_ewallet(obj/item/spacecash/ewallet/wallet, mob/user)
 	visible_message(span_info("\The [user] swipes \the [wallet] through \the [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
@@ -332,7 +337,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  *
  *  Called after the money has already been taken from the customer.
  */
-/obj/machinery/vending/proc/credit_purchase(var/target as text)
+/obj/machinery/vending/proc/credit_purchase(target as text)
 	GLOB.vendor_account.money += currently_vending.price
 
 	var/datum/transaction/T = new()
@@ -357,6 +362,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(seconds_electrified != 0)
 		if(shock(user, 100))
 			return
+
+	if(tilted && !user.buckled)
+		to_chat(user, span_notice("You begin righting [src]."))
+		if(do_after(user, 5 SECONDS, target = src))
+			untilt(user)
+		return
+
+	if(user.a_intent == I_HURT && density)
+		punch_machine(user)
+		return
 
 	wires.Interact(user)
 	tgui_interact(user)
@@ -612,7 +627,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	SStgui.update_uis(src)
 
 
-/obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
+/obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, vending = 0)
 	if(user.GetIdCard())
 		var/obj/item/card/id/tempid = user.GetIdCard()
 		var/list/list_item = list()
@@ -655,7 +670,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  * Checks if item is vendable in this machine should be performed before
  * calling. W is the item being inserted, R is the associated vending_product entry.
  */
-/obj/machinery/vending/proc/stock(obj/item/W, var/datum/stored_item/vending_product/R, var/mob/user)
+/obj/machinery/vending/proc/stock(obj/item/W, datum/stored_item/vending_product/R, mob/user)
 	if(!user.unEquip(W))
 		return
 
@@ -687,7 +702,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
+/obj/machinery/vending/proc/speak(message)
 	if(stat & NOPOWER)
 		return
 
@@ -743,5 +758,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 	INVOKE_ASYNC(throw_item, TYPE_PROC_REF(/atom/movable, throw_at), target, rand(3, 10), rand(1, 3), src)
 	visible_message(span_warning("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
+
+/obj/machinery/vending/proc/punch_machine(mob/living/stupid_person)
+	stupid_person.visible_message(span_danger("[stupid_person] kicks \the [src]!"), span_danger("You kick \the [src]"))
+	playsound(src, 'sound/effects/clang2.ogg', 25, TRUE)
+	animate_shake()
+
+	if(prob(10))
+		tilt(stupid_person)
+		return
+
+	if(prob(5))
+		var/obj/item/throw_item = null
+		for(var/datum/stored_item/vending_product/R in shuffle(product_records))
+			throw_item = R.get_product(loc)
+			if(!throw_item)
+				continue
+			break
+		if(!throw_item)
+			return FALSE
+		throw_item.vendor_action(src)
+		playsound(src, vending_sound, 50, TRUE)
 
 //Actual machines are in vending_machines.dm

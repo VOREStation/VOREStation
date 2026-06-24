@@ -28,6 +28,7 @@
 		// "earmuffs",
 		"taperecorder",
 		"recordingcassette",
+		"cargo_scanner",
 		// "toy_balloon",
 		// "pet_carrier",
 		// "chisel",

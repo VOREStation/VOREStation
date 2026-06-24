@@ -126,6 +126,9 @@
 						s.set_up(5, 1, src)
 						s.start()
 						shield_active = 0
+						if(isliving(loc))
+							var/mob/living/our_user = loc
+							our_user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 						if(bcell.charge_delay) //It WILL blow up soon. Downside of self-charging cells.
 							to_chat(src.loc, span_critical("Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
 							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'"))
@@ -223,7 +226,7 @@
 // Making it so emagging the weapon it comes with would also be a good idea. Different modes, perhaps?
 
 /*
-/obj/item/personal_shield_generator/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/personal_shield_generator/emag_act(remaining_charges, mob/user)
 	if(active_weapon)
 		. = active_weapon.emag_act(user)
 		update_icon()
@@ -437,16 +440,16 @@
 	if(shield_generator)
 		shield_generator.reattach_gun(user)
 
-/obj/item/gun/energy/proc/check_charge(var/charge_amt) //In case using any other guns.
+/obj/item/gun/energy/proc/check_charge(charge_amt) //In case using any other guns.
 	return 0
 
-/obj/item/gun/energy/proc/checked_use(var/charge_amt) //In case using any other guns.
+/obj/item/gun/energy/proc/checked_use(charge_amt) //In case using any other guns.
 	return 0
 
-/obj/item/gun/energy/gun/generator/check_charge(var/charge_amt)
+/obj/item/gun/energy/gun/generator/check_charge(charge_amt)
 	return (shield_generator.bcell && shield_generator.bcell.check_charge(charge_amt))
 
-/obj/item/gun/energy/gun/generator/checked_use(var/charge_amt)
+/obj/item/gun/energy/gun/generator/checked_use(charge_amt)
 	return (shield_generator.bcell && shield_generator.bcell.checked_use(charge_amt))
 
 

@@ -29,21 +29,25 @@
 			switch(power)
 				if(0 to 5)
 					next_pain_time = world.time + 300 SECONDS
-					multilimb_pain_time = world.time + 45 SECONDS
+					multilimb_pain_time = world.time + 1 MINUTE
 				if(6 to 20)
-					next_pain_time = world.time + clamp((30 - power) SECONDS, 10 SECONDS, 30 SECONDS)
-					multilimb_pain_time = world.time + clamp((30 - power) SECONDS, 10 SECONDS, 30 SECONDS)
+					next_pain_time = world.time + clamp((100 - power) SECONDS, 80 SECONDS, 95 SECONDS)
+					multilimb_pain_time = world.time + clamp((100 - power) SECONDS, 80 SECONDS, 95 SECONDS)
 				if(21 to INFINITY)
-					next_pain_time = world.time + (100 - power)
-					multilimb_pain_time = world.time + (100 - power)
+					next_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
+					multilimb_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
 			last_pain_message = message
 			to_chat(src,message)
+			if(prob(power / 10) && !isbelly(loc)) // No pain noises inside bellies.
+				emote("pain")
 
 	else if(force || (message != last_pain_message) || (world.time >= next_pain_time))
 		last_pain_message = message
 		to_chat(src,message)
-		next_pain_time = world.time + (100 - power)
-		multilimb_pain_time = world.time + (100 - power)
+		next_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
+		multilimb_pain_time = world.time + clamp((200 - power) SECONDS, 100 SECONDS, 3 MINUTES)
+		if(prob(power / 10) && !isbelly(loc)) // No pain noises inside bellies.
+			emote("pain")
 
 /mob/living/carbon/human/proc/handle_pain()
 	if(stat)
@@ -64,9 +68,9 @@
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
-			if(ishuman(src)) //VOREStation Edit Start
+			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				maxdam *= H.species.trauma_mod //VOREStation edit end
+				maxdam *= H.species.trauma_mod
 	if(damaged_organ && chem_effects[CE_PAINKILLER] < maxdam)
 		if(maxdam > 10 && paralysis)
 			AdjustParalysis(-round(maxdam/10))
@@ -88,7 +92,7 @@
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/I in internal_organs)
 		if((I.status & ORGAN_DEAD) || I.robotic >= ORGAN_ROBOT) continue
-		if(I.damage > 2) if(prob(2))
+		if(I.is_bruised() && prob(2))
 			var/obj/item/organ/external/parent = get_organ(I.parent_organ)
 			src.custom_pain("You feel a sharp pain in your [parent.name]", 50)
 

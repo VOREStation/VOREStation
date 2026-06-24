@@ -44,15 +44,15 @@
 	. = ..()
 	network = NETWORK_THUNDER
 
-/obj/item/circuitboard/security/construct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/security/construct(obj/machinery/computer/security/C)
 	if (..(C))
 		C.set_network(network.Copy())
 
-/obj/item/circuitboard/security/atom_deconstruct(disassembled = TRUE, var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/security/atom_deconstruct(disassembled = TRUE, obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network.Copy()
 
-/obj/item/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/circuitboard/security/emag_act(remaining_charges, mob/user)
 	if(emagged)
 		to_chat(user, "Circuit lock is already removed.")
 		return

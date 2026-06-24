@@ -3,21 +3,18 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
-@use '../base';
-@use '../colors';
-@use '../functions.scss' as *;
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .TitleBar {
   user-select: none;
   position: fixed;
   display: flex;
   align-items: center;
-  width: vp(100vw);
-  height: base.rem(32px);
+  width: 100vw;
+  height: fn.rem(32px);
   background-color: var(--titlebar-background);
   border-bottom: var(--border-thickness-tiny) solid var(--titlebar-shadow-core);
-  box-shadow: 0px 0px base.em(6px) base.em(-1px) var(--titlebar-shadow-color);
+  box-shadow: 0px 0px fn.em(6px) fn.em(-1px) var(--titlebar-shadow-color);
   z-index: 101; // More than Dimmer
 
   &__dragZone {
@@ -27,7 +24,7 @@
 
   &__statusIcon {
     text-align: center;
-    font-size: base.rem(20px);
+    font-size: fn.rem(20px);
     transition: color var(--transition-time-slow);
   }
 
@@ -39,7 +36,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     color: var(--titlebar-text);
-    font-size: base.rem(14px);
+    font-size: fn.rem(14px);
   }
 
   &__buttons {
@@ -47,7 +44,7 @@
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    margin: 0 base.rem(9px);
+    margin: 0 fn.rem(9px);
     z-index: 102;
   }
 
@@ -70,7 +67,7 @@
     pointer-events: all;
     align-content: center;
     text-align: center;
-    font-size: base.rem(16px);
+    font-size: fn.rem(16px);
     height: 100%;
     color: var(--color-text);
     transition-property: background-color, opacity;
@@ -86,8 +83,8 @@
 
   &__statusIcon,
   &__close {
-    width: base.rem(45px);
-    min-width: base.rem(45px);
-    max-width: base.rem(45px);
+    width: fn.rem(45px);
+    min-width: fn.rem(45px);
+    max-width: fn.rem(45px);
   }
 }

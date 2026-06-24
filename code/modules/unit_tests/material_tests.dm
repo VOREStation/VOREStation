@@ -54,3 +54,17 @@
 
 	if(failed)
 		TEST_FAIL("materials missing autolathe print recipies.")
+
+/datum/unit_test/materials_shall_have_sell_prices
+
+/datum/unit_test/materials_shall_have_sell_prices/Run()
+	var/list/failures = list()
+	for(var/name, value in GLOB.name_to_material)
+		var/datum/material/mat = value
+		if(!mat)
+			continue // how did we get here?
+		if(isnull(mat.supply_conversion_value))
+			failures += mat.type
+
+	if(length(failures))
+		TEST_FAIL("[length(failures)] material\s had missing supply conversion values: [english_list(failures)].")

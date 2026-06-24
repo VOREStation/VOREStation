@@ -20,7 +20,7 @@
 	visualnet = null
 	. = ..()
 
-/mob/observer/eye/aiEye/setLoc(var/T, var/cancel_tracking = 1)
+/mob/observer/eye/aiEye/setLoc(T, cancel_tracking = 1)
 	if(owner)
 		T = get_turf(T)
 		loc = T
@@ -51,7 +51,7 @@
 /mob/living/silicon/ai
 	var/obj/machinery/hologram/holopad/holo = null
 
-/mob/living/silicon/ai/proc/destroy_eyeobj(var/atom/new_eye)
+/mob/living/silicon/ai/proc/destroy_eyeobj(atom/new_eye)
 	if(!eyeobj) return
 	if(!new_eye)
 		new_eye = src
@@ -60,7 +60,7 @@
 	eyeobj = null
 	reset_perspective(new_eye)
 
-/mob/living/silicon/ai/proc/create_eyeobj(var/newloc)
+/mob/living/silicon/ai/proc/create_eyeobj(newloc)
 	if(eyeobj)
 		destroy_eyeobj()
 	if(!newloc)

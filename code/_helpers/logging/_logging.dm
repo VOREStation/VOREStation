@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 // These procs must not fail under ANY CIRCUMSTANCES!
 // Are these even still required?
 
-/proc/report_progress(var/progress_message)
+/proc/report_progress(progress_message)
 	admin_notice(span_boldannounce("[progress_message]"), R_DEBUG)
 	log_world(progress_message)
 
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 /mob/log_info_line()
 	return "[..()] (ckey=[ckey])"
 
-/proc/log_info_line(var/datum/d)
+/proc/log_info_line(datum/d)
 	if(!d)
 		return "*null*"
 	if(!istype(d))

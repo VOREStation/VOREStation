@@ -1,9 +1,9 @@
-/obj/item/clothing/apply_accessories(var/image/standing)
+/obj/item/clothing/apply_accessories(image/standing)
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
 			standing.add_overlay(A.get_mob_overlay())
 
-/obj/item/clothing/apply_blood(var/image/standing)
+/obj/item/clothing/apply_blood(image/standing)
 	if(forensic_data?.has_blooddna() && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
@@ -11,7 +11,7 @@
 		standing.add_overlay(bloodsies)
 
 //HELMET: May have a lighting overlay
-/obj/item/clothing/head/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
+/obj/item/clothing/head/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer = 0,icon/clip_mask = null)
 	var/image/standing = ..()
 	if(light_on && slot_name == slot_head_str)
 		var/cache_key = "[light_overlay][LAZYACCESS(sprite_sheets, body_type) ? "_[body_type]" : ""]"
@@ -20,7 +20,7 @@
 	return standing
 
 //SUIT: Blood state is slightly different
-/obj/item/clothing/suit/apply_blood(var/image/standing)
+/obj/item/clothing/suit/apply_blood(image/standing)
 	if(forensic_data?.has_blooddna() && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		blood_sprite_state = "[blood_overlay_type]blood"

@@ -66,7 +66,7 @@ GENERAL_PROTECT_DATUM(/datum/json_savefile)
 	_write_subtree_to_savefile(savefile, "", tree)
 
 /// Recursive helper: walks 'subtree' and writes each key under 'path_prefix' in the savefile.
-/datum/json_savefile/proc/_write_subtree_to_savefile(savefile/savefile, var/path_prefix, var/list/subtree)
+/datum/json_savefile/proc/_write_subtree_to_savefile(savefile/savefile, path_prefix, list/subtree)
 	for(var/key, value in subtree)
 		var/full_path = "[path_prefix]/[key]"
 		// Only recurse if value is a non-empty associative list (JSON object).

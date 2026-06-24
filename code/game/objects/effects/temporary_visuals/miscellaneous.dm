@@ -2,7 +2,7 @@
 	desc = "It's a decoy!"
 	duration = 15
 
-/obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom, var/customappearance)
+/obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom, customappearance)
 	. = ..()
 	alpha = initial(alpha)
 	if(mimiced_atom)
@@ -158,3 +158,12 @@
 	icon_state = "emppulse"
 	duration = 8
 	randomdir = 0
+
+/obj/effect/temp_visual/revenant
+	name = "spooky lights"
+	icon_state = "purplesparkles"
+
+/obj/effect/temp_visual/revenant/cracks
+	name = "glowing cracks"
+	icon_state = "purplecrack"
+	duration = 6
