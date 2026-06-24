@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - bugfix: "Labcoats no longer turn invisible when worn and toggled buttons with having digitigrade turned on."

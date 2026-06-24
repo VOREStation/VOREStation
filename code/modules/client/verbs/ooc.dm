@@ -176,6 +176,8 @@
 			admin_stuff += "/([key])"
 
 		to_chat(target, span_looc(create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
+		if(target.prefs?.read_preference(/datum/preference/toggle/looc_sounds))
+			SEND_SOUND(target, sound('sound/talksounds/looc_sound.ogg', volume = 50))	//Only sound for actually local targets, not for RLOOC because that would be annoying
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
