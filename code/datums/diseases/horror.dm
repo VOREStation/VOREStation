@@ -55,7 +55,7 @@
 				drain_modifier.choose_organs(1)
 		if(5)
 			//You waited WAY too long to get this cured. You're permanently infected now. This means you're now 'infectious'
-			if(!virus_modifiers & DORMANT)
+			if(!(virus_modifiers & DORMANT))
 				if(infected.mind?.assigned_role == JOB_CHAPLAIN)
 					to_chat(infected, span_cult("An alien presence attempts to prod at your mind, but your faith shields you from its full effects, purging the corruption."))
 					cure()
