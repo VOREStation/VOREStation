@@ -2142,6 +2142,7 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\stools_vr.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\wheelchair.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\wheelchair_item.dm"
+#include "code\game\objects\traps\glass_abberation.dm"
 #include "code\game\objects\traps\glass_wire.dm"
 #include "code\game\turfs\glamour_turfs.dm"
 #include "code\game\turfs\simulated.dm"
