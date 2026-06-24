@@ -10,9 +10,16 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected)
+		return FALSE
+
 	if(coverage_check(user, target, affected, tool))
 		return 0
-	return affected && affected.open == (affected.encased ? 3 : 2)
+
+	if(affected.encased)
+		return affected.open == BONE_RETRACTED
+
+	return affected.open >= FLESH_RETRACTED
 
 //Removed unused Embryo Surgery, derelict and broken.
 
@@ -113,11 +120,6 @@
 	for(var/obj/item/organ/I in affected.internal_organs)
 		if(I && I.damage > 0)
 			I.take_damage(dam_amt,0)
-
-
-
-
-
 
 //Robo internal organ fix. For when an organic has robotic limbs.
 /datum/surgery_step/fix_organic_organ_robotic //For artificial organs
