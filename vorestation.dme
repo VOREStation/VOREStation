@@ -2144,6 +2144,7 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\wheelchair_item.dm"
 #include "code\game\objects\traps\glass_wire.dm"
 #include "code\game\objects\traps\aberrations\aberration.dm"
+#include "code\game\objects\traps\aberrations\mapped.dm"
 #include "code\game\objects\traps\aberrations\spawners\_spawner.dm"
 #include "code\game\objects\traps\aberrations\spawners\fire.dm"
 #include "code\game\objects\traps\aberrations\spawners\glass.dm"

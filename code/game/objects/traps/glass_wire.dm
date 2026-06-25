@@ -46,14 +46,13 @@
 	if(anchored)
 		if(isliving(AM))
 			var/mob/living/L = AM
-			if(L.m_intent == I_RUN)
-				L.visible_message(
-					span_danger("[L] steps in \the [src]."),
-					span_danger("You step in \the [src]!"),
-					span_infoplain(span_bold("You hear a sharp rustling!"))
-					)
-				attack_mob(L)
-				update_icon()
+			L.visible_message(
+				span_danger("[L] steps in \the [src]."),
+				span_danger("You step in \the [src]!"),
+				span_infoplain(span_bold("You hear a sharp rustling!"))
+				)
+			attack_mob(L)
+			update_icon()
 		else
 			health = 0
 			check_health()

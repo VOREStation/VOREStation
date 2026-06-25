@@ -15,8 +15,11 @@
 	///If it pulses or not. i.e. has a non-continuous effect
 	var/pulses = FALSE
 
-	///How frequently pulses occur
-	var/pulse_time = 30 SECONDS
+	///Min time for pulses to occur
+	var/pulse_time_min = 15
+
+	///Max time for pulses to occur
+	var/pulse_time_max = 30
 
 	///The cooldown for our pulse
 	COOLDOWN_DECLARE(pulse)
@@ -33,7 +36,7 @@
 /obj/effect/abstract/abberation/process()
 	if(COOLDOWN_FINISHED(src, pulse))
 		perform_pulse()
-		COOLDOWN_START(src, pulse, pulse_time)
+		COOLDOWN_START(src, pulse, rand(pulse_time_min, pulse_time_max))
 	perform_ambient_effects()
 
 /obj/effect/abstract/abberation/proc/perform_pulse()
