@@ -16,7 +16,7 @@
 	if(isobj(AM))
 		var/obj/item/item_check = AM
 		if(item_check.item_flags & ABSTRACT)
-			continue
+			return
 	if(COOLDOWN_FINISHED(src, fire_timer))
 		ignite_entity(AM)
 
