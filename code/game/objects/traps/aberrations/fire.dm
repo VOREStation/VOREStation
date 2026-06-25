@@ -1,53 +1,3 @@
-#define EFFECT_GLASS "glass"
-#define EFFECT_FIRE "glass"
-
-/obj/effect/abstract/abberation
-	name = "Abberation"
-	desc = "Some sort of weird, pulsating entity."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "pre_confuse"
-	alpha = 0
-
-	///What type of effect type the abberation has
-	var/effect_type = EFFECT_FIRE
-
-	///If the abberation starts active or not.
-	var/start_active = TRUE
-
-	///If the abberation has a toggling effect (Turns on-off)
-	var/enabled = FALSE
-
-	///If it pulses or not. i.e. has a non-continuous effect
-	var/pulses = FALSE
-
-	///How frequently pulses occur
-	var/pulse_time = 30 SECONDS
-
-	///The cooldown for our pulse
-	COOLDOWN_DECLARE(pulse)
-
-/obj/effect/abstract/abberation/Initialize(mapload)
-	. = ..()
-	if(start_active)
-		START_PROCESSING(SSobj, src)
-
-/obj/effect/abstract/abberation/Destroy()
-	. = ..()
-	STOP_PROCESSING(SSobj, src)
-
-/obj/effect/abstract/abberation/process()
-	if(COOLDOWN_FINISHED(src, pulse))
-		perform_pulse()
-		COOLDOWN_START(src, pulse, pulse_time)
-	perform_ambient_effects()
-
-/obj/effect/abstract/abberation/proc/perform_pulse()
-	return
-
-/obj/effect/abstract/abberation/proc/perform_ambient_effects()
-	return
-
-
 //Fire abberation
 /obj/effect/abstract/abberation/fire
 	name = "Fire Abberation"
@@ -96,15 +46,3 @@
 	animate(src, alpha = 255, time = 2 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(reset_trap)), 2 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE) //Calling a proc with no arguments
 	COOLDOWN_START(src, fire_timer, 2 SECONDS)
-
-#undef EFFECT_GLASS
-#undef EFFECT_FIRE
-
-
-/*
-//Useful for later
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(ignite_the_unworthy),
-	)
-	AddComponent(/datum/component/connect_range, src, connections, range)
-*/
