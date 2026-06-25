@@ -21,12 +21,12 @@
 
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected) return
 	if(coverage_check(user, target, affected, tool))
-		return 0
+		return FALSE
 	var/internal_bleeding = 0
 	for(var/datum/wound/W in affected.wounds) if(W.internal)
 		internal_bleeding = 1
