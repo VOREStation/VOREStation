@@ -16,7 +16,7 @@
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/stuffing_feeder = FALSE			// Can feed foods to others whole, like trash eater can eat them on their own.
-	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/expanded_trasheat = FALSE			// Allows eating anything that is not blacklisted, even if it fails criteria..
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
@@ -855,17 +855,17 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(is_type_in_list(I, GLOB.edible_trash) || adminbus_trash || is_type_in_list(I,GLOB.edible_tech) && isSynthetic()) // adds edible tech for synth
-		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
-			return
-		drop_item()
-		vore_selected.nom_atom(I)
-		updateVRPanel()
-		log_admin("VORE: [src] used Eat Trash to swallow [I].")
-		I.after_trash_eaten(src)
-		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
+	if(!I.check_item_devourability(src))
 		return
-	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
+
+	if(!I.on_trash_eaten(src)) // shows object's rejection message itself
+		return
+	drop_item()
+	vore_selected.nom_atom(I)
+	updateVRPanel()
+	log_admin("VORE: [src] used Eat Trash to swallow [I].")
+	I.after_trash_eaten(src)
+	visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
 	return
 
 /mob/living/proc/toggle_trash_catching() //Ported from chompstation
@@ -1610,8 +1610,8 @@
 	set name = "Restrict Trash Eater"
 	set category = "Abilities.Vore"
 	set desc = "Toggle Trash Eater restriction level."
-	adminbus_trash = !adminbus_trash
-	to_chat(src, span_vwarning("Trash Eater restriction level set to [adminbus_trash ? "everything not blacklisted" : "only whitelisted items"]."))
+	expanded_trasheat = !expanded_trasheat
+	to_chat(src, span_vwarning("Trash Eater restriction level set to [expanded_trasheat ? "everything not blacklisted" : "only whitelisted items"]."))
 
 /mob/living/proc/liquidbelly_visuals()
 	set name = "Toggle Liquidbelly Visuals"
