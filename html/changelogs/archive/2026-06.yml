@@ -65,3 +65,39 @@
       construct
   - refactor: Cleans up remote view code on items with zooms
   - bugfix: taurs using scopes or binoculars no longer attempt to relay move themselves
+2026-06-20:
+  Diana:
+  - qol: Picking yourself up off the ground now lowers your weaken by a small amount.
+  - bugfix: Picking yourself up off the ground by grabbing another person's hand properly
+      lifts you up
+  - bugfix: Shield gens go down properly.
+  - bugfix: Multiple synthetic organs no longer shows up as an ERROR icon
+  - spellcheck: Fevers no longer made your 'blod' boil.
+  - bugfix: Lighters can be used to light other people's cigs again
+  - bugfix: Welding fuel no longer can be infinitely stacked on a tile. (Welding fuel
+      has liquid dynamics and will still spread)
+  - bugfix: Borgs can no longer touch walls from afar
+  - bugfix: Cloning a changeling carries its changeling lock over properly
+  - qol: Extinguisher foam will clean up welding fuel spills.
+  - bugfix: Some changeling related sleevemate+resleeving bugs have been fixed.
+  - bugfix: Pain will no longer spam your chat.
+  - qol: Internal organs will no longer spam your chat that they're damaged unless
+      the damage is significant.
+  Guti:
+  - rscadd: Added "hat mystery box" to Cargo's supply packs
+2026-06-21:
+  Diana:
+  - bugfix: Borgs can use pens in their gripper.
+  TheCaramelion:
+  - code_imp: Merged hood_vr path into hood
+  Very-Soft:
+  - rscadd: Sound effect to LOOC messages
+  - rscadd: Preference for LOOC sound
+  Will:
+  - bugfix: You can no longer insert buckled players into multiple cryocells at once
+  - bugfix: Fix a runtime in brain mob's lifetick with reagents
+2026-06-22:
+  TheCaramelion:
+  - rscadd: Added vending machine tilt crits
+  - rscadd: Added atom crushing proc, for things falling on others.
+  - refactor: Refactored vending machine tilting

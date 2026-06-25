@@ -230,7 +230,7 @@
 			else
 				if(darth_vendor.tilted || !darth_vendor.density)
 					continue
-				darth_vendor.crush_under(living_guy)
+				darth_vendor.tilt(living_guy)
 			consume_omen()
 			return
 

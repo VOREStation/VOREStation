@@ -72,7 +72,6 @@
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
-	radiation_resistance = 1
 	pass_stack_colors = TRUE
 	supply_conversion_value = 0.05
 

@@ -316,7 +316,6 @@
 
 /datum/data/pda/app/goals/proc/get_goals()
 	var/list/goals = list()
-	var/index = 0
 
 	for(var/category in SSdepartmentgoals.active_department_goals)
 		var/list/dept_goal = SSdepartmentgoals.active_department_goals[category]
@@ -325,6 +324,6 @@
 				"name" = goal.name,
 				"description" = goal.goal_text,
 				"count" = FLOOR((goal.current_count / goal.goal_count) * 100, 1),
-				"index" = ++index
+				"ref" = REF(goal)
 			))
 	return goals

@@ -38,11 +38,11 @@
 			return ITEM_INTERACT_FAILURE
 
 		if(affecting.organ_tag == BP_HEAD)
-			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+			if(H.head && (istype(H.head,/obj/item/clothing/head/helmet/space) && !istype(H.wear_suit, /obj/item/clothing/head/helmet/space/changeling))) //Changeling helmets are an extension of them.
 				balloon_alert(user, "you can't apply [src] through [H.head]!")
 				return ITEM_INTERACT_FAILURE
 		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+			if(H.wear_suit && (istype(H.wear_suit,/obj/item/clothing/suit/space) && !istype(H.wear_suit, /obj/item/clothing/suit/space/changeling))) //Changeling helmets are an extension of them.
 				balloon_alert(user, "you can't apply [src] through [H.wear_suit]!")
 				return ITEM_INTERACT_FAILURE
 

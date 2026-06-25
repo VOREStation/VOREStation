@@ -49,6 +49,9 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 /datum/disease/proc/infect(mob/living/infectee, make_copy = TRUE)
 	var/datum/disease/D = make_copy ? Copy() : src
+	if(infectee.HasDisease(D))
+		qdel(D)
+		return
 	infectee.addDisease(D)
 	D.affected_mob = infectee
 	GLOB.active_diseases += D

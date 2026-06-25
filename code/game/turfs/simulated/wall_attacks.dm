@@ -99,7 +99,8 @@
 	try_touch(user, rotting)
 
 /turf/simulated/wall/attack_hand(mob/user)
-
+	if(!Adjacent(user))
+		return
 	radiate()
 	add_fingerprint(user)
 	user.setClickCooldown(user.get_attack_speed())

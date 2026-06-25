@@ -928,7 +928,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.heal_damage(heal_amt)
 
 		// Salving also helps against infection
-		if(W.germ_level > 0 && W.salved && prob(2))
+		if(W.germ_level > 0 && W.salved)
 			W.disinfected = 1
 			W.germ_level = 0
 

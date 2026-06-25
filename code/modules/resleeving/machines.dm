@@ -514,6 +514,9 @@
 		if(occupant.mind.antag_holder)
 			occupant.mind.antag_holder.apply_antags(occupant)
 
+		if(occupant.changeling_locked || occupant.mind.antag_holder.changeling)
+			occupant.make_changeling()
+
 	if(original_occupant)
 		occupant = original_occupant
 

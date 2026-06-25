@@ -68,6 +68,9 @@ GLOBAL_LIST_EMPTY_TYPED(powerinstances, /datum/power/changeling)
 		var/datum/mind/our_mind = M
 		if(our_mind.current)
 			changeling = (our_mind.current.GetComponent(/datum/component/antag/changeling)) //Check to see if the mob we are currently inhabiting is a changeling.
+		if(!changeling)
+			if(our_mind.antag_holder.changeling) //Check our mind's antag holder.
+				changeling = our_mind.antag_holder.changeling
 	else //Fed it a mob and we failed
 		if(M.mind)
 			changeling = M.mind.antag_holder.changeling //Check our mind's antag holder.
