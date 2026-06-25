@@ -113,8 +113,6 @@
 
 	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
 
-	var/protean_drop_whitelist = FALSE
-
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 	var/digestable = TRUE
@@ -329,16 +327,16 @@
 				size = "enormous"
 	return ..(user, "", "It is \a [size] item.")
 
-/obj/item/attack_hand(mob/living/user as mob)
+/obj/item/attack_hand(mob/living/user)
 	if (!user) return
 	..()
 	if(anchored)
-		to_chat(user, span_notice("\The [src] won't budge, you can't pick it up!"))
+		attack_self(user)
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
-		if (user.hand)
+		if(user.hand)
 			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
@@ -350,18 +348,18 @@
 		var/obj/item/holder/D = src
 		if(D.held_mob == user) return // No picking your own micro self up
 
-	var/old_loc = src.loc
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
+	var/old_loc = loc
+	if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		if(!S.remove_from_storage(src))
 			return
 
-	src.pickup(user)
-	if (src.loc == user)
+	pickup(user)
+	if(loc == user)
 		if(!user.unEquip(src))
 			return
 	else
-		if(isliving(src.loc))
+		if(isliving(loc))
 			return
 
 	if(user.put_in_active_hand(src))
@@ -369,15 +367,14 @@
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
 			ghost.assumeform(src)
 			ghost.animate_towards(user)
-	//VORESTATION EDIT START. This handles possessed items.
-	if(src.possessed_voice && src.possessed_voice.len && !(user.ckey in warned_of_possession)) //Is this item possessed?
+
+	if(possessed_voice && possessed_voice.len > 1 && !(user.ckey in warned_of_possession))
 		warned_of_possession |= user.ckey
 		tgui_alert_async(user,{"
 		THIS ITEM IS POSSESSED BY A PLAYER CURRENTLY IN THE ROUND. This could be by anomalous means or otherwise.
 		If this is not something you wish to partake in, it is highly suggested you place the item back down.
 		If this is fine to you, ensure that the other player is fine with you doing things to them beforehand!
 		"},"OOC Warning")
-	//VORESTATION EDIT END.
 	return
 
 /obj/item/attack_ai(mob/user as mob)
@@ -591,6 +588,8 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0
 		if(slot_l_store, slot_r_store)
+			if((slot == slot_l_store && H.l_store) || (slot == slot_r_store && H.r_store))
+				return 0
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
@@ -600,6 +599,8 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 			if( w_class > ITEMSIZE_SMALL && !(slot_flags & SLOT_POCKET) )
 				return 0
 		if(slot_s_store)
+			if(H.s_store)
+				return 0
 			if(!H.wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
