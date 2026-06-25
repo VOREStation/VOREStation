@@ -2217,7 +2217,6 @@ Departamental Swimsuits, for general use
 	body_parts_covered = FACE
 	flags_inv = HIDEFACE
 	item_flags = FLEXIBLEMATERIAL
-	protean_drop_whitelist = TRUE
 
 //codeme: Perrin Kade
 /obj/item/clothing/shoes/fluff/gildedshoes_perrin
