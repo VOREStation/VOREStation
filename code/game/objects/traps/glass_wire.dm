@@ -6,6 +6,7 @@
 	default_material = MAT_GLASS
 	applies_material_colour = FALSE
 	named_from_material = FALSE
+	drops_debris = FALSE
 
 /obj/item/material/barbedwire/glass/start_active
 	anchored = TRUE
