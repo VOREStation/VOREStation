@@ -2146,6 +2146,7 @@
 #include "code\game\objects\traps\aberrations\aberration.dm"
 #include "code\game\objects\traps\aberrations\spawners\_spawner.dm"
 #include "code\game\objects\traps\aberrations\spawners\fire.dm"
+#include "code\game\objects\traps\aberrations\spawners\glass.dm"
 #include "code\game\turfs\glamour_turfs.dm"
 #include "code\game\turfs\simulated.dm"
 #include "code\game\turfs\simulated_vr.dm"
