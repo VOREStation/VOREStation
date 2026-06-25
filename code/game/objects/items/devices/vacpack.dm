@@ -320,7 +320,7 @@
 				return TRUE
 			if(isliving(user))
 				var/mob/living/trashcheck = user
-				if(trashcheck.adminbus_trash)
+				if(trashcheck.expanded_trasheat)
 					return TRUE
 	if(isliving(target)) //quick prefs test. Better safe than sorry
 		var/mob/living/caneat = target

@@ -8,18 +8,64 @@
 	if(signal_results & COMSIG_ITEM_TRASH_EAT_FORCED) // Ignore everything including blacklist, prefs and adminbus. Component is handling the rules.
 		return TRUE
 
-	if(is_type_in_list(src, GLOB.item_vore_blacklist) && !user.adminbus_trash) //If someone has adminbus, they can eat whatever they want.
-		to_chat(user, span_warning("You are not allowed to eat this."))
+	var/item_found = recursive_trash_eat_search(user)
+	if(item_found) //Checks for blacklisted items.
+		to_chat(user, span_warning("You are not allowed to eat \the [item_found]."))
 		return FALSE
-	if(!trash_eatable) //OOC pref. This /IS/ respected, even if adminbus_trash is enabled
+
+	if(!trash_eatable) //OOC pref. This /IS/ respected, even if expanded_trasheat is enabled
 		to_chat(user, span_warning("You can't eat that so casually!"))
 		return FALSE
+
 	if(hidden_uplink)
 		to_chat(user, span_warning("You really should not be eating this."))
 		message_admins("[key_name(user)] has attempted to ingest an uplink item. ([user ? ADMIN_JMP(user) : "null"])")
 		return FALSE
 
 	return TRUE
+
+///Checks to see if the item fails critieria to allow it to be eaten. Does NOT check the blacklist, as it's checked before this is called.
+/obj/item/proc/check_item_devourability(mob/living/user)
+	//If we've been admin enabled, eat anything that isn't blacklisted.
+	if(user.expanded_trasheat)
+		return TRUE
+
+	//If it's whitelisted, eat it.
+	if(is_type_in_list(src, GLOB.edible_trash))
+		return TRUE
+
+	if(is_type_in_list(src, GLOB.edible_tech) && user.isSynthetic())
+		return TRUE
+
+	return FALSE
+	/*
+	//The below allows checks for certain crtieria to decline it, otherwise allow it. Comented out until
+	if(force > 30 || throwforce > 30) //Swords, etc.
+		to_chat(user, span_warning("The [src] is too powerful to eat."))
+		return FALSE
+
+	if(w_class >= ITEMSIZE_NORMAL)
+		to_chat(user, span_warning("The [src] is too large to eat."))
+		return FALSE
+
+	return TRUE
+	*/
+
+///Recursively searches through items for invalid items.
+///Returns the blacklisted item.
+/obj/item/proc/recursive_trash_eat_search(mob/living/user, depth = 0)
+	if(depth > 25) //Probably a loop.
+		return src
+	if(item_flags & ABSTRACT) //Abstract items are fine.
+		return FALSE
+	if(is_type_in_list(src, GLOB.item_vore_blacklist)) //Blacklisted item. Stop the loop here.
+		return src
+	if(!check_item_devourability(user))
+		return src
+	for(var/obj/item/next_item_to_search in contents)
+		if(recursive_trash_eat_search(next_item_to_search, depth + 1))
+			return next_item_to_search
+	return FALSE
 
 /// Override this for post-swallow messages. Returns true if components on mob or item allow trash eating messages
 /obj/proc/after_trash_eaten(mob/living/user)
@@ -77,6 +123,14 @@
 			if(H.real_name == owner && H.client)
 				watching = TRUE
 				break
+		if(!watching) //Check if they're in our bellies if we don't see them in our sight.
+			if(user.vore_organs)
+				for(var/obj/belly/B in user.vore_organs)
+					for(var/mob/living/content in B.contents)
+						if(content.real_name == owner && content.client)
+							watching = TRUE
+							break
+
 		if(!watching)
 			return FALSE
 		else

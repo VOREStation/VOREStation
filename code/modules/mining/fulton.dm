@@ -110,6 +110,7 @@
 				var/mob/living/carbon/human/L = A
 				L.AdjustStunned(20)
 				L.drowsyness = 0
+				L.emote("scream")
 			sleep(30)
 			var/list/flooring_near_beacon = list()
 			var/had_option = FALSE
