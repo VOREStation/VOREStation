@@ -349,6 +349,7 @@
 	span_notice("You cauterize the incision on [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("cauterizes the incision on [target]'s [affected.name]", "incison cauterized on \the [affected.name]")
 	affected.open = 0
+	affected.organ_clamp() //Technically cauterizing them, but this does the same on the backend.
 	affected.germ_level = 0
 	affected.status &= ~ORGAN_BLEEDING
 
