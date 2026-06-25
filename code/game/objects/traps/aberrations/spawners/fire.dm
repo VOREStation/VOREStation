@@ -1,6 +1,6 @@
 //Fire abberation
 /obj/effect/abstract/abberation/spawner/fire
-	name = "Spawner Abberation"
+	name = "Fire Abberation"
 	effect_to_spawn = /obj/effect/abberation_fire
 
 //The things that actually light you on fire.
