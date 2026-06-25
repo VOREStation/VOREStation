@@ -1,21 +1,7 @@
 //Fire abberation
-/obj/effect/abstract/abberation/fire
-	name = "Fire Abberation"
-	var/range = 4
-	var/random_range = TRUE
-	start_active = FALSE
-	COOLDOWN_DECLARE(fire_timer)
-
-/obj/effect/abstract/abberation/fire/Initialize(mapload)
-	. = ..()
-	if(random_range)
-		range = rand(3, 5)
-	for(var/turf/simulated/turf in range(src, range))
-		var/how_far = get_dist(src, turf)
-		if(prob(100 - ((how_far - 1) * 15))) //100% at 1 range, 85 at 2 range, 70 at 3, 55 at 4, 40 at 5
-			new /obj/effect/abberation_fire(turf)
-	qdel(src)
-	return
+/obj/effect/abstract/abberation/spawner/fire
+	name = "Spawner Abberation"
+	effect_to_spawn = /obj/effect/abberation_fire
 
 //The things that actually light you on fire.
 /obj/effect/abberation_fire
@@ -27,7 +13,7 @@
 /obj/effect/abberation_fire/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal() || isobserver(AM) || istype(AM, /obj/effect/abstract))
 		return
-	if(isobj)
+	if(isobj(AM))
 		var/obj/item/item_check = AM
 		if(item_check.item_flags & ABSTRACT)
 			continue
