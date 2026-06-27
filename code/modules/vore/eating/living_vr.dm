@@ -844,29 +844,31 @@
 
 	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
 		to_chat(src, span_warning("You can't do that in your current state."))
-		return
+		return FALSE
 
 	if(!vore_selected)
 		to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
-		return
+		return FALSE
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, span_notice("You are not holding anything."))
-		return
+		to_chat(src, span_warning("You are not holding anything."))
+		return FALSE
 
 	if(!I.check_item_devourability(src))
-		return
+		to_chat(src, span_warning("You can not eat this item."))
+		return FALSE
 
 	if(!I.on_trash_eaten(src)) // shows object's rejection message itself
-		return
+		return FALSE
+
 	drop_item()
 	vore_selected.nom_atom(I)
 	updateVRPanel()
 	log_admin("VORE: [src] used Eat Trash to swallow [I].")
 	I.after_trash_eaten(src)
 	visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
-	return
+	return FALSE
 
 /mob/living/proc/toggle_trash_catching() //Ported from chompstation
 	set name = "Toggle Trash Catching"
