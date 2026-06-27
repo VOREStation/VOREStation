@@ -63,7 +63,7 @@
 	if(!check_item_devourability(user))
 		return src
 	for(var/obj/item/next_item_to_search in contents)
-		if(recursive_trash_eat_search(next_item_to_search, depth + 1))
+		if(next_item_to_search.recursive_trash_eat_search(user, depth + 1))
 			return next_item_to_search
 	return FALSE
 
