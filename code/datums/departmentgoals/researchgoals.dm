@@ -60,3 +60,22 @@
 /datum/goal/research/build_mechs/proc/handle_mech_construction(atom/source)
 	SIGNAL_HANDLER
 	current_count++
+
+// Harvest Anomalies
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/goal/research/harvest_anomalies
+	name = "Harvest Anomalies"
+
+/datum/goal/research/harvest_anomalies/New()
+	. = ..()
+	goal_count = rand(1500, 3000)
+	goal_text = "Harvest points from anomalies, produce [goal_count] from any kind of anomaly."
+	RegisterSignal(SSdcs, COMSIG_GLOB_ANOMALY_HARVESTED, PROC_REF(handle_anomaly_harvest))
+
+/datum/goal/research/harvest_anomalies/Destroy(force)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_ANOMALY_HARVESTED)
+	. = ..()
+
+/datum/goal/research/harvest_anomalies/proc/handle_anomaly_harvest(atom/source, add_points)
+	SIGNAL_HANDLER
+	current_count += add_points
