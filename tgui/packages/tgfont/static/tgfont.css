@@ -5,7 +5,6 @@
 
 [class^="tg-"],
 [class*=" tg-"] {
-	/* biome-ignore lint/complexity/noImportantStyles: Needed */
 	font-family: "tgfont" !important;
 	font-size: undefined;
 	font-style: normal;

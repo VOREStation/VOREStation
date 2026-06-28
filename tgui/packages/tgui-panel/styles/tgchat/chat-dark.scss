@@ -196,32 +196,6 @@ a:visited {
 *
 ******************************************/
 
-/* MOTD */
-
-.motd {
-  color: hsl(214, 38%, 74%);
-  font-family: Verdana, sans-serif;
-  white-space: normal;
-}
-
-.motd h1,
-.motd h2,
-.motd h3,
-.motd h4,
-.motd h5,
-.motd h6 {
-  color: hsl(214, 38%, 74%);
-  text-decoration: underline;
-}
-
-.motd a,
-.motd a:link,
-.motd a:visited,
-.motd a:active,
-.motd a:hover {
-  color: hsl(214, 38%, 74%);
-}
-
 .underline {
   text-decoration: underline;
 }
@@ -265,6 +239,32 @@ h6 {
 
 h1.alert,
 h2.alert {
+  color: hsl(214, 38%, 74%);
+}
+
+/* MOTD */
+
+.motd {
+  color: hsl(214, 38%, 74%);
+  font-family: Verdana, sans-serif;
+  white-space: normal;
+}
+
+.motd h1,
+.motd h2,
+.motd h3,
+.motd h4,
+.motd h5,
+.motd h6 {
+  color: hsl(214, 38%, 74%);
+  text-decoration: underline;
+}
+
+.motd a,
+.motd a:link,
+.motd a:visited,
+.motd a:active,
+.motd a:hover {
   color: hsl(214, 38%, 74%);
 }
 
@@ -1310,7 +1310,6 @@ $border-width-px: $border-width * 1px;
 @each $color-name, $color-value in $alert-stripe-colors {
   .chat_alert_#{$color-name} {
     color: hsl(0, 0%, 100%);
-    padding: 0.5rem 0.5rem;
     box-shadow: none;
     font-weight: bold;
     margin: 1rem 0 1rem 0;
@@ -1567,7 +1566,6 @@ details {
   box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   overflow: hidden;
-  border-color: #343b3d;
   border: 1px solid hsl(214, 38%, 74%);
 }
 
