@@ -83,7 +83,7 @@
 		if(!destination_belly)
 			return
 		if(source.stat != DEAD && source.trash_catching)
-			if(source.eat_trash_proc(thrown_object))
+			if(source.eat_trash_proc(thrown_object, thrown = TRUE))
 				return COMSIG_CANCEL_HITBY
 
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
