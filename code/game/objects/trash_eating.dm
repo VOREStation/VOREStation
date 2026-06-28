@@ -95,8 +95,9 @@
 
 
 /mob/living/proc/eat_trash_proc(obj/item/item_to_eat, thrown = FALSE)
-	if(!item_to_eat.check_item_devourability(src) && !thrown)
-		to_chat(src, span_warning("You can not eat this item."))
+	if(!item_to_eat.check_item_devourability(src))
+		if(!thrown)
+			to_chat(src, span_warning("You can not eat this item."))
 		return FALSE
 
 	if(!item_to_eat.on_trash_eaten(src, send_failure_message = !thrown)) // shows object's rejection message itself
