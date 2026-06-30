@@ -165,7 +165,7 @@
 	display_name = "webbing selector"
 	description = "Select from a number of load-bearing webbings and vests. Includes the bluespace badge."
 	path = /obj/item/clothing/accessory/storage/bluespace
-	cost = 2
+	cost = 1
 
 /datum/gear/accessory/webbing_selector/New()
 	..()
