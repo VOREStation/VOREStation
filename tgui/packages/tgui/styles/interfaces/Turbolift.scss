@@ -1,11 +1,7 @@
 @use '~tgui-core/styles/functions.scss' as fn;
 
 .Section--elevator--fire {
-  background-color: hsl(
-    from var(--turbolift-background) h s calc(l + 10) 1
-  ) !important;
-
-  background-color: var(--turbolift-background);
+  background-color: hsl(from var(--turbolift-background) h s calc(l + 10) 1);
 }
 
 .Section--elevator--fire > .Section__title {
