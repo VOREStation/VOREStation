@@ -21,7 +21,8 @@
 		message_to_send = "You really should not be eating this."
 		message_admins("[key_name(user)] has attempted to ingest an uplink item. ([user ? ADMIN_JMP(user) : "null"])")
 
-	if(message_to_send)
+	if(!message_to_send)
+		return TRUE
 		if(send_failure_message)
 			to_chat(user, span_warning(message_to_send))
 			return FALSE
