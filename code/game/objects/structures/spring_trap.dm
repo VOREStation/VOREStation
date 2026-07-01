@@ -108,6 +108,8 @@
 	..()
 
 /obj/structure/spring_trap/proc/reset()
+	if(!sprung)
+		return FALSE
 	SSmotiontracker.ping(src, 100)
 	visible_message(span_notice("[src] clicks as it resets itself."), "You hear the slow creaking of a spring.")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
@@ -117,7 +119,7 @@
 	name = "spring trap assembly kit"
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
-	icon_state = "beartrap0"
+	icon_state = "spring_trap-kit"
 
 /obj/item/spring_trap_kit/attack_self(mob/user, modifiers)
 	. = ..()
