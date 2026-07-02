@@ -77,7 +77,6 @@
 	if(!Adjacent(user) || (!user.a_intent == I_HELP))
 		return
 	var/new_name = tgui_input_text(user, "What would you like to name the GPS?", "Rename GPS", gps.gps_tag, 11)
-	new_name = sanitize(new_name, 11)
 	if(!new_name || !Adjacent(user))
 		return FALSE
 	gps.gps_tag = uppertext(new_name)
