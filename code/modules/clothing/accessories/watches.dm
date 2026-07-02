@@ -80,5 +80,5 @@
 	if(!new_name || !Adjacent(user))
 		return FALSE
 	gps.gps_tag = uppertext(new_name)
-	name = "global positioning system ([gps.gps_tag])"
+	gps.name = "global positioning system ([gps.gps_tag])"
 	to_chat(user,span_notice("You rename the GPS to [uppertext(new_name)]."))
