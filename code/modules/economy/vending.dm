@@ -79,6 +79,11 @@
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
+	var/tilted = FALSE
+	var/tilted_rotation = 0
+	var/tiltable = TRUE
+	var/squish_damage = 25
+	var/crit_chance = 15
 
 /obj/machinery/vending/Initialize(mapload)
 	. = ..()
@@ -357,6 +362,16 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(seconds_electrified != 0)
 		if(shock(user, 100))
 			return
+
+	if(tilted && !user.buckled)
+		to_chat(user, span_notice("You begin righting [src]."))
+		if(do_after(user, 5 SECONDS, target = src))
+			untilt(user)
+		return
+
+	if(user.a_intent == I_HURT && density)
+		punch_machine(user)
+		return
 
 	wires.Interact(user)
 	tgui_interact(user)
@@ -743,5 +758,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 	INVOKE_ASYNC(throw_item, TYPE_PROC_REF(/atom/movable, throw_at), target, rand(3, 10), rand(1, 3), src)
 	visible_message(span_warning("\The [src] launches \a [throw_item] at \the [target]!"))
 	return 1
+
+/obj/machinery/vending/proc/punch_machine(mob/living/stupid_person)
+	stupid_person.visible_message(span_danger("[stupid_person] kicks \the [src]!"), span_danger("You kick \the [src]"))
+	playsound(src, 'sound/effects/clang2.ogg', 25, TRUE)
+	animate_shake()
+
+	if(prob(10))
+		tilt(stupid_person)
+		return
+
+	if(prob(5))
+		var/obj/item/throw_item = null
+		for(var/datum/stored_item/vending_product/R in shuffle(product_records))
+			throw_item = R.get_product(loc)
+			if(!throw_item)
+				continue
+			break
+		if(!throw_item)
+			return FALSE
+		throw_item.vendor_action(src)
+		playsound(src, vending_sound, 50, TRUE)
 
 //Actual machines are in vending_machines.dm

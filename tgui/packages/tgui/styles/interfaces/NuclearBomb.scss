@@ -1,8 +1,4 @@
-@use 'sass:color';
-
-@use '../base.scss';
-@use '../colors.scss';
-@use '../functions.scss' as *;
+@use '~tgui-core/styles/functions.scss';
 
 :root {
   --nuclear-beige: hsl(50, 33%, 84%);
@@ -40,7 +36,7 @@
 
 .NuclearBomb__Button--keypad {
   background-color: var(--nuclear-beige);
-  border-color: ar(--nuclear-beige);
+  border-color: var(--nuclear-beige);
 
   &:hover:not(:active) {
     background-color: hsl(

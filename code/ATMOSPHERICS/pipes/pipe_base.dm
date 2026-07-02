@@ -119,6 +119,7 @@
 		if(meter.target == src)
 			var/obj/item/pipe_meter/PM = new /obj/item/pipe_meter(loc)
 			meter.transfer_fingerprints_to(PM)
+			meter.align_to_target()
 			qdel(meter)
 	. = ..()
 

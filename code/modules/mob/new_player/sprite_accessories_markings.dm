@@ -2852,6 +2852,18 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/secondary_eyes_far
+	name = "Secondary Eyes (Far)"
+	icon_state = "secondary_eyes_far"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/secondary_eyes_close
+	name = "Secondary Eyes (Close)"
+	icon_state = "secondary_eyes_close"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/gatorsnout
 	name = "Gator Snout"
 	icon_state = "gator_snout"
@@ -3125,4 +3137,11 @@ includes scars and tattoos
 	name = "More Eyes"
 	icon_state = "moreeyes"
 	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/teshari_accents
+	name = "Teshari - Raptor Accents"
+	icon_state = "tesh-accents"
+	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG,BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
 	color_blend_mode = ICON_MULTIPLY

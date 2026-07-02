@@ -78,7 +78,7 @@
 		var/pic_data
 
 		if(MESSAGE.img)
-			usr << browse_rsc(MESSAGE.img, "tmp_photo[current_page].png")
+			send_rsc(usr, MESSAGE.img, "tmp_photo[current_page].png")
 			pic_data+="<img src='tmp_photo[current_page].png' width = '180'><BR>"
 
 		dat += get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author, "#d4cec1", pic_data)

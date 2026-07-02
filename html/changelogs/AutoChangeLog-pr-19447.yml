@@ -1,9 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Inflation. You can now view how much your supply points are worth in thalers!"
-  - rscadd: "You can now sell food, mechs, slime cores, and bombs."
-  - rscadd: "Adds a cargo scanner item that tells you how much the item you're scanning is worth!"
-  - bugfix: "Bombs will no longer to into negative integrity."
-  - bugfix: "Bomb simulator now gives sane numbers."
-  - bugfix: "You can no longer Fulton into Central Command"

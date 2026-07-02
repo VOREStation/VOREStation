@@ -94,13 +94,22 @@
 		)
 
 /datum/decl/emote/proc/do_emote(atom/user, extra_params)
-	if(ismob(user) && check_restraints)
+	var/name_to_use = user
+	if(ismob(user))
 		var/mob/M = user
 		if(M.transforming) //Transforming acts as a stasis.
 			return
-		if(M.restrained())
-			to_chat(user, span_warning("You are restrained and cannot do that."))
-			return
+		if(check_restraints)
+			if(M.restrained())
+				to_chat(user, span_warning("You are restrained and cannot do that."))
+				return
+		if(M.absorbed && isbelly(M.loc)) // If absorbed in a belly, check and apply absorbed rename if applicable.
+			var/obj/belly/B = M.loc
+			if(B.absorbedrename_enabled)
+				name_to_use = B.absorbedrename_name
+				name_to_use = replacetext(name_to_use,"%pred", B.owner)
+				name_to_use = replacetext(name_to_use,"%belly", B.get_belly_name())
+				name_to_use = replacetext(name_to_use,"%prey", M.name)
 
 	var/atom/target
 	if(can_target() && extra_params)
@@ -135,7 +144,7 @@
 		if(target)
 			raw_3p = replace_target_tokens(raw_3p, target)
 		prefinal_3p = replace_user_tokens(raw_3p, user)
-		use_3p = span_emote(span_bold("\The [user]") + " [prefinal_3p]")
+		use_3p = span_emote(span_bold("\The [name_to_use]") + " [prefinal_3p]")
 	var/use_radio = get_radio_message(user)
 	if(use_radio)
 		if(target)
@@ -152,7 +161,7 @@
 			if(isliving(user))
 				var/mob/living/L = user
 				if(L.silent)
-					M.visible_message(message = "[user] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired, runemessage = "opens their mouth silently!")
+					M.visible_message(message = "[name_to_use] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired, runemessage = "opens their mouth silently!")
 					return
 				else
 					M.audible_message(message = use_3p, self_message = use_1p, deaf_message = emote_message_impaired, hearing_distance = use_range, radio_message = use_radio, runemessage = prefinal_3p)

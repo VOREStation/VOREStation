@@ -47,7 +47,7 @@
 	exp_tag = EXPERIMENT_TAG_PHYSICAL
 
 /datum/experiment/scanning/random/destruct_ripley_parts/serialize_progress_stage(atom/target, list/seen_instances)
-	return EXPERIMENT_PROG_INT("Destroy basic mechatronics components.", \
+	return EXPERIMENT_PROG_INT("Destroy basic mechatronics components. (Ripley component parts)", \
 		traits & EXPERIMENT_TRAIT_DESTRUCTIVE ? scanned[target] : seen_instances.len, required_atoms[target])
 
 /// Basic circuitboard

@@ -55,7 +55,11 @@ GLOBAL_LIST_INIT(item_vore_blacklist, list(
 		/obj/item/areaeditor/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz))
+		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz,
+		/obj/item/bluespace_harpoon,
+		/obj/item/storage/belt/utility/chief/full,
+		/obj/item/storage/bag/circuits,
+		/obj/item/telecube))
 
 //Classic Vore sounds
 GLOBAL_LIST_INIT(classic_vore_sounds, list(
@@ -321,27 +325,21 @@ GLOBAL_LIST_INIT(edible_trash, list(/obj/item/broken_device,
 				/obj/item/newspaper,
 				/obj/item/paper,
 				/obj/item/paperplane,
+				/obj/item/paper_bundle,
 				/obj/item/pen,
 				/obj/item/photo,
 				/obj/item/reagent_containers/food,
 				/obj/item/reagent_containers/glass/rag,
 				/obj/item/soap,
 				/obj/item/spacecash,
-				/obj/item/storage/box/khcrystal,
-				/obj/item/storage/box/matches,
-				/obj/item/storage/box/wings,
-				/obj/item/storage/fancy/candle_box,
-				/obj/item/storage/fancy/cigarettes,
-				/obj/item/storage/fancy/crayons,
-				/obj/item/storage/fancy/egg_box,
-				/obj/item/storage/wallet,
-				/obj/item/storage/vore_egg,
+				/obj/item/storage,
 				/obj/item/bikehorn/tinytether,
 				/obj/item/entrepreneur,
 				/obj/item/capture_crystal,
 				/obj/item/roulette_ball,
 				/obj/item/pizzabox,
-				/obj/item/card/id
+				/obj/item/card/id,
+				/obj/item/text_to_speech
 				))
 
 GLOBAL_LIST_INIT(contamination_flavors, list(
@@ -1198,6 +1196,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 
 #define SECURITY_GRIPPER \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
 	/obj/item/paper_bundle, \
 	/obj/item/pen, \
 	/obj/item/sample, \
@@ -1209,6 +1208,7 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 #define PAPERWORK_GRIPPER \
 	/obj/item/clipboard, \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
 	/obj/item/paper_bundle, \
 	/obj/item/card/id, \
 	/obj/item/book, \
@@ -1294,6 +1294,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/pen, \
 	/obj/item/leash, \
 	/obj/item/paper, \
+	/obj/item/paperplane, \
+	/obj/item/paper_bundle, \
 	/obj/item/a_gift, \
 	/obj/item/remote_scene_tool, \
 

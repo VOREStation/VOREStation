@@ -1,0 +1,103 @@
+2026-06-01:
+  Kashargul:
+  - bugfix: bad list del
+  Will:
+  - bugfix: corrected spybug runtime when remote viewing
+2026-06-04:
+  Diana:
+  - bugfix: Temp Adapted cold now properly lowers the threshold before you start taking
+      damage.
+  NateSaruli:
+  - bugfix: Adds checks to Glowing Eyes code to check for dispersed eyes.
+2026-06-05:
+  Diana, Zerum:
+  - rscadd: Enable Slime footstep (added more audio files to reduce sound fatigue
+      and massively lowered the sound. Additional sounds made by Zerum.)
+  - rscadd: Enable Heavy Alt footstep. (More crunchy footstep)
+  - bugfix: Promethean's innate shock ability on hug/attack now works
+  - bugfix: Flashes now tell you if you fail to repair it.
+  - qol: Flashes now tell you you can recharge and repair them via a screwdriver.
+  - balance: Promthean's shock ability now does halloss instead of burn.
+  - balance: Prometheans now have a siemens of 0, down from the bugged 0.8 but not
+      the -1 as intended.
+2026-06-06:
+  Zerum:
+  - rscadd: New Anthro Skeleton undersuit in Xenowear tab for prometheans.
+  - bugfix: Lunchboxes from loadout correctly spawn (CTI, Mojave, Diona)
+2026-06-07:
+  Diana:
+  - bugfix: Absorbed prey now show the proper name when emoting while absorbed.
+  - bugfix: Removing a jumpsuit no longer drops your belt slot.
+  - qol: You can now move and shoot at the same time. No longer will you shoot and
+      get stuck in place.
+  - bugfix: Allow TTS while laying down
+  ItsSelis:
+  - bugfix: Labcoats no longer turn invisible when worn and toggled buttons with having
+      digitigrade turned on.
+2026-06-08:
+  Diana:
+  - bugfix: Clamps recoil
+  Kashargul:
+  - code_imp: updates tgui dependencies
+2026-06-10:
+  Azzy.Dreemurr & Kashargul:
+  - bugfix: Talon channel work again
+  Guti:
+  - rscadd: Added vending machine shaking, for free goodies
+  - rscadd: Added vending machine tilting, for people who thought the goodies were
+      free
+  - balance: Unlucky trash loots may find useful items again
+  - balance: Increased the chance of unlucky getting sick for looking in the trash
+  - balance: Immovable rod will chase whoever is unlucky if close enough, instead
+      of a chance
+  - balance: Lights will break when zapping unlucky people
+  - bugfix: Fixed parrying electric arcs making the unlucky person scream anyways
+  Will, Guti:
+  - rscadd: Department goal subsystem
+2026-06-13:
+  Guti:
+  - image: Added raptor tesh accents
+2026-06-15:
+  Guti:
+  - rscadd: Added Mystery Boxes
+  Will:
+  - balance: Chemical refinery pipe machines no longer require a circuit board to
+      construct
+  - refactor: Cleans up remote view code on items with zooms
+  - bugfix: taurs using scopes or binoculars no longer attempt to relay move themselves
+2026-06-20:
+  Diana:
+  - qol: Picking yourself up off the ground now lowers your weaken by a small amount.
+  - bugfix: Picking yourself up off the ground by grabbing another person's hand properly
+      lifts you up
+  - bugfix: Shield gens go down properly.
+  - bugfix: Multiple synthetic organs no longer shows up as an ERROR icon
+  - spellcheck: Fevers no longer made your 'blod' boil.
+  - bugfix: Lighters can be used to light other people's cigs again
+  - bugfix: Welding fuel no longer can be infinitely stacked on a tile. (Welding fuel
+      has liquid dynamics and will still spread)
+  - bugfix: Borgs can no longer touch walls from afar
+  - bugfix: Cloning a changeling carries its changeling lock over properly
+  - qol: Extinguisher foam will clean up welding fuel spills.
+  - bugfix: Some changeling related sleevemate+resleeving bugs have been fixed.
+  - bugfix: Pain will no longer spam your chat.
+  - qol: Internal organs will no longer spam your chat that they're damaged unless
+      the damage is significant.
+  Guti:
+  - rscadd: Added "hat mystery box" to Cargo's supply packs
+2026-06-21:
+  Diana:
+  - bugfix: Borgs can use pens in their gripper.
+  TheCaramelion:
+  - code_imp: Merged hood_vr path into hood
+  Very-Soft:
+  - rscadd: Sound effect to LOOC messages
+  - rscadd: Preference for LOOC sound
+  Will:
+  - bugfix: You can no longer insert buckled players into multiple cryocells at once
+  - bugfix: Fix a runtime in brain mob's lifetick with reagents
+2026-06-22:
+  TheCaramelion:
+  - rscadd: Added vending machine tilt crits
+  - rscadd: Added atom crushing proc, for things falling on others.
+  - refactor: Refactored vending machine tilting

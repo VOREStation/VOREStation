@@ -294,8 +294,9 @@
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
 						src.ignite_mob()
-					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
-					update_canmove()
+					M.resting = !M.resting
+					M.AdjustWeakened(-3)
+					M.update_canmove()
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else

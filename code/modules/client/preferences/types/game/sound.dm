@@ -87,6 +87,12 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/looc_sounds
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "LOOC_SOUNDS"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /datum/preference/toggle/air_pump_noise
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "SOUND_AIRPUMP"

@@ -347,7 +347,10 @@ GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
 	"Mech" = FOOTSTEP_MOB_MECHY,
-	"Heavy" = FOOTSTEP_MOB_HEAVY_ALT
+	"Heavy" = FOOTSTEP_MOB_HEAVY,
+	"Heavy Alt" = FOOTSTEP_MOB_HEAVY_ALT,
+	"Slime" = FOOTSTEP_MOB_SLIME,
+
 ))
 
 // Put any artifact effects that are duplicates, unique, or otherwise unwated in here! This prevents them from spawning via RNG.
@@ -703,7 +706,9 @@ GLOBAL_LIST_INIT(radio_channels_by_freq, list(
 	num2text(SCI_FREQ) = CHANNEL_SCIENCE,
 	num2text(SUP_FREQ) = CHANNEL_SUPPLY,
 	num2text(SRV_FREQ) = CHANNEL_SERVICE,
-	num2text(EXP_FREQ) = CHANNEL_EXPLORATION
+	num2text(EXP_FREQ) = CHANNEL_EXPLORATION,
+	num2text(ATC_FREQ) = CHANNEL_ATC,
+	num2text(CULTURE_FREQ) = CHANNEL_CULTURE
 	))
 
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)

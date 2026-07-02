@@ -61,7 +61,7 @@
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoom = FALSE // if the item is currently zoomed in with a remote view, do not set manually. Handled by remote_view component.
 
 	var/embed_chance = -1	//0 won't embed, and 100 will always embed
 
@@ -112,8 +112,6 @@
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
 	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
-
-	var/protean_drop_whitelist = FALSE
 
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
@@ -329,16 +327,16 @@
 				size = "enormous"
 	return ..(user, "", "It is \a [size] item.")
 
-/obj/item/attack_hand(mob/living/user as mob)
+/obj/item/attack_hand(mob/living/user)
 	if (!user) return
 	..()
 	if(anchored)
-		to_chat(user, span_notice("\The [src] won't budge, you can't pick it up!"))
+		attack_self(user)
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
-		if (user.hand)
+		if(user.hand)
 			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
@@ -350,18 +348,18 @@
 		var/obj/item/holder/D = src
 		if(D.held_mob == user) return // No picking your own micro self up
 
-	var/old_loc = src.loc
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
+	var/old_loc = loc
+	if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		if(!S.remove_from_storage(src))
 			return
 
-	src.pickup(user)
-	if (src.loc == user)
+	pickup(user)
+	if(loc == user)
 		if(!user.unEquip(src))
 			return
 	else
-		if(isliving(src.loc))
+		if(isliving(loc))
 			return
 
 	if(user.put_in_active_hand(src))
@@ -369,15 +367,14 @@
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
 			ghost.assumeform(src)
 			ghost.animate_towards(user)
-	//VORESTATION EDIT START. This handles possessed items.
-	if(src.possessed_voice && src.possessed_voice.len && !(user.ckey in warned_of_possession)) //Is this item possessed?
+
+	if(possessed_voice && possessed_voice.len > 1 && !(user.ckey in warned_of_possession))
 		warned_of_possession |= user.ckey
 		tgui_alert_async(user,{"
 		THIS ITEM IS POSSESSED BY A PLAYER CURRENTLY IN THE ROUND. This could be by anomalous means or otherwise.
 		If this is not something you wish to partake in, it is highly suggested you place the item back down.
 		If this is fine to you, ensure that the other player is fine with you doing things to them beforehand!
 		"},"OOC Warning")
-	//VORESTATION EDIT END.
 	return
 
 /obj/item/attack_ai(mob/user as mob)
@@ -591,6 +588,8 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0
 		if(slot_l_store, slot_r_store)
+			if((slot == slot_l_store && H.l_store) || (slot == slot_r_store && H.r_store))
+				return 0
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
@@ -600,6 +599,8 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 			if( w_class > ITEMSIZE_SMALL && !(slot_flags & SLOT_POCKET) )
 				return 0
 		if(slot_s_store)
+			if(H.s_store)
+				return 0
 			if(!H.wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
@@ -841,19 +842,18 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(I && !I.abstract)
 		I.showoff(src)
 
-/// For zooming with scope or binoculars. Uses remote_view/item component for disabling when you move or drop the item
-/obj/item/proc/zoom(mob/living/M, tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/// For zooming with scope or binoculars. Starts a remote_view when called, which calls unzoom when called again or dropped
+/obj/item/proc/toggle_zoom(mob/living/user, tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	SHOULD_CALL_PARENT(TRUE)
 	SIGNAL_HANDLER
-	if(isliving(usr)) //Always prefer usr if set
-		M = usr
-	if(!M.client)
+	if(!user.client)
 		return FALSE
-	if(!isliving(M))
+	if(!isliving(user))
 		return FALSE
-	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
+	if(isbelly(user.loc) || istype(user.loc,/obj/item/dogborg/sleeper))
 		return FALSE
-	if(M.is_remote_viewing())
-		to_chat(M, span_warning("You are too distracted to do that."))
+	if(user.is_remote_viewing())
+		to_chat(user, span_warning("You are too distracted to do that."))
 		return FALSE
 
 	var/devicename
@@ -863,20 +863,27 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		devicename = src.name
 
 	var/can_zoom = TRUE
-	if((M.stat && !zoom) || !(ishuman(M)))
-		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
+	if((user.stat && !zoom) || !(ishuman(user)))
+		to_chat(user, span_filter_notice("You are unable to focus through the [devicename]."))
 		can_zoom = FALSE
-	else if(!zoom && (GLOB.global_hud.darkMask[1] in M.client.screen))
-		to_chat(M, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
+	else if(!zoom && (GLOB.global_hud.darkMask[1] in user.client.screen))
+		to_chat(user, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
 		can_zoom = FALSE
-	else if(!zoom && M.get_active_hand() != src)
-		to_chat(M, span_filter_notice("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
+	else if(!zoom && user.get_active_hand() != src)
+		to_chat(user, span_filter_notice("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
 		can_zoom = FALSE
 
 	if(!zoom && can_zoom)
-		M.AddComponent(/datum/component/remote_view/item_zoom, focused_on = M, vconfig_path = /datum/remote_view_config/zoomed_item, our_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		user.AddComponent(/datum/component/remote_view, focused_on = user, vconfig_path = /datum/remote_view_config/zoomed_item, managing_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		zoom = TRUE
 		return
 	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
+
+/// Called by remote view when the view is ended. Do not call manually.
+/obj/item/proc/unzoom(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	SIGNAL_HANDLER
+	zoom = FALSE
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill

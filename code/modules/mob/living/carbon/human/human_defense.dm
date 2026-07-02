@@ -234,6 +234,7 @@ emp_act
 	return hit_zone
 
 /mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
+	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, I, user, hit_zone, effective_force)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return //should be prevented by attacked_with_item() but for sanity.
