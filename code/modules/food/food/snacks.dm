@@ -1981,14 +1981,15 @@
 	if(wrapped)
 		Unwrap(user)
 
-/obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	src.visible_message(span_infoplain(span_bold("\The [src]") + " expands!"))
+/obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand(monkey_type = "normal")
+	visible_message(span_infoplain(span_bold("\The [src]") + " expands!"))
 	var/mob/living/carbon/human/H = new(get_turf(src))
 	H.set_species(monkey_type)
 	H.real_name = H.species.get_random_name()
 	H.name = H.real_name
 	H.low_sorting_priority = TRUE
 	H.species.produceCopy(H.species.traits.Copy(),H,null,FALSE)
+	//H.AddComponent(/datum/component/monkey_mutation, monkey_type) //TODO: Monkey Mutation Component
 	if(ismob(loc))
 		var/mob/M = loc
 		M.unEquip(src)
@@ -2000,7 +2001,7 @@
 	qdel(src)
 	return H
 
-/obj/item/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	to_chat(user, "You unwrap the cube.")
@@ -2019,8 +2020,21 @@
 		Pred.vore_selected.nom_atom(Prey)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/on_reagent_change()
-	if(reagents.has_reagent(REAGENT_ID_WATER))
-		Expand()
+	if(reagents.has_reagent(REAGENT_ID_WATER)) //normal monkey
+		Expand("normal")
+		return
+	if(reagents.has_reagent(REAGENT_ID_THERMITE)) //hot monkey
+		Expand("fire")
+		return
+	if(reagents.has_reagent(REAGENT_ID_FIREFOAM)) //cold monkey
+		Expand("cold")
+		return
+	if(reagents.has_reagent(REAGENT_ID_HYPERZINE)) //energetic monkey
+		Expand("energetic")
+		return
+	if(reagents.has_reagent(REAGENT_ID_HYPERZINE)) //metallic monkey
+		Expand("metallic")
+		return
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
@@ -2060,14 +2074,14 @@
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
 	flags = NONE
-	wrapped = 1
+	wrapped =TRUE
 
-/obj/item/reagent_containers/food/snacks/monkeycube/pet/Expand()
+/obj/item/reagent_containers/food/snacks/monkeycube/pet/Expand(monkey_type)
 	src.visible_message("<b>\The [src]</b> expands!")
 	if(pet_path)
 		new pet_path(get_turf(src))
 	qdel(src)
-	return 1
+	return TRUE
 
 /obj/item/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
