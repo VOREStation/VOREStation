@@ -23,13 +23,10 @@
 
 	if(!message_to_send)
 		return TRUE
-		if(send_failure_message)
-			to_chat(user, span_warning(message_to_send))
-			return FALSE
-		return FALSE
 
-
-	return TRUE
+	if(send_failure_message)
+		to_chat(user, span_warning(message_to_send))
+	return FALSE
 
 ///Checks to see if the item fails critieria to allow it to be eaten. Does NOT check the blacklist, as it's checked before this is called.
 /obj/item/proc/check_item_devourability(mob/living/user)
