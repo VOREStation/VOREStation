@@ -527,7 +527,7 @@
 	set category = "Abilities.Settings"
 	set name = "Adjust Footstep Sound"
 	var/selected_footstep = tgui_input_list(src, "Select a footstep sound.", "Footstep Sound", GLOB.selectable_footstep)
-	if(!selected_footstep || !(selected_footstep in GLOB.selectable_footstep))
+	if(!(selected_footstep in GLOB.selectable_footstep))
 		return
 	custom_footstep = GLOB.selectable_footstep[selected_footstep]
 

@@ -1,4 +1,5 @@
 #define SHOULD_DISABLE_FOOTSTEPS(source)
+#define VOLUME_MULTIPLIER 0.3
 
 ///Footstep element. Plays footsteps at parents location when it is appropriate.
 /datum/element/footstep
@@ -124,8 +125,6 @@
 /datum/element/footstep/proc/play_simplestep(mob/living/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
-
 	if(!isturf(source.loc))
 		return
 
@@ -134,7 +133,7 @@
 		return
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
-		playsound(source.loc, footstep_sounds, volume * volume_multiplier, falloff = 1, vary = sound_vary)
+		playsound(source.loc, footstep_sounds, volume * VOLUME_MULTIPLIER, falloff = 1, vary = sound_vary)
 		return
 
 	var/turf_footstep = prepared_steps[footstep_type]
@@ -145,7 +144,6 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
 	var/range_adjustment = 0
 
 	var/list/prepared_steps = prepare_step(source)
@@ -153,7 +151,7 @@
 		return
 
 	if (source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
-		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+		play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, range_adjustment)
 		return
 
 	//cache for sanic speed (lists are references anyways)
@@ -167,13 +165,13 @@
 			var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
 			if(!isnull(shoestep_type) && footstep_sounds[shoestep_type]) // shoestep type can be null
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),
-					footstep_sounds[shoestep_type][2] * volume * volume_multiplier,
+					footstep_sounds[shoestep_type][2] * volume * VOLUME_MULTIPLIER,
 					TRUE,
 					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 				return
 
 	// we are barefoot
-	play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+	play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, range_adjustment)
 
 /datum/element/footstep/proc/play_barefoot_sound(mob/living/carbon/human/source, list/prepared_steps, volume_multiplier, range_adjustment)
 
@@ -190,7 +188,7 @@
 
 	if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
 		playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
-			bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
+			bare_footstep_sounds[barefoot_type][2] * volume * VOLUME_MULTIPLIER,
 			TRUE,
 			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 
@@ -208,7 +206,6 @@
 /datum/element/footstep/proc/play_robotstep(mob/living/silicon/robot/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
 	var/range_adjustment = 0
 
 	var/list/prepared_steps = prepare_step(source)
@@ -216,7 +213,7 @@
 		return
 
 	// we are barefoot
-	play_robot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+	play_robot_sound(source, prepared_steps, VOLUME_MULTIPLIER, range_adjustment)
 
 /datum/element/footstep/proc/play_robot_sound(mob/living/silicon/robot/source, list/prepared_steps, volume_multiplier, range_adjustment)
 	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
@@ -228,4 +225,5 @@
 			TRUE,
 			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 
+#undef VOLUME_MULTIPLIER
 #undef SHOULD_DISABLE_FOOTSTEPS
