@@ -1,5 +1,6 @@
 #define SHOULD_DISABLE_FOOTSTEPS(source)
 #define VOLUME_MULTIPLIER 0.3
+#define RANGE_ADJUSTMENT 0
 
 ///Footstep element. Plays footsteps at parents location when it is appropriate.
 /datum/element/footstep
@@ -144,14 +145,12 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/range_adjustment = 0
-
 	var/list/prepared_steps = prepare_step(source)
 	if(isnull(prepared_steps))
 		return
 
 	if (source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
-		play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, range_adjustment)
+		play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
 		return
 
 	//cache for sanic speed (lists are references anyways)
@@ -167,11 +166,11 @@
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),
 					footstep_sounds[shoestep_type][2] * volume * VOLUME_MULTIPLIER,
 					TRUE,
-					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+					footstep_sounds[shoestep_type][3] + e_range + RANGE_ADJUSTMENT, falloff = 1, vary = sound_vary)
 				return
 
 	// we are barefoot
-	play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, range_adjustment)
+	play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
 
 /datum/element/footstep/proc/play_barefoot_sound(mob/living/carbon/human/source, list/prepared_steps, volume_multiplier, range_adjustment)
 
@@ -206,14 +205,12 @@
 /datum/element/footstep/proc/play_robotstep(mob/living/silicon/robot/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/range_adjustment = 0
-
 	var/list/prepared_steps = prepare_step(source)
 	if(isnull(prepared_steps))
 		return
 
 	// we are barefoot
-	play_robot_sound(source, prepared_steps, VOLUME_MULTIPLIER, range_adjustment)
+	play_robot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
 
 /datum/element/footstep/proc/play_robot_sound(mob/living/silicon/robot/source, list/prepared_steps, volume_multiplier, range_adjustment)
 	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
@@ -225,5 +222,6 @@
 			TRUE,
 			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 
+#undef RANGE_ADJUSTMENT
 #undef VOLUME_MULTIPLIER
 #undef SHOULD_DISABLE_FOOTSTEPS
