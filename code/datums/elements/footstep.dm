@@ -187,7 +187,7 @@
 
 	if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
 		playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
-			bare_footstep_sounds[barefoot_type][2] * volume * VOLUME_MULTIPLIER,
+			bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
 			TRUE,
 			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
 
