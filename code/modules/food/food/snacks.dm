@@ -2032,7 +2032,7 @@
 	if(reagents.has_reagent(REAGENT_ID_HYPERZINE)) //energetic monkey
 		Expand("energetic")
 		return
-	if(reagents.has_reagent(REAGENT_ID_HYPERZINE)) //metallic monkey
+	if(reagents.has_reagent(REAGENT_ID_FOAMINGAGENT)) //metallic monkey
 		Expand("metallic")
 		return
 
