@@ -94,7 +94,7 @@
 		thing.throw_at(land_turf, distance, 1)
 
 	sprung = TRUE
-	addtimer(CALLBACK(src, PROC_REF(reset)), reset_time)
+	addtimer(CALLBACK(src, PROC_REF(reset)), reset_time, TIMER_DELETE_ME)
 
 /obj/structure/spring_trap/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal())
