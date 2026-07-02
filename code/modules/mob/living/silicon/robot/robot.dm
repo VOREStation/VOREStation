@@ -523,6 +523,14 @@
 	to_chat(src, span_filter_notice("You harmlessly spark."))
 	spark_system.start()
 
+/mob/living/silicon/robot/verb/set_footstep() //Verb for borgs to change their footstep sound.
+	set category = "Abilities.Settings"
+	set name = "Adjust Footstep Sound"
+	var/selected_footstep = tgui_input_list(src, "Select a footstep sound.", "Footstep Sound", GLOB.selectable_footstep)
+	if(!selected_footstep || !(selected_footstep in GLOB.selectable_footstep))
+		return
+	custom_footstep = GLOB.selectable_footstep[selected_footstep]
+
 ///Essentially, a Activate Held Object mode for borgs that acts just like pressing Z in hotkey mode but also works well with multibelts.
 /mob/living/silicon/robot/verb/alt_mode()
 	set name = "Robot Activate Held Object"

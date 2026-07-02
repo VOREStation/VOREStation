@@ -26,8 +26,15 @@
 	src.footstep_type = footstep_type
 	src.sound_vary = sound_vary
 
+	//Human footsteps
 	if(ishuman(target))
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_humanstep))
+		steps_for_living[target] = 0
+		return
+
+	//Cyborg footsteps
+	if(isrobot(target))
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_robotstep))
 		steps_for_living[target] = 0
 		return
 
@@ -196,4 +203,29 @@
 		return
 
 	playsound(source_loc, footstep_sounds, 50, falloff = 1, vary = sound_vary)
+
+
+/datum/element/footstep/proc/play_robotstep(mob/living/silicon/robot/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
+	SIGNAL_HANDLER
+
+	var/volume_multiplier = 0.3
+	var/range_adjustment = 0
+
+	var/list/prepared_steps = prepare_step(source)
+	if(isnull(prepared_steps))
+		return
+
+	// we are barefoot
+	play_robot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+
+/datum/element/footstep/proc/play_robot_sound(mob/living/silicon/robot/source, list/prepared_steps, volume_multiplier, range_adjustment)
+	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
+	var/bare_footstep_sounds = check_footstep_type(source.custom_footstep)
+
+	if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
+		playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
+			bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
+			TRUE,
+			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+
 #undef SHOULD_DISABLE_FOOTSTEPS
