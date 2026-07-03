@@ -2029,11 +2029,8 @@
 	if(reagents.has_reagent(REAGENT_ID_FIREFOAM)) //cold monkey
 		Expand("cold")
 		return
-	if(reagents.has_reagent(REAGENT_ID_HYPERZINE)) //energetic monkey
-		Expand("energetic")
-		return
-	if(reagents.has_reagent(REAGENT_ID_FOAMINGAGENT)) //metallic monkey
-		Expand("metallic")
+	if(reagents.has_reagent(REAGENT_ID_MUTAGEN)) //colorless monkey
+		Expand("colorless")
 		return
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
