@@ -414,14 +414,14 @@
 
 /datum/trait/neutral/trashcan/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
-	add_verb(H, /mob/living/proc/eat_trash)
+	add_verb(H, /mob/living/proc/eat_trash_verb)
 	add_verb(H, /mob/living/proc/toggle_trash_catching)
 
 // Traitgenes made into a genetrait
 /datum/trait/neutral/trashcan/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	..()
-	if(!(/mob/living/proc/eat_trash in S.inherent_verbs))
-		remove_verb(H,/mob/living/proc/eat_trash)
+	if(!(/mob/living/proc/eat_trash_verb in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/eat_trash_verb)
 	if(!(/mob/living/proc/toggle_trash_catching in S.inherent_verbs))
 		remove_verb(H,/mob/living/proc/toggle_trash_catching)
 

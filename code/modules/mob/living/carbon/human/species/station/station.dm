@@ -1697,6 +1697,10 @@
 		/mob/living/carbon/human/proc/tie_hair,
 		/mob/living/carbon/human/proc/lick_wounds)		//Xenochimera get all the special verbs since they can't select traits.
 
+	default_emotes = list(
+		/datum/decl/emote/audible/xenochimera_scream,
+	)
+
 	virus_immune = 1 // They practically ARE one.
 	min_age = 18
 	max_age = 80
