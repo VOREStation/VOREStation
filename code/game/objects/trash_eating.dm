@@ -1,5 +1,5 @@
 // checks for when items are consumed by trash/ore eater
-/obj/item/proc/on_trash_eaten(mob/living/user)
+/obj/item/proc/on_trash_eaten(mob/living/user, send_failure_message)
 	SHOULD_CALL_PARENT(TRUE)
 
 	var/signal_results = SEND_SIGNAL(src, COMSIG_ITEM_TRASH_EATEN, user) | SEND_SIGNAL(user, COMSIG_MOB_TRASH_EATING, src)
@@ -9,20 +9,24 @@
 		return TRUE
 
 	var/item_found = recursive_trash_eat_search(user)
+	var/message_to_send
+
 	if(item_found) //Checks for blacklisted items.
-		to_chat(user, span_warning("You are not allowed to eat \the [item_found]."))
-		return FALSE
+		message_to_send = "You are not allowed to eat \the [item_found]."
 
 	if(!trash_eatable) //OOC pref. This /IS/ respected, even if expanded_trasheat is enabled
-		to_chat(user, span_warning("You can't eat that so casually!"))
-		return FALSE
+		message_to_send = "You can't eat that so casually!"
 
 	if(hidden_uplink)
-		to_chat(user, span_warning("You really should not be eating this."))
+		message_to_send = "You really should not be eating this."
 		message_admins("[key_name(user)] has attempted to ingest an uplink item. ([user ? ADMIN_JMP(user) : "null"])")
-		return FALSE
 
-	return TRUE
+	if(!message_to_send)
+		return TRUE
+
+	if(send_failure_message)
+		to_chat(user, span_warning(message_to_send))
+	return FALSE
 
 ///Checks to see if the item fails critieria to allow it to be eaten. Does NOT check the blacklist, as it's checked before this is called.
 /obj/item/proc/check_item_devourability(mob/living/user)
@@ -67,6 +71,61 @@
 			return next_item_to_search
 	return FALSE
 
+/mob/living/proc/eat_trash_verb()
+	set name = "Eat Trash"
+	set category = "Abilities.Vore"
+	set desc = "Consume held garbage."
+
+	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return FALSE
+
+	if(!vore_selected)
+		to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
+		return FALSE
+
+	var/obj/item/I = get_active_hand()
+	if(!I)
+		to_chat(src, span_warning("You are not holding anything."))
+		return FALSE
+
+	eat_trash_proc(I)
+
+
+/mob/living/proc/eat_trash_proc(obj/item/item_to_eat, thrown = FALSE)
+	if(!item_to_eat.check_item_devourability(src))
+		if(!thrown)
+			to_chat(src, span_warning("You can not eat this item."))
+		return FALSE
+
+	if(!item_to_eat.on_trash_eaten(src, send_failure_message = !thrown)) // shows object's rejection message itself
+		return FALSE
+
+	if(!thrown)
+		drop_item()
+
+	vore_selected.nom_atom(item_to_eat)
+	updateVRPanel()
+	log_admin("VORE: [src] used Eat Trash to swallow [item_to_eat].")
+	item_to_eat.after_trash_eaten(src)
+	visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, item_to_eat, item=item_to_eat)))
+	return TRUE
+
+/mob/living/proc/toggle_trash_catching() //Ported from chompstation
+	set name = "Toggle Trash Catching"
+	set category = "Abilities.Vore"
+	set desc = "Toggle Trash Eater throw vore abilities."
+	trash_catching = !trash_catching
+	to_chat(src, span_vwarning("Trash catching [trash_catching ? "enabled" : "disabled"]."))
+
+/mob/living/proc/eat_minerals() //Actual eating abstracted so the user isn't given a prompt due to an argument in this verb.
+	set name = "Eat Minerals"
+	set category = "Abilities.Vore"
+	set desc = "Consume held raw ore, gems and refined minerals. Snack time!"
+
+	handle_eat_minerals()
+
+
 /// Override this for post-swallow messages. Returns true if components on mob or item allow trash eating messages
 /obj/proc/after_trash_eaten(mob/living/user)
 	SHOULD_CALL_PARENT(TRUE)
@@ -82,7 +141,7 @@
 	to_chat(user, span_notice("You can taste the flavor of garbage. Delicious."))
 
 // PAI
-/obj/item/paicard/on_trash_eaten(mob/living/user)
+/obj/item/paicard/on_trash_eaten(mob/living/user, send_failure_message)
 	if(!..())
 		return FALSE
 	var/mob/living/silicon/pai/pocketpal = pai
@@ -100,7 +159,7 @@
 		to_chat(pai, span_boldnotice("[B.desc]"))
 
 // Book
-/obj/item/book/on_trash_eaten(mob/living/user)
+/obj/item/book/on_trash_eaten(mob/living/user, send_failure_message)
 	if(!..())
 		return FALSE
 	if(carved)
@@ -114,7 +173,7 @@
 	to_chat(user, span_notice("You can taste the dry flavor of knowledge."))
 
 // PDA
-/obj/item/pda/on_trash_eaten(mob/living/user)
+/obj/item/pda/on_trash_eaten(mob/living/user, send_failure_message)
 	if(!..())
 		return FALSE
 	if(owner)
@@ -151,7 +210,7 @@
 
 // ID
 
-/obj/item/card/id/on_trash_eaten(mob/living/user)
+/obj/item/card/id/on_trash_eaten(mob/living/user, send_failure_message)
 	if(!..())
 		return FALSE
 	if(registered_name)
@@ -175,7 +234,7 @@
 	to_chat(user, span_notice("You can taste the delicious flavour of a person's whole identity."))
 
 // Shoes
-/obj/item/clothing/shoes/on_trash_eaten(mob/living/user)
+/obj/item/clothing/shoes/on_trash_eaten(mob/living/user, send_failure_message)
 	if(!..())
 		return FALSE
 	if(holding)
@@ -184,7 +243,7 @@
 	return TRUE
 
 // Capture crystal
-/obj/item/capture_crystal/on_trash_eaten(mob/living/user)
+/obj/item/capture_crystal/on_trash_eaten(mob/living/user, send_failure_message)
 	if(!..())
 		return FALSE
 	if(!bound_mob.devourable)

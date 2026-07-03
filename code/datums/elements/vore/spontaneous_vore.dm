@@ -78,14 +78,12 @@
 
 	//Handle object throw vore
 	if(isitem(hitby))
-		var/obj/item/O = hitby
-		var/obj/belly/destination_belly = source.get_current_spont_belly(O)
+		var/obj/item/thrown_object = hitby
+		var/obj/belly/destination_belly = source.get_current_spont_belly(thrown_object)
 		if(!destination_belly)
 			return
 		if(source.stat != DEAD && source.trash_catching)
-			if(source.expanded_trasheat || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
-				source.visible_message(span_vwarning("[O] is thrown directly into [source]'s [lowertext(destination_belly.name)]!"))
-				destination_belly.nom_atom(O)
+			if(source.eat_trash_proc(thrown_object, thrown = TRUE))
 				return COMSIG_CANCEL_HITBY
 
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
