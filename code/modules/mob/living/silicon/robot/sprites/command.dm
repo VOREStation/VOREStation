@@ -37,13 +37,14 @@
 	can_be_pushed = 0
 
 /obj/item/robot_module/robot/chound/create_equipment(mob/living/silicon/robot/R)
-	src.modules += new /obj/item/pen/robopen(src)
+	src.modules += new /obj/item/pen/robopen/fountain(src)
 	src.modules += new /obj/item/form_printer(src)
 	src.modules += new /obj/item/gripper/paperwork(src)
 	src.modules += new /obj/item/hand_labeler(src)
 	src.modules += new /obj/item/stamp(src)
 	src.modules += new /obj/item/stamp/denied(src)
 	//src.modules += new /obj/item/taskmanager(src) //Needs to be ported over.
+	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src)
 	src.emag += new /obj/item/stamp/chameleon(src)
 	src.emag += new /obj/item/pen/chameleon(src)
 

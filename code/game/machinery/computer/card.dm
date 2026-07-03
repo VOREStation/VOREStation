@@ -12,6 +12,7 @@
 	var/obj/item/card/id/modify = null
 	var/mode = 0.0
 	var/printing = null
+	var/bot_login = FALSE
 
 /obj/machinery/computer/card/proc/is_centcom()
 	return 0
@@ -40,10 +41,14 @@
 	if(!usr || usr.stat || usr.lying)	return
 
 	if(scan)
-		to_chat(usr, "You remove \the [scan] from \the [src].")
-		scan.forceMove(get_turf(src))
-		if(!usr.get_active_hand() && ishuman(usr))
-			usr.put_in_hands(scan)
+		if(!bot_login)
+			to_chat(usr, "You remove \the [scan] from \the [src].")
+			scan.forceMove(get_turf(src))
+			if(!usr.get_active_hand() && ishuman(usr))
+				usr.put_in_hands(scan)
+		else
+			to_chat(usr, "You revoke the access from \the [src].")
+			bot_login = FALSE
 		scan = null
 	else if(modify)
 		to_chat(usr, "You remove \the [modify] from \the [src].")
@@ -56,10 +61,17 @@
 	return
 
 /obj/machinery/computer/card/attackby(obj/item/card/id/id_card, mob/user)
+	if(isrobot(user))
+		var/mob/living/silicon/robot/our_bot = user
+		if(!istype(our_bot.module, /obj/item/robot_module/robot/chound))
+			return
+		scan = our_bot.idcard
+		bot_login = TRUE
+
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && (ACCESS_CHANGE_IDS in id_card.GetAccess()) && (user.unEquip(id_card) || (id_card.loc == user && istype(user,/mob/living/silicon/robot)))) //Grippers. Again. ~Mechoid
+	if(!scan && (ACCESS_CHANGE_IDS in id_card.GetAccess()) && (user.unEquip(id_card)))
 		user.drop_item()
 		id_card.forceMove(src)
 		scan = id_card
@@ -180,6 +192,9 @@
 					if(!ui.user.get_active_hand())
 						ui.user.put_in_hands(scan)
 					scan = null
+				if(bot_login)
+					scan = null
+					bot_login = FALSE
 				else
 					scan.forceMove(get_turf(src))
 					scan = null

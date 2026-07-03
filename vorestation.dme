@@ -2050,6 +2050,7 @@
 #include "code\game\objects\structures\simple_doors.dm"
 #include "code\game\objects\structures\simple_doors_vr.dm"
 #include "code\game\objects\structures\snowman.dm"
+#include "code\game\objects\structures\spring_trap.dm"
 #include "code\game\objects\structures\stasis_cage.dm"
 #include "code\game\objects\structures\tank_dispenser.dm"
 #include "code\game\objects\structures\target_stake.dm"
