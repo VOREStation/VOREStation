@@ -100,13 +100,16 @@
 	var/weight
 	var/aflags
 	var/breath_type = GAS_O2
+	//piggybacking off record data for the synthesizer cookie icon itself
+	var/cookieunlock
+	var/icon/cookieicon
 
-/datum/transhuman/body_record/New(copyfrom, add_to_db = 0, ckeylock = 0)
+/datum/transhuman/body_record/New(copyfrom, add_to_db = FALSE, ckeylock = FALSE, var/cookieprint = FALSE)
 	..()
 	if(istype(copyfrom, /datum/transhuman/body_record))
 		init_from_br(copyfrom)
 	else if(ishuman(copyfrom))
-		init_from_mob(copyfrom, add_to_db, ckeylock)
+		init_from_mob(copyfrom, add_to_db, ckeylock, cookieprint)
 
 /datum/transhuman/body_record/Destroy()
 	QDEL_NULL(mydna.dna)
@@ -115,15 +118,19 @@
 	mind_ref = null
 	limb_data.Cut()
 	organ_data.Cut()
+	cookieicon = null
 	..()
 	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in GLOB.machines etc.
 
-/datum/transhuman/body_record/proc/init_from_mob(mob/living/carbon/human/M, add_to_db = 0, ckeylock = 0, database_key)
+/datum/transhuman/body_record/proc/init_from_mob(mob/living/carbon/human/M, add_to_db = FALSE, ckeylock = FALSE, var/cookieprint = FALSE, database_key)
 	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 
 	//Person OOCly doesn't want people impersonating them
 	locked = ckeylock
+
+	//Or doesn't want a cookie print of them
+	cookieunlock = cookieprint
 
 	//The mob is a changeling, don't allow anyone to possess them. Not using locked as locked gives OOC notices.
 	if(is_changeling(M))
@@ -212,6 +219,8 @@
 	for(var/datum/modifier/mod as anything in M.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
 			genetic_modifiers.Add(mod.type)
+	if(cookieunlock) // get an icon saved of the scanned person. for use in Food Synthesizer's cookie printing.
+		cookieicon = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 
 	if(add_to_db)
 		SStranscore.add_body(src, database_key = database_key)

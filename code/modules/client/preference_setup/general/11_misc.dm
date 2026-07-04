@@ -1,10 +1,11 @@
 // Define a place to save in character setup
 /datum/preferences
-	var/vantag_volunteer = 0	// What state I want to be in, in terms of being affected by antags.
+	var/vantag_volunteer = FALSE		// What state I want to be in, in terms of being affected by antags.
 	var/vantag_preference = VANTAG_NONE	// Whether I'd like to volunteer to be an antag at some point.
-	var/resleeve_lock = 0	// Whether movs should have OOC reslieving protection. Default false.
-	var/resleeve_scan = 1	// Whether mob should start with a pre-spawn body scan.  Default true.
-	var/mind_scan = 1		// Whether mob should start with a pre-spawn mind scan.  Default true.
+	var/resleeve_lock = FALSE			// Whether movs should have OOC reslieving protection. Default false.
+	var/resleeve_scan = TRUE			// Whether mob should start with a pre-spawn body scan.  Default true.
+	var/synth_cookie = FALSE			// Whether mob can be printed as a snack. requires body scan. Default false.
+	var/mind_scan = TRUE				// Whether mob should start with a pre-spawn mind scan.  Default true.
 
 	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
 
@@ -33,6 +34,7 @@
 	pref.borg_petting			= save_data["borg_petting"]
 	pref.resleeve_lock			= save_data["resleeve_lock"]
 	pref.resleeve_scan			= save_data["resleeve_scan"]
+	pref.synth_cookie			= save_data["synth_cookie"]
 	pref.mind_scan				= save_data["mind_scan"]
 	pref.vantag_volunteer		= save_data["vantag_volunteer"]
 	pref.vantag_preference		= save_data["vantag_preference"]
@@ -59,6 +61,7 @@
 	save_data["borg_petting"]			= pref.borg_petting
 	save_data["resleeve_lock"]			= pref.resleeve_lock
 	save_data["resleeve_scan"]			= pref.resleeve_scan
+	save_data["synth_cookie"]			= pref.synth_cookie
 	save_data["mind_scan"]				= pref.mind_scan
 	save_data["vantag_volunteer"]		= pref.vantag_volunteer
 	save_data["vantag_preference"]		= pref.vantag_preference
@@ -95,13 +98,13 @@
 		var/want_body_save = pref.resleeve_scan
 		var/want_mind_save = pref.mind_scan
 
-		spawn(50)
+		spawn(5 SECONDS)
 			if(QDELETED(character) || QDELETED(pref))
 				return // They might have been deleted during the wait
 			if(!character.virtual_reality_mob && !(/mob/living/carbon/human/proc/perform_exit_vr in character.verbs)) //Janky fix to prevent resleeving VR avatars but beats refactoring transcore
 				if(want_body_save && !(character.species.flags & NO_SLEEVE)) // Nosleeve flag overrides character pref editor. Otherwise resleevable species still get one even if they took a trait to not be sleevable.
 					var/datum/transhuman/body_record/BR = new()
-					BR.init_from_mob(character, TRUE, pref.resleeve_lock)
+					BR.init_from_mob(character, TRUE, pref.resleeve_lock, pref.synth_cookie)
 				if(want_mind_save)
 					var/datum/transcore_db/our_db = SStranscore.db_by_key(null)
 					if(our_db)
@@ -122,6 +125,7 @@
 	pref.borg_petting			= sanitize_integer(pref.borg_petting, 0, 1, initial(pref.borg_petting))
 	pref.resleeve_lock		= sanitize_integer(pref.resleeve_lock, 0, 1, initial(pref.resleeve_lock))
 	pref.resleeve_scan		= sanitize_integer(pref.resleeve_scan, 0, 1, initial(pref.resleeve_scan))
+	pref.synth_cookie		= sanitize_integer(pref.synth_cookie, 0, 1, initial(pref.synth_cookie))
 	pref.mind_scan			= sanitize_integer(pref.mind_scan, 0, 1, initial(pref.mind_scan))
 	pref.vantag_volunteer	= sanitize_integer(pref.vantag_volunteer, 0, 1, initial(pref.vantag_volunteer))
 	pref.vantag_preference	= sanitize_inlist(pref.vantag_preference, GLOB.vantag_choices_list, initial(pref.vantag_preference))
@@ -158,6 +162,7 @@
 
 	data["resleeve_lock"] = pref.resleeve_lock
 	data["resleeve_scan"] = pref.resleeve_scan
+	data["synth_cookie"] = pref.synth_cookie
 	data["mind_scan"] = pref.mind_scan
 
 	data["vantag_volunteer"] = pref.vantag_volunteer
@@ -235,6 +240,9 @@
 			return TOPIC_REFRESH
 		if("toggle_resleeve_scan")
 			pref.resleeve_scan = pref.resleeve_scan ? 0 : 1;
+			return TOPIC_REFRESH
+		if("toggle_synth_cookie")
+			pref.synth_cookie = pref.synth_cookie ? 0 : 1;
 			return TOPIC_REFRESH
 		if("toggle_mind_scan")
 			pref.mind_scan = pref.mind_scan ? 0 : 1;
