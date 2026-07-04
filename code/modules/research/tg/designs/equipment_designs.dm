@@ -219,14 +219,14 @@
 
 /datum/design_techweb/hud/graviton_visor
 	name = "graviton visor"
-	id = "graviton_goggles"
+	id = "graviton_"
 	// req_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3, TECH_PHORON = 3, TECH_ARCANE = 1)
 	materials = list(MAT_PLASTEEL = 2000, MAT_GLASS = 3000, MAT_PHORON = 1500, MAT_DIAMOND = 500)
 	build_path = /obj/item/clothing/glasses/graviton
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/hud/omni
 	name = "AR glasses"
@@ -419,7 +419,7 @@
 	name = "welding goggles"
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	id = "welding_goggles"
-	build_type = PROTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1500)
 	build_path = /obj/item/clothing/glasses/welding
 	category = list(
