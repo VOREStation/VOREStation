@@ -13,6 +13,7 @@ export const RequestConsoleViewMessages = (props) => {
       {(message_log.length &&
         message_log.map((msg, i) => (
           <LabeledList.Item
+            labelWrap
             label={decodeHtmlEntities(msg[0])}
             key={i}
             buttons={
