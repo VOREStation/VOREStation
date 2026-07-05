@@ -34,7 +34,10 @@ interface CrewCookie {
   category: string;
 }
 
-interface BackendData {
+interface TguiProps {
+  [key: string]: any;
+}
+type Data = {
   isThereCart: boolean;
   cartFillStatus: number;
   active_menu: string;
@@ -45,12 +48,9 @@ interface BackendData {
   activecrew: boolean;
   crewicon?: string;
 }
-
-interface TguiProps {
-  [key: string]: any;
-}
-
+	
 export const FoodSynthesizer = (props: TguiProps) => {
+  const { act, data } = useBackend<Data>();
   return (
     <Window width={900} height={520}>
       <Window.Content scrollable>
@@ -68,8 +68,7 @@ export const FoodSynthesizer = (props: TguiProps) => {
 
 /** Displays the current Cartridge status. */
 const SynthCartGuage = (props: TguiProps) => {
-  const backend = useBackend();
-  const data = backend.data as unknown as BackendData;
+  const { act, data } = useBackend<Data>();
   const { isThereCart, cartFillStatus } = data;
   const adjustedCartChange = cartFillStatus / 100;
 
@@ -99,9 +98,7 @@ const SynthCartGuage = (props: TguiProps) => {
 
 /** Dynamic menu tabs for every listing in category groups. */
 const FoodMenuTabs = (props: TguiProps) => {
-  const backend = useBackend();
-  const act = backend.act;
-  const data = backend.data as unknown as BackendData;
+  const { act, data } = useBackend<Data>();
   const { active_menu, menucatagories } = data;
   
   const menusToShow = [...menucatagories].sort((a, b) => a.sortorder - b.sortorder);
@@ -141,9 +138,7 @@ interface FoodSelectionMenuProps {
 
 /** Chooses the menu item, displays information, and an image. */
 const FoodSelectionMenu = (props: FoodSelectionMenuProps) => {
-  const backend = useBackend();
-  const act = backend.act;
-  const data = backend.data as unknown as BackendData;
+  const { act, data } = useBackend<Data>();
   const { active_menu, recipes, activefood, crew_cookies, activecrew } = data;
 
   if (!recipes) {
@@ -317,8 +312,7 @@ const FoodSelectionMenu = (props: FoodSelectionMenuProps) => {
 };
 
 const CrewCookieIcon = (props: TguiProps) => {
-  const backend = useBackend();
-  const data = backend.data as unknown as BackendData;
+  const { act, data } = useBackend<Data>();
   const { crewicon } = data;
 
   return (

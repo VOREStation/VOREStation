@@ -2,9 +2,6 @@
 //Yes it's a generic food 3d printer. ~
 // in here because makes sense, if really it's just a refillable autolathe of food
 
-//#define VOICE_ORDER(A, O, T) list(activator = A, order = O, temp = T)
-// "Computer, Steak, Hot."
-
 #define SYNTH_FOOD_COST 5
 
 /obj/machinery/synthesizer
