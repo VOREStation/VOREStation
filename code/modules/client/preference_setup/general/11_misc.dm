@@ -155,6 +155,7 @@
 	data["borg_petting"] = pref.borg_petting
 
 	data["ignore_shoes"] = pref.read_preference(/datum/preference/toggle/human/ignore_shoes)
+	data["synth_cookie"] = pref.read_preference(/datum/preference/toggle/living/foodsynth_cookies)
 
 	data["resleeve_lock"] = pref.resleeve_lock
 	data["resleeve_scan"] = pref.resleeve_scan
