@@ -9,7 +9,7 @@
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
 		"tgui": "workspace:*",
-		"tgui-core": "^6.1.0",
+		"tgui-core": "^6.1.1",
 		"tgui-dev-server": "workspace:*",
 		"zod": "^4.4.3"
 	},
