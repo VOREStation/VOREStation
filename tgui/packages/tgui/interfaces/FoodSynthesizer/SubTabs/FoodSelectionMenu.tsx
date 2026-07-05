@@ -35,7 +35,7 @@ export const FoodSelectionMenu = (props) => {
       <Section fill>
         <Stack>
           <Stack.Item basis="30%">
-            <Section title="Food Selection" scrollable fill height="290px">
+            <Section title="Food Selection" scrollable fill>
               <Tabs vertical>
                 {cookiesToShow.map((cookie) => (
                   <Tabs.Tab key={cookie.name}>
@@ -59,7 +59,7 @@ export const FoodSelectionMenu = (props) => {
           </Stack.Item>
           <Stack.Item grow ml={1}>
             {selectedCrew ? (
-              <Section title="Product Details" fill height="290px">
+              <Section title="Product Details" fill>
                 <Box>
                   <Stack align="center" justify="flex-start">
                     <Stack.Item>
