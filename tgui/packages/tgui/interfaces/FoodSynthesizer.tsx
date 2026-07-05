@@ -49,7 +49,7 @@ type Data = {
 export const FoodSynthesizer = (props) => {
 	return (
 		<Window width={900} height={520}>
-			<Window.Content scrollable>
+			<Window.Content>
 				<Section>
 					<SynthCartGuage />
 				</Section>
@@ -162,7 +162,7 @@ const FoodSelectionMenu = (props) => {
 			<Section>
 				<Stack>
 					<Stack.Item basis="30%">
-						<Section title="Food Selection" scrollable fill height="290px">
+						<Section title="Food Selection" scrollable fill>
 							<Tabs vertical>
 								{cookiesToShow.map((cookie) => (
 									<Tabs.Tab key={cookie.name}>
@@ -243,7 +243,7 @@ const FoodSelectionMenu = (props) => {
 		<Section>
 			<Stack>
 				<Stack.Item basis="30%">
-					<Section title="Food Selection" scrollable fill height="290px">
+					<Section title="Food Selection" scrollable fill>
 						<Tabs vertical>
 							{recipesToShow.map((recipe) => (
 								<Tabs.Tab key={recipe.ref}>

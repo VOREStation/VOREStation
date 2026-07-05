@@ -115,13 +115,9 @@
 /obj/machinery/synthesizer/proc/setTguiIcon(mob/L)
 	if(!isliving(L))
 		return
-	if(ishuman(L)) //Utilize the body records for humans to avoid metagaming problems
-		var/mob/living/carbon/human/H = L
-		var/datum/transcore_db/db = SStranscore.db_by_key(db_key)
-		if(db)
-			var/datum/transhuman/body_record/BR = our_db.body_scans[H.mind.name] //Access the Crew's stored cookieicon.
-			crewpicture = BR.cookieicon
-			tgui_icons = "'data:image/png;base64,[icon2base64(crewpicture)]'"
+	if(ishuman(L))
+		crewpicture = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE)
+		tgui_icons = "'data:image/png;base64,[icon2base64(crewpicture)]'"
 
 	else //Simple animals, Silicons, etc don't have records, so we'll just grab their current state.
 		var/icon/F = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE)
@@ -208,23 +204,15 @@
 
 	var/list/crew_cookies = list()
 	for(var/client/C in GLOB.clients)
-		// Allow opt-out. For extra protection we'll refrain from including logged out folks.
-		if(C?.mob?.mind && !C?.prefs?.synth_cookie)
+		// Check if the client allows crew cookies in their currently toggled prefs
+		if(!C.prefs?.read_preference(/datum/preference/toggle/foodsynth_cookies))
 			continue
 
 		var/name = null
 		var/species = null
 
-		if(iscarbon(C.mob))
+		if(ishuman(C.mob))
 			var/mob/living/carbon/human/H = C.mob
-			var/datum/transcore_db/db = SStranscore.db_by_key(db_key)
-			if(db)
-				var/datum/transhuman/body_record/BR = our_db.body_scans[H.mind.name]
-				if(!BR) //extra check to make sure people have a body record, and no-one will immediately on start.
-					continue
-				if(BR && !BR.cookieunlock) //check if the person permits cookie printing in their Body record file too
-					continue
-
 			name = H.real_name
 			species = "[H.custom_species ? H.custom_species : H.species.name]"
 
@@ -540,7 +528,7 @@
 		to_chat(usr, "Warning: Invalid selection. Please refresh the database.")
 		return FALSE
 
-	if(LM.client?.prefs?.synth_cookie)
+	if(LM.client?.prefs?.read_preference(/datum/preference/toggle/foodsynth_cookies))
 		return TRUE
 
 	to_chat(usr, "Warning: Invalid selection. Please refresh the database.")

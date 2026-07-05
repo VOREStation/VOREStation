@@ -32,3 +32,10 @@
 	savefile_key = "VORE_HEALTH_BARS"
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
+
+// Whether mob can be printed as a snack. requires body scan. Default false.
+/datum/preference/toggle/foodsynth_cookies
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "VORE_FOODSYNTH_COOKIES"
+	default_value = FALSE
+	savefile_identifier = PREFERENCE_PLAYER
