@@ -1,4 +1,5 @@
 import { sanitizeCssClassName } from 'common/css_sanity';
+import { useEffect } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -29,6 +30,12 @@ export const FoodSelectionMenu = (props) => {
     .find((category) => category.id === active_menu)
     ?.recipes.filter((recipe) => !recipe.hidden)
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  useEffect(() => {
+    if (active_menu !== 'crew' && !selectedFood && recipesToShow?.length) {
+      act('setactive_food', { setactive_food: recipesToShow[0].type });
+    }
+  }, [active_menu]);
 
   if (!recipesToShow) {
     return <Box color="bad">No recipes found!</Box>;
