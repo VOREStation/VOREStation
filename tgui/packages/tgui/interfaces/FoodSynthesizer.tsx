@@ -50,7 +50,7 @@ interface TguiProps {
   [key: string]: any;
 }
 
-export const FoodSynthesizer = (props: TguiProps, context: any) => {
+export const FoodSynthesizer = (props: TguiProps) => {
   return (
     <Window width={900} height={520}>
       <Window.Content scrollable>
@@ -67,8 +67,9 @@ export const FoodSynthesizer = (props: TguiProps, context: any) => {
 };
 
 /** Displays the current Cartridge status. */
-const SynthCartGuage = (props: TguiProps, context: any) => {
-  const { data } = useBackend<BackendData>(context);
+const SynthCartGuage = (props: TguiProps) => {
+  const backend = useBackend();
+  const data = backend.data as unknown as BackendData;
   const { isThereCart, cartFillStatus } = data;
   const adjustedCartChange = cartFillStatus / 100;
 
@@ -97,14 +98,15 @@ const SynthCartGuage = (props: TguiProps, context: any) => {
 };
 
 /** Dynamic menu tabs for every listing in category groups. */
-const FoodMenuTabs = (props: TguiProps, context: any) => {
-  const { act, data } = useBackend<BackendData>(context);
+const FoodMenuTabs = (props: TguiProps) => {
+  const backend = useBackend();
+  const act = backend.act;
+  const data = backend.data as unknown as BackendData;
   const { active_menu, menucatagories } = data;
   
   const menusToShow = [...menucatagories].sort((a, b) => a.sortorder - b.sortorder);
   
   const [, setActiveMenu] = useSharedState<string>(
-    context,
     'ActiveMenu',
     active_menu
   );
@@ -138,8 +140,10 @@ interface FoodSelectionMenuProps {
 }
 
 /** Chooses the menu item, displays information, and an image. */
-const FoodSelectionMenu = (props: FoodSelectionMenuProps, context: any) => {
-  const { act, data } = useBackend<BackendData>(context);
+const FoodSelectionMenu = (props: FoodSelectionMenuProps) => {
+  const backend = useBackend();
+  const act = backend.act;
+  const data = backend.data as unknown as BackendData;
   const { active_menu, recipes, activefood, crew_cookies, activecrew } = data;
 
   if (!recipes) {
@@ -147,13 +151,11 @@ const FoodSelectionMenu = (props: FoodSelectionMenuProps, context: any) => {
   }
 
   const [activeFoodState, setActiveFoodState] = useSharedState<Recipe | Recipe[]>(
-    context,
     'ActiveFood',
     recipes
   );
 
   const [activeCookieState, setActiveCookieState] = useSharedState<CrewCookie | CrewCookie[]>(
-    context,
     'ActiveCookie',
     crew_cookies
   );
@@ -182,7 +184,7 @@ const FoodSelectionMenu = (props: FoodSelectionMenuProps, context: any) => {
 
   if (active_menu === 'crew') {
     return (
-      <Section level={2}>
+      <Section>
         <Stack>
           <Stack.Item basis="30%">
             <Section title="Food Selection" scrollable fill height="290px">
@@ -255,7 +257,7 @@ const FoodSelectionMenu = (props: FoodSelectionMenuProps, context: any) => {
   }
 
   return (
-    <Section level={2}>
+    <Section>
       <Stack>
         <Stack.Item basis="30%">
           <Section title="Food Selection" scrollable fill height="290px">
@@ -314,8 +316,9 @@ const FoodSelectionMenu = (props: FoodSelectionMenuProps, context: any) => {
   );
 };
 
-const CrewCookieIcon = (props: TguiProps, context: any) => {
-  const { data } = useBackend<BackendData>(context);
+const CrewCookieIcon = (props: TguiProps) => {
+  const backend = useBackend();
+  const data = backend.data as unknown as BackendData;
   const { crewicon } = data;
 
   return (
