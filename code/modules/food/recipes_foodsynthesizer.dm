@@ -25,7 +25,7 @@
 	w_class = ITEMSIZE_SMALL
 	bitesize = 5
 
-/obj/item/reagent_containers/food/snacks/synthsized_meal/Initialize()
+/obj/item/reagent_containers/food/snacks/synthsized_meal/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIPASTE, 5)
 

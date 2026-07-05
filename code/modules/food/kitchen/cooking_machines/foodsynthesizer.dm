@@ -61,7 +61,7 @@
 	var/datum/transcore_db/our_db
 
 
-/obj/machinery/synthesizer/Initialize()
+/obj/machinery/synthesizer/Initialize(mapload)
 	. = ..()
 	if(!synthesizer_recipes)
 		synthesizer_recipes = new()
@@ -81,7 +81,7 @@
 	cart_type = ITEMSIZE_NORMAL
 	circuit = /obj/item/circuitboard/synthesizer/mini
 
-/obj/machinery/synthesizer/mini/Initialize()
+/obj/machinery/synthesizer/mini/Initialize(mapload)
 	. = ..()
 	cart = new /obj/item/reagent_containers/synthdispcart/small(src)
 
@@ -115,7 +115,7 @@
 
 // TGUI
 // Crew Cookie backend stuff... I can't even fuckin' believe this is Janicart stuff
-/obj/machinery/synthesizer/proc/setTguiIcon(var/mob/living/L)
+/obj/machinery/synthesizer/proc/setTguiIcon(mob/L)
 	if(!isliving(L))
 		return
 	if(ishuman(L)) //Utilize the body records for humans to avoid metagaming problems
@@ -538,7 +538,7 @@
 		SStgui.update_uis(src)
 		return TRUE
 
-/obj/machinery/synthesizer/proc/get_mob_for_picture(var/mob/living/LM)
+/obj/machinery/synthesizer/proc/get_mob_for_picture(mob/living/LM)
 	if(!istype(LM))
 		to_chat(usr, "Warning: Invalid selection. Please refresh the database.")
 		return FALSE
@@ -673,7 +673,7 @@
 	w_class = ITEMSIZE_NORMAL
 	volume = 100
 
-/obj/item/reagent_containers/synthdispcart/Initialize()
+/obj/item/reagent_containers/synthdispcart/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, volume)
 	update_icon()
