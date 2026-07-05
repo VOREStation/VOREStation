@@ -56,7 +56,7 @@ export const FoodSelectionMenu = (props) => {
               </Tabs>
             </Section>
           </Stack.Item>
-          <Stack.Item grow ml={2}>
+          <Stack.Item grow ml={1}>
             {selectedCrew ? (
               <Section title="Product Details" fill height="290px">
                 <Box>
@@ -134,7 +134,7 @@ export const FoodSelectionMenu = (props) => {
             </Tabs>
           </Section>
         </Stack.Item>
-        <Stack.Item grow>
+        <Stack.Item grow ml={1}>
           {selectedFood ? (
             <Section title="Product Details" fill>
               <Box>
