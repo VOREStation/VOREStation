@@ -26,10 +26,14 @@ export const FoodSelectionMenu = (props) => {
   } = data;
   crew_cookies;
 
-  const recipesToShow = menucatagories
-    .find((category) => category.id === active_menu)
-    ?.recipes.filter((recipe) => !recipe.hidden)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const recipesToShow =
+    menucatagories
+      .find((category) => category.id === active_menu)
+      ?.recipes.filter((recipe) => !recipe.hidden)
+      .sort((a, b) => a.name.localeCompare(b.name)) ?? [];
+
+  const selectedFood = recipesToShow.find((c) => c.type === activefood);
+  const selectedCrew = crew_cookies.find((c) => c.name === activecrew);
 
   useEffect(() => {
     if (active_menu !== 'crew' && !selectedFood && recipesToShow?.length) {
@@ -46,8 +50,6 @@ export const FoodSelectionMenu = (props) => {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   if (active_menu === 'crew') {
-    const selectedCrew = crew_cookies.find((c) => c.name === activecrew);
-
     return (
       <Section fill>
         <Stack fill>
@@ -126,7 +128,6 @@ export const FoodSelectionMenu = (props) => {
     );
   }
 
-  const selectedFood = recipesToShow.find((c) => c.type === activefood);
   return (
     <Section fill>
       <Stack fill>
