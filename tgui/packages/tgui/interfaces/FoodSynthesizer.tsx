@@ -1,56 +1,86 @@
-import { classes } from 'common/react';
-import { filter, sortBy } from 'common/collections';
-import { useBackend, useSharedState } from '../../backend';
+import { classes } from 'tgui-core/react';
+import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
   Button,
   LabeledList,
   Section,
-  Flex,
   Tabs,
   ProgressBar,
   Stack,
   Icon,
-} from '../../components';
-import { Window } from '../../layouts';
-import { flow } from 'common/fp';
+} from 'tgui-core/components';
+import { Window } from 'tgui/layouts';
 
-export const FoodSynthesizer = (props, context) => {
-  const { act, data } = useBackend(context);
+interface MenuCategory {
+  id: string;
+  name: string;
+  ref: string;
+  sortorder: number;
+}
+
+interface Recipe {
+  id: string;
+  name: string;
+  ref: string;
+  category: string;
+  desc?: string;
+  hidden?: boolean;
+}
+
+interface CrewCookie {
+  name: string;
+  species: string;
+  category: string;
+}
+
+interface BackendData {
+  isThereCart: boolean;
+  cartFillStatus: number;
+  active_menu: string;
+  menucatagories: MenuCategory[];
+  recipes: Recipe[];
+  activefood: boolean;
+  crew_cookies: CrewCookie[];
+  activecrew: boolean;
+  crewicon?: string;
+}
+
+interface TguiProps {
+  [key: string]: any;
+}
+
+export const FoodSynthesizer = (props: TguiProps, context: any) => {
   return (
-    <Window width={900} height={520} resizable>
-      <Window.Content>
+    <Window width={900} height={520}>
+      <Window.Content scrollable>
         <Section>
           <SynthCartGuage />
         </Section>
         <Section title="Menu Selection">
           <FoodMenuTabs />
         </Section>
-        <Flex>
-          <Flex.Item grow fill>
-            <FoodSelectionMenu />
-          </Flex.Item>
-        </Flex>
+        <FoodSelectionMenu />
       </Window.Content>
     </Window>
   );
 };
 
 /** Displays the current Cartridge status. */
-
-const SynthCartGuage = (props, context) => {
-  const { data } = useBackend(context);
+const SynthCartGuage = (props: TguiProps, context: any) => {
+  const { data } = useBackend<BackendData>(context);
   const { isThereCart, cartFillStatus } = data;
   const adjustedCartChange = cartFillStatus / 100;
+
   return (
     <Section title="Cartridge Status">
       {isThereCart ? (
         <LabeledList.Item label="Product Remaining">
-          {cartFillStatus ? (
-            <ProgressBar color="purple" value={adjustedCartChange} width={20} />
-          ) : (
-            <ProgressBar color="red" value={adjustedCartChange} width={20} />
-          )}
+          <ProgressBar 
+            color={cartFillStatus ? "purple" : "red"} 
+            value={adjustedCartChange} 
+            width={20} 
+          />
         </LabeledList.Item>
       ) : (
         <LabeledList.Item label="Cartridge Problem">
@@ -58,7 +88,7 @@ const SynthCartGuage = (props, context) => {
             One or more cartridges are missing or damaged. <br />
             <br />
             Sabresnacks Co. recommends ordering a genuine Sabresnacks
-            replacement cartidge through your local logistical cargo service.
+            replacement cartridge through your local logistical cargo service.
           </Box>
         </LabeledList.Item>
       )}
@@ -66,89 +96,89 @@ const SynthCartGuage = (props, context) => {
   );
 };
 
-/** Dynamic menu tabs for every listing in catagory groups. */
-
-const FoodMenuTabs = (props, context) => {
-  const { act, data } = useBackend(context);
+/** Dynamic menu tabs for every listing in category groups. */
+const FoodMenuTabs = (props: TguiProps, context: any) => {
+  const { act, data } = useBackend<BackendData>(context);
   const { active_menu, menucatagories } = data;
-  const menusToShow = menucatagories.sort((a, b) => a.sortorder - b.sortorder);
-  const [newMenu, setActiveMenu] = useSharedState(
+  
+  const menusToShow = [...menucatagories].sort((a, b) => a.sortorder - b.sortorder);
+  
+  const [, setActiveMenu] = useSharedState<string>(
     context,
     'ActiveMenu',
-    data.active_menu
+    active_menu
   );
 
-  let handleActivemenu = (newMenu) => {
+  const handleActiveMenu = (newMenu: string) => {
     setActiveMenu(newMenu);
     act('setactive_menu', { 'setactive_menu': newMenu });
   };
 
   return (
-    <Section>
-      <Stack>
-        <Stack.Item>
-          <Tabs fluid textAlign="center" flexWrap="wrap">
-            {menusToShow.map((menu) => (
-              <Tabs.Tab
-                key={menu.ref}
-                icon="list"
-                selected={menu.id === active_menu}
-                onClick={() => handleActivemenu(menu.id)}>
-                {menu.name}
-              </Tabs.Tab>
-            ))}
-          </Tabs>
-        </Stack.Item>
-      </Stack>
-    </Section>
+    <Stack>
+      <Stack.Item grow>
+        <Tabs fluid textAlign="center">
+          {menusToShow.map((menu) => (
+            <Tabs.Tab
+              key={menu.ref}
+              icon="list"
+              selected={menu.id === active_menu}
+              onClick={() => handleActiveMenu(menu.id)}>
+              {menu.name}
+            </Tabs.Tab>
+          ))}
+        </Tabs>
+      </Stack.Item>
+    </Stack>
   );
 };
 
-/** Chooses the menu item, displays information, and an image. Sorts via menu based catagory attribute listed in every catagory item. */
+interface FoodSelectionMenuProps {
+  iconkey?: string;
+}
 
-const FoodSelectionMenu = (props, context) => {
-  const { act, data } = useBackend(context);
+/** Chooses the menu item, displays information, and an image. */
+const FoodSelectionMenu = (props: FoodSelectionMenuProps, context: any) => {
+  const { act, data } = useBackend<BackendData>(context);
   const { active_menu, recipes, activefood, crew_cookies, activecrew } = data;
-  const { hidden } = data.recipes;
-
-  const { iconkey } = props;
 
   if (!recipes) {
     return <Box color="bad">Recipes records missing!</Box>;
   }
 
-  let handleActivefood = (newFood) => {
-    setActiveFood(newFood);
+  const [activeFoodState, setActiveFoodState] = useSharedState<Recipe | Recipe[]>(
+    context,
+    'ActiveFood',
+    recipes
+  );
+
+  const [activeCookieState, setActiveCookieState] = useSharedState<CrewCookie | CrewCookie[]>(
+    context,
+    'ActiveCookie',
+    crew_cookies
+  );
+
+  const singleActiveFood = activeFoodState as Recipe;
+  const singleActiveCookie = activeCookieState as CrewCookie;
+
+  const handleActiveFood = (newFood: Recipe) => {
+    setActiveFoodState(newFood);
     act('setactive_food', { 'setactive_food': newFood.id });
   };
 
-  const [ActiveFood, setActiveFood] = useSharedState(
-    context,
-    'ActiveFood',
-    data.recipes
-  );
-
-  const recipesToShow = flow([
-    filter((recipe) => recipe.catagory === active_menu),
-    filter((recipe) => !recipe.hidden || hidden),
-    sortBy((recipe) => recipe.name),
-  ])(recipes);
-
-  let handleActivecookie = (newCookie) => {
-    setActiveCookie(newCookie);
+  const handleActiveCookie = (newCookie: CrewCookie) => {
+    setActiveCookieState(newCookie);
     act('setactive_crew', { 'setactive_crew': newCookie.name });
   };
 
-  const [ActiveCookie, setActiveCookie] = useSharedState(
-    context,
-    'ActiveCookie',
-    data.crew_cookies
-  );
+  const recipesToShow = recipes
+    .filter((recipe) => recipe.category === active_menu)
+    .filter((recipe) => !recipe.hidden)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
-  const cookiesToShow = flow([
-    filter((cookie) => cookie.catagory === active_menu),
-    sortBy((cookie) => cookie.name),
-  ])(crew_cookies);
+  const cookiesToShow = crew_cookies
+    .filter((cookie) => cookie.category === active_menu)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   if (active_menu === 'crew') {
     return (
@@ -158,13 +188,12 @@ const FoodSelectionMenu = (props, context) => {
             <Section title="Food Selection" scrollable fill height="290px">
               <Tabs vertical>
                 {cookiesToShow.map((cookie) => (
-                  <Tabs.Tab>
+                  <Tabs.Tab key={cookie.name}>
                     <Button
-                      key={cookie.name}
                       fluid
                       content={cookie.name}
-                      selected={cookie === ActiveCookie}
-                      onClick={() => handleActivecookie(cookie)}
+                      selected={singleActiveCookie && cookie.name === singleActiveCookie.name}
+                      onClick={() => handleActiveCookie(cookie)}
                     />
                   </Tabs.Tab>
                 ))}
@@ -172,26 +201,26 @@ const FoodSelectionMenu = (props, context) => {
             </Section>
           </Stack.Item>
           <Stack.Item grow={1} ml={2}>
-            {activecrew ? (
+            {activecrew && singleActiveCookie ? (
               <Section title="Product Details" fill height="290px">
-                <Box key={ActiveCookie.name}>
+                <Box>
                   <Stack align="center" justify="flex-start">
                     <Stack.Item>
                       <LabeledList>
                         <LabeledList.Item label="Name">
-                          {ActiveCookie.name}
+                          {singleActiveCookie.name}
                         </LabeledList.Item>
                         <br />
                         <LabeledList.Item label="Species">
-                          {ActiveCookie.species}
+                          {singleActiveCookie.species}
                         </LabeledList.Item>
                       </LabeledList>
                       <Button
                         content="Print this Cookie"
                         onClick={() =>
-                          act('crewprint', { crewprint: ActiveCookie.name })
+                          act('crewprint', { crewprint: singleActiveCookie.name })
                         }>
-                        <CrewCookieIcon key={ActiveCookie.name} />
+                        <CrewCookieIcon />
                       </Button>
                       <br />
                       <br />
@@ -232,13 +261,12 @@ const FoodSelectionMenu = (props, context) => {
           <Section title="Food Selection" scrollable fill height="290px">
             <Tabs vertical>
               {recipesToShow.map((recipe) => (
-                <Tabs.Tab>
+                <Tabs.Tab key={recipe.ref}>
                   <Button
-                    key={recipe.ref}
                     fluid
                     content={recipe.name}
-                    selected={recipe === ActiveFood}
-                    onClick={() => handleActivefood(recipe)}
+                    selected={singleActiveFood && recipe.ref === singleActiveFood.ref}
+                    onClick={() => handleActiveFood(recipe)}
                   />
                 </Tabs.Tab>
               ))}
@@ -246,33 +274,31 @@ const FoodSelectionMenu = (props, context) => {
           </Section>
         </Stack.Item>
         <Stack.Item grow={1} ml={4}>
-          {activefood ? (
+          {activefood && singleActiveFood ? (
             <Section title="Product Details" fill height="290px">
               <Box>
                 <Stack align="center" justify="flex-start">
                   <Stack.Item>
-                    <Section>
-                      <LabeledList>
-                        <LabeledList.Item label="Name">
-                          {ActiveFood.name}
-                        </LabeledList.Item>
-                        <br />
-                        <LabeledList.Item label="Description">
-                          {ActiveFood.desc}
-                        </LabeledList.Item>
-                      </LabeledList>
+                    <LabeledList>
+                      <LabeledList.Item label="Name">
+                        {singleActiveFood.name}
+                      </LabeledList.Item>
                       <br />
-                      <Button
-                        content="Print this meal"
-                        width={'128px'}
-                        height={'128px'}
-                        className={classes([
-                          'synthesizer128x128',
-                          ActiveFood.id,
-                        ])}
-                        onClick={() => act('make', { make: ActiveFood.ref })}
-                      />{' '}
-                    </Section>
+                      <LabeledList.Item label="Description">
+                        {singleActiveFood.desc || 'No description available.'}
+                      </LabeledList.Item>
+                    </LabeledList>
+                    <br />
+                    <Button
+                      content="Print this meal"
+                      width="128px"
+                      height="128px"
+                      className={classes([
+                        'synthesizer128x128',
+                        singleActiveFood.id,
+                      ])}
+                      onClick={() => act('make', { make: singleActiveFood.ref })}
+                    />
                   </Stack.Item>
                 </Stack>
               </Box>
@@ -288,15 +314,15 @@ const FoodSelectionMenu = (props, context) => {
   );
 };
 
-const CrewCookieIcon = (props, context) => {
-  const { data } = useBackend(context);
+const CrewCookieIcon = (props: TguiProps, context: any) => {
+  const { data } = useBackend<BackendData>(context);
   const { crewicon } = data;
 
   return (
     <Section>
       {crewicon ? (
         <img
-          src={crewicon.substr(1, crewicon.length - 2)} // RS Edit
+          src={crewicon.substring(1, crewicon.length - 1)}
           style={{
             position: 'relative',
             left: 0,
@@ -305,18 +331,18 @@ const CrewCookieIcon = (props, context) => {
             bottom: 0,
             width: '128px',
             height: '128px',
-            imageRendering: 'pixelated', // RS Add || For Chromium (516)
-            '-ms-interpolation-mode': 'nearest-neighbor', // For IE (515)
+            imageRendering: 'pixelated',
           }}
+          alt="Crew Cookie Icon"
         />
       ) : (
         <Icon
           style={{
             position: 'relative',
-            left: 10,
-            right: 10,
-            top: 10,
-            bottom: 10,
+            left: '10px',
+            right: '10px',
+            top: '10px',
+            bottom: '10px',
             width: '128px',
             height: '128px',
           }}
