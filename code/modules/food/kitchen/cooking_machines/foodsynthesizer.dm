@@ -188,7 +188,7 @@
 			)))
 		for(var/datum/category_item/synthesizer/food in menulist.items)
 			recipes.Add(list(list(
-				"catagory" 		= menulist.id,
+				"category" 		= menulist.id,
 				"name" 			= food.name,
 				"id"			= food.id,
 				"desc" 			= food.desc,
