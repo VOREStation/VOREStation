@@ -3,6 +3,7 @@ import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
+  Divider,
   LabeledList,
   Section,
   Stack,
@@ -14,8 +15,14 @@ import type { Data } from '../types';
 
 export const FoodSelectionMenu = (props) => {
   const { act, data } = useBackend<Data>();
-  const { menucatagories, active_menu, activefood, crew_cookies, activecrew } =
-    data;
+  const {
+    busy,
+    menucatagories,
+    active_menu,
+    activefood,
+    crew_cookies,
+    activecrew,
+  } = data;
   crew_cookies;
 
   const recipesToShow = menucatagories
@@ -36,7 +43,7 @@ export const FoodSelectionMenu = (props) => {
 
     return (
       <Section fill>
-        <Stack>
+        <Stack fill>
           <Stack.Item basis="30%">
             <Section title="Food Selection" scrollable fill>
               <Tabs vertical>
@@ -62,54 +69,49 @@ export const FoodSelectionMenu = (props) => {
           </Stack.Item>
           <Stack.Item grow ml={1}>
             {selectedCrew ? (
-              <Section title="Product Details" fill>
-                <Box>
-                  <Stack align="center" justify="flex-start">
-                    <Stack.Item>
-                      <LabeledList>
-                        <LabeledList.Item label="Name">
-                          {selectedCrew.name}
-                        </LabeledList.Item>
-                        <br />
-                        <LabeledList.Item label="Species">
-                          {selectedCrew.species}
-                        </LabeledList.Item>
-                      </LabeledList>
-                      <Button
-                        align="center"
-                        color="transparent"
-                        onClick={() =>
-                          act('crewprint', {
-                            crewprint: selectedCrew.name,
-                          })
-                        }
-                      >
-                        <CrewCookieIcon />
-                        <Box>Print this Cookie</Box>
-                      </Button>
-                      <br />
-                      <br />
-                      <Box>
-                        <Button onClick={() => act('refresh')}>
-                          Refresh Information
-                        </Button>
-                      </Box>
-                    </Stack.Item>
-                  </Stack>
-                </Box>
+              <Section title="Product Details" fill scrollable>
+                <Stack vertical>
+                  <Stack.Item>
+                    <LabeledList>
+                      <LabeledList.Item label="Name">
+                        {selectedCrew.name}
+                      </LabeledList.Item>
+                      <LabeledList.Item label="Species">
+                        {selectedCrew.species}
+                      </LabeledList.Item>
+                    </LabeledList>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      disabled={busy}
+                      align="center"
+                      color="transparent"
+                      onClick={() =>
+                        act('crewprint', {
+                          crewprint: selectedCrew.name,
+                        })
+                      }
+                    >
+                      <CrewCookieIcon />
+                      <Box>Print this Cookie</Box>
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Divider />
+                  <Stack.Item>
+                    <Button onClick={() => act('refresh')}>
+                      Refresh Information
+                    </Button>
+                  </Stack.Item>
+                </Stack>
               </Section>
             ) : (
-              <Section>
+              <>
                 <Box color="label">Please select an offering.</Box>
-                <br />
-                <br />
-                <br />
-                <Box>
-                  <Button onClick={() => act('refresh')}>
-                    Refresh Information
-                  </Button>
-                </Box>
-              </Section>
+                <Divider />
+                <Button onClick={() => act('refresh')}>
+                  Refresh Information
+                </Button>
+              </>
             )}
           </Stack.Item>
         </Stack>
@@ -142,41 +144,40 @@ export const FoodSelectionMenu = (props) => {
         </Stack.Item>
         <Stack.Item grow ml={1}>
           {selectedFood ? (
-            <Section title="Product Details" fill>
-              <Box>
-                <Stack align="center" justify="flex-start">
-                  <Stack.Item>
-                    <LabeledList>
-                      <LabeledList.Item label="Name">
-                        {selectedFood.name}
-                      </LabeledList.Item>
-                      <LabeledList.Divider />
-                      <LabeledList.Item label="Description">
-                        {selectedFood.desc || 'No description available.'}
-                      </LabeledList.Item>
-                      <LabeledList.Divider />
-                    </LabeledList>
-                    <Button
-                      align="center"
-                      color="transparent"
-                      onClick={() => act('make', { make: selectedFood.ref })}
-                    >
-                      <Box
-                        className={classes([
-                          'synthesizer128x128',
-                          sanitizeCssClassName(selectedFood.type),
-                        ])}
-                      />
-                      <Box>Print this meal</Box>
-                    </Button>
-                  </Stack.Item>
-                </Stack>
-              </Box>
+            <Section title="Product Details" fill scrollable>
+              <Stack vertical>
+                <Stack.Item>
+                  <LabeledList>
+                    <LabeledList.Item label="Name">
+                      {selectedFood.name}
+                    </LabeledList.Item>
+                    <LabeledList.Divider />
+                    <LabeledList.Item label="Description">
+                      {selectedFood.desc || 'No description available.'}
+                    </LabeledList.Item>
+                    <LabeledList.Divider />
+                  </LabeledList>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    disabled={busy}
+                    align="center"
+                    color="transparent"
+                    onClick={() => act('make', { make: selectedFood.ref })}
+                  >
+                    <Box
+                      className={classes([
+                        'synthesizer128x128',
+                        sanitizeCssClassName(selectedFood.type),
+                      ])}
+                    />
+                    <Box>Print this meal</Box>
+                  </Button>
+                </Stack.Item>
+              </Stack>
             </Section>
           ) : (
-            <Section>
-              <Box color="label">Please select an offering.</Box>
-            </Section>
+            <Box color="label">Please select an offering.</Box>
           )}
         </Stack.Item>
       </Stack>

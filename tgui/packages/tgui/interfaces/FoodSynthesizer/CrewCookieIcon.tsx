@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Icon, Image, Section } from 'tgui-core/components';
+import { Icon, Image } from 'tgui-core/components';
 import type { Data } from './types';
 
 export const CrewCookieIcon = (props) => {

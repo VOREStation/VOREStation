@@ -13,7 +13,7 @@ type Recipe = {
   name: string;
   ref: string;
   desc?: string;
-  hidden?: boolean;
+  hidden?: BooleanLike;
 };
 
 type CrewCookie = {
@@ -23,6 +23,7 @@ type CrewCookie = {
 };
 
 export type Data = {
+  busy: BooleanLike;
   isThereCart: BooleanLike;
   cartFillStatus?: number;
   active_menu: string;

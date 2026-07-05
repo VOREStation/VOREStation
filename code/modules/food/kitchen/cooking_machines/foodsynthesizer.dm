@@ -142,13 +142,14 @@
 	return ..()
 
 /obj/machinery/synthesizer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/list/data = ..()
-
-	data["isThereCart"] = cart
-	data["active_menu"] = active_menu
-	data["activefood"] = activefood
-	data["activecrew"] = activecrew
-	data["crewicon"] = tgui_icons
+	var/list/data = list(
+		"busy" = busy,
+		"isThereCart" = cart,
+		"active_menu" = active_menu,
+		"activefood" = activefood,
+		"activecrew" = activecrew,
+		"crewicon" = tgui_icons
+	)
 
 	if(cart)
 		var/percent = round((cart.reagents.total_volume / cart.reagents.maximum_volume) * 100)

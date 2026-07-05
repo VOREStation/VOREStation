@@ -5,7 +5,7 @@ import type { Data } from '../types';
 /** Displays the current Cartridge status. */
 export const SynthCartGuage = (props) => {
   const { data } = useBackend<Data>();
-  const { isThereCart, cartFillStatus } = data;
+  const { isThereCart, cartFillStatus = 0 } = data;
   const adjustedCartChange = cartFillStatus / 100;
 
   return (
