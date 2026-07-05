@@ -1,3 +1,4 @@
+import { sanitizeCssClassName } from 'common/css_sanity';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -156,7 +157,7 @@ export const FoodSelectionMenu = (props) => {
                       height="128px"
                       className={classes([
                         'synthesizer128x128',
-                        selectedFood.id,
+                        sanitizeCssClassName(selectedFood.id),
                       ])}
                       onClick={() => act('make', { make: selectedFood.ref })}
                     >
