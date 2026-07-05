@@ -242,9 +242,9 @@
 		if(!name)
 			continue
 
-		// our crew cookies are only applicable on the crew menu, and we're reusing our catagory sorting as much as possible!
+		// our crew cookies are only applicable on the crew menu, and we're reusing our category sorting as much as possible!
 		crew_cookies.Add(list(list(
-				"catagory" = "crew",
+				"category" = "crew",
 				"name" = name,
 				"species" = species
 		)))
