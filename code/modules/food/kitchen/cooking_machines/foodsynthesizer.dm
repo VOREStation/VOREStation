@@ -40,7 +40,6 @@
 
 	//all of our food
 	var/static/datum/category_collection/synthesizer/synthesizer_recipes
-	var/static/list/menucatagory_list
 	var/active_menu = "appasnacc"
 	var/activefood
 	var/food_mimic_storage
