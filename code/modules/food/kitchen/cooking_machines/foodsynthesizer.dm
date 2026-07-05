@@ -171,6 +171,7 @@
 		UNTYPED_LIST_ADD(menucatagories, list(
 			"name"		= menulist.name,
 			"id"		= menulist.id,
+			"sortorder"	= menulist.sortorder,
 			"ref"		= text_ref(menulist),
 			"recipes"	= recipes
 			))
