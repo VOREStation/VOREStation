@@ -6,7 +6,7 @@ import { SynthCartGuage } from './SubTabs/SynthCartGuage';
 
 export const FoodSynthesizer = (props) => {
   return (
-    <Window width={900} height={520}>
+    <Window width={765} height={520}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
