@@ -386,56 +386,55 @@
 				to_chat(usr, "Warning: Invalid selection.")
 				return FALSE
 
-			else
-				//Check if we still have the materials.
-				var/obj/item/reagent_containers/synthdispcart/C = cart
-				if(src.check_cart(C, usr))
-					//Sanity check.
-					busy = TRUE
-					update_use_power(USE_POWER_ACTIVE)
-					update_icon() // light up time
-					C.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST) //Drain our fuel
-					sleep(speed_grade) //machine go brrr
+			//Check if we still have the materials.
+			var/obj/item/reagent_containers/synthdispcart/C = cart
+			if(src.check_cart(C, usr))
+				//Sanity check.
+				busy = TRUE
+				update_use_power(USE_POWER_ACTIVE)
+				update_icon() // light up time
+				C.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST) //Drain our fuel
+				sleep(speed_grade) //machine go brrr
 
-					//Create the cookie base.
-					var/obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock(src.loc)
+				//Create the cookie base.
+				var/obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock(src.loc)
 
-					//Begin mimicking the micro
-					var/vore_flavor
-					if(found?.vore_taste)
-						vore_flavor = found.vore_taste
-					else
-						vore_flavor = "Something impalpable"
-
-					meal.name = found.real_name
-					meal.desc = "A tiny replica of a crewmate!"
-					var/icon/F = crewpicture
-					F.Scale(16, 16) //Half size
-					meal.icon = F
-					meal.icon_state = null
-
-					//flavor mixing, make the cookie taste somewhat like the real thing!
-					for(var/datum/reagent/foodpaste in meal.reagents.reagent_list)
-						if(foodpaste.id == REAGENT_ID_NUTRIPASTE) //This should be the only reagent, actually.
-							foodpaste.taste_description += " as well as [vore_flavor]"
-							foodpaste.data = list(foodpaste.taste_description = 1)
-							meal.nutriment_desc = list(foodpaste.taste_description = 1)
-
-					if(src.menu_grade >= 2) //Is the machine upgraded?
-						meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + src.menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
-
-					src.audible_message("<span class='notice'>Please take your miniature [meal.name].</span>", runemessage = "Minature [meal.name] is complete!")
-					if(Adjacent(usr))
-						usr.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
-					else
-						meal.loc = src.loc //otherwise we anti-clump layer onto the floor
-						meal.randpixel_xy()
-					busy = FALSE
-					update_icon() //turn off lights, please.
+				//Begin mimicking the micro
+				var/vore_flavor
+				if(found?.vore_taste)
+					vore_flavor = found.vore_taste
 				else
-					src.audible_message("<span class='notice'>Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install.</span>", runemessage = "Error: Insufficent Materials!")
-					return FALSE
-				return TRUE
+					vore_flavor = "Something impalpable"
+
+				meal.name = found.real_name
+				meal.desc = "A tiny replica of a crewmate!"
+				var/icon/F = crewpicture
+				F.Scale(16, 16) //Half size
+				meal.icon = F
+				meal.icon_state = null
+
+				//flavor mixing, make the cookie taste somewhat like the real thing!
+				for(var/datum/reagent/foodpaste in meal.reagents.reagent_list)
+					if(foodpaste.id == REAGENT_ID_NUTRIPASTE) //This should be the only reagent, actually.
+						foodpaste.taste_description += " as well as [vore_flavor]"
+						foodpaste.data = list(foodpaste.taste_description = 1)
+						meal.nutriment_desc = list(foodpaste.taste_description = 1)
+
+				if(src.menu_grade >= 2) //Is the machine upgraded?
+					meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + src.menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
+
+				src.audible_message("<span class='notice'>Please take your miniature [meal.name].</span>", runemessage = "Minature [meal.name] is complete!")
+				if(Adjacent(usr))
+					usr.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
+				else
+					meal.loc = src.loc //otherwise we anti-clump layer onto the floor
+					meal.randpixel_xy()
+				busy = FALSE
+				update_icon() //turn off lights, please.
+			else
+				src.audible_message("<span class='notice'>Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install.</span>", runemessage = "Error: Insufficent Materials!")
+				return FALSE
+			return TRUE
 
 /obj/machinery/synthesizer/update_icon()
 	cut_overlays()
@@ -651,6 +650,7 @@
 		menu_grade = S.rating //how much bonus Nutriment is added to the printed food. the regular wafer is only 5.
 		// Science parts will be of help if they bother.
 
+#undef SYNTH_FOOD_COST
 //Cartridge Item handling
 /obj/item/reagent_containers/synthdispcart
 	name = "Synthesizer cartridge"

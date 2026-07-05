@@ -3,14 +3,11 @@
 	name = "synthesizer"
 
 /datum/asset/spritesheet_batched/synthesizer/create_spritesheets()
-	for (var/datum/category_item/synthesizer/path as anything in subtypesof(/datum/category_item/synthesizer))
-		var/icon_file
-		var/icon_state
-		var/icon/I
+	for(var/datum/category_item/synthesizer/path as anything in subtypesof(/datum/category_item/synthesizer))
+		var/key = sanitize_css_class_name("[path.type]")
 		var/atom/item = initial(path.build_path)
-		icon_file = initial(item.icon)
-		icon_state = initial(item.icon_state)
-		I = icon(icon_file, icon_state, SOUTH)
-		I.Scale(128, 128) //enbiggen for the menu UI
-		insert_icon(initial(path.id), I)
-	..()
+		var/datum/universal_icon/icon = get_display_icon_for(item)
+		if(!icon || !icon.icon_file)
+			continue
+		icon.scale(128, 128) //enbiggen for the menu UI
+		insert_icon(key, icon)
