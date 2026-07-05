@@ -4,7 +4,6 @@ import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
-  Divider,
   LabeledList,
   Section,
   Stack,
@@ -26,13 +25,12 @@ export const FoodSelectionMenu = (props) => {
   } = data;
   crew_cookies;
 
-  const recipesToShow =
-    menucatagories
-      .find((category) => category.id === active_menu)
-      ?.recipes.filter((recipe) => !recipe.hidden)
-      .sort((a, b) => a.name.localeCompare(b.name)) ?? [];
+  const recipesToShow = menucatagories
+    .find((category) => category.id === active_menu)
+    ?.recipes.filter((recipe) => !recipe.hidden)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
-  const selectedFood = recipesToShow.find((c) => c.type === activefood);
+  const selectedFood = recipesToShow?.find((c) => c.type === activefood);
   const selectedCrew = crew_cookies.find((c) => c.name === activecrew);
 
   useEffect(() => {
@@ -49,35 +47,66 @@ export const FoodSelectionMenu = (props) => {
     .filter((cookie) => cookie.category === active_menu)
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  if (active_menu === 'crew') {
-    return (
-      <Section fill>
-        <Stack fill>
-          <Stack.Item basis="30%">
-            <Section title="Food Selection" scrollable fill>
-              <Tabs vertical>
-                {cookiesToShow.map((cookie) => (
-                  <Tabs.Tab key={cookie.name}>
-                    <Button
-                      fluid
-                      selected={
-                        selectedCrew && cookie.name === selectedCrew.name
-                      }
-                      onClick={() => {
-                        act('setactive_crew', {
-                          setactive_crew: cookie.name,
-                        });
-                      }}
-                    >
-                      {cookie.name}
-                    </Button>
-                  </Tabs.Tab>
-                ))}
-              </Tabs>
-            </Section>
-          </Stack.Item>
-          <Stack.Item grow ml={1}>
-            {selectedCrew ? (
+  return (
+    <Section fill>
+      <Stack fill>
+        <Stack.Item basis="30%">
+          <Section
+            title="Food Selection"
+            scrollable
+            fill
+            buttons={
+              active_menu === 'crew' && (
+                <Button
+                  onClick={() => act('refresh')}
+                  tooltip="Refresh"
+                  icon="arrows-rotate"
+                />
+              )
+            }
+          >
+            <Tabs vertical>
+              {active_menu === 'crew'
+                ? cookiesToShow.map((cookie) => (
+                    <Tabs.Tab key={cookie.name}>
+                      <Button
+                        fluid
+                        selected={
+                          selectedCrew && cookie.name === selectedCrew.name
+                        }
+                        onClick={() => {
+                          act('setactive_crew', {
+                            setactive_crew: cookie.name,
+                          });
+                        }}
+                      >
+                        {cookie.name}
+                      </Button>
+                    </Tabs.Tab>
+                  ))
+                : recipesToShow.map((recipe) => (
+                    <Tabs.Tab key={recipe.ref}>
+                      <Button
+                        fluid
+                        selected={
+                          selectedFood && recipe.ref === selectedFood.ref
+                        }
+                        onClick={() =>
+                          act('setactive_food', {
+                            setactive_food: recipe.type,
+                          })
+                        }
+                      >
+                        {recipe.name}
+                      </Button>
+                    </Tabs.Tab>
+                  ))}
+            </Tabs>
+          </Section>
+        </Stack.Item>
+        <Stack.Item grow ml={1}>
+          {active_menu === 'crew' ? (
+            selectedCrew ? (
               <Section title="Product Details" fill scrollable>
                 <Stack vertical>
                   <Stack.Item>
@@ -114,44 +143,9 @@ export const FoodSelectionMenu = (props) => {
                 </Stack>
               </Section>
             ) : (
-              <>
-                <Box color="label">Please select an offering.</Box>
-                <Divider />
-                <Button onClick={() => act('refresh')}>
-                  Refresh Information
-                </Button>
-              </>
-            )}
-          </Stack.Item>
-        </Stack>
-      </Section>
-    );
-  }
-
-  return (
-    <Section fill>
-      <Stack fill>
-        <Stack.Item basis="30%">
-          <Section title="Food Selection" scrollable fill>
-            <Tabs vertical>
-              {recipesToShow.map((recipe) => (
-                <Tabs.Tab key={recipe.ref}>
-                  <Button
-                    fluid
-                    selected={selectedFood && recipe.ref === selectedFood.ref}
-                    onClick={() =>
-                      act('setactive_food', { setactive_food: recipe.type })
-                    }
-                  >
-                    {recipe.name}
-                  </Button>
-                </Tabs.Tab>
-              ))}
-            </Tabs>
-          </Section>
-        </Stack.Item>
-        <Stack.Item grow ml={1}>
-          {selectedFood ? (
+              <Box color="label">Please select an offering.</Box>
+            )
+          ) : selectedFood ? (
             <Section title="Product Details" fill scrollable>
               <Stack vertical>
                 <Stack.Item>
