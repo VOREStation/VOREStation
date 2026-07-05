@@ -11,5 +11,5 @@
 
 		icon.scale(128, 128) //enbiggen for the menu UI
 
-		var/key = sanitize_css_class_name("[path::id]")
+		var/key = sanitize_css_class_name("[path::type]")
 		insert_icon(key, icon)

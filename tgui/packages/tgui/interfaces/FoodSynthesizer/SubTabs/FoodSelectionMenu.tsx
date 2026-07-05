@@ -14,15 +14,18 @@ import type { Data } from '../types';
 
 export const FoodSelectionMenu = (props) => {
   const { act, data } = useBackend<Data>();
-  const { active_menu, recipes, activefood, crew_cookies, activecrew } = data;
+  const { menucatagories, active_menu, activefood, crew_cookies, activecrew } =
+    data;
   crew_cookies;
-  if (!recipes) {
-    return <Box color="bad">Recipes records missing!</Box>;
-  }
 
-  const recipesToShow = recipes
-    .filter((recipe) => recipe.category === active_menu && !recipe.hidden)
+  const recipesToShow = menucatagories
+    .find((category) => category.id === active_menu)
+    ?.recipes.filter((recipe) => !recipe.hidden)
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  if (!recipesToShow) {
+    return <Box color="bad">No recipes found!</Box>;
+  }
 
   const cookiesToShow = crew_cookies
     .filter((cookie) => cookie.category === active_menu)
@@ -73,14 +76,16 @@ export const FoodSelectionMenu = (props) => {
                         </LabeledList.Item>
                       </LabeledList>
                       <Button
+                        align="center"
+                        color="transparent"
                         onClick={() =>
                           act('crewprint', {
                             crewprint: selectedCrew.name,
                           })
                         }
                       >
-                        Print this Cookie
                         <CrewCookieIcon />
+                        <Box>Print this Cookie</Box>
                       </Button>
                       <br />
                       <br />
@@ -112,7 +117,7 @@ export const FoodSelectionMenu = (props) => {
     );
   }
 
-  const selectedFood = recipes.find((c) => c.id === activefood);
+  const selectedFood = recipesToShow.find((c) => c.type === activefood);
   return (
     <Section fill>
       <Stack fill>
@@ -125,7 +130,7 @@ export const FoodSelectionMenu = (props) => {
                     fluid
                     selected={selectedFood && recipe.ref === selectedFood.ref}
                     onClick={() =>
-                      act('setactive_food', { setactive_food: recipe.id })
+                      act('setactive_food', { setactive_food: recipe.type })
                     }
                   >
                     {recipe.name}
@@ -153,15 +158,16 @@ export const FoodSelectionMenu = (props) => {
                     </LabeledList>
                     <Button
                       align="center"
-                      width="128px"
-                      height="128px"
-                      className={classes([
-                        'synthesizer128x128',
-                        sanitizeCssClassName(selectedFood.id),
-                      ])}
+                      color="transparent"
                       onClick={() => act('make', { make: selectedFood.ref })}
                     >
-                      Print this meal
+                      <Box
+                        className={classes([
+                          'synthesizer128x128',
+                          sanitizeCssClassName(selectedFood.type),
+                        ])}
+                      />
+                      <Box>Print this meal</Box>
                     </Button>
                   </Stack.Item>
                 </Stack>

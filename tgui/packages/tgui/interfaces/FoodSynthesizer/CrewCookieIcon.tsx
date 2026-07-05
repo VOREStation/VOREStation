@@ -7,7 +7,7 @@ export const CrewCookieIcon = (props) => {
   const { crewicon } = data;
 
   return (
-    <Section>
+    <>
       {crewicon ? (
         <Image
           src={crewicon.substring(1, crewicon.length - 1)}
@@ -17,6 +17,6 @@ export const CrewCookieIcon = (props) => {
       ) : (
         <Icon width="128px" height="128px" fontSize={4} name="camera" />
       )}
-    </Section>
+    </>
   );
 };

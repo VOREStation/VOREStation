@@ -35,7 +35,7 @@
 	circuit = /obj/item/circuitboard/synthesizer
 
 	//loaded cartridge
-	var/obj/item/reagent_containers/synthdispcart/cart
+	var/obj/item/reagent_containers/synthdispcart/cart = /obj/item/reagent_containers/synthdispcart
 	var/cart_type = ITEMSIZE_LARGE
 
 	//all of our food
@@ -53,19 +53,14 @@
 	var/icon/crewpicture
 	var/activecrew
 	var/refresh_delay = 10 SECONDS
-	var/db_key
-	var/datum/transcore_db/our_db
-
 
 /obj/machinery/synthesizer/Initialize(mapload)
 	. = ..()
 	if(!synthesizer_recipes)
 		synthesizer_recipes = new()
-	our_db = SStranscore.db_by_key(db_key)
-	cart = new /obj/item/reagent_containers/synthdispcart(src)
-	wires = new(src)
+	cart = new cart(src)
+	wires = new/datum/wires/synthesizer(src)
 	default_apply_parts()
-	RefreshParts()
 	update_icon()
 
 	if(!pixel_x && !pixel_y)
@@ -76,18 +71,15 @@
 	icon_state = "portsynth"
 	cart_type = ITEMSIZE_NORMAL
 	circuit = /obj/item/circuitboard/synthesizer/mini
-
-/obj/machinery/synthesizer/mini/Initialize(mapload)
-	. = ..()
-	cart = new /obj/item/reagent_containers/synthdispcart/small(src)
+	cart = /obj/item/reagent_containers/synthdispcart/small
 
 /obj/machinery/synthesizer/Destroy()
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
 
 	for(var/obj/item/reagent_containers/synthdispcart/C in cart)
 		C.loc = get_turf(src.loc)
 		C = null
+	QDEL_NULL(cart)
 	clear_tgui_icons()
 	return ..()
 
@@ -100,8 +92,6 @@
 		if(istype(C) && C.reagents && C.reagents.total_volume)
 			var/percent = round((C.reagents.total_volume / C.volume) * 100)
 			. += "The installed cartridge has [percent]% remaining."
-
-	return
 
 //offsets to make the machine squish to a wall. They're all south facing so it looks weird but every other direction is AWFUL
 /obj/machinery/synthesizer/proc/offset_synth()
@@ -127,7 +117,6 @@
 /obj/machinery/synthesizer/proc/clear_tgui_icons()
 	tgui_icons = null
 	crewpicture = null
-	SStgui.update_uis(src)
 
 // And literally this is all that's needed for conventional meals. lmao.
 /obj/machinery/synthesizer/ui_assets(mob/user)
@@ -155,51 +144,38 @@
 /obj/machinery/synthesizer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
-	data["busy"] = busy
-	data["isThereCart"] = cart ? TRUE : FALSE
+	data["isThereCart"] = cart
 	data["active_menu"] = active_menu
 	data["activefood"] = activefood
 	data["activecrew"] = activecrew
 	data["crewicon"] = tgui_icons
-	//We probably want to dynamically check if there's a canister every time too.
-	var/cartfilling[0]
-	if(cart && cart.reagents && cart.reagents.reagent_list.len)
-		for(var/datum/reagent/R in cart.reagents.reagent_list)
-			cartfilling.Add(list(list(
-				"volume" = R.volume
-				)))
-	data["cartfilling"] = cartfilling
-	//Especially since we need to maintain a 'fill level'
+
 	if(cart)
 		var/percent = round((cart.reagents.total_volume / cart.reagents.maximum_volume) * 100)
-		data["cartFillStatus"] = cart ? percent : null
+		data["cartFillStatus"] = percent
 	return data
 
 /obj/machinery/synthesizer/tgui_static_data(mob/user)
 	var/list/data = ..()
 	var/list/menucatagories = list()
-	var/list/recipes = list()
 	for(var/datum/category_group/synthesizer/menulist in synthesizer_recipes.categories)
-		menucatagories.Add(list(list(
-			"name"		= menulist.name,
-			"id"		= menulist.id,
-			"sortorder"	= menulist.sortorder,
-			"ref"		= text_ref(menulist)
-			)))
+		var/list/recipes = list()
 		for(var/datum/category_item/synthesizer/food in menulist.items)
-			recipes.Add(list(list(
-				"category" 		= menulist.id,
+			UNTYPED_LIST_ADD(recipes, list(
 				"name" 			= food.name,
-				"id"			= food.id,
+				"type"			= food.type,
 				"desc" 			= food.desc,
-				"voice_order"	= food.voice_order,
-				"voice_temp"	= food.voice_temp,
 				"hidden"		= food.hidden,
 				"ref"			= text_ref(food)
-				)))
+				))
+		UNTYPED_LIST_ADD(menucatagories, list(
+			"name"		= menulist.name,
+			"id"		= menulist.id,
+			"ref"		= text_ref(menulist),
+			"recipes"	= recipes
+			))
 
 	data["menucatagories"] = menucatagories
-	data["recipes"] = recipes
 
 	var/list/crew_cookies = list()
 	for(var/client/C in GLOB.clients)
@@ -213,10 +189,10 @@
 		if(ishuman(C.mob))
 			var/mob/living/carbon/human/H = C.mob
 			//Utilize the body records for humans to avoid metagaming problems (EX: using the cookie printer to check if someone is ghosting from the main menu)
-			var/datum/transcore_db/db = SStranscore.db_by_key(db_key)
+			var/datum/transcore_db/db = SStranscore.db_by_key()
 			if(db)
-				var/datum/transhuman/body_record/BR = our_db.body_scans[H.mind.name]
-				if(!BR) //extra check to make sure people have a body record, and no-one will immediately on start.
+				var/datum/transhuman/body_record/b_rec = db.body_scans[H.mind.name]
+				if(!b_rec) //extra check to make sure people have a body record, and no-one will immediately on start.
 					continue
 			name = H.real_name
 			species = "[H.custom_species ? H.custom_species : H.species.name]"
@@ -253,17 +229,20 @@
 	return data
 
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	if(stat & (BROKEN|NOPOWER))
-		return
-	if(ui.user.stat || ui.user.restrained())
-		return
 	if(..())
 		return TRUE
+
+	if(stat & (BROKEN|NOPOWER))
+		return FALSE
+
+	if(ui.user.stat || ui.user.restrained())
+		return FALSE
+
 	add_fingerprint(ui.user)
 
 	if(busy)
 		to_chat(ui.user, span_notice("The synthesizer is busy. Please wait for completion of previous operation."))
-		return
+		return FALSE
 
 	switch(action)
 		if("setactive_menu")
@@ -485,12 +464,12 @@
 	if(cart) // let's hot swap that bad boy.
 		remove_cart(user)
 		return
-	else
-		user.drop_from_inventory(C)
-		cart = C
-		C.loc = src
-		C.add_fingerprint(user)
-		to_chat(user, span_notice("You add [C] to \the [src]."))
+
+	user.drop_from_inventory(C)
+	cart = C
+	C.loc = src
+	C.add_fingerprint(user)
+	to_chat(user, span_notice("You add [C] to \the [src]."))
 	update_icon()
 	SStgui.update_uis(src)
 	return
@@ -586,8 +565,7 @@
 	if(default_deconstruction_crowbar(user, W))
 		return
 
-	else
-		return ..()
+	return ..()
 
 /obj/machinery/synthesizer/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
@@ -685,8 +663,6 @@
 	if(reagents && reagents.total_volume)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		. += "The cartridge has [percent]% remaining."
-
-	return
 
 /obj/item/reagent_containers/synthdispcart/is_open_container()
 	return FALSE //sealed, proprietary container. aka preventing alternative beaker memes.

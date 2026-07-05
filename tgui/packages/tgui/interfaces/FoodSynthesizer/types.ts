@@ -1,15 +1,17 @@
+import type { BooleanLike } from 'tgui-core/react';
+
 type MenuCategory = {
   id: string;
   name: string;
   ref: string;
+  recipes: Recipe[];
   sortorder: number;
 };
 
 type Recipe = {
-  id: string;
+  type: string;
   name: string;
   ref: string;
-  category: string;
   desc?: string;
   hidden?: boolean;
 };
@@ -21,11 +23,10 @@ type CrewCookie = {
 };
 
 export type Data = {
-  isThereCart: boolean;
-  cartFillStatus: number;
+  isThereCart: BooleanLike;
+  cartFillStatus?: number;
   active_menu: string;
   menucatagories: MenuCategory[];
-  recipes: Recipe[];
   activefood: string | null;
   crew_cookies: CrewCookie[];
   activecrew: string | null;
