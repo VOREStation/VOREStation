@@ -589,7 +589,6 @@
 					wires.Interact(user)
 		else
 			wires.Interact(user)
-		return
 
 /obj/machinery/synthesizer/attack_ai(mob/user)
 	return attack_hand(user)
