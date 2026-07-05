@@ -115,9 +115,9 @@ export const FoodSelectionMenu = (props) => {
   const selectedFood = recipes.find((c) => c.name === activefood);
   return (
     <Section fill>
-      <Stack>
+      <Stack fill>
         <Stack.Item basis="30%">
-          <Section title="Food Selection" scrollable fill height="290px">
+          <Section title="Food Selection" scrollable fill>
             <Tabs vertical>
               {recipesToShow.map((recipe) => (
                 <Tabs.Tab key={recipe.ref}>
@@ -135,9 +135,9 @@ export const FoodSelectionMenu = (props) => {
             </Tabs>
           </Section>
         </Stack.Item>
-        <Stack.Item grow={1} ml={4}>
+        <Stack.Item grow>
           {selectedFood ? (
-            <Section title="Product Details" fill height="290px">
+            <Section title="Product Details" fill>
               <Box>
                 <Stack align="center" justify="flex-start">
                   <Stack.Item>

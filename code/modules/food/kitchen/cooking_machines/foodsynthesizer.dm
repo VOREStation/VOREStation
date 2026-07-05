@@ -184,7 +184,7 @@
 			"name"		= menulist.name,
 			"id"		= menulist.id,
 			"sortorder"	= menulist.sortorder,
-			"ref"		= "\ref[menulist]"
+			"ref"		= text_ref(menulist)
 			)))
 		for(var/datum/category_item/synthesizer/food in menulist.items)
 			recipes.Add(list(list(
@@ -195,7 +195,7 @@
 				"voice_order"	= food.voice_order,
 				"voice_temp"	= food.voice_temp,
 				"hidden"		= food.hidden,
-				"ref"			= "\ref[food]"
+				"ref"			= text_ref(food)
 				)))
 
 	data["menucatagories"] = menucatagories
