@@ -256,16 +256,14 @@
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(usr.stat || usr.restrained())
+	if(ui.user.stat || ui.user.restrained())
 		return
 	if(..())
 		return TRUE
-
-	usr.set_machine(src)
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	if(busy)
-		to_chat(usr, "<span class='notice'>The synthesizer is busy. Please wait for completion of previous operation.</span>")
+		to_chat(ui.user, span_notice("The synthesizer is busy. Please wait for completion of previous operation."))
 		return
 
 	switch(action)
@@ -293,7 +291,7 @@
 					break
 
 			if(found)
-				if(!get_mob_for_picture(found))
+				if(!get_mob_for_picture(ui.user, found))
 					return FALSE
 				set_tgui_icon(found)
 				return TRUE
@@ -309,7 +307,7 @@
 
 			//Check if we still have the materials.
 			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(src.check_cart(C, usr))
+			if(src.check_cart(C, ui.user))
 				//Sanity check.
 				if(!making || !src)
 					return
@@ -348,21 +346,21 @@
 				meal.trash = food_mimic?.trash	//If this can lead to exploits then we'll remove it, but I like the idea.
 				qdel(food_mimic)
 				src.food_mimic_storage = null
-				src.audible_message("<span class='notice'>Please take your [meal.name].</span>", runemessage = "[meal.name] is complete!")
-				if(Adjacent(usr))
-					usr.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
+				src.audible_message(span_notice("Please take your [meal.name]."), runemessage = "[meal.name] is complete!")
+				if(Adjacent(ui.user))
+					ui.user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
 				else
 					meal.loc = src.loc //otherwise we anti-clump layer onto the floor
 					meal.randpixel_xy()
 				busy = FALSE
 				update_icon() //turn off lights, please.
 			else
-				src.audible_message("<span class='notice'>Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install.</span>", runemessage = "Error: Insufficent Materials!")
+				src.audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
 
 			return TRUE
 
 		if("refresh")
-			update_tgui_static_data(usr, ui)
+			update_tgui_static_data(ui.user, ui)
 			return TRUE
 
 		if("crewprint")
@@ -373,13 +371,13 @@
 					found = L
 					break
 
-			if(found && !get_mob_for_picture(found)) //verify that we can still print this person
-				to_chat(usr, "Warning: Invalid selection.")
+			if(found && !get_mob_for_picture(ui.user, found)) //verify that we can still print this person
+				to_chat(ui.user, "Warning: Invalid selection.")
 				return FALSE
 
 			//Check if we still have the materials.
 			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(src.check_cart(C, usr))
+			if(src.check_cart(C, ui.user))
 				//Sanity check.
 				busy = TRUE
 				update_use_power(USE_POWER_ACTIVE)
@@ -414,16 +412,16 @@
 				if(src.menu_grade >= 2) //Is the machine upgraded?
 					meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + src.menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
 
-				src.audible_message("<span class='notice'>Please take your miniature [meal.name].</span>", runemessage = "Minature [meal.name] is complete!")
-				if(Adjacent(usr))
-					usr.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
+				src.audible_message(span_notice("Please take your miniature [meal.name]."), runemessage = "Minature [meal.name] is complete!")
+				if(Adjacent(ui.user))
+					ui.user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
 				else
 					meal.loc = src.loc //otherwise we anti-clump layer onto the floor
 					meal.randpixel_xy()
 				busy = FALSE
 				update_icon() //turn off lights, please.
 			else
-				src.audible_message("<span class='notice'>Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install.</span>", runemessage = "Error: Insufficent Materials!")
+				src.audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
 				return FALSE
 			return TRUE
 
@@ -493,7 +491,7 @@
 		cart = C
 		C.loc = src
 		C.add_fingerprint(user)
-		to_chat(user, "<span class='notice'>You add [C] to \the [src].</span>")
+		to_chat(user, span_notice("You add [C] to \the [src]."))
 	update_icon()
 	SStgui.update_uis(src)
 	return
@@ -501,14 +499,14 @@
 /obj/machinery/synthesizer/proc/remove_cart(mob/user)
 	var/obj/item/reagent_containers/synthdispcart/C = cart
 	if(!C)
-		to_chat(user, "<span class='notice'>There's no cartridge here...</span>") //Sanity checks aren't ever a bad thing
+		to_chat(user, span_notice("There's no cartridge here...")) //Sanity checks aren't ever a bad thing
 		return
 	if(!Adjacent(user)) //gotta, y'know, be in touch range to pull a physical canister out
 		return
 	C.loc = get_turf(loc)
 	C.update_icon()
 	cart = null
-	to_chat(user, "<span class='notice'>You remove [C] from  \the [src].</span>")
+	to_chat(user, span_notice("You remove [C] from \the [src]."))
 
 	if(Adjacent(user))
 		user.put_in_hands(C) //pick up your trash, nerd. and don't hand it to the AI. They will be upset.
@@ -517,32 +515,32 @@
 
 /obj/machinery/synthesizer/proc/check_cart(obj/item/reagent_containers/synthdispcart/C, mob/user)
 	if(!istype(C))
-		to_chat(user, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
+		to_chat(user, span_notice("The synthesizer cartridge is nonexistant."))
 		return FALSE
 	if((!(C.reagents)) || (C.reagents.total_volume <= 0) || (!C.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT)))
-		to_chat(user, "<span class='notice'>The synthesizer cartridge depleted, replace with a genuine Sabresnack Co cartridge.</span>")
+		to_chat(user, span_notice("The synthesizer cartridge depleted, replace with a genuine Sabresnack Co cartridge."))
 		return FALSE
 	if((C.reagents) && (C.reagents.total_volume <= 0) && (!C.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT)))
-		to_chat(user, "<span class='notice'>Used or Counterfeit synthesizer cartridge detected.</span>")
+		to_chat(user, span_notice("Used or Counterfeit synthesizer cartridge detected."))
 		return FALSE
 	else if(C.reagents && C.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT) && (C.reagents.total_volume >= SYNTH_FOOD_COST))
 		SStgui.update_uis(src)
 		return TRUE
 
-/obj/machinery/synthesizer/proc/get_mob_for_picture(mob/living/LM)
+/obj/machinery/synthesizer/proc/get_mob_for_picture(mob/user, mob/living/LM)
 	if(!istype(LM))
-		to_chat(usr, "Warning: Invalid selection. Please refresh the database.")
+		to_chat(user, span_warning("Warning: Invalid selection. Please refresh the database."))
 		return FALSE
 
 	if(LM.client?.prefs?.read_preference(/datum/preference/toggle/foodsynth_cookies))
 		return TRUE
 
-	to_chat(usr, "Warning: Invalid selection. Please refresh the database.")
+	to_chat(user, span_warning("Warning: Invalid selection. Please refresh the database."))
 	return FALSE
 
 /obj/machinery/synthesizer/attackby(obj/item/W, mob/user)
 	if(busy)
-		audible_message("<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>", runemessage = "The Synthesizer is busy.")
+		audible_message(span_notice("\The [src] is busy. Please wait for completion of previous operation."), runemessage = "The Synthesizer is busy.")
 		return
 	if(default_part_replacement(user, W))
 		return
@@ -552,16 +550,16 @@
 	if(W.is_screwdriver())
 		panel_open = !panel_open
 		playsound(src, W.usesound, 50, 1)
-		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")
+		user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"] the hatch on the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on the [src]."))
 		update_icon()
 		return
 	if(panel_open)
 		if(istype(W, /obj/item/reagent_containers/synthdispcart))
 			if(!anchored)
-				to_chat(user, "<span class='warning'>Anchor its bolts first.</span>")
+				to_chat(user, span_warning("Anchor its bolts first."))
 				return
 			if(W.w_class > cart_type) //since we confirmed it's a Cart, make sure it fits!
-				to_chat(user, "<span class='warning'>\The [src] only accepts smaller synthiziser cartridges.</span>")
+				to_chat(user, span_warning("\The [src] only accepts smaller synthiziser cartridges."))
 				return
 			if(cart)
 				var/choice = alert(user, "Replace the loaded cartridge?", "", "Yes", "Cancel")
@@ -575,16 +573,16 @@
 
 	if(W.is_wrench())
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>")
+		to_chat(user, span_notice("You begin to [anchored ? "un" : ""]fasten \the [src]."))
 		if (do_after(user, 20 * W.toolspeed))
 			user.visible_message(
-				"<span class='notice'>\The [user] [anchored ? "un" : ""]fastens \the [src].</span>",
-				"<span class='notice'>You have [anchored ? "un" : ""]fastened \the [src].</span>",
+				span_notice("\The [user] [anchored ? "un" : ""]fastens \the [src]."),
+				span_notice("You have [anchored ? "un" : ""]fastened \the [src]."),
 				"You hear a ratchet.")
 			anchored = !anchored
 			update_icon()
 		else
-			to_chat(user, "<span class='notice'>You decide not to [anchored ? "un" : ""]fasten \the [src].</span>")
+			to_chat(user, span_notice("You decide not to [anchored ? "un" : ""]fasten \the [src]."))
 
 	if(default_deconstruction_crowbar(user, W))
 		return
@@ -596,7 +594,6 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(!panel_open)
-		user.set_machine(src)
 		tgui_interact(user)
 	else if(panel_open)
 		if(cart)
@@ -620,7 +617,7 @@
 		return wires.Interact(user)
 
 	if(disabled)
-		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
+		to_chat(user, span_danger("\The [src] is disabled!"))
 		return
 
 	if(shocked)
