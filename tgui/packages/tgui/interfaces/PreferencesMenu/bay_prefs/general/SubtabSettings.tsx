@@ -66,7 +66,7 @@ export const SubtabSettings = (props: {
     borg_petting,
     resleeve_lock,
     resleeve_scan,
-	synth_cookie,
+    synth_cookie,
     mind_scan,
     vantag_volunteer,
     vantag_preference,
@@ -239,7 +239,7 @@ export const SubtabSettings = (props: {
                     >
                       {resleeve_scan ? 'Yes' : 'No'}
                     </Button>
-				  </LabeledList.Item>
+                  </LabeledList.Item>
                   <LabeledList.Item label="Allow Synth cookie replicas">
                     <Button
                       onClick={() => act('toggle_synth_cookie')}
