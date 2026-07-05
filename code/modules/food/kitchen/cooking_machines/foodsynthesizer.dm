@@ -440,8 +440,7 @@
 	cut_overlays()
 	set_light_on(FALSE)
 	icon_state = initial(icon_state) //we use this to reduce code bloat. It's nice.
-	if(panel_open)
-		 //add service panels just above our machine
+	if(panel_open)	//add service panels just above our machine
 		if(!(stat & (NOPOWER|BROKEN)))
 			add_overlay("[initial(icon_state)]_ppanel")
 		else

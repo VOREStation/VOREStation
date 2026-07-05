@@ -104,7 +104,7 @@
 	var/cookieunlock
 	var/icon/cookieicon
 
-/datum/transhuman/body_record/New(copyfrom, add_to_db = FALSE, ckeylock = FALSE, var/cookieprint = FALSE)
+/datum/transhuman/body_record/New(copyfrom, add_to_db = FALSE, ckeylock = FALSE, cookieprint = FALSE)
 	..()
 	if(istype(copyfrom, /datum/transhuman/body_record))
 		init_from_br(copyfrom)
@@ -122,7 +122,7 @@
 	..()
 	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in GLOB.machines etc.
 
-/datum/transhuman/body_record/proc/init_from_mob(mob/living/carbon/human/M, add_to_db = FALSE, ckeylock = FALSE, var/cookieprint = FALSE, database_key)
+/datum/transhuman/body_record/proc/init_from_mob(mob/living/carbon/human/M, add_to_db = FALSE, ckeylock = FALSE, cookieprint = FALSE, database_key)
 	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 
