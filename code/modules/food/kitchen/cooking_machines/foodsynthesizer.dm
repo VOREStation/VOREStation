@@ -89,7 +89,7 @@
 	for(var/obj/item/reagent_containers/synthdispcart/C in cart)
 		C.loc = get_turf(src.loc)
 		C = null
-	clearTguiIcons()
+	clear_tgui_icons()
 	return ..()
 
 /obj/machinery/synthesizer/examine(mob/user)
@@ -112,7 +112,7 @@
 
 // TGUI
 // Crew Cookie backend stuff... I can't even fuckin' believe this is Janicart stuff
-/obj/machinery/synthesizer/proc/setTguiIcon(mob/L)
+/obj/machinery/synthesizer/proc/set_tgui_icon(mob/L)
 	if(!isliving(L))
 		return
 	if(ishuman(L))
@@ -125,7 +125,7 @@
 		tgui_icons = "'data:image/png;base64,[icon2base64(F)]'"
 	SStgui.update_uis(src)
 
-/obj/machinery/synthesizer/proc/clearTguiIcons()
+/obj/machinery/synthesizer/proc/clear_tgui_icons()
 	tgui_icons = null
 	crewpicture = null
 	SStgui.update_uis(src)
@@ -204,7 +204,7 @@
 
 	var/list/crew_cookies = list()
 	for(var/client/C in GLOB.clients)
-		// Check if the client allows crew cookies in their currently toggled prefs
+		// Check if the client allows crew cookies in their currently toggled prefs. Clients must be ingame to even be in GLOB.clients, so logged out players won't show up here.
 		if(!C.prefs?.read_preference(/datum/preference/toggle/foodsynth_cookies))
 			continue
 
@@ -213,6 +213,12 @@
 
 		if(ishuman(C.mob))
 			var/mob/living/carbon/human/H = C.mob
+			//Utilize the body records for humans to avoid metagaming problems (EX: using the cookie printer to check if someone is ghosting from the main menu)
+			var/datum/transcore_db/db = SStranscore.db_by_key(db_key)
+			if(db)
+				var/datum/transhuman/body_record/BR = our_db.body_scans[H.mind.name]
+				if(!BR) //extra check to make sure people have a body record, and no-one will immediately on start.
+					continue
 			name = H.real_name
 			species = "[H.custom_species ? H.custom_species : H.species.name]"
 
@@ -268,7 +274,7 @@
 			activecrew = null
 			activefood = null
 			if(tgui_icons)
-				clearTguiIcons()
+				clear_tgui_icons()
 			return TRUE
 
 		if("setactive_food")
@@ -278,7 +284,7 @@
 		if("setactive_crew")
 			activecrew = params["setactive_crew"]
 			if(tgui_icons)
-				clearTguiIcons()
+				clear_tgui_icons()
 
 			var/mob/found
 			for(var/mob/living/L in GLOB.player_list)
@@ -289,7 +295,7 @@
 			if(found)
 				if(!get_mob_for_picture(found))
 					return FALSE
-				setTguiIcon(found)
+				set_tgui_icon(found)
 				return TRUE
 			else
 				return FALSE
