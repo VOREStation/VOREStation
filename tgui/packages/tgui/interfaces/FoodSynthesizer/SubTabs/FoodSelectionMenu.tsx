@@ -20,8 +20,7 @@ export const FoodSelectionMenu = (props) => {
   }
 
   const recipesToShow = recipes
-    .filter((recipe) => recipe.category === active_menu)
-    .filter((recipe) => !recipe.hidden)
+    .filter((recipe) => recipe.category === active_menu && !recipe.hidden)
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const cookiesToShow = crew_cookies
