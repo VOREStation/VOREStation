@@ -26,6 +26,7 @@ export const RequestConsoleSendMenu = (props: {
                   </Stack.Item>
                   <Stack.Item>
                     <Button
+                      color="red"
                       icon="exclamation-triangle"
                       onClick={() => act('write', { write: dept, priority: 2 })}
                     >
