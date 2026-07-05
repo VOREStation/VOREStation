@@ -111,7 +111,7 @@ export const FoodSelectionMenu = (props) => {
     );
   }
 
-  const selectedFood = recipes.find((c) => c.name === activefood);
+  const selectedFood = recipes.find((c) => c.id === activefood);
   return (
     <Section fill>
       <Stack fill>
@@ -144,13 +144,14 @@ export const FoodSelectionMenu = (props) => {
                       <LabeledList.Item label="Name">
                         {selectedFood.name}
                       </LabeledList.Item>
-                      <br />
+                      <LabeledList.Divider />
                       <LabeledList.Item label="Description">
                         {selectedFood.desc || 'No description available.'}
                       </LabeledList.Item>
+                      <LabeledList.Divider />
                     </LabeledList>
-                    <br />
                     <Button
+                      align="center"
                       width="128px"
                       height="128px"
                       className={classes([
