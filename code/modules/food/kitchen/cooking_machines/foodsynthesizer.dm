@@ -104,11 +104,11 @@
 	if(!isliving(L))
 		return
 	if(ishuman(L))
-		crewpicture = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE)
+		crewpicture = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE, force_south = TRUE)
 		tgui_icons = "'data:image/png;base64,[icon2base64(crewpicture)]'"
 
 	else //Simple animals, Silicons, etc don't have records, so we'll just grab their current state.
-		var/icon/F = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE)
+		var/icon/F = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE, force_south = TRUE)
 		crewpicture = F
 		tgui_icons = "'data:image/png;base64,[icon2base64(F)]'"
 	SStgui.update_uis(src)
