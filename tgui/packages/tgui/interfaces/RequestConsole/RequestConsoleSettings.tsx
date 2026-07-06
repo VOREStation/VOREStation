@@ -7,7 +7,7 @@ export const RequestConsoleSettings = (props) => {
   const { act, data } = useBackend<Data>();
   const { silent } = data;
   return (
-    <Section title="Settings">
+    <Section fill title="Settings">
       <Button
         selected={!silent}
         icon={silent ? 'volume-mute' : 'volume-up'}
