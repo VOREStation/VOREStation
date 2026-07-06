@@ -10,7 +10,7 @@
 
 // Whether mob can be printed as a snack. requires body scan. Default false.
 /datum/preference/toggle/living/foodsynth_cookies
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "vore_fsynth_cookie"
 	default_value = FALSE
 	savefile_identifier = PREFERENCE_CHARACTER
