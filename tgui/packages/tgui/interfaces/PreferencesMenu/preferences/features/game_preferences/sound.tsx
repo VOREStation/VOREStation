@@ -35,6 +35,13 @@ export const sound_instruments: Feature<number> = {
   component: FeatureSliderInput,
 };
 
+export const sound_fridgehum: FeatureToggle = {
+  name: 'Play Fridge Hum',
+  category: 'SOUND',
+  description: 'Enable hearing the ambient hum fridges make.',
+  component: CheckboxInput,
+};
+
 export const SOUND_JUKEBOX: FeatureToggle = {
   name: 'Play Jukebox Music',
   category: 'SOUNDS',

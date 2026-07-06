@@ -276,7 +276,7 @@
 	savefile_key = "sound_instruments"
 	savefile_identifier = PREFERENCE_PLAYER
 
-/datum/preference/toggle/fridge_hum
+/datum/preference/toggle/sound_fridgehum
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "SOUND_FRIDGEHUM"
+	savefile_key = "sound_fridgehum"
 	savefile_identifier = PREFERENCE_PLAYER
