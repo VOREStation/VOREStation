@@ -145,84 +145,107 @@
 /mob/living/carbon/alien/ventcrawl_carry()
 	return TRUE
 
-/mob/living/var/ventcrawl_layer = 3
+/mob/living/var/ventcrawl_layer = PIPING_LAYER_DEFAULT
+
+/mob/living/proc/change_ventcrawl_layer(new_layer)
+	new_layer = CLAMP(new_layer, PIPING_LAYER_SUPPLY, PIPING_LAYER_AUX)
+	if(ventcrawl_layer == new_layer)
+		return
+	ventcrawl_layer = new_layer
+	var/layer_name = "regular"
+	switch(ventcrawl_layer)
+		if(PIPING_LAYER_SUPPLY)
+			layer_name = "supply"
+		if(PIPING_LAYER_SCRUBBER)
+			layer_name = "scrubber"
+		if(PIPING_LAYER_FUEL)
+			layer_name = "fuel"
+		if(PIPING_LAYER_AUX)
+			layer_name = "aux"
+	// If we ever change to layer numbers, change this to "You align yourself with the [ventcrawl_layer]\th output." and remove the above switch.
+	to_chat(src, span_info("You align yourself with the [layer_name] output."))
 
 /mob/living/proc/handle_ventcrawl(atom/clicked_on)
-	if(!can_ventcrawl() || prepping_to_ventcrawl)
+	if(!can_ventcrawl())
+		return
+	if(prepping_to_ventcrawl)
+		to_chat(src,span_danger("You are not ready to enter \the [clicked_on]!"))
 		return
 
+	// Check for a valid vent nearby
 	var/obj/machinery/atmospherics/unary/vent_found
 	if(clicked_on && Adjacent(clicked_on))
 		vent_found = clicked_on
 		if(!istype(vent_found) || !vent_found.can_crawl_through())
 			vent_found = null
-
 	if(!vent_found)
 		for(var/obj/machinery/atmospherics/machine in range(1,src))
 			if(is_type_in_list(machine, GLOB.ventcrawl_machinery))
 				vent_found = machine
-
 			if(!vent_found || !vent_found.can_crawl_through())
 				vent_found = null
-
 			if(vent_found)
 				break
 
-	if(vent_found)
-		if(SEND_SIGNAL(src,COMSIG_MOB_VENTCRAWL_CHECK,vent_found) & VENT_CRAWL_BLOCK_ENTRY)
-			return
-		if(SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_CHECK,src) & VENT_CRAWL_BLOCK_ENTRY)
-			return
+	// Check if the vent is even possible to enter
+	if(!vent_found)
+		to_chat(src, span_danger("You must be standing on or beside an air vent to enter it."))
+		return
+	if(SEND_SIGNAL(src,COMSIG_MOB_VENTCRAWL_CHECK,vent_found) & VENT_CRAWL_BLOCK_ENTRY)
+		return
+	if(SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_CHECK,src) & VENT_CRAWL_BLOCK_ENTRY)
+		return
+	if(!(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len)))
+		to_chat(src, span_danger("This vent is not connected to anything."))
+		return
 
-		if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
-			to_chat(src, "You begin climbing into the ventilation system...")
-			if(vent_found.air_contents && !issilicon(src))
+	// We're ready to enter the vent!
+	to_chat(src, "You begin climbing into the ventilation system...")
+	if(vent_found.air_contents && !issilicon(src))
 
-				switch(vent_found.air_contents.temperature)
-					if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
-						to_chat(src, span_danger("You feel a painful freeze coming from the vent!"))
-					if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)
-						to_chat(src, span_warning("You feel an icy chill coming from the vent."))
-					if(T0C + 40 to BODYTEMP_HEAT_DAMAGE_LIMIT)
-						to_chat(src, span_warning("You feel a hot wash coming from the vent."))
-					if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
-						to_chat(src, span_danger("You feel a searing heat coming from the vent!"))
+		switch(vent_found.air_contents.temperature)
+			if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
+				to_chat(src, span_danger("You feel a painful freeze coming from the vent!"))
+			if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)
+				to_chat(src, span_notice("You feel an icy chill coming from the vent."))
+			if(T0C + 40 to BODYTEMP_HEAT_DAMAGE_LIMIT)
+				to_chat(src, span_notice("You feel a hot wash coming from the vent."))
+			if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
+				to_chat(src, span_danger("You feel a searing heat coming from the vent!"))
 
-				switch(vent_found.air_contents.return_pressure())
-					if(0 to HAZARD_LOW_PRESSURE)
-						to_chat(src, span_danger("You feel a rushing draw pulling you into the vent!"))
-					if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
-						to_chat(src, span_warning("You feel a strong drag pulling you into the vent."))
-					if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
-						to_chat(src, span_warning("You feel a strong current pushing you away from the vent."))
-					if(HAZARD_HIGH_PRESSURE to (HAZARD_HIGH_PRESSURE*2))
-						to_chat(src, span_danger("You feel a roaring wind pushing you away from the vent!"))
-					if((HAZARD_HIGH_PRESSURE*2) to INFINITY) // A little too crazy to enter
-						to_chat(src, span_danger("You're pushed away by the extreme pressure in the vent!"))
-						return
-
-			// Handle animation delay
-			fade_towards(vent_found, vent_crawl_time)
-			prepping_to_ventcrawl = TRUE
-			if(!do_after(src, vent_crawl_time, target = src))
-				prepping_to_ventcrawl = FALSE
-				return
-			prepping_to_ventcrawl = FALSE
-
-			if(!can_ventcrawl())
+		switch(vent_found.air_contents.return_pressure())
+			if(0 to HAZARD_LOW_PRESSURE)
+				to_chat(src, span_danger("You feel a rushing draw pulling you into the vent!"))
+			if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
+				to_chat(src, span_notice("You feel a strong drag pulling you into the vent."))
+			if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
+				to_chat(src, span_notice("You feel a strong current pushing you away from the vent."))
+			if(HAZARD_HIGH_PRESSURE to (HAZARD_HIGH_PRESSURE*2))
+				to_chat(src, span_danger("You feel a roaring wind pushing you away from the vent!"))
+			if((HAZARD_HIGH_PRESSURE*2) to INFINITY) // A little too crazy to enter
+				to_chat(src, span_danger("You're pushed away by the extreme pressure in the vent!"))
 				return
 
-			visible_message(span_infoplain(span_bold("[src] scrambles into the ventilation ducts!")), span_infoplain("You climb into the ventilation system."))
+	// Handle animation delay
+	var/original_alpha = alpha
+	prepping_to_ventcrawl = TRUE
+	addtimer(CALLBACK(src, PROC_REF(vent_entry_cooldown)), vent_crawl_time + 1, TIMER_DELETE_ME)
+	fade_towards(vent_found, vent_crawl_time)
+	if(!do_after(src, vent_crawl_time, target = src))
+		animate(src, alpha = original_alpha, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), pixel_z = initial(pixel_z), time = 0.2 SECONDS)
+		return
+	if(!can_ventcrawl())
+		return
 
-			forceMove(vent_found)
-			add_ventcrawl(vent_found)
-			SEND_SIGNAL(src,COMSIG_MOB_VENTCRAWL_START,vent_found)
-			SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_ENTERED,src)
-		else
-			to_chat(src, "This vent is not connected to anything.")
+	visible_message(span_infoplain(span_bold("[src] scrambles into the ventilation ducts!")), span_infoplain("You climb into the ventilation system."))
+	forceMove(vent_found)
+	add_ventcrawl(vent_found)
+	SEND_SIGNAL(src,COMSIG_MOB_VENTCRAWL_START,vent_found)
+	SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_ENTERED,src)
 
-	else
-		to_chat(src, "You must be standing on or beside an air vent to enter it.")
+// Handle the vent entry cooldown seperately the proc. Otherwise we end up with the ability to move and animate into multiple vents at once. Easily breaking it.
+/mob/living/proc/vent_entry_cooldown()
+	prepping_to_ventcrawl = FALSE
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	is_ventcrawling = TRUE
