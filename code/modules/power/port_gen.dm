@@ -2,23 +2,24 @@
 /obj/machinery/power/port_gen
 	name = "Placeholder Generator"	//seriously, don't use this. It can't be anchored without VV magic.
 	desc = "A portable generator for emergency backup power"
-	icon = 'icons/obj/power_vr.dmi' //VOREStation Edit
-	icon_state = "portgen0" //VOREStation Edit
+	icon = 'icons/obj/power_vr.dmi'
+	icon_state = "portgen0"
 	density = TRUE
 	anchored = FALSE
 	use_power = USE_POWER_OFF
 	interact_offline = TRUE
 
-	var/active = 0
-	var/power_gen = 5000
-	var/recent_fault = 0
-	var/power_output = 1
+	var/active = FALSE
+	var/power_gen = 5 KILOWATTS
+	var/recent_fault = FALSE
+	var/power_output = TRUE
+	var/emp_duration = 0 SECONDS
 
 /obj/machinery/power/port_gen/proc/IsBroken()
 	return (stat & (BROKEN|EMPED))
 
 /obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
-	return 1
+	return TRUE
 
 /obj/machinery/power/port_gen/proc/UseFuel() //Placeholder for fuel use.
 	return
@@ -55,7 +56,7 @@
 		icon_state = initial(icon_state)
 
 /obj/machinery/power/powered()
-	return 1 //doesn't require an external power source
+	return TRUE //doesn't require an external power source
 
 /obj/machinery/power/port_gen/attack_hand(mob/user as mob)
 	if(..())
@@ -70,12 +71,14 @@
 			. += span_notice("The generator is on.")
 		else
 			. += span_notice("The generator is off.")
+		if(stat & EMPED)
+			. += span_warning("The generator's readout estimates [emp_duration - world.time] seconds remaining until it can restart.")
 
 /obj/machinery/power/port_gen/emp_act(severity, recursive)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	var/duration = 6000 //ten minutes
+	var/base_duration = 10 MINUTES
 	switch(severity)
 		if(EMP_HEAVY)
 			stat &= BROKEN
@@ -85,15 +88,18 @@
 			if(prob(10)) explode()
 		if(EMP_LIGHT)
 			if(prob(25)) stat &= BROKEN
-			duration = 300
+			base_duration = 3 MINUTES
 		if(EMP_HARMLESS)
 			if(prob(10)) stat &= BROKEN
-			duration = 300
+			base_duration = 3 MINUTES
 
 	stat |= EMPED
-	if(duration)
-		spawn(duration)
+	emp_duration = world.time + base_duration
+	if(emp_duration)
+		spawn(emp_duration)
 			stat &= ~EMPED
+			emp_duration = 0
+			
 
 /obj/machinery/power/port_gen/proc/explode()
 	explosion(src.loc, -1, 3, 5, -1)
@@ -116,7 +122,7 @@
 		temperature_gain and max_temperature are set so that the max safe power level is 4.
 		Setting to 5 or higher can only be done temporarily before the generator overheats.
 	*/
-	power_gen = 20000			//Watts output per power_output level
+	power_gen = 20 KILOWATTS	//Watts output per power_output level
 	var/max_power_output = 5	//The maximum power setting without emagging.
 	var/max_safe_output = 4		// For UI use, maximal output that won't cause overheat.
 	var/time_per_sheet = 96		//fuel efficiency - how long 1 sheet lasts at power level 1
@@ -166,8 +172,8 @@
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet
 	if(sheets >= needed_sheets - sheet_left)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Removes one stack's worth of material from the generator.
 /obj/machinery/power/port_gen/pacman/DropFuel()
@@ -225,7 +231,7 @@
 		overheat()
 	else if (overheating > 0)
 		overheating--
-		update_icon() //Port RS PR #484
+		update_icon()
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
 	var/cooling_temperature = 20
@@ -242,7 +248,7 @@
 
 	if(overheating)
 		overheating--
-		update_icon() //Port RS PR #484
+		update_icon()
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	overheating++
@@ -382,7 +388,7 @@
 	icon_state = "portgen1"
 	sheet_path = /obj/item/stack/material/uranium
 	sheet_name = "Uranium Sheets"
-	time_per_sheet = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
+	time_per_sheet = 2.5 MINUTES //same power output, but a 50 sheet stack will last 2 hours at max safe power
 	circuit = /obj/item/circuitboard/pacman/super
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
@@ -423,7 +429,7 @@
 	power_gen = 25000 //watts
 	max_power_output = 10
 	max_safe_output = 8
-	time_per_sheet = 576
+	time_per_sheet = 2.5 MINUTES
 	max_temperature = 800
 	temperature_gain = 90
 	circuit = /obj/item/circuitboard/pacman/mrs
