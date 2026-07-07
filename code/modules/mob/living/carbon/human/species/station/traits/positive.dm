@@ -808,10 +808,10 @@
 
 /datum/trait/positive/pain_tolerance_extreme // Essentialy the inverse of Neural Hypersensitivity
 	name = "Pain Tolerance, Extreme"
-	desc = "You are extremely resistant to pain sources, and experience 75% less pain from all sources."
-	cost = 5
+	desc = "You are extremely resistant to pain sources, and experience 50% less pain from all sources."
+	cost = 4
 	custom_only = FALSE
-	var_changes = list("pain_mod" = 0.25)
+	var_changes = list("pain_mod" = 0.50)
 
 /datum/trait/positive/improved_biocompat
 	name = "Improved Biocompatibility"
