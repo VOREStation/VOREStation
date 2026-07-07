@@ -28,7 +28,7 @@ export const ChemMasterBeaker = (props: {
       Eject and Keep Buffer
     </Button>
   );
-  const headerButton = bufferNonEmpty ? (
+  const headerButton2 = bufferNonEmpty ? (
   <Button.Confirm
       icon="eject"
       disabled={!beaker}
