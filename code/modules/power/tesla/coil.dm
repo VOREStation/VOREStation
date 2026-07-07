@@ -247,6 +247,7 @@
 /obj/machinery/power/tesla_coil/research/examine(mob/user)
 	. = ..()
 	. += span_notice("This corona analyzer has [sufficent_power ? "sufficent power output to produce additional research data points" : "insufficent power output for electrical corona analysis"].")
+	. += span_info("You will need more power than you think you do.")
 
 #undef CORONA_POWER_JUDGEMENT
 #undef CORONA_LOSS_FACTOR
