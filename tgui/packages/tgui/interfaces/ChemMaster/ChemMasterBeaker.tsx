@@ -21,10 +21,23 @@ export const ChemMasterBeaker = (props: {
       disabled={!beaker}
       onClick={() => act('eject')}
     >
-      Eject and Clear Buffer
+      Eject and Keep Buffer
     </Button.Confirm>
   ) : (
     <Button icon="eject" disabled={!beaker} onClick={() => act('eject')}>
+      Eject and Keep Buffer
+    </Button>
+  );
+  const headerButton = bufferNonEmpty ? (
+  <Button.Confirm
+      icon="eject"
+      disabled={!beaker}
+      onClick={() => act('ejectandclear')}
+    >
+      Eject and Clear Buffer
+    </Button.Confirm>
+  ) : (
+    <Button icon="eject" disabled={!beaker} onClick={() => act('ejectandclear')}>
       Eject and Clear Buffer
     </Button>
   );
