@@ -28,8 +28,8 @@
 	name = "superconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance"
-	ChargeCapacity = 6 MEGAWATTS
-	IOCapacity = 50 KILOWATTS
+	ChargeCapacity = 60 MEGAWATTS	// 1000 kWh
+	IOCapacity = 50 KILOWATTS		// 50 kW
 
 /obj/item/smes_coil/super_capacity/ultra
 	name = "ultraconductive capacitance coil"
