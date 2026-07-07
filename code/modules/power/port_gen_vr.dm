@@ -359,7 +359,7 @@
 	circuit = /obj/item/circuitboard/machine/reg_d
 	irradiate = FALSE
 	power_gen = 0
-	var/default_power_gen = 1 MEGAWATT	//It's big but it gets adjusted based on what you put into it!!!
+	var/default_power_gen = 1 MEGAWATTS	//It's big but it gets adjusted based on what you put into it!!!
 	var/part_mult = 0
 	var/nutrition_drain = 1
 	pixel_x = -32
@@ -566,7 +566,7 @@
 	desc = "Reacts hydrogen and anti-hydrogen with a phoron moderator to produce near limitless power! The magnetic fields are prone to easily rupturing, so the reactor design never took off."
 	icon = 'icons/am_engine.dmi'
 	icon_state = "core_on"
-	power_gen = 1 MEGAWATT
+	power_gen = 1 MEGAWATTS
 	irradiate = FALSE // Green energy!
 	can_buckle = FALSE
 	plane = ABOVE_MOB_PLANE
