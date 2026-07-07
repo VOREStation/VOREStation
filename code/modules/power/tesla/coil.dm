@@ -39,7 +39,7 @@
 			else
 				. += span_info("This tesla coil will increase any power it produces by [(input_power_multiplier - 1) * 100]%.")
 		if(!power_calculated || lossy_transfer)
-			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next. if set above 1, it reduces efficiency accordingly as a multiplier. 
+			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next. if set above 1, it reduces efficiency accordingly as a multiplier.
 				. += span_warning("This tesla coil will relay power with [(1/power_loss) * 100]% efficiency.")
 
 		if(zap_range)
@@ -50,10 +50,13 @@
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	set_wires(new /datum/wires/tesla_coil(src))
-
-/obj/machinery/power/tesla_coil/Initialize(mapload)
-	. = ..()
 	default_apply_parts()
+
+/obj/machinery/power/tesla_coil/LateInitialize()
+	. = ..()
+	if(anchored)
+		connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/Destroy()
 	QDEL_NULL(wires)
@@ -223,12 +226,10 @@
 	var/sufficent_power = FALSE						// lets people see if they're putting enough juice in
 	var/datum/techweb/linked_techweb				// R&D server to contribute points to
 
-/obj/machinery/power/tesla_coil/research/Initialize(mapload)
+/obj/machinery/power/tesla_coil/research/LateInitialize()
 	. = ..()
-	connect_to_network()
 	if(!linked_techweb)
 		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
-	update_icon()
 
 /obj/machinery/power/tesla_coil/research/coil_act(power, zap_flags, current_jumps)
 	var/power_produced = powernet ? power / power_loss : power
@@ -239,7 +240,7 @@
 		sufficent_power = TRUE
 	else
 		sufficent_power = FALSE
-	if(istype(linked_techweb) && sufficent_power) 
+	if(istype(linked_techweb) && sufficent_power)
 		linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
@@ -406,67 +407,25 @@
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
-
 /obj/machinery/power/tesla_coil/relay/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/tesla_coil/relay/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 /obj/machinery/power/tesla_coil/splitter/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/splitter/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
-
 /obj/machinery/power/tesla_coil/amplifier/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/tesla_coil/amplifier/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 /obj/machinery/power/tesla_coil/recaster/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/recaster/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
-
 /obj/machinery/power/tesla_coil/collector/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/tesla_coil/collector/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 /obj/machinery/power/tesla_coil/research/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/research/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	if(!linked_techweb)
-		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
-	update_icon()
-
 /obj/machinery/power/grounding_rod/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/grounding_rod/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 #undef AMPLIFIER_STRENGTH
