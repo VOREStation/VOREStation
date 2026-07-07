@@ -1865,7 +1865,7 @@
 		return 0
 
 	//Passive effects.
-	if(shock_stage >= 30)
+	if(shock_stage >= 30 || traumatic_shock > 120) //Either signifigantly in shock or SEVERELY injured.
 		eye_blurry = max(2, eye_blurry)
 		stuttering = max(5, stuttering)
 
