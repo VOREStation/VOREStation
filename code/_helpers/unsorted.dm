@@ -1010,41 +1010,44 @@ GLOBAL_LIST_INIT(common_tools, list(
 		return TRUE
 	return
 
-/proc/is_hot(obj/item/W as obj)
-	switch(W.type)
-		if(/obj/item/weldingtool)
-			var/obj/item/weldingtool/WT = W
-			if(WT.isOn())
-				return 3800
-			else
-				return 0
-		if(/obj/item/tool/transforming)
-			var/obj/item/tool/transforming/TT = W
-			if(TT.possible_tooltypes[TT.current_tooltype] == TOOL_WELDER)
-				return 3800
-			else
-				return 0
-		if(/obj/item/flame/lighter)
-			if(W:lit)
-				return 1500
-			else
-				return 0
-		if(/obj/item/flame/match)
-			if(W:lit)
-				return 1000
-			else
-				return 0
-		if(/obj/item/clothing/mask/smokable/cigarette)
-			if(W:lit)
-				return 1000
-			else
-				return 0
-		if(/obj/item/pickaxe/plasmacutter)
+/proc/is_hot(obj/item/W)
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
+		if(WT.isOn())
 			return 3800
-		if(/obj/item/melee/energy)
-			return 3500
-		else
-			return 0
+		return 0
+
+	if(istype(W, /obj/item/tool/transforming))
+		var/obj/item/tool/transforming/TT = W
+		if(TT.possible_tooltypes[TT.current_tooltype] == TOOL_WELDER)
+			return 3800
+		return 0
+
+	if(istype(W, /obj/item/flame/lighter))
+		var/obj/item/flame/lighter/ligh = W
+		if(ligh.lit)
+			return 1500
+		return 0
+
+	if(istype(W, /obj/item/flame/match))
+		var/obj/item/flame/match/mach = W
+		if(mach.lit)
+			return 1000
+		return 0
+
+	if(istype(W, /obj/item/clothing/mask/smokable/cigarette))
+		var/obj/item/clothing/mask/smokable/cigarette/cig = W
+		if(cig.lit)
+			return 1000
+		return 0
+
+	if(istype(W, /obj/item/pickaxe/plasmacutter))
+		return 3800
+
+	if(istype(W, /obj/item/melee/energy))
+		return 3500
+
+	return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/item/O)
