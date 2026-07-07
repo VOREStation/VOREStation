@@ -395,3 +395,13 @@
 			)
 	var/sound = pick(goo_sounds)
 	playsound(user.loc, sound, 100, 1)
+
+/datum/decl/emote/audible/xenochimera_scream
+	key = "xscream"
+	emote_message_1p = "You let out a horrid scream!"
+	emote_message_3p = "lets out a horrid scream!"
+	emote_message_1p_target = "You let out a horrid scream at TARGET!"
+	emote_message_3p_target = "lets out a horrid scream at TARGET!"
+	emote_message_mute_3p = "tries to scream but makes no sound!"
+	emote_sound = 'sound/voice/xenochimera_scream.ogg'
+	sound_vary = FALSE

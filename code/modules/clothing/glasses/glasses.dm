@@ -72,7 +72,6 @@ BLIND     // can't see anything
 		icon_state = off_state
 		user.update_inv_glasses()
 		flash_protection = FLASH_PROTECTION_NONE
-		tint = TINT_NONE
 		away_planes = enables_planes
 		enables_planes = null
 
@@ -81,7 +80,6 @@ BLIND     // can't see anything
 		icon_state = initial(icon_state)
 		user.update_inv_glasses()
 		flash_protection = initial(flash_protection)
-		tint = initial(tint)
 		enables_planes = away_planes
 		away_planes = null
 	user.update_mob_action_buttons()
@@ -391,7 +389,6 @@ BLIND     // can't see anything
 	item_flags = AIRTIGHT
 	var/up = 0
 	flash_protection = FLASH_PROTECTION_MAJOR
-	tint = TINT_HEAVY
 	specialty_goggles = TRUE
 
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
@@ -412,7 +409,6 @@ BLIND     // can't see anything
 			body_parts_covered |= EYES
 			icon_state = initial(icon_state)
 			flash_protection = initial(flash_protection)
-			tint = initial(tint)
 			to_chat(usr, "You flip \the [src] down to protect your eyes.")
 		else
 			src.up = !src.up
@@ -420,7 +416,6 @@ BLIND     // can't see anything
 			body_parts_covered &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			flash_protection = FLASH_PROTECTION_NONE
-			tint = TINT_NONE
 			to_chat(usr, "You push \the [src] up out of your face.")
 		update_clothing_icon()
 		usr.update_mob_action_buttons()
@@ -429,7 +424,6 @@ BLIND     // can't see anything
 	name = "superior welding goggles"
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
-	tint = TINT_MODERATE
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -438,7 +432,6 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
 	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = EYES
-	tint = BLIND
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
@@ -453,7 +446,6 @@ BLIND     // can't see anything
 	icon_state = "blindfoldwhite"
 	flash_protection = FLASH_PROTECTION_MODERATE //not as thick, only offers some protection
 	body_parts_covered = EYES
-	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"

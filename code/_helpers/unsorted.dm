@@ -563,13 +563,26 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return 1
 
-/proc/is_blocked_turf(turf/T)
-	var/cant_pass = 0
-	if(T.density) cant_pass = 1
-	for(var/atom/A in T)
-		if(A.density)//&&A.anchored
-			cant_pass = 1
-	return cant_pass
+/proc/is_blocked_turf(turf/T, exclude_mobs = FALSE, source_atom = null, list/ignore_atoms, type_list = FALSE)
+	if(T.density)
+		return TRUE
+
+	for(var/atom/movable/movable_content as anything in T.contents)
+		if((movable_content == source_atom))
+			continue
+		if(length(ignore_atoms))
+			if(!type_list && (movable_content in ignore_atoms))
+				continue
+			else if(type_list && is_type_in_list(movable_content, ignore_atoms))
+				continue
+
+		// If the thing is dense AND we're including mobs or the thing isn't a mob AND if there's a source atom and
+		// it cannot pass through the thing on the turf, we consider the turf blocked.
+		if(movable_content.density && (!exclude_mobs || !ismob(movable_content)))
+			if(source_atom && movable_content.CanPass(source_atom, get_dir(T, source_atom)))
+				continue
+			return TRUE
+		return FALSE
 
 /* //If you uncomment and use this I will assimilate you. -C.L.
 //Takes: Anything that could possibly have variables and a varname to check.
@@ -996,42 +1009,6 @@ GLOBAL_LIST_INIT(common_tools, list(
 	if(istype(I, /obj/item/assembly/signaler))
 		return TRUE
 	return
-
-/proc/is_hot(obj/item/W as obj)
-	switch(W.type)
-		if(/obj/item/weldingtool)
-			var/obj/item/weldingtool/WT = W
-			if(WT.isOn())
-				return 3800
-			else
-				return 0
-		if(/obj/item/tool/transforming)
-			var/obj/item/tool/transforming/TT = W
-			if(TT.possible_tooltypes[TT.current_tooltype] == TOOL_WELDER)
-				return 3800
-			else
-				return 0
-		if(/obj/item/flame/lighter)
-			if(W:lit)
-				return 1500
-			else
-				return 0
-		if(/obj/item/flame/match)
-			if(W:lit)
-				return 1000
-			else
-				return 0
-		if(/obj/item/clothing/mask/smokable/cigarette)
-			if(W:lit)
-				return 1000
-			else
-				return 0
-		if(/obj/item/pickaxe/plasmacutter)
-			return 3800
-		if(/obj/item/melee/energy)
-			return 3500
-		else
-			return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/item/O)

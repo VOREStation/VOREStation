@@ -30,9 +30,16 @@ export const SOUND_AMBIENCE: FeatureToggle = {
 
 export const sound_instruments: Feature<number> = {
   name: 'Instruments volume',
-  category: 'SOUND',
+  category: 'SOUNDS',
   description: 'Volume of instruments.',
   component: FeatureSliderInput,
+};
+
+export const sound_fridgehum: FeatureToggle = {
+  name: 'Play Fridge Hum',
+  category: 'SOUNDS',
+  description: 'Enable hearing the ambient hum fridges make.',
+  component: CheckboxInput,
 };
 
 export const SOUND_JUKEBOX: FeatureToggle = {
@@ -96,6 +103,13 @@ export const SUBTLE_SOUNDS: FeatureToggle = {
   name: 'Subtle Sounds',
   category: 'SOUNDS',
   description: 'Enable hearing a sound when somebody uses subtle.',
+  component: CheckboxInput,
+};
+
+export const LOOC_SOUNDS: FeatureToggle = {
+  name: 'LOOC Sounds',
+  category: 'SOUNDS',
+  description: 'Enable hearing a sound when somebody uses LOOC.',
   component: CheckboxInput,
 };
 

@@ -21,6 +21,24 @@
 	var/deployed = 0
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
+	slot_flags = SLOT_MASK
+	item_icons = list(
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
+		)
+
+/obj/item/beartrap/equipped()
+	if(ishuman(src.loc))
+		var/mob/living/carbon/human/H = src.loc
+		if(H.wear_mask == src)
+			add_verb(H, /mob/living/proc/shred_limb_temp)
+		else
+			remove_verb(H, /mob/living/proc/shred_limb_temp)
+	..()
+
+/obj/item/beartrap/dropped(mob/user, equipping, slot)
+	remove_verb(user, /mob/living/proc/shred_limb_temp)
+	..()
+
 
 /obj/item/beartrap/start_active
 	deployed = TRUE
@@ -193,12 +211,13 @@
 
 	if(!QDELETED(src))
 		health = round(material.integrity / 3)
-		name = (material.get_edge_damage() * force_divisor > 15) ?  "[material.display_name] razor wire" : "[material.display_name] [initial(name)]"
+		if(named_from_material)
+			name = (material.get_edge_damage() * force_divisor > 15) ?  "[material.display_name] razor wire" : "[material.display_name] [initial(name)]"
 
 /obj/item/material/barbedwire/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
-/obj/item/material/barbedwire/attack_hand(mob/user as mob)
+/obj/item/material/barbedwire/attack_hand(mob/user)
 	if(anchored && can_use(user))
 		user.visible_message(
 			span_danger("[user] starts to collect \the [src]."),
@@ -242,7 +261,7 @@
 			anchored = TRUE
 			update_icon()
 
-/obj/item/material/barbedwire/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/material/barbedwire/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return
 
@@ -275,7 +294,7 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/material/barbedwire/Crossed(atom/movable/AM as mob|obj)
+/obj/item/material/barbedwire/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal())
 		return
 	if(anchored && isliving(AM))
@@ -290,7 +309,7 @@
 			update_icon()
 	..()
 
-/obj/item/material/barbedwire/proc/shock(mob/user as mob, prb, target_zone = BP_TORSO)
+/obj/item/material/barbedwire/proc/shock(mob/user, prb, target_zone = BP_TORSO)
 	if(!anchored || health == 0)		// anchored/destroyed grilles are never connected
 		return 0
 	if(material.conductivity <= 0)
@@ -399,3 +418,21 @@
 /obj/item/material/barbedwire/plastic
 	name = "snare wire"
 	default_material = MAT_PLASTIC
+
+/obj/item/material/barbedwire/plastic/starts_active
+	anchored = TRUE
+
+/obj/item/material/barbedwire/plastic/starts_active/Initialize(mapload, material_key)
+	. = ..()
+	update_icon()
+
+/obj/item/material/barbedwire/durasteel
+	name = "durasteel razor wire"
+	default_material = MAT_DURASTEEL
+
+/obj/item/material/barbedwire/durasteel/starts_active
+	anchored = TRUE
+
+/obj/item/material/barbedwire/durasteel/starts_active/Initialize(mapload, material_key)
+	. = ..()
+	update_icon()

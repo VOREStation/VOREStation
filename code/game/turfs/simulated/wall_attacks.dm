@@ -99,7 +99,8 @@
 	try_touch(user, rotting)
 
 /turf/simulated/wall/attack_hand(mob/user)
-
+	if(!Adjacent(user))
+		return
 	radiate()
 	add_fingerprint(user)
 	user.setClickCooldown(user.get_attack_speed())
@@ -153,8 +154,15 @@
 
 	if(W)
 		radiate()
-		if(is_hot(W))
-			burn(is_hot(W))
+		if(W.is_hot())
+			var/burn_temp = 1000
+			if(istype(W, /obj/item/flame/lighter))
+				burn_temp = 1500
+			if(istype(W, /obj/item/melee/energy))
+				burn_temp = 3500
+			if(istype(W, /obj/item/weldingtool) || istype(W, /obj/item/tool/transforming) || istype(W, /obj/item/pickaxe/plasmacutter))
+				burn_temp = 3800
+			burn(burn_temp)
 
 	if(istype(W, /obj/item/electronic_assembly/wallmount))
 		var/obj/item/electronic_assembly/wallmount/IC = W

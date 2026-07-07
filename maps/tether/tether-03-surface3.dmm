@@ -2938,7 +2938,6 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2,
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
-	id_tag = null;
 	name = "Medbay Airlock";
 	req_access = list(5);
 	req_one_access = list(5)
@@ -6270,6 +6269,10 @@
 /area/tether/surfacebase/outside/outside3)
 "ajH" = (
 /obj/machinery/computer/secure_data,
+/obj/item/radio/intercom/atc{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "ajI" = (
@@ -9956,6 +9959,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
+"aqm" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/item/radio/intercom/culture{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "aqn" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -36396,7 +36409,6 @@
 /area/crew_quarters/pool)
 "bmE" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	id_tag = null;
 	name = "Medbay Storage";
 	req_access = list(5);
 	req_one_access = list(5)
@@ -46102,7 +46114,6 @@
 	},
 /obj/machinery/door/airlock/glass{
 	name = "Tourbus Cockpit";
-	req_access = null;
 	req_one_access = list(67)
 	},
 /obj/machinery/door/firedoor,
@@ -62345,7 +62356,7 @@ bge
 bgA
 bgA
 aru
-aGx
+aqm
 bgz
 bgz
 baX

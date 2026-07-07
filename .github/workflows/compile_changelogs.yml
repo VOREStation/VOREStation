@@ -21,7 +21,7 @@ jobs:
 
       - name: "Setup python"
         #if: steps.value_holder.outputs.ACTIONS_ENABLED
-        uses: actions/setup-python@v6.2.0
+        uses: actions/setup-python@v6.3.0
         with:
           python-version: "3.x"
 
@@ -34,7 +34,7 @@ jobs:
 
       - name: "Checkout"
         #if: steps.value_holder.outputs.ACTIONS_ENABLED
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.0
         with:
           fetch-depth: 25
           persist-credentials: false

@@ -367,7 +367,7 @@
 		"industrial_reagent_furnace",
 		"industrial_reagent_grinder",
 		"industrial_reagent_hub",
-		"industrial_reagent_pipe",
+	//	"industrial_reagent_pipe", // comes with it's own circuitboard now
 		"industrial_reagent_pump",
 		"industrial_reagent_reactor",
 		"industrial_reagent_vat",

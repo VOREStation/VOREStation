@@ -26,6 +26,7 @@
 	var/default_material = MAT_STEEL
 	var/datum/material/material
 	var/drops_debris = 1
+	var/named_from_material = TRUE
 
 /obj/item/material/Initialize(mapload, material_key)
 	. = ..()
@@ -64,7 +65,8 @@
 	if(!material)
 		qdel(src)
 	else
-		name = "[material.display_name] [initial(name)]"
+		if(named_from_material)
+			name = "[material.display_name] [initial(name)]"
 		health = round(material.integrity/10)
 		if(applies_material_colour)
 			color = material.icon_colour
