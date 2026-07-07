@@ -311,15 +311,6 @@
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
-/datum/trait/positive/trauma_tolerance
-	name = "Grit"
-	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
-	cost = 2
-	var_changes = list("trauma_mod" = 0.85)
-	excludes = list(/datum/trait/negative/neural_hypersensitivity)
-	can_take = ORGANICS
-	custom_only = FALSE
-
 /datum/trait/positive/throw_resistance
 	name = "Firm Body"
 	desc = "Your body is firm enough that small thrown items can't do anything to you."
@@ -803,17 +794,24 @@
 
 /datum/trait/positive/pain_tolerance
 	name = "Pain Tolerance"
-	desc = "You are noticeably more resistant to pain than most, and experience 20% less pain from all sources."
+	desc = "You are moderately more resistant to pain than most, and experience 20% less pain from all sources."
 	cost = 2
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.8)
 
 /datum/trait/positive/pain_tolerance_advanced // High Pain Intolerance is 50% incoming pain, but this is 40% reduced incoming pain.
 	name = "Pain Tolerance, Major"
-	desc = "You are extremely resistant to pain sources, and experience 40% less pain from all sources."
-	cost = 3 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
+	desc = "You are noticably resistant to pain sources, and experience 40% less pain from all sources."
+	cost = 3
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.6)
+
+/datum/trait/positive/pain_tolerance_extreme // Essentialy the inverse of Neural Hypersensitivity
+	name = "Pain Tolerance, Extreme"
+	desc = "You are extremely resistant to pain sources, and experience 75% less pain from all sources."
+	cost = 5
+	custom_only = FALSE
+	var_changes = list("pain_mod" = 0.25)
 
 /datum/trait/positive/improved_biocompat
 	name = "Improved Biocompatibility"

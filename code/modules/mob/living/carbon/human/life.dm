@@ -1878,42 +1878,44 @@
 
 	if(shock_stage == 40)
 		if(traumatic_shock >= 80)
-			to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
+			to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc))
 			automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
-		if (prob(2))
+		if(prob(2))
 			if(traumatic_shock >= 80)
-				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
-			Weaken(20)
+				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
+			Weaken(3)
 
 	if(shock_stage >= 80)
-		if (prob(5))
+		if(prob(5))
 			if(traumatic_shock >= 80)
-				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
+				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
 				if(prob(20) && !isbelly(loc))
 					emote("pain")
-			Weaken(20)
+			Weaken(3)
 
 	if(shock_stage >= 120)
-		if (prob(2))
+		if(prob(2))
 			if(traumatic_shock >= 80)
-				to_chat(src, span_danger("[pick("You black out", "You feel like you could die any moment now", "You are about to lose consciousness")]!"))
+				to_chat(src, span_danger("[pick("Your body freezes up", "You feel like you could die any moment now", "You fall over, your body refusing to respond")]!"))
 				if(prob(40) && !isbelly(loc))
 					emote("pain")
 			Paralyse(5)
-			Sleeping(5)
 
 	if(shock_stage == 150)
 		if(!isbelly(loc))
 			automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
 			if(prob(60))
 				emote("pain")
-		Weaken(20)
+		Weaken(3)
 
 	if(shock_stage >= 150)
-		Weaken(20)
+		if(prob(10)) //Instead of perma-stunned on the ground, you have a chance to get back up.
+			if(!weakened && !lying)
+				automatic_custom_emote(VISIBLE_MESSAGE, "collapses!", check_stat = TRUE)
+			Weaken(5)
 
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
@@ -1944,13 +1946,13 @@
 		temp = PULSE_NONE
 		if(!isnull(modifier_set))
 			temp = modifier_set
-		return temp //No blood, no pulse.
+		return CLAMP(round(temp), 0, PULSE_THREADY) //No blood, no pulse.
 
 	if(stat == DEAD)
 		temp = PULSE_NONE
 		if(!isnull(modifier_set))
 			temp = modifier_set
-		return temp	//that's it, you're dead, nothing can influence your pulse, aside from outside means.
+		return CLAMP(round(temp), 0, PULSE_THREADY) //that's it, you're dead, nothing can influence your pulse, aside from outside means.
 
 	var/obj/item/organ/internal/heart/Pump = internal_organs_by_name[O_HEART]
 
@@ -1961,6 +1963,10 @@
 
 		if(brain_modifier <= 0.7 && brain_modifier >= 0.4) // 70%-40% control, things start going weird as the brain is failing.
 			brain_modifier = rand(5, 15) / 10
+
+	if(shock_stage > 60) //Fight or flight time.
+		if(temp < PULSE_2FAST)
+			temp = PULSE_2FAST
 
 	if(Pump)
 		temp += Pump.standard_pulse_level - PULSE_NORM
@@ -2006,7 +2012,8 @@
 				if(R.volume >= R.overdose)
 					temp = PULSE_NONE
 					break //No amount of medications is getting you out of this.
-		return temp * brain_modifier
+		return CLAMP(round(temp * brain_modifier), 0, PULSE_THREADY)
+
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.id in GLOB.bradycardics)
@@ -2021,7 +2028,7 @@
 			if(R.volume >= R.overdose)
 				temp = PULSE_NONE
 
-	return max(0, round(temp * brain_modifier))
+	return CLAMP(round(temp * brain_modifier), 0, PULSE_THREADY)
 
 /mob/living/carbon/human/proc/handle_heartbeat()
 	if(pulse == PULSE_NONE)
