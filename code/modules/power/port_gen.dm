@@ -94,12 +94,14 @@
 			base_duration = 3 MINUTES
 
 	stat |= EMPED
-	emp_duration = world.time + base_duration
-	if(emp_duration)
-		spawn(emp_duration)
-			stat &= ~EMPED
-			emp_duration = 0
-			
+	emp_duration = base_duration
+	addtimer(CALLBACK(src, PROC_REF(clear_emp)), emp_duration, TIMER_DELETE_ME)
+
+/obj/machinery/power/port_gen/proc/clear_emp()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	stat &= ~EMPED
+	emp_duration = 0
 
 /obj/machinery/power/port_gen/proc/explode()
 	explosion(src.loc, -1, 3, 5, -1)
@@ -273,8 +275,8 @@
 		explode() //if they're foolish enough to emag while it's running
 
 	if (!emagged)
-		emagged = 1
-		return 1
+		emagged = TRUE
+		return TRUE
 
 /obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user)
 	if(istype(O, sheet_path))
@@ -426,7 +428,7 @@
 
 	//I don't think tritium has any other use, so we might as well make this rewarding for players
 	//max safe power output (power level = 8) is 200 kW and lasts for 1 hour - 3 or 4 of these could power the station
-	power_gen = 25000 //watts
+	power_gen = 25 KILOWATTS //watts
 	max_power_output = 10
 	max_safe_output = 8
 	time_per_sheet = 2.5 MINUTES
