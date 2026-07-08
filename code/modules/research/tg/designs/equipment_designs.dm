@@ -423,6 +423,7 @@
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1500)
 	build_path = /obj/item/clothing/glasses/welding
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
