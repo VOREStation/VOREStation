@@ -108,17 +108,17 @@
 		data["loaded_pill_bottle_contents_len"] = loaded_pill_bottle.contents.len
 		data["loaded_pill_bottle_storage_slots"] = loaded_pill_bottle.max_storage_space
 
+	var/list/buffer_reagents_list = list()
+	data["buffer_reagents"] = buffer_reagents_list
+	for(var/datum/reagent/R in reagents.reagent_list)
+		buffer_reagents_list[++buffer_reagents_list.len] = list("name" = R.name, "volume" = R.volume, "id" = R.id, "description" = R.description)
+
 	data["beaker"] = !!beaker
 	if(beaker)
 		var/list/beaker_reagents_list = list()
 		data["beaker_reagents"] = beaker_reagents_list
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beaker_reagents_list[++beaker_reagents_list.len] = list("name" = R.name, "volume" = R.volume, "description" = R.description, "id" = R.id)
-
-		var/list/buffer_reagents_list = list()
-		data["buffer_reagents"] = buffer_reagents_list
-		for(var/datum/reagent/R in reagents.reagent_list)
-			buffer_reagents_list[++buffer_reagents_list.len] = list("name" = R.name, "volume" = R.volume, "id" = R.id, "description" = R.description)
 
 	data["pillsprite"] = pillsprite
 	data["bottlesprite"] = bottlesprite

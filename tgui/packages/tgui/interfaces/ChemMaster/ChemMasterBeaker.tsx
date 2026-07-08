@@ -10,12 +10,13 @@ import type { reagent } from './types';
 export const ChemMasterBeaker = (props: {
   beaker: BooleanLike;
   beakerReagents: reagent[];
+  bufferReagents: reagent[];
   bufferNonEmpty: BooleanLike;
 }) => {
   const { act } = useBackend();
   const { beaker, beakerReagents, bufferNonEmpty } = props;
 
-  const headerButton = bufferNonEmpty ? (
+  const headerButton = (<> {bufferNonEmpty ? (
     <Button.Confirm
       icon="eject"
       disabled={!beaker}
@@ -27,9 +28,9 @@ export const ChemMasterBeaker = (props: {
     <Button icon="eject" disabled={!beaker} onClick={() => act('eject')}>
       Eject and Keep Buffer
     </Button>
-  );
-  const headerButton2 = bufferNonEmpty ? (
-  <Button.Confirm
+  )}
+  {bufferNonEmpty ? (
+    <Button.Confirm
       icon="eject"
       disabled={!beaker}
       onClick={() => act('ejectandclear')}
@@ -40,6 +41,8 @@ export const ChemMasterBeaker = (props: {
     <Button icon="eject" disabled={!beaker} onClick={() => act('ejectandclear')}>
       Eject and Clear Buffer
     </Button>
+  )}
+  </>
   );
 
   return (
