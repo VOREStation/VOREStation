@@ -315,6 +315,8 @@
 /mob/living/var/holder_type
 
 /mob/living/MouseDrop(atom/over_object)
+	if(is_incorporeal())
+		return
 	var/mob/living/carbon/human/H = over_object
 	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP)) //VOREStation Edit
 		if(!issmall(H) || !ishuman(src))

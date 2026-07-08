@@ -426,7 +426,7 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Force Eject"
-	if(user.is_incorporeal())
+	if(usr.is_incorporeal())
 		return
 	if(flushing)
 		return
