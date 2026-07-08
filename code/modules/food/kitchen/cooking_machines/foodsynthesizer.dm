@@ -75,10 +75,9 @@
 /obj/machinery/synthesizer/Destroy()
 	QDEL_NULL(wires)
 
-	for(var/obj/item/reagent_containers/synthdispcart/C in cart)
-		C.loc = get_turf(src.loc)
-		C = null
-	QDEL_NULL(cart)
+	if(cart)
+		QDEL_NULL(cart)
+
 	clear_tgui_icons()
 	return ..()
 
@@ -364,7 +363,7 @@
 				if(Adjacent(ui.user))
 					ui.user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
 				else
-					meal.loc = src.loc //otherwise we anti-clump layer onto the floor
+					meal.forceMove(get_turf(src)) //otherwise we anti-clump layer onto the floor
 					meal.randpixel_xy()
 				busy = FALSE
 				update_icon() //turn off lights, please.
@@ -404,7 +403,7 @@
 	if(Adjacent(user))
 		user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
 	else
-		meal.loc = src.loc //otherwise we anti-clump layer onto the floor
+		meal.forceMove(get_turf(src)) //otherwise we anti-clump layer onto the floor
 		meal.randpixel_xy()
 	busy = FALSE
 	update_icon() //turn off lights, please.
@@ -473,7 +472,7 @@
 
 	user.drop_from_inventory(C)
 	cart = C
-	C.loc = src
+	C.forceMove(src)
 	C.add_fingerprint(user)
 	to_chat(user, span_notice("You add [C] to \the [src]."))
 	update_icon()
@@ -487,7 +486,7 @@
 		return
 	if(!Adjacent(user)) //gotta, y'know, be in touch range to pull a physical canister out
 		return
-	C.loc = get_turf(loc)
+	C.forceMove(get_turf(loc))
 	C.update_icon()
 	cart = null
 	to_chat(user, span_notice("You remove [C] from \the [src]."))
