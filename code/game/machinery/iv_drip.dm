@@ -40,6 +40,8 @@
 	..()
 	if(!isliving(usr))
 		return
+	if(usr.is_incorporeal())
+		return
 
 	if(attached)
 		visible_message("[attached] is detached from \the [src]")
@@ -54,6 +56,9 @@
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W as obj, mob/user as mob)
+	if(user.is_incorporeal())
+		return
+
 	if(istype(W, /obj/item/reagent_containers))
 		if(!isnull(beaker))
 			to_chat(user, "There is already a reagent container loaded!")
@@ -77,8 +82,8 @@
 				beaker = null
 			qdel(src)
 		return
-	else
-		return ..()
+
+	. = ..()
 
 
 /obj/machinery/iv_drip/process()
@@ -141,6 +146,9 @@
 				update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)
+	if(user.is_incorporeal())
+		return
+
 	if(beaker)
 		beaker.loc = get_turf(src)
 		beaker = null
@@ -159,6 +167,8 @@
 		return
 
 	if(usr.stat)
+		return
+	if(usr.is_incorporeal())
 		return
 
 	mode = !mode
