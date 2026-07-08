@@ -3,18 +3,17 @@ import { Box, Stack } from 'tgui-core/components';
 export const formatUnits = (a) => `${a} unit${a === 1 ? '' : 's'}`;
 
 /**
- * Displays a beaker's contents
+ * Displays a buffer's contents
  * @property {object} props
  */
-export const BeakerContents = (props) => {
-  const { beakerLoaded, beakerContents = [], buttons } = props;
+export const BufferContents = (props) => {
+  const { bufferContents = [], buttons } = props;
   return (
     <Box>
-      {(!beakerLoaded && <Box color="label">No beaker loaded.</Box>) ||
-        (beakerContents.length === 0 && (
-          <Box color="label">The beaker is empty.</Box>
+      {(bufferContents.length === 0 && (
+          <Box color="label">The buffer is empty.</Box>
         ))}
-      {beakerContents.map((chemical, i) => (
+      {bufferContents.map((chemical, i) => (
         <Box key={i} width="100%">
           <Stack align="center" justify="space-between">
             <Stack.Item color="label">
