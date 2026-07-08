@@ -3295,6 +3295,7 @@
 #include "code\modules\materials\materials\metals\metals_vr.dm"
 #include "code\modules\materials\materials\metals\phoron.dm"
 #include "code\modules\materials\materials\metals\plasteel.dm"
+#include "code\modules\materials\materials\metals\plastitanium.dm"
 #include "code\modules\materials\materials\metals\silver.dm"
 #include "code\modules\materials\materials\metals\steel.dm"
 #include "code\modules\materials\materials\metals\uranium.dm"
