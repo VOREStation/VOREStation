@@ -97,7 +97,7 @@
 	addtimer(CALLBACK(src, PROC_REF(reset)), reset_time, TIMER_DELETE_ME)
 
 /obj/structure/spring_trap/Crossed(atom/movable/AM)
-	if(AM.is_incorporeal() || isobserver(AM) || istype(AM, /obj/effect/abstract))
+	if(AM.is_incorporeal() || isobserver(AM) || istype(AM, /obj/effect/abstract) || AM.throwing || istype(AM, /obj/item/projectile))
 		return
 	if(!sprung)
 		if(isliving(AM))
