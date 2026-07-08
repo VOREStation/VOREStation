@@ -56,9 +56,6 @@
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W as obj, mob/user as mob)
-	if(user.is_incorporeal())
-		return
-
 	if(istype(W, /obj/item/reagent_containers))
 		if(!isnull(beaker))
 			to_chat(user, "There is already a reagent container loaded!")
