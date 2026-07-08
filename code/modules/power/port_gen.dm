@@ -94,8 +94,8 @@
 			base_duration = 3 MINUTES
 
 	stat |= EMPED
-	emp_duration = base_duration
-	addtimer(CALLBACK(src, PROC_REF(clear_emp)), emp_duration, TIMER_DELETE_ME)
+	emp_duration = world.time + base_duration
+	addtimer(CALLBACK(src, PROC_REF(clear_emp)), base_duration, TIMER_DELETE_ME)
 
 /obj/machinery/power/port_gen/proc/clear_emp()
 	SHOULD_NOT_OVERRIDE(TRUE)
