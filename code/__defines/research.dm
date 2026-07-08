@@ -1,5 +1,6 @@
 #define SHEET_MATERIAL_AMOUNT 2000
 #define MAX_STACK_SIZE 50
+#define MATERIAL_COST(x) (SHEET_MATERIAL_AMOUNT * x)
 
 #define IMPRINTER	0x0001	//For circuits. Uses glass/chemicals.
 #define PROTOLATHE	0x0002	//New stuff. Uses glass/metal/chemicals

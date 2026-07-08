@@ -308,11 +308,11 @@
 	icon_state = "rcd"
 	item_state = "rcdammo"
 	w_class = ITEMSIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 30000,MAT_GLASS = 15000)
+	matter = list(DEFAULT_WALL_MATERIAL = 30000,MAT_GLASS = MATERIAL_COST(7.5))
 	var/remaining = RCD_MAX_CAPACITY / 3
 
 /obj/item/rcd_ammo/large
 	name = "high-capacity matter cartridge"
 	desc = "Do not ingest."
-	matter = list(DEFAULT_WALL_MATERIAL = 45000,MAT_GLASS = 22500)
+	matter = list(DEFAULT_WALL_MATERIAL = 45000,MAT_GLASS = MATERIAL_COST(11.25))
 	remaining = RCD_MAX_CAPACITY

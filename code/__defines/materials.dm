@@ -146,5 +146,5 @@
 #define OPTIMAL_COST(cost)(max(1, round(cost)))
 
 /// Default circuitboard material list
-#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 2000)
-#define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = 40)
+#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = MATERIAL_COST(1))
+#define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = MATERIAL_COST(0.02))
