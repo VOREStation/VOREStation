@@ -46,8 +46,6 @@
 		attack_hand(user)
 
 /obj/machinery/power/grid_checker/attack_robot(mob/living/user)
-	if(!user)
-		return
 	interact(user)
 
 /obj/machinery/power/grid_checker/attack_hand(mob/user)
