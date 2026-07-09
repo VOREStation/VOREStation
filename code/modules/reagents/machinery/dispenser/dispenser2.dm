@@ -12,6 +12,7 @@
 
 	var/ui_title = "Chemical Dispenser"
 
+	///If the dispenser is a drink dispenser. Used for update_icon() to prevent beakers from being displayed.
 	var/accept_drinking = FALSE
 	var/amount = 30
 	var/max_cartridges = 30
