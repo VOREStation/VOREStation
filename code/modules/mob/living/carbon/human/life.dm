@@ -1933,17 +1933,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
