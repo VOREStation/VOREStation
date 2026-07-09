@@ -699,7 +699,7 @@
 	desc = "The circuitboard for a Food Synthesizer."
 	build_path = /obj/machinery/synthesizer
 	board_type = new /datum/frame/frame_types/foodsynthesizer
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/scanning_module = 1)
@@ -709,7 +709,7 @@
 	desc = "The circuitboard for a compact food synthesizer."
 	build_path = /obj/machinery/synthesizer/mini
 	board_type = new /datum/frame/frame_types/foodsynthesizer/mini
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/scanning_module = 1)
