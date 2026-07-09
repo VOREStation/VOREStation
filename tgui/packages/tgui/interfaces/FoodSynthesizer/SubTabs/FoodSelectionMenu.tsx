@@ -134,12 +134,6 @@ export const FoodSelectionMenu = (props) => {
                       <Box>Print this Cookie</Box>
                     </Button>
                   </Stack.Item>
-                  <Stack.Divider />
-                  <Stack.Item>
-                    <Button onClick={() => act('refresh')}>
-                      Refresh Information
-                    </Button>
-                  </Stack.Item>
                 </Stack>
               </Section>
             ) : (

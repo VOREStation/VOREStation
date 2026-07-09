@@ -291,7 +291,7 @@
 
 			//Check if we still have the materials.
 			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(src.check_cart(C, ui.user))
+			if(check_cart(C, ui.user))
 				//Sanity check.
 				if(!making || !src)
 					return
@@ -303,7 +303,7 @@
 				addtimer(CALLBACK(src, PROC_REF(finish_production), food_mimic, ui.user), speed_grade, TIMER_DELETE_ME)
 				return TRUE
 
-			src.audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
+			audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
 			return FALSE
 
 		if("refresh")
@@ -324,7 +324,7 @@
 
 			//Check if we still have the materials.
 			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(src.check_cart(C, ui.user))
+			if(check_cart(C, ui.user))
 				//Sanity check.
 				busy = TRUE
 				update_use_power(USE_POWER_ACTIVE)
@@ -333,7 +333,7 @@
 				sleep(speed_grade) //machine go brrr
 
 				//Create the cookie base.
-				var/obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock(src.loc)
+				var/obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock(loc)
 
 				//Begin mimicking the micro
 				var/vore_flavor
@@ -356,10 +356,10 @@
 						foodpaste.data = list(foodpaste.taste_description = 1)
 						meal.nutriment_desc = list(foodpaste.taste_description = 1)
 
-				if(src.menu_grade >= 2) //Is the machine upgraded?
-					meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + src.menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
+				if(menu_grade >= 2) //Is the machine upgraded?
+					meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
 
-				src.audible_message(span_notice("Please take your miniature [meal.name]."), runemessage = "Minature [meal.name] is complete!")
+				audible_message(span_notice("Please take your miniature [meal.name]."), runemessage = "Minature [meal.name] is complete!")
 				if(Adjacent(ui.user))
 					ui.user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
 				else
@@ -368,13 +368,13 @@
 				busy = FALSE
 				update_icon() //turn off lights, please.
 			else
-				src.audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
+				audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
 				return FALSE
 			return TRUE
 
 /obj/machinery/synthesizer/proc/finish_production(obj/item/reagent_containers/food/snacks/food_mimic, mob/user)
 	//Create the desired item.
-	var/obj/item/reagent_containers/food/snacks/synthsized_meal/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal(src.loc)
+	var/obj/item/reagent_containers/food/snacks/synthsized_meal/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal(loc)
 
 	//Begin mimicking the food
 	meal.name = food_mimic.name
@@ -392,14 +392,14 @@
 			F.data = list(F.taste_description = 1)
 			meal.nutriment_desc = list(F.taste_description = 1)
 
-	if(src.menu_grade >= 2) //Is the machine upgraded?
-		meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + src.menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
+	if(menu_grade >= 2) //Is the machine upgraded?
+		meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
 
 	meal.bitesize = food_mimic?.bitesize //suffer your aerogel like 1 Nutriment turkey, nerds.
 	meal.filling_color = food_mimic?.filling_color
 	meal.trash = food_mimic?.trash	//If this can lead to exploits then we'll remove it, but I like the idea.
 	qdel(food_mimic)
-	src.audible_message(span_notice("Please take your [meal.name]."), runemessage = "[meal.name] is complete!")
+	audible_message(span_notice("Please take your [meal.name]."), runemessage = "[meal.name] is complete!")
 	if(Adjacent(user))
 		user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
 	else
@@ -650,7 +650,7 @@
 /obj/item/reagent_containers/synthdispcart/update_icon()
 	cut_overlays()
 	if(reagents.total_volume)
-		var/image/filling_overlay = image("[icon]", src, "[initial(icon_state)]fill_0", layer = src.layer - 0.1)
+		var/image/filling_overlay = image("[icon]", src, "[initial(icon_state)]fill_0", layer = layer - 0.1)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
 			if(0 to 9)			filling_overlay.icon_state = "[initial(icon_state)]fill_0"
