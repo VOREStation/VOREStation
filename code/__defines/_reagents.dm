@@ -724,6 +724,10 @@
 #define REAGENT_ID_GELATIN "gelatin"
 #define REAGENT_MUSTARDPODS "Mustard Pods"
 #define REAGENT_ID_MUSTARDPODS "mustardpods"
+#define REAGENT_NUTRIPASTE "Nutriment Paste"
+#define REAGENT_ID_NUTRIPASTE "nutripaste"
+#define REAGENT_NUTRIPASTE_SOYLENT "Soylent Agent Green"
+#define REAGENT_ID_NUTRIPASTE_SOYLENT "synthsoygreen"
 
 #define REAGENT_DRINK "Drink"
 #define REAGENT_ID_DRINK "drink"

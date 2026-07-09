@@ -13,7 +13,7 @@ import type { Data } from './types';
 export const SupplyConsoleShuttleStatus = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { supply_points, shuttle, shuttle_auth, price_mod, cash_points } = data; // Outpost 21 edit - Points or thalers
+  const { supply_points, shuttle, shuttle_auth, price_mod, cash_points } = data;
 
   let shuttle_buttons: React.JSX.Element | string = '';
   let showShuttleForce = false;
