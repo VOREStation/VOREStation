@@ -4,7 +4,7 @@
 	var/radio_desc = ""
 	icon_state = "headset"
 	item_state = null //To remove the radio's state
-	matter = list(MAT_STEEL = 75)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0375))
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 	slot_flags = SLOT_EARS

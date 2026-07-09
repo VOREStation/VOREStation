@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_HUGE
 
-	matter = list(MAT_STEEL = 10000,MAT_GLASS = 2500)
+	matter = list(MAT_STEEL = MATERIAL_COST(5),MAT_GLASS = MATERIAL_COST(1.25))
 
 	var/code = 2
 	electric_pack = TRUE

@@ -8,6 +8,6 @@
 	},
 	"dependencies": {
 		"svgo": "^4.0.1",
-		"svgtofont": "^6.5.2"
+		"svgtofont": "^6.5.3"
 	}
 }

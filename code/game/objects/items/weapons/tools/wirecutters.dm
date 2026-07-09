@@ -15,7 +15,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.04))
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'

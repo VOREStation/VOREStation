@@ -11,7 +11,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 3000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.5))
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 	var/min_bonus_damage = 3

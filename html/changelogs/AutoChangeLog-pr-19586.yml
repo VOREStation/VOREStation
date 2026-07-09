@@ -1,0 +1,6 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - qol: "Sorted the material construction menus"
+  - refactor: "optimized the wood species recipe removals"
+  - qol: "Frame parts give a contextual hint to usage on examine."
