@@ -66,6 +66,7 @@ export const SubtabSettings = (props: {
     borg_petting,
     resleeve_lock,
     resleeve_scan,
+    synth_cookie,
     mind_scan,
     vantag_volunteer,
     vantag_preference,
@@ -237,6 +238,15 @@ export const SubtabSettings = (props: {
                       tooltip="Select if you start the round with your body records ready to be resleeved"
                     >
                       {resleeve_scan ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Allow Synth cookie replicas">
+                    <Button
+                      onClick={() => act('toggle_synth_cookie')}
+                      selected={synth_cookie}
+                      tooltip="Opt-in to allow crewmembers to print minature replica cookies from food synthesizers of yourself."
+                    >
+                      {synth_cookie ? 'Yes' : 'No'}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item label="Start With Mind Scan">

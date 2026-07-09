@@ -292,6 +292,7 @@ export type MiscData = {
 
   resleeve_lock: BooleanLike;
   resleeve_scan: BooleanLike;
+  synth_cookie: BooleanLike;
   mind_scan: BooleanLike;
 
   vantag_volunteer: BooleanLike;
