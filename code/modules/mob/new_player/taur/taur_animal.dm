@@ -375,14 +375,6 @@
 	extra_overlay2 = "fatwolfalt_markings2"
 	icon_sprite_tag = "wolf"
 
-/datum/sprite_accessory/tail/taur/wolf/husky
-	name = "Husky (Taur)"
-	icon_state = "husky_s"
-
-/datum/sprite_accessory/tail/taur/wolf/huskyfat
-	name = "Fat Husky (Taur)"
-	icon_state = "huskyf_s"
-
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf 3-color (Taur)"
 	icon_state = "wolf_s"
@@ -403,6 +395,14 @@
 	name = "WolfTG (Taur)" //It's Citadel, not TG. :V
 	icon_state = "wolf3_s"
 	do_colouration = FALSE	//this is already pre-colored.
+
+/datum/sprite_accessory/tail/taur/wolf/husky
+	name = "Husky (Taur)"
+	icon_state = "husky_s"
+
+/datum/sprite_accessory/tail/taur/wolf/huskyfat
+	name = "Fat Husky (Taur)"
+	icon_state = "huskyf_s"
 
 /datum/sprite_accessory/tail/taur/zorgoia
 	name = "Zorgoia (Taur)"
