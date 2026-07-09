@@ -254,7 +254,7 @@
 			. = TRUE
 
 		if("ejectBeaker")
-			replace_container(usr)
+			replace_container(ui.user)
 			. = TRUE //no afterattack
 
 		if("import_config")
