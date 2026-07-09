@@ -26,6 +26,20 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/clerical
+	name = "clerical equipment kit"
+	desc = "A kit of clerical equipment with a pen and stamp that can change appearance and color."
+	id = "clerical"
+	// req_tech = list(TECH_ILLEGAL = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 500)
+	build_path = /obj/item/storage/box/syndie_kit/clerical
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/bodysnatcher
 	name = "Body Snatcher"
 	id = "bodysnatcher"
