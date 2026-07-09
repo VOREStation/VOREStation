@@ -237,7 +237,7 @@
 	color = "#bbbbff"
 	slot_flags = SLOT_BELT
 
-	matter = list(MAT_STEEL = 5000,MAT_GLASS = 1500)
+	matter = list(MAT_STEEL = MATERIAL_COST(2.5),MAT_GLASS = MATERIAL_COST(0.75))
 
 	var/static/dcolor = "#e0eff0"
 	var/static/dnightcolor = "#efcc86"

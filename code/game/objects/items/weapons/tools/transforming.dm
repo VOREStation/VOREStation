@@ -42,7 +42,7 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "jaws_pry"
 	item_state = "jawsoflife"
-	matter = list(MAT_METAL=150, MAT_SILVER=50)
+	matter = list(MAT_METAL=150, MAT_SILVER = MATERIAL_COST(0.025))
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.25
@@ -78,7 +78,7 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "drill_bolt"
 	item_state = "drill"
-	matter = list(MAT_STEEL = 150, MAT_SILVER = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.075), MAT_SILVER = MATERIAL_COST(0.025))
 	hitsound = 'sound/items/drill_hit.ogg'
 	usesound = 'sound/items/drill_use.ogg'
 	force = 8
