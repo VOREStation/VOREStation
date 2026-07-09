@@ -130,7 +130,7 @@
 	if(panel_open)
 		if(W.has_tool_quality(TOOL_CROWBAR))	//I would make the deconstructable, but the cartridge system makes this... unwise.
 			var/label = tgui_input_list(user, "Which cartridge would you like to remove?", "Chemical Dispenser", cartridges)
-			if(!label) return
+			if(!label || !Adjacent(user)) return
 			var/obj/item/reagent_containers/chem_disp_cartridge/C = remove_cartridge(label)
 			if(C)
 				to_chat(user, span_notice("You remove [C] from [src]."))
