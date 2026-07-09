@@ -2,17 +2,17 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { RCS_MAINMENU } from './constants';
 import type { Data } from './types';
 
 export const RequestConsoleViewMessages = (props) => {
   const { act, data } = useBackend<Data>();
   const { message_log } = data;
   return (
-    <Section title="Messages">
+    <Section fill scrollable title="Messages">
       {(message_log.length &&
         message_log.map((msg, i) => (
           <LabeledList.Item
+            labelWrap
             label={decodeHtmlEntities(msg[0])}
             key={i}
             buttons={
@@ -31,9 +31,10 @@ export const RequestConsoleViewMessages = (props) => {
   );
 };
 
-export const RequestConsoleMessageAuth = (props) => {
+export const RequestConsoleMessageAuth = (props: { lastTab: number }) => {
   const { act, data } = useBackend<Data>();
   const { message, recipient, priority, msgStamped, msgVerified } = data;
+  const { lastTab } = props;
   return (
     <Section title="Message Authentication">
       <LabeledList>
@@ -69,7 +70,7 @@ export const RequestConsoleMessageAuth = (props) => {
       </Button>
       <Button
         icon="undo"
-        onClick={() => act('setScreen', { setScreen: RCS_MAINMENU })}
+        onClick={() => act('setScreen', { setScreen: lastTab })}
       >
         Back
       </Button>
@@ -77,9 +78,10 @@ export const RequestConsoleMessageAuth = (props) => {
   );
 };
 
-export const RequestConsoleAnnounce = (props) => {
+export const RequestConsoleAnnounce = (props: { lastTab: number }) => {
   const { act, data } = useBackend<Data>();
   const { message, announceAuth } = data;
+  const { lastTab } = props;
   return (
     <Section title="Send Station-Wide Announcement">
       {(announceAuth && (
@@ -119,7 +121,7 @@ export const RequestConsoleAnnounce = (props) => {
       </Button>
       <Button
         icon="undo"
-        onClick={() => act('setScreen', { setScreen: RCS_MAINMENU })}
+        onClick={() => act('setScreen', { setScreen: lastTab })}
       >
         Back
       </Button>
