@@ -206,6 +206,7 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
+	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, I, user, hit_zone, effective_force)
 	if(!hide_attack_message)
 		visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 

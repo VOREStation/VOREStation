@@ -131,6 +131,7 @@
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = T.take_blood(beaker,amount)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DONATE_BLOOD, amount)
 
 			if(B)
 				beaker.reagents.reagent_list |= B

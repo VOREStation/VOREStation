@@ -1213,8 +1213,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-
-
 /datum/sprite_accessory/tail/Easterntail
 	name = "Eastern Dragon (Animated)"
 	desc = ""
@@ -1333,6 +1331,15 @@
 /datum/sprite_accessory/tail/altevian
 	name = "Altevian Tail"
 	icon_state = "altevian"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	lower_layer_dirs = list(SOUTH, WEST)
+
+/datum/sprite_accessory/tail/altevian_eyed
+	name = "Eyed Tail"
+	icon_state = "altevian_eyed"
+	extra_overlay = "altevian_eyed2"
+	extra_overlay2 = "altevian_eyed3"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	lower_layer_dirs = list(SOUTH, WEST)

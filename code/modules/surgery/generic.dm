@@ -8,21 +8,21 @@
 
 /datum/surgery_step/generic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (isslime(target))
-		return 0
+		return FALSE
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
-		return 0
+		return FALSE
 	if(!ishuman(target))
-		return 0
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)
-		return 0
+		return FALSE
 	if (affected.is_stump())
-		return 0
+		return FALSE
 	if (affected.robotic >= ORGAN_ROBOT)
-		return 0
+		return FALSE
 	if(coverage_check(user, target, affected, tool))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 ///////////////////////////////////////////////////////////////
 // Scalpel Surgery
@@ -349,6 +349,7 @@
 	span_notice("You cauterize the incision on [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("cauterizes the incision on [target]'s [affected.name]", "incison cauterized on \the [affected.name]")
 	affected.open = 0
+	affected.organ_clamp() //Technically cauterizing them, but this does the same on the backend.
 	affected.germ_level = 0
 	affected.status &= ~ORGAN_BLEEDING
 
@@ -377,12 +378,12 @@
 
 /datum/surgery_step/generic/amputate/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
-		return 0
+		return FALSE
 	if(!ishuman(target))
-		return 0
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)
-		return 0
+		return FALSE
 	return !affected.cannot_amputate
 
 /datum/surgery_step/generic/amputate/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

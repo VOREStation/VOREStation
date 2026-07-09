@@ -14623,6 +14623,10 @@
 "GR" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_alc/full,
+/obj/item/radio/intercom/culture{
+	dir = 1;
+	pixel_y = 21
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "GS" = (

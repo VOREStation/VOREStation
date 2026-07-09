@@ -184,6 +184,7 @@
 		O.resize(B.size_multiplier, animate = TRUE, ignore_prefs = TRUE)
 		O.fuzzy = B.fuzzy
 		O.custom_speech_bubble = B.custom_speech_bubble
+		O.custom_footstep = B.custom_footstep
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BORGIFY, O)
 

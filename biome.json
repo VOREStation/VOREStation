@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
 	"assist": {
 		"actions": {
 			"source": {
@@ -39,10 +39,11 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"preset": "recommended",
 			"a11y": "off",
 			"complexity": {
-				"useArrowFunction": "error"
+				"useArrowFunction": "error",
+				"noImportantStyles": "off"
 			},
 			"correctness": {
 				"noUnusedImports": "error",

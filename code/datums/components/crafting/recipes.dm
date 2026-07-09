@@ -71,6 +71,8 @@
 
 	var/obj/item/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
+	if(!(S.material.flags & MATERIAL_BRITTLE))
+		S.fragile = FALSE
 	qdel(M)
 
 /datum/crafting_recipe/surgerytable

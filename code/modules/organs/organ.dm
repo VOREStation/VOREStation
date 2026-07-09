@@ -425,16 +425,27 @@
 
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
+	var/damage_to_take
 	for(var/i = 1; i <= robotic; i++)
 		switch (severity)
 			if (EMP_HEAVY)
-				take_damage(rand(5,9))
+				damage_to_take += rand(5,9)
 			if (EMP_MEDIUM)
-				take_damage(rand(3,7))
+				damage_to_take += rand(3,7)
 			if (EMP_LIGHT)
-				take_damage(rand(2,5))
-			if (EMP_HARMLESS)
-				take_damage(rand(1,3))
+				damage_to_take += rand(2,5)
+			if (EMP_HARMLESS) //harmless, you say?
+				damage_to_take += rand(1,3)
+	if(damage_to_take)
+		if(isorgan(src))
+			var/obj/item/organ/external/limb_to_take_damage = src
+			//Randomly split the damage up between brute and burn.
+			var/burn_to_take = rand(0, damage_to_take)
+			damage_to_take -= burn_to_take
+			limb_to_take_damage.take_damage(damage_to_take, burn_to_take)
+			return
+		take_damage(damage_to_take)
+
 
 /obj/item/organ/proc/removed(mob/living/user)
 	if(owner)
