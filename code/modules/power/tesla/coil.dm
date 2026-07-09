@@ -51,9 +51,9 @@
 	. = ..()
 	set_wires(new /datum/wires/tesla_coil(src))
 	default_apply_parts()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/tesla_coil/LateInitialize()
-	. = ..()
 	if(anchored)
 		connect_to_network()
 	update_icon()
@@ -226,8 +226,14 @@
 	var/sufficent_power = FALSE						// lets people see if they're putting enough juice in
 	var/datum/techweb/linked_techweb				// R&D server to contribute points to
 
-/obj/machinery/power/tesla_coil/research/LateInitialize()
+/obj/machinery/power/tesla_coil/research/Initialize(mapload)
 	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/tesla_coil/research/LateInitialize()
+	if(anchored)
+		connect_to_network()
+	update_icon()
 	if(!linked_techweb)
 		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
 
