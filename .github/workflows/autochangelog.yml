@@ -15,17 +15,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.0
+        with:
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Generate App Token
         id: app-token-generation
         uses: actions/create-github-app-token@v3.2.0
-        if: env.APP_PRIVATE_KEY != '' && env.APP_ID != ''
+        if: env.APP_PRIVATE_KEY != '' && env.APP_CLIENT_ID != ''
         with:
-          app-id: ${{ secrets.APP_ID }}
+          client-id: ${{ secrets.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
         env:
           APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-          APP_ID: ${{ secrets.APP_ID }}
+          APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
 
       - name: Run auto changelog
         uses: actions/github-script@v9
