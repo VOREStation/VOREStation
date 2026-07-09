@@ -1,0 +1,4 @@
+author: "CMDRYouth"
+delete-after: True
+changes:
+  - bugfix: "RND_CATEGORY_INITIAL, added to Welding Goggles design so they **actually show up** in the Autolathe.  Hopefully."

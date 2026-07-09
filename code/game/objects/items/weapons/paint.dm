@@ -7,7 +7,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "paint_neutral"
 	item_state = "paintcan"
-	matter = list(MAT_STEEL = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.1))
 	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 10
 	max_transfer_amount = 60
