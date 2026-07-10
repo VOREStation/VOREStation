@@ -178,7 +178,13 @@
 					new /datum/stack_recipe("table frame", /obj/structure/table, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 					new /datum/stack_recipe("bench frame", /obj/structure/table/bench, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 					new /datum/stack_recipe("rack", /obj/structure/table/rack, 1, time = 5, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-					new /datum/stack_recipe("dance pole", /obj/structure/dancepole, 2, one_per_turf = 1, on_floor = 1, time = 20)
+					new /datum/stack_recipe("steel shelves", /obj/structure/table/rack/shelf/steel, 1, one_per_turf = TRUE, time = 5, on_floor = TRUE, recycle_material = "[name]"),
+					new /datum/stack_recipe("dance pole", /obj/structure/dancepole, 2, one_per_turf = 1, on_floor = 1, time = 20),
+					new /datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade, recycle_material = "[name]"),
+					new /datum/stack_recipe("steel kettle", /obj/item/reagent_containers/glass/kettle, 1, on_floor = 1, supplied_material = "[name]"),
+					new /datum/stack_recipe("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
+					new /datum/stack_recipe("cannon frame", /obj/item/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
+					new /datum/stack_recipe("maintenance panel", /obj/item/stack/tile/maintenance_panel, 4, 1, 20, recycle_material = "[name]"),
 				)),
 			)),
 			new /datum/stack_recipe_list("Teshari Nests",list(
@@ -192,6 +198,7 @@
 				new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, recycle_material = "[name]"),
 				new /datum/stack_recipe("machine frame parts", /obj/item/frame, 5, time = 25, on_floor = 1, recycle_material = "[name]"),
 				new /datum/stack_recipe("turret frame", /obj/machinery/porta_turret_construct, 5, time = 25, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+				new /datum/stack_recipe("desk bell", /obj/item/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
 			)),
 			new /datum/stack_recipe_list("light fixtures", list(
 					new /datum/stack_recipe("light switch frame", /obj/item/frame/lightswitch, 2),
@@ -209,6 +216,10 @@
 			new /datum/stack_recipe("conveyor switch", /obj/machinery/conveyor_switch, 2, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 			new /datum/stack_recipe_list("floor-roof tiles", list(
 				new /datum/stack_recipe("regular floor tile", /obj/item/stack/tile/floor, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("steel hi-grip tile", /obj/item/stack/tile/floor/steelgrip, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("techfloor tile", /obj/item/stack/tile/floor/techgrey, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("techfloor grid tile", /obj/item/stack/tile/floor/techgrid, 1, 4, 20, recycle_material = "[name]"),
+				new /datum/stack_recipe("techmaint floor tile", /obj/item/stack/tile/floor/techmaint, 1, 4, 20, recycle_material = "[name]"),
 					//Eris Floor tiles- Normal
 				new /datum/stack_recipe_list("eris floors-normal", list(
 					new /datum/stack_recipe("floor tile", /obj/item/stack/tile/floor/eris/steel, 1, 4, 20, recycle_material = "[name]"),
