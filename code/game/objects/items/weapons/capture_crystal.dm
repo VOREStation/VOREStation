@@ -344,7 +344,7 @@
 			capture(M, null)
 			return
 	//Make sure the player can opt out of getting captured
-	else if(M != U &&tgui_alert(M, "Would you like to be caught in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
+	else if(M != U && tgui_alert(M, "Would you like to be caught in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
 		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No","Yes")) == "Yes")
 			log_admin("[key_name(M)] has agreed to become caught by [key_name(U)].")
 			capture(M, U)
