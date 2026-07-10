@@ -182,7 +182,7 @@
 					new /datum/stack_recipe("dance pole", /obj/structure/dancepole, 2, one_per_turf = 1, on_floor = 1, time = 20),
 					new /datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade, recycle_material = "[name]"),
 					new /datum/stack_recipe("steel kettle", /obj/item/reagent_containers/glass/kettle, 1, on_floor = 1, supplied_material = "[name]"),
-					new /datum/("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
+					new /datum/stack_recipe("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
 					new /datum/stack_recipe("cannon frame", /obj/item/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
 					new /datum/stack_recipe("maintenance panel", /obj/item/stack/tile/maintenance_panel, 4, 1, 20, recycle_material = "[name]"),
 				)),
