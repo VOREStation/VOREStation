@@ -50,6 +50,8 @@
 	releasepods()
 	current_br = null
 	current_mr = null
+	deltimer(dump_in_progress_timer)
+	dump_in_progress_timer = null
 	return ..()
 
 /obj/machinery/computer/transhuman/resleeving/proc/updatemodules()
@@ -265,7 +267,7 @@
 			if(disk && !dump_in_progress_timer)
 				GLOB.global_announcer.autosay("An emergency core dump has been started in \the [find_area]!", "TransCore Oversight", "Command")
 				GLOB.global_announcer.autosay("An emergency core dump has been started in \the [find_area]!", "TransCore Oversight", "Medical")
-				dump_in_progress_timer = addtimer(CALLBACK(src, PROC_REF(dump_transcore_database)), TRANSCORE_DUMP_TIME, TIMER_DELETE_ME|TIMER_STOPPABLE)
+				dump_in_progress_timer = addtimer(CALLBACK(src, PROC_REF(dump_transcore_database)), TRANSCORE_DUMP_TIME, TIMER_STOPPABLE)
 				. = TRUE
 		if("ejectdisk")
 			if(dump_in_progress_timer)
@@ -609,6 +611,7 @@
 		set_temp("Error: Record missing.", "danger")
 
 /obj/machinery/computer/transhuman/resleeving/proc/dump_transcore_database()
+	dump_in_progress_timer = null
 	our_db.core_dump(disk)
 	visible_message(span_warning("\The [src] spits out \the [disk]."))
 	current_br = null
