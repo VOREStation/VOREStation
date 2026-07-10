@@ -46,8 +46,8 @@ export const ChemMasterBuffer = (props: {
                   Analyze
                 </Button>
               </Stack.Item>
-              {transferAmounts.map((am, j) => (
-                <Stack.Item key={j}>
+              {transferAmounts.map((am, i) => (
+                <Stack.Item key={i}>
                   <Button
                     mb="0"
                     onClick={() =>
