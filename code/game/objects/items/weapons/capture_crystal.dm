@@ -340,7 +340,7 @@
 	//What if someone slips and tries to capture themselves?
 	else if(M == U && tgui_alert(M, "Would you like to be caught by [src]? You will be bound to the will of whomever claims ownership of the crystal.", "Become Caught",list("No","Yes")) == "Yes")
 		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No", "Yes")) == "Yes")
-			log_admin("[key_name(M)] has agreed to catch themselves with [src].")
+			log_admin("[key_name(M)] has, by their own volition and discression, decided to catch themselves with [src].")
 			capture(M, null)
 			return
 	//Make sure the player can opt out of getting captured
