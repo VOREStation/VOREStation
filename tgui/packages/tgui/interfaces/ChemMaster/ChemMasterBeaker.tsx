@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { BeakerContents } from '../common/BeakerContents';
+import { BeakerContents } from '../common/ChemicalContents';
 import { modalOpen } from '../common/ComplexModal';
 import { transferAmounts } from './constants';
 import type { reagent } from './types';
@@ -10,7 +10,6 @@ import type { reagent } from './types';
 export const ChemMasterBeaker = (props: {
   beaker: BooleanLike;
   beakerReagents: reagent[];
-  bufferReagents: reagent[];
   bufferNonEmpty: BooleanLike;
 }) => {
   const { act } = useBackend();
