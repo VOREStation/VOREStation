@@ -1,0 +1,5 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - qol: "Chem dispensers now have alt-click to pull a beaker out of them without needing the UI"
+  - image: "Chem Dispensers are no longer KurgerBing soda fountains!"
