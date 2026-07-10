@@ -203,6 +203,12 @@
 	fullness_icons = 3
 	loaf_offset = 4
 
+/datum/sprite_accessory/tail/taur/fox/kitsune
+	name = "Kitsune (Taur)"
+	icon_state = "kitsune"
+	extra_overlay = "kitsune_markings"
+	extra_overlay2 = "kitsune_markings2"
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
@@ -246,10 +252,6 @@
 	name = "Horse & colorable tail (Taur)"
 	extra_overlay = "horse_markings"
 	//icon_sprite_tag = "wolf2c"
-
-/datum/sprite_accessory/tail/taur/kitsune
-	name = "Kitsune (Taur)"
-	icon_state = "kitsune"
 
 /datum/sprite_accessory/tail/taur/otie
 	name = "Otie (Taur)"

@@ -14,6 +14,7 @@
 	name = "Giant Spider (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "giantspidertaur"
+	do_colouration = FALSE
 	extra_overlay = null
 	icon_sprite_tag = "giantspidertaur"
 
@@ -35,6 +36,7 @@
 /datum/sprite_accessory/tail/taur/giantspider/colorable
 	name = "Giant Spider dual-color (Taur)"
 	icon_state = "giantspidertaur-colorable"
+	do_colouration = TRUE
 	extra_overlay = "giantspidertaur-colorable-markings"
 	icon_sprite_tag = "giantspidertaur-colorable"
 
@@ -65,6 +67,7 @@
 /datum/sprite_accessory/tail/taur/giantspider/ant	//technically not a spider, but it inherits the same messages
 	name = "Ant (dual color)"
 	icon_state = "ant_s"
+	do_colouration = TRUE
 	extra_overlay = "ant_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
 	icon_sprite_tag = "wasp"
@@ -72,6 +75,7 @@
 /datum/sprite_accessory/tail/taur/giantspider/wasp	//same as above, but for wasps
 	name = "Wasp (dual color)"
 	icon_state = "wasp_s"
+	do_colouration = TRUE
 	extra_overlay = "wasp_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
 	icon_sprite_tag = "wasp"
@@ -80,7 +84,7 @@
 	name = "Mermaid (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "mermaid_s"
-	can_ride = 0
+	can_ride = FALSE
 	icon_sprite_tag = "mermaid"
 
 	msg_owner_help_walk = "You carefully slither around %prey."
@@ -230,7 +234,7 @@
 /datum/sprite_accessory/tail/taur/tents/thick
 	name = "Thick Tentacles (Taur)"
 	icon_state = "tentacle_s"
-	can_ride = 0
+	can_ride = FALSE
 	icon_sprite_tag = "thick_tentacles"
 
 /datum/sprite_accessory/tail/taur/treeoak_roots
