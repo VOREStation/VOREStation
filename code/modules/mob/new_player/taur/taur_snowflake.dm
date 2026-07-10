@@ -16,7 +16,7 @@
 	name = "Mermaid Orca (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_snowflake.dmi'
 	icon_state = "orcamermaid_s"
-	can_ride = 1
+	can_ride = TRUE
 	do_colouration = FALSE
 	ckeys_allowed = list("grallstonefist")
 
@@ -67,7 +67,7 @@
 	ani_state = "alraune_closed_s"
 	ckeys_allowed = list("natje")
 	do_colouration = FALSE
-	can_ride = 0
+	can_ride = FALSE
 	clip_mask_state = "taur_clip_mask_alraune"
 
 
