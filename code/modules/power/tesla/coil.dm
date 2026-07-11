@@ -240,7 +240,7 @@
 		sufficent_power = TRUE
 	else
 		sufficent_power = FALSE
-	if(powernet && sufficient_power && linked_techweb)// must have a hard connection to the powergrid
+	if(powernet && sufficent_power && linked_techweb)// must have a hard connection to the powergrid
 		for(var/obj/machinery/power/smes/S in powernet.nodes)	//and a SMES unit for the full power grid experience. No running it in your basement or without proper wiring
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
 			break
