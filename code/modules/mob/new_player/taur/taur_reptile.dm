@@ -272,7 +272,7 @@
 
 /datum/sprite_accessory/tail/taur/teshari // chickenbutt
 	name = "Teshari dual-color (Taur)"
-	icon = 'icons/mob/human_races/sprite_accessories/taurs_teshari.dmi'
+	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_teshari.dmi'
 	icon_loaf = 'icons/mob/vore/taurs_teshari_loaf.dmi'
 	icon_state = "tesh"
 	icon_sprite_tag = "tesh"
