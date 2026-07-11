@@ -290,8 +290,8 @@ SUBSYSTEM_DEF(transcore)
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
 /datum/transcore_db/proc/core_dump(obj/item/disk/transcore/disk)
 	ASSERT(disk)
-	GLOB.global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
-	GLOB.global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
+	GLOB.global_announcer.autosay("An emergency core dump has been completed!", "TransCore Oversight", "Command")
+	GLOB.global_announcer.autosay("An emergency core dump has been completed!", "TransCore Oversight", "Medical")
 
 	disk.stored += backed_up
 	backed_up.Cut()

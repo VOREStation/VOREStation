@@ -6,7 +6,7 @@
 	force = 2
 	throwforce = 2
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	var/broken
 	attack_verb = list("annoyed")
 	var/static/radial_examine = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine")

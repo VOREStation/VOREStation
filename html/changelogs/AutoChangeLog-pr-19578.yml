@@ -1,0 +1,6 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - qol: "Chem Masters now permit a choice between beaker ejections, clearing or keeping the buffer inside the machine. Buffer has been changed to 300 (one bluespace beaker) as a result."
+  - bugfix: "Chem Masters now check for for potential overfilling, resolving issues where reagents would be deleted if the beaker was too full to accept the full amount."
+  - bugfix: "Prevents eggs and siffruit from being 'cracked into' the Chem Master or Chem Dispensor, fixing a null runtime that completely breaks the machines"

@@ -15,7 +15,7 @@
 	var/obj/item/grenade/chambered
 	var/list/grenades = new/list()
 	var/max_grenades = 5 //holds this + one in the chamber
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	special_handling = TRUE
 	var/underslung = FALSE
 

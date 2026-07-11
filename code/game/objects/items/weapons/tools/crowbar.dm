@@ -12,7 +12,7 @@
 	pry = 1
 	item_state = "crowbar"
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	usesound = 'sound/items/crowbar.ogg'
 	drop_sound = 'sound/items/drop/crowbar.ogg'
@@ -83,7 +83,7 @@
 	throwforce = 5
 	pry = 1
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 	attack_verb = list("whapped", "smacked", "swatted", "thwacked", "hit")
 	usesound = 'sound/items/crowbar.ogg'
 	toolspeed = 1

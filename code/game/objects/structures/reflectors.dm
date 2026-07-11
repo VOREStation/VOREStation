@@ -299,10 +299,6 @@
 	desc = "A box with an internal set of mirrors that reflects all laser beams in a single direction. This one is marked with NanoTrasen's logo."
 	can_decon = FALSE
 
-/datum/material/steel/generate_recipes()
-	..()
-	recipes += new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE)
-
 /datum/supply_pack/eng/reflector
 	name = "Reflector crate"
 	cost = 35

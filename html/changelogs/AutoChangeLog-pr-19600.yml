@@ -1,0 +1,4 @@
+author: "Fracshun"
+delete-after: True
+changes:
+  - bugfix: "Belly display names now work"

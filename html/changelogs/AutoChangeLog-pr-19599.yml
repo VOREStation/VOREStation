@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Moves the 'misc' out from furniture and into its own proper category on materials."
+  - qol: "Moves table frame from misc to furniture category."
+  - qol: "Moves reflector frame into misc category."

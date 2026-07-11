@@ -12,10 +12,10 @@ type SpawnPanelData = {
   apply_icon_override?: boolean;
 };
 
-interface CreateObjectAdvancedSettingsProps {
+type CreateObjectAdvancedSettingsProps = {
   iconSettings: IconSettings;
   onIconSettingsChange: (settings: Partial<IconSettings>) => void;
-}
+};
 
 export function CreateObjectAdvancedSettings(
   props: CreateObjectAdvancedSettingsProps,
