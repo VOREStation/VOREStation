@@ -168,29 +168,31 @@
 				new /datum/stack_recipe("orange sofa left", /obj/structure/bed/chair/sofa/left/orange, 1, one_per_turf = 1, on_floor = 1), \
 				new /datum/stack_recipe("orange sofa right", /obj/structure/bed/chair/sofa/right/orange, 1, one_per_turf = 1, on_floor = 1), \
 				new /datum/stack_recipe("orange sofa corner", /obj/structure/bed/chair/sofa/corner/orange, 1, one_per_turf = 1, on_floor = 1)
-				)),
-				new /datum/stack_recipe_list("Miscellaneous",list(
-					//new /datum/stack_recipe("IV drip", /obj/machinery/iv_drip, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"), //VOREStation Removal
-					new /datum/stack_recipe("medical stand", /obj/structure/medical_stand, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-					new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
-					new /datum/stack_recipe("dropship seat", /obj/structure/bed/chair/bay/shuttle, 4, one_per_turf = 1, on_floor = 1, time = 20),
-					new /datum/stack_recipe("mirror frame", /obj/item/frame/mirror, 1, time = 5, one_per_turf = 0, on_floor = 1, recycle_material = "[name]"),
-					new /datum/stack_recipe("table frame", /obj/structure/table, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-					new /datum/stack_recipe("bench frame", /obj/structure/table/bench, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-					new /datum/stack_recipe("rack", /obj/structure/table/rack, 1, time = 5, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-					new /datum/stack_recipe("steel shelves", /obj/structure/table/rack/shelf/steel, 1, one_per_turf = TRUE, time = 5, on_floor = TRUE, recycle_material = "[name]"),
-					new /datum/stack_recipe("dance pole", /obj/structure/dancepole, 2, one_per_turf = 1, on_floor = 1, time = 20),
-					new /datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade, recycle_material = "[name]"),
-					new /datum/stack_recipe("steel kettle", /obj/item/reagent_containers/glass/kettle, 1, on_floor = 1, supplied_material = "[name]"),
-					new /datum/stack_recipe("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
-					new /datum/stack_recipe("cannon frame", /obj/item/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
-					new /datum/stack_recipe("maintenance panel", /obj/item/stack/tile/maintenance_panel, 4, 1, 20, recycle_material = "[name]"),
-				)),
+				))
 			)),
 			new /datum/stack_recipe_list("Teshari Nests",list(
 				new /datum/stack_recipe("small teshari nest", /obj/structure/bed/chair/bay/chair/padded/red/smallnest, 2, one_per_turf = 1, on_floor = 1, time = 10),
 				new /datum/stack_recipe("large teshari nest", /obj/structure/bed/chair/bay/chair/padded/red/bignest, 4, one_per_turf = 1, on_floor = 1, time = 20),
 			)),
+			new /datum/stack_recipe("table frame", /obj/structure/table, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+		)),
+
+		new /datum/stack_recipe_list("Miscellaneous",list(
+			//new /datum/stack_recipe("IV drip", /obj/machinery/iv_drip, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"), //VOREStation Removal
+			new /datum/stack_recipe("medical stand", /obj/structure/medical_stand, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
+			new /datum/stack_recipe("dropship seat", /obj/structure/bed/chair/bay/shuttle, 4, one_per_turf = 1, on_floor = 1, time = 20),
+			new /datum/stack_recipe("mirror frame", /obj/item/frame/mirror, 1, time = 5, one_per_turf = 0, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("bench frame", /obj/structure/table/bench, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("rack", /obj/structure/table/rack, 1, time = 5, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("steel shelves", /obj/structure/table/rack/shelf/steel, 1, one_per_turf = TRUE, time = 5, on_floor = TRUE, recycle_material = "[name]"),
+			new /datum/stack_recipe("dance pole", /obj/structure/dancepole, 2, one_per_turf = 1, on_floor = 1, time = 20),
+			new /datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade, recycle_material = "[name]"),
+			new /datum/stack_recipe("steel kettle", /obj/item/reagent_containers/glass/kettle, 1, on_floor = 1, supplied_material = "[name]"),
+			new /datum/stack_recipe("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
+			new /datum/stack_recipe("cannon frame", /obj/item/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
+			new /datum/stack_recipe("maintenance panel", /obj/item/stack/tile/maintenance_panel, 4, 1, 20, recycle_material = "[name]"),
+			new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE)
 		)),
 
 		new /datum/stack_recipe_list("Steel specific construction", list(
