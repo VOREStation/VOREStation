@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { BeakerContents } from '../common/BeakerContents';
+import { BeakerContents } from '../common/ChemicalContents';
 import { modalOpen } from '../common/ComplexModal';
 import { transferAmounts } from './constants';
 import type { reagent } from './types';
@@ -15,18 +15,33 @@ export const ChemMasterBeaker = (props: {
   const { act } = useBackend();
   const { beaker, beakerReagents, bufferNonEmpty } = props;
 
-  const headerButton = bufferNonEmpty ? (
+  const headerButton = (<> {bufferNonEmpty ? (
     <Button.Confirm
       icon="eject"
       disabled={!beaker}
       onClick={() => act('eject')}
     >
-      Eject and Clear Buffer
+      Eject and Keep Buffer
     </Button.Confirm>
   ) : (
     <Button icon="eject" disabled={!beaker} onClick={() => act('eject')}>
+      Eject and Keep Buffer
+    </Button>
+  )}
+  {bufferNonEmpty ? (
+    <Button.Confirm
+      icon="eject"
+      disabled={!beaker}
+      onClick={() => act('ejectandclear')}
+    >
+      Eject and Clear Buffer
+    </Button.Confirm>
+  ) : (
+    <Button icon="eject" disabled={!beaker} onClick={() => act('ejectandclear')}>
       Eject and Clear Buffer
     </Button>
+  )}
+  </>
   );
 
   return (

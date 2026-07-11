@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { BeakerContents } from '../common/BeakerContents';
+import { BufferContents } from '../common/ChemicalContents';
 import { modalOpen } from '../common/ComplexModal';
 import { transferAmounts } from './constants';
 import type { reagent } from './types';
@@ -30,9 +30,8 @@ export const ChemMasterBuffer = (props: {
       }
     >
       {bufferReagents.length > 0 ? (
-        <BeakerContents
-          beakerLoaded
-          beakerContents={bufferReagents}
+        <BufferContents
+          bufferContents={bufferReagents}
           buttons={(chemical, i) => (
             <Stack mb={i < bufferReagents.length - 1 && '2px'}>
               <Stack.Item>
@@ -41,7 +40,6 @@ export const ChemMasterBuffer = (props: {
                   onClick={() =>
                     modalOpen('analyze', {
                       idx: i + 1,
-                      beaker: 0,
                     })
                   }
                 >
@@ -92,7 +90,7 @@ export const ChemMasterBuffer = (props: {
           )}
         />
       ) : (
-        <Box color="label">Buffer is empty.</Box>
+        <Box color="label">The buffer is empty.</Box>
       )}
     </Section>
   );

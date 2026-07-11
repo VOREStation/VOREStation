@@ -35,7 +35,10 @@ export const ChemMaster = (props) => {
           beakerReagents={beaker_reagents}
           bufferNonEmpty={buffer_reagents.length > 0}
         />
-        <ChemMasterBuffer mode={mode} bufferReagents={buffer_reagents} />
+        <ChemMasterBuffer
+          mode={mode}
+          bufferReagents={buffer_reagents}
+        />
         <ChemMasterProduction
           isCondiment={condi}
           bufferNonEmpty={buffer_reagents.length > 0}
