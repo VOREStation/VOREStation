@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
+import { formatUnits } from 'tgui/interfaces/common/ChemicalContents';
 import { Box, Section, Stack } from 'tgui-core/components';
-import { formatUnits } from '../common/ChemicalContents';
 import type { Data } from './types';
 
 export const BorgHypoRecipeDisplay = (props) => {
