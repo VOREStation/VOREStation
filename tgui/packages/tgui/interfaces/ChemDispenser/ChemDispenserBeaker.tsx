@@ -52,7 +52,7 @@ export const ChemDispenserBeaker = (props) => {
       }
     >
       <BeakerContents
-        beakerLoaded={recordedContents || isBeakerLoaded}
+        beakerLoaded={!!recordedContents || isBeakerLoaded}
         beakerContents={recordedContents || beakerContents}
         buttons={(chemical) => (
           <Stack>

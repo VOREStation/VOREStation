@@ -15,33 +15,36 @@ export const ChemMasterBeaker = (props: {
   const { act } = useBackend();
   const { beaker, beakerReagents, bufferNonEmpty } = props;
 
-  const headerButton = (<> {bufferNonEmpty ? (
-    <Button.Confirm
-      icon="eject"
-      disabled={!beaker}
-      onClick={() => act('eject')}
-    >
-      Eject and Keep Buffer
-    </Button.Confirm>
+  const headerButton = bufferNonEmpty ? (
+    <>
+      <Button.Confirm
+        icon="eject"
+        disabled={!beaker}
+        onClick={() => act('eject')}
+      >
+        Eject and Keep Buffer
+      </Button.Confirm>
+      <Button.Confirm
+        icon="eject"
+        disabled={!beaker}
+        onClick={() => act('ejectandclear')}
+      >
+        Eject and Clear Buffer
+      </Button.Confirm>
+    </>
   ) : (
-    <Button icon="eject" disabled={!beaker} onClick={() => act('eject')}>
-      Eject and Keep Buffer
-    </Button>
-  )}
-  {bufferNonEmpty ? (
-    <Button.Confirm
-      icon="eject"
-      disabled={!beaker}
-      onClick={() => act('ejectandclear')}
-    >
-      Eject and Clear Buffer
-    </Button.Confirm>
-  ) : (
-    <Button icon="eject" disabled={!beaker} onClick={() => act('ejectandclear')}>
-      Eject and Clear Buffer
-    </Button>
-  )}
-  </>
+    <>
+      <Button icon="eject" disabled={!beaker} onClick={() => act('eject')}>
+        Eject and Keep Buffer
+      </Button>
+      <Button
+        icon="eject"
+        disabled={!beaker}
+        onClick={() => act('ejectandclear')}
+      >
+        Eject and Clear Buffer
+      </Button>
+    </>
   );
 
   return (
