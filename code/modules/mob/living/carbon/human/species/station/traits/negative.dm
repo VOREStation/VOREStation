@@ -161,14 +161,6 @@
 	primitive_expression_messages=list("staggers")
 	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/positive/heavyweight)
 
-/datum/trait/negative/neural_hypersensitivity
-	name = "Neural Hypersensitivity"
-	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Makes all pain effects twice as strong, and occur at half as much damage."
-	cost = -1
-	var_changes = list("trauma_mod" = 2)
-	can_take = ORGANICS
-	custom_only = FALSE
-
 /datum/trait/negative/breathes
 	cost = -2
 	can_take = ORGANICS
@@ -430,6 +422,14 @@
 
 	activation_message="You feel as though the airflow around you is painful..."
 	primitive_expression_messages=list("bumps their toe, screaming in pain")
+
+/datum/trait/negative/neural_hypersensitivity
+	name = "Neural Hypersensitivity" //Would rename this to 'Pain Intolerance, Extreme' but for savefile reasons, it stays this name.
+	desc = "You are frail and sensitive to pain. You experience 100% more pain from all sources."
+	cost = -5
+	var_changes = list("pain_mod" = 2)
+	can_take = ORGANICS
+	custom_only = FALSE
 
 /datum/trait/negative/sensitive_biochem
 	name = "Sensitive Biochemistry, Minor"
