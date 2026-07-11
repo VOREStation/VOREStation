@@ -192,6 +192,7 @@
 			new /datum/stack_recipe("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
 			new /datum/stack_recipe("cannon frame", /obj/item/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
 			new /datum/stack_recipe("maintenance panel", /obj/item/stack/tile/maintenance_panel, 4, 1, 20, recycle_material = "[name]"),
+			new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE)
 		)),
 
 		new /datum/stack_recipe_list("Steel specific construction", list(
