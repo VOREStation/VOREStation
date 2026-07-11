@@ -1,6 +1,32 @@
 // This is for the Big legs that are NOT TAURIC AND DON'T NEED TO BE INVOLVED IN TAURIC LEGS AAAAAAAA
 // These sprites should really be a seperate leg mode like digitigrade are.
 
+/datum/sprite_accessory/tail/satyr
+	name = "goat legs, colorable"
+	icon = 'icons/mob/human_races/sprite_accessories/tails/not_tail_legs.dmi'
+	icon_state = "satyr"
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
+
+/datum/sprite_accessory/tail/satyrtail
+	name = "goat legs with tail, colorable"
+	icon = 'icons/mob/human_races/sprite_accessories/tails/not_tail_legs.dmi'
+	icon_state = "satyr"
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
+	extra_overlay = "horse" //I can't believe this works.
+
+/datum/sprite_accessory/tail/synthetic_stilt_legs
+	name = "synthetic stilt-legs, colorable"
+	icon = 'icons/mob/human_races/sprite_accessories/tails/not_tail_legs.dmi'
+	icon_state = "synth_stilts"
+	extra_overlay = "synth_stilts_marking"
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
+
 /datum/sprite_accessory/tail/taur/bigleggy
 	name = "Big Leggies"
 	icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
