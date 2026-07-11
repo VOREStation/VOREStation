@@ -1,7 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
-	matter = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
+	matter = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(1.5))
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.

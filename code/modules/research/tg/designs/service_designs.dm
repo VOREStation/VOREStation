@@ -53,7 +53,7 @@
 	desc = "An ashtray."
 	id = "ashtray"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 250)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.125))
 	build_path = /obj/item/material/ashtray
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
@@ -65,7 +65,7 @@
 	desc = "An shinier ashtray."
 	id = "glasstray"
 	build_type = PROTOLATHE
-	materials = list(MAT_GLASS = 250)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.125))
 	build_path = /obj/item/material/ashtray/glass
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
@@ -79,7 +79,7 @@
 	desc = "A bottle for a water-cooler."
 	id = "watercooler_bottle"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTIC = 2500)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1.25))
 	build_path = /obj/item/reagent_containers/glass/cooler_bottle
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -92,7 +92,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_square"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 75)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.0375))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/square
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -105,7 +105,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_rocks"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 50)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.025))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/rocks
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -118,7 +118,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_milkshake"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 40)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.02))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/shake
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -131,7 +131,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_cocktail"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 40)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.02))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/cocktail
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -144,7 +144,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_shot"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 15)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.0075))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/shot
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -157,7 +157,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_pint"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 150)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.075))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/pint
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -170,7 +170,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_mug"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 100)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/mug
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -183,7 +183,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_wine"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 60)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.03))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/wine
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -196,7 +196,7 @@
 	desc = "This glass changes shape and form depending on the drink inside... fancy!"
 	id = "barglass_metaglass"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 625)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.3125))
 	build_path = /obj/item/reagent_containers/food/drinks/metaglass
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -209,7 +209,7 @@
 	desc = "This glass changes shape and form depending on the drink inside... fancy!"
 	id = "barglass_metapint"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 625)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.3125))
 	build_path = /obj/item/reagent_containers/food/drinks/metaglass/metapint
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -222,7 +222,7 @@
 	desc = "Your standard drinking glass."
 	id = "barglass_carafe"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 60)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.03))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/carafe
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -234,7 +234,7 @@
 	name = "plastic pitcher"
 	id = "barglass_pitcher"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTIC = 60)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.03))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/pitcher
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -246,7 +246,7 @@
 	name = "coffee mug"
 	id = "barglass_coffeemug"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 50)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.025))
 	build_path = /obj/item/reagent_containers/food/drinks/glass2/coffeemug
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -259,7 +259,7 @@
 	desc = "A small empty jar."
 	id = "barglass_jar"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 250)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.125))
 	build_path = /obj/item/glass_jar
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -271,7 +271,7 @@
 	name = "ID Card"
 	id = "idcard"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.05), MAT_PLASTIC = MATERIAL_COST(0.15))
 	build_path = /obj/item/card/id
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
@@ -283,7 +283,7 @@
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	id = "cleaver"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 800)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.4))
 	build_path = /obj/item/material/knife/butch
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -296,7 +296,7 @@
 	desc = "A simple tool for rolling dough flat."
 	id = "rollingpin"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_WOOD = 1000)
+	materials = list(MAT_WOOD = MATERIAL_COST(0.5))
 	build_path = /obj/item/material/kitchen/rollingpin
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -309,7 +309,7 @@
 	desc = "A device for scanning items for cargo value."
 	id = "cargo_scanner"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 200)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.1))
 	build_path = /obj/item/cargo_scanner
 	category = list(
 		RND_CATEGORY_INITIAL,

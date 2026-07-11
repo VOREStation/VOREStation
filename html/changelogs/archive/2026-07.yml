@@ -1,0 +1,28 @@
+2026-07-09:
+  Kashargul:
+  - bugfix: github workflows
+  Will:
+  - qol: Borgs can open the gridchecker's UI
+2026-07-10:
+  CMDRYouth:
+  - bugfix: RND_CATEGORY_INITIAL, added to Welding Goggles design so they **actually
+      show up** in the Autolathe.  Hopefully.
+  Guti:
+  - code_imp: Changed all material costs to use sheets define.
+  Poojawa:
+  - qol: Chem dispensers now have alt-click to pull a beaker out of them without needing
+      the UI
+  - image: Chem Dispensers are no longer KurgerBing soda fountains!
+  - rscadd: Added working Food Synthesizers, can print a variety of meals and even
+      (opt in) crew cookies
+  - qol: Sorted the material construction menus
+  - refactor: optimized the wood species recipe removals
+  - qol: Frame parts give a contextual hint to usage on examine.
+2026-07-11:
+  Cameron-The-Raven:
+  - bugfix: Adds numerous items that were removed without changelog notes.
+  Will:
+  - bugfix: Wet/slippery turf state no longer persists through turf change
+  WolvesAndOwls:
+  - bugfix: Capture crystals now handle self-capture edge case
+  - bugfix: OOC Escape from capture crystals no longer bricks crystal and breaks player
