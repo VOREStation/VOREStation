@@ -240,17 +240,17 @@
 		sufficent_power = TRUE
 	else
 		sufficent_power = FALSE
-	if(powernet)// must have a hard connection to the powergrid
+	if(powernet && sufficient_power && linked_techweb)// must have a hard connection to the powergrid
 		for(var/obj/machinery/power/smes/S in powernet.nodes)	//and a SMES unit for the full power grid experience. No running it in your basement or without proper wiring
-			if(S && istype(linked_techweb) && sufficent_power)
-				linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
+			break
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/research/examine(mob/user)
 	. = ..()
 	. += span_notice("This corona analyzer has [sufficent_power ? "sufficent power output to produce additional research data points" : "insufficent power output for electrical corona analysis"].")
-	. += span_info("You will need more power than you think you do.")
+	. += span_info("Will require a strike of at least [power_judgement / 1000]KW to produce research data points. Last strike was: [round(last_shock_value / 1000)]KW.")
 
 #undef CORONA_POWER_JUDGEMENT
 #undef CORONA_LOSS_FACTOR
