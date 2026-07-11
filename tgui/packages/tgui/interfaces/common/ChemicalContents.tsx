@@ -11,7 +11,7 @@ export function formatUnits(a: number) {
 export const BeakerContents = (props: {
   beakerLoaded: boolean;
   beakerContents: Reagent[];
-  buttons: (chemical: Reagent, i: number) => React.JSX.Element;
+  buttons?: (chemical: Reagent, i: number) => React.JSX.Element;
 }) => {
   const { beakerLoaded, beakerContents = [], buttons } = props;
   return (
@@ -34,7 +34,7 @@ export const BeakerContents = (props: {
 
 export const BufferContents = (props: {
   bufferContents: Reagent[];
-  buttons: (chemical: Reagent, i: number) => React.JSX.Element;
+  buttons?: (chemical: Reagent, i: number) => React.JSX.Element;
 }) => {
   const { bufferContents = [], buttons } = props;
   return (
@@ -56,7 +56,7 @@ export const BufferContents = (props: {
 
 const ChemEntry = (props: {
   chemical: Reagent;
-  buttons: (chemical: Reagent, i: number) => React.JSX.Element;
+  buttons?: (chemical: Reagent, i: number) => React.JSX.Element;
   index: number;
 }) => {
   const { chemical, buttons, index } = props;
