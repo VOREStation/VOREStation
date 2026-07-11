@@ -5,10 +5,9 @@ export type Recipe = {
   ref: string;
 };
 
-// Recursive typing, we'll need an interface
-export interface RecipeTree {
+export type RecipeTree = {
   [key: string]: Recipe | RecipeTree;
-}
+};
 
 export type RecipeNode = Recipe | RecipeTree;
 
