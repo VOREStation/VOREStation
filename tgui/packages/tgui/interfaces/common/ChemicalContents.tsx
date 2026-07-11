@@ -1,5 +1,5 @@
+import type { Reagent } from 'tgui/interfaces/ChemDispenser/types';
 import { Box, Stack } from 'tgui-core/components';
-import type { Reagent } from '../ChemDispenser/types';
 
 export function formatUnits(a: number) {
   return `${a} unit${a === 1 ? '' : 's'}`;

@@ -1,14 +1,13 @@
 import { useBackend } from 'tgui/backend';
-import { Window } from 'tgui/layouts';
-import { Section, Stack } from 'tgui-core/components';
-
 import {
   ComplexModal,
   modalRegisterBodyOverride,
-} from '../common/ComplexModal';
-import { LoginInfo } from '../common/LoginInfo';
-import { LoginScreen } from '../common/LoginScreen';
-import { TemporaryNotice } from '../common/TemporaryNotice';
+} from 'tgui/interfaces/common/ComplexModal';
+import { LoginInfo } from 'tgui/interfaces/common/LoginInfo';
+import { LoginScreen } from 'tgui/interfaces/common/LoginScreen';
+import { TemporaryNotice } from 'tgui/interfaces/common/TemporaryNotice';
+import { Window } from 'tgui/layouts';
+import { Section, Stack } from 'tgui-core/components';
 import { MedicalRecordsList } from './MedicalRecordsList';
 import { MedicalRecordsMedbots } from './MedicalRecordsMedbots';
 import {

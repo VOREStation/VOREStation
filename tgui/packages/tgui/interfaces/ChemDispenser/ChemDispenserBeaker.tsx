@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
+import { BeakerContents } from 'tgui/interfaces/common/ChemicalContents';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
-
-import { BeakerContents } from '../common/ChemicalContents';
 import { removeAmounts } from './constants';
 import type { Data } from './types';
 
