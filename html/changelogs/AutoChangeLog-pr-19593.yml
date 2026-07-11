@@ -1,5 +1,0 @@
-author: "WolvesAndOwls"
-delete-after: True
-changes:
-  - bugfix: "Capture crystals now handle self-capture edge case"
-  - bugfix: "OOC Escape from capture crystals no longer bricks crystal and breaks player"

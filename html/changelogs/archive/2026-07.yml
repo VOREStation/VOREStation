@@ -18,3 +18,11 @@
   - qol: Sorted the material construction menus
   - refactor: optimized the wood species recipe removals
   - qol: Frame parts give a contextual hint to usage on examine.
+2026-07-11:
+  Cameron-The-Raven:
+  - bugfix: Adds numerous items that were removed without changelog notes.
+  Will:
+  - bugfix: Wet/slippery turf state no longer persists through turf change
+  WolvesAndOwls:
+  - bugfix: Capture crystals now handle self-capture edge case
+  - bugfix: OOC Escape from capture crystals no longer bricks crystal and breaks player
