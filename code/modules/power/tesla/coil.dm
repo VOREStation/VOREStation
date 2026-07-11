@@ -207,7 +207,7 @@
 			. += span_info("This tesla coil will [relay_efficiency > 1 ? "amplify" : "reduce"] power transferring through it by [ abs(relay_efficiency - 1) * 100]%.")
 
 #define CORONA_LOSS_FACTOR 10
-#define CORONA_POWER_JUDGEMENT 50 KILOWATTS
+#define CORONA_POWER_JUDGEMENT 500 KILOWATTS
 
 // Tesla R&D researcher
 // This sacrifices power generation for R&D point generation. Since amplification is a thing, the celing for getting a result is very high to reach.
@@ -232,16 +232,18 @@
 		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
 
 /obj/machinery/power/tesla_coil/research/coil_act(power, zap_flags, current_jumps)
-	var/power_produced = powernet ? power / power_loss : power
-	add_avail(power_produced*input_power_multiplier)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)	//allow for upgrades to actually be useful.
 	last_shock_value = power_produced
 	flick("[icontype]hit", src)
 	if(power_produced >= power_judgement)//is our power strike worthy?
 		sufficent_power = TRUE
 	else
 		sufficent_power = FALSE
-	if(istype(linked_techweb) && sufficent_power)
-		linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
+	if(powernet)// must have a hard connection to the powergrid
+		for(var/obj/machinery/power/smes/S in powernet.nodes)	//and a SMES unit for the full power grid experience. No running it in your basement or without proper wiring
+			if(S && istype(linked_techweb) && sufficent_power)
+				linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
