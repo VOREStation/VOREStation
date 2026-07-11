@@ -16,16 +16,20 @@ export const ChemMasterBuffer = (props: {
     <Section
       title="Buffer"
       buttons={
-        <Box color="label" inline>
-          Transferring to&nbsp;
-          <Button
-            icon={mode ? 'flask' : 'trash'}
-            color={!mode && 'bad'}
-            onClick={() => act('toggle')}
-          >
-            {mode ? 'Beaker' : 'Disposal'}
-          </Button>
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <Box color="label">Transferring to</Box>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon={mode ? 'flask' : 'trash'}
+              color={!mode && 'bad'}
+              onClick={() => act('toggle')}
+            >
+              {mode ? 'Beaker' : 'Disposal'}
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       {bufferReagents.length > 0 ? (
