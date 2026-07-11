@@ -207,7 +207,8 @@
 			. += span_info("This tesla coil will [relay_efficiency > 1 ? "amplify" : "reduce"] power transferring through it by [ abs(relay_efficiency - 1) * 100]%.")
 
 #define CORONA_LOSS_FACTOR 10
-#define CORONA_POWER_JUDGEMENT 500 KILOWATTS
+#define CORONA_POWER_JUDGEMENT 100 KILOWATTS
+//Multiply the above together. That's how much energy one of these has to get in order to produce a research point.
 
 // Tesla R&D researcher
 // This sacrifices power generation for R&D point generation. Since amplification is a thing, the celing for getting a result is very high to reach.
@@ -220,7 +221,6 @@
 	zap_range = 1									// power leakage allows for a very short range jump but inherits the default efficiency for said zap.
 	var/power_judgement = CORONA_POWER_JUDGEMENT	// avoids cheese by setting a minimum threshold for power generation
 	var/last_shock_value = 0						// used for examine
-	var/sufficent_power = FALSE						// lets people see if they're putting enough juice in
 	var/datum/techweb/linked_techweb				// R&D server to contribute points to
 
 /obj/machinery/power/tesla_coil/research/Initialize(mapload)
@@ -236,11 +236,7 @@
 	add_avail(power_produced*input_power_multiplier)	//allow for upgrades to actually be useful.
 	last_shock_value = power_produced
 	flick("[icontype]hit", src)
-	if(power_produced >= power_judgement)//is our power strike worthy?
-		sufficent_power = TRUE
-	else
-		sufficent_power = FALSE
-	if(powernet && sufficent_power && linked_techweb)// must have a hard connection to the powergrid
+	if(powernet && (power_produced >= power_judgement) && linked_techweb)// must have a hard connection to the powergrid
 		for(var/obj/machinery/power/smes/S in powernet.nodes)	//and a SMES unit for the full power grid experience. No running it in your basement or without proper wiring
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
 			break
@@ -249,7 +245,7 @@
 
 /obj/machinery/power/tesla_coil/research/examine(mob/user)
 	. = ..()
-	. += span_notice("This corona analyzer has [sufficent_power ? "sufficent power output to produce additional research data points" : "insufficent power output for electrical corona analysis"].")
+	. += span_notice("This corona analyzer has [(last_shock_value >= power_judgement) ? "sufficent power output to produce additional research data points" : "insufficent power output for electrical corona analysis"].")
 	. += span_info("Will require a strike of at least [power_judgement / 1000]KW to produce research data points. Last strike was: [round(last_shock_value / 1000)]KW.")
 
 #undef CORONA_POWER_JUDGEMENT
