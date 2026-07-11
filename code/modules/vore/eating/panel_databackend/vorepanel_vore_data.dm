@@ -50,7 +50,7 @@
 
 	inside = list(
 		"absorbed" = owner.absorbed,
-		"belly_name" = inside_belly.name,
+		"belly_name" = inside_belly.get_belly_name(),
 		"belly_mode" = inside_belly.digest_mode,
 		"desc" = inside_desc,
 		"pred" = pred,

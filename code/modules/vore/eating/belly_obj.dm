@@ -556,7 +556,7 @@
 				last_transfer_log = world.time
 				entrance_log_count = 0
 			if(world.time >= next_transfer_log)
-				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(get_belly_name())]."))
 				entrance_log_count++
 				if(entrance_log_count >= MAX_ENTRY_MESSAAGES)
 					next_transfer_log = world.time + ENTRY_MESSAGE_INTERVAL
@@ -706,7 +706,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent && count)
-		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(name)]!"))), range = privacy_range)
+		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(get_belly_name())]!"))), range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = GLOB.classic_release_sounds[release_sound]
@@ -796,7 +796,7 @@
 		if(isitem(M))
 			owner.visible_message(span_vnotice(span_green(span_bold(belly_format_string(trash_eater_out, M, item=M)))),range = privacy_range) //double dip. prey = item, item = prey. sanity check in case they use %prey in the message.
 		else
-			owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
+			owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(get_belly_name())]!"))),range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = GLOB.classic_release_sounds[release_sound]
@@ -1177,7 +1177,7 @@
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
-		var/dest_belly_name = dest_belly.name
+		var/dest_belly_name = dest_belly.get_belly_name()
 		if(dest_belly.name == autotransferlocation)
 			autotransfer_owner_message = span_vwarning(belly_format_string(primary_autotransfer_messages_owner, prey, dest = dest_belly_name))
 			autotransfer_prey_message = span_vwarning(belly_format_string(primary_autotransfer_messages_prey, prey, dest = dest_belly_name))
@@ -1829,7 +1829,6 @@
 		. += AM
 
 /obj/belly/proc/get_belly_name(original)
-	var/display_name = ""
 	if(original)
 		return display_name ? display_name : name
 	return display_name ? lowertext(display_name) : lowertext(name)
