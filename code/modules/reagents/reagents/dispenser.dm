@@ -554,17 +554,33 @@
 		else
 			M.take_organ_damage(0, removed * power * 0.1) // Balance. The damage is instant, so it's weaker. 10 units -> 5 damage, double for pacid. 120 units beaker could deal 60, but a) it's burn, which is not as dangerous, b) it's a one-use weapon, c) missing with it will splash it over the ground and d) clothes give some protection, so not everything will hit
 
-/datum/reagent/acid/touch_obj(obj/O)
+/datum/reagent/acid/touch_obj(obj/melting_object)
 	..()
-	if(O.unacidable)
+	if(melting_object.unacidable)
 		return
-	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
-		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
-		I.desc = "Looks like this was \an [O] some time ago."
-		for(var/mob/M in viewers(5, O))
-			to_chat(M, span_warning("\The [O] melts."))
-		qdel(O)
+	if((istype(melting_object, /obj/item) || istype(melting_object, /obj/effect/plant)) && (volume > meltdose))
+		eject_container_from_machines(melting_object)
+		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(melting_object.loc)
+		I.desc = "Looks like this was \an [melting_object] some time ago."
+		for(var/mob/M in viewers(5, melting_object))
+			to_chat(M, span_warning("\The [melting_object] melts."))
+		qdel(melting_object)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
+
+/// Eject from chemdispenser if melted inside of one. Handled here with typechecks instead of adding logic to every machine for acid's snowflake behavior
+/datum/reagent/acid/proc/eject_container_from_machines(obj/melting_object)
+	if(istype(melting_object.loc, /obj/machinery/chemical_dispenser))
+		var/obj/machinery/chemical_dispenser/dispenser = melting_object.loc
+		dispenser.container.forceMove(get_turf(dispenser))
+		dispenser.container = null
+		dispenser.update_icon()
+		return
+	if(istype(melting_object.loc, /obj/machinery/chem_master))
+		var/obj/machinery/chem_master/mixer = melting_object.loc
+		mixer.beaker.forceMove(get_turf(mixer))
+		mixer.beaker = null
+		mixer.update_icon()
+		return
 
 /datum/reagent/silicon
 	name = REAGENT_SILICON
