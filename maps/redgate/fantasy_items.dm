@@ -262,7 +262,7 @@
 	desc = "A kettle used for making hot drinks."
 	icon_state = "kettle"
 	ui_title = "kettle"
-	accept_drinking = 1
+	accept_drinking = TRUE
 	import_job = null
 
 /obj/machinery/chemical_dispenser/kettle/full

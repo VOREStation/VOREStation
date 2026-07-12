@@ -67,7 +67,7 @@
 	name = "light bulb"
 	id = "light_bulb"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 125)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.0625))
 	build_path = /obj/item/light/bulb
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -79,7 +79,7 @@
 	name = "large light bulb"
 	id = "large_light_bulb"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 200)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.1))
 	build_path = /obj/item/light/bulb/large
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -91,7 +91,7 @@
 	name = "light tube"
 	id = "light_tube"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 125)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.0625))
 	build_path = /obj/item/light/tube
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -103,7 +103,7 @@
 	name = "large light tube"
 	id = "large_light_tube"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 200)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.1))
 	build_path = /obj/item/light/tube/large
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -116,7 +116,7 @@
 	desc = "A backlit floor panel, ready for installation!"
 	id = "floor_light"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/floor_light
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -128,7 +128,7 @@
 	name = "cable coil"
 	id = "cable_coil"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1500, MAT_GLASS = 600) // For a 30 stack, temporary workaround due to not having the correct /five and /thirty subtypes, and it breaking the lathe math... but it requires repathing all coils mapped to /thirty subtype.
+	materials = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_GLASS = MATERIAL_COST(0.3)) // For a 30 stack, temporary workaround due to not having the correct /five and /thirty subtypes, and it breaking the lathe math... but it requires repathing all coils mapped to /thirty subtype.
 	build_path = /obj/item/stack/cable_coil
 	category = list(
 		RND_CATEGORY_INITIAL,
