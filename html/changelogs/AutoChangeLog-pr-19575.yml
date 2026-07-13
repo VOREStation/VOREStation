@@ -1,6 +1,0 @@
-author: "Poojawa"
-delete-after: True
-changes:
-  - rscadd: "Added Corona Analyzers to Tesla coil subtypes, able to assist R&D point generation"
-  - image: "modified tesla coil sprites to be more visually obvious if anchored or the panel is open"
-  - refactor: "cleaned up unneeded circuitry paths and grammar"
