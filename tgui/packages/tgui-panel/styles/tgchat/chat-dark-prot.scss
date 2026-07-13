@@ -1,0 +1,1535 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+@use 'sass:map';
+@use 'sass:color';
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  image-rendering: pixelated;
+}
+
+img.icon {
+  height: 1em;
+  min-height: 16px;
+  min-width: 16px;
+  width: auto;
+  vertical-align: bottom;
+}
+
+a {
+  cursor: var(--cursor-pointer);
+  color: var(--color-hyperlink);
+  transition: color var(--transition-time-medium);
+  text-decoration: none;
+
+  &:hover {
+    color: hsl(from var(--color-hyperlink) h s calc(l + var(--adjust-hover)));
+  }
+}
+
+a.visited,
+a:visited {
+  color: var(--color-hyperlink-visited);
+
+  &:hover {
+    color: hsl(
+      from var(--color-hyperlink-visited) h s calc(l + var(--adjust-hover))
+    );
+  }
+}
+
+/* POPUPS */
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: hsl(0, 0%, 87%);
+}
+
+.popup .close {
+  position: absolute;
+  background: hsl(0, 0%, 67%);
+  top: 0;
+  right: 0;
+  color: hsl(0, 0%, 20%);
+  text-decoration: none;
+  z-index: 2;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.popup .close:hover {
+  background: hsl(0, 0%, 60%);
+}
+
+.popup .head {
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 87%);
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-bottom: 2px solid green;
+}
+
+.popup input {
+  border: 1px solid hsl(0, 0%, 60%);
+  background: hsl(0, 0%, 100%);
+  margin: 0;
+  padding: 5px;
+  outline: none;
+  color: hsl(0, 0%, 20%);
+}
+
+.popup input[type='text']:hover,
+.popup input[type='text']:active,
+.popup input[type='text']:focus {
+  border-color: green;
+}
+
+.popup input[type='submit'] {
+  padding: 5px 10px;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 87%);
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.popup input[type='submit']:hover,
+.popup input[type='submit']:focus,
+.popup input[type='submit']:active {
+  background: hsl(0, 0%, 67%);
+  cursor: pointer;
+}
+
+.changeFont {
+  padding: 10px;
+}
+
+.changeFont a {
+  display: block;
+  text-decoration: none;
+  padding: 3px;
+  color: hsl(0, 0%, 20%);
+}
+
+.changeFont a:hover {
+  background: hsl(0, 0%, 80%);
+}
+
+.highlightPopup {
+  padding: 10px;
+  text-align: center;
+}
+
+.highlightPopup input[type='text'] {
+  display: block;
+  width: 215px;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.highlightPopup input.highlightColor {
+  background-color: hsl(60, 100%, 50%);
+}
+
+.highlightPopup input.highlightTermSubmit {
+  margin-top: 5px;
+}
+
+/* ADMIN CONTEXT MENU */
+
+.contextMenu {
+  background-color: hsl(0, 0%, 87%);
+  position: fixed;
+  margin: 2px;
+  width: 150px;
+}
+
+.contextMenu a {
+  display: block;
+  padding: 2px 5px;
+  text-decoration: none;
+  color: hsl(0, 0%, 20%);
+}
+
+.contextMenu a:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
+/* ADMIN FILTER MESSAGES MENU */
+
+.filterMessages {
+  padding: 5px;
+}
+
+.filterMessages div {
+  padding: 2px 0;
+}
+
+.icon-stack {
+  height: 1em;
+  line-height: 1em;
+  width: 1em;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+/*****************************************
+*
+* OUTPUT ACTUALLY RELATED TO MESSAGES
+*
+******************************************/
+
+/* MOTD */
+
+.motd {
+  color: hsl(233, 28%, 76%);
+  font-family: Verdana, sans-serif;
+  white-space: normal;
+}
+
+.motd h1,
+.motd h2,
+.motd h3,
+.motd h4,
+.motd h5,
+.motd h6 {
+  color: hsl(233, 28%, 76%);
+  text-decoration: underline;
+}
+
+.motd a,
+.motd a:link,
+.motd a:visited,
+.motd a:active,
+.motd a:hover {
+  color: hsl(233, 28%, 76%);
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/* ADD HERE FOR BOLD */
+
+.bold,
+.name,
+.prefix,
+.ooc,
+.looc,
+.adminooc,
+.admin,
+.medal,
+.yell {
+  font-weight: bold;
+}
+
+/* ADD HERE FOR ITALIC */
+
+.italic,
+.italics {
+  font-style: italic;
+}
+
+/* OUTPUT COLORS */
+
+.highlight {
+  background: yellow;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: hsl(233, 28%, 76%);
+  font-family: Georgia, Verdana, sans-serif;
+}
+
+h1.alert,
+h2.alert {
+  color: hsl(233, 28%, 76%);
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.ooc {
+  color: hsl(53, 92%, 39%);
+  font-weight: bold;
+}
+
+.ooc .elevated {
+  color: hsl(221, 63%, 56%);
+}
+
+.ooc .moderator {
+  color: hsl(222, 44%, 34%);
+}
+
+.ooc .developer {
+  color: hsl(50, 41%, 22%);
+}
+
+.ooc .admin {
+  color: hsl(52, 71%, 25%);
+}
+
+.ooc .event_manager {
+  color: hsl(226, 25%, 24%);
+}
+
+.ooc .aooc {
+  color: hsl(48, 28%, 25%);
+}
+
+img.text_tag {
+  width: 32px;
+  height: 10px;
+  min-height: 10px;
+}
+
+/*BIG IMG.icon 			{width: 32px; height: 32px;}*/
+img.icon {
+  vertical-align: middle;
+  max-height: 1em;
+}
+img.icon.bigicon {
+  max-height: 32px;
+}
+
+.looc {
+  color: hsl(250, 3%, 55%);
+  font-weight: bold;
+}
+
+.rlooc {
+  color: hsl(43, 18%, 62%);
+  font-weight: bold;
+}
+
+.adminobserverooc {
+  color: hsl(227, 36%, 62%);
+  font-weight: bold;
+}
+
+.adminooc {
+  color: hsl(211, 100%, 39%);
+  font-weight: bold;
+}
+
+.adminsay {
+  color: hsl(52, 71%, 35%);
+  font-weight: bold;
+}
+
+.admin {
+  color: hsl(221, 68%, 57%);
+  font-weight: bold;
+}
+
+.mentor_channel {
+  color: hsl(53, 100%, 27%);
+  font-weight: bold;
+}
+
+.mod_channel {
+  color: hsl(48, 25%, 32%);
+  font-weight: bold;
+}
+
+.admin_channel {
+  color: hsl(211, 100%, 38%);
+  font-weight: bold;
+}
+
+.event_channel {
+  color: hsl(223, 46%, 53%);
+  font-weight: bold;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.world {
+  font-weight: bold;
+}
+
+.warningplain {
+  font-style: italic;
+}
+
+.hivemind {
+  font-style: italic;
+}
+
+.psay {
+  color: hsl(215, 100%, 57%);
+  font-style: italic;
+}
+
+.pemote {
+  color: hsl(215, 100%, 57%);
+  font-style: italic;
+}
+
+.deadsay {
+  color: hsl(230, 100%, 88%);
+}
+
+.binarysay {
+  font-style: italic;
+  color: hsl(221, 95%, 66%);
+}
+
+.binarysay a {
+  color: hsl(53, 100%, 49%);
+}
+
+.binarysay a:active,
+.binarysay a:visited {
+  color: hsl(49, 95%, 75%);
+}
+
+/* RADIO COLORS */
+/* IF YOU CHANGE THIS KEEP IT IN SYNC WITH TGUI CONSTANTS */
+
+.radio {
+  color: hsl(133, 74%, 46%);
+}
+
+.sciradio {
+  color: hsl(272, 92%, 76%);
+}
+
+.comradio {
+  color: hsl(202, 84%, 64%);
+}
+
+.secradio {
+  color: hsl(0, 71%, 54%);
+}
+
+.medradio {
+  color: hsl(148, 84%, 64%);
+}
+
+.engradio {
+  color: hsl(53, 98%, 50%);
+}
+
+.supradio {
+  color: hsl(34, 45%, 50%);
+}
+
+.srvradio {
+  color: hsl(88, 61%, 41%);
+}
+
+.expradio {
+  color: hsl(0, 0%, 54%);
+}
+
+.syndradio {
+  color: hsl(359, 32%, 43%);
+}
+
+.gangradio {
+  color: hsl(305, 58%, 43%);
+}
+
+.centradio {
+  color: hsl(197, 63%, 40%);
+}
+
+.airadio {
+  color: hsl(332, 60%, 60%);
+}
+
+.redteamradio {
+  color: hsl(0, 100%, 63%) !important;
+}
+
+.blueteamradio {
+  color: hsl(240, 98%, 60%) !important;
+}
+
+.greenteamradio {
+  color: hsl(120, 98%, 60%) !important;
+}
+
+.yellowteamradio {
+  color: hsl(60, 98%, 60%) !important;
+}
+
+.yell {
+  font-weight: bold;
+}
+
+.alert {
+  color: hsl(0, 74%, 49%);
+}
+
+.valert {
+  color: hsl(0, 74%, 49%);
+}
+
+.userdanger {
+  color: hsl(0, 74%, 45%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.bolddanger {
+  color: hsl(0, 74%, 45%);
+  font-weight: bold;
+}
+
+.danger {
+  color: hsl(0, 74%, 45%);
+}
+
+.vdanger {
+  color: hsl(0, 74%, 45%);
+}
+
+.warning {
+  color: hsl(0, 74%, 45%);
+  font-style: italic;
+}
+
+.vwarning {
+  color: hsl(0, 74%, 45%);
+  font-style: italic;
+}
+
+.alertwarning {
+  color: hsl(0, 100%, 50%);
+  font-weight: bold;
+}
+
+.boldwarning {
+  color: hsl(0, 74%, 45%);
+  font-style: italic;
+  font-weight: bold;
+}
+
+.announce {
+  color: hsl(0, 74%, 45%);
+  font-weight: bold;
+}
+
+.boldannounce {
+  color: hsl(0, 74%, 45%);
+  font-weight: bold;
+}
+
+.minorannounce {
+  color: hsl(0, 74%, 45%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.minoralert {
+  color: hsl(233, 28%, 76%);
+  font-size: 125%;
+}
+
+.priorityannounce {
+  color: hsl(233, 28%, 76%);
+  font-weight: bold;
+  font-size: 225%;
+}
+
+.prioritytitle {
+  color: hsl(227, 88%, 68%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.priorityalert {
+  color: hsl(0, 74%, 45%);
+  font-size: 140%;
+}
+
+.greenannounce {
+  color: hsl(133, 93%, 30%);
+  font-weight: bold;
+}
+
+.rose {
+  color: hsl(0, 100%, 66%);
+}
+
+.info {
+  color: hsl(227, 100%, 80%);
+}
+
+.notice {
+  color: hsl(227, 88%, 68%);
+}
+
+.vnotice {
+  color: hsl(227, 88%, 68%);
+}
+
+.tinynotice {
+  color: hsl(227, 88%, 68%);
+  font-size: 85%;
+}
+
+.tinynoticeital {
+  color: hsl(227, 88%, 68%);
+  font-style: italic;
+  font-size: 85%;
+}
+
+.smallnotice {
+  color: hsl(227, 88%, 68%);
+  font-size: 90%;
+}
+
+.smallnoticeital {
+  color: hsl(227, 88%, 68%);
+  font-style: italic;
+  font-size: 90%;
+}
+
+.bolditalic {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.boldnotice {
+  color: hsl(227, 88%, 68%);
+  font-weight: bold;
+}
+
+.hear {
+  color: hsl(227, 88%, 68%);
+  font-style: italic;
+}
+
+.adminnotice {
+  color: hsl(227, 88%, 68%);
+}
+
+.adminhelp {
+  color: hsl(0, 100%, 50%);
+  font-weight: bold;
+}
+
+.log_message {
+  color: hsl(225, 100%, 61%);
+  font-weight: bold;
+}
+
+.unconscious {
+  color: hsl(233, 28%, 76%);
+  font-weight: bold;
+}
+
+.suicide {
+  color: hsl(0, 100%, 66%);
+  font-style: italic;
+}
+
+.green {
+  color: hsl(133, 93%, 30%);
+}
+
+.darkgreen {
+  color: hsl(120, 100%, 25%);
+}
+
+.grey {
+  color: hsl(0, 0%, 51%);
+}
+
+.red {
+  color: hsl(0, 100%, 50%);
+}
+
+.crimson {
+  color: hsl(348, 83%, 47%);
+}
+
+.maroon {
+  color: hsl(0, 100%, 39%);
+}
+
+.brown {
+  color: hsl(21, 69%, 55%);
+}
+
+.blue {
+  color: hsl(224, 98%, 62%);
+}
+
+.black {
+  color: hsl(0, 0%, 100%);
+}
+
+.white {
+  color: hsl(0, 0%, 100%);
+}
+
+.darkgray {
+  color: hsl(0, 0%, 50%);
+}
+
+.gray {
+  color: hsl(0, 0%, 66%);
+}
+
+.yellow {
+  color: hsl(48, 100%, 50%);
+}
+
+.pink {
+  color: hsl(350, 100%, 88%);
+}
+
+.cyan {
+  color: hsl(180, 100%, 50%);
+}
+
+.orange {
+  color: hsl(33, 100%, 50%);
+}
+
+.nicegreen {
+  color: hsl(133, 93%, 30%);
+}
+
+.boldnicegreen {
+  color: hsl(133, 93%, 30%);
+  font-weight: bold;
+}
+
+.blob {
+  color: hsl(16, 100%, 47%);
+}
+
+.blobannounce {
+  color: hsl(82, 39%, 30%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.cult {
+  color: hsl(2, 44%, 41%);
+}
+
+.cultitalic {
+  color: hsl(2, 44%, 41%);
+  font-style: italic;
+}
+
+.cultbold {
+  color: hsl(2, 44%, 41%);
+  font-style: italic;
+  font-weight: bold;
+}
+
+.cultboldtalic {
+  color: hsl(2, 44%, 41%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.cultlarge {
+  color: hsl(2, 44%, 41%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.narsie {
+  color: hsl(2, 44%, 41%);
+  font-weight: bold;
+  font-size: 925%;
+}
+
+.narsiesmall {
+  color: hsl(2, 44%, 41%);
+  font-weight: bold;
+  font-size: 370%;
+}
+
+.colossus {
+  color: hsl(359, 52%, 33%);
+  font-size: 310%;
+}
+
+.hierophant {
+  color: hsl(280, 84%, 59%);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.hierophant_warning {
+  color: hsl(280, 83%, 68%);
+  font-style: italic;
+}
+
+.purple {
+  color: hsl(272, 59%, 58%);
+}
+
+.lightpurple {
+  color: hsl(300, 34%, 52%);
+}
+
+.darkpink {
+  color: hsl(322, 78%, 51%);
+}
+
+.holoparasite {
+  color: hsl(257, 12%, 56%);
+}
+
+.revennotice {
+  color: hsl(272, 56%, 74%);
+}
+
+.revenboldnotice {
+  color: hsl(272, 56%, 74%);
+  font-weight: bold;
+}
+
+.revenbignotice {
+  color: hsl(272, 56%, 74%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.revenminor {
+  color: hsl(273, 53%, 48%);
+}
+
+.revenwarning {
+  color: hsl(276, 85%, 40%);
+  font-style: italic;
+}
+
+.revendanger {
+  color: hsl(276, 85%, 40%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.deconversion_message {
+  color: hsl(272, 100%, 64%);
+  font-size: 185%;
+  font-style: italic;
+}
+
+.ghostalert {
+  color: hsl(264, 100%, 50%);
+  font-style: italic;
+  font-weight: bold;
+}
+
+.alien {
+  color: hsl(300, 18%, 44%);
+}
+
+.noticealien {
+  color: hsl(133, 93%, 30%);
+}
+
+.alertalien {
+  color: hsl(133, 93%, 30%);
+  font-weight: bold;
+}
+
+.changeling {
+  color: hsl(300, 100%, 35%);
+  font-style: italic;
+}
+
+.alertsyndie {
+  color: hsl(0, 100%, 50%);
+  font-size: 185%;
+  font-weight: bold;
+}
+
+.spiderbroodmother {
+  color: hsl(272, 100%, 50%);
+  font-weight: bold;
+  font-size: 185%;
+}
+
+.spiderbreacher {
+  color: hsl(35, 72%, 67%);
+  font-weight: bold;
+  font-size: 140%;
+}
+
+.spiderscout {
+  color: hsl(243, 68%, 35%);
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.interface {
+  color: hsl(300, 80%, 33%);
+}
+
+.sans {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.papyrus {
+  font-family: 'Papyrus', cursive, sans-serif;
+}
+
+.robot {
+  font-family: 'Courier New', cursive, sans-serif;
+}
+
+.tape_recorder {
+  color: hsl(0, 100%, 50%);
+  font-family: 'Courier New', cursive, sans-serif;
+}
+
+.command_headset {
+  font-weight: bold;
+  font-size: 160%;
+}
+
+.small {
+  font-size: 60%;
+}
+
+.big {
+  font-size: 185%;
+}
+
+.reallybig {
+  font-size: 245%;
+}
+
+.extremelybig {
+  font-size: 310%;
+}
+
+.greentext {
+  color: hsl(133, 93%, 30%);
+  font-size: 185%;
+}
+
+.redtext {
+  color: hsl(0, 74%, 45%);
+  font-size: 185%;
+}
+
+.clown {
+  color: hsl(326, 100%, 72%);
+  font-size: 160%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-weight: bold;
+}
+
+.singing {
+  font-family: 'Trebuchet MS', cursive, sans-serif;
+  font-style: italic;
+}
+
+.his_grace {
+  color: hsl(119, 84%, 45%);
+  font-family: 'Courier New', cursive, sans-serif;
+  font-style: italic;
+}
+
+.hypnophrase {
+  color: hsl(0, 0%, 13%);
+  font-weight: bold;
+  animation: hypnocolor 1500ms infinite;
+  animation-direction: alternate;
+}
+
+@keyframes hypnocolor {
+  0% {
+    color: hsl(0, 0%, 13%);
+  }
+
+  25% {
+    color: hsl(266, 98%, 34%);
+  }
+
+  50% {
+    color: hsl(272, 86%, 60%);
+  }
+
+  75% {
+    color: hsl(266, 70%, 36%);
+  }
+
+  100% {
+    color: hsl(192, 83%, 72%);
+  }
+}
+
+.phobia {
+  color: hsl(0, 100%, 43%);
+  font-weight: bold;
+  animation: phobia 750ms infinite;
+}
+
+@keyframes phobia {
+  0% {
+    color: hsl(0, 91%, 66%);
+  }
+
+  50% {
+    color: hsl(0, 100%, 43%);
+  }
+
+  100% {
+    color: hsl(0, 91%, 66%);
+  }
+}
+
+.icon {
+  height: 1em;
+  width: auto;
+}
+
+.bigicon {
+  font-size: 2.5em;
+}
+
+.hugeicon {
+  font-size: 5em;
+}
+
+.memo {
+  color: hsl(75, 100%, 26%);
+  text-align: center;
+}
+
+.memoedit {
+  text-align: center;
+  font-size: 125%;
+}
+
+.abductor {
+  color: hsl(300, 96%, 39%);
+  font-style: italic;
+}
+
+.mind_control {
+  color: hsl(320, 72%, 56%);
+  font-size: 100%;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.slime {
+  color: hsl(181, 100%, 41%);
+}
+
+.drone {
+  color: hsl(60, 1%, 51%);
+}
+
+.monkey {
+  color: hsl(18, 50%, 39%);
+}
+
+.swarmer {
+  color: hsl(219, 100%, 59%);
+}
+
+.resonate {
+  color: hsl(174, 55%, 36%);
+}
+
+.upside_down {
+  display: inline;
+  -moz-transform: scale(-1, -1);
+  -webkit-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+}
+
+.connectionClosed,
+.fatalError {
+  background: red;
+  color: white;
+  padding: 5px;
+}
+
+.connectionClosed.restored {
+  background: green;
+}
+
+.internal.boldnshit {
+  color: hsl(211, 100%, 39%);
+  font-weight: bold;
+}
+
+/* HELPER CLASSES */
+
+.text-normal {
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.ml-1 {
+  margin-left: 1em;
+}
+
+.ml-2 {
+  margin-left: 2em;
+}
+
+.ml-3 {
+  margin-left: 3em;
+}
+
+.examine_block {
+  background: hsl(220, 5%, 11%);
+  border: 1px solid hsl(233, 28%, 76%);
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+}
+
+.tooltip {
+  font-style: italic;
+  border-bottom: 1px dashed hsl(0, 0%, 100%);
+}
+
+$alert-stripe-colors: (
+  'default': hsl(199, 100%, 11%),
+  'green': hsl(120, 100%, 12%),
+  'blue': hsl(199, 100%, 11%),
+  'pink': hsl(326, 100%, 9%),
+  'yellow': hsl(51, 100%, 17%),
+  'orange': hsl(35, 100%, 17%),
+  'red': hsl(0, 100%, 13%),
+  'purple': hsl(295, 100%, 9%),
+  'grey': hsl(0, 0%, 15%),
+);
+
+$alert-stripe-alternate-colors: (
+  'default': hsl(198, 100%, 14%),
+  'green': hsl(120, 100%, 14%),
+  'blue': hsl(198, 100%, 14%),
+  'pink': hsl(325, 100%, 13%),
+  'yellow': hsl(51, 100%, 15%),
+  'orange': hsl(37, 100%, 21%),
+  'red': hsl(0, 100%, 16%),
+  'purple': hsl(295, 100%, 12%),
+  'grey': hsl(0, 0%, 16%),
+);
+
+$alert-major-header-colors: (
+  'default': hsl(192, 100%, 60%),
+  'green': hsl(150, 100%, 50%),
+  'blue': hsl(192, 100%, 60%),
+  'pink': hsl(336, 100%, 66%),
+  'yellow': hsl(39, 100%, 94%),
+  'orange': hsl(21, 92%, 95%),
+  'red': hsl(336, 100%, 66%),
+  'purple': hsl(267, 84%, 80%),
+  'grey': hsl(336, 100%, 66%),
+);
+
+$alert-subheader-header-colors: (
+  'default': hsl(336, 100%, 66%),
+  'green': hsl(336, 100%, 76%),
+  'blue': hsl(336, 100%, 66%),
+  'pink': hsl(192, 100%, 60%),
+  'yellow': hsl(192, 100%, 60%),
+  'orange': hsl(192, 100%, 60%),
+  'red': hsl(192, 100%, 60%),
+  'purple': hsl(192, 100%, 60%),
+  'grey': hsl(192, 100%, 60%),
+);
+
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
+
+.major_announcement_title {
+  font-size: 175%;
+  padding: 0rem 0.5rem;
+  line-height: 100%;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+
+.subheader_announcement_text {
+  font-weight: bold;
+  padding: 0 0.5rem;
+  padding-top: 0.25rem;
+  line-height: 100%;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  font-size: 125%;
+}
+
+.major_announcement_text {
+  color: hsl(0, 0%, 92%);
+  background-color: hsl(0, 0%, 7%);
+  font-weight: bold;
+  font-size: 100%;
+  text-align: left;
+  padding: 0.5rem 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.minor_announcement_title {
+  font-weight: bold;
+  padding: 0 0.5rem;
+  padding-top: 0;
+  line-height: 100%;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  font-size: 150%;
+}
+
+.minor_announcement_text {
+  background-color: hsl(0, 0%, 13%);
+  color: hsl(0, 0%, 92%);
+  padding: 0.5rem 0.5rem;
+  text-align: left;
+  font-size: 100%;
+}
+
+.announcement_header {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_alert {
+  background: hsl(51, 100%, 15%);
+  border: 1px solid hsl(53, 92%, 39%);
+  margin: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+  color: hsl(0, 0%, 100%);
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.ooc_announcement_text {
+  color: hsl(53, 92%, 39%);
+  padding: 0.5em 0 0 0.35em;
+  display: flex;
+  flex-direction: column;
+}
+
+@each $color-name, $color-value in $alert-stripe-colors {
+  .chat_alert_#{$color-name} {
+    color: hsl(0, 0%, 100%);
+    padding: 0.5rem 0.5rem;
+    box-shadow: none;
+    font-weight: bold;
+    margin: 1rem 0 1rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-image: repeating-linear-gradient(
+      -45deg,
+      map.get($alert-stripe-alternate-colors, $color-name),
+      map.get($alert-stripe-alternate-colors, $color-name) 10px,
+      $color-value 10px,
+      $color-value 20px
+    );
+    border-image-slice: $border-width fill;
+    border-width: $border-width-px;
+    border-image-width: $border-width-px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: repeat repeat;
+    border-style: solid;
+  }
+
+  .chat_alert_#{$color-name} .major_announcement_title {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .chat_alert_#{$color-name} .minor_announcement_title {
+    color: map.get($alert-major-header-colors, $color-name);
+  }
+
+  .chat_alert_#{$color-name} .subheader_announcement_text {
+    color: map.get($alert-subheader-header-colors, $color-name);
+  }
+
+  .chat_alert_#{$color-name} .minor_announcement_text {
+    background-color: color.adjust(
+      map.get($alert-stripe-colors, $color-name),
+      $lightness: -5%,
+      $space: hsl
+    );
+  }
+
+  .chat_alert_#{$color-name} .major_announcement_text {
+    background-color: color.adjust(
+      map.get($alert-stripe-colors, $color-name),
+      $lightness: -5%,
+      $space: hsl
+    );
+  }
+}
+
+// Extra Languages
+.tajaran {
+  color: hsl(337, 37%, 37%);
+}
+
+.tajaran_signlang {
+  color: hsl(0, 68%, 35%);
+}
+
+.akhani {
+  color: hsl(317, 50%, 45%);
+}
+
+.skrell {
+  color: hsl(181, 100%, 35%);
+}
+
+.skrellfar {
+  color: hsl(181, 100%, 72%);
+}
+
+.soghun {
+  color: hsl(136, 43%, 52%);
+}
+
+.solcom {
+  color: hsl(214, 81%, 68%);
+}
+
+.sergal {
+  color: hsl(212, 100%, 50%);
+}
+
+.birdsongc {
+  color: hsl(45, 100%, 40%);
+}
+
+.vulpkanin {
+  color: hsl(21, 41%, 53%);
+}
+
+.tavan {
+  color: hsl(331, 90%, 61%);
+  font-family: Arial;
+}
+
+.echosong {
+  color: hsl(281, 12%, 49%);
+}
+
+.enochian {
+  color: hsl(64, 46%, 37%);
+  letter-spacing: -1pt;
+  word-spacing: 4pt;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+
+.daemon {
+  color: hsl(264, 51%, 41%);
+  letter-spacing: -1pt;
+  word-spacing: 0pt;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.drudakar {
+  color: hsl(335, 68%, 44%);
+  word-spacing: 0pt;
+  font-family: 'High Tower Text', monospace;
+}
+
+.bug {
+  color: hsl(60, 47%, 42%);
+}
+
+.vox {
+  color: hsl(300, 100%, 33%);
+}
+
+.promethean {
+  color: hsl(0, 0%, 65%);
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.zaddat {
+  color: hsl(0, 68%, 35%);
+}
+
+.rough {
+  font-family: 'Trebuchet MS', cursive, sans-serif;
+}
+
+.say_quote {
+  font-family: Georgia, Verdana, sans-serif;
+}
+
+.say_quote_italics {
+  font-style: italic;
+  font-family: Georgia, Verdana, sans-serif;
+}
+
+.terminus {
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+.spacer {
+  color: hsl(38, 87%, 33%);
+}
+
+.teppi {
+  color: hsl(34, 34%, 38%);
+  word-spacing: 4pt;
+  font-family: 'Segoe Script Bold', 'Segoe Script', sans-serif, Verdana;
+}
+
+.marish {
+  color: hsl(297, 54%, 42%);
+}
+
+.shadekin {
+  color: hsl(297, 54%, 50%);
+  font-size: 150%;
+  font-weight: bold;
+  font-family: 'Gabriola', cursive, sans-serif;
+  line-height: 0.3;
+}
+
+.psionic {
+  color: hsl(300, 50%, 40%);
+}
+
+.wingdings {
+  color: hsl(212, 100%, 50%);
+  font-family: Wingdings, Webdings;
+}
+
+.rainbow {
+  font-family: monospace;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    hsl(300, 76%, 72%),
+    hsl(275, 100%, 25%),
+    hsl(240, 100%, 50%),
+    hsl(120, 100%, 25%),
+    hsl(60, 100%, 50%),
+    hsl(39, 100%, 50%),
+    hsl(0, 100%, 50%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+.spoiler {
+  background-color: hsl(0, 0%, 50%);
+  color: transparent;
+  user-select: none;
+}
+
+.spoiler:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+.nif {
+  color: hsla(180, 100%, 50%, 0.801);
+}
+
+details {
+  width: 80%;
+  background: hsl(220, 5%, 11%);
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  overflow: hidden;
+  border-color: #343b3d;
+  border: 1px solid hsl(233, 28%, 76%);
+}
+
+summary {
+  padding: 1rem;
+  display: block;
+
+  background: hsl(220, 5%, 11%);
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+summary:before {
+  content: '';
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: transparent transparent transparent hsl(233, 28%, 76%);
+  position: absolute;
+  top: 1.3rem;
+  left: 1rem;
+  transform: rotate(0);
+  transform-origin: 0.2rem 50%;
+  transition: 0.25s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details > ul {
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+}
