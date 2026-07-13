@@ -44,6 +44,16 @@
 	var/struggle_anim = FALSE
 	var/bellies_icon_path = 'icons/mob/vore/Taur_Bellies.dmi'
 
+	// Tail Socks
+	/// This can usually be the default icon, since the base icon is a complete unit.
+	/// Taur tails are snipped off to account for the butt positioning being easier to deal with.
+	var/tailsock_icon = "[initial(icon_state)]"
+	/// Same for wag states, we just need the sprite itself, not any of the custom overlays
+	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.
+	var/tailsock_wagicon = "[initial(ani_state)]"
+	/// Also same for the vore belly taur sprites. we'll just overlay so you can see the animations too.
+	var/tailsock_bellyicon = "[initial(vore_tail_sprite_variant)]"
+
 /datum/sprite_accessory/tail/New()
 	. = ..()
 	if(clip_mask_state)
