@@ -8,7 +8,7 @@
 	var/requires_tailsock = FALSE
 	/// what color is the tailsock going to be? Defaults to a nice, dark grey that usually matches everything.
 	/// rgb(29, 29, 29) for the VSC people
-	var/tailsock_color = #1D1D1D
+	var/tailsock_color = "#1D1D1D"
 
 /obj/item/clothing/suit/fire
 	requires_tailsock = TRUE

@@ -128,6 +128,7 @@
 /datum/sprite_accessory/tail/taur/horse/scoli
 	name = "Scolipede (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
+	suit_sprites = null	//not a chance this fat bug is fitting in those.
 	icon_state = "scoli_s"
 	extra_overlay = "scoli_markings1"
 	extra_overlay2 = "scoli_markings2"
@@ -136,7 +137,7 @@
 	name = "Spider (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "spider_s"
-	suit_sprites = 'icons/mob/taursuits_spider.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_spider.dmi'
 	icon_sprite_tag = "spider"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
@@ -166,7 +167,7 @@
 	name = "Slug (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "slug_s"
-	suit_sprites = 'icons/mob/taursuits_deer.dmi' //Yes it sounds odd, but they share the same sprites.
+	//suit_sprites = 'icons/mob/taursuits_deer.dmi' //Yes it sounds odd, but they share the same sprites. Actually no they don't lol
 	icon_sprite_tag = "slug"
 	vore_tail_sprite_variant = "Slug"
 	fullness_icons = 1

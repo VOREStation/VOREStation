@@ -4,7 +4,7 @@
 	icon_state = "drake_s"
 	extra_overlay = "drake_markings"
 ///	suit_sprites = 'icons/mob/taursuits_drake.dmi'
-	suit_sprites = 'icons/mob/taursuits_drake_ch.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_drake.dmi'
 	icon_sprite_tag = "drake"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -59,7 +59,6 @@
 	extra_overlay_w = "spotteddrake_markings"
 	extra_overlay2 = "spotteddrake_markings_2"
 	extra_overlay2_w = "spotteddrake_markings_2"
-	suit_sprites = 'icons/mob/taursuits_drake_ch.dmi'
 	icon_sprite_tag = "drake"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
@@ -108,7 +107,7 @@
 	name = "Lizard (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_reptile.dmi'
 	icon_state = "lizard_s"
-	suit_sprites = 'icons/mob/taursuits_lizard_ch.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_lizard.dmi'
 	icon_sprite_tag = "lizard"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -176,9 +175,10 @@
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
+	//TODO: MOAR NAGA SUITS
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_reptile.dmi'
 	icon_state = "naga_s"
-	suit_sprites = 'icons/mob/taursuits_naga.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_naga.dmi'
 	//icon_sprite_tag = "naga"
 	vore_tail_sprite_variant = "Naga"
 	fullness_icons = 1
@@ -234,28 +234,24 @@
 
 /datum/sprite_accessory/tail/taur/naga/alt_2c
 	name = "Naga alt style dual-color (Taur)"
-	suit_sprites = 'icons/mob/taursuits_naga.dmi' //TODO: PORT CHOMPS NAGA_ALT AND MAKE THESE NAGA_ALT.
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	//icon_sprite_tag = "altnaga2c"
 
 /datum/sprite_accessory/tail/taur/naga/alt_3c
 	name = "Naga alt style tri-color (Taur)"
-	suit_sprites = 'icons/mob/taursuits_naga.dmi' //TODO: PORT CHOMPS NAGA_ALT AND MAKE THESE NAGA_ALT.
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_stripes"
 
 /datum/sprite_accessory/tail/taur/naga/alt_3c_rattler
 	name = "Naga alt style tri-color, rattler (Taur)"
-	suit_sprites = 'icons/mob/taursuits_naga.dmi' //TODO: PORT CHOMPS NAGA_ALT AND MAKE THESE NAGA_ALT.
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_rattler"
 
 /datum/sprite_accessory/tail/taur/naga/alt_3c_tailmaw
 	name = "Naga alt style tri-color, tailmaw (Taur)"
-	suit_sprites = 'icons/mob/taursuits_naga.dmi' //TODO: PORT CHOMPS NAGA_ALT AND MAKE THESE NAGA_ALT.
 	icon_state = "altnagatailmaw_s"
 	extra_overlay = "altnagatailmaw_markings"
 	extra_overlay2 = "altnagatailmaw_eyes"
@@ -266,7 +262,7 @@
 	icon_state = "noodle_s"
 	extra_overlay = "noodle_markings"
 	extra_overlay2 = "noodle_markings_2"
-	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_noodle.dmi'
 	clip_mask_state = "taur_clip_mask_noodle"
 	icon_sprite_tag = "noodle"
 

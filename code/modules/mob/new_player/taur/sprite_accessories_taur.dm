@@ -6,7 +6,7 @@
 	var/can_ride = TRUE			//whether we're real rideable taur or just in that category
 	offset_x = -16
 	em_block = TRUE
-
+	/// Suit sprites are stored in icons/inventory/suit/taursuits_[name]
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null
 
