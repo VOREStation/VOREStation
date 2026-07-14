@@ -881,7 +881,7 @@
 				failure_msg += "You must have at least one belly. "
 
 			if(failure_msg)
-				tgui_alert_async(user,failure_msg,"Error!")
+				tgui_alert_async(user, failure_msg, "Error!")
 				return FALSE
 
 			if(host.soulgem?.linked_belly == host.vore_selected)
