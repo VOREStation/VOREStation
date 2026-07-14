@@ -77,7 +77,7 @@
 /obj/machinery/bodyscanner/MouseDrop_T(mob/living/carbon/human/O, mob/user as mob)
 	if(!istype(O))
 		return 0 //not a mob
-	if(user.incapacitated())
+	if(user.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return 0 //user shouldn't be doing things
 	if(O.anchored)
 		return 0 //mob is anchored???
@@ -114,7 +114,7 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
-	if(user.incapacitated())
+	if(user.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return 0 //maybe they should be able to get out with cuffs, but whatever
 	go_out()
 
@@ -123,7 +123,7 @@
 	set category = "Object"
 	set name = "Eject Body Scanner"
 
-	if(usr.incapacitated())
+	if(usr.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return
 	go_out()
 	add_fingerprint(usr)
