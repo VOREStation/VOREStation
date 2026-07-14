@@ -113,9 +113,12 @@
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
-	icon_state = "feline_s"
+	icon_state = "feline_s"	//I just want to talk to whomever thought every feline varient needed this same sprite but uniquely renamed...
 	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
+	extra_overlay = "feline_markings"
+	ani_state = "feline_w"
+	extra_overlay_w = "feline_markings"		//Honestly there ought to be a wag overlay, but the ones here are too faint that... nah.
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 5
@@ -126,50 +129,50 @@
 /datum/sprite_accessory/tail/taur/feline/fat
 	name = "Fat Feline (Taur)"
 	icon_state = "fatfeline_s"
-	//icon_sprite_tag = "fatfeline"
+	extra_overlay = "fatfeline_markings"	//feet, belly, and chest
+	ani_state = "fatfeline_w"
+	extra_overlay_w = "fatfeline_markings"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/fat_wag
 	name = "Fat Feline (Taur, Fat vwag)"
-	icon_state = "fatfeline_s"
-	ani_state = "fatfeline_w"
+	ani_state = "fatfeline_s"	//static fat sprite
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
 	name = "Fat Feline 3-color (Taur)"
-	icon_state = "fatfeline2_s"
-	extra_overlay = "fatfeline2_markings"
-	extra_overlay2 = "fatfeline2_markings_2"
+	icon_state = "fatfeline_s"
+	extra_overlay = "fatfeline2_markings"		// chest and belly
+	extra_overlay2 = "fatfeline2_markings_2"	// feet
 	can_loaf = TRUE
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c
 	name = "Feline 3-color (Taur)"
 	icon_state = "feline_s"
-	extra_overlay = "feline_markings"
-	extra_overlay2 = "feline_markings_2"
+	extra_overlay = "feline2_markings"
+	extra_overlay2 = "feline2_markings_2"
 	//icon_sprite_tag = "feline2c"
 	can_loaf = TRUE
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c_wag
 	name = "Feline 3-color (Taur, Fat vwag)"
-	icon_state = "fatfeline2_s"
+	extra_overlay = "feline2_markings"
+	extra_overlay2 = "feline2_markings_2"
+	ani_state = "fatfeline_s"
 	extra_overlay = "fatfeline2_markings"
 	extra_overlay2 = "fatfeline2_markings_2"
-	ani_state = "fatfeline_s"
-	extra_overlay_w = "fatfeline_markings_vwag"
-	extra_overlay2_w = "fatfeline_markings_vwag2"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/tiger
 	name = "Tiger (Taur)"
-	icon_state = "tiger_s"
 	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
-	extra_overlay = "tiger_markings"
-	extra_overlay2 = "tiger_markings_2"
+	extra_overlay = "feline_markings"
+	extra_overlay2 = "tiger_markings"
+	extra_overlay2_w = "tiger_markings_w"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 5
@@ -179,17 +182,18 @@
 
 /datum/sprite_accessory/tail/taur/feline/tiger/fat
 	name = "Fat Tiger (Taur)"
-	icon_state = "fattiger_s"
-	extra_overlay = "fattiger_markings"
-	extra_overlay2 = "fattiger_markings_2"
+	icon_state = "fatfeline_s"
+	extra_overlay = "fatfeline_markings"
+	extra_overlay2 = "fattiger_markings"
+	extra_overlay2_w = "fattiger_markings_w"
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/tiger/fat_vwag
 	name = "Tiger (Taur, Fat vwag)"
-	ani_state = "fattiger_s"
-	extra_overlay_w = "fattiger_markings"
-	extra_overlay2_w = "fattiger_markings_2"
+	ani_state = "fatfeline_s"
+	extra_overlay_w = "fatfeline_markings"
+	extra_overlay2_w = "fattiger_markings"
 
 /datum/sprite_accessory/tail/taur/fox
 	name = "Fox (Taur, 3-color)"
