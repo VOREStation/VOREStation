@@ -573,6 +573,8 @@ SUBSYSTEM_DEF(internal_wiki)
 	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
 		if(initial(D.name) == DEVELOPER_WARNING_NAME)
 			continue
+		if(initial(D.wiki_hidden))
+			continue
 		if(initial(D.visibility_flags) & HIDDEN_PANDEMIC)
 			spoiler_entries.Add(D)
 			continue
