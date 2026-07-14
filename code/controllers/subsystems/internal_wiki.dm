@@ -1374,7 +1374,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/recipe/assemble(list/recipe)
 	var/list/data = list()
 
-	title = "[recipe["Appliance"]]-[recipe["Result"]]"
+	title = "[recipe["Appliance"]]-[recipe["Result"]]" // Multiple machines can make the same food (oven/microwave do it a lot)... So we keep the machine in the name to have both.
 	data["title"] = title
 	var/obj/item/path = recipe["ResultPath"]
 	if(path)
