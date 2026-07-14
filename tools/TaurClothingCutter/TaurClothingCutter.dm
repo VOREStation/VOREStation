@@ -26,20 +26,16 @@ obj
 	//Our clothes
 	var/icon/SuitsToSnip = icon('suitstocovert/standard/fullsuits.dmi')
 
-	//Our Species specific cutter icon
+	//Our Species specific cutter icons
 	var/icon/SuitCutter = icon('SuitCutter.dmi')
 
-	var/icon/RunningOutput = new ()
-
-	//For each original project
-	for(var/SuitState in icon_states(SuitsToSnip))
-		//For each piece we're going to cut
-		for(var/CutterState in icon_states(SuitCutter))
-
-			//The fully assembled icon to cut
+	//For each original project, batch it!
+	for(var/CutterState in icon_states(SuitCutter))
+		var/icon/RunningOutput = new ()
+		for(var/SuitState in icon_states(SuitsToSnip))
+			//Our default to cut out from's state
 			var/icon/Original = icon(SuitsToSnip,SuitState)
-
-			//Our cookie cutter sprite
+			//Our cookie cutter form
 			var/icon/Cutter = icon(SuitCutter,CutterState)
 
 			//We have to make these all black to cut with
@@ -53,9 +49,8 @@ obj
 
 			//Add to the output with the good name
 			RunningOutput.Insert(Original,good_name)
-
-	//Give the output. dmis get overwritten when exported to. So break up your saves in sequence and then import them all into the main file.
-	usr << ftp(RunningOutput,"taursuits_.dmi")
+		//Give the output. dmis get overwritten when exported to. So break up your saves in sequence and then import them all into the main file.
+		usr << ftp(RunningOutput,"taursuits_[CutterState].dmi")
 
 // Lazy duplicate verbs to cut down on micro requirements. Just copy/paste the species into each cutter file, all wolf, all fox, etc.
 /client/verb/coat_split()
@@ -65,17 +60,17 @@ obj
 
 	var/icon/CoatsToSnip = icon('suitstocovert/standard/coats.dmi')
 	var/icon/CoatCutter = icon('CoatCutter.dmi')
-	var/icon/RunningOutput = new ()
-	for(var/CoatState in icon_states(CoatsToSnip))
-		for(var/CutterState in icon_states(CoatCutter))
+
+	for(var/CutterState in icon_states(CoatCutter))
+		var/icon/RunningOutput = new ()
+		for(var/CoatState in icon_states(CoatsToSnip))
 			var/icon/Original = icon(CoatsToSnip,CoatState)
 			var/icon/Cutter = icon(CoatCutter,CutterState)
 			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
 			Original.Blend(Cutter,ICON_AND)
 			var/good_name = "[CoatState]"
 			RunningOutput.Insert(Original,good_name)
-
-	usr << ftp(RunningOutput,"taursuits_coats.dmi")
+		usr << ftp(RunningOutput,"[CutterState]_coats.dmi")
 
 /client/verb/dress_split()
 	set name = "Cut Dresses"
@@ -84,17 +79,17 @@ obj
 
 	var/icon/DressesToSnip = icon('suitstocovert/standard/dresses.dmi')
 	var/icon/DressCutter = icon('DressCutter.dmi')
-	var/icon/RunningOutput = new ()
-	for(var/DressState in icon_states(DressesToSnip))
-		for(var/CutterState in icon_states(DressCutter))
+
+	for(var/CutterState in icon_states(DressCutter))
+		var/icon/RunningOutput = new ()
+		for(var/DressState in icon_states(DressesToSnip))
 			var/icon/Original = icon(DressesToSnip,DressState)
 			var/icon/Cutter = icon(DressCutter,CutterState)
 			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
 			Original.Blend(Cutter,ICON_AND)
 			var/good_name = "[DressState]"
 			RunningOutput.Insert(Original,good_name)
-
-	usr << ftp(RunningOutput,"taursuits_dresses.dmi")
+		usr << ftp(RunningOutput,"[CutterState]_dresses.dmi")
 
 /client/verb/lsuit_split()
 	set name = "Long Cut Suits"
@@ -102,18 +97,18 @@ obj
 	set category = "Long Cut"
 
 	var/icon/SuitsToSnip = icon('suitstocovert/long/fullsuits.dmi')
-	var/icon/SuitCutter = icon('SuitCutter.dmi')
-	var/icon/RunningOutput = new ()
-	for(var/SuitState in icon_states(SuitsToSnip))
-		for(var/CutterState in icon_states(SuitCutter))
+	var/icon/SuitCutter = icon('LongSuitCutter.dmi')
+
+	for(var/CutterState in icon_states(SuitCutter))
+		var/icon/RunningOutput = new ()
+		for(var/SuitState in icon_states(SuitsToSnip))
 			var/icon/Original = icon(SuitsToSnip,SuitState)
 			var/icon/Cutter = icon(SuitCutter,CutterState)
 			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
 			Original.Blend(Cutter,ICON_AND)
 			var/good_name = "[SuitState]"
 			RunningOutput.Insert(Original,good_name)
-
-	usr << ftp(RunningOutput,"taursuits_.dmi")
+		usr << ftp(RunningOutput,"taursuits_[CutterState].dmi")
 
 /client/verb/lcoat_split()
 	set name = "Long Cut Coats"
@@ -121,18 +116,18 @@ obj
 	set category = "Long Cut"
 
 	var/icon/CoatsToSnip = icon('suitstocovert/long/coats.dmi')
-	var/icon/CoatCutter = icon('CoatCutter.dmi')
-	var/icon/RunningOutput = new ()
-	for(var/CoatState in icon_states(CoatsToSnip))
-		for(var/CutterState in icon_states(CoatCutter))
+	var/icon/CoatCutter = icon('LongCoatCutter.dmi')
+
+	for(var/CutterState in icon_states(CoatCutter))
+		var/icon/RunningOutput = new ()
+		for(var/CoatState in icon_states(CoatsToSnip))
 			var/icon/Original = icon(CoatsToSnip,CoatState)
 			var/icon/Cutter = icon(CoatCutter,CutterState)
 			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
 			Original.Blend(Cutter,ICON_AND)
 			var/good_name = "[CoatState]"
 			RunningOutput.Insert(Original,good_name)
-
-	usr << ftp(RunningOutput,"taursuits_coats.dmi")
+		usr << ftp(RunningOutput,"[CutterState]_coats.dmi")
 
 /client/verb/ldress_split()
 	set name = "Long Cut Dresses"
@@ -140,15 +135,15 @@ obj
 	set category = "Long Cut"
 
 	var/icon/DressesToSnip = icon('suitstocovert/long/dresses.dmi')
-	var/icon/DressCutter = icon('DressCutter.dmi')
-	var/icon/RunningOutput = new ()
-	for(var/DressState in icon_states(DressesToSnip))
-		for(var/CutterState in icon_states(DressCutter))
+	var/icon/DressCutter = icon('LongDressCutter.dmi')
+
+	for(var/CutterState in icon_states(DressCutter))
+		var/icon/RunningOutput = new ()
+		for(var/DressState in icon_states(DressesToSnip))
 			var/icon/Original = icon(DressesToSnip,DressState)
 			var/icon/Cutter = icon(DressCutter,CutterState)
 			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
 			Original.Blend(Cutter,ICON_AND)
 			var/good_name = "[DressState]"
 			RunningOutput.Insert(Original,good_name)
-
-	usr << ftp(RunningOutput,"taursuits_dresses.dmi")
+		usr << ftp(RunningOutput,"[CutterState]_dresses.dmi")
