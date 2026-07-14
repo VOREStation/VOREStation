@@ -1374,7 +1374,7 @@ SUBSYSTEM_DEF(internal_wiki)
 /datum/internal_wiki/page/recipe/assemble(list/recipe)
 	var/list/data = list()
 
-	title = recipe["Result"]
+	title = "[recipe["Appliance"]]-[recipe["Result"]]"
 	data["title"] = title
 	var/obj/item/path = recipe["ResultPath"]
 	if(path)

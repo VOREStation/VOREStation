@@ -181,6 +181,7 @@ I said no!
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_BLACKPEPPER = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/meat/syntiflesh)
 	result = /obj/item/reagent_containers/food/snacks/meatsteak
+	wiki_flag = WIKI_SPOILER // Name conflicts and is an alt of another
 
 /datum/recipe/spacylibertyduff
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_VODKA = 5, REAGENT_ID_PSILOCYBIN = 5)
