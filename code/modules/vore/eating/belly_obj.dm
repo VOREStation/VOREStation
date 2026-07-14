@@ -487,7 +487,7 @@
 	)
 
 	if (save_digest_mode == 1)
-		return ..() + saving + list("digest_mode")
+		saving += "digest_mode"
 
 	return ..() + saving
 
