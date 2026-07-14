@@ -21,6 +21,8 @@
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
 	var/extra_overlay2_w // Tertiary wagging.
+	/// For tailsock usage
+	var/requires_clipping = FALSE
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
@@ -47,12 +49,13 @@
 	// Tail Socks
 	/// This can usually be the default icon, since the base icon is a complete unit.
 	/// Taur tails are snipped off to account for the butt positioning being easier to deal with.
-	var/tailsock_icon = "[initial(icon_state)]"
+	var/tailsock_icon = "[initial(icon)]"
+	var/tailsock_iconstate = "[initial(icon_state)]"
 	/// Same for wag states, we just need the sprite itself, not any of the custom overlays
 	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.
 	var/tailsock_wagicon = "[initial(ani_state)]"
-	/// Also same for the vore belly taur sprites. we'll just overlay so you can see the animations too.
-	var/tailsock_bellyicon = "[initial(vore_tail_sprite_variant)]"
+	/// Also same for the vore belly taur sprites. we'll just overlay so you can see the animations too (if any).
+	var/tailsock_taurbellyicon = "Taur[initial(vore_tail_sprite_variant)]-Belly-3 idle"	//this pretty much matches up with the fat states, so w/e.
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
