@@ -154,8 +154,7 @@
 /datum/sprite_accessory/tail/special/foxdefault
 	name = "default zorren tail, colorable"
 	desc = ""
-	icon = "icons/mob/human_races/r_fox_vr.dmi"
-	icon_state = "tail_s"
+	icon_state = "zorren_tail"
 
 /datum/sprite_accessory/tail/special/foxhc
 	name = "highlander zorren tail, colorable"
