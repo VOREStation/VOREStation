@@ -16,7 +16,7 @@
 	name = "Cow (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "cow_s"
-	suit_sprites = 'icons/mob/taursuits_cow.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_cow.dmi'
 	icon_sprite_tag = "cow"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -52,7 +52,6 @@
 	name = "Cow w/ paws (Taur)"
 	icon_state = "pawcow_s"
 	extra_overlay = "pawcow_markings"
-	suit_sprites = 'icons/mob/taursuits_cow.dmi'
 	icon_sprite_tag = "cow"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your paw!"
@@ -75,7 +74,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "deer_s"
 	extra_overlay = "deer_markings"
-	suit_sprites = 'icons/mob/taursuits_deer.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_deer.dmi'
 	icon_sprite_tag = "deer"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -114,7 +113,7 @@
 	name = "Feline (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "feline_s"	//I just want to talk to whomever thought every feline varient needed this same sprite but uniquely renamed...
-	suit_sprites = 'icons/mob/taursuits_deer.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_feline.dmi'
 	icon_sprite_tag = "feline"
 	extra_overlay = "feline_markings"
 	ani_state = "feline_w"
@@ -168,7 +167,6 @@
 
 /datum/sprite_accessory/tail/taur/feline/tiger
 	name = "Tiger (Taur)"
-	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
 	extra_overlay = "feline_markings"
 	extra_overlay2 = "tiger_markings"
@@ -198,6 +196,7 @@
 /datum/sprite_accessory/tail/taur/fox
 	name = "Fox (Taur, 3-color)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_fox.dmi'
 	icon_state = "fox"
 	extra_overlay = "fox_markings"
 	extra_overlay2 = "fox_markings2"
@@ -223,8 +222,8 @@
 	name = "Horse (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "horse_s"
-	under_sprites = 'icons/mob/taursuits_horse.dmi'
-	suit_sprites = 'icons/mob/taursuits_horse.dmi'
+	under_sprites = 'icons/inventory/suit/taursuits_horse.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_horse.dmi'
 	icon_sprite_tag = "horse"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -263,7 +262,7 @@
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
 	extra_overlay2 = "otie_markings_2"
-	suit_sprites = 'icons/mob/taursuits_otie.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_otie.dmi'
 	icon_sprite_tag = "otie"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -275,6 +274,7 @@
 /datum/sprite_accessory/tail/taur/rat
 	name = "Rat (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_rat.dmi'
 	icon_state = "rat_s"
 	extra_overlay = "rat_markings"
 	clip_mask_state = "taur_clip_mask_rat"
@@ -283,6 +283,7 @@
 /datum/sprite_accessory/tail/taur/redpanda
 	name = "Red Panda (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_redpanda.dmi'
 	icon_state = "redpanda"
 
 /datum/sprite_accessory/tail/taur/redpanda/dc
@@ -293,6 +294,7 @@
 /datum/sprite_accessory/tail/taur/sergal/wheaties
 	name = "Sergal (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_sergal.dmi'
 	icon_state = "sergwheat"
 	icon_sprite_tag = "wolf"
 	vore_tail_sprite_variant = "N"
@@ -332,6 +334,7 @@
 	icon_state = "skunk_s"
 	extra_overlay = "skunk_markings"
 	extra_overlay2 = "skunk_markings_2"
+	suit_sprites = 'icons/inventory/suit/taursuits_skunk.dmi'
 	icon_sprite_tag = "skunk"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -344,8 +347,8 @@
 	name = "Wolf (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "wolf_s"
-	under_sprites = 'icons/mob/taursuits_wolf.dmi'
-	suit_sprites = 'icons/mob/taursuits_wolf.dmi'
+	under_sprites = 'icons/inventory/suit/taursuits_wolf.dmi'
+	suit_sprites = 'icons/inventory/suit/taursuits_wolf.dmi'
 	icon_sprite_tag = "wolf"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -415,6 +418,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "zorgoia"
 	extra_overlay = "zorgoia_fluff"
+	suit_sprites = 'icons/inventory/suit/taursuits_zorgoia.dmi'
 
 /datum/sprite_accessory/tail/taur/zorgoia/fat
 	name = "Zorgoia (Fat Taur)"
@@ -425,6 +429,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "zorgoia_new"
 	extra_overlay = "zorgoia_new_fluff"
+	suit_sprites = 'icons/inventory/suit/taursuits_zorgoia.dmi'
 
 /datum/sprite_accessory/tail/taur/zorgoia_new/fat
 	name = "Zorgoia (Fat Taur) (New)"

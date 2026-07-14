@@ -49,7 +49,7 @@
 	// Tail Socks
 	/// This can usually be the default icon, since the base icon is a complete unit.
 	/// Taur tails are snipped off to account for the butt positioning being easier to deal with.
-	var/tailsock_icon = "[initial(icon)]"
+	var/tailsock_icon = [initial(icon)]
 	var/tailsock_iconstate = "[initial(icon_state)]"
 	/// Same for wag states, we just need the sprite itself, not any of the custom overlays
 	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.

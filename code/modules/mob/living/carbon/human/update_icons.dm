@@ -1036,7 +1036,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 				var/icon/tail_s = get_tail_icon()
 				var/datum/sprite_accessory/tail/sockable = species_tail
 				///TODO: Tail sock should layer appropriately over on North face, and under for the other facings for the suit itself
-				tail_image = image(icon = tail_s, icon_state = "[sockable.tailsock]", layer = BODY_LAYER+SUIT_LAYER+0.1)
+				tail_image = image(icon = tail_s, icon_state = "[sockable.tailsock_iconstate]", layer = BODY_LAYER+SUIT_LAYER+0.1)
 				tail_image.color = sock.tailsock_color
 		//No? Well okay then, normal tail go.
 		overlays_standing[tail_layer] = tail_image

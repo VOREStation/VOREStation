@@ -2578,6 +2578,7 @@
 #include "code\modules\clothing\clothing_accessories.dm"
 #include "code\modules\clothing\clothing_icons.dm"
 #include "code\modules\clothing\clothing_vr.dm"
+#include "code\modules\clothing\tail_sock.dm"
 #include "code\modules\clothing\accessories\accessory.dm"
 #include "code\modules\clothing\accessories\accessory_vr.dm"
 #include "code\modules\clothing\accessories\altevian_vr.dm"
