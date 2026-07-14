@@ -298,7 +298,6 @@
 	"digest_clone",
 	"bellytemperature",
 	"temperature_damage",
-	"immutable",
 	"can_taste",
 	"escapable",
 	"escapetime",
