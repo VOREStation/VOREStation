@@ -3,6 +3,19 @@
 	and other information that should be assembled from game files.
 */
 
+#define CATEGORY_ORE "ore"
+#define CATEGORY_MATERIAL "material"
+#define CATEGORY_SEED "seed"
+#define CATEGORY_SMASHER "smasher"
+#define CATEGORY_CHEMICAL "chemical"
+#define CATEGORY_FOOD "food"
+#define CATEGORY_RECIPE "recipe"
+#define CATEGORY_DRINK "drink"
+#define CATEGORY_CATALOG "catalog"
+#define CATEGORY_VIRUS "virus"
+#define CATEGORY_GENE "gene"
+#define WIKI_ASSET_PATH(x) "data/internal_wiki/[x].json"
+
 SUBSYSTEM_DEF(internal_wiki)
 	name = "Wiki"
 	wait = 1
@@ -64,6 +77,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	init_kitchen_data()
 	init_lore_data()
 	init_gene_data()
+	// Package all pages
 	// Donation gag
 	donation_goal = rand(min_donation,max_donation)
 	donation_goal = round(donation_goal,1)
@@ -71,6 +85,16 @@ SUBSYSTEM_DEF(internal_wiki)
 	cur_donation = round(cur_donation,1)
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/internal_wiki/proc/package_asset(list/data, set_cat)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+
+	var/file_directory = WIKI_ASSET_PATH(set_cat)
+	var/json_str = json_encode(data)
+
+	rustg_file_write(json_str, file_directory)
+	var/file_hash = rustg_hash_file(RUSTG_HASH_MD5, file_directory)
+	SSassets.transport.register_asset("intwiki_[set_cat]", fcopy_rsc(file_directory), file_hash)
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Donation system, for the joke of course
@@ -255,7 +279,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			for(var/RQ in CR.required_reagents)
 				var/datum/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 				if(!r_RQ)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
+					stack_trace("Invalid reagent id: [RQ]")
 					continue
 				reqs.Add("[r_RQ.name]")
 			assemble_reaction["required"] = reqs
@@ -263,7 +287,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			for(var/IH in CR.inhibitors)
 				var/datum/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 				if(!r_IH)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
+					stack_trace("Invalid reagent id: [IH]")
 					continue
 				inhib.Add("[r_IH.name]")
 			assemble_reaction["inhibitor"] = inhib
@@ -271,7 +295,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			for(var/CL in CR.catalysts)
 				var/datum/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 				if(!r_CL)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
+					stack_trace("Invalid reagent id: [CL]")
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
@@ -305,7 +329,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			for(var/RQ in CR.required_reagents)
 				var/datum/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 				if(!r_RQ)
-					log_runtime(EXCEPTION("Invalid reagent id: [RQ]"))
+					stack_trace("Invalid reagent id: [RQ]")
 					continue
 				reqs.Add("[r_RQ.name]")
 			assemble_reaction["required"] = reqs
@@ -313,7 +337,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			for(var/IH in CR.inhibitors)
 				var/datum/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 				if(!r_IH)
-					log_runtime(EXCEPTION("Invalid reagent id: [IH]"))
+					stack_trace("Invalid reagent id: [IH]")
 					continue
 				inhib.Add("[r_IH.name]")
 			assemble_reaction["inhibitor"] = inhib
@@ -321,7 +345,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			for(var/CL in CR.catalysts)
 				var/datum/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 				if(!r_CL)
-					log_runtime(EXCEPTION("Invalid reagent id: [CL]"))
+					stack_trace("Invalid reagent id: [CL]")
 					continue
 				catal.Add("[r_CL.name]")
 			assemble_reaction["catalysts"] = catal
@@ -424,21 +448,27 @@ SUBSYSTEM_DEF(internal_wiki)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// assemble ore wiki
+	var/list/packing_asset_data = list()
 	for(var/N in GLOB.ore_data)
 		var/datum/ore/OR = GLOB.ore_data[N]
 		if(OR.wiki_flag & WIKI_SPOILER)
 			spoiler_entries.Add(OR.type)
 			continue
 		var/datum/internal_wiki/page/ore/P = new()
-		P.assemble(OR)
+		var/list/assembled_page = P.assemble(OR)
+		if(P.title in packing_asset_data)
+			stack_trace("[P.title] was already a wiki page key in the [CATEGORY_ORE] category")
+		packing_asset_data[P.title] = assembled_page
 		ores["[OR.display_name]"] = P
 		searchcache_ore.Add("[OR.display_name]")
 		pages.Add(P)
+	package_asset(packing_asset_data, CATEGORY_ORE)
 
 /datum/controller/subsystem/internal_wiki/proc/init_material_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// assemble material wiki
+	var/list/packing_asset_data = list()
 	for(var/mat, value in GLOB.name_to_material)
 		var/datum/material/M = value
 		if(M.wiki_flag & WIKI_SPOILER)
@@ -446,15 +476,20 @@ SUBSYSTEM_DEF(internal_wiki)
 			continue
 		var/datum/internal_wiki/page/material/P = new()
 		var/id = "[M.display_name] [M.sheet_singular_name]"
-		P.assemble(M)
+		var/list/assembled_page = P.assemble(M)
+		if(P.title in packing_asset_data)
+			stack_trace("[P.title] was already a wiki page key in the [CATEGORY_MATERIAL] category")
+		packing_asset_data[P.title] = assembled_page
 		materials[id] = P
 		searchcache_material.Add(id)
 		pages.Add(P)
+	package_asset(packing_asset_data, CATEGORY_MATERIAL)
 
 /datum/controller/subsystem/internal_wiki/proc/init_particle_smasher_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// assemble particle smasher wiki
+	var/list/packing_asset_data = list()
 	for(var/datum/particle_smasher_recipe/D  as anything in subtypesof(/datum/particle_smasher_recipe))
 		if(initial(D.wiki_flag) & WIKI_SPOILER)
 			spoiler_entries.Add(D)
@@ -462,16 +497,22 @@ SUBSYSTEM_DEF(internal_wiki)
 		var/datum/particle_smasher_recipe/R = new D()
 		var/datum/internal_wiki/page/smasher/P = new()
 		var/id = "[initial(D.display_name)]"
-		P.assemble(R)
+		var/list/assembled_page = P.assemble(R)
+		if(P.title in packing_asset_data)
+			stack_trace("[P.title] was already a wiki page key in the [CATEGORY_SMASHER] category")
+		packing_asset_data[P.title] = assembled_page
 		smashers[id] = P
 		searchcache_smasher.Add(id)
 		pages.Add(P)
 		qdel(R)
+	package_asset(packing_asset_data, CATEGORY_SMASHER)
 
 /datum/controller/subsystem/internal_wiki/proc/init_reagent_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// assemble chemical reactions wiki
+	var/list/packing_chem_asset_data = list()
+	var/list/packing_drink_asset_data = list()
 	for(var/reagent in SSchemistry.chemical_reagents)
 		var/datum/internal_wiki/page/P = null
 		var/datum/reagent/R = SSchemistry.chemical_reagents[reagent]
@@ -485,20 +526,29 @@ SUBSYSTEM_DEF(internal_wiki)
 		var/id = "[R.name]"
 		if((R.wiki_flag & WIKI_DRINK) && R.id != REAGENT_ID_ETHANOL) // This is no good way to use inheretance for ethanol... We exclude it here so it shows up in chems
 			P = new /datum/internal_wiki/page/drink()
-			P.assemble(R)
+			var/list/assembled_page = P.assemble(R)
+			if(P.title in packing_drink_asset_data)
+				stack_trace("[P.title] was already a wiki page key in the [CATEGORY_DRINK] category")
+			packing_drink_asset_data[P.title] = assembled_page
 			searchcache_drinkreact.Add(id)
 			drinkreact[id] = P
 		else
 			P = new /datum/internal_wiki/page/chemical()
-			P.assemble(R)
+			var/list/assembled_page = P.assemble(R)
+			if(P.title in packing_chem_asset_data)
+				stack_trace("[P.title] was already a wiki page key in the [CATEGORY_CHEMICAL] category")
+			packing_chem_asset_data[P.title] = assembled_page
 			searchcache_chemreact.Add(id)
 			chemreact[id] = P
 		pages.Add(P)
+	package_asset(packing_drink_asset_data, CATEGORY_DRINK)
+	package_asset(packing_chem_asset_data, CATEGORY_CHEMICAL)
 
 /datum/controller/subsystem/internal_wiki/proc/init_seed_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// seeds and plants
+	var/list/packing_asset_data = list()
 	for(var/SN in SSplants.seeds)
 		var/datum/seed/S = SSplants.seeds[SN]
 		if(S && S.roundstart && !S.mysterious)
@@ -506,15 +556,20 @@ SUBSYSTEM_DEF(internal_wiki)
 				spoiler_entries.Add(S.type)
 				continue
 			var/datum/internal_wiki/page/seed/P = new()
-			P.assemble(S)
+			var/list/assembled_page = P.assemble(S)
+			if(P.title in packing_asset_data)
+				stack_trace("[P.title] was already a wiki page key in the [CATEGORY_SEED] category")
+			packing_asset_data[P.title] = assembled_page
 			searchcache_botseeds.Add("[S.display_name]")
 			botseeds["[S.display_name]"] = P
 			pages.Add(P)
+	package_asset(packing_asset_data, CATEGORY_SEED)
 
 /datum/controller/subsystem/internal_wiki/proc/init_virus_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// viruses or diseases
+	var/list/packing_asset_data = list()
 	for(var/datum/disease/D as anything in subtypesof(/datum/disease))
 		if(initial(D.name) == DEVELOPER_WARNING_NAME)
 			continue
@@ -522,25 +577,34 @@ SUBSYSTEM_DEF(internal_wiki)
 			spoiler_entries.Add(D)
 			continue
 		var/datum/internal_wiki/page/virus/P = new()
-		P.assemble(D)
+		var/list/assembled_page = P.assemble(D)
+		if(P.title in packing_asset_data)
+			stack_trace("[P.title] was already a wiki page key in the [CATEGORY_VIRUS] category")
+		packing_asset_data[P.title] = assembled_page
 		searchcache_viruses.Add("[initial(D.medical_name)]")
 		viruses["[initial(D.medical_name)]"] = P
 		pages.Add(P)
+	package_asset(packing_asset_data, CATEGORY_VIRUS)
 
 /datum/controller/subsystem/internal_wiki/proc/init_gene_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	// viruses or diseases
+	var/list/packing_asset_data = list()
 	for(var/datum/gene/G in GLOB.dna_genes)
 		var/N = G.name
 		if(istype(G,/datum/gene/trait))
 			var/datum/gene/trait/T = G
 			N = T.get_name()
 		var/datum/internal_wiki/page/gene/P = new()
-		P.assemble(G)
+		var/list/assembled_page = P.assemble(G)
+		if(P.title in packing_asset_data)
+			stack_trace("[P.title] was already a wiki page key in the [CATEGORY_GENE] category")
+		packing_asset_data[P.title] = assembled_page
 		searchcache_genes.Add("[N]")
 		genes["[N]"] = P
 		pages.Add(P)
+	package_asset(packing_asset_data, CATEGORY_GENE)
 
 /datum/controller/subsystem/internal_wiki/proc/init_kitchen_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -633,7 +697,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/rid in food_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
 			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
-				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				stack_trace("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!")
 				continue // This allows the dump to still continue, and it will skip the invalid recipes.
 			var/R_name = Rd.name
 			var/amt = food_recipes[Rp]["Reagents"][rid]
@@ -644,7 +708,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/rid in food_recipes[Rp]["Catalysts"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
 			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
-				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				stack_trace("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!")
 				continue // This allows the dump to still continue, and it will skip the invalid recipes.
 			var/R_name = Rd.name
 			var/amt = food_recipes[Rp]["Catalysts"][rid]
@@ -681,13 +745,17 @@ SUBSYSTEM_DEF(internal_wiki)
 	food_recipes = foods_newly_sorted
 
 	// assemble output pages
+	var/list/packing_asset_data = list()
 	for(var/Rp in food_recipes)
 		if(food_recipes[Rp] && !isnull(food_recipes[Rp]["Result"]))
 			if(food_recipes[Rp]["Flags"] & WIKI_SPOILER)
 				spoiler_entries.Add(Rp)
 				continue
 			var/datum/internal_wiki/page/recipe/P = new()
-			P.assemble(food_recipes[Rp])
+			var/list/assembled_page = P.assemble(food_recipes[Rp])
+			if(P.title in packing_asset_data)
+				stack_trace("[P.title] was already a wiki page key in the [CATEGORY_RECIPE] category")
+			packing_asset_data[P.title] = assembled_page
 			foodrecipe["[P.title]"] = P
 			// organize into sublists
 			var/app = food_recipes[Rp]["Appliance"]
@@ -696,12 +764,14 @@ SUBSYSTEM_DEF(internal_wiki)
 			var/list/FL = searchcache_foodrecipe[app]
 			FL.Add("[P.title]")
 			pages.Add(P)
+	package_asset(packing_asset_data, CATEGORY_RECIPE)
 
 /datum/controller/subsystem/internal_wiki/proc/init_lore_data()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
 	// assemble low reward catalog entries
+	var/list/packing_asset_data = list()
 	for(var/datum/category_group/G in GLOB.catalogue_data.categories)
 		for(var/datum/category_item/catalogue/item in G.items)
 			if(istype(item,/datum/category_item/catalogue/anomalous))
@@ -711,7 +781,10 @@ SUBSYSTEM_DEF(internal_wiki)
 			var/datum/internal_wiki/page/catalog/P = new()
 			P.title = item.name
 			P.catalog_record = item
-			P.assemble()
+			var/list/assembled_page = P.assemble()
+			if(P.title in packing_asset_data)
+				stack_trace("[P.title] was already a wiki page key in the [CATEGORY_CATALOG] category")
+			packing_asset_data[P.title] = assembled_page
 			catalogs["[item.name]"] = P
 			if(!searchcache_catalogs[G.name])
 				searchcache_catalogs[G.name] = list()
@@ -719,6 +792,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			SC.Add(P.title)
 			pages.Add(P)
 		catalog_list.Add(G.name)
+	package_asset(packing_asset_data, CATEGORY_CATALOG)
 
 /datum/controller/subsystem/internal_wiki/proc/allow_reagent(reagent_id)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -735,14 +809,22 @@ SUBSYSTEM_DEF(internal_wiki)
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/internal_wiki/page
 	var/title = ""
-	var/list/data = list()
+
+/datum/internal_wiki/page/proc/get_category()
+	return "error"
 
 /datum/internal_wiki/page/proc/assemble()
 	return
 
 /datum/internal_wiki/page/proc/get_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
 	RETURN_TYPE(/list)
-	return data
+
+	var/file_directory = WIKI_ASSET_PATH(get_category())
+	if(!rustg_file_exists(file_directory))
+		CRASH("Internal wiki asset with path [file_directory] did not exist.")
+	var/list/decode = json_decode(rustg_file_read(file_directory))
+	return decode[title] // Get the specific entry
 
 /datum/internal_wiki/page/proc/get_print()
 	return
@@ -750,7 +832,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // ORES
 ////////////////////////////////////////////
+/datum/internal_wiki/page/ore/get_category()
+	return CATEGORY_ORE
+
 /datum/internal_wiki/page/ore/assemble(datum/ore/O)
+	var/list/data = list()
+
 	title = O.display_name
 	data["title"] = title
 	var/obj/item/ore/ore_path = O.ore
@@ -800,7 +887,10 @@ SUBSYSTEM_DEF(internal_wiki)
 			grind_list[N] = "[collect[N] * per_part]"
 		data["grind_reagents"] = grind_list
 
+	return data
+
 /datum/internal_wiki/page/ore/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	if(data["smelting"])
 		body += "<b>Smelting: [data["smelting"]]</b><br>"
@@ -829,7 +919,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // MATERIALS
 ////////////////////////////////////////////
+/datum/internal_wiki/page/material/get_category()
+	return CATEGORY_MATERIAL
+
 /datum/internal_wiki/page/material/assemble(datum/material/M)
+	var/list/data = list()
+
 	title = M.display_name + " "  + M.sheet_singular_name
 	data["title"] = title
 	var/obj/item/stack/stack_path = M.stack_type
@@ -868,7 +963,7 @@ SUBSYSTEM_DEF(internal_wiki)
 					collect[CBR.name] += 1
 					total_parts += 1
 				else
-					log_runtime(EXCEPTION("Invalid reagent id: [Rid] in grind results for sheet [title]"))
+					stack_trace("Invalid reagent id: [Rid] in grind results for sheet [title]")
 			if(total_parts > 0)
 				var/per_part = REAGENTS_PER_SHEET / total_parts
 				var/list/grind_list = list()
@@ -884,7 +979,10 @@ SUBSYSTEM_DEF(internal_wiki)
 			recipie_list.Add(R.title)
 		data["recipies"] = recipie_list
 
+	return data
+
 /datum/internal_wiki/page/material/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body += "<b>Integrity: [data["integrity"]]</b><br>"
 	body += "<b>Hardness: [data["hardness"]]</b><br>"
@@ -928,7 +1026,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // SEEDS
 ////////////////////////////////////////////
+/datum/internal_wiki/page/seed/get_category()
+	return CATEGORY_SEED
+
 /datum/internal_wiki/page/seed/assemble(datum/seed/S)
+	var/list/data = list()
+
 	title = S.display_name
 	data["title"] = title
 	SSinternal_wiki.add_icon(data, 'icons/obj/hydroponics_growing.dmi', "[S.get_trait(TRAIT_PLANT_ICON)]-[S.growth_stages]", S.get_trait(TRAIT_PLANT_COLOUR))
@@ -982,7 +1085,7 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(CBR)
 				chems.Add(CBR.name)
 			else
-				log_runtime(EXCEPTION("Invalid reagent id: [CB] in chemical breakdown for seed [title]"))
+				stack_trace("Invalid reagent id: [CB] in chemical breakdown for seed [title]")
 		data["chem_breakdown"] = chems
 
 	data["gas_consumed"] = null
@@ -1008,7 +1111,10 @@ SUBSYSTEM_DEF(internal_wiki)
 				mutations.Add(mut.display_name)
 		data["mutations"] = mutations
 
+	return data
+
 /datum/internal_wiki/page/seed/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body  += "<b>Requires Feeding: [data["feeding"] ? "YES" : "NO"]</b><br>"
 	body  += "<b>Requires Watering: [data["watering"] ? "YES" : "NO"]</b><br>"
@@ -1057,7 +1163,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // PARTICLE SMASHER
 ////////////////////////////////////////////
+/datum/internal_wiki/page/smasher/get_category()
+	return CATEGORY_SMASHER
+
 /datum/internal_wiki/page/smasher/assemble(datum/particle_smasher_recipe/M)
+	var/list/data = list()
+
 	title = M.display_name
 	data["title"] = title
 	var/obj/item/stack/material/result_path = M.result
@@ -1090,12 +1201,15 @@ SUBSYSTEM_DEF(internal_wiki)
 			if(Rd)
 				inducers["[Rd.name]"] = amnt
 			else
-				log_runtime(EXCEPTION("Invalid reagent id: [Rd] in inducer for atom smasher [title]"))
+				stack_trace("Invalid reagent id: [Rd] in inducer for atom smasher [title]")
 		data["inducers"] = inducers
 	data["result"] = initial(result_path.name)
 	data["probability"] = M.probability
 
+	return data
+
 /datum/internal_wiki/page/smasher/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	if(data["req_mat"] != null)
 		body += "<b>Target Sheet: [data["req_mat"]]</b><br>"
@@ -1119,7 +1233,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // CHEMICALS
 ////////////////////////////////////////////
+/datum/internal_wiki/page/chemical/get_category()
+	return CATEGORY_CHEMICAL
+
 /datum/internal_wiki/page/chemical/assemble(datum/reagent/R)
+	var/list/data = list()
+
 	title = R.name
 	data["title"] = title
 	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
@@ -1141,7 +1260,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
+	return data
+
 /datum/internal_wiki/page/chemical/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
 	if(data["addictive"])
@@ -1178,7 +1300,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // FOOD REAGENTS
 ////////////////////////////////////////////
+/datum/internal_wiki/page/food/get_category()
+	return CATEGORY_FOOD
+
 /datum/internal_wiki/page/food/assemble(datum/reagent/R)
+	var/data = list()
+
 	title = R.name
 	data["title"] = title
 	var/obj/item/reagent_containers/glass/beaker/large/beaker_path = /obj/item/reagent_containers/glass/beaker/large
@@ -1189,7 +1316,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
+	return data
+
 /datum/internal_wiki/page/food/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<br>"
@@ -1199,7 +1329,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // DRINK REAGENTS
 ////////////////////////////////////////////
+/datum/internal_wiki/page/drink/get_category()
+	return CATEGORY_DRINK
+
 /datum/internal_wiki/page/drink/assemble(datum/reagent/R)
+	var/list/data = list()
+
 	title = R.name
 	data["title"] = title
 	// Use beaker by default, otherwise try metamorphic glass for icon
@@ -1216,7 +1351,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["allergen"] = assembly_allergy_list(R.allergen_type, R.medallergen_type)
 	SSinternal_wiki.assemble_reaction_data(data, R)
 
+	return data
+
 /datum/internal_wiki/page/drink/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<b>Flavor: </b>[data["flavor"]]<br>"
@@ -1228,7 +1366,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // FOOD RECIPIE
 ////////////////////////////////////////////
+/datum/internal_wiki/page/recipe/get_category()
+	return CATEGORY_RECIPE
+
 /datum/internal_wiki/page/recipe/assemble(list/recipe)
+	var/list/data = list()
+
 	title = recipe["Result"]
 	data["title"] = title
 	var/obj/item/path = recipe["ResultPath"]
@@ -1270,7 +1413,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	recipe_data["catalysts"] = length(catalysts) ? catalysts : null
 	data["recipe"] = recipe_data
 
+	return data
+
 /datum/internal_wiki/page/recipe/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	if(data["description"])
 		body += "<b>Description: </b>[data["description"]]<br>"
@@ -1337,16 +1483,28 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // CATALOG
 ////////////////////////////////////////////
+/datum/internal_wiki/page/catalog/get_category()
+	return CATEGORY_CATALOG
+
 /datum/internal_wiki/page/catalog
 	var/datum/category_item/catalogue/catalog_record = null
 
 /datum/internal_wiki/page/catalog/assemble()
+	var/list/data = list()
+
 	data["name"] = catalog_record.name
 	data["desc"] = catalog_record.desc
 
+	return data
+
 // VIRUSES
 /////////////////////////////////////////////
+/datum/internal_wiki/page/virus/get_category()
+	return CATEGORY_VIRUS
+
 /datum/internal_wiki/page/virus/assemble(datum/disease/D)
+	var/list/data = list()
+
 	title = initial(D.name)
 	data["title"] = title
 	data["description"] = initial(D.desc)
@@ -1417,7 +1575,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["spread_dead"] = flags & SPREAD_DEAD
 	data["infect_synth"] = flags & INFECT_SYNTHETICS
 
+	return data
+
 /datum/internal_wiki/page/virus/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<br>"
@@ -1445,7 +1606,12 @@ SUBSYSTEM_DEF(internal_wiki)
 
 // GENES
 /////////////////////////////////////////////
+/datum/internal_wiki/page/gene/get_category()
+	return CATEGORY_GENE
+
 /datum/internal_wiki/page/gene/assemble(datum/gene/G)
+	var/list/data = list()
+
 	if(istype(G,/datum/gene/trait))
 		// Trait genetics
 		var/datum/gene/trait/T = G
@@ -1489,7 +1655,10 @@ SUBSYSTEM_DEF(internal_wiki)
 	data["bounds_on_min"] = EncodeDNABlock(bounds[3]) // Minimum hex where gene is on
 	data["bounds_on_max"] = EncodeDNABlock(bounds[4]) // Maximum hex where gene is on
 
+	return data
+
 /datum/internal_wiki/page/gene/get_print()
+	var/list/data = get_data()
 	var/body = ""
 	body += "<b>Description: </b>[data["description"]]<br>"
 	body += "<br>"
@@ -1598,3 +1767,16 @@ SUBSYSTEM_DEF(internal_wiki)
 		for(var/PL in produces)
 			body += "-[PL]<br>"
 	return body
+
+#undef CATEGORY_ORE
+#undef CATEGORY_MATERIAL
+#undef CATEGORY_SEED
+#undef CATEGORY_SMASHER
+#undef CATEGORY_CHEMICAL
+#undef CATEGORY_FOOD
+#undef CATEGORY_RECIPE
+#undef CATEGORY_DRINK
+#undef CATEGORY_CATALOG
+#undef CATEGORY_VIRUS
+#undef CATEGORY_GENE
+#undef WIKI_ASSET_PATH
