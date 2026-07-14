@@ -1,7 +1,13 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { getIconFromRefMap } from 'tgui/events/handlers/assets';
-import { Button, ImageButton, Input, Section } from 'tgui-core/components';
+import {
+  Button,
+  ImageButton,
+  Input,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import {
   ColorizedImageButton,
   ColorPicker,
@@ -96,37 +102,48 @@ export const FacialDimmer = (props: {
         </Button>
       }
     >
-      {our_species.appearance_flags & AppearanceFlags.HAS_HAIR_COLOR ? (
-        <ColorPicker
-          onClick={() => {
-            act('set_facial_hair_color');
-          }}
-          color_one={hairColor}
-        />
-      ) : null}
-      <Input
-        fluid
-        expensive
-        onChange={(val) => setSearch(val)}
-        value={search}
-        mt={1}
-      />
-
-      {hair_styles.map((hairStyle) => (
-        <FacialImageButton
-          key={hairStyle}
-          hairStyle={hairStyle}
-          serverData={serverData}
-          hairColor={hairColor}
-          tooltip={hairStyle}
-          onClick={() => {
-            act('set_facial_hair_style', { facial_hair_style: hairStyle });
-          }}
-          selected={hairStyle === data.f_style}
-        >
-          {hairStyle}
-        </FacialImageButton>
-      ))}
+      <Stack vertical fill>
+        {our_species.appearance_flags & AppearanceFlags.HAS_HAIR_COLOR ? (
+          <Stack.Item>
+            <ColorPicker
+              onClick={() => {
+                act('set_facial_hair_color');
+              }}
+              color_one={hairColor}
+            />
+          </Stack.Item>
+        ) : null}
+        <Stack.Item>
+          <Input
+            fluid
+            expensive
+            placeholder="Search for facials..."
+            onChange={(val) => setSearch(val)}
+            value={search}
+          />
+        </Stack.Item>
+        <Stack.Item grow>
+          <Section fill scrollable>
+            {hair_styles.map((hairStyle) => (
+              <FacialImageButton
+                key={hairStyle}
+                hairStyle={hairStyle}
+                serverData={serverData}
+                hairColor={hairColor}
+                tooltip={hairStyle}
+                onClick={() => {
+                  act('set_facial_hair_style', {
+                    facial_hair_style: hairStyle,
+                  });
+                }}
+                selected={hairStyle === data.f_style}
+              >
+                {hairStyle}
+              </FacialImageButton>
+            ))}
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

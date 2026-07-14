@@ -1,6 +1,13 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, ImageButton, Input, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  ImageButton,
+  Input,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import {
   ColorizedImageButton,
@@ -118,60 +125,68 @@ export const TailDimmer = (props: {
     <Section
       title="Tail"
       fill
-      scrollable
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close
         </Button>
       }
     >
-      <ColorPicker
-        onClick={(type: ColorType) => {
-          switch (type) {
-            case ColorType.First:
-              act('set_tail_color');
-              break;
-            case ColorType.Second:
-              act('set_tail_color2');
-              break;
-            case ColorType.Third:
-              act('set_tail_color3');
-              break;
-            case ColorType.Alpha:
-              act('set_tail_alpha');
-              break;
-          }
-        }}
-        color_one={color || '#FFFFFF'}
-        color_two={color2 || '#FFFFFF'}
-        color_three={color3 || '#FFFFFF'}
-        alpha={alpha}
-      />
-      <Input
-        fluid
-        expensive
-        onChange={(val) => setSearch(val)}
-        value={search}
-        mt={1}
-      />
-
-      {styles.map((style) => (
-        <TailImageButton
-          key={style}
-          style={style}
-          serverData={serverData}
-          color={color}
-          color2={color2}
-          color3={color3}
-          tooltip={style}
-          onClick={() => {
-            act('set_tail_style', { style: style });
-          }}
-          selected={style === data.tail_style}
-        >
-          {style}
-        </TailImageButton>
-      ))}
+      <Stack vertical fill>
+        <Stack.Item>
+          <ColorPicker
+            onClick={(type: ColorType) => {
+              switch (type) {
+                case ColorType.First:
+                  act('set_tail_color');
+                  break;
+                case ColorType.Second:
+                  act('set_tail_color2');
+                  break;
+                case ColorType.Third:
+                  act('set_tail_color3');
+                  break;
+                case ColorType.Alpha:
+                  act('set_tail_alpha');
+                  break;
+              }
+            }}
+            color_one={color || '#FFFFFF'}
+            color_two={color2 || '#FFFFFF'}
+            color_three={color3 || '#FFFFFF'}
+            alpha={alpha}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Input
+            fluid
+            expensive
+            placeholder="Search for tails..."
+            onChange={(val) => setSearch(val)}
+            value={search}
+          />
+        </Stack.Item>
+        <Stack.Item grow>
+          <Section fill scrollable>
+            {styles.map((style) => (
+              <TailImageButton
+                key={style}
+                style={style}
+                serverData={serverData}
+                color={color}
+                color2={color2}
+                color3={color3}
+                tooltip={style}
+                onClick={() => {
+                  act('set_tail_style', { style: style });
+                }}
+                selected={style === data.tail_style}
+              >
+                {style}
+              </TailImageButton>
+            ))}
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

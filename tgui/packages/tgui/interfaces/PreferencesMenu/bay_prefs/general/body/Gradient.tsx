@@ -1,6 +1,12 @@
 import { type PropsWithChildren, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, ImageButton, Input, Section } from 'tgui-core/components';
+import {
+  Button,
+  ImageButton,
+  Input,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import { ColorizedImageButton, ColorPicker } from '../../helper_components';
 import type {
@@ -65,40 +71,48 @@ export const GradientDimmer = (props: {
     <Section
       title="Gradient"
       fill
-      scrollable
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close
         </Button>
       }
     >
-      <ColorPicker
-        onClick={() => {
-          act('set_grad_color');
-        }}
-        color_one={color}
-      />
-      <Input
-        fluid
-        expensive
-        onChange={(val) => setSearch(val)}
-        value={search}
-        mt={1}
-      />
-
-      {grad_styles.map((style) => (
-        <GradientImageButton
-          key={style}
-          style={style}
-          color={color}
-          serverData={serverData}
-          tooltip={style}
-          selected={style === data.grad_style}
-          onClick={() => act('set_grad_style', { grad_style: style })}
-        >
-          {style}
-        </GradientImageButton>
-      ))}
+      <Stack vertical fill>
+        <Stack.Item>
+          <ColorPicker
+            onClick={() => {
+              act('set_grad_color');
+            }}
+            color_one={color}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Input
+            fluid
+            expensive
+            placeholder="Search for gradients..."
+            onChange={(val) => setSearch(val)}
+            value={search}
+          />
+        </Stack.Item>
+        <Stack.Item grow>
+          <Section fill scrollable>
+            {grad_styles.map((style) => (
+              <GradientImageButton
+                key={style}
+                style={style}
+                color={color}
+                serverData={serverData}
+                tooltip={style}
+                selected={style === data.grad_style}
+                onClick={() => act('set_grad_style', { grad_style: style })}
+              >
+                {style}
+              </GradientImageButton>
+            ))}
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

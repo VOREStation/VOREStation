@@ -1,6 +1,13 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, ImageButton, Input, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  ImageButton,
+  Input,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
 import {
   ColorizedImageButton,
@@ -117,61 +124,69 @@ export const EarsDimmer = (props: {
     <Section
       title="Ears"
       fill
-      scrollable
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close
         </Button>
       }
     >
-      <ColorPicker
-        onClick={(type: ColorType) => {
-          switch (type) {
-            case ColorType.First:
-              act('set_ear_color');
-              break;
-            case ColorType.Second:
-              act('set_ear_color2');
-              break;
-            case ColorType.Third:
-              act('set_ear_color3');
-              break;
-            case ColorType.Alpha:
-              act('ears_alpha');
-              break;
-          }
-        }}
-        color_one={color || '#FFFFFF'}
-        color_two={color2 || '#FFFFFF'}
-        color_three={color3 || '#FFFFFF'}
-        alpha={alpha}
-      />
-      <Input
-        fluid
-        expensive
-        onChange={(val) => setSearch(val)}
-        value={search}
-        mt={1}
-      />
-
-      {styles.map((style) => (
-        <EarsImageButton
-          key={style}
-          style={style}
-          color={color}
-          color2={color2}
-          color3={color3}
-          serverData={serverData}
-          tooltip={style}
-          selected={
-            style === data.ear_style ||
-            (data.ear_style === null && style === 'None')
-          }
-          onClick={() => act('set_ear_style', { ear_style: style })}
-        >
-          {style}
-        </EarsImageButton>
-      ))}
+      <Stack vertical fill>
+        <Stack.Item>
+          <ColorPicker
+            onClick={(type: ColorType) => {
+              switch (type) {
+                case ColorType.First:
+                  act('set_ear_color');
+                  break;
+                case ColorType.Second:
+                  act('set_ear_color2');
+                  break;
+                case ColorType.Third:
+                  act('set_ear_color3');
+                  break;
+                case ColorType.Alpha:
+                  act('ears_alpha');
+                  break;
+              }
+            }}
+            color_one={color || '#FFFFFF'}
+            color_two={color2 || '#FFFFFF'}
+            color_three={color3 || '#FFFFFF'}
+            alpha={alpha}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Input
+            fluid
+            placeholder="Search for ears..."
+            expensive
+            onChange={(val) => setSearch(val)}
+            value={search}
+          />
+        </Stack.Item>
+        <Stack.Item grow>
+          <Section fill scrollable>
+            {styles.map((style) => (
+              <EarsImageButton
+                key={style}
+                style={style}
+                color={color}
+                color2={color2}
+                color3={color3}
+                serverData={serverData}
+                tooltip={style}
+                selected={
+                  style === data.ear_style ||
+                  (data.ear_style === null && style === 'None')
+                }
+                onClick={() => act('set_ear_style', { ear_style: style })}
+              >
+                {style}
+              </EarsImageButton>
+            ))}
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };
