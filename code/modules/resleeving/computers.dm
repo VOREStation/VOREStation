@@ -2,6 +2,8 @@
 #define MENU_BODY 2
 #define MENU_MIND 3
 
+#define TRANSCORE_DUMP_TIME 30 SECONDS
+
 /obj/machinery/computer/transhuman/resleeving
 	name = "resleeving control console"
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
@@ -34,6 +36,7 @@
 	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
 
 	var/gene_sequencing = FALSE // Traitgenes edit - create a dna injector for fixing dna, but don't let it be abusable
+	var/dump_in_progress_timer = null
 
 /obj/machinery/computer/transhuman/resleeving/Initialize(mapload)
 	. = ..()
@@ -47,6 +50,8 @@
 	releasepods()
 	current_br = null
 	current_mr = null
+	deltimer(dump_in_progress_timer)
+	dump_in_progress_timer = null
 	return ..()
 
 /obj/machinery/computer/transhuman/resleeving/proc/updatemodules()
@@ -184,7 +189,8 @@
 		))
 	data["sleevers"] = resleevers
 
-	data["coredumped"] = our_db.core_dumped
+	data["dump_progress"] = (!our_db.core_dumped && dump_in_progress_timer) ? (timeleft(dump_in_progress_timer, SStimer) / (TRANSCORE_DUMP_TIME)) : 0
+	data["coredumped"] = !dump_in_progress_timer && our_db.core_dumped
 	data["emergency"] = disk
 	data["temp"] = temp
 	data["selected_pod"] = REF(selected_pod)
@@ -255,15 +261,20 @@
 			current_mr = null
 			. = TRUE
 		if("coredump")
-			if(disk)
-				our_db.core_dump(disk)
-				sleep(5)
-				visible_message(span_warning("\The [src] spits out \the [disk]."))
-				current_br = null
-				disk.forceMove(get_turf(src))
-				disk = null
+			var/area/find_area = get_area(src)
+			if(!find_area)
+				find_area = "Unknown"
+			if(disk && !dump_in_progress_timer)
+				GLOB.global_announcer.autosay("An emergency core dump has been started in \the [find_area]!", "TransCore Oversight", "Command")
+				GLOB.global_announcer.autosay("An emergency core dump has been started in \the [find_area]!", "TransCore Oversight", "Medical")
+				dump_in_progress_timer = addtimer(CALLBACK(src, PROC_REF(dump_transcore_database)), TRANSCORE_DUMP_TIME, TIMER_STOPPABLE)
 				. = TRUE
 		if("ejectdisk")
+			if(dump_in_progress_timer)
+				GLOB.global_announcer.autosay("An emergency core dump has been canceled!", "TransCore Oversight", "Command")
+				GLOB.global_announcer.autosay("An emergency core dump has been canceled!", "TransCore Oversight", "Medical")
+				deltimer(dump_in_progress_timer)
+				dump_in_progress_timer = null
 			current_br = null
 			disk.forceMove(get_turf(src))
 			disk = null
@@ -599,6 +610,20 @@
 	else
 		set_temp("Error: Record missing.", "danger")
 
+/obj/machinery/computer/transhuman/resleeving/proc/dump_transcore_database()
+	dump_in_progress_timer = null
+	our_db.core_dump(disk)
+	visible_message(span_warning("\The [src] spits out \the [disk]."))
+	current_br = null
+	var/area/find_area = get_area(src)
+	if(!find_area)
+		find_area = "Unknown"
+	disk.name += " \[[find_area]\]"
+	disk.forceMove(get_turf(src))
+	disk = null
+
 #undef MENU_MAIN
 #undef MENU_BODY
 #undef MENU_MIND
+
+#undef TRANSCORE_DUMP_TIME

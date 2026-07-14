@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "acid dispensed into buckets in chemistry machines no longer break when the bucket melts"

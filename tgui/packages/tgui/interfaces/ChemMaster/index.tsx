@@ -1,10 +1,9 @@
 import { useBackend } from 'tgui/backend';
-import { Window } from 'tgui/layouts';
-
 import {
   ComplexModal,
   modalRegisterBodyOverride,
-} from '../common/ComplexModal';
+} from 'tgui/interfaces/common/ComplexModal';
+import { Window } from 'tgui/layouts';
 import { analyzeModalBodyOverride } from './ChemMasterAnalyzeModalBodyOverride';
 import { ChemMasterBeaker } from './ChemMasterBeaker';
 import { ChemMasterBuffer } from './ChemMasterBuffer';
