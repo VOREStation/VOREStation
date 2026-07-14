@@ -247,7 +247,7 @@
 	. += /datum/decl/emote/audible/synth/robochirp
 
 /datum/category_item/catalogue/technology/drone/corrupt_hound/janihound
-	name = "Drone - Corrupt Hound"
+	name = "Drone - Corrupt Janihound"
 	desc = "A hound that has corrupted, due to outside influence, or other issues, \
 	and occasionally garbles out distorted voices or words. It looks like a reddish-colored \
 	machine, and it has black wires, cabling, and other small markings. It looks just like a station dog-borg \
