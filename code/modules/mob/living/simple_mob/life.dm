@@ -197,7 +197,8 @@
 			if(prob(loot_list[path]))
 				new path(get_turf(src))
 
-	update_icon_timer = addtimer(CALLBACK(src, PROC_REF(callback_update_icon)), 3, TIMER_STOPPABLE)
+	if(!QDELETED(src))
+		update_icon_timer = addtimer(CALLBACK(src, PROC_REF(callback_update_icon)), 3, TIMER_STOPPABLE)
 
 	return ..(gibbed,deathmessage)
 
