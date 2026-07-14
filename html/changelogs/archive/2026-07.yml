@@ -1,0 +1,74 @@
+2026-07-09:
+  Kashargul:
+  - bugfix: github workflows
+  Will:
+  - qol: Borgs can open the gridchecker's UI
+2026-07-10:
+  CMDRYouth:
+  - bugfix: RND_CATEGORY_INITIAL, added to Welding Goggles design so they **actually
+      show up** in the Autolathe.  Hopefully.
+  Guti:
+  - code_imp: Changed all material costs to use sheets define.
+  Poojawa:
+  - qol: Chem dispensers now have alt-click to pull a beaker out of them without needing
+      the UI
+  - image: Chem Dispensers are no longer KurgerBing soda fountains!
+  - rscadd: Added working Food Synthesizers, can print a variety of meals and even
+      (opt in) crew cookies
+  - qol: Sorted the material construction menus
+  - refactor: optimized the wood species recipe removals
+  - qol: Frame parts give a contextual hint to usage on examine.
+2026-07-11:
+  Cameron-The-Raven:
+  - bugfix: Adds numerous items that were removed without changelog notes.
+  Will:
+  - bugfix: Wet/slippery turf state no longer persists through turf change
+  WolvesAndOwls:
+  - bugfix: Capture crystals now handle self-capture edge case
+  - bugfix: OOC Escape from capture crystals no longer bricks crystal and breaks player
+2026-07-12:
+  Diana:
+  - bugfix: Moves the 'misc' out from furniture and into its own proper category on
+      materials.
+  - qol: Moves table frame from misc to furniture category.
+  - qol: Moves reflector frame into misc category.
+  - rscdel: Grit removed. "Pain Tolerance, minor" covers everything grit was supposed
+      to do, now.
+  - rscadd: Adds "Pain Tolerance, Extreme" which is an inverse of Neural Hypersensitivity.
+      Provides 50% reduced pain.
+  - rscadd: Being in shock will now increase your heart rate.
+  - balance: Pain modifier now affects traumatic shock
+  - balance: Trauma no longer weakens you for 40 seconds repeatedly. Now only weakens
+      for 6-10 seconds when it rolls.
+  - balance: Blurry eyes happen when significantly damaged or getting deep in shock.
+  - balance: Being deep in trauma no longer perma-weakens you, but now has a significant
+      chance to keep you weakened.
+  - bugfix: Shock stage no longer piles up the probabilities when in shock, instead
+      only does the one appropriate for its stage. This reduces chatspam.
+  - bugfix: Your HR can no longer go so high it reads nothing.
+  - code_imp: trauma_mod rolled into pain_mod
+  Fracshun:
+  - bugfix: Belly display names now work
+  Kashargul:
+  - bugfix: recursive stack search
+  - bugfix: juke toolchain skipping biome updates
+  - code_imp: update tgui dependencies
+  Poojawa:
+  - qol: Chem Masters now permit a choice between beaker ejections, clearing or keeping
+      the buffer inside the machine. Buffer has been changed to 300 (one bluespace
+      beaker) as a result.
+  - bugfix: Chem Masters now check for for potential overfilling, resolving issues
+      where reagents would be deleted if the beaker was too full to accept the full
+      amount.
+  - bugfix: Prevents eggs and siffruit from being 'cracked into' the Chem Master or
+      Chem Dispensor, fixing a null runtime that completely breaks the machines
+  Will:
+  - rscadd: Update transcore dump behavior
+  - bugfix: Ripleys no longer float over openspace
+2026-07-13:
+  Poojawa:
+  - rscadd: Added Corona Analyzers to Tesla coil subtypes, able to assist R&D point
+      generation
+  - image: modified tesla coil sprites to be more visually obvious if anchored or
+      the panel is open
+  - refactor: cleaned up unneeded circuitry paths and grammar

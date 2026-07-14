@@ -71,7 +71,7 @@
 	sharp = TRUE
 	edge = TRUE
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
-	matter = list(MAT_STEEL = 12000)
+	matter = list(MAT_STEEL = MATERIAL_COST(6))
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
 

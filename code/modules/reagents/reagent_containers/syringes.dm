@@ -17,7 +17,7 @@
 	icon_state = "0"
 	center_of_mass_x = 16
 	center_of_mass_y = 14
-	matter = list(MAT_GLASS = 150)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.075))
 	amount_per_transfer_from_this = 5
 	max_transfer_amount = null
 	volume = 15

@@ -28,11 +28,11 @@ export type SpawnPanelData = {
   precise_mode: string;
 };
 
-interface CreateObjectSettingsProps {
+type CreateObjectSettingsProps = {
   onCreateObject?: (obj: Record<string, unknown>) => void;
   setAdvancedSettings: (value: boolean) => void;
   iconSettings: IconSettings;
-}
+};
 
 export function CreateObjectSettings(props: CreateObjectSettingsProps) {
   const { onCreateObject, setAdvancedSettings, iconSettings } = props;

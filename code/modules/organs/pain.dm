@@ -70,7 +70,7 @@
 			maxdam = dam
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				maxdam *= H.species.trauma_mod
+				maxdam *= H.species.pain_mod
 	if(damaged_organ && chem_effects[CE_PAINKILLER] < maxdam)
 		if(maxdam > 10 && paralysis)
 			AdjustParalysis(-round(maxdam/10))
