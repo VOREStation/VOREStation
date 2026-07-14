@@ -116,7 +116,6 @@ export const WingsDimmer = (props: {
       title="Wings"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close

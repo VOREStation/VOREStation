@@ -66,7 +66,6 @@ export const GradientDimmer = (props: {
       title="Gradient"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close

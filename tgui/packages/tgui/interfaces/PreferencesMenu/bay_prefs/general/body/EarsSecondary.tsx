@@ -41,7 +41,6 @@ export const EarsSecondaryDimmer = (props: {
       title="Horns"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close

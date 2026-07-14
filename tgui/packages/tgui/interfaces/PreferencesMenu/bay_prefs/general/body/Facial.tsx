@@ -90,7 +90,6 @@ export const FacialDimmer = (props: {
       title="Facial"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close

@@ -118,7 +118,6 @@ export const EarsDimmer = (props: {
       title="Ears"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close

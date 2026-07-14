@@ -119,7 +119,6 @@ export const TailDimmer = (props: {
       title="Tail"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close
