@@ -25,10 +25,9 @@
 		if(!collection[accessory::name])
 			collection[accessory::name] = accessory::type
 
-		/*if(ispath(accessory, text2path("[path]/invisible")))
-			TEST_ASSERT(!accessory::icon_state, "[accessory::name] - [accessory::type]: Cosmetic - Invisible subtype has icon_state.")*/ //Needs an icon_state for TGUI now.
-
-		if(!accessory::icon_state)
+		if(ispath(accessory, text2path("[path]/invisible")))
+			TEST_ASSERT(!accessory::icon_state, "[accessory::name] - [accessory::type]: Cosmetic - Invisible subtype has icon_state.")
+		else if(!accessory::icon_state)
 			TEST_FAIL("[accessory::name] - [accessory::type]: Cosmetic - Has no icon_state.")
 		else
 			// Check if valid icon
