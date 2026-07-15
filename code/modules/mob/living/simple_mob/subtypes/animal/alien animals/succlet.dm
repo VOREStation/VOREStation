@@ -125,6 +125,8 @@
 	succlet_last_health = health	//The succlet will try to move if it has taken damage
 
 /mob/living/simple_mob/vore/alienanimals/succlet/death(gibbed, deathmessage = "shrieks in agony as it is eradicated from reality.")
+	if(QDELETED(src))
+		return
 	. = ..()
 	if(isbelly(loc))
 		return

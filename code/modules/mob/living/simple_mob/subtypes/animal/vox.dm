@@ -36,6 +36,8 @@
 	var/quills = 3
 
 /mob/living/simple_mob/vox/armalis/death(gibbed = FALSE)
+	if(QDELETED(src))
+		return
 	..(TRUE)
 	var/turf/gloc = get_turf(loc)
 	visible_message(span_bolddanger("[src] shudders violently and explodes!"),span_warning("You feel your body rupture!"))

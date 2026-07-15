@@ -39,6 +39,8 @@
 	..()
 
 /mob/living/simple_mob/construct/shade/death()
+	if(QDELETED(src))
+		return
 	..()
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))
