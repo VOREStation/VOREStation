@@ -49,9 +49,14 @@
 	desc = initial(desc)
 
 /obj/structure/stasis_cage/Destroy()
+	// If sold by cargo, we need to delete our contents instead of releasing them
+	// Check for admin z instead of shuttle area. Cause destroying it on the station will make the mob qdel.
+	if(z in using_map.admin_levels)
+		for(var/atom/thing in contents)
+			qdel(thing)
+		contained = null
 	release()
-
-	return ..()
+	. = ..()
 
 /mob/living/simple_mob/MouseDrop(obj/structure/stasis_cage/over_object)
 	if(istype(over_object) && Adjacent(over_object) && CanMouseDrop(over_object, usr))
