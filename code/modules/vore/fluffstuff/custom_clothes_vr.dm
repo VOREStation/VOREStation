@@ -1147,7 +1147,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/hooded/wintercoat/jessie
 	name = "Handmade Winter Suit"
 	desc = "A durable, but somewhat ragged lower portion of a snow suit fitted for a wolftaur."
-	icon = 'icons/mob/taursuits_wolf.dmi'
+	icon = 'icons/inventory/suit/taursuits_snowflake.dmi'
 	icon_state = "jessiecoat"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/jessie/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
@@ -1163,7 +1163,7 @@ Departamental Swimsuits, for general use
 	name = "Kat's Fox Taur Armor"
 	desc = "A set of security armor, light weight and easy to run in for a Taur, this item protects the \
 	entire body."
-	icon = 'icons/mob/taursuits_wolf.dmi'
+	icon = 'icons/inventory/suit/taursuits_snowflake.dmi'
 	icon_state = "katesuit"
 	item_state_slots = null
 
