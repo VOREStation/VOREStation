@@ -987,7 +987,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	apply_layer(L_HAND_LAYER)
 
 /mob/living/carbon/human/proc/get_tail_layer()
-	var/list/lower_layer_dirs = list(SOUTH, EAST, WEST) //Tail below clothing on side views too.
+	var/list/lower_layer_dirs = LOWER_TAIL_DIRS //Tail below clothing on side views too.
 	if(tail_style)
 		lower_layer_dirs = tail_style.lower_layer_dirs.Copy()
 
@@ -1000,10 +1000,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
-	remove_layer(TAIL_UPPER_LAYER)
-	remove_layer(TAIL_UPPER_LAYER_HIGH)
-	remove_layer(TAIL_UPPER_LAYER_LOW)
-	remove_layer(TAIL_LOWER_LAYER)
+	for(var/layers in TAIL_LAYER_CLEARING)
+		remove_layer(layers)
 
 	var/tail_layer = get_tail_layer()
 	if(tail_style && tail_style.clip_mask_state)
@@ -1022,22 +1020,18 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		apply_layer(tail_layer)
 		return
 
-	var/species_tail = species?.get_tail(src) // Species tail icon_state prefix.
-
 	//This one is actually not that bad I guess.
-	if(species_tail)
-		if(!(wear_suit && wear_suit.flags_inv & HIDETAIL)) //not wearing a suit or it doesn't hide our tail
-			var/icon/tail_s = get_tail_icon()
-			tail_image = image(icon = tail_s, icon_state = "[species_tail]", layer = BODY_LAYER+tail_layer)
+	if(tail_style)
+		var/icon/tail_s = get_tail_icon()
+		var/obj/item/clothing/suit/suitable = wear_suit
+		if(!(suitable && suitable.flags_inv & HIDETAIL)) //not wearing a suit or it doesn't hide our tail
+			tail_image = image(icon = tail_s, icon_state = "[tail_style]", layer = BODY_LAYER+tail_layer)
 			tail_image.alpha = chest?.transparent ? 180 : 255
-		else if(wear_suit)	//we are wearing one, let's see if we have a tail sock to squish on. taurize() handles taur specific ones!
-			var/obj/item/clothing/suit/sock = wear_suit
-			if(sock.requires_tailsock && sock.tailsock_toggle)	//Only suits requiring one AND the suit's toggle is on (by default true)
-				var/icon/tail_s = get_tail_icon()
-				var/datum/sprite_accessory/tail/sockable = species_tail
-				//nudge just above the normal tail layers but not so much that it overtakes the next layer up.
-				tail_image = image(icon = tail_s, icon_state = "[sockable]", layer = BODY_LAYER+tail_layer+0.5)
-				tail_image.color = sock.tailsock_color
+		else if(suitable && suitable.requires_tailsock && suitable.tailsock_toggle)	//we are wearing one, let's see if we have a tail sock to squish on. taurize() handles taur specific ones!
+			//Only suits requiring one AND the suit's toggle is on (by default true)
+			//nudge just above the normal tail layers but not so much that it overtakes the next layer up.
+			tail_image = image(icon = tail_style.tailsock_icon, icon_state = "[tail_style.tailsock_iconstate]", layer = BODY_LAYER+tail_layer+0.5)
+			tail_image.color = suitable.tailsock_color
 		//No? Well okay then, normal tail go.
 		overlays_standing[tail_layer] = tail_image
 		animate_tail_reset()
@@ -1065,75 +1059,41 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/set_tail_state(t_state)
 	var/tail_layer = get_tail_layer()
-	if(src.tail_style && src.tail_style.clip_mask_state)
+	if(tail_style && tail_style.clip_mask_state)
 		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
 	if(tail_layer == TAIL_UPPER_LAYER)
 		tail_layer = tail_layering
 	var/image/tail_overlay = overlays_standing[tail_layer]
-
-	remove_layer(TAIL_UPPER_LAYER)
-	remove_layer(TAIL_UPPER_LAYER_HIGH)
-	remove_layer(TAIL_UPPER_LAYER_LOW)
-	remove_layer(TAIL_LOWER_LAYER)
-
+	for(var/layers in TAIL_LAYER_CLEARING)
+		remove_layer(layers)
 	if(tail_overlay)
 		overlays_standing[tail_layer] = tail_overlay
-		if(species.get_tail_animation(src))
+		if(tail_style.ani_state)
 			tail_overlay.icon_state = t_state
 			. = tail_overlay
 
 	apply_layer(tail_layer)
 
-//Not really once, since BYOND can't do that.
-//Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
-//You can sort of flick images now with flick_overlay -Aro
-/mob/living/carbon/human/proc/animate_tail_once()
+/mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src))
 		return
-
-	var/t_state = "[species.get_tail(src)]_once"
-	var/tail_layer = get_tail_layer()
-	if(src.tail_style && src.tail_style.clip_mask_state)
-		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
-
-	var/image/tail_overlay = overlays_standing[tail_layer]
-	if(tail_overlay && tail_overlay.icon_state == t_state)
-		return //let the existing animation finish
-
-	tail_overlay = set_tail_state(t_state) // Calls remove_layer & apply_layer
-	if(tail_overlay)
-		spawn(20)
-			//check that the animation hasn't changed in the meantime
-			if(overlays_standing[tail_layer] == tail_overlay && tail_overlay.icon_state == t_state)
-				animate_tail_stop()
+	if(stat != DEAD)
+		set_tail_state("[tail_style.ani_state]")
+	else
+		set_tail_state("[tail_style.icon_state]")
+		toggle_tail(FALSE) //So tails stop when someone dies.
 
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src))
 		return
 
-	set_tail_state("[species.get_tail(src)]_slow[rand(0,9)]")
-
-/mob/living/carbon/human/proc/animate_tail_fast()
-	if(QDESTROYING(src))
-		return
-
-	set_tail_state("[species.get_tail(src)]_loop[rand(0,9)]")
-
-/mob/living/carbon/human/proc/animate_tail_reset()
-	if(QDESTROYING(src))
-		return
-
-	if(stat != DEAD)
-		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
-	else
-		set_tail_state("[species.get_tail(src)]_static")
-		toggle_tail(FALSE) //So tails stop when someone dies. TODO - Fix this hack ~Leshana
+	set_tail_state("[tail_style.ani_state]")
 
 /mob/living/carbon/human/proc/animate_tail_stop()
 	if(QDESTROYING(src))
 		return
 
-	set_tail_state("[species.get_tail(src)]_static")
+	set_tail_state("[tail_style.icon_state]")
 
 /mob/living/carbon/human/proc/update_wing_showing()
 	if(QDESTROYING(src))
@@ -1386,6 +1346,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			working.pixel_y = tail_style.offset_y
 
 		if(wear_suit)
+			var/tail_layer = get_tail_layer()
+			if(tail_style && tail_style.clip_mask_state)
+				tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
+			if(tail_layer == TAIL_UPPER_LAYER)
+				tail_layer = tail_layering
 			var/obj/item/clothing/suit/socksuit = wear_suit
 			if(socksuit.requires_tailsock) // Tailsock support for universal sprite freedoms.
 				// TODO: Possible mutable_image for belly sprite coverage too??
@@ -1396,7 +1361,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 				else
 					tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_iconstate)
 				tailsockoverlay.color = socksuit.tailsock_color	//color it in a suitable fashion
-				tailsockoverlay.layer = BODY_LAYER+SUIT_LAYER+0.1 //nudge it just above our suit layer
+				tailsockoverlay.layer = BODY_LAYER+tail_layer+0.5 //nudge it just above our suit layer
 				working.overlays += tailsockoverlay
 
 		working.alpha = src.a_tail
