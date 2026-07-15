@@ -153,7 +153,7 @@ export function setClientTheme(name) {
       //'wiki.text-color': COLOR_DARK_TEXT,
       //'forum.background-color': '#494949',
       //'forum.text-color': COLOR_DARK_TEXT,
-      'github.background-color': '#3a3a3a',
+      'github.background-color': COLOR_DARK_BG,
       'github.text-color': COLOR_DARK_TEXT,
       //'report-issue.background-color': '#492020',
       //'report-issue.text-color': COLOR_DARK_TEXT,
