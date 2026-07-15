@@ -458,4 +458,4 @@
 	if(mob_key in SSsupply.exported_research_mobs)
 		sold_mobs = SSsupply.exported_research_mobs[mob_key]
 	var/research_val = our_mob.export_research_value // Each mob sold will linearly scale the value of research points recieved, until it hits 25% of it's value.
-	return max(1, FLOOR(lerp(research_val, research_val * 0.25, sold_mobs / our_mob.export_research_diminished_max), 1))
+	return max(1, FLOOR(lerp(research_val, research_val * 0.25, CLAMP(sold_mobs / our_mob.export_research_diminished_max, 0, 1)), 1))
