@@ -1242,9 +1242,9 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 				for(var/turf/T in view())
 					turfs += T
 				if(turfs.len)
-					var/turf/target = pick(turfs)
+					var/turf/shoot_at_turf = pick(turfs)
 					visible_message(span_danger("[target]'s [W] goes off due to \the [src]!"))
-					return W.afterattack(target,target)
+					return W.afterattack(shoot_at_turf,target)
 
 	if(!(target.species.flags & NO_SLIP) && prob(10) && (target_zone in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
 		var/armor_check = target.run_armor_check(target_zone, "melee")
