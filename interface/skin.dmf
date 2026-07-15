@@ -1673,3 +1673,7 @@ window "statwindow"
 		anchor2 = 100,100
 		is-visible = false
 		saved-params = ""
+
+window "character_preview_map"
+	elem "character_preview_map"
+	type = BROWSER
