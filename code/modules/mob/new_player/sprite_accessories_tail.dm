@@ -33,7 +33,7 @@
 	///ADDITIONALLY, IF YOU ADD A SPECIAL VWAG, YOU NEED TO INCLUDE ani_state, extra_overlay_w, and extra_overlay2_w INTO icon_loaf TOO!
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
-	var/list/lower_layer_dirs = list(SOUTH, WEST, EAST)
+	var/list/lower_layer_dirs = LOWER_TAIL_DIRS
 	var/icon_loaf = null
 
 	// Taur Vore
