@@ -41,6 +41,12 @@
 	hide_body_parts	= list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
 	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
+/datum/sprite_accessory/tail/taur/New()
+	. = ..()
+	///give us our default belly icon for sockage if we don't have one. they're all initially null, so!
+	if(!tailsock_taurbellyicon)
+		tailsock_taurbellyicon = "Taur[(vore_tail_sprite_variant)]-Belly-3 idle"	//this pretty much matches up with the fat states, so w/e.
+
 /datum/riding/taur
 	keytype = /obj/item/material/twohanded/riding_crop // Crack!
 	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
