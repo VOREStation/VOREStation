@@ -1006,7 +1006,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	remove_layer(TAIL_LOWER_LAYER)
 
 	var/tail_layer = get_tail_layer()
-	if(src.tail_style && src.tail_style.clip_mask_state)
+	if(tail_style && tail_style.clip_mask_state)
 		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
 	if(tail_layer == TAIL_UPPER_LAYER)
 		tail_layer = tail_layering
@@ -1032,11 +1032,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			tail_image.alpha = chest?.transparent ? 180 : 255
 		else if(wear_suit)	//we are wearing one, let's see if we have a tail sock to squish on. taurize() handles taur specific ones!
 			var/obj/item/clothing/suit/sock = wear_suit
-			if(sock.requires_tailsock)	//Only suits requiring one
+			if(sock.requires_tailsock && sock.tailsock_toggle)	//Only suits requiring one AND the suit's toggle is on (by default true)
 				var/icon/tail_s = get_tail_icon()
 				var/datum/sprite_accessory/tail/sockable = species_tail
-				///TODO: Tail sock should layer appropriately over on North face, and under for the other facings for the suit itself
-				tail_image = image(icon = tail_s, icon_state = "[sockable.tailsock_iconstate]", layer = BODY_LAYER+SUIT_LAYER+0.1)
+				//nudge just above the normal tail layers but not so much that it overtakes the next layer up.
+				tail_image = image(icon = tail_s, icon_state = "[sockable]", layer = BODY_LAYER+tail_layer+0.5)
 				tail_image.color = sock.tailsock_color
 		//No? Well okay then, normal tail go.
 		overlays_standing[tail_layer] = tail_image

@@ -77,7 +77,8 @@
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
-
+	/// for sealable void suits using the rig sprites like Engineering
+	icon_state = "[initial(icon_state)]"
 	var/mob/living/carbon/human/H = M
 
 	if(!istype(H)) return
@@ -94,6 +95,8 @@
 			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
 		else if (H.equip_to_slot_if_possible(hood, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
+			if(sealable)
+				icon_state = "[initial(icon_state)_sealed]"
 			hood.canremove = FALSE
 
 	if(cooler)
@@ -181,6 +184,8 @@
 		H.drop_from_inventory(hood)
 		hood.forceMove(src)
 		playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
+		if(sealable)
+			icon_state = "[initial(icon_state)]"
 	else
 		if(H.head)
 			to_chat(H, span_danger("You cannot deploy your helmet while wearing \the [H.head]."))
@@ -189,6 +194,8 @@
 			hood.canremove = FALSE
 			to_chat(H, span_info("You deploy your suit helmet, sealing you off from the world."))
 			playsound(src.loc, 'sound/machines/click2.ogg', 75, 1)
+			if(sealable)
+				icon_state = "[initial(icon_state)]_sealed"
 
 /obj/item/clothing/suit/space/void/click_alt(mob/living/user)
 	eject_tank()
