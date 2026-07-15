@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(supply)
 	var/list/order_history = list()			// History of orders, showing edits made by users
 	var/list/adm_order_history = list() 	// Complete history of all orders, for admin use
 	var/list/adm_export_history = list()	// Complete history of all crates sent back on the shuttle, for admin use
+	var/list/exported_research_mobs = list()// Number of mob types sold from cargo, used to calculate diminishing returns
 	//shuttle movement
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle

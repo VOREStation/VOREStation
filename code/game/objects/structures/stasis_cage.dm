@@ -14,6 +14,7 @@
 	var/mob/living/simple_mob/A = locate() in loc
 	if(A)
 		contain(A)
+	AddElement(/datum/element/sellable/stasis_cage)
 
 /obj/structure/stasis_cage/attack_hand(mob/user)
 	release()
