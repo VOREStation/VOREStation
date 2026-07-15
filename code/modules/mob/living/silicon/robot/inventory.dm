@@ -378,7 +378,7 @@
 	if(istype(O, /obj/item/dogborg/sleeper)) //gross, fuck you diana! THAT does NOT Fucking work!
 		var/obj/item/dogborg/sleeper/our_compactor = O
 		if(our_compactor.ore_storage)
-				our_compactor.ore_bag.dropped(src)
+			our_compactor.ore_bag.dropped(src)
 
 	if(!(sight_mode & BORGANOMALOUS))
 		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
