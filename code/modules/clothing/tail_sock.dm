@@ -9,6 +9,29 @@
 	/// what color is the tailsock going to be? Defaults to a nice, dark grey that usually matches everything.
 	/// rgb(29, 29, 29) for the VSC people
 	var/tailsock_color = "#1D1D1D"
+	/// toggle tailsock options, double duty for taurs, to revert to mask clipped vs full suited if false. This changes the HIDETAIL flag
+	var/tailsock_toggle = TRUE
+
+///This is purely for player preference.
+/obj/item/clothing/suit/verb/toggle_tailsock()
+	set name = "Toggle Tail Sock"
+	set category = "Object"
+	set desc = "Toggle the tail sock or full body taur sprite on your suit."
+	set src in usr
+	toggle_tailsock(usr)
+
+/obj/item/clothing/suit/proc/toggle_tailsock()
+	tailsock_toggle = !tailsock_toggle
+	if(tailsock_toggle)
+		flags_inv &= ~HIDETAIL
+	else
+		flags_inv |= ~HIDETAIL
+	update_clothing_icon()
+
+/obj/item/clothing/suit/examine(mob/user)
+	. = ..()
+	///It's a little thing, but feedback can help someone wondering why a suit isn't hinding their tails/butt.
+	. += span_notice("The dynamic sheathing toggle is [tailsock_toggle ? "enabled" : "disabled"].")
 
 /obj/item/clothing/suit/fire
 	requires_tailsock = TRUE
