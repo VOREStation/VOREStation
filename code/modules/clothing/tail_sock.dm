@@ -12,13 +12,17 @@
 	/// toggle tailsock options, double duty for taurs, to revert to mask clipped vs full suited if false. This changes the HIDETAIL flag
 	var/tailsock_toggle = TRUE
 
+/obj/item/clothing/suit/space
+	/// unrelated to tailsocks directly, buuuuuut, taur suits have dedicated sealed/unsealed variants and that should be applied, too.
+	var/sealable = FALSE
+
 ///This is purely for player preference.
-/obj/item/clothing/suit/verb/toggle_tailsock()
+/obj/item/clothing/suit/verb/toggletailsock()
 	set name = "Toggle Tail Sock"
 	set category = "Object"
 	set desc = "Toggle the tail sock or full body taur sprite on your suit."
 	set src in usr
-	toggle_tailsock(usr)
+	toggle_tailsock()
 
 /obj/item/clothing/suit/proc/toggle_tailsock()
 	tailsock_toggle = !tailsock_toggle

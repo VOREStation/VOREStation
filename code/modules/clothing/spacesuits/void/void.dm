@@ -96,7 +96,7 @@
 		else if (H.equip_to_slot_if_possible(hood, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			if(sealable)
-				icon_state = "[initial(icon_state)_sealed]"
+				icon_state = "[initial(icon_state)]_sealed"
 			hood.canremove = FALSE
 
 	if(cooler)
