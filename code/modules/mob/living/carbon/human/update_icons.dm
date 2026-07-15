@@ -1077,23 +1077,24 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src))
 		return
-	if(stat != DEAD)
-		set_tail_state("[tail_style.ani_state]")
-	else
-		set_tail_state("[tail_style.icon_state]")
-		toggle_tail(FALSE) //So tails stop when someone dies.
+	if(tail_style)
+		if(stat != DEAD)
+			set_tail_state("[tail_style.ani_state]")
+		else
+			set_tail_state("[tail_style.icon_state]")
+			toggle_tail(FALSE) //So tails stop when someone dies.
 
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src))
 		return
-
-	set_tail_state("[tail_style.ani_state]")
+	if(tail_style)
+		set_tail_state("[tail_style.ani_state]")
 
 /mob/living/carbon/human/proc/animate_tail_stop()
 	if(QDESTROYING(src))
 		return
-
-	set_tail_state("[tail_style.icon_state]")
+	if(tail_style)
+		set_tail_state("[tail_style.icon_state]")
 
 /mob/living/carbon/human/proc/update_wing_showing()
 	if(QDESTROYING(src))
