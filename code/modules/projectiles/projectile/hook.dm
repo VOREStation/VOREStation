@@ -132,12 +132,12 @@
 				if(I_HURT)
 					if(prob(10) && ishuman(L))
 						to_chat(L, span_warning("\The [src] rips at your hands!"))
-						ranged_disarm(L)
+						ranged_disarm(L, null)
 					success = TRUE
 					done_mob_unique = TRUE
 				if(I_DISARM)
 					if(prob(disarm_chance) && ishuman(L))
-						ranged_disarm(L)
+						ranged_disarm(L, null)
 					else
 						L.visible_message(span_danger("\The [src] sends \the [L] stumbling backwards."))
 						L.throw_at(get_turf(get_step(L,get_dir(firer,L))), 1, 1, src)

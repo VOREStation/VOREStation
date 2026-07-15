@@ -1217,23 +1217,23 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 	if(cleandesc)
 		desc = cleandesc
 
-/obj/item/proc/ranged_disarm(mob/living/carbon/human/target, mob/living/user, hit_zone = null)
+/obj/item/proc/ranged_disarm(mob/living/carbon/human/target, mob/living/user, zone_override = null)
 	if(!ishuman(target))
 		return
 
 	var/target_zone
 	var/list/holding
-	if(!istype(src,/obj/item/projectile))
-		// Melee attacks use user's targeting zone, and have a decent chance to disarm main hand
-		target_zone = user.zone_sel.selecting
-		holding = list(target.get_active_hand() = 40, target.get_inactive_hand() = 20)
-	else
+	if(istype(src,/obj/item/projectile))
 		// Projectiles use their aim, and always disarm
 		var/obj/item/projectile/bullet = src
 		target_zone = bullet.def_zone
 		holding = list(target.get_active_hand() = 100, target.get_inactive_hand() = 100)
-	if(hit_zone) // Argument override
-		target_zone = hit_zone
+	else
+		// Melee attacks use user's targeting zone, and have a decent chance to disarm main hand
+		target_zone = user.zone_sel.selecting
+		holding = list(target.get_active_hand() = 40, target.get_inactive_hand() = 20)
+	if(zone_override) // Argument override
+		target_zone = zone_override
 
 	if(target_zone in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))	// Guns are complex devices, both of a mechanical and electronic nature. A weird gravity ball or other type of object trying to pull or grab it is likely not safe.
 		for(var/obj/item/gun/W in holding)
