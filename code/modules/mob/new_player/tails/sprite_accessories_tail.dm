@@ -49,18 +49,25 @@
 	// Tail Socks
 	/// This can usually be the default icon, since the base icon is a complete unit.
 	/// Taur tails are snipped off to account for the butt positioning being easier to deal with.
-	var/tailsock_icon = [initial(icon)]
-	var/tailsock_iconstate = "[initial(icon_state)]"
+	var/tailsock_icon
+	var/tailsock_iconstate
 	/// Same for wag states, we just need the sprite itself, not any of the custom overlays
 	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.
-	var/tailsock_wagicon = "[initial(ani_state)]"
+	var/tailsock_wagicon
 	/// Also same for the vore belly taur sprites. we'll just overlay so you can see the animations too (if any).
-	var/tailsock_taurbellyicon = "Taur[initial(vore_tail_sprite_variant)]-Belly-3 idle"	//this pretty much matches up with the fat states, so w/e.
+	var/tailsock_taurbellyicon
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
 	if(clip_mask_state)
 		clip_mask = icon(icon = (clip_mask_icon ? clip_mask_icon : icon), icon_state = clip_mask_state)
+	///because the compiler doesn't like this being preset I guess whatever loser.
+	if(!tailsock_icon)
+		tailsock_icon = initial(icon)
+	if(!tailsock_iconstate)
+		tailsock_iconstate = initial(icon_state)
+	if(!tailsock_wagicon)
+		tailsock_wagicon = initial(ani_state)
 
 // Default invis tail
 /datum/sprite_accessory/tail/invisible
