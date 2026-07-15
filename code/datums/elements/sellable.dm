@@ -421,6 +421,8 @@
 	// Check if this creature can even be sold at all
 	if(!istype(cage.contained, /mob/living/simple_mob))
 		return "Error: This creature has no scientific value."
+	if(cage.contained.client) // Lets not allow player possessed creatures to be sold
+		return "Error: This creature has an undesirable mutation and has no scientific value."
 	var/mob/living/simple_mob/our_mob = cage.contained
 	if(our_mob.stat == DEAD)
 		return "Error: The creature must be alive to study. It has no scientific value."

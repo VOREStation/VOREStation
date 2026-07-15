@@ -43,6 +43,12 @@
 		to_chat(user,final_output)
 		return 0
 
+	if(istype(AM,/obj/structure/stasis_cage))
+		// Stasis cages are for RESEARCH!
+		final_output += span_notice("-Its contents can be studied for [value] research points.")
+		to_chat(user,final_output)
+		return value
+
 	var/price = SSsupply.points_to_cash(value)
 	final_output += span_notice("-It can be sold for [value] points, or [price] [price > 1 ? "thalers" : "thaler"]")
 	to_chat(user,final_output)
