@@ -72,7 +72,7 @@
 		else
 			. += span_notice("The generator is off.")
 		if(stat & EMPED)
-			. += span_warning("The generator's readout estimates [emp_duration - world.time] seconds remaining until it can restart.")
+			. += span_warning("The generator's readout estimates [round((emp_duration - world.time) * 0.1)] seconds remaining until it can restart.")
 
 /obj/machinery/power/port_gen/emp_act(severity, recursive)
 	. = ..()
