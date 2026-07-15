@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "The dead can no longer enter or leave the body scanner themselves"
