@@ -412,6 +412,8 @@
 
 // Selling xenomobs for science!!
 /datum/element/sellable/stasis_cage
+	sale_info = "This can be export on the cargo shuttle. Central command will reward the station with research points if the creature within has scientific value."
+	needs_crate = FALSE
 	department = DEPARTMENT_RESEARCH
 
 /datum/element/sellable/stasis_cage/sell_error(obj/source)
@@ -434,9 +436,9 @@
 		return "Error: This creature no longer has any scientific value."
 	// Increase sold count, now that we've reached successful export
 	var/mob_key = "[cage.contained.type]"
-	if(!(mob_key in exported_research_mobs))
-		exported_research_mobs[mob_key] = 0
-	exported_research_mobs[mob_key] += 1
+	if(!(mob_key in SSsupply.exported_research_mobs))
+		SSsupply.exported_research_mobs[mob_key] = 0
+	SSsupply.exported_research_mobs[mob_key] += 1
 	return null
 
 /datum/element/sellable/stasis_cage/calculate_sell_value(obj/source)
@@ -453,7 +455,7 @@
 	// Calculate diminishing returns from number of mobs that have already been sold of this type
 	var/mob_key = "[cage.contained.type]"
 	var/sold_mobs = 0
-	if(mob_key in exported_research_mobs)
-		sold_mobs = exported_research_mobs[mob_key]
+	if(mob_key in SSsupply.exported_research_mobs)
+		sold_mobs = SSsupply.exported_research_mobs[mob_key]
 	var/research_val = our_mob.export_research_value // Each mob sold will linearly scale the value of research points recieved, until it hits 25% of it's value.
 	return max(1, FLOOR(lerp(research_val, research_val * 0.25, sold_mobs / our_mob.export_research_diminished_max), 1))

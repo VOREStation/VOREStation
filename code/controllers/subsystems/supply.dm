@@ -59,7 +59,10 @@ SUBSYSTEM_DEF(supply)
 //To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
-		return 1
+		var/mob/living/check_living = A
+		// Mobs inside stasis cages can be sold. otherwise loose mobs or mobs with clients are forbidden.
+		if(!istype(check_living.loc, /obj/structure/stasis_cage) || check_living.client)
+			return 1
 	if(istype(A,/obj/item/disk/nuclear))
 		return 1
 	if(istype(A,/obj/machinery/nuclearbomb))
