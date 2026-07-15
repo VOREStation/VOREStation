@@ -52,6 +52,21 @@ export const WingsImageButton = (
     );
   }
   const data = serverData.wing_styles[style];
+  if (data.icon_state === null || data.icon === null) {
+    return (
+      <ImageButton
+        verticalAlign="top"
+        onClick={onClick}
+        tooltip={props.tooltip}
+        selected={props.selected}
+        dmIcon="icons/mob/mob.dmi"
+        dmIconState="blank"
+        dmFallback={<Box width="64px" height="64px" />}
+      >
+        {props.children}
+      </ImageButton>
+    );
+  }
 
   // Must be wrapped with useCallback or else it'll rerender every frame
   const postRender = useCallback(

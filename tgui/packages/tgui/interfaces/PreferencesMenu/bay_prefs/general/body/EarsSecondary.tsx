@@ -74,7 +74,7 @@ export const EarsSecondaryDimmer = (props: {
           <Input
             fluid
             expensive
-            placeholder="Search for ears..."
+            placeholder="Search for horns..."
             onChange={(val) => setSearch(val)}
             value={search}
           />

@@ -52,7 +52,7 @@
 // Default invis tail
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
-	icon = ''//'icons/effects/species_tails.dmi'
+	icon = null
 	icon_state = null //todo: fix me
 
 //For all species tails. Includes haircolored tails.

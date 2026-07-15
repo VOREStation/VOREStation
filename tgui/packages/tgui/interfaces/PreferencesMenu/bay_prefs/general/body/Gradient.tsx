@@ -1,6 +1,7 @@
 import { type PropsWithChildren, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
+  Box,
   Button,
   ImageButton,
   Input,
@@ -37,6 +38,22 @@ export const GradientImageButton = (
   }
 
   const data = serverData.grad_styles[style];
+  if (data.icon_state === null || data.icon === null) {
+    return (
+      <ImageButton
+        verticalAlign="top"
+        onClick={onClick}
+        tooltip={props.tooltip}
+        selected={props.selected}
+        dmIcon="icons/mob/mob.dmi"
+        dmIconState="blank"
+        dmFallback={<Box width="64px" height="64px" />}
+      >
+        {props.children}
+      </ImageButton>
+    );
+  }
+
   return (
     <ColorizedImageButton
       iconRef={data.icon}
