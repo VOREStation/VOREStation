@@ -11,6 +11,7 @@
 	var/icon/under_sprites = null
 
 	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier.
+	tailsock_icon = 'icons/mob/human_races/sprite_accessories/taurs/taur_socks.dmi'
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
 	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
@@ -43,9 +44,12 @@
 
 /datum/sprite_accessory/tail/taur/New()
 	. = ..()
-	///give us our default belly icon for sockage if we don't have one. they're all initially null, so!
-	if(!tailsock_taurbellyicon)
-		tailsock_taurbellyicon = "Taur[(vore_tail_sprite_variant)]-Belly-3 idle"	//this pretty much matches up with the fat states, so w/e.
+	//give us the default sprite state, hijacking icon_sprite_tag that was only ever used for saddlebags.
+	if(icon_sprite_tag)
+		tailsock_iconstate = "[icon_sprite_tag]_sock"
+		///almost none of the taurs of tailwags, but to ensure future proofing and no null icons the taur_sock.dmi file has these prepared.
+		tailsock_wagicon = "[icon_sprite_tag]_w_sock"
+
 
 /datum/riding/taur
 	keytype = /obj/item/material/twohanded/riding_crop // Crack!
