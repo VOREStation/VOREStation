@@ -51,10 +51,8 @@
 	if(has_weapon)
 		if(ispath(active_weapon))
 			active_weapon = new active_weapon(src, src)
-			active_weapon.power_supply = bcell
 		else
 			active_weapon = new(src, src)
-			active_weapon.power_supply = bcell
 	else
 		verbs -= /obj/item/personal_shield_generator/verb/weapon_toggle
 	STOP_PROCESSING(SSobj, src) //We do this so it doesn't start processing until it's first used.
@@ -178,8 +176,6 @@
 				return
 			W.forceMove(src)
 			bcell = W
-			if(active_weapon)
-				active_weapon.power_supply = bcell
 			to_chat(user, span_notice("You install a cell in \the [src]."))
 			update_icon()
 
@@ -195,7 +191,6 @@
 				QDEL_NULL(bcell)
 				if(active_weapon)
 					reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
-					active_weapon.power_supply = null //No power cell anymore!
 				to_chat(user, span_notice("You remove the cell from \the [src], destroying the battery."))
 				update_icon()
 				return
@@ -205,7 +200,6 @@
 			bcell = null
 			if(active_weapon)
 				reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
-				active_weapon.power_supply = null //No power cell anymore!
 			to_chat(user, span_notice("You remove the cell from \the [src]."))
 			update_icon()
 	else if(istype(W,/obj/item/multitool))
