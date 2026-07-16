@@ -59,9 +59,9 @@
 	update_icon()
 
 /obj/item/personal_shield_generator/Destroy()
-	. = ..()
 	QDEL_NULL(active_weapon)
 	QDEL_NULL(bcell)
+	. = ..()
 
 /obj/item/personal_shield_generator/loaded //starts with a cell
 	bcell = /obj/item/cell/device/shield_generator/backpack
