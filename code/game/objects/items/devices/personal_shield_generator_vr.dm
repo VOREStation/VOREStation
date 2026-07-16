@@ -187,30 +187,27 @@
 		if(bcell)
 			if(istype(bcell, /obj/item/cell/device/shield_generator)) //No stealing self charging batteries!
 				var/choice = tgui_alert(user, "A popup appears on the device 'REMOVING THE INTERNAL CELL WILL DESTROY THE BATTERY. DO YOU WISH TO CONTINUE?'...Well, do you?", "Selection List", list("Cancel", "Remove"))
-				if(choice == "Remove") //Warned you...
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(5, 1, src)
-					s.start()
-					bcell.forceMove(get_turf(src.loc))
-					qdel(bcell)
-					bcell = null //Sanity.
-					if(active_weapon)
-						reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
-						active_weapon.power_supply = null //No power cell anymore!
-					to_chat(user, span_notice("You remove the cell from \the [src], destroying the battery."))
-					update_icon()
+				if(choice =! "Remove") //Warned you...
 					return
-				else
-					return
-			else
-				bcell.update_icon()
-				bcell.forceMove(get_turf(src.loc))
-				bcell = null
+				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				s.set_up(5, 1, src)
+				s.start()
+				QDEL_NULL(bcell)
 				if(active_weapon)
 					reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
 					active_weapon.power_supply = null //No power cell anymore!
-				to_chat(user, span_notice("You remove the cell from \the [src]."))
+				to_chat(user, span_notice("You remove the cell from \the [src], destroying the battery."))
 				update_icon()
+				return
+
+			bcell.update_icon()
+			bcell.forceMove(get_turf(src.loc))
+			bcell = null
+			if(active_weapon)
+				reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
+				active_weapon.power_supply = null //No power cell anymore!
+			to_chat(user, span_notice("You remove the cell from \the [src]."))
+			update_icon()
 	else if(istype(W,/obj/item/multitool))
 		var/new_color = tgui_color_picker(usr, "Choose a color to set the shield to!", "", effect_color)
 		if(new_color)
