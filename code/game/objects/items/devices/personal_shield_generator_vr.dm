@@ -317,7 +317,6 @@
 
 			if(active_weapon) //Retract the gun. There's about to be no cell anymore.
 				reattach_gun()
-				active_weapon.power_supply = null
 
 			bcell.use(generator_active_cost) //Causes it to go boom.
 			bcell = null
@@ -403,7 +402,11 @@
 /obj/item/gun/energy/gun/generator/Initialize(mapload, obj/item/personal_shield_generator/shield_gen)
 	. = ..()
 	shield_generator = shield_gen
-	power_supply = shield_generator.bcell
+
+/obj/item/gun/energy/gun/generator/get_external_power_supply()
+	. = ..()
+	if(shield_generator)
+		return shield_generator.bcell
 
 /* //Unused. Use for large guns.
 /obj/item/gun/energy/gun/generator/update_held_icon()
