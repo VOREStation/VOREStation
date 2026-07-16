@@ -397,6 +397,10 @@
 	. = ..()
 	shield_generator = shield_gen
 
+/obj/item/gun/energy/gun/generator/Destroy()
+	shield_generator = null
+	. = ..()
+
 /obj/item/gun/energy/gun/generator/get_external_power_supply()
 	. = ..()
 	if(shield_generator)
