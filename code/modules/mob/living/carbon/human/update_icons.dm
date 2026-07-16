@@ -867,7 +867,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
-	var/tail_is_rendered = overlays_standing[TAIL_LOWER_LAYER] || overlays_standing[tail_layering]
+	var/tail_is_rendered = overlays_standing[get_tail_layer()]
 	var/valid_clip_mask = tail_style?.clip_mask
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
@@ -988,7 +988,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/get_tail_layer()
 	var/list/lower_layer_dirs = LOWER_TAIL_DIRS //Tail below clothing on side views too.
-	if(tail_style)
+	if(!tail_style)	//sanity checks good checks.
+		return
+	else
 		lower_layer_dirs = tail_style.lower_layer_dirs.Copy()
 
 	if(dir in lower_layer_dirs)
@@ -1057,6 +1059,67 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	return tail_icon
 
+/mob/living/carbon/human/proc/get_tail_image()
+	//If you are FBP with tail style and didn't set a custom one
+	var/datum/robolimb/model = isSynthetic()
+	if(istype(model) && model.includes_tail && !tail_style && !tail_hidden)
+		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
+		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
+		return image(tail_s)
+
+	//If you have a custom tail selected
+	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
+		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state))
+		if(tail_style.can_loaf && !is_shifted)
+			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly. Taur Loafing
+		if(tail_style.do_colouration)
+			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
+		if(tail_style.extra_overlay)
+			var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay)
+			if(wagging && tail_style.ani_state)
+				overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay_w)
+				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				qdel(overlay)
+			else
+				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				qdel(overlay)
+
+		if(tail_style.extra_overlay2)
+			var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2)
+			if(wagging && tail_style.ani_state)
+				overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2_w)
+				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				qdel(overlay)
+			else
+				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
+				tail_s.Blend(overlay, ICON_OVERLAY)
+				qdel(overlay)
+
+		var/image/working = image(tail_s)
+		if(tail_style.em_block)
+			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
+
+		if(istaurtail(tail_style))
+			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
+			working.pixel_x = tail_style.offset_x
+			working.pixel_y = tail_style.offset_y
+			if(taurtype.can_ride && !riding_datum)
+				riding_datum = new /datum/riding/taur(src)
+				add_verb(src, /mob/living/carbon/human/proc/taur_mount)
+				add_verb(src, /mob/living/proc/toggle_rider_reins)
+
+		else if(islongtail(tail_style))
+			working.pixel_x = tail_style.offset_x
+			working.pixel_y = tail_style.offset_y
+
+		working.alpha = src.a_tail
+		apply_tailsock_layer(working)
+		return working
+	return null
+
 /mob/living/carbon/human/proc/set_tail_state(t_state)
 	var/tail_layer = get_tail_layer()
 	if(tail_style && tail_style.clip_mask_state)
@@ -1073,6 +1136,23 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			. = tail_overlay
 
 	apply_layer(tail_layer)
+
+/mob/living/carbon/human/proc/apply_tailsock_layer(image/tailoverlays)
+	var/image/working = tailoverlays
+	if(wear_suit)
+		var/tail_layer = get_tail_layer()
+		var/obj/item/clothing/suit/socksuit = wear_suit
+		if(socksuit.requires_tailsock) // Tailsock support for universal sprite freedoms.
+			// TODO: Possible mutable_image for belly sprite coverage too??
+			var/image/tailsockoverlay
+			var/datum/sprite_accessory/tail/tailtype = tail_style
+			if(wagging && tail_style.ani_state)
+				tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_wagicon)
+			else
+				tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_iconstate)
+			tailsockoverlay.color = socksuit.tailsock_color	//color it in a suitable fashion
+			tailsockoverlay.layer = BODY_LAYER+tail_layer+0.5 //nudge it just above our suit layer
+			return working.overlays += tailsockoverlay
 
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src))
@@ -1291,84 +1371,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	return rendered
 
-/mob/living/carbon/human/proc/get_tail_image()
-	//If you are FBP with tail style and didn't set a custom one
-	var/datum/robolimb/model = isSynthetic()
-	if(istype(model) && model.includes_tail && !tail_style && !tail_hidden)
-		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
-		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
-		return image(tail_s)
-
-	//If you have a custom tail selected
-	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
-		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state))
-		if(tail_style.can_loaf && !is_shifted)
-			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly. Taur Loafing
-		if(tail_style.do_colouration)
-			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
-		if(tail_style.extra_overlay)
-			var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay)
-			if(wagging && tail_style.ani_state)
-				overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay_w)
-				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-			else
-				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-
-		if(tail_style.extra_overlay2)
-			var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2)
-			if(wagging && tail_style.ani_state)
-				overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2_w)
-				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-			else
-				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-
-		var/image/working = image(tail_s)
-		if(tail_style.em_block)
-			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
-
-		if(istaurtail(tail_style))
-			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
-			working.pixel_x = tail_style.offset_x
-			working.pixel_y = tail_style.offset_y
-			if(taurtype.can_ride && !riding_datum)
-				riding_datum = new /datum/riding/taur(src)
-				add_verb(src, /mob/living/carbon/human/proc/taur_mount)
-				add_verb(src, /mob/living/proc/toggle_rider_reins)
-		else if(islongtail(tail_style))
-			working.pixel_x = tail_style.offset_x
-			working.pixel_y = tail_style.offset_y
-
-		if(wear_suit)
-			var/tail_layer = get_tail_layer()
-			if(tail_style && tail_style.clip_mask_state)
-				tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
-			if(tail_layer == TAIL_UPPER_LAYER)
-				tail_layer = tail_layering
-			var/obj/item/clothing/suit/socksuit = wear_suit
-			if(socksuit.requires_tailsock) // Tailsock support for universal sprite freedoms.
-				// TODO: Possible mutable_image for belly sprite coverage too??
-				var/image/tailsockoverlay
-				var/datum/sprite_accessory/tail/tailtype = tail_style
-				if(wagging && tail_style.ani_state)
-					tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_wagicon)
-				else
-					tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_iconstate)
-				tailsockoverlay.color = socksuit.tailsock_color	//color it in a suitable fashion
-				tailsockoverlay.layer = BODY_LAYER+tail_layer+0.5 //nudge it just above our suit layer
-				working.overlays += tailsockoverlay
-
-		working.alpha = src.a_tail
-		return working
-	return null
-
 // TODO - Move this to where it should go ~Leshana
 /mob/living/proc/stop_flying()
 	if(QDESTROYING(src))
@@ -1434,10 +1436,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/loaf_alt = lying && tail_style.belly_variant_when_loaf
 		var/fullness_icons = min(tail_style.fullness_icons, vs_fullness)
 		var/icon/vorebelly_s = new/icon(icon = tail_style.bellies_icon_path, icon_state = "Taur[tail_style.vore_tail_sprite_variant]-Belly-[fullness_icons][loaf_alt ? " loaf" : (struggle_anim_taur ? "" : " idle")]")
-		vorebelly_s.Blend(vore_sprite_color["taur belly"], vore_sprite_multiply["taur belly"] ? ICON_MULTIPLY : ICON_ADD)
+		var/obj/item/clothing/suit/sockable = wear_suit
+		if(sockable && sockable.tailsock_toggle)	//let's hijack this blend if we've got a tail sock enabled.
+			vorebelly_s.Blend(sockable.tailsock_color, ICON_MULTIPLY)	//all the bellies and socks are white-scaled, so...
+		else
+			vorebelly_s.Blend(vore_sprite_color["taur belly"], vore_sprite_multiply["taur belly"] ? ICON_MULTIPLY : ICON_ADD)
 		var/image/working = image(vorebelly_s)
 		working.pixel_x = -16
-		if(tail_style.em_block)
+		if(tail_style.em_block)	//let 'em glow still
 			working.overlays += em_block_image_generic(working)
 		return working
 	return null
