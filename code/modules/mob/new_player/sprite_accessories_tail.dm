@@ -281,6 +281,7 @@
 	name = "xenomorph tail 2"
 	desc = ""
 	icon_state = "xenotail"
+	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/eboop
 	name = "EGN mech tail (dual color)"
@@ -825,6 +826,7 @@
 	name = "Zeng-Hu Tajaran Synth tail"
 	desc = ""
 	icon_state = "zenghu_taj"
+	do_colouration = FALSE
 
 //Taurs moved to a separate file due to extra code around them
 

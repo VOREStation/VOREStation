@@ -48,7 +48,6 @@
 	icon_state = "synthhorse_s"
 	extra_overlay = "synthhorse_markings"
 	extra_overlay2 = "synthhorse_glow"
-	//icon_sprite_tag = "synthhorse"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -59,7 +58,6 @@
 	icon_state = "synthfeline_s"
 	extra_overlay = "synthfeline_markings"
 	extra_overlay2 = "synthfeline_glow"
-	//icon_sprite_tag = "synthfeline"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -117,7 +115,6 @@
 	icon_state = "synthlizard_s"
 	extra_overlay = "synthlizard_markings"
 	extra_overlay2 = "synthlizard_glow"
-	//icon_sprite_tag = "synthlizard"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -163,7 +160,6 @@
 	icon_state = "synthwolf_s"
 	extra_overlay = "synthwolf_markings"
 	extra_overlay2 = "synthwolf_glow"
-	//icon_sprite_tag = "synthwolf"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/wolf/fatsynthwolf
