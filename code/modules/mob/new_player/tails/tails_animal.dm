@@ -234,6 +234,7 @@
 	name = "Kitsune 2 tails, colorable"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "doublekitsune"
+	extra_overlay = "doublekitsune-tips"
 
 /datum/sprite_accessory/tail/doublekitsunealt
 	name = "Kitsune 2 tails, colorable, alt"
@@ -331,6 +332,7 @@
 	name = "turkey"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "turkey"
+	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/shark_markings
 	name = "akula tail, colorable, tail and fins"

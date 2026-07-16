@@ -54,8 +54,7 @@
 	/// Same for wag states, we just need the sprite itself, not any of the custom overlays
 	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.
 	var/tailsock_wagicon
-	/// Also same for the vore belly taur sprites. we'll just overlay so you can see the animations too (if any).
-	var/tailsock_taurbellyicon
+	// Vore belly overlays are handled in update_icons, because we just overlay the tummy colored to the tailsock if we're wearing a suit and it has a sock enabled.
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
