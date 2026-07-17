@@ -5,7 +5,7 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1681
+export BYOND_MINOR=1685
 
 # Macro Count
 export MACRO_COUNT=7
