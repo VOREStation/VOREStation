@@ -327,6 +327,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "sergwheat"
 	extra_overlay = "sergwheat_markings"
+	suit_sprites = 'icons/inventory/suit/taursuits_sergal.dmi'
 	vore_tail_sprite_variant = "N"
 	fullness_icons = 3
 	struggle_anim = TRUE
