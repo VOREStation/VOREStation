@@ -35,8 +35,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update || true
-          sudo apt install zlib1g-dev:i386
-          ldd libverdigris.so
+          sudo apt install zlib1g-dev:i386x
       - name: Install rust-g
         run: |
           sudo dpkg --add-architecture i386
