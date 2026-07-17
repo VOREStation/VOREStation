@@ -72,7 +72,7 @@
 	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", GLOB.tail_layer_options, read_preference(/datum/preference/choiced/human/tail_layering))
 	if(!input)
 		return
-	var/tail_option =  GLOB.tail_layer_options[input]
+	var/tail_option = GLOB.tail_layer_options[input]
 	if(!tail_option)
 		return
 	tail_layering = tail_option
