@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "food synth missing do after target"
-  - bugfix: "modular computer core trying to cut a lazy list insanely"
-  - bugfix: "robot signal removal on supply compactor removal"

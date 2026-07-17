@@ -80,3 +80,15 @@
   - bugfix: The dead can no longer enter or leave the body scanner themselves
   - bugfix: acid dispensed into buckets in chemistry machines no longer break when
       the bucket melts
+2026-07-17:
+  Kashargul:
+  - bugfix: food synth missing do after target
+  - bugfix: modular computer core trying to cut a lazy list insanely
+  - bugfix: robot signal removal on supply compactor removal
+  Will:
+  - bugfix: Vox cortical stack organ using the wrong iconstate
+  - refactor: unifies copypasted ranged_disarm procs
+  - rscadd: Stasis cages can be exported on the cargo shuttle for research points,
+      based on the simple mob inside of it
+  - qol: cargo scanner shows the total value of a crate when scanned, instead of opening
+      the crate
