@@ -1,7 +1,3 @@
-#define SWITCH_TAIL_LAYER_UPPER    	"Upper"
-#define SWITCH_TAIL_LAYER_STANDARD 	"Standard"
-#define SWITCH_TAIL_LAYER_LOWER	   	"Lower"
-
 /mob/living/carbon/human/verb/toggle_resizing_immunity()
 	set name = "Toggle Resizing Immunity"
 	set desc = "Toggles your ability to resist resizing attempts"
@@ -117,7 +113,3 @@
 	else
 		message = "hides their tail."
 	visible_message(span_filter_notice("[src] [message]"))
-
-#undef SWITCH_TAIL_LAYER_UPPER
-#undef SWITCH_TAIL_LAYER_STANDARD
-#undef SWITCH_TAIL_LAYER_LOWER
