@@ -379,6 +379,7 @@
 	fire_delay = 8
 	use_external_power = TRUE
 	cell_type = null //No cell! It runs off the cell in the shield_gen!
+	battery_lock = TRUE
 
 	projectile_type = /obj/item/projectile/beam/stun/med
 	modifystate = "egunstun"
