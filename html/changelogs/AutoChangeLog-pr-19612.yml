@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Stasis cages can be exported on the cargo shuttle for research points, based on the simple mob inside of it"
+  - qol: "cargo scanner shows the total value of a crate when scanned, instead of opening the crate"
