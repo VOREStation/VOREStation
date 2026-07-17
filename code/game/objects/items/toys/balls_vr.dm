@@ -17,8 +17,7 @@
 
 /obj/item/toy/tennis/random/Initialize(mapload)
 	. = ..()
-	var/list/ball_to_pick = subtypesof(/obj/item/toy/tennis) - /obj/item/toy/tennis/random
-	ball_to_pick = pick(ball_to_pick)
+	var/ball_to_pick = pick(subtypesof(/obj/item/toy/tennis) - /obj/item/toy/tennis/random)
 	new ball_to_pick(loc)
 	return INITIALIZE_HINT_QDEL
 

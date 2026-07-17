@@ -516,8 +516,7 @@
 
 /obj/item/flashlight/glowstick/random/Initialize(mapload)
 	. = ..()
-	var/list/stick_to_pick = typesof(/obj/item/flashlight/glowstick) - /obj/item/flashlight/glowstick/random
-	stick_to_pick = pick(stick_to_pick)
+	var/stick_to_pick = pick(typesof(/obj/item/flashlight/glowstick) - /obj/item/flashlight/glowstick/random)
 	new stick_to_pick(loc)
 	return INITIALIZE_HINT_QDEL
 

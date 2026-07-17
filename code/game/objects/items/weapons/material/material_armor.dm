@@ -209,8 +209,7 @@ Protectiveness | Armor %
 
 /obj/item/clothing/suit/armor/material/makeshift/random/Initialize(mapload)
 	. = ..()
-	var/list/armor_to_pick = subtypesof(/obj/item/clothing/suit/armor/material/makeshift) - /obj/item/clothing/suit/armor/material/makeshift/random
-	armor_to_pick = pick(armor_to_pick)
+	var/armor_to_pick = pick(subtypesof(/obj/item/clothing/suit/armor/material/makeshift) - /obj/item/clothing/suit/armor/material/makeshift/random)
 	new armor_to_pick(loc)
 	return INITIALIZE_HINT_QDEL
 
