@@ -377,8 +377,8 @@
 		"},"OOC Warning")
 	return
 
-/obj/item/attack_ai(mob/user as mob)
-	if (istype(src.loc, /obj/item/robot_module))
+/obj/item/attack_ai(mob/user)
+	if(istype(src.loc, /obj/item/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
 			return
@@ -386,7 +386,7 @@
 		R.activate_module(src)
 		R.hud_used.update_robot_modules_display()
 
-/obj/item/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
