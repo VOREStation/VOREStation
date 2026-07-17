@@ -1216,3 +1216,54 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		name = cleanname
 	if(cleandesc)
 		desc = cleandesc
+
+/obj/item/proc/ranged_disarm(mob/living/carbon/human/target, mob/living/user, zone_override = null)
+	if(!ishuman(target))
+		return
+
+	var/target_zone
+	var/list/holding
+	if(istype(src,/obj/item/projectile))
+		// Projectiles use their aim, and always disarm
+		var/obj/item/projectile/bullet = src
+		target_zone = bullet.def_zone
+		holding = list(target.get_active_hand() = 100, target.get_inactive_hand() = 100)
+	else
+		// Melee attacks use user's targeting zone, and have a decent chance to disarm main hand
+		target_zone = user.zone_sel.selecting
+		holding = list(target.get_active_hand() = 40, target.get_inactive_hand() = 20)
+	if(zone_override) // Argument override
+		target_zone = zone_override
+
+	if(target_zone in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))	// Guns are complex devices, both of a mechanical and electronic nature. A weird gravity ball or other type of object trying to pull or grab it is likely not safe.
+		for(var/obj/item/gun/W in holding)
+			if(W && prob(holding[W]))
+				var/list/turfs = list()
+				for(var/turf/T in view())
+					turfs += T
+				if(turfs.len)
+					var/turf/shoot_at_turf = pick(turfs)
+					visible_message(span_danger("[target]'s [W] goes off due to \the [src]!"))
+					return W.afterattack(shoot_at_turf,target)
+
+	if(!(target.species.flags & NO_SLIP) && prob(10) && (target_zone in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
+		var/armor_check = target.run_armor_check(target_zone, "melee")
+		target.apply_effect(3, WEAKEN, armor_check)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		if(armor_check < 60)
+			visible_message(span_danger("\The [src] has tripped [target]!"))
+		else
+			visible_message(span_warning("\The [src] attempted to trip [target]!"))
+		return
+
+	if(target.break_all_grabs(user))
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		return
+
+	if(target_zone in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+		for(var/obj/item/I in holding)
+			if(I && prob(holding[I]))
+				target.drop_from_inventory(I)
+				visible_message(span_danger("\The [src] has disarmed [target]!"))
+				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				return
