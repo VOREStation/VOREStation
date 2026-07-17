@@ -403,9 +403,9 @@
 	. = ..()
 
 /obj/item/gun/energy/gun/generator/get_external_power_supply()
-	. = ..()
 	if(shield_generator)
 		return shield_generator.bcell
+	return null
 
 /* //Unused. Use for large guns.
 /obj/item/gun/energy/gun/generator/update_held_icon()
