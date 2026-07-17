@@ -265,7 +265,7 @@
 	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting) //BEWARE, ESOTERIC BULLSHIT HERE.
 	if(flicker_color && light_color != flicker_color)
 		set_light_color(flicker_color)
-		OL.directional_atom.color = flicker_color
+		OL.directional_atom?.color = flicker_color
 	do_flicker(amount, flicker_color, original_color, original_on, OL, 1)
 
 

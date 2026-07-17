@@ -51,19 +51,17 @@
 	if(has_weapon)
 		if(ispath(active_weapon))
 			active_weapon = new active_weapon(src, src)
-			active_weapon.power_supply = bcell
 		else
 			active_weapon = new(src, src)
-			active_weapon.power_supply = bcell
 	else
 		verbs -= /obj/item/personal_shield_generator/verb/weapon_toggle
 	STOP_PROCESSING(SSobj, src) //We do this so it doesn't start processing until it's first used.
 	update_icon()
 
 /obj/item/personal_shield_generator/Destroy()
-	. = ..()
 	QDEL_NULL(active_weapon)
 	QDEL_NULL(bcell)
+	. = ..()
 
 /obj/item/personal_shield_generator/loaded //starts with a cell
 	bcell = /obj/item/cell/device/shield_generator/backpack
@@ -178,8 +176,6 @@
 				return
 			W.forceMove(src)
 			bcell = W
-			if(active_weapon)
-				active_weapon.power_supply = bcell
 			to_chat(user, span_notice("You install a cell in \the [src]."))
 			update_icon()
 
@@ -187,30 +183,25 @@
 		if(bcell)
 			if(istype(bcell, /obj/item/cell/device/shield_generator)) //No stealing self charging batteries!
 				var/choice = tgui_alert(user, "A popup appears on the device 'REMOVING THE INTERNAL CELL WILL DESTROY THE BATTERY. DO YOU WISH TO CONTINUE?'...Well, do you?", "Selection List", list("Cancel", "Remove"))
-				if(choice == "Remove") //Warned you...
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(5, 1, src)
-					s.start()
-					bcell.forceMove(get_turf(src.loc))
-					qdel(bcell)
-					bcell = null //Sanity.
-					if(active_weapon)
-						reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
-						active_weapon.power_supply = null //No power cell anymore!
-					to_chat(user, span_notice("You remove the cell from \the [src], destroying the battery."))
-					update_icon()
+				if(choice != "Remove") //Warned you...
 					return
-				else
-					return
-			else
-				bcell.update_icon()
-				bcell.forceMove(get_turf(src.loc))
-				bcell = null
+				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				s.set_up(5, 1, src)
+				s.start()
+				QDEL_NULL(bcell)
 				if(active_weapon)
 					reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
-					active_weapon.power_supply = null //No power cell anymore!
-				to_chat(user, span_notice("You remove the cell from \the [src]."))
+				to_chat(user, span_notice("You remove the cell from \the [src], destroying the battery."))
 				update_icon()
+				return
+
+			bcell.update_icon()
+			bcell.forceMove(get_turf(src.loc))
+			bcell = null
+			if(active_weapon)
+				reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
+			to_chat(user, span_notice("You remove the cell from \the [src]."))
+			update_icon()
 	else if(istype(W,/obj/item/multitool))
 		var/new_color = tgui_color_picker(usr, "Choose a color to set the shield to!", "", effect_color)
 		if(new_color)
@@ -320,7 +311,6 @@
 
 			if(active_weapon) //Retract the gun. There's about to be no cell anymore.
 				reattach_gun()
-				active_weapon.power_supply = null
 
 			bcell.use(generator_active_cost) //Causes it to go boom.
 			bcell = null
@@ -389,6 +379,7 @@
 	fire_delay = 8
 	use_external_power = TRUE
 	cell_type = null //No cell! It runs off the cell in the shield_gen!
+	battery_lock = TRUE
 
 	projectile_type = /obj/item/projectile/beam/stun/med
 	modifystate = "egunstun"
@@ -406,7 +397,15 @@
 /obj/item/gun/energy/gun/generator/Initialize(mapload, obj/item/personal_shield_generator/shield_gen)
 	. = ..()
 	shield_generator = shield_gen
-	power_supply = shield_generator.bcell
+
+/obj/item/gun/energy/gun/generator/Destroy()
+	shield_generator = null
+	. = ..()
+
+/obj/item/gun/energy/gun/generator/get_external_power_supply()
+	if(shield_generator)
+		return shield_generator.bcell
+	return null
 
 /* //Unused. Use for large guns.
 /obj/item/gun/energy/gun/generator/update_held_icon()
