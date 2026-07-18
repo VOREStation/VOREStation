@@ -147,3 +147,123 @@ obj
 			var/good_name = "[DressState]"
 			RunningOutput.Insert(Original,good_name)
 		usr << ftp(RunningOutput,"[CutterState]_dresses.dmi")
+
+//Single Suit
+
+/client/verb/single_suit_split()
+	set name = "Cut Single Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with SuitCutter.dmi"
+	set category = "Cut Single Suit"
+
+	var/icon/SuitsToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/SuitCutter = icon('SuitCutter.dmi')
+
+	for(var/CutterState in icon_states(SuitCutter))
+		var/icon/RunningOutput = new ()
+		for(var/SuitState in icon_states(SuitsToSnip))
+			var/icon/Original = icon(SuitsToSnip,SuitState)
+			var/icon/Cutter = icon(SuitCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[SuitState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_suit.dmi")
+
+/client/verb/lsingle_suit_split()
+	set name = "Cut Single Long Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with LongSuitCutter.dmi"
+	set category = "Cut Single Long Suit"
+
+	var/icon/SuitsToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/SuitCutter = icon('LongSuitCutter.dmi')
+
+	for(var/CutterState in icon_states(SuitCutter))
+		var/icon/RunningOutput = new ()
+		for(var/SuitState in icon_states(SuitsToSnip))
+			var/icon/Original = icon(SuitsToSnip,SuitState)
+			var/icon/Cutter = icon(SuitCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[SuitState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_suit.dmi")
+
+//Single Coat
+
+/client/verb/single_coat_split()
+	set name = "Cut Single Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with CoatCutter.dmi"
+	set category = "Cut Single Coat"
+
+	var/icon/CoatsToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/CoatCutter = icon('CoatCutter.dmi')
+
+	for(var/CutterState in icon_states(CoatCutter))
+		var/icon/RunningOutput = new ()
+		for(var/CoatState in icon_states(CoatsToSnip))
+			var/icon/Original = icon(CoatsToSnip,CoatState)
+			var/icon/Cutter = icon(CoatCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[CoatState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_coat.dmi")
+
+/client/verb/lsingle_coat_split()
+	set name = "Cut Single Long Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with LongCoatCutter.dmi"
+	set category = "Cut Single Long Coat"
+
+	var/icon/CoatsToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/CoatCutter = icon('LongCoatCutter.dmi')
+
+	for(var/CutterState in icon_states(CoatCutter))
+		var/icon/RunningOutput = new ()
+		for(var/CoatState in icon_states(CoatsToSnip))
+			var/icon/Original = icon(CoatsToSnip,CoatState)
+			var/icon/Cutter = icon(CoatCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[CoatState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_coat.dmi")
+
+//Single Dress
+
+/client/verb/single_dress_split()
+	set name = "Cut Single Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with DressCutter.dmi"
+	set category = "Cut Single"
+
+	var/icon/DressToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/DressCutter = icon('DressCutter.dmi')
+
+	for(var/CutterState in icon_states(DressCutter))
+		var/icon/RunningOutput = new ()
+		for(var/DressState in icon_states(DressToSnip))
+			var/icon/Original = icon(DressToSnip,DressState)
+			var/icon/Cutter = icon(DressCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[DressState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_dress.dmi")
+
+/client/verb/lsingle_dress_split()
+	set name = "Cut Single Long Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with LongDressCutter.dmi"
+	set category = "Cut Single"
+
+	var/icon/DressToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/DressCutter = icon('LongDressCutter.dmi')
+
+	for(var/CutterState in icon_states(DressCutter))
+		var/icon/RunningOutput = new ()
+		for(var/DressState in icon_states(DressToSnip))
+			var/icon/Original = icon(DressToSnip,DressState)
+			var/icon/Cutter = icon(DressCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[DressState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_dress.dmi")
