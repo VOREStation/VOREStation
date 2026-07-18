@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Adds chameleon pens and thieves gloves to the uncommon trash loot pile."
-  - qol: "Moves some stuff around in the trash pool. Some lesser/less exciting items moved to the common pool, made some items less likely to show up, added some more items like all the glowsticks."

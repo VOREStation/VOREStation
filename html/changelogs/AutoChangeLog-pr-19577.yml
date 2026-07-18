@@ -1,7 +1,0 @@
-author: "Poojawa"
-delete-after: True
-changes:
-  - qol: "Multitool flagged items will display more information about the current cable's powernet status"
-  - bugfix: "fixed cable power readouts from displaying negative Watts, 0ing out instead"
-  - image: "SMES units now have an open panel state when the maintenance hatch is open"
-  - refactor: "Utilized KILOWATTS, MEGAWATTS in power code on a lazy basis to improve readability."
