@@ -151,7 +151,7 @@ obj
 //Single Suit
 
 /client/verb/single_suit_split()
-	set name = "Cut Single Outfit"
+	set name = "Cut Single Suit"
 	set desc = "Loads singleoutfit.dmi and cuts them with SuitCutter.dmi"
 	set category = "Cut Single Suit"
 
@@ -170,7 +170,7 @@ obj
 		usr << ftp(RunningOutput,"[CutterState]_suit.dmi")
 
 /client/verb/lsingle_suit_split()
-	set name = "Cut Single Long Outfit"
+	set name = "Cut Single Long Suit"
 	set desc = "Loads singleoutfit.dmi and cuts them with LongSuitCutter.dmi"
 	set category = "Cut Single Long Suit"
 
@@ -191,7 +191,7 @@ obj
 //Single Coat
 
 /client/verb/single_coat_split()
-	set name = "Cut Single Outfit"
+	set name = "Cut Single Coat"
 	set desc = "Loads singleoutfit.dmi and cuts them with CoatCutter.dmi"
 	set category = "Cut Single Coat"
 
@@ -210,7 +210,7 @@ obj
 		usr << ftp(RunningOutput,"[CutterState]_coat.dmi")
 
 /client/verb/lsingle_coat_split()
-	set name = "Cut Single Long Outfit"
+	set name = "Cut Single Long Coat"
 	set desc = "Loads singleoutfit.dmi and cuts them with LongCoatCutter.dmi"
 	set category = "Cut Single Long Coat"
 
@@ -231,7 +231,7 @@ obj
 //Single Dress
 
 /client/verb/single_dress_split()
-	set name = "Cut Single Outfit"
+	set name = "Cut Single Dress"
 	set desc = "Loads singleoutfit.dmi and cuts them with DressCutter.dmi"
 	set category = "Cut Single"
 
@@ -250,7 +250,7 @@ obj
 		usr << ftp(RunningOutput,"[CutterState]_dress.dmi")
 
 /client/verb/lsingle_dress_split()
-	set name = "Cut Single Long Outfit"
+	set name = "Cut Single Long Dress"
 	set desc = "Loads singleoutfit.dmi and cuts them with LongDressCutter.dmi"
 	set category = "Cut Single"
 
