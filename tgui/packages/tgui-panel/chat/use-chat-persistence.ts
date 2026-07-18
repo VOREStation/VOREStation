@@ -92,7 +92,7 @@ export function useChatPersistence() {
 
   /** Periodically saves chat + chat settings */
   useEffect(() => {
-    let saveInterval: NodeJS.Timeout;
+    let saveInterval: ReturnType<typeof setTimeout> | undefined;
 
     if (loaded && settings.saveInterval) {
       saveInterval = setInterval(() => {
@@ -107,7 +107,7 @@ export function useChatPersistence() {
 
   /** Saves chat settings shortly after any settings change */
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
 
     if (loaded) {
       timeout = setTimeout(() => {

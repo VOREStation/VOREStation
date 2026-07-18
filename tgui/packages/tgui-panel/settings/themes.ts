@@ -8,7 +8,7 @@ const COLOR_DARK_BG = '#202020';
 const COLOR_DARK_BG_DARKER = '#171717';
 const COLOR_DARK_TEXT = '#a4bad6';
 
-let setClientThemeTimer: NodeJS.Timeout;
+let setClientThemeTimer: ReturnType<typeof setTimeout> | undefined;
 
 /**
  * Darkmode preference, originally by Kmc2000.
