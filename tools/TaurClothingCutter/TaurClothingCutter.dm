@@ -153,7 +153,7 @@ obj
 /client/verb/single_suit_split()
 	set name = "Cut Single Suit"
 	set desc = "Loads singleoutfit.dmi and cuts them with SuitCutter.dmi"
-	set category = "Cut Single Suit"
+	set category = "Cut Single"
 
 	var/icon/SuitsToSnip = icon('suitstocovert/singleoutfit.dmi')
 	var/icon/SuitCutter = icon('SuitCutter.dmi')
@@ -172,7 +172,7 @@ obj
 /client/verb/lsingle_suit_split()
 	set name = "Cut Single Long Suit"
 	set desc = "Loads singleoutfit.dmi and cuts them with LongSuitCutter.dmi"
-	set category = "Cut Single Long Suit"
+	set category = "Cut Single"
 
 	var/icon/SuitsToSnip = icon('suitstocovert/singleoutfit.dmi')
 	var/icon/SuitCutter = icon('LongSuitCutter.dmi')
@@ -193,7 +193,7 @@ obj
 /client/verb/single_coat_split()
 	set name = "Cut Single Coat"
 	set desc = "Loads singleoutfit.dmi and cuts them with CoatCutter.dmi"
-	set category = "Cut Single Coat"
+	set category = "Cut Single"
 
 	var/icon/CoatsToSnip = icon('suitstocovert/singleoutfit.dmi')
 	var/icon/CoatCutter = icon('CoatCutter.dmi')
@@ -212,7 +212,7 @@ obj
 /client/verb/lsingle_coat_split()
 	set name = "Cut Single Long Coat"
 	set desc = "Loads singleoutfit.dmi and cuts them with LongCoatCutter.dmi"
-	set category = "Cut Single Long Coat"
+	set category = "Cut Single"
 
 	var/icon/CoatsToSnip = icon('suitstocovert/singleoutfit.dmi')
 	var/icon/CoatCutter = icon('LongCoatCutter.dmi')
