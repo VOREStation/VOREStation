@@ -8,8 +8,10 @@
 	var/requires_tailsock = FALSE
 	/// what color is the tailsock going to be? Defaults to a nice, dark grey that usually matches everything.
 	var/tailsock_color = "#1F1F1F"
-	/// toggle tailsock options, double duty for taurs, to revert to mask clipped vs full suited if false. This changes the HIDETAIL flag
+	/// toggle tailsock options
 	var/tailsock_toggle = TRUE
+	/// toggle taur extending for the sprites, for people who want their butts to be shown off, default false
+	var/showtaurbutts = FALSE
 
 /obj/item/clothing/suit/space
 	/// unrelated to tailsocks directly, buuuuuut, taur suits have dedicated sealed/unsealed variants and that should be applied, too.
@@ -20,16 +22,34 @@
 /obj/item/clothing/suit/verb/toggletailsock()
 	set name = "Toggle Tail Sock"
 	set category = "Object"
-	set desc = "Toggle the tail sock or full body taur sprite on your suit."
+	set desc = "Toggle the tail sock on your suit."
 	set src in usr
 	toggle_tailsock()
 
 /obj/item/clothing/suit/proc/toggle_tailsock()
 	tailsock_toggle = !tailsock_toggle
-	if(tailsock_toggle)
-		flags_inv &= ~HIDETAIL
-	else
-		flags_inv |= ~HIDETAIL
+	to_chat(usr, "You toggle the dynamic sheathing [tailsock_toggle ? "ON" : "OFF"]")
+	//since our checks look for if we're toggled for sockage, we don't need to worry about the flags
+	update_clothing_icon()
+
+/obj/item/clothing/suit/verb/toggletaursuit()
+	set name = "Toggle Taur Extension"
+	set category = "Object"
+	set desc = "Toggle the full body taur sprite on your suit."
+	set src in usr
+	toggle_taurextender()
+
+/obj/item/clothing/suit/proc/toggle_taurextender()
+	if(ishuman(usr))
+		showtaurbutts = !showtaurbutts
+		to_chat(usr, "You toggle the full body sheathing [showtaurbutts ? "OFF" : "ON"]")
+		if(showtaurbutts)
+			tailsock_toggle = FALSE	//since we're hiding taur butts, we'll need to hide the sock as well
+		else
+			tailsock_toggle = TRUE
+		//Because we need to make sure we have our proper icon overrides again
+		var/mob/living/carbon/human/taur = usr
+		equipped(taur)
 	update_clothing_icon()
 
 /obj/item/clothing/suit/examine(mob/user)
