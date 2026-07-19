@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/icon_y_offset = 0
 
 		if(istype(tail_style, /datum/sprite_accessory/tail))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
-			if(tail_style.clip_mask && tail_style.requires_clipping) // trim it if we need to, for taur body types that don't have sprite sheets at all.
+			if(tail_style.clip_mask) // trim it if we need to, for taur body types that don't have sprite sheets at all.
 				Cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
 
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
@@ -871,8 +871,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/valid_clip_mask = tail_style?.clip_mask
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
-		if(tail_style.requires_clipping) //but only if the suit doesn't have a valid override / suit spritesheet
-			c_mask = valid_clip_mask
+		c_mask = valid_clip_mask
 	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
 
 	apply_layer(SUIT_LAYER)
@@ -1029,11 +1028,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(!(suitable && suitable.flags_inv & HIDETAIL)) //not wearing a suit or it doesn't hide our tail
 			tail_image = image(icon = tail_s, icon_state = "[tail_style]", layer = BODY_LAYER+tail_layer)
 			tail_image.alpha = chest?.transparent ? 180 : 255
-		else if(suitable && suitable.requires_tailsock && suitable.tailsock_toggle)	//we are wearing one, let's see if we have a tail sock to squish on. taurize() handles taur specific ones!
-			//Only suits requiring one AND the suit's toggle is on (by default true)
-			//nudge just above the normal tail layers but not so much that it overtakes the next layer up.
-			tail_image = image(icon = tail_style.tailsock_icon, icon_state = "[tail_style.tailsock_iconstate]", layer = BODY_LAYER+tail_layer+0.5)
-			tail_image.color = suitable.tailsock_color
+		else if(suitable)	//we are wearing one, let's see if we have a tail sock to squish on. taurize() handles taur specific icons.
+			apply_tailsock_layer(tail_image)
 		//No? Well okay then, normal tail go.
 		overlays_standing[tail_layer] = tail_image
 		animate_tail_reset()
@@ -1122,10 +1118,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/set_tail_state(t_state)
 	var/tail_layer = get_tail_layer()
-	if(tail_style && tail_style.clip_mask_state)
-		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
-	if(tail_layer == TAIL_UPPER_LAYER)
-		tail_layer = tail_layering
 	var/image/tail_overlay = overlays_standing[tail_layer]
 	for(var/layers in TAIL_LAYER_CLEARING)
 		remove_layer(layers)
@@ -1140,19 +1132,20 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 /mob/living/carbon/human/proc/apply_tailsock_layer(image/tailoverlays)
 	var/image/working = tailoverlays
 	if(wear_suit)
-		var/tail_layer = get_tail_layer()
 		var/obj/item/clothing/suit/socksuit = wear_suit
-		if(socksuit.requires_tailsock) // Tailsock support for universal sprite freedoms.
-			// TODO: Possible mutable_image for belly sprite coverage too??
-			var/image/tailsockoverlay
+		if(socksuit.requires_tailsock && socksuit.tailsock_toggle) // Tailsock support for universal sprite freedoms.
+			var/mutable_appearance/tailsockoverlay
 			var/datum/sprite_accessory/tail/tailtype = tail_style
-			if(wagging && tail_style.ani_state)
-				tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_wagicon)
+			if(wagging && tail_style.ani_state)	//wag support
+				tailsockoverlay = mutable_appearance(icon = tailtype.tailsock_icon, icon_state = tailtype.tailsock_wagicon, layer = BODY_LAYER + VORE_TAIL_LAYER)
 			else
-				tailsockoverlay = image("icon" = tailtype.tailsock_icon, "icon_state" = tailtype.tailsock_iconstate)
+				tailsockoverlay = mutable_appearance(icon = tailtype.tailsock_icon, icon_state = tailtype.tailsock_iconstate, layer = BODY_LAYER + VORE_TAIL_LAYER)
 			tailsockoverlay.color = socksuit.tailsock_color	//color it in a suitable fashion
-			tailsockoverlay.layer = BODY_LAYER+tail_layer+0.5 //nudge it just above our suit layer
 			return working.overlays += tailsockoverlay
+		else
+			return	//return nothing to not draw one
+	else
+		return FALSE
 
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src))

@@ -47,7 +47,6 @@
 /// Tail layering shortcuts
 #define TAUR_LAYERING	BODY_LAYER+TAIL_UPPER_LAYER+1
 #define LOWER_TAIL_DIRS list(SOUTH, EAST, WEST)
-#define UPPER_TAIL_DIRS list(NORTH)
 #define TAIL_LAYER_CLEARING list(TAIL_UPPER_LAYER, TAIL_UPPER_LAYER_HIGH, TAIL_UPPER_LAYER_LOW, TAIL_LOWER_LAYER)
 
 //These two are only used for gargoyles currently
