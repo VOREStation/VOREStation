@@ -674,7 +674,7 @@
 /obj/item/clothing/head/fluff/pompom/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/head/fluff/pompom/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green", /obj/belly/contamination_source = null)
+/obj/item/clothing/head/fluff/pompom/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green", obj/belly/contamination_source = null)
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
@@ -1592,7 +1592,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/bracer/fluff/xander_sthasha/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green", /obj/belly/contamination_source = null)
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green", obj/belly/contamination_source = null)
 	return FALSE
 
 //Heroman3003:Lauren Zackson
