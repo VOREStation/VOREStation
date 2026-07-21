@@ -53,7 +53,7 @@
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
 	icon = null
-	icon_state = null //todo: fix me
+	icon_state = null
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
