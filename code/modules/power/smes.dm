@@ -3,8 +3,8 @@
 
 GLOBAL_LIST_EMPTY(smeses)
 
-//# define SMESMAXCHARGELEVEL 250000 Unused
-//# define SMESMAXOUTPUT 250000 Unused
+//# define SMESMAXCHARGELEVEL 250 KILOWATTS Unused
+//# define SMESMAXOUTPUT 250 KILOWATTS Unused
 
 /obj/machinery/power/smes
 	name = "power storage unit"
@@ -20,17 +20,17 @@ GLOBAL_LIST_EMPTY(smeses)
 	var/capacity = 5e6 // maximum charge
 	var/charge = 1e6 // actual charge
 
-	var/input_attempt = 0 			// 1 = attempting to charge, 0 = not attempting to charge
-	var/inputting = 0 				// 1 = actually inputting, 0 = not inputting
-	var/input_level = 50000 		// amount of power the SMES attempts to charge by
-	var/input_level_max = 200000 	// cap on input_level
-	var/input_available = 0 		// amount of charge available from input last tick
+	var/input_attempt = 0 					// 1 = attempting to charge, 0 = not attempting to charge
+	var/inputting = 0 						// 1 = actually inputting, 0 = not inputting
+	var/input_level = 50 KILOWATTS 			// amount of power the SMES attempts to charge by
+	var/input_level_max = 200 KILOWATTS 	// cap on input_level
+	var/input_available = 0 				// amount of charge available from input last tick
 
-	var/output_attempt = 1 			// 1 = attempting to output, 0 = not attempting to output
-	var/outputting = 0 				// 1 = actually outputting, 0 = not outputting
-	var/output_level = 50000		// amount of power the SMES attempts to output
-	var/output_level_max = 200000	// cap on output_level
-	var/output_used = 0				// amount of power actually outputted. may be less than output_level if the powernet returns excess power
+	var/output_attempt = 1 					// 1 = attempting to output, 0 = not attempting to output
+	var/outputting = 0 						// 1 = actually outputting, 0 = not outputting
+	var/output_level = 50 KILOWATTS			// amount of power the SMES attempts to output
+	var/output_level_max = 200 KILOWATTS 	// cap on output_level
+	var/output_used = 0						// amount of power actually outputted. may be less than output_level if the powernet returns excess power
 
 	//Holders for powerout event.
 	var/last_output_attempt	= 0
@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(smeses)
 /obj/machinery/power/smes/drain_power(drain_check, surge, amount = 0)
 
 	if(drain_check)
-		return 1
+		return TRUE
 
 	var/smes_amt = min((amount * SMESRATE), charge)
 	charge -= smes_amt
@@ -140,8 +140,8 @@ GLOBAL_LIST_EMPTY(smeses)
 /obj/machinery/power/smes/add_avail(amount)
 	if(..(amount))
 		powernet.smes_newavail += amount
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/power/smes/disconnect_terminal(obj/machinery/power/terminal/term)
 	terminals -= term
@@ -149,23 +149,29 @@ GLOBAL_LIST_EMPTY(smeses)
 
 /obj/machinery/power/smes/update_icon()
 	cut_overlays()
-	if(stat & BROKEN)	return
+	icon_state = "[initial(icon_state)]"	//more sanity than anything else.
 
-	add_overlay("smes-op[outputting]")
+	if(stat & BROKEN)
+		icon_state = "[icon_state]-off"	//for the "hybrid"/fancy SMES units mostly since they have a working screen animation
+		return
+	if(panel_open)
+		icon_state = "[icon_state]-o"
+		return	//effectively off, but visually update.
+
+	add_overlay("[icon_state]-op[outputting]")
 
 	if(inputting == 2)
-		add_overlay("smes-oc2")
+		add_overlay("[icon_state]-oc2")
 	else if (inputting == 1)
-		add_overlay("smes-oc1")
+		add_overlay("[icon_state]-oc1")
 	else
 		if(input_attempt)
-			add_overlay("smes-oc0")
+			add_overlay("[icon_state]-oc0")
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
-		add_overlay("smes-og[clevel]")
+		add_overlay("[icon_state]-og[clevel]")
 	return
-
 
 /obj/machinery/power/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))
@@ -588,32 +594,13 @@ GLOBAL_LIST_EMPTY(smeses)
 	name = "hybrid power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, modified with alien technology to generate small amounts of power from seemingly nowhere."
 	icon = 'icons/obj/power_vr.dmi'
-	var/recharge_rate = 10000
+	var/recharge_rate = 10 KILOWATTS
 	var/overlay_icon = 'icons/obj/power_vr.dmi'
 
 /obj/machinery/power/smes/buildable/hybrid/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user,span_warning("\The [src] full of weird alien technology that's best not messed with."))
-		return 0
-
-/obj/machinery/power/smes/buildable/hybrid/update_icon()
-	cut_overlays()
-	if(stat & BROKEN)	return
-
-	add_overlay("smes-op[outputting]")
-
-	if(inputting == 2)
-		add_overlay("smes-oc2")
-	else if (inputting == 1)
-		add_overlay("smes-oc1")
-	else
-		if(input_attempt)
-			add_overlay("smes-oc0")
-
-	var/clevel = chargedisplay()
-	if(clevel>0)
-		add_overlay("smes-og[clevel]")
-	return
+		return FALSE
 
 /obj/machinery/power/smes/buildable/hybrid/process()
 	charge += min(recharge_rate, capacity - charge)
