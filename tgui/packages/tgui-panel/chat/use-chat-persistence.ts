@@ -10,6 +10,7 @@ import {
   allChatAtom,
   chatLoadedAtom,
   lastRoundIDAtom,
+  mainPage,
   storedLinesAtom,
   storedRoundsAtom,
   versionAtom,
@@ -267,12 +268,14 @@ export function useChatPersistence() {
     // Empty settings, set defaults
     if (!state) {
       console.log('Initialized chat with default settings');
+      chatRenderer.changePage(mainPage);
     } else if (state && 'version' in state && state.version === version) {
       console.log('Loaded chat state from storage:', state);
       startChatStateMigration(state);
     } else {
       // Discard incompatible versions
       console.log('Discarded incompatible chat state from storage:', state);
+      chatRenderer.changePage(mainPage);
     }
   }
 
