@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "comments out some unused winset names"
-  - bugfix: "removes old/unused interface window/element"
