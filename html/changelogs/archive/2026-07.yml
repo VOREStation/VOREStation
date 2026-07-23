@@ -65,3 +65,50 @@
   Will:
   - rscadd: Update transcore dump behavior
   - bugfix: Ripleys no longer float over openspace
+2026-07-13:
+  Poojawa:
+  - rscadd: Added Corona Analyzers to Tesla coil subtypes, able to assist R&D point
+      generation
+  - image: modified tesla coil sprites to be more visually obvious if anchored or
+      the panel is open
+  - refactor: cleaned up unneeded circuitry paths and grammar
+2026-07-15:
+  Kashargul:
+  - bugfix: robot anomalygun install display
+  - qol: removed immutable from player bellies
+  Will:
+  - bugfix: The dead can no longer enter or leave the body scanner themselves
+  - bugfix: acid dispensed into buckets in chemistry machines no longer break when
+      the bucket melts
+2026-07-17:
+  Kashargul:
+  - bugfix: food synth missing do after target
+  - bugfix: modular computer core trying to cut a lazy list insanely
+  - bugfix: robot signal removal on supply compactor removal
+  Will:
+  - bugfix: Vox cortical stack organ using the wrong iconstate
+  - refactor: unifies copypasted ranged_disarm procs
+  - rscadd: Stasis cages can be exported on the cargo shuttle for research points,
+      based on the simple mob inside of it
+  - qol: cargo scanner shows the total value of a crate when scanned, instead of opening
+      the crate
+2026-07-18:
+  Diana:
+  - rscadd: Adds chameleon pens and thieves gloves to the uncommon trash loot pile.
+  - qol: Moves some stuff around in the trash pool. Some lesser/less exciting items
+      moved to the common pool, made some items less likely to show up, added some
+      more items like all the glowsticks.
+  Poojawa:
+  - qol: Multitool flagged items will display more information about the current cable's
+      powernet status
+  - bugfix: fixed cable power readouts from displaying negative Watts, 0ing out instead
+  - image: SMES units now have an open panel state when the maintenance hatch is open
+  - refactor: Utilized KILOWATTS, MEGAWATTS in power code on a lazy basis to improve
+      readability.
+2026-07-19:
+  Will:
+  - qol: Removed hand targeting requirement from fingerprinting
+2026-07-22:
+  Kashargul:
+  - code_imp: comments out some unused winset names
+  - bugfix: removes old/unused interface window/element

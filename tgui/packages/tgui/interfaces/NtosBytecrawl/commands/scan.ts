@@ -10,8 +10,8 @@ import {
   DATA_FULLNAMES,
   STL_UPGRADES,
 } from '../constants';
-import type { GState, ScanEntry } from '../types';
 import { fmtMoney, fmtTime } from '../format';
+import type { GState, ScanEntry } from '../types';
 import { rand } from '../utils';
 import type { CommandContext } from './context';
 
@@ -32,9 +32,15 @@ export function refreshScan(
       filterType !== undefined &&
       !type.toLowerCase().includes(filterType.toLowerCase()) &&
       DATA_FULLNAMES[type].toLowerCase() !== filterType.toLowerCase()
-    ) continue;
+    )
+      continue;
     const gb = rand(tier.minGb, tier.maxGb);
-    pool.push({ id: `SRV-${(i + 1).toString().padStart(2, '0')}`, tier, type, gb });
+    pool.push({
+      id: `SRV-${(i + 1).toString().padStart(2, '0')}`,
+      tier,
+      type,
+      gb,
+    });
   }
   scanPool.current = pool;
   return pool;
@@ -48,19 +54,35 @@ export function cmdScan(args: readonly string[], ctx: CommandContext): void {
 
   // scan <target-id>: probe a specific target from the current scan pool
   if (args[0] && !args[0].startsWith('-')) {
-    const target = scanPool.current.find((s) => s.id.toUpperCase() === args[0].toUpperCase());
+    const target = scanPool.current.find(
+      (s) => s.id.toUpperCase() === args[0].toUpperCase(),
+    );
     if (!target) {
       print(`Target '${args[0]}' not found. Run scan first.`, '#ff8800');
       return;
     }
     const cpuMult = CPU_UPGRADES[state.cpu].mult;
-    const activeCount = Math.max(1, state.jobs.filter((j) => j.state === 'cracking').length + 1);
+    const activeCount = Math.max(
+      1,
+      state.jobs.filter((j) => j.state === 'cracking').length + 1,
+    );
     const eta =
-      ((target.tier.minMin + target.tier.maxMin) / 2 / (cpuMult * state.ghost.crack)) * activeCount;
-    const tm = (target.tier.tppm / STL_UPGRADES[state.stl].mult / state.ghost.trace).toFixed(4);
+      ((target.tier.minMin + target.tier.maxMin) /
+        2 /
+        (cpuMult * state.ghost.crack)) *
+      activeCount;
+    const tm = (
+      target.tier.tppm /
+      STL_UPGRADES[state.stl].mult /
+      state.ghost.trace
+    ).toFixed(4);
     print(`--- ${target.id} ---`, '#33ff33');
-    print(`  Cipher  : ${target.tier.name} [${target.tier.abbrev}] T${target.tier.tier}`);
-    print(`  Payload : ${target.gb.toFixed(2)} GB  ${DATA_FULLNAMES[target.type]}`);
+    print(
+      `  Cipher  : ${target.tier.name} [${target.tier.abbrev}] T${target.tier.tier}`,
+    );
+    print(
+      `  Payload : ${target.gb.toFixed(2)} GB  ${DATA_FULLNAMES[target.type]}`,
+    );
     print(`  ETA     : ~${fmtTime(eta)} at current CPU share`);
     print(`  Trace   : ${tm}%/min`);
     if (target.tier.uptime) {
@@ -80,7 +102,8 @@ export function cmdScan(args: readonly string[], ctx: CommandContext): void {
   let filterTier: number | undefined;
   let filterType: string | undefined;
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--tier' && args[i + 1]) filterTier = parseInt(args[i + 1], 10);
+    if (args[i] === '--tier' && args[i + 1])
+      filterTier = parseInt(args[i + 1], 10);
     if (args[i] === '--type' && args[i + 1]) filterType = args[i + 1];
   }
   const pool = refreshScan(filterTier, filterType, gRef.current, scanPool);

@@ -298,7 +298,6 @@
 	"digest_clone",
 	"bellytemperature",
 	"temperature_damage",
-	"immutable",
 	"can_taste",
 	"escapable",
 	"escapetime",
@@ -488,7 +487,7 @@
 	)
 
 	if (save_digest_mode == 1)
-		return ..() + saving + list("digest_mode")
+		saving += "digest_mode"
 
 	return ..() + saving
 

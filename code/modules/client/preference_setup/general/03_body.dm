@@ -549,7 +549,6 @@
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("marking_remove")
 			var/M = params["marking"]
-			winshow(user, "prefs_markings_subwindow", FALSE)
 			pref.body_markings -= M
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("marking_color")

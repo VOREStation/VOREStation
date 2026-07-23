@@ -13,6 +13,14 @@
 	throw_range = 14
 	w_class = ITEMSIZE_SMALL
 
+/obj/item/toy/tennis/random
+
+/obj/item/toy/tennis/random/Initialize(mapload)
+	. = ..()
+	var/ball_to_pick = pick(subtypesof(/obj/item/toy/tennis) - /obj/item/toy/tennis/random)
+	new ball_to_pick(loc)
+	return INITIALIZE_HINT_QDEL
+
 /obj/item/toy/tennis/red
 	name = "red tennis ball"
 	desc = "A red tennis ball. It goes twice as fast!"
