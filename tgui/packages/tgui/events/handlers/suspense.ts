@@ -11,7 +11,7 @@ import {
 
 /// --------- Handlers ------------------------------------------------------///
 
-let suspendInterval: NodeJS.Timeout | null = null;
+let suspendInterval: ReturnType<typeof setTimeout> | undefined;
 
 /** Resets all state and refocuses byond window */
 export function suspend(): void {

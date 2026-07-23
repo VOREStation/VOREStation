@@ -36,7 +36,8 @@ export function computeJobTick(
   const newJobs: Job[] = jobs.map((j) => {
     if (j.state !== 'cracking') return j;
 
-    const progressPerMin = (cpuMult * ghostCrack * slowFactor * cloakPenalty) / jobCount;
+    const progressPerMin =
+      (cpuMult * ghostCrack * slowFactor * cloakPenalty) / jobCount;
     const np: Job = { ...j, progress: j.progress + progressPerMin };
 
     // Uptime window expiry (T4/T5 servers go offline)
@@ -45,7 +46,12 @@ export function computeJobTick(
       if (np.uptimeCap <= 0) {
         np.state = 'failed';
         traceSpike += 15;
-        stateChanges.push({ id: np.id, state: 'failed', progress: np.progress, uptime: np.uptimeCap });
+        stateChanges.push({
+          id: np.id,
+          state: 'failed',
+          progress: np.progress,
+          uptime: np.uptimeCap,
+        });
         return np;
       }
     }
@@ -53,7 +59,12 @@ export function computeJobTick(
     // Crack complete
     if (np.progress >= np.duration) {
       np.state = 'ready';
-      stateChanges.push({ id: np.id, state: 'ready', progress: np.progress, uptime: np.uptimeCap });
+      stateChanges.push({
+        id: np.id,
+        state: 'ready',
+        progress: np.progress,
+        uptime: np.uptimeCap,
+      });
     }
 
     return np;

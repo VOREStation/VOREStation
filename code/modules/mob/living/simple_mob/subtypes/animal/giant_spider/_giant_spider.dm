@@ -129,6 +129,8 @@
 
 	no_pull_when_living = TRUE
 
+	export_research_value = TECHWEB_TIER_1_POINTS
+	export_research_diminished_max = 3
 
 /mob/living/simple_mob/animal/giant_spider/Initialize(mapload)
 	. = ..()

@@ -1,17 +1,15 @@
-import { type KeyboardEvent, useEffect, useRef, useState } from 'react';
-
 import { storage } from 'common/storage';
+import { type KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Box } from 'tgui-core/components';
-
-import { doAutocomplete, execCommand } from './commands';
 import type { CommandContext } from './commands';
-import { STORAGE_KEY } from './store';
-import type { GState, Line, ScanEntry } from './types';
+import { doAutocomplete, execCommand } from './commands';
 import { useGameLoop } from './hooks';
-import { defaultState, getMaxSlots, getTraceStatus } from './utils';
+import { STORAGE_KEY } from './store';
 import { Terminal } from './Terminal';
+import type { GState, Line, ScanEntry } from './types';
+import { defaultState, getMaxSlots, getTraceStatus } from './utils';
 
 const W = 720;
 const H = 540;
@@ -138,8 +136,13 @@ export const NtosBytecrawl = (_props: unknown) => {
   const activeSlots = g.jobs.filter((j) => j.state === 'cracking').length;
   const maxSlots = getMaxSlots(g);
   const headerSlots = [
-    { text: `BYTECRAWL v1.0 // ${g.handle}${g.ascCount > 0 ? ` [ASC-${g.ascCount}]` : ''}` },
-    { text: `TRACE: ${g.trace.toFixed(1)}% [${traceLabel}]`, color: traceColor },
+    {
+      text: `BYTECRAWL v1.0 // ${g.handle}${g.ascCount > 0 ? ` [ASC-${g.ascCount}]` : ''}`,
+    },
+    {
+      text: `TRACE: ${g.trace.toFixed(1)}% [${traceLabel}]`,
+      color: traceColor,
+    },
     { text: `WALLET: $${Math.floor(g.wallet)}` },
     { text: `SLOTS: ${activeSlots}/${maxSlots}` },
   ];
