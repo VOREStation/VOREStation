@@ -20,9 +20,9 @@
 	"packageManager": "bun@1.3.3",
 	"private": true,
 	"scripts": {
-		"tgui:analyze": "bunx --bun rspack --analyze",
-		"tgui:biome-fix": "bunx --bun biome lint --write .",
-		"tgui:build": "bunx --bun rspack build",
+		"tgui:analyze": "bun x --bun rspack --analyze",
+		"tgui:biome-fix": "bun x --bun biome lint --write .",
+		"tgui:build": "bun x --bun rspack build",
 		"tgui:dev": "bun --smol packages/tgui-dev-server/index.ts",
 		"tgui:test": "bun test",
 		"tgui:tsc": "tsc"
