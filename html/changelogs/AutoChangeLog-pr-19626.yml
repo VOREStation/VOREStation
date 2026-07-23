@@ -1,0 +1,4 @@
+author: "Will, Reo"
+delete-after: True
+changes:
+  - bugfix: "synthetics no longer affected by brainsnax braindamage"
