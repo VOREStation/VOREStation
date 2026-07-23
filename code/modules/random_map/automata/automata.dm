@@ -2,9 +2,6 @@
 	descriptor = "generic caves"
 	initial_wall_cell = 45
 	var/iterations = 0               // Number of times to apply the automata rule.
-	var/cell_live_value = WALL_CHAR  // Cell is alive if it has this value.
-	var/cell_dead_value = FLOOR_CHAR // As above for death.
-	var/cell_threshold = 5           // Cell becomes alive with this many live neighbors.
 
 // Automata-specific procs and processing.
 /datum/random_map/automata/seed_map()
