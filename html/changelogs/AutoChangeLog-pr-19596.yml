@@ -1,0 +1,5 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - refactor: "sorted and broke apart the monolithic sprite_accessories_taur.dm for better readability and referencing. Paths were only touched up in certain cases for sensible changes like feline/tiger, fox/kitsune, and cow/paw."
+  - image: "Several legacy tails have been removed since they've been replaced for years now by colorable ones. The tails will continue to say 'colorable' because touching names is touching .sav files and I'm not dealing with that."
