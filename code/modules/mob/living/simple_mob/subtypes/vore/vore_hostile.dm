@@ -326,6 +326,8 @@
 	color = random_color(TRUE)
 
 /mob/living/simple_mob/vore/vore_hostile/gelatinous_cube/death()
+	if(QDELETED(src))
+		return
 	. = ..()
 
 	qdel(src)

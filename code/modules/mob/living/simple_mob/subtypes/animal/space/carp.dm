@@ -317,6 +317,8 @@
 	derez() // Holograms can't gib.
 
 /mob/living/simple_mob/animal/space/carp/holographic/death()
+	if(QDELETED(src))
+		return
 	..()
 	derez()
 
