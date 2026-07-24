@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Contaminated items can now be scanned for DNA"
+  - code_imp: "Makes some children procs carry over the args properly from their parent procs."
+  - bugfix: "Fixed the advanced forensics scanner having no sprite"
+  - image: "Added a proper sprite for the advanced forensics scanner."
