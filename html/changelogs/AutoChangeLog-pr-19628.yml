@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "byond to 1685"
-  - code_imp: "some tgui cleanup"
