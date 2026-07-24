@@ -13,7 +13,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so the job can access it
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
 
      #Request reviews
       - name: Request reviews
