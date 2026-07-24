@@ -112,6 +112,12 @@
 		return
 	if (held_mob.loc == src || isnull(held_mob.loc))
 		held_mob.forceMove(loc)
+		// Holders need a bigger refactor, as they do a lot of extremely weird enter/exit stuff, and broke remote views badly even before the component.
+		// This is needed for escaping vore eggs, because it will make you focus on the deleted holder instead. Otherwise no other issues I'm aware of?
+		// This likely also applies to any other object that releases a holder, while instantly deleting them both.
+		spawn(0)
+			if(isturf(held_mob.loc))
+				held_mob.reset_perspective()
 
 /obj/item/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)

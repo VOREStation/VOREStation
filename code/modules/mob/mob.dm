@@ -295,6 +295,8 @@
 
 /// Reapplies remote views based on object type and flags. Returns true if the view was assigned.
 /mob/proc/restore_remote_views()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	if(!loc) // Nullspace during respawn
 		return FALSE
 	if(QDELETED(loc) || QDELETED(src)) // location or ourselves is qdeleted, don't restart remote viewing during destroy
