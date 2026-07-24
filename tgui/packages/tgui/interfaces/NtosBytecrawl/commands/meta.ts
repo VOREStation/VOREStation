@@ -54,7 +54,10 @@ export function cmdBounty(ctx: CommandContext): void {
     '10 honeypots. Shop prices +20%.',
     '30%+ honeypots. Trace builds 2× faster.',
   ];
-  print(`  Effect: ${effects[Math.min(state.heat, 5)] ?? effects[5]}`, '#ff8800');
+  print(
+    `  Effect: ${effects[Math.min(state.heat, 5)] ?? effects[5]}`,
+    '#ff8800',
+  );
   print(`  Use 'buy CVR' then 'use CVR' to reduce heat.`);
 }
 
@@ -67,11 +70,14 @@ export function cmdAscend(args: readonly string[], ctx: CommandContext): void {
   const newCrack = 1 + (state.ascCount + 1) * 0.08;
   const newMarket = 1 + (state.ascCount + 1) * 0.05;
   const newTrace = Math.max(0.1, 1 - (state.ascCount + 1) * 0.1);
-  const bonusSlots = state.ascCount >= 3 ? state.ghost.slots + 1 : state.ghost.slots;
+  const bonusSlots =
+    state.ascCount >= 3 ? state.ghost.slots + 1 : state.ghost.slots;
 
   if (args.includes('--preview')) {
     print(`Ascension preview (ascension ${state.ascCount + 1}):`);
-    print(`  Required: ${fmtMoney(threshold)}  |  Earned: ${fmtMoney(state.totalEarned)}`);
+    print(
+      `  Required: ${fmtMoney(threshold)}  |  Earned: ${fmtMoney(state.totalEarned)}`,
+    );
     print(`  GHOST crack speed: ×${newCrack.toFixed(2)}`);
     print(`  GHOST market bonus: ×${newMarket.toFixed(2)}`);
     print(`  GHOST trace reduction: ×${newTrace.toFixed(2)}`);
@@ -88,9 +94,16 @@ export function cmdAscend(args: readonly string[], ctx: CommandContext): void {
   }
   if (!args.includes('--confirm')) {
     print(`Ascension ${state.ascCount + 1} available.`, '#ffff00');
-    print(`  Earned: ${fmtMoney(state.totalEarned)}  Required: ${fmtMoney(threshold)}`);
-    print(`  GHOST crack ×${newCrack.toFixed(2)}  market ×${newMarket.toFixed(2)}  trace ×${newTrace.toFixed(2)}${bonusSlots > state.ghost.slots ? '  +1 slot' : ''}`);
-    print(`  WARNING: wallet, rig, jobs, cache, and heat all reset.`, '#ff8800');
+    print(
+      `  Earned: ${fmtMoney(state.totalEarned)}  Required: ${fmtMoney(threshold)}`,
+    );
+    print(
+      `  GHOST crack ×${newCrack.toFixed(2)}  market ×${newMarket.toFixed(2)}  trace ×${newTrace.toFixed(2)}${bonusSlots > state.ghost.slots ? '  +1 slot' : ''}`,
+    );
+    print(
+      `  WARNING: wallet, rig, jobs, cache, and heat all reset.`,
+      '#ff8800',
+    );
     print(`  Run 'ascend --confirm' to proceed.`, '#aaaaaa');
     return;
   }
@@ -103,18 +116,28 @@ export function cmdAscend(args: readonly string[], ctx: CommandContext): void {
   };
   setG(() => ({
     wallet: 0,
-    cpu: 0, ram: 0, stl: 0,
-    trace: 0, heat: 0, playtime: 0,
-    ascCount: newAsc, totalEarned: 0,
+    cpu: 0,
+    ram: 0,
+    stl: 0,
+    trace: 0,
+    heat: 0,
+    playtime: 0,
+    ascCount: newAsc,
+    totalEarned: 0,
     ghost: newGhost,
-    jobs: [], cache: [],
+    jobs: [],
+    cache: [],
     inv: { VPN: 0, FRG: 0, CVR: 0, XPL: 0 },
     market: { CRD: 820, FIN: 1240, CRP: 960, CLS: 3100 },
     cloakOn: false,
-    lastContract: 0, lastBounty: 0, lastMarketEvent: 0,
+    lastContract: 0,
+    lastBounty: 0,
+    lastMarketEvent: 0,
     fragTimer: rand(45, 90),
-    hasFragHarvester: false, bountyUnlocked: false,
-    txLog: [], nextId: 1,
+    hasFragHarvester: false,
+    bountyUnlocked: false,
+    txLog: [],
+    nextId: 1,
     phase: 'playing',
     handle: state.handle,
   }));
@@ -171,7 +194,8 @@ export function cmdHelp(args: readonly string[], ctx: CommandContext): void {
       use: 'use <item-id> <job-id>  Apply item to job.',
       wallet: 'wallet [--log N]  Show balance.',
       log: 'log [--filter sales|cracks|trace]  Activity log.',
-      ascend: 'ascend [--preview]  Preview ascension.  ascend --confirm  Execute ascension.',
+      ascend:
+        'ascend [--preview]  Preview ascension.  ascend --confirm  Execute ascension.',
       ghost: 'ghost  Show GHOST bonuses.',
       bounty: 'bounty  Check agency heat.',
       explain: 'explain  Full walkthrough of how to play.',
@@ -221,13 +245,23 @@ export function cmdExplain(ctx: CommandContext): void {
   print('  C7      T1    CAESAR-7      CRD           none');
   print('  VX      T2    VIGENERE-X    CRD, FIN      none');
   print('  E4      T3    ENIGMA-IV     FIN, CRP      none');
-  print('  ON      T4    ONYX-256      CRP, CLS      yes — server can go offline');
-  print('  WR      T5    WRAITH-512    CLS            yes — server can go offline', '#ff8800');
-  print('  T4/T5 jobs fail if the uptime window expires before you collect.', '#ff8800');
+  print(
+    '  ON      T4    ONYX-256      CRP, CLS      yes — server can go offline',
+  );
+  print(
+    '  WR      T5    WRAITH-512    CLS            yes — server can go offline',
+    '#ff8800',
+  );
+  print(
+    '  T4/T5 jobs fail if the uptime window expires before you collect.',
+    '#ff8800',
+  );
   print('  Use a Key Fragment (FRG) to halve crack time on T4/T5.');
   print('');
   print('MARKET:', '#33ff33');
-  print('  Data prices drift constantly. CLASSIFIED (CLS) spikes upward often.');
+  print(
+    '  Data prices drift constantly. CLASSIFIED (CLS) spikes upward often.',
+  );
   print('  Run market to see live prices. Sell when prices are high.');
   print('');
   print('UPGRADES (priority order):', '#33ff33');

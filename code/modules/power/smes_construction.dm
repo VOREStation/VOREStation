@@ -11,61 +11,61 @@
 	desc = "The standard superconductive magnetic coil, with average capacity and I/O rating."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
-	w_class = ITEMSIZE_LARGE 						// It's LARGE (backpack size)
-	var/ChargeCapacity = 6000000		// 100 kWh
-	var/IOCapacity = 250000				// 250 kW
+	w_class = ITEMSIZE_LARGE 			// It's LARGE (backpack size)
+	var/ChargeCapacity = 6 MEGAWATTS	// 100 kWh
+	var/IOCapacity = 250 KILOWATTS		// 250 kW
 
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
 /obj/item/smes_coil/weak
 	name = "basic superconductive magnetic coil"
 	desc = "A cheaper model of superconductive magnetic coil. Its capacity and I/O rating are considerably lower."
 	icon_state = "smes_coil_weak"
-	ChargeCapacity = 1200000			// 20 kWh
-	IOCapacity = 150000					// 150 kW
+	ChargeCapacity = 1.2 MEGAWATTS		// 20 kWh
+	IOCapacity = 150 KILOWATTS			// 150 kW
 
 // Capacity Coils: High Capacity, Low Flow
 /obj/item/smes_coil/super_capacity
 	name = "superconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance"
-	ChargeCapacity = 60000000			// 1000 kWh
-	IOCapacity = 50000					// 50 kW
+	ChargeCapacity = 60 MEGAWATTS	// 1000 kWh
+	IOCapacity = 50 KILOWATTS		// 50 kW
 
 /obj/item/smes_coil/super_capacity/ultra
 	name = "ultraconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance_ultra"
-	ChargeCapacity = 120000000			// 2000 kWh
-	IOCapacity = 100000					// 100 kW
+	ChargeCapacity = 120 MEGAWATTS			// 2000 kWh
+	IOCapacity = 100 KILOWATTS				// 100 kW
 
 /obj/item/smes_coil/super_capacity/hyper
 	name = "hyperconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance_hyper"
-	ChargeCapacity = 360000000			// 6000 kWh
-	IOCapacity = 200000					// 200 kW
+	ChargeCapacity = 360 MEGAWATTS		// 6000 kWh
+	IOCapacity = 200 KILOWATTS			// 200 kW
 
 // Flow Coils: Low Capacity, High Flow
 /obj/item/smes_coil/super_io
 	name = "superconductive transmission coil"
 	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	icon_state = "smes_coil_transmission"
-	ChargeCapacity = 600000				// 10 kWh
-	IOCapacity = 1000000				// 1000 kW
+	ChargeCapacity = 600 KILOWATTS		// 10 kWh
+	IOCapacity = 1 MEGAWATTS			// 1000 kW
 
 /obj/item/smes_coil/super_io/ultra
 	name = "ultraconductive transmission coil"
 	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	icon_state = "smes_coil_transmission_ultra"
-	ChargeCapacity = 1200000				// 20 kWh
-	IOCapacity = 2000000				// 2000 kW
+	ChargeCapacity = 1.2 MEGAWATTS		// 20 kWh
+	IOCapacity = 2 MEGAWATTS			// 2000 kW
 
 /obj/item/smes_coil/super_io/hyper
 	name = "hyperconductive transmission coil"
 	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	icon_state = "smes_coil_transmission_hyper"
-	ChargeCapacity = 2400000				// 40 kWh
-	IOCapacity = 6000000				// 6000 kW
+	ChargeCapacity = 2.4 MEGAWATTS		// 40 kWh
+	IOCapacity = 6 MEGAWATTS			// 6000 kW
 
 // SMES SUBTYPES - THESE ARE MAPPED IN AND CONTAIN DIFFERENT TYPES OF COILS
 

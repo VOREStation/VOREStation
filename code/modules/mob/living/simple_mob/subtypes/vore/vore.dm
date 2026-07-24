@@ -120,3 +120,6 @@
 
 /mob/living/simple_mob/vore/aggressive
 	mob_bump_flag = HEAVY
+
+	export_research_value = TECHWEB_TIER_1_POINTS
+	export_research_diminished_max = 5

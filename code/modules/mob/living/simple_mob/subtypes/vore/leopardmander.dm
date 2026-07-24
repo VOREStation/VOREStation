@@ -53,6 +53,9 @@
 	pain_emote_1p = list("yelp", "whine", "bark", "growl")
 	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 
+	export_research_value = TECHWEB_TIER_2_POINTS
+	export_research_diminished_max = 2
+
 /datum/category_item/catalogue/fauna/leopardmander
 	name = "Sivian Fauna - Va'aen Drake"
 	desc = "Classification: S Draconis uncia\

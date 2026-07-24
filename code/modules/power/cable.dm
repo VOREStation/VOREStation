@@ -199,8 +199,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		else
 			CC = new/obj/item/stack/cable_coil(T, 1, color)
 
-		src.add_fingerprint(user)
-		src.transfer_fingerprints_to(CC)
+		add_fingerprint(user)
+		transfer_fingerprints_to(CC)
 
 		for(var/mob/O in viewers(src, null))
 			O.show_message(span_warning("[user] cuts the cable."), 1)
@@ -225,21 +225,15 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 			return
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/multitool))
-
-		if(powernet && (powernet.avail > 0))		// is it powered?
-			to_chat(user, span_warning("[DisplayPower(powernet.avail)] in power network."))
-
-		else
-			to_chat(user, span_warning("The cable is not powered."))
-
+	if(W.has_tool_quality(TOOL_MULTITOOL))
+		to_chat(user, get_power_info())
 		shock(user, 5, 0.2)
 
 	else
 		if(!(W.flags & NOCONDUCT))
 			shock(user, 50, 0.7)
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 // shock the user with probability prb
 /obj/structure/cable/proc/shock(mob/user, prb, siemens_coeff = 1.0)
@@ -274,6 +268,12 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	if(colorC)
 		color_n = colorC
 	color = color_n
+
+/obj/structure/cable/proc/get_power_info()
+	if(powernet?.avail > 0)
+		return span_warning("Total power: [DisplayPower(powernet.viewavail)]\nLoad: [DisplayPower(powernet.viewload)]\nExcess power: [DisplayPower(powernet.netexcess)]")
+	else
+		return span_warning("The cable is not powered.")
 
 /////////////////////////////////////////////////
 // Cable laying helpers

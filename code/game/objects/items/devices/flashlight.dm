@@ -265,7 +265,7 @@
 	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting) //BEWARE, ESOTERIC BULLSHIT HERE.
 	if(flicker_color && light_color != flicker_color)
 		set_light_color(flicker_color)
-		OL.directional_atom.color = flicker_color
+		OL.directional_atom?.color = flicker_color
 	do_flicker(amount, flicker_color, original_color, original_on, OL, 1)
 
 
@@ -511,6 +511,14 @@
 	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] cracks and shakes \the [name]."), span_notice("You crack and shake \the [src], turning it on!"))
 		START_PROCESSING(SSobj, src)
+
+/obj/item/flashlight/glowstick/random
+
+/obj/item/flashlight/glowstick/random/Initialize(mapload)
+	. = ..()
+	var/stick_to_pick = pick(typesof(/obj/item/flashlight/glowstick) - /obj/item/flashlight/glowstick/random)
+	new stick_to_pick(loc)
+	return INITIALIZE_HINT_QDEL
 
 /obj/item/flashlight/glowstick/red
 	name = "red glowstick"

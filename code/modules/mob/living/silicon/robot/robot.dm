@@ -1631,6 +1631,8 @@
 		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
+	if(given_type == /obj/item/borg/upgrade/restricted/anomalygun)
+		return has_upgrade_module(/obj/item/gun/energy/anomaly/mounted)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
 		return has_upgrade_module(/obj/item/pickaxe/diamonddrill)
 	if(given_type == /obj/item/borg/upgrade/restricted/pka)

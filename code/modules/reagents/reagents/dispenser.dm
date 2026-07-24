@@ -559,12 +559,28 @@
 	if(O.unacidable)
 		return
 	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
+		eject_container_from_machines(O)
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))
 			to_chat(M, span_warning("\The [O] melts."))
 		qdel(O)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
+
+/// Eject from chemdispenser if melted inside of one. Handled here with typechecks instead of adding logic to every machine for acid's snowflake behavior
+/datum/reagent/acid/proc/eject_container_from_machines(obj/melting_object)
+	if(istype(melting_object.loc, /obj/machinery/chemical_dispenser))
+		var/obj/machinery/chemical_dispenser/dispenser = melting_object.loc
+		dispenser.container.forceMove(get_turf(dispenser))
+		dispenser.container = null
+		dispenser.update_icon()
+		return
+	if(istype(melting_object.loc, /obj/machinery/chem_master))
+		var/obj/machinery/chem_master/mixer = melting_object.loc
+		mixer.beaker.forceMove(get_turf(mixer))
+		mixer.beaker = null
+		mixer.update_icon()
+		return
 
 /datum/reagent/silicon
 	name = REAGENT_SILICON

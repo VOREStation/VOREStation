@@ -58,7 +58,7 @@ GLOBAL_LIST(fusion_reactions)
 
 /datum/decl/fusion_reaction/deuterium_tritium
 	p_react = REAGENT_ID_DEUTERIUM
-	s_react = REAGENT_ID_SLIMEJELLY
+	s_react = REAGENT_ID_TRITIUM
 	energy_consumption = 1
 	energy_production = 1
 	products = list(REAGENT_ID_HELIUM3 = 1)
@@ -70,7 +70,7 @@ GLOBAL_LIST(fusion_reactions)
 	energy_consumption = 2
 	energy_production = 0
 	radiation = 3
-	products = list(REAGENT_ID_SLIMEJELLY= 1)
+	products = list(REAGENT_ID_TRITIUM = 1)
 	instability = 1
 
 // Unideal/material production reactions

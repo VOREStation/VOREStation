@@ -284,7 +284,7 @@
 	var/did_an_item = FALSE
 	// We always contaminate IDs.
 	if(contaminates || istype(I, /obj/item/card/id))
-		I.gurgle_contaminate(src, contamination_flavor, contamination_color)
+		I.gurgle_contaminate(src, contamination_flavor, contamination_color, src)
 
 	switch(item_digest_mode)
 		if(IM_HOLD)

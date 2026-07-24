@@ -1,6 +1,11 @@
 // ── rig / upgrade / inv / shop / buy / use commands ───────────────────────────
 
-import { CPU_UPGRADES, RAM_UPGRADES, SHOP_ITEMS, STL_UPGRADES } from '../constants';
+import {
+  CPU_UPGRADES,
+  RAM_UPGRADES,
+  SHOP_ITEMS,
+  STL_UPGRADES,
+} from '../constants';
 import { fmtMoney } from '../format';
 import { getMaxSlots } from '../utils';
 import type { CommandContext } from './context';
@@ -12,9 +17,15 @@ export function cmdRig(ctx: CommandContext): void {
   const state = gRef.current;
   print(`--- RIG STATS ---`, '#33ff33');
   print(`  Handle  : ${state.handle}`);
-  print(`  CPU     : ${CPU_UPGRADES[state.cpu].name} (×${CPU_UPGRADES[state.cpu].mult})`);
-  print(`  RAM     : ${RAM_UPGRADES[state.ram].name} (${getMaxSlots(state)} job slots)`);
-  print(`  Stealth : ${STL_UPGRADES[state.stl].name} (×${STL_UPGRADES[state.stl].mult})`);
+  print(
+    `  CPU     : ${CPU_UPGRADES[state.cpu].name} (×${CPU_UPGRADES[state.cpu].mult})`,
+  );
+  print(
+    `  RAM     : ${RAM_UPGRADES[state.ram].name} (${getMaxSlots(state)} job slots)`,
+  );
+  print(
+    `  Stealth : ${STL_UPGRADES[state.stl].name} (×${STL_UPGRADES[state.stl].mult})`,
+  );
   print(`  Wallet  : ${fmtMoney(state.wallet)}`);
   print(`  Trace   : ${state.trace.toFixed(1)}%  Heat: ${state.heat}`);
   if (state.ascCount > 0) print(`  Ascension: ${state.ascCount}x`);
@@ -22,7 +33,12 @@ export function cmdRig(ctx: CommandContext): void {
 
 // ── upgrade ───────────────────────────────────────────────────────────────────
 
-type UpgradeEntry = { readonly name: string; readonly cost: number; readonly mult?: number; readonly slots?: number };
+type UpgradeEntry = {
+  readonly name: string;
+  readonly cost: number;
+  readonly mult?: number;
+  readonly slots?: number;
+};
 
 export function cmdUpgrade(args: readonly string[], ctx: CommandContext): void {
   const { gRef, setG, print, act } = ctx;
@@ -60,7 +76,9 @@ export function cmdUpgrade(args: readonly string[], ctx: CommandContext): void {
   const upgrade = table[next];
   if (!confirm) {
     print(`${label} upgrade: ${table[current].name} -> ${upgrade.name}`);
-    const bonus = upgrade.mult ? `Multiplier: ×${upgrade.mult}` : `Slots: ${upgrade.slots}`;
+    const bonus = upgrade.mult
+      ? `Multiplier: ×${upgrade.mult}`
+      : `Slots: ${upgrade.slots}`;
     print(`  ${bonus}  |  Cost: ${fmtMoney(upgrade.cost)}`);
     print(`  Wallet: ${fmtMoney(state.wallet)}`);
     print(`  Run 'upgrade ${part} --confirm' to purchase.`, '#aaaaaa');
@@ -78,7 +96,10 @@ export function cmdUpgrade(args: readonly string[], ctx: CommandContext): void {
     return { ...updated, stl: next };
   });
   act('upgrade', { part: dmPart, cost: upgrade.cost });
-  print(`${label} upgraded to ${upgrade.name}. ${fmtMoney(upgrade.cost)} charged.`, '#33ff33');
+  print(
+    `${label} upgraded to ${upgrade.name}. ${fmtMoney(upgrade.cost)} charged.`,
+    '#33ff33',
+  );
 }
 
 // ── inv ───────────────────────────────────────────────────────────────────────
@@ -95,7 +116,9 @@ export function cmdInv(ctx: CommandContext): void {
   print('ITEM ID  NAME               QTY   DESCRIPTION');
   print('-------- ------------------ ----- -----------');
   for (const i of items) {
-    print(`${i.id.padEnd(8)} ${i.name.padEnd(18)} ${inv[i.id].toString().padEnd(5)} ${i.desc}`);
+    print(
+      `${i.id.padEnd(8)} ${i.name.padEnd(18)} ${inv[i.id].toString().padEnd(5)} ${i.desc}`,
+    );
   }
   if (state.hasFragHarvester) {
     print('FHVST    Fragment Harvester  1     Passive fragment generation');
@@ -114,7 +137,9 @@ export function cmdShop(args: readonly string[], ctx: CommandContext): void {
   print('-------- ------------------ --------- -----------');
   const show = (id: string, name: string, base: number, desc: string): void => {
     const cost = Math.floor(base * shopMult);
-    print(`${id.padEnd(8)} ${name.padEnd(18)} ${fmtMoney(cost).padEnd(9)} ${desc}`);
+    print(
+      `${id.padEnd(8)} ${name.padEnd(18)} ${fmtMoney(cost).padEnd(9)} ${desc}`,
+    );
   };
   if (!cat || cat === 'items') {
     for (const i of SHOP_ITEMS) show(i.id, i.name, i.cost, i.desc);
@@ -151,7 +176,11 @@ export function cmdBuy(args: readonly string[], ctx: CommandContext): void {
       print(`Need ${fmtMoney(cost)}.`, '#ff8800');
       return;
     }
-    setG((prev) => ({ ...prev, wallet: prev.wallet - cost, hasFragHarvester: true }));
+    setG((prev) => ({
+      ...prev,
+      wallet: prev.wallet - cost,
+      hasFragHarvester: true,
+    }));
     act('buy_item', { id: 'FHVST', cost });
     print(`Fragment Harvester installed. Cost: ${fmtMoney(cost)}`, '#33ff33');
     return;
@@ -168,7 +197,11 @@ export function cmdBuy(args: readonly string[], ctx: CommandContext): void {
   }
   const inv = { ...state.inv } as Record<string, number>;
   inv[iid] = (inv[iid] ?? 0) + 1;
-  setG((prev) => ({ ...prev, wallet: prev.wallet - cost, inv: inv as typeof state.inv }));
+  setG((prev) => ({
+    ...prev,
+    wallet: prev.wallet - cost,
+    inv: inv as typeof state.inv,
+  }));
   act('buy_item', { id: iid, cost });
   print(`Purchased ${item.name}. Cost: ${fmtMoney(cost)}`, '#33ff33');
 }
@@ -199,9 +232,14 @@ export function cmdUse(args: readonly string[], ctx: CommandContext): void {
   }
   setG((prev) => ({
     ...prev,
-    jobs: prev.jobs.map((j) => (j.id === jid ? { ...j, duration: j.duration * 0.7 } : j)),
+    jobs: prev.jobs.map((j) =>
+      j.id === jid ? { ...j, duration: j.duration * 0.7 } : j,
+    ),
     inv: { ...prev.inv, XPL: prev.inv.XPL - 1 },
   }));
   act('use_xpl', { job_id: jid });
-  print(`Exploit Kit applied to job ${jid}. Crack time reduced 30%.`, '#33ff33');
+  print(
+    `Exploit Kit applied to job ${jid}. Crack time reduced 30%.`,
+    '#33ff33',
+  );
 }

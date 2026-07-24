@@ -147,7 +147,7 @@ type stateType = {
 };
 
 class BombTesterSimulation extends Component {
-  process: NodeJS.Timeout;
+  process: ReturnType<typeof setTimeout> | undefined;
   state: stateType;
 
   constructor(props) {
