@@ -991,10 +991,17 @@
 /obj/item/clothing/suit/equipped(mob/user, slot)
 	if(slot != slot_wear_suit)
 		RemoveHood()
+		taurized = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/taurtail = istaurtail(H.tail_style)
+		if((taurized && !taurtail) || (!taurized && taurtail))
+			taurize(user, taurtail)
 	..()
 
 /obj/item/clothing/suit/dropped(mob/user, equipping, slot)
 	RemoveHood()
+	taurized = FALSE
 	..()
 
 /obj/item/clothing/suit/ui_action_click(mob/user, actiontype)
@@ -1051,41 +1058,31 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/suit/equipped(mob/user, slot)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/taurtail = istaurtail(H.tail_style)
-		if((taurized && !taurtail) || (!taurized && taurtail))
-			taurize(user, taurtail)
-
-	return ..()
-
+///Establishes Icon overrides for taur bodies
 /obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
+	// First we reset the clothing because this will immediately get fixed if it passes the check. This stops old sprite icons from carrying over.
+	taurized = FALSE
+	icon_override = initial(icon_override)	//almost always = null
+	/// We've already confirmed that we have a taur tail during equipped, this is just makes sure we get the correct icon override.
 	if(has_taur_tail)
 		var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
-		if(taurtail.suit_sprites && (icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str))))
-			icon_override = taurtail.suit_sprites
+		if(showtaurbutts)
 			taurized = TRUE
-	// means that if a taur puts on an already taurized suit without a taur sprite
-	// for their taur type, but the previous taur type had a sprite, it stays
-	// taurized and they end up with that taur style which is funny
-	else
-		taurized = FALSE
-
-	if(!taurized)
-		icon_override = initial(icon_override)
-		taurized = FALSE
+			return
+		if(!showtaurbutts && taurtail.suit_sprites && (icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str))))
+			icon_override = taurtail.suit_sprites
+		taurized = TRUE
 
 // Taur suits need to be shifted so its centered on their taur half.
 /obj/item/clothing/suit/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer = 0,icon/clip_mask)
 	var/image/standing = ..()
-	if(taurized) //Special snowflake var on suits
+	if(taurized && !showtaurbutts) //Special snowflake var on suits, we only offset if the taur butts aren't showing
 		standing.pixel_x = -16
-		standing.layer = BODY_LAYER + TAIL_UPPER_LAYER + 1
+		standing.layer = TAUR_LAYERING	//this was effectively GLASSES_LAYER for whatever reason, now just 0.1 added
 	return standing
 
 /obj/item/clothing/suit/apply_accessories(image/standing)
-	if(LAZYLEN(accessories) && taurized)
+	if(LAZYLEN(accessories) && taurized && !showtaurbutts)	//if we're showing a taur butt, then this isn't needed.
 		for(var/obj/item/clothing/accessory/A in accessories)
 			var/image/I = new(A.get_mob_overlay())
 			I.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
