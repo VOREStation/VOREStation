@@ -148,6 +148,26 @@ obj
 			RunningOutput.Insert(Original,good_name)
 		usr << ftp(RunningOutput,"[CutterState]_dresses.dmi")
 
+//Single Split
+/client/verb/single_outfit_split()
+	set name = "Cut Single Outfit"
+	set desc = "Loads singleoutfit.dmi and cuts them with SingleCutter.dmi"
+	set category = "Cut Single"
+
+	var/icon/SuitsToSnip = icon('suitstocovert/singleoutfit.dmi')
+	var/icon/SingleCutter = icon('SingleCutter.dmi')
+
+	for(var/CutterState in icon_states(SingleCutter))
+		var/icon/RunningOutput = new ()
+		for(var/SuitState in icon_states(SuitsToSnip))
+			var/icon/Original = icon(SuitsToSnip,SuitState)
+			var/icon/Cutter = icon(SingleCutter,CutterState)
+			Cutter.Blend(rgb(0,0,0),ICON_MULTIPLY)
+			Original.Blend(Cutter,ICON_AND)
+			var/good_name = "[SuitState]"
+			RunningOutput.Insert(Original,good_name)
+		usr << ftp(RunningOutput,"[CutterState]_outfit.dmi")
+
 //Single Suit
 
 /client/verb/single_suit_split()

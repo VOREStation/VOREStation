@@ -1076,7 +1076,7 @@
 // Taur suits need to be shifted so its centered on their taur half.
 /obj/item/clothing/suit/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer = 0,icon/clip_mask)
 	var/image/standing = ..()
-	if(taurized && !showtaurbutts) //Special snowflake var on suits, we only offset if the taur butts aren't showing
+	if(taurized && icon_override) //Special snowflake var on suits, we only offset if the taur butts aren't showing or there's an icon override at all
 		standing.pixel_x = -16
 		standing.layer = TAUR_LAYERING	//this was effectively GLASSES_LAYER for whatever reason, now just 0.1 added
 	return standing
