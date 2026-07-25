@@ -409,6 +409,10 @@
 	display_name = "collar, shock"
 	path = /obj/item/clothing/accessory/collar/shock
 
+/datum/gear/collar/bluespace
+	display_name = "collar, bluespace"
+	path = /obj/item/clothing/accessory/collar/shock/bluespace
+
 /datum/gear/collar/spike
 	display_name = "collar, spike"
 	path = /obj/item/clothing/accessory/collar/spike
