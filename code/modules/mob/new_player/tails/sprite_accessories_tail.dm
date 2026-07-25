@@ -53,18 +53,32 @@
 	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.
 	var/tailsock_wagicon
 	// Vore belly overlays are handled in update_icons, because we just overlay the tummy colored to the tailsock if we're wearing a suit and it has a sock enabled.
+	// For north facing taur tails, using the sock + whatever tail related markings are visible when not in a sock but need to be drawn higher up.
+	var/tailsock_markings
+	var/tailsock_markings2
+	var/tailsock_wagmarkings
+	var/tailsock_wagmarkings2
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
 	if(clip_mask_state)
 		clip_mask = icon(icon = (clip_mask_icon ? clip_mask_icon : icon), icon_state = clip_mask_state)
-	///because the compiler doesn't like this being preset I guess whatever loser.
+	//because the compiler doesn't like this being preset I guess whatever loser.
 	if(!tailsock_icon)
 		tailsock_icon = initial(icon)
 	if(!tailsock_iconstate)
 		tailsock_iconstate = initial(icon_state)
 	if(!tailsock_wagicon)
 		tailsock_wagicon = initial(ani_state)
+	//use the same naming conventions, these are for north face stuff
+	if(extra_overlay)
+		tailsock_markings = extra_overlay
+	if(extra_overlay2)
+		tailsock_markings2 = extra_overlay2
+	if(extra_overlay_w)
+		tailsock_wagmarkings = extra_overlay_w
+	if(extra_overlay2_w)
+		tailsock_wagmarkings2 = extra_overlay2_w
 
 // Default invis tail
 /datum/sprite_accessory/tail/invisible
