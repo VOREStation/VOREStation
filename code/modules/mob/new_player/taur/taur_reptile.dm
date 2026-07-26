@@ -1,4 +1,4 @@
-/datum/sprite_accessory/tail/taur/drake //Enabling on request, no suit compatibility but then again see 2 above.
+/datum/sprite_accessory/tail/taur/drake
 	name = "Drake (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_reptile.dmi'
 	icon_state = "drake_s"
@@ -17,8 +17,7 @@
 	icon_state = "fatdrake_s"
 	extra_overlay = "fatdrake_markings"
 	icon_sprite_tag = "fatdrake"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
+	vore_tail_sprite_variant = "FatDrake"
 	loaf_offset = 6
 
 /datum/sprite_accessory/tail/taur/drake/drake_vwag
@@ -27,80 +26,59 @@
 	extra_overlay = "drake_markings"
 	ani_state = "fatdrake_s"
 	extra_overlay_w = "fatdrake_markings"
-	can_loaf = TRUE
-
-/datum/sprite_accessory/tail/taur/drake/extended
-	name = "Fat Drake Extended (Taur)"
-	icon_state = "extended_fatdrake"
-	extra_overlay = "extended_fatdrake_markings"
-	extra_overlay2 = "extended_fatdrake_markings2"
-	icon_sprite_tag = "extended_fatdrake"
-	fullness_icons = 2
-	can_loaf = TRUE //Soon //Actually, NOW
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
-	loaf_offset = 5
-
-/datum/sprite_accessory/tail/taur/drake/extended/spotty
-	name = "Fat Spotted Drake Extended (Taur)"
-	vore_tail_sprite_variant = "FatDrake"
-	icon_state = "spottedextended_fatdrake"
-	extra_overlay = "spottedextended_fatdrake_markings"
-	extra_overlay_w = "spottedextended_fatdrake_markings"
-	extra_overlay2 = "spottedextended_fatdrake_markings_2"
-	extra_overlay2_w = "spottedextended_fatdrake_markings_2"
-	fullness_icons = 2
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
-	loaf_offset = 5
 
 /datum/sprite_accessory/tail/taur/drake/spotty
 	name = "Spotted Drake (Taur, Tricolor)"
-	icon_state = "spotteddrake_s"
-	extra_overlay = "spotteddrake_markings"
-	extra_overlay_w = "spotteddrake_markings"
-	extra_overlay2 = "spotteddrake_markings_2"
-	extra_overlay2_w = "spotteddrake_markings_2"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
+	extra_overlay = "spotteddrakemarkings"
+	extra_overlay_w = "spotteddrakemarkings"
+	extra_overlay2 = "spotteddrakemarkings_2"
+	extra_overlay2_w = "spotteddrakemarkings_2"
 	loaf_offset = 6
 
 /datum/sprite_accessory/tail/taur/drake/fat/spotty
 	name = "Fat Spotted Drake (Taur, Tricolor)"
 	vore_tail_sprite_variant = "FatDrake"
-	icon_state = "fatspotteddrake_s"
-	extra_overlay = "fatspotteddrake_markings"
-	extra_overlay_w = "fatspotteddrake_markings"
-	extra_overlay2 = "fatspotteddrake_markings_2"
-	extra_overlay2_w = "fatspotteddrake_markings_2"
+	extra_overlay = "fatspotteddrakemarkings"
+	extra_overlay_w = "fatspotteddrakemarkings"
+	extra_overlay2 = "fatspotteddrakemarkings_2"
+	extra_overlay2_w = "fatspotteddrakemarkings_2"
 	fullness_icons = 2
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
 	loaf_offset = 6
 
-/datum/sprite_accessory/tail/taur/drake/extended_alt
+/datum/sprite_accessory/tail/taur/drake/extended
 	name = "Drake Extended (Taur)"
 	vore_tail_sprite_variant = "Drake"
 	icon_state = "extended_drake"
-	extra_overlay = "extended_drake_markings"
-	extra_overlay_w = "extended_drake_markings"
-	extra_overlay2 = "extended_drake_markings_2"
-	extra_overlay2_w = "extended_drake_markings_2"
+	extra_overlay = "extendeddrake_markings"
+	extra_overlay_w = "extendeddrake_markings"
+	extra_overlay2 = "extendeddrake_markings_2"
+	extra_overlay2_w = "extendeddrake_markings_2"
+	icon_sprite_tag = "extendeddrake"
 	fullness_icons = 3
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 5
 
-/datum/sprite_accessory/tail/taur/drake/extended_alt/spotted
+/datum/sprite_accessory/tail/taur/drake/extended/spotted
 	name = "Spotted Drake Extended (Taur)"
-	vore_tail_sprite_variant = "Drake"
-	extra_overlay = "spottedextended_drake_markings"
-	extra_overlay_w = "spottedextended_drake_markings"
-	extra_overlay2 = "spottedextended_drake_markings_2"
-	extra_overlay2_w = "spottedextended_drake_markings_2"
-	fullness_icons = 3
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
-	loaf_offset = 5
+	extra_overlay = "spottedextendeddrake_markings"
+	extra_overlay_w = "spottedextendeddrake_markings"
+	extra_overlay2 = "spottedextendeddrake_markings_2"
+	extra_overlay2_w = "spottedextendeddrake_markings_2"
+
+/datum/sprite_accessory/tail/taur/drake/extended/fat
+	name = "Fat Drake Extended (Taur)"
+	icon_state = "extended_fatdrake"
+	extra_overlay = "extendedfatdrake_markings"
+	extra_overlay2 = "extendedfatdrake_markings2"
+	icon_sprite_tag = "extendedfatdrake"
+	vore_tail_sprite_variant = "FatDrake"
+	fullness_icons = 2
+
+/datum/sprite_accessory/tail/taur/drake/extended/fat/spotty
+	name = "Fat Spotted Drake Extended (Taur)"
+	extra_overlay = "spottedextendedfatdrake_markings"
+	extra_overlay_w = "spottedextendedfatdrake_markings"
+	extra_overlay2 = "spottedextendedfatdrake_markings_2"
+	extra_overlay2_w = "spottedextendedfatdrake_markings_2"
 
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"
@@ -114,37 +92,11 @@
 	vore_tail_sprite_variant = "Lizard"
 	fullness_icons = 1
 
-/datum/sprite_accessory/tail/taur/lizard/fatlizard
-	name = "Fat Lizard (Taur)"
-	icon_state = "fatlizard_s"
-	icon_sprite_tag = "fatlizard"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
-	loaf_offset = 3
-
-/datum/sprite_accessory/tail/taur/lizard/lizard_wag
-	name = "Lizard (Taur, Fat vwag)"
-	icon_state = "lizard_s"
-	ani_state = "fatlizard_s"
-
-/datum/sprite_accessory/tail/taur/lizard/lizard_2c
+/datum/sprite_accessory/tail/taur/lizard/2c
 	name = "Lizard dual-color (Taur)"
-	icon_state = "lizard_s"
 	extra_overlay = "lizard_markings"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
-	loaf_offset = 5
 
-/datum/sprite_accessory/tail/taur/lizard/fatlizard_2c
-	name = "Fat Lizard (Taur, dual-color)"
-	icon_state = "fatlizard_s"
-	extra_overlay = "fatlizard_markings"
-	icon_sprite_tag = "fatlizard"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
-	loaf_offset = 3
-
-/datum/sprite_accessory/tail/taur/lizard/lizard_2c_wag
+/datum/sprite_accessory/tail/taur/lizard/2c_wag
 	name = "Fat Lizard (Taur, dual-color, Fat vwag)"
 	icon_state = "lizard_s"
 	extra_overlay = "lizard_markings"
@@ -157,20 +109,28 @@
 	extra_overlay_w = "spottedlizard_markings"
 	extra_overlay2 = "spottedlizard_markings_2"
 	extra_overlay2_w = "spottedlizard_markings_2"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
-	loaf_offset = 5
 
-/datum/sprite_accessory/tail/taur/lizard/spotty_fat
+/datum/sprite_accessory/tail/taur/lizard/lizard_wag
+	name = "Lizard (Taur, Fat vwag)"
+	icon_state = "lizard_s"
+	ani_state = "fatlizard_s"
+
+/datum/sprite_accessory/tail/taur/lizard/fatlizard
+	name = "Fat Lizard (Taur)"
+	icon_state = "fatlizard_s"
+	icon_sprite_tag = "fatlizard"
+	loaf_offset = 3
+
+/datum/sprite_accessory/tail/taur/lizard/fatlizard/2c
+	name = "Fat Lizard (Taur, dual-color)"
+	extra_overlay = "fatlizard_markings"
+
+/datum/sprite_accessory/tail/taur/lizard/fatlizard/spotty
 	name = "Fat Spotted Lizard (Taur, Tricolor)"
 	extra_overlay = "fatspottedlizard_markings"
 	extra_overlay_w = "fatspottedlizard_markings"
 	extra_overlay2 = "fatspottedlizard_markings_2"
 	extra_overlay2_w = "fatspottedlizard_markings_2"
-	icon_sprite_tag = "fatlizard"
-	can_loaf = TRUE
-	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
-	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
@@ -214,49 +174,43 @@
 	icon_state = "fatnaga_s"
 	extra_overlay = "fatnaga_markings"
 	icon_sprite_tag = "fatnaga"
-	suit_sprites = null
 
 /datum/sprite_accessory/tail/taur/naga/naga_2c
 	name = "Naga dual-color (Taur)"
 	extra_overlay = "naga_markings"
 
+//should really be called 'thin naga'
 /datum/sprite_accessory/tail/taur/naga/alt
 	name = "Naga alt (Taur)"
-	icon_state = "naga_alt_s"
+	icon_state = "altnaga_s"
 	vore_tail_sprite_variant = "NagaAlt"
 	fullness_icons = 1
-	icon_sprite_tag = "naga_alt"
+	icon_sprite_tag = "altnaga"
 
 /datum/sprite_accessory/tail/taur/naga/alt/second
 	name = "Naga dual-color alt (Taur)"
 	extra_overlay = "naga_alt_markings"
 
-/datum/sprite_accessory/tail/taur/naga/alt_2c
+/datum/sprite_accessory/tail/taur/naga/alt/2c
 	name = "Naga alt style dual-color (Taur)"
-	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
-	icon_sprite_tag = "altnaga"
 
-/datum/sprite_accessory/tail/taur/naga/alt_3c
+/datum/sprite_accessory/tail/taur/naga/alt/3c
 	name = "Naga alt style tri-color (Taur)"
-	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_stripes"
-	icon_sprite_tag = "altnaga"
 
-/datum/sprite_accessory/tail/taur/naga/alt_3c_rattler
+/datum/sprite_accessory/tail/taur/naga/alt/3c_rattler
 	name = "Naga alt style tri-color, rattler (Taur)"
-	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_rattler"
-	icon_sprite_tag = "altnaga"
 
-/datum/sprite_accessory/tail/taur/naga/alt_3c_tailmaw
+/datum/sprite_accessory/tail/taur/naga/alt/3c_tailmaw
 	name = "Naga alt style tri-color, tailmaw (Taur)"
 	icon_state = "altnagatailmaw_s"
 	extra_overlay = "altnagatailmaw_markings"
 	extra_overlay2 = "altnagatailmaw_eyes"
-	icon_sprite_tag = "altnaga"
+	icon_sprite_tag = "altnagatailmaw"
 
 /datum/sprite_accessory/tail/taur/noodle
 	name = "Eastern Dragon (Taur)"

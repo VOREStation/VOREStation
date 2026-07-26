@@ -54,10 +54,11 @@
 	var/tailsock_wagicon
 	// Vore belly overlays are handled in update_icons, because we just overlay the tummy colored to the tailsock if we're wearing a suit and it has a sock enabled.
 	// For north facing taur tails, using the sock + whatever tail related markings are visible when not in a sock but need to be drawn higher up.
-	var/tailsock_markings
-	var/tailsock_markings2
-	var/tailsock_wagmarkings
-	var/tailsock_wagmarkings2
+	// These are set to "none" to prevent null icon state issues
+	var/tailsock_markings = "none"
+	var/tailsock_markings2 = "none"
+	var/tailsock_wagmarkings = "none"
+	var/tailsock_wagmarkings2 = "none"
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
