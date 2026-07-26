@@ -49,12 +49,6 @@
 		tailsock_iconstate = "[icon_sprite_tag]_sock"
 		///almost none of the taurs of tailwags, but to ensure future proofing and no null icons the taur_sock.dmi file has these prepared.
 		tailsock_wagicon = "[icon_sprite_tag]_w_sock"
-		/// non-socked, north facing sock icon... it's messy but beats the hell out of cutting holes.
-		tailsock_markings
-		tailsock_markings2
-		tailsock_wagmarkings
-		tailsock_wagmarkings2
-
 
 /datum/riding/taur
 	keytype = /obj/item/material/twohanded/riding_crop // Crack!

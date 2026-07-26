@@ -1028,8 +1028,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(!(suitable && suitable.flags_inv & HIDETAIL)) //not wearing a suit or it doesn't hide our tail
 			tail_image = image(icon = tail_s, icon_state = "[tail_style]", layer = BODY_LAYER+tail_layer)
 			tail_image.alpha = chest?.transparent ? 180 : 255
-		else if(suitable)	//we are wearing one, let's see if we have a tail sock to squish on. taurize() handles taur specific icons.
-			apply_tailsock_layer(tail_image)
+		//handle potential suit sockage and north facing additions
+		apply_tailsock_layer(tail_image)
 		//No? Well okay then, normal tail go.
 		overlays_standing[tail_layer] = tail_image
 		animate_tail_reset()
@@ -1114,7 +1114,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			working.pixel_y = tail_style.offset_y
 
 		working.alpha = a_tail
-		apply_tailsock_layer(working)
 		return working
 	return null
 
@@ -1133,58 +1132,74 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/apply_tailsock_layer(image/tailoverlays)
 	var/image/working = tailoverlays
-	if(wear_suit)
-		var/obj/item/clothing/suit/socksuit = wear_suit
-		var/datum/sprite_accessory/tail/tailtype = tail_style
-		if(socksuit.requires_tailsock && socksuit.tailsock_toggle) // Tailsock support for universal sprite freedoms.
-			var/mutable_appearance/tailsockoverlay
-			if(wagging && tail_style.ani_state)	//wag support
-				tailsockoverlay = mutable_appearance(icon = tailtype.tailsock_icon, icon_state = tailtype.tailsock_wagicon, layer = TAUR_LAYERING)
-			else
-				tailsockoverlay = mutable_appearance(icon = tailtype.tailsock_icon, icon_state = tailtype.tailsock_iconstate, layer = TAUR_LAYERING)
-			tailsockoverlay.color = socksuit.tailsock_color	//color it in a suitable fashion
-			working.overlays += tailsockoverlay
-		if(dir == NORTH)	//we're facing north, if we have a tailsock, we want this to be high priority overlay, if no sock, then just the tail itself as a high priority.
-			// tails and taur butts are just TAIL_UPPER_LAYER, we need north facings to draw even higher than that by default. these get autocleared on updates anyway.
-			if(!istaurtail(tailtype))	//taur butts need to have their tails seperately boosted, or they'll overlay over the suit sprite entirely
-				overlays_standing[TAIL_UPPER_LAYER_HIGH] = working
-				apply_layer(TAIL_UPPER_LAYER_HIGH)
-				return working// we've got what we've wanted let's bounce
-			else	//time to re-blend our taur tail marking colors
-				var/icon/northtail = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = (wagging && tail_style.tailsock_wagicon ? tail_style.tailsock_wagicon : tail_style.tailsock_iconstate))
-				if(tail_style.extra_overlay)
-					var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_markings)
-					if(wagging && tail_style.ani_state)
-						overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_wagmarkings)
-						overlay.Blend(rgb(r_tail2, g_tail2, b_tail2), tail_style.color_blend_mode)
-						northtail.Blend(overlay, ICON_OVERLAY)
-						qdel(overlay)
-					else
-						overlay.Blend(rgb(r_tail2, g_tail2, b_tail2), tail_style.color_blend_mode)
-						northtail.Blend(overlay, ICON_OVERLAY)
-						qdel(overlay)
-				if(tail_style.extra_overlay2)
-					var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_markings2)
-					if(wagging && tail_style.ani_state)
-						overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_wagmarkings2)
-						overlay.Blend(rgb(r_tail3, g_tail3, b_tail3), tail_style.color_blend_mode)
-						northtail.Blend(overlay, ICON_OVERLAY)
-						qdel(overlay)
-					else
-						overlay.Blend(rgb(r_tail3, g_tail3, b_tail3), tail_style.color_blend_mode)
-						northtail.Blend(overlay, ICON_OVERLAY)
-						qdel(overlay)
 
-				var/image/blendedtail = image(northtail)
-				blendedtail.pixel_x = tailtype.offset_x
-				blendedtail.pixel_y = tailtype.offset_y
-				overlays_standing[TAIL_UPPER_LAYER_HIGH] = blendedtail
-				apply_layer(TAIL_UPPER_LAYER_HIGH)
-			return working	//return our taur butt, even if we've North'd we still need it for the get_tail_layer() result anyway.
-		else	//if we're not facing north then...
-			return working		//return what we've got to be applied to the tail icon layer.
-	//not wearing a suit, just return our original chain
-	return working
+	//aggressively clear tail layers, because there's no reason not to if we're adding a sock.
+	for(var/layers in TAIL_LAYER_CLEARING)
+		remove_layer(layers)
+
+	if(!wear_suit) //not wearing a suit, just return our original chain
+		return working
+
+	var/obj/item/clothing/suit/socksuit = wear_suit
+	var/datum/sprite_accessory/tail/tailtype = tail_style
+
+	if(socksuit.requires_tailsock && socksuit.tailsock_toggle) // Tailsock support for universal sprite freedoms.
+		var/mutable_appearance/tailsockoverlay
+		if(wagging && tail_style.ani_state)	//wag support
+			tailsockoverlay = mutable_appearance(icon = tailtype.tailsock_icon, icon_state = tailtype.tailsock_wagicon, layer = TAUR_LAYERING)
+		else
+			tailsockoverlay = mutable_appearance(icon = tailtype.tailsock_icon, icon_state = tailtype.tailsock_iconstate, layer = TAUR_LAYERING)
+		tailsockoverlay.color = socksuit.tailsock_color	//color it in a suitable fashion
+		working.overlays += tailsockoverlay
+
+	//tails and taur butts are just TAIL_UPPER_LAYER, we need north facings to draw even higher than that by default. these get autocleared on updates anyway.
+	if(dir == LOWER_TAIL_DIRS) //if we're not facing north then...
+		return working	//return what we've got to be applied to the tail icon layer.
+
+	//we're facing north, if we have a tailsock, we want this to be high priority overlay, if no sock, then just the tail itself as a high priority.
+	if(!istaurtail(tailtype)) //Just a normal tail, not a taur.
+		overlays_standing[TAIL_UPPER_LAYER_HIGH] = working
+		apply_layer(TAIL_UPPER_LAYER_HIGH)
+		//we've got what we've wanted let's bounce
+		return
+
+	//time to re-blend our extra taur tail with any marking marking colors since it needs a new icon entirely.
+	var/icon/northtail = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = (wagging && tail_style.tailsock_wagicon ? tail_style.tailsock_wagicon : tail_style.tailsock_iconstate))
+
+	if(tail_style.do_colouration)
+		northtail.Blend(rgb(r_tail, g_tail, b_tail), tail_style.color_blend_mode)
+
+	if(tail_style.extra_overlay)
+		var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_markings)
+		if(wagging && tail_style.ani_state)
+			overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_wagmarkings)
+			overlay.Blend(rgb(r_tail2, g_tail2, b_tail2), tail_style.color_blend_mode)
+			northtail.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		else
+			overlay.Blend(rgb(r_tail2, g_tail2, b_tail2), tail_style.color_blend_mode)
+			northtail.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+
+	if(tail_style.extra_overlay2)
+		var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_markings2)
+		if(wagging && tail_style.ani_state)
+			overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.tailsock_icon, "icon_state" = tail_style.tailsock_wagmarkings2)
+			overlay.Blend(rgb(r_tail3, g_tail3, b_tail3), tail_style.color_blend_mode)
+			northtail.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		else
+			overlay.Blend(rgb(r_tail3, g_tail3, b_tail3), tail_style.color_blend_mode)
+			northtail.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+
+	var/image/blendedtail = image(northtail)
+	blendedtail.pixel_x = tailtype.offset_x
+	blendedtail.pixel_y = tailtype.offset_y
+	//This should be high enough to draw over everything.
+	overlays_standing[TAIL_UPPER_LAYER_HIGH] = blendedtail
+	apply_layer(TAIL_UPPER_LAYER_HIGH)
+	return working	//return our taur butt, even if we've North'd we still need it for the update_tail_showing() result anyway.
 
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src))
