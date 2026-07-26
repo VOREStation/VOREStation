@@ -92,11 +92,11 @@
 	vore_tail_sprite_variant = "Lizard"
 	fullness_icons = 1
 
-/datum/sprite_accessory/tail/taur/lizard/2c
+/datum/sprite_accessory/tail/taur/lizard/twocolor
 	name = "Lizard dual-color (Taur)"
 	extra_overlay = "lizard_markings"
 
-/datum/sprite_accessory/tail/taur/lizard/2c_wag
+/datum/sprite_accessory/tail/taur/lizard/twocolor_wag
 	name = "Fat Lizard (Taur, dual-color, Fat vwag)"
 	icon_state = "lizard_s"
 	extra_overlay = "lizard_markings"
@@ -121,7 +121,7 @@
 	icon_sprite_tag = "fatlizard"
 	loaf_offset = 3
 
-/datum/sprite_accessory/tail/taur/lizard/fatlizard/2c
+/datum/sprite_accessory/tail/taur/lizard/fatlizard/twocolor
 	name = "Fat Lizard (Taur, dual-color)"
 	extra_overlay = "fatlizard_markings"
 
@@ -175,7 +175,7 @@
 	extra_overlay = "fatnaga_markings"
 	icon_sprite_tag = "fatnaga"
 
-/datum/sprite_accessory/tail/taur/naga/naga_2c
+/datum/sprite_accessory/tail/taur/naga/naga_twocolor
 	name = "Naga dual-color (Taur)"
 	extra_overlay = "naga_markings"
 
@@ -191,21 +191,21 @@
 	name = "Naga dual-color alt (Taur)"
 	extra_overlay = "naga_alt_markings"
 
-/datum/sprite_accessory/tail/taur/naga/alt/2c
+/datum/sprite_accessory/tail/taur/naga/alt/twocolor
 	name = "Naga alt style dual-color (Taur)"
 	extra_overlay = "altnaga_markings"
 
-/datum/sprite_accessory/tail/taur/naga/alt/3c
+/datum/sprite_accessory/tail/taur/naga/alt/threecolor
 	name = "Naga alt style tri-color (Taur)"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_stripes"
 
-/datum/sprite_accessory/tail/taur/naga/alt/3c_rattler
+/datum/sprite_accessory/tail/taur/naga/alt/threecolor_rattler
 	name = "Naga alt style tri-color, rattler (Taur)"
 	extra_overlay = "altnaga_markings"
 	extra_overlay2 = "altnaga_rattler"
 
-/datum/sprite_accessory/tail/taur/naga/alt/3c_tailmaw
+/datum/sprite_accessory/tail/taur/naga/alt/threecolor_tailmaw
 	name = "Naga alt style tri-color, tailmaw (Taur)"
 	icon_state = "altnagatailmaw_s"
 	extra_overlay = "altnagatailmaw_markings"
