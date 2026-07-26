@@ -138,3 +138,9 @@
   Will:
   - refactor: Updated remote view code for byond 516.1685
   - bugfix: blackscreen when escaping vore egg
+2026-07-26:
+  Diana:
+  - bugfix: Fixes kaiju tail lost sprite
+  - image: Readds kaiju tail
+  Will:
+  - bugfix: Gripper can insert powercells into borgs again
