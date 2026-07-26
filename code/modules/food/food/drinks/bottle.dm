@@ -39,13 +39,12 @@
 	. = ..()
 	if(istype(thrower) && thrower.a_intent == I_HURT)
 		violent_throw = TRUE
-		throw_source = get_turf(thrower)
 
-/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom)
+/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 
 	if(isGlass && violent_throw)
-		var/throw_dist = get_dist(throw_source, loc)
+		var/throw_dist = get_dist(throwingdatum.starting_turf, loc)
 		if(smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
 				hit_atom.visible_message(span_notice("The contents of \the [src] splash all over [hit_atom]!"))
@@ -53,7 +52,6 @@
 			src.smash(loc, hit_atom)
 
 	violent_throw = FALSE
-	throw_source = null
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(distance)
 	if(!isGlass || !smash_duration)
