@@ -70,7 +70,7 @@
 		tailsock_iconstate = initial(icon_state)
 	if(!tailsock_wagicon)
 		tailsock_wagicon = initial(ani_state)
-	//use the same naming conventions, these are for north face stuff
+	//use the same naming conventions, these are for north face stuff. follows the icon file anyway, so tail_whatever, tail_sock
 	if(extra_overlay)
 		tailsock_markings = extra_overlay
 	if(extra_overlay2)
