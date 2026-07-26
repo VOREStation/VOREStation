@@ -47,7 +47,7 @@
 	//give us the default sprite state, hijacking icon_sprite_tag that was only ever used for saddlebags.
 	if(icon_sprite_tag)
 		tailsock_iconstate = "[icon_sprite_tag]_sock"
-		///almost none of the taurs of tailwags, but to ensure future proofing and no null icons the taur_sock.dmi file has these prepared.
+		///few taurs have working tailwags, but to ensure future proofing and no null icons the taur_sock.dmi file has these prepared.
 		tailsock_wagicon = "[icon_sprite_tag]_w_sock"
 
 /datum/riding/taur
