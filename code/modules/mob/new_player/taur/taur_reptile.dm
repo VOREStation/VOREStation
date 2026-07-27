@@ -48,7 +48,7 @@
 /datum/sprite_accessory/tail/taur/drake/extended
 	name = "Drake Extended (Taur)"
 	vore_tail_sprite_variant = "Drake"
-	icon_state = "extended_drake"
+	icon_state = "extendeddrake"
 	extra_overlay = "extendeddrake_markings"
 	extra_overlay_w = "extendeddrake_markings"
 	extra_overlay2 = "extendeddrake_markings_2"
@@ -66,7 +66,7 @@
 
 /datum/sprite_accessory/tail/taur/drake/extended/fat
 	name = "Fat Drake Extended (Taur)"
-	icon_state = "extended_fatdrake"
+	icon_state = "extendedfatdrake"
 	extra_overlay = "extendedfatdrake_markings"
 	extra_overlay2 = "extendedfatdrake_markings2"
 	icon_sprite_tag = "extendedfatdrake"
@@ -184,6 +184,7 @@
 	name = "Naga alt (Taur)"
 	icon_state = "altnaga_s"
 	vore_tail_sprite_variant = "NagaAlt"
+	suit_sprites = 'icons/inventory/suit/taursuits_naga_alt.dmi'
 	fullness_icons = 1
 	icon_sprite_tag = "altnaga"
 

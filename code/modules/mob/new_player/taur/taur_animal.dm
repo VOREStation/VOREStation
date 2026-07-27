@@ -9,7 +9,7 @@
 	ani_state = "bnytr-f"
 	extra_overlay_w = "bnytr-m1"
 	extra_overlay2_w = "bnytr-f-m2"
-	tailsock_wagicon = "fatbnytr_sock"
+	tailsock_wagicon = "fbnytr-f_sock"
 	can_loaf = TRUE
 	icon_loaf = 'icons/rogue-star/loafs_64x32.dmi'
 	loaf_offset = 4
