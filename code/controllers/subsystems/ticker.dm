@@ -226,6 +226,28 @@ SUBSYSTEM_DEF(ticker)
 			continue
 		GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
 
+	// Load hardcoded library books
+	var/list/base_genre_books = list(
+		/obj/item/book/custom_library/fiction,
+		/obj/item/book/custom_library/nonfiction,
+		/obj/item/book/custom_library/reference,
+		/obj/item/book/custom_library/religious,
+		/obj/item/book/bundle/custom_library/fiction,
+		/obj/item/book/bundle/custom_library/nonfiction,
+		/obj/item/book/bundle/custom_library/reference,
+		/obj/item/book/bundle/custom_library/religious
+		)
+
+	for(var/path in subtypesof(/obj/item/book/codex/lore))
+		var/obj/item/book/C = new path(null)
+		GLOB.all_books[C.name] = C
+	for(var/path in subtypesof(/obj/item/book/custom_library) - base_genre_books)
+		var/obj/item/book/B = new path(null)
+		GLOB.all_books[B.title] = B
+	for(var/path in subtypesof(/obj/item/book/bundle/custom_library) - base_genre_books)
+		var/obj/item/book/M = new path(null)
+		GLOB.all_books[M.title] = M
+
 	// Final init, these things need round to start for their info to be ready
 	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
 		dcp.populate_info()
