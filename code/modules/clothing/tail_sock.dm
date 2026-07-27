@@ -23,34 +23,64 @@
 	set name = "Toggle Tail Sock"
 	set category = "Object"
 	set desc = "Toggle the tail sock on your suit."
-	set src in usr
-	toggle_tailsock()
+	toggle_tailsock(usr)
 
-/obj/item/clothing/suit/proc/toggle_tailsock()
+/obj/item/clothing/suit/proc/toggle_tailsock(mob/user)
+	if(!user || !ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.wear_suit != src)
+		to_chat(user, span_warning("You must be wearing \the [src] to adjust the tail sock."))
+		return
+
+	if(!requires_tailsock)
+		to_chat(user, span_notice("\The [src] does not have a tail sock extruder."))
+		return
+
+	if(showtaurbutts)
+		to_chat(user, span_notice("You must enable full body taur sheathing on \the [src] first."))
+		return
+
 	tailsock_toggle = !tailsock_toggle
-	to_chat(usr, "You toggle the dynamic sheathing [tailsock_toggle ? "ON" : "OFF"]")
-	//since our checks look for if we're toggled for sockage, we don't need to worry about the flags
-	update_clothing_icon()
+	to_chat(user, span_notice("You toggle \the [src]'s dynamic tail sheath [tailsock_toggle ? "ON" : "OFF"]."))
+
+	H.update_inv_wear_suit()
+	H.update_tail_showing()
 
 /obj/item/clothing/suit/verb/toggletaursuit()
 	set name = "Toggle Taur Extension"
 	set category = "Object"
 	set desc = "Toggle the full body taur sprite on your suit."
-	set src in usr
-	toggle_taurextender()
+	toggle_taurextender(usr)
 
-/obj/item/clothing/suit/proc/toggle_taurextender()
-	if(ishuman(usr))
-		showtaurbutts = !showtaurbutts
-		to_chat(usr, "You toggle the full body sheathing [showtaurbutts ? "OFF" : "ON"]")
-		if(showtaurbutts)
-			tailsock_toggle = FALSE	//since we're hiding taur butts, we'll need to hide the sock as well
-		else
-			tailsock_toggle = TRUE
-		//Because we need to make sure we have our proper icon overrides again
-		var/mob/living/carbon/human/taur = usr
-		equipped(taur)
-	update_clothing_icon()
+/obj/item/clothing/suit/proc/toggle_taurextender(mob/user)
+	if(!user || !ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	if(H.wear_suit != src)
+		to_chat(user, span_warning("You must be wearing \the [src] to adjust the taur extension."))
+		return
+
+	var/taurtail = istaurtail(H.tail_style)
+	if(!taurtail)
+		to_chat(user, span_warning("\The [src]'s taur extension requires a taur body."))
+		return
+
+	showtaurbutts = !showtaurbutts
+
+	if(showtaurbutts)
+		// Classic Mode: turn off suit tailsock sleeve
+		tailsock_toggle = FALSE
+		to_chat(user, span_notice("You disable full body sheathing on \the [src] (Classic mode)."))
+	else
+		// Modern Taur Mode: Enable suit override & tail sheath
+		tailsock_toggle = TRUE
+		to_chat(user, span_notice("You enable full body taur sheathing on \the [src]."))
+
+	taurize(H, taurtail)
+	H.update_inv_wear_suit()
+	H.update_tail_showing()
 
 /obj/item/clothing/suit/examine(mob/user)
 	. = ..()
