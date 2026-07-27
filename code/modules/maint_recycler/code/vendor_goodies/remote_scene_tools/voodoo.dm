@@ -89,13 +89,19 @@
 	if(input == null)
 		return null
 
-	input.dir = SOUTH
-	input.transform = newtransform
-	input.layer = FLOAT_LAYER
-	if(outline_width > 0)
-		input.filters += filter(type="outline", size = outline_width, color = outline_color)
+	// Please for the love of fuck stop kidnapping taur bodies.
+	var/image/doll_img = image(input)
 
-	return input
+	doll_img.dir = SOUTH
+	doll_img.transform = newtransform
+	doll_img.layer = FLOAT_LAYER
+	doll_img.plane = FLOAT_PLANE // Strip PLANE_CH_STOMACH or mob-specific planes!
+	doll_img.appearance_flags = NONE // Strip RESET_PLANE / KEEP_TOGETHER flags!
+
+	if(outline_width > 0)
+		doll_img.filters += filter(type="outline", size = outline_width, color = outline_color)
+
+	return doll_img
 
 /obj/item/remote_scene_tool/voodoo_doll/update_icon()
 	. = ..()
