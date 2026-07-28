@@ -633,30 +633,37 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(UNIFORM_LAYER)
 
-	//Shoes can be affected by uniform being drawn onto them
+	// Shoes can be affected by uniform being drawn onto them
 	update_inv_shoes()
 
 	if(!w_uniform)
 		return
 
+	// Wearing a suit that prevents uniform rendering (e.g. non-RIG full suits)
 	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
-		return //Wearing a suit that prevents uniform rendering
+		return
 
 	var/obj/item/clothing/under/under = w_uniform
+	var/uniform_sprite = (istype(under) && !isnull(under.update_icon_define)) ? under.update_icon_define : INV_W_UNIFORM_DEF_ICON
 
-	var/uniform_sprite
-	if(istype(under) && !isnull(under.update_icon_define))
-		uniform_sprite = under.update_icon_define
-	else
-		uniform_sprite = INV_W_UNIFORM_DEF_ICON
+	var/icon/c_mask = null
 
-	//Build a uniform sprite
-	var/icon/c_mask = tail_style?.clip_mask
-	if(c_mask)
-		var/obj/item/clothing/suit/S = wear_suit
-		if((wear_suit?.flags_inv & HIDETAIL) || (istype(S) && S.taurized)) // Reasons to not mask: 1. If you're wearing a suit that hides the tail or if you're wearing a taurized suit.
-			c_mask = null
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	// Check if a taur body is active on the mob
+	var/tail_is_rendered = (overlays_standing[get_tail_layer()] || overlays_standing[TAIL_UPPER_LAYER_HIGH])
+
+	// Clip uniform pants/legs off at the waist IF:
+	// Taur body with a mask and not fitted for taurs. Which is basically all of them lmaooo.
+	if(tail_is_rendered && tail_style?.clip_mask && (istype(under) && !under.taurized))
+		c_mask = tail_style.clip_mask
+
+	// Build uniform sprite with clip mask applied
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(
+		body_type = species.get_bodytype(src),
+		slot_name = slot_w_uniform_str,
+		default_icon = uniform_sprite,
+		default_layer = UNIFORM_LAYER,
+		clip_mask = c_mask
+	)
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -855,35 +862,34 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_inv_w_uniform()
 	update_inv_shoes()
 
+	// Always ensure tail/taur states are updated so overlay existence is current
+	update_tail_showing()
+	update_wing_showing()
+
 	if(!wear_suit)
-		update_tail_showing()
-		update_wing_showing()
 		return // No point, no suit.
 
 	var/obj/item/clothing/suit/suit = wear_suit
-	var/suit_sprite
-
-	if(istype(suit) && !isnull(suit.update_icon_define))
-		suit_sprite = suit.update_icon_define
-	else
-		suit_sprite = INV_SUIT_DEF_ICON
+	var/suit_sprite = (istype(suit) && !isnull(suit.update_icon_define)) ? suit.update_icon_define : INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
 
-	// Check all directions, now that we're touching north facings directly.
+	// Check if a taur body is active and requires clipping the lower half of the suit off
 	var/tail_is_rendered = (overlays_standing[get_tail_layer()] || overlays_standing[TAIL_UPPER_LAYER_HIGH])
-	var/valid_clip_mask = tail_style?.clip_mask
 
-	//Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
-	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized))
-		c_mask = valid_clip_mask
+	// Apply the clip mask to trim our suit for taur body fitting
+	if(tail_is_rendered && tail_style?.clip_mask && !(istype(suit) && suit.taurized))
+		c_mask = tail_style.clip_mask
 
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+	// Generate suit overlay
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(
+		body_type = species.get_bodytype(src),
+		slot_name = slot_wear_suit_str,
+		default_icon = suit_sprite,
+		default_layer = SUIT_LAYER,
+		clip_mask = c_mask
+	)
 	apply_layer(SUIT_LAYER)
-
-	// Update tail and wings AFTER the suit layer has been created & applied
-	update_tail_showing()
-	update_wing_showing()
 
 /mob/living/carbon/human/update_inv_pockets()
 	stack_trace("Someone called update_inv_pockets even though it's dumb")
@@ -1031,7 +1037,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		tail_image = apply_tailsock_layer(tail_image, apply_to_mob = TRUE)
 
 		// Now do the other directions
-		// Only set standard lower/upper layers if we didn't promote to TAIL_UPPER_LAYER_HIGH (North facing)
 		if((dir in LOWER_TAIL_DIRS) || !overlays_standing[TAIL_UPPER_LAYER_HIGH])
 			overlays_standing[tail_layer] = tail_image
 			apply_layer(tail_layer)
@@ -1162,120 +1167,143 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/tail_layer = get_tail_layer()
 	return overlays_standing[tail_layer]
 
+//rather than repeatedly trying to assert offsets while rendering the code, let's kick this out into a more managable proc shall we
+/mob/living/carbon/human/proc/get_tail_offsets(obj/item/clothing/suit/socksuit, datum/sprite_accessory/tail/tailtype)
+	var/off_x = tailtype ? tailtype.offset_x : 0
+	var/off_y = tailtype ? tailtype.offset_y : 0
+
+	// Add suit offset if the suit isn't using an icon override
+	if(socksuit && !socksuit.icon_override)
+		off_x += socksuit.pixel_x
+		off_y += socksuit.pixel_y
+
+	return list(off_x, off_y)
+
 /mob/living/carbon/human/proc/apply_tailsock_layer(image/tailoverlays, apply_to_mob = TRUE)
 	if(!tailoverlays)
 		return null
 
-	var/image/working = image(tailoverlays)
-	working.pixel_x = tailoverlays.pixel_x
-	working.pixel_y = tailoverlays.pixel_y
-
 	var/obj/item/clothing/suit/socksuit = wear_suit
 	var/datum/sprite_accessory/tail/tailtype = tail_style
 
-	// Handle tailsock suit overlay
-	var/mutable_appearance/tailsockoverlay = null
+	//Simplify our offset maths
+	var/list/offsets = get_tail_offsets(socksuit, tailtype)
+	var/total_off_x = offsets[1]
+	var/total_off_y = offsets[2]
+
+	// let's get our LOWER_TAIL_DIRS handled, this starts at a measly 2
+	var/target_layer = get_tail_layer()
+	if(!target_layer)
+		target_layer = TAIL_LOWER_LAYER
+
+	// Get our tailsock ready
+	var/icon/sock_icon = null
+	var/sock_state = null
 	if(socksuit && socksuit.requires_tailsock && socksuit.tailsock_toggle && tailtype)
-		var/sock_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : socksuit.icon
-		var/sock_state = (wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
-		if(!sock_state && socksuit.item_state)
+		sock_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : socksuit.icon
+
+		if(wagging && tailtype.tailsock_wagicon)
+			sock_state = tailtype.tailsock_wagicon
+		else if(tailtype.tailsock_iconstate)
+			sock_state = tailtype.tailsock_iconstate
+		else if(socksuit.item_state)
 			sock_state = socksuit.item_state
 
-		if(sock_icon && sock_state)
-			tailsockoverlay = mutable_appearance(sock_icon, sock_state)
-			tailsockoverlay.color = socksuit.tailsock_color ? socksuit.tailsock_color : null
-			tailsockoverlay.alpha = socksuit.alpha
+	var/image/tail_img = image(tailoverlays)
+	//use our get_tail_layer info to associate snowflake layering
+	if(target_layer == TAIL_UPPER_LAYER || target_layer == TAIL_UPPER_LAYER_HIGH)
+		tail_img.layer = (socksuit ? socksuit.layer + 0.1 : TAUR_LAYERING + 0.1)
+	else
+		tail_img.layer = TAIL_LOWER_LAYER
 
-			// Safely read suit pixel offset (defaults to 0 if suit has no custom pixel_x)
-			var/s_px = socksuit ? socksuit.pixel_x : 0
-			var/s_py = socksuit ? socksuit.pixel_y : 0
-			tailsockoverlay.pixel_x = working.pixel_x + s_px
-			tailsockoverlay.pixel_y = working.pixel_y + s_py
+	//whack on our lower layer directional tailsock, if needed
+	if(sock_icon && sock_state)
+		var/mutable_appearance/lower_sock = mutable_appearance(sock_icon, sock_state)
+		if(socksuit.tailsock_color)
+			lower_sock.color = socksuit.tailsock_color
+		lower_sock.alpha = socksuit.alpha
+		lower_sock.pixel_x = socksuit.pixel_x
+		lower_sock.pixel_y = socksuit.pixel_y
+		lower_sock.layer = FLOAT_LAYER
+		tail_img.overlays += lower_sock
 
-	// are we facing north?
-	if(dir in LOWER_TAIL_DIRS)
-		if(tailsockoverlay)     //let's make sure our tailsock gets added if we've gotten it
-			working.overlays += tailsockoverlay
+	// non taurs take your image and get out
+	if(!tailtype || !istaurtail(tailtype))
 		if(apply_to_mob)
 			remove_layer(TAIL_UPPER_LAYER_HIGH)
-		return working
+			overlays_standing[TAIL_LOWER_LAYER] = tail_img
+			apply_layer(TAIL_LOWER_LAYER)
+		return tail_img
 
-	// tailsock ought to run first, thanks layering code, if we don't have a tail type anyway then it's whatever.
-	if(!tailtype)
-		return working
-
-	// If we don't have a taur tail, then again, take what you've been given and bugger off
-	if(!istaurtail(tailtype))
-		if(tailsockoverlay)
-			working.overlays += tailsockoverlay
-
-		working.layer = BODY_LAYER + TAIL_UPPER_LAYER_HIGH
-
-		if(apply_to_mob)
-			overlays_standing[TAIL_UPPER_LAYER_HIGH] = working
-			apply_layer(TAIL_UPPER_LAYER_HIGH)
-			// Purge standard lower tail layers so the tail doesn't duplicate underneath
-			remove_layer(TAIL_LOWER_LAYER)
-			remove_layer(TAIL_UPPER_LAYER)
-		return working
-
-	// Taurs need the extra snowflake construction to circumvent the suit layer, but strangely backpacks are for some reason mounted even higher...
-	var/north_icon = (tailtype.can_loaf && resting) ? tailtype.icon_loaf : (tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon)
-	var/north_state = (wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : (tailtype.tailsock_iconstate ? tailtype.tailsock_iconstate : tailtype.icon_state)
-
-	if(!north_icon)
-		// Don't scrub the taur body if we're not facing north
+	// non taur tails get what they get
+	if(!tailtype || !istaurtail(tailtype))
 		if(apply_to_mob)
 			remove_layer(TAIL_UPPER_LAYER_HIGH)
-		return working
+		return lower_tail
 
-	// time to re-blend our extra taur tail with any marking colors since it needs a new layer application entirely.
-	var/image/blendedtail = image(icon = north_icon, icon_state = null)
-	blendedtail.layer = BODY_LAYER + TAIL_UPPER_LAYER_HIGH
-	blendedtail.alpha = working.alpha
+	// Begin building north facing special icon and relative layers
+	var/image/north_upper = image(tailoverlays)
+	north_upper.dir = NORTH
+	north_upper.layer = (socksuit ? socksuit.layer + 0.01 : TAUR_LAYERING + 0.1)
 
-	var/mutable_appearance/northtail = mutable_appearance(north_icon, north_state)
-	if(tailtype.do_colouration)
-		northtail.color = rgb(r_tail, g_tail, b_tail)
-	blendedtail.overlays += northtail
+	// Apply suit clipping mask specifically to North view if needed
+	if(tailtype.clip_mask_state)
+		var/icon/mask_icon_file = tailtype.clip_mask_icon ? tailtype.clip_mask_icon : tailtype.icon
+		var/icon/mask_icon = icon(mask_icon_file, tailtype.clip_mask_state, NORTH)
+		if(mask_icon)
+			var/icon/tail_ic = icon(north_upper.icon, north_upper.icon_state, NORTH)
+			tail_ic.MapColors(null, null, null, mask_icon)
+			north_upper.icon = tail_ic
 
-	// extra overlay(s) depending on the taur. like fox/kitsune, or tiger tail markings being on extra 2
-	if(tailtype.extra_overlay)
-		var/m1_state = (wagging && tailtype.ani_state) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
-		if(!m1_state)
-			m1_state = (wagging && tailtype.ani_state) ? tailtype.extra_overlay_w : tailtype.extra_overlay
-		var/mutable_appearance/m1 = mutable_appearance(north_icon, m1_state)
-		m1.color = rgb(r_tail2, g_tail2, b_tail2)
-		blendedtail.overlays += m1
+	// Extra sock markings for North facing when there isn't a sock there.
+	if(tailtype.extra_overlay || tailtype.extra_overlay2)
+		var/sock_mark_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon
 
-	if(tailtype.extra_overlay2)
-		var/m2_state = (wagging && tailtype.ani_state) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
-		if(!m2_state)
-			m2_state = (wagging && tailtype.ani_state) ? tailtype.extra_overlay2_w : tailtype.extra_overlay2
-		var/mutable_appearance/m2 = mutable_appearance(north_icon, m2_state)
-		m2.color = rgb(r_tail3, g_tail3, b_tail3)
-		blendedtail.overlays += m2
+		if(tailtype.extra_overlay && tailtype.tailsock_markings)
+			var/m1_state = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
+			var/mutable_appearance/m1 = mutable_appearance(sock_mark_icon, m1_state)
+			m1.layer = FLOAT_LAYER
+			m1.color = rgb(r_tail2, g_tail2, b_tail2)
+			north_upper.overlays += m1
 
-	if(tailsockoverlay)
-		blendedtail.overlays += tailsockoverlay
+		if(tailtype.extra_overlay2 && tailtype.tailsock_markings2)
+			var/m2_state = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings2) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
+			var/mutable_appearance/m2 = mutable_appearance(sock_mark_icon, m2_state)
+			m2.layer = FLOAT_LAYER
+			m2.color = rgb(r_tail3, g_tail3, b_tail3)
+			north_upper.overlays += m2
 
-	// offsets with some byond required resets
+	// lay the sock over everything, if it exists
+	if(sock_icon && sock_state)
+		var/mutable_appearance/north_sock = mutable_appearance(sock_icon, sock_state)
+		if(socksuit.tailsock_color)
+			north_sock.color = socksuit.tailsock_color
+		north_sock.alpha = socksuit.alpha
+		north_sock.pixel_x = socksuit.pixel_x
+		north_sock.pixel_y = socksuit.pixel_y
+		// setting layer to FLOAT_LAYER + offset ensures layering order, since the overlays FLOAT over the main icon
+		north_sock.layer = FLOAT_LAYER + 0.1
+		north_upper.overlays += north_sock
+
+	// Position Offsets
 	var/suit_off_x = (socksuit && !socksuit.icon_override) ? socksuit.pixel_x : 0
 	var/suit_off_y = (socksuit && !socksuit.icon_override) ? socksuit.pixel_y : 0
 
-	blendedtail.pixel_x = tailtype.offset_x + suit_off_x
-	blendedtail.pixel_y = tailtype.offset_y + suit_off_y
+	lower_tail.pixel_x = (tailtype.offset_x || 0) + suit_off_x
+	lower_tail.pixel_y = (tailtype.offset_y || 0) + suit_off_y
+	north_upper.pixel_x = (tailtype.offset_x || 0) + suit_off_x
+	north_upper.pixel_y = (tailtype.offset_y || 0) + suit_off_y
 
 	if(apply_to_mob)
-		overlays_standing[TAIL_UPPER_LAYER_HIGH] = blendedtail
-		// This should be high enough to draw over everything.
-		apply_layer(TAIL_UPPER_LAYER_HIGH)
-		remove_layer(TAIL_LOWER_LAYER)
-		remove_layer(TAIL_UPPER_LAYER)
+		// Normal bahind mob layer tails
+		overlays_standing[TAIL_LOWER_LAYER] = lower_tail
+		apply_layer(TAIL_LOWER_LAYER)
 
-	// return our taur butt, even if we've North'd we still need it for the update_tail_showing() result anyway.
-	// We're also making sure remote scene stuff gets updated!
-	return blendedtail
+		// North special, with regular body slid under the suit
+		overlays_standing[TAIL_UPPER_LAYER_HIGH] = north_upper
+		apply_layer(TAIL_UPPER_LAYER_HIGH)
+
+	return (dir == NORTH) ? north_upper : lower_tail
 
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src) || !tail_style)
