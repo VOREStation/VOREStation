@@ -1186,7 +1186,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/obj/item/clothing/suit/socksuit = wear_suit
 	var/datum/sprite_accessory/tail/tailtype = tail_style
 
-	//Simplify our offset maths
+	// Simplify our offset maths
 	var/list/offsets = get_tail_offsets(socksuit, tailtype)
 	var/total_off_x = offsets[1]
 	var/total_off_y = offsets[2]
@@ -1196,10 +1196,18 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!target_layer)
 		target_layer = TAIL_LOWER_LAYER
 
+	var/image/tail_img = image(tailoverlays)
+	tail_img.layer = TAIL_LOWER_LAYER
+	tail_img.pixel_x = total_off_x
+	tail_img.pixel_y = total_off_y
+
 	// Get our tailsock ready
+	var/has_sock = FALSE
 	var/icon/sock_icon = null
 	var/sock_state = null
+
 	if(socksuit && socksuit.requires_tailsock && socksuit.tailsock_toggle && tailtype)
+		has_sock = TRUE
 		sock_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : socksuit.icon
 
 		if(wagging && tailtype.tailsock_wagicon)
@@ -1209,101 +1217,82 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		else if(socksuit.item_state)
 			sock_state = socksuit.item_state
 
-	var/image/tail_img = image(tailoverlays)
-	//use our get_tail_layer info to associate snowflake layering
-	if(target_layer == TAIL_UPPER_LAYER || target_layer == TAIL_UPPER_LAYER_HIGH)
-		tail_img.layer = (socksuit ? socksuit.layer + 0.1 : TAUR_LAYERING + 0.1)
-	else
-		tail_img.layer = TAIL_LOWER_LAYER
-
 	//whack on our lower layer directional tailsock, if needed
-	if(sock_icon && sock_state)
-		var/mutable_appearance/lower_sock = mutable_appearance(sock_icon, sock_state)
+	if(has_sock && sock_icon && sock_state)
+		var/mutable_appearance/sock_overlay = mutable_appearance(sock_icon, sock_state)
 		if(socksuit.tailsock_color)
-			lower_sock.color = socksuit.tailsock_color
-		lower_sock.alpha = socksuit.alpha
-		lower_sock.pixel_x = socksuit.pixel_x
-		lower_sock.pixel_y = socksuit.pixel_y
-		lower_sock.layer = FLOAT_LAYER
-		tail_img.overlays += lower_sock
+			sock_overlay.color = socksuit.tailsock_color
+		sock_overlay.alpha = socksuit.alpha
+		sock_overlay.pixel_x = socksuit.pixel_x
+		sock_overlay.pixel_y = socksuit.pixel_y
+		sock_overlay.layer = FLOAT_LAYER + 0.1
+		tail_img.overlays += sock_overlay
 
-	// non taurs take your image and get out
-	if(!tailtype || !istaurtail(tailtype))
-		if(apply_to_mob)
-			remove_layer(TAIL_UPPER_LAYER_HIGH)
-			overlays_standing[TAIL_LOWER_LAYER] = tail_img
-			apply_layer(TAIL_LOWER_LAYER)
-		return tail_img
+	// lettuce begins north tailsock generation
+	var/icon/sock_mark_icon = tailtype ? (tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon) : null
+	//check if we need to sock that butt
+	if(has_sock && sock_icon && sock_state)
+		var/mutable_appearance/north_overlay = mutable_appearance(sock_icon, sock_state)
+		north_overlay.dir = NORTH
+		north_overlay.layer = (socksuit ? socksuit.layer + 0.1 : ABOVE_TAUR_SUIT)
+		north_overlay.pixel_x = total_off_x
+		north_overlay.pixel_y = total_off_y
+		north_overlay.alpha = socksuit.alpha
+		if(socksuit.tailsock_color)
+			north_overlay.color = socksuit.tailsock_color
+		tail_img.overlays += north_overlay
 
-	// non taur tails get what they get
-	if(!tailtype || !istaurtail(tailtype))
-		if(apply_to_mob)
-			remove_layer(TAIL_UPPER_LAYER_HIGH)
-		return lower_tail
-
-	// Begin building north facing special icon and relative layers
-	var/image/north_upper = image(tailoverlays)
-	north_upper.dir = NORTH
-	north_upper.layer = (socksuit ? socksuit.layer + 0.01 : TAUR_LAYERING + 0.1)
-
-	// Apply suit clipping mask specifically to North view if needed
-	if(tailtype.clip_mask_state)
-		var/icon/mask_icon_file = tailtype.clip_mask_icon ? tailtype.clip_mask_icon : tailtype.icon
-		var/icon/mask_icon = icon(mask_icon_file, tailtype.clip_mask_state, NORTH)
-		if(mask_icon)
-			var/icon/tail_ic = icon(north_upper.icon, north_upper.icon_state, NORTH)
-			tail_ic.MapColors(null, null, null, mask_icon)
-			north_upper.icon = tail_ic
-
-	// Extra sock markings for North facing when there isn't a sock there.
-	if(tailtype.extra_overlay || tailtype.extra_overlay2)
-		var/sock_mark_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon
-
+	//we don't need a sock, so let's make a fake tail to appear on top of our clothes because that looks nicer
+	else if(tailtype && sock_mark_icon)
 		if(tailtype.extra_overlay && tailtype.tailsock_markings)
 			var/m1_state = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
 			var/mutable_appearance/m1 = mutable_appearance(sock_mark_icon, m1_state)
-			m1.layer = FLOAT_LAYER
 			m1.color = rgb(r_tail2, g_tail2, b_tail2)
-			north_upper.overlays += m1
+			m1.layer = FLOAT_LAYER + 0.01
+			tail_img.overlays += m1
 
 		if(tailtype.extra_overlay2 && tailtype.tailsock_markings2)
 			var/m2_state = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings2) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
 			var/mutable_appearance/m2 = mutable_appearance(sock_mark_icon, m2_state)
-			m2.layer = FLOAT_LAYER
 			m2.color = rgb(r_tail3, g_tail3, b_tail3)
-			north_upper.overlays += m2
+			m2.layer = FLOAT_LAYER + 0.02
+			tail_img.overlays += m2
 
-	// lay the sock over everything, if it exists
+	//alright let's get our north icon started
 	if(sock_icon && sock_state)
-		var/mutable_appearance/north_sock = mutable_appearance(sock_icon, sock_state)
-		if(socksuit.tailsock_color)
-			north_sock.color = socksuit.tailsock_color
-		north_sock.alpha = socksuit.alpha
-		north_sock.pixel_x = socksuit.pixel_x
-		north_sock.pixel_y = socksuit.pixel_y
-		// setting layer to FLOAT_LAYER + offset ensures layering order, since the overlays FLOAT over the main icon
-		north_sock.layer = FLOAT_LAYER + 0.1
-		north_upper.overlays += north_sock
+		var/mutable_appearance/north_overlay = mutable_appearance(sock_mark_icon, tailtype.icon_state)
+		north_overlay.dir = NORTH
+		north_overlay.layer = (socksuit ? socksuit.layer + 0.1 : ABOVE_TAUR_SUIT)
+		north_overlay.pixel_x = total_off_x
+		north_overlay.pixel_y = total_off_y
 
-	// Position Offsets
-	var/suit_off_x = (socksuit && !socksuit.icon_override) ? socksuit.pixel_x : 0
-	var/suit_off_y = (socksuit && !socksuit.icon_override) ? socksuit.pixel_y : 0
+		// Attach secondary markings if present
+		if(tailtype.extra_overlay && tailtype.tailsock_markings)
+			var/m1_nstate = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
+			var/mutable_appearance/m1_north = mutable_appearance(sock_mark_icon, m1_nstate)
+			m1_north.dir = NORTH
+			m1_north.color = rgb(r_tail2, g_tail2, b_tail2)
+			m1_north.layer = FLOAT_LAYER + 0.01
+			north_overlay.overlays += m1_north
 
-	lower_tail.pixel_x = (tailtype.offset_x || 0) + suit_off_x
-	lower_tail.pixel_y = (tailtype.offset_y || 0) + suit_off_y
-	north_upper.pixel_x = (tailtype.offset_x || 0) + suit_off_x
-	north_upper.pixel_y = (tailtype.offset_y || 0) + suit_off_y
+		if(tailtype.extra_overlay2 && tailtype.tailsock_markings2)
+			var/m2_nstate = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings2) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
+			var/mutable_appearance/m2_north = mutable_appearance(sock_mark_icon, m2_nstate)
+			m2_north.dir = NORTH
+			m2_north.color = rgb(r_tail3, g_tail3, b_tail3)
+			m2_north.layer = FLOAT_LAYER + 0.02
+			north_overlay.overlays += m2_north
 
+		tail_img.overlays += north_overlay
+
+	//voodoo protection of butt theft
 	if(apply_to_mob)
-		// Normal bahind mob layer tails
-		overlays_standing[TAIL_LOWER_LAYER] = lower_tail
+		for(var/tail_layer in TAIL_LAYER_CLEARING)
+			remove_layer(tail_layer)
+		overlays_standing[TAIL_LOWER_LAYER] = tail_img
 		apply_layer(TAIL_LOWER_LAYER)
 
-		// North special, with regular body slid under the suit
-		overlays_standing[TAIL_UPPER_LAYER_HIGH] = north_upper
-		apply_layer(TAIL_UPPER_LAYER_HIGH)
-
-	return (dir == NORTH) ? north_upper : lower_tail
+	return tail_img
 
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src) || !tail_style)
