@@ -1223,48 +1223,31 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		if(socksuit.tailsock_color)
 			sock_overlay.color = socksuit.tailsock_color
 		sock_overlay.alpha = socksuit.alpha
-		sock_overlay.pixel_x = socksuit.pixel_x
-		sock_overlay.pixel_y = socksuit.pixel_y
 		sock_overlay.layer = FLOAT_LAYER + 0.1
 		tail_img.overlays += sock_overlay
 
 	// lettuce begins north tailsock generation
 	var/icon/sock_mark_icon = tailtype ? (tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon) : null
+
 	//check if we need to sock that butt
 	if(has_sock && sock_icon && sock_state)
 		var/mutable_appearance/north_overlay = mutable_appearance(sock_icon, sock_state)
 		north_overlay.dir = NORTH
 		north_overlay.layer = (socksuit ? socksuit.layer + 0.1 : ABOVE_TAUR_SUIT)
-		north_overlay.pixel_x = total_off_x
-		north_overlay.pixel_y = total_off_y
+		north_overlay.plane = FLOAT_PLANE
 		north_overlay.alpha = socksuit.alpha
+
 		if(socksuit.tailsock_color)
 			north_overlay.color = socksuit.tailsock_color
+
 		tail_img.overlays += north_overlay
 
 	//we don't need a sock, so let's make a fake tail to appear on top of our clothes because that looks nicer
 	else if(tailtype && sock_mark_icon)
-		if(tailtype.extra_overlay && tailtype.tailsock_markings)
-			var/m1_state = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
-			var/mutable_appearance/m1 = mutable_appearance(sock_mark_icon, m1_state)
-			m1.color = rgb(r_tail2, g_tail2, b_tail2)
-			m1.layer = FLOAT_LAYER + 0.01
-			tail_img.overlays += m1
-
-		if(tailtype.extra_overlay2 && tailtype.tailsock_markings2)
-			var/m2_state = (wagging && tailtype.ani_state && tailtype.tailsock_wagmarkings2) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
-			var/mutable_appearance/m2 = mutable_appearance(sock_mark_icon, m2_state)
-			m2.color = rgb(r_tail3, g_tail3, b_tail3)
-			m2.layer = FLOAT_LAYER + 0.02
-			tail_img.overlays += m2
-
-	//alright let's get our north icon started
-	if(sock_icon && sock_state)
 		var/mutable_appearance/north_overlay = mutable_appearance(sock_mark_icon, tailtype.icon_state)
 		north_overlay.dir = NORTH
 		north_overlay.layer = (socksuit ? socksuit.layer + 0.1 : ABOVE_TAUR_SUIT)
-		north_overlay.pixel_x = total_off_x
-		north_overlay.pixel_y = total_off_y
+		north_overlay.plane = FLOAT_PLANE
 
 		// Attach secondary markings if present
 		if(tailtype.extra_overlay && tailtype.tailsock_markings)
