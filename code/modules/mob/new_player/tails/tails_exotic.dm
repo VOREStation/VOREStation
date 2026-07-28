@@ -13,13 +13,13 @@
 /datum/sprite_accessory/tail/nevreanwagdc
 	name = "nevrean wagtail, dual-color"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
-	icon_state = "wagtail"
+	icon_state = "nevreanwagtail"
 	extra_overlay = "wagtail_dc_tail"
 
 /datum/sprite_accessory/tail/nevreanwagdc_alt
 	name = "nevrean wagtail, marked, dual-color"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
-	icon_state = "wagtail2_dc"
+	icon_state = "nevreanwagtail2_dc"
 	extra_overlay = "wagtail2_dc_mark"
 
 /datum/sprite_accessory/tail/spade_color
@@ -95,12 +95,15 @@
 	name = "tailmaw, colorable"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
 	icon_state = "tailmaw"
+	tailsock_iconstate = "tailmaw_sock"
 
 /datum/sprite_accessory/tail/newtailmaw
 	name = "new tailmaw (vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
 	icon_state = "newtailmaw"
+	tailsock_iconstate = "tailmaw_sock"
 	ani_state = "newtailmaw_w"
+	tailsock_wagicon = "tailmaw_w_sock"
 
 /datum/sprite_accessory/tail/shadekin_short
 	name = "Shadekin Short Tail, colorable"

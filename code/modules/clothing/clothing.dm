@@ -1168,6 +1168,8 @@
 	var/icon/rolled_down_sleeves_icon = 'icons/inventory/uniform/mob_sleeves_rolled.dmi'
 
 	update_icon_define_digi = "icons/inventory/uniform/mob_digi.dmi"
+	/// hehe, soon.
+	var/taurized = FALSE
 
 /obj/item/clothing/under/attack_hand(mob/user)
 	if(LAZYLEN(accessories))
