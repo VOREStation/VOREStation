@@ -444,6 +444,7 @@
 	name = "WolfTG (Taur)" //It's Citadel, not TG. :V
 	icon_state = "wolftg"
 	suit_sprites = 'icons/inventory/suit/taursuits_husky.dmi'
+	clip_mask_state = "taur_clip_mask_husky"
 	do_colouration = FALSE	//this is already pre-colored.
 	tailsock_markings = "wolftg"
 	tailsock_wagmarkings = "wolftg_w"
@@ -451,6 +452,7 @@
 /datum/sprite_accessory/tail/taur/wolf/husky
 	name = "Husky (Taur)"
 	suit_sprites = 'icons/inventory/suit/taursuits_husky.dmi'
+	clip_mask_state = "taur_clip_mask_husky"
 	icon_state = "husky_s"
 	extra_overlay = "husky_markings"	//Only affects the black back / tail fluff sections, so it works for the fat one too
 	ani_state = "husky_w"
