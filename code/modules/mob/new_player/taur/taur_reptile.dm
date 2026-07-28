@@ -29,19 +29,19 @@
 
 /datum/sprite_accessory/tail/taur/drake/spotty
 	name = "Spotted Drake (Taur, Tricolor)"
-	extra_overlay = "spotteddrakemarkings"
-	extra_overlay_w = "spotteddrakemarkings"
-	extra_overlay2 = "spotteddrakemarkings_2"
-	extra_overlay2_w = "spotteddrakemarkings_2"
+	extra_overlay = "spotteddrake_markings"
+	extra_overlay_w = "spotteddrake_markings"
+	extra_overlay2 = "spotteddrake_markings_2"
+	extra_overlay2_w = "spotteddrake_markings_2"
 	loaf_offset = 6
 
 /datum/sprite_accessory/tail/taur/drake/fat/spotty
 	name = "Fat Spotted Drake (Taur, Tricolor)"
 	vore_tail_sprite_variant = "FatDrake"
-	extra_overlay = "fatspotteddrakemarkings"
-	extra_overlay_w = "fatspotteddrakemarkings"
-	extra_overlay2 = "fatspotteddrakemarkings_2"
-	extra_overlay2_w = "fatspotteddrakemarkings_2"
+	extra_overlay = "fatspotteddrake_markings"
+	extra_overlay_w = "fatspotteddrake_markings"
+	extra_overlay2 = "fatspotteddrake_markings_2"
+	extra_overlay2_w = "fatspotteddrake_markings_2"
 	fullness_icons = 2
 	loaf_offset = 6
 
@@ -187,10 +187,6 @@
 	suit_sprites = 'icons/inventory/suit/taursuits_naga_alt.dmi'
 	fullness_icons = 1
 	icon_sprite_tag = "altnaga"
-
-/datum/sprite_accessory/tail/taur/naga/alt/second
-	name = "Naga dual-color alt (Taur)"
-	extra_overlay = "naga_alt_markings"
 
 /datum/sprite_accessory/tail/taur/naga/alt/twocolor
 	name = "Naga alt style dual-color (Taur)"
