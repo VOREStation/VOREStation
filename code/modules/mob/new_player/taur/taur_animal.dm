@@ -464,7 +464,9 @@
 /datum/sprite_accessory/tail/taur/wolf/huskyfat
 	name = "Fat Husky (Taur)"
 	icon_state = "fathusky_s"
+	extra_overlay = "husky_markings"
 	ani_state = "fathusky_w"
+	extra_overlay_w = "husky_markings_w"
 	icon_sprite_tag = "fathusky"
 
 /datum/sprite_accessory/tail/taur/zorgoia
