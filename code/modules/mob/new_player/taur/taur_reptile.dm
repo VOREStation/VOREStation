@@ -73,8 +73,8 @@
 
 /datum/sprite_accessory/tail/taur/drake/extended/fat/spotty
 	name = "Fat Spotted Drake Extended (Taur)"
-	extra_overlay2 = "spottedextendedfatdrake_markings_2"
-	extra_overlay2_w = "spottedextendedfatdrake_markings_2"
+	extra_overlay2 = "spottedextendedfatdrake_markings"
+	extra_overlay2_w = "spottedextendedfatdrake_markings"
 
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"

@@ -104,6 +104,7 @@
 	name = "kururak tail"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
 	icon_state = "kururak"
+	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/snaketail_stripes
 	name = "snake tail with stripes, dual-color"

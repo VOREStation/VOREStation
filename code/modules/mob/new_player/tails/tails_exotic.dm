@@ -38,12 +38,14 @@
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
 	icon_state = "snag"
 	do_colouration = FALSE
+	tailsock_iconstate = "snag_sock"
 
 /datum/sprite_accessory/tail/xenotail
 	name = "xenomorph tail 2"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
 	icon_state = "xenotail"
 	do_colouration = FALSE
+	tailsock_iconstate = "xenotail_sock"
 
 /datum/sprite_accessory/tail/xenotail_fullcolour
 	name = "xenomorph tail (fully colourable)"

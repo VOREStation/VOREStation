@@ -65,6 +65,7 @@
 	extra_overlay = "ant_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
 	icon_sprite_tag = "ant"
+	do_colouration = TRUE
 
 /datum/sprite_accessory/tail/taur/giantspider/wasp	//same as above, but for wasps
 	name = "Wasp (dual color)"
@@ -72,6 +73,7 @@
 	extra_overlay = "wasp_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
 	icon_sprite_tag = "wasp"
+	do_colouration = TRUE
 
 /datum/sprite_accessory/tail/taur/mermaid
 	name = "Mermaid (Taur)"
