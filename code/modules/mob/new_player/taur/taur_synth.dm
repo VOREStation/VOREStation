@@ -100,8 +100,8 @@
 /datum/sprite_accessory/tail/taur/synthetic/syntheticagi_fat
 	name = "Synthetic chassis - agile (Taur, Fat)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
-	icon_state = "synthtaur1_s"
-	icon_sprite_tag = "synthtaur1"
+	icon_state = "synthtaur1_fat_s"
+	icon_sprite_tag = "synthtaur1_fat"
 	extra_overlay = "synthtaur1_fat_markings"
 	extra_overlay2 = "synthtaur1_glow"
 	clip_mask_state = "taur_clip_mask_synthtaur1"
@@ -113,7 +113,7 @@
 	icon_sprite_tag = "synthtaur1"
 	extra_overlay = "synthtaur1_markings"
 	extra_overlay2 = "synthtaur1_glow"
-	ani_state = "synthtaur1_s"
+	ani_state = "synthtaur1_fat_s"
 	extra_overlay_w = "synthtaur1_fat_markings"
 	extra_overlay2_w = "synthtaur1_glow"
 	clip_mask_state = "taur_clip_mask_synthtaur1"

@@ -22,27 +22,27 @@
 
 /datum/sprite_accessory/tail/taur/drake/drake_vwag
 	name = "Drake (Taur, Fat vwag)"
-	icon_state = "drake_s"
-	extra_overlay = "drake_markings"
 	ani_state = "fatdrake_s"
 	extra_overlay_w = "fatdrake_markings"
 
 /datum/sprite_accessory/tail/taur/drake/spotty
 	name = "Spotted Drake (Taur, Tricolor)"
-	extra_overlay = "spotteddrake_markings"
 	extra_overlay_w = "spotteddrake_markings"
-	extra_overlay2 = "spotteddrake_markings_2"
-	extra_overlay2_w = "spotteddrake_markings_2"
+	extra_overlay2_w = "spotteddrake_markings"
 	loaf_offset = 6
 
 /datum/sprite_accessory/tail/taur/drake/fat/spotty
 	name = "Fat Spotted Drake (Taur, Tricolor)"
 	vore_tail_sprite_variant = "FatDrake"
-	extra_overlay = "fatspotteddrake_markings"
-	extra_overlay_w = "fatspotteddrake_markings"
-	extra_overlay2 = "fatspotteddrake_markings_2"
-	extra_overlay2_w = "fatspotteddrake_markings_2"
+	extra_overlay2 = "fatspotteddrake_markings"
+	extra_overlay2_w = "fatspotteddrake_markings"
 	fullness_icons = 2
+	loaf_offset = 6
+
+/datum/sprite_accessory/tail/taur/drake/drake_vwag/spotty
+	name = "Spotted Drake (Taur, Tricolor, Fat vwag)"
+	extra_overlay2 = "spotteddrake_markings"
+	extra_overlay2_w = "fatspotteddrake_markings"
 	loaf_offset = 6
 
 /datum/sprite_accessory/tail/taur/drake/extended
@@ -59,24 +59,20 @@
 
 /datum/sprite_accessory/tail/taur/drake/extended/spotted
 	name = "Spotted Drake Extended (Taur)"
-	extra_overlay = "spottedextendeddrake_markings"
-	extra_overlay_w = "spottedextendeddrake_markings"
-	extra_overlay2 = "spottedextendeddrake_markings_2"
-	extra_overlay2_w = "spottedextendeddrake_markings_2"
+	extra_overlay2 = "spottedextendeddrake_markings"
+	extra_overlay2_w = "spottedextendeddrake_markings"
 
 /datum/sprite_accessory/tail/taur/drake/extended/fat
 	name = "Fat Drake Extended (Taur)"
 	icon_state = "extendedfatdrake"
 	extra_overlay = "extendedfatdrake_markings"
-	extra_overlay2 = "extendedfatdrake_markings2"
+	extra_overlay2 = "extendedfatdrake_markings_2"
 	icon_sprite_tag = "extendedfatdrake"
 	vore_tail_sprite_variant = "FatDrake"
 	fullness_icons = 2
 
 /datum/sprite_accessory/tail/taur/drake/extended/fat/spotty
 	name = "Fat Spotted Drake Extended (Taur)"
-	extra_overlay = "spottedextendedfatdrake_markings"
-	extra_overlay_w = "spottedextendedfatdrake_markings"
 	extra_overlay2 = "spottedextendedfatdrake_markings_2"
 	extra_overlay2_w = "spottedextendedfatdrake_markings_2"
 
@@ -92,6 +88,11 @@
 	vore_tail_sprite_variant = "Lizard"
 	fullness_icons = 1
 
+/datum/sprite_accessory/tail/taur/lizard/lizard_wag
+	name = "Lizard (Taur, Fat vwag)"
+	icon_state = "lizard_s"
+	ani_state = "fatlizard_s"
+
 /datum/sprite_accessory/tail/taur/lizard/twocolor
 	name = "Lizard dual-color (Taur)"
 	extra_overlay = "lizard_markings"
@@ -105,15 +106,15 @@
 
 /datum/sprite_accessory/tail/taur/lizard/spotty
 	name = "Spotted Lizard (Taur, Tricolor)"
-	extra_overlay = "spottedlizard_markings"
-	extra_overlay_w = "spottedlizard_markings"
-	extra_overlay2 = "spottedlizard_markings_2"
-	extra_overlay2_w = "spottedlizard_markings_2"
+	extra_overlay2 = "spottedlizard_markings"
+	extra_overlay2_w = "spottedlizard_markings"
 
-/datum/sprite_accessory/tail/taur/lizard/lizard_wag
-	name = "Lizard (Taur, Fat vwag)"
-	icon_state = "lizard_s"
+/datum/sprite_accessory/tail/taur/lizard/spotty_wag
+	name = "Spotted Lizard (Taur, Tricolor, Fat vwag)"
 	ani_state = "fatlizard_s"
+	extra_overlay_w = "fatlizard_markings"
+	extra_overlay2 = "fatspottedlizard_markings"
+	extra_overlay2_w = "fatspottedlizard_markings"
 
 /datum/sprite_accessory/tail/taur/lizard/fatlizard
 	name = "Fat Lizard (Taur)"
@@ -127,10 +128,10 @@
 
 /datum/sprite_accessory/tail/taur/lizard/fatlizard/spotty
 	name = "Fat Spotted Lizard (Taur, Tricolor)"
-	extra_overlay = "fatspottedlizard_markings"
-	extra_overlay_w = "fatspottedlizard_markings"
-	extra_overlay2 = "fatspottedlizard_markings_2"
-	extra_overlay2_w = "fatspottedlizard_markings_2"
+	extra_overlay = "fatlizard_markings"
+	extra_overlay_w = "fatlizard_markings"
+	extra_overlay2 = "fatspottedlizard_markings"
+	extra_overlay2_w = "fatspottedlizard_markings"
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"

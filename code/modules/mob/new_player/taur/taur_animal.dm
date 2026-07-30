@@ -9,7 +9,7 @@
 	ani_state = "bnytr-f"
 	extra_overlay_w = "bnytr-m1"
 	extra_overlay2_w = "bnytr-f-m2"
-	tailsock_wagicon = "fbnytr-f_sock"
+	tailsock_wagicon = "bnytr-f_sock"
 	can_loaf = TRUE
 	icon_loaf = 'icons/rogue-star/loafs_64x32.dmi'
 	loaf_offset = 4
@@ -172,15 +172,13 @@
 	extra_overlay = "feline2_markings"
 	extra_overlay2 = "feline2_markings_2"
 	ani_state = "fatfeline_s"
-	extra_overlay = "fatfeline2_markings"
-	extra_overlay2 = "fatfeline2_markings_2"
-	tailsock_wagicon = "fatfeline_sock"
+	extra_overlay_w = "fatfeline2_markings"
+	extra_overlay2_w = "fatfeline2_markings_2"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/tiger
 	name = "Tiger (Taur)"
 	icon_sprite_tag = "feline"
-	extra_overlay = "feline_markings"
 	extra_overlay2 = "tiger_markings"
 	extra_overlay2_w = "tiger_markings_w"
 	can_loaf = TRUE
@@ -188,8 +186,6 @@
 	vore_tail_sprite_variant = "Feline"
 	belly_variant_when_loaf = TRUE
 	fullness_icons = 1
-	tailsock_markings2 = "tiger_markings"
-	tailsock_wagmarkings2 = "tiger_markings_w"
 
 /datum/sprite_accessory/tail/taur/feline/tiger/fat
 	name = "Fat Tiger (Taur)"
@@ -326,10 +322,6 @@
 	vore_tail_sprite_variant = "N"
 	fullness_icons = 3
 	struggle_anim = TRUE
-	tailsock_markings = "sergal_markings"
-	tailsock_markings2 = "none"
-	tailsock_wagmarkings = "sergal_markings_w"
-	tailsock_wagmarkings2 = "none"
 
 /datum/sprite_accessory/tail/taur/sergal/wheaties/fat
 	name = "Fat Sergal (Taur)"
@@ -347,10 +339,6 @@
 	vore_tail_sprite_variant = "N"
 	fullness_icons = 3
 	struggle_anim = TRUE
-	tailsock_markings = "sergal_markings"
-	tailsock_markings2 = "none"
-	tailsock_wagmarkings = "sergal_markings_w"
-	tailsock_wagmarkings2 = "none"
 
 /datum/sprite_accessory/tail/taur/sergal/wheaties_2c/fat
 	name = "Fat Sergal (Taur, dual-color)"
@@ -374,10 +362,6 @@
 	vore_tail_sprite_variant = "Skunk" //Sadly there appears to be no sprites... For now!
 	belly_variant_when_loaf = TRUE
 	fullness_icons = 1
-	tailsock_markings = "skunk_markings"
-	tailsock_markings2 = "none"
-	tailsock_wagmarkings = "skunk_markings_w"
-	tailsock_wagmarkings2 = "none"
 
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf (Taur)"
@@ -392,8 +376,6 @@
 	vore_tail_sprite_variant = "N"
 	fullness_icons = 3
 	struggle_anim = TRUE
-	tailsock_markings = "wolf_markings"
-	tailsock_wagmarkings = "wolf_markings_w"
 
 /datum/sprite_accessory/tail/taur/wolf/fat
 	name = "Fat Wolf (Taur)"
@@ -404,31 +386,11 @@
 
 /datum/sprite_accessory/tail/taur/wolf/fat_wag
 	name = "Wolf (Taur, Fat vwag)"
-	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
-	icon_state = "wolf_s"
 	ani_state = "fatwolf_s"
 	tailsock_wagicon = "fatwolf_s"
 
-/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
-	name = "Fat Wolf 3-color (Taur)"
-	icon_state = "fatwolf_s"
-	extra_overlay = "fatwolf2_markings"
-	extra_overlay2 = "fatwolf2_markings_2"
-	loaf_offset = 3
-	icon_sprite_tag = "fatwolf"
-	tailsock_markings2 = "none"
-	tailsock_wagmarkings2 = "none"
-
-/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c/fatwolfalt
-	name = "Fat Wolf 3-color-alt (Taur)"
-	icon_state = "fatwolf_s"
-	extra_overlay = "fatwolfalt_markings1"
-	extra_overlay2 = "fatwolfalt_markings2"
-	icon_sprite_tag = "fatwolf"
-
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf 3-color (Taur)"
-	icon_state = "wolf_s"
 	extra_overlay = "wolf2_markings"
 	extra_overlay2 = "wolf2_markings_2"
 
@@ -439,6 +401,19 @@
 	ani_state = "fatwolf_s"
 	extra_overlay_w = "fatwolf2_markings"
 	extra_overlay2_w = "fatwolf2_markings_2"
+
+/datum/sprite_accessory/tail/taur/wolf/fat/wolf_2c
+	name = "Fat Wolf 3-color (Taur)"
+	extra_overlay = "fatwolf2_markings"
+	extra_overlay2 = "fatwolf2_markings_2"
+	loaf_offset = 3
+	icon_sprite_tag = "fatwolf"
+
+/datum/sprite_accessory/tail/taur/wolf/fat/altwolf_2c
+	name = "Fat Wolf 3-color-alt (Taur)"
+	extra_overlay = "fatwolfalt_markings1"
+	extra_overlay2 = "fatwolfalt_markings2"
+	icon_sprite_tag = "fatwolf"
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_3
 	name = "WolfTG (Taur)" //It's Citadel, not TG. :V
@@ -458,8 +433,6 @@
 	ani_state = "husky_w"
 	extra_overlay_w = "husky_markings_w"
 	icon_sprite_tag = "husky"
-	tailsock_markings = "husky_markings"
-	tailsock_wagmarkings = "husky_markings_w"
 
 /datum/sprite_accessory/tail/taur/wolf/huskyfat
 	name = "Fat Husky (Taur)"
@@ -479,17 +452,24 @@
 
 /datum/sprite_accessory/tail/taur/zorgoia/fat
 	name = "Zorgoia (Fat Taur)"
-	extra_overlay = "zorgoia_fat2"
+	icon_state = "zorgoia_fat"
+	extra_overlay = "zorgoia_fat_fluff"
+	icon_sprite_tag = "zorgoia_fat"
 
 /datum/sprite_accessory/tail/taur/zorgoia_new
 	name = "Zorgoia (Taur) (New)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "zorgoia_new"
-	icon_sprite_tag = "zorgoian"
+	icon_sprite_tag = "zorgoia_new"
 	extra_overlay = "zorgoia_new_fluff"
 	suit_sprites = 'icons/inventory/suit/taursuits_zorgoia.dmi'
+
+/datum/sprite_accessory/tail/taur/zorgoia_new/fatvwag
+	name = "Zorgoia (Taur, vwag) (New)"
+	ani_state = "zorgoia_new_fat"
+	extra_overlay_w = "zorgoia_new_fat_fluff"
 
 /datum/sprite_accessory/tail/taur/zorgoia_new/fat
 	name = "Zorgoia (Fat Taur) (New)"
 	icon_state = "zorgoia_new_fat"
-	extra_overlay = "zorgoia_new_fat_overlay"
+	extra_overlay = "zorgoia_new_fat_fluff"

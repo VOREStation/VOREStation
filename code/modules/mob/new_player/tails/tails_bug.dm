@@ -3,6 +3,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_bug.dmi'
 	icon_state = "beethorax"
 	do_colouration = FALSE
+	tailsock_iconstate = "beethorax_sock"
 
 /datum/sprite_accessory/tail/buggo
 	name = "Bug abdomen, colorable"
