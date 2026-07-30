@@ -101,11 +101,12 @@
 		. += "A cartridge is [cart ? "installed" : "missing"]."
 	if(cart && (!(stat & (NOPOWER|BROKEN))))
 		var/obj/item/reagent_containers/synthdispcart/C = cart
-		if(istype(C) && C.reagents && C.volume)
-			var/percent = round((C.reagents.total_volume / C.volume) * 100)
-			. += "The installed cartridge has [percent]% remaining."
-		else if(istype(C))
-			. += "The installed cartridge appears to be broken or empty."
+		if(istype(C))
+			if(C.reagents && C.volume)
+				var/percent = round((C.reagents.total_volume / C.volume) * 100)
+				. += "The installed cartridge has [percent]% remaining."
+			else
+				. += "The installed cartridge appears to be broken or empty."
 
 //offsets to make the machine squish to a wall. They're all south facing so it looks weird but every other direction is AWFUL
 /obj/machinery/synthesizer/proc/offset_synth()
