@@ -1007,7 +1007,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	else
 		lower_layer_dirs = tail_style.lower_layer_dirs.Copy()
 
-	if(dir in lower_layer_dirs)
+	if(istaurtail(tail_style) || (dir in lower_layer_dirs))
 		return TAIL_LOWER_LAYER
 	else
 		return TAIL_UPPER_LAYER
@@ -1022,7 +1022,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/tail_layer = get_tail_layer()
 	// Use default, let clip mask handle everything
-	if(tail_style && tail_style.clip_mask_state)
+	if(tail_style && tail_style.clip_mask_state && !istaurtail(tail_style))
 		tail_layer = TAIL_UPPER_LAYER
 	if(tail_layer == TAIL_UPPER_LAYER)
 		tail_layer = tail_layering
@@ -1031,8 +1031,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/image/tail_image = get_tail_image()
 	if(tail_image)
-		tail_image.layer = BODY_LAYER + tail_layer
-
 		// Process tailsock & North-facing layer overrides
 		// apply_tailsock_layer is our heavy lifter for tail applying!
 		tail_image = apply_tailsock_layer(tail_image, tail_layer, apply_to_mob = TRUE)
@@ -1191,7 +1189,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!target_layer)
 		target_layer = get_tail_layer()
 		if(!target_layer)
-			target_layer = TAIL_LOWER_LAYER
+			target_layer = tail_layering
 
 	var/image/tail_img = image(tailoverlays)
 	tail_img.layer = target_layer
@@ -1214,58 +1212,71 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		else if(socksuit.item_state)
 			sock_state = socksuit.item_state
 
+	var/image/upper_sock_img = null
+
 	//whack on our lower layer directional tailsock, if needed
 	if(has_sock && sock_icon && sock_state)
-		var/mutable_appearance/sock_overlay = mutable_appearance(sock_icon, sock_state)
-		if(socksuit.tailsock_color)
-			sock_overlay.color = socksuit.tailsock_color
-		sock_overlay.alpha = socksuit.alpha
-		sock_overlay.layer = FLOAT_LAYER + 0.1
-		tail_img.overlays += sock_overlay
+		if(target_layer == TAIL_LOWER_LAYER)
+			upper_sock_img = image(icon = sock_icon, icon_state = sock_state)
+			upper_sock_img.alpha = socksuit.alpha
+			if(socksuit.tailsock_color)
+				upper_sock_img.color = socksuit.tailsock_color
+			upper_sock_img.layer = ABOVE_TAUR_SUIT
+			upper_sock_img.pixel_x = total_off_x
+			upper_sock_img.pixel_y = total_off_y
+		else
+			var/mutable_appearance/sock_overlay = mutable_appearance(sock_icon, sock_state)
+			if(socksuit.tailsock_color)
+				sock_overlay.color = socksuit.tailsock_color
+			//allow sneaky suits to have sneaky suit socks too
+			sock_overlay.alpha = socksuit.alpha
+			sock_overlay.layer = FLOAT_LAYER + 0.1
+			tail_img.overlays += sock_overlay
 
-	var/icon/sock_mark_icon = tailtype ? (tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon) : null
+	var/icon/sock_mark_icon = tailtype ? tailtype.tailsock_icon : null
 	var/image/north_img = null
 
-	// lettuce begins north tailsock generation
-	if(dir == NORTH)
-		//check if we need to sock that butt
-		if(has_sock && sock_icon && sock_state)
-			north_img = image(icon = sock_icon, icon_state = sock_state)
-			north_img.alpha = socksuit.alpha
+	// lettuce begin north tailsock generation
+	//if(dir == NORTH)
+	//check if we need to sock that butt
+	if(has_sock && sock_icon && sock_state)
+		north_img = image(icon = sock_icon, icon_state = sock_state)
+		north_img.alpha = socksuit.alpha
 
-			if(socksuit.tailsock_color)
-				north_img.color = socksuit.tailsock_color
+		if(socksuit.tailsock_color)
+			north_img.color = socksuit.tailsock_color
 
-		//we don't need a sock, so let's make a fake tail to appear on top of our clothes because that looks nicer
-		else if(tailtype && sock_mark_icon)
-			// Generate the snipped base tail using the dedicated tailsock icon states instead of the full body state
-			var/n_state = (wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
-			north_img = image(icon = sock_mark_icon, icon_state = n_state)
+	//we don't need a sock, so let's make a fake tail to appear on top of our clothes because that looks nicer
+	//We basically have every sock given their markings at this point. If your tail shows, it has its markings too.
+	else if(tailtype && sock_mark_icon)
+		// Generate the snipped base tail using the dedicated tailsock icon states instead of the full body state
+		var/n_state = (wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
+		north_img = image(icon = sock_mark_icon, icon_state = n_state)
+		var/mutable_appearance/base_north = mutable_appearance(sock_mark_icon, n_state)
+		if(tailtype.do_colouration)
+			base_north.color = rgb(r_tail, g_tail, b_tail)
+		north_img.overlays += base_north
 
-			if(tailtype.do_colouration)
-				north_img.color = rgb(r_tail, g_tail, b_tail)
+		// Attach secondary markings if present
+		if(tailtype.tailsock_markings)
+			var/m1_nstate = (wagging) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
+			var/mutable_appearance/m1_north = mutable_appearance(sock_mark_icon, m1_nstate)
+			m1_north.color = rgb(r_tail2, g_tail2, b_tail2)
+			m1_north.layer = FLOAT_LAYER + 0.01
+			north_img.overlays += m1_north
 
-			// Attach secondary markings if present
-			if(tailtype.extra_overlay && tailtype.tailsock_markings != "none")
-				var/m1_nstate = (wagging && tailtype.tailsock_wagmarkings != "none") ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
-				var/mutable_appearance/m1_north = mutable_appearance(sock_mark_icon, m1_nstate)
-				m1_north.color = rgb(r_tail2, g_tail2, b_tail2)
-				m1_north.layer = FLOAT_LAYER + 0.01
-				north_img.overlays += m1_north
+		if(tailtype.tailsock_markings2)
+			var/m2_nstate = (wagging) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
+			var/mutable_appearance/m2_north = mutable_appearance(sock_mark_icon, m2_nstate)
+			m2_north.color = rgb(r_tail3, g_tail3, b_tail3)
+			m2_north.layer = FLOAT_LAYER + 0.02
+			north_img.overlays += m2_north
 
-			if(tailtype.extra_overlay2 && tailtype.tailsock_markings2 != "none")
-				var/m2_nstate = (wagging && tailtype.tailsock_wagmarkings2 != "none") ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
-				var/mutable_appearance/m2_north = mutable_appearance(sock_mark_icon, m2_nstate)
-				m2_north.color = rgb(r_tail3, g_tail3, b_tail3)
-				m2_north.layer = FLOAT_LAYER + 0.02
-				north_img.overlays += m2_north
-
-		//alright let's get our north icon ready for applying
-		if(north_img)
-			north_img.layer = (socksuit ? socksuit.layer + 0.1 : ABOVE_TAUR_SUIT)
-			north_img.pixel_x = total_off_x
-			north_img.pixel_y = total_off_y
-			north_img.dir = NORTH
+	//alright let's get our north icon ready for applying
+	if(north_img)
+		north_img.layer = ABOVE_TAUR_SUIT
+		north_img.pixel_x = total_off_x
+		north_img.pixel_y = total_off_y
 
 	//voodoo protection of butt theft
 	if(apply_to_mob)
@@ -1273,7 +1284,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		overlays_standing[target_layer] = tail_img
 		apply_layer(target_layer)
 
-		// apply our north facing to its correct layer
+		if(upper_sock_img)
+			overlays_standing[TAIL_UPPER_LAYER_HIGH] = upper_sock_img
+			apply_layer(TAIL_UPPER_LAYER_HIGH)
+
+		// apply our taur sock to its correct layer, voodoo is south only so should be fine... right?? Right byond?????
 		if(north_img)
 			overlays_standing[TAIL_UPPER_LAYER_HIGH] = north_img
 			apply_layer(TAIL_UPPER_LAYER_HIGH)
