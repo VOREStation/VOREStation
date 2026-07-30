@@ -636,17 +636,13 @@
 			update_icon()
 		else
 			to_chat(user, span_notice("You decide not to [anchored ? "un" : ""]fasten \the [src]."))
-
+	//can't ever have too much runtime hardening
 	if(default_deconstruction_crowbar(user, W))
+		if(cart)
+			cart.forceMove(drop_location())
+			cart = null
 		return
 
-	return ..()
-
-//can't ever have too much runtime hardening
-/obj/machinery/synthesizer/default_deconstruction_crowbar(obj/item/crowbar/C)
-	if(cart)
-		cart.forceMove(drop_location())
-		cart = null
 	return ..()
 
 /obj/machinery/synthesizer/attack_hand(mob/user as mob)
