@@ -1,10 +1,10 @@
 /*
 ////////////////////////////
 /  =--------------------=  /
-/  == Tail Definitions ==  /
-/  =--------------------=  /
+/  =OLD Tail Definitions=  /
+/  =-FOR REFERENCE ONLY-=  /
 ////////////////////////////
-*/
+
 /datum/sprite_accessory/tail
 	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
@@ -1984,4 +1984,4 @@
 	do_colouration = TRUE
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "chu_markings"
-	extra_overlay2 = "chu_tipmarkings"
+	extra_overlay2 = "chu_tipmarkings"*/

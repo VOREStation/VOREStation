@@ -1,6 +1,6 @@
 /datum/sprite_accessory/tail/taur/bunny
 	name = "Bunny (Taur, Fat vwag)"
-	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
+	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "bnytr"
 	suit_sprites = 'icons/inventory/suit/taursuits_bnytr.dmi'
 	icon_sprite_tag = "bnytr"
@@ -10,6 +10,8 @@
 	extra_overlay_w = "bnytr-m1"
 	extra_overlay2_w = "bnytr-f-m2"
 	tailsock_wagicon = "bnytr-f_sock"
+	tailsock_wagmarkings = "bnytr-m1"
+	tailsock_wagmarkings2 = "bnytr-f-m2"
 	can_loaf = TRUE
 	icon_loaf = 'icons/rogue-star/loafs_64x32.dmi'
 	loaf_offset = 4
@@ -423,6 +425,7 @@
 	do_colouration = FALSE	//this is already pre-colored.
 	tailsock_markings = "wolftg"
 	tailsock_wagmarkings = "wolftg_w"
+	icon_sprite_tag = "wolftg"
 
 /datum/sprite_accessory/tail/taur/wolf/husky
 	name = "Husky (Taur)"
