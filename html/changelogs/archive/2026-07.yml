@@ -144,3 +144,9 @@
   - image: Readds kaiju tail
   Will:
   - bugfix: Gripper can insert powercells into borgs again
+2026-07-30:
+  Diana:
+  - bugfix: Crossbows can now pin targets to walls now.
+  - bugfix: Sharp objects shot out of a pneumatic cannon at enough force can pin targets
+      to walls now, too.
+  - rscadd: Adds bluespace collar to character loadout
