@@ -8,7 +8,6 @@
 /datum/sprite_accessory/tail
 	name = DEVELOPER_WARNING_NAME
 	var/desc = DEVELOPER_WARNING_NAME
-//	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
 	do_colouration = TRUE //Set to FALSE to disable coloration using the tail color.
 	/// Only appliciable if do_coloration = TRUE, ICON_MULTIPLY is a white bias, ICON_ADD is a black bias for colorations of sprites.
 	/// Virtually all sprites now are white-biased greyscale. The ones that aren't are pre-colored, typically donator snowflake.
