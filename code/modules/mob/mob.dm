@@ -1189,6 +1189,24 @@
 		pixel_x++
 		is_shifted = TRUE
 
+/mob/verb/tiltcounterclock()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(how_tilted >= -maximum_tilt)
+		transform = turn(transform, -5)
+		how_tilted = how_tilted - 5
+		is_shifted = TRUE
+
+/mob/verb/tiltclock()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(how_tilted <= maximum_tilt)
+		transform = turn(transform, 5)
+		how_tilted = how_tilted + 5
+		is_shifted = TRUE
+
 /mob/verb/planeup()
 	set hidden = TRUE
 	if(!canface())
