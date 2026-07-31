@@ -111,6 +111,7 @@
 	//Future proofing
 	var/max_gun_rows = DEFAULT_MAX_ROWS
 	var/max_gun_slots = DEFAULT_RACK_SLOTS
+	var/slots_per_row = DEFAULT_RACK_SLOTS
 	//Use these offsets if you add a new type of gunlocker that has a different point for guns to be overlayed onto
 	var/gun_sprite_offsetx = 0
 	var/gun_sprite_offsety = 0
@@ -125,29 +126,38 @@
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/Initialize(mapload)
 	. = ..()
+	if(max_gun_rows > 0)
+		slots_per_row = ceil(max_gun_slots / max_gun_rows)
 	//default is four slots per locker, but if someone wants to change this up, there's support for that now
-	rack_slots.len = max_gun_slots
+	if(!rack_slots)
+		rack_slots = new /list(max_gun_slots)
+	else if(length(rack_slots) < max_gun_slots)
+		rack_slots.len = max_gun_slots
 	return INITIALIZE_HINT_LATELOAD
 
+//Legacy support for people just leaving guns on the map floor. If starting_contents becomes a thing, then we can yeet this.
 /obj/structure/closet/secure_closet/guncabinet/fancy/LateInitialize()
 	. = ..()
+	//check first if we've already been stuffed with guns
+	for(var/obj/item/gun/G in contents)
+		lateintgunstuff(G)
+	//Then scoop up any guns from the floor and place them into racks
 	for(var/obj/item/gun/G in loc)
-		if(G.density || G.anchored || G == src)
+		if(G.density || G.anchored)
 			continue
-		if(lateintgunstuff(G))
-			continue
-
+		lateintgunstuff(G)
+	//then update with our fresh contents
 	update_icon()
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/lateintgunstuff(obj/item/gun/G)
-	if(!istype(G) || (G.locker_class != case_type))
+	if(G.locker_class != case_type)
 		return FALSE
-	var/total_slots = length(rack_slots)
-	for(var/i in 1 to total_slots)
+
+	for(var/i in 1 to max_gun_slots)
 		if(!rack_slots[i])
-			G.forceMove(src)
+			if(G.loc != src)
+				G.forceMove(src)
 			rack_slots[i] = G
-			SStgui.update_uis(src)
 			return TRUE
 
 	return FALSE
@@ -196,7 +206,9 @@
 	var/list/data = list(
 		"welded" = welded,
 		"locked" = locked,
-		"open" = opened
+		"open" = opened,
+		"max_gun_rows" = max_gun_rows,
+		"slots_per_row" = slots_per_row
 		)
 	var/list/slots = list()
 	for(var/i in 1 to length(rack_slots))
@@ -253,7 +265,7 @@
 
 	if(findtext(action, "rackslot"))
 		var/slot_idx = text2num(replacetext(action, "rackslot", ""))
-		if(!slot_idx || slot_idx < 1 || slot_idx > DEFAULT_RACK_SLOTS)
+		if(!slot_idx || slot_idx < 1 || slot_idx > max_gun_slots)
 			return FALSE
 
 		if(!opened)
@@ -344,7 +356,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/scatter_contents(max_range, throw_speed)
 	// Reset UI data and slots
-	for(var/i in 1 to DEFAULT_RACK_SLOTS)
+	for(var/i in 1 to length(rack_slots))
 		rack_slots[i] = null
 	guninfo.Cut()
 	update_icon()
