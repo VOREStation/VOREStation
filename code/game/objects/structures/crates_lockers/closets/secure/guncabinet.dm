@@ -301,12 +301,12 @@
 
 //Make snowflake guns have a uniquely reusable asset key, for codebases with custom guns
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/get_gun_visual_key(obj/item/gun/G)
-    var/key = "[G.type]_[G.icon_state]"
-    if(length(G.overlays))
-        for(var/ov in G.overlays)
-            key += "_[md5("\ref[ov]")]"
+	var/key = "[G.type]_[G.icon_state]"
+	if(length(G.overlays))
+		for(var/ov in G.overlays)
+			key += "_[md5("\ref[ov]")]"
 
-    return key
+	return key
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/get_gun_ammo(obj/item/gun/G)
 	if(!G)
