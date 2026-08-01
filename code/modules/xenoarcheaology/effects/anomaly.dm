@@ -20,7 +20,7 @@
 		if(isturf(holder_loc))
 			generate_anomaly(holder_loc, pick(ANOMALY_ALL), 2, FALSE)
 	active = FALSE
-	VARSET_IN(src, active, TRUE, delay*5)
+	VARSET_IN(src, active, TRUE, delay * 5)
 
 /datum/artifact_effect/anomaly/DoEffectAura()
 	var/atom/holder = get_master_holder()
@@ -37,7 +37,7 @@
 			for(var/i = 1, i <= 2, i++)
 				generate_anomaly(holder_loc, pick(ANOMALY_ALL), 15, FALSE)
 	active = FALSE
-	VARSET_IN(src, active, TRUE, delay*4)
+	VARSET_IN(src, active, TRUE, delay *4 )
 
 /datum/artifact_effect/anomaly/DoEffectPulse()
 	if(!active)
@@ -48,4 +48,4 @@
 		var/area/chosen_area = placer.find_valid_area()
 		generate_anomaly(placer.find_valid_turf(chosen_area), pick(ANOMALY_ALL), 1, FALSE) // EGG HUNT!!
 	active = FALSE
-	VARSET_IN(src, active, TRUE, delay*2.5)
+	VARSET_IN(src, active, TRUE, delay * 2.5)
