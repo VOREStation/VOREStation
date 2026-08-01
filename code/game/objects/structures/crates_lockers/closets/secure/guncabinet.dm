@@ -178,7 +178,7 @@
 		ui.open()
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = ..()
 	var/list/icon_urls = list()
 
 	// Walk through all guns to register assets once per static update
@@ -193,6 +193,7 @@
 		//utilize getFlatIcon to squish all the various overlays down, for weapon attachments and the sort if any.
 		if (!SSassets.cache[asset_name])
 			var/icon/flat_icon = getFlatIcon(G)
+			flat_icon.Scale(96, 96)	//three times scaled, should be pretty legible then
 			SSassets.transport.register_asset(asset_name, flat_icon)
 
 		if(user?.client)
@@ -248,48 +249,51 @@
 
 	add_fingerprint(ui.user)
 
-	switch(action)
-		if("open")
-			if(!locked && !welded)
-				if(opened)
-					close(ui.user)
-				else
-					open(ui.user)
-				return TRUE
+	var/slot_idx = params["index"]
 
-		if("lock")
+	switch(action)
+		if("toggle_lock")
 			if(!opened && !emagged)
 				locked = !locked
-				to_chat(ui.user, span_notice("You [locked ? "lock" : "unlock"] [src]."))
+				update_icon()
 				return TRUE
 
-		if("rackslot")
-			var/slot_idx = params["index"]
-			if(!slot_idx || slot_idx < 1 || slot_idx > max_gun_slots)
-				return FALSE
+		if("eject_slot")
+			handle_weapon(slot_idx, FALSE, ui.user)
 
-			if(!opened)
-				to_chat(ui.user, span_notice("The cabinet doors are closed."))
-				return TRUE
-
-			var/obj/item/gun/occupant = rack_slots[slot_idx]
-			if(occupant)
-				ui.user.put_in_hands(occupant)
-				to_chat(ui.user, span_notice("You take [occupant.name] from slot [slot_idx]."))
-				rack_slots[slot_idx] = null
-				update_static_data_for_all_viewers()
-			else
-				var/obj/item/gun/held_gun = ui.user.get_active_held_item()
-				if(istype(held_gun) && check_weapon(held_gun, ui.user))
-					if(ui.user.unEquip(held_gun, src))
-						rack_slots[slot_idx] = held_gun
-						update_static_data_for_all_viewers()
-						to_chat(ui.user, span_notice("You place [held_gun.name] into slot [slot_idx]."))
-
-			update_icon()
-			return TRUE
+		if("insert_slot")
+			handle_weapon(slot_idx, TRUE, ui.user)
 
 	return FALSE
+
+/obj/structure/closet/secure_closet/guncabinet/fancy/proc/handle_weapon(slot_idx, insert = FALSE, mob/user)
+	if(!slot_idx || slot_idx < 1 || slot_idx > max_gun_slots)
+		return FALSE
+	//AI can look but they can't touch.
+	if(issilicon(user) || isalien(user) || isanimal(user) || !Adjacent(user))
+		return FALSE
+
+	if(insert)
+		var/obj/item/gun/held_gun = user.get_active_held_item()
+		if(istype(held_gun) && check_weapon(held_gun, user))
+			if(user.unEquip(held_gun))
+				held_gun.forceMove(src)
+				rack_slots[slot_idx] = held_gun
+				update_static_data_for_all_viewers()
+				to_chat(user, span_notice("You place \the [held_gun.name] into slot [slot_idx]."))
+		else
+			to_chat(user, span_warning("You are not holding a valid weapon!"))
+	else
+		var/obj/item/gun/occupant = rack_slots[slot_idx]
+		if(occupant)
+			user.put_in_hands(occupant)
+			to_chat(user, span_notice("You take \the [occupant.name] from slot [slot_idx]."))
+			rack_slots[slot_idx] = null
+			update_static_data_for_all_viewers()
+		else
+			to_chat(user, span_warning("Slot [slot_idx] is empty!"))
+	update_icon()
+	return TRUE
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/check_weapon(obj/item/gun/G, mob/user)
 	if(!istype(G))
@@ -318,7 +322,7 @@
 	else if(istype(G, /obj/item/gun/energy))
 		var/obj/item/gun/energy/egun = G
 		if(egun.power_supply)
-			return egun.power_supply.charge
+			return FLOOR(egun.power_supply.charge / max(egun.charge_cost, 1), 1)
 	return 0
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/get_max_gun_ammo(obj/item/gun/G)
@@ -334,7 +338,7 @@
 		//gun/energy
 		var/obj/item/gun/energy/egun = G
 		if(egun.power_supply)
-			return egun.power_supply.maxcharge
+			return FLOOR(egun.power_supply.maxcharge / max(egun.charge_cost, 1), 1)
 	return 0
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/ex_act(severity)
@@ -361,7 +365,7 @@
 	return ..()
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/attackby(obj/item/I, mob/user, params)
-	if(issilicon(user) || isalien(user) || !Adjacent(user))
+	if(isAI(user) || isalien(user) || isanimal(user) || !Adjacent(user))
 		return
 
 	if(opened && istype(I, /obj/item/gun))
@@ -441,11 +445,12 @@
 
 	// Add weapon sprites in fixed slots
 	var/slots_per_row = ceil(total_slots / max_gun_rows)
-	for(var/obj/item/gun/G in src)
+	for(var/i in 1 to total_slots)
+		var/obj/item/gun/G = rack_slots[i]
 		if(!G)
 			continue
 
-		var/slot_idx = G - 1
+		var/slot_idx = i - 1
 		// Grid pattern orientations, slots|row, 4:1, 2:2, 1:4, etc
 		var/col = slot_idx % slots_per_row
 		var/row = (slot_idx - col) / slots_per_row
@@ -455,7 +460,7 @@
 		var/mutable_appearance/gun_overlay = mutable_appearance(icon, G.overlay_type)
 		gun_overlay.pixel_x = (col * gun_sprite_spacingx)+gun_sprite_offsetx
 		gun_overlay.pixel_y = gun_sprite_offsety - (row * gun_sprite_spacingy)
-		. += gun_overlay
+		add_overlay(gun_overlay)
 
 	// Add door and security overlays
 	if(welded)
@@ -470,9 +475,16 @@
 		else
 			add_overlay("[icon_state]_[locked ? "locked" : "unlocked"]")
 
+//stops it won't budge! spam because that's annoying.
 /obj/structure/closet/secure_closet/guncabinet/fancy/relaymove(mob/user as mob)
 	if(user.stat || !isturf(loc))
 		return
+
+//so people can open the gui without a gun in hand.
+/obj/structure/closet/secure_closet/guncabinet/fancy/click_ctrl_shift(mob/user)
+	if(isalien(user) || !Adjacent(user))
+		return
+	tgui_interact(user)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/shotgun
 	name = "Shotgun locker"

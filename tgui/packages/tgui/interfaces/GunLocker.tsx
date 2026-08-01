@@ -34,7 +34,7 @@ export const GunLocker = (props) => {
 
 return (
     <>
-    <Window width={400} height={200}>
+    <Window width={600} height={400}>
       <Window.Content scrollable>
         <Section title="Cabinet Controls">
           <Stack align="center" justify="space-between">
@@ -42,11 +42,9 @@ return (
               <Box inline color={locked ? 'red' : 'green'} bold mr={2}>
                 {locked ? 'LOCKED' : 'UNLOCKED'}
               </Box>
-              {welded && (
-                <Box inline color="yellow" bold>
-                  (ERROR: LOCK DAMAGED)
+              <Box inline color={welded ? 'yellow' : 'transparent'} bold>
+                  {welded ? 'ERROR: LOCK DAMAGED' : ''}
                 </Box>
-              )}
             </Stack.Item>
             <Stack.Item>
               <Button
@@ -75,8 +73,8 @@ return (
                           <Stack vertical align="center">
                             <Stack.Item>
                               <Box
-                                width="42px"
-                                height="42px"
+                                width="90px"
+                                height="90px"
                                 style={{
                                   display: 'flex',
                                   alignItems: 'center',
@@ -91,8 +89,8 @@ return (
                                     src={iconUrl}
                                     alt={slot.name}
                                     style={{
-                                      maxWidth: '36px',
-                                      maxHeight: '36px',
+                                      maxWidth: '96px',
+                                      maxHeight: '96px',
                                       objectFit: 'contain',
                                     }}
                                   />
@@ -133,7 +131,7 @@ return (
                                   color="red"
                                   disabled={locked || welded}
                                   onClick={() =>
-                                    act('eject_slot', { slot_index: slot.index })
+                                    act('eject_slot', { index: slot.index })
                                   }
                                 >
                                   Eject
@@ -144,7 +142,7 @@ return (
                                   color="green"
                                   disabled={locked || welded}
                                   onClick={() =>
-                                    act('insert_slot', { slot_index: slot.index })
+                                    act('insert_slot', { index: slot.index })
                                   }
                                 >
                                   Insert
