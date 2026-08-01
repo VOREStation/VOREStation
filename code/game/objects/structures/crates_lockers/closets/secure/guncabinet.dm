@@ -215,7 +215,7 @@
 		var/obj/item/gun/G = rack_slots[i]
 
 		if(!G)
-			slots += list(list(
+			UNTYPED_LIST_ADD (slots, list(
 				"index" = i,
 				"ref" = null,
 				"name" = "Empty Slot",
@@ -230,7 +230,7 @@
 		G.update_icon()
 		var/current_charge = get_gun_ammo(G)
 		var/max_charge = get_max_gun_ammo(G)
-		slots += list(list(
+		UNTYPED_LIST_ADD (slots, list(
 			"index" = i,
 			"ref" = REF(G),
 			"name" = capitalize(G.name),
@@ -263,31 +263,31 @@
 				to_chat(ui.user, span_notice("You [locked ? "lock" : "unlock"] [src]."))
 				return TRUE
 
-	if(findtext(action, "rackslot"))
-		var/slot_idx = text2num(replacetext(action, "rackslot", ""))
-		if(!slot_idx || slot_idx < 1 || slot_idx > max_gun_slots)
-			return FALSE
+		if("rackslot")
+			var/slot_idx = params["index"]
+			if(!slot_idx || slot_idx < 1 || slot_idx > max_gun_slots)
+				return FALSE
 
-		if(!opened)
-			to_chat(ui.user, span_notice("The cabinet doors are closed."))
+			if(!opened)
+				to_chat(ui.user, span_notice("The cabinet doors are closed."))
+				return TRUE
+
+			var/obj/item/gun/occupant = rack_slots[slot_idx]
+			if(occupant)
+				ui.user.put_in_hands(occupant)
+				to_chat(ui.user, span_notice("You take [occupant.name] from slot [slot_idx]."))
+				rack_slots[slot_idx] = null
+				update_static_data_for_all_viewers()
+			else
+				var/obj/item/gun/held_gun = ui.user.get_active_held_item()
+				if(istype(held_gun) && check_weapon(held_gun, ui.user))
+					if(ui.user.unEquip(held_gun, src))
+						rack_slots[slot_idx] = held_gun
+						update_static_data_for_all_viewers()
+						to_chat(ui.user, span_notice("You place [held_gun.name] into slot [slot_idx]."))
+
+			update_icon()
 			return TRUE
-
-		var/obj/item/gun/occupant = rack_slots[slot_idx]
-		if(occupant)
-			ui.user.put_in_hands(occupant)
-			to_chat(ui.user, span_notice("You take [occupant.name] from slot [slot_idx]."))
-			rack_slots[slot_idx] = null
-			SStgui.update_uis(src)
-		else
-			var/obj/item/gun/held_gun = ui.user.get_active_held_item()
-			if(istype(held_gun) && check_weapon(held_gun, ui.user))
-				if(ui.user.unEquip(held_gun, src))
-					rack_slots[slot_idx] = held_gun
-					SStgui.update_uis(src)
-					to_chat(ui.user, span_notice("You place [held_gun.name] into slot [slot_idx]."))
-
-		update_icon()
-		return TRUE
 
 	return FALSE
 
@@ -344,12 +344,10 @@
 			locked = FALSE
 			doorstatus = CABINET_BROKEN
 			update_icon()
-			SStgui.update_uis(src)
 			visible_message(span_warning("The door blow open!"))
 		else
 			visible_message(span_warning("The force of the blast scatters [src]'s weapons everywhere!"))
 			scatter_contents(max_range = 3, throw_speed = 2)
-			SStgui.update_uis(src)
 	else
 		scatter_contents(max_range = 5, throw_speed = 3)
 		qdel(src)
@@ -375,7 +373,7 @@
 		user.visible_message(
 			"[user] begins [anchored ? "un" : ""]securing [src] [anchored ? "from" : "to"] the floor.",
 			span_notice("You start [anchored ? "un" : ""]securing [src] [anchored ? "from" : "to"] the floor."))
-		if(do_after(src, user, 2 SECONDS * Wench.toolspeed))
+		if(do_after(user, 2 SECONDS * Wench.toolspeed, src))
 			anchored = !anchored
 			to_chat(user, span_notice("You [anchored ? "" : "un"]secured [src]!"))
 		return
@@ -383,7 +381,7 @@
 	if(I.has_tool_quality(IS_WELDER))
 		var/obj/item/weldingtool/Wald = I.get_welder()
 		if(!opened && locked)
-			if(!do_after(user, src, 3 SECONDS * Wald.toolspeed))
+			if(!do_after(user, 3 SECONDS * Wald.toolspeed, src))
 				return
 			welded = TRUE
 			locked = FALSE
@@ -393,7 +391,7 @@
 			return
 
 		if(!opened && doorstatus == CABINET_REPAIR)
-			if(!do_after(user, src, 3 SECONDS * Wald.toolspeed))
+			if(!do_after(user, 3 SECONDS * Wald.toolspeed, src))
 				return
 			welded = FALSE
 			emagged = FALSE
@@ -443,12 +441,11 @@
 
 	// Add weapon sprites in fixed slots
 	var/slots_per_row = ceil(total_slots / max_gun_rows)
-	for(var/i in 1 to total_slots)
-		var/obj/item/gun/G = rack_slots[i]
+	for(var/obj/item/gun/G in src)
 		if(!G)
 			continue
 
-		var/slot_idx = i - 1
+		var/slot_idx = G - 1
 		// Grid pattern orientations, slots|row, 4:1, 2:2, 1:4, etc
 		var/col = slot_idx % slots_per_row
 		var/row = (slot_idx - col) / slots_per_row

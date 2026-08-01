@@ -2,7 +2,7 @@ import { Box, Button, ProgressBar, Section, Stack } from 'tgui-core/components';
 import { useBackend } from 'tgui/backend';
 import type { BooleanLike } from 'tgui-core/react';
 
-export type SlotData = {
+type SlotData = {
   index: number;
   ref: string | null;
   name: string;
@@ -12,27 +12,21 @@ export type SlotData = {
   iconKey: string | null;
 }
 
-export type GunLockerData = {
+type Data = {
   welded: BooleanLike;
   locked: BooleanLike;
   open: BooleanLike;
   max_gun_rows: number;
   slots_per_row: number;
   slots: SlotData[];
-};
-
-export type GunLockerStaticData = {
   icon_urls: Record<string, string>;
 };
 
 export const GunLocker = (props) => {
-  const { act, data, staticData: rawStatic } = useBackend<GunLockerData>();
-  const staticData = (rawStatic || {}) as GunLockerStaticData;
-  const { welded = false, locked = false, slots = [], slots_per_row = 4 } = data;
-  const { icon_urls = {} } = staticData;
-
+  const { act, data } = useBackend<Data>();
+  const { welded, locked, slots = [], slots_per_row, icon_urls = {} } = data;
   const rows: SlotData[][] = [];
-  const chunkSize = slots_per_row > 0 ? slots_per_row : 4;
+  const chunkSize = slots_per_row > 0 ? slots_per_row : slots.length;
   for (let i = 0; i < slots.length; i += chunkSize) {
     rows.push(slots.slice(i, i + chunkSize));
   }
