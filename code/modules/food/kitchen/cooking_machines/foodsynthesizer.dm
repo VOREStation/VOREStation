@@ -70,10 +70,6 @@
 	else if(mapload)
 		cart = new /obj/item/reagent_containers/synthdispcart(src)
 
-	//failsafe just in case.
-	if(!istype(cart))
-		cart = null
-
 	update_icon()
 
 	if(!pixel_x && !pixel_y)
