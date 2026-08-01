@@ -388,6 +388,7 @@
 			doorstatus = CABINET_BROKEN
 			update_icon()
 			user.visible_message(span_warning("[user] cuts through [src]'s lock with [I]!"))
+			update_static_data_for_all_viewers()
 			return
 
 		if(!opened && doorstatus == CABINET_REPAIR)
@@ -398,7 +399,7 @@
 			doorstatus = CABINET_NORMAL
 			update_icon()
 			to_chat(user, span_notice("You repair the damaged doors on [src]."))
-			SStgui.update_uis(src)
+			update_static_data_for_all_viewers()
 			return
 
 		to_chat(user, span_notice("There is nothing to cut or mend on [src]."))
@@ -411,12 +412,11 @@
 			return
 
 		to_chat(user, span_notice("You begin applying materials to repair [src]..."))
-		if(do_after(user, 3 SECONDS, target = src) && doorstatus == CABINET_BROKEN)
+		if(do_after(user, 3 SECONDS, src) && doorstatus == CABINET_BROKEN)
 			if(M.use(2))
 				doorstatus = CABINET_REPAIR
 				update_icon()
 				to_chat(user, span_notice("You reinforced the doors. They are ready to be welded back together."))
-				SStgui.update_uis(src)
 		return
 
 	return tgui_interact(user)
