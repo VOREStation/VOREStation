@@ -108,100 +108,78 @@
 	var/emagged = FALSE
 	var/repair_material = /obj/item/stack/material/plasteel
 	var/doorstatus = CABINET_NORMAL
-	//Future proofing
+	/// Future proofing, default one row, four slots, four per row.
 	var/max_gun_rows = DEFAULT_MAX_ROWS
 	var/max_gun_slots = DEFAULT_RACK_SLOTS
 	var/slots_per_row = DEFAULT_RACK_SLOTS
-	//Use these offsets if you add a new type of gunlocker that has a different point for guns to be overlayed onto
+	/// Use these offsets if you add a new type of gunlocker that has a different point for guns to be overlayed onto
 	var/gun_sprite_offsetx = 0
 	var/gun_sprite_offsety = 0
-	//Use these if you're adjusting how close or wide the slots are
+	/// Use these if you're adjusting how close or wide the slots are, default 3 pixels.
 	var/gun_sprite_spacingx = GUNCABINET_SPACER_X
 	var/gun_sprite_spacingy = GUNCABINET_SPACER_Y
-
-	/// Slot array storing references to placed weapons
-	var/list/obj/item/gun/rack_slots = list()
-	/// Cached slot data for TGUI transmission
-	var/list/guninfo = list()
+	/// For our UI updates
+	var/atom/movable/overlay/invisible_appearance_holder
+	/// Slot array storing references to placed weapons, needed so people can put it whereever instead of defaulting to slot 0
+	var/list/slots
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/Initialize(mapload)
 	. = ..()
+	invisible_appearance_holder = new /atom/movable/overlay(src)
+	invisible_appearance_holder.invisibility = INVISIBILITY_MAXIMUM
+	vis_contents += invisible_appearance_holder
+
 	if(max_gun_rows > 0)
 		slots_per_row = ceil(max_gun_slots / max_gun_rows)
-	//default is four slots per locker, but if someone wants to change this up, there's support for that now
-	if(!rack_slots)
-		rack_slots = new /list(max_gun_slots)
-	else if(length(rack_slots) < max_gun_slots)
-		rack_slots.len = max_gun_slots
+
+	if(!slots)
+		slots = new /list(max_gun_slots)
+
 	return INITIALIZE_HINT_LATELOAD
 
 //Legacy support for people just leaving guns on the map floor. If starting_contents becomes a thing, then we can yeet this.
 /obj/structure/closet/secure_closet/guncabinet/fancy/LateInitialize()
 	. = ..()
 	//check first if we've already been stuffed with guns
-	for(var/obj/item/gun/G in contents)
-		lateintgunstuff(G)
+	for(var/obj/item/gun/G in src)
+		if(G in slots)
+			continue
+
+		var/empty_slot = slots.Find(null)
+		if(!empty_slot)
+			break // Cabinet is full
+		slots[empty_slot] = G
+
 	//Then scoop up any guns from the floor and place them into racks
 	for(var/obj/item/gun/G in loc)
-		if(G.density || G.anchored)
+		if(G.density || G.anchored || (case_type && G.locker_class != case_type))
 			continue
-		lateintgunstuff(G)
-	//then update with our fresh contents
+
+		var/empty_slot = slots.Find(null)
+		// No vacancies
+		if(!empty_slot)
+			break
+
+		G.forceMove(src)
+		slots[empty_slot] = G
+
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/fancy/proc/lateintgunstuff(obj/item/gun/G)
-	if(G.locker_class != case_type)
-		return FALSE
+/obj/structure/closet/secure_closet/guncabinet/fancy/Entered(atom/movable/AM)
+	. = ..()
+	if(invisible_appearance_holder)
+		invisible_appearance_holder.vis_contents += AM
 
-	for(var/i in 1 to max_gun_slots)
-		if(!rack_slots[i])
-			if(G.loc != src)
-				G.forceMove(src)
-			rack_slots[i] = G
-			return TRUE
-
-	return FALSE
-
-/obj/structure/closet/secure_closet/guncabinet/fancy/Destroy()
-	var/total_slots = length(rack_slots)
-	for(var/i in 1 to total_slots)
-		if(rack_slots[i])
-			qdel(rack_slots[i])
-	rack_slots.Cut()
-	guninfo.Cut()
-	return ..()
+/obj/structure/closet/secure_closet/guncabinet/fancy/Exited(atom/movable/AM)
+	. = ..()
+	if(invisible_appearance_holder)
+		invisible_appearance_holder.vis_contents -= AM
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GunLocker")
 		ui.open()
-
-/obj/structure/closet/secure_closet/guncabinet/fancy/tgui_static_data(mob/user)
-	var/list/data = ..()
-	var/list/icon_urls = list()
-
-	// Walk through all guns to register assets once per static update
-	for(var/i in 1 to length(rack_slots))
-		var/obj/item/gun/G = rack_slots[i]
-		if(!G)
-			continue
-		//double-check the gun's current status before we put it in the machine. This could also offer powered locker stations to be a multi-charger
-		G.update_icon()
-		var/icon_key = get_gun_visual_key(G)
-		var/asset_name = "gun_[md5(icon_key)].png"
-		//utilize getFlatIcon to squish all the various overlays down, for weapon attachments and the sort if any.
-		if (!SSassets.cache[asset_name])
-			var/icon/flat_icon = getFlatIcon(G)
-			flat_icon.Scale(96, 96)	//three times scaled, should be pretty legible then
-			SSassets.transport.register_asset(asset_name, flat_icon)
-
-		if(user?.client)
-			SSassets.transport.send_assets(user.client, asset_name)
-		icon_urls[icon_key] = SSassets.transport.get_asset_url(asset_name)
-
-	data["icon_urls"] = icon_urls
-	return data
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list(
@@ -210,37 +188,36 @@
 		"open" = opened,
 		"max_gun_rows" = max_gun_rows,
 		"slots_per_row" = slots_per_row
-		)
-	var/list/slots = list()
-	for(var/i in 1 to length(rack_slots))
-		var/obj/item/gun/G = rack_slots[i]
+	)
+	var/list/slots_data = list()
 
-		if(!G)
-			UNTYPED_LIST_ADD (slots, list(
+	for(var/i in 1 to max_gun_slots)
+		var/obj/item/gun/G = slots[i]
+
+		if(G)
+			G.update_icon()
+			var/current_charge = get_gun_ammo(G)
+			var/max_charge = get_max_gun_ammo(G)
+
+			UNTYPED_LIST_ADD(slots_data, list(
+				"index" = i,
+				"ref" = REF(G),
+				"name" = capitalize(G.name),
+				"charge" = current_charge,
+				"maxCharge" = max_charge,
+				"depleted" = (current_charge <= 0),
+			))
+		else
+			UNTYPED_LIST_ADD(slots_data, list(
 				"index" = i,
 				"ref" = null,
 				"name" = "Empty Slot",
 				"charge" = 0,
 				"maxCharge" = 0,
 				"depleted" = TRUE,
-				"iconKey" = null
 			))
-			continue
 
-		// Sync gun state before reading ammo and icon_state
-		G.update_icon()
-		var/current_charge = get_gun_ammo(G)
-		var/max_charge = get_max_gun_ammo(G)
-		UNTYPED_LIST_ADD (slots, list(
-			"index" = i,
-			"ref" = REF(G),
-			"name" = capitalize(G.name),
-			"charge" = current_charge,
-			"maxCharge" = max_charge,
-			"depleted" = (current_charge <= 0),
-			"iconKey" = get_gun_visual_key(G)
-		))
-	data["slots"] = slots
+	data["slots"] = slots_data
 	return data
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -249,51 +226,72 @@
 
 	add_fingerprint(ui.user)
 
-	var/slot_idx = params["index"]
-
 	switch(action)
+		if("open")
+			opened = !opened
+			update_icon()
+			return TRUE
+
 		if("toggle_lock")
 			if(!opened && !emagged)
 				locked = !locked
 				update_icon()
 				return TRUE
 
-		if("eject_slot")
-			handle_weapon(slot_idx, FALSE, ui.user)
-
 		if("insert_slot")
-			handle_weapon(slot_idx, TRUE, ui.user)
+			var/target_slot = text2num(params["slot_index"])
+			var/obj/item/gun/held_gun = usr.get_active_held_item()
+			insert_weapon(held_gun, target_slot, usr)
+			return TRUE
+
+		if("eject_slot")
+			var/target_slot = text2num(params["slot_index"])
+			var/obj/item/gun/G = locate(params["ref"]) in src
+			if(!G && target_slot && target_slot <= slots.len)
+				G = slots[target_slot]
+
+			if(G && eject_weapon(G, usr))
+				if(target_slot && target_slot <= slots.len)
+					slots[target_slot] = null
+				return TRUE
 
 	return FALSE
 
-/obj/structure/closet/secure_closet/guncabinet/fancy/proc/handle_weapon(slot_idx, insert = FALSE, mob/user)
-	if(!slot_idx || slot_idx < 1 || slot_idx > max_gun_slots)
-		return FALSE
-	//AI can look but they can't touch.
+/obj/structure/closet/secure_closet/guncabinet/fancy/proc/eject_weapon(obj/item/gun/G, mob/user)
 	if(issilicon(user) || isalien(user) || isanimal(user) || !Adjacent(user))
 		return FALSE
 
-	if(insert)
-		var/obj/item/gun/held_gun = user.get_active_held_item()
-		if(istype(held_gun) && check_weapon(held_gun, user))
-			if(user.unEquip(held_gun))
-				held_gun.forceMove(src)
-				rack_slots[slot_idx] = held_gun
-				update_static_data_for_all_viewers()
-				to_chat(user, span_notice("You place \the [held_gun.name] into slot [slot_idx]."))
-		else
-			to_chat(user, span_warning("You are not holding a valid weapon!"))
-	else
-		var/obj/item/gun/occupant = rack_slots[slot_idx]
-		if(occupant)
-			user.put_in_hands(occupant)
-			to_chat(user, span_notice("You take \the [occupant.name] from slot [slot_idx]."))
-			rack_slots[slot_idx] = null
-			update_static_data_for_all_viewers()
-		else
-			to_chat(user, span_warning("Slot [slot_idx] is empty!"))
+	if(G.loc != src)
+		return FALSE
+
+	user.put_in_hands(G)
+	to_chat(user, span_notice("You take \the [G.name] from [src]."))
 	update_icon()
 	return TRUE
+
+/obj/structure/closet/secure_closet/guncabinet/fancy/proc/insert_weapon(obj/item/gun/G, var/slot_index, mob/user)
+	if(issilicon(user) || isalien(user) || isanimal(user) || !Adjacent(user))
+		return FALSE
+
+	if(!slot_index || slot_index < 1 || slot_index > max_gun_slots)
+		return FALSE
+
+	if(slots[slot_index])
+		to_chat(user, span_warning("That slot is already occupied!"))
+		return FALSE
+
+	var/obj/item/gun/held_gun = G || user.get_active_held_item()
+	if(istype(held_gun) && check_weapon(held_gun, user))
+		if(user.unEquip(held_gun))
+			held_gun.forceMove(src)
+			slots[slot_index] = held_gun
+			to_chat(user, span_notice("You place \the [held_gun.name] into [src]."))
+			update_icon()
+			return TRUE
+	else
+		to_chat(user, span_warning("You are not holding a valid weapon!"))
+
+	return FALSE
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/check_weapon(obj/item/gun/G, mob/user)
 	if(!istype(G))
@@ -302,15 +300,6 @@
 		to_chat(user, span_warning("[G] doesn't fit into this type of rack!"))
 		return FALSE
 	return TRUE
-
-//Make snowflake guns have a uniquely reusable asset key, for codebases with custom guns
-/obj/structure/closet/secure_closet/guncabinet/fancy/proc/get_gun_visual_key(obj/item/gun/G)
-	var/key = "[G.type]_[G.icon_state]"
-	if(length(G.overlays))
-		for(var/ov in G.overlays)
-			key += "_[md5("\ref[ov]")]"
-
-	return key
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/get_gun_ammo(obj/item/gun/G)
 	if(!G)
@@ -326,16 +315,13 @@
 	return 0
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/get_max_gun_ammo(obj/item/gun/G)
-	var/obj/item/gun/pew = G
-	if(!pew)
+	if(!G)
 		return 0
 	if(istype(G, /obj/item/gun/projectile))
-		// gun/projectile
 		var/obj/item/gun/projectile/proj = G
 		if(proj.ammo_magazine)
 			return proj.ammo_magazine.max_ammo
 	else if(istype(G, /obj/item/gun/energy))
-		//gun/energy
 		var/obj/item/gun/energy/egun = G
 		if(egun.power_supply)
 			return FLOOR(egun.power_supply.maxcharge / max(egun.charge_cost, 1), 1)
@@ -347,28 +333,21 @@
 			welded = TRUE	//simulate being cut open for ease of repair logic
 			locked = FALSE
 			doorstatus = CABINET_BROKEN
+			visible_message(span_warning("The door blows open!"))
 			update_icon()
-			visible_message(span_warning("The door blow open!"))
 		else
 			visible_message(span_warning("The force of the blast scatters [src]'s weapons everywhere!"))
 			scatter_contents(max_range = 3, throw_speed = 2)
+			update_icon()
 	else
 		scatter_contents(max_range = 5, throw_speed = 3)
 		qdel(src)
-
-/obj/structure/closet/secure_closet/guncabinet/fancy/scatter_contents(max_range, throw_speed)
-	// Reset UI data and slots
-	for(var/i in 1 to length(rack_slots))
-		rack_slots[i] = null
-	guninfo.Cut()
-	update_icon()
-	return ..()
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/attackby(obj/item/I, mob/user, params)
 	if(isAI(user) || isalien(user) || isanimal(user) || !Adjacent(user))
 		return
 
-	if(opened && istype(I, /obj/item/gun))
+	if(opened && istype(I, /obj/item/gun) && !(issilicon(user)))
 		tgui_interact(user)
 		return
 
@@ -392,7 +371,6 @@
 			doorstatus = CABINET_BROKEN
 			update_icon()
 			user.visible_message(span_warning("[user] cuts through [src]'s lock with [I]!"))
-			update_static_data_for_all_viewers()
 			return
 
 		if(!opened && doorstatus == CABINET_REPAIR)
@@ -403,7 +381,6 @@
 			doorstatus = CABINET_NORMAL
 			update_icon()
 			to_chat(user, span_notice("You repair the damaged doors on [src]."))
-			update_static_data_for_all_viewers()
 			return
 
 		to_chat(user, span_notice("There is nothing to cut or mend on [src]."))
@@ -439,28 +416,23 @@
 /obj/structure/closet/secure_closet/guncabinet/fancy/update_icon()
 	cut_overlays()
 
-	var/total_slots = length(rack_slots)
-	if(!total_slots)
-		return
+	if(slots)
+		for(var/i in 1 to min(slots.len, max_gun_slots))
+			var/obj/item/gun/G = slots[i]
+			if(!G)
+				continue
 
-	// Add weapon sprites in fixed slots
-	var/slots_per_row = ceil(total_slots / max_gun_rows)
-	for(var/i in 1 to total_slots)
-		var/obj/item/gun/G = rack_slots[i]
-		if(!G)
-			continue
+			var/slot_idx = i - 1
+			var/col = slot_idx % slots_per_row
+			var/row = (slot_idx - col) / slots_per_row
+			if(row >= max_gun_rows)
+				break
 
-		var/slot_idx = i - 1
-		// Grid pattern orientations, slots|row, 4:1, 2:2, 1:4, etc
-		var/col = slot_idx % slots_per_row
-		var/row = (slot_idx - col) / slots_per_row
-		if(row >= max_gun_rows)
-			break
-		//Gun overlays are in the locker file, update the overlay if you add more guns!
-		var/mutable_appearance/gun_overlay = mutable_appearance(icon, G.overlay_type)
-		gun_overlay.pixel_x = (col * gun_sprite_spacingx)+gun_sprite_offsetx
-		gun_overlay.pixel_y = gun_sprite_offsety - (row * gun_sprite_spacingy)
-		add_overlay(gun_overlay)
+			// Gun overlays are in the locker file, update the overlay if you add more guns!
+			var/mutable_appearance/gun_overlay = mutable_appearance(icon, G.overlay_type)
+			gun_overlay.pixel_x = (col * gun_sprite_spacingx) + gun_sprite_offsetx
+			gun_overlay.pixel_y = gun_sprite_offsety - (row * gun_sprite_spacingy)
+			add_overlay(gun_overlay)
 
 	// Add door and security overlays
 	if(welded)
@@ -482,7 +454,7 @@
 
 //so people can open the gui without a gun in hand.
 /obj/structure/closet/secure_closet/guncabinet/fancy/click_ctrl_shift(mob/user)
-	if(isalien(user) || !Adjacent(user))
+	if(issilicon(user) || isalien(user) || isanimal(user) || !Adjacent(user))
 		return
 	tgui_interact(user)
 
