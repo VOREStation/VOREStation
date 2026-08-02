@@ -28,7 +28,7 @@
 	switch(wire)
 		if(WIRE_LATHE_HACK)
 			A.hacked = !mend
-			A.update_tgui_static_data(usr)
+			A.update_static_data_for_all_viewers()
 		if(WIRE_ELECTRIFY)
 			A.shocked = !mend
 		if(WIRE_LATHE_DISABLE)
