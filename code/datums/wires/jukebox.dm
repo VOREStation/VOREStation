@@ -32,7 +32,7 @@
 	switch(wire)
 		if(WIRE_MAIN_POWER1)
 			holder.visible_message(span_notice("[icon2html(A,viewers(holder))] The power light flickers."))
-			A.shock(usr, 90)
+			A.shock(usr, 90) // TODO - REMOVE USR
 		if(WIRE_JUKEBOX_HACK)
 			holder.visible_message(span_notice("[icon2html(A,viewers(holder))] The parental guidance light flickers."))
 		if(WIRE_REVERSE)

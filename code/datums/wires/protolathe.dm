@@ -39,7 +39,7 @@
 	switch(wire)
 		if(WIRE_LATHE_HACK)
 			A.hacked = !A.hacked
-			A.update_tgui_static_data(usr)
+			A.update_tgui_static_data(usr) // TODO - REMOVE USR
 			addtimer(CALLBACK(src, PROC_REF(reset_hacked), WIRE_LATHE_HACK, usr), 5 SECONDS)
 		if(WIRE_LATHE_DISABLE)
 			A.disabled = !A.disabled
