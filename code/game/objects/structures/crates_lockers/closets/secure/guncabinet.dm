@@ -269,7 +269,7 @@
 	update_icon()
 	return TRUE
 
-/obj/structure/closet/secure_closet/guncabinet/fancy/proc/insert_weapon(obj/item/gun/G, var/slot_index, mob/user)
+/obj/structure/closet/secure_closet/guncabinet/fancy/proc/insert_weapon(obj/item/gun/G, slot_index, mob/user)
 	if(issilicon(user) || isalien(user) || isanimal(user) || !Adjacent(user))
 		return FALSE
 
