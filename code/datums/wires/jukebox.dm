@@ -50,7 +50,7 @@
 		if(WIRE_NEXT)
 			A.NextTrack()
 		else
-			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
+			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun // TODO - REMOVE USR
 
 /datum/wires/jukebox/on_cut(wire, mend)
 	var/obj/machinery/media/jukebox/A = holder
@@ -58,7 +58,7 @@
 	switch(wire)
 		if(WIRE_MAIN_POWER1)
 			// TODO - Actually make machine electrified or something.
-			A.shock(usr, 90)
+			A.shock(usr, 90) // TODO - REMOVE USR
 
 		if(WIRE_JUKEBOX_HACK)
 			A.set_hacked(!mend)
