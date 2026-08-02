@@ -88,7 +88,8 @@
 	if(!point_increment) //So we don't spam varset_in timers.
 		VARSET_IN(src, point_increment, 0, 5 SECONDS)
 	else if(point_increment >= POINT_MAX)
-		to_chat(src, "You are pointing too much! Please wait a few seconds before pointing again.")
+		if(point_increment == POINT_MAX) //message on the first limit hit.
+			to_chat(src, "You are pointing too much! Please wait a few seconds before pointing again.")
 		return FALSE
 
 	point_at(pointing_at)
