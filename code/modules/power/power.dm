@@ -320,6 +320,8 @@
 
 	if (!cell && !PN)
 		return 0
+	if(!isliving(M))
+		return 0
 	var/PN_damage = 0
 	var/cell_damage = 0
 	if (PN)
@@ -333,8 +335,6 @@
 	else
 		power_source = cell
 		shock_damage = cell_damage
-	if(!isliving(M))
-		return 0
 	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
 	var/drained_energy = drained_hp*20
 
