@@ -349,20 +349,35 @@
 	return 0
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/ex_act(severity)
-	if(severity >= 2)	//study enough to survive door knockers
-		if(!opened)
-			welded = TRUE	//simulate being cut open for ease of repair logic
+	switch(severity)
+		if(4)	//don't open on flash damage lol
+			return
+		if(3)
+			if(prob(10))
+				welded = TRUE	//simulate being cut open for ease of repair logic
+				locked = FALSE
+				doorstatus = CABINET_BROKEN
+				if(!opened)
+					visible_message(span_warning("\the [src]'s' lock blows apart!"))
+				else
+					visible_message(span_warning("\the [src]'s' weapons are scattered by the blast!"))
+					scatter_contents(max_range = 1, throw_speed = 2)
+				update_icon()
+				return
+		if(2)	//study enough to survive door knockers
 			locked = FALSE
 			doorstatus = CABINET_BROKEN
-			visible_message(span_warning("The door blows open!"))
+			welded = TRUE
+			if(!opened)
+				visible_message(span_warning("\the [src]'s' lock blows apart!"))
+			else
+				visible_message(span_warning("\the [src]'s' weapons are hurled by the blast!"))
+				scatter_contents(max_range = 3, throw_speed = 2)
 			update_icon()
-		else
-			visible_message(span_warning("The force of the blast scatters [src]'s weapons everywhere!"))
-			scatter_contents(max_range = 3, throw_speed = 2)
-			update_icon()
-	else
-		scatter_contents(max_range = 5, throw_speed = 3)
-		qdel(src)
+			return
+		if(1)
+			scatter_contents(max_range = 5, throw_speed = 3)
+			qdel(src)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/attackby(obj/item/I, mob/user, params)
 	if(isAI(user) || isalien(user) || isanimal(user) || !Adjacent(user))
