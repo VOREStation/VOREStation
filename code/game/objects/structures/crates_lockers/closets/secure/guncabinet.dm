@@ -233,10 +233,9 @@
 			return TRUE
 
 		if("toggle_lock")
-			if(!opened && !emagged)
-				locked = !locked
-				update_icon()
-				return TRUE
+			togglelock(ui.user)
+			update_icon()
+			return TRUE
 
 		if("insert_slot")
 			var/target_slot = text2num(params["slot_index"])
@@ -256,6 +255,28 @@
 				return TRUE
 
 	return FALSE
+
+/obj/structure/closet/secure_closet/guncabinet/fancy/togglelock(mob/user)
+	if(opened)
+		to_chat(user, span_notice("Close \the [src] first."))
+		return
+	if(welded || emagged)
+		to_chat(user, span_warning("\the [src] door lock appears to be damaged."))
+		return
+	if(user.loc == src)
+		//shouldn't happen but uhg
+		to_chat(user, span_notice("You can't reach the lock from inside."))
+		return
+	var/level = get_security_level()
+	//security level override
+	if(level == ("red" || "delta") || allowed(user))
+		locked = !locked
+		playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
+		for(var/mob/O in viewers(user, 3))
+			if((O.client && !( O.blinded )))
+				to_chat(O, span_notice("\the [src] has been [locked ? null : "un"]locked by [user]."))
+	else
+		to_chat(user, span_notice("Access Denied"))
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/eject_weapon(obj/item/gun/G, mob/user)
 	if(issilicon(user) || isalien(user) || isanimal(user) || !Adjacent(user))
