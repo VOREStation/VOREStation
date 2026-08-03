@@ -28,16 +28,6 @@
 "ae" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/space)
-"af" = (
-/obj/effect/step_trigger/thrower{
-	affect_ghosts = 1;
-	name = "thrower_leftnostop"
-	},
-/turf/space/transit/south,
-/turf/space/transit/south,
-/turf/space/transit/south,
-/turf/space/transit/south,
-/area/space)
 "ag" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -707,6 +697,9 @@
 "cd" = (
 /turf/unsimulated/wall,
 /area/ai_multicam_room)
+"ce" = (
+/turf/space/transit/south/virgo3b/planet_fall,
+/area/space)
 "cf" = (
 /turf/space/transit/south,
 /area/space)
@@ -1688,6 +1681,9 @@
 	color = "#b52d54"
 	},
 /area/egg_tree_zone/man)
+"fm" = (
+/turf/space/transit/east/virgo3b/planet_fall,
+/area/space)
 "fn" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -2947,6 +2943,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "Lz" = (
+/turf/simulated/sky/virgo3b/south/planet_fall,
 /area/space)
 "Me" = (
 /turf/simulated/floor/smole/desert,
@@ -16454,29 +16451,29 @@ ap
 ap
 ap
 ap
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
 ap
 iO
 El
@@ -16596,7 +16593,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -16618,7 +16615,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -16738,7 +16735,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -16760,7 +16757,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -16880,7 +16877,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -16902,7 +16899,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17022,7 +17019,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17044,7 +17041,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17164,7 +17161,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17186,7 +17183,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17306,7 +17303,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17328,7 +17325,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17448,7 +17445,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17470,7 +17467,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17590,7 +17587,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17612,7 +17609,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17732,7 +17729,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17754,7 +17751,7 @@ cg
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 El
@@ -17874,7 +17871,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -17896,7 +17893,7 @@ cg
 cf
 cf
 cf
-cg
+ce
 ap
 iO
 iO
@@ -18016,7 +18013,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18038,7 +18035,7 @@ cg
 cf
 cf
 cf
-cg
+ce
 ap
 ap
 ap
@@ -18158,7 +18155,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18180,7 +18177,7 @@ cg
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 Jz
@@ -18300,7 +18297,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18322,7 +18319,7 @@ cg
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -18442,7 +18439,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18451,7 +18448,7 @@ cf
 cf
 cg
 cg
-af
+cg
 cg
 cg
 cg
@@ -18464,7 +18461,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -18584,7 +18581,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18606,7 +18603,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -18726,7 +18723,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18748,7 +18745,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -18868,7 +18865,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -18890,7 +18887,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19010,7 +19007,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -19032,7 +19029,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19152,7 +19149,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -19174,7 +19171,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19294,7 +19291,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -19316,7 +19313,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19436,7 +19433,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -19458,7 +19455,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19578,7 +19575,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -19600,7 +19597,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19720,7 +19717,7 @@ ap
 ap
 ap
 ap
-cg
+ce
 cf
 cf
 cf
@@ -19742,7 +19739,7 @@ cf
 cf
 cf
 cf
-cg
+ce
 ap
 Jz
 jf
@@ -19862,29 +19859,29 @@ ap
 ap
 ap
 ap
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
+ce
 ap
 Jz
 jf
@@ -20146,29 +20143,29 @@ ap
 ap
 ap
 ap
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
 ap
 Jz
 jf
@@ -20288,7 +20285,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -20310,7 +20307,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -20430,7 +20427,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -20452,7 +20449,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -20572,7 +20569,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -20594,7 +20591,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -20714,7 +20711,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -20736,7 +20733,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -20856,7 +20853,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -20878,7 +20875,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -20998,7 +20995,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21020,7 +21017,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21140,7 +21137,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21162,7 +21159,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21282,7 +21279,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21304,7 +21301,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21424,7 +21421,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21446,7 +21443,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21566,7 +21563,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21588,7 +21585,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21708,7 +21705,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21730,7 +21727,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21850,7 +21847,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -21872,7 +21869,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -21992,7 +21989,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22014,7 +22011,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22134,7 +22131,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22156,7 +22153,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22276,7 +22273,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22298,7 +22295,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22418,7 +22415,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22440,7 +22437,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22560,7 +22557,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22582,7 +22579,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22702,7 +22699,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22724,7 +22721,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22844,7 +22841,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -22866,7 +22863,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -22986,7 +22983,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -23008,7 +23005,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -23128,7 +23125,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -23150,7 +23147,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -23270,7 +23267,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -23292,7 +23289,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -23412,7 +23409,7 @@ ap
 ap
 ap
 ap
-ML
+fm
 qn
 qn
 qn
@@ -23434,7 +23431,7 @@ qn
 qn
 qn
 qn
-ML
+fm
 ap
 Jz
 jf
@@ -23554,29 +23551,29 @@ ap
 ap
 ap
 ap
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
-ML
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
 ap
 Jz
 Jz
