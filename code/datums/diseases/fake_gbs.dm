@@ -10,6 +10,7 @@
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "If left untreated death will occur."
 	danger = DISEASE_BIOHAZARD // Mimics real GBS
+	wiki_hidden = TRUE // For obvious reasons we don't reveal this existing... It also name conflicts.
 
 /datum/disease/fake_gbs/stage_act()
 	if(!..())
