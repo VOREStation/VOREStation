@@ -108,6 +108,8 @@ GLOBAL_LIST_INIT(human_default_emotes, list(
 	/datum/decl/emote/audible/vox_shriek,
 	/datum/decl/emote/audible/purr,
 	/datum/decl/emote/audible/purrlong,
+	/datum/decl/emote/audible/catgrowl,
+	/datum/decl/emote/audible/catgrowl2,
 	/datum/decl/emote/audible/awoo,
 	/datum/decl/emote/audible/awoo2,
 	/datum/decl/emote/audible/belch,
