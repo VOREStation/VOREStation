@@ -29,13 +29,10 @@
 /turf/unsimulated/mineral/virgo3b,
 /area/space)
 "af" = (
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "wall";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
-	color = "#000000";
 	density = 1;
+	color = "#000000";
 	opacity = 1
 	},
 /area/egg_tree_zone)
@@ -66,10 +63,7 @@
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
 "ai" = (
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#000000"
 	},
@@ -601,10 +595,7 @@
 /area/holodeck/source_game_room)
 "bP" = (
 /obj/effect/egg_returner,
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#000000"
 	},
@@ -1181,10 +1172,7 @@
 /area/unknown/dorm6)
 "dD" = (
 /obj/effect/egg_returner,
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#b52d54"
 	},
@@ -1635,20 +1623,14 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
 "fg" = (
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#b52d54"
 	},
 /area/egg_tree_zone)
 "fh" = (
 /obj/effect/landmark/egg_teleport,
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#b52d54"
 	},
@@ -1664,19 +1646,13 @@
 	pixel_x = -45;
 	pixel_y = -3
 	},
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#b52d54"
 	},
 /area/egg_tree_zone)
 "fk" = (
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
+/turf/unsimulated/white{
 	mouse_opacity = 0;
 	color = "#b52d54"
 	},

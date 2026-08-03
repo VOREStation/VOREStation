@@ -90,3 +90,7 @@
 	indestructable = TRUE
 	plane = MOB_PLANE
 	layer = MOB_LAYER
+
+/turf/unsimulated/white
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "white"
