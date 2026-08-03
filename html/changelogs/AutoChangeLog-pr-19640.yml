@@ -1,6 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - rscadd: "Added anomaly effect for xenoarch"
-  - bugfix: "Fixed bioscrambler anomaly taking FBPs and DNAless people as valid targets"
-  - code_imp: "Added ANOMALY_ALL containing all current anomalies"
