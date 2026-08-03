@@ -28,7 +28,7 @@
 	switch(wire)
 		if(WIRE_LATHE_HACK)
 			A.hacked = !mend
-			A.update_tgui_static_data(usr)
+			A.update_static_data_for_all_viewers()
 		if(WIRE_ELECTRIFY)
 			A.shocked = !mend
 		if(WIRE_LATHE_DISABLE)
@@ -42,8 +42,8 @@
 	switch(wire)
 		if(WIRE_LATHE_HACK)
 			A.hacked = !A.hacked
-			A.update_tgui_static_data(usr)
-			addtimer(CALLBACK(src, PROC_REF(reset_hacked), WIRE_LATHE_HACK, usr), 5 SECONDS)
+			A.update_static_data_for_all_viewers()
+			addtimer(CALLBACK(src, PROC_REF(reset_hacked), WIRE_LATHE_HACK), 5 SECONDS)
 		if(WIRE_ELECTRIFY)
 			A.shocked = !A.shocked
 			addtimer(CALLBACK(src, PROC_REF(reset_electrify), WIRE_ELECTRIFY), 5 SECONDS)
@@ -52,11 +52,11 @@
 			addtimer(CALLBACK(src, PROC_REF(reset_disable), WIRE_LATHE_DISABLE), 5 SECONDS)
 	..()
 
-/datum/wires/autolathe/proc/reset_hacked(wire, mob/user)
+/datum/wires/autolathe/proc/reset_hacked(wire)
 	var/obj/machinery/autolathe/A = holder
 	if(A && !is_cut(wire))
 		A.hacked = FALSE
-		A.update_tgui_static_data(user)
+		A.update_static_data_for_all_viewers()
 
 /datum/wires/autolathe/proc/reset_electrify(wire)
 	var/obj/machinery/autolathe/A = holder
