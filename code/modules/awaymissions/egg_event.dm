@@ -62,6 +62,7 @@
 	dynamic_lighting = FALSE
 
 /area/egg_tree_zone/man
+	enter_message = span_cult("(Well. There is a man here. He looks at you like you're a bit lost.)")
 	var/list/visitors = list()
 
 /area/egg_tree_zone/man/Entered(mob/M)
@@ -72,7 +73,6 @@
 	. = ..()
 	if(isliving(M))
 		var/mob/living/L = M
-		to_chat(L ,span_cult("(Well.  There is a man here.  He looks at you like you're a bit lost.)"))
 
 		var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(L))
 		if(L.put_in_any_hand_if_possible(E, TRUE))
