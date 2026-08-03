@@ -3,3 +3,6 @@
   - rscadd: Added anomaly effect for xenoarch
   - bugfix: Fixed bioscrambler anomaly taking FBPs and DNAless people as valid targets
   - code_imp: Added ANOMALY_ALL containing all current anomalies
+2026-08-03:
+  Will:
+  - code_imp: replaced usr from wire interaction behaviors
