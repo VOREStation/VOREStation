@@ -1,4 +1,4 @@
-/proc/egg_interdict(var/mob/living/to_teleport, var/turf/teleport_destination)
+/proc/egg_interdict(mob/living/to_teleport, turf/teleport_destination)
 	if(rand(1,1000) != 66)
 		return FALSE
 	if(!isturf(teleport_destination))
