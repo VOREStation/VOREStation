@@ -76,7 +76,7 @@
 		var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(L))
 		if(L.put_in_any_hand_if_possible(E, TRUE))
 			to_chat(L ,span_cult("(The man smiles and hands you what you've been looking for.)"))
-			to_chat(L ,span_boldannounce("* You got an egg.</span>"))
+			to_chat(L ,span_boldannounce("* You got an egg."))
 			visitors |= "[L.name] - [L.ckey]"
 		else
 			to_chat(L ,span_cult("(The man looks at your hands... It looks like he has something he wants to give to you...)"))
