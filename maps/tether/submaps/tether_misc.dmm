@@ -28,6 +28,17 @@
 "ae" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/space)
+"af" = (
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "wall";
+	mouse_opacity = 0;
+	color = "#000000";
+	density = 1;
+	opacity = 1
+	},
+/area/egg_tree_zone)
 "ag" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -58,11 +69,9 @@
 /turf/unsimulated{
 	icon = 'icons/effects/effects.dmi';
 	icon_state = "white";
-	name = "wall";
+	name = "floor";
 	mouse_opacity = 0;
-	color = "#000000";
-	density = 1;
-	opacity = 1
+	color = "#000000"
 	},
 /area/egg_tree_zone)
 "aj" = (
@@ -591,6 +600,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "bP" = (
+/obj/effect/egg_returner,
 /turf/unsimulated{
 	icon = 'icons/effects/effects.dmi';
 	icon_state = "white";
@@ -1176,7 +1186,7 @@
 	icon_state = "white";
 	name = "floor";
 	mouse_opacity = 0;
-	color = "#000000"
+	color = "#b52d54"
 	},
 /area/egg_tree_zone)
 "dE" = (
@@ -1625,7 +1635,6 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
 "fg" = (
-/obj/effect/egg_returner,
 /turf/unsimulated{
 	icon = 'icons/effects/effects.dmi';
 	icon_state = "white";
@@ -1635,6 +1644,7 @@
 	},
 /area/egg_tree_zone)
 "fh" = (
+/obj/effect/landmark/egg_teleport,
 /turf/unsimulated{
 	icon = 'icons/effects/effects.dmi';
 	icon_state = "white";
@@ -1650,16 +1660,6 @@
 /turf/simulated/floor/tiled/techfloor/grid/transit,
 /area/space)
 "fj" = (
-/obj/effect/landmark/egg_teleport,
-/turf/unsimulated{
-	icon = 'icons/effects/effects.dmi';
-	icon_state = "white";
-	name = "floor";
-	mouse_opacity = 0;
-	color = "#b52d54"
-	},
-/area/egg_tree_zone)
-"fk" = (
 /obj/structure/flora/tree/egg_tree{
 	pixel_x = -45;
 	pixel_y = -3
@@ -1672,7 +1672,7 @@
 	color = "#b52d54"
 	},
 /area/egg_tree_zone)
-"fl" = (
+"fk" = (
 /turf/unsimulated{
 	icon = 'icons/effects/effects.dmi';
 	icon_state = "white";
@@ -1681,9 +1681,6 @@
 	color = "#b52d54"
 	},
 /area/egg_tree_zone/man)
-"fm" = (
-/turf/space/transit/east/virgo3b/planet_fall,
-/area/space)
 "fn" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -2397,6 +2394,9 @@
 "nW" = (
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
+"oI" = (
+/turf/space/transit/east/virgo3b/planet_fall,
+/area/space)
 "oL" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -19530,23 +19530,23 @@ RT
 gD
 fZ
 ap
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
 ap
 ap
 ap
@@ -19672,23 +19672,23 @@ gD
 gD
 fZ
 ap
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -19814,23 +19814,23 @@ gD
 gD
 fZ
 ap
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -19956,23 +19956,23 @@ gD
 xc
 fZ
 ap
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -20098,23 +20098,23 @@ gD
 Fk
 fZ
 ap
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -20143,29 +20143,29 @@ ap
 ap
 ap
 ap
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
 ap
 Jz
 jf
@@ -20240,23 +20240,23 @@ gD
 nI
 fZ
 ap
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -20285,7 +20285,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -20307,7 +20307,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -20382,23 +20382,23 @@ aL
 aL
 ar
 ap
+af
 ai
-bP
-bP
-bP
-bP
-bP
-fh
-fh
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+fg
+fg
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -20427,7 +20427,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -20449,7 +20449,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -20524,23 +20524,23 @@ aI
 aI
 aI
 ar
+af
+ai
+ai
+ai
+ai
+fk
+fg
+fg
+fg
+ai
+ai
+ai
+ai
+ai
 ai
 bP
-bP
-bP
-bP
-fl
-fh
-fh
-fh
-bP
-bP
-bP
-bP
-bP
-bP
-dD
-ai
+af
 ap
 ap
 ap
@@ -20569,7 +20569,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -20591,7 +20591,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -20666,23 +20666,23 @@ hx
 hx
 hx
 fZ
+af
 ai
-bP
-bP
-bP
-bP
-fl
+ai
+ai
+ai
 fk
-fh
-fh
-fh
-fh
 fj
-fh
-fh
+fg
+fg
+fg
+fg
 fh
 fg
-ai
+fg
+fg
+dD
+af
 ap
 ap
 ap
@@ -20711,7 +20711,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -20733,7 +20733,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -20808,23 +20808,23 @@ hy
 hJ
 hO
 fZ
+af
+ai
+ai
+ai
+ai
+fk
+fg
+fg
+fg
+ai
+ai
+ai
+ai
+ai
 ai
 bP
-bP
-bP
-bP
-fl
-fh
-fh
-fh
-bP
-bP
-bP
-bP
-bP
-bP
-dD
-ai
+af
 ap
 ap
 ap
@@ -20853,7 +20853,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -20875,7 +20875,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -20950,23 +20950,23 @@ hz
 hK
 hP
 fZ
+af
 ai
-bP
-bP
-bP
-bP
-bP
-fh
-fh
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+fg
+fg
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -20995,7 +20995,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21017,7 +21017,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21092,23 +21092,23 @@ hz
 hK
 hP
 fZ
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -21137,7 +21137,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21159,7 +21159,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21234,23 +21234,23 @@ hA
 hL
 hQ
 fZ
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -21279,7 +21279,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21301,7 +21301,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21376,23 +21376,23 @@ hx
 hx
 hx
 fZ
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -21421,7 +21421,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21443,7 +21443,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21518,23 +21518,23 @@ aL
 aL
 aL
 ar
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -21563,7 +21563,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21585,7 +21585,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21660,23 +21660,23 @@ hB
 hD
 hD
 fZ
+af
 ai
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
-bP
 ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
 ap
 ap
 ap
@@ -21705,7 +21705,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21727,7 +21727,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21802,23 +21802,23 @@ hC
 hC
 hC
 fZ
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
 ap
 ap
 ap
@@ -21847,7 +21847,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -21869,7 +21869,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -21989,7 +21989,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22011,7 +22011,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22131,7 +22131,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22153,7 +22153,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22273,7 +22273,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22295,7 +22295,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22415,7 +22415,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22437,7 +22437,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22557,7 +22557,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22579,7 +22579,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22699,7 +22699,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22721,7 +22721,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22841,7 +22841,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -22863,7 +22863,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -22983,7 +22983,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -23005,7 +23005,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -23125,7 +23125,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -23147,7 +23147,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -23267,7 +23267,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -23289,7 +23289,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -23409,7 +23409,7 @@ ap
 ap
 ap
 ap
-fm
+oI
 qn
 qn
 qn
@@ -23431,7 +23431,7 @@ qn
 qn
 qn
 qn
-fm
+oI
 ap
 Jz
 jf
@@ -23551,29 +23551,29 @@ ap
 ap
 ap
 ap
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
-fm
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
+oI
 ap
 Jz
 Jz
