@@ -8,7 +8,7 @@
 	if(!to_teleport.ckey)
 		return FALSE
 	var/turf/egg_destination
-	for(var/obj/effect/landmark/egg_teleport/E in world)
+	for(var/obj/effect/landmark/egg_teleport/E in GLOB.landmarks_list)
 		if(!istype(E, /obj/effect/landmark/egg_teleport))
 			continue
 		egg_destination = get_turf(E)
@@ -62,22 +62,23 @@
 	dynamic_lighting = FALSE
 
 /area/egg_tree_zone/man
-	enter_message = "<span class='cult'>(Well.  There is a man here.  He looks at you like you're a bit lost.)</span>"
 	var/list/visitors = list()
 
 /area/egg_tree_zone/man/Entered(mob/M)
 	if(!M.ckey)
 		return
-	if("[M.name] - [M.ckey]" in visitors)
+	if("[M.real_name] - [M.ckey]" in visitors)
 		return
 	. = ..()
 	if(isliving(M))
 		var/mob/living/L = M
+		to_chat(L ,span_cult("(Well.  There is a man here.  He looks at you like you're a bit lost.)"))
+
 		var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(L))
 		if(L.put_in_any_hand_if_possible(E, TRUE))
 			to_chat(L ,span_cult("(The man smiles and hands you what you've been looking for.)"))
 			to_chat(L ,span_boldannounce("* You got an egg."))
-			visitors |= "[L.name] - [L.ckey]"
+			visitors += "[L.real_name] - [L.ckey]"
 		else
 			to_chat(L ,span_cult("(The man looks at your hands... It looks like he has something he wants to give to you...)"))
 
