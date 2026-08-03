@@ -1512,6 +1512,17 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
+"eG" = (
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "wall";
+	mouse_opacity = 0;
+	color = "#000000";
+	density = 1;
+	opacity = 1
+	},
+/area/egg_tree_zone)
 "eH" = (
 /obj/effect/shuttle_landmark/transit{
 	base_area = /area/space;
@@ -2420,6 +2431,76 @@
 /obj/structure/prop/alien/power,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm6)
+"hG" = (
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#000000"
+	},
+/area/egg_tree_zone)
+"hH" = (
+/obj/effect/egg_returner,
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#000000"
+	},
+/area/egg_tree_zone)
+"hI" = (
+/obj/effect/egg_returner,
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#b52d54"
+	},
+/area/egg_tree_zone)
+"hJ" = (
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#b52d54"
+	},
+/area/egg_tree_zone)
+"hK" = (
+/obj/effect/landmark/egg_teleport,
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#b52d54"
+	},
+/area/egg_tree_zone)
+"hL" = (
+/obj/structure/flora/tree/egg_tree{
+	pixel_x = -45;
+	pixel_y = -3
+	},
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#b52d54"
+	},
+/area/egg_tree_zone)
+"hM" = (
+/turf/unsimulated{
+	icon = 'icons/effects/effects.dmi';
+	icon_state = "white";
+	name = "floor";
+	mouse_opacity = 0;
+	color = "#b52d54"
+	},
+/area/egg_tree_zone/man)
 "hX" = (
 /obj/structure/table/woodentable/holotable,
 /obj/effect/landmark/costume/pirate,
@@ -20625,23 +20706,23 @@ Qh
 sj
 sj
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
 ap
 ap
 ap
@@ -20767,23 +20848,23 @@ oR
 sj
 sj
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -20909,23 +20990,23 @@ sj
 sj
 sj
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -21051,23 +21132,23 @@ sj
 sj
 sj
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -21193,23 +21274,23 @@ sj
 sj
 sj
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -21335,23 +21416,23 @@ aL
 aL
 aL
 ar
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -21477,23 +21558,23 @@ BV
 BV
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hJ
+hJ
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -21619,23 +21700,23 @@ Dh
 JQ
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hM
+hJ
+hJ
+hJ
+hG
+hG
+hG
+hG
+hG
+hG
+hH
+eG
 ap
 ap
 ap
@@ -21761,23 +21842,23 @@ Yn
 wf
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hM
+hL
+hJ
+hJ
+hJ
+hJ
+hK
+hJ
+hJ
+hJ
+hI
+eG
 ap
 ap
 ap
@@ -21903,23 +21984,23 @@ Yn
 wf
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hM
+hJ
+hJ
+hJ
+hG
+hG
+hG
+hG
+hG
+hG
+hH
+eG
 ap
 ap
 ap
@@ -22045,23 +22126,23 @@ OU
 uh
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hJ
+hJ
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -22187,23 +22268,23 @@ BV
 BV
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -22329,23 +22410,23 @@ BV
 BV
 BV
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -22471,23 +22552,23 @@ BV
 BV
 Xq
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -22613,23 +22694,23 @@ BV
 BV
 jS
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -22755,23 +22836,23 @@ BV
 BV
 fl
 xp
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+hG
+eG
 ap
 ap
 ap
@@ -22897,23 +22978,23 @@ aL
 aL
 aL
 ar
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
+eG
 ap
 ap
 ap
