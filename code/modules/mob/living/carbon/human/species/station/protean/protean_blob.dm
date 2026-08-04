@@ -411,6 +411,8 @@
 		..()
 
 /mob/living/simple_mob/protean_blob/MouseDrop(atom/over_object)
+	if(is_incorporeal())
+		return
 	if(ishuman(over_object) && usr == src && src.Adjacent(over_object))
 		var/mob/living/carbon/human/H = over_object
 		get_scooped(H, TRUE)
