@@ -380,9 +380,11 @@
 			qdel(src)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/attackby(obj/item/I, mob/user, params)
+	//isAI check so robits can do construction
 	if(isAI(user) || isalien(user) || isanimal(user) || !Adjacent(user))
 		return
 
+	//silicon check here so borgs don't depost their onboard guns as a sanity check.
 	if(opened && istype(I, /obj/item/gun) && !(issilicon(user)))
 		tgui_interact(user)
 		return
@@ -399,9 +401,19 @@
 
 	if(I.has_tool_quality(IS_WELDER))
 		var/obj/item/weldingtool/Wald = I.get_welder()
+		if(!Wald.remove_fuel(0,user))
+			if(!Wald.isOn())
+				return
+			else
+				to_chat(user, span_notice("You need more welding fuel to complete this task."))
+				return
+
 		if(!opened && locked)
+			user.visible_message(span_warning("[user] begins to cuts through [src]'s lock with [I]!"))
 			if(!do_after(user, 3 SECONDS * Wald.toolspeed, src))
 				return
+
+			playsound(src, Wald.usesound, 50)
 			welded = TRUE
 			locked = FALSE
 			doorstatus = CABINET_BROKEN
@@ -410,13 +422,33 @@
 			return
 
 		if(!opened && doorstatus == CABINET_REPAIR)
+			user.visible_message(span_notice("[user] begins to mend the damaged doors on \the [src]."))
 			if(!do_after(user, 3 SECONDS * Wald.toolspeed, src))
 				return
+
+			playsound(src, Wald.usesound, 50)
 			welded = FALSE
 			emagged = FALSE
 			doorstatus = CABINET_NORMAL
 			update_icon()
 			to_chat(user, span_notice("You repair the damaged doors on [src]."))
+			return
+
+		//deconstruction requirements. cut the lock (like you weld doors for their decon)
+		if(welded && doorstatus == CABINET_BROKEN && user.a_intent == I_HURT)
+			// Cutter check
+			if(contents.len)
+				to_chat(user, span_warning("Remove the contents before you cut it apart!"))
+				return
+
+			user.visible_message(span_warning("[user] begins to cuts apart [src] with [I]!"))
+			//allow enough time to go 'oh whoops' and move away
+			if(!do_after(user, 10 SECONDS * Wald.toolspeed, src))
+				return
+			playsound(src, Wald.usesound, 50)
+			//half materials returned so you can't get infinte plasteel but enough to patch a hole in a wall I guess
+			new /obj/item/stack/material/plasteel(loc, 5)
+			qdel(src)
 			return
 
 		to_chat(user, span_notice("There is nothing to cut or mend on [src]."))
@@ -498,10 +530,20 @@
 	name = "Shotgun locker"
 	icon_state = "shotguncase"
 
+/obj/structure/closet/secure_closet/guncabinet/fancy/shotgun/security
+	name = "Security Shotgun locker"
+	icon_state = "shotguncase"
+	desc = "A high-security cabinet designed to store and display firearms. This one has regular security access."
+
 /obj/structure/closet/secure_closet/guncabinet/fancy/rifle
 	name = "Rifle locker"
 	icon_state = "riflecase"
 	desc = "A strong cabinet used for securing firearms. This one is for long arms such as rifles and shotguns."
+
+/obj/structure/closet/secure_closet/guncabinet/fancy/rifle/security
+	name = "Security Rifle locker"
+	req_one_access = list(ACCESS_SECURITY, ACCESS_ARMORY)
+	desc = "A strong cabinet used for securing firearms. This one is for long arms with regular security access."
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/rifle/wood
 	icon_state = "riflefancy"
@@ -513,6 +555,11 @@
 	desc = "A strong cabinet used for securing firearms. This one is for hand-held sidearms."
 	case_type = GUN_SIDEARM
 	repair_material = /obj/item/stack/material/glass/reinforced
+
+/obj/structure/closet/secure_closet/guncabinet/fancy/pistol/security
+	name = "Security Small Arms locker"
+	desc = "A strong cabinet used for securing firearms. This one is for hand-held sidearms with regular security access."
+	req_one_access = list(ACCESS_SECURITY, ACCESS_ARMORY)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/pistol/wood
 	icon_state = "fancypistol"
