@@ -5001,6 +5001,7 @@
 #include "code\modules\xenoarcheaology\artifacts\predefined\_predefined.dm"
 #include "code\modules\xenoarcheaology\artifacts\predefined\hungry_statue.dm"
 #include "code\modules\xenoarcheaology\effects\animate_anomaly.dm"
+#include "code\modules\xenoarcheaology\effects\anomaly.dm"
 #include "code\modules\xenoarcheaology\effects\atmospheric.dm"
 #include "code\modules\xenoarcheaology\effects\berserk.dm"
 #include "code\modules\xenoarcheaology\effects\cell.dm"
