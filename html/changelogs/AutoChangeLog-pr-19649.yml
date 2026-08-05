@@ -1,0 +1,4 @@
+author: "Arceniu"
+delete-after: True
+changes:
+  - bugfix: "fixed mob/living/simple_mob/vore/wolf's bellies proc"
