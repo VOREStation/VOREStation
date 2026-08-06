@@ -16,3 +16,6 @@
       this could lead to rounds never ending
   OverDriveZ:
   - sound: added two big cat audible emotes
+2026-08-06:
+  Arceniu:
+  - bugfix: fixed mob/living/simple_mob/vore/wolf's bellies proc
