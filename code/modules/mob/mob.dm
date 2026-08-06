@@ -1193,7 +1193,7 @@
 	set hidden = TRUE
 	if(world.time <= allowtilttime) //This is a sloppy "wait" fix to work around tilting durring the get-up animation
 		return FALSE
-	if(!canface() || !canmove || lying || stunned || sleeping || resting)
+	if(!canface() || incapacitated(63))
 		return FALSE
 	if(how_tilted >= -maximum_tilt)
 		transform = turn(transform, -5)
@@ -1204,7 +1204,7 @@
 	set hidden = TRUE
 	if(world.time <= allowtilttime) //This is a sloppy "wait" fix to work around tilting durring the get-up animation
 		return FALSE
-	if(!canface() || !canmove || lying || stunned || sleeping || resting)
+	if(!canface() || incapacitated(63))
 		return FALSE
 	if(how_tilted <= maximum_tilt)
 		transform = turn(transform, 5)
