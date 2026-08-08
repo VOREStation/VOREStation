@@ -283,6 +283,8 @@ GLOBAL_VAR_INIT(woof_current, 0)
 	. = ..()
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
+	if(QDELETED(src))
+		return
 	. = ..()
 	var/thismany = rand(0,3)
 	if(!thismany || killswitch || GLOB.woof_maximum >= 20)
