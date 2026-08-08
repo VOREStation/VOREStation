@@ -19,3 +19,6 @@
 2026-08-06:
   Arceniu:
   - bugfix: fixed mob/living/simple_mob/vore/wolf's bellies proc
+2026-08-08:
+  Guti:
+  - bugfix: Fixed anomaly artifacts instantly activating round-start
