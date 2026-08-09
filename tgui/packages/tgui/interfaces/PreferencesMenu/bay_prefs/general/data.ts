@@ -292,6 +292,7 @@ export type MiscData = {
 
   resleeve_lock: BooleanLike;
   resleeve_scan: BooleanLike;
+  synth_cookie: BooleanLike;
   mind_scan: BooleanLike;
 
   vantag_volunteer: BooleanLike;
@@ -328,7 +329,11 @@ export type GeneralDataStatic = Partial<{
   available_wing_styles: string[];
 }>;
 
-export type StandardStyle = { name: string; icon: string; icon_state: string };
+export type StandardStyle = {
+  name: string;
+  icon: string | null;
+  icon_state: string | null;
+};
 
 export type EarStyle = StandardStyle & {
   type: string;

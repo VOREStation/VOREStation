@@ -295,6 +295,8 @@
 
 /// Reapplies remote views based on object type and flags. Returns true if the view was assigned.
 /mob/proc/restore_remote_views()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	if(!loc) // Nullspace during respawn
 		return FALSE
 	if(QDELETED(loc) || QDELETED(src)) // location or ourselves is qdeleted, don't restart remote viewing during destroy
@@ -1185,6 +1187,28 @@
 		return FALSE
 	if(pixel_x <= (default_pixel_x + 16))
 		pixel_x++
+		is_shifted = TRUE
+
+/mob/verb/tiltcounterclock()
+	set hidden = TRUE
+	if(world.time <= allowtilttime) //This is a sloppy "wait" fix to work around tilting durring the get-up animation
+		return FALSE
+	if(!canface() || incapacitated(INCAPACITATION_ALL))
+		return FALSE
+	if(how_tilted >= -maximum_tilt)
+		transform = turn(transform, -5)
+		how_tilted = how_tilted - 5
+		is_shifted = TRUE
+
+/mob/verb/tiltclock()
+	set hidden = TRUE
+	if(world.time <= allowtilttime) //This is a sloppy "wait" fix to work around tilting durring the get-up animation
+		return FALSE
+	if(!canface() || incapacitated(INCAPACITATION_ALL))
+		return FALSE
+	if(how_tilted <= maximum_tilt)
+		transform = turn(transform, 5)
+		how_tilted = how_tilted + 5
 		is_shifted = TRUE
 
 /mob/verb/planeup()

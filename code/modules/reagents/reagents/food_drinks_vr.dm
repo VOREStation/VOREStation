@@ -551,7 +551,7 @@
 
 /datum/reagent/nutriment/protein/brainzsnax/affect_ingest(mob/living/carbon/M, alien, removed)
 	..()
-	if(prob(5) && !(alien == IS_CHIMERA || alien == IS_SLIME || alien == IS_PLANT || alien == IS_DIONA || alien == IS_SHADEKIN && !M.isSynthetic()))
+	if(prob(5) && !(alien == IS_CHIMERA || alien == IS_SLIME || alien == IS_PLANT || alien == IS_DIONA || alien == IS_SHADEKIN) && !M.isSynthetic())
 		M.adjustBrainLoss(removed) //Any other species risks prion disease.
 		M.Confuse(5)
 		M.hallucination = max(M.hallucination, 25)

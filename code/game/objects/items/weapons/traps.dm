@@ -17,7 +17,7 @@
 	center_of_mass_y = 0
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 18750)
+	matter = list(MAT_STEEL = MATERIAL_COST(9.375))
 	var/deployed = 0
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS

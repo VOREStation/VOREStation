@@ -19,7 +19,7 @@
 	usesound = 'sound/items/screwdriver.ogg'
 	drop_sound = 'sound/items/drop/screwdriver.ogg'
 	pickup_sound = 'sound/items/pickup/screwdriver.ogg'
-	matter = list(MAT_STEEL = 75)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0375))
 	attack_verb = list("stabbed")
 	sharp  = TRUE
 	toolspeed = 1

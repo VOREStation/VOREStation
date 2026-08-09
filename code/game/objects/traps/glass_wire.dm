@@ -92,7 +92,8 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/human_target = L
-		if(affecting && (affecting.robotic < ORGAN_ROBOT) && (affecting.take_damage(brute = force, sharp = TRUE, edge = TRUE, used_weapon = "Glass strands")))
+		if(affecting && (affecting.robotic < ORGAN_ROBOT))
+			affecting.take_damage(brute = force, sharp = TRUE, edge = TRUE, used_weapon = "Glass strands")
 			affecting.open = TRUE
 			human_target.UpdateDamageIcon()
 			human_target.updatehealth()

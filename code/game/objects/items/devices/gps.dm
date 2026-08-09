@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-gen"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
-	matter = list(MAT_STEEL = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.25))
 
 	var/gps_tag = "GEN0"
 	var/emped = FALSE

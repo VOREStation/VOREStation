@@ -35,7 +35,10 @@ export function computeMarketTick(
     const base = DATA_BASELINES[k];
     const drift = rand(-0.025, 0.025) * base;
     const pull = (base - nm[k]) * 0.035;
-    nm[k] = Math.max(DATA_FLOORS[k], Math.min(DATA_CEILINGS[k], nm[k] + drift + pull));
+    nm[k] = Math.max(
+      DATA_FLOORS[k],
+      Math.min(DATA_CEILINGS[k], nm[k] + drift + pull),
+    );
   }
 
   // Random event (spike or drop)
@@ -44,15 +47,23 @@ export function computeMarketTick(
     return { newMarket: nm, newLastEvent: sinceEvent, event: null };
   }
 
-  const k: MarketKey = MARKET_KEYS[Math.floor(Math.random() * MARKET_KEYS.length)];
+  const k: MarketKey =
+    MARKET_KEYS[Math.floor(Math.random() * MARKET_KEYS.length)];
   const isCLS = k === 'CLS';
   const spike = isCLS ? rand(0.05, 0.55) : rand(-0.55, 0.55);
   const old = nm[k];
-  nm[k] = Math.max(DATA_FLOORS[k], Math.min(DATA_CEILINGS[k], nm[k] * (1 + spike)));
+  nm[k] = Math.max(
+    DATA_FLOORS[k],
+    Math.min(DATA_CEILINGS[k], nm[k] * (1 + spike)),
+  );
 
   let event: MarketEvent | null = null;
   if (Math.abs(nm[k] - old) > old * 0.1) {
-    event = { key: k, dir: nm[k] > old ? 'SPIKE' : 'DROP', price: Math.floor(nm[k]) };
+    event = {
+      key: k,
+      dir: nm[k] > old ? 'SPIKE' : 'DROP',
+      price: Math.floor(nm[k]),
+    };
   }
 
   return { newMarket: nm, newLastEvent: 0, event };

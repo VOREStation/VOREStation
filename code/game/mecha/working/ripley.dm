@@ -27,7 +27,7 @@
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
-/obj/mecha/working/ripley/Move()
+/obj/mecha/working/ripley/Move(atom/newloc, direct = 0, movetime)
 	. = ..()
 	if(.)
 		collect_ore()

@@ -63,7 +63,6 @@
 		LAZYINITLIST(vore_organs)
 		var/obj/belly/B = new /obj/belly(src)
 		vore_selected = B
-		B.immutable = TRUE
 		B.name = "Stomach"
 		B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
 		B.can_taste = TRUE
@@ -287,10 +286,9 @@
 		QDEL_LIST(vore_organs)
 		for(var/entry in P.belly_prefs)
 			list_to_object(entry,src)
-		if(!vore_organs.len)
+		if(!length(vore_organs))
 			var/obj/belly/B = new /obj/belly(src)
 			vore_selected = B
-			B.immutable = TRUE
 			B.name = "Stomach"
 			B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
 			B.can_taste = TRUE
@@ -580,8 +578,7 @@
 	else if(iscapturecrystal(loc))
 		var/obj/item/capture_crystal/crystal = loc
 		crystal.unleash()
-		crystal.bound_mob = null
-		crystal.bound_mob = capture_crystal = 0
+		crystal.mob_was_deleted()
 		clear_fullscreen(ATOM_BELLY_FULLSCREEN)
 		log_and_message_admins("used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]", src)
 

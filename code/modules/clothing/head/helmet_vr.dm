@@ -35,7 +35,6 @@
 	desc = "ye olde armored helmet"
 	icon_state = "bedevere_helmet"
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
-	tint = TINT_HEAVY
 	siemens_coefficient = 2
 
 	var/base_state
@@ -62,7 +61,6 @@
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = base_state
-			tint = initial(tint)
 			to_chat(usr, "You flip the [src] down to protect yourself from the horrors of this universe. Narry a creature shall harm you with its beams of light.")
 			playsound(src, 'sound/machines/hatch_open.ogg', 75, 1)
 		else
@@ -70,7 +68,6 @@
 			body_parts_covered &= ~(EYES|FACE)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]_up"
-			tint = TINT_NONE
 			to_chat(usr, "You push the [src] up out of your face, ineffectively clearing your vision.")
 			playsound(src, 'sound/machines/hatch_open.ogg', 75, 1)
 		update_clothing_icon()	//so our mob-overlays
@@ -92,7 +89,6 @@
 	desc = "ye olde armored helmet"
 	icon_state = "bedevere_helmet"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	tint = TINT_HEAVY
 	siemens_coefficient = 1
 
 	var/base_state
@@ -119,7 +115,6 @@
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = base_state
-			tint = initial(tint)
 			to_chat(usr, "You flip the [src] down to protect yourself from the horrors of this universe. Narry a creature shall harm you with its beams of light.")
 			playsound(src, 'sound/machines/hatch_open.ogg', 75, 1)
 		else
@@ -127,7 +122,6 @@
 			body_parts_covered &= ~(EYES|FACE)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]_up"
-			tint = TINT_NONE
 			to_chat(usr, "You push the [src] up out of your face, ineffectively clearing your vision.")
 			playsound(src, 'sound/machines/hatch_open.ogg', 75, 1)
 		update_clothing_icon()	//so our mob-overlays

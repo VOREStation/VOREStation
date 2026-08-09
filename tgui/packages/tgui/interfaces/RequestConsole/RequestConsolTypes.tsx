@@ -8,7 +8,7 @@ export const RequestConsoleSupplies = (props) => {
   const { data } = useBackend<Data>();
   const { department, supply_dept } = data;
   return (
-    <Section title="Supplies">
+    <Section fill scrollable title="Supplies">
       <RequestConsoleSendMenu dept_list={supply_dept} department={department} />
     </Section>
   );
@@ -18,7 +18,7 @@ export const RequestConsoleAssistance = (props) => {
   const { data } = useBackend<Data>();
   const { department, assist_dept } = data;
   return (
-    <Section title="Request assistance from another department">
+    <Section fill scrollable title="Request assistance from another department">
       <RequestConsoleSendMenu dept_list={assist_dept} department={department} />
     </Section>
   );
@@ -28,7 +28,7 @@ export const RequestConsoleRelay = (props) => {
   const { data } = useBackend<Data>();
   const { department, info_dept } = data;
   return (
-    <Section title="Report Anonymous Information">
+    <Section fill scrollable title="Report Anonymous Information">
       <RequestConsoleSendMenu dept_list={info_dept} department={department} />
     </Section>
   );

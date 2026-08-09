@@ -9,12 +9,12 @@ import { CreateObject } from './CreateObject';
 import { CreateObjectAdvancedSettings } from './CreateObjectAdvancedSettings';
 import type { CreateObjectData } from './types';
 
-export interface IconSettings {
+export type IconSettings = {
   icon: string | null;
   iconState: string | null;
   iconSize: number;
   applyIcon?: boolean;
-}
+};
 
 export function SpawnPanel() {
   const [data, setData] = useState<CreateObjectData | undefined>();

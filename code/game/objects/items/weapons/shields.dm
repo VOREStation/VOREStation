@@ -67,7 +67,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = ITEMSIZE_LARGE
-	matter = list(MAT_GLASS = 7500, MAT_STEEL = 1000)
+	matter = list(MAT_GLASS = MATERIAL_COST(3.75), MAT_STEEL = MATERIAL_COST(0.5))
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 

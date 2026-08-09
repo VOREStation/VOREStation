@@ -873,15 +873,15 @@
 					failure_msg += "This is the destiantion for at least '[dest_for]' secondary belly transfers. Remove it as the destination from any bellies before deleting it. "
 					break
 
-			if(host.vore_selected.contents.len)
+			if(length(host.vore_selected.contents))
 				failure_msg += "You cannot delete bellies with contents! " //These end with spaces, to be nice looking. Make sure you do the same.
 			if(host.vore_selected.immutable)
 				failure_msg += "This belly is marked as undeletable. "
-			if(host.vore_organs.len == 1)
+			if(length(host.vore_organs) == 1)
 				failure_msg += "You must have at least one belly. "
 
 			if(failure_msg)
-				tgui_alert_async(user,failure_msg,"Error!")
+				tgui_alert_async(user, failure_msg, "Error!")
 				return FALSE
 
 			if(host.soulgem?.linked_belly == host.vore_selected)
