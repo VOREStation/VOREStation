@@ -989,14 +989,17 @@
 	update_clothing_icon()
 
 /obj/item/clothing/suit/equipped(mob/user, slot)
+	//Let's make sure we're extra aggressive with taur settings.
+	icon_override = initial(icon_override)
+	taurized = FALSE
 	if(slot != slot_wear_suit)
 		RemoveHood()
-		taurized = FALSE
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/taurtail = istaurtail(H.tail_style)
-		if((taurized && !taurtail) || (!taurized && taurtail))
-			taurize(user, taurtail)
+		var/mob/living/carbon/human/Hoomie = user
+		var/taurtail = istaurtail(Hoomie.tail_style)
+		if(taurtail)
+			taurize(Hoomie, taurtail)
+
 	update_clothing_icon()
 	..()
 
@@ -1025,9 +1028,9 @@
 	if(hood)
 		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 		if(ishuman(hood.loc))
-			var/mob/living/carbon/H = hood.loc
-			H.unEquip(hood, 1)
-			H.update_inv_wear_suit()
+			var/mob/living/carbon/Carbmob = hood.loc
+			Carbmob.unEquip(hood, 1)
+			Carbmob.update_inv_wear_suit()
 		hood.forceMove(src)
 
 /obj/item/clothing/suit/proc/ToggleHood()
@@ -1037,33 +1040,30 @@
 		RemoveHood()
 		return
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = src.loc
-		if(H.wear_suit != src)
-			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+		var/mob/living/carbon/human/Hoomie = src.loc
+		if(Hoomie.wear_suit != src)
+			to_chat(Hoomie, span_warning("You must be wearing [src] to put up the hood!"))
 			return
-		if(H.head)
-			to_chat(H, span_warning("You're already wearing something on your head!"))
+		if(Hoomie.head)
+			to_chat(Hoomie, span_warning("You're already wearing something on your head!"))
 			return
 		else
 			if(color != hood.color)
 				hood.color = color
-			H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+			Hoomie.equip_to_slot_if_possible(hood,slot_head,0,0,1)
 			hood_up = TRUE
 			hood.canremove = FALSE
 			update_icon()
-			H.update_inv_wear_suit()
+			Hoomie.update_inv_wear_suit()
 ///Hood stuff end.
 
 /obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_suit()
+	if (ismob(loc))
+		var/mob/Mobbie = loc
+		Mobbie.update_inv_wear_suit()
 
 ///Establishes Icon overrides for taur bodies
 /obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
-	// First we reset the clothing because this will immediately get fixed if it passes the check. This stops old sprite icons from carrying over.
-	taurized = FALSE
-	icon_override = initial(icon_override)	//almost always = null
 	/// We've already confirmed that we have a taur tail during equipped, this is just makes sure we get the correct icon override.
 	if(!has_taur_tail)
 		return
