@@ -131,6 +131,8 @@
 		adjust_damage_proc(usr)
 
 /obj/item/lasertagknife/proc/adjust_damage_proc(mob/living/user)
+	if(user.stat)
+		to_chat(user, span_warning("You must be conscious to adjust the knife damage!"))
 	var/max_damage = 10
 	var/min_damage = 1
 	var/new_damage = tgui_input_number(user, "Select knife damage (Between 1 and 10)", "Tag Health", tag_damage, max_damage, min_damage, round_value=TRUE) //If you need to go above 10, ask admins.
