@@ -26,7 +26,7 @@
 			var/obj/item/clothing/suit/lasertag/laser_suit = target
 			laser_suit.handle_hit(tag_damage)
 			return TRUE
-	if(attacker)
+	else if(attacker)
 		to_chat(attacker, span_warning("You need to be wearing your laser tag vest to use this!"))
 	return FALSE
 
