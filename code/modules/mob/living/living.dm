@@ -883,6 +883,7 @@
 	resting = !resting
 	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 	allowtilttime = world.time + TILT_INCAPACITATED_WAITTIME
+	how_tilted = 0
 	update_canmove()
 
 //called when the mob receives a bright flash
