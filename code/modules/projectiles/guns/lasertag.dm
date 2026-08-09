@@ -117,7 +117,11 @@
 
 /obj/item/lasertagknife/examine(mob/user, infix, suffix)
 	. = ..()
-	. += "It is currently set to do [tag_damage] damage per hit."
+	. += "It is currently set to do [tag_damage] damage per hit. Alt-click to adjust."
+
+/obj/item/lasertagknife/click_alt(mob/user)
+	if(!user.stat)
+		adjust_damage_proc(user)
 
 /obj/item/lasertagknife/verb/adjust_damage()
 	set name = "Adjust Knife Damage"
