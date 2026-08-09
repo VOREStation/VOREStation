@@ -120,7 +120,7 @@
 	. += "It is currently set to do [tag_damage] damage per hit."
 
 /obj/item/lasertagknife/verb/adjust_damage()
-	set name = "Adjust Suit Health"
+	set name = "Adjust Knife Damage"
 	set category = "Object"
 	set src in usr
 	if(isliving(usr))
