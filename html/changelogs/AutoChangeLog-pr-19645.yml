@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "update dependencies"
-  - bugfix: "identification terminal topic limit spam"
