@@ -1,3 +1,4 @@
+//Everything in this file is as it is intentionally and should not be messed with, removed, or changed.
 /proc/egg_interdict(mob/living/to_teleport, turf/teleport_destination)
 	if(rand(1,1000) != 66)
 		return FALSE
@@ -62,7 +63,7 @@
 	dynamic_lighting = FALSE
 
 /area/egg_tree_zone/man
-	enter_message = span_cult("(Well. There is a man here. He looks at you like you're a bit lost.)")
+	enter_message = span_cult("(Well.  There is a man here.  He looks at you like you're a bit lost.)")	//The spaces in this line are intentional.
 	var/list/visitors = list()
 
 /area/egg_tree_zone/man/Entered(mob/M)
@@ -80,7 +81,7 @@
 			to_chat(L ,span_boldannounce("* You got an egg."))
 			visitors += "[L.real_name] - [L.ckey]"
 		else
-			to_chat(L ,span_cult("(The man looks at your hands... It looks like he has something he wants to give to you...)"))
+			to_chat(L ,span_cult("(The man looks at your hands...  It looks like he has something he wants to give to you...)"))
 
 /obj/structure/flora/tree/egg_tree
 	icon = 'icons/obj/flora/egg_tree.dmi'
