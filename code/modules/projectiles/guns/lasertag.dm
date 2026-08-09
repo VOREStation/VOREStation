@@ -111,7 +111,7 @@
 	///If we need a vest on ourselves to use it or not.
 	var/vest_override = FALSE
 	///How much damage it does to the lasertag vest. Generally for oneshots.
-	var/tag_damage = 5
+	var/tag_damage = 1
 	///What vests we are allowed to hit with the knife.
 	var/list/allowed_suits = list(/obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/redtag, /obj/item/clothing/suit/lasertag/omni)
 
