@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "missing space in guestpass visible messages"
-  - bugfix: "robot sleepers hard ref to the robot"
-  - bugfix: "null law issue if guard dog was rolled on vore laws without anyone nearby, this could lead to rounds never ending"
