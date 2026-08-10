@@ -44,7 +44,7 @@
 	if(AM.is_incorporeal())
 		return
 	if(istype(AM,/obj/effect/abstract)) // Stops flashlight beams from breaking them
-		return
+		return // Maybe special handling someday, like making them shine?
 	if(anchored)
 		if(isliving(AM))
 			var/mob/living/L = AM
