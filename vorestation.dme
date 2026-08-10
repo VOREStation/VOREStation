@@ -3363,6 +3363,7 @@
 #include "code\modules\mining\machinery\machine_processing.dm"
 #include "code\modules\mining\machinery\machine_stacking.dm"
 #include "code\modules\mining\machinery\machine_unloading.dm"
+#include "code\modules\mining\machinery\mineral.dm"
 #include "code\modules\mining\ore_redemption_machine\construction.dm"
 #include "code\modules\mining\ore_redemption_machine\equipment_vendor.dm"
 #include "code\modules\mining\ore_redemption_machine\mine_point_items.dm"
