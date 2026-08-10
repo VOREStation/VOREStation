@@ -265,7 +265,6 @@
 	return console
 
 /obj/machinery/mineral/processing_unit/proc/toggle_speed(forced)
-	var/area/refinery_area = get_area(src)
 	if(forced)
 		speed_process = forced
 	else
@@ -276,12 +275,16 @@
 	else // low gear
 		STOP_PROCESSING(SSfastprocess, src)
 		START_MACHINE_PROCESSING(src)
-	for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
-		unloader.toggle_speed()
-	for(var/obj/machinery/conveyor_switch/cswitch in refinery_area.contents)
-		cswitch.toggle_speed()
-	for(var/obj/machinery/mineral/stacking_machine/stacker in refinery_area.contents)
-		stacker.toggle_speed()
+	var/area/refinery_area = get_area(src)
+	for(var/obj/machinery/mineral/unloading_machine/unloader in GLOB.mineral_machines)
+		if(get_area(unloader) == refinery_area)
+			unloader.toggle_speed()
+	for(var/obj/machinery/conveyor_switch/cswitch in GLOB.mineral_machines)
+		if(get_area(cswitch) == refinery_area)
+			cswitch.toggle_speed()
+	for(var/obj/machinery/mineral/stacking_machine/stacker GLOB.mineral_machines)
+		if(get_area(stacker) == refinery_area)
+			stacker.toggle_speed()
 
 /obj/machinery/mineral/processing_unit/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
