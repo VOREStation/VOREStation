@@ -22,3 +22,12 @@
 2026-08-08:
   Guti:
   - bugfix: Fixed anomaly artifacts instantly activating round-start
+2026-08-10:
+  Kashargul:
+  - bugfix: changeling camo never expiring
+  Will:
+  - bugfix: Stasis cages no longer apply diminishing returns before the caged creature
+      is sold
+  - code_imp: Improved sellable element
+  WolvesAndOwls:
+  - rscadd: Pixel tilting for living mobs
