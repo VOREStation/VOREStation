@@ -9,12 +9,14 @@
 	var/obj/machinery/mineral/stacking_machine/machine = null
 
 /obj/machinery/mineral/stacking_unit_console/Initialize(mapload)
-	. = ..()
+	..()
 	default_apply_parts()
+	return INITIALIZE_HINT_LATELOAD // Needs GLOB.mineral_machines populated
+
+/obj/machinery/mineral/stacking_unit_console/LateInitialize()
 	stacker_link()
-	if(!machine && mapload) // Delete mapped ones if they fail, otherwise show failure mode
+	if(!machine) // Delete mapped ones if they fail, otherwise show failure mode
 		stack_trace(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
-		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/stacking_unit_console/Destroy()
 	stacker_unlink()
@@ -49,6 +51,9 @@
 
 /obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user)
 	add_fingerprint(user)
+	if(!machine)
+		to_chat(user, span_danger("Stacking machine not detected."))
+		return
 	tgui_interact(user)
 
 /obj/machinery/mineral/stacking_unit_console/attackby(obj/item/I, mob/user)

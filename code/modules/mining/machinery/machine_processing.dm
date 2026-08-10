@@ -17,12 +17,14 @@
 	var/show_all_ores = FALSE
 
 /obj/machinery/mineral/processing_unit_console/Initialize(mapload)
-	. = ..()
+	..()
 	default_apply_parts()
+	return INITIALIZE_HINT_LATELOAD // Needs GLOB.mineral_machines populated
+
+/obj/machinery/mineral/processing_unit_console/LateInitialize()
 	processor_link()
-	if(!machine && mapload) // Delete mapped ones if they fail, otherwise show failure mode
+	if(!machine) // Delete mapped ones if they fail, otherwise show failure mode
 		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
-		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/processing_unit_console/Destroy()
 	if(inserted_id)
@@ -58,7 +60,7 @@
 		if(!powered())
 			return
 		if(!machine)
-			to_chat(user, span_danger("Ore processor not detected."))
+			to_chat(user, span_danger("Material processor not detected."))
 			return
 		if(!inserted_id && (user.unEquip(I) || isrobot(user)))
 			I.forceMove(src)
@@ -282,7 +284,7 @@
 	for(var/obj/machinery/conveyor_switch/cswitch in GLOB.mineral_machines)
 		if(get_area(cswitch) == refinery_area)
 			cswitch.toggle_speed()
-	for(var/obj/machinery/mineral/stacking_machine/stacker GLOB.mineral_machines)
+	for(var/obj/machinery/mineral/stacking_machine/stacker in GLOB.mineral_machines)
 		if(get_area(stacker) == refinery_area)
 			stacker.toggle_speed()
 

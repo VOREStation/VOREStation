@@ -183,6 +183,15 @@ GLOBAL_LIST(construction_frame_floor)
 	x_offset = 30
 	y_offset = 30
 
+/datum/frame/frame_types/mat_production_console
+	name = "mining machine console"
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
+	frame_class = FRAME_CLASS_DISPLAY
+	frame_size = 2
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 32
+	y_offset = 32
+
 /datum/frame/frame_types/intercom
 	name = "Intercom"
 	frame_class = FRAME_CLASS_ALARM

@@ -418,7 +418,7 @@
 /obj/item/circuitboard/mat_processor_console
 	name = T_BOARD("material processor console")
 	build_path = /obj/machinery/mineral/processing_unit_console
-	board_type = new /datum/frame/frame_types/guest_pass_console
+	board_type = new /datum/frame/frame_types/mat_production_console
 
 /obj/item/circuitboard/mat_stacker
 	name = T_BOARD("stacking machine")
@@ -431,7 +431,7 @@
 /obj/item/circuitboard/mat_stacker_console
 	name = T_BOARD("stacking machine console")
 	build_path = /obj/machinery/mineral/stacking_unit_console
-	board_type = new /datum/frame/frame_types/guest_pass_console
+	board_type = new /datum/frame/frame_types/mat_production_console
 
 /obj/item/circuitboard/mat_unloader
 	name = T_BOARD("unloading machine")
