@@ -89,3 +89,22 @@
 /datum/goal/common/trashpiles/proc/handle_trash_searched(datum/source, mob/living/user, list/searched_by)
 	SIGNAL_HANDLER
 	current_count++
+
+// Win arcade
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/goal/common/arcade
+	name = "Win Arcade Machine Games"
+
+/datum/goal/common/arcade/New()
+	. = ..()
+	goal_count = rand(15, 30)
+	goal_text = "Enjoy some leisure time and less pocket change, and get some prizes out of [goal_count] arcade machines."
+	RegisterSignal(SSdcs, COMSIG_GLOB_ARCADE_PRIZEVEND, PROC_REF(handle_arcade_win))
+
+/datum/goal/common/arcade/Destroy(force)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_ARCADE_PRIZEVEND)
+	. = ..()
+
+/datum/goal/common/arcade/proc/handle_arcade_win(datum/source)
+	SIGNAL_HANDLER
+	current_count++

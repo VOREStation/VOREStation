@@ -76,7 +76,6 @@
 /area/groundbase/science/rnd)
 "ai" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -702,7 +701,6 @@
 /area/groundbase/level2/nw)
 "bn" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Unisex Restroom"
 	},
 /obj/structure/cable/yellow{
@@ -1036,6 +1034,20 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/kitchen/backroom)
+"cb" = (
+/obj/structure/table/bench/padded,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/item/radio/intercom/culture{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "cc" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
@@ -1833,8 +1845,7 @@
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room1)
@@ -3249,7 +3260,6 @@
 	master_tag = "xenobio_airlock_control";
 	name = "Xenobiology Access Button";
 	pixel_x = -32;
-	req_access = null;
 	req_one_access = list(47,55)
 	},
 /obj/structure/cable/yellow{
@@ -4595,8 +4605,7 @@
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room5)
@@ -5361,7 +5370,6 @@
 /area/groundbase/medical/lobby)
 "oE" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -7222,7 +7230,6 @@
 /area/groundbase/level2/nw)
 "tP" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -10595,8 +10602,7 @@
 /obj/machinery/door/window/brigdoor/westright{
 	dir = 4;
 	name = "Robotics Desk";
-	req_access = list(29,47);
-	req_one_access = null
+	req_access = list(29,47)
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/table/reinforced,
@@ -10994,8 +11000,7 @@
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room3)
@@ -12161,8 +12166,7 @@
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /obj/machinery/alarm{
 	dir = 4
@@ -13839,7 +13843,6 @@
 /area/groundbase/dorms)
 "Mr" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -15648,7 +15651,6 @@
 	master_tag = "xenobio_airlock_control";
 	name = "Xenobiology Access Button";
 	pixel_y = -32;
-	req_access = null;
 	req_one_access = list(47,55)
 	},
 /obj/structure/cable/yellow{
@@ -16285,6 +16287,9 @@
 	dir = 8;
 	pixel_x = 30
 	},
+/obj/item/radio/intercom/atc{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "Tf" = (
@@ -16407,7 +16412,6 @@
 /area/groundbase/science/circuits)
 "Tz" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -16969,7 +16973,6 @@
 /area/groundbase/civilian/library)
 "Vq" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -17057,8 +17060,7 @@
 /obj/machinery/door/window/brigdoor/westleft{
 	dir = 4;
 	name = "Robotics Desk";
-	req_access = list(29,47);
-	req_one_access = null
+	req_access = list(29,47)
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/table/reinforced,
@@ -17671,7 +17673,6 @@
 /area/groundbase/science/rd)
 "Xp" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -18074,7 +18075,6 @@
 /area/groundbase/civilian/kitchen)
 "YF" = (
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Bathroom"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -23713,7 +23713,7 @@ xE
 xE
 xE
 FF
-PS
+cb
 LS
 Ny
 YO

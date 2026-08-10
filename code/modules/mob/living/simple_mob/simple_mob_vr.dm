@@ -229,7 +229,7 @@
 	add_verb(src, /mob/living/simple_mob/proc/animal_nom)
 	add_verb(src, /mob/living/proc/shred_limb)
 	add_verb(src, /mob/living/simple_mob/proc/nutrition_heal)
-	add_verb(src, /mob/living/proc/eat_trash)
+	add_verb(src, /mob/living/proc/eat_trash_verb)
 	add_verb(src, /mob/living/proc/toggle_trash_catching)
 
 	if(LAZYLEN(vore_organs))
@@ -242,7 +242,7 @@
 	//A much more detailed version of the default /living implementation
 	var/obj/belly/B = new /obj/belly(src)
 	vore_selected = B
-	B.immutable = 1
+	B.immutable = TRUE
 	B.affects_vore_sprites = TRUE
 	B.name = vore_stomach_name ? vore_stomach_name : "stomach"
 	B.desc = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."

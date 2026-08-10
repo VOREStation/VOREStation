@@ -45,6 +45,15 @@
 	..()
 	update_icon()
 
+/obj/machinery/atmospherics/pipe/simple/visible/universal/relaymove(mob/living/user, direction)
+	if(initialize_directions & direction)
+		return ..()
+	if((NORTH|EAST) & direction)
+		user.change_ventcrawl_layer(user.ventcrawl_layer + 1)
+	if((SOUTH|WEST) & direction)
+		user.change_ventcrawl_layer(user.ventcrawl_layer - 1)
+	user.setMoveCooldown(0.25 SECONDS) // So this doesn't instantly slam through all of them
+
 //
 // Universal Pipe Adapter - Designed for connecting scrubbers, normal, and supply pipes together.
 // Hidden varient
@@ -87,6 +96,14 @@
 	..()
 	update_icon()
 
+/obj/machinery/atmospherics/pipe/simple/hidden/universal/relaymove(mob/living/user, direction)
+	if(initialize_directions & direction)
+		return ..()
+	if((NORTH|EAST) & direction)
+		user.change_ventcrawl_layer(user.ventcrawl_layer + 1)
+	if((SOUTH|WEST) & direction)
+		user.change_ventcrawl_layer(user.ventcrawl_layer - 1)
+	user.setMoveCooldown(0.25 SECONDS) // So this doesn't instantly slam through all of them
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Shared universal pipe adaptor procs

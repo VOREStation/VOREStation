@@ -116,3 +116,40 @@
 /datum/goal/cargo/mine_rock/check_completion()
 	current_count = GLOB.rocks_drilled_roundstat
 	. = ..()
+
+// Deliver Mail
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/goal/cargo/deliver_mail
+	name = "Deliver Mail"
+
+/datum/goal/cargo/deliver_mail/New()
+	. = ..()
+	goal_count = rand(40, 70)
+	goal_text = "Nothing stops the mail. Deliver [goal_count] envelopes to their corresponding employer."
+	RegisterSignal(SSdcs, COMSIG_GLOB_MAIL_DELIVERED, PROC_REF(handle_mail_delivery))
+
+/datum/goal/cargo/deliver_mail/Destroy(force)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MAIL_DELIVERED)
+	. = ..()
+
+/datum/goal/cargo/deliver_mail/proc/handle_mail_delivery(atom/source)
+	SIGNAL_HANDLER
+	current_count++
+
+// Sell Research Samples
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/goal/cargo/sell_research_samples
+	name = "Sell Research Samples"
+
+/datum/goal/cargo/sell_research_samples/New()
+	. = ..()
+	goal_count = rand(40, 60)
+	goal_text = "Help provide insight into the unknown, ship [goal_count] research samples."
+
+/datum/goal/cargo/sell_research_samples/handle_cargo_sale(datum/source, atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
+	if(!sold_successfully)
+		return
+	if(!istype(sold_item,/obj/structure/closet/crate))
+		return
+	for(var/obj/item/research_sample/sample in sold_item)
+		current_count++

@@ -349,46 +349,46 @@
 	singular_name = "cafe floor tile"
 	desc = "A chekered pattern, an ancient style for a familiar feeling."
 	icon_state = "tile_cafe"
-	matter = list(MAT_PLASTIC = 1)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(0.0005))
 
 // Circuit
 /obj/item/stack/tile/floor/eris/bcircuit
 	name = "circuit floor tile"
 	singular_name = "circuit floor tile"
 	icon_state = "tile_techmaint" // No sprite for this...
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 // Derelict
 /obj/item/stack/tile/floor/eris/derelict1
 	name = "derelict floor tile"
 	singular_name = "derelict floor tile"
 	icon_state = "tile_techmaint" // No sprite for this...
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/derelict2
 	name = "derelict floor tile"
 	singular_name = "derelict floor tile"
 	icon_state = "tile_techmaint" // No sprite for this...
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/derelict3
 	name = "derelict floor tile"
 	singular_name = "derelict floor tile"
 	icon_state = "tile_techmaint" // No sprite for this...
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/derelict4
 	name = "derelict floor tile"
 	singular_name = "derelict floor tile"
 	icon_state = "tile_techmaint" // No sprite for this...
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 // Techmaint
 /obj/item/stack/tile/floor/eris/techmaint
 	name = "maint floor tile"
 	singular_name = "maint floor tile"
 	icon_state = "tile_techmaint"
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/techmaint/perforated
 	name = "perforated maint floor tile"
@@ -412,7 +412,7 @@
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
 	icon_state = "tile_steel"
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/steel/panels
 	name = "steel panel tile"
@@ -512,7 +512,7 @@
 	singular_name = "white floor tile"
 	desc = "Appears to be made out of a lighter mat."
 	icon_state = "tile_white"
-	matter = list(MAT_PLASTIC = 1)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/white/panels
 	name = "white panel tile"
@@ -596,7 +596,7 @@
 	name = "dark floor tile"
 	singular_name = "dark floor tile"
 	icon_state = "tile_dark"
-	matter = list(MAT_STEEL = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 /obj/item/stack/tile/floor/eris/dark/panels
 	name = "dark panel tile"

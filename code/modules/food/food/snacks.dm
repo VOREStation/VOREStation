@@ -89,6 +89,8 @@
 			var/obj/item/TrashItem = new trash(eater)
 			eater.put_in_hands(TrashItem)
 		qdel(src)
+		return
+	eater.balloon_alert_visible("nibbles away at \the [src].","nibbled away at \the [src].")
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user)
 	. = ..(user)
@@ -424,8 +426,6 @@
 /obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.visible_message(span_infoplain(span_bold("[user]") + " nibbles away at \the [src]."),span_info("You nibble away at \the [src]."))
-	user.balloon_alert_visible("nibbles away at \the [src].","nibbled away at \the [src].")
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
@@ -885,9 +885,12 @@
 /obj/item/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return . = ..()
+	if((istype(O,/obj/machinery/chem_master)) || (istype(O,/obj/machinery/chemical_dispenser)))
+		to_chat(user, span_warning("You can't find a good place to crack it into this machine, maybe try a beaker?"))
+		return
 	if(!(proximity && O.is_open_container()))
 		return
-	to_chat(user, "You crack \the [src] into \the [O].")
+	to_chat(user, span_notice("You crack \the [src] into \the [O]."))
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
@@ -5036,6 +5039,9 @@
 /obj/item/reagent_containers/food/snacks/siffruit/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return ..()
+	if((istype(O,/obj/machinery/chem_master)) || (istype(O, /obj/machinery/chemical_dispenser)))
+		to_chat(user, span_warning("You can't find a good place to crack it into this machine, maybe try a beaker?"))
+		return
 	if(!(proximity && O.is_open_container()))
 		return
 	to_chat(user, span_notice("You tear \the [src]'s sac open, pouring it into \the [O]."))

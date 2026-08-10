@@ -205,6 +205,15 @@ Protectiveness | Armor %
 	desc = "This appears to be two 'sheets' of a material held together by cable.  If the sheets are strong, this could be rather protective."
 	icon_state = "material_armor_makeshift"
 
+/obj/item/clothing/suit/armor/material/makeshift/random
+
+/obj/item/clothing/suit/armor/material/makeshift/random/Initialize(mapload)
+	. = ..()
+	var/armor_to_pick = pick(subtypesof(/obj/item/clothing/suit/armor/material/makeshift) - /obj/item/clothing/suit/armor/material/makeshift/random)
+	new armor_to_pick(loc)
+	return INITIALIZE_HINT_QDEL
+
+
 /obj/item/clothing/accessory/material/makeshift/light //Craftable with 4 material sheets, less slowdown, less armour
 	name = "light armor plate"
 	desc = "A thin plate of padded material, designed to fit into a plate carrier. Attaches to a plate carrier."

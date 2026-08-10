@@ -15350,6 +15350,11 @@
 /obj/structure/bed/chair/bay/comfy/captain{
 	dir = 1
 	},
+/obj/item/radio/intercom/atc{
+	dir = 1;
+	pixel_y = 19;
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/bridge)
 "HM" = (
@@ -17840,7 +17845,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "Nk" = (
-/obj/item/radio/intercom{
+/obj/item/radio/intercom/culture{
 	dir = 1;
 	pixel_y = 24
 	},

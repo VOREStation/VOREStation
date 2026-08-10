@@ -37,6 +37,7 @@
 
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)
 	SEND_SIGNAL(src, COMSIG_ARCADE_PRIZEVEND, user)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ARCADE_PRIZEVEND)
 
 	if(LAZYLEN(special_prizes)) // Downstream wanted the 'win things inside contents sans circuitboard' feature kept.
 		var/atom/movable/AM = pick_n_take(special_prizes)

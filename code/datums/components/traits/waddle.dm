@@ -22,9 +22,9 @@
 	SIGNAL_HANDLER
 	if (QDELETED(our_atom))
 		return
-	//Living owner only. No waddling while downed.
+	//Living owner only. No waddling while downed or being thrown.
 	if(living_owner)
-		if(living_owner.stat != CONSCIOUS || living_owner.resting)
+		if(living_owner.stat != CONSCIOUS || living_owner.resting || living_owner.throwing)
 			return
 	if(waddling)
 		waddle_waddle(our_atom)
