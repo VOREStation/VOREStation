@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Lasertag knives can be set from 1 to 10 damage."
-  - bugfix: "Lasertag guns now have their special names."
-  - bugfix: "Fixes lasertag guns incorrectly telling you to wear the correct vest if shooting something that isn't a normally valid target."
