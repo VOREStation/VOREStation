@@ -261,6 +261,7 @@
 		STOP_PROCESSING(SSfastprocess, src)
 	else
 		STOP_MACHINE_PROCESSING(src)
+	// We don't drop stored ores, just to avoid point exploits. Maybe this should drop slag instead?
 	. = ..()
 
 /obj/machinery/mineral/processing_unit/has_link()
