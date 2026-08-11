@@ -23,8 +23,9 @@
 
 /obj/machinery/mineral/processing_unit_console/LateInitialize()
 	processor_link()
-	if(!machine) // Delete mapped ones if they fail, otherwise show failure mode
+	if(!machine && !SSticker.HasRoundStarted()) // Delete mapped ones if they fail
 		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
+		qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/Destroy()
 	if(inserted_id)

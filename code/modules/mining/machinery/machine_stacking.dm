@@ -15,8 +15,9 @@
 
 /obj/machinery/mineral/stacking_unit_console/LateInitialize()
 	stacker_link()
-	if(!machine) // Delete mapped ones if they fail, otherwise show failure mode
+	if(!machine && !SSticker.HasRoundStarted()) // Delete mapped ones if they fail
 		stack_trace(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
+		qdel(src)
 
 /obj/machinery/mineral/stacking_unit_console/Destroy()
 	stacker_unlink()
