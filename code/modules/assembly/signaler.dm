@@ -3,7 +3,7 @@
 	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
 	icon_state = "signaller"
 	item_state = "signaler"
-	matter = list(MAT_STEEL = 1000, MAT_GLASS = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.1))
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
 	secured = TRUE

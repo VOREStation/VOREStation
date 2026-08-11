@@ -107,6 +107,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user, target_zone, attack_modifier) //Just that we TRIED to use it.
 	if((!force || (flags & NOBLUDGEON)) && !(flags & ALLOW_ATTACK_ANIMATIONS))
 		return ITEM_INTERACT_FAILURE
 	if(M == user && user.a_intent != I_HURT)

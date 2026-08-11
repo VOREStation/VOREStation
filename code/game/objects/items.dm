@@ -4,7 +4,7 @@
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
-	//matter = list(MAT_STEEL = 1)
+	//matter = list(MAT_STEEL = MATERIAL_COST(0.0005))
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
@@ -112,8 +112,6 @@
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
 	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
-
-	var/protean_drop_whitelist = FALSE
 
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
@@ -329,16 +327,16 @@
 				size = "enormous"
 	return ..(user, "", "It is \a [size] item.")
 
-/obj/item/attack_hand(mob/living/user as mob)
+/obj/item/attack_hand(mob/living/user)
 	if (!user) return
 	..()
 	if(anchored)
-		to_chat(user, span_notice("\The [src] won't budge, you can't pick it up!"))
+		attack_self(user)
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
-		if (user.hand)
+		if(user.hand)
 			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
@@ -350,18 +348,18 @@
 		var/obj/item/holder/D = src
 		if(D.held_mob == user) return // No picking your own micro self up
 
-	var/old_loc = src.loc
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
+	var/old_loc = loc
+	if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		if(!S.remove_from_storage(src))
 			return
 
-	src.pickup(user)
-	if (src.loc == user)
+	pickup(user)
+	if(loc == user)
 		if(!user.unEquip(src))
 			return
 	else
-		if(isliving(src.loc))
+		if(isliving(loc))
 			return
 
 	if(user.put_in_active_hand(src))
@@ -369,19 +367,18 @@
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
 			ghost.assumeform(src)
 			ghost.animate_towards(user)
-	//VORESTATION EDIT START. This handles possessed items.
-	if(src.possessed_voice && src.possessed_voice.len && !(user.ckey in warned_of_possession)) //Is this item possessed?
+
+	if(possessed_voice && possessed_voice.len > 1 && !(user.ckey in warned_of_possession))
 		warned_of_possession |= user.ckey
 		tgui_alert_async(user,{"
 		THIS ITEM IS POSSESSED BY A PLAYER CURRENTLY IN THE ROUND. This could be by anomalous means or otherwise.
 		If this is not something you wish to partake in, it is highly suggested you place the item back down.
 		If this is fine to you, ensure that the other player is fine with you doing things to them beforehand!
 		"},"OOC Warning")
-	//VORESTATION EDIT END.
 	return
 
-/obj/item/attack_ai(mob/user as mob)
-	if (istype(src.loc, /obj/item/robot_module))
+/obj/item/attack_ai(mob/user)
+	if(istype(src.loc, /obj/item/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
 			return
@@ -389,7 +386,7 @@
 		R.activate_module(src)
 		R.hud_used.update_robot_modules_display()
 
-/obj/item/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
@@ -416,7 +413,7 @@
 	else
 		return 0
 
-/obj/item/throw_impact(atom/hit_atom)
+/obj/item/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 	if(isliving(hit_atom) && !hit_atom.is_incorporeal()) //Living mobs handle hit sounds differently.
 		var/volume = get_volume_by_throwforce_and_or_w_class()
@@ -591,6 +588,8 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return 0
 		if(slot_l_store, slot_r_store)
+			if((slot == slot_l_store && H.l_store) || (slot == slot_r_store && H.r_store))
+				return 0
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
@@ -600,6 +599,8 @@ GLOBAL_LIST_INIT(slot_flags_enumeration, list(
 			if( w_class > ITEMSIZE_SMALL && !(slot_flags & SLOT_POCKET) )
 				return 0
 		if(slot_s_store)
+			if(H.s_store)
+				return 0
 			if(!H.wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
@@ -1215,3 +1216,54 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		name = cleanname
 	if(cleandesc)
 		desc = cleandesc
+
+/obj/item/proc/ranged_disarm(mob/living/carbon/human/target, mob/living/user, zone_override = null)
+	if(!ishuman(target))
+		return
+
+	var/target_zone
+	var/list/holding
+	if(istype(src,/obj/item/projectile))
+		// Projectiles use their aim, and always disarm
+		var/obj/item/projectile/bullet = src
+		target_zone = bullet.def_zone
+		holding = list(target.get_active_hand() = 100, target.get_inactive_hand() = 100)
+	else
+		// Melee attacks use user's targeting zone, and have a decent chance to disarm main hand
+		target_zone = user.zone_sel.selecting
+		holding = list(target.get_active_hand() = 40, target.get_inactive_hand() = 20)
+	if(zone_override) // Argument override
+		target_zone = zone_override
+
+	if(target_zone in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))	// Guns are complex devices, both of a mechanical and electronic nature. A weird gravity ball or other type of object trying to pull or grab it is likely not safe.
+		for(var/obj/item/gun/W in holding)
+			if(W && prob(holding[W]))
+				var/list/turfs = list()
+				for(var/turf/T in view())
+					turfs += T
+				if(turfs.len)
+					var/turf/shoot_at_turf = pick(turfs)
+					visible_message(span_danger("[target]'s [W] goes off due to \the [src]!"))
+					return W.afterattack(shoot_at_turf,target)
+
+	if(!(target.species.flags & NO_SLIP) && prob(10) && (target_zone in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
+		var/armor_check = target.run_armor_check(target_zone, "melee")
+		target.apply_effect(3, WEAKEN, armor_check)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		if(armor_check < 60)
+			visible_message(span_danger("\The [src] has tripped [target]!"))
+		else
+			visible_message(span_warning("\The [src] attempted to trip [target]!"))
+		return
+
+	if(target.break_all_grabs(user))
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		return
+
+	if(target_zone in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+		for(var/obj/item/I in holding)
+			if(I && prob(holding[I]))
+				target.drop_from_inventory(I)
+				visible_message(span_danger("\The [src] has disarmed [target]!"))
+				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				return

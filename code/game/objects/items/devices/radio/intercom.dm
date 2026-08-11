@@ -75,6 +75,26 @@
 	name = "entertainment intercom"
 	frequency = ENT_FREQ
 
+/obj/item/radio/intercom/atc
+	name = "Air Traffic Control intercom"
+	frequency = ATC_FREQ
+
+/obj/item/radio/intercom/atc/Initialize(mapload)
+	. = ..()
+	internal_channels = list(
+		num2text(ATC_FREQ) = list()
+	)
+
+/obj/item/radio/intercom/culture
+	name = "culture intercom"
+	frequency = CULTURE_FREQ
+
+/obj/item/radio/intercom/culture/Initialize(mapload)
+	. = ..()
+	internal_channels = list(
+		num2text(CULTURE_FREQ) = list()
+	)
+
 /obj/item/radio/intercom/science
 	name = "station intercom (Science)"
 	channels=list("Science")

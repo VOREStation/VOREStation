@@ -2852,6 +2852,18 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/secondary_eyes_far
+	name = "Secondary Eyes (Far)"
+	icon_state = "secondary_eyes_far"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/secondary_eyes_close
+	name = "Secondary Eyes (Close)"
+	icon_state = "secondary_eyes_close"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/gatorsnout
 	name = "Gator Snout"
 	icon_state = "gator_snout"

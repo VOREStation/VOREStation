@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(appreciation)
 
 /datum/controller/subsystem/appreciation/proc/msg(message,sender)
 	ASSERT(message)
-	GLOB.global_announcer.autosay("[message]", sender ? sender : "Cultural Awareness")
+	GLOB.global_announcer.autosay("[message]", sender ? sender : "Cultural Awareness", CHANNEL_CULTURE)
 
 /datum/controller/subsystem/appreciation/proc/is_squelched()
 	return squelched

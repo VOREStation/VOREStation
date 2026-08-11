@@ -65,6 +65,7 @@
 		"beartrap",
 		"barbedwire",
 		"snarewire",
+		"springtrap",
 		// "buffer",
 		"washing"
 	)
@@ -278,7 +279,8 @@
 		"cerealmaker_board",
 		"candymachine_board",
 		"honey_extractor",
-		// "food_replicator",
+		"food_synthesizer",
+		"compactfood_synthesizer",
 		"borgos1",
 		"range",
 		// "souppot",

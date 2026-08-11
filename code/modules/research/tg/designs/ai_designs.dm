@@ -13,7 +13,7 @@
 	id = "mmi"
 	// req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	build_type = PROTOLATHE | PROSFAB
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/mmi
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CONTROL_INTERFACES
@@ -25,7 +25,7 @@
 	id = "posibrain"
 	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
 	build_type = PROTOLATHE | PROSFAB
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_SILVER = 1000, MAT_GOLD = 500, MAT_PHORON = 500, MAT_DIAMOND = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.25), MAT_PHORON = MATERIAL_COST(0.25), MAT_DIAMOND = MATERIAL_COST(0.05))
 	build_path = /obj/item/mmi/digital/posibrain
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CONTROL_INTERFACES
@@ -37,7 +37,7 @@
 	id = "dronebrain"
 	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_DATA = 4)
 	build_type = PROTOLATHE | PROSFAB
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_SILVER = 1000, MAT_GOLD = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.25))
 	build_path = /obj/item/mmi/digital/robot
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CONTROL_INTERFACES
@@ -49,7 +49,7 @@
 	id = "paicard"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 2)
-	materials = list(MAT_GLASS = 500, MAT_STEEL = 500)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.25), MAT_STEEL = MATERIAL_COST(0.25))
 	build_path = /obj/item/paicard
 	category = list(
 		RND_CATEGORY_AI + RND_SUBCATEGORY_AI_CORE
@@ -62,7 +62,7 @@
 	id = "intellicore"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
-	materials = list(MAT_GLASS = 1000, MAT_GOLD = 200)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.1))
 	build_path = /obj/item/aicard
 	category = list(
 		RND_CATEGORY_AI + RND_SUBCATEGORY_AI_CORE
@@ -72,7 +72,7 @@
 /datum/design_techweb/aimodule
 	desc = "A circuit used to change a silicon's configured laws."
 	build_type = IMPRINTER
-	materials = list(MAT_GLASS = 2000, MAT_GOLD = 100)
+	materials = list(MAT_GLASS = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.05))
 	category = list(
 		RND_CATEGORY_AI + RND_SUBCATEGORY_AI_LAW_MANIPULATION
 	)
@@ -211,7 +211,7 @@
 
 // Illegal modules
 /datum/design_techweb/aimodule/illegal
-	materials = list(MAT_GLASS = 4000, MAT_GOLD = 500)
+	materials = list(MAT_GLASS = MATERIAL_COST(2), MAT_GOLD = MATERIAL_COST(0.25))
 	// req_tech = list(TECH_DATA = 6, TECH_ILLEGAL = 7, TECH_MATERIAL = 9, TECH_COMBAT = 7)
 
 /datum/design_techweb/aimodule/illegal/New()

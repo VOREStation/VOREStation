@@ -36,7 +36,7 @@
 
 .NuclearBomb__Button--keypad {
   background-color: var(--nuclear-beige);
-  border-color: ar(--nuclear-beige);
+  border-color: var(--nuclear-beige);
 
   &:hover:not(:active) {
     background-color: hsl(

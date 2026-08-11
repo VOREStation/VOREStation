@@ -4,10 +4,9 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "potato"
 	time_per_sheet = 1152 //same power output, but a 50 sheet stack will last 4 hours at max safe power
-	power_gen = 50000 //watts
+	power_gen = 50 KILOWATTS
 	anchored = TRUE
 
-//Port Start, RS PR #484
 /obj/machinery/power/port_gen/pacman/super/potato/Destroy()
 	. = ..()
 	cut_overlays() // sanity checks
@@ -32,7 +31,6 @@
 		return
 	else	//off and it isn't angry, so we just vibe as 'off'
 		icon_state = initial(icon_state)
-//Port Emd, RS PR #484
 
 // Circuits for the RTGs below
 /obj/item/circuitboard/machine/rtg
@@ -201,7 +199,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "gridchecker_off"
 	name = "capacitor bank"
-	power_gen = 12000
+	power_gen = 12 KILOWATTS
 
 // Void Core, power source for Abductor ships and bases.
 // Provides a lot of power, but tends to explode when mistreated.
@@ -210,7 +208,7 @@
 	icon_state = "core-nocell"
 	desc = "An alien power source that produces energy seemingly out of nowhere."
 	circuit = /obj/item/circuitboard/machine/abductor/core
-	power_gen = 10000
+	power_gen = 10 KILOWATTS
 	irradiate = FALSE // Green energy!
 	can_buckle = FALSE
 	pixel_y = 7
@@ -326,7 +324,7 @@
 	icon_state = "bigdice"
 	bound_width = 64
 	bound_height = 64
-	power_gen = 30000
+	power_gen = 30 KILOWATTS
 	irradiate = FALSE // Green energy!
 	can_buckle = FALSE
 
@@ -361,7 +359,7 @@
 	circuit = /obj/item/circuitboard/machine/reg_d
 	irradiate = FALSE
 	power_gen = 0
-	var/default_power_gen = 1000000	//It's big but it gets adjusted based on what you put into it!!!
+	var/default_power_gen = 1 MEGAWATTS	//It's big but it gets adjusted based on what you put into it!!!
 	var/part_mult = 0
 	var/nutrition_drain = 1
 	pixel_x = -32
@@ -488,7 +486,7 @@
 	bound_width = 64
 	bound_height = 64
 	anchored = TRUE
-	power_gen = 250000
+	power_gen = 250 KILOWATTS
 
 	var/sheet_name = "Phoron Sheets"
 	var/sheet_path = /obj/item/stack/material/phoron
@@ -568,7 +566,7 @@
 	desc = "Reacts hydrogen and anti-hydrogen with a phoron moderator to produce near limitless power! The magnetic fields are prone to easily rupturing, so the reactor design never took off."
 	icon = 'icons/am_engine.dmi'
 	icon_state = "core_on"
-	power_gen = 1000000 // 1MW
+	power_gen = 1 MEGAWATTS
 	irradiate = FALSE // Green energy!
 	can_buckle = FALSE
 	plane = ABOVE_MOB_PLANE

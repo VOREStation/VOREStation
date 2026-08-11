@@ -20,7 +20,7 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter = list(MAT_STEEL = 400)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2))
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -130,7 +130,7 @@ Frequency:
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 3
 	throw_range = 5
-	matter = list(MAT_STEEL = 10000)
+	matter = list(MAT_STEEL = MATERIAL_COST(5))
 	preserve_item = 1
 
 /obj/item/hand_tele/attack_self(mob/user)

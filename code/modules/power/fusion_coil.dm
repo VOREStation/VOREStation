@@ -19,7 +19,7 @@
 	var/coil_charged = TRUE	//have we been discharged into something yet?
 	var/coil_damaged = FALSE	//have we been damaged? one hit is fine, but two direct hits will explode us if we're charged
 	var/coil_charge = 4800000	//how much power do we dump into the SMES on use? restores the main (if unupgraded) by 20%, or engine by 80%
-	matter = list(MAT_STEEL = 6000, MAT_COPPER = 4000, MAT_PLASTIC = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(3), MAT_COPPER = MATERIAL_COST(2), MAT_PLASTIC = MATERIAL_COST(1))
 
 /obj/item/fusion_coil/Initialize(mapload)
 	. = ..()

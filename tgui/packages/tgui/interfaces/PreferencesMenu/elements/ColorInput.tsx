@@ -50,7 +50,7 @@ export const PreferenceEditColor = (
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
     if (!isOpen) {
       timeoutId = setTimeout(() => {

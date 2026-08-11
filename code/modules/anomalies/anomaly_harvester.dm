@@ -47,6 +47,7 @@
 	update_icon()
 
 /obj/machinery/anomaly_harvester/proc/add_points(add_points)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ANOMALY_HARVESTED, add_points)
 	add_points *= efficiency
 	points += add_points
 	return

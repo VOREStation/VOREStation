@@ -706,7 +706,9 @@ GLOBAL_LIST_INIT(radio_channels_by_freq, list(
 	num2text(SCI_FREQ) = CHANNEL_SCIENCE,
 	num2text(SUP_FREQ) = CHANNEL_SUPPLY,
 	num2text(SRV_FREQ) = CHANNEL_SERVICE,
-	num2text(EXP_FREQ) = CHANNEL_EXPLORATION
+	num2text(EXP_FREQ) = CHANNEL_EXPLORATION,
+	num2text(ATC_FREQ) = CHANNEL_ATC,
+	num2text(CULTURE_FREQ) = CHANNEL_CULTURE
 	))
 
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)

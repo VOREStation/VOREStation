@@ -15,15 +15,15 @@
 /datum/surgery_step/generic/ripper/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/surgical/scalpel/ripper/tool)
 
 	if (!..())
-		return 0
+		return FALSE
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	if(!istype(tool)) //Only rippers can use the ripper!
-		return 0
+		return FALSE
 
 	if(affected.robotic >= ORGAN_ROBOT) //You can't damage robutts.
-		return 0
+		return FALSE
 
 	return affected && affected.open != 0 && target_zone != O_MOUTH //Have to cut them open at a minimum.
 
@@ -100,7 +100,7 @@
 
 /datum/surgery_step/generic/ripper/destroy_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!..())
-		return 0
+		return FALSE
 
 	var/list/removable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
@@ -109,7 +109,7 @@
 			removable_organs |= organ
 
 	if(!removable_organs.len)
-		return 0
+		return FALSE
 	return ..()
 
 /datum/surgery_step/generic/ripper/destroy_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -179,7 +179,7 @@
 
 /datum/surgery_step/generic/ripper/rip_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!..())
-		return 0
+		return FALSE
 
 	var/list/removable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
@@ -188,7 +188,7 @@
 			removable_organs[I.name] = organ
 
 	if(!removable_organs.len)
-		return 0
+		return FALSE
 
 	return ..()
 

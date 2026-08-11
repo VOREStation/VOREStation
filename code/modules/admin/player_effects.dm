@@ -605,7 +605,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			add_verb(Tar, /mob/living/proc/eat_trash)
+			add_verb(Tar, /mob/living/proc/eat_trash_verb)
 			add_verb(Tar, /mob/living/proc/toggle_trash_catching)
 
 		if("active_cloaking")

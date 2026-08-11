@@ -1,5 +1,13 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Dimmer, Icon, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Dimmer,
+  Icon,
+  ProgressBar,
+  Stack,
+} from 'tgui-core/components';
+import type { Data } from './types';
 
 export const ResleevingConsoleCoreDump = (props) => {
   return (
@@ -60,5 +68,27 @@ export const PulsingWarningTriangle = (props) => {
       name="exclamation-triangle"
       className="ResleevingConsole__WarningTriangle"
     />
+  );
+};
+
+export const ResleevingConsoleDumpProgress = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { dump_progress } = data;
+  return (
+    <Dimmer textAlign="center">
+      <Box color="bad">
+        <h1>TRANSCORE DUMP IN PROGRESS</h1>
+      </Box>
+      <Box color="bad">
+        <h2>!!WARNING!!</h2>
+      </Box>
+      <PulsingWarningTriangle />
+      <ProgressBar value={1 - dump_progress} maxValue={1} color="bad" />
+      <Box mt={4}>
+        <Button icon="eject" color="good" onClick={() => act('ejectdisk')}>
+          Eject Disk
+        </Button>
+      </Box>
+    </Dimmer>
   );
 };

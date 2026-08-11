@@ -278,6 +278,8 @@ GLOBAL_LIST_EMPTY(all_maps)
 		num2text(SCI_FREQ)	= list(ACCESS_TOX,ACCESS_ROBOTICS,ACCESS_XENOBIOLOGY),
 		num2text(SUP_FREQ)	= list(ACCESS_CARGO),
 		num2text(SRV_FREQ)	= list(ACCESS_JANITOR, ACCESS_HYDROPONICS),
+		num2text(ATC_FREQ) = list(),
+		num2text(CULTURE_FREQ) = list()
 	)
 
 /datum/map/proc/get_skybox_datum(z)

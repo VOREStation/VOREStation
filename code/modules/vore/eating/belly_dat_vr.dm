@@ -18,14 +18,14 @@
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
 	var/digest_burn = 3						// Burn damage per tick in digestion mode
 	var/digest_tickrate = 3					// Modulus this of air controller tick number to iterate gurgles on
-	var/immutable = 0						// Prevents this belly from being deleted
-	var/escapable = 0						// Belly can be resisted out of at any time
+	var/immutable = FALSE					// Prevents this belly from being deleted
+	var/escapable = FALSE					// Belly can be resisted out of at any time
 	var/escapetime = 60 SECONDS				// Deciseconds, how long to escape this belly
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being
-	var/can_taste = 0						// If this belly prints the flavor of prey when it eats someone.
+	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/datum/belly/transferlocation = null	// Location that the prey is released if they struggle and get dropped off.

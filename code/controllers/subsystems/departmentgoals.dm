@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(departmentgoals)
 	if(!length(all_goals))
 		GLOB.command_announcement.Announce("There are no department goals for this shift.", "Station Resource Department")
 		return
-	GLOB.command_announcement.Announce("Department goals have been updated for this shift. (Check your IC tab's \"Check Round Goals\" for details!)", "Station Resource Department")
+	GLOB.command_announcement.Announce("Department goals have been updated for this shift. Check your PDA for details!", "Station Resource Department")
 
 /datum/controller/subsystem/departmentgoals/proc/handle_round_end()
 	SIGNAL_HANDLER

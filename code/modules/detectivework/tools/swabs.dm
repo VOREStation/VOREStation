@@ -81,7 +81,7 @@
 
 	var/list/choices = list()
 	if(A.forensic_data?.has_blooddna())
-		choices |= "Blood"
+		choices |= "DNA"
 	if(istype(A, /obj/item/clothing))
 		choices |= "Gunshot Residue"
 
@@ -98,10 +98,10 @@
 		return
 
 	var/sample_type
-	if(choice == "Blood")
+	if(choice == "DNA")
 		if(!A.forensic_data?.has_blooddna()) return
 		dna = A.forensic_data?.get_blooddna().Copy()
-		sample_type = "blood"
+		sample_type = "DNA"
 
 	else if(choice == "Gunshot Residue")
 		var/obj/item/clothing/B = A

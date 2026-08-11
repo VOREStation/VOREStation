@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
+import { modalOpen } from 'tgui/interfaces/common/ComplexModal';
 import { Button } from 'tgui-core/components';
-
-import { modalOpen } from '../common/ComplexModal';
 
 export const ChemMasterProductionCondiment = (props) => {
   const { act } = useBackend();

@@ -10,10 +10,10 @@
 
 /datum/surgery_step/cavity/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
-		return 0
+		return FALSE
 	return affected && affected.open == (affected.encased ? 3 : 2)
 
 /datum/surgery_step/cavity/proc/get_max_wclass(obj/item/organ/external/affected)
@@ -24,7 +24,7 @@
 			return ITEMSIZE_NORMAL
 		if (BP_GROIN)
 			return ITEMSIZE_SMALL
-	return 0
+	return FALSE
 
 /datum/surgery_step/cavity/proc/get_cavity(obj/item/organ/external/affected)
 	switch (affected.organ_tag)
@@ -129,7 +129,7 @@
 
 /datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(tool))
-		return 0
+		return FALSE
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(istype(user,/mob/living/silicon/robot))

@@ -88,6 +88,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		if(resistance && !(id in affected_mob.GetResistances()))
 			affected_mob.GetResistances()[id] = id
 		remove_virus()
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ADV_DISEASE_CURED, id)
 	qdel(src)
 
 /datum/disease/advance/Copy()

@@ -1,10 +1,10 @@
 // Define a place to save in character setup
 /datum/preferences
-	var/vantag_volunteer = 0	// What state I want to be in, in terms of being affected by antags.
+	var/vantag_volunteer = FALSE		// What state I want to be in, in terms of being affected by antags.
 	var/vantag_preference = VANTAG_NONE	// Whether I'd like to volunteer to be an antag at some point.
-	var/resleeve_lock = 0	// Whether movs should have OOC reslieving protection. Default false.
-	var/resleeve_scan = 1	// Whether mob should start with a pre-spawn body scan.  Default true.
-	var/mind_scan = 1		// Whether mob should start with a pre-spawn mind scan.  Default true.
+	var/resleeve_lock = FALSE			// Whether movs should have OOC reslieving protection. Default false.
+	var/resleeve_scan = TRUE			// Whether mob should start with a pre-spawn body scan.  Default true.
+	var/mind_scan = TRUE				// Whether mob should start with a pre-spawn mind scan.  Default true.
 
 	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
 
@@ -95,7 +95,7 @@
 		var/want_body_save = pref.resleeve_scan
 		var/want_mind_save = pref.mind_scan
 
-		spawn(50)
+		spawn(5 SECONDS)
 			if(QDELETED(character) || QDELETED(pref))
 				return // They might have been deleted during the wait
 			if(!character.virtual_reality_mob && !(/mob/living/carbon/human/proc/perform_exit_vr in character.verbs)) //Janky fix to prevent resleeving VR avatars but beats refactoring transcore
@@ -155,6 +155,7 @@
 	data["borg_petting"] = pref.borg_petting
 
 	data["ignore_shoes"] = pref.read_preference(/datum/preference/toggle/human/ignore_shoes)
+	data["synth_cookie"] = pref.read_preference(/datum/preference/toggle/living/foodsynth_cookies)
 
 	data["resleeve_lock"] = pref.resleeve_lock
 	data["resleeve_scan"] = pref.resleeve_scan
@@ -235,6 +236,9 @@
 			return TOPIC_REFRESH
 		if("toggle_resleeve_scan")
 			pref.resleeve_scan = pref.resleeve_scan ? 0 : 1;
+			return TOPIC_REFRESH
+		if("toggle_synth_cookie")
+			pref.update_preference_by_type(/datum/preference/toggle/living/foodsynth_cookies, !pref.read_preference(/datum/preference/toggle/living/foodsynth_cookies))
 			return TOPIC_REFRESH
 		if("toggle_mind_scan")
 			pref.mind_scan = pref.mind_scan ? 0 : 1;

@@ -24,6 +24,10 @@
 			if(istype(A,/obj/structure/micro_tunnel))	//Allows simplemobs to click on mouse holes, mice should be allowed to go in mouse holes, and other mobs
 				var/obj/structure/micro_tunnel/t = A	//should be allowed to drag the mice out of the mouse holes!
 				t.tunnel_interact(src)
+			if(istype(A,/obj/item/reagent_containers/food/snacks))
+				var/obj/item/reagent_containers/food/snacks/snack = A
+				snack.attack_generic(src)
+				setClickCooldown(get_attack_speed(src))
 
 		if(I_HURT)
 			if(can_special_attack(A) && special_attack_target(A))

@@ -10,7 +10,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.01))
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'

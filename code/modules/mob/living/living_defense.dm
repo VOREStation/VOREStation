@@ -206,6 +206,7 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
+	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, I, user, hit_zone, effective_force)
 	if(!hide_attack_message)
 		visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
@@ -254,15 +255,6 @@
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
-
-		if (prob(miss_chance))
-			visible_message(span_notice("\The [O] misses [src] narrowly!"))
-			return
-
 		src.visible_message(span_filter_warning("[span_red("[src] has been hit by [O].")]"))
 		var/armor = run_armor_check(null, "melee")
 
@@ -280,8 +272,8 @@
 		var/mass = O.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
-			var/dir = get_dir(O.throw_source, src)
+		if(throwingdatum.starting_turf && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
+			var/dir = get_dir(throwingdatum.starting_turf, src)
 
 			visible_message(span_filter_warning("[span_red("[src] staggers under the impact!")]"),span_filter_warning("[span_red("You stagger under the impact!")]"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)

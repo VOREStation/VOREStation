@@ -298,7 +298,6 @@
 	"digest_clone",
 	"bellytemperature",
 	"temperature_damage",
-	"immutable",
 	"can_taste",
 	"escapable",
 	"escapetime",
@@ -488,7 +487,7 @@
 	)
 
 	if (save_digest_mode == 1)
-		return ..() + saving + list("digest_mode")
+		saving += "digest_mode"
 
 	return ..() + saving
 
@@ -556,7 +555,7 @@
 				last_transfer_log = world.time
 				entrance_log_count = 0
 			if(world.time >= next_transfer_log)
-				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(name)]."))
+				to_chat(owner,span_vnotice("[thing] slides into your [lowertext(get_belly_name())]."))
 				entrance_log_count++
 				if(entrance_log_count >= MAX_ENTRY_MESSAAGES)
 					next_transfer_log = world.time + ENTRY_MESSAGE_INTERVAL
@@ -706,7 +705,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent && count)
-		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(name)]!"))), range = privacy_range)
+		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(get_belly_name())]!"))), range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = GLOB.classic_release_sounds[release_sound]
@@ -796,7 +795,7 @@
 		if(isitem(M))
 			owner.visible_message(span_vnotice(span_green(span_bold(belly_format_string(trash_eater_out, M, item=M)))),range = privacy_range) //double dip. prey = item, item = prey. sanity check in case they use %prey in the message.
 		else
-			owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
+			owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(get_belly_name())]!"))),range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = GLOB.classic_release_sounds[release_sound]
@@ -890,7 +889,7 @@
 				if(I)
 					M.unEquip(I,force = TRUE)
 					if(contaminates)
-						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
+						I.gurgle_contaminate(contents, contamination_flavor, contamination_color, src) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
 					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
@@ -1120,10 +1119,10 @@
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))
-			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
+			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color, src)
 		if(I.gurgled && target.contaminates)
 			I.wash(CLEAN_WASH)
-			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
+			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color, src)
 	items_preserved -= content
 	if(!silent)
 		handle_visual_update()
@@ -1177,7 +1176,7 @@
 	if(ismob(prey))
 		var/autotransfer_owner_message
 		var/autotransfer_prey_message
-		var/dest_belly_name = dest_belly.name
+		var/dest_belly_name = dest_belly.get_belly_name()
 		if(dest_belly.name == autotransferlocation)
 			autotransfer_owner_message = span_vwarning(belly_format_string(primary_autotransfer_messages_owner, prey, dest = dest_belly_name))
 			autotransfer_prey_message = span_vwarning(belly_format_string(primary_autotransfer_messages_prey, prey, dest = dest_belly_name))
@@ -1829,7 +1828,6 @@
 		. += AM
 
 /obj/belly/proc/get_belly_name(original)
-	var/display_name = ""
 	if(original)
 		return display_name ? display_name : name
 	return display_name ? lowertext(display_name) : lowertext(name)

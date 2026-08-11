@@ -17,7 +17,7 @@ AI MODULES
 	throw_speed = 3
 	throw_range = 15
 	preserve_item = 1
-	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.005))
 	var/datum/ai_laws/laws = null
 
 /obj/item/aiModule/examine(mob/user)

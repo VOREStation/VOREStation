@@ -3,7 +3,7 @@
 	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency."
 	id = "prybar"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 40)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.02))
 	build_path = /obj/item/tool/prybar
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -16,7 +16,7 @@
 	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency."
 	id = "crowbar"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 60)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.03))
 	build_path = /obj/item/tool/crowbar
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -29,7 +29,7 @@
 	desc = "Used for pulsing wires to test which to cut."
 	id = "multitool"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 60, MAT_GLASS = 25)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.03), MAT_GLASS = MATERIAL_COST(0.0125))
 	build_path = /obj/item/multitool
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -42,7 +42,7 @@
 	desc = "A miniature welder used during emergencies."
 	id = "mini_welding_tool"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 30)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.015))
 	build_path = /obj/item/weldingtool/mini
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -55,7 +55,7 @@
 	desc = "Used to repair machinery, or cut through plating."
 	id = "welding_tool"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 90, MAT_GLASS = 40)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.045), MAT_GLASS = MATERIAL_COST(0.02))
 	build_path = /obj/item/weldingtool
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -68,7 +68,7 @@
 	desc = "A slightly larger welder with a larger tank."
 	id = "large_welding_tool"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 250)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.125))
 	build_path = /obj/item/weldingtool/largetank
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -80,7 +80,7 @@
 	desc = "You can be totally screwwy with this."
 	id = "screwdriver"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 90)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.045))
 	build_path = /obj/item/tool/screwdriver
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -93,7 +93,7 @@
 	desc = "This cuts wires."
 	id = "wirecutters"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.05))
 	build_path = /obj/item/tool/wirecutters
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -106,7 +106,7 @@
 	desc = "A wrench with many common uses."
 	id = "wrench"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 200)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.1))
 	build_path = /obj/item/tool/wrench
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -119,7 +119,7 @@
 	desc = "It's used for removing weeds or scratching your back."
 	id = "spade"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 625)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125))
 	build_path = /obj/item/material/minihoe
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -132,7 +132,7 @@
 	desc = "A traditional red fire extinguisher."
 	id = "fire_extinguisher"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 120)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.06))
 	build_path = /obj/item/extinguisher
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -145,7 +145,7 @@
 	desc = "Used to talk to people when headsets don't function. Range is limited."
 	id = "bounced_radio"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 90, MAT_GLASS = 30)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.045), MAT_GLASS = MATERIAL_COST(0.015))
 	build_path = /obj/item/radio/off
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -158,7 +158,7 @@
 	desc = "Used to set the destination of properly wrapped packages."
 	id = "desttagger"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 250, MAT_GLASS = 125)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.125), MAT_GLASS = MATERIAL_COST(0.0625))
 	build_path = /obj/item/destTagger
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -171,7 +171,7 @@
 	desc = "A hand-held emergency light."
 	id = "flashlight"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 60, MAT_GLASS = 25)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.03), MAT_GLASS = MATERIAL_COST(0.0125))
 	build_path = /obj/item/flashlight
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -184,7 +184,7 @@
 	desc = "A very, very heavy duty flashlight."
 	id = "maglight"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 250, MAT_GLASS = 60)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.125), MAT_GLASS = MATERIAL_COST(0.03))
 	build_path = /obj/item/flashlight/maglight
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -197,7 +197,7 @@
 	desc = "A device that can record to cassette tapes, and play them. It automatically translates the content in playback."
 	id = "taperecorder"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 75, MAT_GLASS = 40)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.0375), MAT_GLASS = MATERIAL_COST(0.02))
 	build_path = /obj/item/taperecorder
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -210,7 +210,7 @@
 	desc = "A magnetic tape that can hold up to ten minutes of content."
 	id = "recordingcassette"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 25, MAT_GLASS = 15)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.0125), MAT_GLASS = MATERIAL_COST(0.0075))
 	build_path = /obj/item/rectape/random
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -223,7 +223,7 @@
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	id = "hatchet"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTEEL = 500)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(0.25))
 	build_path = /obj/item/material/knife/machete/hatchet
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -236,7 +236,7 @@
 	desc = "It's a bucket."
 	id = "bucket"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 200)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.1))
 	build_path = /obj/item/reagent_containers/glass/bucket
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -249,7 +249,7 @@
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	id = "mop"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 250)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.125))
 	build_path = /obj/item/mop
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -262,7 +262,7 @@
 	desc = "An advanced mop with pressured water jets that break away the toughest stains."
 	id = "advmop"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2000, MAT_GOLD = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/mop/advanced
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
@@ -274,7 +274,7 @@
 	desc = "A device to automatically replace lights. Refill with working lightbulbs. Can also recycle broken bulbs, but this requires several broken bulbs to make a functioning one."
 	id = "light_replacer"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 1500, MAT_SILVER = 150, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_SILVER = MATERIAL_COST(0.075), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/lightreplacer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
@@ -286,7 +286,7 @@
 	desc = "A device to configure the emission color of lighting fixtures. For those moodier moments, or just making the bar into a clown-vomit hellscape."
 	id = "light_painter"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.75))
 	build_path = /obj/item/lightpainter
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -299,7 +299,7 @@
 	desc = "A spray bottle, with an unscrewable top."
 	id = "spraybottle"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1))
 	build_path = /obj/item/reagent_containers/spray
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
@@ -311,8 +311,19 @@
 	desc = "A mechanically activated leg trap. Low-tech, but reliable. Looks like it could really hurt if you set it off."
 	id = "beartrap"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 18750)
+	materials = list(MAT_STEEL = MATERIAL_COST(9.375))
 	build_path = /obj/item/beartrap
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
+	)
+
+/datum/design_techweb/springtrap
+	name = "spring trap kit"
+	desc = "A mechanically activated spring trap. Low-tech, but reliable."
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(9.375))
+	id = "springtrap"
+	build_path = /obj/item/spring_trap_kit
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
@@ -323,7 +334,7 @@
 	id = "expwelder"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3, TECH_MATERIAL = 4)
-	materials = list(MAT_STEEL = 70, MAT_GLASS = 120, MAT_PHORON = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.06), MAT_PHORON = MATERIAL_COST(0.05))
 	build_path = /obj/item/weldingtool/experimental
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
@@ -336,7 +347,7 @@
 	id = "handdrill"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
-	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.15), MAT_SILVER = MATERIAL_COST(0.05))
 	build_path = /obj/item/tool/transforming/powerdrill
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
@@ -349,7 +360,7 @@
 	id = "jawslife"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
-	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.15), MAT_SILVER = MATERIAL_COST(0.05))
 	build_path = /obj/item/tool/transforming/jawsoflife
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
@@ -362,7 +373,7 @@
 	id = "rapidpipedispenser"
 	build_type = AUTOLATHE | PROTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/pipe_dispenser
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
@@ -375,7 +386,7 @@
 	id = "qpad_booster"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 7, TECH_BLUESPACE = 6)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/quantum_pad_booster
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
@@ -388,7 +399,7 @@
 	id = "tscanner"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
-	materials = list(MAT_STEEL = 200)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.1))
 	build_path = /obj/item/t_scanner
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -401,7 +412,7 @@
 	id = "upgradedtscanner"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-	materials = list(MAT_STEEL = 500, MAT_PHORON = 150)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_PHORON = MATERIAL_COST(0.075))
 	build_path = /obj/item/t_scanner/upgraded
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -414,7 +425,7 @@
 	id = "advancedtscanner"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 6, TECH_MATERIAL = 6)
-	materials = list(MAT_STEEL = 1250, MAT_PHORON = 500, MAT_SILVER = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.625), MAT_PHORON = MATERIAL_COST(0.25), MAT_SILVER = MATERIAL_COST(0.025))
 	build_path = /obj/item/t_scanner/advanced
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -427,7 +438,7 @@
 	id = "atmosanalyzer"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 2)
-	materials = list(MAT_STEEL = 200, MAT_GLASS = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.1), MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/analyzer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -439,7 +450,7 @@
 	desc = "A personal device used to enable long range dialog between two people."
 	id = "communicator"
 	build_type = PROTOLATHE | AUTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/communicator
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -451,7 +462,7 @@
 	desc = "A tool for inductively charging internal power cells."
 	id = "inducersci"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_URANIUM = 4000, MAT_PHORON = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(2), MAT_PHORON = MATERIAL_COST(2))
 	build_path = /obj/item/inducer/sci
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -463,7 +474,7 @@
 	desc = "A tool for inductively charging internal power cells."
 	id = "inducerind"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000, MAT_URANIUM = 2000, MAT_TITANIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(1), MAT_TITANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/inducer/unloaded
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -476,7 +487,7 @@
 	id = "splitbeaker"
 	// req_tech = list(TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5))
 	build_path = /obj/item/reagent_containers/glass/beaker/noreact
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -489,7 +500,7 @@
 	id = "bluespacebeaker"
 	// req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_PHORON = 3000, MAT_DIAMOND = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_PHORON = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.25))
 	build_path = /obj/item/reagent_containers/glass/beaker/bluespace
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -502,7 +513,7 @@
 	id = "anrt"
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 3000, MAT_URANIUM = 2000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1.5), MAT_URANIUM = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/nifrepairer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -516,7 +527,7 @@
 	id = "mass_spectrometer"
 	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.01))
 	build_path = /obj/item/mass_spectrometer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -529,7 +540,7 @@
 	id = "adv_mass_spectrometer"
 	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.01))
 	build_path = /obj/item/mass_spectrometer/adv
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -542,7 +553,7 @@
 	id = "reagent_scanner"
 	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.01))
 	build_path = /obj/item/reagent_scanner
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -555,7 +566,7 @@
 	id = "adv_reagent_scanner"
 	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.01))
 	build_path = /obj/item/reagent_scanner/adv
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -568,7 +579,7 @@
 	id = "robot_scanner"
 	// req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 200)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.1))
 	build_path = /obj/item/robotanalyzer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -581,7 +592,7 @@
 	id = "nanopaste"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 7000, MAT_GLASS = 7000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.5), MAT_GLASS = MATERIAL_COST(3.5))
 	build_path = /obj/item/stack/nanopaste
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -594,7 +605,7 @@
 	id = "plant_analyzer"
 	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/analyzer/plant_analyzer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
@@ -607,7 +618,7 @@
 	id = "drill"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 500) //expensive, but no need for miners.
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(0.25)) //expensive, but no need for miners.
 	build_path = /obj/item/pickaxe/drill
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -619,7 +630,7 @@
 	id = "advanced_drill"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 1000) //expensive, but no need for miners.
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(0.5)) //expensive, but no need for miners.
 	build_path = /obj/item/pickaxe/advdrill
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -631,7 +642,7 @@
 	id = "jackhammer"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 500, MAT_SILVER = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.25), MAT_SILVER = MATERIAL_COST(0.25))
 	build_path = /obj/item/pickaxe/jackhammer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -643,7 +654,7 @@
 	id = "plasmacutter"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
-	materials = list(MAT_STEEL = 1500, MAT_GLASS = 500, MAT_GOLD = 500, MAT_PHORON = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_GLASS = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.25), MAT_PHORON = MATERIAL_COST(0.25))
 	build_path = /obj/item/pickaxe/plasmacutter
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -655,7 +666,7 @@
 	id = "pick_diamond"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 6)
-	materials = list(MAT_DIAMOND = 3000)
+	materials = list(MAT_DIAMOND = MATERIAL_COST(1.5))
 	build_path = /obj/item/pickaxe/diamond
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -667,7 +678,7 @@
 	id = "drill_diamond"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 4)
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/pickaxe/diamonddrill
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -682,7 +693,7 @@
 	id = "depth_scanner"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
-	materials = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5),MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/depth_scanner
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -694,7 +705,7 @@
 	id = "mining_scanner"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 1)
-	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5),MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/mining_scanner/advanced
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -709,7 +720,7 @@
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.025))
 	build_path = /obj/item/laser_pointer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -722,7 +733,7 @@
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/universal_translator
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -735,7 +746,7 @@
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1))
 	build_path = /obj/item/spaceflare
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -747,7 +758,7 @@
 	id = "motion_tracker"
 	// req_tech = list(TECH_MAGNET = 1, TECH_DATA = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25))
 	build_path = /obj/item/motiontracker
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -759,7 +770,7 @@
 	id = "slime_scanner"
 	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/slime_scanner
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -772,7 +783,7 @@
 	id = "slime_grinder"
 	// req_tech = list(TECH_MAGNET = 4, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 200, MAT_GLASS = 200, MAT_SILVER = 500, MAT_GOLD = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.1), MAT_GLASS = MATERIAL_COST(0.1), MAT_SILVER = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.05))
 	build_path = /obj/item/slime_grinder
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -786,7 +797,7 @@
 	desc = "Aids in triangulation of exotic particles."
 	// req_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5),MAT_GLASS = MATERIAL_COST(2.5))
 	build_path = /obj/item/ano_scanner
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -799,7 +810,7 @@
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3)
 	build_type = PROTOLATHE
 	build_path = /obj/item/xenoarch_multi_tool
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_URANIUM = 500, MAT_PHORON = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.25), MAT_PHORON = MATERIAL_COST(0.25))
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
 	)
@@ -810,7 +821,7 @@
 	id = "excavationdrill"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/pickaxe/excavationdrill
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -822,7 +833,7 @@
 	id = "anobattery-basic"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 4, TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3))
 	build_path = /obj/item/anobattery
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -834,7 +845,7 @@
 	id = "anobattery-moderate"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 2000) //Same object, different materials
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(1)) //Same object, different materials
 	build_path = /obj/item/anobattery/moderate
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -846,7 +857,7 @@
 	id = "anobattery-advanced"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_ENGINEERING = 5, TECH_BLUESPACE = 5, TECH_DATA = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2500, MAT_GLASS = 2500, MAT_SILVER = 2000, MAT_GOLD = 2500, MAT_PHORON = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.25), MAT_GLASS = MATERIAL_COST(1.25), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(1.25), MAT_PHORON = MATERIAL_COST(1.25))
 	build_path = /obj/item/anobattery/advanced
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -858,7 +869,7 @@
 	id = "anobattery-exotic"
 	// req_tech = list(TECH_MATERIAL = 8, TECH_POWER = 7, TECH_ENGINEERING = 6, TECH_BLUESPACE = 6,  TECH_DATA = 6, TECH_PRECURSOR = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 1500, MAT_GLASS = 1500, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_PHORON = 2000, MAT_DIAMOND = 2000, MAT_MORPHIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_GLASS = MATERIAL_COST(0.75), MAT_SILVER = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(0.75), MAT_PHORON = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(1), MAT_MORPHIUM = MATERIAL_COST(1))
 	build_path = /obj/item/anobattery/exotic
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -872,7 +883,7 @@
 	id = "hybridcrowbar"
 	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_GOLD = 250, MAT_URANIUM = 2500)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(1.5), MAT_GOLD = MATERIAL_COST(0.125), MAT_URANIUM = MATERIAL_COST(1.25))
 	build_path = /obj/item/tool/crowbar/hybrid
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
@@ -885,7 +896,7 @@
 	id = "hybridwrench"
 	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3, TECH_PRECURSOR = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_SILVER = 300, MAT_URANIUM = 2000)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(1.5), MAT_SILVER = MATERIAL_COST(0.15), MAT_URANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/tool/wrench/hybrid
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
@@ -898,7 +909,7 @@
 	id = "hybridscrewdriver"
 	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3, TECH_PRECURSOR = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_PLASTIC = 8000, MAT_DIAMOND = 2000)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(4), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/tool/screwdriver/hybrid
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
@@ -911,7 +922,7 @@
 	id = "hybridwirecutters"
 	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_PHORON = 2, TECH_PRECURSOR = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_PLASTIC = 8000, MAT_PHORON = 2750, MAT_DIAMOND = 2000)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(4), MAT_PHORON = MATERIAL_COST(1.375), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/tool/wirecutters/hybrid
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
@@ -924,7 +935,7 @@
 	id = "hybridwelder"
 	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3, TECH_MAGNET = 5, TECH_PRECURSOR = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_METALHYDROGEN = 4750, MAT_URANIUM = 6000)
+	materials = list(MAT_DURASTEEL = MATERIAL_COST(1), MAT_MORPHIUM = MATERIAL_COST(1.5), MAT_METALHYDROGEN = MATERIAL_COST(2.375), MAT_URANIUM = MATERIAL_COST(3))
 	build_path = /obj/item/weldingtool/experimental/hybrid
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
@@ -937,7 +948,7 @@
 	id = "hunt_trap"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_DURASTEEL = 3000, MAT_METALHYDROGEN = 1000, MAT_PHORON = 2000)
+	materials = list(MAT_DURASTEEL = MATERIAL_COST(1.5), MAT_METALHYDROGEN = MATERIAL_COST(0.5), MAT_PHORON = MATERIAL_COST(1))
 	build_path = /obj/item/beartrap/hunting
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY
@@ -948,7 +959,7 @@
 	name = "Protean Reboot Programmer"
 	id = "protean_reboot"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_PLASTEEL = 10000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5), MAT_PLASTEEL = MATERIAL_COST(5))
 	build_path = /obj/item/protean_reboot
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
@@ -961,7 +972,7 @@
 	id = "tk_gloves"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_VERDANTIUM = 1000, MAT_SILVER = 300, MAT_PLASTEEL = 1000)
+	materials = list(MAT_VERDANTIUM = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.15), MAT_PLASTEEL = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/gloves/telekinetic
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
@@ -972,7 +983,7 @@
 /datum/design_techweb/mail_scanner
 	name = "Mail Scanner"
 	id = "mail_scanner"
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/mail_scanner
 	build_type = PROTOLATHE
 	category = list(
@@ -983,7 +994,7 @@
 /datum/design_techweb/atmos_holosign
 	name = "Atmos Holosign"
 	id = "atmos_holosign"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/holosign_creator/combifan
 	build_type = PROTOLATHE
 	category = list(
@@ -995,7 +1006,7 @@
 	name = "Confetti Cannon"
 	desc = "Stuff it with paper and shoot! You'll be a hit at every party."
 	id = "confetti_cannon"
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/gun/launcher/confetti_cannon
 	build_type = PROTOLATHE
 	category = list(
@@ -1007,7 +1018,7 @@
 /datum/design_techweb/floor_painter
 	name = "Floor Painter"
 	id = "floor_painter"
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/floor_painter
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1019,7 +1030,7 @@
 /datum/design_techweb/medical_holosign
 	name = "Medical Holosign"
 	id = "medical_holosign"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/holosign_creator/medical
 	build_type = PROTOLATHE
 	category = list(
@@ -1031,7 +1042,7 @@
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
 	id = "handcuffs"
-	materials = list(MAT_STEEL = 625)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125))
 	build_path = /obj/item/handcuffs
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1043,7 +1054,7 @@
 	name = "legcuffs"
 	desc = "Use this to keep prisoners in line."
 	id = "legcuffs"
-	materials = list(MAT_STEEL = 625)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125))
 	build_path = /obj/item/handcuffs/legcuffs
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1055,7 +1066,7 @@
 	name = "fuzzy legcuffs"
 	desc = "Use this to keep... 'prisoners' in line."
 	id = "legcuffs_fuzzy"
-	materials = list(MAT_STEEL = 625)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125))
 	build_path = /obj/item/handcuffs/legcuffs/fuzzy
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1068,7 +1079,7 @@
 	name = "kitchen knife"
 	desc = "A general purpose " + JOB_CHEF + "'s knife."
 	id = "kitchen_knife"
-	materials = list(MAT_STEEL = 375)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.1875))
 	build_path = /obj/item/material/knife
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1081,7 +1092,7 @@
 	name = "fork"
 	desc = "It's a fork. Sure is pointy."
 	id = "fork"
-	materials = list(MAT_STEEL = 75)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.0375))
 	build_path = /obj/item/material/kitchen/utensil/fork
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1094,7 +1105,7 @@
 	name = "spoon"
 	desc = "It's a spoon."
 	id = "spoon"
-	materials = list(MAT_STEEL = 75)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.0375))
 	build_path = /obj/item/material/kitchen/utensil/spoon
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1107,7 +1118,7 @@
 	name = "plastic knife"
 	desc = "A simple plastic knife."
 	id = "plastic_knife"
-	materials = list(MAT_PLASTIC = 75)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.0375))
 	build_path = /obj/item/material/knife/plastic
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1120,7 +1131,7 @@
 	name = "plastic fork"
 	desc = "It's a plastic fork. Sure is pointy."
 	id = "plastic_fork"
-	materials = list(MAT_PLASTIC = 75)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.0375))
 	build_path = /obj/item/material/kitchen/utensil/fork/plastic
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1133,7 +1144,7 @@
 	name = "plastic spoon"
 	desc = "It's a plastic spoon."
 	id = "plastic_spoon"
-	materials = list(MAT_PLASTIC = 75)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.0375))
 	build_path = /obj/item/material/kitchen/utensil/spoon/plastic
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1146,7 +1157,7 @@
 	name = "barbedwire"
 	desc = "A coil of wire."
 	id = "barbedwire"
-	materials = list(MAT_STEEL = 10000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5))
 	build_path = /obj/item/material/barbedwire
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1159,7 +1170,7 @@
 	name = "snare wire"
 	desc = "A coil of plastic snares."
 	id = "snarewire"
-	materials = list(MAT_PLASTIC = 10000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(5))
 	build_path = /obj/item/material/barbedwire/plastic
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1172,7 +1183,7 @@
 	name = "rapid construction device"
 	desc = "A device used to rapidly build and deconstruct. Reload with compressed matter cartridges."
 	id = "rcd_loaded"
-	materials = list(MAT_STEEL = 62500)
+	materials = list(MAT_STEEL = MATERIAL_COST(31.25))
 	build_path = /obj/item/rcd
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1184,7 +1195,7 @@
 	name = "compressed matter cartridge"
 	desc = "Highly compressed matter for the RCD."
 	id = "rcd_ammo"
-	materials = list(MAT_STEEL = 30000, MAT_GLASS = 15000)
+	materials = list(MAT_STEEL = MATERIAL_COST(15), MAT_GLASS = MATERIAL_COST(7.5))
 	build_path = /obj/item/rcd_ammo
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1196,7 +1207,7 @@
 	name = "Rapid-Service-Fabricator"
 	desc = "A device used to rapidly deploy service items."
 	id = "rsf"
-	materials = list(MAT_STEEL = 31250)
+	materials = list(MAT_STEEL = MATERIAL_COST(15.625))
 	build_path = /obj/item/rsf
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1208,7 +1219,7 @@
 	name = "Rapid Material Synthesizer"
 	desc = "A device used to rapidly synthesize materials."
 	id = "rms"
-	materials = list(MAT_STEEL = 62500, MAT_GLASS = 15000, MAT_SILVER = 7500)
+	materials = list(MAT_STEEL = MATERIAL_COST(31.25), MAT_GLASS = MATERIAL_COST(7.5), MAT_SILVER = MATERIAL_COST(3.75))
 	build_path = /obj/item/rms
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(
@@ -1221,7 +1232,7 @@
 	desc = "A welder which runs off of electricity."
 	id = "electric_welding_tool"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 90, MAT_GLASS = 40)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.045), MAT_GLASS = MATERIAL_COST(0.02))
 	build_path = /obj/item/weldingtool/electric/unloaded
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
@@ -1233,7 +1244,7 @@
 	desc = "Prismatic path illumination devices. Used by explorers and miners to mark paths and warn of danger."
 	id = "marker_beacon"
 	build_type = PROTOLATHE | AUTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/stack/marker_beacon/ten
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -1245,7 +1256,7 @@
 	desc = "A glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions. This one is red."
 	id = "trailblazer_red"
 	build_type = PROTOLATHE | AUTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/stack/lightpole/red
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -1257,7 +1268,7 @@
 	desc = "A glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions. This one is blue."
 	id = "trailblazer_blue"
 	build_type = PROTOLATHE | AUTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/stack/lightpole/blue
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -1269,7 +1280,7 @@
 	desc = "A glowing stick embedded in the ground with a light on top, commonly used in snowy installations and in tundra conditions. This one is yellow."
 	id = "trailblazer_yellow"
 	build_type = PROTOLATHE | AUTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/stack/lightpole/yellow
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
@@ -1279,7 +1290,7 @@
 /datum/design_techweb/shovel
 	name = "Shovel"
 	id = "shovel"
-	materials = list(MAT_STEEL = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2))
 	build_path = /obj/item/shovel
 	build_type = PROTOLATHE | AUTOLATHE
 	category = list(
@@ -1291,7 +1302,7 @@
 /datum/design_techweb/iceaxe
 	name = "Ice Axe"
 	id = "iceaxe"
-	materials = list(MAT_STEEL = 12000)
+	materials = list(MAT_STEEL = MATERIAL_COST(6))
 	build_path = /obj/item/ice_pick
 	build_type = PROTOLATHE | AUTOLATHE
 	category = list(
@@ -1303,7 +1314,7 @@
 /datum/design_techweb/anomaly_scanner
 	name = "Anomaly Scanner"
 	id = "anomaly_scanner"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/anomaly_scanner
 	build_type = PROTOLATHE
 	category = list(

@@ -302,6 +302,18 @@
 	emote_message_mute_3p = "silently purrs."
 	emote_sound = 'sound/voice/cat_purr_long.ogg'
 
+/datum/decl/emote/audible/catgrowl
+	key = "catgrowl"
+	emote_message_3p = "growls like a big cat!"
+	emote_message_mute_3p = "growls like a big cat!"
+	emote_sound = 'sound/voice/cougar.ogg'
+
+/datum/decl/emote/audible/catgrowl2
+	key = "catgrowl2"
+	emote_message_3p = "growls like an upset big cat!"
+	emote_message_mute_3p = "growls like an upset big cat!"
+	emote_sound = 'sound/voice/lynx.ogg'
+
 /datum/decl/emote/audible/fennecscream
 	key = "fennecscream"
 	emote_message_3p = "screeches!"
@@ -395,3 +407,13 @@
 			)
 	var/sound = pick(goo_sounds)
 	playsound(user.loc, sound, 100, 1)
+
+/datum/decl/emote/audible/xenochimera_scream
+	key = "xscream"
+	emote_message_1p = "You let out a horrid scream!"
+	emote_message_3p = "lets out a horrid scream!"
+	emote_message_1p_target = "You let out a horrid scream at TARGET!"
+	emote_message_3p_target = "lets out a horrid scream at TARGET!"
+	emote_message_mute_3p = "tries to scream but makes no sound!"
+	emote_sound = 'sound/voice/xenochimera_scream.ogg'
+	sound_vary = FALSE

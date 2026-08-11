@@ -452,6 +452,7 @@ ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player,
 		to_chat(user, span_notice("Succesful delivery acknowledged! [cargo_points] points added to Supply."))
 		playsound(loc, 'sound/items/mail/mailapproved.ogg', 50, TRUE)
 		SSsupply.points += cargo_points
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MAIL_DELIVERED)
 
 // JUNK MAIL STUFF
 
