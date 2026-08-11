@@ -87,7 +87,7 @@
 	id = "ore_processor"
 	build_path = /obj/item/circuitboard/mat_processor
 	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -105,7 +105,7 @@
 	id = "stack_machine"
 	build_path = /obj/item/circuitboard/mat_stacker
 	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -123,7 +123,7 @@
 	id = "ore_unloader"
 	build_path = /obj/item/circuitboard/mat_unloader
 	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -132,6 +132,6 @@
 	id = "mint"
 	build_path = /obj/item/circuitboard/mat_mint
 	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_MACHINE_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
