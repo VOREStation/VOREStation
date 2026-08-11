@@ -37,12 +37,6 @@
 		nearest_machine = checking
 	return nearest_machine
 
-/obj/machinery/mineral/proc/set_output_dir(dir)
-	output_dir = dir
-
-/obj/machinery/mineral/proc/input_dir()
-	return reverse_direction(output_dir)
-
 /obj/machinery/mineral/examine(mob/user, infix, suffix)
 	. = ..()
 	if(!sets_direction)

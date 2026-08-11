@@ -19,7 +19,7 @@
 	for(var/dir in GLOB.cardinal)
 		var/output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(output)
-			set_output_dir(dir)
+			output_dir = dir
 			break
 
 /obj/machinery/mineral/unloading_machine/Destroy()

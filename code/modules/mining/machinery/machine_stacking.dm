@@ -107,7 +107,7 @@
 				if(machine.output_dir)
 					var/turf/output = get_step(src,machine.output_dir)
 					if(output)
-						new stacktype(get_turf(output), machine.stack_storage[stack])
+						new stacktype(output, machine.stack_storage[stack])
 						machine.stack_storage[stack] = 0
 			. = TRUE
 
@@ -146,7 +146,7 @@
 	for (var/dir in GLOB.cardinal)
 		var/output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(output)
-			set_output_dir(dir)
+			output_dir = dir
 			break
 
 /obj/machinery/mineral/stacking_machine/Destroy()
@@ -156,6 +156,16 @@
 		STOP_PROCESSING(SSfastprocess, src)
 	else
 		STOP_MACHINE_PROCESSING(src)
+	// Release all sheets
+	for(var/stack in stack_storage)
+		if(stack_storage[stack] <= 0)
+			continue
+		var/obj/item/stack/stacktype = stack_paths[stack]
+		var/turf/output = get_turf(src)
+		while(stack_storage[stack] > 0) // Not really a nicer way to do this unless we just delete the stacks...
+			var/amnt = min(stack_storage[stack], initial(stacktype.max_amount))
+			new stacktype(output, amnt)
+			stack_storage[stack] -= amnt
 	. = ..()
 
 /obj/machinery/mineral/stacking_machine/has_link()

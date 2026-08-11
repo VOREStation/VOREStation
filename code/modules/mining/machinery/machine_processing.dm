@@ -251,7 +251,7 @@
 	for (var/dir in GLOB.cardinal)
 		var/output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(output)
-			set_output_dir(dir)
+			output_dir = dir
 			break
 
 /obj/machinery/mineral/processing_unit/Destroy()
@@ -277,16 +277,22 @@
 	else // low gear
 		STOP_PROCESSING(SSfastprocess, src)
 		START_MACHINE_PROCESSING(src)
-	var/area/refinery_area = get_area(src)
-	for(var/obj/machinery/mineral/unloading_machine/unloader in GLOB.mineral_machines)
-		if(get_area(unloader) == refinery_area)
-			unloader.toggle_speed()
-	for(var/obj/machinery/conveyor_switch/cswitch in GLOB.mineral_machines)
-		if(get_area(cswitch) == refinery_area)
-			cswitch.toggle_speed()
-	for(var/obj/machinery/mineral/stacking_machine/stacker in GLOB.mineral_machines)
-		if(get_area(stacker) == refinery_area)
-			stacker.toggle_speed()
+	// There is no danger of recursion here, because the other toggle_speed procs do no broadcast like this one on change
+	for(var/obj/machinery/mach in range(connection_range + 2, src)) // a little more than the link range
+		if(mach == src)
+			continue
+		if(istype(mach, /obj/machinery/mineral/unloading_machine))
+			var/obj/machinery/mineral/unloading_machine/unloader = mach
+			unloader.toggle_speed(speed_process)
+			continue
+		if(istype(mach, /obj/machinery/conveyor_switch))
+			var/obj/machinery/conveyor_switch/cswitch = mach
+			cswitch.toggle_speed(speed_process)
+			continue
+		if(istype(mach, /obj/machinery/mineral/stacking_machine))
+			var/obj/machinery/mineral/stacking_machine/stacker = mach
+			stacker.toggle_speed(speed_process)
+			continue
 
 /obj/machinery/mineral/processing_unit/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
