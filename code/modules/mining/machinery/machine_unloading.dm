@@ -8,10 +8,20 @@
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/mat_unloader
 	sets_direction = TRUE
+	var/static/list/ore_iconstates = null
 
 /obj/machinery/mineral/unloading_machine/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+
+	// Populate icons for unloaded ores, lookup is faster than the if-else monster it was before
+	if(!ore_iconstates)
+		ore_iconstates = list()
+		for(var/obj/item/ore/ore as anything in subtypesof(/obj/item/ore))
+			var/mat = ore.material
+			if(!mat)
+				continue
+			ore_iconstates[mat] = ore.icon_state
 
 	// Mapload uses direction hints
 	if(!mapload)
@@ -71,47 +81,9 @@
 				ore_chunk.stored_ore[ore] += ore_amount
 				BOX.stored_ore[ore] = 0
 
-				//Icon code here. Going from most to least common.
-				if(ore == ORE_SAND)
-					ore_chunk.icon_state = "ore_glass"
-				else if(ore == ORE_CARBON)
-					ore_chunk.icon_state = "ore_coal"
-				else if(ore == ORE_HEMATITE)
-					ore_chunk.icon_state = "ore_iron"
-				else if(ore == ORE_PHORON)
-					ore_chunk.icon_state = "ore_phoron"
-				else if(ore == ORE_SILVER)
-					ore_chunk.icon_state = "ore_silver"
-				else if(ore == ORE_GOLD)
-					ore_chunk.icon_state = "ore_gold"
-				else if(ore == ORE_URANIUM)
-					ore_chunk.icon_state = "ore_uranium"
-				else if(ore == ORE_DIAMOND)
-					ore_chunk.icon_state = "ore_diamond"
-				else if(ore == ORE_PLATINUM)
-					ore_chunk.icon_state = "ore_platinum"
-				else if(ore == ORE_MARBLE)
-					ore_chunk.icon_state = "ore_marble"
-				else if(ore == ORE_LEAD)
-					ore_chunk.icon_state = "ore_lead"
-				else if(ore == ORE_RUTILE)
-					ore_chunk.icon_state = "ore_rutile"
-				else if(ore == ORE_QUARTZ)
-					ore_chunk.icon_state = "ore_quartz"
-				else if(ore == ORE_MHYDROGEN)
-					ore_chunk.icon_state = "ore_hydrogen"
-				else if(ore == ORE_VERDANTIUM)
-					ore_chunk.icon_state = "ore_verdantium"
-				else if(ore == ORE_COPPER)
-					ore_chunk.icon_state = "ore_copper"
-				else if(ore == ORE_TIN)
-					ore_chunk.icon_state = "ore_tin"
-				else if(ore == ORE_VOPAL)
-					ore_chunk.icon_state = "ore_void_opal"
-				else if(ore == ORE_BAUXITE)
-					ore_chunk.icon_state = "ore_bauxite"
-				else if(ore == ORE_PAINITE)
-					ore_chunk.icon_state = "ore_painite"
+				// Icon code here.
+				if(ore in ore_iconstates)
+					ore_chunk.icon_state = ore_iconstates[ore]
 				else
 					ore_chunk.icon_state = "boulder[rand(1,4)]"
 
