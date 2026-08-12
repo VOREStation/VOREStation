@@ -58,13 +58,11 @@
 	// Now for the somewhat harder AI GLOB.cameranet checks.
 
 	// Check if we are even on the GLOB.cameranet.
-	/* //Old version. This entiree multitool needs an update, but it relies on the planemaster SS.
-	if(!SScameras.turf_visible_by_cameras(T))
+	if(!SScameras.is_visible_by_cameras(T))
 		return PROXIMITY_OFF_CAMERANET
-	*/
 
 	var/datum/camerachunk/chunk = SScameras.get_camera_chunk(T.x, T.y, T.z)
-	if(!chunk || !length(chunk.cameras))
+	if(!chunk)
 		return PROXIMITY_OFF_CAMERANET
 
 	// Check if the AI eye is able to see us, or if it's almost able to.
