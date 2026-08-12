@@ -26,7 +26,7 @@
 	slowdown = 1.0
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 0.9
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
@@ -41,7 +41,7 @@
 /obj/item/clothing/suit/bio_suit/general
 	icon_state = "bio_general"
 	item_state_slots = list(slot_r_hand_str = "bio", slot_l_hand_str = "bio")
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 //Virology biosuit, green stripe
 /obj/item/clothing/head/bio_hood/virology
@@ -49,7 +49,7 @@
 
 /obj/item/clothing/suit/bio_suit/virology
 	icon_state = "bio_virology"
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 //Security biosuit, grey with red stripe across the chest
 /obj/item/clothing/head/bio_hood/security
@@ -57,7 +57,7 @@
 
 /obj/item/clothing/suit/bio_suit/security
 	icon_state = "bio_security"
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 //Janitor's biosuit, grey with purple arms
 /obj/item/clothing/head/bio_hood/janitor
@@ -65,7 +65,7 @@
 
 /obj/item/clothing/suit/bio_suit/janitor
 	icon_state = "bio_janitor"
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 //Scientist's biosuit, white with a pink-ish hue
 /obj/item/clothing/head/bio_hood/scientist
@@ -73,12 +73,12 @@
 
 /obj/item/clothing/suit/bio_suit/scientist
 	icon_state = "bio_scientist"
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 //CMO's biosuit, blue stripe
 /obj/item/clothing/suit/bio_suit/cmo
 	icon_state = "bio_cmo"
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/head/bio_hood/cmo
 	icon_state = "bio_cmo"
@@ -89,4 +89,4 @@
 	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
 	icon_state = "plaguedoctor"
 	item_state_slots = list(slot_r_hand_str = "bio", slot_l_hand_str = "bio")
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER

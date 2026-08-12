@@ -21,7 +21,7 @@
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY)
 	slowdown = 1.5
 	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	min_pressure_protection = 0
 	max_pressure_protection = 2 * ONE_ATMOSPHERE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -87,7 +87,7 @@
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.9
-	flags_inv = HIDEHOLSTER
+	flags_inv = HIDETAIL|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|ARMS
 
 //Orange emergency space suit

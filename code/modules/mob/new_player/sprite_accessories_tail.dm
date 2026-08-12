@@ -1,10 +1,10 @@
 /*
 ////////////////////////////
 /  =--------------------=  /
-/  =OLD Tail Definitions=  /
-/  =-FOR REFERENCE ONLY-=  /
+/  == Tail Definitions ==  /
+/  =--------------------=  /
 ////////////////////////////
-
+*/
 /datum/sprite_accessory/tail
 	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
@@ -33,7 +33,7 @@
 	///ADDITIONALLY, IF YOU ADD A SPECIAL VWAG, YOU NEED TO INCLUDE ani_state, extra_overlay_w, and extra_overlay2_w INTO icon_loaf TOO!
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
-	var/list/lower_layer_dirs = LOWER_TAIL_DIRS
+	var/list/lower_layer_dirs = list(SOUTH, WEST, EAST)
 	var/icon_loaf = null
 
 	// Taur Vore
@@ -281,7 +281,6 @@
 	name = "xenomorph tail 2"
 	desc = ""
 	icon_state = "xenotail"
-	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/eboop
 	name = "EGN mech tail (dual color)"
@@ -826,7 +825,6 @@
 	name = "Zeng-Hu Tajaran Synth tail"
 	desc = ""
 	icon_state = "zenghu_taj"
-	do_colouration = FALSE
 
 //Taurs moved to a separate file due to extra code around them
 
@@ -1984,4 +1982,4 @@
 	do_colouration = TRUE
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "chu_markings"
-	extra_overlay2 = "chu_tipmarkings"*/
+	extra_overlay2 = "chu_tipmarkings"

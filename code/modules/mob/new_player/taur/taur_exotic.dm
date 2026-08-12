@@ -15,6 +15,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "giantspidertaur"
 	do_colouration = FALSE
+	extra_overlay = null
 	icon_sprite_tag = "giantspidertaur"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
@@ -42,38 +43,42 @@
 /datum/sprite_accessory/tail/taur/giantspider/carrier
 	name = "Carrier Spider (Taur)"
 	icon_state = "carrierspidertaur"
+	extra_overlay = null
 	icon_sprite_tag = "carrierspidertaur"
 
 /datum/sprite_accessory/tail/taur/giantspider/phoron
 	name = "Phorogenic Spider (Taur)"
 	icon_state = "phoronspidertaur"
+	extra_overlay = null
 	icon_sprite_tag = "phoronspidertaur"
 
 /datum/sprite_accessory/tail/taur/giantspider/spark
 	name = "Voltaic Spider (Taur)"
 	icon_state = "sparkspidertaur"
+	extra_overlay = null
 	icon_sprite_tag = "sparkspidertaur"
 
 /datum/sprite_accessory/tail/taur/giantspider/frost
 	name = "Frost Spider (Taur)"
 	icon_state = "frostspidertaur"
+	extra_overlay = null
 	icon_sprite_tag = "frostspidertaur"
 
 /datum/sprite_accessory/tail/taur/giantspider/ant	//technically not a spider, but it inherits the same messages
 	name = "Ant (dual color)"
 	icon_state = "ant_s"
+	do_colouration = TRUE
 	extra_overlay = "ant_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
-	icon_sprite_tag = "ant"
-	do_colouration = TRUE
+	icon_sprite_tag = "wasp"
 
 /datum/sprite_accessory/tail/taur/giantspider/wasp	//same as above, but for wasps
 	name = "Wasp (dual color)"
 	icon_state = "wasp_s"
+	do_colouration = TRUE
 	extra_overlay = "wasp_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
 	icon_sprite_tag = "wasp"
-	do_colouration = TRUE
 
 /datum/sprite_accessory/tail/taur/mermaid
 	name = "Mermaid (Taur)"
@@ -116,23 +121,22 @@
 
 /datum/sprite_accessory/tail/taur/mermaid/alt/marked
 	name = "Mermaid Koi (Taur)"
+	icon_state = "altmermaid_s"
 	extra_overlay = "altmermaid_markings"
 	extra_overlay2 = "altmermaid_markings2"
 
 /datum/sprite_accessory/tail/taur/horse/scoli
 	name = "Scolipede (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
-	suit_sprites = 'icons/inventory/suit/taursuits_scoli.dmi'
 	icon_state = "scoli_s"
 	extra_overlay = "scoli_markings1"
 	extra_overlay2 = "scoli_markings2"
-	icon_sprite_tag = "scoli"
 
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "spider_s"
-	suit_sprites = 'icons/inventory/suit/taursuits_spider.dmi'
+	suit_sprites = 'icons/mob/taursuits_spider.dmi'
 	icon_sprite_tag = "spider"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
@@ -153,7 +157,6 @@
 /datum/sprite_accessory/tail/taur/sloog
 	name = "Sloog (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
-	suit_sprites = 'icons/inventory/suit/taursuits_sloog.dmi'
 	icon_state = "sloog"
 	extra_overlay = "sloog_glowstripe"
 	extra_overlay_w = "sloog_glowstripe"
@@ -163,6 +166,7 @@
 	name = "Slug (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "slug_s"
+	suit_sprites = 'icons/mob/taursuits_deer.dmi' //Yes it sounds odd, but they share the same sprites.
 	icon_sprite_tag = "slug"
 	vore_tail_sprite_variant = "Slug"
 	fullness_icons = 1
@@ -196,15 +200,15 @@
 
 /datum/sprite_accessory/tail/taur/slug/snail
 	name = "Snail (Taur)"
+	icon_state = "slug_s"
 	extra_overlay = "snail_shell_marking"
-	icon_sprite_tag = "snail"
 
 /datum/sprite_accessory/tail/taur/tents
 	name = "Tentacles (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "tent_s"
 	icon_sprite_tag = "tentacle"
-	can_ride = FALSE
+	can_ride = 0
 
 	msg_prey_stepunder = "You run between %prey's tentacles."
 	msg_owner_stepunder = "%owner runs between your tentacles."
@@ -237,7 +241,6 @@
 	name = "Tree Roots (Oak)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "tree_oak_roots"
-	icon_sprite_tag = "tree_oak_roots"
 	can_ride = FALSE
 
 /*
