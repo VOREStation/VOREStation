@@ -47,7 +47,7 @@
 	body_parts_covered = CHEST|LEGS|ARMS
 	heat_protection =	 CHEST|LEGS|ARMS
 	cold_protection =	 CHEST|LEGS|ARMS
-	flags_inv =			 HIDEJUMPSUIT|HIDETAIL
+	flags_inv =			 HIDEJUMPSUIT
 	item_flags =		 THICKMATERIAL | AIRTIGHT
 	slowdown = 0
 	//will reach 10 breach damage after 25 laser carbine blasts, 3 revolver hits, or ~1 PTR hit. Completely immune to smg or sts hits.

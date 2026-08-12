@@ -16,3 +16,29 @@
       this could lead to rounds never ending
   OverDriveZ:
   - sound: added two big cat audible emotes
+2026-08-06:
+  Arceniu:
+  - bugfix: fixed mob/living/simple_mob/vore/wolf's bellies proc
+2026-08-08:
+  Guti:
+  - bugfix: Fixed anomaly artifacts instantly activating round-start
+2026-08-10:
+  Kashargul:
+  - bugfix: changeling camo never expiring
+  Will:
+  - bugfix: Stasis cages no longer apply diminishing returns before the caged creature
+      is sold
+  - code_imp: Improved sellable element
+  WolvesAndOwls:
+  - rscadd: Pixel tilting for living mobs
+2026-08-11:
+  Diana:
+  - qol: Lasertag knives can be set from 1 to 10 damage.
+  - bugfix: Lasertag guns now have their special names.
+  - bugfix: Fixes lasertag guns incorrectly telling you to wear the correct vest if
+      shooting something that isn't a normally valid target.
+  Will:
+  - bugfix: Grippers can now insert material sheets into RnD machines that are not
+      linked to the silo(or if no silo exists)
+  - bugfix: Glasswire aberration no longer broken by flashlight beams
+  - bugfix: DNA modifier no longer ejects disk along with occupant

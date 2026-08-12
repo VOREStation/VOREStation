@@ -131,3 +131,28 @@
 **File:** `/sound/talksounds/looc_sound.ogg`<br>
 **Creator:** VerySoft<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
+<br>
+**Files**:icons\inventory\suit\taursuits_wolf,<br>
+icons\inventory\suit\taursuits_fox,<br>
+icons\inventory\suit\taursuits_zorgoia,<br>
+icons\inventory\suit\taursuits_redpanda,<br>
+icons\inventory\suit\taursuits_lizard,<br>
+icons\inventory\suit\taursuits_drake,<br>
+icons\inventory\suit\taursuits_otie,<br>
+icons\inventory\suit\taursuits_noodle,<br>
+icons\inventory\suit\taursuits_horse,<br>
+icons\inventory\suit\taursuits_cow,<br>
+icons\inventory\suit\taursuits_skunk,<br>
+icons\inventory\suit\taursuits_sergal,<br>
+icons\inventory\suit\taursuits_rat,<br>
+icons\inventory\suit\taursuits_deer,<br>
+icons\inventory\suit\taursuits_feline<br>
+**Folder**:tools\TaurClothingCutter<br>
+**Notes:** All sprites other than the waist-up humanoid torso portions are fully created by Poojawa and as such must be credited if ported.<br>
+**File**: icons/obj/guncabinet.dmi<br>
+**Notes:** All sprites not appended with 'old' Are fully created by Poojawa.<br>
+**File**: icons/obj/machines/foodsynthesizer.dmi
+**Notes:** Original Sprite taken from Deep Space 13. Portable Synth, Screen Animations, East/West, Panel layering, and canisters, Are fully created by Poojawa.<br>
+**Creator:** Poojawa<br>
+**License:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)<br>
+<br>

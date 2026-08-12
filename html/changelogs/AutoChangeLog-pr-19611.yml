@@ -1,0 +1,11 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - rscadd: "Added a system to permit custom tails (and bellies) to show even if you're in a full space suit!"
+  - image: "So many taursuits! OH LAWD."
+  - code_imp: "Bastardized the HumanCutter tool to provide a means for unsupported taurs to be 'snipped' into conformity, as long as they're somewhat accurate to overall shapes."
+  - image: "multiple taurs get tail wag states outside of just being instantly fat."
+  - rscadd: "Ripped out the old species tail animation system, no-one is ever going to actually maintain 9+ different tail wag animations, and they were overriding the custom tails to boot."
+  - rscadd: "Completely refractored tail icon generation to utilize mutable_appearance as much as possible."
+  - rscadd: "Optimized vore tail code to utilize Mutable_appearance instead of queuing up icon generations"
+  - bugfix: "Cleaned up tail and taur files to reduce the number of icons of species that used the same basic and fat icons with different overlays."
