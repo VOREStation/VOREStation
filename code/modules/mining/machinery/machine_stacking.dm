@@ -106,7 +106,7 @@
 			if(machine.stack_storage[stack] > 0)
 				var/stacktype = machine.stack_paths[stack]
 				if(machine.output_dir)
-					var/turf/output = get_step(src,machine.output_dir)
+					var/turf/output = get_step(machine,machine.output_dir)
 					if(output)
 						new stacktype(output, machine.stack_storage[stack])
 						machine.stack_storage[stack] = 0
