@@ -63,8 +63,8 @@
 		return PROXIMITY_OFF_CAMERANET
 	*/
 
-	var/datum/chunk/chunk = SScameras.get_camera_chunk(T.x, T.y, T.z)
-	if(!chunk)
+	var/datum/camerachunk/chunk = SScameras.get_camera_chunk(T.x, T.y, T.z)
+	if(!chunk || !length(chunk.cameras))
 		return PROXIMITY_OFF_CAMERANET
 
 	// Check if the AI eye is able to see us, or if it's almost able to.
