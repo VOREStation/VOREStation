@@ -27,7 +27,8 @@
 	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
 	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
-/datum/sprite_accessory/tail/taur/bigleggy
+//By making big leggy a subtype of longtail, it gets the offset but doesn't conflict with taur specific settings.
+/datum/sprite_accessory/tail/longtail/bigleggy
 	name = "Big Leggies"
 	icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
 	icon_state = "bigleggy"
@@ -36,46 +37,47 @@
 	fullness_icons = 3
 	ani_state = "bigleggy_stanced"
 	extra_overlay_w = "bigleggy_markings_stanced"
+	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
 	clip_mask_state = "taur_clip_mask_def" //Leaving this here to make it clear it it's INTENTIONAL it shows above clothes. Use the marking if you want it to show UNDER clothes!
 
-/datum/sprite_accessory/tail/taur/bigleggy/canine
+/datum/sprite_accessory/tail/longtail/bigleggy/canine
 	name = "Big Leggies (Canine Tail)"
 	extra_overlay2 = "bigleggy_canine"
 	extra_overlay2_w = "bigleggy_canine"
 
-/datum/sprite_accessory/tail/taur/bigleggy/feline
+/datum/sprite_accessory/tail/longtail/bigleggy/feline
 	name = "Big Leggies (Feline Tail)"
 	extra_overlay2 = "bigleggy_feline"
 	extra_overlay2_w = "bigleggy_feline"
 
-/datum/sprite_accessory/tail/taur/bigleggy/reptile
+/datum/sprite_accessory/tail/longtail/bigleggy/reptile
 	name = "Big Leggies (Reptile Tail)"
 	extra_overlay2 = "bigleggy_reptile"
 	extra_overlay2_w = "bigleggy_reptile"
 
-/datum/sprite_accessory/tail/taur/bigleggy/snake
+/datum/sprite_accessory/tail/longtail/bigleggy/snake
 	name = "Big Leggies (Snake Tail)"
 	extra_overlay2 = "bigleggy_snake"
 	extra_overlay2_w = "bigleggy_snake"
 
-/datum/sprite_accessory/tail/taur/bigleggy/fox
+/datum/sprite_accessory/tail/longtail/bigleggy/fox
 	name = "Big Leggies (Fox Tail)"
 	extra_overlay2 = "bigleggy_vulpine"
 	extra_overlay2_w = "bigleggy_vulpine"
 
-/datum/sprite_accessory/tail/taur/bigleggy/bird
+/datum/sprite_accessory/tail/longtail/bigleggy/bird
 	name = "Big Leggies (Bird)"
 	extra_overlay = "bigleggy_m_bird"
 	extra_overlay2 = "bigleggy_bird"
 	extra_overlay_w = "bigleggy_m_bird_stanced"
 	extra_overlay2_w = "bigleggy_bird"
 
-/datum/sprite_accessory/tail/taur/bigleggy/plug
+/datum/sprite_accessory/tail/longtail/bigleggy/plug
 	name = "Big Leggies (Plug Tail)"
 	extra_overlay2 = "bigleggy_plug"
 	extra_overlay2_w = "bigleggy_plug"
 
-/datum/sprite_accessory/tail/taur/bigleggy/AlienSlug
+/datum/sprite_accessory/tail/longtail/bigleggy/AlienSlug
 	name = "Big Leggies (Alien Slug Tail)"
 	icon_state = "bigleggy_full_alienslug"
 	extra_overlay = "bigleggy_alienslug"
