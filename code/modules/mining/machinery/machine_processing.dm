@@ -310,8 +310,7 @@
 		return
 
 	var/turf/output = get_step(src,output_dir)
-	var/turf/input = get_step(src, reverse_direction(output_dir)) // Input is always reverse of output
-	if(!input || !output)
+	if(!output)
 		return
 	if(panel_open || !powered())
 		return
@@ -319,29 +318,15 @@
 	var/list/tick_alloys = list()
 
 	//Grab some more ore to process this tick.
-	for(var/obj/structure/ore_box/OB in input)
-		for(var/ore in OB.stored_ore)
-			if(OB.stored_ore[ore] > 0)
-				var/ore_amount = OB.stored_ore[ore]									// How many ores does the box have?
-				ores_stored[ore] += ore_amount 										// Add the ore to the machine.
-				points += (ore_values[ore]*points_mult*ore_amount) 					// Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
-				OB.stored_ore[ore] = 0 												// Set the value of the ore in the box to 0.
-
-
-	for(var/obj/item/ore_chunk/ore_chunk in input) //Special ore chunk item. For conveyor belt. Completely unneeded but keeps asthetics.
-		for(var/ore in ore_chunk.stored_ore)
-			if(ore_chunk.stored_ore[ore] > 0)
-				var/ore_amount = ore_chunk.stored_ore[ore]
-				ores_stored[ore] += ore_amount
-				points += (ore_values[ore]*points_mult*ore_amount)
-				ore_chunk.stored_ore[ore] = 0
-			qdel(ore_chunk)
-
-	for(var/obj/item/ore/O in input)
-		if(!isnull(ores_stored[O.material]))
-			ores_stored[O.material]++
-			points += (ore_values[O.material]*points_mult)
-		qdel(O)
+	var/turf/input = get_step(src, reverse_direction(output_dir)) // Only applies to unloading oreboxes DIRECTLY with no conveyors... Did anyone even know this was a feature?
+	if(input)
+		for(var/obj/structure/ore_box/OB in input)
+			for(var/ore in OB.stored_ore)
+				if(OB.stored_ore[ore] > 0)
+					var/ore_amount = OB.stored_ore[ore]									// How many ores does the box have?
+					ores_stored[ore] += ore_amount 										// Add the ore to the machine.
+					points += (ore_values[ore]*points_mult*ore_amount) 					// Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
+					OB.stored_ore[ore] = 0 												// Set the value of the ore in the box to 0.
 
 	if(!active)
 		return
@@ -424,6 +409,26 @@
 				new /obj/item/ore/slag(output)
 		else
 			continue
+
+/obj/machinery/mineral/processing_unit/Bumped(AM)
+	. = ..()
+	if(istype(AM, /obj/item/ore_chunk))
+		var/obj/item/ore_chunk/ore_chunk = AM
+		for(var/ore in ore_chunk.stored_ore)
+			if(ore_chunk.stored_ore[ore] > 0)
+				var/ore_amount = ore_chunk.stored_ore[ore]
+				ores_stored[ore] += ore_amount
+				points += (ore_values[ore]*points_mult*ore_amount)
+				ore_chunk.stored_ore[ore] = 0
+			qdel(ore_chunk)
+		return
+	if(istype(AM, /obj/item/ore))
+		var/obj/item/ore/O = AM
+		if(!isnull(ores_stored[O.material]))
+			ores_stored[O.material]++
+			points += (ore_values[O.material]*points_mult)
+		qdel(O)
+		return
 
 #undef PROCESS_NONE
 #undef PROCESS_SMELT

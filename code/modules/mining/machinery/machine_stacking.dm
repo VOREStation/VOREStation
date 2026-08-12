@@ -198,28 +198,33 @@
 		return
 
 	var/turf/output = get_step(src,output_dir)
-	var/turf/input = get_step(src,reverse_direction(output_dir))
 	if(panel_open || !powered())
 		return
 
-	if (output && input)
-		for(var/obj/item/O in input.contents)
-			if(!O)
-				return
-			if(!istype(O,/obj/item/stack/material))
-				O.forceMove(output)
-				continue
-			var/obj/item/stack/material/S = O
-			var/matname = S.material.name
-			if(!isnull(stack_storage[matname]))
-				stack_storage[matname] += S.get_amount()
-				qdel(S)
-				continue
-			O.forceMove(output)
-
+	if (!output)
+		return
 	//Output amounts that are past stack_amt.
 	for(var/sheet in stack_storage)
 		if(stack_storage[sheet] >= stack_amt)
 			var/stacktype = stack_paths[sheet]
 			new stacktype (output, stack_amt)
 			stack_storage[sheet] -= stack_amt
+
+/obj/machinery/mineral/stacking_machine/Bumped(AM)
+	. = ..()
+	if(!isitem(AM))
+		return
+	var/turf/output = get_step(src,output_dir)
+	if(!output)
+		return
+	var/obj/item/O = AM
+	if(!istype(O,/obj/item/stack/material))
+		O.forceMove(output)
+		return
+	var/obj/item/stack/material/S = O
+	var/matname = S.material.name
+	if(!isnull(stack_storage[matname]))
+		stack_storage[matname] += S.get_amount()
+		qdel(S)
+		return
+	O.forceMove(output)
