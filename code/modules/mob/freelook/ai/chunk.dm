@@ -258,7 +258,7 @@
 	var/lower_y = y
 	var/upper_x = min(lower_x + CHUNK_SIZE - 1, world.maxx)
 	var/upper_y = min(lower_y + CHUNK_SIZE - 1, world.maxy)
-	var/list/stack = GetConnectedZlevels(lower_z)
+	var/list/stack = SSmapping.get_connected_levels(lower_z)
 	for(var/z_level in lower_z to upper_z)
 		cameras["[z_level]"] = list()
 		var/image/mirror_from = SScameras.obscured_images[z_level] // No GET_Z_PLANE_OFFSET 🫪
@@ -275,7 +275,7 @@
 			continue
 		if(camera_loc.y + MAX_CAMERA_RANGE < lower_y || camera_loc.y - MAX_CAMERA_RANGE > upper_y)
 			continue
-		if(stack != GetConnectedZlevels(camera_loc.z))
+		if(stack != SSmapping.get_connected_levels(camera_loc))
 			continue
 		if(!camera.can_use())
 			continue
