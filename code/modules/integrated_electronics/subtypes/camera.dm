@@ -121,7 +121,6 @@
 	set_wires(new /datum/wires/camera(src))
 	c_tag = "IC Camera #[rand(1000, 9999)]"
 	name = c_tag
-	SScameras.add_camera_to_chunk(src)
 	return ..()
 
 /obj/machinery/camera/intcircuit/Destroy()

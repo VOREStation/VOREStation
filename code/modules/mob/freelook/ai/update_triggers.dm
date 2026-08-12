@@ -25,25 +25,6 @@
 
 // An addition to deactivate which removes/adds the camera from the chunk list based on if it works or not.
 
-/obj/machinery/camera/deactivate(user as mob, choice = 1)
-	..(user, choice)
-	if(src.can_use())
-		SScameras.add_camera_to_chunk(src)
-	else
-		src.set_light(0)
-		SScameras.remove_camera_from_chunk(src)
-
-/obj/machinery/camera/Initialize(mapload)
-	. = ..()
-	//Camera must be added to global list of all cameras no matter what...
-	SScameras.add_camera_to_chunk(src)
-	update_coverage(1)
-
-/obj/machinery/camera/Destroy()
-	clear_all_networks()
-	SScameras.cameras -= src
-	return ..()
-
 // Mobs
 /mob/living/silicon/ai/rejuvenate()
 	var/was_dead = stat == DEAD
