@@ -144,11 +144,7 @@
 		if(console)
 			console.stacker_link(src)
 		return
-	for (var/dir in GLOB.cardinal)
-		var/output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(output)
-			output_dir = dir
-			break
+	find_output_direction()
 
 /obj/machinery/mineral/stacking_machine/Destroy()
 	if(console)

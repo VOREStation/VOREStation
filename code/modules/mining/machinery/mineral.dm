@@ -42,7 +42,7 @@
 	if(!sets_direction)
 		return
 	if(output_dir)
-		. += span_notice("Currently configured to intake material from the <b>[dir2text(reverse_direction(output_dir))]</b> and drop processed material <b>[dir2text(output_dir)]</b>.")
+		. += span_notice("Currently configured to drop processed material <b>[dir2text(output_dir)]</b>.")
 		. += span_notice("Alt-click to reset.")
 	else
 		. += span_notice("Drag towards a direction (while next to it) to change drop direction.")
@@ -69,3 +69,22 @@
 	balloon_alert(user, "drop direction reset")
 	output_dir = 0
 	return CLICK_ACTION_SUCCESS
+
+// Attempt to detect our output direction from various context clues, used by mapload init
+/obj/machinery/mineral/proc/find_output_direction()
+	var/turf/our_turf = get_turf(src)
+	for(var/check_dir in GLOB.cardinal)
+		var/turf/check = get_step(src, check_dir)
+		// Don't go off the edge of the map
+		if(!check)
+			continue
+		// Walls are obviously bad
+		if(check.density)
+			continue
+		// Look for conveyors that points away from us
+		var/obj/machinery/conveyor/convey = locate() in check
+		if(convey)
+			var/turf/conveyor_goal_turf = get_step(convey,convey.dir)
+			if(conveyor_goal_turf != our_turf)
+				output_dir = check_dir
+				break

@@ -26,11 +26,7 @@
 	// Mapload uses direction hints
 	if(!mapload)
 		return
-	for(var/dir in GLOB.cardinal)
-		var/output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(output)
-			output_dir = dir
-			break
+	find_output_direction()
 
 /obj/machinery/mineral/unloading_machine/Destroy()
 	if(speed_process) // high gear
