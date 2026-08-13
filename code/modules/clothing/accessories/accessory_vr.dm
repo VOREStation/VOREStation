@@ -717,22 +717,22 @@
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
 	. = ..()
-	if(ismob(src.loc))
-		var/mob/M = src.loc
+	if(ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(src.icon_state == initial(icon_state))
-		src.icon_state = "[icon_state]_open"
-		src.item_state = "[item_state]_open"
+	if(icon_state == initial(icon_state))
+		icon_state = "[icon_state]_open"
+		item_state = "[item_state]_open"
 		flags_inv = HIDETIE|HIDEHOLSTER
 		to_chat(user, "You flip the cloak over your shoulder.")
 	else
-		src.icon_state = initial(icon_state)
-		src.item_state = initial(item_state)
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
 		flags_inv = HIDEHOLSTER
 		to_chat(user, "You pull the cloak over your shoulder.")
 	update_clothing_icon()
@@ -992,22 +992,22 @@
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
 	. = ..()
-	if(ismob(src.loc))
-		var/mob/M = src.loc
+	if(ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/attack_self(mob/user)
 	. = ..(user)
 	if(.)
 		return TRUE
-	if(src.icon_state == initial(icon_state))
-		src.icon_state = "[icon_state]_open"
-		src.item_state = "[item_state]_open"
+	if(icon_state == initial(icon_state))
+		icon_state = "[icon_state]_open"
+		item_state = "[item_state]_open"
 		flags_inv = HIDETIE|HIDEHOLSTER
 		to_chat(user, "You adjust your poncho.")
 	else
-		src.icon_state = initial(icon_state)
-		src.item_state = initial(item_state)
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
 		flags_inv = HIDEHOLSTER
 		to_chat(user, "You adjust your poncho.")
 	update_clothing_icon()

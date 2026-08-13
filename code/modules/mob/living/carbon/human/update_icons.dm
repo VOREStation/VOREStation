@@ -1180,7 +1180,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!tailoverlays)
 		return null
 
-	var/obj/item/clothing/suit/socksuit = wear_suit
+	var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
 	var/datum/sprite_accessory/tail/tailtype = tail_style
 
 	// Simplify our offset maths
@@ -1366,9 +1366,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/loaf_alt = lying && tail_style.belly_variant_when_loaf
 	var/fullness_icons = min(tail_style.fullness_icons, vs_fullness)
 	var/target_state = "Taur[tail_style.vore_tail_sprite_variant]-Belly-[fullness_icons][loaf_alt ? " loaf" : (struggle_anim_taur ? "" : " idle")]"
-	//optimizing this with mutable_appearance, since it includes support for animations!
+	// optimizing this with mutable_appearance, since it includes support for animations!
 	var/mutable_appearance/vorebelly_ma = mutable_appearance(tail_style.bellies_icon_path, target_state)
-	var/obj/item/clothing/suit/sockable = wear_suit
+	// is the wear_suit actually an accessory check
+	var/obj/item/clothing/suit/sockable = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
 	//scootchin' on by here to tailsock the tummy since it's important.
 	if(sockable && sockable.tailsock_toggle && sockable.tailsock_color)
 		vorebelly_ma.color = sockable.tailsock_color
@@ -1404,8 +1405,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/image/wing_image = get_wing_image(FALSE)
 
-	// Fetch wear_suit and check for tailsock coloration, because it makes sense to.
-	var/obj/item/clothing/suit/socksuit = wear_suit
+	// Fetch wear_suit and check for tailsock coloration, because it makes sense to. Unless it's an accessory.
+	var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
 	var/wing_color = (istype(socksuit) && socksuit.requires_tailsock && socksuit.tailsock_toggle && socksuit.tailsock_color) ? socksuit.tailsock_color : null
 
 	if(wing_image)
@@ -1429,44 +1430,73 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
+	//early hidden wing return
+	if(wings_hidden)
+		return null
+
+	var/image/working = null
+
 	//If you are FBP with wing style and didn't set a custom one
-	if(synthetic && synthetic.includes_wing && !wing_style && !wings_hidden)
+	if(synthetic && synthetic.includes_wing && !wing_style)
 		var/icon/wing_s = new/icon("icon" = synthetic.icon, "icon_state" = "wing") //I dunno. If synths have some custom wing?
-		wing_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
-		var/image/working = image(wing_s)
+		wing_s.Blend(rgb(r_skin, g_skin, b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
+		working = image(wing_s)
 		working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
 		return working
 
 	//If you have custom wings selected
-	if(wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL) && !wings_hidden)
-		var/wing_state = (flapping && wing_style.ani_state) ? wing_style.ani_state : wing_style.icon_state
+	if(wing_style)
+		var/is_flapping = flapping && wing_style.ani_state
+		var/wing_state = is_flapping ? wing_style.ani_state : wing_style.icon_state
 		if(wing_style.multi_dir)
 			wing_state += "_[under_layer ? "back" : "front"]"
-		var/icon/wing_s = new/icon("icon" = wing_style.icon, "icon_state" = wing_state)
+
+		//wing sock handling
+		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+		var/winged_sock = (istype(socksuit) && socksuit.requires_tailsock && socksuit.tailsock_toggle && socksuit.tailsock_color) ? socksuit.tailsock_color : null
+
+		if(winged_sock)
+			wing_state += "_sock"
+			var/mutable_appearance/socked_wing = mutable_appearance(wing_style.icon, wing_state)
+			socked_wing.color = socksuit.tailsock_color
+			working = image(socked_wing)
+			working.alpha = socksuit.alpha
+			return working
+
+		// Base wing appearance
+		var/mutable_appearance/base_wing = mutable_appearance(wing_style.icon, wing_state)
 		if(wing_style.do_colouration)
-			wing_s.Blend(rgb(src.r_wing, src.g_wing, src.b_wing), wing_style.color_blend_mode)
+			base_wing.color = rgb(r_wing, g_wing, b_wing)
+
+		// Primary extra overlay
 		if(wing_style.extra_overlay)
-			var/icon/overlay = new/icon("icon" = wing_style.icon, "icon_state" = wing_style.extra_overlay)
-			overlay.Blend(rgb(src.r_wing2, src.g_wing2, src.b_wing2), wing_style.color_blend_mode)
-			wing_s.Blend(overlay, ICON_OVERLAY)
-			qdel(overlay)
+			var/ex1_state = (is_flapping && wing_style.extra_overlay_w) ? wing_style.extra_overlay_w : wing_style.extra_overlay
+			var/mutable_appearance/ex1 = mutable_appearance(wing_style.icon, ex1_state)
+			ex1.color = rgb(r_wing2, g_wing2, b_wing2)
+			ex1.layer = FLOAT_LAYER + 0.01
+			base_wing.overlays += ex1
+
+		// Secondary extra overlay
 		if(wing_style.extra_overlay2)
-			var/icon/overlay = new/icon("icon" = wing_style.icon, "icon_state" = wing_style.extra_overlay2)
-			if(wing_style.ani_state)
-				overlay = new/icon("icon" = wing_style.icon, "icon_state" = wing_style.extra_overlay2_w)
-				overlay.Blend(rgb(src.r_wing3, src.g_wing3, src.b_wing3), wing_style.color_blend_mode)
-				wing_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-			else
-				overlay.Blend(rgb(src.r_wing3, src.g_wing3, src.b_wing3), wing_style.color_blend_mode)
-				wing_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-		var/image/working = image(wing_s)
-		working.alpha = src.a_wing
+			var/ex2_state = (is_flapping && wing_style.extra_overlay2_w) ? wing_style.extra_overlay2_w : wing_style.extra_overlay2
+			var/mutable_appearance/ex2 = mutable_appearance(wing_style.icon, ex2_state)
+			ex2.color = rgb(r_wing3, g_wing3, b_wing3)
+			ex2.layer = FLOAT_LAYER + 0.02
+			base_wing.overlays += ex2
+
+		working = image(base_wing)
+		if(a_wing != null)
+			working.alpha = a_wing
+
 		if(wing_style.em_block)
-			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
-		working.pixel_x -= wing_style.wing_offset
+			working.overlays += em_block_image_generic(working)
+
+		if(wing_style.wing_offset)
+			working.pixel_x -= wing_style.wing_offset
+
 		return working
+
+	return null
 
 /mob/living/carbon/human/update_modifier_visuals()
 	if(QDESTROYING(src))
