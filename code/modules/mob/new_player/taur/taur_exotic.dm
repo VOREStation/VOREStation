@@ -9,12 +9,14 @@
 	extra_overlay_w = "alraunecolor_closed_markings"
 	clip_mask_state = "taur_clip_mask_alraune"
 	icon_sprite_tag = "alraune"
+	requires_clipping = TRUE
 
 /datum/sprite_accessory/tail/taur/giantspider
 	name = "Giant Spider (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "giantspidertaur"
 	do_colouration = FALSE
+	requires_clipping = TRUE
 	icon_sprite_tag = "giantspidertaur"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
@@ -155,6 +157,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	suit_sprites = 'icons/inventory/suit/taursuits_sloog.dmi'
 	icon_state = "sloog"
+	icon_sprite_tag = "sloog"
 	extra_overlay = "sloog_glowstripe"
 	extra_overlay_w = "sloog_glowstripe"
 	can_loaf = FALSE
@@ -204,6 +207,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "tent_s"
 	icon_sprite_tag = "tentacle"
+	requires_clipping = TRUE
 	can_ride = FALSE
 
 	msg_prey_stepunder = "You run between %prey's tentacles."
@@ -238,6 +242,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_exotic.dmi'
 	icon_state = "tree_oak_roots"
 	icon_sprite_tag = "tree_oak_roots"
+	requires_clipping = TRUE
 	can_ride = FALSE
 
 /*
