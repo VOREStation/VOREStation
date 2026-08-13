@@ -10,7 +10,10 @@
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null
 
-	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier.
+	// This is where we put stuff like _Horse, so we can assign icons easier.
+	var/icon_sprite_tag
+	// This is required when using the fat *vwag varients.
+	var/icon_sprite_tag_fat
 	tailsock_icon = 'icons/mob/human_races/sprite_accessories/taurs/taur_socks.dmi'
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
@@ -48,7 +51,11 @@
 	if(icon_sprite_tag)
 		tailsock_iconstate = "[icon_sprite_tag]_sock"
 		///few taurs have working tailwags, but to ensure future proofing and no null icons the taur_sock.dmi file has these prepared.
-		tailsock_wagicon = "[icon_sprite_tag]_w_sock"
+		if(icon_sprite_tag_fat)
+			//to account for the fat vwag versions
+			tailsock_wagicon = "[icon_sprite_tag_fat]_sock"
+		else
+			tailsock_wagicon = "[icon_sprite_tag]_w_sock"
 
 /datum/riding/taur
 	keytype = /obj/item/material/twohanded/riding_crop // Crack!
