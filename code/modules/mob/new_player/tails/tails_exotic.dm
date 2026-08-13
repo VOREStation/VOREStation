@@ -140,3 +140,10 @@
 	icon_state = "chu"
 	extra_overlay = "chu_markings"
 	extra_overlay2 = "chu_tipmarkings"
+
+/datum/sprite_accessory/tail/leaf_tail
+	name = "leaf tail"
+	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_exotic.dmi'
+	icon_state = "leaf_tail"
+	do_colouration = FALSE
+	tailsock_iconstate = "leaf_tail_sock"
