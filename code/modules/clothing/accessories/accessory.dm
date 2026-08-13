@@ -4,21 +4,29 @@
 	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "bluetie"
 	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
-	appearance_flags = RESET_COLOR	// Stops has_suit's color from being multiplied onto the accessory
+	// Stops has_suit's color from being multiplied onto the accessory
+	appearance_flags = RESET_COLOR
 	slot_flags = SLOT_TIE
 	w_class = ITEMSIZE_SMALL
-	var/glove_level = 1							// What 'level' the accessory is on if equipped on the gloveslot. Lower = things can be put on top of it.
+	// What 'level' the accessory is on if equipped on the gloveslot. Lower = things can be put on top of it.
+	var/glove_level = 1
 	var/slot = ACCESSORY_SLOT_DECOR
-	var/can_remove = TRUE						// Can it be taken off once attached?
-	var/obj/item/clothing/has_suit = null		// The suit the tie may be attached to
-	var/image/inv_overlay = null				// Overlay used when attached to clothing.
-	var/image/mob_overlay = null
+	// Can it be taken off once attached?
+	var/can_remove = TRUE
+	// The suit the tie may be attached to
+	var/obj/item/clothing/has_suit = null
+	// Overlay used when attached to clothing.
+	var/mutable_appearance/inv_overlay = null
+	var/mutable_appearance/mob_overlay = null
 	var/overlay_state = null
-	var/punch_force	= 0							// added melee damage
-	var/punch_damtype = BRUTE					// added melee damage type
+	// Added melee damage
+	var/punch_force = 0
+	// Added melee damage type
+	var/punch_damtype = BRUTE
 	var/concealed_holster = 0
-	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/accessory/mob_teshari.dmi') //Teshari can into webbing, too!
+	// Used when jumpsuit sleeves are rolled ("rolled" entry) or rolled down ("down"). Set to "none" to hide in those states.
+	var/list/on_rolled = list()
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/accessory/mob_teshari.dmi')
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
@@ -28,71 +36,92 @@
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
 	if(!inv_overlay)
-		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
+		var/tmp_icon_state = overlay_state ? overlay_state : icon_state
+		var/target_icon = INV_ACCESSORIES_DEF_ICON
+
 		if(icon_override)
 			if(icon_exists(icon_override, "[tmp_icon_state]_tie"))
 				tmp_icon_state = "[tmp_icon_state]_tie"
-			inv_overlay = image(icon = icon_override, icon_state = tmp_icon_state, dir = SOUTH)
-		else
-			inv_overlay = image(icon = INV_ACCESSORIES_DEF_ICON, icon_state = tmp_icon_state, dir = SOUTH)
+			target_icon = icon_override
 
-		inv_overlay.color = src.color
-		inv_overlay.appearance_flags = appearance_flags	// Stops has_suit's color from being multiplied onto the accessory
+		inv_overlay = mutable_appearance(
+			icon = target_icon,
+			icon_state = tmp_icon_state,
+			dir = SOUTH,
+			color = color,
+			appearance_flags = appearance_flags
+		)
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
-	if(!istype(loc,/obj/item/clothing/))	//don't need special handling if it's worn as normal item.
+	if(!istype(loc, /obj/item/clothing)) // Don't need special handling if worn as a normal item.
 		return
-	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-	if(ishuman(has_suit.loc))
+
+	var/tmp_icon_state = overlay_state ? overlay_state : icon_state
+
+	// Null check has_suit before checking its loc to prevent runtime errors
+	if(has_suit && ishuman(has_suit.loc))
 		wearer = WEAKREF(has_suit.loc)
 	else
 		wearer = null
 
-	var/mob/living/carbon/human/H = wearer?.resolve()
-	if(!ishuman(H))
+	var/mob/living/carbon/human/Hoomie = wearer?.resolve()
+	if(!ishuman(Hoomie))
 		return
 
-	if(istype(loc,/obj/item/clothing/under))
-		var/obj/item/clothing/under/C = loc
-		if(on_rolled["down"] && C.rolled_down > 0)
+	if(istype(loc, /obj/item/clothing/under))
+		var/obj/item/clothing/under/clothes = loc
+		if(on_rolled["down"] && clothes.rolled_down > 0)
 			tmp_icon_state = on_rolled["down"]
-		else if(on_rolled["rolled"] && C.rolled_sleeves > 0)
+		else if(on_rolled["rolled"] && clothes.rolled_sleeves > 0)
 			tmp_icon_state = on_rolled["rolled"]
 
+	var/target_icon = INV_ACCESSORIES_DEF_ICON
 	if(icon_override)
 		if(icon_exists(icon_override, "[tmp_icon_state]_mob"))
 			tmp_icon_state = "[tmp_icon_state]_mob"
-		mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
-	else if(H && LAZYACCESS(sprite_sheets, H.species.get_bodytype(H))) //Teshari can finally into webbing, too!
-		mob_overlay = image("icon" = sprite_sheets[H.species.get_bodytype(H)], "icon_state" = "[tmp_icon_state]")
-	else
-		mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
-	if(addblends)
-		var/icon/base = new/icon("icon" = mob_overlay.icon, "icon_state" = mob_overlay.icon_state)
-		var/addblend_icon = new/icon("icon" = mob_overlay.icon, "icon_state" = src.addblends)
-		if(color)
-			base.Blend(src.color, ICON_MULTIPLY)
-		base.Blend(addblend_icon, ICON_ADD)
-		mob_overlay = image(base)
-	else
-		mob_overlay.color = src.color
+		target_icon = icon_override
+	else if(Hoomie && LAZYACCESS(sprite_sheets, Hoomie.species.get_bodytype(Hoomie)))
+		target_icon = sprite_sheets[Hoomie.species.get_bodytype(Hoomie)]
 
-	mob_overlay.appearance_flags = appearance_flags	// Stops has_suit's color from being multiplied onto the accessory
+	if(addblends)
+		var/icon/base = new/icon(icon = target_icon, icon_state = tmp_icon_state)
+		var/addblend_icon = new/icon(icon = target_icon, icon_state = addblends)
+		if(color)
+			base.Blend(color, ICON_MULTIPLY)
+		base.Blend(addblend_icon, ICON_ADD)
+
+		mob_overlay = mutable_appearance(
+			icon = base,
+			appearance_flags = appearance_flags
+		)
+	else
+		mob_overlay = mutable_appearance(
+			icon = target_icon,
+			icon_state = tmp_icon_state,
+			color = color,
+			appearance_flags = appearance_flags
+		)
+
 	return mob_overlay
 
-//when user attached an accessory to S
-/obj/item/clothing/accessory/proc/on_attached(obj/item/clothing/S, mob/user)
-	if(!istype(S))
+//when user attached an accessory to the clothes
+/obj/item/clothing/accessory/proc/on_attached(obj/item/clothing/clothes, mob/user)
+	if(!istype(clothes))
 		return
-	has_suit = S
-	src.forceMove(S)
+	has_suit = clothes
+	LAZYADD(clothes.accessories, src)
+	forceMove(clothes)
 	has_suit.add_overlay(get_inv_overlay())
 
 	has_suit.force += force
-	if(istype(S,/obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/has_gloves = S
-		has_gloves.punch_force = has_gloves.punch_force + punch_force
+	if(istype(clothes, /obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/has_gloves = clothes
+		has_gloves.punch_force += punch_force
+
+	if(ishuman(clothes.loc))
+		var/mob/living/carbon/human/Hoomie = clothes.loc
+		Hoomie.update_inv_wear_suit()
 
 	if(user)
 		to_chat(user, span_notice("You attach \the [src] to \the [has_suit]."))
@@ -101,18 +130,32 @@
 /obj/item/clothing/accessory/proc/on_removed(mob/user)
 	if(!has_suit)
 		return
-	has_suit.cut_overlay(get_inv_overlay())
-	has_suit.force = initial(has_suit.force)
-	if(istype(has_suit,/obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/has_gloves = has_suit
+
+	var/obj/item/clothing/suit_ref = has_suit
+	var/mob/living/carbon/human/Hoomie = ishuman(suit_ref.loc) ? suit_ref.loc : null
+
+	suit_ref.cut_overlay(get_inv_overlay())
+	LAZYREMOVE(suit_ref.accessories, src)
+
+	suit_ref.force = initial(suit_ref.force)
+	if(istype(suit_ref, /obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/has_gloves = suit_ref
 		has_gloves.punch_force = initial(has_gloves.punch_force)
+
 	has_suit = null
+	inv_overlay = null
+	mob_overlay = null
+
+	//makes sure we update our overlay accordingly
+	if(Hoomie)
+		Hoomie.update_inv_wear_suit()
+
 	if(QDELETED(src))
 		return
 	if(user && !issilicon(user))
 		user.put_in_hands(src)
 		add_fingerprint(user)
-	else if(get_turf(src))		//We actually exist in space
+	else if(get_turf(src))	//We actually exist in space
 		forceMove(get_turf(src))
 
 //default attackby behaviour
@@ -122,7 +165,8 @@
 //default attack_hand behaviour
 /obj/item/clothing/accessory/attack_hand(mob/user)
 	if(has_suit)
-		return	//we aren't an object on the ground so don't call parent
+		//we aren't an object on the ground so don't call parent
+		return
 	..()
 
 /obj/item/clothing/accessory/tie
@@ -566,8 +610,8 @@
 	icon_state = "half_mask"
 
 /*
- * Pride Pins
- */
+* Pride Pins
+*/
 /obj/item/clothing/accessory/pride
 	name = "pride pin"
 	desc = "A pin displaying pride in one's identity."
