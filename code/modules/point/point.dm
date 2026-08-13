@@ -1,4 +1,9 @@
 #define POINT_TIME (2.5 SECONDS)
+#define POINT_MAX 10
+
+/mob
+	///How many times we have pointed in the last 5 seconds.
+	var/point_increment = 0
 
 /atom/movable/proc/point_at(atom/pointed_atom)
 	if(!isturf(loc))
@@ -68,8 +73,6 @@
 	pixel_y = old_loc.pixel_y
 	invisibility = set_invis
 
-#undef POINT_TIME
-
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
@@ -82,9 +85,19 @@
 /mob/proc/_pointed(atom/pointing_at)
 	if(client && !(pointing_at in view(client.view, src)))
 		return FALSE
+	if(!point_increment) //So we don't spam varset_in timers.
+		VARSET_IN(src, point_increment, 0, 5 SECONDS)
+	else if(point_increment >= POINT_MAX)
+		if(point_increment == POINT_MAX) //message on the first limit hit.
+			to_chat(src, "You are pointing too much! Please wait a few seconds before pointing again.")
+		return FALSE
 
 	point_at(pointing_at)
+	point_increment++
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POINTED, pointing_at)
 	face_atom(pointing_at)
 	return TRUE
+
+#undef POINT_TIME
+#undef POINT_MAX
