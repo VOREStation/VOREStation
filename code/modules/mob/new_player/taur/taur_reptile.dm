@@ -22,6 +22,7 @@
 
 /datum/sprite_accessory/tail/taur/drake/drake_vwag
 	name = "Drake (Taur, Fat vwag)"
+	icon_sprite_tag_fat = "fatdrake"
 	ani_state = "fatdrake_s"
 	extra_overlay_w = "fatdrake_markings"
 
@@ -41,6 +42,7 @@
 
 /datum/sprite_accessory/tail/taur/drake/drake_vwag/spotty
 	name = "Spotted Drake (Taur, Tricolor, Fat vwag)"
+	icon_sprite_tag_fat = "fatdrake"
 	extra_overlay2 = "spotteddrake_markings"
 	extra_overlay2_w = "fatspotteddrake_markings"
 	loaf_offset = 6
@@ -90,7 +92,7 @@
 
 /datum/sprite_accessory/tail/taur/lizard/lizard_wag
 	name = "Lizard (Taur, Fat vwag)"
-	icon_state = "lizard_s"
+	icon_sprite_tag_fat = "fatlizard"
 	ani_state = "fatlizard_s"
 
 /datum/sprite_accessory/tail/taur/lizard/twocolor
@@ -99,7 +101,7 @@
 
 /datum/sprite_accessory/tail/taur/lizard/twocolor_wag
 	name = "Fat Lizard (Taur, dual-color, Fat vwag)"
-	icon_state = "lizard_s"
+	icon_sprite_tag_fat = "fatlizard"
 	extra_overlay = "lizard_markings"
 	ani_state = "fatlizard_s"
 	extra_overlay_w = "fatlizard_markings"
@@ -111,6 +113,7 @@
 
 /datum/sprite_accessory/tail/taur/lizard/spotty_wag
 	name = "Spotted Lizard (Taur, Tricolor, Fat vwag)"
+	icon_sprite_tag_fat = "fatlizard"
 	ani_state = "fatlizard_s"
 	extra_overlay_w = "fatlizard_markings"
 	extra_overlay2 = "fatspottedlizard_markings"
