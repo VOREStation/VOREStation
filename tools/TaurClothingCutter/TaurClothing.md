@@ -1,4 +1,4 @@
-This small Byond program takes all the icons in SpritesToSnip.dmi, 
+This small Byond program takes all the icons in SpritesToSnip.dmi,
 cuts them using all the icons in Taur_Cutter.dmi, and produces a file save
 dialog for you to download the resulting DMI.
 
@@ -6,30 +6,48 @@ Useful for cutting up species sprites from full body ones. Or whatever else.
 
 --Arokha/Aronai
 
+-- Hijacked by Poojawa to facilitate easier sprite porting -> tauric sprites.
 
--- Hijacked by Poojawa to facilitate easier sprite porting -> tauric sprites. 
+# Introduction
 
 Taur suits have been divided into three different categories: Coats, Dresses, and fullsuits. These are found in suitstocovert folders. Please adhere to the general sorting that's been done already when adding new clothing.
 
-Standard folder contains the sprites compatible with Wolf, Fox, Horse, Cow, Deer, Lizard, Skunk, Red Panda (Wah), Sergal, and Feline bodies. For Otie, 'Goia, Noodle, Drake, and Rat bodies, these body types require the 'Long' sprite variants that look absolutely fucking awful if further stretched in the base sprites. If you're doing Otie specific, you'll want to copy/paste the north facing version from your short body sprites onto the long body one. Otie's north facing isn't as tall as rat or noodle's are, so that'll be a thing. 
+Standard body types: Wolf, Fox, Feline, Lizard, RedPanda, Sergal, Skunk, Deer, Horse, Cow, "sotie" (Otie North facing), And Husky.
+"Long" body types: Noodle, Rat, Zorgoia, Drake, Otie (South/East/West facings), Bunny, Scoli, and Sloog.
 
-Currently the only body types the sprites are really designed for are ones based off of the Canine, Feline, and to some extent lizard bodies. The fat versions of sprites have a special sock overlay and don't need to be custom edited unless the legs themselves are changed. All other sprites theoretically can be used, but will take significant work to bueautify them. See more with the unsuitable note below
+We have to have two different sprite sheets due to how drastic those body shapes are, but these all also follow the overall pattern.
 
-There's taur templates of each type too found in the Taur Templates folder, Most of them have a large purple mask applied for special exceptions of suits that 'spill over' the human sprite (Imperium Monk robe, Wedding gown, etc), Everything inside of this mask and the sprite itself will be used to 'snip out' the needed pixels, so keep that in mind! Copy and paste each species template sprites into their respective <type>Cutter.dmi. Only one at a time! Each of CoatCutter, DressCutter, SuitCutter should have the one species inside of it, so Wolf, Wolf, Wolf. Etc.
+If you're doing Otie specific, you'll want to copy/paste the north facing version from your short body sprites onto the long body one. Otie's north facing isn't as tall as rat or noodle's are, so that'll be a thing. This applies to any other body types that are just long but low.
 
-Also included in this folder are two png templates for your preferred sprite editing software. Save time by seeing exactly where the stray pixels are in each body! This saves SO MUCH TIME.
+All taur bodies unlisted above are considered "Unsuitable" because of the nature of said body (Slug, tree roots, giant spiders) just aren't compatible or sensible to cover in suit plating. They will default to the "old" behavior of clipmask snipping the human half out and a colorable sock will be added automatically.
 
-In Dreammaker -> Build -> Compile and Run -> Cut <Type>. The default for Cut Suits is taursuit_.dmi so you can save your species in as taursuit_[species] and go. Cut Dresses and Cut Coats will save into their own files. Long Cut is the same, it just uses the long subfolder instead of the standard one. 
+Speaking of clip masking; There's taur templates of each type too found in the Taur Templates folder, Most of them have a large purple mask applied for special exceptions of suits that 'spill over' the human sprite (Imperium Monk robe, Wedding gown, etc), Everything inside of this mask and the sprite itself will be used to 'snip out' the needed pixels, so keep that in mind!
 
-Once all three are done, please ensure to combine them all into your species specific dmi, Preferrably Suits + Coats + Dresses for consistency in sorting. Remember to close the client when you're done! You won't be able to recompile the cutter in dream maker otherwise. That's the solution to 'x.dmi cannot be found' errors. Bedsheet.dmi is seperate because it's so goofy oversized that it works as a one-size fits all, so just copy that in after you paste the dresses in. 
+Also included in this folder are two png templates for your preferred sprite editing software. Save time by seeing exactly where the stray pixels are in each body! Aseprite users, https://github.com/spacestation13/aseprite-dmi/releases 2.0+ preserves dmi info now, it's so good.
 
-If the species is in taursuits_unsuitable.dmi then they won't get the benefits of these suit cutters. That'll take changing in their sprite_accessories_taur.dm listing. It's an all-or-nothing type overhaul, so you'll need every listed suit in that species' suit file. Yes I'm aware of how daunting it is. Fortunately the "sock" template for them can be used to get a reasonable head start, but you'll still be suffering from a lot of work to fix each non standard body. Each Taur body is a little over 400 seperate suit icons, with 4 states each totalling around 1,600 suit icons each, multiplied by however many animation frames in the icon as well (The nasa suit is 16 total, the comic coat is 48 !!). Of course, a fourth of those are just flipped East/West facing, so you're *only* having do deal with ~1,200 of 'em!
+# Actually Setting Things Up
 
-In addition to this, tails are given socks as well, so you don't need to model them, just make sure the tail's added! It will overlay over the suit icon if applicable, for space suits and the like. 
+In Dreammaker -> Build -> Compile and Run -> Cut <Type>
 
-Cut Taurs is if you're just doing a limited run of one suit type icon, you can throw all the relevant species into the relevant cutter, the resulting file will contain all tauric versions of your clothing item after cutout. Avoid doing this with the major ones. You will never be able to sort them out with any sanity! 
+Cut Standard and Long Cut perform batch actions of the ENTIRE sprite sheets located in suitstoconvert/long or standard. You simply just need to accept the prompts to save the outputs. Dress and Coats save seperately. Remember to close the client when you're done!
 
-If You're porting a new taur entirely:
-Be sure to add pixel padding, the assembled human sprite has some. The purple outline is the padding. This accounts for stuff like armor vests or heavier coats/suits. You'll want enough clothing pixels to work with to follow up and edit!
+Once all three are done, please ensure to combine them all into the specific taursuit_[species].dmi, Preferrably Suits + Coats + Dress + Bedsheet for consistency in sorting.
 
-It would be helpful if you 'build' a four directional template sprite for use as an overlay for alignment as well, just export a template as a png! Some taur bodies have weird spine positions, or legs that stick out a bit too much, etc. It is what it is. 
+Suit_flares.dmi contains a quick copy-and-paste addition to add longer capes for certain types of coats/dresses. If you add a new type of cloak that seems to get trimmed off, just add it here so it can be copy/pasted to each.
+
+Bedsheet.dmi contains the copy/paste costume that will totally absolutely hide your taur butt. yup!!
+
+Cut Single will trim a specific single outfit located in, well, singleoutfit.dmi.
+
+# Additional Notes
+
+You can use the Single outfit cutter to masscut any sprites, not just the tauric ones. doing things like hole-punching with hands or trimming legs for digitigrade, etc. You're welcome <3
+
+Taur bodies do not need their tails sprited onto suits anymore. You do not have to sprite tails onto human mobs either! The tail sock system will do the heavy lifting for these aspects on their own. It's absolutely wonderful like that.
+
+Each Taur body is a about 440 seperate suit icons, with 4 states each at the time of this tool's implimentation. That's 1760 sprites per page!
+
+Or well it would if you didn't have to take a few of those and multiply the total amount by however many animation frames in the icon as well. The nasa suit is 16 total, Techpriest and Cosmic coats are 42 (24x2 with hoods), etc . ~ 1900 sprites Each! Of course, a fourth of those are just flipped East/West facing, so you're _only_ having do deal with 1425 for the most part. Honk
+
+If You're adding a new taur entirely:
+Be sure to add pixel padding, the assembled human sprites have some. The purple outline is the padding. This accounts for stuff like armor vests or heavier coats/suits. You'll want enough clothing pixels to work with to follow up and edit! Suits should be reasonably skin tight. Coats should be looser, and dresses trailing to the floor.
