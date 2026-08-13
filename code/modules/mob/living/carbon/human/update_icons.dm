@@ -1221,6 +1221,18 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(has_sock && sock_icon && sock_state)
 		upper_sock_img = image(icon = sock_icon, icon_state = sock_state)
 		upper_sock_img.alpha = socksuit.alpha
+		//because I can't be assed the big leggy sprites for socking
+		if(istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy))
+			if(tailtype.tailsock_markings)
+				var/leggystate1 = (wagging) ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
+				var/mutable_appearance/leggy1 = mutable_appearance(sock_icon, leggystate1)
+				upper_sock_img.overlays += leggy1
+
+			if(tailtype.tailsock_markings2)
+				var/leggystate2 = (wagging) ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
+				var/mutable_appearance/leggy2 = mutable_appearance(sock_icon, leggystate2)
+				upper_sock_img.overlays += leggy2
+
 		if(socksuit.tailsock_color)
 			upper_sock_img.color = socksuit.tailsock_color
 
