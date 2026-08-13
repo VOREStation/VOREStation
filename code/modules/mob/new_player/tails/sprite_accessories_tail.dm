@@ -8,21 +8,34 @@
 /datum/sprite_accessory/tail
 	name = DEVELOPER_WARNING_NAME
 	var/desc = DEVELOPER_WARNING_NAME
-	do_colouration = TRUE //Set to FALSE to disable coloration using the tail color.
+	///Set to FALSE to disable coloration using the tail color.
+	do_colouration = TRUE
 	/// Only appliciable if do_coloration = TRUE, ICON_MULTIPLY is a white bias, ICON_ADD is a black bias for colorations of sprites.
 	/// Virtually all sprites now are white-biased greyscale. The ones that aren't are pre-colored, typically donator snowflake.
 	color_blend_mode = ICON_MULTIPLY
 	em_block = TRUE
-	var/extra_overlay // Icon state of an additional overlay to blend in.
-	var/extra_overlay2 //Tertiary.
-	var/show_species_tail = FALSE // If false, do not render species' tail.
-	var/clothing_can_hide = TRUE // If true, clothing with HIDETAIL hides it
-	var/ani_state // State when wagging/animated
-	var/extra_overlay_w // Wagging state for extra overlay
-	var/extra_overlay2_w // Tertiary wagging.
-	var/icon/clip_mask_icon = null //Icon file used for clip mask.
-	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
-	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
+	/// Icon state of an additional overlay to blend in.
+	var/extra_overlay
+	///Tertiary.
+	var/extra_overlay2
+	/// If false, do not render species' tail.
+	var/show_species_tail = FALSE
+	/// If true, clothing with HIDETAIL hides it
+	var/clothing_can_hide = TRUE
+	/// State when wagging/animated
+	var/ani_state
+	/// Wagging state for extra overlay
+	var/extra_overlay_w
+	/// Tertiary wagging.
+	var/extra_overlay2_w
+	/// Icon file used for clip mask.
+	var/icon/clip_mask_icon = null
+	/// Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
+	var/clip_mask_state = null
+	/// Instantiated clip mask of given icon and state
+	var/icon/clip_mask = null
+	/// force a clipping for really atypical taur bodies, spiders, sectdrone, etc.
+	var/requires_clipping = FALSE
 	var/offset_x = 0
 	var/offset_y = 0
 	var/mob_offset_x = 0
@@ -83,8 +96,8 @@
 // Default invis tail
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
-	icon = null
-	icon_state = null
+	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
+	icon_state = "none"
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
