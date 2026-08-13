@@ -412,4 +412,4 @@
 	name = "Striped tail, colorable"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "stripedtail_colorable"
-	extra_overlay = "stripedtail_colorable_w"
+	extra_overlay = "stripedtail_colorable_markings"
