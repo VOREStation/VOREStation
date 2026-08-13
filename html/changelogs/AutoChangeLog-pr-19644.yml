@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Fixes a servercrash issue caused by rapid pointing. Pointing now has a small cooldown if spammed too much."
