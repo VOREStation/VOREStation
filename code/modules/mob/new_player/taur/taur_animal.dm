@@ -4,6 +4,7 @@
 	icon_state = "bnytr"
 	suit_sprites = 'icons/inventory/suit/taursuits_bnytr.dmi'
 	icon_sprite_tag = "bnytr"
+	icon_sprite_tag_fat = "bnytr-f"
 	extra_overlay = "bnytr-m1"
 	extra_overlay2 = "bnytr-m2"
 	ani_state = "bnytr-f"
@@ -50,6 +51,7 @@
 
 /datum/sprite_accessory/tail/taur/cow/fat_wag
 	name = "Cow (Taur, Fat vwag)"
+	icon_sprite_tag_fat = "fatcow"
 	ani_state = "fatcow_s"
 	tailsock_wagicon = "fatcow_sock"
 
@@ -107,7 +109,7 @@
 
 /datum/sprite_accessory/tail/taur/deer/deer_wag
 	name = "Deer vwag (Dual-color, Taur, Fat)"
-	icon_state = "deer_s"
+	icon_sprite_tag_fat = "fatdeer"
 	ani_state = "fatdeer_s"
 	extra_overlay_w = "fatdeer_markings"
 	tailsock_wagicon = "fatdeer_sock"
@@ -146,6 +148,7 @@
 
 /datum/sprite_accessory/tail/taur/feline/fat_wag
 	name = "Fat Feline (Taur, Fat vwag)"
+	icon_sprite_tag_fat = "fatfeline"
 	ani_state = "fatfeline_s"	//static fat sprite
 	can_loaf = TRUE
 	icon_sprite_tag = "fatfeline"
@@ -173,6 +176,7 @@
 	name = "Feline 3-color (Taur, Fat vwag)"
 	extra_overlay = "feline2_markings"
 	extra_overlay2 = "feline2_markings_2"
+	icon_sprite_tag_fat = "fatfeline"
 	ani_state = "fatfeline_s"
 	extra_overlay_w = "fatfeline2_markings"
 	extra_overlay2_w = "fatfeline2_markings_2"
@@ -202,6 +206,7 @@
 
 /datum/sprite_accessory/tail/taur/feline/tiger/fat_vwag
 	name = "Tiger (Taur, Fat vwag)"
+	icon_sprite_tag_fat = "fatfeline"
 	ani_state = "fatfeline_s"
 	extra_overlay_w = "fatfeline_markings"
 	extra_overlay2_w = "fattiger_markings"
@@ -388,6 +393,7 @@
 
 /datum/sprite_accessory/tail/taur/wolf/fat_wag
 	name = "Wolf (Taur, Fat vwag)"
+	icon_sprite_tag_fat = "fatwolf"
 	ani_state = "fatwolf_s"
 	tailsock_wagicon = "fatwolf_s"
 
@@ -400,6 +406,7 @@
 	name = "Wolf 3-color (Taur, Fat vwag)"
 	extra_overlay = "wolf2_markings"
 	extra_overlay2 = "wolf2_markings_2"
+	icon_sprite_tag_fat = "fatwolf"
 	ani_state = "fatwolf_s"
 	extra_overlay_w = "fatwolf2_markings"
 	extra_overlay2_w = "fatwolf2_markings_2"
@@ -469,10 +476,12 @@
 
 /datum/sprite_accessory/tail/taur/zorgoia_new/fatvwag
 	name = "Zorgoia (Taur, vwag) (New)"
+	icon_sprite_tag_fat = "zorgoia_new_fat"
 	ani_state = "zorgoia_new_fat"
 	extra_overlay_w = "zorgoia_new_fat_fluff"
 
 /datum/sprite_accessory/tail/taur/zorgoia_new/fat
 	name = "Zorgoia (Fat Taur) (New)"
 	icon_state = "zorgoia_new_fat"
+	icon_sprite_tag = "zorgoia_new_fat"
 	extra_overlay = "zorgoia_new_fat_fluff"
