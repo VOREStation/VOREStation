@@ -1033,7 +1033,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(tail_image)
 		// Process tailsock & North-facing layer overrides
 		// apply_tailsock_layer is our heavy lifter for tail applying!
-		tail_image = apply_tailsock_layer(tail_image, tail_layer, apply_to_mob = TRUE)
+		apply_tailsock_layer(tail_image, tail_layer, apply_to_mob = TRUE)
 
 //TODO: Is this the appropriate place for this, and not on species...?
 //Yes, and we can make it better too.
@@ -1071,6 +1071,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	return image(tail_app)
 
 /mob/living/carbon/human/proc/get_tail_image()
+	// Early return for a hidden tail
+	if(tail_hidden)
+		return null
+
 	// Pull torso alpha channel information
 	var/torso_alpha = 255
 	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
@@ -1079,7 +1083,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	// Synthetic check
 	var/datum/robolimb/model = isSynthetic()
-	if(istype(model) && model.includes_tail && !tail_style && !tail_hidden)
+	if(istype(model) && model.includes_tail && !tail_style)
 		var/mutable_appearance/syn_tail = mutable_appearance(synthetic.icon, "tail")
 		syn_tail.color = rgb(r_skin, g_skin, b_skin)
 		var/image/syn_img = image(syn_tail)
@@ -1087,7 +1091,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return syn_img
 
 	// Custom tail check
-	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
+	if(tail_style)
 		var/target_icon = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon
 		var/target_state = (wagging && tail_style.ani_state) ? tail_style.ani_state : tail_style.icon_state
 
@@ -1135,11 +1139,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return working
 
 	// no custom tail? let's get the species default then
-	if(species && tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL) && !tail_hidden)
+	else if(species && species.tail)
 		var/image/species_tail_img = get_tail_image_species()
 		if(species_tail_img)
 			species_tail_img.alpha = torso_alpha
 		return species_tail_img
+
+	//if we somehow don't have a custom tail or species tail or whatever...
 	return null
 
 /mob/living/carbon/human/proc/set_tail_state(t_state)
