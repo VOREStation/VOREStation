@@ -11,6 +11,7 @@
 	struggle_anim = TRUE
 	loaf_offset = 3
 	fullness_icons = 3
+	requires_clipping = TRUE
 	clip_mask_state = "taur_clip_mask_sectdrone"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
@@ -84,6 +85,7 @@
 	icon_sprite_tag = "synthtaur1"
 	extra_overlay = "synthtaur1_markings"
 	extra_overlay2 = "synthtaur1_glow"
+	requires_clipping = TRUE
 	clip_mask_state = "taur_clip_mask_synthtaur1"
 
 /datum/sprite_accessory/tail/taur/synthetic/syntheticagi/fat

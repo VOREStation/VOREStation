@@ -216,6 +216,7 @@
 	name = "Fox (Taur, 3-color)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	suit_sprites = 'icons/inventory/suit/taursuits_fox.dmi'
+	icon_sprite_tag = "fox"
 	icon_state = "fox"
 	extra_overlay = "fox_markings"
 	extra_overlay2 = "fox_markings2"
@@ -333,27 +334,18 @@
 /datum/sprite_accessory/tail/taur/sergal/wheaties/fat
 	name = "Fat Sergal (Taur)"
 	icon_state = "fatsergal"
-	vore_tail_sprite_variant = "N"
-	fullness_icons = 3
-	struggle_anim = TRUE
+	icon_sprite_tag = "fatsergal"
 
-/datum/sprite_accessory/tail/taur/sergal/wheaties_2c
+/datum/sprite_accessory/tail/taur/sergal/wheaties/twoc
 	name = "Sergal (Taur, dual-color)"
-	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_animal.dmi'
 	icon_state = "sergwheat"
 	extra_overlay = "sergwheat_markings"
-	suit_sprites = 'icons/inventory/suit/taursuits_sergal.dmi'
-	vore_tail_sprite_variant = "N"
-	fullness_icons = 3
-	struggle_anim = TRUE
 
-/datum/sprite_accessory/tail/taur/sergal/wheaties_2c/fat
+/datum/sprite_accessory/tail/taur/sergal/wheaties/twoc/fat
 	name = "Fat Sergal (Taur, dual-color)"
 	icon_state = "fatsergal"
+	icon_sprite_tag = "fatsergal"
 	extra_overlay = "sergwheat_markings"
-	vore_tail_sprite_variant = "N"
-	fullness_icons = 3
-	struggle_anim = TRUE
 
 /datum/sprite_accessory/tail/taur/skunk
 	name = "Skunk (Taur)"

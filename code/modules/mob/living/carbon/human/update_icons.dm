@@ -764,37 +764,49 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
+	// Clean up existing shoe layers
 	remove_layer(SHOES_LAYER)
-	remove_layer(SHOES_LAYER_ALT) //Dumb alternate layer for shoes being under the uniform.
+	remove_layer(SHOES_LAYER_ALT)
 
-	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
-		return //Either nothing to draw, or it'd be hidden.
+	// Shoe check, don't bother if we ain't showing with our suit/uniform
+	if(!shoes || (wear_suit && (wear_suit.flags_inv & HIDESHOES)) || (w_uniform && (w_uniform.flags_inv & HIDESHOES)))
+		return
 
-	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
-		var/obj/item/organ/external/foot/foot = get_organ(f)
-		if(istype(foot) && foot.is_hidden_by_sprite_accessory(clothing_only = TRUE)) //If either foot is hidden by the tail, don't render footwear.
+	// Species check
+	if(species && (species.flags & HIDESHOES))
+		return
+
+	// Tail/taur checks
+	if(tail_style)
+		if(istaurtail(tail_style))
 			return
 
+		// If the tail accessory hides both feet, then we yeet shoes too
+		if(tail_style.hide_body_parts && (BP_L_FOOT in tail_style.hide_body_parts) && (BP_R_FOOT in tail_style.hide_body_parts))
+			return
+
+	// is_hidden_by_sprite_accessory check
+	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
+		var/obj/item/organ/external/foot/foot = get_organ(f)
+		if(istype(foot) && foot.is_hidden_by_sprite_accessory(clothing_only = TRUE))
+			return
+
+	// finally let's actually try to draw some shoes.
 	var/obj/item/clothing/shoes/shoe = shoes
-	var/shoe_sprite
+	var/shoe_sprite = (istype(shoe) && !isnull(shoe.update_icon_define)) ? shoe.update_icon_define : INV_FEET_DEF_ICON
 
-	if(istype(shoe) && !isnull(shoe.update_icon_define))
-		shoe_sprite = shoe.update_icon_define
-	else
-		shoe_sprite = INV_FEET_DEF_ICON
-
-	//Allow for shoe layer toggle nonsense
 	var/shoe_layer = SHOES_LAYER
-	if(istype(shoes, /obj/item/clothing/shoes))
-		var/obj/item/clothing/shoes/ushoes = shoes
-		if(ushoes.shoes_under_pants == 1)
-			shoe_layer = SHOES_LAYER_ALT
+	if(istype(shoe) && shoe.shoes_under_pants)
+		shoe_layer = SHOES_LAYER_ALT
 
-	//NB: the use of a var for the layer on this one
-	overlays_standing[shoe_layer] = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
+	overlays_standing[shoe_layer] = shoe.make_worn_icon(
+		body_type = species.get_bodytype(src),
+		slot_name = slot_shoes_str,
+		default_icon = shoe_sprite,
+		default_layer = shoe_layer
+	)
 
-	apply_layer(SHOES_LAYER)
-	apply_layer(SHOES_LAYER_ALT)
+	apply_layer(shoe_layer)
 
 /mob/living/carbon/human/update_inv_s_store()
 	if(QDESTROYING(src))
@@ -869,16 +881,21 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!wear_suit)
 		return // No point, no suit.
 
-	var/obj/item/clothing/suit/suit = wear_suit
+	var/obj/item/clothing/suit/suit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
 	var/suit_sprite = (istype(suit) && !isnull(suit.update_icon_define)) ? suit.update_icon_define : INV_SUIT_DEF_ICON
 
-	var/icon/c_mask = null
+	// Check if we've got a tail to render, for clipping reasons.
+	var/tail_is_rendered = FALSE
+	for(var/layer in TAIL_LAYER_CLEARING)
+		if(overlays_standing[layer])
+			tail_is_rendered = TRUE
+			break
 
 	// Check if a taur body is active and requires clipping the lower half of the suit off
-	var/tail_is_rendered = (overlays_standing[get_tail_layer()] || overlays_standing[TAIL_UPPER_LAYER_HIGH])
+	var/icon/c_mask = null
 
 	// Apply the clip mask to trim our suit for taur body fitting
-	if(tail_is_rendered && tail_style?.clip_mask && !(istype(suit) && suit.taurized))
+	if(tail_is_rendered && tail_style?.clip_mask && (tail_style?.requires_clipping || !(istype(suit) && suit.taurized)))
 		c_mask = tail_style.clip_mask
 
 	// Generate suit overlay
