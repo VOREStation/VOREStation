@@ -44,13 +44,12 @@
 				tmp_icon_state = "[tmp_icon_state]_tie"
 			target_icon = icon_override
 
-		inv_overlay = mutable_appearance(
-			icon = target_icon,
-			icon_state = tmp_icon_state,
-			dir = SOUTH,
-			color = color,
-			appearance_flags = appearance_flags
-		)
+		var/mutable_appearance/accessory_overlay = mutable_appearance(target_icon, tmp_icon_state)
+		accessory_overlay.dir = SOUTH
+		accessory_overlay.color = color
+		if(appearance_flags)
+			accessory_overlay.appearance_flags = appearance_flags
+		inv_overlay = accessory_overlay
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
@@ -91,17 +90,16 @@
 			base.Blend(color, ICON_MULTIPLY)
 		base.Blend(addblend_icon, ICON_ADD)
 
-		mob_overlay = mutable_appearance(
-			icon = base,
-			appearance_flags = appearance_flags
-		)
+		var/mutable_appearance/accessory_overlay = mutable_appearance(base)
+		if(appearance_flags)
+			accessory_overlay.appearance_flags = appearance_flags
+		mob_overlay = accessory_overlay
 	else
-		mob_overlay = mutable_appearance(
-			icon = target_icon,
-			icon_state = tmp_icon_state,
-			color = color,
-			appearance_flags = appearance_flags
-		)
+		var/mutable_appearance/accessory_overlay = mutable_appearance(target_icon, tmp_icon_state)
+		accessory_overlay.color = color
+		if(appearance_flags)
+			accessory_overlay.appearance_flags = appearance_flags
+		mob_overlay = accessory_overlay
 
 	return mob_overlay
 
