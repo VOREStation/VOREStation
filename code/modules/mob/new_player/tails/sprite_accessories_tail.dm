@@ -96,8 +96,8 @@
 // Default invis tail
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
-	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
-	icon_state = "none"
+	icon = null
+	icon_state = null
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
