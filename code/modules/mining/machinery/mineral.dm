@@ -3,7 +3,7 @@
 	desc = DEVELOPER_WARNING_NAME
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "furnace_old"
-	var/static/connection_range = 5
+	var/static/connection_range = 8
 	var/sets_direction = FALSE // We don't want to set the direction of consoles
 	var/output_dir = 0 // direction that we output material
 
