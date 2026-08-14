@@ -156,6 +156,8 @@
 							sleep(50)
 							theAPC = null
 
+	if(client)
+		handle_ambience()
 	process_queued_alarms()
 	handle_regular_hud_updates()
 	handle_vision()
@@ -181,3 +183,20 @@
 /mob/living/silicon/ai/rejuvenate()
 	..()
 	add_ai_verbs(src)
+
+/mob/living/silicon/ai/handle_ambience(forced)
+	// Overrides the base handle ambience, so that holograms reflect the current area we're hearing them from
+	var/pref = read_preference(/datum/preference/numeric/ambience_freq)
+	if(!pref)
+		return
+
+	var/atom/sourcmob = src
+	if(holo && istype(holo.masters[src], /obj/effect/overlay/aiholo))
+		sourcmob = holo.masters[src]
+	if(world.time < (lastareachange + pref MINUTES)) // Every 5 minutes (by default, set per-client), we're going to run a 35% chance (by default, also set per-client) to play ambience.
+		return
+
+	var/area/A = get_area(sourcmob.loc)
+	if(A)
+		lastareachange = world.time // This will refresh the last area change to prevent this call happening LITERALLY every life tick.
+		A.play_ambience(src, initial = FALSE)

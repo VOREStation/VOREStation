@@ -168,7 +168,7 @@
 	item_state = "beaker"
 	center_of_mass_x = 15
 	center_of_mass_y = 11
-	matter = list(MAT_GLASS = 500)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.25))
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 	var/rating = 1
@@ -225,7 +225,7 @@
 	icon_state = "beakerlarge"
 	center_of_mass_x = 16
 	center_of_mass_y = 11
-	matter = list(MAT_GLASS = 5000)
+	matter = list(MAT_GLASS = MATERIAL_COST(2.5))
 	volume = 120
 	amount_per_transfer_from_this = 10
 	max_transfer_amount = 120
@@ -238,7 +238,7 @@
 	icon_state = "beakernoreact"
 	center_of_mass_x = 16
 	center_of_mass_y = 13
-	matter = list(MAT_GLASS = 500)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.25))
 	volume = 60
 	amount_per_transfer_from_this = 10
 	flags = OPENCONTAINER | NOREACT
@@ -249,7 +249,7 @@
 	icon_state = "beakerbluespace"
 	center_of_mass_x = 16
 	center_of_mass_y = 11
-	matter = list(MAT_GLASS = 5000)
+	matter = list(MAT_GLASS = MATERIAL_COST(2.5))
 	volume = 300
 	amount_per_transfer_from_this = 10
 	max_transfer_amount = 300
@@ -262,7 +262,7 @@
 	icon_state = "vial"
 	center_of_mass_x = 15
 	center_of_mass_y = 9
-	matter = list(MAT_GLASS = 250)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.125))
 	volume = 30
 	w_class = ITEMSIZE_TINY
 	amount_per_transfer_from_this = 10
@@ -295,7 +295,7 @@
 	item_state = "bucket"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
-	matter = list(MAT_STEEL = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.1))
 	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 20
 	max_transfer_amount = 120
@@ -354,7 +354,7 @@
 	item_state = "woodbucket"
 	center_of_mass_x = 16
 	center_of_mass_y = 8
-	matter = list(MAT_WOOD = 50)
+	matter = list(MAT_WOOD = MATERIAL_COST(0.025))
 	w_class = ITEMSIZE_LARGE
 	amount_per_transfer_from_this = 20
 	max_transfer_amount = 120
@@ -390,7 +390,7 @@
 	name = "water-cooler bottle"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler_bottle"
-	matter = list(MAT_PLASTIC = 2000)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(1))
 	w_class = ITEMSIZE_NO_CONTAINER
 	amount_per_transfer_from_this = 20
 	max_transfer_amount = 120
@@ -403,7 +403,7 @@
 	name = "pint mug"
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "pint_mug"
-	matter = list(MAT_WOOD = 50)
+	matter = list(MAT_WOOD = MATERIAL_COST(0.025))
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
@@ -420,6 +420,6 @@
 	volume = 60
 	w_class = ITEMSIZE_SMALL
 	flags = OPENCONTAINER
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	drop_sound = 'sound/items/drop/crowbar.ogg'
 	pickup_sound = 'sound/items/pickup/drinkglass.ogg'

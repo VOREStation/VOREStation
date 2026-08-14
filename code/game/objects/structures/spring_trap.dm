@@ -97,7 +97,7 @@
 	addtimer(CALLBACK(src, PROC_REF(reset)), reset_time, TIMER_DELETE_ME)
 
 /obj/structure/spring_trap/Crossed(atom/movable/AM)
-	if(AM.is_incorporeal())
+	if(AM.is_incorporeal() || isobserver(AM) || istype(AM, /obj/effect/abstract) || AM.throwing || istype(AM, /obj/item/projectile))
 		return
 	if(!sprung)
 		if(isliving(AM))
@@ -128,4 +128,5 @@
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		var/obj/structure/spring_trap/spring_trap = new(get_turf(src))
 		spring_trap.add_fingerprint(user)
+		spring_trap.dir = user.dir
 		qdel(src)

@@ -13,7 +13,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	projectile_type = /obj/item/projectile/beam/midlaser
 	one_handed_penalty = 30
 
@@ -357,7 +357,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 10
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	fire_sound = 'sound/weapons/mandalorian.ogg'
 	projectile_type = /obj/item/projectile/beam/imperial
 
@@ -373,7 +373,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	force = 15
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	projectile_type = /obj/item/projectile/beam/mininglaser
 
 	firemodes = list(
@@ -395,7 +395,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 8
-	matter = list(MAT_STEEL = 1500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.75))
 	projectile_type = /obj/item/projectile/beam/midlaser
 
 /*

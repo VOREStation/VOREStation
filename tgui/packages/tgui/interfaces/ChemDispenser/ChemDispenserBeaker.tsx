@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
+import { BeakerContents } from 'tgui/interfaces/common/ChemicalContents';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
-
-import { BeakerContents } from '../common/BeakerContents';
 import { removeAmounts } from './constants';
 import type { Data } from './types';
 
@@ -52,7 +51,7 @@ export const ChemDispenserBeaker = (props) => {
       }
     >
       <BeakerContents
-        beakerLoaded={recordedContents || isBeakerLoaded}
+        beakerLoaded={!!recordedContents || isBeakerLoaded}
         beakerContents={recordedContents || beakerContents}
         buttons={(chemical) => (
           <Stack>

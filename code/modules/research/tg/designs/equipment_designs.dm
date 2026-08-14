@@ -2,7 +2,7 @@
 	name = "Size Standardization Bracelet"
 	id = "bluespacebracelet"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/clothing/gloves/bluespace
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -13,7 +13,7 @@
 	name = "Deluxe Size Standardization Bracelet"
 	id = "deluxebluespacebracelet"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_SILVER = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/gloves/bluespace/deluxe
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -24,7 +24,7 @@
 	name = "Bluespace Collar"
 	id = "bluespacecollar"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/clothing/accessory/collar/shock/bluespace
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -35,7 +35,7 @@
 	name = "HYPER jumpsuit"
 	id = "hfjumpsuit"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/under/hyperfiber
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -46,7 +46,7 @@
 	name = "Bluespace Jumpsuit"
 	id = "bluespace_jumpsuit"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/clothing/under/hyperfiber/bluespace
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -59,7 +59,7 @@
 	id = "ore_holding"
 	// req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 1000, MAT_DIAMOND = 500, MAT_URANIUM = 250) // Less expensive since it can only hold ores
+	materials = list(MAT_GOLD = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.125)) // Less expensive since it can only hold ores
 	build_path = /obj/item/ore_bag/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -72,7 +72,7 @@
 	id = "sheet_holding"
 	// req_tech = list(TECH_BLUESPACE = 1, TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 300, MAT_DIAMOND = 200, MAT_URANIUM = 150) // Even less expensive because it has a more limited use
+	materials = list(MAT_GOLD = MATERIAL_COST(0.15), MAT_DIAMOND = MATERIAL_COST(0.1), MAT_URANIUM = MATERIAL_COST(0.075)) // Even less expensive because it has a more limited use
 	build_path = /obj/item/storage/bag/sheetsnatcher/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -85,7 +85,7 @@
 	id = "bag_holding"
 	// req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250)
+	materials = list(MAT_GOLD = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(0.125))
 	build_path = /obj/item/storage/backpack/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -98,7 +98,7 @@
 	id = "dufflebag_holding"
 	// req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250)
+	materials = list(MAT_GOLD = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(0.125))
 	build_path = /obj/item/storage/backpack/holding/duffle
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -111,7 +111,7 @@
 	id = "trashbag_holding"
 	// req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 2000, MAT_DIAMOND = 1000, MAT_URANIUM = 250)
+	materials = list(MAT_GOLD = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.125))
 	build_path = /obj/item/storage/bag/trash/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -124,7 +124,7 @@
 	id = "pouch_holding"
 	// req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 2000, MAT_URANIUM = 250)
+	materials = list(MAT_GOLD = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(0.125))
 	build_path = /obj/item/storage/pouch/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -138,7 +138,7 @@
 	id = "belt_holding_med"
 	// req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 2000, MAT_TITANIUM = 500)
+	materials = list(MAT_GOLD = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(1), MAT_TITANIUM = MATERIAL_COST(0.25))
 	build_path = /obj/item/storage/belt/medical/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -151,7 +151,7 @@
 	id = "belt_holding_utility"
 	// req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 2000, MAT_TITANIUM = 500)
+	materials = list(MAT_GOLD = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(1), MAT_TITANIUM = MATERIAL_COST(0.25))
 	build_path = /obj/item/storage/belt/utility/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -160,7 +160,7 @@
 
 // HUDs
 /datum/design_techweb/hud
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	build_type = PROTOLATHE
 
 /datum/design_techweb/hud/New()
@@ -221,7 +221,7 @@
 	name = "graviton visor"
 	id = "graviton_goggles"
 	// req_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3, TECH_PHORON = 3, TECH_ARCANE = 1)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GLASS = 3000, MAT_PHORON = 1500, MAT_DIAMOND = 500)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1.5), MAT_PHORON = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.25))
 	build_path = /obj/item/clothing/glasses/graviton
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
@@ -232,7 +232,7 @@
 	name = "AR glasses"
 	id = "omnihud"
 	// req_tech = list(TECH_MAGNET = 4, TECH_COMBAT = 3, TECH_BIO = 3)
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/glasses/omnihud
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -244,7 +244,7 @@
 	desc = "A global positioning system reciever, used to safely navigate when far away from the station."
 	// req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25))
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
@@ -303,7 +303,7 @@
 	id = "beacon_locator"
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5),MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/beacon_locator
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -315,7 +315,7 @@
 	id = "beacon"
 	// req_tech = list(TECH_BLUESPACE = 1)
 	build_type = PROTOLATHE
-	materials = list (MAT_STEEL = 20, MAT_GLASS = 10)
+	materials = list (MAT_STEEL = MATERIAL_COST(0.01), MAT_GLASS = MATERIAL_COST(0.005))
 	build_path = /obj/item/radio/beacon
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -327,7 +327,7 @@
 	id = "ear_translator"
 	// req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5)	//It's been hella miniaturized.
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_GOLD = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/universal_translator/ear
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -338,7 +338,7 @@
 	id = "walkpod"
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/walkpod
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -349,7 +349,7 @@
 	id = "juke_remote"
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_URANIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2), MAT_URANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/juke_remote
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -360,7 +360,7 @@
 	id = "translocator"
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_URANIUM = 4000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(2), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/perfect_tele
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -372,7 +372,7 @@
 	id = "mini_translocator"
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_PHORON = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(1))
 	build_path = /obj/item/perfect_tele/one_beacon
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -383,7 +383,7 @@
 	id = "bluespace_crystal"
 	// req_tech = list(TECH_BLUESPACE = 3, TECH_PHORON = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_DIAMOND = 1500, MAT_PHORON = 1500)
+	materials = list(MAT_DIAMOND = MATERIAL_COST(0.75), MAT_PHORON = MATERIAL_COST(0.75))
 	build_path = /obj/item/bluespace_crystal/artificial
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -395,7 +395,7 @@
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
 	id = "radio_headset"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 120)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.06))
 	build_path = /obj/item/radio/headset
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -407,7 +407,7 @@
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	id = "welding_helmet"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 3750, MAT_GLASS = 1250)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.875), MAT_GLASS = MATERIAL_COST(0.625))
 	build_path = /obj/item/clothing/head/welding
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -420,9 +420,10 @@
 	desc = "Protects the eyes from welders, approved by the mad scientist association."
 	id = "welding_goggles"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.75))
 	build_path = /obj/item/clothing/glasses/welding
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
@@ -432,7 +433,7 @@
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	id = "suit_cooling_unit"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 18000, MAT_GLASS = 4400)
+	materials = list(MAT_STEEL = MATERIAL_COST(9), MAT_GLASS = MATERIAL_COST(2.2))
 	build_path = /obj/item/suit_cooling_unit
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -445,7 +446,7 @@
 	desc = "An expensive holo-collar for the modern day pet."
 	id = "holocollar"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 60)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.03))
 	build_path = /obj/item/clothing/accessory/collar/holo
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -458,7 +459,7 @@
 	desc = "A simple tether that can easily be hooked onto a collar. Usually used to keep pets nearby."
 	id = "leash"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025))
 	build_path = /obj/item/leash
 	category = list(
 		RND_CATEGORY_INITIAL,

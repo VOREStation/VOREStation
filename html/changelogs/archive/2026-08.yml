@@ -1,0 +1,68 @@
+2026-08-02:
+  Guti:
+  - rscadd: Added anomaly effect for xenoarch
+  - bugfix: Fixed bioscrambler anomaly taking FBPs and DNAless people as valid targets
+  - code_imp: Added ANOMALY_ALL containing all current anomalies
+2026-08-03:
+  Will:
+  - code_imp: replaced usr from wire interaction behaviors
+2026-08-04:
+  Kashargul:
+  - code_imp: update dependencies
+  - bugfix: identification terminal topic limit spam
+  - bugfix: missing space in guestpass visible messages
+  - bugfix: robot sleepers hard ref to the robot
+  - bugfix: null law issue if guard dog was rolled on vore laws without anyone nearby,
+      this could lead to rounds never ending
+  OverDriveZ:
+  - sound: added two big cat audible emotes
+2026-08-06:
+  Arceniu:
+  - bugfix: fixed mob/living/simple_mob/vore/wolf's bellies proc
+2026-08-08:
+  Guti:
+  - bugfix: Fixed anomaly artifacts instantly activating round-start
+2026-08-10:
+  Kashargul:
+  - bugfix: changeling camo never expiring
+  Will:
+  - bugfix: Stasis cages no longer apply diminishing returns before the caged creature
+      is sold
+  - code_imp: Improved sellable element
+  WolvesAndOwls:
+  - rscadd: Pixel tilting for living mobs
+2026-08-11:
+  Diana:
+  - qol: Lasertag knives can be set from 1 to 10 damage.
+  - bugfix: Lasertag guns now have their special names.
+  - bugfix: Fixes lasertag guns incorrectly telling you to wear the correct vest if
+      shooting something that isn't a normally valid target.
+  Will:
+  - bugfix: Grippers can now insert material sheets into RnD machines that are not
+      linked to the silo(or if no silo exists)
+  - bugfix: Glasswire aberration no longer broken by flashlight beams
+  - bugfix: DNA modifier no longer ejects disk along with occupant
+2026-08-13:
+  Diana:
+  - bugfix: Unathi belly size 1 has a proper appearance now
+  - bugfix: Fixes a servercrash issue caused by rapid pointing. Pointing now has a
+      small cooldown if spammed too much.
+  Poojawa:
+  - rscadd: Added a system to permit custom tails (and bellies) to show even if you're
+      in a full space suit!
+  - image: So many taursuits! OH LAWD.
+  - code_imp: Bastardized the HumanCutter tool to provide a means for unsupported
+      taurs to be 'snipped' into conformity, as long as they're somewhat accurate
+      to overall shapes.
+  - image: multiple taurs get tail wag states outside of just being instantly fat.
+  - rscadd: Ripped out the old species tail animation system, no-one is ever going
+      to actually maintain 9+ different tail wag animations, and they were overriding
+      the custom tails to boot.
+  - rscadd: Completely refractored tail icon generation to utilize mutable_appearance
+      as much as possible.
+  - rscadd: Optimized vore tail code to utilize Mutable_appearance instead of queuing
+      up icon generations
+  - bugfix: Cleaned up tail and taur files to reduce the number of icons of species
+      that used the same basic and fat icons with different overlays.
+  Very-Soft:
+  - rscadd: Added a rare easter egg to the game

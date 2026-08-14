@@ -14,7 +14,7 @@
 	icon_state = "crap"
 	charge = 500
 	maxcharge = 500
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.02))
 	robot_durability = 20
 
 /obj/item/cell/crap/update_icon() //No visible charge indicator
@@ -31,7 +31,7 @@
 	icon_state = "apc"
 	charge = 5000
 	maxcharge = 5000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.025))
 
 /*
  * Robot
@@ -49,7 +49,7 @@
 	icon_state = "b_hi"
 	charge = 10000
 	maxcharge = 10000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.03))
 	robot_durability = 55
 
 /obj/item/cell/high/empty
@@ -63,7 +63,7 @@
 	icon_state = "b_sup"
 	charge = 20000
 	maxcharge = 20000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 70)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.035))
 	robot_durability = 60
 
 /obj/item/cell/super/empty
@@ -88,7 +88,7 @@
 	icon_state = "b_hy"
 	charge = 30000
 	maxcharge = 30000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.04))
 	robot_durability = 70
 
 /obj/item/cell/hyper/empty
@@ -103,7 +103,7 @@
 	connector_type = "mech"
 	charge = 15000
 	maxcharge = 15000
-	matter = list(MAT_STEEL = 800, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/cell/mech/lead
 	name = "lead acid battery"
@@ -111,7 +111,7 @@
 	icon_state = "lead"
 	charge = 8000
 	maxcharge = 8000
-	matter = list(MAT_STEEL = 300, MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.15), MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/cell/mech/lead/update_icon() //No visible charge indicator
 	return
@@ -121,14 +121,14 @@
 	icon_state = "exs_m"
 	charge = 20000
 	maxcharge = 20000
-	matter = list(MAT_STEEL = 800, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4), MAT_GLASS = MATERIAL_COST(0.04))
 
 /obj/item/cell/mech/super
 	name = "super-capacity mecha power cell"
 	icon_state = "exs_l"
 	charge = 25000
 	maxcharge = 25000
-	matter = list(MAT_STEEL = 800, MAT_GLASS = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4), MAT_GLASS = MATERIAL_COST(0.05))
 
 /*
  * Infinite
@@ -138,7 +138,7 @@
 	icon_state = "infinite_b"
 	charge = 30000
 	maxcharge = 30000 //determines how badly mobs get shocked
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.04))
 	robot_durability = 200
 
 /obj/item/cell/infinite/Initialize(mapload)
@@ -188,7 +188,7 @@
 	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
 	charge = 720
 	maxcharge = 720 //Emergency lights use 0.2 W per tick, meaning ~60 minutes of emergency power from a cell
-	matter = list(MAT_GLASS = 20)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.01))
 	icon_state = "em_light"
 	connector_type = "emergency"
 	w_class = ITEMSIZE_TINY
@@ -290,7 +290,7 @@
 	icon_state = "secborg"
 	charge = 2400
 	maxcharge = 2400
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/cell/secborg/empty
 	charge = 0
@@ -303,7 +303,7 @@
 	icon_state = "meb_b_hi"
 	charge = 40000
 	maxcharge = 40000
-	matter = list(MAT_STEEL = 1000, MAT_GLASS = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.05))
 
 /obj/item/cell/giga/empty
 	charge = 0

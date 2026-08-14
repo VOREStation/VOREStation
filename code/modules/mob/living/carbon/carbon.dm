@@ -386,6 +386,8 @@
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_THREADY)
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
+		else //Anything too high just returns thready.
+			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/Bump(atom/A)

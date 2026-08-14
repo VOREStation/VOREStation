@@ -74,9 +74,11 @@
 /obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH) && istype(src,/obj/structure/closet/crate/bin))
 		return ..()
-	else if(W.has_tool_quality(TOOL_WELDER))
+
+	if(W.has_tool_quality(TOOL_WELDER))
 		return ..()
-	else if(opened)
+
+	if(opened)
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -86,9 +88,15 @@
 		user.drop_item()
 		if(W)
 			W.forceMove(src.loc)
-	else if(istype(W, /obj/item/packageWrap))
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+
+	if(istype(W, /obj/item/packageWrap))
+		return
+
+	if(istype(W,/obj/item/cargo_scanner))
+		return
+
+	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
 			to_chat(user, span_notice("[src] is already rigged!"))
@@ -97,19 +105,22 @@
 			to_chat(user , span_notice("You rig [src]."))
 			rigged = 1
 			return
-	else if(istype(W, /obj/item/radio/electropack))
+
+	if(istype(W, /obj/item/radio/electropack))
 		if(rigged)
 			to_chat(user , span_notice("You attach [W] to [src]."))
 			user.drop_item()
 			W.forceMove(src)
-			return
-	else if(W.has_tool_quality(TOOL_WIRECUTTER))
+		return
+
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(rigged)
 			to_chat(user , span_notice("You cut away the wiring."))
 			playsound(src, W.usesound, 100, 1)
 			rigged = 0
-			return
-	else return attack_hand(user)
+		return
+
+	return attack_hand(user)
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
