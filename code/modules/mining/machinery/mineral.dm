@@ -21,7 +21,7 @@
 /obj/machinery/mineral/proc/find_nearest_linkable(filtering_type)
 	var/nearest_distance = INFINITY
 	var/nearest_machine = null
-	for(var/obj/machinery/mineral/checking in GLOB.mineral_machines)
+	for(var/obj/machinery/mineral/checking in range(src, connection_range))
 		if(!istype(checking, filtering_type))
 			continue
 		if(checking.has_link())
@@ -29,8 +29,6 @@
 		var/turf/A = get_turf(src)
 		var/turf/B = get_turf(checking)
 		var/distcheck = A.Distance(B)
-		if(distcheck > connection_range)
-			continue
 		if(distcheck >= nearest_distance)
 			continue
 		nearest_distance = distcheck
