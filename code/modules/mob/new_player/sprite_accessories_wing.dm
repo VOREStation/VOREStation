@@ -14,7 +14,7 @@
 	em_block = TRUE
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
-	var/clothing_can_hide = TRUE // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
+	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
 	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
 	var/desc = DEVELOPER_WARNING_NAME
 	var/ani_state // State when flapping/animated

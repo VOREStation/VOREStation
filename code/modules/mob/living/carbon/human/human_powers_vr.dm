@@ -291,8 +291,3 @@
 	holder.remove_status_indicator("dead")
 	holder.visible_message(span_warning("\The [src] literally just dies!"))
 	..()
-
-//Moved flying logic out of update_icons
-/mob/living/carbon/human/stop_flying()
-	if((. = ..()))
-		update_wing_showing()
