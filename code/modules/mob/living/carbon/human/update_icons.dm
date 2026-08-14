@@ -613,8 +613,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_inv_belt()
 	update_inv_back()
 	update_inv_wear_suit()
-	//check for tail related layers, mainly to resolve roundstart/spawn issues
-	update_tail_showing()
 	update_inv_r_hand()
 	update_inv_l_hand()
 	update_inv_handcuffed()
