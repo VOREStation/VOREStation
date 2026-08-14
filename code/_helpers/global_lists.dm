@@ -20,7 +20,6 @@ GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
 GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
 GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
-GLOBAL_LIST_EMPTY(mineral_machines)					//list of mineral processing machines, to avoid checking area contents for them
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 GLOBAL_LIST_INIT(restricted_camera_networks, list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS))

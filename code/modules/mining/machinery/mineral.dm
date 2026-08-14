@@ -7,14 +7,6 @@
 	var/sets_direction = FALSE // We don't want to set the direction of consoles
 	var/output_dir = 0 // direction that we output material
 
-/obj/machinery/mineral/Initialize(mapload)
-	. = ..()
-	GLOB.mineral_machines += src
-
-/obj/machinery/mineral/Destroy()
-	GLOB.mineral_machines -= src
-	. = ..()
-
 /obj/machinery/mineral/proc/has_link()
 	return FALSE
 

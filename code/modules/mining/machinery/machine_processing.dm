@@ -17,15 +17,12 @@
 	var/show_all_ores = FALSE
 
 /obj/machinery/mineral/processing_unit_console/Initialize(mapload)
-	..()
+	. = ..()
 	default_apply_parts()
-	return INITIALIZE_HINT_LATELOAD // Needs GLOB.mineral_machines populated
-
-/obj/machinery/mineral/processing_unit_console/LateInitialize()
 	processor_link()
-	if(!machine && !SSticker.HasRoundStarted()) // Delete mapped ones if they fail
+	if(!machine && mapload) // Delete mapped ones if they fail
 		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/processing_unit_console/Destroy()
 	if(inserted_id)

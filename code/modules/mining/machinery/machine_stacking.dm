@@ -9,15 +9,12 @@
 	var/obj/machinery/mineral/stacking_machine/machine = null
 
 /obj/machinery/mineral/stacking_unit_console/Initialize(mapload)
-	..()
+	. = ..()
 	default_apply_parts()
-	return INITIALIZE_HINT_LATELOAD // Needs GLOB.mineral_machines populated
-
-/obj/machinery/mineral/stacking_unit_console/LateInitialize()
 	stacker_link()
-	if(!machine && !SSticker.HasRoundStarted()) // Delete mapped ones if they fail
+	if(!machine && mapload) // Delete mapped ones if they fail
 		stack_trace(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/stacking_unit_console/Destroy()
 	stacker_unlink()
