@@ -2,7 +2,6 @@
 #define DATA_X_OFFSET "x"
 #define DATA_Y_OFFSET "y"
 #define DATA_ROTATION "rotation"
-#define DEFAULT_RGB_OUTLINE rgb(50,50,50)
 
 /obj/item/remote_scene_tool/voodoo_doll
 	name = "voodoo doll"
@@ -85,23 +84,17 @@
 	output.Scale(data[DATA_SCALE], data[DATA_SCALE])
 	return output
 
-/obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_image(image/input, matrix/newtransform, outline_width = 0, outline_color = DEFAULT_RGB_OUTLINE)
+/obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_image(image/input, matrix/newtransform, outline_width = 0, outline_color = rgb(50,50,50))
 	if(input == null)
 		return null
 
-	// Please for the love of fuck stop kidnapping taur bodies.
-	var/image/doll_img = image(input)
-
-	doll_img.dir = SOUTH
-	doll_img.transform = newtransform
-	doll_img.layer = FLOAT_LAYER
-	doll_img.plane = FLOAT_PLANE // Strip PLANE_CH_STOMACH or mob-specific planes!
-	doll_img.appearance_flags = NONE // Strip RESET_PLANE / KEEP_TOGETHER flags!
-
+	input.dir = SOUTH
+	input.transform = newtransform
+	input.layer = FLOAT_LAYER
 	if(outline_width > 0)
-		doll_img.filters += filter(type="outline", size = outline_width, color = outline_color)
+		input.filters += filter(type="outline", size = outline_width, color = outline_color)
 
-	return doll_img
+	return input
 
 /obj/item/remote_scene_tool/voodoo_doll/update_icon()
 	. = ..()
@@ -131,34 +124,26 @@
 
 	if(no_fun_mode) return //no fun allowed
 
-	var/image/tail_image = null
-	if(ishuman(owner))	//Am I a real boy now, papa?
+	if(ishuman(owner)) //TODO, refactor the fuck out of this once I port the tgui filter manager stuff over.
 		var/mob/living/carbon/human/buddy = owner
-		var/datum/sprite_accessory/tail/tail_style = buddy.tail_style
-		var/is_tail_taur = istaurtail(tail_style)
-
-		var/icon/displacement_map = icon(src.icon, is_tail_taur ? "taurdisplacement" : "displacement", SOUTH)
-		var/image/displacement_rendered = get_humanoid_displacement_map_image(buddy, discarded_layer_indicies, displacement_map, 2, null)
+		var/is_tail_taur = istaurtail(buddy.tail_style)
+		var/icon/displacement_map = icon(src.icon,is_tail_taur ? "taurdisplacement" : "displacement",SOUTH)
+		var/image/displacement_rendered = get_humanoid_displacement_map_image(buddy,discarded_layer_indicies,displacement_map,2,null)
 
 		//tails need special attention because taurs
-		var/tailoutlinecolor = DEFAULT_RGB_OUTLINE //default to a grey, otherwise we use a darker version of one of the tail colors
-		if(tail_style?.do_colouration)
-			tailoutlinecolor = get_outline_color(buddy.r_tail, buddy.g_tail, buddy.b_tail, buddy.a_tail)
+		var/tailoutlinecolor = rgb(50,50,50) //default to a grey, otherwise we use a darker version of one of the tail colors
+		if(buddy.tail_style?.do_colouration)
+			tailoutlinecolor = get_outline_color(buddy.r_tail,buddy.g_tail,buddy.b_tail,buddy.a_tail)
 
-		// Let's get the tail image, checks species and custom tail!
-		var/image/raw_tail = buddy.get_tail_image()
-		if(raw_tail)
-			var/image/full_tail = buddy.apply_tailsock_layer(raw_tail, apply_to_mob = FALSE)
-			var/matrix/target_matrix = generate_layer_matrix(is_tail_taur ? taur_data : tail_data)
-			var/image/cooked_tail = generate_layer_image(full_tail, target_matrix, outline_size, tailoutlinecolor)
-
-			if(is_tail_taur && cooked_tail)
-				cooked_tail.filters += filter(type="alpha", flags = MASK_INVERSE)
-
-			tail_image = cooked_tail
+		var/image/tail_image = buddy.get_tail_image()
+		if(is_tail_taur)
+			tail_image = generate_layer_image(buddy.get_tail_image(),generate_layer_matrix(taur_data),outline_size,tailoutlinecolor)
+			tail_image.filters += filter(type="alpha", flags = MASK_INVERSE)
+		else
+			tail_image = generate_layer_image(buddy.get_tail_image(),generate_layer_matrix(tail_data),outline_size,tailoutlinecolor)
 
 		//same kind of scenario for wings
-		var/wingoutlinecolor = DEFAULT_RGB_OUTLINE
+		var/wingoutlinecolor = rgb(50,50,50)
 		if(buddy.wing_style?.do_colouration)
 			wingoutlinecolor = get_outline_color(buddy.r_wing,buddy.g_wing,buddy.b_wing,buddy.a_wing)
 		var/image/wing_image = generate_layer_image(buddy.get_wing_image(FALSE),generate_layer_matrix(wing_data),outline_size,wingoutlinecolor)
@@ -192,7 +177,6 @@
 		rotateMatrix.Turn(2) //very slight blur. this is unironically the best way to do it, any of the blur filters are just way too strong at a minimum value.
 		transform = rotateMatrix
 
-#undef DEFAULT_RGB_OUTLINE
 #undef DATA_X_OFFSET
 #undef DATA_Y_OFFSET
 #undef DATA_SCALE
