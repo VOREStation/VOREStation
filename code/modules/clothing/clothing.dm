@@ -1064,19 +1064,20 @@
 
 ///Establishes Icon overrides for taur bodies
 /obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
-	/// We've already confirmed that we have a taur tail during equipped, this is just makes sure we get the correct icon override.
-	if(!has_taur_tail)
+	/// If we don't have a taur tail OR we're showin' that taur butt, reset overrides.
+	if(!has_taur_tail || showtaurbutts)
+		icon_override = initial(icon_override)
+		taurized = FALSE
 		return
 
-	taurized = TRUE
-
-	if(showtaurbutts)	//We don't want the override icons if we're being asked to show that booty
-		return
-
-	// if we're not showing butts, then let's apply the proper overrides
+	// if we're not showing butts, then let's try to apply the proper overrides
 	var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
 	if(taurtail?.suit_sprites && icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str)))
 		icon_override = taurtail.suit_sprites
+		taurized = TRUE
+	else
+		icon_override = initial(icon_override)
+		taurized = FALSE
 
 // Taur suits need to be shifted so it's centered on their taur half.
 /obj/item/clothing/suit/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer = 0, icon/clip_mask)
@@ -1086,7 +1087,7 @@
 
 	// Only apply the -16 offset when taurized AND showtaurbutts is FALSE
 	if(taurized && !showtaurbutts && icon_override)
-		standing.pixel_x = -16
+		standing.pixel_x = TAURIZED_DEFAULT
 		standing.layer = TAUR_LAYERING
 	// but if we don't have an icon_override, we already have our offsets, set.
 	return standing
@@ -1097,7 +1098,8 @@
 	if(LAZYLEN(accessories) && taurized && !showtaurbutts && standing)
 		// account for the offset of our standing image
 		for(var/image/I in standing.overlays)
-			I.pixel_x += 16
+			// reset +16
+			I.pixel_x += UNTAURIZED_DEFAULT
 
 
 ///////////////////////////////////////////////////////////////////////
