@@ -1360,7 +1360,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		vorebelly_ma.color = base_color
 
 	var/image/working = image(vorebelly_ma)
-	working.pixel_x = -16
+	working.pixel_x = TAURIZED_DEFAULT
 
 	if(tail_style.em_block) // Let 'em glow still
 		working.overlays += em_block_image_generic(working)
