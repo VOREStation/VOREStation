@@ -14,7 +14,7 @@
 	active_power_usage = 200
 	power_channel = EQUIP
 	circuit = /obj/item/circuitboard/papershredder
-	var/max_paper = 10
+	var/max_paper = 40
 	var/paperamount = 0
 	var/list/shred_amounts = list(
 		/obj/item/photo = 1,
