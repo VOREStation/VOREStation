@@ -66,3 +66,14 @@
       that used the same basic and fat icons with different overlays.
   Very-Soft:
   - rscadd: Added a rare easter egg to the game
+2026-08-16:
+  Diana:
+  - bugfix: PAI cards are devourable once more.
+  Will:
+  - rscadd: Mining processer, stacking machine, and mint can now be constructed
+  - rscadd: Mining machines can have their direction set by dragging them in a direction,
+      and alt-clicking to reset it.
+  - rscadd: Mining machines and consoles link to the nearest one when constructed,
+      and show unlinked status
+  - refactor: General cleanup and hardref fixes for mining machines
+  - bugfix: Destroyed or deconstructed stacking machines drop their sheet contents
