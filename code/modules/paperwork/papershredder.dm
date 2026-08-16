@@ -31,6 +31,10 @@
 	update_icon()
 	AddElement(/datum/element/climbable)
 
+/obj/machinery/papershredder/examine(mob/user as mob)
+	. = ..()
+	. += "A little amber screen shows there's [paperamount] sheets worth of paper in the bin."
+
 /obj/machinery/papershredder/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/storage))
