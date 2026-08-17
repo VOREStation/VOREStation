@@ -259,14 +259,14 @@
 	if(failed)
 		TEST_FAIL("One or more airlock controllers had an incorrect id_tag set")
 
-/// All area subtypes much have unique names
+/// All areas in use must be unique
 /datum/unit_test/area_names_must_all_be_unique
 
 /datum/unit_test/area_names_must_all_be_unique/Run()
 	var/failed = FALSE
 
 	var/list/used_names = list()
-	for(var/area/check as anything in subtypesof(/area))
+	for(var/area/check as anything in GLOB.areas_by_type) // Only the ones in use by this map!!
 		if(check.name in used_names)
 			TEST_NOTICE(src, "[check] area has a name already in use: [check.name]")
 			failed = TRUE
