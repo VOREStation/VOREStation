@@ -322,11 +322,15 @@
 		to_chat(src, span_warning("You're out of energy!  You need food!"))
 		return
 	if(glasses && glasses.body_parts_covered & EYES)
-		to_chat(src, span_warning("Your glasses block your laser vision!"))
-		return
+		var/obj/item/clothing/our_glasses = glasses
+		if(istype(our_glasses) && our_glasses.flash_protection > FLASH_PROTECTION_NONE)
+			to_chat(src, span_warning("Your glasses block your laser vision!"))
+			return
 	if(head && head.body_parts_covered & FACE)
-		to_chat(src, span_warning("Your helmet blocks your laser vision!"))
-		return
+		var/obj/item/clothing/our_head = head
+		if(istype(our_head) && our_head.flash_protection > FLASH_PROTECTION_NONE)
+			to_chat(src, span_warning("Your helmet blocks your laser vision!"))
+			return
 	..()
 	nutrition = max(nutrition - 25,0)
 	handle_regular_hud_updates()
