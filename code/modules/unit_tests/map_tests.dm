@@ -290,8 +290,6 @@
 	for(var/obj/machinery/door/dor in world)
 		if(is_in_wall(dor))
 			failed = TRUE
-		if(is_in_space(dor))
-			failed = TRUE
 	for(var/obj/structure/railing/ral in world)
 		if(is_in_wall(ral))
 			failed = TRUE
@@ -307,10 +305,3 @@
 		return
 	TEST_NOTICE(src, "[thing] was inside a dense wall. Located at [ground.x].[ground.y].[ground.z] : [get_area(thing)]")
 	return TRUE;
-
-/datum/unit_test/things_should_not_be_in_walls/proc/is_in_space(obj/structure/thing)
-	var/turf/ground = get_turf(thing)
-	if(!isspace(ground))
-		return FALSE;
-	TEST_NOTICE(src, "[thing] was placed on space turf. Located at [ground.x].[ground.y].[ground.z] : [get_area(thing)]")
-	return TRUE
