@@ -10,7 +10,7 @@
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
 			seed.set_trait(TRAIT_MATURATION,rand(maturation_min, maturation_max))
 			seed.display_name = "strange plants" //more thematic for the vine infestation event
-			seed.description = "Very dangerous, alien vines. Grows at a quick pace.""
+			seed.description = "Very dangerous, alien vines. Grows at a quick pace."
 
 			//make vine zero start off fully matured
 			var/obj/effect/plant/vine = new(T,seed)
