@@ -78,7 +78,7 @@
 			problems = "various webview graphics issues and client hanging (1652 to 1654 are all affected). 516.1651 is known to be safe from these issues if a newer version than 1654 is not available."
 
 		if(1682 to 1686)
-			problems = "contains a known use after free exploit."
+			problems = "contains a use after free exploit."
 
 	if(problems)
 		// To get attention
