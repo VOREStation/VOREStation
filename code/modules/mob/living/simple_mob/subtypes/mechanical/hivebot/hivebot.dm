@@ -22,6 +22,8 @@
 
 
 /mob/living/simple_mob/mechanical/hivebot/death()
+	if(QDELETED(src))
+		return
 	..()
 	visible_message(span_warning("\The [src] blows apart!"))
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)

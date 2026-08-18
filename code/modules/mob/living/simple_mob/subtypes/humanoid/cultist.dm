@@ -76,6 +76,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/humanoid/cultist/human/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/remains/human (src.loc)
 	..(null,"let's out a maddening laugh as his body crumbles away.")
 	ghostize()
@@ -244,6 +246,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/humanoid/cultist/tesh/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/ash (src.loc)
 	..(null,"let's out a shrill chirp as his body turns to dust.")
 	ghostize()
@@ -295,6 +299,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/humanoid/cultist/lizard/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/remains/unathi (src.loc)
 	..(null,"hisses as he collapses into a pile of bones.")
 	ghostize()
@@ -347,6 +353,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged
 
 /mob/living/simple_mob/humanoid/cultist/caster/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/remains/human (src.loc)
 	new /obj/effect/decal/cleanable/blood/gibs (src.loc)
 	..(null,"melts into a pile of blood and bones.")
@@ -396,6 +404,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/humanoid/cultist/initiate/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/remains/human (src.loc)
 	..(null,"lets out a horrified scream as his body crumbles away.")
 	ghostize()
@@ -447,6 +457,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
 /mob/living/simple_mob/humanoid/cultist/castertesh/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/ash (src.loc)
 	..(null,"burns away into nothing.")
 	ghostize()
@@ -517,6 +529,8 @@
 		..()
 
 /mob/living/simple_mob/humanoid/cultist/elite/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/remains/human (src.loc)
 	new /obj/effect/decal/cleanable/blood/gibs (src.loc)
 	new /obj/item/material/shard (src.loc)
@@ -574,6 +588,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
 /mob/living/simple_mob/humanoid/cultist/magus/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/blood/gibs (src.loc)
 	..(null,"let's out a dark laugh as it collapses into a puddle of blood.")
 	ghostize()
@@ -652,6 +668,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive/blood_hunter
 
 /mob/living/simple_mob/humanoid/cultist/hunter/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/blood/gibs (src.loc)
 	..(null,"laughs as he melts away. His laughs echo through the air even after only a dense red goo remains.")
 	ghostize()

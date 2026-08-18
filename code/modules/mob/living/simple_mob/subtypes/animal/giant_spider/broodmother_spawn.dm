@@ -13,10 +13,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/frost/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/electric/broodling
 	maxHealth = 30
@@ -33,10 +34,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/electric/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/hunter/broodling
 	maxHealth = 40
@@ -50,10 +52,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/hunter/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/lurker/broodling
 	maxHealth = 40
@@ -67,10 +70,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/lurker/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/nurse/broodling
 	maxHealth = 60
@@ -85,10 +89,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/nurse/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/pepper/broodling
 	maxHealth = 40
@@ -102,10 +107,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/pepper/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/thermic/broodling
 	maxHealth = 40
@@ -122,10 +128,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/thermic/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/tunneler/broodling
 	maxHealth = 40
@@ -139,10 +146,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/tunneler/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/webslinger/broodling
 	maxHealth = 30
@@ -158,10 +166,11 @@
 	addtimer(CALLBACK(src, PROC_REF(death)), 2 MINUTES)
 
 /mob/living/simple_mob/animal/giant_spider/webslinger/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_mob/animal/giant_spider/broodling
 	maxHealth = 60
@@ -186,7 +195,8 @@
 	. = ..()
 
 /mob/living/simple_mob/animal/giant_spider/broodling/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
 
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
