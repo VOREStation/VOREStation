@@ -427,7 +427,7 @@
 	name = "maintenance pill"
 	desc = "A strange pill found in the depths of maintenance"
 	icon_state = "pill24"
-	var/random_reagent = REAGENT_WATER
+	var/random_reagent = REAGENT_ID_WATER
 	var/static/list/names = list(
 		"maintenance pill",
 		"floor pill",
@@ -451,9 +451,11 @@
 
 /obj/item/reagent_containers/pill/maintenance/Initialize(mapload)
 	. = ..()
-	var/reagent_id = pick(SSchemistry.chemical_reagents)
-	if(reagent_id in GLOB.obtainable_chemical_blacklist)
+	random_reagent = pick(SSchemistry.chemical_reagents)
+	if(random_reagent in GLOB.obtainable_chemical_blacklist)
 		random_reagent = REAGENT_ID_WATER // You get WATER
+	name = pick(names)
 	if(prob(30))
 		desc = pick(descs)
 	reagents.add_reagent(random_reagent, rand(5, 20))
+	icon_state = "pill[rand(5, 24)]"
