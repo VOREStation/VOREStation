@@ -436,7 +436,8 @@
 		"strange pill",
 		"lucky pill",
 		"ominous pill",
-		"eerie pill"
+		"eerie pill",
+		"vitamin pill"
 	)
 
 	var/static/list/descs = list(
@@ -445,6 +446,7 @@
 		"Surely, there's no way this could go bad.",
 		"Winners don't do dr- oh what the heck!",
 		"Free pills? At no cost, how could I lose?",
+		"Make sure to take your vitamins!"
 	)
 
 /obj/item/reagent_containers/pill/maintenance/Initialize(mapload)
@@ -454,4 +456,4 @@
 		random_reagent = REAGENT_ID_WATER // You get WATER
 	if(prob(30))
 		desc = pick(descs)
-	reagents.add_reagent(random_reagent, rand(10, 50))
+	reagents.add_reagent(random_reagent, rand(5, 20))
