@@ -451,11 +451,16 @@
 
 /obj/item/reagent_containers/pill/maintenance/Initialize(mapload)
 	. = ..()
-	random_reagent = pick(SSchemistry.chemical_reagents)
-	if(random_reagent in GLOB.obtainable_chemical_blacklist)
-		random_reagent = REAGENT_ID_WATER // You get WATER
+	pick_reagent()
+	if(istype(SSchemistry.chemical_reagents[random_reagent], /datum/reagent/ethanol) && prob(75)) // REROLL
+		pick_reagent()
 	name = pick(names)
 	if(prob(30))
 		desc = pick(descs)
 	reagents.add_reagent(random_reagent, rand(5, 20))
 	icon_state = "pill[rand(5, 24)]"
+
+/obj/item/reagent_containers/pill/maintenance/proc/pick_reagent()
+	random_reagent = pick(SSchemistry.chemical_reagents)
+	if(random_reagent in GLOB.obtainable_chemical_blacklist)
+		random_reagent = REAGENT_ID_WATER // You get WATER
