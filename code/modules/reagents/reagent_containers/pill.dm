@@ -437,7 +437,7 @@
 		"lucky pill",
 		"ominous pill",
 		"eerie pill",
-		"vitamin pill"
+		"gas station vitamin pill"
 	)
 
 	var/static/list/descs = list(
