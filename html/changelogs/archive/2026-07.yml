@@ -108,3 +108,45 @@
 2026-07-19:
   Will:
   - qol: Removed hand targeting requirement from fingerprinting
+2026-07-22:
+  Kashargul:
+  - code_imp: comments out some unused winset names
+  - bugfix: removes old/unused interface window/element
+2026-07-24:
+  Kashargul:
+  - bugfix: tgui test runs leaking their doms into each other
+  - code_imp: byond to 1685
+  - code_imp: some tgui cleanup
+  Will, Reo:
+  - bugfix: synthetics no longer affected by brainsnax braindamage
+2026-07-25:
+  Diana:
+  - rscadd: Contaminated items can now be scanned for DNA
+  - code_imp: Makes some children procs carry over the args properly from their parent
+      procs.
+  - bugfix: Fixed the advanced forensics scanner having no sprite
+  - image: Added a proper sprite for the advanced forensics scanner.
+  Kashargul:
+  - rscadd: websocket for the chat
+  Poojawa:
+  - refactor: sorted and broke apart the monolithic sprite_accessories_taur.dm for
+      better readability and referencing. Paths were only touched up in certain cases
+      for sensible changes like feline/tiger, fox/kitsune, and cow/paw.
+  - image: Several legacy tails have been removed since they've been replaced for
+      years now by colorable ones. The tails will continue to say 'colorable' because
+      touching names is touching .sav files and I'm not dealing with that.
+  Will:
+  - refactor: Updated remote view code for byond 516.1685
+  - bugfix: blackscreen when escaping vore egg
+2026-07-26:
+  Diana:
+  - bugfix: Fixes kaiju tail lost sprite
+  - image: Readds kaiju tail
+  Will:
+  - bugfix: Gripper can insert powercells into borgs again
+2026-07-30:
+  Diana:
+  - bugfix: Crossbows can now pin targets to walls now.
+  - bugfix: Sharp objects shot out of a pneumatic cannon at enough force can pin targets
+      to walls now, too.
+  - rscadd: Adds bluespace collar to character loadout

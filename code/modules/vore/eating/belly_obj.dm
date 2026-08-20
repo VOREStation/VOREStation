@@ -889,7 +889,7 @@
 				if(I)
 					M.unEquip(I,force = TRUE)
 					if(contaminates)
-						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
+						I.gurgle_contaminate(contents, contamination_flavor, contamination_color, src) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
 					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
@@ -1119,10 +1119,10 @@
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))
-			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
+			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color, src)
 		if(I.gurgled && target.contaminates)
 			I.wash(CLEAN_WASH)
-			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
+			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color, src)
 	items_preserved -= content
 	if(!silent)
 		handle_visual_update()

@@ -12,6 +12,7 @@ import { ExportTab } from './SettingTabs/ExportTab';
 import { MessageLimits } from './SettingTabs/MessageLimits';
 import { SettingsGeneral } from './SettingTabs/SettingsGeneral';
 import { SettingsStatPanel } from './SettingTabs/SettingsStatPanel';
+import { SettingsWebsocket } from './SettingTabs/SettingsWebsocket';
 import { TextHighlightSettings } from './SettingTabs/TextHighlightSettings';
 import { TTSSettings } from './SettingTabs/TTSSettings';
 import { useSettings } from './use-settings';
@@ -56,6 +57,7 @@ export const SettingsPanel = (props) => {
         {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'statPanel' && <SettingsStatPanel />}
         {activeTab === 'ttsSettings' && <TTSSettings />}
+        {activeTab === 'websocket' && <SettingsWebsocket />}
       </Stack.Item>
     </Stack>
   );
