@@ -994,7 +994,7 @@
 /area/unknown/dorm2)
 "cX" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name =  "Unknown Two";
+	tele_name = "Unknown Point";
 	tele_network = "unktwo"
 	},
 /turf/simulated/shuttle/floor/alienplating,
