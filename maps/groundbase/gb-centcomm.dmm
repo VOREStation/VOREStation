@@ -23,6 +23,12 @@
 /obj/effect/floor_decal/corner/green/border,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"ad" = (
+/obj/machinery/door/blast/regular{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/centcom/terminal)
 "ae" = (
 /obj/structure/shuttle/window,
 /obj/structure/grille,
@@ -1314,7 +1320,6 @@
 /obj/effect/floor_decal/corner/green/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/computer/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "eF" = (
@@ -2801,17 +2806,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/security)
-"jY" = (
-/obj/machinery/computer/diseasesplicer,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/obj/machinery/camera/network/crescent,
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
 "jZ" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -7822,16 +7816,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
-"Au" = (
-/obj/machinery/disease2/incubator,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
 "Aw" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
@@ -11928,7 +11912,6 @@
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/ccboat)
 "NZ" = (
-/obj/machinery/disease2/isolator,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -12101,7 +12084,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "OG" = (
-/obj/machinery/disease2/diseaseanalyser,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -25096,7 +25078,7 @@ ZX
 bR
 bR
 wY
-jY
+DM
 we
 pb
 pb
@@ -25238,7 +25220,7 @@ ZX
 bR
 bR
 wY
-Au
+OG
 dh
 aH
 Iw
@@ -25888,7 +25870,7 @@ pE
 Tz
 Tz
 Tz
-yi
+ad
 bR
 bR
 bR
@@ -26002,7 +25984,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 yO
 yO
 Ys
@@ -26030,7 +26012,7 @@ Ys
 Pk
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -26144,7 +26126,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 yO
 yO
 Ys
@@ -26172,7 +26154,7 @@ pI
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -26286,7 +26268,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 Kf
 Kf
 Ys
@@ -26314,7 +26296,7 @@ rt
 Ys
 Kf
 Kf
-yi
+ad
 bR
 bR
 bR
@@ -26428,7 +26410,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 yO
 yO
 Ys
@@ -26456,7 +26438,7 @@ rt
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -26570,7 +26552,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 yO
 yO
 Vo
@@ -26598,7 +26580,7 @@ bf
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -26712,7 +26694,7 @@ nq
 nq
 nq
 bR
-yi
+ad
 yO
 yO
 Vo
@@ -26740,7 +26722,7 @@ Dx
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -26854,7 +26836,7 @@ Oo
 jT
 nq
 bR
-yi
+ad
 yO
 yO
 Vo
@@ -26882,7 +26864,7 @@ ZD
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -26996,7 +26978,7 @@ hJ
 hJ
 nq
 bR
-yi
+ad
 yO
 yO
 Ys
@@ -27024,7 +27006,7 @@ rt
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -27138,7 +27120,7 @@ NT
 VQ
 nq
 bR
-yi
+ad
 Kf
 Kf
 Ys
@@ -27166,7 +27148,7 @@ rt
 Ys
 Kf
 Kf
-yi
+ad
 bR
 bR
 bR
@@ -27280,7 +27262,7 @@ nq
 nq
 nq
 bR
-yi
+ad
 yO
 yO
 Ys
@@ -27308,7 +27290,7 @@ pI
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -27422,7 +27404,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 yO
 yO
 Ys
@@ -27450,7 +27432,7 @@ Ys
 Ys
 yO
 yO
-yi
+ad
 bR
 bR
 bR
@@ -27564,7 +27546,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 mr
 mr
 mr
@@ -27592,7 +27574,7 @@ hu
 mr
 mr
 mr
-yi
+ad
 bR
 bR
 bR
