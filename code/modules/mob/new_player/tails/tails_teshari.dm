@@ -52,7 +52,6 @@
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_teshari.dmi'
 	icon_state = "beethorax_tesh"
 	do_colouration = FALSE
-	tailsock_iconstate = "beethorax_tesh_sock"
 
 /datum/sprite_accessory/tail/teshbuggo
 	name = "Teshari bug abdomen, colorable"

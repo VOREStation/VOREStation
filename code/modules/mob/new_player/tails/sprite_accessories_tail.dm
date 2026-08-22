@@ -8,6 +8,7 @@
 /datum/sprite_accessory/tail
 	name = DEVELOPER_WARNING_NAME
 	var/desc = DEVELOPER_WARNING_NAME
+//	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
 	do_colouration = TRUE //Set to FALSE to disable coloration using the tail color.
 	/// Only appliciable if do_coloration = TRUE, ICON_MULTIPLY is a white bias, ICON_ADD is a black bias for colorations of sprites.
 	/// Virtually all sprites now are white-biased greyscale. The ones that aren't are pre-colored, typically donator snowflake.
@@ -33,7 +34,7 @@
 	///ADDITIONALLY, IF YOU ADD A SPECIAL VWAG, YOU NEED TO INCLUDE ani_state, extra_overlay_w, and extra_overlay2_w INTO icon_loaf TOO!
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
-	var/list/lower_layer_dirs = LOWER_TAIL_DIRS
+	var/list/lower_layer_dirs = list(SOUTH, WEST, EAST)
 	var/icon_loaf = null
 
 	// Taur Vore
@@ -43,42 +44,10 @@
 	var/struggle_anim = FALSE
 	var/bellies_icon_path = 'icons/mob/vore/Taur_Bellies.dmi'
 
-	// Tail Socks
-	/// This can usually be the default icon, since the base icon is a complete unit.
-	/// Taur tails are snipped off to account for the butt positioning being easier to deal with.
-	var/tailsock_icon
-	var/tailsock_iconstate
-	/// Same for wag states, we just need the sprite itself, not any of the custom overlays
-	/// Fat Taur additions are just the belly variant, we layer this one before the vore one to account for that too.
-	var/tailsock_wagicon
-	// Vore belly overlays are handled in update_icons, because we just overlay the tummy colored to the tailsock if we're wearing a suit and it has a sock enabled.
-	// For north facing taur tails, using the sock + whatever tail related markings are visible when not in a sock but need to be drawn higher up.
-	// These are set to "none" to prevent null icon state issues
-	var/tailsock_markings = "none"
-	var/tailsock_markings2 = "none"
-	var/tailsock_wagmarkings = "none"
-	var/tailsock_wagmarkings2 = "none"
-
 /datum/sprite_accessory/tail/New()
 	. = ..()
 	if(clip_mask_state)
 		clip_mask = icon(icon = (clip_mask_icon ? clip_mask_icon : icon), icon_state = clip_mask_state)
-	//because the compiler doesn't like this being preset I guess whatever loser.
-	if(!tailsock_icon)
-		tailsock_icon = initial(icon)
-	if(!tailsock_iconstate)
-		tailsock_iconstate = initial(icon_state)
-	if(!tailsock_wagicon)
-		tailsock_wagicon = initial(ani_state)
-	//use the same naming conventions, these are for north face stuff. follows the icon file anyway, so tail_whatever, tail_sock
-	if(extra_overlay)
-		tailsock_markings = extra_overlay
-	if(extra_overlay2)
-		tailsock_markings2 = extra_overlay2
-	if(extra_overlay_w)
-		tailsock_wagmarkings = extra_overlay_w
-	if(extra_overlay2_w)
-		tailsock_wagmarkings2 = extra_overlay2_w
 
 // Default invis tail
 /datum/sprite_accessory/tail/invisible

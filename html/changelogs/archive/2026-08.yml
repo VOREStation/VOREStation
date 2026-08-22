@@ -42,3 +42,48 @@
       linked to the silo(or if no silo exists)
   - bugfix: Glasswire aberration no longer broken by flashlight beams
   - bugfix: DNA modifier no longer ejects disk along with occupant
+2026-08-13:
+  Diana:
+  - bugfix: Unathi belly size 1 has a proper appearance now
+  - bugfix: Fixes a servercrash issue caused by rapid pointing. Pointing now has a
+      small cooldown if spammed too much.
+  Poojawa:
+  - rscadd: Added a system to permit custom tails (and bellies) to show even if you're
+      in a full space suit!
+  - image: So many taursuits! OH LAWD.
+  - code_imp: Bastardized the HumanCutter tool to provide a means for unsupported
+      taurs to be 'snipped' into conformity, as long as they're somewhat accurate
+      to overall shapes.
+  - image: multiple taurs get tail wag states outside of just being instantly fat.
+  - rscadd: Ripped out the old species tail animation system, no-one is ever going
+      to actually maintain 9+ different tail wag animations, and they were overriding
+      the custom tails to boot.
+  - rscadd: Completely refractored tail icon generation to utilize mutable_appearance
+      as much as possible.
+  - rscadd: Optimized vore tail code to utilize Mutable_appearance instead of queuing
+      up icon generations
+  - bugfix: Cleaned up tail and taur files to reduce the number of icons of species
+      that used the same basic and fat icons with different overlays.
+  Very-Soft:
+  - rscadd: Added a rare easter egg to the game
+2026-08-16:
+  Diana:
+  - bugfix: PAI cards are devourable once more.
+  Will:
+  - rscadd: Mining processer, stacking machine, and mint can now be constructed
+  - rscadd: Mining machines can have their direction set by dragging them in a direction,
+      and alt-clicking to reset it.
+  - rscadd: Mining machines and consoles link to the nearest one when constructed,
+      and show unlinked status
+  - refactor: General cleanup and hardref fixes for mining machines
+  - bugfix: Destroyed or deconstructed stacking machines drop their sheet contents
+2026-08-18:
+  Kashargul:
+  - code_imp: adds warning for byond 1682 to 1686
+  - code_imp: update rust g to 7.0.0
+  - bugfix: a length issue for unicode input on text inputs
+2026-08-22:
+  Kashargul:
+  - bugfix: undeleted sql query
+  lbnesquik:
+  - spellcheck: fixed a typo.

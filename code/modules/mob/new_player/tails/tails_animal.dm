@@ -88,21 +88,12 @@
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "wagtail"
 
-/datum/sprite_accessory/tail/peacocktail //it's been a long enough while, I'm gunna go ahead and just...
-	name = "Peacock tail, colorable (vwag)"
-	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
-	icon_state = "peacocktail"
-	ani_state = "peacocktail_w"
-	do_colouration = TRUE
-
 /datum/sprite_accessory/tail/ketrai_wag
 	name = "fennix tail (vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "ketraitail"
 	ani_state = "ketraitail_w"
 	do_colouration = FALSE
-	tailsock_iconstate = "ketraitail_sock"
-	tailsock_wagicon = "ketraitail_w_sock"
 
 /datum/sprite_accessory/tail/ketrainew_wag
 	name = "new fennix tail (vwag)"
@@ -110,8 +101,6 @@
 	icon_state = "ketraitailnew"
 	ani_state = "ketraitailnew_w"
 	do_colouration = FALSE
-	tailsock_iconstate = "ketraitailnew_sock"
-	tailsock_wagicon = "ketraitailnew_w_sock"
 
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"
@@ -245,7 +234,6 @@
 	name = "Kitsune 2 tails, colorable"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "doublekitsune"
-	extra_overlay = "doublekitsune-tips"
 
 /datum/sprite_accessory/tail/doublekitsunealt
 	name = "Kitsune 2 tails, colorable, alt"
@@ -343,7 +331,6 @@
 	name = "turkey"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "turkey"
-	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/shark_markings
 	name = "akula tail, colorable, tail and fins"
@@ -405,7 +392,6 @@
 	name = "Raccoon gray tail"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_animal.dmi'
 	icon_state = "raccoon_tail"
-	tailsock_iconstate = "raccoon_tail_sock"
 	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/striped_tail
