@@ -66,3 +66,24 @@
       that used the same basic and fat icons with different overlays.
   Very-Soft:
   - rscadd: Added a rare easter egg to the game
+2026-08-16:
+  Diana:
+  - bugfix: PAI cards are devourable once more.
+  Will:
+  - rscadd: Mining processer, stacking machine, and mint can now be constructed
+  - rscadd: Mining machines can have their direction set by dragging them in a direction,
+      and alt-clicking to reset it.
+  - rscadd: Mining machines and consoles link to the nearest one when constructed,
+      and show unlinked status
+  - refactor: General cleanup and hardref fixes for mining machines
+  - bugfix: Destroyed or deconstructed stacking machines drop their sheet contents
+2026-08-18:
+  Kashargul:
+  - code_imp: adds warning for byond 1682 to 1686
+  - code_imp: update rust g to 7.0.0
+  - bugfix: a length issue for unicode input on text inputs
+2026-08-22:
+  Kashargul:
+  - bugfix: undeleted sql query
+  lbnesquik:
+  - spellcheck: fixed a typo.

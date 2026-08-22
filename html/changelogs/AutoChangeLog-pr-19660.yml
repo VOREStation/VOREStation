@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "0 damage attacks no longer generate blood."
+  - qol: "Small blunt attacks no longer generate blood."
