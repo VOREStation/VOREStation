@@ -12,12 +12,10 @@
 	if(src.stat == 2)
 		return
 
-	GLOB.cameranet.process_sort()
-
 	var/list/T = list()
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		var/list/tempnetwork = C.network&src.network
-		if (tempnetwork.len)
+	for (var/obj/machinery/camera/C in SScameras.cameras)
+		var/list/tempnetwork = C.network & src.network
+		if(length(tempnetwork))
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
 	track = new()
@@ -218,7 +216,7 @@
 /mob/living/proc/near_camera()
 	if (!isturf(loc))
 		return 0
-	else if(!GLOB.cameranet.checkVis(src))
+	else if(!SScameras.is_visible_by_cameras(src))
 		return 0
 	return 1
 
