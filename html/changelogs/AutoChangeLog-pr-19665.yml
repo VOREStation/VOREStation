@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - balance: "Laser eyes now take 25 nutrition per shot, up from rand(1,5)"
+  - balance: "Laser eyes can not be used if wearing flash protective eye/headwear."
