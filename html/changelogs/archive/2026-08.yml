@@ -82,3 +82,8 @@
   - code_imp: adds warning for byond 1682 to 1686
   - code_imp: update rust g to 7.0.0
   - bugfix: a length issue for unicode input on text inputs
+2026-08-22:
+  Kashargul:
+  - bugfix: undeleted sql query
+  lbnesquik:
+  - spellcheck: fixed a typo.
