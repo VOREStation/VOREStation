@@ -931,7 +931,7 @@
 /area/unknown/dorm1)
 "cO" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown A";
 	tele_network = "unkone"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -994,7 +994,7 @@
 /area/unknown/dorm2)
 "cX" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown B";
 	tele_network = "unktwo"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -1017,7 +1017,7 @@
 /area/holodeck/source_picnicarea)
 "db" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name =  "Unknown C";
 	tele_network = "unkthree"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -2233,7 +2233,7 @@
 /area/unknown/dorm4)
 "gT" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown D";
 	tele_network = "unkfour"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -2249,7 +2249,7 @@
 /area/unknown/dorm5)
 "gW" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown E";
 	tele_network = "unkfive"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -2265,7 +2265,7 @@
 /area/unknown/dorm6)
 "gZ" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown F";
 	tele_network = "unksix"
 	},
 /turf/simulated/shuttle/floor/alienplating,
