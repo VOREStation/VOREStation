@@ -129,7 +129,7 @@
 
 		//micro in food check if someone couldn't be bothered to examine their food.
 		if((!eater.food_vore || !eater.can_be_drop_pred) && food_inserted_micros && food_inserted_micros.len)
-			to_chat(eater, span_danger("Ewww, [user == eater ? "You can't" : "\The [eater] can't"] consume that, there's a bug in this!") )
+			to_chat(eater, span_vdanger("Ewww, [user == eater ? "You can't" : "\The [eater] can't"] consume that, there's a bug in this!") )
 			return ITEM_INTERACT_FAILURE
 
 		var/swallow_whole = FALSE
