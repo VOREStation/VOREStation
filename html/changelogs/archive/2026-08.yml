@@ -87,3 +87,20 @@
   - bugfix: undeleted sql query
   lbnesquik:
   - spellcheck: fixed a typo.
+2026-08-23:
+  Diana:
+  - balance: Laser eyes now take 25 nutrition per shot, up from rand(1,5)
+  - balance: Laser eyes can not be used if wearing flash protective eye/headwear.
+  - bugfix: 0 damage attacks no longer generate blood.
+  - qol: Small blunt attacks no longer generate blood.
+  FluffMedic:
+  - maptweak: Alters maps slightly to comply with new unit tests
+  Guti:
+  - rscadd: Added maintenance pills
+  Will:
+  - bugfix: disposals being flushable by phased shadekin
+  - bugfix: wheelchairs being collapsible by phased shadekin
+  - bugfix: IV stands cannot be interacted with by phased shadekin
+  lbnesquik:
+  - balance: Increase the paper shredder paper capacity.
+  - qol: Added a lil' description for it too.
