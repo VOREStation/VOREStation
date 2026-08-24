@@ -2,6 +2,10 @@
 
 /// These are applied ON /datum/robot_sprite to tell it what overlays it can or can not have.
 
+///Proc that checks the item's 'borg_flag' and sees if we have the relevent flag or not.
+/obj/item/proc/weapon_flag_check(flag_to_check) //Checks for the flag of the gun.
+	return (borg_flags & flag_to_check)
+
 /// If you make a borg that has a laser, taser, and shield, here's an Example:
 /// sprite_flags = ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
@@ -19,6 +23,10 @@
 #define ROBOT_HAS_DAGGER_SPRITE (1<<8)	//Ex: Specialized dagger.
 #define ROBOT_HAS_BLADE_SPRITE (1<<9)	//Ex: Specialized blade
 #define ROBOT_HAS_BATON_SPRITE (1<<10)	//Ex: Stun batons
+
+#define ROBOT_HAS_DRILL_SPRITE (1<<11)
+#define ROBOT_HAS_PKA_SPRITE (1<<12)
+
 /// For sanity's sake for you spriters out there that don't want to dig through the code, attach the below as a suffix for your sprites:
 /// Speed: -roll
 /// Shield: -shield
@@ -33,6 +41,9 @@
 /// Blade: -blade
 /// Dagger: -dagger
 /// Baton: -baton
+
+/// Mining Drill: -miningdrill
+/// PKA: -pka
 
 /// GUN DEFINES
 /// These are applied on GUNS to classify them as a GUN, TASER, OR LASER.
@@ -50,6 +61,10 @@
 #define COUNTS_AS_ROBOT_DAGGER (1<<1)
 #define COUNTS_AS_ROBOT_BLADE (1<<2)
 #define COUNTS_AS_ROBOT_BATON (1<<3)
+
+/// SPECIALTY DEFINES. Used in tandom with the melee wepaon defines, but these are things such as drills, PKA, etc.
+#define COUNTS_AS_ROBOT_DRILL (1<<4)
+#define COUNTS_AS_ROBOT_PKA (1<<5)
 
 /// ADDITIONAL NOTES:
 /// If you want to have a special type of item that will be used on borgs that is NOT a gun OR is not included above that causes an overlay, have no fear!

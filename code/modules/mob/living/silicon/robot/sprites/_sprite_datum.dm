@@ -87,17 +87,17 @@
 			//Gun Check
 			if(istype(thing_to_check, /obj/item/gun/energy/robotic))
 				var/obj/item/gun/energy/robotic/gun = thing_to_check
-				if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_LASER))
+				if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && gun.weapon_flag_check(COUNTS_AS_ROBOT_LASER))
 					ourborg.add_overlay("[sprite_icon_state]-laser")
 					continue
-				if(sprite_flag_check(ROBOT_HAS_TASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_TASER))
+				if(sprite_flag_check(ROBOT_HAS_TASER_SPRITE) && gun.weapon_flag_check(COUNTS_AS_ROBOT_TASER))
 					ourborg.add_overlay("[sprite_icon_state]-taser")
 					continue
-				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
+				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.weapon_flag_check(COUNTS_AS_ROBOT_DISABLER))
 					ourborg.add_overlay("[sprite_icon_state]-disabler")
 					continue
 				//Perform generic test last.
-				if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_GUN))
+				if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.weapon_flag_check(COUNTS_AS_ROBOT_GUN))
 					ourborg.add_overlay("[sprite_icon_state]-gun")
 					continue
 	//These are outliers that don't fit the normal sprite flags. These should not be expanded unless absolutely neccessary.
