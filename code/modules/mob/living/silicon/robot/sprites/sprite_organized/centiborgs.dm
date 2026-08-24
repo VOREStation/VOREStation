@@ -1,36 +1,3 @@
-/// There's a few of these that don't really fall into one file or the other.
-/// Examples being the service kittyborg being both service & clerical
-/// The medical kittyborg also gets surgical and Crisis
-/// While the service catborg has service, clerical, and janitor.
-/// Additionally, the gryphonborg only has one sprite and gets all the departments
-/// And the two custom-whitelisted ones also have all the departments.
-/// So to keep it neat and organized, I put them all in one file for ease of viewing instead of copy and pasting all over the place.
-
-/// ADDITIONALLY, SOME NOTES:
-/// The only two borgs here that have sleeper color sprites are the Secborg and the Crisis borg (That also has surgery. Surgery shouldn't even be a borg module, but I digress)
-/// If you want to add them to the rest of the borgs in here that have sleepers (or want to make your own and add sleeper colors)
-/// Let's do an example.
-/// Go to the .dmi for the borg (catborg_security.dmi), copy the sec-sleeper-1, sec-sleeper-2 (the static and moving states) as many times as you have sleeper states.
-/// Rename them to sec-sleeper-1-g sec-sleeper-1-r sec-sleeper-2-g sec-sleeper-2-r respectively
-/// Copy the sleeper-g, sleeper-g(moving), sleeper-r, sleeper-r(moving) and copy & paste them on the sprites.
-/// Save it and boom, you're done. You should now have 8 new icon states. 4 static 4 moving.
-
-/// EXAMPLE.
-/*
-/datum/robot_sprite/dogborg/DEPARTMENT/catborg
-	name = "Catborg - DEPARTMENTL"
-	sprite_icon_state = "engi"
-	sprite_hud_icon_state = "engi"
-	has_eye_sprites = TRUE
-	has_eye_light_sprites = TRUE
-	has_sleeper_light_indicator = FALSE
-	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/Departmental/catborgs/catborg_engineering.dmi'
-	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	module_type = list("Standard", "Engineering", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research") //Select whichever ones they apply to.
-*/
-
 /// Centi Borgs
 
 /// CARGO
