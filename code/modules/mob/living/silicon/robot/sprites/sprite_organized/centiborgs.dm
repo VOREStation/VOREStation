@@ -24,7 +24,7 @@
 	rest_sprite_options = list("Default")
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
-	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_MELEE_SPRITE
+	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
 
 
@@ -166,7 +166,7 @@
 	rest_sprite_options = list("Default")
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
-	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
 
 /// EXPLORATION
@@ -184,7 +184,7 @@
 	rest_sprite_options = list("Default")
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
-	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
 
 /// STANDARD
@@ -202,7 +202,7 @@
 	rest_sprite_options = list("Default")
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
-	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/tall/ninja/centiborg
