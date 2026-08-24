@@ -222,8 +222,8 @@
 	hat_offset = CENTIBORG_HAT_OFFSET
 
 //Syndicate
-/datum/robot_sprite/dogborg/tall/combat_medic/gooborg
-	name = "Gooborg"
+/datum/robot_sprite/dogborg/tall/combat_medic/centiborg
+	name = "Centiborg"
 	sprite_icon_state = "base"
 	has_eye_sprites = TRUE
 	has_eye_light_sprites = TRUE
