@@ -194,6 +194,7 @@
 				force = 30
 				armor_penetration = 25
 				defend_chance = 15
+				borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_DAGGER
 			else
 				name = "self defense knife"
 				icon = 'icons/obj/tools_robot.dmi'
@@ -204,6 +205,7 @@
 				force = 15
 				armor_penetration = 0
 				defend_chance = 5
+				borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_DAGGER
 		update_icon()
 
 

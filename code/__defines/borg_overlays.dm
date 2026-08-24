@@ -21,7 +21,7 @@
 
 #define ROBOT_HAS_MELEE_SPRITE (1<<7)	//Ex: 		Generic borg melee
 #define ROBOT_HAS_DAGGER_SPRITE (1<<8)	//Ex: Specialized dagger.
-#define ROBOT_HAS_BLADE_SPRITE (1<<9)	//Ex: Specialized blade
+#define ROBOT_HAS_BLADE_SPRITE (1<<9)	//Ex: Specialized blade. Generally energy blade.
 #define ROBOT_HAS_BATON_SPRITE (1<<10)	//Ex: Stun batons
 
 #define ROBOT_HAS_DRILL_SPRITE (1<<11)
