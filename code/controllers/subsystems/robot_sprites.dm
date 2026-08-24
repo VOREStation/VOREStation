@@ -187,6 +187,12 @@ SUBSYSTEM_DEF(robot_sprites)
 			if(findtext(icon, regex("-baton")))
 				RS.sprite_flags |= ROBOT_HAS_BATON_SPRITE
 				continue
+			if(findtext(icon, regex("-miningdrill")))
+				RS.sprite_flags |= ROBOT_HAS_DRILL_SPRITE
+				continue
+			if(findtext(icon, regex("-pka")))
+				RS.sprite_flags |= ROBOT_HAS_PKA_SPRITE
+				continue
 			if(findtext(icon, regex("-gun")))
 				RS.sprite_flags |= ROBOT_HAS_GUN_SPRITE
 				continue

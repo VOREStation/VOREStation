@@ -105,15 +105,18 @@
 		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
 			if(istype(thing_to_check, /obj/item/pickaxe))
 				var/obj/item/pickaxe/melee = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_DRILL_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_DRILL))
+					ourborg.add_overlay("[sprite_icon_state]-miningdrill")
+					continue
 				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
 					ourborg.add_overlay("[sprite_icon_state]-melee")
 					continue
-	if(ourborg.activated_module_type_list(list(/obj/item/pickaxe)))
+	if(ourborg.activated_module_type_list(list(/obj/item/gun/energy/kinetic_accelerator)))
 		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
-			if(istype(thing_to_check, /obj/item/pickaxe))
-				var/obj/item/pickaxe/melee = thing_to_check
-				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
-					ourborg.add_overlay("[sprite_icon_state]-melee")
+			if(istype(thing_to_check, /obj/item/gun/energy/kinetic_accelerator))
+				var/obj/item/gun/energy/kinetic_accelerator/gun = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_PKA_SPRITE) && gun.weapon_flag_check(COUNTS_AS_ROBOT_PKA))
+					ourborg.add_overlay("[sprite_icon_state]-pka")
 					continue
 
 /datum/robot_sprite/proc/get_belly_overlay(mob/living/silicon/robot/ourborg, size = 1, b_class)
