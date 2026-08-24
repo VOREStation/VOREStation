@@ -145,7 +145,7 @@
 	var/cleandesc
 	var/gurgled_color
 
-	///What flags this item has pertaining to borg sprites. See code\__defines\borg_overlays.dm for more info.
+	///What flags this item has pertaining to borg sprites. borg_overlays.dm for more info.
 	var/borg_flags
 
 /obj/item/Initialize(mapload)
