@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Showers will now apply the reagent they're filled with properly."

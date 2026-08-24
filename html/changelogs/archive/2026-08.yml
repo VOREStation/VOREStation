@@ -104,3 +104,6 @@
   lbnesquik:
   - balance: Increase the paper shredder paper capacity.
   - qol: Added a lil' description for it too.
+2026-08-24:
+  Diana:
+  - bugfix: Showers will now apply the reagent they're filled with properly.
