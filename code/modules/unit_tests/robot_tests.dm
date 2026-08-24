@@ -23,6 +23,7 @@
 			"[ROBOT_HAS_MELEE_SPRITE]" = "-melee",
 			"[ROBOT_HAS_DAGGER_SPRITE]" = "-dagger",
 			"[ROBOT_HAS_BLADE_SPRITE]" = "-blade",
+			"[ROBOT_HAS_BATON_SPRITE]" = "-baton",
 			"[ROBOT_HAS_GUN_SPRITE]" = "-gun",
 			"[ROBOT_HAS_LASER_SPRITE]" = "-laser",
 			"[ROBOT_HAS_TASER_SPRITE]" = "-taser",

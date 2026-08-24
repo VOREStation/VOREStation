@@ -70,8 +70,8 @@
 			if(istype(thing_to_check, /obj/item/melee/robotic))
 				var/obj/item/melee/robotic/melee = thing_to_check
 				melee.refresh_light(TRUE)
-				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
-					ourborg.add_overlay("[sprite_icon_state]-melee")
+				if(sprite_flag_check(ROBOT_HAS_BATON_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_BATON))
+					ourborg.add_overlay("[sprite_icon_state]-baton")
 					continue
 				if(sprite_flag_check(ROBOT_HAS_DAGGER_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_DAGGER))
 					ourborg.add_overlay("[sprite_icon_state]-dagger")
@@ -79,13 +79,14 @@
 				if(sprite_flag_check(ROBOT_HAS_BLADE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_BLADE))
 					ourborg.add_overlay("[sprite_icon_state]-blade")
 					continue
+				//Perform generic test last.
+				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+					ourborg.add_overlay("[sprite_icon_state]-melee")
+					continue
 
 			//Gun Check
 			if(istype(thing_to_check, /obj/item/gun/energy/robotic))
 				var/obj/item/gun/energy/robotic/gun = thing_to_check
-				if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_GUN))
-					ourborg.add_overlay("[sprite_icon_state]-gun")
-					continue
 				if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_LASER))
 					ourborg.add_overlay("[sprite_icon_state]-laser")
 					continue
@@ -95,7 +96,18 @@
 				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
 					ourborg.add_overlay("[sprite_icon_state]-disabler")
 					continue
+				//Perform generic test last.
+				if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_GUN))
+					ourborg.add_overlay("[sprite_icon_state]-gun")
+					continue
 	//These are outliers that don't fit the normal sprite flags. These should not be expanded unless absolutely neccessary.
+	if(ourborg.activated_module_type_list(list(/obj/item/pickaxe)))
+		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
+			if(istype(thing_to_check, /obj/item/pickaxe))
+				var/obj/item/pickaxe/melee = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+					ourborg.add_overlay("[sprite_icon_state]-melee")
+					continue
 	if(ourborg.activated_module_type_list(list(/obj/item/pickaxe)))
 		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
 			if(istype(thing_to_check, /obj/item/pickaxe))

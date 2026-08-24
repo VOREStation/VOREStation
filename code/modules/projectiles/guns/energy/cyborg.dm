@@ -426,7 +426,7 @@
 	var/hitcost = 500
 	var/status = 0 //Off by default.
 	var/lightcolor = "#FF6A00"
-	borg_flags = COUNTS_AS_ROBOTIC_MELEE
+	borg_flags = COUNTS_AS_ROBOT_BATON | COUNTS_AS_ROBOTIC_MELEE
 
 /obj/item/melee/robotic/baton/update_icon()
 	if(status)

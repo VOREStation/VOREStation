@@ -18,6 +18,7 @@
 #define ROBOT_HAS_MELEE_SPRITE 0x80	//Ex: 		Generic borg melee
 #define ROBOT_HAS_DAGGER_SPRITE 0x100	//Ex: Specialized dagger.
 #define ROBOT_HAS_BLADE_SPRITE 0x200	//Ex: Specialized blade
+#define ROBOT_HAS_BATON_SPRITE 0x400	//Ex: Stun batons
 /// For sanity's sake for you spriters out there that don't want to dig through the code, attach the below as a suffix for your sprites:
 /// Speed: -roll
 /// Shield: -shield
@@ -31,6 +32,7 @@
 /// Melee: -melee
 /// Blade: -blade
 /// Dagger: -dagger
+/// Baton: -baton
 
 /// GUN DEFINES
 /// These are applied on GUNS to classify them as a GUN, TASER, OR LASER.
@@ -47,6 +49,7 @@
 #define COUNTS_AS_ROBOTIC_MELEE 0x1
 #define COUNTS_AS_ROBOT_DAGGER 0x2
 #define COUNTS_AS_ROBOT_BLADE 0x4
+#define COUNTS_AS_ROBOT_BATON 0x8
 
 /// ADDITIONAL NOTES:
 /// If you want to have a special type of item that will be used on borgs that is NOT a gun OR is not included above that causes an overlay, have no fear!
