@@ -107,3 +107,7 @@
 2026-08-24:
   Diana:
   - bugfix: Showers will now apply the reagent they're filled with properly.
+2026-08-27:
+  Will:
+  - qol: Limbs with massive wounds that cannot be be healed with bruise packs or ointment
+      will now show examine feedback that the treatment is insufficient.
