@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Shadekin properly have their vision flags set when phasing back in"
