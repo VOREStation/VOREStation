@@ -31900,6 +31900,7 @@
 /area/crew_quarters/bar)
 "bdQ" = (
 /obj/machinery/media/jukebox,
+/obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bdR" = (
@@ -45610,6 +45611,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/library)
+"wWD" = (
+/obj/machinery/synthesizer{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "wXr" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -61371,7 +61378,7 @@ aLd
 baC
 bcm
 aAG
-bbW
+wWD
 ayM
 ayc
 bdZ
