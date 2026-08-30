@@ -218,8 +218,8 @@
 	if(occupant.vr_link)
 		occupant.vr_link.exit_vr(FALSE)
 
-	occupant.reset_perspective() // Needed for returning from VR
 	occupant.forceMove(get_turf(src))
+	occupant.reset_perspective() // Needed for returning from VR
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == circuit)
