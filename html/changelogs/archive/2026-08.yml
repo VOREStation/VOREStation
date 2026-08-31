@@ -111,3 +111,9 @@
   Will:
   - qol: Limbs with massive wounds that cannot be be healed with bruise packs or ointment
       will now show examine feedback that the treatment is insufficient.
+2026-08-31:
+  Diana:
+  - bugfix: Shadekin properly have their vision flags set when phasing back in
+  - bugfix: Horror armor will no longer be stuck on permanently pre-death but post-cure
+  Will:
+  - bugfix: VR sleeper properly ends remote view when exited
