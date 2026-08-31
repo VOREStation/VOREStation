@@ -133,6 +133,7 @@
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	has_custom_equipment_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	pixel_x = -16
 	icon_x = 64
 	icon_y = 32
