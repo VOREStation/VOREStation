@@ -335,7 +335,7 @@
 
 	radiation_pulse(
 		src,
-		max_range = 7,
+		max_range = 14,
 		threshold = RAD_EXTREME_INSULATION,
 		chance = 100,
 		strength = radiation * 0.01 //This is what happens when it EXPLODES.
