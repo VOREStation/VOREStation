@@ -2054,6 +2054,9 @@
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
 
+/mob/living/carbon/human/CanObtainCentcommMessage()
+	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
+
 	/*
 	if(href_list[VV_HK_PURRBATION])
 		if(!check_rights(R_SPAWN))
