@@ -144,6 +144,7 @@
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
 	name = "Fat Feline 3-color (Taur)"
 	icon_state = "fatfeline_s"
+	ani_state = null //Has no vwag state.
 	extra_overlay = "fatfeline2_markings"		// chest and belly
 	extra_overlay2 = "fatfeline2_markings_2"	// feet
 	can_loaf = TRUE
@@ -162,8 +163,6 @@
 	extra_overlay = "feline2_markings"
 	extra_overlay2 = "feline2_markings_2"
 	ani_state = "fatfeline_s"
-	extra_overlay = "fatfeline2_markings"
-	extra_overlay2 = "fatfeline2_markings_2"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/tiger
