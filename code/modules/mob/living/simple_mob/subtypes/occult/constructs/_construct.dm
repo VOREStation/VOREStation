@@ -118,6 +118,8 @@
 */
 
 /mob/living/simple_mob/construct/death()
+	if(QDELETED(src))
+		return
 	new /obj/item/ectoplasm (src.loc)
 	..(null,"collapses in a shattered heap.")
 	ghostize()

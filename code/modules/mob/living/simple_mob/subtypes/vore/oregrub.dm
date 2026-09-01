@@ -133,6 +133,8 @@
 			inject_poison(L, target_zone)
 
 /mob/living/simple_mob/vore/oregrub/death()
+	if(stat == DEAD)
+		return
 	visible_message(span_warning("\The [src] shudders and collapses, expelling the ores it had devoured!"))
 	var/i = rand(min_ore,max_ore)
 	while(i>1)
@@ -150,6 +152,8 @@
 		glow_override = FALSE
 
 /mob/living/simple_mob/vore/oregrub/lava/death()
+	if(stat == DEAD)
+		return
 	set_light(0)
 	var/p = rand(lava_min_ore,lava_max_ore)
 	while(p>1)

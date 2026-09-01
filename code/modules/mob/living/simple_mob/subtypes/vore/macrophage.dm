@@ -126,6 +126,8 @@
 	set_AI_busy(FALSE)
 */
 /mob/living/simple_mob/vore/aggressive/macrophage/death()
+	if(QDELETED(src))
+		return
 	..()
 	if(isbelly(loc))
 		var/obj/belly/belly = loc

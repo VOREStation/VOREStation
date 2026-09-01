@@ -115,6 +115,8 @@
 		return
 
 /mob/living/bot/death()
+	if(QDELETED(src))
+		return
 	explode()
 
 /mob/living/bot/attackby(obj/item/O, mob/user)

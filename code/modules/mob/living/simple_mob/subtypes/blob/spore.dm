@@ -66,6 +66,8 @@
 	return ..()
 
 /mob/living/simple_mob/blob/spore/death(gibbed, deathmessage = "bursts!")
+	if(QDELETED(src))
+		return
 	if(overmind)
 		overmind.blob_type.on_spore_death(src)
 	..(gibbed, deathmessage)

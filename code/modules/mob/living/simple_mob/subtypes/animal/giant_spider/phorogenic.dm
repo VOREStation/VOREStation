@@ -70,6 +70,8 @@
 		explosion(src.loc, explosion_dev_range, explosion_heavy_range, explosion_light_range, explosion_flash_range)
 
 /mob/living/simple_mob/animal/giant_spider/phorogenic/death()
+	if(stat == DEAD)
+		return
 	visible_message(span_critical("\The [src]'s body begins to rupture!"))
 	var/delay = rand(explosion_delay_lower, explosion_delay_upper)
 	animate(src, color = "#000000", time = 0.1 SECONDS, loop = ceil(delay/2))
