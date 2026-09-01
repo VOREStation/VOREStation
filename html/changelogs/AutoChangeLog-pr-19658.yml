@@ -1,8 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Mining processer, stacking machine, and mint can now be constructed"
-  - rscadd: "Mining machines can have their direction set by dragging them in a direction, and alt-clicking to reset it."
-  - rscadd: "Mining machines and consoles link to the nearest one when constructed, and show unlinked status"
-  - refactor: "General cleanup and hardref fixes for mining machines"
-  - bugfix: "Destroyed or deconstructed stacking machines drop their sheet contents"

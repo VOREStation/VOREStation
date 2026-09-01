@@ -53,7 +53,7 @@
 /area/mine/explored)
 "am" = (
 /obj/machinery/door/blast/regular,
-/turf/simulated/wall/r_wall,
+/turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "an" = (
 /obj/effect/floor_decal/industrial/warning,

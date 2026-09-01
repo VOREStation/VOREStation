@@ -1142,7 +1142,7 @@
 /area/holodeck/source_emptycourt)
 "dy" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown Five";
 	tele_network = "unkfive"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -1204,7 +1204,7 @@
 /area/holodeck/source_basketball)
 "dL" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown Six";
 	tele_network = "unksix"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -3147,7 +3147,7 @@
 /area/unknown/dorm4)
 "SC" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown Four";
 	tele_network = "unkfour"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -3288,7 +3288,7 @@
 /area/unknown/dorm3)
 "Tr" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown Three";
 	tele_network = "unkthree"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -3426,7 +3426,7 @@
 /area/unknown/dorm2)
 "Ub" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown Two";
 	tele_network = "unktwo"
 	},
 /turf/simulated/shuttle/floor/alienplating,
@@ -3557,7 +3557,7 @@
 /area/unknown/dorm1)
 "UN" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
+	tele_name = "Unknown One";
 	tele_network = "unkone"
 	},
 /turf/simulated/shuttle/floor/alienplating,

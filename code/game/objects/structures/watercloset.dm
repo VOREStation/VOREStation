@@ -541,6 +541,13 @@
 	A.wash(CLEAN_RAD | CLEAN_TYPE_WEAK) // Clean radiation non-instantly
 	A.wash(CLEAN_WASH)
 	A.wash(CLEAN_SCRUB)
+
+	//flush away reagents on the skin
+	var/mob/living/carbon/C = A
+	if(C.touching)
+		var/remove_amount = C.touching.maximum_volume * C.reagent_permeability() //take off your suit first
+		C.touching.remove_any(remove_amount)
+
 	reagents.splash(A, reaction_volume / 20, 1, TRUE, min_spill = 0, max_spill = 0) //Reaction volume needs to be divided by 20 due to a larger internal volume
 
 	if(!isliving(A))
@@ -553,11 +560,6 @@
 
 	if(!iscarbon(A))
 		return
-	//flush away reagents on the skin
-	var/mob/living/carbon/C = A
-	if(C.touching)
-		var/remove_amount = C.touching.maximum_volume * C.reagent_permeability() //take off your suit first
-		C.touching.remove_any(remove_amount)
 
 /obj/machinery/shower/process()
 	if(on)

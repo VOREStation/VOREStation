@@ -230,10 +230,15 @@
 					status += "burning and feels like it's on fire"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
+				var/has_critical_wound = FALSE
 				if(LAZYLEN(org.wounds))
 					for(var/datum/wound/W in org.wounds)
 						if(W.internal)
 							status += "[can_feel_pain(org) ? "hurting and " : ""]showing a slowly growing bruise"
+						else if(W.can_autoheal() && W.wound_damage() >= WOUND_CRITICAL_HEAL_LIMIT)
+							has_critical_wound = TRUE
+				if(has_critical_wound)
+					status += "insufficiently treated"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
