@@ -336,9 +336,9 @@
 	radiation_pulse(
 		src,
 		max_range = 7,
-		threshold = RAD_HEAVY_INSULATION,
-		chance = URANIUM_IRRADIATION_CHANCE,
-		strength = energy * 0.001 //Might need to be increased.
+		threshold = RAD_EXTREME_INSULATION,
+		chance = 100,
+		strength = radiation * 0.01 //This is what happens when it EXPLODES.
 		)
 	Radiate()
 
