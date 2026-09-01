@@ -3,6 +3,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "sectdrone"
 	extra_overlay = "sectdrone_markings"
+	icon_sprite_tag = "sectdrone"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	vore_tail_sprite_variant = "SectDrone"
@@ -10,6 +11,7 @@
 	struggle_anim = TRUE
 	loaf_offset = 3
 	fullness_icons = 3
+	clip_mask_state = "taur_clip_mask_sectdrone"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
@@ -26,21 +28,21 @@
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
 
-/datum/sprite_accessory/tail/taur/sect_drone/drone_wag
+/datum/sprite_accessory/tail/taur/sectdrone/drone_wag
 	name = "Sect Drone (Taur, Fat vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
-	icon_state = "sect_drone"
-	extra_overlay = "sect_drone_markings"
-	ani_state = "fat_sect_drone"
-	extra_overlay_w = "fat_sect_drone_markings"
-	icon_sprite_tag = "sect_drone"
+	icon_state = "sectdrone"
+	extra_overlay = "sectdrone_markings"
+	ani_state = "fatsectdrone"
+	extra_overlay_w = "fatsectdrone_markings"
+	icon_sprite_tag = "sectdrone"
 
-/datum/sprite_accessory/tail/taur/sect_drone/fat
+/datum/sprite_accessory/tail/taur/sectdrone/fat
 	name = "Fat Sect Drone (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
-	icon_state = "fat_sect_drone"
-	extra_overlay = "fat_sect_drone_markings"
-	icon_sprite_tag = "sect_drone"
+	icon_state = "fatsectdrone"
+	extra_overlay = "fatsectdrone_markings"
+	icon_sprite_tag = "sectdrone"
 
 /datum/sprite_accessory/tail/taur/horse/synthhorse
 	name = "SynthHorse dual-color (Taur)"
@@ -48,7 +50,7 @@
 	icon_state = "synthhorse_s"
 	extra_overlay = "synthhorse_markings"
 	extra_overlay2 = "synthhorse_glow"
-	//icon_sprite_tag = "synthhorse"
+	icon_sprite_tag = "synthhorse"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -59,7 +61,7 @@
 	icon_state = "synthfeline_s"
 	extra_overlay = "synthfeline_markings"
 	extra_overlay2 = "synthfeline_glow"
-	//icon_sprite_tag = "synthfeline"
+	icon_sprite_tag = "synthfeline"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -70,6 +72,7 @@
 	icon_state = "fatsynthfeline_s"
 	extra_overlay = "fatsynthfeline_markings"
 	extra_overlay2 = "fatsynthfeline_glow"
+	icon_sprite_tag = "fatsynthfeline"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -78,6 +81,7 @@
 	name = "SynthFeline dual-color (Taur, Fat vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthfeline_s"
+	icon_sprite_tag = "synthfeline"
 	extra_overlay = "synthfeline_markings"
 	extra_overlay2 = "synthfeline_glow"
 	ani_state = "fatsynthfeline_s"
@@ -88,6 +92,7 @@
 	name = "Synthetic chassis - agile (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthtaur1_s"
+	icon_sprite_tag = "synthtaur1"
 	extra_overlay = "synthtaur1_markings"
 	extra_overlay2 = "synthtaur1_glow"
 	clip_mask_state = "taur_clip_mask_synthtaur1"
@@ -95,7 +100,8 @@
 /datum/sprite_accessory/tail/taur/synthetic/syntheticagi_fat
 	name = "Synthetic chassis - agile (Taur, Fat)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
-	icon_state = "synthtaur1_s"
+	icon_state = "synthtaur1_fat_s"
+	icon_sprite_tag = "synthtaur1_fat"
 	extra_overlay = "synthtaur1_fat_markings"
 	extra_overlay2 = "synthtaur1_glow"
 	clip_mask_state = "taur_clip_mask_synthtaur1"
@@ -104,9 +110,10 @@
 	name = "Synthetic chassis - agile (Taur, Fat vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthtaur1_s"
+	icon_sprite_tag = "synthtaur1"
 	extra_overlay = "synthtaur1_markings"
 	extra_overlay2 = "synthtaur1_glow"
-	ani_state = "synthtaur1_s"
+	ani_state = "synthtaur1_fat_s"
 	extra_overlay_w = "synthtaur1_fat_markings"
 	extra_overlay2_w = "synthtaur1_glow"
 	clip_mask_state = "taur_clip_mask_synthtaur1"
@@ -115,9 +122,9 @@
 	name = "SynthLizard dual-color (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthlizard_s"
+	icon_sprite_tag = "synthlizard"
 	extra_overlay = "synthlizard_markings"
 	extra_overlay2 = "synthlizard_glow"
-	//icon_sprite_tag = "synthlizard"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
 	loaf_offset = 3
@@ -128,6 +135,7 @@
 	name = "Fat SynthLizard dual-color (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "fatsynthlizard_s"
+	icon_sprite_tag = "fatsynthlizard"
 	extra_overlay = "fatsynthlizard_markings"
 	extra_overlay2 = "fatsynthlizard_glow"
 	can_loaf = TRUE
@@ -138,6 +146,7 @@
 	name = "SynthLizard dual-color (Taur, Fat vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthlizard_s"
+	icon_sprite_tag = "fatsynthlizard"
 	extra_overlay = "synthlizard_markings"
 	extra_overlay2 = "synthlizard_glow"
 	ani_state = "fatsynthlizard_s"
@@ -148,6 +157,7 @@
 	name = "Synthetic Naga dual-color (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthnaga"
+	icon_sprite_tag = "synthnaga"
 	extra_overlay = "synthnaga_belly"
 
 /datum/sprite_accessory/tail/taur/longvirus
@@ -155,21 +165,22 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "longvirus_s"
 	extra_overlay = "longvirus_markings"
-	icon_sprite_tag = "virus"
+	icon_sprite_tag = "longvirus"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "synthwolf_s"
+	icon_sprite_tag = "synthwolf"
 	extra_overlay = "synthwolf_markings"
 	extra_overlay2 = "synthwolf_glow"
-	//icon_sprite_tag = "synthwolf"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/wolf/fatsynthwolf
 	name = "Fat SynthWolf dual-color (Taur)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
 	icon_state = "fatsynthwolf_s"
+	icon_sprite_tag = "fatsynthwolf"
 	extra_overlay = "fatsynthwolf_markings"
 	extra_overlay2 = "fatsynthwolf_glow"
 	loaf_offset = 3
@@ -177,6 +188,7 @@
 /datum/sprite_accessory/tail/taur/wolf/fatsynthwolf_wag
 	name = "SynthWolf dual-color (Taur, Fat vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_synth.dmi'
+	icon_sprite_tag = "synthwolf"
 	icon_state = "synthwolf_s"
 	extra_overlay = "synthwolf_markings"
 	extra_overlay2 = "synthwolf_glow"
