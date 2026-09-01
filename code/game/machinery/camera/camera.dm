@@ -38,36 +38,41 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
+	if(!isnull(get_turf(src))) //Communicator cameras spawn in nullspace.
+		SScameras.cameras += src
 	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
 	LAZYOR(client_huds, GLOB.global_hud.whitense)
 
 	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for(var/obj/machinery/camera/C in SScameras.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
 			to_world_log("[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
 	*/
-	if(!src.network || src.network.len < 1)
-		if(loc)
+	if(!src.network || length(src.network) < 1)
+		if(get_turf(src))
 			log_world("## ERROR [src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
 			log_world("## ERROR [src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
-	// VOREStation Edit Start - Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
 		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
 
-	. = ..()
-
 	if (dir == NORTH)
 		layer = ABOVE_MOB_LAYER
-	// VOREStation Edit End
+
+	if(!isnull(get_turf(src))) //Communicator cameras spawn in nullspace.
+		SScameras.add_camera_to_chunk(src)
+		update_coverage(1)
+
+	. = ..()
 
 /obj/machinery/camera/Destroy()
+	SScameras.cameras -= src
 	if(isMotion())
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	deactivate(null, 0) //kick anyone viewing out
@@ -76,7 +81,13 @@
 		assembly = null
 	qdel(wires)
 	wires = null
+	clear_all_networks()
+	SScameras.cameras -= src
 	return ..()
+
+/obj/machinery/camera/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	SScameras.camera_moved(src, get_turf(old_loc), get_turf(loc))
 
 /obj/machinery/camera/process()
 	if((stat & EMPED) && world.time >= affected_by_emp_until)
@@ -132,7 +143,7 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+	SScameras.update_visibility(src)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if(!istype(user))
@@ -274,6 +285,15 @@
 			visible_message(span_notice(" [src] clicks and reactivates itself. "))
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
+
+	if(isnull(get_turf(src))) //Intergrated cameras and communicator code and things getting qdel'd and sent to nullspace.
+		return
+	if(can_use())
+		SScameras.add_camera_to_chunk(src)
+	else
+		set_light(0)
+		SScameras.remove_camera_from_chunk(src)
+
 
 /obj/machinery/camera/take_damage(force, message)
 	//prob(25) gives an average of 3-4 hits
@@ -461,16 +481,18 @@
 	return cam
 
 /obj/machinery/camera/proc/update_coverage(network_change = 0)
+	if(isnull(get_turf(src)))
+		return
 	if(network_change)
 		var/list/open_networks = difflist(network, GLOB.restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary
 		if(on_open_network && !open_networks.len)
-			GLOB.cameranet.removeCamera(src)
+			SScameras.remove_camera_from_chunk(src)
 		else if(!on_open_network && open_networks.len)
 			on_open_network = 1
-			GLOB.cameranet.addCamera(src)
+			SScameras.add_camera_to_chunk(src)
 	else
-		GLOB.cameranet.updateVisibility(src, 0)
+		SScameras.update_visibility(src)
 
 // Resets the camera's wires to fully operational state. Used by one of Malfunction abilities.
 /obj/machinery/camera/proc/reset_wires()
