@@ -544,13 +544,13 @@
 	return
 
 //Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
-/obj/effect/fusion_em_field/proc/radiation_scale()
+/obj/effect/fusion_em_field/proc/radiation_scale() // Power sits ~50. Sometimes higher, sometimes lower.cal
 	radiation_pulse(
 		src,
-		max_range = 5,
-		threshold = RAD_MEDIUM_INSULATION,
+		max_range = CLAMP(round(energy * 0.25), 7, 50),
+		threshold = RAD_EXTREME_INSULATION,
 		chance = (URANIUM_IRRADIATION_CHANCE + (plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)),
-		strength = energy * 0.01 //Might need to be increased.
+		strength = max(round(plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR) * 0.7, 100) //Increased. Now on par with the mag traps. This room is LETHAL when it's running.
 	)
 
 //Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.
