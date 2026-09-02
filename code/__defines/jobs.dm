@@ -466,6 +466,7 @@
 #define ATMOSTECH (1<<7)
 #define AI_DEPT (1<<8)
 #define CYBORG (1<<9)
+#define TCOMMS (1<<12)
 #define CLOWN (1<<13)
 #define MIME (1<<14)
 #define INTERN (1<<15)
@@ -487,7 +488,6 @@
 #define EXPLORER (1<<12)
 #define SAR (1<<13)
 #define XENOBOTANIST (1<<14)
-#define TCOMMS (1<<15)
 
 #define CIVILIAN (1<<2)
 

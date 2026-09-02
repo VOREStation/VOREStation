@@ -195,7 +195,7 @@
 	title = JOB_TELECOMMS_SPECIALIST
 	flag = TCOMMS
 	departments = list(DEPARTMENT_ENGINEERING)
-	department_flag = MEDSCI
+	department_flag = ENGSEC
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 3
@@ -206,7 +206,12 @@
 	access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TCOMSAT)
 	minimal_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EMERGENCY_STORAGE, ACCESS_CONSTRUCTION, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TCOMSAT)
 
-	alt_titles = list()
+	alt_titles = list(
+		JOB_ALT_WIRELESS_OPERATOR = /datum/alt_title/wireless_operator,
+		JOB_ALT_NETWORK_ENGINEER = /datum/alt_title/network_engineer,
+		JOB_ALT_SYSADMIN = /datum/alt_title/sysadmin,
+		JOB_ALT_TECHNICIAN = /datum/alt_title/tram_technician
+	)
 
 	minimal_player_age = 3
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
