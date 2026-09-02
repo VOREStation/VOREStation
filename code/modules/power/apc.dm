@@ -699,7 +699,8 @@ GLOBAL_LIST_EMPTY(apcs)
 
 /obj/machinery/power/apc/click_alt(mob/user)
 	..()
-	togglelock(user)
+	if(Adjacent(user) || isrobot(user))
+		togglelock(user)
 
 /obj/machinery/power/apc/emag_act(remaining_charges, mob/user)
 	if(!(emagged || hacker))		// trying to unlock with an emag card
