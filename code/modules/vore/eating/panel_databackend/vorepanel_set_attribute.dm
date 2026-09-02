@@ -959,7 +959,7 @@
 			host.vore_selected.health_impacts_size = !host.vore_selected.health_impacts_size
 			host.handle_belly_update()
 			. = TRUE
-		// Old version for temporary information
+		// Old version for temporary information - Kot
 		// if("b_resist_animation")
 		// 	host.vore_selected.resist_triggers_animation = !host.vore_selected.resist_triggers_animation
 		// 	. = TRUE
@@ -971,7 +971,7 @@
 			host.vore_selected.resist_triggers_animation = resist_modes
 			host.vore_selected.updateVRPanels()
 
-		//Example
+		//Example - Delete after - Kot
 		// if("b_drainmode")
 		// 	var/new_drainmode = params["val"]
 		// 	if(!(new_drainmode in host.vore_selected.drainmodes))
