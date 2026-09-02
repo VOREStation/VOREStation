@@ -1,6 +1,6 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
-import { spriteToTooltip } from '../../constants';
+import { spriteToTooltip, resistAnimationOptions} from '../../constants';
 import type { BellyVisualData, HostMob } from '../../types';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditColor } from '../../VorePanelElements/VorePanelEditColor';
@@ -8,7 +8,6 @@ import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDrop
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
-import { digestModeToColor, resistAnimationOptions } from '../../constants';
 
 
 export const VoreSpriteAffects = (props: {
