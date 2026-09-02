@@ -218,6 +218,13 @@
 	#define JOB_ALT_DISPOSALS_TECHNICIAN "Disposals Technician"
 	#define JOB_ALT_FUEL_TECHNICIAN "Fuel Technician"
 	#define JOB_ALT_FIREFIGHTER "Firefighter"
+
+#define JOB_TELECOMMS_SPECIALIST "Telecomms Specialist"
+	// Telecomms Specialist alt titles
+	#define JOB_ALT_WIRELESS_OPERATOR "Wireless Operator"
+	#define JOB_ALT_NETWORK_ENGINEER "Network Engineer"
+	#define JOB_ALT_SYSADMIN "Sysadmin"
+	#define JOB_ALT_TECHNICIAN "Tram Technician"
 //___________________________________________________________
 
 
@@ -480,6 +487,7 @@
 #define EXPLORER (1<<12)
 #define SAR (1<<13)
 #define XENOBOTANIST (1<<14)
+#define TCOMMS (1<<15)
 
 #define CIVILIAN (1<<2)
 

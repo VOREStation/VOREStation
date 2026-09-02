@@ -65,6 +65,11 @@ const rank2icon = {
   Electrician: 'screwdriver',
   'Construction Engineer': 'trowel-bricks',
   'Engineering Contractor': 'ruler',
+  // Telecomms Specialist
+  'Telecomms Specialist': 'wifi',
+  'Wireless Operator': 'wifi',
+  Sysadmin: 'wifi',
+  'Tram Technician': 'wifi',
   // Medical CMO
   'Chief Medical Officer': 'user-doctor',
   'Chief Physician': 'user-doctor',
@@ -383,6 +388,11 @@ const rank2color = {
   Electrician: 'orange',
   'Construction Engineer': 'orange',
   'Engineering Contractor': 'orange',
+  // Telecomms Specialist
+  'Telecomms Specialist': 'orange',
+  'Wireless Operator': 'orange',
+  Sysadmin: 'orange',
+  'Tram Technician': 'orange',
   // Medical CMO
   'Chief Medical Officer': 'blue',
   'Chief Physician': 'blue',

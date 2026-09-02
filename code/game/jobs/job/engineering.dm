@@ -187,3 +187,45 @@
 /datum/alt_title/disposals_tech
 	title = JOB_ALT_DISPOSALS_TECHNICIAN
 	title_blurb = "A " + JOB_ALT_DISPOSALS_TECHNICIAN + " is an " + JOB_ATMOSPHERIC_TECHNICIAN + " still and can fulfill all the same duties, although specializes more in disposals delivery system's operations and configurations."
+
+//////////////////////////////////
+//			Telecomms Specialist
+//////////////////////////////////
+/datum/job/telecomms_specialist
+	title = JOB_TELECOMMS_SPECIALIST
+	flag = TCOMMS
+	departments = list(DEPARTMENT_ENGINEERING)
+	department_flag = MEDSCI
+	faction = FACTION_STATION
+	total_positions = 2
+	spawn_positions = 3
+	pto_type = PTO_ENGINEERING
+	supervisors = "the " + JOB_CHIEF_ENGINEER
+	selection_color = "#5B4D20"
+	economic_modifier = 6
+	access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TCOMSAT)
+	minimal_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EMERGENCY_STORAGE, ACCESS_CONSTRUCTION, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_TCOMSAT)
+
+	alt_titles = list()
+
+	minimal_player_age = 3
+	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
+
+	outfit_type = /datum/decl/hierarchy/outfit/job/engineering/telecomms_specialist
+	job_description = "A " + JOB_TELECOMMS_SPECIALIST + " is primarily concerned with keeping the station's communications stable. They are expected to have a good \
+						understanding of networking, and to be familiar with proper telecommunications repairs procedure. They may also help Engineering with light repairwork."
+
+/datum/job/telecomms_specialist/get_request_reasons()
+	return list("Construction project", "Repairs necessary", "Assembling expedition team")
+
+/datum/alt_title/wireless_operator
+	title = JOB_ALT_WIRELESS_OPERATOR
+
+/datum/alt_title/network_engineer
+	title = JOB_ALT_NETWORK_ENGINEER
+
+/datum/alt_title/sysadmin
+	title = JOB_ALT_SYSADMIN
+
+/datum/alt_title/tram_technician
+	title = JOB_ALT_TECHNICIAN

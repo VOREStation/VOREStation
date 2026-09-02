@@ -49,3 +49,12 @@
 	pda_type = /obj/item/pda
 	r_pocket = null // no tray
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/yellow
+
+/datum/decl/hierarchy/outfit/job/engineering/telecomms_specialist
+	name = OUTFIT_JOB_NAME(JOB_TELECOMMS_SPECIALIST)
+	head = /obj/item/clothing/head/hardhat/dblue
+	uniform = /obj/item/clothing/under/rank/engineer
+	belt = /obj/item/storage/belt/utility/telecomms
+	id_type = /obj/item/card/id/engineering/telecomms
+	pda_type = /obj/item/pda
+	r_pocket = null
