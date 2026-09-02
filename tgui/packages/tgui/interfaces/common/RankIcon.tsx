@@ -66,10 +66,10 @@ const rank2icon = {
   'Construction Engineer': 'trowel-bricks',
   'Engineering Contractor': 'ruler',
   // Telecomms Specialist
-  'Telecomms Specialist': 'wifi',
-  'Wireless Operator': 'wifi',
-  Sysadmin: 'wifi',
-  'Tram Technician': 'wifi',
+  'Telecomms Specialist': 'satellite-dish',
+  'Wireless Operator': 'satellite-dish',
+  Sysadmin: 'satellite-dish',
+  'Tram Technician': 'satellite-dish',
   // Medical CMO
   'Chief Medical Officer': 'user-doctor',
   'Chief Physician': 'user-doctor',
