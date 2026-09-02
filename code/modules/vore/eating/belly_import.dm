@@ -727,9 +727,9 @@
 		if(isnum(belly_data["resist_triggers_animation"]))
 			var/new_resist_triggers_animation = belly_data["resist_triggers_animation"]
 			if(new_resist_triggers_animation == 0)
-				new_belly.resist_triggers_animation = FALSE
+				new_belly.resist_triggers_animation = SQUIRM_NONE
 			if(new_resist_triggers_animation == 1)
-				new_belly.resist_triggers_animation = TRUE
+				new_belly.resist_triggers_animation = SQUIRM_NORMAL
 
 		if(isnum(belly_data["size_factor_for_sprite"]))
 			var/new_size_factor_for_sprite = belly_data["size_factor_for_sprite"]
