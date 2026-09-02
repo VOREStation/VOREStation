@@ -30,8 +30,9 @@
 	return ..()
 
 /turf/simulated/floor/lava/Destroy()
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_PROCESSING(SSturfs, src)
 	. = ..()
-	STOP_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/make_outdoors()
 	..()
