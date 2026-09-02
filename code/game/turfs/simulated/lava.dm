@@ -76,7 +76,7 @@
 	. = FALSE
 
 	if(is_safe())
-		return PROCESS_KILL
+		return FALSE
 
 	// If argument is set, we're only burning JUST that thing. Otherwise this burns all turf contents.
 	var/thing_to_check = src
@@ -98,9 +98,6 @@
 			. = TRUE
 			L.lava_act()
 			continue
-
-	if(!.) // Nothing to burn
-		return PROCESS_KILL
 
 // Lava that does nothing at all.
 /turf/simulated/floor/lava/harmless/burn_stuff(atom/movable/AM)
