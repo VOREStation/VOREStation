@@ -160,7 +160,8 @@
 	name = "Fat Feline 3-color (Taur)"
 	icon_state = "fatfeline_s"
 	icon_sprite_tag = "fatfeline"
-	extra_overlay = "fatfeline2_markings"		// chest and belly
+	ani_state = "fatfeline_w" //this does, in fact, have a wag animation.
+  extra_overlay = "fatfeline2_markings"		// chest and belly
 	extra_overlay2 = "fatfeline2_markings_2"	// feet
 	can_loaf = TRUE
 	loaf_offset = 3

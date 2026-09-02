@@ -797,7 +797,7 @@
 	icon_state = "aliencharacter"
 
 /obj/random/miniature/item_to_spawn()
-	return pick(typesof(/obj/item/toy/character))
+	return pick(subtypesof(/obj/item/toy/character))
 
 /*
  * Snake popper
