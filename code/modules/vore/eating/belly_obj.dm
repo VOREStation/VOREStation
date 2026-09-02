@@ -92,6 +92,8 @@
 	var/item_multiplier = 1
 	var/health_impacts_size = TRUE
 	var/resist_triggers_animation = SQUIRM_NORMAL
+	//resist modes for animation
+	var/tmp/static/list/resist_modes = list(SQUIRM_NONE,SQUIRM_NORMAL,SQUIRM_ABSORB,SQUIRM_BOTH)
 	var/size_factor_for_sprite = 1
 	var/belly_sprite_to_affect = "stomach"
 	var/datum/sprite_accessory/tail/tail_to_change_to = FALSE

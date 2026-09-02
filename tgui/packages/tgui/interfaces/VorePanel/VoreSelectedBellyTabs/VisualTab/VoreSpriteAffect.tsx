@@ -8,6 +8,8 @@ import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDrop
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
+import { digestModeToColor, resistAnimationOptions } from '../../constants';
+
 
 export const VoreSpriteAffects = (props: {
   editMode: boolean;
@@ -247,7 +249,16 @@ export const VoreSpriteAffects = (props: {
                   active={!!resist_animation}
                 />
               </LabeledList.Item>
-            </LabeledList>
+              <LabeledList.Item label="Animation when prey resist">
+                  <VorePanelEditDropdown
+                    action="set_attribute"
+                    subAction="b_resist_animation"
+                    editMode={editMode}
+                    options={resistAnimationOptions}
+                    entry={resist_animation}
+                  />
+                </LabeledList.Item>
+              </LabeledList>
           </Stack.Item>
         </Stack>
       </Stack.Item>

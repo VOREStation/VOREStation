@@ -257,7 +257,7 @@
 	if(!private_struggle)
 		resist_play_sound()
 
-	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && resist_triggers_animation && affects_vore_sprites)
+	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && (resist_triggers_animation == SQUIRM_NORMAL || SQUIRM_BOTH) && affects_vore_sprites)
 		owner.vs_animate(belly_sprite_to_affect)
 
 
