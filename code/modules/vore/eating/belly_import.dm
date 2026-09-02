@@ -724,12 +724,12 @@
 			if(new_health_impacts_size == 1)
 				new_belly.health_impacts_size = TRUE
 
-		if(istext(belly_data["resist_triggers_animation"]))
-			var/new_resist_triggers_animation = belly_data["resist_triggers_animation"]
-			if(new_resist_triggers_animation == 0)
-				new_belly.resist_triggers_animation = SQUIRM_NONE
-			if(new_resist_triggers_animation == 1)
-				new_belly.resist_triggers_animation = SQUIRM_NORMAL
+		// if(istext(belly_data["resist_triggers_animation"]))
+		// 	var/new_resist_triggers_animation = belly_data["resist_triggers_animation"]
+		// 	if(new_resist_triggers_animation == 0)
+		// 		new_belly.resist_triggers_animation = SQUIRM_NONE
+		// 	if(new_resist_triggers_animation == 1)
+		// 		new_belly.resist_triggers_animation = SQUIRM_NORMAL
 
 		if(isnum(belly_data["size_factor_for_sprite"]))
 			var/new_size_factor_for_sprite = belly_data["size_factor_for_sprite"]
