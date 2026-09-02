@@ -542,8 +542,6 @@
 	A.wash(CLEAN_WASH)
 	A.wash(CLEAN_SCRUB)
 
-	reagents.splash(A, reaction_volume / 20, 1, TRUE, min_spill = 0, max_spill = 0) //Reaction volume needs to be divided by 20 due to a larger internal volume
-
 	if(isliving(A))
 		var/mob/living/L = A
 		check_heat(L)
@@ -556,6 +554,8 @@
 			if(C.touching)
 				var/remove_amount = C.touching.maximum_volume * C.reagent_permeability() //take off your suit first
 				C.touching.remove_any(remove_amount)
+
+	reagents.splash(A, reaction_volume / 20, 1, TRUE, min_spill = 0, max_spill = 0) //Reaction volume needs to be divided by 20 due to a larger internal volume
 
 /obj/machinery/shower/process()
 	if(on)
