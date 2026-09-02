@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)
-	if(!A || !istype(A, /atom/movable))
+	if(!A || !istype(A, /atom/movable) || istype(A, /obj/effect/abstract))
 		return
 	var/atom/movable/AM = A
 	var/curtiles = 0
