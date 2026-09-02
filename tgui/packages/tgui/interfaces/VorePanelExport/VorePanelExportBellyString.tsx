@@ -648,8 +648,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     },
     {
       label: 'Animation when prey resist',
-      value: resist_triggers_animation,
-      formatter: getYesNo,
+      value: resist_triggers_animation
     },
     { label: 'Vore Sprite Size Factor', value: size_factor_for_sprite },
     { label: 'Belly Sprite to affect', value: belly_sprite_to_affect },
