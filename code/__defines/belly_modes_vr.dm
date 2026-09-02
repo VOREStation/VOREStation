@@ -101,3 +101,9 @@
 #define B_ESCAPABLE_NONE		0
 #define B_ESCAPABLE_DEFAULT		1
 #define B_ESCAPABLE_INTENT		2
+
+//Prey squirming effects options
+#define SQUIRM_NONE				0
+#define SQUIRM_NORMAL			1
+#define SQUIRM_ABSORB			2
+#define SQUIRM_BOTH				2
