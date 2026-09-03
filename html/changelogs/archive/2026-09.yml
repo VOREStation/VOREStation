@@ -3,3 +3,8 @@
   - bugfix: Fat Feline 3color can no longer enter a bugged state via vwag.
   Will:
   - bugfix: Removes an invalid item from the arcade prize pool
+2026-09-03:
+  Will:
+  - bugfix: APCs properly check if you are in range when alt-clicked to toggle lock.
+  - bugfix: Flashlight light beams can no longer be thrown by shuttle throw triggers,
+      or pulled by singularities
