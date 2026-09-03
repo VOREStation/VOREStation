@@ -176,6 +176,7 @@
 		update_inv_active_hand()
 	return
 
+/* Disable abiotic lockout
 /mob/living/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
 		return 1
@@ -183,6 +184,7 @@
 	if((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )))
 		return 1
 	return 0
+*/
 
 // This handles the drag-open inventory panel.
 /mob/living/MouseDrop(atom/over_object)

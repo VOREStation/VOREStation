@@ -847,6 +847,7 @@
 		to_chat(src, span_warning("You don't have the dexterity to use that!"))
 	return 0
 
+/* Disable abiotic lockout
 /mob/living/carbon/human/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
 		return 1
@@ -855,7 +856,7 @@
 		return 1
 
 	return 0
-
+*/
 
 /mob/living/carbon/human/proc/check_dna()
 	dna.check_integrity(src)

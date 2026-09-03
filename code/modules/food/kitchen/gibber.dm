@@ -135,10 +135,11 @@
 		to_chat(user, span_danger("The gibber safety guard is engaged!"))
 		return
 
-
+	/* Disable abiotic lockout
 	if(victim.abiotic(1))
 		to_chat(user, span_danger("Subject may not have abiotic items on."))
 		return
+	*/
 
 	user.visible_message(span_danger("[user] starts to put [victim] into the gibber!"))
 	src.add_fingerprint(user)
