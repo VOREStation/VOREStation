@@ -29,6 +29,11 @@
 	update_light()
 	return ..()
 
+/turf/simulated/floor/lava/Destroy()
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_PROCESSING(SSturfs, src)
+	. = ..()
+
 /turf/simulated/floor/lava/make_outdoors()
 	..()
 	name = "lava"
@@ -51,6 +56,7 @@
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))
 		START_PROCESSING(SSturfs, src)
+	. = ..()
 
 /turf/simulated/floor/lava/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(burn_stuff(source))
@@ -72,24 +78,26 @@
 	if(is_safe())
 		return FALSE
 
+	// If argument is set, we're only burning JUST that thing. Otherwise this burns all turf contents.
 	var/thing_to_check = src
 	if(AM)
 		thing_to_check = list(AM)
 
-	for(var/thing in thing_to_check)
+	for(var/atom/movable/thing in thing_to_check)
+		if(thing.throwing || thing.is_incorporeal())
+			continue
 		if(isobj(thing))
 			var/obj/O = thing
-			if(O.throwing || O.is_incorporeal())
-				continue
 			. = TRUE
 			O.lava_act()
-
-		else if(isliving(thing))
+			continue
+		if(isliving(thing))
 			var/mob/living/L = thing
-			if(L.hovering || L.throwing || L.is_incorporeal()) // Flying over the lava. We're just gonna pretend convection doesn't exist.
+			if(L.hovering || L.flying) // Flying over the lava. We're just gonna pretend convection doesn't exist.
 				continue
 			. = TRUE
 			L.lava_act()
+			continue
 
 // Lava that does nothing at all.
 /turf/simulated/floor/lava/harmless/burn_stuff(atom/movable/AM)

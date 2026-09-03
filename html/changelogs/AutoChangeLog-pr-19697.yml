@@ -1,0 +1,8 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "Fixed water and lava not respecting signal behaviors"
+  - bugfix: "RUST injectors respect signal behaviors"
+  - bugfix: "Borgs can no longer remove RUST fuel cells from injectors from afar"
+  - bugfix: "Being thrown over water will no longer get you wet"
+  - rscadd: "Being thrown over landmines no longer triggers the mine if you don't land on it."
