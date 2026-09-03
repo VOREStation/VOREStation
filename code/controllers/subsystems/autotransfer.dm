@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(transfer)
 	currenttick = currenttick + 1
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES)
 		shift_last_vote = 1000000000000 //Setting to a stupidly high number since it'll be not used again.
-		var/hours = CONFIG_GET(number/vote_autotransfer_interval) / 36000
+		var/hours = CONFIG_GET(number/vote_autotransfer_interval) / (1 HOUR)
 		to_chat(world, span_world(span_notice("Warning: This upcoming round-extend vote will be your ONLY extend vote. Wrap up your scenes in the next [hours] hours if the round is extended.")))
 	if (round_duration_in_ds >= shift_hard_end - 1 MINUTE)
 		init_shift_change(null, 1)
