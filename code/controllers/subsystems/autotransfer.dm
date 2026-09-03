@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(transfer)
 /datum/controller/subsystem/transfer/fire(resumed)
 	currenttick = currenttick + 1
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES)
-		var/hours = shift_last_vote / (1 HOUR)
+		var/hours = (shift_hard_end - shift_last_vote) / (1 HOUR)
 		shift_last_vote = 1000000000000 //Setting to a stupidly high number since it'll be not used again.
 		to_chat(world, span_world(span_notice("Warning: This upcoming round-extend vote will be your ONLY extend vote. Wrap up your scenes in the next [hours] hours if the round is extended.")))
 	if (round_duration_in_ds >= shift_hard_end - 1 MINUTE)
