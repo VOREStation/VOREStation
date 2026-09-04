@@ -25,7 +25,7 @@
 	/// Temporary messages
 	var/temp
 
-	var/list/allowed_types = list(
+	var/static/list/allowed_types = list(
 		/obj/item/clothing,
 		/obj/item/storage/backpack,
 		/obj/item/storage/belt,
