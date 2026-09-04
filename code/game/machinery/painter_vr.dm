@@ -30,7 +30,8 @@
 		/obj/item/storage/backpack,
 		/obj/item/storage/belt,
 		/obj/item/toy,
-		/obj/item/stack/material
+		/obj/item/stack/material,
+		/obj/item/storage/toolbox/paintable
 	)
 
 /obj/machinery/gear_painter/Initialize(mapload)

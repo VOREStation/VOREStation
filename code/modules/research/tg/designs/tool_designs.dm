@@ -1321,3 +1321,16 @@
 		RND_CATEGORY_TOOLS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/toolbox
+	name = "toolbox"
+	desc = "A metal toolbox with remarkably robust construction."
+	id = "toolbox"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(5))
+	build_path = /obj/item/storage/toolbox/paintable
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
