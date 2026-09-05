@@ -47,6 +47,10 @@
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
+		if(isstorage(src.loc))
+			user.put_in_hands(src)
+			to_chat(user, span_notice("You pick up the [src]."))
+			return
 	var/response = ""
 	if(!papers.len > 0)
 		response = tgui_alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", list("Regular", "Carbon-Copy", "Cancel"))
