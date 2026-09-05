@@ -3,13 +3,13 @@
 	"version": "6.0.0",
 	"dependencies": {
 		"common": "workspace:*",
-		"dompurify": "^3.4.12",
-		"es-toolkit": "^1.50.0",
-		"jotai": "^2.20.2",
+		"dompurify": "^3.4.14",
+		"es-toolkit": "^1.52.0",
+		"jotai": "^2.20.3",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"tgui": "workspace:*",
-		"tgui-core": "^6.1.1",
+		"tgui-core": "^6.1.2",
 		"tgui-dev-server": "workspace:*",
 		"zod": "^4.4.3"
 	},
