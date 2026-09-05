@@ -959,9 +959,27 @@
 			host.vore_selected.health_impacts_size = !host.vore_selected.health_impacts_size
 			host.handle_belly_update()
 			. = TRUE
+		// Old version for temporary information - Kot
+		// if("b_resist_animation")
+		// 	host.vore_selected.resist_triggers_animation = !host.vore_selected.resist_triggers_animation
+		// 	. = TRUE
+
 		if("b_resist_animation")
-			host.vore_selected.resist_triggers_animation = !host.vore_selected.resist_triggers_animation
-			. = TRUE
+			var/resist_modes = params["val"]
+			if(!(resist_modes in host.vore_selected.resist_modes))
+				return FALSE
+			host.vore_selected.resist_triggers_animation = resist_modes
+			host.vore_selected.updateVRPanels()
+
+		//Example - Delete after - Kot
+		// if("b_drainmode")
+		// 	var/new_drainmode = params["val"]
+		// 	if(!(new_drainmode in host.vore_selected.drainmodes))
+		// 		return FALSE
+		// 	host.vore_selected.drainmode = new_drainmode
+		// 	host.vore_selected.updateVRPanels()
+
+
 		if("b_size_factor_sprites")
 			var/size_factor_input = text2num(params["val"])
 			if(!isnum(size_factor_input))
