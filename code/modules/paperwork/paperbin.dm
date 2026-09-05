@@ -47,8 +47,9 @@
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
-		if(isstorage(src.loc))
-			remove_from_storage(B, H.loc)
+		if(istype(src.loc, /obj/item/storage))
+			var/obj/item/storage/S = src.loc
+			S.remove_from_storage(src)
 			user.put_in_hands(src)
 			to_chat(user, span_notice("You pick up the [src]."))
 			return
