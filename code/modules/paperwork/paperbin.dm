@@ -48,6 +48,7 @@
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
 		if(isstorage(src.loc))
+			remove_from_storage(B, H.loc)
 			user.put_in_hands(src)
 			to_chat(user, span_notice("You pick up the [src]."))
 			return
