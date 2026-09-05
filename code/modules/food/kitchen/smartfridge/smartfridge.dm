@@ -116,13 +116,14 @@
 /obj/machinery/smartfridge/attackby(obj/item/O, mob/user)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
+		wrenchable = !wrenchable
 		user.visible_message(span_filter_notice("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src]."), span_filter_notice("You [panel_open ? "open" : "close"] the maintenance panel of \the [src]."))
 		playsound(src, O.usesound, 50, 1)
 		update_icon()
 		return
 
-	if(wrenchable && default_unfasten_wrench(user, O, 20))
-		return
+	// if(wrenchable && default_unfasten_wrench(user, O, 20))
+	// 	return
 
 	if(O.has_tool_quality(TOOL_CROWBAR))
 		if(allowed(user))
