@@ -7139,12 +7139,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/centcom/restaurant)
-"yi" = (
-/obj/machinery/door/blast/regular{
-	dir = 4
-	},
-/turf/simulated/wall/r_wall,
-/area/centcom/terminal)
 "yj" = (
 /obj/machinery/vending/fitness,
 /turf/simulated/floor/tiled,
@@ -25842,7 +25836,7 @@ bR
 bR
 bR
 bR
-yi
+ad
 Tz
 Tz
 Tz
