@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(rollover_safety_date, 0) // set in world/New to the server start
 	return GLOB.midnight_rollovers
 
 ///Increases delay as the server gets more overloaded, as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
-#define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
+#define DELTA_CALC min(3,max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1))
 
 ///returns the number of ticks slept
 /proc/stoplag(initial_delay)
