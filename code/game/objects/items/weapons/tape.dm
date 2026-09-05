@@ -198,3 +198,8 @@
 				pixel_y += 32
 			else if(dir_offset & SOUTH)
 				pixel_y -= 32
+
+/obj/item/tape_roll/cyborg
+	name = "tape dispenser"
+	desc = "A dispenser for sticky tape. Possibly for taping ducks... cyber ducks..."
+	icon = 'icons/obj/bureaucracy.dmi'

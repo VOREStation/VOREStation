@@ -44,6 +44,9 @@
 			for(var/mob/O in viewers(src, null))
 				O.show_message(span_warning("[user] cuts the cable."), 1)
 
+			if(broken)
+				unfray()
+
 			qdel(src)
 		return
 	else if(istype(W, /obj/item/stack/cable_coil) && !istype(W, /obj/item/stack/cable_coil/heavyduty))
