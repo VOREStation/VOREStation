@@ -115,10 +115,22 @@
 	check_hud_disable(living_prey)
 
 /obj/belly/proc/check_hud_disable(mob/living/living_prey)
-	if(disable_hud && living_prey != owner)
-		if(living_prey?.hud_used?.hud_shown)
-			to_chat(living_prey, span_vnotice("((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))"))
-			living_prey.toggle_hud_vis(TRUE)
+	if(!disable_hud)
+		return
+	if(living_prey == owner)
+		return
+	if(living_prey?.hud_used?.hud_shown)
+		to_chat(living_prey, span_vnotice("((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))"))
+		living_prey.toggle_hud_vis(TRUE)
+
+/obj/belly/proc/check_hud_enable(mob/living/living_prey)
+	if(disable_hud)
+		return
+	if(living_prey == owner)
+		return
+	if(!(living_prey?.hud_used?.hud_shown))
+		to_chat(living_prey, span_vnotice("((Your pred has re-enabled huds in their belly.))"))
+		living_prey.toggle_hud_vis(TRUE)
 
 /obj/belly/proc/get_mush_overlay(color, alpha, limit, content)
 	var/image/overlay_image = image('icons/mob/vore_fullscreens/bubbles.dmi', "mush")
