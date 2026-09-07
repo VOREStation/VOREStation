@@ -1294,33 +1294,46 @@
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
 "cM" = (
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "cN" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "cO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "cP" = (
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
-/obj/item/stack/material/phoron,
 /obj/structure/table/reinforced,
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
 /turf/simulated/floor/tiled,
 /area/bridge)
 "cQ" = (
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled,
+/obj/item/storage/firstaid/surgery,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "cR" = (
 /turf/simulated/wall/r_wall,
@@ -1369,7 +1382,7 @@
 /area/crew_quarters/bar)
 "cX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "cY" = (
 /obj/machinery/door/firedoor/glass,
@@ -1404,7 +1417,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "de" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1413,7 +1426,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "df" = (
 /obj/machinery/light{
@@ -1433,7 +1446,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "dh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1442,14 +1455,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "di" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "dj" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -1458,7 +1471,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "dk" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -1536,19 +1549,19 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "ds" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "dt" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "du" = (
 /turf/simulated/wall,
@@ -1620,7 +1633,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "dG" = (
 /obj/machinery/power/apc{
@@ -1628,10 +1641,7 @@
 	name = "east bump";
 	pixel_x = 24
 	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "dH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1828,13 +1838,16 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "ec" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "ed" = (
 /obj/machinery/light{
@@ -1892,30 +1905,21 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "el" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "em" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/medical/medbay)
-"en" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "eo" = (
 /obj/structure/cable{
@@ -1954,7 +1958,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "eu" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -2002,7 +2007,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "eA" = (
 /obj/structure/cable{
@@ -2014,7 +2019,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "eB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2023,11 +2028,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "eC" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "eD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2692,6 +2697,15 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/directions/bar{
+	dir = 1;
+	pixel_x = -32
+	},
+/obj/structure/sign/directions/kitchen{
+	dir = 1;
+	pixel_y = 7;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/bridge)
 "gb" = (
@@ -2885,8 +2899,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge)
 "gD" = (
-/turf/simulated/shuttle/wall/voidcraft/blue,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/wall/voidcraft/blue)
 "gE" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
@@ -2901,48 +2914,18 @@
 	},
 /area/tcommsat/chamber)
 "gG" = (
-/turf/simulated/shuttle/wall,
-/area/shuttle/ferrydemo)
-"gH" = (
-/obj/structure/shuttle/window,
-/turf/simulated/shuttle/plating,
-/area/shuttle/ferrydemo)
+/turf/simulated/shuttle/wall)
 "gI" = (
 /obj/effect/wingrille_spawn/reinforced/crescent,
 /turf/simulated/floor/tiled,
 /area/bridge)
-"gJ" = (
-/obj/effect/shuttle_landmark/transit/ferrydemo_transit,
-/turf/space,
-/area/space)
-"gK" = (
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
-"gL" = (
-/obj/structure/table/reinforced,
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
 "gM" = (
 /obj/structure/shuttle,
 /turf/space,
 /area/space)
 "gN" = (
 /obj/structure/shuttle/window,
-/turf/simulated/shuttle/plating,
-/area/shuttle/webdemo)
-"gO" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/shuttle_landmark/station_dockpoint1,
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
-"gP" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
+/turf/simulated/shuttle/plating)
 "gQ" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	id_tag = "station_dock1";
@@ -2958,50 +2941,16 @@
 	id_tag = "webdemo_docker_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/floor)
 "gS" = (
 /obj/structure/shuttle/engine/heater,
-/turf/simulated/shuttle/plating,
-/area/shuttle/ferrydemo)
-"gT" = (
-/obj/effect/shuttle_landmark/transit/multidemo_transit,
-/turf/space,
-/area/space)
+/turf/simulated/shuttle/plating)
 "gU" = (
 /obj/structure/shuttle,
-/turf/simulated/shuttle/wall,
-/area/shuttle/ferrydemo)
+/turf/simulated/shuttle/wall)
 "gV" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/simulated/shuttle/plating,
-/area/shuttle/ferrydemo)
-"gW" = (
-/obj/effect/shuttle_landmark/shared_space,
-/turf/space,
-/area/space)
-"gX" = (
-/turf/simulated/shuttle/wall/voidcraft/blue,
-/area/shuttle/multidemo)
-"gY" = (
-/obj/structure/shuttle/window,
-/turf/simulated/shuttle/plating,
-/area/shuttle/multidemo)
-"gZ" = (
-/obj/effect/shuttle_landmark/ferrydemo_space,
-/turf/space,
-/area/space)
-"ha" = (
-/obj/effect/shuttle_landmark/multidemo_nearby,
-/turf/space,
-/area/space)
-"hb" = (
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
-"hc" = (
-/obj/structure/table/reinforced,
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
+/turf/simulated/shuttle/plating)
 "hd" = (
 /obj/machinery/light,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
@@ -3009,21 +2958,7 @@
 	layer = 3.1;
 	pixel_x = -28
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
-"he" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/shuttle_landmark/multidemo_start,
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
-"hf" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
+/turf/simulated/shuttle/floor)
 "hg" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -3038,16 +2973,10 @@
 	name = "ferry-demo shuttle control console";
 	shuttle_tag = "Ferry-Demo"
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
-"hi" = (
-/obj/structure/shuttle,
-/turf/simulated/shuttle/wall/voidcraft/blue,
-/area/shuttle/multidemo)
+/turf/simulated/shuttle/floor)
 "hj" = (
 /obj/structure/table/reinforced,
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/floor)
 "hk" = (
 /obj/machinery/computer/shuttle_control{
 	dir = 8;
@@ -3069,8 +2998,7 @@
 	name = "multi-demo shuttle control console";
 	shuttle_tag = "Multi-Demo"
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
+/turf/simulated/shuttle/floor)
 "hn" = (
 /obj/machinery/light,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
@@ -3078,8 +3006,7 @@
 	layer = 3.1;
 	pixel_x = -28
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
+/turf/simulated/shuttle/floor)
 "ho" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -3087,8 +3014,7 @@
 	id_tag = "ferrydemo_shuttle_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/ferrydemo)
+/turf/simulated/shuttle/floor)
 "hp" = (
 /obj/effect/landmark{
 	name = "JoinLate"
@@ -3100,10 +3026,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge)
-"hq" = (
-/obj/effect/shuttle_landmark/transit/webdemo_transit,
-/turf/space,
-/area/space)
 "hr" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -3111,14 +3033,7 @@
 	id_tag = "multidemo_shuttle_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/multidemo)
-"hs" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/floor)
 "ht" = (
 /obj/machinery/light,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
@@ -3126,27 +3041,19 @@
 	layer = 3.1;
 	pixel_x = -28
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/floor)
 "hu" = (
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
-"hv" = (
-/obj/effect/shuttle_landmark/webdemo_faraway,
-/turf/space,
-/area/space)
+/turf/simulated/shuttle/floor)
 "hw" = (
 /obj/structure/shuttle,
-/turf/simulated/shuttle/wall/voidcraft/blue,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/wall/voidcraft/blue)
 "hx" = (
 /obj/machinery/computer/shuttle_control/web{
 	my_doors = list("webdemo_docker_hatch" = "Hatch");
 	name = "Web-Demo Console";
 	shuttle_tag = "Web-Demo"
 	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/floor)
 "hy" = (
 /obj/machinery/light{
 	dir = 4
@@ -3162,27 +3069,21 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/shuttle_landmark/station_inside,
-/turf/simulated/shuttle/floor,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/floor)
 "hA" = (
 /obj/structure/shuttle/engine/heater,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/plating/carry)
 "hB" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/webdemo)
+/turf/simulated/shuttle/plating/carry)
 "hC" = (
 /obj/machinery/shipsensors,
-/turf/simulated/shuttle/floor/voidcraft/external/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/external/light)
 "hD" = (
 /obj/machinery/ion_engine{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/plating/carry)
 "hE" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -3403,7 +3304,7 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "ie" = (
 /obj/structure/cable/green{
@@ -3575,6 +3476,38 @@
 /obj/machinery/ore_silo,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"iF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/chem_master,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/chemical_analyzer,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iH" = (
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/fancy/vials,
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iI" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/sign/directions/engineering{
+	dir = 1;
+	pixel_y = -6
+	},
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -3587,12 +3520,75 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
+"iK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/primary/fore)
+"iL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/primary/fore)
+"iM" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/sign/directions/medical/chemlab{
+	pixel_x = -1
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay)
+"iN" = (
+/obj/machinery/camera/network/medbay{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "iO" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"iP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"iQ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"iR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"iS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "iT" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/machinery/button/remote/blast_door{
@@ -3605,6 +3601,66 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/engine_gas)
+"iU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/sign/directions/bar{
+	dir = 4;
+	pixel_x = 2
+	},
+/obj/structure/sign/directions/engineering{
+	pixel_x = 2;
+	pixel_y = -6;
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay)
+"iV" = (
+/obj/machinery/chemical_dispenser/bar_syrup/full{
+	dir = 1
+	},
+/obj/structure/table/hardwoodtable,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"iW" = (
+/obj/machinery/light,
+/obj/structure/table/hardwoodtable,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"iX" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/chemical_dispenser/bar_soft/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"iY" = (
+/obj/machinery/smartfridge/drinks,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"iZ" = (
+/obj/machinery/chemical_dispenser/full,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"ja" = (
+/obj/structure/table/hardwoodtable,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"jb" = (
+/obj/machinery/vending/boozeomat{
+	req_access = null
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
 "jc" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 8
@@ -3638,6 +3694,50 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_monitoring)
+"jg" = (
+/obj/machinery/chem_master,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"jh" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"ji" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"jj" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jm" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/sign/directions/engineering{
+	pixel_x = -2
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
 "jn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable{
@@ -3647,6 +3747,23 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/engine_gas)
+"jo" = (
+/obj/machinery/atmospherics/unary/cryo_cell,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jp" = (
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jq" = (
+/obj/machinery/body_scanconsole,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "jr" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -3663,10 +3780,52 @@
 	},
 /turf/simulated/floor,
 /area/engineering/workshop)
+"jt" = (
+/obj/machinery/computer/operating,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"ju" = (
+/obj/structure/medical_stand,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jv" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jw" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jx" = (
+/obj/machinery/sleep_console,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jy" = (
+/obj/structure/table/rack,
+/obj/item/roller,
+/obj/item/roller{
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jz" = (
+/obj/machinery/vending/medical,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "jA" = (
 /obj/machinery/cryopod,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"jB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "jC" = (
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
@@ -3675,6 +3834,61 @@
 /obj/machinery/power/tesla_coil/pre_mapped,
 /turf/simulated/floor/airless,
 /area/space)
+"jD" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jE" = (
+/obj/machinery/vending/blood,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jG" = (
+/obj/machinery/oxygen_pump/anesthetic,
+/turf/simulated/wall,
+/area/medical/medbay)
+"jH" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1;
+	health = 1e+006
+	},
+/obj/structure/sign/directions/telecomms{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay)
+"jI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/secondary/engineering_hallway)
+"jJ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/turf/simulated/floor/tiled,
+/area/hallway/secondary/engineering_hallway)
 "jQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3788,8 +4002,7 @@
 /area/engineering/engine_room)
 "kU" = (
 /obj/structure/shuttle,
-/turf/simulated/shuttle/wall/voidcraft/green,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/wall/voidcraft/green)
 "kY" = (
 /obj/item/modular_computer/console/preset/engineering{
 	dir = 1
@@ -3867,6 +4080,10 @@
 "mj" = (
 /obj/machinery/camera/network/civilian{
 	dir = 10
+	},
+/obj/structure/table/hardwoodtable,
+/obj/machinery/chemical_dispenser/bar_alc/full{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
@@ -4271,8 +4488,7 @@
 	id_tag = "overmapdemo_docker_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "qt" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -4290,8 +4506,7 @@
 	name = "Overmap-Demo Shuttle Control";
 	shuttle_tag = "Overmap-Demo"
 	},
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "qH" = (
 /obj/structure/closet/radiation,
 /turf/simulated/floor/tiled/techmaint,
@@ -4320,7 +4535,10 @@
 /area/engineering/engine_gas)
 "qZ" = (
 /obj/machinery/camera/network/civilian,
-/turf/simulated/floor/tiled,
+/obj/machinery/atmospherics/unary/freezer{
+	icon_state = "freezer"
+	},
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "rm" = (
 /obj/structure/grille,
@@ -4474,10 +4692,6 @@
 	},
 /turf/simulated/floor,
 /area/engineering/workshop)
-"sA" = (
-/obj/structure/shuttle/engine/heater,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/multidemo)
 "sB" = (
 /obj/effect/landmark{
 	name = "JoinLateCyborg"
@@ -4728,8 +4942,7 @@
 	dir = 8;
 	throwpass = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "vQ" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -4975,7 +5188,8 @@
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/obj/machinery/bodyscanner,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "xZ" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
@@ -5129,8 +5343,7 @@
 /area/engineering/engine_monitoring)
 "zf" = (
 /obj/effect/wingrille_spawn/reinforced,
-/turf/simulated/shuttle/floor/voidcraft/external/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/external/light)
 "zg" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -5188,10 +5401,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/shuttle_landmark/station_dockpoint2,
-/obj/effect/overmap/visitable/ship/landable/overmapdemo,
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "Aa" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
@@ -5704,8 +5914,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "Gz" = (
-/turf/simulated/shuttle/wall/voidcraft/green,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/wall/voidcraft/green)
 "GB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /obj/structure/lattice,
@@ -5914,10 +6123,6 @@
 	},
 /turf/simulated/floor,
 /area/engineering/workshop)
-"JA" = (
-/obj/effect/overmap/visitable/sector/virgo_minitest/station,
-/turf/space,
-/area/space)
 "JB" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -6320,8 +6525,7 @@
 /obj/machinery/computer/ship/navigation{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "Od" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -6407,7 +6611,7 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "OE" = (
 /obj/structure/cable/yellow{
@@ -6472,10 +6676,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
-"Pg" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/multidemo)
 "Pk" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -6913,8 +7113,7 @@
 /obj/machinery/computer/ship/sensors{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "Un" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1379;
@@ -7207,8 +7406,7 @@
 /area/engineering/engine_gas)
 "XZ" = (
 /obj/machinery/computer/ship/helm,
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/shuttle/overmapdemo)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "Yb" = (
 /obj/machinery/camera/network/civilian{
 	dir = 9
@@ -7550,7 +7748,7 @@ aa
 aa
 aa
 aa
-JA
+aa
 aa
 "}
 (3,1,1) = {"
@@ -8850,8 +9048,8 @@ aa
 aa
 aa
 aa
-sA
-Pg
+hA
+hB
 aa
 fY
 gf
@@ -8948,11 +9146,11 @@ aa
 aa
 aa
 aa
-gX
-gY
+gD
+gN
 hr
-gY
-hi
+gN
+hw
 aa
 aa
 fY
@@ -9050,11 +9248,11 @@ aa
 aa
 aa
 aa
-gY
+gN
 hm
-he
+hz
 hn
-gY
+gN
 aa
 aa
 fY
@@ -9152,11 +9350,11 @@ aa
 aa
 aa
 aa
-gY
-hc
-hf
-hb
-gY
+gN
+hj
+hz
+hu
+gN
 aa
 aa
 fY
@@ -9254,11 +9452,11 @@ aa
 aa
 aa
 aa
-gX
-gY
-gY
-gY
-gX
+gD
+gN
+gN
+gN
+gD
 aa
 aa
 fY
@@ -9360,8 +9558,8 @@ aa
 aa
 aa
 aa
-sA
-Pg
+hA
+hB
 aa
 fY
 GC
@@ -9468,7 +9666,7 @@ aa
 fY
 gj
 ni
-gr
+iF
 gf
 gf
 gz
@@ -9476,7 +9674,7 @@ gf
 gf
 gN
 hj
-hs
+hz
 hu
 gN
 gf
@@ -9569,8 +9767,8 @@ aa
 aa
 fY
 iE
-gf
-gr
+iH
+iG
 gf
 gf
 gf
@@ -9669,7 +9867,7 @@ eM
 eM
 eM
 eM
-fZ
+iI
 gk
 gf
 gr
@@ -10368,7 +10566,7 @@ aa
 aa
 aa
 aa
-gZ
+aa
 aa
 aa
 aa
@@ -10555,7 +10753,7 @@ aa
 aa
 aa
 cF
-cM
+jw
 cM
 xX
 cM
@@ -10657,9 +10855,9 @@ aa
 aa
 aa
 cF
+jx
 cM
-cM
-cM
+jq
 cM
 cM
 cM
@@ -10693,9 +10891,9 @@ aa
 aa
 aa
 gG
-gH
+gN
 ho
-gH
+gN
 gU
 aa
 aa
@@ -10767,7 +10965,7 @@ cM
 cM
 cM
 id
-hS
+du
 cM
 cM
 cM
@@ -10789,16 +10987,16 @@ fi
 aa
 aa
 aa
-ha
 aa
 aa
 aa
 aa
-gH
+aa
+gN
 hh
-gO
+hz
 hd
-gH
+gN
 aa
 aa
 zf
@@ -10861,7 +11059,7 @@ aa
 aa
 aa
 cF
-cM
+jy
 cM
 cM
 cM
@@ -10896,11 +11094,11 @@ aa
 aa
 aa
 aa
-gH
-gL
-gP
-gK
-gH
+gN
+hj
+hz
+hu
+gN
 aa
 aa
 zf
@@ -10962,8 +11160,8 @@ bM
 bM
 bM
 bM
-cF
-cM
+jH
+jz
 cM
 cM
 cM
@@ -10976,7 +11174,7 @@ cM
 cM
 cM
 eC
-cI
+iM
 eM
 eM
 eM
@@ -10999,9 +11197,9 @@ aa
 aa
 aa
 gG
-gH
-gH
-gH
+gN
+gN
+gN
 gG
 aa
 aa
@@ -11063,15 +11261,15 @@ cj
 cu
 cy
 cu
-cu
+jI
 cG
-cO
-cO
-cO
+jB
+jl
+jl
 de
 dr
 dF
-et
+iQ
 eb
 du
 cM
@@ -11079,7 +11277,7 @@ cM
 ez
 cO
 eF
-eN
+iK
 eN
 eW
 eN
@@ -11165,23 +11363,23 @@ ck
 cc
 cz
 cA
-cc
+jJ
 cH
-et
-et
-et
+jD
+iQ
+iQ
 eA
 ds
 du
-cM
+jo
 ec
 ek
-et
-et
+iQ
+iQ
 eA
 et
 eG
-eO
+iL
 eO
 eO
 eO
@@ -11269,14 +11467,14 @@ bM
 bM
 bM
 cF
-cM
+jE
 cM
 cM
 dg
 dt
 du
-cM
-cM
+jo
+jj
 el
 cM
 cM
@@ -11371,18 +11569,18 @@ aa
 aa
 aa
 cF
-cM
-cM
+jF
+ju
 cM
 dh
 cM
 du
 qZ
-cM
+jk
 el
 cM
 cM
-dh
+iP
 cM
 cF
 aa
@@ -11479,13 +11677,13 @@ cX
 di
 cM
 du
-cM
+jp
 cM
 el
 cM
 cM
-dh
-cM
+iP
+iN
 cF
 aa
 aa
@@ -11575,9 +11773,9 @@ aa
 aa
 aa
 cF
-cN
-cM
-cM
+jG
+jv
+jt
 dh
 cM
 du
@@ -11586,7 +11784,7 @@ cM
 el
 cM
 cM
-dh
+iP
 cM
 cF
 aa
@@ -11671,7 +11869,7 @@ aa
 aa
 aa
 aa
-gW
+aa
 aa
 aa
 aa
@@ -11681,13 +11879,13 @@ cM
 cM
 cM
 dj
-cO
-cO
-cO
-cO
+jl
+jl
+jl
+jl
 em
-cO
-cO
+iR
+iR
 eB
 cM
 cF
@@ -11779,17 +11977,17 @@ aa
 aa
 aa
 cF
-cM
+cN
 cM
 cM
 dh
 cM
 dG
-dF
-et
-en
+iS
 cM
+el
 cM
+iS
 cM
 cM
 cF
@@ -11891,7 +12089,7 @@ du
 du
 eo
 eu
-cE
+iU
 cL
 cL
 eH
@@ -13180,7 +13378,7 @@ aa
 aa
 aa
 aa
-hq
+aa
 aa
 aa
 aa
@@ -14132,7 +14330,7 @@ cJ
 dD
 dO
 dY
-cD
+jm
 cJ
 cJ
 cJ
@@ -14608,7 +14806,7 @@ aa
 aa
 aa
 aa
-gJ
+aa
 aa
 aa
 aa
@@ -14643,9 +14841,9 @@ cK
 cK
 cK
 cK
+ja
 cK
-cK
-cK
+iV
 cR
 cK
 eK
@@ -14745,9 +14943,9 @@ cK
 cK
 cK
 cK
+jb
 cK
-cK
-ej
+iW
 cR
 cK
 eK
@@ -14847,9 +15045,9 @@ cK
 cK
 cK
 cK
+jg
 cK
-cK
-cK
+iX
 cR
 cK
 dP
@@ -14949,9 +15147,9 @@ cK
 cK
 cK
 cK
+jh
 cK
-cK
-cK
+iY
 cR
 cK
 cK
@@ -15050,10 +15248,10 @@ cW
 cK
 cK
 cK
-ej
-cR
-cR
-cR
+cK
+ji
+cK
+iZ
 cR
 cK
 cK
@@ -15152,11 +15350,11 @@ cK
 cK
 cK
 cK
-cK
-cK
-cK
-cK
-cK
+ej
+cR
+cR
+cR
+cR
 cK
 cK
 ej
@@ -15832,7 +16030,7 @@ aa
 aa
 aa
 aa
-gT
+aa
 aa
 aa
 aa
@@ -15949,7 +16147,7 @@ aa
 aa
 aa
 aa
-hv
+aa
 aa
 aa
 aa
