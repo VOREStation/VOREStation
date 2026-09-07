@@ -95,8 +95,9 @@
 	item_state = "card-id"
 
 /obj/item/card/emag
-	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
+	desc = "It's a card with a magnetic strip attached to some circuitry. The shoddy wiring is only good for a dozen uses or so."
+	description_antag = "A well known tool among certain circles. It allows bypass of security systems for a frightingly large amount of devices, robots or machinery. It does tend to leave visible traces."
 	icon_state = "emag"
 	item_state = "card-id"
 	var/uses = 10
@@ -137,6 +138,7 @@
 
 
 /obj/item/card/emag/borg
+	desc = "It's a card with a magnetic strip attached to some circuitry."
 	uses = 12
 	var/burnt_out = FALSE
 
