@@ -349,7 +349,7 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test areas", "Manually tests all areas 
 	for(var/areatype in areas_without_camera)
 		to_chat(world, "* [areatype]")
 
-ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mob.", ADMIN_CATEGORY_FUN_EVENT_KIT, input)
+ADMIN_VERB(cmd_admin_dress, R_FUN, "Select equipment", "Select equipment for a mob.", ADMIN_CATEGORY_FUN_EVENT_KIT, input)
 	if(!input)
 		input = tgui_input_list(user, "Pick Target", "Select the target to dress.", getmobs())
 		if(!input)
