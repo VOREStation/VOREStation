@@ -81,6 +81,8 @@
 /datum/modifier/redspace_corruption/on_expire()
 	REMOVE_TRAIT(unfortunate_soul, TRAIT_REDSPACE_CORRUPTED, UNHOLY_TRAIT)
 	REMOVE_TRAIT(unfortunate_soul, UNIQUE_MINDSTRUCTURE, UNHOLY_TRAIT)
+	if(armor_deployed)
+		exit_battle_stance()
 	unfortunate_soul = null
 
 /datum/modifier/redspace_corruption/tick()

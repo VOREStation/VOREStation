@@ -1,0 +1,26 @@
+2026-09-02:
+  Diana:
+  - bugfix: Fat Feline 3color can no longer enter a bugged state via vwag.
+  Will:
+  - bugfix: Removes an invalid item from the arcade prize pool
+2026-09-03:
+  Will:
+  - bugfix: Flashlight light beams can no longer be thrown by shuttle throw triggers,
+      or pulled by singularities
+  - bugfix: APCs properly check if you are in range when alt-clicked to toggle lock.
+2026-09-04:
+  Kashargul:
+  - code_imp: tgui dependency update
+  Will:
+  - bugfix: Fixed water and lava not respecting signal behaviors
+  - bugfix: RUST injectors respect signal behaviors
+  - bugfix: Borgs can no longer remove RUST fuel cells from injectors from afar
+  - bugfix: Being thrown over water will no longer get you wet
+  - rscadd: Being thrown over landmines no longer triggers the mine if you don't land
+      on it.
+2026-09-06:
+  Guti:
+  - bugfix: Fixed showers throwing a runtime when cleaning anything but carbon mobs
+  ReoDaProtovali:
+  - bugfix: fixes attaching certain objects to disposal trunks when other disposal
+      pipes are on the same tile.
