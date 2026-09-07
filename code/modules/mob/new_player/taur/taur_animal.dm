@@ -156,10 +156,11 @@
 	loaf_offset = 3
 	tailsock_wagicon = "fatfeline_sock"
 
-/datum/sprite_accessory/tail/taur/feline/fatfeline_2c
+/datum/sprite_accessory/tail/taur/feline/fat/feline_2c
 	name = "Fat Feline 3-color (Taur)"
 	icon_state = "fatfeline_s"
 	icon_sprite_tag = "fatfeline"
+	//this does, in fact, have a wag animation. but the markings aren't reasonable.
 	extra_overlay = "fatfeline2_markings"		// chest and belly
 	extra_overlay2 = "fatfeline2_markings_2"	// feet
 	can_loaf = TRUE
