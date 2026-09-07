@@ -82,4 +82,4 @@
 		return TRUE
 	return FALSE
 
-#undef TANK_IDEAL_PRESSURE
+#undef SELF_COMPONENTS
