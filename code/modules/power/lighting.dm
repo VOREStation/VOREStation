@@ -985,6 +985,8 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	var/init_nightshift_range = 8
 	var/init_nightshift_power = 0.45
 
+	description_antag = "There's a flexible cover near the ballast. Someone figured you can inject phoron in there as a rigged explosive. Just, don't do it while it is on."
+
 /obj/item/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
@@ -1198,6 +1200,15 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/atom/location = src.loc
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		//0.2L
+		air_contents.volume = 0.2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, 1)
+		location.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade
