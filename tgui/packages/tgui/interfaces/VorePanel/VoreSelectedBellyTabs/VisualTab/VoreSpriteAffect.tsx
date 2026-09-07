@@ -1,6 +1,6 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
-import { spriteToTooltip } from '../../constants';
+import { spriteToTooltip, resistAnimationOptions} from '../../constants';
 import type { BellyVisualData, HostMob } from '../../types';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditColor } from '../../VorePanelElements/VorePanelEditColor';
@@ -8,6 +8,7 @@ import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDrop
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
+
 
 export const VoreSpriteAffects = (props: {
   editMode: boolean;
@@ -238,7 +239,7 @@ export const VoreSpriteAffects = (props: {
                   tooltip="Set the impact all belly content's collective size has on your vore sprite. 1 means no scaling, 0.5 means content counts half as much, 2 means contents count double. (Range from 0.1 - 3)"
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Animation when prey resist">
+              {/* <LabeledList.Item label="Animation when prey resist">
                 <VorePanelEditSwitch
                   action="set_attribute"
                   subAction="b_resist_animation"
@@ -246,8 +247,17 @@ export const VoreSpriteAffects = (props: {
                   tooltip="Allows you to toggle if prey resists trigger struggle animations if the sprite supports it."
                   active={!!resist_animation}
                 />
-              </LabeledList.Item>
-            </LabeledList>
+              </LabeledList.Item> */}
+              <LabeledList.Item label="Animation when prey resist">
+                  <VorePanelEditDropdown
+                    action="set_attribute"
+                    subAction="b_resist_animation"
+                    editMode={editMode}
+                    options={resistAnimationOptions}
+                    entry={resist_animation}
+                  />
+                </LabeledList.Item>
+              </LabeledList>
           </Stack.Item>
         </Stack>
       </Stack.Item>
