@@ -18,9 +18,3 @@
   - bugfix: Being thrown over water will no longer get you wet
   - rscadd: Being thrown over landmines no longer triggers the mine if you don't land
       on it.
-2026-09-06:
-  Guti:
-  - bugfix: Fixed showers throwing a runtime when cleaning anything but carbon mobs
-  ReoDaProtovali:
-  - bugfix: fixes attaching certain objects to disposal trunks when other disposal
-      pipes are on the same tile.
