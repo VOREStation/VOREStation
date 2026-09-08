@@ -130,6 +130,8 @@
 			if(prob(sendfailchance))
 				user.forceMove(pick(trange(24,user)))
 			else
+				if(egg_interdict(user, ToTurf))
+					return
 				user.forceMove(ToTurf)
 				var/vore_happened = FALSE
 				if(can_dropnom && living_user.can_be_drop_pred)

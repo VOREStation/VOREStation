@@ -66,6 +66,7 @@
 			GLOB.random_junk_ += /obj/item/inflatable/torn
 			GLOB.random_junk_ += /obj/effect/decal/cleanable/molten_item
 			GLOB.random_junk_ += /obj/item/material/shard
+			GLOB.random_junk_ += /obj/item/reagent_containers/pill/maintenance
 
 			GLOB.random_junk_ -= /obj/item/trash/plate
 			GLOB.random_junk_ -= /obj/item/trash/snack_bowl

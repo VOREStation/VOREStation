@@ -6,11 +6,10 @@
 
 /obj/machinery/mineral/processing_unit_console
 	name = "production machine console"
-	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	layer = ABOVE_WINDOW_LAYER
-	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/circuitboard/mat_processor_console
 
 	var/obj/item/card/id/inserted_id	// Inserted ID card, for points
 
@@ -19,17 +18,23 @@
 
 /obj/machinery/mineral/processing_unit_console/Initialize(mapload)
 	. = ..()
-	src.machine = locate(/obj/machinery/mineral/processing_unit) in range(5, src)
-	if (machine)
-		machine.console = src
-	else
+	default_apply_parts()
+	processor_link()
+	if(!machine && mapload) // Delete mapped ones if they fail
 		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/processing_unit_console/Destroy()
 	if(inserted_id)
 		inserted_id.forceMove(loc) //Prevents deconstructing from deleting whatever ID was inside it.
+	processor_unlink()
 	. = ..()
+
+/obj/machinery/mineral/processing_unit_console/update_icon()
+	if(!machine || machine.console != src)
+		icon_state = "[initial(icon_state)]_bad"
+		return
+	icon_state = initial(icon_state)
 
 /obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
 	if(..())
@@ -37,18 +42,51 @@
 	if(!allowed(user))
 		to_chat(user, span_warning("Access denied."))
 		return
+	if(!machine)
+		to_chat(user, span_danger("Ore processor not detected."))
+		return
 	tgui_interact(user)
 
 /obj/machinery/mineral/processing_unit_console/attackby(obj/item/I, mob/user)
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(default_part_replacement(user, I))
+		return
 	if(istype(I, /obj/item/card/id))
 		if(!powered())
+			return
+		if(!machine)
+			to_chat(user, span_danger("Material processor not detected."))
 			return
 		if(!inserted_id && (user.unEquip(I) || isrobot(user)))
 			I.forceMove(src)
 			inserted_id = I
 			SStgui.update_uis(src)
 		return
-	..()
+	. = ..()
+
+/obj/machinery/mineral/processing_unit_console/proc/processor_link(obj/machinery/mineral/processing_unit/new_machine = null)
+	if(!new_machine)
+		new_machine = find_nearest_linkable(/obj/machinery/mineral/processing_unit)
+	if(!new_machine)
+		update_icon()
+		return
+	// Perform the actual link!
+	machine = new_machine
+	machine.console = src
+	update_icon()
+
+/obj/machinery/mineral/processing_unit_console/proc/processor_unlink()
+	if(machine?.console == src)
+		machine.console = null
+	SStgui.close_uis(src)
+	machine = null
+	update_icon()
+
+/obj/machinery/mineral/processing_unit_console/has_link()
+	return machine
 
 /obj/machinery/mineral/processing_unit_console/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -95,6 +133,10 @@
 		return TRUE
 
 	add_fingerprint(ui.user)
+
+	if(!machine)
+		return FALSE
+
 	switch(action)
 		if("toggleSmelting")
 			var/ore = params["ore"]
@@ -155,9 +197,10 @@
 	density = TRUE
 	anchored = TRUE
 	light_range = 3
-	var/obj/machinery/mineral/input = null
-	var/obj/machinery/mineral/output = null
-	var/obj/machinery/mineral/console = null
+	circuit = /obj/item/circuitboard/mat_processor
+	sets_direction = TRUE
+
+	var/obj/machinery/mineral/processing_unit_console/console = null
 	var/sheets_per_tick = 10
 	var/list/ores_processing = list()
 	var/list/ores_stored = list()
@@ -189,23 +232,36 @@
 
 /obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()
+	default_apply_parts()
+
 	for(var/ore, value in GLOB.ore_data)
 		var/datum/ore/OD = value
 		ores_processing[OD.name] = 0
 		ores_stored[OD.name] = 0
 
-	// TODO - Eschew input/output machinery and just use dirs ~Leshana
-	//Locate our output and input machinery.
-	for (var/dir in GLOB.cardinal)
-		src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-		if(src.input) break
-	for (var/dir in GLOB.cardinal)
-		src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(src.output) break
-	return
+	// Mapload uses direction hints
+	if(!mapload)
+		// If we were constructed, try to get a console to attach to us
+		var/obj/machinery/mineral/processing_unit_console/console = find_nearest_linkable(/obj/machinery/mineral/processing_unit_console)
+		if(console)
+			console.processor_link(src)
+		return
+	find_output_direction()
+
+/obj/machinery/mineral/processing_unit/Destroy()
+	if(console)
+		console.processor_unlink()
+	if(speed_process) // high gear
+		STOP_PROCESSING(SSfastprocess, src)
+	else
+		STOP_MACHINE_PROCESSING(src)
+	// We don't drop stored ores, just to avoid point exploits. Maybe this should drop slag instead?
+	. = ..()
+
+/obj/machinery/mineral/processing_unit/has_link()
+	return console
 
 /obj/machinery/mineral/processing_unit/proc/toggle_speed(forced)
-	var/area/refinery_area = get_area(src)
 	if(forced)
 		speed_process = forced
 	else
@@ -216,48 +272,54 @@
 	else // low gear
 		STOP_PROCESSING(SSfastprocess, src)
 		START_MACHINE_PROCESSING(src)
-	for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
-		unloader.toggle_speed()
-	for(var/obj/machinery/conveyor_switch/cswitch in refinery_area.contents)
-		cswitch.toggle_speed()
-	for(var/obj/machinery/mineral/stacking_machine/stacker in refinery_area.contents)
-		stacker.toggle_speed()
+	// There is no danger of recursion here, because the other toggle_speed procs do no broadcast like this one on change
+	for(var/obj/machinery/mach in range(connection_range + 2, src)) // a little more than the link range
+		if(mach == src)
+			continue
+		if(istype(mach, /obj/machinery/mineral/unloading_machine))
+			var/obj/machinery/mineral/unloading_machine/unloader = mach
+			unloader.toggle_speed(speed_process)
+			continue
+		if(istype(mach, /obj/machinery/conveyor_switch))
+			var/obj/machinery/conveyor_switch/cswitch = mach
+			cswitch.toggle_speed(speed_process)
+			continue
+		if(istype(mach, /obj/machinery/mineral/stacking_machine))
+			var/obj/machinery/mineral/stacking_machine/stacker = mach
+			stacker.toggle_speed(speed_process)
+			continue
 
+/obj/machinery/mineral/processing_unit/attackby(obj/item/I, mob/user)
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(default_part_replacement(user, I))
+		return
+	. = ..()
 
 /obj/machinery/mineral/processing_unit/process()
-
-	if (!src.output || !src.input)
+	if(!output_dir)
 		return
 
+	var/turf/output = get_step(src,output_dir)
+	if(!output)
+		return
 	if(panel_open || !powered())
 		return
 
 	var/list/tick_alloys = list()
 
 	//Grab some more ore to process this tick.
-	for(var/obj/structure/ore_box/OB in input.loc)
-		for(var/ore in OB.stored_ore)
-			if(OB.stored_ore[ore] > 0)
-				var/ore_amount = OB.stored_ore[ore]									// How many ores does the box have?
-				ores_stored[ore] += ore_amount 										// Add the ore to the machine.
-				points += (ore_values[ore]*points_mult*ore_amount) 					// Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
-				OB.stored_ore[ore] = 0 												// Set the value of the ore in the box to 0.
-
-
-	for(var/obj/item/ore_chunk/ore_chunk in input.loc) //Special ore chunk item. For conveyor belt. Completely unneeded but keeps asthetics.
-		for(var/ore in ore_chunk.stored_ore)
-			if(ore_chunk.stored_ore[ore] > 0)
-				var/ore_amount = ore_chunk.stored_ore[ore]
-				ores_stored[ore] += ore_amount
-				points += (ore_values[ore]*points_mult*ore_amount)
-				ore_chunk.stored_ore[ore] = 0
-			qdel(ore_chunk)
-
-	for(var/obj/item/ore/O in input.loc)
-		if(!isnull(ores_stored[O.material]))
-			ores_stored[O.material]++
-			points += (ore_values[O.material]*points_mult)
-		qdel(O)
+	var/turf/input = get_step(src, reverse_direction(output_dir)) // Only applies to unloading oreboxes DIRECTLY with no conveyors... Did anyone even know this was a feature?
+	if(input)
+		for(var/obj/structure/ore_box/OB in input)
+			for(var/ore in OB.stored_ore)
+				if(OB.stored_ore[ore] > 0)
+					var/ore_amount = OB.stored_ore[ore]									// How many ores does the box have?
+					ores_stored[ore] += ore_amount 										// Add the ore to the machine.
+					points += (ore_values[ore]*points_mult*ore_amount) 					// Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
+					OB.stored_ore[ore] = 0 												// Set the value of the ore in the box to 0.
 
 	if(!active)
 		return
@@ -305,7 +367,7 @@
 							sheets += total-1
 
 						for(var/i=0,i<total,i++)
-							new A.product(output.loc)
+							new A.product(output)
 
 			else if(ores_processing[metal] == PROCESS_COMPRESS && O.compresses_to) //Compressing.
 
@@ -320,7 +382,7 @@
 				for(var/i=0,i<can_make,i+=2)
 					ores_stored[metal]-=2
 					sheets+=2
-					new M.stack_type(output.loc)
+					new M.stack_type(output)
 
 			else if(ores_processing[metal] == PROCESS_SMELT && O.smelts_to) //Smelting.
 
@@ -333,13 +395,33 @@
 				for(var/i=0,i<can_make,i++)
 					ores_stored[metal]--
 					sheets++
-					new M.stack_type(output.loc)
+					new M.stack_type(output)
 			else
 				ores_stored[metal]--
 				sheets++
-				new /obj/item/ore/slag(output.loc)
+				new /obj/item/ore/slag(output)
 		else
 			continue
+
+/obj/machinery/mineral/processing_unit/Bumped(AM)
+	. = ..()
+	if(istype(AM, /obj/item/ore_chunk))
+		var/obj/item/ore_chunk/ore_chunk = AM
+		for(var/ore in ore_chunk.stored_ore)
+			if(ore_chunk.stored_ore[ore] > 0)
+				var/ore_amount = ore_chunk.stored_ore[ore]
+				ores_stored[ore] += ore_amount
+				points += (ore_values[ore]*points_mult*ore_amount)
+				ore_chunk.stored_ore[ore] = 0
+			qdel(ore_chunk)
+		return
+	if(istype(AM, /obj/item/ore))
+		var/obj/item/ore/O = AM
+		if(!isnull(ores_stored[O.material]))
+			ores_stored[O.material]++
+			points += (ore_values[O.material]*points_mult)
+		qdel(O)
+		return
 
 #undef PROCESS_NONE
 #undef PROCESS_SMELT

@@ -56,7 +56,7 @@
 		var/confirm = tgui_alert(user, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
 		if(confirm == "Yes")
 			//rip guest pass </3
-			user.visible_message(span_infoplain(span_bold("\The [user]") + "deactivates \the [src]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " deactivates \the [src]."))
 			icon_state = "guest-invalid"
 			update_icon()
 			expiration_time = world.time

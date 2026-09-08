@@ -3,23 +3,37 @@
 
 /obj/machinery/mineral/unloading_machine
 	name = "unloading machine"
-	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader"
 	density = TRUE
 	anchored = TRUE
-	var/obj/machinery/mineral/input = null
-	var/obj/machinery/mineral/output = null
+	circuit = /obj/item/circuitboard/mat_unloader
+	sets_direction = TRUE
+	var/static/list/ore_iconstates = null
 
 /obj/machinery/mineral/unloading_machine/Initialize(mapload)
 	. = ..()
-	for(var/dir in GLOB.cardinal)
-		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-		if(input)
-			break
-	for(var/dir in GLOB.cardinal)
-		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(output)
-			break
+	default_apply_parts()
+
+	// Populate icons for unloaded ores, lookup is faster than the if-else monster it was before
+	if(!ore_iconstates)
+		ore_iconstates = list()
+		for(var/obj/item/ore/ore as anything in subtypesof(/obj/item/ore))
+			var/mat = ore.material
+			if(!mat)
+				continue
+			ore_iconstates[mat] = ore.icon_state
+
+	// Mapload uses direction hints
+	if(!mapload)
+		return
+	find_output_direction()
+
+/obj/machinery/mineral/unloading_machine/Destroy()
+	if(speed_process) // high gear
+		STOP_PROCESSING(SSfastprocess, src)
+	else
+		STOP_MACHINE_PROCESSING(src)
+	. = ..()
 
 /obj/machinery/mineral/unloading_machine/proc/toggle_speed(forced)
 	if(forced)
@@ -33,72 +47,50 @@
 		STOP_PROCESSING(SSfastprocess, src)
 		START_MACHINE_PROCESSING(src)
 
+/obj/machinery/mineral/unloading_machine/attackby(obj/item/I, mob/user)
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(default_part_replacement(user, I))
+		return
+	. = ..()
+
 /obj/machinery/mineral/unloading_machine/process()
-	if (src.output && src.input)
-		if (locate(/obj/structure/ore_box, input.loc))
-			var/obj/structure/ore_box/BOX = locate(/obj/structure/ore_box, input.loc)
-			var/i = 0
-			for (var/ore in BOX.stored_ore)
-				if(BOX.stored_ore[ore] > 0)
-					var/obj/item/ore_chunk/ore_chunk = new /obj/item/ore_chunk(src.output.loc)
-					var/ore_amount = BOX.stored_ore[ore]
-					ore_chunk.stored_ore[ore] += ore_amount
-					BOX.stored_ore[ore] = 0
+	if(!output_dir)
+		return
 
-					//Icon code here. Going from most to least common.
-					if(ore == ORE_SAND)
-						ore_chunk.icon_state = "ore_glass"
-					else if(ore == ORE_CARBON)
-						ore_chunk.icon_state = "ore_coal"
-					else if(ore == ORE_HEMATITE)
-						ore_chunk.icon_state = "ore_iron"
-					else if(ore == ORE_PHORON)
-						ore_chunk.icon_state = "ore_phoron"
-					else if(ore == ORE_SILVER)
-						ore_chunk.icon_state = "ore_silver"
-					else if(ore == ORE_GOLD)
-						ore_chunk.icon_state = "ore_gold"
-					else if(ore == ORE_URANIUM)
-						ore_chunk.icon_state = "ore_uranium"
-					else if(ore == ORE_DIAMOND)
-						ore_chunk.icon_state = "ore_diamond"
-					else if(ore == ORE_PLATINUM)
-						ore_chunk.icon_state = "ore_platinum"
-					else if(ore == ORE_MARBLE)
-						ore_chunk.icon_state = "ore_marble"
-					else if(ore == ORE_LEAD)
-						ore_chunk.icon_state = "ore_lead"
-					else if(ore == ORE_RUTILE)
-						ore_chunk.icon_state = "ore_rutile"
-					else if(ore == ORE_QUARTZ)
-						ore_chunk.icon_state = "ore_quartz"
-					else if(ore == ORE_MHYDROGEN)
-						ore_chunk.icon_state = "ore_hydrogen"
-					else if(ore == ORE_VERDANTIUM)
-						ore_chunk.icon_state = "ore_verdantium"
-					else if(ore == ORE_COPPER)
-						ore_chunk.icon_state = "ore_copper"
-					else if(ore == ORE_TIN)
-						ore_chunk.icon_state = "ore_tin"
-					else if(ore == ORE_VOPAL)
-						ore_chunk.icon_state = "ore_void_opal"
-					else if(ore == ORE_BAUXITE)
-						ore_chunk.icon_state = "ore_bauxite"
-					else if(ore == ORE_PAINITE)
-						ore_chunk.icon_state = "ore_painite"
-					else
-						ore_chunk.icon_state = "boulder[rand(1,4)]"
+	var/turf/output = get_step(src,output_dir)
+	var/turf/input = get_step(src,reverse_direction(output_dir))
+	if(panel_open || !powered())
+		return
+	if (!output || !input)
+		return
 
+	if (locate(/obj/structure/ore_box, input))
+		var/obj/structure/ore_box/BOX = locate(/obj/structure/ore_box, input)
+		var/i = 0
+		for (var/ore in BOX.stored_ore)
+			if(BOX.stored_ore[ore] > 0)
+				var/obj/item/ore_chunk/ore_chunk = new /obj/item/ore_chunk(output)
+				var/ore_amount = BOX.stored_ore[ore]
+				ore_chunk.stored_ore[ore] += ore_amount
+				BOX.stored_ore[ore] = 0
 
-					if (i>=3) //Let's make it staggered so it looks like a lot is happening.
-						return
-		if (locate(/obj/item, input.loc))
-			var/obj/item/O
-			var/i
-			for (i = 0; i<10; i++)
-				O = locate(/obj/item, input.loc)
-				if (O)
-					O.loc = src.output.loc
+				// Icon code here.
+				if(ore in ore_iconstates)
+					ore_chunk.icon_state = ore_iconstates[ore]
 				else
+					ore_chunk.icon_state = "boulder[rand(1,4)]"
+
+				if (i>=3) //Let's make it staggered so it looks like a lot is happening.
 					return
-	return
+
+	if (locate(/obj/item, input))
+		var/obj/item/O
+		var/i
+		for (i = 0; i<10; i++)
+			O = locate(/obj/item, input)
+			if(!O)
+				return
+			O.forceMove(output)

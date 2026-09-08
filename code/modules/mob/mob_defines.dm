@@ -117,8 +117,11 @@
 	var/resting = 0			//Carbon
 	var/lying = 0
 	var/lying_prev = 0
-	var/is_shifted = FALSE // VoreStation Edit; pixel shifting
+	var/is_shifted = FALSE // VoreStation Edit; pixel shifting + tilting
+	var/how_tilted = 0
+	var/maximum_tilt = 45
 	var/canmove = 1
+	var/allowtilttime = 0 //This is the waiting timer for getting up after falling, lying, buckling, or otherwise being animated.
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
@@ -273,6 +276,7 @@
 	var/datum/click_intercept
 
 	var/datum/focus //What receives our keyboard inputs. src by default
+
 	/// dict of custom stat tabs with data
 	var/list/list/misc_tabs = list()
 

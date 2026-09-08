@@ -466,7 +466,8 @@
 	SIGNAL_HANDLER
 	if(istype(I, /obj/item/storage/bag/sheetsnatcher))
 		return OnSheetSnatcher(source, user, I)
-
+	if(istype(I, /obj/item/gripper))
+		return OnGripper(source, user, I)
 	return attempt_insert(user, I)
 
 /datum/component/material_container/proc/OnSheetSnatcher(datum/source, mob/user, obj/item/storage/bag/sheetsnatcher/S)
@@ -476,6 +477,17 @@
 	var/list/sheets = S.quick_empty()
 	for(var/obj/item/stack/material/M as anything in sheets)
 		attempt_insert(user, M)
+	return FALSE
+
+/datum/component/material_container/proc/OnGripper(datum/source, mob/user, obj/item/gripper/G)
+	SIGNAL_HANDLER
+	// this is called both locally and from remote_materials
+
+	var/obj/item/wrapped = G.get_wrapped_item()
+	attempt_insert(user, wrapped)
+	if(G.item_left_gripper(wrapped))
+		G.update_ref(null)
+	return FALSE
 
 /// Proc that allows players to fill the parent with mats
 /datum/component/material_container/proc/attempt_insert(mob/living/user, obj/item/weapon)

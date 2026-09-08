@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -141,6 +141,8 @@ export const IdentificationComputerAccessModification = (props: {
     departments,
   } = data;
 
+  const [tOwner, setTOwner] = useState(target_owner);
+
   return (
     <Section title="Access Modification" scrollable fill height="92%">
       {!authenticated && (
@@ -170,14 +172,15 @@ export const IdentificationComputerAccessModification = (props: {
                 <Input
                   value={target_owner!}
                   fluid
-                  onChange={(val) => act('reg', { reg: val })}
+                  onChange={setTOwner}
+                  onBlur={(val) => act('reg', { reg: val })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Account Number">
                 <Input
                   value={account_number?.toString()}
                   fluid
-                  onChange={(val) => act('account', { account: val })}
+                  onBlur={(val) => act('account', { account: val })}
                 />
               </LabeledList.Item>
               <LabeledList.Item label="Dismissals">
@@ -189,7 +192,7 @@ export const IdentificationComputerAccessModification = (props: {
                   confirmContent={`You are dismissing ${target_owner}, confirm?`}
                   onClick={() => act('terminate')}
                 >
-                  {`Dismiss ${target_owner}`}
+                  {`Dismiss ${tOwner}`}
                 </Button.Confirm>
               </LabeledList.Item>
             </LabeledList>

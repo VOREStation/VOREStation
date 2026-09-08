@@ -112,8 +112,14 @@ class IFrameIndexedDbBackend implements StorageBackend {
   async get(key: string): Promise<any> {
     return new Promise((resolve) => {
       const handler = (message: MessageEvent) => {
-        if (message.source === this.iframeWindow && message.data?.key === key) {
-          window.removeEventListener('message', handler);
+        if (message.source !== this.iframeWindow) {
+          return;
+        }
+
+        if (message.data?.error) {
+          console.error(message.data.error);
+          resolve(undefined);
+        } else if (message.data?.key === key) {
           resolve(message.data.value);
         }
       };

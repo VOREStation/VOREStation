@@ -891,7 +891,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/heal_amt = 0
 
 		// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
-		if (W.can_autoheal() && W.wound_damage() < 50)
+		if (W.can_autoheal() && W.wound_damage() < WOUND_CRITICAL_HEAL_LIMIT)
 			heal_amt += 0.5
 
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
@@ -1509,13 +1509,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal && !open) continue // can't see internal wounds
 		var/this_wound_desc = W.desc
 
+		var/insuffic = "" // Wound is treated, but the wound is so large it won't heal without surgery
+		if(W.can_autoheal() && W.wound_damage() >= WOUND_CRITICAL_HEAL_LIMIT)
+			insuffic = "insufficiently "
+
 		if(W.damage_type == BURN && W.salved)
-			this_wound_desc = "salved [this_wound_desc]"
+			this_wound_desc = "[insuffic]salved [this_wound_desc]"
 
 		if(W.bleeding())
 			this_wound_desc = "bleeding [this_wound_desc]"
 		else if(W.bandaged)
-			this_wound_desc = "bandaged [this_wound_desc]"
+			this_wound_desc = "[W.damage_type != BURN ? insuffic : ""]bandaged [this_wound_desc]"
 
 		if(W.germ_level > 600)
 			this_wound_desc = "badly infected [this_wound_desc]"

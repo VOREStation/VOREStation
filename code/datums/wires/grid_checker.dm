@@ -37,7 +37,7 @@
 		if(WIRE_ELECTRIFY)
 			if(G.wire_locked_out)
 				return
-			G.shock(usr, 70)
+			G.shock(usr, 70) // TODO - REMOVE USR
 	..()
 
 /datum/wires/grid_checker/on_pulse(wire)
@@ -60,5 +60,5 @@
 		if(WIRE_ELECTRIFY)
 			if(G.wire_locked_out)
 				return
-			G.shock(usr, 70)
+			G.shock(usr, 70) // TODO - REMOVE USR
 	..()

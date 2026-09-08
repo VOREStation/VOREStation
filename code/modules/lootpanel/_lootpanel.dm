@@ -73,7 +73,7 @@
 
 	switch(action)
 		if("grab")
-			return grab(usr, params)
+			return grab(ui.user, params)
 		if("refresh")
 			return populate_contents()
 

@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - balance: "Make it so emagging a bot also unlocks it and remove access restrictions"

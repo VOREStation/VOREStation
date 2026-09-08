@@ -35,7 +35,6 @@
 	if(!isbelly(hostloc))
 		return list()
 
-	var/list/inside = list()
 	var/obj/belly/inside_belly = hostloc
 	var/mob/living/pred = inside_belly.owner
 
@@ -47,18 +46,6 @@
 
 	if(inside_desc != "No description.")
 		inside_desc = inside_belly.belly_format_string(inside_desc, owner, use_first_only = TRUE)
-
-	inside = list(
-		"absorbed" = owner.absorbed,
-		"belly_name" = inside_belly.get_belly_name(),
-		"belly_mode" = inside_belly.digest_mode,
-		"desc" = inside_desc,
-		"pred" = pred,
-		"ref" = "\ref[inside_belly]",
-		"liq_lvl" = inside_belly.reagents.total_volume,
-		"liq_reagent_type" = inside_belly.reagent_chosen,
-		"liuq_name" = inside_belly.reagent_name,
-	)
 
 	var/list/inside_contents = list()
 	for(var/atom/movable/O in inside_belly)
@@ -90,7 +77,20 @@
 			if(M.absorbed)
 				info["absorbed"] = TRUE
 		UNTYPED_LIST_ADD(inside_contents, info)
-	inside["contents"] = inside_contents
+
+	var/list/inside = list(
+		"absorbed" = owner.absorbed,
+		"belly_name" = inside_belly.get_belly_name(),
+		"belly_mode" = inside_belly.digest_mode,
+		"desc" = inside_desc,
+		"pred" = pred,
+		"ref" = "\ref[inside_belly]",
+		"liq_lvl" = inside_belly.reagents.total_volume,
+		"liq_reagent_type" = inside_belly.reagent_chosen,
+		"liuq_name" = inside_belly.reagent_name,
+		"contents" = inside_contents
+	)
+
 	return inside
 
 /datum/vore_look/proc/get_prey_abilities(mob/owner, obj/belly/inside_belly)

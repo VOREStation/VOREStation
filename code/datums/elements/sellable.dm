@@ -28,6 +28,12 @@
 
 /datum/element/sellable/proc/calculate_sell_quantity(obj/source)
 	return 1
+
+/datum/element/sellable/proc/object_sold_name(obj/source)
+	return "\proper[source.name]"
+
+/datum/element/sellable/proc/handle_post_sale(obj/source)
+	return
 // End overrides
 
 /datum/element/sellable/proc/sell(obj/source, datum/exported_crate/EC, in_crate)
@@ -43,10 +49,11 @@
 		return FALSE
 
 	EC.contents[++EC.contents.len] = list(
-		"object" = "\proper[source.name]",
+		"object" = object_sold_name(source),
 		"value" = calculate_sell_value(source),
 		"quantity" = calculate_sell_quantity(source)
 	)
+	handle_post_sale(source)
 
 	var/point_value = EC.contents[EC.contents.len]["value"]
 	switch(department)
@@ -190,6 +197,9 @@
 				GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
 				GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
 
+/datum/element/sellable/trolley_tank/object_sold_name(obj/source)
+	return "Reagent"
+
 /datum/element/sellable/salvage //For selling /obj/item/salvage
 
 /datum/element/sellable/salvage/calculate_sell_value(obj/source)
@@ -303,13 +313,16 @@
 
 /datum/element/sellable/mecha/sell_error(obj/source)
 	var/obj/mecha/exo = source
-	exo.wreckage = null // Exo sold, remove it's lootpile on qdel, or we'll have issues in cargo....
 	var/check_val = calculate_sell_value(source)
 	if(!check_val)
 		if((exo.health / exo.maxhealth) < 0.5)
 			return "Error: The unit is too damaged to sell, and will be used as scrap. Payment rendered null under terms of agreement."
 		return "Error: The unit in its current condition has no resale value at all, and will be used as scrap. Payment rendered null under terms of agreement."
 	return null
+
+/datum/element/sellable/mecha/handle_post_sale(obj/source)
+	var/obj/mecha/exo = source
+	exo.wreckage = null // Exo sold, remove it's lootpile on qdel, or we'll have issues in cargo....
 
 /datum/element/sellable/mecha/calculate_sell_value(obj/source)
 	var/obj/mecha/exo = source
@@ -434,11 +447,6 @@
 	var/check_val = calculate_sell_value(source)
 	if(!check_val)
 		return "Error: This creature no longer has any scientific value."
-	// Increase sold count, now that we've reached successful export
-	var/mob_key = "[cage.contained.type]"
-	if(!(mob_key in SSsupply.exported_research_mobs))
-		SSsupply.exported_research_mobs[mob_key] = 0
-	SSsupply.exported_research_mobs[mob_key] += 1
 	return null
 
 /datum/element/sellable/stasis_cage/calculate_sell_value(obj/source)
@@ -459,3 +467,17 @@
 		sold_mobs = SSsupply.exported_research_mobs[mob_key]
 	var/research_val = our_mob.export_research_value // Each mob sold will linearly scale the value of research points recieved, until it hits 25% of it's value.
 	return max(1, FLOOR(lerp(research_val, research_val * 0.25, CLAMP(sold_mobs / our_mob.export_research_diminished_max, 0, 1)), 1))
+
+/datum/element/sellable/stasis_cage/handle_post_sale(obj/source)
+	// Increase sold count, now that we've reached successful export
+	var/obj/structure/stasis_cage/cage = source
+	var/mob_key = "[cage.contained.type]"
+	if(!(mob_key in SSsupply.exported_research_mobs))
+		SSsupply.exported_research_mobs[mob_key] = 0
+	SSsupply.exported_research_mobs[mob_key] += 1
+
+/datum/element/sellable/stasis_cage/object_sold_name(obj/source)
+	var/obj/structure/stasis_cage/cage = source
+	if(!cage || !cage.contained)
+		return ..()
+	return cage.contained.name

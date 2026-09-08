@@ -15443,7 +15443,7 @@
 /area/tether/exploration/hallway)
 "cHa" = (
 /obj/machinery/door/blast/regular,
-/turf/simulated/wall,
+/turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "cHo" = (
 /obj/effect/floor_decal/industrial/warning{

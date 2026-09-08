@@ -39106,7 +39106,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/wall,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "fNy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -40202,7 +40202,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/wall,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "iLF" = (
 /obj/machinery/door/firedoor/glass,

@@ -422,3 +422,45 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 5)
 	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/maintenance
+	name = "maintenance pill"
+	desc = "A strange pill found in the depths of maintenance"
+	icon_state = "pill24"
+	var/random_reagent = REAGENT_ID_WATER
+	var/static/list/names = list(
+		"maintenance pill",
+		"floor pill",
+		"mystery pill",
+		"suspicious pill",
+		"strange pill",
+		"lucky pill",
+		"ominous pill",
+		"eerie pill",
+		"gas station vitamin pill"
+	)
+
+	var/static/list/descs = list(
+		"Your feeling is telling you no, but...",
+		"Drugs are expensive, you can't afford not to eat any pills that you find.",
+		"Surely, there's no way this could go bad.",
+		"Winners don't do dr- oh what the heck!",
+		"Free pills? At no cost, how could I lose?",
+		"Make sure to take your vitamins!"
+	)
+
+/obj/item/reagent_containers/pill/maintenance/Initialize(mapload)
+	. = ..()
+	pick_reagent()
+	if(istype(SSchemistry.chemical_reagents[random_reagent], /datum/reagent/ethanol) && prob(75)) // REROLL
+		pick_reagent()
+	name = pick(names)
+	if(prob(30))
+		desc = pick(descs)
+	reagents.add_reagent(random_reagent, rand(5, 20))
+	icon_state = "pill[rand(5, 24)]"
+
+/obj/item/reagent_containers/pill/maintenance/proc/pick_reagent()
+	random_reagent = pick(SSchemistry.chemical_reagents)
+	if(random_reagent in GLOB.obtainable_chemical_blacklist)
+		random_reagent = REAGENT_ID_WATER // You get WATER
