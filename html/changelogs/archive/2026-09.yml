@@ -24,3 +24,12 @@
   ReoDaProtovali:
   - bugfix: fixes attaching certain objects to disposal trunks when other disposal
       pipes are on the same tile.
+2026-09-08:
+  Kashargul:
+  - bugfix: player effects min value input
+  Will:
+  - rscadd: Lathe printable toolbox for use with gear painter
+  - rscadd: Service and clown borgs get a rolling pin for kitchen tasks
+  - bugfix: Boozeborgs get the correct type of rolling pin
+  lbnesquik:
+  - bugfix: fixed salt shakers from condimaster not having an icon
