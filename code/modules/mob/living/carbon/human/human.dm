@@ -1135,9 +1135,9 @@
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
-	if(!dna ||!dna.uni_identity)
+	if(!dna ||!dna.unique_enzymes) // Hash of the hash of a player's name to keep consistency between respawns
 		return
-	return md5(dna.uni_identity)
+	return md5(dna.unique_enzymes)
 
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
