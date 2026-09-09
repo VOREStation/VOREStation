@@ -44,9 +44,7 @@ export const pda_nerdle = (props) => {
             <Stack.Item>
               <Input
                 width="200px"
-                color={
-                  currentVal.length < 5 || alreadyGuessed ? 'red' : 'green'
-                }
+                color={currentVal.length < 5 || alreadyGuessed ? 'bad' : 'good'}
                 value={currentVal}
                 placeholder="Enter your guess..."
                 maxLength={5}
