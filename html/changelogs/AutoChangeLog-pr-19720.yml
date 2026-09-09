@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "fix the translator piece still working when you are asleep"
