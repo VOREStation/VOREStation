@@ -183,7 +183,7 @@
 			if(is_type_in_list(machine, GLOB.ventcrawl_machinery))
 				vent_found = machine
 			if(!vent_found)
-				return
+				continue
 			if(!vent_found.can_crawl_through())
 				vent_found = null
 				to_chat(src, span_danger("You can't crawl through that welded vent!"))
