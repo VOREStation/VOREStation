@@ -18,3 +18,23 @@
   - bugfix: Being thrown over water will no longer get you wet
   - rscadd: Being thrown over landmines no longer triggers the mine if you don't land
       on it.
+2026-09-06:
+  Guti:
+  - bugfix: Fixed showers throwing a runtime when cleaning anything but carbon mobs
+  ReoDaProtovali:
+  - bugfix: fixes attaching certain objects to disposal trunks when other disposal
+      pipes are on the same tile.
+2026-09-08:
+  Kashargul:
+  - bugfix: player effects min value input
+  Will:
+  - rscadd: Lathe printable toolbox for use with gear painter
+  - rscadd: Service and clown borgs get a rolling pin for kitchen tasks
+  - bugfix: Boozeborgs get the correct type of rolling pin
+  lbnesquik:
+  - bugfix: fixed salt shakers from condimaster not having an icon
+2026-09-09:
+  lbnesquik:
+  - balance: Make it so emagging a bot also unlocks it and remove access restrictions
+  - qol: Added more special descriptions for antags
+  - bugfix: fixed paper bins being impossible to remove from storage.

@@ -806,6 +806,7 @@
 	name = "bread tube"
 	desc = "Bread in a tube. Chewy...and surprisingly tasty."
 	description_fluff = "This is the product that brought Centauri Provisions into the limelight. A product of the earliest extrasolar colony of Heaven, the Bread Tube, while bland, contains all the nutrients a spacer needs to get through the day and is decidedly edible when compared to some of its competitors. Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
+	description_antag = "Frying the safeties will replace the contents with a real, BIG snake!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "tastybread"
 	var/popped = 0
