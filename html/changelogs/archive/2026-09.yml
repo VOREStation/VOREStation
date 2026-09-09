@@ -33,3 +33,8 @@
   - bugfix: Boozeborgs get the correct type of rolling pin
   lbnesquik:
   - bugfix: fixed salt shakers from condimaster not having an icon
+2026-09-09:
+  lbnesquik:
+  - balance: Make it so emagging a bot also unlocks it and remove access restrictions
+  - qol: Added more special descriptions for antags
+  - bugfix: fixed paper bins being impossible to remove from storage.
