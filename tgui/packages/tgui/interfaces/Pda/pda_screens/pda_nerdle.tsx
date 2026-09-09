@@ -22,12 +22,15 @@ type Data = {
 export const pda_nerdle = (props) => {
   const { act, data } = useBackend<Data>();
   const [greenBlueSwap, setGreenBlueSwap] = useState(false);
+  const [currentVal, setCurrentVal] = useState('');
 
   const { guesses, guesses_raw, max, used_guesses, target_word } = data;
 
   const won = guesses_raw.includes(target_word);
 
   const gameOver = used_guesses >= max || won;
+
+  const alreadyGuessed = guesses_raw.includes(currentVal);
 
   return (
     <Box>
@@ -41,9 +44,19 @@ export const pda_nerdle = (props) => {
             <Stack.Item>
               <Input
                 width="200px"
+                color={
+                  currentVal.length < 5 || alreadyGuessed ? 'red' : 'green'
+                }
+                value={currentVal}
                 placeholder="Enter your guess..."
                 maxLength={5}
-                onEnter={(value) => act('guess', { lastword: value })}
+                onChange={(value) => setCurrentVal(value)}
+                onEnter={(value) => {
+                  if (currentVal.length === 5 && !alreadyGuessed) {
+                    act('guess', { lastword: value });
+                    setCurrentVal('');
+                  }
+                }}
               />
             </Stack.Item>
           )}
