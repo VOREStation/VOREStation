@@ -74,8 +74,8 @@ const SpeciesImageButton = (props: {
   disabled: BooleanLike;
 }) => {
   const { species_name, onClick, selected, whitelisted, disabled } = props;
-  const status = disabled ? '!' : whitelisted ? '*' : null;
-  const color = disabled ? 'bad' : whitelisted ? 'average' : '';
+  const status = disabled ? '!' : whitelisted ? '*' : undefined;
+  const color = disabled ? 'bad' : whitelisted ? 'average' : undefined;
   if (species_name === 'Custom Species') {
     return (
       <ImageButton
