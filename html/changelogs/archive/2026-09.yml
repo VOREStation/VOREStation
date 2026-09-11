@@ -1,0 +1,83 @@
+2026-09-02:
+  Diana:
+  - bugfix: Fat Feline 3color can no longer enter a bugged state via vwag.
+  Will:
+  - bugfix: Removes an invalid item from the arcade prize pool
+2026-09-03:
+  Will:
+  - bugfix: Flashlight light beams can no longer be thrown by shuttle throw triggers,
+      or pulled by singularities
+  - bugfix: APCs properly check if you are in range when alt-clicked to toggle lock.
+2026-09-04:
+  Kashargul:
+  - code_imp: tgui dependency update
+  Will:
+  - bugfix: Fixed water and lava not respecting signal behaviors
+  - bugfix: RUST injectors respect signal behaviors
+  - bugfix: Borgs can no longer remove RUST fuel cells from injectors from afar
+  - bugfix: Being thrown over water will no longer get you wet
+  - rscadd: Being thrown over landmines no longer triggers the mine if you don't land
+      on it.
+2026-09-06:
+  Guti:
+  - bugfix: Fixed showers throwing a runtime when cleaning anything but carbon mobs
+  ReoDaProtovali:
+  - bugfix: fixes attaching certain objects to disposal trunks when other disposal
+      pipes are on the same tile.
+2026-09-08:
+  Kashargul:
+  - bugfix: player effects min value input
+  Will:
+  - rscadd: Lathe printable toolbox for use with gear painter
+  - rscadd: Service and clown borgs get a rolling pin for kitchen tasks
+  - bugfix: Boozeborgs get the correct type of rolling pin
+  lbnesquik:
+  - bugfix: fixed salt shakers from condimaster not having an icon
+2026-09-09:
+  lbnesquik:
+  - balance: Make it so emagging a bot also unlocks it and remove access restrictions
+  - qol: Added more special descriptions for antags
+  - bugfix: fixed paper bins being impossible to remove from storage.
+2026-09-10:
+  Will:
+  - bugfix: incorrect year calculation being used in ATM accounts
+  - qol: Point defense turrets support mapper placed upgrades
+  - bugfix: escaped slimes event now checks if a vent is welded before spawning a
+      slime
+  - bugfix: borgs are no longer kicked off of the rotary generators as soon as they
+      get on
+  - bugfix: multiple loc atoms no longer teleport upward when moved by shuttle
+  - balance: Zaddat light burn intensity curve tweaked for more clear difference between
+      low light and full light
+  - bugfix: Fingerprints no longer change if a character respawns or is ahealed
+  - qol: airlocks show if they are welded when examined
+  lbnesquik:
+  - bugfix: fixed the makarov and luger lacking sprites.
+  - bugfix: fix the translator piece still working when you are asleep
+2026-09-11:
+  Diana:
+  - qol: Changes the RUST generator to produce more radiation and radiate further.
+      Rad collectors (at 1013kpa) now collect about as much as a mag-trap
+  Guti:
+  - rscadd: Added Telecomms Engineer role, as well as a handful of alternative titles.
+  Kashargul:
+  - qol: toggling hud vis will also update it for all contained prey
+  - qol: makes nerdle a bit more accessible for color blind people
+  ReoDaProtovali:
+  - rscadd: added a self-resetting spring trap. The normal one nolonger self-resets
+      as a side effect.
+  - rscadd: Made springtraps craftable via gui hand-crafting menu
+  - rscdel: Removed spring traps from the protolathe. They're improvised now.
+  - qol: Added a mini-grace period to disarming spring traps without them going off.
+      This should help with misclicks.
+  Will:
+  - qol: Removes prehistorically ancient abiotic check from bodyscanner and related
+      medical machines.
+  - rscdel: Removes non-functional xenochimera version of hardfeet trait
+  lbnesquik:
+  - bugfix: Fix the fancy drinks showcase not displaying their proper icon
+  - bugfix: fixed a few googles not providing eye protection.
+  - bugfix: Fixed warrants only being authorized by the head of security
+  - bugfix: fixed ventcrawl using an incorrect error message for welded vents.
+  - bugfix: Fix jerichoes not having an empty box sprite
+  - balance: Add some missing AI languages to the AI

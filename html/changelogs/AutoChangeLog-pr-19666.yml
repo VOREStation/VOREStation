@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - balance: "Increase the paper shredder paper capacity."
-  - qol: "Added a lil' description for it too."

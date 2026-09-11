@@ -93,6 +93,9 @@
 	if(triggered)
 		return
 
+	if(M.throwing) // Weee!
+		return
+
 	if(istype(M, /obj/mecha))
 		explode(M)
 
