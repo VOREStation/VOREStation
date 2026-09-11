@@ -266,6 +266,9 @@
 				else
 					goodies += job_goodies
 
+	if(!isemptylist(GLOB.holiday_mail))
+		goodies += GLOB.holiday_mail
+
 	if(!preset_goodies)
 		for(var/iterator in 1 to goodie_count)
 			var/target_good = pickweight(goodies)
