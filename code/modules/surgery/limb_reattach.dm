@@ -108,9 +108,9 @@
 /datum/surgery_step/limb/connect
 	surgery_name = "Connect Limb"
 	allowed_tools = list(
-	/obj/item/surgical/hemostat = 100,	\
-	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/assembly/mousetrap = 25
+		/obj/item/surgical/hemostat = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 25
 	)
 	can_infect = 1
 
