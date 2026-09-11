@@ -24,7 +24,7 @@
 
 /datum/surgery_step/limb/attach
 	surgery_name = "Attach Limb"
-	allowed_tools = list(/obj/item/organ/external = 100)
+	allowed_tools = list(/obj/item = 100)
 
 	min_duration = 50
 	max_duration = 70
@@ -107,6 +107,7 @@
 
 /datum/surgery_step/limb/connect
 	surgery_name = "Connect Limb"
+	// allowed_tools = list(/obj/item = 100)
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,
 		/obj/item/stack/cable_coil = 75,
