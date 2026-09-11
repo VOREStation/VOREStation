@@ -47,8 +47,6 @@
 	else
 		icon_state = icon_base
 
-	// if(contents.len <= 4)
-	// 	add_overlay("[icon_base]")
 	if(contents.len > SELF_COMPONENTS)
 		add_overlay("[icon_base]-fill")
 
