@@ -38,6 +38,7 @@
 	if(isturf(owner.loc)) //else, there's considered to be no light
 		var/turf/T = owner.loc
 		light_amount = T.get_lumcount(0,1)
+	light_amount = light_amount ** 3 // Make the gradiant from 0 light to 1 light more clear.
 
 	// Apply damage if beyond the minimum light threshold, actually makes zaddat SLIGHTLY more forgiving!
 	if(light_amount > 0 && light_amount > threshold) // Checks light_amount, as threshold of 0 can pass 0s to the damage procs otherwise.

@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed showers throwing a runtime when cleaning anything but carbon mobs"
