@@ -1309,7 +1309,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "cP" = (
 /obj/structure/table/reinforced,
@@ -3548,7 +3547,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/vials,
 /obj/item/storage/box/pillbottles,
