@@ -482,15 +482,6 @@
 	category = 0
 	custom_only = FALSE
 
-/datum/trait/positive/hardfeet/xenochimera
-	sort = TRAIT_SORT_SPECIES
-	allowed_species = list(SPECIES_XENOCHIMERA)
-	name = "Xenochimera: Hard Feet"
-	desc = "Your body has adapted to make your feet immune to glass shards, whether by developing hooves, chitin, or just horrible callous."
-	cost = 0
-	category = 0
-	custom_only = FALSE
-
 /datum/trait/positive/melee_attack_fangs/xenochimera
 	sort = TRAIT_SORT_SPECIES
 	allowed_species = list(SPECIES_XENOCHIMERA)

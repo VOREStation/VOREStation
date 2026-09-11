@@ -34,7 +34,7 @@
 		// If true, the mob went from living to dead (assuming everyone has been overriding as they should...)
 		GLOB.cultnet.updateVisibility(src)
 
-/datum/antagonist/add_antagonist(datum/mind/player)
+/datum/antagonist/add_antagonist(datum/mind/player, ignore_role, do_not_equip, move_to_spawn, do_not_announce, preserve_appearance)
 	. = ..()
 	if(src == GLOB.cult)
 		GLOB.cultnet.updateVisibility(player.current, 0)

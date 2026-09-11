@@ -1,6 +1,7 @@
 /obj/item/tape_roll
 	name = "tape roll"
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
+	description_antag = "You could use this to tape someone's mouth shut. Or eyes."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY

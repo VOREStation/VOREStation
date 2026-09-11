@@ -1,0 +1,7 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - rscadd: "added a self-resetting spring trap. The normal one nolonger self-resets as a side effect."
+  - rscadd: "Made springtraps craftable via gui hand-crafting menu"
+  - rscdel: "Removed spring traps from the protolathe. They're improvised now."
+  - qol: "Added a mini-grace period to disarming spring traps without them going off. This should help with misclicks."
