@@ -65,7 +65,6 @@
 		"beartrap",
 		"barbedwire",
 		"snarewire",
-		"springtrap",
 		// "buffer",
 		"washing"
 	)

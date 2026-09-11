@@ -24,6 +24,8 @@
 		return TRUE
 	return FALSE
 
+
+#define SELF_COMPONENTS 4 //Parts inside
 /obj/machinery/smartfridge/drinks/showcase
 	name = "\improper Drink Showcase"
 	icon_state = "base_showcase"
@@ -44,11 +46,9 @@
 		icon_state = "[icon_base]-off"
 	else
 		icon_state = icon_base
-		switch(contents.len)
-			if(0)
-				add_overlay("[icon_base]")
-			if(1 to 3)
-				add_overlay("[icon_base]-fill")
+
+	if(contents.len > SELF_COMPONENTS)
+		add_overlay("[icon_base]-fill")
 
 /*
  * Hydroponics
@@ -79,3 +79,5 @@
 	if(istype(O,/obj/item/seeds))
 		return TRUE
 	return FALSE
+
+#undef SELF_COMPONENTS
