@@ -53,11 +53,11 @@
 		return FALSE
 
 	else if(istype(user,/mob/living/silicon/robot))
-		if(istype(tool, /obj/item/gripper))
-			var/obj/item/gripper/gripper = tool
+		if(istype(E, /obj/item/gripper))
+			var/obj/item/gripper/gripper = E
 			var/obj/item/wrapped = gripper.get_wrapped_item()
 			if(wrapped)
-				tool = wrapped
+				E = wrapped
 			else
 				return
 		else
