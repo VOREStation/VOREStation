@@ -51,6 +51,17 @@
 		to_chat(user, span_warning("Attaching [E] to [P] might break [E]."))
 		user.balloon_alert(user, "attaching [E] to [P] might break [E]")
 		return FALSE
+
+	else if(istype(user,/mob/living/silicon/robot))
+		if(istype(tool, /obj/item/gripper))
+			var/obj/item/gripper/gripper = tool
+			var/obj/item/wrapped = gripper.get_wrapped_item()
+			if(wrapped)
+				tool = wrapped
+			else
+				return
+		else
+			return
 	else
 		return TRUE
 
