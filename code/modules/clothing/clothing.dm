@@ -42,15 +42,14 @@
 			src.attach_accessory(null, tie)
 	set_clothing_index()
 
-	//VOREStation edit start
 	if(polychromic)
 		verbs |= /obj/item/clothing/proc/change_color
-	//VOREStation edit start
 
 /obj/item/clothing/update_icon()
 	cut_overlays() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
 	if(forensic_data?.has_blooddna())
 		add_blood()
+	//TODO: strip out redundant icons like labcoats with an overlay badge, security uniforms with the trim, winter coats, etc etc.
 	. = ..()
 
 /obj/item/clothing/equipped(mob/user,slot)
@@ -987,14 +986,26 @@
 	. = ..()
 	if(has_hood_sprite) //If we have a special hood_sprite, great, let's use it! Only used by /obj/item/clothing/suit/storage/hooded atm.
 		icon_state = "[toggleicon][hood_up ? "_t" : ""]"
+	update_clothing_icon()
 
 /obj/item/clothing/suit/equipped(mob/user, slot)
+	//Let's make sure we're extra aggressive with taur settings.
+	icon_override = initial(icon_override)
+	taurized = FALSE
 	if(slot != slot_wear_suit)
 		RemoveHood()
+	if(ishuman(user))
+		var/mob/living/carbon/human/Hoomie = user
+		var/taurtail = istaurtail(Hoomie.tail_style)
+		if(taurtail)
+			taurize(Hoomie, taurtail)
+
+	update_clothing_icon()
 	..()
 
 /obj/item/clothing/suit/dropped(mob/user, equipping, slot)
 	RemoveHood()
+	update_clothing_icon()
 	..()
 
 /obj/item/clothing/suit/ui_action_click(mob/user, actiontype)
@@ -1017,9 +1028,9 @@
 	if(hood)
 		hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 		if(ishuman(hood.loc))
-			var/mob/living/carbon/H = hood.loc
-			H.unEquip(hood, 1)
-			H.update_inv_wear_suit()
+			var/mob/living/carbon/Carbmob = hood.loc
+			Carbmob.unEquip(hood, 1)
+			Carbmob.update_inv_wear_suit()
 		hood.forceMove(src)
 
 /obj/item/clothing/suit/proc/ToggleHood()
@@ -1029,69 +1040,66 @@
 		RemoveHood()
 		return
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = src.loc
-		if(H.wear_suit != src)
-			to_chat(H, span_warning("You must be wearing [src] to put up the hood!"))
+		var/mob/living/carbon/human/Hoomie = src.loc
+		if(Hoomie.wear_suit != src)
+			to_chat(Hoomie, span_warning("You must be wearing [src] to put up the hood!"))
 			return
-		if(H.head)
-			to_chat(H, span_warning("You're already wearing something on your head!"))
+		if(Hoomie.head)
+			to_chat(Hoomie, span_warning("You're already wearing something on your head!"))
 			return
 		else
 			if(color != hood.color)
 				hood.color = color
-			H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+			Hoomie.equip_to_slot_if_possible(hood,slot_head,0,0,1)
 			hood_up = TRUE
 			hood.canremove = FALSE
 			update_icon()
-			H.update_inv_wear_suit()
+			Hoomie.update_inv_wear_suit()
 ///Hood stuff end.
 
 /obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_suit()
+	if (ismob(loc))
+		var/mob/Mobbie = loc
+		Mobbie.update_inv_wear_suit()
 
-/obj/item/clothing/suit/equipped(mob/user, slot)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/taurtail = istaurtail(H.tail_style)
-		if((taurized && !taurtail) || (!taurized && taurtail))
-			taurize(user, taurtail)
-
-	return ..()
-
+///Establishes Icon overrides for taur bodies
 /obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
-	if(has_taur_tail)
-		var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
-		if(taurtail.suit_sprites && (icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str))))
-			icon_override = taurtail.suit_sprites
-			taurized = TRUE
-	// means that if a taur puts on an already taurized suit without a taur sprite
-	// for their taur type, but the previous taur type had a sprite, it stays
-	// taurized and they end up with that taur style which is funny
-	else
+	/// If we don't have a taur tail OR we're showin' that taur butt, reset overrides.
+	if(!has_taur_tail || showtaurbutts)
+		icon_override = initial(icon_override)
 		taurized = FALSE
+		return
 
-	if(!taurized)
+	// if we're not showing butts, then let's try to apply the proper overrides
+	var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
+	if(taurtail?.suit_sprites && icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str)))
+		icon_override = taurtail.suit_sprites
+		taurized = TRUE
+	else
 		icon_override = initial(icon_override)
 		taurized = FALSE
 
-// Taur suits need to be shifted so its centered on their taur half.
-/obj/item/clothing/suit/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer = 0,icon/clip_mask)
+// Taur suits need to be shifted so it's centered on their taur half.
+/obj/item/clothing/suit/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer = 0, icon/clip_mask)
 	var/image/standing = ..()
-	if(taurized) //Special snowflake var on suits
-		standing.pixel_x = -16
-		standing.layer = BODY_LAYER + TAIL_UPPER_LAYER + 1
+	if(!standing)
+		return null
+
+	// Only apply the -16 offset when taurized AND showtaurbutts is FALSE
+	if(taurized && !showtaurbutts && icon_override)
+		standing.pixel_x = TAURIZED_DEFAULT
+		standing.layer = TAUR_LAYERING
+	// but if we don't have an icon_override, we already have our offsets, set.
 	return standing
 
 /obj/item/clothing/suit/apply_accessories(image/standing)
-	if(LAZYLEN(accessories) && taurized)
-		for(var/obj/item/clothing/accessory/A in accessories)
-			var/image/I = new(A.get_mob_overlay())
-			I.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
-			standing.add_overlay(I)
-	else
-		return ..()
+	. = ..()
+
+	if(LAZYLEN(accessories) && taurized && !showtaurbutts && standing)
+		// account for the offset of our standing image
+		for(var/image/I in standing.overlays)
+			// reset +16
+			I.pixel_x += UNTAURIZED_DEFAULT
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -1162,6 +1170,8 @@
 	var/icon/rolled_down_sleeves_icon = 'icons/inventory/uniform/mob_sleeves_rolled.dmi'
 
 	update_icon_define_digi = "icons/inventory/uniform/mob_digi.dmi"
+	/// hehe, soon.
+	var/taurized = FALSE
 
 /obj/item/clothing/under/attack_hand(mob/user)
 	if(LAZYLEN(accessories))
