@@ -10,6 +10,7 @@
 /mob/living/bot/mulebot
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
+	description_antag = "You could use an emag on this to bypass the safeties. And run people over!"
 	icon_state = "mulebot0"
 	anchored = TRUE
 	density = TRUE
