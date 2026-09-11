@@ -4,6 +4,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 /obj/item/sleevemate
 	name = "\improper SleeveMate 3700"
 	desc = "A hand-held sleeve management tool for performing one-time backups and managing mindstates."
+	description_antag = "Frying it with an emag transforms this into a BSD, a body snatcher device. Very illegal, if you care."
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "sleevemate"
 	item_state = "healthanalyzer"
