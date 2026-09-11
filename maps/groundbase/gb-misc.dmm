@@ -1017,7 +1017,7 @@
 /area/holodeck/source_picnicarea)
 "db" = (
 /obj/item/perfect_tele_beacon/stationary{
-	tele_name =  "Unknown C";
+	tele_name = "unkthree";
 	tele_network = "unkthree"
 	},
 /turf/simulated/shuttle/floor/alienplating,
