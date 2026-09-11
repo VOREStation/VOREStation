@@ -1920,6 +1920,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
+"en" = (
+/obj/machinery/camera/network/civilian{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "eo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2938,10 +2944,21 @@
 /area/tcommsat/chamber)
 "gG" = (
 /turf/simulated/shuttle/wall)
+"gH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "gI" = (
 /obj/effect/wingrille_spawn/reinforced/crescent,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"gJ" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
 "gM" = (
 /obj/structure/shuttle,
 /turf/space,
@@ -4022,6 +4039,7 @@
 	pixel_x = 7;
 	pixel_y = 1
 	},
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "ka" = (
@@ -6795,15 +6813,6 @@
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/engine_gas)
-"OA" = (
-/obj/machinery/camera/network/civilian{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
 "OE" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -11155,8 +11164,8 @@ cM
 cM
 cM
 id
-du
 cM
+du
 cM
 cM
 cM
@@ -11256,9 +11265,9 @@ cM
 cM
 cM
 cM
-OA
+id
+en
 du
-cM
 cM
 cM
 cM
@@ -11359,8 +11368,8 @@ cM
 cM
 cM
 id
-du
 cM
+du
 cM
 cM
 eC
@@ -11461,8 +11470,8 @@ dr
 dF
 jz
 eb
-du
 cM
+du
 cM
 ez
 cO
@@ -11766,7 +11775,7 @@ dh
 cM
 du
 qZ
-jR
+jP
 el
 cM
 cM
@@ -11868,7 +11877,7 @@ di
 cM
 du
 jZ
-cM
+gH
 el
 cM
 cM
@@ -11969,8 +11978,8 @@ kb
 dh
 cM
 du
-cM
-cM
+gJ
+jR
 el
 cM
 cM
