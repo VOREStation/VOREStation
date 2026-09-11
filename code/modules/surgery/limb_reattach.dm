@@ -33,10 +33,8 @@
 	if(!istype(tool))
 		return FALSE
 	var/obj/item/organ/external/E = tool
-	to_chat(user, span_warning("EREZREZ"))
 	if(istype(user,/mob/living/silicon/robot))
 		if(istype(E, /obj/item/gripper))
-			to_chat(user, span_warning("GRIPPER!"))
 			var/obj/item/gripper/gripper = E
 			var/obj/item/wrapped = gripper.get_wrapped_item()
 			if(wrapped)
@@ -44,7 +42,6 @@
 			else
 				return
 		else
-			to_chat(user, span_warning("NO GRIPPER!"))
 			return
 	var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -65,11 +62,9 @@
 		user.balloon_alert(user, "attaching [E] to [P] might break [E]")
 		return FALSE
 	else
-		to_chat(user, span_warning("BYE!"))
 		return TRUE
 
 /datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.balloon_alert_visible("HELLO")
 	if(isrobot(user) && istype(tool, /obj/item/gripper))
 		var/obj/item/gripper/G = tool
 		tool = G.get_wrapped_item()
@@ -112,12 +107,11 @@
 
 /datum/surgery_step/limb/connect
 	surgery_name = "Connect Limb"
-	allowed_tools = list(/obj/item = 100)
-	// allowed_tools = list(
-	// /obj/item/surgical/hemostat = 100,	\
-	// /obj/item/stack/cable_coil = 75, 	\
-	// /obj/item/assembly/mousetrap = 25
-	// )
+	allowed_tools = list(
+	/obj/item/surgical/hemostat = 100,	\
+	/obj/item/stack/cable_coil = 75, 	\
+	/obj/item/assembly/mousetrap = 25
+	)
 	can_infect = 1
 
 	min_duration = 100
