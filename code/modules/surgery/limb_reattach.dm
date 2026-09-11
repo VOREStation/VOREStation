@@ -24,7 +24,7 @@
 
 /datum/surgery_step/limb/attach
 	surgery_name = "Attach Limb"
-	allowed_tools = list(/obj/item = 100)
+	allowed_tools = list(/obj/item/organ/external = 100)
 
 	min_duration = 50
 	max_duration = 70
