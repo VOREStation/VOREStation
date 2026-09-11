@@ -125,7 +125,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			else if(ishuman(player))
 				body += {"<a href='byond://?_src_=holder;[HrefToken()];turn_ai=[REF(player)]'>Make AI</a> |
 					<a href='byond://?_src_=holder;[HrefToken()];turn_robot=[REF(player)]'>Make Robot</a> |
-					<a href='byond://?_src_=holder;[HrefToken()];turn_alien=[REF(player)]'>Make Alien</a>
+					<a href='byond://?_src_=holder;[HrefToken()];turn_alien=[REF(player)]'>Make Alien</a> |
 				"}
 
 			//Simple Animals
@@ -178,32 +178,33 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 			body += {"<br><br>
 				"} + span_bold("Rudimentary transformation:") + span_normal("<br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.") + {"<br>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(player)]'>Observer</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(player)]'>Observer</a>
 				<br>
 				\[ Crew: <a href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=[REF(player)]'>Human</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=[REF(player)]'>Unathi</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=[REF(player)]'>Tajaran</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=[REF(player)]'>Skrell</a> \] |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=[REF(player)]'>Skrell</a> \]
 				<br>
 				\[ <a href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=[REF(player)]'>Nymph</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=[REF(player)]'>Diona</a> \] |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=[REF(player)]'>Diona</a> \]
 				<br>
 				\[ Xenos: <a href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=[REF(player)]'>Larva</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=[REF(player)]'>Drone</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=[REF(player)]'>Hunter</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=[REF(player)]'>Sentinel</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=[REF(player)]'>Queen</a> \] |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=[REF(player)]'>Queen</a> \]
 				<br>
 				\[ Slime: <a href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=[REF(player)]'>Baby</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=[REF(player)]'>Adult</a> \]
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(player)]'>Monkey</a> |
+				<br>
+				\[ Animals : <a href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(player)]'>Monkey</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=[REF(player)]'>Cyborg</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=[REF(player)]'>Cat</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=[REF(player)]'>Runtime</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=[REF(player)]'>Corgi</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=[REF(player)]'>Ian</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=[REF(player)]'>Crab</a> |
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=[REF(player)]'>Coffee</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=[REF(player)]'>Coffee</a> \]
 				<br>
 				\[ Construct: <a href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=[REF(player)]'>Armoured</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=[REF(player)]'>Builder</a>
