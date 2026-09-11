@@ -7,18 +7,18 @@
 	name = "Inactive AI Eye"
 	icon_state = "AI-eye"
 
-/mob/observer/eye/aiEye/Initialize(mapload)
-	. = ..()
-	visualnet = GLOB.cameranet
-
 /mob/observer/eye/aiEye/Destroy()
 	if(owner)
 		var/mob/living/silicon/ai/ai = owner
 		ai.all_eyes -= src
 		owner = null
-	visualnet.clear_references(src, src.client)
-	visualnet = null
+	clear_camera_chunks()
 	. = ..()
+
+/// Clears us from any visible camera chunks.
+/mob/observer/eye/aiEye/proc/clear_camera_chunks()
+	for(var/datum/camerachunk/chunk in visibleChunks)
+		chunk.remove(src)
 
 /mob/observer/eye/aiEye/setLoc(T, cancel_tracking = 1)
 	if(owner)
@@ -29,7 +29,7 @@
 		if(cancel_tracking)
 			ai.ai_cancel_tracking()
 
-		if(use_static)
+		if(use_visibility)
 			ai.camera_visibility(src)
 
 		if(ai.client && !ai.multicam_on)
