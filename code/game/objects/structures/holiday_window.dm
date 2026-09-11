@@ -1,4 +1,9 @@
-/obj/structure/window/reinforced/full/holiday/Initialize(mapload, start_dir, constructed)
-	var/pattern = PATTERN_VERTICAL_STRIPE
-	color = request_decoration_colors(src, pattern)
-	return ..()
+/obj/structure/window/reinforced/full/holiday
+	pattern = PATTERN_DEFAULT
+	use_holiday_colours = TRUE
+
+/obj/structure/window/reinforced/full/holiday/vertical
+	pattern = PATTERN_VERTICAL_STRIPE
+
+/obj/structure/window/reinforced/full/holiday/random
+	pattern = PATTERN_RANDOM

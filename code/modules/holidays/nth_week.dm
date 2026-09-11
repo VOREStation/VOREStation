@@ -36,3 +36,8 @@
 	begin_month = NOVEMBER
 	begin_weekday = THURSDAY
 	holiday_hat = /obj/item/clothing/head/collectable/tophat
+
+/datum/holiday/nth_week/greet()
+	return "Originally an old holiday from Earth, Thanksgiving follows many of the \
+					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
+					for what one has in life."

@@ -2163,6 +2163,7 @@
 #include "code\game\turfs\flooring\flooring.dm"
 #include "code\game\turfs\flooring\flooring_decals.dm"
 #include "code\game\turfs\flooring\flooring_decals_vr.dm"
+#include "code\game\turfs\flooring\flooring_holiday.dm"
 #include "code\game\turfs\flooring\flooring_premade.dm"
 #include "code\game\turfs\flooring\flooring_vr.dm"
 #include "code\game\turfs\flooring\gas_cracks.dm"

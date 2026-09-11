@@ -38,16 +38,16 @@ GLOBAL_LIST(holidays)
 
 // Run at the start of a round
 /proc/Holiday_Game_Start()
-	fill_holidays()
 	if(isnull(GLOB.holidays))
 		return
 
 	var/list/holidays = list()
 	var/list/holiday_blurbs = list()
 
-	for(var/datum/holiday/holiday in GLOB.holidays)
-		holidays.Add(holiday.name)
-		holiday_blurbs.Add(holiday.greet())
+	for(var/holiday in GLOB.holidays)
+		var/datum/holiday/merry = GLOB.holidays[holiday]
+		holidays.Add(merry.name)
+		holiday_blurbs.Add(merry.greet())
 	var/holidays_string = english_list(holidays, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 	to_chat(world, span_filter_system(span_blue("and...")))
 	to_chat(world, span_filter_system("<h4>Happy [holidays_string] Everybody!</h4>"))
@@ -55,6 +55,25 @@ GLOBAL_LIST(holidays)
 		for(var/blurb in holiday_blurbs)
 			to_chat(world, span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
 	return
+
+//Allows GA and GM to set the Holiday
+ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday to make the game think it's a certain day.", ADMIN_CATEGORY_FUN_EVENT_KIT)
+	var/list/holiday_list = list()
+	for(var/datum/holiday/holiday_type in subtypesof(/datum/holiday))
+		var/datum/holiday/holiday = new holiday_type()
+		holiday_list[holiday.name] += holiday
+
+	var/holid = tgui_input_list(user, "What holiday is it today?", "Set Holiday", holiday_list)
+	if(!holid)
+		return
+
+	var/datum/holiday/picked_holiday = holiday_list[holid]
+
+	picked_holiday.celebrate()
+
+	message_admins(span_notice("ADMIN: Event: [key_name(user)] force-set Holiday to \"[picked_holiday.name]\""))
+	log_admin("[key_name(user)] force-set Holiday to \"[picked_holiday.name]\"")
+
 
 /datum/holiday
 	/// Name of the holiday itself. Visible to the player.Get_Holiday()
@@ -273,7 +292,6 @@ GLOBAL_LIST(holidays)
 		/obj/item/reagent_containers/food/drinks/bottle/small/ale
 		// Add Irish Cream bottle too at some point
 	)
-	always_celebrate = TRUE
 
 /datum/holiday/patrick/greet()
 	return "A holiday originating on Earth, celebrating a popular version of Irish culture. \
@@ -410,6 +428,8 @@ GLOBAL_LIST(holidays)
 	name = HOLIDAY_VOREDAY
 	begin_month = AUGUST
 	begin_day = 8
+	holiday_colors = list(COLOR_LIGHT_PINK, COLOR_SALAD_GREEN)
+	always_celebrate = TRUE
 
 /datum/holiday/vore/greet()
 	return "A holiday representing the innate desire in all/most/some/a few of us to devour each other or be devoured. \
@@ -534,15 +554,6 @@ GLOBAL_LIST(holidays)
 					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
 					for what one has in life."
 
-/datum/holiday/thanksgiving
-	name = HOLIDAY_THANKSGIVING
-	name = 28
-
-/datum/holiday/thanksgiving/greet()
-	return "Originally an old holiday from Earth, Thanksgiving follows many of the \
-					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
-					for what one has in life."
-
 // December
 
 /datum/holiday/festive_season
@@ -596,6 +607,15 @@ GLOBAL_LIST(holidays)
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
 
+/datum/holiday/xmas/celebrate()
+	. = ..()
+	for(var/obj/structure/flora/tree/pine/xmas in world)
+		if(isNotStationLevel(xmas.z))
+			continue
+		for(var/turf/simulated/floor/T in orange(1, xmas))
+			for(var/i = 1, i <= rand(1, 5), i++)
+				new /obj/item/a_gift(T)
+
 /datum/holiday/newyearseve
 	name = HOLIDAY_NEWYEARSEVE
 	begin_day = 31
@@ -611,6 +631,7 @@ GLOBAL_LIST(holidays)
 
 /datum/holiday/friday_thirteen
 	name = HOLIDAY_FRIDAY13
+	holiday_colors = list(COLOR_PRISONER_BLACK)
 
 /datum/holiday/friday_thirteen/shouldCelebrate(dd, mm, yyyy, ddd)
 	if(dd == 13 && ddd == FRIDAY)
