@@ -317,17 +317,6 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
 
-/datum/design_techweb/springtrap
-	name = "spring trap kit"
-	desc = "A mechanically activated spring trap. Low-tech, but reliable."
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = MATERIAL_COST(9.375))
-	id = "springtrap"
-	build_path = /obj/item/spring_trap_kit
-	category = list(
-		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
-	)
-
 /datum/design_techweb/experimental_welder
 	name = "Experimental welding tool"
 	desc = "A welding tool that generate fuel for itself."
