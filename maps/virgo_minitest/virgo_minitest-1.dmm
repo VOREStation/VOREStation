@@ -1920,12 +1920,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"en" = (
-/obj/machinery/camera/network/civilian{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
 "eo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2944,21 +2938,10 @@
 /area/tcommsat/chamber)
 "gG" = (
 /turf/simulated/shuttle/wall)
-"gH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
 "gI" = (
 /obj/effect/wingrille_spawn/reinforced/crescent,
 /turf/simulated/floor/tiled,
 /area/bridge)
-"gJ" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
 "gM" = (
 /obj/structure/shuttle,
 /turf/space,
@@ -3930,34 +3913,36 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
 "jK" = (
+/obj/machinery/camera/network/civilian{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jL" = (
 /obj/structure/table/hardwoodtable,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
-"jL" = (
+"jM" = (
 /obj/machinery/vending/boozeomat{
 	req_access = null
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
-"jM" = (
-/obj/machinery/chem_master,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/bar)
 "jN" = (
-/obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
+/obj/machinery/chem_master,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
 "jO" = (
 /obj/structure/table/hardwoodtable,
-/obj/machinery/reagentgrinder,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
 "jP" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
+/obj/structure/table/hardwoodtable,
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
 "jQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3967,9 +3952,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "jR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "jS" = (
@@ -3982,8 +3965,9 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "jT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "jU" = (
@@ -4015,6 +3999,17 @@
 /turf/simulated/floor,
 /area/engineering/workshop)
 "jX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"jZ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -4028,11 +4023,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
-"jY" = (
+"ka" = (
 /obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"jZ" = (
+"kb" = (
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
@@ -4042,33 +4037,38 @@
 /obj/item/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"ka" = (
-/obj/machinery/body_scanconsole,
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
-"kb" = (
-/obj/machinery/computer/operating,
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay)
 "kc" = (
-/obj/structure/medical_stand,
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "kd" = (
-/obj/machinery/optable,
+/obj/machinery/body_scanconsole,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
 "ke" = (
+/obj/machinery/computer/operating,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"kf" = (
+/obj/structure/medical_stand,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"kg" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/medical/medbay)
+"kh" = (
 /obj/machinery/sleeper{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"kf" = (
+"ki" = (
 /obj/machinery/sleep_console,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"kg" = (
+"kj" = (
 /obj/structure/table/rack,
 /obj/item/roller,
 /obj/item/roller{
@@ -4076,11 +4076,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"kh" = (
+"kk" = (
 /obj/machinery/vending/medical,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"ki" = (
+"kl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -4088,7 +4088,7 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"kj" = (
+"km" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -4097,11 +4097,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"kk" = (
+"kn" = (
 /obj/machinery/vending/blood,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"kl" = (
+"ko" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4112,11 +4112,11 @@
 /obj/item/reagent_containers/blood,
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"km" = (
+"kp" = (
 /obj/machinery/oxygen_pump/anesthetic,
 /turf/simulated/wall,
 /area/medical/medbay)
-"kn" = (
+"kq" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -4128,21 +4128,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
-"ko" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/secondary/engineering_hallway)
-"kp" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6,
-/turf/simulated/floor/tiled,
-/area/hallway/secondary/engineering_hallway)
 "kr" = (
 /obj/structure/table/steel,
 /obj/item/storage/box/lights/mixed,
@@ -4153,6 +4138,21 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
+"ks" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/secondary/engineering_hallway)
+"kt" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/turf/simulated/floor/tiled,
+/area/hallway/secondary/engineering_hallway)
 "kz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -10952,7 +10952,7 @@ aa
 aa
 aa
 cF
-ke
+kh
 cM
 xX
 cM
@@ -11054,9 +11054,9 @@ aa
 aa
 aa
 cF
-kf
+ki
 cM
-ka
+kd
 cM
 cM
 cM
@@ -11258,7 +11258,7 @@ aa
 aa
 aa
 cF
-kg
+kj
 cM
 cM
 cM
@@ -11266,7 +11266,7 @@ cM
 cM
 cM
 id
-en
+jK
 du
 cM
 cM
@@ -11359,8 +11359,8 @@ bM
 bM
 bM
 bM
-kn
-kh
+kq
+kk
 cM
 cM
 cM
@@ -11460,11 +11460,11 @@ cj
 cu
 cy
 cu
-ko
+ks
 cG
-ki
-jT
-jT
+kl
+jY
+jY
 de
 dr
 dF
@@ -11562,15 +11562,15 @@ ck
 cc
 cz
 cA
-kp
+kt
 cH
-kj
+km
 jz
 jz
 eA
 ds
 du
-jY
+ka
 ec
 ek
 jz
@@ -11666,14 +11666,14 @@ bM
 bM
 bM
 cF
-kk
+kn
 cM
 cM
 dg
 dt
 du
-jY
-jP
+ka
+jR
 el
 cM
 cM
@@ -11768,14 +11768,14 @@ aa
 aa
 aa
 cF
-kl
-kc
+ko
+kf
 cM
 dh
 cM
 du
 qZ
-jP
+jR
 el
 cM
 cM
@@ -11876,8 +11876,8 @@ cX
 di
 cM
 du
-jZ
-gH
+kb
+jT
 el
 cM
 cM
@@ -11972,14 +11972,14 @@ aa
 aa
 aa
 cF
-km
-kd
-kb
+kp
+kg
+ke
 dh
 cM
 du
-gJ
-jR
+kc
+jX
 el
 cM
 cM
@@ -12078,10 +12078,10 @@ cM
 cM
 cM
 dj
-jT
-jT
-jT
-jT
+jY
+jY
+jY
+jY
 em
 jB
 jB
@@ -14529,7 +14529,7 @@ cJ
 dD
 dO
 dY
-jX
+jZ
 cJ
 cJ
 cJ
@@ -15040,7 +15040,7 @@ cK
 cK
 cK
 cK
-jK
+jL
 cK
 jF
 cR
@@ -15142,7 +15142,7 @@ cK
 cK
 cK
 cK
-jL
+jM
 cK
 jG
 cR
@@ -15244,7 +15244,7 @@ cK
 cK
 cK
 cK
-jM
+jN
 cK
 jH
 cR
@@ -15346,7 +15346,7 @@ cK
 cK
 cK
 cK
-jN
+jO
 cK
 jI
 cR
@@ -15448,7 +15448,7 @@ cK
 cK
 cK
 cK
-jO
+jP
 cK
 jJ
 cR
