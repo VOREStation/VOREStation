@@ -1,4 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - bugfix: "fixes attaching certain objects to disposal trunks when other disposal pipes are on the same tile."
