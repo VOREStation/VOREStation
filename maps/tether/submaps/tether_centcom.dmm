@@ -484,12 +484,6 @@
 /obj/machinery/chem_master,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
-"bt" = (
-/obj/machinery/door/blast/regular{
-	dir = 4
-	},
-/turf/simulated/wall/r_wall,
-/area/centcom/terminal)
 "bu" = (
 /obj/structure/sign/warning{
 	name = "\improper STAND AWAY FROM TRACK EDGE"
@@ -25853,7 +25847,7 @@ mG
 Ok
 Ok
 Ok
-bt
+bN
 ZQ
 ZQ
 ZQ
