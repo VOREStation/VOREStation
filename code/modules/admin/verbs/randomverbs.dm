@@ -74,21 +74,95 @@ ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the acco
 		return
 	to_chat(user, "No matches for that age range found.")
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message", mob/targat_mob in get_mob_with_client_list())
-	var/msg = tgui_input_text(user, "Message:", text("Subtle PM to [targat_mob.key]"), encode = FALSE)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message", mob/target_mob in get_mob_with_client_list())
+
+	var/source = tgui_input_list(user, "Select the message source:", "Subtle Message for [target_mob.key]", list("Subtle Message", "CentCom", "Syndicate", "Talon HQ", "SolGov", "Custom"))
+	if(!source)
+		return
+	if(source == "CentCom")
+		if(isliving(target_mob))
+			var/mob/living/L = target_mob
+			if(!L.CanObtainCentcommMessage())
+				to_chat(user, "The person you are trying to contact is not wearing a headset.")
+				return
+		else
+			to_chat(user, "CentCom messages can only be sent to living mobs.")
+			return
+
+	if(source == "Syndicate")
+		if(isliving(target_mob))
+			var/mob/living/L = target_mob
+			if(!L.CanObtainCentcommMessage())
+				to_chat(user, "The person you are trying to contact is not wearing a headset.")
+				return
+		else
+			to_chat(user, "Syndicate messages can only be sent to living mobs.")
+			return
+
+	if(source == "Talon HQ")
+		if(isliving(target_mob))
+			var/mob/living/L = target_mob
+			if(!L.CanObtainCentcommMessage())
+				to_chat(user, "The person you are trying to contact is not wearing a headset.")
+				return
+		else
+			to_chat(user, "Talon HQ messages can only be sent to living mobs.")
+			return
+
+	if(source == "SolGov")
+		if(isliving(target_mob))
+			var/mob/living/L = target_mob
+			if(!L.CanObtainCentcommMessage())
+				to_chat(user, "The person you are trying to contact is not wearing a headset.")
+				return
+		else
+			to_chat(user, "SolGov messages can only be sent to living mobs.")
+			return
+
+	var/custom_color = "green"
+	var/custom_sender = ""
+	if(source == "Custom")
+		var/col_choice = tgui_input_list(user, "Choose a name color:", "Color", list("Green", "Blue", "Honk", "Grey"))
+		if(!col_choice)
+			return
+		switch(col_choice)
+			if("Green") custom_color = "green"
+			if("Blue") custom_color = "#3366ff" // a nice readable blue
+			if("HONK") custom_color = "#ff1493" // deep pink, readable
+			if("Gray") custom_color = "gray"
+
+		custom_sender = tgui_input_text(user, "Enter the sender's name:", text("Sender for [target_mob.key]"))
+		if(!custom_sender)
+			return
+		custom_sender = sanitize(custom_sender)
+
+	var/msg = tgui_input_text(user, "Message:", text("Subtle PM to [target_mob.key]"))
 
 	if (!msg)
 		return
 
+	if(usr?.client?.holder)
+		switch(source)
+			if("Subtle Message")
+				to_chat(target_mob, "<b>You hear a voice in your head... <i>[msg]</i></b>")
+			if("CentCom")
+				to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"<b><font color='blue'>Central Command</font></b> is on touch. Stand by for important message: <b>\"[msg]\"</b> End of transmission.\"")
+			if("Syndicate")
+				to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"Expect a message from <b><font color='red'><i>Syndicate</i></font></b>. Listen carefully, Agent: <b>\"[msg]\"</b> End of transmission.\"")
+			if("Talon HQ")
+				to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"<b><font color='orange'>Talon Headquarter</font></b> is on touch. Stand by for important message: <b>\"[msg]\"</b> End of transmission.\"")
+			if("SolGov")
+				to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"<b><font color='gold'>Solar Government</font></b> is on touch. Stand by for important message: <b>\"[msg]\"</b> End of transmission.\"")
+			if("Custom")
+				to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"Expect a message from <b><font color='[custom_color]'>[custom_sender]</font></b>. Message: <b>\"[msg]\"</b> End of transmission.\"")
+
 	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
-	to_chat(targat_mob, span_bold("You hear a voice in your head...") + " " + span_italics("[msg]"))
-
-	log_admin("SubtlePM: [key_name(user)] -> [key_name(targat_mob)] : [msg]")
-	msg = span_admin_pm_notice(span_bold(" SubtleMessage: [key_name_admin(user)] -> [key_name_admin(targat_mob)] :") + " [msg]")
+	log_admin("SubtlePM([source]): [key_name(user)] -> [key_name(target_mob)] : [msg]")
+	msg = span_admin_pm_notice(span_bold(" SubtleMessage([source]): [key_name_admin(user)] -> [key_name_admin(target_mob)] :") + " [msg]")
 	message_admins(msg)
-	admin_ticket_log(targat_mob, msg)
+	admin_ticket_log(target_mob, msg)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(cmd_admin_world_narrate, R_FUN|R_EVENT, "Global Narrate", "Globally narrate.", ADMIN_CATEGORY_FUN_NARRATE) // Allows administrators to fluff events a little easier -- TLE
