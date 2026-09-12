@@ -191,7 +191,7 @@
 /datum/config_entry/flag/allow_holidays/ValidateAndSet()
 	. = ..()
 	if(.)
-		GLOB.Holiday = config_entry_value
+		GLOB.holidays = config_entry_value
 
 /datum/config_entry/number/minute_topic_limit
 	config_entry_value = 250

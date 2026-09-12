@@ -37,3 +37,26 @@
 			if(!istype(A) || !A.contents.len) // Empty contents list means it's not on the map.
 				continue
 			. += A
+
+/proc/request_decoration_colors(atom/thing_to_color, pattern)
+	switch(pattern)
+		if(PATTERN_RANDOM)
+			return "#[random_short_color()]"
+		if(PATTERN_RAINBOW)
+			return get_decoration_color_from_pattern(thing_to_color, PATTERN_DEFAULT, PRIDE_FLAG_COLORS)
+
+	for(var/holiday_key in GLOB.holidays)
+		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
+		if(!holiday_real.holiday_colors)
+			continue
+		return holiday_real.get_holiday_colors(thing_to_color, pattern)
+
+/// Proc to return colors for recoloring atoms based on a pattern and the position of the atom. Primarily used by holidays
+/proc/get_decoration_color_from_pattern(atom/thing_to_color, pattern = PATTERN_DEFAULT, list/colors)
+	if(!length(colors))
+		return
+	switch(pattern)
+		if(PATTERN_DEFAULT)
+			return colors[(thing_to_color.y % colors.len) + 1]
+		if(PATTERN_VERTICAL_STRIPE)
+			return colors[(thing_to_color.x % colors.len) + 1]
