@@ -429,7 +429,6 @@ ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday to make 
 	begin_month = AUGUST
 	begin_day = 8
 	holiday_colors = list(COLOR_LIGHT_PINK, COLOR_SALAD_GREEN)
-	always_celebrate = TRUE
 
 /datum/holiday/vore/greet()
 	return "A holiday representing the innate desire in all/most/some/a few of us to devour each other or be devoured. \
