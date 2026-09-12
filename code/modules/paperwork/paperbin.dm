@@ -71,7 +71,7 @@
 		else
 			if(response == "Regular")
 				P = new /obj/item/paper
-				if(check_holidays(/datum/holiday/aprilfool))
+				if(check_holidays(HOLIDAY_APRILFOOLS))
 					if(prob(30))
 						P.info = span_red(span_bold("<font face=\"[P.crayonfont]\">HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</font>"))
 						P.rigged = 1
