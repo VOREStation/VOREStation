@@ -54,3 +54,35 @@
   lbnesquik:
   - bugfix: fixed the makarov and luger lacking sprites.
   - bugfix: fix the translator piece still working when you are asleep
+2026-09-11:
+  Diana:
+  - qol: Changes the RUST generator to produce more radiation and radiate further.
+      Rad collectors (at 1013kpa) now collect about as much as a mag-trap
+  Guti:
+  - rscadd: Added Telecomms Engineer role, as well as a handful of alternative titles.
+  Kashargul:
+  - qol: toggling hud vis will also update it for all contained prey
+  - qol: makes nerdle a bit more accessible for color blind people
+  ReoDaProtovali:
+  - rscadd: added a self-resetting spring trap. The normal one nolonger self-resets
+      as a side effect.
+  - rscadd: Made springtraps craftable via gui hand-crafting menu
+  - rscdel: Removed spring traps from the protolathe. They're improvised now.
+  - qol: Added a mini-grace period to disarming spring traps without them going off.
+      This should help with misclicks.
+  Will:
+  - qol: Removes prehistorically ancient abiotic check from bodyscanner and related
+      medical machines.
+  - rscdel: Removes non-functional xenochimera version of hardfeet trait
+  lbnesquik:
+  - bugfix: Fix the fancy drinks showcase not displaying their proper icon
+  - bugfix: fixed a few googles not providing eye protection.
+  - bugfix: Fixed warrants only being authorized by the head of security
+  - bugfix: fixed ventcrawl using an incorrect error message for welded vents.
+  - bugfix: Fix jerichoes not having an empty box sprite
+  - balance: Add some missing AI languages to the AI
+2026-09-12:
+  Will:
+  - qol: Species list in character editor is more clear about which species is whitelisted
+      only at a glance
+  - bugfix: Xenomorph hybrid species has a preview icon

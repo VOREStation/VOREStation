@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - bugfix: "fixed ventcrawl using an incorrect error message for welded vents."
