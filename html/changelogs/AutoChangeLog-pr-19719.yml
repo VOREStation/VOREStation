@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - qol: "Species list in character editor is more clear about which species is whitelisted only at a glance"
+  - bugfix: "Xenomorph hybrid species has a preview icon"
