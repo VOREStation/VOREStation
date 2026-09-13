@@ -26,7 +26,7 @@
 	key = "swish"
 
 /datum/decl/emote/human/swish/do_emote(mob/living/carbon/human/user)
-	user.animate_tail_once()
+	user.animate_tail_start()
 
 /datum/decl/emote/human/wag
 	key = "wag"
@@ -44,13 +44,13 @@
 	key = "qwag"
 
 /datum/decl/emote/human/qwag/do_emote(mob/living/carbon/human/user)
-	user.animate_tail_fast()
+	user.animate_tail_start()
 
 /datum/decl/emote/human/fastsway
 	key = "fastsway"
 
 /datum/decl/emote/human/fastsway/do_emote(mob/living/carbon/human/user)
-	user.animate_tail_fast()
+	user.animate_tail_start()
 
 /datum/decl/emote/human/swag
 	key = "swag"
