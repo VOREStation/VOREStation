@@ -92,6 +92,8 @@
 		return null
 
 	danger = get_perceived_radiation_danger(output_atoms[1], last_radiation_pulse, last_insulation_to_target, null)
+	if (!danger)
+		return null
 
 	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
 		chance = 100
@@ -122,6 +124,8 @@
 		return null
 
 	var/danger = get_perceived_radiation_danger(output_atoms[1], last_radiation_pulse, last_insulation_to_target, null)
+	if (!danger)
+		return null
 
 	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
 		chance = 100

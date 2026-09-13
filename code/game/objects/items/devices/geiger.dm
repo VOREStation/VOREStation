@@ -35,15 +35,15 @@
 		if(null)
 			. += span_notice("Ambient radiation level count reports that all is well. It is ") + span_green("safe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_LOW)
-			. += span_notice("Ambient radiation levels slightly above average. It is ") + span_green("safe ") + span_notice("here.")
+			. += span_notice("Ambient radiation levels slightly above average. It is ") + span_warning("unsafe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
-			. += span_notice("Ambient radiation levels above average. It is ") + span_green("safe ") + span_notice("here.")
+			. += span_notice("Ambient radiation levels above average. It is ") + span_warning("dangerous ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_HIGH)
-			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("unsafe ") + span_suicide("here.")
+			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("very dangerous ") + span_suicide("here.")
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
-			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely unsafe ") + span_suicide("here.")
+			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely dangerous ") + span_suicide("here.")
 	if(last_radiation_strength)
-		. += span_notice("Radioactive pulse strength: ") + span_warning("[last_radiation_strength]")
+		. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [last_radiation_strength ? last_radiation_strength : "0"]Bq.")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
@@ -104,7 +104,7 @@
 /obj/item/geiger/proc/on_pre_potential_irradiation(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
 	SIGNAL_HANDLER
 
-	last_radiation_strength = pulse_information.strength * (1 - NUM_E ** -calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, src), insulation_to_target))
+	last_radiation_strength = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(pulse_information.source_ref.resolve(), src), insulation_to_target)), 0.1)
 	last_perceived_radiation_danger = get_perceived_radiation_danger(src, pulse_information, insulation_to_target, last_radiation_strength)
 	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 

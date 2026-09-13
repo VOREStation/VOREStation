@@ -63,24 +63,6 @@
 #define MEDIUM_RADIATION_THRESHOLD_RANGE 0.5
 #define EXTREME_RADIATION_CHANCE 30
 
-/* TG style
-/// Gets the perceived "danger" of radiation pulse, given the threshold to the target.
-/// Returns a RADIATION_DANGER_* define, see [code/__DEFINES/radiation.dm]
-/proc/get_perceived_radiation_danger(datum/radiation_pulse_information/pulse_information, insulation_to_target)
-	if (insulation_to_target > pulse_information.threshold)
-		// We could get irradiated! The only thing stopping us now is chance, so scale based on that.
-		if (pulse_information.chance >= EXTREME_RADIATION_CHANCE)
-			return PERCEIVED_RADIATION_DANGER_EXTREME
-		else
-			return PERCEIVED_RADIATION_DANGER_HIGH
-	else
-		// We're out of the threshold from being irradiated, but by how much?
-		if (insulation_to_target / pulse_information.threshold <= MEDIUM_RADIATION_THRESHOLD_RANGE)
-			return PERCEIVED_RADIATION_DANGER_MEDIUM
-		else
-			return PERCEIVED_RADIATION_DANGER_LOW
-*/
-
 /proc/calculate_recieved_radiation_intensity(datum/radiation_pulse_information/pulse_information, distance, current_insulation)
 	// Intensity variable which will describe the radiation pulse.
 	// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
@@ -93,13 +75,11 @@
 
 /// Gets the ACTUAL "danger" of radiation pulse based on the remaining strength of the pulse by the time it hits the target.
 /proc/get_perceived_radiation_danger(atom/target, datum/radiation_pulse_information/pulse_information, insulation_to_target, pre_calculated_intensity = null)
-	var/atom/source = pulse_information.source_ref?.resolve()
-	if(!source)
-		return null
 	// We could get irradiated! The only thing stopping us now is chance. Show how intensely we'd get irradiated if we do!
 	var/recieved_intensity = pre_calculated_intensity
 	if(isnull(recieved_intensity))
-		recieved_intensity = pulse_information.strength * (1 - NUM_E ** -(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), insulation_to_target)))
+		recieved_intensity = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(pulse_information.source_ref.resolve(), target), insulation_to_target)), 0.1)
+
 	// Based off the old rad scale pre-rework
 	switch(recieved_intensity)
 		if(-INFINITY to RAD_LEVEL_LOW)
