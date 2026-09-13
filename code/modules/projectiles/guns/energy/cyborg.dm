@@ -1,24 +1,11 @@
 /// This file PRIMARILY contains guns for borgs. The key word being PRIMARILY.
 /// Some things are included in here for relevence's sake (like the dogborg blade)
 
-
-/obj/item/gun/energy/robotic/proc/gun_flag_check(flag_to_check) //Checks for the flag of the gun.
-	return (borg_flags & flag_to_check)
-
-/obj/item/melee/robotic/proc/weapon_flag_check(flag_to_check) //Checks for the flag of the gun.
-	return (borg_flags & flag_to_check)
-
-// THESE ARE OUTLIERS THAT SHOULD BE INCLUDED IN /MELEE BUT ARE SO HARDCODED THAT DOING SUCH WOULD BE A NIGHTMARE.
-// THIS LIST SHOULD BE SHORT AND ONLY INCLUDE THINGS THAT ARE ABSOLUTELY NECESSARY.
-/obj/item/pickaxe/proc/weapon_flag_check(flag_to_check) //Checks for the flag of the gun.
-	return (borg_flags & flag_to_check)
-
-
 /// The base gun types. Build off these four.
 /obj/item/gun/energy/robotic
 	name = "Cybernetic Gun"
 	desc = "A gun commonly used by cyborgs and other robotic lifeforms to stun"
-	var/borg_flags = COUNTS_AS_ROBOT_GUN //We add flags to this!
+	borg_flags = COUNTS_AS_ROBOT_GUN //We add flags to this!
 	self_recharge = 1
 	use_external_power = 1
 	projectile_type = /obj/item/projectile/beam/lasertag //This is the base gun and should never be used.
@@ -48,10 +35,7 @@
 	charge_cost = 240
 	recharge_time = 10
 
-
-
 /// Variant gun types
-
 
 /// Tasers
 /obj/item/gun/energy/robotic/taser/xeno
@@ -146,7 +130,7 @@
 	desc = "A robotic weapon of some sort."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
-	var/borg_flags = COUNTS_AS_ROBOTIC_MELEE
+	borg_flags = COUNTS_AS_ROBOTIC_MELEE
 
 /obj/item/melee/robotic/jaws
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -210,6 +194,7 @@
 				force = 30
 				armor_penetration = 25
 				defend_chance = 15
+				borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_DAGGER
 			else
 				name = "self defense knife"
 				icon = 'icons/obj/tools_robot.dmi'
@@ -220,6 +205,7 @@
 				force = 15
 				armor_penetration = 0
 				defend_chance = 5
+				borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_DAGGER
 		update_icon()
 
 
@@ -426,7 +412,7 @@
 	var/hitcost = 500
 	var/status = 0 //Off by default.
 	var/lightcolor = "#FF6A00"
-	borg_flags = COUNTS_AS_ROBOTIC_MELEE
+	borg_flags = COUNTS_AS_ROBOT_BATON | COUNTS_AS_ROBOTIC_MELEE
 
 /obj/item/melee/robotic/baton/update_icon()
 	if(status)
