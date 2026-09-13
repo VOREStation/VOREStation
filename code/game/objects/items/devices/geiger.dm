@@ -104,7 +104,7 @@
 /obj/item/geiger/proc/on_pre_potential_irradiation(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
 	SIGNAL_HANDLER
 
-	last_radiation_strength = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(pulse_information.source_ref.resolve(), src), insulation_to_target)), 0.1)
+	last_radiation_strength = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target)), RAD_ROUNDING_THRESHOLD)
 	last_perceived_radiation_danger = get_perceived_radiation_danger(src, pulse_information, insulation_to_target, last_radiation_strength)
 	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 

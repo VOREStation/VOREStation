@@ -334,6 +334,7 @@ GLOBAL_LIST_EMPTY(##LIST_NAME);\
 #define RAD_SOLVE_STRENGTH_MOD(I) (1 - NUM_E ** -I)
 
 // Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
+#define RAD_ROUNDING_THRESHOLD 0.1
 #define RAD_LEVEL_LOW 0.5 // Around the level at which radiation starts to become harmful
 #define RAD_LEVEL_MODERATE 5
 #define RAD_LEVEL_HIGH 25

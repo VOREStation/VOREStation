@@ -78,7 +78,7 @@
 	// We could get irradiated! The only thing stopping us now is chance. Show how intensely we'd get irradiated if we do!
 	var/recieved_intensity = pre_calculated_intensity
 	if(isnull(recieved_intensity))
-		recieved_intensity = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(pulse_information.source_ref.resolve(), target), insulation_to_target)), 0.1)
+		recieved_intensity = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(target)), insulation_to_target)), RAD_ROUNDING_THRESHOLD)
 
 	// Based off the old rad scale pre-rework
 	switch(recieved_intensity)
