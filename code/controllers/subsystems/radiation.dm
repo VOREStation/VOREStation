@@ -77,19 +77,11 @@ SUBSYSTEM_DEF(radiation)
 
 			/// Perceived chance of target getting irradiated.
 			var/perceived_chance
-			/// Intensity variable which will describe the radiation pulse.
-			/// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
-			/// Intensity is calculated so that the chance of getting irradiated at half of the max range is the same as the chance parameter.
-			var/intensity
-			/// Diminishes over range. Used by perceived chance, which is the actual chance to get irradiated.
-			var/perceived_intensity
 
 			if(pulse_information.chance < 100) // Prevents log(0) runtime if chance is 100%
-				intensity = -log(1 - pulse_information.chance / 100) * (1 + pulse_information.max_range / 2) ** 2
-				perceived_intensity = intensity * INVERSE((1 + get_dist_euclidean(source, target)) ** 2) // Diminishes over range.
-				perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
-				perceived_chance = 100 * (1 - NUM_E ** -perceived_intensity)
-				pulse_strength = pulse_strength * (1 - NUM_E ** -perceived_intensity)
+				var/recieved_intensity = calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), current_insulation)
+				perceived_chance = 100 * (1 - NUM_E ** -recieved_intensity)
+				pulse_strength = pulse_strength * (1 - NUM_E ** -recieved_intensity)
 			else
 				perceived_chance = 100
 

@@ -14,10 +14,8 @@
 	matter = list(/datum/material/steel = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5)
 
 	var/last_perceived_radiation_danger = null
-	///How strong the last radiation pulse was, at the source.
+	///How strong the last radiation pulse was
 	var/last_radiation_strength = null
-	///How much insulation we're lacking.
-	var/insulation_deficit = null
 
 	var/scanning = FALSE
 
@@ -45,9 +43,7 @@
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
 			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely unsafe ") + span_suicide("here.")
 	if(last_radiation_strength)
-		. += span_notice("Maximum strength at source of radioactive pulse: ") + span_warning("[last_radiation_strength]")
-	if(insulation_deficit)
-		. += span_warning("Insulation deficit: [insulation_deficit]")
+		. += span_notice("Radioactive pulse strength: ") + span_warning("[last_radiation_strength]")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
@@ -108,12 +104,8 @@
 /obj/item/geiger/proc/on_pre_potential_irradiation(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
 	SIGNAL_HANDLER
 
-	last_perceived_radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
-	last_radiation_strength = pulse_information.strength
-	if(insulation_to_target > pulse_information.threshold)
-		insulation_deficit = round(insulation_to_target - pulse_information.threshold, 0.1)
-	else
-		insulation_deficit = null
+	last_radiation_strength = pulse_information.strength * (1 - NUM_E ** -calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, src), insulation_to_target))
+	last_perceived_radiation_danger = get_perceived_radiation_danger(src, pulse_information, insulation_to_target, last_radiation_strength)
 	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 	if (scanning)
@@ -122,7 +114,6 @@
 /obj/item/geiger/proc/reset_perceived_danger()
 	last_perceived_radiation_danger = null
 	last_radiation_strength = null
-	insulation_deficit = null
 	if (scanning)
 		update_icon()
 

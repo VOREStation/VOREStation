@@ -90,7 +90,8 @@
 
 	if (isnull(last_radiation_pulse))
 		return null
-	danger = get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)
+
+	danger = get_perceived_radiation_danger(output_atoms[1], last_radiation_pulse, last_insulation_to_target, null)
 
 	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
 		chance = 100
@@ -120,7 +121,7 @@
 	if (isnull(last_radiation_pulse))
 		return null
 
-	var/danger = get_perceived_radiation_danger(last_radiation_pulse, last_insulation_to_target)
+	var/danger = get_perceived_radiation_danger(output_atoms[1], last_radiation_pulse, last_insulation_to_target, null)
 
 	if(danger >= PERCEIVED_RADIATION_DANGER_HIGH)
 		chance = 100

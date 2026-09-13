@@ -63,6 +63,7 @@
 #define MEDIUM_RADIATION_THRESHOLD_RANGE 0.5
 #define EXTREME_RADIATION_CHANCE 30
 
+/* TG style
 /// Gets the perceived "danger" of radiation pulse, given the threshold to the target.
 /// Returns a RADIATION_DANGER_* define, see [code/__DEFINES/radiation.dm]
 /proc/get_perceived_radiation_danger(datum/radiation_pulse_information/pulse_information, insulation_to_target)
@@ -78,6 +79,39 @@
 			return PERCEIVED_RADIATION_DANGER_MEDIUM
 		else
 			return PERCEIVED_RADIATION_DANGER_LOW
+*/
+
+/proc/calculate_recieved_radiation_intensity(datum/radiation_pulse_information/pulse_information, distance, current_insulation)
+	// Intensity variable which will describe the radiation pulse.
+	// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
+	// Intensity is calculated so that the chance of getting irradiated at half of the max range is the same as the chance parameter.
+	var/intensity = -log(1 - pulse_information.chance / 100) * (1 + pulse_information.max_range / 2) ** 2
+	// Diminishes over range. Used by perceived chance, which is the actual chance to get irradiated.
+	var/perceived_intensity = intensity * INVERSE((1 + distance) ** 2) // Diminishes over range.
+	perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
+	return perceived_intensity
+
+/// Gets the ACTUAL "danger" of radiation pulse based on the remaining strength of the pulse by the time it hits the target.
+/proc/get_perceived_radiation_danger(atom/target, datum/radiation_pulse_information/pulse_information, insulation_to_target, pre_calculated_intensity = null)
+	var/atom/source = pulse_information.source_ref?.resolve()
+	if(!source)
+		return null
+	// We could get irradiated! The only thing stopping us now is chance. Show how intensely we'd get irradiated if we do!
+	var/recieved_intensity = pre_calculated_intensity
+	if(isnull(recieved_intensity))
+		recieved_intensity = pulse_information.strength * (1 - NUM_E ** -(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), insulation_to_target)))
+	// Based off the old rad scale pre-rework
+	switch(recieved_intensity)
+		if(-INFINITY to RAD_LEVEL_LOW)
+			return null
+		if(RAD_LEVEL_LOW to RAD_LEVEL_MODERATE)
+			return PERCEIVED_RADIATION_DANGER_LOW
+		if(RAD_LEVEL_MODERATE to RAD_LEVEL_HIGH)
+			return PERCEIVED_RADIATION_DANGER_MEDIUM
+		if(RAD_LEVEL_HIGH to RAD_LEVEL_VERY_HIGH)
+			return PERCEIVED_RADIATION_DANGER_HIGH
+		if(RAD_LEVEL_VERY_HIGH to INFINITY)
+			return PERCEIVED_RADIATION_DANGER_EXTREME
 
 /// A common proc used to send COMSIG_ATOM_PROPAGATE_RAD_PULSE to adjacent atoms
 /// Only used for uranium (false/tram)walls to spread their radiation pulses
