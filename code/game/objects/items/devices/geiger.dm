@@ -42,8 +42,7 @@
 			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("very dangerous ") + span_suicide("here.")
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
 			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely dangerous ") + span_suicide("here.")
-	if(last_radiation_strength)
-		. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [last_radiation_strength > 0 ? last_radiation_strength : "0"]Bq.")
+	. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [last_radiation_strength > 0 ? last_radiation_strength : "0"]Bq.")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
