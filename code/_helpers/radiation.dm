@@ -117,25 +117,13 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Range"
-	d_range = tgui_input_number(usr, "Set range of effect", d_range, "Range", min_value=0, round_value=FALSE)
+	d_range = tgui_input_number(usr, "Set range of effect", "Range", d_range, min_value=0, round_value=FALSE)
 
 /obj/rad_tester/verb/set_threshold()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Threshold"
-	var/list/thresholds = list(
-		"RAD_NO_INSULATION" = RAD_NO_INSULATION,
-		"RAD_VERY_LIGHT_INSULATION" = RAD_VERY_LIGHT_INSULATION,
-		"RAD_LIGHT_INSULATION" = RAD_LIGHT_INSULATION,
-		"RAD_MEDIUM_INSULATION" = RAD_MEDIUM_INSULATION,
-		"RAD_HEAVY_INSULATION" = RAD_HEAVY_INSULATION,
-		"RAD_EXTREME_INSULATION" = RAD_EXTREME_INSULATION,
-		"RAD_FULL_INSULATION" = RAD_FULL_INSULATION
-	)
-	var/find_val = tgui_input_list(usr, "Set radiation wall penetration threshold", thresholds, default="RAD_FULL_INSULATION")
-	if(!find_val)
-		return
-	d_threshold = thresholds[find_val]
+	d_threshold = tgui_input_number(usr, "Set penetration threshold of radiation. RAD_NO_INSULATION is [RAD_NO_INSULATION], RAD_FULL_INSULATION is [RAD_FULL_INSULATION], RAD_EXTREME_INSULATION is [RAD_EXTREME_INSULATION]", "Radiation Chance", d_threshold, min_value=0, max_value = 1, round_value=FALSE)
 
 /obj/rad_tester/verb/set_chance()
 	set src in oview(1)
@@ -153,4 +141,4 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Strength"
-	d_strength = tgui_input_number(usr, "Set radiation strength", "Strength", d_strength, min_value=0, round_value=FALSE)
+	d_strength = tgui_input_number(usr, "Set radiation strength. Uranium sheets have a strength of [/datum/material/uranium::radioactivity], Supermatter sheets have a strength of [/datum/material/supermatter::radioactivity], engines have strengths in the hundreds.", "Strength", d_strength, min_value=0, round_value=FALSE)
