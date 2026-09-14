@@ -8,7 +8,7 @@
 	var/is_adult = FALSE // Slimes turn into adults when fed enough. Adult slimes are somewhat stronger, and can reproduce if fed enough.
 	var/maxHealth_adult = 200
 	var/power_charge = 0 // Disarm attacks can shock someone if high/lucky enough.
-	var/mob/living/victim = null // the person the slime is currently feeding on
+	var/mob/living/victim = null // the person the slime is currently feeding on //TODO: Change this to a weakref
 	var/rainbow_core_candidate = TRUE // If false, rainbow cores cannot make this type randomly.
 	var/mutation_chance = 25 // Odds of spawning as a new color when reproducing.  Can be modified by certain xenobio products.  Carried across generations of slimes.
 	var/split_amount = 4 // Amount of children we will normally have. Half of that for dead adult slimes. Is NOT carried across generations.
@@ -20,6 +20,7 @@
 		/mob/living/simple_mob/slime/xenobio/blue,
 		/mob/living/simple_mob/slime/xenobio/purple
 	)
+	var/list/exclusion_types = list() ///What types of slimes this slime is forbidden from mutating into. Caused via mutated monkeys.
 	var/amount_grown = 0 // controls how long the slime has been overfed, if 10, grows or reproduces
 	var/number = 0 // This is used to make the slime semi-unique for indentification.
 	var/harmless = FALSE // Set to true when pacified. Makes the slime harmless, not get hungry, and not be able to grow/reproduce.
@@ -288,6 +289,12 @@
 	var/t = src.type
 	if(desired_type)
 		t = desired_type
+	// Remove excluded slimes from the mutation list. We do not preserve the mutation list because the slime is deleted anyways. If no mutations do rainbow.
+	if(length(exclusion_types))
+		slime_mutation -= exclusion_types
+		if(!length(slime_mutation))
+			slime_mutation = list(/mob/living/simple_mob/slime/xenobio/rainbow)
+
 	if(prob(mutation_chance / 10))
 		t = /mob/living/simple_mob/slime/xenobio/rainbow
 	else if(prob(mutation_chance) && slime_mutation.len)
