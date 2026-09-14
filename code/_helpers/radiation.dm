@@ -113,18 +113,11 @@
 			strength = d_strength
 		)
 
-/obj/rad_tester/verb/set_exposure_time()
+/obj/rad_tester/verb/set_range()
 	set src in oview(1)
 	set category = "Object"
-	set name = "Set Minimum Exposure Time"
-	d_range = tgui_input_number(usr, "Set exposure time needed in seconds", "Exposure Time", min_value=0, round_value=FALSE)
-	d_range = d_range SECONDS
-
-/obj/rad_tester/verb/set_chance()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Set Radiation Chance"
-	d_chance = tgui_input_number(usr, "Set probability of radiation exposure", "Radiation Chance", min_value=0, max_value=100, round_value=FALSE)
+	set name = "Set Radiation Range"
+	d_range = tgui_input_number(usr, "Set range of effect", "Range", min_value=0, round_value=FALSE)
 
 /obj/rad_tester/verb/set_threshold()
 	set src in oview(1)
@@ -144,8 +137,21 @@
 		return
 	d_threshold = thresholds[find_val]
 
+/obj/rad_tester/verb/set_chance()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Chance"
+	d_chance = tgui_input_number(usr, "Set probability of radiation exposure", "Radiation Chance", min_value=0, max_value=100, round_value=FALSE)
+
+/obj/rad_tester/verb/set_exposure_time()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Minimum Exposure Time"
+	d_minimum_exposure_time = tgui_input_number(usr, "Set exposure time needed in seconds", "Exposure Time", min_value=0, round_value=FALSE)
+	d_minimum_exposure_time = d_minimum_exposure_time SECONDS
+
 /obj/rad_tester/verb/set_strength()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Strength"
-	d_range = tgui_input_number(usr, "Set radiation strength", "Strength", min_value=0, round_value=FALSE)
+	d_strength = tgui_input_number(usr, "Set radiation strength", "Strength", min_value=0, round_value=FALSE)
