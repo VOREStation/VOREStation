@@ -82,3 +82,70 @@
 
 #undef MEDIUM_RADIATION_THRESHOLD_RANGE
 #undef EXTREME_RADIATION_CHANCE
+
+
+/// Debugging radiation can be painful without manually proc-calling radiation pulses. This allows easy custom radiation emitting objects to be placed and tested based on whatever settings are needed.
+/obj/rad_tester
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "type-a-red-portal-b"
+	name = "Radiation Debugger"
+	var/d_strength = 0
+	var/d_minimum_exposure_time = 1 SECOND
+	var/d_chance = 0
+	var/d_threshold = RAD_EXTREME_INSULATION
+	var/d_range = 0
+
+/obj/rad_tester/Initialize(mapload)
+	. = ..()
+	START_MACHINE_PROCESSING(src)
+
+/obj/rad_tester/Destroy()
+	STOP_MACHINE_PROCESSING(src)
+	. = ..()
+
+/obj/rad_tester/process()
+	radiation_pulse(
+			src,
+			max_range = d_range,
+			threshold = d_threshold,
+			chance = d_chance,
+			minimum_exposure_time = d_minimum_exposure_time,
+			strength = d_strength
+		)
+
+/obj/rad_tester/verb/set_exposure_time()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Minimum Exposure Time"
+	d_range = tgui_input_number(usr, "Set exposure time needed in seconds", "Exposure Time", min_value=0, round_value=FALSE)
+	d_range = d_range SECONDS
+
+/obj/rad_tester/verb/set_chance()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Chance"
+	d_chance = tgui_input_number(usr, "Set probability of radiation exposure", "Radiation Chance", min_value=0, max_value=100, round_value=FALSE)
+
+/obj/rad_tester/verb/set_threshold()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Threshold"
+	var/list/thresholds = list(
+		"RAD_NO_INSULATION" = RAD_NO_INSULATION,
+		"RAD_VERY_LIGHT_INSULATION" = RAD_VERY_LIGHT_INSULATION,
+		"RAD_LIGHT_INSULATION" = RAD_LIGHT_INSULATION,
+		"RAD_MEDIUM_INSULATION" = RAD_MEDIUM_INSULATION,
+		"RAD_HEAVY_INSULATION" = RAD_HEAVY_INSULATION,
+		"RAD_EXTREME_INSULATION" = RAD_EXTREME_INSULATION,
+		"RAD_FULL_INSULATION" = RAD_FULL_INSULATION
+	)
+	var/find_val = tgui_input_list(usr, "Set radiation wall penetration threshold", thresholds, default="RAD_FULL_INSULATION")
+	if(!find_val)
+		return
+	d_threshold = thresholds[find_val]
+
+/obj/rad_tester/verb/set_strength()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Strength"
+	d_range = tgui_input_number(usr, "Set radiation strength", "Strength", min_value=0, round_value=FALSE)
