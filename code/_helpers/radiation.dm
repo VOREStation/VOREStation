@@ -90,17 +90,17 @@
 	icon_state = "type-a-red-portal-b"
 	name = "Radiation Debugger"
 	var/d_strength = 0
-	var/d_minimum_exposure_time = 1 SECOND
+	var/d_minimum_exposure_time = 1
 	var/d_chance = 0
 	var/d_threshold = RAD_EXTREME_INSULATION
 	var/d_range = 0
 
 /obj/rad_tester/Initialize(mapload)
 	. = ..()
-	START_MACHINE_PROCESSING(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/rad_tester/Destroy()
-	STOP_MACHINE_PROCESSING(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/rad_tester/process()
@@ -109,7 +109,7 @@
 			max_range = d_range,
 			threshold = d_threshold,
 			chance = d_chance,
-			minimum_exposure_time = d_minimum_exposure_time,
+			minimum_exposure_time = d_minimum_exposure_time SECONDS,
 			strength = d_strength
 		)
 
@@ -117,7 +117,7 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Range"
-	d_range = tgui_input_number(usr, "Set range of effect", "Range", min_value=0, round_value=FALSE)
+	d_range = tgui_input_number(usr, "Set range of effect", d_range, "Range", min_value=0, round_value=FALSE)
 
 /obj/rad_tester/verb/set_threshold()
 	set src in oview(1)
@@ -141,17 +141,16 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Chance"
-	d_chance = tgui_input_number(usr, "Set probability of radiation exposure", "Radiation Chance", min_value=0, max_value=100, round_value=FALSE)
+	d_chance = tgui_input_number(usr, "Set probability of radiation exposure", "Radiation Chance", d_chance, min_value=0, max_value=100, round_value=FALSE)
 
 /obj/rad_tester/verb/set_exposure_time()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Minimum Exposure Time"
-	d_minimum_exposure_time = tgui_input_number(usr, "Set exposure time needed in seconds", "Exposure Time", min_value=0, round_value=FALSE)
-	d_minimum_exposure_time = d_minimum_exposure_time SECONDS
+	d_minimum_exposure_time = tgui_input_number(usr, "Set exposure time needed in seconds", "Exposure Time", d_minimum_exposure_time, min_value=0, round_value=FALSE)
 
 /obj/rad_tester/verb/set_strength()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Set Radiation Strength"
-	d_strength = tgui_input_number(usr, "Set radiation strength", "Strength", min_value=0, round_value=FALSE)
+	d_strength = tgui_input_number(usr, "Set radiation strength", "Strength", d_strength, min_value=0, round_value=FALSE)
