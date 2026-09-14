@@ -74,30 +74,6 @@
 	perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
 	return perceived_intensity
 
-/// Gets the ACTUAL "danger" of radiation pulse based on the remaining strength of the pulse by the time it hits the target.
-/proc/get_perceived_radiation_danger(atom/target, datum/radiation_pulse_information/pulse_information, insulation_to_target, pre_calculated_intensity = null)
-	var/atom/source = pulse_information.source_ref?.resolve()
-	if(QDELETED(source) || QDELETED(target))
-		return null
-
-	// We could get irradiated! The only thing stopping us now is chance. Show how intensely we'd get irradiated if we do!
-	var/recieved_intensity = pre_calculated_intensity
-	if(isnull(recieved_intensity))
-		recieved_intensity = FLOOR(pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(source), get_turf(target)), insulation_to_target)), RAD_ROUNDING_THRESHOLD)
-
-	// Based off the old rad scale pre-rework
-	switch(recieved_intensity)
-		if(-INFINITY to RAD_LEVEL_LOW)
-			return null
-		if(RAD_LEVEL_LOW to RAD_LEVEL_MODERATE)
-			return PERCEIVED_RADIATION_DANGER_LOW
-		if(RAD_LEVEL_MODERATE to RAD_LEVEL_HIGH)
-			return PERCEIVED_RADIATION_DANGER_MEDIUM
-		if(RAD_LEVEL_HIGH to RAD_LEVEL_VERY_HIGH)
-			return PERCEIVED_RADIATION_DANGER_HIGH
-		if(RAD_LEVEL_VERY_HIGH to INFINITY)
-			return PERCEIVED_RADIATION_DANGER_EXTREME
-
 /// A common proc used to send COMSIG_ATOM_PROPAGATE_RAD_PULSE to adjacent atoms
 /// Only used for uranium (false/tram)walls to spread their radiation pulses
 /atom/proc/propagate_radiation_pulse()
