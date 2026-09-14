@@ -91,7 +91,8 @@
 	if (isnull(last_radiation_pulse))
 		return null
 
-	danger = get_perceived_radiation_danger(output_atoms[1], last_radiation_pulse, last_insulation_to_target, null)
+	var/obj/item/geiger/host = output_atoms[1]
+	danger = host.last_perceived_radiation_danger
 	if (!danger)
 		return null
 
@@ -119,11 +120,12 @@
 /datum/looping_sound/geiger/wall
 	wall_mounted = TRUE
 
-/datum/looping_sound/geiger/wall/get_sound(starttime, _mid_sounds)
+/datum/looping_sound/geiger/wall/get_sound(starttime, _mid_sounds, danger)
 	if (isnull(last_radiation_pulse))
 		return null
 
-	var/danger = get_perceived_radiation_danger(output_atoms[1], last_radiation_pulse, last_insulation_to_target, null)
+	var/obj/item/geiger/host = output_atoms[1]
+	danger = host.last_perceived_radiation_danger
 	if (!danger)
 		return null
 
