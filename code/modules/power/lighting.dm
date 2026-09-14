@@ -1199,6 +1199,15 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/atom/location = src.loc
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		//0.2L
+		air_contents.volume = 0.2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, 1)
+		location.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade
