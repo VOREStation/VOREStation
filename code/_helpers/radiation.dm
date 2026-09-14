@@ -64,6 +64,8 @@
 #define EXTREME_RADIATION_CHANCE 30
 
 /proc/calculate_recieved_radiation_intensity(datum/radiation_pulse_information/pulse_information, distance, current_insulation)
+	if(pulse_information.chance < 100) // Prevents log(0) runtime if chance is 100%
+		return 0
 	// Intensity variable which will describe the radiation pulse.
 	// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
 	// Intensity is calculated so that the chance of getting irradiated at half of the max range is the same as the chance parameter.

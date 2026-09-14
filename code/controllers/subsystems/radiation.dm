@@ -40,18 +40,18 @@ SUBSYSTEM_DEF(radiation)
 			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
 			continue
 
+		var/current_insulation = calculate_insulation(source, turf_to_irradiate, pulse_information, cached_rad_insulations)
 		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
-			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, calculate_insulation(source, geiger_counter, pulse_information, cached_rad_insulations))
+			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 		for(var/mob/living/target in turf_to_irradiate)
 			var/list/contents_to_check = target.get_all_contents_type(/obj/item/geiger)
 			for(var/obj/item/geiger/geiger_counter in contents_to_check)
-				SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, calculate_insulation(source, geiger_counter, pulse_information, cached_rad_insulations))
+				SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 			if(!can_irradiate_basic(target))
 				continue
 
-			var/current_insulation = calculate_insulation(source, target, pulse_information, cached_rad_insulations)
 			SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 			// Check a second time, because of TRAIT_BYPASS_EARLY_IRRADIATED_CHECK
@@ -62,15 +62,13 @@ SUBSYSTEM_DEF(radiation)
 				continue
 
 			/// Perceived chance of target getting irradiated.
-			var/perceived_chance
+			var/perceived_chance = 100
 			var/pulse_strength
 
-			if(pulse_information.chance < 100) // Prevents log(0) runtime if chance is 100%
-				var/recieved_intensity = calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), current_insulation)
+			var/recieved_intensity = calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), current_insulation)
+			if(pulse_information.chance < 100)
 				perceived_chance = RAD_SOLVE_CHANCE(recieved_intensity)
 				pulse_strength = pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(recieved_intensity)
-			else
-				perceived_chance = 100
 
 			var/irradiation_result = SEND_SIGNAL(target, COMSIG_IN_THRESHOLD_OF_IRRADIATION, pulse_information)
 			if (irradiation_result & CANCEL_IRRADIATION)
