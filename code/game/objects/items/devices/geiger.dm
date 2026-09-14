@@ -16,6 +16,8 @@
 	var/last_perceived_radiation_danger = null
 	///How strong the last radiation pulse was
 	var/last_radiation_strength = null
+	/// Used to describe how penetrating a radiation is, or if it requires long exposure to be dangerous
+	var/radiation_description = null
 
 	var/scanning = FALSE
 
@@ -42,7 +44,11 @@
 			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("very dangerous ") + span_suicide("here.")
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
 			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely dangerous ") + span_suicide("here.")
-	. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [last_radiation_strength > 0 ? last_radiation_strength : "0"]Bq.")
+
+	var/raddesc = ""
+	if(radiation_description && last_radiation_strength > 0)
+		raddesc = " of [radiation_description]"
+	. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [last_radiation_strength > 0 ? last_radiation_strength : "0"]Bq[raddesc].")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
@@ -117,6 +123,21 @@
 		if(RAD_LEVEL_VERY_HIGH to INFINITY)
 			last_perceived_radiation_danger = PERCEIVED_RADIATION_DANGER_EXTREME
 
+	// Store the threshold too so we can describe the type of radiation we are being hit with
+	var/chance_desc = "Low energy"
+	if(pulse_information.chance >= DEFAULT_RADIATION_CHANCE && pulse_information.minimum_exposure_time <= URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME)
+		chance_desc = "High energy"
+	var/energy_desc
+	if(pulse_information.threshold == RAD_FULL_INSULATION) // Goes it's full range, only the most shielded walls can stop it
+		energy_desc = "neutrinos"
+	else if(pulse_information.threshold <= RAD_EXTREME_INSULATION) // Can get through two layers of reinforced walls, walls only weaken it.
+		energy_desc = "gamma rays"
+	else if(pulse_information.threshold <= RAD_MEDIUM_INSULATION) // Can get through a single normal wall weakened
+		energy_desc = "beta particles"
+	else if(pulse_information.threshold <= RAD_NO_INSULATION) // Cannot get past a single normal wall
+		energy_desc = "alpha particles"
+	radiation_description = "[chance_desc] [energy_desc]"
+
 	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 	if (scanning)
@@ -125,6 +146,7 @@
 /obj/item/geiger/proc/reset_perceived_danger()
 	last_perceived_radiation_danger = null
 	last_radiation_strength = null
+	radiation_description = null
 	if (scanning)
 		update_icon()
 
