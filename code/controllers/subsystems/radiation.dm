@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(radiation)
 			var/recieved_intensity = calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), current_insulation)
 			if(pulse_information.chance < 100)
 				perceived_chance = RAD_SOLVE_CHANCE(recieved_intensity)
-				pulse_strength = pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(recieved_intensity)
+			pulse_strength = pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(recieved_intensity)
 
 			var/irradiation_result = SEND_SIGNAL(target, COMSIG_IN_THRESHOLD_OF_IRRADIATION, pulse_information)
 			if (irradiation_result & CANCEL_IRRADIATION)
