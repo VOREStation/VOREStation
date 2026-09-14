@@ -124,9 +124,9 @@
 			last_perceived_radiation_danger = PERCEIVED_RADIATION_DANGER_EXTREME
 
 	// Store the threshold too so we can describe the type of radiation we are being hit with
-	var/chance_desc = "Low energy"
+	var/chance_desc = "low energy"
 	if(pulse_information.chance >= DEFAULT_RADIATION_CHANCE && pulse_information.minimum_exposure_time <= URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME)
-		chance_desc = "High energy"
+		chance_desc = "high energy"
 	var/energy_desc
 	if(pulse_information.threshold == RAD_FULL_INSULATION) // Goes it's full range, only the most shielded walls can stop it
 		energy_desc = "neutrinos"
