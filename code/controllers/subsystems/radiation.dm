@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(radiation)
 			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
 			continue
 
-		var/current_insulation = calculate_insulation(source, turf_to_irradiate, pulse_information, cached_rad_insulations)
+		var/current_insulation = calculate_radiation_insulation(source, turf_to_irradiate, pulse_information, cached_rad_insulations)
 		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
 			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(radiation)
 			var/recieved_intensity = calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), current_insulation)
 			if(pulse_information.chance < 100)
 				perceived_chance = RAD_SOLVE_CHANCE(recieved_intensity)
-			pulse_strength = pulse_information.strength * RAD_SOLVE_STRENGTH_MOD(recieved_intensity)
+			pulse_strength = RAD_SOLVE_STRENGTH_MOD(pulse_information.strength, recieved_intensity)
 
 			var/irradiation_result = SEND_SIGNAL(target, COMSIG_IN_THRESHOLD_OF_IRRADIATION, pulse_information)
 			if (irradiation_result & CANCEL_IRRADIATION)
@@ -88,23 +88,6 @@ SUBSYSTEM_DEF(radiation)
 			break
 
 	cached_turfs_to_process.Cut(1, turfs_iterated + 1)
-
-/// Calculates the turf line's radiation resistance between two points
-/datum/controller/subsystem/radiation/proc/calculate_insulation(atom/source, atom/target, datum/radiation_pulse_information/pulse_information, list/cached_rad_insulations)
-	var/current_insulation = 1
-	for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
-		var/insulation = cached_rad_insulations[turf_in_between]
-		if (isnull(insulation))
-			insulation = turf_in_between.rad_insulation
-			for (var/atom/on_turf as anything in turf_in_between.contents)
-				insulation *= on_turf.rad_insulation
-			cached_rad_insulations[turf_in_between] = insulation
-
-		current_insulation *= insulation
-
-		if (current_insulation <= pulse_information.threshold)
-			break
-	return current_insulation
 
 /// Will attempt to irradiate the given target, limited through IC means, such as radiation protected clothing.
 /datum/controller/subsystem/radiation/proc/irradiate(atom/target, strength)

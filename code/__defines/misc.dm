@@ -329,9 +329,11 @@ GLOBAL_LIST_EMPTY(##LIST_NAME);\
 #define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
 
-// Solvers for radiation calculations, turns raw pulse intensity into chance and strength of rads recieved
+// Solvers for radiation calculations. Intensity is calculated with calculate_recieved_radiation_intensity()
+/// Solves the probability that a radiation pulse should affect a mob. I = radiation intensity
 #define RAD_SOLVE_CHANCE(I) (100 * (1 - NUM_E ** -I))
-#define RAD_SOLVE_STRENGTH_MOD(I) (1 - NUM_E ** -I)
+/// Solve the amount of rads at a location. S = strength of radiation pulse, I = radiation intensity.
+#define RAD_SOLVE_STRENGTH_MOD(S, I) (S * (1 - NUM_E ** -I))
 
 // Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
 #define RAD_ROUNDING_THRESHOLD 0.1

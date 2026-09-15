@@ -63,6 +63,24 @@
 #define MEDIUM_RADIATION_THRESHOLD_RANGE 0.5
 #define EXTREME_RADIATION_CHANCE 30
 
+/// Calculates the turf line's radiation resistance between two points
+/proc/calculate_radiation_insulation(atom/source, atom/target, datum/radiation_pulse_information/pulse_information, list/cached_rad_insulations)
+	var/current_insulation = 1
+	for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+		var/insulation = cached_rad_insulations[turf_in_between]
+		if (isnull(insulation))
+			insulation = turf_in_between.rad_insulation
+			for (var/atom/on_turf as anything in turf_in_between.contents)
+				insulation *= on_turf.rad_insulation
+			cached_rad_insulations[turf_in_between] = insulation
+
+		current_insulation *= insulation
+
+		if (current_insulation <= pulse_information.threshold)
+			break
+	return current_insulation
+
+/// Calculate the intensity of rads a turf is recieving. Intended for use with RAD_SOLVE_CHANCE() and RAD_SOLVE_STRENGTH_MOD() to calculate either the radiation chance or rads recieved by a mob.
 /proc/calculate_recieved_radiation_intensity(datum/radiation_pulse_information/pulse_information, distance, current_insulation)
 	var/intensity = 0
 	// Intensity variable which will describe the radiation pulse.
