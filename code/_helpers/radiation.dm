@@ -80,7 +80,7 @@
 			break
 	return current_insulation
 
-/// Calculate the intensity of rads a turf is recieving. Intended for use with RAD_SOLVE_CHANCE() and RAD_SOLVE_STRENGTH_MOD() to calculate either the radiation chance or rads recieved by a mob.
+/// Calculate the intensity of rads a turf is recieving. Intended for use with RAD_SOLVE_CHANCE() and RAD_SOLVE_MOBRADS() to calculate either the radiation chance or rads recieved by a mob.
 /proc/calculate_recieved_radiation_intensity(datum/radiation_pulse_information/pulse_information, distance, current_insulation)
 	var/intensity = 0
 	// Intensity variable which will describe the radiation pulse.

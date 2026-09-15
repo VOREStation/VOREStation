@@ -110,7 +110,7 @@
 	SIGNAL_HANDLER
 
 	// We can trust the weakref is still valid by this point, as the subsystem discards the pulse if so. Just get how much rads we should get if we were standing here as a mob.
-	last_radiation_strength = FLOOR(RAD_SOLVE_STRENGTH_MOD(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target)), RAD_ROUNDING_THRESHOLD)
+	last_radiation_strength = FLOOR(RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target)), RAD_ROUNDING_THRESHOLD)
 	switch(last_radiation_strength)
 		if(-INFINITY to RAD_LEVEL_LOW)
 			last_perceived_radiation_danger = null
