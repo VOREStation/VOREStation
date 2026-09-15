@@ -279,6 +279,7 @@
 	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
 	src.modules += new /obj/item/robo_dice(src)
+	src.modules += new /obj/item/tape_roll/cyborg(src)
 
 /obj/item/robot_module/robot/proc/adjust_gps(obj/item/gps/robot/robot_gps)
 	return
