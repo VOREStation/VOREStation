@@ -1,0 +1,9 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Frayed wires, and config to enable or disable them at round start."
+  - rscadd: "You can now fray wires with sharp items, and fix them with tape."
+  - rscadd: "Explosions can now cause frayed wires."
+  - rscadd: "Borgs now get a tape roll item"
+  - rscadd: "Tape rolls can now be put into most belts"
+  - rscadd: "Tape rolls can now be put in most overwear pockets"
