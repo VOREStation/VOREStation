@@ -130,11 +130,11 @@
 	var/energy_desc
 	if(pulse_information.threshold == RAD_FULL_INSULATION) // Goes it's full range, only the most shielded walls can stop it
 		energy_desc = "neutrinos"
-	else if(pulse_information.threshold <= RAD_EXTREME_INSULATION) // Can get through two layers of reinforced walls, walls only weaken it.
+	else if(pulse_information.threshold < RAD_EXTREME_INSULATION) // Can get through two layers of reinforced walls, walls only weaken it.
 		energy_desc = "gamma rays"
-	else if(pulse_information.threshold <= RAD_MEDIUM_INSULATION) // Can get through a single normal wall weakened
+	else if(pulse_information.threshold < RAD_MEDIUM_INSULATION) // Can get through a single normal wall weakened
 		energy_desc = "beta particles"
-	else if(pulse_information.threshold <= RAD_NO_INSULATION) // Cannot get past a single normal wall
+	else // Cannot get past a single normal wall
 		energy_desc = "alpha particles"
 	radiation_description = "[chance_desc] [energy_desc]"
 
