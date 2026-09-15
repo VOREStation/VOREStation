@@ -36,7 +36,7 @@
 		var/mob/observer/dead/D = Q.candidates[1]
 		UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
 		QDEL_NULL(Q) //get rid of the query
-		create_occupant(D)
+		addtimer(CALLBACK(src, PROC_REF(create_occupant), D), 1)
 		return
 
 	if(delay_to_try_again)
