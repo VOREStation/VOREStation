@@ -72,6 +72,16 @@
 	icon_state = "r-wingrille"
 	win_path = /obj/structure/window/reinforced
 
+/obj/effect/wingrille_spawn/reinforced/holiday
+	name = "holiday reinforced window grille spawner"
+	icon_state = "r-wingrille"
+	win_path = /obj/structure/window/reinforced/holiday
+
+/obj/effect/wingrille_spawn/reinforced/holiday/vertical
+	name = "vertical holiday reinforced window grille spawner"
+	icon_state = "r-wingrille"
+	win_path = /obj/structure/window/reinforced/holiday/vertical
+
 /obj/effect/wingrille_spawn/reinforced/crescent
 	name = "Crescent window grille spawner"
 	icon_state = "r-wingrille"
