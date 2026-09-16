@@ -172,9 +172,11 @@
 	if(WC)
 		to_chat(usr, span_warning("The scanner is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(usr.abiotic())
 		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
+	*/
 	if(WC)
 		to_chat(usr, span_warning("There is already something inside."))
 		return
@@ -227,9 +229,11 @@
 	if(get_occupant())
 		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(G.affecting.abiotic())
 		to_chat(user, span_warning("The subject cannot have abiotic items on."))
 		return
+	*/
 	put_in(G.affecting)
 	src.add_fingerprint(user)
 	qdel(G)
