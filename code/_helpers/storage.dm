@@ -7,3 +7,13 @@
 	for(var/item_path in item_paths)
 		for(var/i = 1 to max(1, item_paths[item_path]))
 			new item_path(loc)
+
+/// Copy the storage item list to the global cache.
+/proc/update_storage_filters(atom/source, list/can_hold)
+	RETURN_TYPE(/list)
+	if(!islist(can_hold))
+		return null
+	var/typekey = source.type
+	if(!islist(GLOB.storage_filters[typekey]))
+		GLOB.storage_filters[typekey] = can_hold
+	return GLOB.storage_filters[typekey]

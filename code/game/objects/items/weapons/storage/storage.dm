@@ -109,6 +109,8 @@
 
 	calibrate_size()
 
+	can_hold = update_storage_filters(src, can_hold)
+
 /obj/item/storage/Destroy()
 	close_all()
 	clear_slot_catchers()
