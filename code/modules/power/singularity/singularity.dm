@@ -409,7 +409,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		radiation =	round(((energy-150) / 50) * 5,1)
 	radiation_pulse(
 		src,
-		max_range = BAYRAD_RADIATION_RANGE(radiation),
+		max_range = 7,
 		threshold = RAD_EXTREME_INSULATION - 0.1,
 		chance = 100, // We want to guarentee this
 		minimum_exposure_time = 1 SECOND,
