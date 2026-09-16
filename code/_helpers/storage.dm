@@ -12,7 +12,7 @@
 /proc/update_storage_filters(atom/source, list/can_hold)
 	RETURN_TYPE(/list)
 	if(!islist(can_hold))
-		return null
+		return can_hold
 	var/typekey = source.type
 	if(!islist(GLOB.storage_filters[typekey]))
 		GLOB.storage_filters[typekey] = can_hold
