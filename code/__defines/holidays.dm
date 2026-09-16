@@ -10,6 +10,7 @@
 #define HOLIDAY_LEAP "Leap Day"
 
 #define HOLIDAY_QIXMTES "Qixm-tes"
+#define HOLIDAY_HUGFRIEND "Hug a Friend Day"
 #define HOLIDAY_PIDAY "Pi Day"
 #define HOLIDAY_PATRICK "St. Patrick's Day"
 #define HOLIDAY_HOLI "Holi"
@@ -26,6 +27,7 @@
 #define HOLIDAY_SAPIENTDAY "Sapient Rights Day"
 #define HOLIDAY_BLOODDAY "Blood Donor Day"
 #define HOLIDAY_CIVSERDAY "Civil Servant's Day"
+#define HOLIDAY_PRIDEWEEK "Pride Week"
 
 #define HOLIDAY_DOCTORDAY "Doctor's Day"
 #define HOLIDAY_FRIENDSHIPDAY "Friendship Day"

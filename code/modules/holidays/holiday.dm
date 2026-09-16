@@ -256,6 +256,14 @@ ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday to make 
 	return "Qixm-tes, or 'Day of mourning', is a skrellian holiday where skrell gather at places \
 					of worship and sing a song of mourning for all those who have died in service to their kingdoms."
 
+/datum/holiday/hugafriend
+	name = HOLIDAY_HUGFRIEND
+	begin_month = MARCH
+	begin_day = 11
+
+/datum/holiday/hugafriend/greet()
+	return "In this cold and uncaring universe, having warmth and meaning to share with others make life worth living."
+
 /datum/holiday/pi
 	name = HOLIDAY_PIDAY
 	begin_month = MARCH
@@ -397,6 +405,16 @@ ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday to make 
 	return "Civil Servant's Day is a holiday observed in SCG member states that honors civil servants everywhere,\
 					(especially those who are members of the armed forces and the emergency services), or have been or have been civil servants in the past."
 
+/datum/holiday/pride_week
+	name = HOLIDAY_PRIDEWEEK
+	begin_month = JUNE
+	begin_day = 23
+	end_day = 29
+	holiday_colors = PRIDE_FLAG_COLORS
+
+/datum/holiday/pride_week/greet()
+	return "Happy Pride Week!"
+
 // July
 
 /datum/holiday/doctor
@@ -471,6 +489,7 @@ ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday to make 
 	holiday_mail = list(
 		/obj/item/reagent_containers/food/drinks/bottle/rum
 	)
+	holiday_hat = /obj/item/clothing/head/pirate
 
 /datum/holiday/pirate/greet()
 	return "Ahoy, matey! It be the unoffical holiday celebratin' the salty \
@@ -622,7 +641,7 @@ ADMIN_VERB(Set_Holiday, R_SERVER, "Set Holiday", "Force-set the Holiday to make 
 	no_mail_holiday = TRUE
 
 /datum/holiday/newyearseve/greet()
-	return"The eve of the New Year for Sol.  It is traditionally celebrated by counting down to midnight, as that is \
+	return "The eve of the New Year for Sol.  It is traditionally celebrated by counting down to midnight, as that is \
 					when the new year begins.  Other activities include planning for self-improvement over the new year, attending New Year's parties, or \
 					watching a timer count to zero, a large object descending, and fireworks exploding in the sky, in person or on broadcast."
 
