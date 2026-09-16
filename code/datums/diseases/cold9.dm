@@ -1,5 +1,5 @@
 /datum/disease/cold9
-	name = "The Cold"
+	name = "The Freeze"
 	medical_name = "ICE9 Cold"
 	max_stages = 3
 	spread_text = "On contact"

@@ -19,6 +19,8 @@
 	VAR_PRIVATE/just_donated = FALSE
 	VAR_PRIVATE/datum/internal_wiki/page/P
 
+	var/printing_cooldown = FALSE // Prevent file read abuse
+
 /obj/machinery/librarywikicomp/Initialize(mapload)
 	. = ..()
 
@@ -154,7 +156,7 @@
 				sub_category = null
 				doc_title = "Click a search entry!"
 				doc_body = ""
-			. = TRUE
+			return TRUE
 
 		if("swapsearch")
 			if(!crash)
@@ -165,7 +167,7 @@
 				doc_title = null
 				doc_body = null
 				searchmode = new_mode
-			. = TRUE
+			return TRUE
 
 		if("crash")
 			// intentional TGUI crash, amazingly awful
@@ -175,9 +177,13 @@
 				crash = TRUE
 				// crashes till it fixes itself
 				VARSET_IN(src, crash, FALSE, rand(1000, 4000))
-			. = TRUE
+			return TRUE
 
 		if("print")
+			if(printing_cooldown)
+				to_chat(ui.user, span_danger("The printer is resetting to print another page"))
+				return FALSE
+
 			if(!crash && doc_title && doc_body)
 				visible_message(span_notice("[src] rattles and prints out a sheet of paper."))
 				// playsound(loc, 'sound/goonstation/machines/printer_dotmatrix.ogg', 50, 1)
@@ -185,7 +191,10 @@
 				var/obj/item/paper/paper = new /obj/item/paper(loc)
 				paper.name = doc_title
 				paper.info = doc_body
-			. = TRUE
+
+				printing_cooldown = TRUE
+				addtimer(CALLBACK(src, PROC_REF(print_cooldown_end)), 1 SECOND, TIMER_DELETE_ME)
+			return TRUE
 
 		if("setsubcat")
 			if(!crash)
@@ -196,7 +205,7 @@
 				doc_title = null
 				doc_body = null
 				sub_category = new_subcat
-			. = TRUE
+			return TRUE
 		// final search
 		if("search")
 			if(!crash)
@@ -234,7 +243,7 @@
 				else
 					doc_title = "Error"
 					doc_body = "Invalid data."
-			. = TRUE
+			return TRUE
 		// Support the wiki
 		if("donate")
 			if(!crash)
@@ -244,7 +253,10 @@
 					to_chat(ui.user,"Donating to Bingle.exo is Byond your comprehension!")
 				else if(amount)
 					pay_donation(H.GetIdCard(), ui.user, amount, ui)
-			. = TRUE
+			return TRUE
+
+/obj/machinery/librarywikicomp/proc/print_cooldown_end()
+	printing_cooldown = FALSE
 
 /obj/machinery/librarywikicomp/proc/pay_donation(obj/item/card/id/I, mob/user, amount, datum/tgui/ui)
 	visible_message(span_info("[user] swipes a card through [src]."))
