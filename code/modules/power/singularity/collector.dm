@@ -37,7 +37,7 @@
 		if(pulse_information)
 			var/rads = RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target))
 			if(rads)
-				receive_pulse(rads * 5) //Maths is hard
+				receive_pulse(rads * 5) // Match old rad code numbers, tested at a resting singo at 115Bq ~= 100000W
 
 			if(P.air_contents.gas[GAS_PHORON] == 0)
 				investigate_log(span_red("out of fuel") + ".","singulo")
