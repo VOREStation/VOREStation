@@ -35,7 +35,9 @@
 
 	if(P && active)
 		if(pulse_information)
-			receive_pulse(RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target)))
+			var/rads = RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target))
+			if(rads)
+				receive_pulse(rads * 5) //Maths is hard
 
 			if(P.air_contents.gas[GAS_PHORON] == 0)
 				investigate_log(span_red("out of fuel") + ".","singulo")
