@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Changes the RUST generator to produce more radiation and radiate further. Rad collectors (at 1013kpa) now collect about as much as a mag-trap"
