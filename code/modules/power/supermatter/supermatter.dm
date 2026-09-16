@@ -416,7 +416,7 @@
 	// At a power mult of 0.025 for range, this means a 1000power SM (about normal) will reach 25 tiles and be putting off rad pulses of 500. With 0 protection, you have a 10% chance of getting hit.
 	radiation_pulse(
 		src,
-		max_range = CLAMP(round(power * 0.025), 5, 50),
+		max_range = BAYRAD_RADIATION_RANGE(max(power * 1.5, 50)),
 		threshold = CLAMP(RAD_MEDIUM_INSULATION - (power * 0.00025), 0.1, RAD_MEDIUM_INSULATION),
 		chance = CLAMP(round(power * 0.25), 50, 100), // The SM should be feared, also makes it better match old rad scaling behavior, as chance scales rads applied!
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,

@@ -401,17 +401,19 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 
 /obj/singularity/proc/toxmob()
-	var/toxrange = 10
+	var/toxrange = 7
 	var/toxdamage = 4
+	var/radiation = 15
 	if (src.energy>200)
 		toxdamage = round(((src.energy-150)/50)*4,1)
+		radiation =	round(((energy-150) / 50) * 5,1)
 	radiation_pulse(
 		src,
-		max_range = 7,
+		max_range = BAYRAD_RADIATION_RANGE(radiation),
 		threshold = RAD_EXTREME_INSULATION - 0.1,
-		chance = URANIUM_IRRADIATION_CHANCE + round(energy / 60, 1),
-		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strength = 250
+		chance = 100, // We want to guarentee this
+		minimum_exposure_time = 1 SECOND,
+		strength = radiation
 	)
 	for(var/mob/living/M in view(toxrange, src.loc))
 		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
@@ -456,12 +458,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			to_chat(M, span_danger("You don't even have a moment to react as you are reduced to ashes by the intense radiation."))
 			M.dust()
 
+	var/rand_pulse_strength = rand(energy)
 	radiation_pulse(
 		src,
-		max_range = 10,
+		max_range = BAYRAD_RADIATION_RANGE(rand_pulse_strength),
 		threshold = RAD_EXTREME_INSULATION,
-		chance = URANIUM_IRRADIATION_CHANCE * 8,
-		strength = 1000
+		chance = 100,
+		strength = rand_pulse_strength
 	)
 	return
 
@@ -470,12 +473,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		if (get_dist(R, src) <= 15) //Better than using orange() every process.
 			R.receive_pulse(energy)
 	//Yes, this means rad collectors can double dip on the singulo, but you could always use the safer SM or tesla, so it gets a small buff.
+	var/rad_pulse = energy * 0.25
 	radiation_pulse(
 		src,
-		max_range = 15,
+		max_range = BAYRAD_RADIATION_RANGE(rad_pulse),
 		threshold = RAD_EXTREME_INSULATION,
-		chance = URANIUM_IRRADIATION_CHANCE * 8,
-		strength = energy * 0.25
+		chance = 80,
+		strength = rad_pulse
 	)
 
 /obj/singularity/proc/on_capture()
