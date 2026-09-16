@@ -36,8 +36,8 @@
 	if(P && active)
 		if(pulse_information)
 			var/rads = RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target))
-			if(rads)
-				receive_pulse(rads * 5) // Match old rad code numbers, tested at a resting singo at 115Bq ~= 100000W
+			if(rads > 0)
+				receive_pulse(rads)
 
 			if(P.air_contents.gas[GAS_PHORON] == 0)
 				investigate_log(span_red("out of fuel") + ".","singulo")
@@ -134,7 +134,7 @@
 /obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
 	if(P && active)
 		var/power_produced = 0
-		power_produced = P.air_contents.gas[GAS_PHORON]*pulse_strength*20
+		power_produced = P.air_contents.gas[GAS_PHORON] * pulse_strength * 100 // Matches old rad code numbers, tested at a resting singo at 115Bq with a full basic tank ~= 100000W
 		if(power_produced)
 			add_avail(power_produced)
 			last_power_new = power_produced
