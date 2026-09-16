@@ -89,3 +89,15 @@
 2026-09-14:
   lbnesquik:
   - maptweak: Expanded the minitest map with better bar, R&D and medical facilities
+2026-09-16:
+  Will:
+  - rscadd: Frayed wires, and config to enable or disable them at round start.
+  - rscadd: You can now fray wires with sharp items, and fix them with tape.
+  - rscadd: Explosions can now cause frayed wires.
+  - rscadd: Borgs now get a tape roll item
+  - rscadd: Tape rolls can now be put into most belts
+  - rscadd: Tape rolls can now be put in most overwear pockets
+  - rscadd: Reversible TEG circulator pump directions
+  lbnesquik:
+  - spellcheck: Capitalized nerdle subsystem
+  - admin: Make the player panel a LITTLE less cluttered.
