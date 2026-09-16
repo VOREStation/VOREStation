@@ -27,17 +27,15 @@
 	UnregisterSignal(src, COMSIG_IN_RANGE_OF_IRRADIATION)
 	return ..()
 
-/obj/machinery/power/rad_collector/proc/process_rads(datum/source, datum/radiation_pulse_information/pulse_information)
+/obj/machinery/power/rad_collector/proc/process_rads(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
 	SIGNAL_HANDLER
 	//so that we don't zero out the meter if the SM is processed first.
 	last_power = last_power_new
 	last_power_new = 0
 
-
 	if(P && active)
 		if(pulse_information)
-			var/amount_of_rads = pulse_information.strength
-			receive_pulse((amount_of_rads))
+			receive_pulse(RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target)))
 
 			if(P.air_contents.gas[GAS_PHORON] == 0)
 				investigate_log(span_red("out of fuel") + ".","singulo")
