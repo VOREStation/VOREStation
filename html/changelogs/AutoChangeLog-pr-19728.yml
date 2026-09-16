@@ -1,0 +1,8 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Geiger counters now show the type of radiation being emitted."
+  - refactor: "Restored geiger counter to pre-radiation update behavior"
+  - bugfix: "geiger counters in hands show the current turf's radiation, not a reduced radiation from being inside your mob"
+  - bugfix: "radiation sources that qdel before processing their radiation pulse would lock up radiation subsystem"
+  - code_imp: "Radiation debug object"
