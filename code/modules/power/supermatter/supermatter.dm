@@ -418,9 +418,9 @@
 		src,
 		max_range = CLAMP(round(power * 0.025), 5, 50),
 		threshold = CLAMP(RAD_MEDIUM_INSULATION - (power * 0.00025), 0.1, RAD_MEDIUM_INSULATION),
-		chance = max(round(power * 0.01), DEFAULT_RADIATION_CHANCE),
+		chance = CLAMP(round(power * 0.25), 50, 100), // The SM should be feared, also makes it better match old rad scaling behavior, as chance scales rads applied!
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strength = max(round(power * 0.5), 50)
+		strength = max(round(power * 1.5), 56.9) // With base 50% chance this will become 50Bq at 0 power
 	)
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
