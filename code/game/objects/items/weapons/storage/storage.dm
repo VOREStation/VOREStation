@@ -15,7 +15,7 @@
 	w_class = ITEMSIZE_NORMAL
 	show_messages = 1
 
-	/// List of objects which this item can store (if set, it can't store anything else)
+	/// List of objects which this item can store (if set, it can't store anything else). Becomes linked to a global list after init. See: update_storage_filters()
 	var/list/can_hold
 	/// List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/cant_hold
