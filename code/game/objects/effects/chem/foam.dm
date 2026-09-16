@@ -81,6 +81,7 @@
 			qdel(src)
 
 /obj/effect/effect/foam/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(metal)

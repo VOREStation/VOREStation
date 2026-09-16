@@ -83,6 +83,7 @@
 	..()
 
 /obj/item/assembly/mousetrap/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(armed)
@@ -94,7 +95,6 @@
 								  span_warning("You accidentally step on [src]"))
 		if(ismouse(AM))
 			triggered(AM)
-	..()
 
 /obj/item/assembly/mousetrap/on_found(mob/living/finder)
 	if(armed)

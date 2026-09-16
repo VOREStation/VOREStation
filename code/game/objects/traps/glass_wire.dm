@@ -40,11 +40,12 @@
 	..()
 	icon_state = "abb_glass"
 
-/obj/item/material/barbedwire/glass/Crossed(atom/movable/AM)
-	if(AM.is_incorporeal())
-		return
+/obj/item/material/barbedwire/glass/check_step(atom/movable/AM)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(istype(AM,/obj/effect/abstract)) // Stops flashlight beams from breaking them
-		return // Maybe special handling someday, like making them shine?
+		return FALSE // Maybe special handling someday, like making them shine?
 	if(anchored)
 		if(isliving(AM))
 			var/mob/living/L = AM
@@ -55,9 +56,11 @@
 				)
 			attack_mob(L)
 			update_icon()
+			return TRUE
 		else
 			health = 0
 			check_health()
+	return FALSE
 
 /obj/item/material/barbedwire/glass/attack_mob(mob/living/L)
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)

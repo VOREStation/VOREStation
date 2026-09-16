@@ -29,6 +29,7 @@
 		reagents.add_reagent(REAGENT_ID_WATER, 5) //full of wet...
 
 /obj/item/soap/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(isliving(AM))

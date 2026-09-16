@@ -211,6 +211,7 @@ default behaviour is:
 
 // Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
 /mob/living/Crossed(atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+	. = ..()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 

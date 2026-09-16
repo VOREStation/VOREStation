@@ -214,6 +214,7 @@
 	cartridges_to_send_to = GLOB.civilian_cartridges
 
 /obj/item/pda/clown/Crossed(atom/movable/AM) //Clown PDA is slippery.
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if (isliving(AM))

@@ -282,12 +282,11 @@
 // called when something steps onto a human
 // this handles mobs on fire - mulebot and vehicle code has been relocated to /mob/living/Crossed()
 /mob/living/carbon/human/Crossed(atom/movable/AM)
+	. = ..() // call parent because we moved behavior to parent
 	if(AM.is_incorporeal())
 		return
 
 	spreadFire(AM)
-
-	..() // call parent because we moved behavior to parent
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(if_no_id = "No id", if_no_job = "No job")

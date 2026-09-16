@@ -144,6 +144,7 @@
 	add_overlay(plant_icon)
 
 /obj/item/reagent_containers/food/snacks/grown/Crossed(mob/living/M)
+	. = ..()
 	if(M.is_incorporeal())
 		return
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
