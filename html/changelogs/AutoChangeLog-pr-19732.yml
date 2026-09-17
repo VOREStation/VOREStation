@@ -1,0 +1,9 @@
+author: "Will"
+delete-after: True
+changes:
+  - balance: "Tripled Supermatter radiation output to match old bayrads values"
+  - balance: "Raised singulo rad chance, and restored old bayrad strength calculations"
+  - balance: "Singularity radiation upped by 2.5x to match bayrad strength values"
+  - balance: "Quintupled radiation collector scaling to match bayrad radiation to wattage values"
+  - bugfix: "Radiation collectors respect walls and radiation falloff"
+  - bugfix: "Doors no longer block radiation while open"
