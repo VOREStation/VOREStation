@@ -196,6 +196,7 @@
 		"crowbar",
 		"screwdriver",
 		"wirecutters",
+		"toolbox",
 		"light_bulb",
 		"light_tube",
 		"large_light_bulb",

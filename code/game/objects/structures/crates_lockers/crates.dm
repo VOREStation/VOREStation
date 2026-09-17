@@ -147,8 +147,9 @@
 	return TRUE
 
 /obj/structure/closet/crate/secure
-	desc = "A secure crate."
 	name = "Secure crate"
+	desc = "A secure crate."
+	description_antag = "You could fry the lock with an emag. Or just shoot the crate until it breaks."
 	closet_appearance = /datum/decl/closet_appearance/crate/secure
 	var/broken = 0
 	var/locked = 1

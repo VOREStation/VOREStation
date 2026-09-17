@@ -13,7 +13,7 @@
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
-	active_power_usage = 2000
+	active_power_usage = 2 KILOWATTS
 	clicksound = "keyboard"
 	clickvol = 30
 
@@ -27,6 +27,8 @@
 	light_range = 3
 	light_power = 1
 	light_on = FALSE
+	//why not allow mischief to change the glow color
+	var/production_light_color = "#faebd7"
 
 	var/menu_grade //how tasty is it?
 	var/speed_grade //how fast can it be?
@@ -35,17 +37,13 @@
 	circuit = /obj/item/circuitboard/synthesizer
 
 	//loaded cartridge
-	var/obj/item/reagent_containers/synthdispcart/cart = /obj/item/reagent_containers/synthdispcart
+	var/obj/item/reagent_containers/synthdispcart/cart = null
 	var/cart_type = ITEMSIZE_LARGE
 
 	//all of our food
 	var/static/datum/category_collection/synthesizer/synthesizer_recipes
 	var/active_menu = "appasnacc"
 	var/activefood
-
-	//Voice activation stuff
-	var/activator = "computer"
-	var/list/voicephrase
 
 	//crew printing required stuff.
 	var/tgui_icons
@@ -57,9 +55,19 @@
 	. = ..()
 	if(!synthesizer_recipes)
 		synthesizer_recipes = new()
-	cart = new cart(src)
+
 	wires = new/datum/wires/synthesizer(src)
+	//since we've added a canister to the construction steps, this goes here
 	default_apply_parts()
+
+	//anti-construction exploits, check the inventory first for a cart
+	var/obj/item/reagent_containers/synthdispcart/existing_cart = locate() in contents
+	if(existing_cart)
+		cart = existing_cart
+	//Map load spawn a cart
+	else if(mapload)
+		cart = new /obj/item/reagent_containers/synthdispcart(src)
+
 	update_icon()
 
 	if(!pixel_x && !pixel_y)
@@ -70,12 +78,12 @@
 	icon_state = "portsynth"
 	cart_type = ITEMSIZE_NORMAL
 	circuit = /obj/item/circuitboard/synthesizer/mini
-	cart = /obj/item/reagent_containers/synthdispcart/small
 
 /obj/machinery/synthesizer/Destroy()
 	QDEL_NULL(wires)
 
 	if(cart)
+		component_parts -= cart
 		QDEL_NULL(cart)
 
 	clear_tgui_icons()
@@ -86,10 +94,13 @@
 	if(panel_open)
 		. += "A cartridge is [cart ? "installed" : "missing"]."
 	if(cart && (!(stat & (NOPOWER|BROKEN))))
-		var/obj/item/reagent_containers/synthdispcart/C = cart
-		if(istype(C) && C.reagents && C.reagents.total_volume)
-			var/percent = round((C.reagents.total_volume / C.volume) * 100)
-			. += "The installed cartridge has [percent]% remaining."
+		var/obj/item/reagent_containers/synthdispcart/Can = cart
+		if(istype(Can))
+			if(Can.reagents && Can.volume)
+				var/percent = round((Can.reagents.total_volume / Can.volume) * 100)
+				. += "The installed cartridge has [percent]% remaining."
+			else
+				. += "The installed cartridge appears to be broken or empty."
 
 //offsets to make the machine squish to a wall. They're all south facing so it looks weird but every other direction is AWFUL
 /obj/machinery/synthesizer/proc/offset_synth()
@@ -102,14 +113,13 @@
 /obj/machinery/synthesizer/proc/set_tgui_icon(mob/L)
 	if(!isliving(L))
 		return
-	if(ishuman(L))
-		crewpicture = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE, force_south = TRUE)
-		tgui_icons = "'data:image/png;base64,[icon2base64(crewpicture)]'"
+	//runtime sanity check to avoid hard deletes
+	crewpicture = null
+	//since we've decided to let people activate themselves on a whim, we'll simplify it.
+	var/icon/Person = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE, force_south = TRUE)
+	crewpicture = Person
+	tgui_icons = "'data:image/png;base64,[icon2base64(Person)]'"
 
-	else //Simple animals, Silicons, etc don't have records, so we'll just grab their current state.
-		var/icon/F = getFlatIcon(L, defdir = SOUTH, no_anim = TRUE, force_south = TRUE)
-		crewpicture = F
-		tgui_icons = "'data:image/png;base64,[icon2base64(F)]'"
 	SStgui.update_uis(src)
 
 /obj/machinery/synthesizer/proc/clear_tgui_icons()
@@ -149,9 +159,12 @@
 		"crewicon" = tgui_icons
 	)
 
-	if(cart)
+	if(cart && cart.reagents && cart.reagents.maximum_volume)
 		var/percent = round((cart.reagents.total_volume / cart.reagents.maximum_volume) * 100)
 		data["cartFillStatus"] = percent
+	else
+		data["cartFillStatus"] = 0
+
 	return data
 
 /obj/machinery/synthesizer/tgui_static_data(mob/user)
@@ -178,7 +191,12 @@
 	data["menucatagories"] = menucatagories
 
 	var/list/crew_cookies = list()
-	for(var/client/C in GLOB.clients)
+	//active player mobs instead of checking ghosts and the sort.
+	for(var/mob/living/Livemob in GLOB.player_list)
+		var/client/C = Livemob.client
+		if(!C)
+			continue
+
 		// Check if the client allows crew cookies in their currently toggled prefs. Clients must be ingame to even be in GLOB.clients, so logged out players won't show up here.
 		if(!C.prefs?.read_preference(/datum/preference/toggle/living/foodsynth_cookies))
 			continue
@@ -186,43 +204,43 @@
 		var/name = null
 		var/species = null
 
-		if(ishuman(C.mob))
-			var/mob/living/carbon/human/H = C.mob
+		if(ishuman(Livemob))
+			var/mob/living/carbon/human/Hoomie = Livemob
 			//Utilize the body records for humans to avoid metagaming problems (EX: using the cookie printer to check if someone is ghosting from the main menu)
 			var/datum/transcore_db/db = SStranscore.db_by_key()
 			if(db)
-				var/datum/transhuman/body_record/b_rec = db.body_scans[H.mind.name]
+				var/datum/transhuman/body_record/b_rec = db.body_scans[Hoomie.mind.name]
 				if(!b_rec) //extra check to make sure people have a body record, and no-one will immediately on start.
 					continue
-			name = H.real_name
-			species = "[H.custom_species ? H.custom_species : H.species.name]"
+			name = Hoomie.real_name
+			species = "[Hoomie.custom_species ? Hoomie.custom_species : Hoomie.species.name]"
 
-		if(issilicon(C.mob))
-			if(isAI(C.mob))
-				var/mob/living/silicon/ai/A = C.mob
+		else if(issilicon(Livemob))
+			if(isAI(Livemob))
+				var/mob/living/silicon/ai/A = Livemob
 				name = A.name
 				species = "Artificial Intelligence"
 
-			if(isrobot(C.mob))
-				var/mob/living/silicon/robot/R = C.mob
-				if(R.scrambledcodes || (R.module && R.module.hide_on_manifest)) //Not sure if admeme events want valid cookie print outs
+			else if(isrobot(Livemob))
+				var/mob/living/silicon/robot/Robit = Livemob
+				if(Robit.scrambledcodes || (Robit.module && Robit.module.hide_on_manifest)) //Not sure if admeme events want valid cookie print outs
 					continue
-				name = R.name
-				species = "[R.modtype] [R.braintype]"
+				name = Robit.name
+				species = "[Robit.modtype] [Robit.braintype]"
 
-		if(isanimal(C.mob))
-			var/mob/living/simple_mob/SM = C.mob
-			name = SM.name
-			species = initial(SM.name) //most mobs are simply named the species they are, so this ought to be useful for named critters.
+		else if(isanimal(Livemob))
+			var/mob/living/simple_mob/simpcreature = Livemob
+			name = simpcreature.name
+			species = initial(simpcreature.name) //most mobs are simply named the species they are, so this ought to be useful for named critters.
 
 		if(!name)
 			continue
 
 		// our crew cookies are only applicable on the crew menu, and we're reusing our category sorting as much as possible!
 		crew_cookies.Add(list(list(
-				"category" = "crew",
-				"name" = name,
-				"species" = species
+			"category" = "crew",
+			"name" = name,
+			"species" = species
 		)))
 
 	data["crew_cookies"] = crew_cookies
@@ -269,9 +287,9 @@
 				clear_tgui_icons()
 
 			var/mob/found
-			for(var/mob/living/L in GLOB.player_list)
-				if(L.real_name == activecrew)
-					found = L
+			for(var/mob/living/Livingmob in GLOB.player_list)
+				if(Livingmob.real_name == activecrew)
+					found = Livingmob
 					break
 
 			if(!found)
@@ -290,15 +308,15 @@
 				return
 
 			//Check if we still have the materials.
-			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(check_cart(C, ui.user))
+			var/obj/item/reagent_containers/synthdispcart/Can = cart
+			if(check_cart(Can, ui.user))
 				//Sanity check.
 				if(!making || !src)
 					return
 				busy = TRUE
 				update_use_power(USE_POWER_ACTIVE)
 				update_icon() // light up time
-				C.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST) //Drain our fuel
+				Can.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST) //Drain our fuel
 				var/obj/item/reagent_containers/food/snacks/food_mimic = new making.build_path(src) //Let's get this on a tray
 				addtimer(CALLBACK(src, PROC_REF(finish_production), food_mimic, ui.user), speed_grade, TIMER_DELETE_ME)
 				return TRUE
@@ -313,9 +331,9 @@
 		if("crewprint")
 			var/active_crew = params["crewprint"]
 			var/mob/found
-			for(var/mob/living/L in GLOB.player_list)
-				if(L.real_name == active_crew)
-					found = L
+			for(var/mob/living/Livingmob in GLOB.player_list)
+				if(Livingmob.real_name == active_crew)
+					found = Livingmob
 					break
 
 			if(found && !get_mob_for_picture(ui.user, found)) //verify that we can still print this person
@@ -323,56 +341,103 @@
 				return FALSE
 
 			//Check if we still have the materials.
-			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(check_cart(C, ui.user))
+			var/obj/item/reagent_containers/synthdispcart/Can = cart
+			if(check_cart(Can, ui.user))
 				//Sanity check.
 				busy = TRUE
 				update_use_power(USE_POWER_ACTIVE)
 				update_icon() // light up time
-				C.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST) //Drain our fuel
-				sleep(speed_grade) //machine go brrr
+				Can.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST) //Drain our fuel
+				//machine go brrr
+				addtimer(CALLBACK(src, PROC_REF(finish_crewprint), found, ui.user), speed_grade, TIMER_DELETE_ME)
+				return TRUE
 
-				//Create the cookie base.
-				var/obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock(loc)
+			audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
+			return FALSE
 
-				//Begin mimicking the micro
-				var/vore_flavor
-				if(found?.vore_taste)
-					vore_flavor = found.vore_taste
-				else
-					vore_flavor = "Something impalpable"
+/obj/machinery/synthesizer/proc/finish_crewprint(mob/found, mob/user)
+	//sanity check to prevent free food via mischief.
+	if(QDELETED(src) || !cart)
+		busy = FALSE
+		update_use_power(USE_POWER_IDLE)
+		update_icon()
+		audible_message(span_notice("ERROR: We at SnabreSnacks do not allow quarters for free food."), runemessage = "ERROR:")
+		return
 
-				meal.name = found.real_name
-				meal.desc = "A tiny replica of a crewmate!"
-				var/icon/F = crewpicture
-				F.Scale(16, 16) //Half size
-				meal.icon = F
-				meal.icon_state = null
+	//reagent check
+	var/obj/item/reagent_containers/synthdispcart/Can = cart
+	if(!check_cart(Can, user))
+		busy = FALSE
+		update_use_power(USE_POWER_IDLE)
+		update_icon()
+		audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
+		return
 
-				//flavor mixing, make the cookie taste somewhat like the real thing!
-				for(var/datum/reagent/foodpaste in meal.reagents.reagent_list)
-					if(foodpaste.id == REAGENT_ID_NUTRIPASTE) //This should be the only reagent, actually.
-						foodpaste.taste_description += " as well as [vore_flavor]"
-						foodpaste.data = list(foodpaste.taste_description = 1)
-						meal.nutriment_desc = list(foodpaste.taste_description = 1)
+	//Now we slurp the resources up
+	Can.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST)
 
-				if(menu_grade >= 2) //Is the machine upgraded?
-					meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
+	// Create the cookie base
+	var/obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal/crewblock(loc)
 
-				audible_message(span_notice("Please take your miniature [meal.name]."), runemessage = "Minature [meal.name] is complete!")
-				if(Adjacent(ui.user))
-					ui.user.put_in_any_hand_if_possible(meal) //Autoplace in hands to save a click
-				else
-					meal.forceMove(get_turf(src)) //otherwise we anti-clump layer onto the floor
-					meal.randpixel_xy()
-				busy = FALSE
-				update_icon() //turn off lights, please.
-			else
-				audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
-				return FALSE
-			return TRUE
+	// Set up flavor text
+	var/vore_flavor = (!QDELETED(found) && found.vore_taste) ? found.vore_taste : "Something impalpable"
+
+	meal.name = (!QDELETED(found) && found.real_name) ? found.real_name : "Crewmate"
+	meal.desc = "A tiny replica of a crewmate!"
+
+	if(crewpicture)
+		meal.icon = crewpicture
+		meal.icon_state = ""
+		//using a matrix means it's client side, not serverside!
+		var/matrix/M = matrix()
+		M.Scale(0.5, 0.5) // half sized!
+		meal.transform = M
+
+	// Flavor mixing
+	for(var/datum/reagent/foodpaste in meal.reagents.reagent_list)
+		if(foodpaste.id == REAGENT_ID_NUTRIPASTE)
+			foodpaste.taste_description += " as well as [vore_flavor]"
+			foodpaste.data = list(foodpaste.taste_description = 1)
+			meal.nutriment_desc = list(foodpaste.taste_description = 1)
+
+	if(menu_grade >= 2) // Machine upgrades
+		meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + menu_grade) - 1))
+
+	audible_message(span_notice("Please take your miniature [meal.name]."), runemessage = "Miniature [meal.name] is complete!")
+
+	if(user && Adjacent(user))
+		user.put_in_any_hand_if_possible(meal) // Auto-place in hand
+	else
+		meal.forceMove(get_turf(src))
+		meal.randpixel_xy()
+
+	busy = FALSE
+	update_use_power(USE_POWER_IDLE)
+	update_icon() // Turn off lights
 
 /obj/machinery/synthesizer/proc/finish_production(obj/item/reagent_containers/food/snacks/food_mimic, mob/user)
+	//sanity check to prevent free food via mischief.
+	if(QDELETED(src) || !cart)
+		if(food_mimic)
+			qdel(food_mimic)
+		busy = FALSE
+		update_icon()
+		audible_message(span_notice("ERROR: We at SnabreSnacks do not allow quarters for free food."), runemessage = "ERROR:")
+		return
+
+	//reagent check
+	var/obj/item/reagent_containers/synthdispcart/Can = cart
+	if(!check_cart(Can, user))
+		if(food_mimic)
+			qdel(food_mimic)
+		busy = FALSE
+		update_icon()
+		audible_message(span_notice("Error: Insufficent Materials. SabreSnacks recommends you have a genuine replacement cartridge available to install."), runemessage = "Error: Insufficent Materials!")
+		return
+
+	//Now we slurp the resources up
+	Can.reagents.remove_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT, SYNTH_FOOD_COST)
+
 	//Create the desired item.
 	var/obj/item/reagent_containers/food/snacks/synthsized_meal/meal = new /obj/item/reagent_containers/food/snacks/synthsized_meal(loc)
 
@@ -386,11 +451,11 @@
 
 	//flavor mixing
 	var/taste_output = food_mimic.reagents.generate_taste_message()
-	for(var/datum/reagent/F in meal.reagents.reagent_list)
-		if(F.id == REAGENT_ID_NUTRIPASTE) //This should be the only reagent, actually.
-			F.taste_description += " as well as [taste_output]"
-			F.data = list(F.taste_description = 1)
-			meal.nutriment_desc = list(F.taste_description = 1)
+	for(var/datum/reagent/Flavorflave in meal.reagents.reagent_list)
+		if(Flavorflave.id == REAGENT_ID_NUTRIPASTE) //This should be the only reagent, actually.
+			Flavorflave.taste_description += " as well as [taste_output]"
+			Flavorflave.data = list(Flavorflave.taste_description = 1)
+			meal.nutriment_desc = list(Flavorflave.taste_description = 1)
 
 	if(menu_grade >= 2) //Is the machine upgraded?
 		meal.reagents.add_reagent(REAGENT_ID_NUTRIPASTE, ((1 + menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
@@ -418,17 +483,18 @@
 		else
 			add_overlay("[initial(icon_state)]_panel")
 		if(cart)
-			var/obj/item/reagent_containers/synthdispcart/C = cart
-			if(C.reagents && C.reagents.total_volume)
-				var/image/filling_overlay = image("[icon]", src, "[initial(icon_state)]fill_0")	//Modular filling
-				var/percent = round((C.reagents.total_volume / C.volume) * 100)
+			var/obj/item/reagent_containers/synthdispcart/Can = cart
+			if(Can.reagents && Can.reagents.total_volume)
+				var/percent = round((Can.reagents.total_volume / Can.volume) * 100)
+				var/fill_state
 				switch(percent)
-					if(0 to 9)			filling_overlay.icon_state = "[initial(icon_state)]fill_0"
-					if(10 to 35)		filling_overlay.icon_state = "[initial(icon_state)]fill_25"
-					if(36 to 74)		filling_overlay.icon_state = "[initial(icon_state)]fill_50"
-					if(75 to 90)		filling_overlay.icon_state = "[initial(icon_state)]fill_75"
-					if(91 to INFINITY)	filling_overlay.icon_state = "[initial(icon_state)]fill_100"
-				filling_overlay.color = C.reagents.get_color()
+					if(0 to 9)		fill_state = "[initial(icon_state)]fill_0"
+					if(10 to 35)	fill_state = "[initial(icon_state)]fill_25"
+					if(36 to 74)	fill_state = "[initial(icon_state)]fill_50"
+					if(75 to 90)	fill_state = "[initial(icon_state)]fill_75"
+					else			fill_state = "[initial(icon_state)]fill_100"
+				var/mutable_appearance/filling_overlay = mutable_appearance(icon, fill_state) 	//Modular filling
+				filling_overlay.color = Can.reagents.get_color()
 				//Add our filling, if any.
 				add_overlay(filling_overlay)
 			//Then add our cart so the filling is inside of the canister.
@@ -447,8 +513,8 @@
 		return
 
 	if(cart && !busy)
-		var/obj/item/reagent_containers/synthdispcart/C = cart
-		if(C.reagents && C.reagents.total_volume)
+		var/obj/item/reagent_containers/synthdispcart/Can = cart
+		if(Can.reagents && Can.reagents.total_volume)
 			add_overlay("[initial(icon_state)]_on")
 		else
 			add_overlay("[initial(icon_state)]_error")
@@ -456,59 +522,58 @@
 
 	if(busy)
 		add_overlay("[initial(icon_state)]_busy")
-		set_light_color("#faebd7") // "antique white"
+		set_light_color(production_light_color) // "antique white"
 		set_light_on(TRUE)
 
 //Cartridge Interactions in Machine
-/obj/machinery/synthesizer/proc/add_cart(obj/item/C, mob/user)
+/obj/machinery/synthesizer/proc/add_cart(obj/item/Can, mob/user)
 	if(!Adjacent(user))
 		return //How did you even try?
 	if(!panel_open) //just in case
-		to_chat(user, "The hatch must be open to insert a [C].")
+		to_chat(user, "The hatch must be open to insert a [Can].")
 		return
 	if(cart) // let's hot swap that bad boy.
 		remove_cart(user)
 		return
 
-	user.drop_from_inventory(C)
-	cart = C
-	C.forceMove(src)
-	C.add_fingerprint(user)
-	to_chat(user, span_notice("You add [C] to \the [src]."))
+	user.drop_from_inventory(Can)
+	cart = Can
+	Can.forceMove(src)
+	Can.add_fingerprint(user)
+	to_chat(user, span_notice("You add [Can] to \the [src]."))
 	update_icon()
 	SStgui.update_uis(src)
 	return
 
 /obj/machinery/synthesizer/proc/remove_cart(mob/user)
-	var/obj/item/reagent_containers/synthdispcart/C = cart
-	if(!C)
+	var/obj/item/reagent_containers/synthdispcart/Can = cart
+	if(!Can)
 		to_chat(user, span_notice("There's no cartridge here...")) //Sanity checks aren't ever a bad thing
 		return
 	if(!Adjacent(user)) //gotta, y'know, be in touch range to pull a physical canister out
 		return
-	C.forceMove(get_turf(loc))
-	C.update_icon()
+	Can.forceMove(get_turf(loc))
+	Can.update_icon()
 	cart = null
-	to_chat(user, span_notice("You remove [C] from \the [src]."))
+	to_chat(user, span_notice("You remove [Can] from \the [src]."))
 
 	if(Adjacent(user))
-		user.put_in_hands(C) //pick up your trash, nerd. and don't hand it to the AI. They will be upset.
+		user.put_in_hands(Can) //pick up your trash, nerd. and don't hand it to the AI. They will be upset.
 	update_icon()
 	SStgui.update_uis(src)
 
-/obj/machinery/synthesizer/proc/check_cart(obj/item/reagent_containers/synthdispcart/C, mob/user)
-	if(!istype(C))
-		to_chat(user, span_notice("The synthesizer cartridge is nonexistant."))
+/obj/machinery/synthesizer/proc/check_cart(obj/item/reagent_containers/synthdispcart/Can, mob/user)
+	if(!istype(Can))
+		to_chat(user, span_warning("The synthesizer cartridge is non-existent."))
 		return FALSE
-	if((!(C.reagents)) || (C.reagents.total_volume <= 0) || (!C.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT)))
-		to_chat(user, span_notice("The synthesizer cartridge depleted, replace with a genuine Sabresnack Co cartridge."))
+	if(!Can.reagents || Can.reagents.total_volume < SYNTH_FOOD_COST)
+		to_chat(user, span_warning("The synthesizer cartridge is depleted. Replace with a genuine SabreSnacks Co cartridge."))
 		return FALSE
-	if((C.reagents) && (C.reagents.total_volume <= 0) && (!C.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT)))
-		to_chat(user, span_notice("Used or Counterfeit synthesizer cartridge detected."))
+	if(!Can.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT))
+		to_chat(user, span_warning("Invalid or counterfeit synthesizer cartridge detected."))
 		return FALSE
-	else if(C.reagents && C.reagents.has_reagent(REAGENT_ID_NUTRIPASTE_SOYLENT) && (C.reagents.total_volume >= SYNTH_FOOD_COST))
-		SStgui.update_uis(src)
-		return TRUE
+
+	return TRUE
 
 /obj/machinery/synthesizer/proc/get_mob_for_picture(mob/user, mob/living/LM)
 	if(!istype(LM))
@@ -566,8 +631,11 @@
 			update_icon()
 		else
 			to_chat(user, span_notice("You decide not to [anchored ? "un" : ""]fasten \the [src]."))
-
+	//can't ever have too much runtime hardening
 	if(default_deconstruction_crowbar(user, W))
+		if(cart)
+			cart.forceMove(drop_location())
+			cart = null
 		return
 
 	return ..()
@@ -612,6 +680,9 @@
 	menu_grade = 0
 	speed_grade = 0
 
+	if(!cart || QDELETED(cart))
+		cart = locate(/obj/item/reagent_containers/synthdispcart) in component_parts
+
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		speed_grade = (10 SECONDS) / M.rating //let's try to make it worthwhile to upgrade 'em 10s, 5s, 3.3s, 2.5s
 	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
@@ -637,7 +708,7 @@
 
 /obj/item/reagent_containers/synthdispcart/small
 	name = "Portable Synthesizer Cartridge"
-	desc = "Genuine replacement cartrifge SabreSnacks brand Portable Food Synthesizers. It can also fit within standard sized models."
+	desc = "Genuine replacement cartridge SabreSnacks brand Portable Food Synthesizers. It can also fit within standard sized models."
 	icon_state = "Scart"
 	w_class = ITEMSIZE_NORMAL
 	volume = 100
@@ -649,17 +720,20 @@
 
 /obj/item/reagent_containers/synthdispcart/update_icon()
 	cut_overlays()
-	if(reagents.total_volume)
-		var/image/filling_overlay = image("[icon]", src, "[initial(icon_state)]fill_0", layer = layer - 0.1)
+	if(reagents && reagents.total_volume)
 		var/percent = round((reagents.total_volume / volume) * 100)
+		var/fill_state
+		//Add our filling, if any.
 		switch(percent)
-			if(0 to 9)			filling_overlay.icon_state = "[initial(icon_state)]fill_0"
-			if(10 to 35)		filling_overlay.icon_state = "[initial(icon_state)]fill_25"
-			if(36 to 74)		filling_overlay.icon_state = "[initial(icon_state)]fill_50"
-			if(75 to 90)		filling_overlay.icon_state = "[initial(icon_state)]fill_75"
-			if(91 to 100)		filling_overlay.icon_state = "[initial(icon_state)]fill_100"
-			if(100 to INFINITY)	filling_overlay.icon_state = "[initial(icon_state)]fill_100"
+			if(0 to 9)		fill_state = "[initial(icon_state)]fill_0"
+			if(10 to 35)	fill_state = "[initial(icon_state)]fill_25"
+			if(36 to 74)	fill_state = "[initial(icon_state)]fill_50"
+			if(75 to 90)	fill_state = "[initial(icon_state)]fill_75"
+			else			fill_state = "[initial(icon_state)]fill_100"
+		var/mutable_appearance/filling_overlay = mutable_appearance(icon, fill_state) 	//Modular filling
 		filling_overlay.color = reagents.get_color()
+		//render the filling *under* the cart icon
+		filling_overlay.layer = FLOAT_LAYER - 1
 		add_overlay(filling_overlay)
 
 /obj/item/reagent_containers/synthdispcart/examine(mob/user)
@@ -676,7 +750,6 @@
 /datum/design_techweb/board/synthesizer
 	SET_CIRCUIT_DESIGN_NAMEDESC("food synthesizer")
 	id = "food_synthesizer"
-	// req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 3, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/synthesizer
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_KITCHEN
@@ -686,7 +759,6 @@
 /datum/design_techweb/board/synthesizer/mini
 	SET_CIRCUIT_DESIGN_NAMEDESC("compact food synthesizer")
 	id = "compactfood_synthesizer"
-	// req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 3, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/synthesizer/mini
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_KITCHEN
@@ -702,7 +774,8 @@
 	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stock_parts/scanning_module = 1)
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/reagent_containers/synthdispcart = 1)
 
 /obj/item/circuitboard/synthesizer/mini
 	name = T_BOARD("Compact Food Synthesizer")
@@ -712,4 +785,5 @@
 	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stock_parts/scanning_module = 1)
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/reagent_containers/synthdispcart/small = 1)

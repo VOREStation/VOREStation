@@ -66,6 +66,8 @@
                 { key: messageEvent.data.key, value: value },
                 '*',
               );
+            }, (error) => {
+              messageEvent.source.postMessage({ error }, '*');
             });
             break;
           case 'set':

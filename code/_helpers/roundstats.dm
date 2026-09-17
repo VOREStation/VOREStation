@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(refined_chems_sold)
 		valid_stats_list.Add("[gws] gigawatt[gws > 1 ? "s" : ""] of power were sold! For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
 
 	if(SSnerdle)
-		var/word_export = "This shift's nerdle Was: [SSnerdle.target_word]! <br>"
+		var/word_export = "This shift's nerdle was: [SSnerdle.target_word]! <br>"
 		word_export += "There were [SSnerdle.total_players] players this shift!<br>"
 		var/list/splashes = list("We know what you are!", "That's how we do!", "Basically free!", "Hear them roar!", "The streak is alive!","Don't fall for them tricks!")
 		for(var/i in 1 to SSnerdle.player_attempts.len)

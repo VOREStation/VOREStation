@@ -3,6 +3,7 @@
 	effect_type = EFFECT_ANOMALY
 
 	effect_color = "#d400ff"
+	can_start_activated = FALSE // Oops!
 	var/active = TRUE
 	var/delay = 2 MINUTES
 

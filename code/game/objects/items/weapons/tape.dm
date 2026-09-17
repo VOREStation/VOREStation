@@ -1,6 +1,7 @@
 /obj/item/tape_roll
 	name = "tape roll"
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
+	description_antag = "You could use this to tape someone's mouth shut. Or eyes."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY
@@ -198,3 +199,8 @@
 				pixel_y += 32
 			else if(dir_offset & SOUTH)
 				pixel_y -= 32
+
+/obj/item/tape_roll/cyborg
+	name = "tape dispenser"
+	desc = "A dispenser for sticky tape. Possibly for taping ducks... cyber ducks..."
+	icon = 'icons/obj/bureaucracy.dmi'

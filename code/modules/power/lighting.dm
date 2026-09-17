@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 /obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
+	description_antag = "There's a flexible cover near the ballast. Someone figured you can inject phoron in there as a rigged explosive. Just, don't do it while it is on."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
