@@ -69,9 +69,9 @@
 	for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
 		var/insulation = cached_rad_insulations[turf_in_between]
 		if (isnull(insulation))
-			insulation = turf_in_between.rad_insulation
+			insulation = turf_in_between.get_rad_insulation()
 			for (var/atom/on_turf as anything in turf_in_between.contents)
-				insulation *= on_turf.rad_insulation
+				insulation *= on_turf.get_rad_insulation()
 			cached_rad_insulations[turf_in_between] = insulation
 
 		current_insulation *= insulation
