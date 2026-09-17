@@ -63,21 +63,34 @@
 #define MEDIUM_RADIATION_THRESHOLD_RANGE 0.5
 #define EXTREME_RADIATION_CHANCE 30
 
-/// Gets the perceived "danger" of radiation pulse, given the threshold to the target.
-/// Returns a RADIATION_DANGER_* define, see [code/__DEFINES/radiation.dm]
-/proc/get_perceived_radiation_danger(datum/radiation_pulse_information/pulse_information, insulation_to_target)
-	if (insulation_to_target > pulse_information.threshold)
-		// We could get irradiated! The only thing stopping us now is chance, so scale based on that.
-		if (pulse_information.chance >= EXTREME_RADIATION_CHANCE)
-			return PERCEIVED_RADIATION_DANGER_EXTREME
-		else
-			return PERCEIVED_RADIATION_DANGER_HIGH
-	else
-		// We're out of the threshold from being irradiated, but by how much?
-		if (insulation_to_target / pulse_information.threshold <= MEDIUM_RADIATION_THRESHOLD_RANGE)
-			return PERCEIVED_RADIATION_DANGER_MEDIUM
-		else
-			return PERCEIVED_RADIATION_DANGER_LOW
+/// Calculates the turf line's radiation resistance between two points
+/proc/calculate_radiation_insulation(atom/source, atom/target, datum/radiation_pulse_information/pulse_information, list/cached_rad_insulations)
+	var/current_insulation = 1
+	for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
+		var/insulation = cached_rad_insulations[turf_in_between]
+		if (isnull(insulation))
+			insulation = turf_in_between.rad_insulation
+			for (var/atom/on_turf as anything in turf_in_between.contents)
+				insulation *= on_turf.rad_insulation
+			cached_rad_insulations[turf_in_between] = insulation
+
+		current_insulation *= insulation
+
+		if (current_insulation <= pulse_information.threshold)
+			break
+	return current_insulation
+
+/// Calculate the intensity of rads a turf is recieving. Intended for use with RAD_SOLVE_CHANCE() and RAD_SOLVE_MOBRADS() to calculate either the radiation chance or rads recieved by a mob.
+/proc/calculate_recieved_radiation_intensity(datum/radiation_pulse_information/pulse_information, distance, current_insulation)
+	var/intensity = 0
+	// Intensity variable which will describe the radiation pulse.
+	// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
+	// Intensity is calculated so that the chance of getting irradiated at half of the max range is the same as the chance parameter.
+	intensity = -log(1 - min(0.99999, pulse_information.chance / 100)) * (1 + pulse_information.max_range / 2) ** 2
+	// Diminishes over range. Used by perceived chance, which is the actual chance to get irradiated.
+	var/perceived_intensity = intensity * INVERSE((1 + distance) ** 2) // Diminishes over range.
+	perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
+	return perceived_intensity
 
 /// A common proc used to send COMSIG_ATOM_PROPAGATE_RAD_PULSE to adjacent atoms
 /// Only used for uranium (false/tram)walls to spread their radiation pulses
@@ -87,3 +100,63 @@
 
 #undef MEDIUM_RADIATION_THRESHOLD_RANGE
 #undef EXTREME_RADIATION_CHANCE
+
+
+/// Debugging radiation can be painful without manually proc-calling radiation pulses. This allows easy custom radiation emitting objects to be placed and tested based on whatever settings are needed.
+/obj/rad_tester
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "type-a-red-portal-b"
+	name = "Radiation Debugger"
+	var/d_strength = 0
+	var/d_minimum_exposure_time = 1
+	var/d_chance = 0
+	var/d_threshold = RAD_EXTREME_INSULATION
+	var/d_range = 0
+
+/obj/rad_tester/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/rad_tester/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/rad_tester/process()
+	radiation_pulse(
+			src,
+			max_range = d_range,
+			threshold = d_threshold,
+			chance = d_chance,
+			minimum_exposure_time = d_minimum_exposure_time SECONDS,
+			strength = d_strength
+		)
+
+/obj/rad_tester/verb/set_range()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Range"
+	d_range = tgui_input_number(usr, "Set range of effect", "Range", d_range, min_value=0, round_value=FALSE)
+
+/obj/rad_tester/verb/set_threshold()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Threshold"
+	d_threshold = tgui_input_number(usr, "Set penetration threshold of radiation. RAD_NO_INSULATION is [RAD_NO_INSULATION], RAD_FULL_INSULATION is [RAD_FULL_INSULATION], RAD_EXTREME_INSULATION is [RAD_EXTREME_INSULATION]", "Radiation Chance", d_threshold, min_value=0, max_value = 1, round_value=FALSE)
+
+/obj/rad_tester/verb/set_chance()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Chance"
+	d_chance = tgui_input_number(usr, "Set probability of radiation exposure", "Radiation Chance", d_chance, min_value=0, max_value=100, round_value=FALSE)
+
+/obj/rad_tester/verb/set_exposure_time()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Minimum Exposure Time"
+	d_minimum_exposure_time = tgui_input_number(usr, "Set exposure time needed in seconds", "Exposure Time", d_minimum_exposure_time, min_value=0, round_value=FALSE)
+
+/obj/rad_tester/verb/set_strength()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Set Radiation Strength"
+	d_strength = tgui_input_number(usr, "Set radiation strength. Uranium sheets have a strength of [/datum/material/uranium::radioactivity], Supermatter sheets have a strength of [/datum/material/supermatter::radioactivity], engines have strengths in the hundreds.", "Strength", d_strength, min_value=0, round_value=FALSE)
