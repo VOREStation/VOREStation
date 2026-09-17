@@ -36,11 +36,11 @@
 		var/mob/observer/dead/D = Q.candidates[1]
 		UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
 		QDEL_NULL(Q) //get rid of the query
-		addtimer(CALLBACK(src, PROC_REF(create_occupant), D), 1)
+		INVOKE_ASYNC(src, PROC_REF(create_occupant)) // Blocking tgui inputs for name and other details on mob spawn
 		return
 
 	if(delay_to_try_again)
-		INVOKE_ASYNC(src, PROC_REF(trigger)) // Blocking tgui inputs for name and other details on mob spawn
+		addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
 	QDEL_NULL(Q) //get rid of the query
 
