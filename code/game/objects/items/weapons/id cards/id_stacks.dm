@@ -162,6 +162,11 @@
 	initial_sprite_stack = list("base-stamp", "top-orange", "stamp-n", "pips-medblu", "stripe-white")
 	rank = JOB_ENGINEER
 
+/obj/item/card/id/engineering/telecomms
+	name = JOB_TELECOMMS_SPECIALIST + "'s ID"
+	initial_sprite_stack = list("base-stamp", "top-orange", "stamp-n", "stripe-medblu")
+	rank = JOB_TELECOMMS_SPECIALIST
+
 //Science
 
 /obj/item/card/id/science

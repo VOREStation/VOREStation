@@ -1,0 +1,5 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - bugfix: "fixed infinite food supplies via construction abuse of the Food Synthesizer"
+  - code_imp: "Hardened some edge case issues involved with the reagent cartridge. Byond needs its references!"
