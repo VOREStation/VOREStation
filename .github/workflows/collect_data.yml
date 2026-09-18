@@ -1,0 +1,29 @@
+name: Collect Data
+
+on:
+  workflow_call:
+    outputs:
+      game_changes:
+        description: "Whether game files were changed"
+        value: ${{ jobs.collect_data.outputs.game_changes }}
+
+jobs:
+  collect_data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      game_changes: ${{ steps.find_game_changes.outputs.all_changed_files != '' }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Find game changes
+        id: find_game_changes
+        uses: tj-actions/changed-files@v47
+        with:
+          fetch_depth: 0
+          files_ignore: |
+            **/*.md
+            html/**
+            tgui/**
