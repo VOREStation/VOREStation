@@ -42,7 +42,7 @@
 	if(food_inserted_micros)
 		for(var/mob/mob in food_inserted_micros)
 			mob.dropInto(loc)
-			food_inserted_micros -= mob
+			LAZYREMOVE(food_inserted_micros, mob)
 	. = ..()
 
 	return
@@ -58,10 +58,6 @@
 			return
 
 		var/obj/item/holder/holder = W
-
-		if(!food_inserted_micros)
-			food_inserted_micros = list()
-
 		var/mob/living/living_mob = holder.held_mob
 
 		living_mob.forceMove(src)
@@ -69,7 +65,7 @@
 		user.drop_from_inventory(holder)
 		qdel(holder)
 
-		food_inserted_micros += living_mob
+		LAZYADD(food_inserted_micros, living_mob)
 
 		to_chat(user, span_warning("You drop [living_mob] into \the [src]."))
 		to_chat(living_mob, span_warning("[user] drops you into \the [src]."))
@@ -77,15 +73,10 @@
 
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/M, mob/user)
-	if(!user.stat && istype(M) && (M == user) && Adjacent(M) && (M.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
-		if(!food_inserted_micros)
-			food_inserted_micros = list()
-
-		M.forceMove(src)
-
-		food_inserted_micros += M
-
+/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/Micro, mob/user)
+	if(!user.stat && istype(Micro) && (Micro == user) && Adjacent(Micro) && (Micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		Micro.forceMove(src)
+		LAZYADD(food_inserted_micros, Micro)
 		to_chat(user, span_warning("You climb into \the [src]."))
 		return
 
@@ -96,7 +87,7 @@
 	if(!feeder)
 		feeder = eater
 
-	if(food_inserted_micros && food_inserted_micros.len)
+	if(LAZYLEN(food_inserted_micros))
 		for(var/mob/living/micro in food_inserted_micros)
 			if(!can_food_vore(eater, micro))
 				continue
@@ -112,7 +103,7 @@
 
 			if(do_nom)
 				eater.vore_selected.nom_atom(micro)
-				food_inserted_micros -= micro
+				LAZYREMOVE(food_inserted_micros, micro)
 
 	if(!reagents.total_volume && changed)
 		eater.visible_message(span_notice("[eater] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))
@@ -212,7 +203,7 @@
 	if(Adjacent(user))
 		if(cant_open)
 			. += span_warning("It doesn't have a ring pull!")
-		if(food_inserted_micros && food_inserted_micros.len)
+		if(LAZYLEN(food_inserted_micros))
 			. += span_notice("It has [english_list(food_inserted_micros)] [!reagents?.total_volume ? "sitting" : "floating"] in it.")
 		if(!reagents?.total_volume)
 			. += span_notice("It is empty!")
