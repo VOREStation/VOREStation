@@ -18,6 +18,16 @@
 	recipes += list(
 		new /datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("Metal crate", /obj/structure/closet/crate, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+		new /datum/stack_recipe_list("Gun Lockers",list(
+			new /datum/stack_recipe("Armory Shotgun locker", /obj/structure/closet/secure_closet/guncabinet/fancy/shotgun, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Security Shotgun locker", /obj/structure/closet/secure_closet/guncabinet/fancy/shotgun/security, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Armory Rifle locker", /obj/structure/closet/secure_closet/guncabinet/fancy/rifle, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Security Rifle locker", /obj/structure/closet/secure_closet/guncabinet/fancy/rifle/security, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Wood style Rifle locker", /obj/structure/closet/secure_closet/guncabinet/fancy/rifle/wood, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Armory Small Arms locker", /obj/structure/closet/secure_closet/guncabinet/fancy/pistol, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Security Small Arms locker", /obj/structure/closet/secure_closet/guncabinet/fancy/pistol/security, 10, time = 50, one_per_turf = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("Wood style Small Arms locker", /obj/structure/closet/secure_closet/guncabinet/fancy/pistol/wood, 10, time = 50, one_per_turf = 1, recycle_material = "[name]")
+		)),
 		new /datum/stack_recipe("knife grip", /obj/item/material/butterflyhandle, 4, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("dark floor tile", /obj/item/stack/tile/floor/dark, 1, 4, 20, recycle_material = "[name]"),
 		new /datum/stack_recipe("roller bed", /obj/item/roller, 5, time = 30, on_floor = 1, recycle_material = "[name]"),
