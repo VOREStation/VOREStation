@@ -1202,10 +1202,9 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		var/atom/location = src.loc
 		var/datum/gas_mixture/air_contents
 		air_contents = new
-		//0.2L
-		air_contents.volume = 0.2
+		air_contents.volume = 2
 		air_contents.temperature = T20C
-		air_contents.adjust_gas(GAS_PHORON, 1)
+		air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*air_contents.volume/(R_IDEAL_GAS_EQUATION*T20C))
 		location.assume_air(air_contents)
 
 //Lamp Shade
