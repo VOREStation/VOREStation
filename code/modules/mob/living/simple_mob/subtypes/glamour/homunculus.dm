@@ -22,6 +22,8 @@
 	var/owner
 
 /mob/living/simple_mob/homunculus/death()
+	if(QDELETED(src))
+		return
 	if(owner)
 		var/obj/item/glamour_face/O = owner
 		O.homunculus = 0

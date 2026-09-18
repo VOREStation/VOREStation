@@ -81,6 +81,8 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/combat_drone/death()
+	if(QDELETED(src))
+		return
 	..(null,"suddenly breaks apart.")
 	qdel(src)
 
