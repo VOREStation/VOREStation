@@ -1,4 +1,0 @@
-author: "FluffMedic"
-delete-after: True
-changes:
-  - maptweak: "Tweaked map to removed further objects in solid walls for unit test stuff"

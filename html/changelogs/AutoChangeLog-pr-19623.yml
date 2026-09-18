@@ -1,5 +1,0 @@
-author: "Poojawa"
-delete-after: True
-changes:
-  - bugfix: "fixes numerous broken digitigrade suit, shoe, and undersuit sprites"
-  - image: "Digitigrade sprites are 1 to 1 parity with what's in mob.dmi of their respective zones."
