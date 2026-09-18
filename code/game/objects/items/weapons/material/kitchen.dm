@@ -23,14 +23,14 @@
 /obj/item/material/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	if (prob(60))
-		src.pixel_y = rand(0, 4)
+		pixel_y = rand(0, 4)
 	create_reagents(scoop_volume)
 
 /obj/item/material/kitchen/utensil/Destroy()
 	if(food_inserted_micros)
 		for(var/mob/M in food_inserted_micros)
 			M.dropInto(loc)
-			food_inserted_micros -= M
+			LAZYREMOVE(food_inserted_micros, M)
 	. = ..()
 
 	return
@@ -60,11 +60,8 @@
 	loading.reagents.trans_to_obj(src, min(loading.reagents.total_volume, scoop_volume))
 	loaded_color = loading.filling_color
 
-	if(loading.food_inserted_micros && loading.food_inserted_micros.len)
-		if(!food_inserted_micros)
-			food_inserted_micros = list()
-
-		for(var/mob/living/F in loading.food_inserted_micros)
+	if(LAZYLEN(loading.food_inserted_micros))
+		for(var/mob/living/Micro in loading.food_inserted_micros)
 			var/do_transfer = FALSE
 
 			if(!loading.reagents.total_volume)
@@ -75,9 +72,9 @@
 					do_transfer = TRUE
 
 			if(do_transfer)
-				F.forceMove(src)
-				loading.food_inserted_micros -= F
-				src.food_inserted_micros += F
+				Micro.forceMove(src)
+				LAZYREMOVE(loading.food_inserted_micros, Micro)
+				LAZYADD(food_inserted_micros, Micro)
 
 	if (loading.reagents.total_volume <= 0)
 		qdel(loading)
@@ -95,15 +92,15 @@
 		else
 			return ..()
 
-	if (loaded && reagents.total_volume > 0)
+	if(loaded && reagents.total_volume > 0)
 		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
-		if(food_inserted_micros && food_inserted_micros.len)
-			for(var/mob/living/F in food_inserted_micros)
-				food_inserted_micros -= F
-				if(!can_food_vore(M, F))
-					F.forceMove(get_turf(src))
+		if(LAZYLEN(food_inserted_micros))
+			for(var/mob/living/Micro in food_inserted_micros)
+				LAZYREMOVE(food_inserted_micros, Micro)
+				if(!can_food_vore(M, Micro))
+					Micro.forceMove(get_turf(src))
 				else
-					M.vore_selected.nom_atom(F)
+					M.vore_selected.nom_atom(Micro)
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return ITEM_INTERACT_FAILURE
@@ -128,14 +125,14 @@
 		cut_overlays()
 	return
 
-/obj/item/material/kitchen/utensil/container_resist(mob/living/M)
-	if(food_inserted_micros)
-		food_inserted_micros -= M
+/obj/item/material/kitchen/utensil/container_resist(mob/living/Micro)
+	if(LAZYLEN(food_inserted_micros))
+		LAZYREMOVE(food_inserted_micros, Micro)
 	if(isdisposalpacket(loc))
-		M.forceMove(loc)
+		Micro.forceMove(loc)
 	else
-		M.forceMove(get_turf(src))
-	to_chat(M, span_warning("You climb off of \the [src]."))
+		Micro.forceMove(get_turf(src))
+	to_chat(Micro, span_warning("You climb off of \the [src]."))
 
 /obj/item/material/kitchen/utensil/fork
 	name = "fork"
