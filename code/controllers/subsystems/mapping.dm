@@ -226,6 +226,12 @@ SUBSYSTEM_DEF(mapping)
 		shelter_templates[S.shelter_id] = S
 // VOREStation Edit End: Re-enable this
 
+/datum/controller/subsystem/mapping/proc/get_connected_levels(turf/connected)
+	var/z_level = connected
+	if(isturf(z_level))
+		z_level = connected.z
+	return using_map.zlevels[z_level] //Deviation from TG. Instead of z_level_to_stack[z_level] we use zlevels[z_level]
+
 /datum/controller/subsystem/mapping/stat_entry(msg)
 	if (!GLOB.Debug2)
 		return // Only show up in stat panel if debugging is enabled.

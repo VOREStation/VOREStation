@@ -155,7 +155,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	if(screen && screen.ai)
 		screen.ai.camera_visibility(src)
 	else
-		GLOB.cameranet.visibility(src)
+		SScameras.update_eye_chunk(src)
 	update_camera_telegraphing()
 
 /mob/observer/eye/aiEye/pic_in_pic/proc/update_camera_telegraphing()
@@ -164,7 +164,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
 	var/list/obj/machinery/camera/visible = list()
-	for(var/datum/chunk/camera/CC as anything in visibleChunks)
+	for(var/datum/camerachunk/CC as anything in visibleChunks)
 		for(var/obj/machinery/camera/C as anything in CC.cameras)
 			if (!C.can_use() || (get_dist(C, src) > telegraph_range))
 				continue
