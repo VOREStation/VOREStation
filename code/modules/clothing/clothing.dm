@@ -665,6 +665,8 @@
 	var/blocks_footsteps = TRUE //Does this shoe block custom footstep sounds?
 	///Uses a custom footstep sound instead of default. Uses 'get_sfx'
 	var/custom_footstep = null
+	///Custom volume sound for the above.
+	var/custom_footstep_volume = null
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN

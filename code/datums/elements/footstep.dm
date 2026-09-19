@@ -158,7 +158,7 @@
 	if(istype(source.shoes, /obj/item/clothing/shoes))
 		var/obj/item/clothing/shoes/feet = source.shoes
 		if(feet.custom_footstep) //Mostly for legacy reasons, such as clown shoes.
-			playsound(source.loc, get_sfx(feet.custom_footstep), 75 * volume * VOLUME_MULTIPLIER, TRUE, e_range + RANGE_ADJUSTMENT, falloff = TRUE, vary = sound_vary)
+			playsound(source.loc, get_sfx(feet.custom_footstep), feet.custom_footstep_volume * volume * VOLUME_MULTIPLIER, TRUE, e_range + RANGE_ADJUSTMENT, falloff = TRUE, vary = sound_vary)
 			return
 
 

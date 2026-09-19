@@ -101,6 +101,7 @@
 	force = 0
 	species_restricted = null
 	custom_footstep = "clownstep"
+	custom_footstep_volume = 75
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
