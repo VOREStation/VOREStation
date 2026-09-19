@@ -132,7 +132,6 @@
 			else
 				to_chat(user, span_warning("\The [src] smartly denies you access to wrench it."))
 			return
-		return
 
 	if(O.has_tool_quality(TOOL_CROWBAR))
 		if(allowed(user))
