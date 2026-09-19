@@ -705,6 +705,7 @@
 #include "code\datums\components\connect_mob_behalf.dm"
 #include "code\datums\components\connect_range.dm"
 #include "code\datums\components\deconstructable_research.dm"
+#include "code\datums\components\dry.dm"
 #include "code\datums\components\effect_remover.dm"
 #include "code\datums\components\geiger_sound.dm"
 #include "code\datums\components\holographic_nature.dm"

@@ -663,6 +663,8 @@
 	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
 	var/obj/item/clothing/shoes/shoes = null	//If we are wearing shoes in our shoes. Used primarily for magboots.
 	var/blocks_footsteps = TRUE //Does this shoe block custom footstep sounds?
+	///Uses a custom footstep sound instead of default. Uses 'get_sfx'
+	var/custom_footstep = null
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
