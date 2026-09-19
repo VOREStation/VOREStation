@@ -660,7 +660,8 @@
 	var/water_speed = 0		//Speed boost/decrease in water, lower/negative values mean more speed
 	var/snow_speed = 0		//Speed boost/decrease on snow, lower/negative values mean more speed
 
-	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
+	///How quiet/loud liquid sloshing from bellies is when using this shoe. Directly multiplies the volume by this number.
+	var/step_volume_mod = 1
 	var/obj/item/clothing/shoes/shoes = null	//If we are wearing shoes in our shoes. Used primarily for magboots.
 	var/blocks_footsteps = TRUE //Does this shoe block custom footstep sounds?
 	///Uses a custom footstep sound instead of default. Uses 'get_sfx'
