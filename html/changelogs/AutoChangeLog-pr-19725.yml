@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "Fixed cyborgs not being able to finish the reattach arm surgery with their medical gripper"
