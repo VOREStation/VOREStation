@@ -135,3 +135,11 @@
   - refactor: Moves storage items can_hold var to global shared lists for memory savings
   lbnesquik:
   - qol: Made it possible to wrench smartfridges.
+2026-09-20:
+  Poojawa:
+  - maptweak: Food Synths have been added to Groundbase, Stellar Delight, and Tether!
+  Will:
+  - bugfix: Wrenchable smartfridges no longer block all item inputs
+  lbnesquik:
+  - bugfix: Fixed cyborgs not being able to finish the reattach arm surgery with their
+      medical gripper
