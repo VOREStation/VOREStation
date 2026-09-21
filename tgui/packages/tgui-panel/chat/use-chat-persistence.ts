@@ -1,4 +1,4 @@
-import { storage } from 'common/storage';
+import { type StorageDiagnostic, storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
@@ -175,6 +175,8 @@ export function useChatPersistence() {
         messages = await loadChatFromStorage();
       }
 
+      surfaceStorageDiagnostics(storage.diagnostics);
+
       if (messages) {
         handleMessages(messages);
       }
@@ -276,6 +278,24 @@ export function useChatPersistence() {
       // Discard incompatible versions
       console.log('Discarded incompatible chat state from storage:', state);
       chatRenderer.changePage(mainPage);
+    }
+  }
+
+  function surfaceStorageDiagnostics(diagnostics: StorageDiagnostic[]) {
+    const hasIssues = diagnostics.some((d) => d.level !== 'info');
+    if (!hasIssues) return;
+
+    const batch = diagnostics
+      .filter((d) => d.level !== 'info')
+      .map((d) =>
+        createMessage({
+          type: 'internal/storage',
+          text: `[Storage] ${d.message}`,
+        }),
+      );
+
+    if (batch.length) {
+      chatRenderer.processBatch(batch, { prepend: true });
     }
   }
 

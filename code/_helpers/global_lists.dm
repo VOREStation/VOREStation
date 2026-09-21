@@ -1612,6 +1612,8 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, list(
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
 
+GLOBAL_LIST_EMPTY(storage_filters)
+
 //Chamelion clothing was all stupid so it's done here instead.
 //Jumpsuit
 GLOBAL_LIST(chamelion_jumpsuit_choices)

@@ -67,6 +67,9 @@ Ask Mothblocks if they're around
 /// The default chance something can be irradiated
 #define DEFAULT_RADIATION_CHANCE 10
 
+/// Converts strength to range, based on bay-rad's distance code
+#define BAYRAD_RADIATION_RANGE(S) CLAMP(round(sqrt(S / 0.35)), 10, 50)
+
 /// The default chance for uranium structures to irradiate
 #define URANIUM_IRRADIATION_CHANCE DEFAULT_RADIATION_CHANCE
 
