@@ -123,10 +123,10 @@
 		return
 
 	if(wrenchable)
-		if(persistent)
-			to_chat(user, span_warning("\The [src] persistently denies you access to wrench it."))
-			return
 		if(O.has_tool_quality(TOOL_WRENCH))
+			if(persistent)
+				to_chat(user, span_warning("\The [src] persistently denies you access to wrench it."))
+				return
 			if(allowed(user))
 				default_unfasten_wrench(user, O, 20)
 			else
