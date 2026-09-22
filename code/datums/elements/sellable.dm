@@ -568,7 +568,7 @@ Contains :
 // Coins
 // Slightly better than sheets because it is a refined product. Pain in the ass to deal with, though.
 /datum/element/sellable/coins/calculate_sell_value(obj/source)
-	/obj/item/coin/coin = source
+	var/obj/item/coin/coin = source
 	var/datum/material/mat = coin.get_material()
 	if(!mat || !mat.supply_conversion_value)
 		return 0
