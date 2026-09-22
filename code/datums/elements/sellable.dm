@@ -1,3 +1,26 @@
+
+
+/*
+Stuff that can be sold by cargo for points.
+
+Contains :
+- Manifests
+- Materials
+- Money
+- Research samples
+- Research containers
+- Vaccine samples
+- Refinery chemical tanks
+- Salvage
+- Organs
+- Slimes
+- Food
+- TTV's (tank transfer bombs)
+- Mechs
+- GUNZ (The Z is important)
+- Xenomobs.
+
+*/
 /datum/element/sellable
 	var/sale_info = "This can be sold on the cargo shuttle if packed in a crate."
 	var/needs_crate = TRUE
@@ -200,13 +223,17 @@
 /datum/element/sellable/trolley_tank/object_sold_name(obj/source)
 	return "Reagent"
 
-/datum/element/sellable/salvage //For selling /obj/item/salvage
+// Salvage
+//For selling /obj/item/salvage
+/datum/element/sellable/salvage
 
 /datum/element/sellable/salvage/calculate_sell_value(obj/source)
 	var/obj/item/salvage/salvagedStuff = source
 	return salvagedStuff.worth
 
-/datum/element/sellable/organ //For selling /obj/item/organ/internal
+// Organs
+//For selling /obj/item/organ/internal
+/datum/element/sellable/organ
 /datum/element/sellable/organ/calculate_sell_value(obj/source)
 	var/obj/item/organ/internal/organ_stuff = source
 	return organ_stuff.supply_conversion_value
