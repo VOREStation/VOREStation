@@ -917,9 +917,6 @@
 
 	return FALSE
 
-/mob/living/proc/slip(slipped_on,stun_duration=8)
-	return 0
-
 /mob/living/carbon/drop_from_inventory(obj/item/W, atom/target = null)
 	return !(W in internal_organs) && ..()
 

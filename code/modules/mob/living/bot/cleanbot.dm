@@ -35,7 +35,7 @@
 	if(wet_floors && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
-			T.wet_floor()
+			T.MakeSlippery(TURF_WET_WATER, 60 SECONDS, 20 SECONDS)
 
 	if(spray_blood && prob(5)) // Make a big mess
 		visible_message("Something flies out of [src]. It seems to be acting oddly.")

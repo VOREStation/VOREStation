@@ -31,8 +31,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WET_FOR_LONGER "wet_for_longer"
 /// Mobs with this trait will be immune to slipping while also being slippery themselves when lying on the floor
 #define TRAIT_SLIPPERY_WHEN_WET "slippery_when_wet"
+/// Stops the mob from slipping on ice, lube and lesser.
+#define TRAIT_NO_SLIP_GREATER "noslip_greater" // Replaces TRAIT_NO_SLIP_ICE "noslip_ice" from TG. This comment is mostly here for searching
 /// Stops the mob from slipping on water, or banana peels, or pretty much anything that doesn't have [GALOSHES_DONT_HELP] set
 #define TRAIT_NO_SLIP_WATER "noslip_water"
+/// Stops the mob from slipping entirely.
+#define TRAIT_NO_SLIP_ALL "noslip_all"
 /// Owner will ignore any fire protection when calculating fire damage
 #define TRAIT_IGNORE_FIRE_PROTECTION "ignore_fire_protection"
 /// Owner will slam down heavily into the ground upon falling from a height!

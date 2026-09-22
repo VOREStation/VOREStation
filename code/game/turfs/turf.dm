@@ -541,3 +541,137 @@
 			expanding_turfs += next_turf
 
 	return expanding_turfs
+
+// v v v MOVE ALL OF THESE TO turf/open IF/WHEN THAT EVER EXISTS v v v
+
+/turf/handle_slip(mob/living/M, weaken_amount, obj/slipped_on, lube, slip_dist = 0, stun_amount, force_drop)
+	if(!M || !isliving(M))
+		return FALSE
+	if(M.hovering || M.flying)
+		return FALSE
+	if(!get_gravity(src))
+		return FALSE
+
+
+	var/obj/buckled_obj
+	if(M.buckled)
+		buckled_obj = M.buckled
+		if(!(lube & GALOSHES_DONT_HELP) || !M.buckled) //can't slip while buckled unless it's lube. //But stay on steeds.
+			return FALSE
+	else
+		if(!(lube & SLIP_WHEN_CRAWLING) && !(lube & SLIDE_RECURSIVE) && (M.lying || !(M.status_flags & CANWEAKEN))) // can't slip unbuckled mob if they're lying
+			return FALSE
+		if(M.m_intent == I_WALK && (lube & NO_SLIP_WHEN_WALKING))
+			return FALSE
+
+	//Unlucky with slippery
+	if(HAS_TRAIT(M, TRAIT_UNLUCKY)) //Adds onto the existing slide.
+		slip_dist += rand(1,5)
+		lube |= SLIDE
+
+	if(M.slip_timer || M.slipping)
+		if(lube & SLIDE_RECURSIVE)
+			playsound(M.loc, 'sound/misc/slip.ogg', 25, 1, -1)
+			deltimer(M.slip_timer) //Remove it here so it can be set anew
+			M.slip_timer = null
+			slip_dist = max(M.slipping, slip_dist) //Extend Slips
+		else //Slipping, slip isnt recursive, slip is blocked.
+			return FALSE
+	else
+		to_chat(M, span_notice("You slipped[ slipped_on ? " on the [slipped_on.name]" : ""]!"))
+		playsound(M.loc, 'sound/misc/slip.ogg', clamp(15 + (2.5 * weaken_amount), 25, 75), 1, -1) //Slip volume scales with slip strength
+
+	if(HAS_TRAIT(M, SLIP_REFLEX_TRAIT) && !M.lying)
+		if(prob(100 / max(slip_dist, 1))) // Longer slip distance is, the less of a chance you have to
+			if(world.time >= M.next_emote)
+				M.emote("sflip")
+				M.slip_timer = VARSET_IN(M, slip_timer, null, 2)
+				M.slipping = 0
+				// Because we're stopping here, but we're still slipping, send the signal for it now.
+				SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
+				return TRUE
+
+	//At this point, we're getting into doing the actual slip
+	if(force_drop)
+		M.drop_both_hands()
+		/* //Later.
+		for(var/obj/item/I in C.held_items)
+			M.accident(I)
+		*/
+
+	var/olddir = M.dir
+	M.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
+	if((slip_dist > 0) || (lube & SLIDE_RECURSIVE))
+		M.Weaken(max(FLOOR(weaken_amount / 2, 1), (slip_dist + 2) / 10)) //to ensure they stay weakened for atleast the duration of the slide
+	else
+		M.Weaken(max(FLOOR(weaken_amount / 2, 1), 0)) //Atleast 2 seconds on a recursive slip.
+
+	M.Stun(stun_amount)
+	M.stop_pulling()
+
+	if(buckled_obj)
+		buckled_obj.unbuckle_mob(M)
+		slip_dist = 1
+		M.slipping = slip_dist
+
+
+	if(slip_dist > 0)
+		M.slip_timer = addtimer(CALLBACK(src, PROC_REF(slip_slide), M, slip_dist, olddir, lube), 1, TIMER_DELETE_ME|TIMER_STOPPABLE)
+	else
+		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //Non sliding slip time
+
+	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
+	/*
+	if(lube & SLIDE)
+		new /datum/forced_movement(M, get_ranged_target_turf(M, olddir, 4), 1, FALSE, CALLBACK(C, /mob/living/carbon/.proc/spin, 1, 1))
+	else if(lube & SLIDE_RECURSIVE)
+		if(M.force_moving) //If we're already slipping extend it
+			qdel(M.force_moving)
+		new /datum/forced_movement(M, get_ranged_target_turf(M, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+	*/
+	return TRUE
+
+/turf/proc/slip_slide(mob/M, slip_dist = 1, dir, lube) // Weee!!!
+	if(!M)
+		return
+	if(!dir)
+		dir = M.dir
+	//var/old_mob_dir = M.dir //so the spin completes
+	//Spinning would be bad, but we move anyways, which sets the dir back the right way, so it ends up looking a bit jank, but ultimately works with recursive slips anyhow. Funny!
+	M.spin(1, 1) // this will sleep(), Scary... (but it shouldnt be blocking so it's fine probably)
+	M.slipping = slip_dist
+	if(slip_dist <= 0 || !isturf(M.loc))
+		if(M.slip_timer)
+			deltimer(M.slip_timer)
+		M.slip_timer = VARSET_IN(M, slip_timer, null, 2)
+		M.slipping = 0 //Just in case.
+		return
+
+	slip_dist-- //decrement the slip_dist for the next slip.
+	//We need to prepare the timer prior to doing the step or recursive slips break, since it checks the timer to interupt this process..
+	var/turf/T = get_turf(M)
+	M.slip_timer = addtimer(CALLBACK(T, PROC_REF(slip_slide), M, slip_dist, dir, lube), 1, TIMER_DELETE_ME|TIMER_STOPPABLE)
+
+	if(!step(M, dir)) //Do the movement. if it fails, the slide ends here.
+		if(M.slip_timer)
+			deltimer(M.slip_timer)
+		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //"Slipping" after the slide ends for the purposes of recursive slip catches
+		M.slipping = 0
+		return
+
+	//After the slip, send a signal. This trigger spontvore, too.
+	SEND_SIGNAL(M, COMSIG_AFTER_LIVING_SLIDE, M, slip_dist, dir, lube)
+
+
+/turf/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
+	if(density) //Bandaid for lack of turf/open. I guess override if a specific case of a dense turf being wettable needs to exist.
+		return
+	AddComponent(/datum/component/wet_floor, wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
+
+/turf/proc/MakeDry(wet_setting = TURF_WET_WATER, immediate = FALSE, amount = INFINITY)
+	SEND_SIGNAL(src, COMSIG_TURF_MAKE_DRY, wet_setting, immediate, amount)
+
+/turf/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
+	qdel(GetComponent(/datum/component/wet_floor))
+
+// ^ ^ ^ MOVE ALL OF THESE TO turf/open IF/WHEN WE GET IT ^ ^ ^

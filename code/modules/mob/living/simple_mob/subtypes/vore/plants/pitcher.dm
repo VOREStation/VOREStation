@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 				to_chat(H, span_red("[pick(pitcher_plant_lure_messages)]"))
 
 		for(var/turf/simulated/TR in cardinal_turfs)
-			TR.wet_floor(1) //Same effect as water. Slip into plant, get ate.
+			TR.MakeSlippery(TURF_WET_LUBE, 160 SECONDS) //Same effect as water. Slip into plant, get ate.
 	else
 		return
 /mob/living/simple_mob/vore/pitcher_plant/Crossed(atom/movable/AM as mob|obj) //Yay slipnoms

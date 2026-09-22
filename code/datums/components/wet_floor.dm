@@ -3,6 +3,7 @@
 	can_transfer = TRUE
 	var/highest_strength = TURF_DRY
 	var/lube_flags = NONE			//why do we have this?
+	var/slip_distance = 0
 	var/list/time_left_list			//In deciseconds.
 	var/static/mutable_appearance/permafrost_overlay = mutable_appearance('icons/effects/water.dmi', "ice_floor")
 	var/static/mutable_appearance/ice_overlay = mutable_appearance('icons/turf/overlays.dmi', "snowfloor")
@@ -23,18 +24,19 @@
 			add_wet(text2num(i), WF.time_left_list[i])
 
 /datum/component/wet_floor/Initialize(strength, duration_minimum, duration_add, duration_maximum, _permanent = FALSE)
-	if(!isopenturf(parent))
+	var/turf/our_turf = parent
+	if(!isturf(our_turf) || our_turf.density)
 		return COMPONENT_INCOMPATIBLE
 	add_wet(strength, duration_minimum, duration_add, duration_maximum)
 	permanent = _permanent
 	if(!permanent)
 		START_PROCESSING(SSwet_floors, src)
-	addtimer(CALLBACK(src, .proc/gc, TRUE), 1)		//GC after initialization.
+	addtimer(CALLBACK(src, PROC_REF(gc), TRUE), 1)		//GC after initialization.
 	last_process = world.time
 
 /datum/component/wet_floor/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_TURF_IS_WET, .proc/is_wet)
-	RegisterSignal(parent, COMSIG_TURF_MAKE_DRY, .proc/dry)
+	RegisterSignal(parent, COMSIG_TURF_IS_WET, PROC_REF(is_wet))
+	RegisterSignal(parent, COMSIG_TURF_MAKE_DRY, PROC_REF(dry))
 
 /datum/component/wet_floor/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_TURF_IS_WET, COMSIG_TURF_MAKE_DRY))
@@ -79,25 +81,31 @@
 	lube_flags = NONE
 	switch(highest_strength)
 		if(TURF_WET_WATER)
-			intensity = 60
+			intensity = 6
 			lube_flags = NO_SLIP_WHEN_WALKING
+			slip_distance = 0
 		if(TURF_WET_LUBE)
-			intensity = 80
+			intensity = 8
 			lube_flags = SLIDE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP
+			slip_distance = 4
 		if(TURF_WET_ICE)
-			intensity = 120
+			intensity = 12
 			lube_flags = SLIDE | GALOSHES_DONT_HELP
+			slip_distance = 4
 		if(TURF_WET_PERMAFROST)
-			intensity = 120
+			intensity = 12
 			lube_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP
+			slip_distance = 1
 		if(TURF_WET_SUPERLUBE)
-			intensity = 120
+			intensity = 12
 			lube_flags = SLIDE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
+			slip_distance = 4
 		else
 			qdel(parent.GetComponent(/datum/component/slippery))
 			return
 
-	parent.LoadComponent(/datum/component/slippery, intensity, lube_flags)
+	// Add the new stats
+	parent.LoadComponent(/datum/component/slippery, intensity, lube_flags, slip_distance)
 
 /datum/component/wet_floor/proc/dry(datum/source, strength = TURF_WET_WATER, immediate = FALSE, duration_decrease = INFINITY)
 	for(var/i in time_left_list)
@@ -115,16 +123,17 @@
 	var/turf/T = parent		//Ideally, convert this to turf/open in the future.
 	var/diff = world.time - last_process
 	var/decrease = 0
-	var/t = T.GetTemperature()
-	switch(t)
+	var/datum/gas_mixture/T_air = T.return_air()
+	var/temperature = T_air.temperature
+	switch(temperature)
 		if(-INFINITY to T0C)
 			add_wet(TURF_WET_ICE, max_time_left())			//Water freezes into ice!
 		if(T0C to T0C + 100)
-			decrease = ((T.air.return_temperature() - T0C) / SSwet_floors.temperature_coeff) * (diff / SSwet_floors.time_ratio)
+			decrease = ((temperature - T0C) / SSwet_floors.temperature_coeff) * (diff / SSwet_floors.time_ratio)
 		if(T0C + 100 to INFINITY)
 			decrease = INFINITY
 	decrease = max(0, decrease)
-	if((is_wet() & TURF_WET_ICE) && t > T0C)		//Ice melts into water!
+	if((is_wet() & TURF_WET_ICE) && temperature > T0C)		//Ice melts into water!
 		/* //Future, maybe? We dont have it yet, regardless.
 		for(var/obj/O in T.contents)
 			if(O.obj_flags & FROZEN)
@@ -154,7 +163,8 @@
 	qdel(O.GetComponent(/datum/component/slippery))
 
 /datum/component/wet_floor/PostTransfer()
-	if(!isopenturf(parent))
+	var/turf/our_turf = parent
+	if(!isturf(our_turf) || our_turf.density)
 		return COMPONENT_INCOMPATIBLE
 	var/turf/T = parent
 	T.add_overlay(current_overlay)

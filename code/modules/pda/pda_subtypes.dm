@@ -213,16 +213,15 @@
 	name = "Civilian Services Department (Relay)"
 	cartridges_to_send_to = GLOB.civilian_cartridges
 
-/obj/item/pda/clown/Crossed(atom/movable/AM) //Clown PDA is slippery.
+/obj/item/pda/clown/Initialize() //Clown PDA is slippery.
 	. = ..()
-	if(AM.is_incorporeal())
-		return
-	if (isliving(AM))
-		var/mob/living/M = AM
+	AddComponent(/datum/component/slippery, 12, NO_SLIP_WHEN_WALKING, 0, CALLBACK(src, PROC_REF(AfterSlip)))
 
-		if(M.slip("the PDA",8) && M.real_name != src.owner && istype(src.cartridge, /obj/item/cartridge/clown))
-			if(src.cartridge.charges < 5)
-				src.cartridge.charges++
+/obj/item/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
+	if (istype(M) && (M.real_name != owner))
+		var/obj/item/cartridge/clown/cart = cartridge
+		if(istype(cart) && cart.charges < 5)
+			cart.charges++
 
 //Some spare PDAs in a box
 /obj/item/storage/box/PDAs

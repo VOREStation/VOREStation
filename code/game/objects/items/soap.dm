@@ -22,19 +22,13 @@
 	create_reagents(5)
 	. = ..()
 
+	AddComponent(/datum/component/slippery, 8)
+
 /obj/item/soap/proc/wet(cleaner = FALSE)
 	if(cleaner)
 		reagents.add_reagent(REAGENT_ID_CLEANER, 5)
 	else
 		reagents.add_reagent(REAGENT_ID_WATER, 5) //full of wet...
-
-/obj/item/soap/Crossed(atom/movable/AM as mob|obj)
-	. = ..()
-	if(AM.is_incorporeal())
-		return
-	if(isliving(AM))
-		var/mob/living/M =	AM
-		M.slip("\the [src.name]",3)
 
 /obj/item/soap/afterattack(atom/target, mob/user as mob, proximity)
 	. = ..()

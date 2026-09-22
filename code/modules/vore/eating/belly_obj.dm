@@ -613,6 +613,8 @@
 		if(reagents.total_volume >= 5)
 			if(digest_mode == DM_DIGEST && living_mob.digestable)
 				reagents.splash_mob(living_mob, reagents.total_volume * 0.1, FALSE)
+			if(reagents.has_reagent(REAGENT_ID_LUBE)) //Slip people on entry if we're full of lube. Teehee.
+				living_mob.slip(10, src, GALOSHES_DONT_HELP, 0, 0, FALSE)
 			to_chat(living_mob, span_vwarning(span_bold("You splash into a pool of [reagent_name]!")))
 	if(!isliving(thing) && count_items_for_sprite) // If this is enabled also update fullness for non-living things
 		owner.handle_belly_update() // This is run whenever a belly's contents are changed.
@@ -666,6 +668,28 @@
 			for(var/count in I.d_mult to 1 step 0.25)
 				// Note, this should be refactored to drop priority overlays
 				I.add_overlay(I.d_stage_overlay, TRUE)
+
+/obj/belly/handle_slip(mob/living/M, weaken_amount, obj/slipped_on, lube, slip_dist = 0, stun_amount, force_drop)
+	//Super simplified slipping proc for the funny, and also possibly spont noms?
+	. = ..()
+
+	if(M.slip_timer || M.slipping)
+		if(lube & SLIDE_RECURSIVE)
+			playsound(M.loc, 'sound/misc/slip.ogg', 25, 1, -1)
+			deltimer(M.slip_timer) //Remove it here so it can be set anew
+			M.slip_timer = null
+			slip_dist = max(M.slipping, slip_dist) //Extend Slips
+		else //Slipping, slip isnt recursive, slip is blocked.
+			return FALSE
+	else
+		to_chat(M, span_notice("You slipped[ slipped_on ? " on the [slipped_on.name]" : ""]!"))
+		playsound(M.loc, 'sound/misc/slip.ogg', clamp(15 + (2.5 * weaken_amount), 25, 75), 1, -1) //Slip volume scales with slip strength
+
+	//At this point, we're getting into doing the actual slip
+	if(force_drop)
+		M.drop_both_hands()
+
+	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
 
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
