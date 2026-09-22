@@ -213,7 +213,7 @@
 	name = "Civilian Services Department (Relay)"
 	cartridges_to_send_to = GLOB.civilian_cartridges
 
-/obj/item/pda/clown/Initialize() //Clown PDA is slippery.
+/obj/item/pda/clown/Initialize(mapload) //Clown PDA is slippery.
 	. = ..()
 	AddComponent(/datum/component/slippery, 12, NO_SLIP_WHEN_WALKING, 0, CALLBACK(src, PROC_REF(AfterSlip)))
 

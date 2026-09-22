@@ -621,9 +621,9 @@
 		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //Non sliding slip time
 
 	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
-	/*
+	/* // Im doing my own thing, maybe forced movement can be a thing later, though.
 	if(lube & SLIDE)
-		new /datum/forced_movement(M, get_ranged_target_turf(M, olddir, 4), 1, FALSE, CALLBACK(C, /mob/living/carbon/.proc/spin, 1, 1))
+		new /datum/forced_movement(M, get_ranged_target_turf(M, olddir, 4), 1, FALSE, CALLBACK(C, PROC_REF(spin), 1, 1))
 	else if(lube & SLIDE_RECURSIVE)
 		if(M.force_moving) //If we're already slipping extend it
 			qdel(M.force_moving)
