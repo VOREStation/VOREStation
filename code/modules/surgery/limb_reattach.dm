@@ -40,7 +40,7 @@
 		if(istype(E, /obj/item/gripper))
 			var/obj/item/gripper/gripper = E
 			var/obj/item/wrapped = gripper.get_wrapped_item()
-			if(wrapped)
+			if(istype(wrapped, /obj/item/organ/external))
 				E = wrapped
 			else
 				return
