@@ -37,15 +37,14 @@
 		return FALSE
 	var/obj/item/organ/external/E = tool
 	if(istype(user,/mob/living/silicon/robot))
-		if(istype(E, /obj/item/gripper))
-			var/obj/item/gripper/gripper = E
-			var/obj/item/wrapped = gripper.get_wrapped_item()
-			if(istype(wrapped, /obj/item/organ/external))
-				E = wrapped
-			else
-				return
-		else
+		if(!istype(E, /obj/item/gripper))
 			return
+		var/obj/item/gripper/gripper = E
+		var/obj/item/wrapped = gripper.get_wrapped_item()
+		if(!istype(wrapped, /obj/item/organ/external))
+			return
+		E = wrapped
+
 	var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected)
