@@ -630,11 +630,6 @@
 		user.balloon_alert(user, "you cannot install a nymph into a meat puppet")
 		return SURGERY_FAILURE
 
-	if(!(affected.model != "Skrellian Exoskeleton"))
-		to_chat(user, span_danger("You're fairly certain a nymph can't pilot a normal robot."))
-		user.balloon_alert(user, "you're fairly certain a nymph can't pilot a normal robot")
-		return SURGERY_FAILURE
-
 	if(!target.should_have_organ(O_BRAIN))
 		to_chat(user, span_danger("You're pretty sure [target.species.name_plural] don't normally have a brain."))
 		user.balloon_alert(user, "you're pretty sure [target.species.name_plural] don't normall have a brain")
