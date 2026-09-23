@@ -72,7 +72,7 @@
  * Device
  */
 /obj/item/cell/device/weapon
-	name = "large device power cell"
+	name = "advanced device power cell"
 	desc = "A small power cell designed to power handheld devices."
 	icon_state = "m_sup"
 	charge = 2400
@@ -86,7 +86,7 @@
  * EMP Proof Device
  */
 /obj/item/cell/device/weapon/empproof
-	name = "shielded weapon power cell"
+	name = "shielded advanced device power cell"
 	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
 	icon_state = "s_hi"
 	matter = list(MAT_STEEL = MATERIAL_COST(0.2), MAT_GLASS = MATERIAL_COST(0.03))
