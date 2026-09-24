@@ -110,3 +110,45 @@
   - bugfix: radiation sources that qdel before processing their radiation pulse would
       lock up radiation subsystem
   - code_imp: Radiation debug object
+2026-09-18:
+  FluffMedic:
+  - maptweak: Tweaked map to removed further objects in solid walls for unit test
+      stuff
+  Guti:
+  - rscadd: Sneezing with unlucky might make your glasses go flying
+  Poojawa:
+  - bugfix: fixes numerous broken digitigrade suit, shoe, and undersuit sprites
+  - image: Digitigrade sprites are 1 to 1 parity with what's in mob.dmi of their respective
+      zones.
+  - bugfix: fixed infinite food supplies via construction abuse of the Food Synthesizer
+  - code_imp: Hardened some edge case issues involved with the reagent cartridge.
+      Byond needs its references!
+  Will:
+  - code_imp: Fixes SDMM should_not_sleep issue on compile
+  - balance: Tripled Supermatter radiation output to match old bayrads values
+  - balance: Raised singulo rad chance, and restored old bayrad strength calculations
+  - balance: Singularity radiation upped by 2.5x to match bayrad strength values
+  - balance: Quintupled radiation collector scaling to match bayrad radiation to wattage
+      values
+  - bugfix: Radiation collectors respect walls and radiation falloff
+  - bugfix: Doors no longer block radiation while open
+  - refactor: Moves storage items can_hold var to global shared lists for memory savings
+  lbnesquik:
+  - qol: Made it possible to wrench smartfridges.
+2026-09-20:
+  Poojawa:
+  - maptweak: Food Synths have been added to Groundbase, Stellar Delight, and Tether!
+  Will:
+  - bugfix: Wrenchable smartfridges no longer block all item inputs
+  lbnesquik:
+  - bugfix: Fixed cyborgs not being able to finish the reattach arm surgery with their
+      medical gripper
+2026-09-23:
+  Kashargul:
+  - bugfix: persistent smart storages
+2026-09-24:
+  Diana:
+  - bugfix: Being electrocuted will properly stun you at high damage and weaken you
+      at low damage
+  Will:
+  - bugfix: Surgery is no longer attempted when any item is used on a mob
