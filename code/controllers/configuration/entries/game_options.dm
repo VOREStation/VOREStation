@@ -109,3 +109,6 @@
 // Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 /datum/config_entry/number/mouse_respawn_time
 	default = 2.5
+
+/datum/config_entry/flag/roundstart_frayed_wires
+	default = FALSE
