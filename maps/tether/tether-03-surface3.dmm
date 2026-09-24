@@ -2938,7 +2938,6 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2,
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
-	id_tag = null;
 	name = "Medbay Airlock";
 	req_access = list(5);
 	req_one_access = list(5)
@@ -6270,6 +6269,10 @@
 /area/tether/surfacebase/outside/outside3)
 "ajH" = (
 /obj/machinery/computer/secure_data,
+/obj/item/radio/intercom/atc{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "ajI" = (
@@ -9956,6 +9959,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
+"aqm" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/item/radio/intercom/culture{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "aqn" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11452,6 +11465,12 @@
 	},
 /turf/simulated/floor/grass,
 /area/hydroponics)
+"asR" = (
+/obj/machinery/synthesizer{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "asS" = (
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/water/pool,
@@ -31887,6 +31906,7 @@
 /area/crew_quarters/bar)
 "bdQ" = (
 /obj/machinery/media/jukebox,
+/obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bdR" = (
@@ -36396,7 +36416,6 @@
 /area/crew_quarters/pool)
 "bmE" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	id_tag = null;
 	name = "Medbay Storage";
 	req_access = list(5);
 	req_one_access = list(5)
@@ -39094,7 +39113,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/wall,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "fNy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -40190,7 +40209,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/wall,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "iLF" = (
 /obj/machinery/door/firedoor/glass,
@@ -40241,27 +40260,6 @@
 	},
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
-"iUu" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/blast/shutters{
-	closed_layer = 10;
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	layer = 1;
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0;
-	open_layer = 1
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/wall,
-/area/tether/surfacebase/medical/storage)
 "iUz" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
@@ -46102,7 +46100,6 @@
 	},
 /obj/machinery/door/airlock/glass{
 	name = "Tourbus Cockpit";
-	req_access = null;
 	req_one_access = list(67)
 	},
 /obj/machinery/door/firedoor,
@@ -61012,7 +61009,7 @@ aab
 aab
 aOm
 ajG
-iUu
+aaz
 aaC
 aUt
 aUv
@@ -61360,7 +61357,7 @@ aLd
 baC
 bcm
 aAG
-bbW
+asR
 ayM
 ayc
 bdZ
@@ -62345,7 +62342,7 @@ bge
 bgA
 bgA
 aru
-aGx
+aqm
 bgz
 bgz
 baX

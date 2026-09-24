@@ -447,8 +447,8 @@
 	icon_state = "olivawcivil"
 	item_state = "giskardcivil"
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-15),       dispersion=list(1.2, 1.8)),
+		list(mode_name="semiauto",       burst=1, fire_delay=1.2, burst_accuracy=null, dispersion=null),
+		list(mode_name="2-round bursts", burst=2, fire_delay=0.2,    burst_accuracy=list(0,-15),       dispersion=list(1.2, 1.8)),
 		)
 
 /obj/item/gun/projectile/giskard/olivaw/update_icon()
@@ -475,9 +475,9 @@
 
 /obj/item/gun/projectile/makarov/update_icon()
 	if(ammo_magazine)
-		icon_state = "Makarov"
+		icon_state = "makarov"
 	else
-		icon_state = "Makarov-e"
+		icon_state = "makarov-e"
 
 /*
  * N99 (Fallout)

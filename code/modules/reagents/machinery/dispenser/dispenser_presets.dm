@@ -63,7 +63,7 @@
 	desc = "A soda machine."
 	icon_state = "soda_dispenser"
 	ui_title = "Soda Dispenser"
-	accept_drinking = 1
+	accept_drinking = TRUE
 	import_job = JOB_BARTENDER
 
 /obj/machinery/chemical_dispenser/bar_soft/full
@@ -95,7 +95,7 @@
 	desc = "A beer machine. Like a soda machine, but more fun!"
 	icon_state = "booze_dispenser"
 	ui_title = "Booze Dispenser"
-	accept_drinking = 1
+	accept_drinking = TRUE
 	import_job = JOB_BARTENDER
 
 /obj/machinery/chemical_dispenser/bar_alc/full
@@ -128,7 +128,7 @@
 	desc = "Driving crack dealers out of employment since 2280."
 	icon_state = "coffee_dispenser"
 	ui_title = "Coffee Dispenser"
-	accept_drinking = 1
+	accept_drinking = TRUE
 	import_job = JOB_BARTENDER
 
 /obj/machinery/chemical_dispenser/bar_coffee/full
@@ -161,7 +161,7 @@
 	desc = "Allow your customers to test your patience to the extremes."
 	icon_state = "syrup_dispenser"
 	ui_title = "Syrup Dispenser"
-	accept_drinking = 1
+	accept_drinking = TRUE
 
 /obj/machinery/chemical_dispenser/bar_syrup/full
 	spawn_cartridges = list(

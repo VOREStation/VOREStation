@@ -163,13 +163,13 @@
 	if(stun)
 		switch(shock_damage)
 			if(16 to 20)
-				Stun(2)
-			if(21 to 25)
 				Weaken(2)
+			if(21 to 25)
+				Stun(2)
 			if(26 to 30)
-				Weaken(5)
+				Stun(5)
 			if(31 to INFINITY)
-				Weaken(10) //This should work for now, more is really silly and makes you lay there forever
+				Stun(10) //This should work for now, more is really silly and makes you lay there forever
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)
@@ -230,10 +230,15 @@
 					status += "burning and feels like it's on fire"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
+				var/has_critical_wound = FALSE
 				if(LAZYLEN(org.wounds))
 					for(var/datum/wound/W in org.wounds)
 						if(W.internal)
 							status += "[can_feel_pain(org) ? "hurting and " : ""]showing a slowly growing bruise"
+						else if(W.can_autoheal() && W.wound_damage() >= WOUND_CRITICAL_HEAL_LIMIT)
+							has_critical_wound = TRUE
+				if(has_critical_wound)
+					status += "insufficiently treated"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
@@ -294,8 +299,9 @@
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
 						src.ignite_mob()
-					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
-					update_canmove()
+					M.resting = !M.resting
+					M.AdjustWeakened(-3)
+					M.update_canmove()
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
@@ -384,6 +390,8 @@
 			temp = rand(120, 160)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_THREADY)
+			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
+		else //Anything too high just returns thready.
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 

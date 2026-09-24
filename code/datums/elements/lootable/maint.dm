@@ -109,7 +109,8 @@
 		/obj/item/radio/headset,
 		/obj/item/paicard,
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose,
-		/obj/item/reagent_containers/syringe/old
+		/obj/item/reagent_containers/syringe/old,
+		/obj/item/reagent_containers/pill/maintenance
 	)
 
 	uncommon_loot = list(
@@ -203,14 +204,16 @@
 		/obj/item/newspaper,
 		/obj/item/paper/crumpled,
 		/obj/item/paper/crumpled/bloody,
-		/obj/item/reagent_containers/syringe/old
+		/obj/item/reagent_containers/syringe/old,
+		/obj/item/reagent_containers/pill/maintenance
 	)
 
 	uncommon_loot = list(
 		/obj/item/reagent_containers/syringe/steroid,
 		/obj/item/storage/pill_bottle/zoom,
 		/obj/item/storage/pill_bottle/happy,
-		/obj/item/storage/pill_bottle/paracetamol
+		/obj/item/storage/pill_bottle/paracetamol,
+		/obj/item/storage/pill_bottle/maintenance
 	)
 
 

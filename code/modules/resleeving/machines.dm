@@ -132,7 +132,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/list/stored_material =  list(MAT_STEEL = 30000, MAT_GLASS = 30000)
+	var/list/stored_material =  list(MAT_STEEL = MATERIAL_COST(15), MAT_GLASS = MATERIAL_COST(15))
 	var/connected      //What console it's done up with
 	var/busy = 0       //Busy cloning
 	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
@@ -513,6 +513,9 @@
 			antag_data.place_mob(occupant)
 		if(occupant.mind.antag_holder)
 			occupant.mind.antag_holder.apply_antags(occupant)
+
+		if(occupant.changeling_locked || occupant.mind.antag_holder.changeling)
+			occupant.make_changeling()
 
 	if(original_occupant)
 		occupant = original_occupant

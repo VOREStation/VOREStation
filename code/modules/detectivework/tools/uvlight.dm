@@ -7,7 +7,7 @@
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 	actions_types = list(/datum/action/item_action/toggle_uv_light)
-	matter = list(MAT_STEEL = 150)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.075))
 
 	var/list/scanned = list()
 	var/list/stored_alpha = list()

@@ -4,7 +4,7 @@
 	id = "ic_printer"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 4, TECH_DATA = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5))
 	build_path = /obj/item/integrated_circuit_printer
 	category = list(
 		RND_CATEGORY_CIRCUITRY
@@ -17,7 +17,7 @@
 	id = "ic_printer_upgrade_adv"
 	// req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/disk/integrated_circuit/upgrade/advanced
 	category = list(
 		RND_CATEGORY_CIRCUITRY
@@ -30,7 +30,7 @@
 	id = "ic_printer_upgrade_clone"
 	// req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/disk/integrated_circuit/upgrade/clone
 	category = list(
 		RND_CATEGORY_CIRCUITRY
@@ -42,7 +42,7 @@
 	id = "wirer"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.25))
 	build_path = /obj/item/integrated_electronics/wirer
 	category = list(
 		RND_CATEGORY_CIRCUITRY
@@ -54,7 +54,7 @@
 	id = "debugger"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.25))
 	build_path = /obj/item/integrated_electronics/debugger
 	category = list(
 		RND_CATEGORY_CIRCUITRY
@@ -68,7 +68,7 @@
 	id = "assembly-small"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5))
 	build_path = /obj/item/electronic_assembly
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
@@ -81,7 +81,7 @@
 	id = "assembly-medium"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 20000)
+	materials = list(MAT_STEEL = MATERIAL_COST(10))
 	build_path = /obj/item/electronic_assembly/medium
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
@@ -94,7 +94,7 @@
 	id = "assembly-large"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 40000)
+	materials = list(MAT_STEEL = MATERIAL_COST(20))
 	build_path = /obj/item/electronic_assembly/large
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
@@ -107,7 +107,7 @@
 	id = "assembly-drone"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30000)
+	materials = list(MAT_STEEL = MATERIAL_COST(15))
 	build_path = /obj/item/electronic_assembly/drone
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
@@ -120,7 +120,7 @@
 	id = "assembly-device"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5))
 	build_path = /obj/item/assembly/electronic_assembly
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
@@ -133,7 +133,7 @@
 	id = "assembly-implant"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 3, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/implant/integrated_circuit
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
@@ -145,7 +145,7 @@
 	desc = "A tiny circuit assembly that can easily be hidden."
 	id = "circuit-bug"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/electronic_assembly/circuit_bug
 	category = list(
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS

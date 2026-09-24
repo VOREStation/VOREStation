@@ -38,7 +38,7 @@
 
 	var/node_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, node_connect)))
 		if(can_be_node(target, 1))
 			node = target
 			break

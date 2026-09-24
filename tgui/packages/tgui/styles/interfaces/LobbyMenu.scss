@@ -1,4 +1,45 @@
 .LobbyScreen {
+  font-size: large;
+  font-family: monospace;
+  font-weight: 700;
+
+  background-position: center;
+  background-size: cover;
+  background-image: none !important;
+
+  .bgBackground {
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+  }
+
+  .Button__content {
+    .Icon {
+      vertical-align: middle;
+      margin-bottom: 3px;
+    }
+  }
+
+  .NanotrasenIcon {
+    background-color: #8dc0ff;
+    mask-image: url('../assets/bg-nanotrasen.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  .loadEffect {
+    height: 67px;
+  }
+
+  .sectionLoad {
+    border: 3px solid #384e68;
+    background-color: #202020;
+  }
+
+  .dividerEffect {
+    border-color: #384e68;
+  }
+
   &.animationsEnabled {
     .typeEffect {
       overflow: hidden;
@@ -24,7 +65,6 @@
     .sectionLoad {
       animation: section-loading 1s forwards;
       box-shadow: 0 0 15px;
-      background-color: #202020;
     }
 
     .dividerEffect {
@@ -42,6 +82,7 @@
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
@@ -51,6 +92,7 @@
       from {
         width: 0;
       }
+
       to {
         width: 100%;
       }
@@ -60,6 +102,7 @@
       from {
         height: 0;
       }
+
       to {
         height: 100%;
       }
@@ -69,6 +112,7 @@
       from {
         transform: scaleY(0);
       }
+
       to {
         transform: scaleY(1);
       }
@@ -116,49 +160,6 @@
     @supports (not (-webkit-hyphens: none)) and (not (-moz-appearance: none)) {
       box-shadow: 0 0 500px 25px rgba(0, 0, 0, 0.9) inset;
     }
-  }
-}
-
-.LobbyScreen {
-  font-size: large;
-  font-family: monospace;
-  font-weight: 700;
-
-  background-position: center;
-  background-size: cover;
-  background-image: none !important;
-
-  .bgBackground {
-    background-position: center;
-    background-size: cover;
-    position: absolute;
-  }
-
-  .Button__content {
-    .Icon {
-      vertical-align: middle;
-      margin-bottom: 3px;
-    }
-  }
-
-  .NanotrasenIcon {
-    background-color: #8dc0ff;
-    mask-image: url('../assets/bg-nanotrasen.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-  }
-
-  .loadEffect {
-    height: 67px;
-  }
-
-  .sectionLoad {
-    border: 3px solid #384e68;
-    background-color: #202020;
-  }
-
-  .dividerEffect {
-    border-color: #384e68;
   }
 }
 

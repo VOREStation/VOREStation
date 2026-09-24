@@ -108,7 +108,7 @@
 	//if(!current_page)
 		//generate_pages()
 
-	user << browse_rsc('html/browser/codex.css', "codex.css")
+	send_rsc(user, 'html/browser/codex.css', "codex.css")
 
 	var/dat
 	dat =  "<head>"

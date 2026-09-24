@@ -8,7 +8,7 @@
 	desc = "This is rubbish."
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 	var/age = 0
 
 /obj/item/trash/Initialize(mapload, _age)

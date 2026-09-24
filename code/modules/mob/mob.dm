@@ -274,13 +274,8 @@
 				client.perspective = MOB_PERSPECTIVE
 
 		else if(isturf(new_eye))
-			//Set to the turf unless it's our current turf
-			if(new_eye != loc)
-				client.perspective = EYE_PERSPECTIVE
-				client.set_eye(new_eye)
-			else
-				client.set_eye(client.mob)
-				client.perspective = MOB_PERSPECTIVE
+			client.perspective = EYE_PERSPECTIVE
+			client.set_eye(new_eye)
 		else
 			return TRUE //no setting eye to stupid things like areas or whatever
 	else
@@ -300,6 +295,8 @@
 
 /// Reapplies remote views based on object type and flags. Returns true if the view was assigned.
 /mob/proc/restore_remote_views()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	if(!loc) // Nullspace during respawn
 		return FALSE
 	if(QDELETED(loc) || QDELETED(src)) // location or ourselves is qdeleted, don't restart remote viewing during destroy
@@ -310,10 +307,7 @@
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
 	if(remote_comp?.looking_at_target_already(loc))
 		return FALSE
-	if(isitem(loc) || isbelly(loc) || ismecha(loc)) // Requires more careful handling than structures because they are held by mobs
-		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, viewsize = null, vconfig_path = /datum/remote_view_config/inside_object)
-		return TRUE
-	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
+	if(isitem(loc) || (loc.flags & REMOTEVIEW_ON_ENTER)) // Handle atoms that begin a remote view upon entering them.
 		AddComponent(/datum/component/remote_view, focused_on = loc, viewsize = null, vconfig_path = /datum/remote_view_config/inside_object)
 		return TRUE
 	return FALSE
@@ -474,8 +468,8 @@
 				SSjob.free_role(job)
 
 				//Their objectives cleanup
-				if(mind.objectives.len)
-					qdel(mind.objectives)
+				if(length(mind.objectives))
+					QDEL_LIST(mind.objectives)
 					mind.special_role = null
 
 				//Cut the PDA manifest (ugh)
@@ -1193,6 +1187,28 @@
 		return FALSE
 	if(pixel_x <= (default_pixel_x + 16))
 		pixel_x++
+		is_shifted = TRUE
+
+/mob/verb/tiltcounterclock()
+	set hidden = TRUE
+	if(world.time <= allowtilttime) //This is a sloppy "wait" fix to work around tilting durring the get-up animation
+		return FALSE
+	if(!canface() || incapacitated(INCAPACITATION_ALL))
+		return FALSE
+	if(how_tilted >= -maximum_tilt)
+		transform = turn(transform, -5)
+		how_tilted = how_tilted - 5
+		is_shifted = TRUE
+
+/mob/verb/tiltclock()
+	set hidden = TRUE
+	if(world.time <= allowtilttime) //This is a sloppy "wait" fix to work around tilting durring the get-up animation
+		return FALSE
+	if(!canface() || incapacitated(INCAPACITATION_ALL))
+		return FALSE
+	if(how_tilted <= maximum_tilt)
+		transform = turn(transform, 5)
+		how_tilted = how_tilted + 5
 		is_shifted = TRUE
 
 /mob/verb/planeup()

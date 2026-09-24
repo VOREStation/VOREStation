@@ -123,7 +123,7 @@
 	mid_length = 60
 	volume = 10
 	extra_range = -1 // Short-range
-	pref_check = /datum/preference/toggle/fridge_hum
+	pref_check = /datum/preference/toggle/sound_fridgehum
 	volume_chan = VOLUME_CHANNEL_MACHINERY_IDLE
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,6 +131,7 @@
 /datum/looping_sound/tcomms
 	start_sound = 'sound/machines/tcomms/tcomms_pulse.ogg'
 	mid_sounds = list('sound/machines/tcomms/tcomms_01.ogg' = 1)
+	start_length = 1.6 SECONDS
 	mid_length = 20
 	end_sound = 'sound/machines/tcomms/tcomms_pulse.ogg'
 	volume = 40
@@ -142,6 +143,7 @@
 
 /datum/looping_sound/shield_generator
 	start_sound = 'sound/machines/shield_hum/shield_generator_whir.ogg'
+	start_length = 3.8 SECONDS
 	mid_sounds = list('sound/machines/shield_hum/shield_generator_hum2.ogg', 'sound/machines/shield_hum/shield_generator_hum3.ogg')
 	mid_length = 60
 	end_sound = 'sound/machines/shield_hum/shield_generator_whir.ogg'

@@ -25,6 +25,7 @@
 	emote_message_1p = "You do a flip!"
 	emote_message_3p = "does a flip!"
 	emote_sound = 'sound/effects/bodyfall4.ogg'
+	able_mute = TRUE
 
 /datum/decl/emote/visible/flip/do_extra(mob/user)
 	. = ..()

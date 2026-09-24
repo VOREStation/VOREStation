@@ -674,7 +674,7 @@
 /obj/item/clothing/head/fluff/pompom/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/head/fluff/pompom/gurgle_contaminate(atom/movable/item_storage = null)
+/obj/item/clothing/head/fluff/pompom/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green", obj/belly/contamination_source = null)
 	return FALSE
 
 /obj/item/clothing/head/fluff/pompom/attack_self(mob/user)
@@ -1592,7 +1592,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/bracer/fluff/xander_sthasha/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(atom/movable/item_storage = null)
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green", obj/belly/contamination_source = null)
 	return FALSE
 
 //Heroman3003:Lauren Zackson
@@ -2217,7 +2217,6 @@ Departamental Swimsuits, for general use
 	body_parts_covered = FACE
 	flags_inv = HIDEFACE
 	item_flags = FLEXIBLEMATERIAL
-	protean_drop_whitelist = TRUE
 
 //codeme: Perrin Kade
 /obj/item/clothing/shoes/fluff/gildedshoes_perrin

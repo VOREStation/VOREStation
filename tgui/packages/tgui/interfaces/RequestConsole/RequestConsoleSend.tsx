@@ -1,8 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { RCS_MAINMENU } from './constants';
-
 export const RequestConsoleSendMenu = (props: {
   dept_list: string[];
   department: string;
@@ -28,6 +26,7 @@ export const RequestConsoleSendMenu = (props: {
                   </Stack.Item>
                   <Stack.Item>
                     <Button
+                      color="red"
                       icon="exclamation-triangle"
                       onClick={() => act('write', { write: dept, priority: 2 })}
                     >
@@ -44,8 +43,9 @@ export const RequestConsoleSendMenu = (props: {
   );
 };
 
-export const RequestConsoleSendPass = (props) => {
-  const { act, data } = useBackend();
+export const RequestConsoleSendPass = (props: { lastTab: number }) => {
+  const { act } = useBackend();
+  const { lastTab } = props;
   return (
     <Section>
       <Box fontSize={2} color="good">
@@ -54,7 +54,7 @@ export const RequestConsoleSendPass = (props) => {
       <Box>
         <Button
           icon="arrow-right"
-          onClick={() => act('setScreen', { setScreen: RCS_MAINMENU })}
+          onClick={() => act('setScreen', { setScreen: lastTab })}
         >
           Continue
         </Button>
@@ -63,8 +63,9 @@ export const RequestConsoleSendPass = (props) => {
   );
 };
 
-export const RequestConsoleSendFail = (props) => {
-  const { act, data } = useBackend();
+export const RequestConsoleSendFail = (props: { lastTab: number }) => {
+  const { act } = useBackend();
+  const { lastTab } = props;
   return (
     <Section>
       <Box fontSize={1.5} bold color="bad">
@@ -73,7 +74,7 @@ export const RequestConsoleSendFail = (props) => {
       <Box>
         <Button
           icon="arrow-right"
-          onClick={() => act('setScreen', { setScreen: RCS_MAINMENU })}
+          onClick={() => act('setScreen', { setScreen: lastTab })}
         >
           Continue
         </Button>

@@ -242,7 +242,7 @@
 	for(var/datum/omni_port/P in ports)
 		if(P.node || P.mode == 0)
 			continue
-		for(var/obj/machinery/atmospherics/target in get_step(src, P.dir))
+		for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, P.dir)))
 			if(can_be_node(target, 1))
 				P.node = target
 				break

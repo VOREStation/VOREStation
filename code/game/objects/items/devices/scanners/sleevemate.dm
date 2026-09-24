@@ -4,6 +4,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 /obj/item/sleevemate
 	name = "\improper SleeveMate 3700"
 	desc = "A hand-held sleeve management tool for performing one-time backups and managing mindstates."
+	description_antag = "Frying it with an emag transforms this into a BSD, a body snatcher device. Very illegal, if you care."
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "sleevemate"
 	item_state = "healthanalyzer"
@@ -12,7 +13,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list(MAT_STEEL = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.1))
 
 	var/datum/mind/stored_mind
 
@@ -67,6 +68,10 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_style = ooc_notes_style
 	M.soulcatcher_pref_flags = soulcatcher_pref_flags
+	if(ishuman(M)) //Has to be done here since making someone a changeling requires an active mind.
+		var/mob/living/carbon/human/ling_test = M
+		if(ling_test.changeling_locked)
+			M.make_changeling()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()
 

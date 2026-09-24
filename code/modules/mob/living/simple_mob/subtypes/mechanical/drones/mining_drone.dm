@@ -142,7 +142,7 @@
 	if(ai_holder && P.firer)
 		ai_holder.add_attacker(P.firer)
 
-/mob/living/simple_mob/mechanical/mining_drone/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
+/mob/living/simple_mob/mechanical/mining_drone/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
 	..()
 	if(ai_holder)
 		ai_holder.add_attacker(user)

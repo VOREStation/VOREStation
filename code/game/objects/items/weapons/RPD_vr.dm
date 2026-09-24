@@ -23,7 +23,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 50000, MAT_GLASS = 25000)
+	matter = list(MAT_STEEL = MATERIAL_COST(25), MAT_GLASS = MATERIAL_COST(12.5))
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/p_dir = NORTH 			// Next pipe will be built with this dir
 	var/p_flipped = FALSE		// If the next pipe should be built flipped

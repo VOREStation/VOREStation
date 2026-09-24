@@ -45,6 +45,9 @@
 	else if(istype(W, /obj/item/multitool) || W.has_tool_quality(TOOL_WIRECUTTER))
 		attack_hand(user)
 
+/obj/machinery/power/grid_checker/attack_robot(mob/living/user)
+	interact(user)
+
 /obj/machinery/power/grid_checker/attack_hand(mob/user)
 	if(!user)
 		return

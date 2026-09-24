@@ -13,6 +13,7 @@
 #define NO_DEFIB		0x800	// Don't allow them to be defibbed
 #define NO_DNA          0x1000	// Cannot have mutations or have their dna changed by genetics/radiation/genome-stolen.
 #define THICK_SKIN		0x2000	// Needles have a chain to fail when attempted to be used on them.
+#define SHOCK_ABSORB	0x4000	// Absorbs shock and converts it into energy that can be used on later attacks.
 // unused: 0x8000 - higher than this will overflow
 
 // Species EMP vuln for carbons

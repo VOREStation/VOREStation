@@ -612,7 +612,7 @@
 
 	var/icon/new_holo = getCompoundIcon(dummy)
 
-	dummy.tail_layering = TRUE
+	dummy.tail_layering = TAIL_UPPER_LAYER
 	dummy.set_dir(NORTH)
 	var/icon/new_holo_north = getCompoundIcon(dummy)
 	dummy.set_dir(EAST)

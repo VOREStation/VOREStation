@@ -150,6 +150,10 @@
 	var/mode = 1
 	special_handling = TRUE
 
+// Command borg fountain pen! They must write good :)
+/obj/item/pen/robopen/fountain
+	icon_state = "black_fountain"
+	desc = "A well made and expensive black ink printing attachment with a paper naming mode."
 
 /obj/item/pen/robopen/attack_self(mob/user)
 	. = ..(user)

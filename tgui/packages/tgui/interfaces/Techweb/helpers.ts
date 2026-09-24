@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { buildIconData } from '../common/TechWebRecipeIcon';
+import { buildIconData } from 'tgui/interfaces/common/TechWebRecipeIcon';
 import type { NodeCache, TechWebData } from './types';
 
 type Cost = {

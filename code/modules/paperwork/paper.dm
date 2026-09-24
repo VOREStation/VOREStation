@@ -439,10 +439,18 @@
 			return
 
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
+		if(istype(i, /obj/item/gripper))
+			var/obj/item/gripper/our_gripper = i
+			i = our_gripper.get_wrapped_item()
+
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/pen))
 			tgui_alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "No Pen!") // Should remain tgui_alert() (blocking)
 			i = usr.get_active_hand()
+
+		if(istype(i, /obj/item/gripper))
+			var/obj/item/gripper/our_gripper = i
+			i = our_gripper.get_wrapped_item()
 
 		if(!istype(i, /obj/item/pen))
 			var/mob/living/M = usr

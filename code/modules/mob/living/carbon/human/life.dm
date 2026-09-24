@@ -1528,48 +1528,6 @@
 		else
 			clear_fullscreen("fear")
 
-		if(healths)
-			if(chem_effects[CE_PAINKILLER] > 100)
-				healths.icon_state = "health_numb"
-			else
-				// Generate a by-limb health display.
-				var/mutable_appearance/healths_ma = new(healths)
-				healths_ma.icon_state = "blank"
-				healths_ma.overlays = null
-				healths_ma.plane = PLANE_PLAYER_HUD
-
-				var/no_damage = 1
-				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
-				if(!(species.flags & NO_PAIN))
-					trauma_val = max(traumatic_shock,halloss)/getMaxHealth()
-				var/limb_trauma_val = trauma_val*0.3
-				// Collect and apply the images all at once to avoid appearance churn.
-				var/list/health_images = list()
-				for(var/obj/item/organ/external/E in organs)
-					if(no_damage && (E.brute_dam || E.burn_dam))
-						no_damage = 0
-					health_images += E.get_damage_hud_image(limb_trauma_val)
-
-				// Apply a fire overlay if we're burning.
-				if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
-					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
-
-				// Show a general pain/crit indicator if needed.
-				if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
-					trauma_val = 2
-				if(trauma_val)
-					if(!(species.flags & NO_PAIN))
-						if(trauma_val > 0.7)
-							health_images += image('icons/mob/screen1_health.dmi',"softcrit")
-						if(trauma_val >= 1)
-							health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
-				else if(no_damage)
-					health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
-
-				healths_ma.add_overlay(health_images)
-				healths.appearance = healths_ma
-
-
 		var/fat_alert = /atom/movable/screen/alert/fat
 		var/hungry_alert = /atom/movable/screen/alert/hungry
 		var/starving_alert = /atom/movable/screen/alert/starving
@@ -1678,7 +1636,7 @@
 	var/no_damage = 1
 	var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
 	if(!(species.flags & NO_PAIN))
-		trauma_val = max(traumatic_shock,halloss)/species.total_health
+		trauma_val = max(traumatic_shock,halloss)/getMaxHealth()
 	var/limb_trauma_val = trauma_val*0.3
 	// Collect and apply the images all at once to avoid appearance churn.
 	var/list/health_images = list()
@@ -1906,56 +1864,74 @@
 	if(stat)
 		return 0
 
-	if(shock_stage == 10)
-		if(traumatic_shock >= 80)
-			custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
-
-	if(shock_stage >= 30)
-		if(shock_stage == 30 && !isbelly(loc))
-			automatic_custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.", check_stat = TRUE)
+	//Passive effects.
+	if(shock_stage >= 30 || traumatic_shock > 120) //Either signifigantly in shock or SEVERELY injured.
 		eye_blurry = max(2, eye_blurry)
-		if(traumatic_shock >= 80)
-			stuttering = max(stuttering, 5)
+		stuttering = max(5, stuttering)
 
+	//The various stages, sorted from most severe to least.
+	switch(shock_stage)
+		if(151 to INFINITY)
+			if(prob(10)) //Instead of perma-stunned on the ground, you have a chance to get back up.
+				if(!weakened && !lying)
+					automatic_custom_emote(VISIBLE_MESSAGE, "collapses!", check_stat = TRUE)
+				Weaken(5)
+			return
 
-	if(shock_stage == 40)
-		if(traumatic_shock >= 80)
-			to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
-
-	if (shock_stage >= 60)
-		if(shock_stage == 60 && !isbelly(loc))
-			automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
-		if (prob(2))
-			if(traumatic_shock >= 80)
-				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
-			Weaken(20)
-
-	if(shock_stage >= 80)
-		if (prob(5))
-			if(traumatic_shock >= 80)
-				to_chat(src, span_danger("[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!"))
-				if(prob(20) && !isbelly(loc))
+		if(150)
+			if(!isbelly(loc))
+				automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
+				if(prob(60))
 					emote("pain")
-			Weaken(20)
+			Weaken(3)
+			return
 
-	if(shock_stage >= 120)
-		if (prob(2))
+		if(120 to 149)
+			if(prob(2))
+				if(traumatic_shock >= 80)
+					to_chat(src, span_danger("[pick("Your body freezes up", "You feel like you could die any moment now", "You fall over, your body refusing to respond")]!"))
+					if(prob(40) && !isbelly(loc))
+						emote("pain")
+				Paralyse(5)
+			return
+
+		if(80 to 119)
+			if(prob(5))
+				if(traumatic_shock >= 80)
+					to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
+					if(prob(20) && !isbelly(loc))
+						emote("pain")
+				Weaken(3)
+			return
+
+		if(60 to 79)
+			if(shock_stage == 60 && !isbelly(loc))
+				automatic_custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.", check_stat = TRUE)
+			if(prob(2))
+				if(traumatic_shock >= 80)
+					to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
+				Weaken(3)
+			return
+
+		if(41 to 59)
+			return //A small reprieve. Inbetween compensated and decompensated shock.
+
+		if(40)
 			if(traumatic_shock >= 80)
-				to_chat(src, span_danger("[pick("You black out", "You feel like you could die any moment now", "You are about to lose consciousness")]!"))
-				if(prob(40) && !isbelly(loc))
-					emote("pain")
-			Paralyse(5)
-			Sleeping(5)
+				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
+			return
 
-	if(shock_stage == 150)
-		if(!isbelly(loc))
-			automatic_custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!", check_stat = TRUE)
-			if(prob(60))
-				emote("pain")
-		Weaken(20)
+		if(30 to 39)
+			if(shock_stage == 30 && !isbelly(loc))
+				automatic_custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.", check_stat = TRUE)
+			return
 
-	if(shock_stage >= 150)
-		Weaken(20)
+		if(10)
+			if(traumatic_shock >= 80)
+				custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
+			return
+
+
 
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
@@ -1986,13 +1962,13 @@
 		temp = PULSE_NONE
 		if(!isnull(modifier_set))
 			temp = modifier_set
-		return temp //No blood, no pulse.
+		return CLAMP(round(temp), 0, PULSE_THREADY) //No blood, no pulse.
 
 	if(stat == DEAD)
 		temp = PULSE_NONE
 		if(!isnull(modifier_set))
 			temp = modifier_set
-		return temp	//that's it, you're dead, nothing can influence your pulse, aside from outside means.
+		return CLAMP(round(temp), 0, PULSE_THREADY) //that's it, you're dead, nothing can influence your pulse, aside from outside means.
 
 	var/obj/item/organ/internal/heart/Pump = internal_organs_by_name[O_HEART]
 
@@ -2003,6 +1979,10 @@
 
 		if(brain_modifier <= 0.7 && brain_modifier >= 0.4) // 70%-40% control, things start going weird as the brain is failing.
 			brain_modifier = rand(5, 15) / 10
+
+	if(shock_stage > 60) //Fight or flight time.
+		if(temp < PULSE_2FAST)
+			temp = PULSE_2FAST
 
 	if(Pump)
 		temp += Pump.standard_pulse_level - PULSE_NORM
@@ -2048,7 +2028,8 @@
 				if(R.volume >= R.overdose)
 					temp = PULSE_NONE
 					break //No amount of medications is getting you out of this.
-		return temp * brain_modifier
+		return CLAMP(round(temp * brain_modifier), 0, PULSE_THREADY)
+
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.id in GLOB.bradycardics)
@@ -2063,7 +2044,7 @@
 			if(R.volume >= R.overdose)
 				temp = PULSE_NONE
 
-	return max(0, round(temp * brain_modifier))
+	return CLAMP(round(temp * brain_modifier), 0, PULSE_THREADY)
 
 /mob/living/carbon/human/proc/handle_heartbeat()
 	if(pulse == PULSE_NONE)

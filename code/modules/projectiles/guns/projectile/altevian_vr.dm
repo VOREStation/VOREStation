@@ -22,7 +22,7 @@
 	caliber = ".48"
 	ammo_type = /obj/item/ammo_casing/sam48
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 240)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.12))
 	max_ammo = 5
 	multiple_sprites = 1
 
@@ -30,7 +30,7 @@
 	desc = "A .48 bolt casing."
 	caliber = ".48"
 	projectile_type = /obj/item/projectile/bullet/sam48
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 
 /obj/item/projectile/bullet/sam48
 	fire_sound = 'sound/weapons/gunshot4.ogg'

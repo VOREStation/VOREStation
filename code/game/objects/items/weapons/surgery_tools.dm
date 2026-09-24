@@ -44,7 +44,7 @@
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
-	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
+	matter = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(2.5))
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
@@ -54,7 +54,7 @@
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
-	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
+	matter = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.25))
 	attack_verb = list("attacked", "pinched")
 	hitsound = 'sound/items/wirecutter.ogg'
 	drop_sound = 'sound/items/drop/scrap.ogg'
@@ -66,7 +66,7 @@
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
-	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
+	matter = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(1.25))
 	attack_verb = list("burnt")
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
@@ -78,7 +78,7 @@
 	desc = "You can drill using this item. You dig?"
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	matter = list(MAT_STEEL = 15000, MAT_GLASS = 10000)
+	matter = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_GLASS = MATERIAL_COST(5))
 	force = 15.0
 	w_class = ITEMSIZE_NORMAL
 	attack_verb = list("drilled")
@@ -99,7 +99,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
+	matter = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(2.5))
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	drop_sound = 'sound/items/drop/knife.ogg'
@@ -163,7 +163,7 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list(MAT_STEEL = 20000,MAT_GLASS = 10000)
+	matter = list(MAT_STEEL = MATERIAL_COST(10),MAT_GLASS = MATERIAL_COST(5))
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = TRUE
 	edge = TRUE
@@ -176,7 +176,7 @@
 	hitsound = 'sound/weapons/emitter2.ogg'
 	damtype = SEARING
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 25000,MAT_GLASS = 20000)
+	matter = list(MAT_STEEL = MATERIAL_COST(12.5),MAT_GLASS = MATERIAL_COST(10))
 	attack_verb = list("attacked", "slashed", "seared", "cut")
 	toolspeed = 0.75
 

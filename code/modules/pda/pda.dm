@@ -49,7 +49,8 @@
 		new/datum/data/pda/app/nerdle,
 		new/datum/data/pda/app/game_launcher,
 		new/datum/data/pda/utility/scanmode/notes,
-		new/datum/data/pda/utility/flashlight)
+		new/datum/data/pda/utility/flashlight,
+		new/datum/data/pda/app/goals)
 	var/list/shortcut_cache = list()
 	var/list/shortcut_cat_order = list()
 	var/list/notifying_programs = list()

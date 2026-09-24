@@ -18,6 +18,7 @@ export type Data = {
     occupied: BooleanLike;
     occupant: string;
   }[];
+  dump_progress: number;
   coredumped: BooleanLike;
   emergency: BooleanLike;
   temp: { text: string; style: string } | null;

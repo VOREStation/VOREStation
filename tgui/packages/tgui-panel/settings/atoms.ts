@@ -33,6 +33,8 @@ export const defaultSettings: SettingsState = {
     activeTab: SETTINGS_TABS[0].id,
     visible: false,
   },
+  websocketEnabled: false,
+  websocketServer: '',
   visibleMessageLimit: 2500,
   visibleMessages: 0,
 };

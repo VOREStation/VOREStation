@@ -67,6 +67,6 @@ ADMIN_VERB(capture_map, R_ADMIN, "Capture Map Part", "Usage: Capture-Map-Part ta
 
 		var/file_name = "map_capture_x[tx]_y[ty]_z[tz]_r[range].png"
 		to_chat(user, span_filter_notice("Saved capture in cache as [file_name]."))
-		DIRECT_OUTPUT(user, browse_rsc(cap, file_name))
+		send_rsc(user, cap, file_name)
 	else
 		to_chat(user, span_filter_notice("Target coordinates are incorrect."))

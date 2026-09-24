@@ -480,14 +480,14 @@
 /datum/remote_view_config/overmap_ship_control
 	relay_movement = TRUE
 
-/datum/remote_view_config/overmap_ship_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
-	var/datum/tgui_module/ship/tgui_owner = owner_component.get_coordinator()
+/datum/remote_view_config/overmap_ship_control/handle_relay_movement(datum/component/remote_view/owner_component, mob/host_mob, direction)
+	var/datum/tgui_module/ship/tgui_owner = get_component_coordinator(host_mob)
 	if(tgui_owner?.linked)
 		return tgui_owner.relaymove(host_mob, direction)
 	return FALSE
 
-/datum/remote_view_config/overmap_ship_control/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
-	var/datum/tgui_module/ship/tgui_owner = owner_component.get_coordinator()
+/datum/remote_view_config/overmap_ship_control/handle_apply_visuals(mob/host_mob)
+	var/datum/tgui_module/ship/tgui_owner = get_component_coordinator(host_mob)
 	if(!tgui_owner)
 		return
 	if(get_dist(host_mob, tgui_owner.tgui_host()) > 1 || !tgui_owner.linked)

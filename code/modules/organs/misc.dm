@@ -52,4 +52,4 @@
 
 /obj/item/organ/internal/stack/vox/stack
 	name = "vox cortical stack"
-	icon_state = "cortical_stack"
+	icon_state = "cortical-stack"

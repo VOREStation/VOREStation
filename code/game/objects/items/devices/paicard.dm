@@ -104,6 +104,7 @@
 	GLOB.paikeys |= new_pai.ckey
 	setPersonality(new_pai)
 	new_pai.apply_preferences(new_pai.client)
+	new_pai.reset_perspective() // Update client view to card
 	return new_pai
 
 /obj/item/paicard/tgui_interact(mob/user, datum/tgui/ui)

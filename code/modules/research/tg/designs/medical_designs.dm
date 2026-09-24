@@ -3,7 +3,7 @@
 	name = "Pill Bottle"
 	id = "pillbottle"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTIC = 100, MAT_GLASS = 100)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/storage/pill_bottle
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -15,7 +15,7 @@
 	name = "Syringe"
 	id = "syringe"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 190)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.095))
 	build_path = /obj/item/reagent_containers/syringe
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -27,7 +27,7 @@
 	name = "Dropper"
 	id = "dropper"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 100, MAT_PLASTIC = 500)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.05), MAT_PLASTIC = MATERIAL_COST(0.25))
 	build_path = /obj/item/reagent_containers/dropper
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -39,7 +39,7 @@
 	name = "Scalpel"
 	id = "scalpel"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/scalpel
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -51,7 +51,7 @@
 	name = "Circular Saw"
 	id = "circular_saw"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/surgical/circular_saw
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -63,7 +63,7 @@
 	name = "Bonesetter"
 	id = "bonesetter"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1000,  MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5),  MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/surgical/bonesetter
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -75,7 +75,7 @@
 	name = "Surgical Drill"
 	id = "surgicaldrill"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/surgicaldrill
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -87,7 +87,7 @@
 	name = "Retractor"
 	id = "retractor"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/retractor
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -99,7 +99,7 @@
 	name = "Cautery"
 	id = "cautery"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/cautery
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -111,7 +111,7 @@
 	name = "Hemostat"
 	id = "hemostat"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/hemostat
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -123,7 +123,7 @@
 	name = "FixOVein"
 	id = "fixovein"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/FixOVein
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -135,7 +135,7 @@
 	name = "bone gel"
 	id = "bonegel"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/bonegel
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -148,7 +148,7 @@
 	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."
 	id = "bioregen"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 1500, MAT_GLASS = 1000, MAT_SILVER = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/bioregen
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED,
@@ -171,7 +171,7 @@
 	name = "Penlight"
 	id = "penlight"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/flashlight/pen
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -183,7 +183,7 @@
 	name = "Implanter"
 	id = "implanter"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/implanter
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -198,7 +198,7 @@
 	id = "scalpel_laser1"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
-	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75))
 	build_path = /obj/item/surgical/scalpel/laser1
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -211,7 +211,7 @@
 	id = "scalpel_laser2"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 4, TECH_MAGNET = 4)
-	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(1.25))
 	build_path = /obj/item/surgical/scalpel/laser2
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -224,7 +224,7 @@
 	id = "scalpel_laser3"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 5)
-	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2000, MAT_GOLD = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.75))
 	build_path = /obj/item/surgical/scalpel/laser3
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -237,7 +237,7 @@
 	id = "scalpel_manager"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
-	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_DIAMOND = 750)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.375))
 	build_path = /obj/item/surgical/scalpel/manager
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -250,7 +250,7 @@
 	id = "advanced_saw"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_DATA = 5)
-	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 800, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_OSMIUM = 1000)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_PLASTIC = MATERIAL_COST(0.4), MAT_SILVER = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(0.75), MAT_OSMIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/surgical/circular_saw/manager
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -263,7 +263,7 @@
 	id = "organ_ripper"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_ILLEGAL = 3)
-	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 8000, MAT_OSMIUM = 2500)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_PLASTIC = MATERIAL_COST(4), MAT_OSMIUM = MATERIAL_COST(1.25))
 	build_path = /obj/item/surgical/scalpel/ripper
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -276,7 +276,7 @@
 	id = "bone_clamp"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
-	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(1.25))
 	build_path = /obj/item/surgical/bone_clamp
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -289,7 +289,7 @@
 	id = "medical_analyzer"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/healthanalyzer
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -302,7 +302,7 @@
 	id = "improved_analyzer"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_SILVER = 1000, MAT_GOLD = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.75))
 	build_path = /obj/item/healthanalyzer/improved
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -315,7 +315,7 @@
 	id = "advanced_analyzer"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 7, TECH_BIO = 7, TECH_DATA = 5)
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 1250)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(2), MAT_SILVER = MATERIAL_COST(1.75), MAT_GOLD = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.625))
 	build_path = /obj/item/healthanalyzer/advanced
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -327,7 +327,7 @@
 	desc = "State of the art handheld health scanner, containing not only a full biosign monitor, on-board radiation, and neurological analysis suites, but also a chemical-analysis suite."
 	id = "phasic_analyzer"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 2500, MAT_PHORON = 1250)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(2), MAT_SILVER = MATERIAL_COST(1.75), MAT_GOLD = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(1.25), MAT_PHORON = MATERIAL_COST(0.625))
 	build_path = /obj/item/healthanalyzer/phasic
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -339,7 +339,7 @@
 	id = "gene_scanner"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 1, TECH_BIO = 2)
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.01))
 	build_path = /obj/item/gene_scanner
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -351,7 +351,7 @@
 	desc = "A collapsed roller bed that can be carried around."
 	id = "medicalbed"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/roller
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -364,7 +364,7 @@
 	id = "roller_bed"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3, TECH_MAGNET = 3)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_PHORON = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(1))
 	build_path = /obj/item/roller/adv
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -376,7 +376,7 @@
 	id = "sleevemate"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/sleevemate
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -389,7 +389,7 @@
 	id = "protohypospray"
 	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 1500, MAT_SILVER = 2000, MAT_GOLD = 1500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.75), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/reagent_containers/hypospray/science
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
@@ -401,7 +401,7 @@
 	desc = "A spring loaded rifle designed to fit syringes, designed to incapacitate unruly patients from a distance."
 	id = "syringe_gun"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/gun/launcher/syringe
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
@@ -413,7 +413,7 @@
 	desc = "An impact-triggered compressed gas cartridge that can be fitted to a syringe for rapid injection."
 	id = "syringe_cartridge"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 150, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.075), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/syringe_cartridge
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
@@ -424,7 +424,7 @@
 	name = "Body Design Disk"
 	desc = "Portable Body Record Storage Disk."
 	id = "body_record_disk"
-	materials = list(MAT_STEEL = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.25))
 	build_path = /obj/item/disk/body_record
 	build_type = PROTOLATHE
 	category = list(
@@ -439,10 +439,10 @@
 	id = "cybernetic_heart_anomalock"
 	construction_time = 5 SECONDS
 	materials = list(
-		MAT_STEEL = 2500,
-		MAT_GLASS = 2500,
-		MAT_TITANIUM = 10000,
-		MAT_DIAMOND = 5000
+		MAT_STEEL = MATERIAL_COST(1.25),
+		MAT_GLASS = MATERIAL_COST(1.25),
+		MAT_TITANIUM = MATERIAL_COST(5),
+		MAT_DIAMOND = MATERIAL_COST(2.5)
 	)
 	build_path = /obj/item/organ/internal/heart/machine/anomalock
 	category = list(

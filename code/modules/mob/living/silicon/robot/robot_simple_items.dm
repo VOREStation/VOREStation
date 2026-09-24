@@ -564,6 +564,12 @@
 
 	var/mob/living/silicon/robot/our_robot
 
+	//If we allow using our gripper at range at all . Adminbus only.
+	var/allow_ranged_usage = FALSE
+
+	//If we allow using our gripper at range to pick up things. Adminbus only.
+	var/allow_ranged_pickup = FALSE
+
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 

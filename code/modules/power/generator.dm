@@ -211,9 +211,10 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	data["maxTotalOutput"] = max_power
 	data["thermalOutput"] = last_thermal_gen
 
-	data["primary"] = list()
+	data["primary"] = null
 	if(circ1)
 		//The one on the left (or top)
+		data["primary"] = list()
 		data["primary"]["dir"] = vertical ? "top" : "left"
 		data["primary"]["output"] = last_circ1_gen
 		data["primary"]["flowCapacity"] = circ1.volume_capacity_used*100
@@ -221,10 +222,12 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["primary"]["inletTemperature"] = circ1.air1.temperature
 		data["primary"]["outletPressure"] = circ1.air2.return_pressure()
 		data["primary"]["outletTemperature"] = circ1.air2.temperature
+		data["primary"]["reversed"] = circ1.reverse_pipes
 
-	data["secondary"] = list()
+	data["secondary"] = null
 	if(circ2)
 		//Now for the one on the right (or bottom)
+		data["secondary"] = list()
 		data["secondary"]["dir"] = vertical ? "bottom" : "right"
 		data["secondary"]["output"] = last_circ2_gen
 		data["secondary"]["flowCapacity"] = circ2.volume_capacity_used*100
@@ -232,8 +235,23 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["secondary"]["inletTemperature"] = circ2.air1.temperature
 		data["secondary"]["outletPressure"] = circ2.air2.return_pressure()
 		data["secondary"]["outletTemperature"] = circ2.air2.temperature
+		data["secondary"]["reversed"] = circ2.reverse_pipes
 
 	return data
+
+/obj/machinery/power/generator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("reverse_primary")
+			if(circ1)
+				circ1.reverse_circulator()
+			return TRUE
+		if("reverse_secondary")
+			if(circ2)
+				circ2.reverse_circulator()
+			return TRUE
 
 /obj/machinery/power/generator/power_change()
 	..()

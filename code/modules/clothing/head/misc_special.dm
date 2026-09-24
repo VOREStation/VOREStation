@@ -18,7 +18,7 @@
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
 	item_state_slots = list(slot_r_hand_str = "welding", slot_l_hand_str = "welding")
-	matter = list(MAT_STEEL = 3000, MAT_GLASS = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(0.5))
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
@@ -28,7 +28,6 @@
 	w_class = ITEMSIZE_NORMAL
 	var/base_state
 	flash_protection = FLASH_PROTECTION_MAJOR
-	tint = TINT_HEAVY
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 	special_handling = TRUE
@@ -56,7 +55,6 @@
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = base_state
 			flash_protection = FLASH_PROTECTION_MAJOR
-			tint = initial(tint)
 			to_chat(usr, "You flip the [src] down to protect your eyes.")
 		else
 			src.up = !src.up
@@ -64,7 +62,6 @@
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]up"
 			flash_protection = FLASH_PROTECTION_NONE
-			tint = TINT_NONE
 			to_chat(usr, "You push the [src] up out of your face.")
 		update_clothing_icon()	//so our mob-overlays
 		if (ismob(src.loc)) //should allow masks to update when it is opened/closed

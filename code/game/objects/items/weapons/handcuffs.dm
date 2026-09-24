@@ -9,7 +9,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list(MAT_STEEL = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.25))
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	var/elastic

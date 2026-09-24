@@ -87,7 +87,7 @@
 	icon_y = 32
 	dogborg_sprites = TRUE
 
-	whitelist_ckey = "jademanique"
+	whitelist_ckey = "natesaruli"
 	whitelist_charname = "B.A.U-Kingside"
 
 // L

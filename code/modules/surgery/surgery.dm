@@ -53,25 +53,25 @@
 			if(IS_WRENCH)
 				if(tool.has_tool_quality(TOOL_WRENCH))
 					return allowed_procs[P]
-	return 0
+	return FALSE
 
 
 // Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/human/target)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 
 	if(allowed_species)
 		for(var/species in allowed_species)
 			if(target.species.get_bodytype() == species)
-				return 1
+				return TRUE
 
 	if(disallowed_species)
 		for(var/species in disallowed_species)
 			if(target.species.get_bodytype() == species)
-				return 0
+				return FALSE
 
-	return 1
+	return TRUE
 
 // Let's check if stuff blocks us from doing surgery on them
 // TODO: make it based on area coverage rather than just forbid spacesuits?
@@ -91,7 +91,7 @@
 
 // checks whether this step can be applied with the given user and target
 /datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return 0
+	return FALSE
 
 // does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 /datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -128,11 +128,11 @@
 
 /obj/item/proc/can_do_surgery(mob/living/carbon/M, mob/living/user)
 //	if(M == user)
-//		return 0
+//		return FALSE
 	if(!ishuman(M))
-		return 1
+		return TRUE
 
-	return 1
+	return TRUE
 
 /obj/item/proc/do_surgery(mob/living/carbon/M, mob/living/user)
 	if(!can_do_surgery(M, user))
@@ -164,7 +164,7 @@
 			continue
 
 	if(!available_surgeries.len) //No available surgeries. Failure.
-		return 0
+		return FALSE
 
 	// Having trouble with an ASSOSCIATED LIST? or REMOVING SOMETHING FROM AN ASSOCIATED LIST? Look here for a quick guide, developed out of frustration.
 	// Note: This is an ultra edge case. Like, what is being done here is horrible and is so rare this should never happen again in the code.

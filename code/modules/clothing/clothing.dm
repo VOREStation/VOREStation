@@ -15,7 +15,6 @@
 	var/list/clothing_traits
 
 	var/flash_protection = FLASH_PROTECTION_NONE
-	var/tint = TINT_NONE
 	var/list/enables_planes		//Enables these planes in the wearing mob's plane_holder
 	var/list/plane_slots		//But only if it's equipped into this specific slot
 

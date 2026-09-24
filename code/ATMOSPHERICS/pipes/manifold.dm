@@ -136,7 +136,7 @@
 
 	for(var/direction in GLOB.cardinal)
 		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+			for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,direction)))
 				if (can_be_node(target, 1))
 					node1 = target
 					connect_directions &= ~direction
@@ -147,7 +147,7 @@
 
 	for(var/direction in GLOB.cardinal)
 		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+			for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,direction)))
 				if (can_be_node(target, 2))
 					node2 = target
 					connect_directions &= ~direction
@@ -158,7 +158,7 @@
 
 	for(var/direction in GLOB.cardinal)
 		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+			for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,direction)))
 				if (can_be_node(target, 3))
 					node3 = target
 					connect_directions &= ~direction

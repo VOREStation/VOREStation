@@ -66,9 +66,9 @@
 	w_class = ITEMSIZE_NO_CONTAINER
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
-		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="long bursts", burst=6, fire_delay=null, move_delay=10, one_handed_penalty=30, burst_accuracy=list(0,-15,-15,-15,-30), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="long bursts", burst=6, fire_delay=null, one_handed_penalty=30, burst_accuracy=list(0,-15,-15,-15,-30), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
 		)
 
 /obj/item/gun/magnetic/railgun/automatic/examine(mob/user)
@@ -100,8 +100,8 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
-		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)
 
 /obj/item/gun/magnetic/railgun/flechette/pistol
@@ -132,8 +132,8 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
-		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 	)
 
 /obj/item/gun/magnetic/railgun/heater
@@ -163,8 +163,8 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="high power", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=15),
-		list(mode_name="low power", power_cost = 150, projectile_type = /obj/item/projectile/bullet/magnetic/heated/weak, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=15),
+		list(mode_name="high power", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, one_handed_penalty=15),
+		list(mode_name="low power", power_cost = 150, projectile_type = /obj/item/projectile/bullet/magnetic/heated/weak, burst=1, fire_delay=5, one_handed_penalty=15),
 		)
 
 /obj/item/gun/magnetic/railgun/heater/pistol
@@ -185,8 +185,8 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
 	firemodes = list(
-		list(mode_name="lethal", power_cost = 500, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=10, move_delay=null, one_handed_penalty=0),
-		list(mode_name="stun", power_cost = 350, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=7, move_delay=null, one_handed_penalty=0),
+		list(mode_name="lethal", power_cost = 500, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=10, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 350, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=7, one_handed_penalty=0),
 		)
 
 /obj/item/gun/magnetic/railgun/heater/pistol/hos
@@ -197,8 +197,8 @@
 	description_antag = "This weapon starts with a DNA locking chip attached. Using an EMAG on the weapon will disarm it, and allow you to use the chip as your own."
 
 	firemodes = list(
-		list(mode_name="lethal", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
-		list(mode_name="stun", power_cost = 300, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
+		list(mode_name="lethal", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 300, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=5, one_handed_penalty=0),
 		)
 
 /obj/item/gun/magnetic/railgun/flechette/sif
@@ -220,6 +220,6 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
-		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)

@@ -98,26 +98,25 @@
 		user.visible_message(span_danger("\The [user] tries to take prints from \the [H], but they move away."))
 		return ITEM_INTERACT_FAILURE
 
-	if(user.zone_sel.selecting == BP_R_HAND || user.zone_sel.selecting == BP_L_HAND)
-		var/has_hand
-		var/obj/item/organ/external/O = H.organs_by_name[BP_R_HAND]
+	var/has_hand
+	var/obj/item/organ/external/O = H.organs_by_name[BP_R_HAND]
+	if(istype(O) && !O.is_stump())
+		has_hand = 1
+	else
+		O = H.organs_by_name[BP_L_HAND]
 		if(istype(O) && !O.is_stump())
 			has_hand = 1
-		else
-			O = H.organs_by_name[BP_L_HAND]
-			if(istype(O) && !O.is_stump())
-				has_hand = 1
-		if(!has_hand)
-			to_chat(user, span_warning("They don't have any hands."))
-			return ITEM_INTERACT_FAILURE
-		user.visible_message("[user] takes a copy of \the [H]'s fingerprints.")
-		var/fullprint = H.get_full_print()
-		evidence[fullprint] = fullprint
-		copy_evidence(src)
-		name = "[initial(name)] (\the [H])"
-		icon_state = "fingerprint1"
-		return ITEM_INTERACT_SUCCESS
-	return ITEM_INTERACT_FAILURE
+	if(!has_hand)
+		to_chat(user, span_warning("They don't have any hands."))
+		return ITEM_INTERACT_FAILURE
+
+	user.visible_message("[user] takes a copy of \the [H]'s fingerprints.")
+	var/fullprint = H.get_full_print()
+	evidence[fullprint] = fullprint
+	copy_evidence(src)
+	name = "[initial(name)] (\the [H])"
+	icon_state = "fingerprint1"
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/sample/print/copy_evidence(atom/supplied)
 	var/list/print_data = supplied.forensic_data.get_prints()

@@ -60,7 +60,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1))
 	var/list/obj/item/implant/backup/imps = list()
 	var/max_implants = 4 //Iconstates need to exist due to the update proc!
 

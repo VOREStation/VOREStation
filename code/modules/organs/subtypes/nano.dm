@@ -112,7 +112,7 @@
 	organ_tag = O_FACT
 	parent_organ = BP_TORSO
 
-	var/list/materials = list(MAT_STEEL = 0)
+	var/list/materials = list(MAT_STEEL = MATERIAL_COST(0))
 	var/max_storage = 10000
 	organ_verbs = list(
 		/mob/living/carbon/human/proc/reagent_purge

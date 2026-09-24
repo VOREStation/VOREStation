@@ -87,7 +87,7 @@
 
 // Macro for easy use of boilerplate code for searching for a valid node connection.
 #define STANDARD_ATMOS_CHOOSE_NODE(node_num, direction) \
-	for(var/obj/machinery/atmospherics/target in get_step(src, direction)) { \
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, direction)) ) { \
 		if(can_be_node(target, node_num)) { \
 			node##node_num = target; \
 			break; \

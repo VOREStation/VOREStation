@@ -67,7 +67,13 @@ export function Terminal(props: TerminalProps) {
           // ── Setup screen ────────────────────────────────────────────────────
           <>
             <div className="NtosByteCrawl__output">
-              <div className="NtosByteCrawl__line" style={{ color: '#33ff33', textShadow: '0 0 8px rgba(51,255,51,0.9)' }}>
+              <div
+                className="NtosByteCrawl__line"
+                style={{
+                  color: '#33ff33',
+                  textShadow: '0 0 8px rgba(51,255,51,0.9)',
+                }}
+              >
                 {setupContent}
               </div>
             </div>
@@ -78,7 +84,10 @@ export function Terminal(props: TerminalProps) {
           <>
             <div className="NtosByteCrawl__header">
               {headerSlots.map((slot, i) => (
-                <span key={i} style={slot.color ? { color: slot.color } : undefined}>
+                <span
+                  key={i}
+                  style={slot.color ? { color: slot.color } : undefined}
+                >
                   {slot.text}
                 </span>
               ))}

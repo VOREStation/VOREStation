@@ -131,7 +131,7 @@
 		user << browse(dat, "window=[name]")
 	else if(istype(pages[page], /obj/item/photo))
 		var/obj/item/photo/P = W
-		user << browse_rsc(P.img, "tmp_photo.png")
+		send_rsc(user, P.img, "tmp_photo.png")
 		user << browse("<html>" + dat + "<head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \

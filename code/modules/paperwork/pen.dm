@@ -26,7 +26,7 @@
 	w_class = ITEMSIZE_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list(MAT_STEEL = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.005))
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/accessory.ogg'

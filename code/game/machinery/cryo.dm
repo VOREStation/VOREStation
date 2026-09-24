@@ -182,21 +182,29 @@
 		var/obj/item/grab/grab = G
 		if(!ismob(grab.affecting))
 			return
-		if(occupant)
-			to_chat(user,span_warning("\The [src] is already occupied by [occupant]."))
-		if(grab.affecting.has_buckled_mobs())
-			to_chat(user, span_warning("\The [grab.affecting] has other entities attached to it. Remove them first."))
-			return
 		var/mob/M = grab.affecting
+		if(!check_put(M, user))
+			return
 		qdel(grab)
 		put_mob(M)
 
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(mob/target, mob/user) //Allows borgs to put people into cryo without external assistance
-	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
+	if(!check_put(target, user))
 		return
 	put_mob(target)
+
+/obj/machinery/atmospherics/unary/cryo_cell/proc/check_put(mob/target, mob/user)
+	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
+		return FALSE
+	if(occupant)
+		to_chat(user,span_warning("\The [src] is already occupied by [occupant]."))
+		return FALSE
+	if(target.has_buckled_mobs() || target.buckled)
+		to_chat(user, span_warning("\The [target] has other entities attached to it. Remove them first."))
+		return FALSE
+	return TRUE
 
 /obj/machinery/atmospherics/unary/cryo_cell/update_icon()
 	cut_overlay(fluid)
@@ -286,9 +294,11 @@
 	if(occupant)
 		to_chat(usr, span_danger("The cryo cell is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(M.abiotic())
 		to_chat(usr, span_warning("Subject may not have abiotic items on."))
 		return
+	*/
 	if(!node)
 		to_chat(usr, span_warning("The cell is not correctly connected to its pipe network!"))
 		return

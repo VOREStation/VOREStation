@@ -58,6 +58,7 @@
 	update_icon()
 
 /obj/machinery/disposal/Destroy()
+	SEND_SIGNAL(src, COMSIG_DISPOSAL_UNLINK) //Just to be safe.
 	eject()
 	return ..()
 
@@ -268,6 +269,8 @@
 // mouse drop another mob or self
 //
 /obj/machinery/disposal/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
+	if(user.is_incorporeal())
+		return
 	if(isliving(dropping))
 		stuff_mob_in(dropping, user)
 	else if(isobj(dropping) && isturf(dropping.loc))
@@ -333,6 +336,8 @@
 /obj/machinery/disposal/attack_hand(mob/user)
 	if(stat & BROKEN)
 		return
+	if(user.is_incorporeal())
+		return
 
 	if(user && user.loc == src)
 		to_chat(user, span_red("You cannot reach the controls from inside."))
@@ -351,6 +356,8 @@
 	if(user.canUseTopic) //Later...
 		return
 	*/
+	if(user.is_incorporeal())
+		return
 	if(get_dist(user, src) > 1 || user.loc == src || user.stat) //Until the above exists...
 		return
 	flush = !flush
@@ -419,6 +426,8 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Force Eject"
+	if(usr.is_incorporeal())
+		return
 	if(flushing)
 		return
 	eject()
@@ -613,6 +622,7 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
 	//..() //*cough
+	SEND_SIGNAL(src, COMSIG_DISPOSAL_UNLINK) //unlinks in destroy, too. Multi-sending shouldnt be too bad.
 	qdel(src) //Parent above should do this, but that's not a thing as of writing this.
 
 

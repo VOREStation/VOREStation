@@ -93,6 +93,9 @@
 		W_sim.shandler.manualInit()
 	if(old_fire)
 		old_fire.RemoveFire()
+	if(istype(N, /turf/simulated))
+		var/turf/simulated/new_turf = N
+		new_turf.wet = initial(new_turf.wet)
 
 	if(tell_universe)
 		GLOB.universe.OnTurfChange(W)

@@ -10,6 +10,10 @@
 	var/valve_open = 0
 	var/toggle = 1
 
+/obj/item/transfer_valve/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/sellable/transfer_valve)
+
 /obj/item/transfer_valve/attackby(obj/item/item, mob/user)
 	var/turf/location = get_turf(src) // For admin logs
 	if(istype(item, /obj/item/tank))

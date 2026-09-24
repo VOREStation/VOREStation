@@ -196,8 +196,6 @@
 		/datum/decl/emote/human/stopsway
 	)
 
-	footstep = FOOTSTEP_MOB_CLAW
-
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
 	wikilink="https://wiki.vore-station.net/Unathi"
 
@@ -1231,8 +1229,6 @@
 		/datum/decl/emote/audible/teshtrill
 	)
 
-	footstep = FOOTSTEP_MOB_TESHARI
-
 /datum/species/teshari/equip_survival_gear(mob/living/carbon/human/H)
 	..()
 	if(!(H.client?.prefs?.shoe_hater))
@@ -1700,6 +1696,10 @@
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/carbon/human/proc/tie_hair,
 		/mob/living/carbon/human/proc/lick_wounds)		//Xenochimera get all the special verbs since they can't select traits.
+
+	default_emotes = list(
+		/datum/decl/emote/audible/xenochimera_scream,
+	)
 
 	virus_immune = 1 // They practically ARE one.
 	min_age = 18

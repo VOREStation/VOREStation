@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(floor_light_cache)
 	desc = "A backlit floor panel, ready for installation!"
 	icon = 'icons/obj/machines/floor_light.dmi'
 	icon_state = "item"
-	matter = list(MAT_STEEL = 2500, MAT_GLASS = 2750)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.25), MAT_GLASS = MATERIAL_COST(1.375))
 
 /obj/item/floor_light/attack_self(mob/user)
 	. = ..(user)

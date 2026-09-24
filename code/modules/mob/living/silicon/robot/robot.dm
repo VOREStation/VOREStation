@@ -208,6 +208,7 @@
 
 	AddComponent(/datum/component/hose_connector/input/borg)
 	AddComponent(/datum/component/hose_connector/output/borg)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 /mob/living/silicon/robot/LateInitialize()
 	pick_module()
@@ -522,6 +523,14 @@
 	to_chat(src, span_filter_notice("You harmlessly spark."))
 	spark_system.start()
 
+/mob/living/silicon/robot/verb/set_footstep() //Verb for borgs to change their footstep sound.
+	set category = "Abilities.Settings"
+	set name = "Adjust Footstep Sound"
+	var/selected_footstep = tgui_input_list(src, "Select a footstep sound.", "Footstep Sound", GLOB.selectable_footstep)
+	if(!(selected_footstep in GLOB.selectable_footstep))
+		return
+	custom_footstep = GLOB.selectable_footstep[selected_footstep]
+
 ///Essentially, a Activate Held Object mode for borgs that acts just like pressing Z in hotkey mode but also works well with multibelts.
 /mob/living/silicon/robot/verb/alt_mode()
 	set name = "Robot Activate Held Object"
@@ -600,9 +609,6 @@
 	return 2
 
 /mob/living/silicon/robot/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
-		return
-
 	if(opened) // Are they trying to insert something?
 		for(var/V in components)
 			var/datum/robot_component/C = components[V]
@@ -809,21 +815,21 @@
 			else
 				to_chat(user, span_filter_notice("[span_red("Access denied.")]"))
 
-	else if(istype(W, /obj/item/borg/upgrade/))
-		var/obj/item/borg/upgrade/U = W
+	else if(istype(W, /obj/item/borg/upgrade))
+		var/obj/item/borg/upgrade/upgrade = W
 		if(!opened)
 			to_chat(user, span_filter_notice("You must access the borgs internals!"))
-		else if(!module && U.require_module)
+		else if(!module && upgrade.require_module)
 			to_chat(user, span_filter_notice("The borg must choose a module before it can be upgraded!"))
 		else if(user == src && istype(W,/obj/item/borg/upgrade/utility/reset))
 			to_chat(user, span_warning("You are restricted from reseting your own module."))
-		else if(U.locked)
+		else if(upgrade.locked)
 			to_chat(user, span_filter_notice("The upgrade is locked and cannot be used yet!"))
 		else
-			if(U.action(user, src))
+			if(upgrade.action(user, src))
 				to_chat(user, span_filter_notice("You apply the upgrade to [src]!"))
 				user.drop_item()
-				U.loc = src
+				upgrade.forceMove(src)
 				hud_used.update_robot_modules_display()
 			else
 				to_chat(user, span_filter_notice("Upgrade error!"))
@@ -1622,6 +1628,8 @@
 		return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/advrped)
 		return has_upgrade_module(/obj/item/storage/part_replacer/adv)
+	if(given_type == /obj/item/borg/upgrade/restricted/anomalygun)
+		return has_upgrade_module(/obj/item/gun/energy/anomaly/mounted)
 	if(given_type == /obj/item/borg/upgrade/restricted/diamonddrill)
 		return has_upgrade_module(/obj/item/pickaxe/diamonddrill)
 	if(given_type == /obj/item/borg/upgrade/restricted/pka)

@@ -39,7 +39,7 @@
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 		init_subsystems()
 
-		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
+		AddElement(/datum/element/footstep, custom_footstep, 1, -6)
 
 /mob/living/silicon/Destroy()
 	common_radio = null // same ref as radio, deleted by child

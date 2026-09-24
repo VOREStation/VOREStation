@@ -103,7 +103,7 @@
 	name = "combat medical kit"
 	desc = "Contains advanced medical treatments."
 	icon_state = "bezerk"
-	item_state_slots = list(slot_r_hand_str = "firstaid-advanced", slot_l_hand_str = "firstaid-advanced")
+	item_state_slots = list(slot_r_hand_str = "firstaid-bezerk", slot_l_hand_str = "firstaid-bezerk")
 	starts_with = list(
 		/obj/item/storage/pill_bottle/bicaridine,
 		/obj/item/storage/pill_bottle/dermaline,

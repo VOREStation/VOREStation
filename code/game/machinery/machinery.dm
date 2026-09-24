@@ -154,7 +154,6 @@ Class Procs:
 			if(ishuman(A))
 				var/mob/living/carbon/human/H = A
 				H.forceMove(loc)
-				H.reset_perspective()
 			else
 				qdel(A)
 	return ..()
@@ -287,6 +286,8 @@ Class Procs:
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
+	if(!isliving(user))
+		return 0
 	if(electrocute_mob(user, get_area(src), src, 0.7))
 		var/area/temp_area = get_area(src)
 		if(temp_area)

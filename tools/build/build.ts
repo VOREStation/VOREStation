@@ -293,9 +293,6 @@ export const BunTarget = new Juke.Target({
 export const BiomeInstallTarget = new Juke.Target({
   dependsOn: [BunTarget],
   inputs: ['package.json', 'bun.lock'],
-  onlyWhen: () => {
-    return Juke.glob('node_modules/@biomejs/**').length === 0;
-  },
   executes: () => {
     return bunRoot('install');
   },
@@ -304,7 +301,7 @@ export const BiomeInstallTarget = new Juke.Target({
 export const TgFontTarget = new Juke.Target({
   dependsOn: [BunTarget],
   inputs: [
-    'tgui/packages/tgfont/**/*.+(js|mjs|svg)',
+    'tgui/packages/tgfont/**/*.+(ts|svg)',
     'tgui/packages/tgfont/package.json',
   ],
   outputs: [

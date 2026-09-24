@@ -205,7 +205,7 @@
 	set name = "Use Scope"
 	set popup_menu = 1
 
-	toggle_scope(2.0)
+	toggle_scope(usr, 2.0)
 
 /obj/item/gun/energy/locked/frontier/rifle/update_icon()
 	if(recharging)

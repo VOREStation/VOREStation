@@ -166,8 +166,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				. += "[src] is nearly burnt out!"
 
 /obj/item/clothing/mask/smokable/proc/light(flavor_text = "[usr] lights the [name].")
-	if(!src.lit)
-		src.lit = 1
+	if(!lit)
+		lit = TRUE
 		playsound(src, 'sound/items/cigs_lighters/cig_light.ogg', 75, 1, -1)
 		damtype = BURN
 		if(reagents.get_reagent_amount(REAGENT_ID_PHORON)) // the phoron explodes when exposed to fire
@@ -189,6 +189,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_icon()
 		set_light(2, 0.25, "#E38F46")
 		START_PROCESSING(SSobj, src)
+		return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/mask/smokable/proc/die(nomessage = 0)
 	var/turf/T = get_turf(src)
@@ -296,14 +297,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(nicotine_amt)
 		reagents.add_reagent(REAGENT_ID_NICOTINE, nicotine_amt)
 
-/obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/W, mob/user)
 	..()
 
 	if(istype(W, /obj/item/melee/energy/sword))
 		var/obj/item/melee/energy/sword/S = W
 		if(S.active)
-			light(span_warning("[user] swings their [W], barely missing their nose. They light their [name] in the process."))
-
+			return light(span_warning("[user] swings their [W], barely missing their nose. They light their [name] in the process."))
 	return
 
 /obj/item/clothing/mask/smokable/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user as mob, proximity)
@@ -662,22 +662,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/flame/lighter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(lit == 1)
-		M.ignite_mob()
-		add_attack_logs(user,M,"Lit on fire with [src]")
-		return ITEM_INTERACT_SUCCESS
+		if((user.a_intent == I_HURT || user.a_intent == I_HELP && prob(25)) && M.ignite_mob())
+			add_attack_logs(user,M,"Lit on fire with [src]")
+			return ITEM_INTERACT_SUCCESS
 
 	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
 		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
 		if(M == user)
-			cig.attackby(src, user)
-			return ITEM_INTERACT_SUCCESS
+			return cig.attackby(src, user)
 
 		else
-			if(istype(src, /obj/item/flame/lighter/zippo))
-				cig.light(span_notice(span_rose("[user] whips the [name] out and holds it for [M].")))
-			else
-				cig.light(span_notice("[user] holds the [name] out for [M], and lights the [cig.name]."))
-			return ITEM_INTERACT_SUCCESS
+			return cig.light(display_offer_text(M, user, cig.name))
 	else
 		..()
 
@@ -686,6 +681,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	return
+
+/obj/item/flame/lighter/proc/display_offer_text(mob/living/target, mob/living/user, cig_name)
+	return (span_notice("[user] holds the [name] out for [target], and lights the [cig_name]."))
 
 /////////
 //ZIPPO//
@@ -731,6 +729,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	return
+
+/obj/item/flame/lighter/zippo/display_offer_text(mob/living/target, mob/living/user, cig_name)
+	return (span_notice(span_rose("[user] whips the [name] out and holds it for [target], igniting the [cig_name].")))
 
 //Here we add Zippo skins.
 
@@ -807,6 +808,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	///Special supermatter var used for attack_self chain logic.
 	var/special_supermatter = FALSE
 
+/obj/item/flame/lighter/supermatter/display_offer_text(mob/living/target, mob/living/user, cig_name)
+	return (span_notice(span_crimson("[user] whips the [name] out and holds it for [target], turning the tip of the [cig_name] to ash and lighting it!")))
+
 /obj/item/flame/lighter/supermatter/syndismzippo
 	name = "Phoron Supermatter Zippo"		// Syndicate SM Lighter
 	desc = "State of the Art Supermatter Lighter."
@@ -876,26 +880,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		STOP_PROCESSING(SSobj, src)
 	return ITEM_INTERACT_SUCCESS
 
-
-/obj/item/flame/lighter/supermatter/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if(lit == 1)
-		M.ignite_mob()
-		add_attack_logs(user,M,"Lit on fire with [src]")
-		return ITEM_INTERACT_SUCCESS
-
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
-		if(M == user)
-			cig.attackby(src, user)
-		else
-			if(istype(src, /obj/item/flame/lighter/supermatter))
-				cig.light(span_notice(span_rose("[user] whips the [name] out and holds it for [M].")))
-			else
-				cig.light(span_notice("[user] holds the [name] out for [M], and lights the [cig.name]."))
-		return ITEM_INTERACT_SUCCESS
-	else
-		..()
-
 /obj/item/flame/lighter/supermatter/process()
 	var/turf/location = get_turf(src)
 	if(location)
@@ -948,27 +932,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	return ITEM_INTERACT_SUCCESS
-
-
-/obj/item/flame/lighter/supermatter/syndismzippo/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if(lit == 1)
-		M.ignite_mob()
-		add_attack_logs(user,M,"Lit on fire with [src]")
-		return ITEM_INTERACT_SUCCESS
-
-	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
-		if(M == user)
-			cig.attackby(src, user)
-			return ITEM_INTERACT_SUCCESS
-		else
-			if(istype(src, /obj/item/flame/lighter/supermatter/syndismzippo))
-				cig.light(span_notice(span_rose("[user] whips the [name] out and holds it for [M].")))
-			else
-				cig.light(span_notice("[user] holds the [name] out for [M], and lights the [cig.name]."))
-			return ITEM_INTERACT_SUCCESS
-	else
-		..()
 
 /obj/item/flame/lighter/process()
 	var/turf/location = get_turf(src)
@@ -1123,23 +1086,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	return ITEM_INTERACT_SUCCESS
-
-/obj/item/flame/lighter/supermatter/expsmzippo/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
-	if (lit == 1)
-		M.ignite_mob()
-		add_attack_logs(user, M, "Lit on fire with [src]")
-
-	if (istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
-		var/obj/item/clothing/mask/smokable/cigarette/cig = M.wear_mask
-		if (M == user)
-			cig.attackby(src, user)
-		else
-			if (istype(src, /obj/item/flame/lighter/supermatter/expsmzippo))
-				cig.light(span_notice(span_rose("[user] whips the [name] out and holds it for [M].")))
-			else
-				cig.light(span_notice("[user] holds the [name] out for [M], and lights the [cig.name]."))
-	else
-		..()
 
 /obj/item/flame/lighter/supermatter/expsmzippo/process()
 	var/turf/location = get_turf(src)

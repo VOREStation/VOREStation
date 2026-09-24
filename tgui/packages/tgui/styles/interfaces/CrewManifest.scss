@@ -12,7 +12,7 @@ $department_map: (
 
 .CrewManifest {
   @each $department-name, $color-value in $department_map {
-    &--#{$department-name} {
+    &#{'--#{$department-name}'} {
       .Section {
         &__title {
           border-color: $color-value;

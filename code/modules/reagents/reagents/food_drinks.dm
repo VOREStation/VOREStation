@@ -2641,6 +2641,11 @@
 	glass_name = REAGENT_ID_NOTHING
 	glass_desc = "Absolutely nothing."
 
+/datum/reagent/drink/nothing/affect_ingest(mob/living/carbon/M, alien, removed)
+	..()
+	if(HAS_MIND_TRAIT(M, TRAIT_MIMING))
+		M.heal_organ_damage(1 * removed, 1 * removed)
+
 /datum/reagent/drink/dreamcream
 	name = REAGENT_DREAMCREAM
 	id = REAGENT_ID_DREAMCREAM

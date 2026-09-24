@@ -114,7 +114,7 @@
 		qdel(src)
 		return
 
-	if(prob(10) && !has_hunted_unlucky)
+	if(!has_hunted_unlucky)
 		hunt_unlucky()
 
 /obj/effect/immovablerod/proc/hunt_unlucky()
@@ -122,7 +122,7 @@
 		if(HAS_TRAIT(unlucky_bugger, TRAIT_UNLUCKY))
 			has_hunted_unlucky = TRUE
 			walk(src, 0)
-			//stone_grinding.ogg
+			playsound(src, 'sound/effects/stone_grind.ogg', 75)
 			addtimer(CALLBACK(src, PROC_REF(fetch_boy), unlucky_bugger), 1 SECOND, TIMER_DELETE_ME)
 			break
 

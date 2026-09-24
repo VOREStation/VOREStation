@@ -17,7 +17,10 @@ export function cmdCrack(args: readonly string[], ctx: CommandContext): void {
   const maxSlots = getMaxSlots(state);
   const active = state.jobs.filter((j) => j.state === 'cracking').length;
   if (active >= maxSlots) {
-    print(`RAM full. ${active}/${maxSlots} slots used. Collect jobs or upgrade RAM.`, '#ff8800');
+    print(
+      `RAM full. ${active}/${maxSlots} slots used. Collect jobs or upgrade RAM.`,
+      '#ff8800',
+    );
     return;
   }
   const methodIdx = args.indexOf('--method');
@@ -26,7 +29,9 @@ export function cmdCrack(args: readonly string[], ctx: CommandContext): void {
     print('No key fragments in inventory.', '#ff8800');
     return;
   }
-  const target = scanPool.current.find((s) => s.id.toUpperCase() === args[0].toUpperCase());
+  const target = scanPool.current.find(
+    (s) => s.id.toUpperCase() === args[0].toUpperCase(),
+  );
   if (!target) {
     print(`Target '${args[0]}' not found. Run scan first.`, '#ff8800');
     return;
@@ -36,7 +41,12 @@ export function cmdCrack(args: readonly string[], ctx: CommandContext): void {
     return;
   }
   const cpuMult = CPU_UPGRADES[state.cpu].mult;
-  const dur = getCrackDuration(target.tier, cpuMult, state.ghost.crack, fragMethod);
+  const dur = getCrackDuration(
+    target.tier,
+    cpuMult,
+    state.ghost.crack,
+    fragMethod,
+  );
   const stlMult = 1 + state.stl * 0.6;
   const uptimeCap = target.tier.uptime
     ? rand(target.tier.uptime[0], target.tier.uptime[1]) * stlMult
@@ -91,17 +101,25 @@ export function cmdJobs(args: readonly string[], ctx: CommandContext): void {
       print('No failed jobs to clear.');
       return;
     }
-    setG((prev) => ({ ...prev, jobs: prev.jobs.filter((j) => j.state !== 'failed') }));
-    print(`Cleared ${failed.length} failed job${failed.length === 1 ? '' : 's'}.`, '#ff8800');
+    setG((prev) => ({
+      ...prev,
+      jobs: prev.jobs.filter((j) => j.state !== 'failed'),
+    }));
+    print(
+      `Cleared ${failed.length} failed job${failed.length === 1 ? '' : 's'}.`,
+      '#ff8800',
+    );
     return;
   }
 
   const filterIdx = args.indexOf('--filter');
   const filterVal = filterIdx !== -1 ? args[filterIdx + 1] : undefined;
   const list = state.jobs.filter((j) =>
-    filterVal === 'complete' ? j.state === 'ready'
-    : filterVal === 'cracking' ? j.state === 'cracking'
-    : true,
+    filterVal === 'complete'
+      ? j.state === 'ready'
+      : filterVal === 'cracking'
+        ? j.state === 'cracking'
+        : true,
   );
   if (!list.length) {
     print('No jobs.');
@@ -116,15 +134,25 @@ export function cmdJobs(args: readonly string[], ctx: CommandContext): void {
     const pct = Math.min(100, (j.progress / j.duration) * 100).toFixed(1);
     const bar = progressBar(parseFloat(pct), 15);
     const status =
-      j.state === 'cracking' ? 'RUNNING' : j.state === 'ready' ? 'READY  ' : 'FAILED ';
-    const col = j.state === 'ready' ? '#33ff33' : j.state === 'failed' ? '#ff3333' : undefined;
+      j.state === 'cracking'
+        ? 'RUNNING'
+        : j.state === 'ready'
+          ? 'READY  '
+          : 'FAILED ';
+    const col =
+      j.state === 'ready'
+        ? '#33ff33'
+        : j.state === 'failed'
+          ? '#ff3333'
+          : undefined;
     print(
       `${j.id.padEnd(5)} ${status}  ${j.cipher.padEnd(7)} ${j.gb.toFixed(2).padEnd(8)} ${j.type}  ${bar} ${pct}%`,
       col,
     );
     if (j.state === 'cracking') {
       const remaining = j.duration - j.progress;
-      const uptimeStr = j.uptimeCap !== null ? `  uptime: ${fmtTime(j.uptimeCap)}` : '';
+      const uptimeStr =
+        j.uptimeCap !== null ? `  uptime: ${fmtTime(j.uptimeCap)}` : '';
       print(`       ETA: ${fmtTime(remaining)}${uptimeStr}`, '#aaaaaa');
     }
   }
@@ -195,6 +223,8 @@ export function cmdCache(ctx: CommandContext): void {
   for (const c of state.cache) {
     const price = state.market[c.type] * state.ghost.market;
     const val = c.gb * price;
-    print(`${c.id.padEnd(5)} ${c.gb.toFixed(2).padEnd(8)} ${c.type}  ${fmtMoney(val)}`);
+    print(
+      `${c.id.padEnd(5)} ${c.gb.toFixed(2).padEnd(8)} ${c.type}  ${fmtMoney(val)}`,
+    );
   }
 }

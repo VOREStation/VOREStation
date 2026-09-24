@@ -38,6 +38,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/* Comes with it's own circuitboard now
 /datum/design_techweb/board/industrial_reagent_pipe
 	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Pipe")
 	id = "industrial_reagent_pipe"
@@ -47,6 +48,7 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_REFINERY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+*/
 
 /datum/design_techweb/board/industrial_reagent_pump
 	SET_CIRCUIT_DESIGN_NAMEDESC("Industrial Reagent Pump")

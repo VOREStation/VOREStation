@@ -143,8 +143,6 @@
 	return ..()
 
 /obj/item/gripper/afterattack(atom/target, mob/living/user, proximity, params)
-	if(!proximity)
-		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
 
 	if(is_in_use(user))
 		return
@@ -154,20 +152,27 @@
 		clear_and_select_item()
 		return
 
-	if(use_item(target, user, wrapped)) //Already have an item.
+	if(!proximity && !allow_ranged_usage) //Prevents using guns or using items at range
 		return
+
+	if(use_item(target, user, wrapped, proximity, params)) //Already have an item.
+		return
+
 	update_ref(WEAKREF(wrapped))
 
-	if(pick_up_item(target, user))
+	if(!proximity && !allow_ranged_pickup)
 		return
 
 	if(handle_afterattack_special(target, user))
 		return
 
+	if(pick_up_item(target, user))
+		return
+
 	if(item_left_gripper(wrapped))
 		clear_and_select_item()
 
-/obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped)
+/obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped, proximity, params)
 	if(!wrapped)
 		return FALSE
 
@@ -186,7 +191,7 @@
 
 	var/resolved = target.attackby(wrapped, user)
 	if(!resolved && wrapped && target)
-		wrapped.afterattack(target, user, TRUE)
+		wrapped.afterattack(target, user, proximity, params)
 
 	if(item_left_gripper(wrapped))
 		clear_and_select_pocket()
@@ -281,6 +286,9 @@
 			"You remove the power cell."
 		)
 
+		return TRUE
+
+	if(istype(target, /obj/item/stack) && QDELETED(target)) //We handle the special stuff above already.
 		return TRUE
 
 	return FALSE
@@ -421,13 +429,13 @@
 	return wrapped
 
 /// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
-/obj/item/gripper/proc/consolidate_stacks(obj/item/stack/stack_to_consolidate)
+/obj/item/gripper/proc/consolidate_stacks(obj/item/stack/stack_to_consolidate, mob/user)
 	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
-		return
+		return FALSE
 
 	var/obj/item/current_item = get_wrapped_item()
 	if(current_item?.type == stack_to_consolidate.type)
-		return
+		return FALSE
 
 	for(var/obj/item/storage/internal/gripper/pocket in pockets)
 		if(!LAZYLEN(pocket.contents))
@@ -435,7 +443,8 @@
 		for(var/obj/item/stack/stack in pocket.contents)
 			if(istype(stack_to_consolidate, stack))
 				stack_to_consolidate.transfer_to(stack)
-				return
+				to_chat(user, "You collect \the [stack_to_consolidate] and consolidate it.")
+				return TRUE
 
 /obj/item/gripper/proc/grab_cell(obj/item/cell, mob/user)
 	var/obj/item/storage/internal/gripper/P = find_empty_pocket()

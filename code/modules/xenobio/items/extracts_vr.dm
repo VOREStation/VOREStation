@@ -18,6 +18,7 @@
 /obj/item/slime_extract/Initialize(mapload)
 	. = ..()
 	create_reagents(60)
+	AddElement(/datum/element/sellable/slime_extract)
 
 /obj/item/slime_extract/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/slimepotion/enhancer))

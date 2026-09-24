@@ -58,8 +58,8 @@
 	multi_aim = 1
 	burst_delay = 2
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0.1,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15),       dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="semiauto",       burst=1, fire_delay=0.1, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null,    burst_accuracy=list(0,-15,-15),       dispersion=list(0.0, 0.6, 1.0)),
 		)
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
@@ -124,7 +124,7 @@
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "smg"
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 1800)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.9))
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 30

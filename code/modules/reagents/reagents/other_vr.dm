@@ -87,8 +87,10 @@
 		lowertemp.react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
+	for(var/obj/effect/decal/cleanable/liquid_fuel/fuel_source in T) //Foam cleans up fuel sources.
+		qdel(fuel_source)
 
-	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
+	if(environment?.temperature > min_temperature) // Abstracted as steam or something
 		var/removed_heat = between(0, volume * 19000, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if(prob(5))

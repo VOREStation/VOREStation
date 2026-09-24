@@ -32,6 +32,9 @@ Buildable meters
 	var/mirrored = FALSE
 /obj/item/pipe/quaternary
 	dispenser_class = PIPE_ONEDIR
+/obj/item/pipe/directional/tank // lorge
+	w_class = ITEMSIZE_COST_HUGE
+	dispenser_class = PIPE_DIRECTIONAL
 
 /**
  * Call constructor with:
@@ -79,16 +82,16 @@ Buildable meters
 	// Do it the Polaris way
 	switch(piping_layer)
 		if(PIPING_LAYER_SCRUBBER)
-			color = PIPE_COLOR_RED
+			// color = PIPE_COLOR_RED
 			name = "[initial(fakeA.name)] scrubber fitting"
 		if(PIPING_LAYER_SUPPLY)
-			color = PIPE_COLOR_BLUE
+			// color = PIPE_COLOR_BLUE
 			name = "[initial(fakeA.name)] supply fitting"
 		if(PIPING_LAYER_FUEL)
-			color = PIPE_COLOR_YELLOW
+			// color = PIPE_COLOR_YELLOW
 			name = "[initial(fakeA.name)] fuel fitting"
 		if(PIPING_LAYER_AUX)
-			color = PIPE_COLOR_CYAN
+			// color = PIPE_COLOR_CYAN
 			name = "[initial(fakeA.name)] aux fitting"
 	// Or if we were to do it the TG way...
 	// pixel_x = PIPE_PIXEL_OFFSET_X(piping_layer)

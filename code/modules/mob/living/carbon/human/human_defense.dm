@@ -233,12 +233,14 @@ emp_act
 
 	return hit_zone
 
-/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone)
+/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, effective_force, hit_zone, hide_attack_message)
+	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, I, user, hit_zone, effective_force)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return //should be prevented by attacked_with_item() but for sanity.
 
-	visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!"))
+	if(!hide_attack_message)
+		visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!"))
 
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
 
@@ -381,8 +383,8 @@ emp_act
 
 		//check if we hit
 		var/miss_chance = 15
-		if (thrown_object.throw_source)
-			var/distance = get_dist(thrown_object.throw_source, loc)
+		if(throwingdatum?.starting_turf)
+			var/distance = get_dist(throwingdatum.starting_turf, loc)
 			miss_chance = max(15*(distance-2), 0)
 		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = thrower)
 
@@ -431,8 +433,8 @@ emp_act
 		var/mass = thrown_object.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(thrown_object.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
-			var/dir = get_dir(thrown_object.throw_source, src)
+		if(throwingdatum?.starting_turf && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
+			var/dir = get_dir(throwingdatum.starting_turf, src)
 
 			visible_message(span_filter_warning("[span_red("[src] staggers under the impact!")]"),span_filter_warning("[span_red("You stagger under the impact!")]"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)

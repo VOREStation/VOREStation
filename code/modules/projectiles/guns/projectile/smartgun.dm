@@ -10,7 +10,7 @@
 	icon_override = 'icons/obj/guns/projectile/smartgun_mob.dmi'
 	item_state = "smartgun"
 	w_class = ITEMSIZE_LARGE
-	matter = list(MAT_STEEL = 6000, MAT_DIAMOND = 2000, MAT_URANIUM = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(3), MAT_DIAMOND = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(1))
 	recoil = 1
 	projectile_type = /obj/item/projectile/bullet/smartgun	//Only used for chameleon guns
 	slot_flags = SLOT_BACK
@@ -138,7 +138,7 @@
 	icon = 'icons/obj/guns/projectile/smartgun_32.dmi'
 	icon_state = "smartgunmag"
 	slot_flags = SLOT_BELT
-	matter = list(MAT_STEEL = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.25))
 	w_class = ITEMSIZE_SMALL
 
 	mag_type = MAGAZINE

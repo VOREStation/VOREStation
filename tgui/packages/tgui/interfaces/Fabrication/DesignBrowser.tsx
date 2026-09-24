@@ -1,6 +1,7 @@
 import { sortBy } from 'es-toolkit';
 import type { ReactNode } from 'react';
 import { useSharedState } from 'tgui/backend';
+import { SearchBar } from 'tgui/interfaces/common/SearchBar';
 import {
   Dimmer,
   Icon,
@@ -9,7 +10,6 @@ import {
   VirtualList,
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-import { SearchBar } from '../common/SearchBar';
 import type { Design, MaterialMap } from './Types';
 
 /**

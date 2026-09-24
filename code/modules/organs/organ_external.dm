@@ -129,29 +129,6 @@
 
 	return ..()
 
-/obj/item/organ/external/emp_act(severity, recursive)
-	. = ..()
-	if (. & EMP_PROTECT_SELF)
-		return
-	for(var/obj/O as anything in src.contents)
-		O.emp_act(severity, recursive)
-
-	if(!(robotic >= ORGAN_ROBOT))
-		return
-	var/burn_damage = 0
-	switch (severity)
-		if (1)
-			burn_damage += rand(5, 8)
-		if (2)
-			burn_damage += rand(4, 6)
-		if(3)
-			burn_damage += rand(2, 5)
-		if(4)
-			burn_damage += rand(1, 3)
-
-	if(burn_damage)
-		take_damage(0, burn_damage)
-
 /obj/item/organ/external/attack_self(mob/living/user)
 	. = ..(user)
 	if(.)
@@ -914,7 +891,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/heal_amt = 0
 
 		// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
-		if (W.can_autoheal() && W.wound_damage() < 50)
+		if (W.can_autoheal() && W.wound_damage() < WOUND_CRITICAL_HEAL_LIMIT)
 			heal_amt += 0.5
 
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
@@ -928,7 +905,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.heal_damage(heal_amt)
 
 		// Salving also helps against infection
-		if(W.germ_level > 0 && W.salved && prob(2))
+		if(W.germ_level > 0 && W.salved)
 			W.disinfected = 1
 			W.germ_level = 0
 
@@ -1532,13 +1509,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal && !open) continue // can't see internal wounds
 		var/this_wound_desc = W.desc
 
+		var/insuffic = "" // Wound is treated, but the wound is so large it won't heal without surgery
+		if(W.can_autoheal() && W.wound_damage() >= WOUND_CRITICAL_HEAL_LIMIT)
+			insuffic = "insufficiently "
+
 		if(W.damage_type == BURN && W.salved)
-			this_wound_desc = "salved [this_wound_desc]"
+			this_wound_desc = "[insuffic]salved [this_wound_desc]"
 
 		if(W.bleeding())
 			this_wound_desc = "bleeding [this_wound_desc]"
 		else if(W.bandaged)
-			this_wound_desc = "bandaged [this_wound_desc]"
+			this_wound_desc = "[W.damage_type != BURN ? insuffic : ""]bandaged [this_wound_desc]"
 
 		if(W.germ_level > 600)
 			this_wound_desc = "badly infected [this_wound_desc]"

@@ -180,9 +180,9 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 
 .pnarrate				{color: #009AB2;}
 
-.spoiler				{background-color: gray;color: transparent;}
+.text-spoiler				{background-color: gray;color: transparent;}
 
-.spoiler:hover			{background-color: inherit;color: inherit;}
+.text-spoiler:hover			{background-color: inherit;color: inherit;}
 
 .brute					{color: #FF3333;}
 .burn					{color: #FF9933;}

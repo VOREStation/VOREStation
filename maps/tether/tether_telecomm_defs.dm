@@ -10,7 +10,7 @@
 
 /obj/machinery/telecomms/receiver/preset_right/tether
 	id = "tether_rx"
-	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ)
+	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ, ATC_FREQ, CULTURE_FREQ)
 
 /obj/machinery/telecomms/broadcaster/preset_right/tether
 	id = "tether_tx"

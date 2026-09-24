@@ -65,7 +65,7 @@ Bonus
 	if(!unsafe || A.stage < 4)
 		to_chat(M, span_warning(pick("You feel hot.", "You feel like you're burning.")))
 	else
-		to_chat(M, span_userdanger(pick("You feel too hot", "You feel like your blod is boiling.")))
+		to_chat(M, span_userdanger(pick("You feel too hot", "You feel like your blood is boiling.")))
 	set_body_temp(A.affected_mob, A)
 
 /datum/symptom/fever/proc/set_body_temp(mob/living/M, datum/disease/advance/A)

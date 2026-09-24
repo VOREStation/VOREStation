@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { getIconFromRefMap } from 'tgui/events/handlers/assets';
-import { Button, ImageButton, Input, Section } from 'tgui-core/components';
+import { Box, Button, ImageButton, Input, Section } from 'tgui-core/components';
 import {
   ColorizedImageButton,
   ColorPicker,
@@ -48,6 +48,22 @@ export const HairImageButton = (
     );
   }
   const data = serverData.hair_styles[hairStyle];
+  if (data.icon_state === null || data.icon === null) {
+    return (
+      <ImageButton
+        verticalAlign="top"
+        onClick={onClick}
+        tooltip={props.tooltip}
+        selected={props.selected}
+        dmIcon="icons/mob/mob.dmi"
+        dmIconState="blank"
+        dmFallback={<Box width="64px" height="64px" />}
+      >
+        {props.children}
+      </ImageButton>
+    );
+  }
+
   return (
     <ColorizedImageButton
       iconRef={data.icon}
@@ -89,7 +105,6 @@ export const HairDimmer = (props: {
       title="Hair"
       fill
       scrollable
-      mt={1}
       buttons={
         <Button onClick={() => setShow(BodyPopup.None)} color="bad">
           Close

@@ -10,7 +10,6 @@
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/datum/thrownthing/throwing
-	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
@@ -99,7 +98,6 @@
 
 	if(orbiting)
 		stop_orbit()
-	throw_source = null
 	QDEL_NULL(riding_datum)
 	set_listening(NON_LISTENING_ATOM)
 

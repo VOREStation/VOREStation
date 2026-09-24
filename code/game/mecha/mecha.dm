@@ -9,6 +9,7 @@
 	desc = "Exosuit"
 	description_info = "Alt click to strafe."
 	icon = 'icons/mecha/mecha.dmi'
+	flags = REMOTEVIEW_ON_ENTER
 	density = TRUE							//Dense. To raise the heat.
 	opacity = 1							//Opaque. Menacing.
 	anchored = TRUE						//No pulling around.
@@ -234,6 +235,8 @@
 	src.mecha_log_message("[src.name] created.")
 	loc.Entered(src)
 	GLOB.mechas_list += src //global mech list
+
+	AddElement(/datum/element/sellable/mecha)
 
 /obj/mecha/drain_power(drain_check)
 

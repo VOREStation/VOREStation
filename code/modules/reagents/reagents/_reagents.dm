@@ -180,7 +180,7 @@
 	removed = min(removed, volume)
 	max_dose = max(volume, max_dose)
 	dose = min(dose + removed, max_dose)
-	if(M.species.medallergens & medallergen_type) // Medical allergies don't gain ANY benefits...
+	if(M.species && (M.species.medallergens & medallergen_type)) // Medical allergies don't gain ANY benefits...
 		M.add_chemical_effect(CE_ALLERGEN, allergen_factor * removed)
 		remove_self(removed)
 		return

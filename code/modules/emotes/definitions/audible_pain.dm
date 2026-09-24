@@ -2,6 +2,8 @@
 	key = "pain"
 	emote_message_1p = "You yell in pain!"
 	emote_message_3p = "yells in pain!"
+	emote_message_mute_1p = "You yell silently in pain!"
+	emote_message_mute_3p = "yells silently in pain!"
 
 /datum/decl/emote/audible/pain/get_emote_message_1p(atom/user, atom/target, extra_params)
 	if(ishuman(user))

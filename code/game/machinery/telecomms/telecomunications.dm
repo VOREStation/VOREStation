@@ -112,11 +112,10 @@
 /obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)
 	// return 1 if found, 0 if not found
 	if(!signal)
-		return 0
-	if((signal.frequency in freq_listening) || (!freq_listening.len))
-		return 1
-	else
-		return 0
+		return FALSE
+	if((signal.frequency in freq_listening) || (!length(freq_listening)))
+		return TRUE
+	return FALSE
 
 
 /obj/machinery/telecomms/Initialize(mapload)

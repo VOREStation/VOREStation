@@ -2,6 +2,8 @@
 	key = "scream"
 	emote_message_1p = "You scream!"
 	emote_message_3p = "screams!"
+	emote_message_mute_1p = "You scream silently!"
+	emote_message_mute_3p = "screams silently!"
 
 /datum/decl/emote/audible/scream/get_emote_sound(atom/user)
 	if(ishuman(user))
@@ -17,11 +19,15 @@
 /datum/decl/emote/audible/scream/get_emote_message_1p(atom/user, atom/target, extra_params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+		if(HAS_MIND_TRAIT(H, TRAIT_MIMING))
+			return emote_message_mute_1p
 		return "You [H.species.scream_verb_1p]!"
 	. = ..()
 
 /datum/decl/emote/audible/scream/get_emote_message_3p(atom/user, atom/target, extra_params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+		if(HAS_MIND_TRAIT(H, TRAIT_MIMING))
+			return emote_message_mute_3p
 		return "[H.species.scream_verb_3p]!"
 	. = ..()

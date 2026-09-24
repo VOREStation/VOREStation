@@ -26,7 +26,7 @@
 	var/charge_delay = 0  // How long it takes for the cell to start recharging after last use
 	var/robot_durability = 50
 
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.025))
 
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
@@ -178,7 +178,7 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/target = M
 		if(target.opened)
-			return ITEM_INTERACT_SUCCESS
+			return ITEM_INTERACT_SKIP_TO_ATTACK
 	..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)

@@ -75,11 +75,14 @@
 
 	. = ..()
 
-/obj/machinery/atmospherics/proc/findConnecting(direction)
+/obj/machinery/atmospherics/proc/findConnecting(direction, check_layer)
 	for(var/obj/machinery/atmospherics/target in get_step(src,direction))
 		if(target.initialize_directions & get_dir(target,src))
-			if(isConnectable(target) && target.isConnectable(src))
+			if(isConnectable(target) && target.isConnectable(src) && (!check_layer || target.piping_layer == check_layer))
 				return target
+	// If we fail to find it with a specific check layer, try again with any layer
+	if(check_layer)
+		return findConnecting(direction, 0)
 
 /obj/machinery/atmospherics/proc/isConnectable(obj/machinery/atmospherics/target)
 	return (target == node1 || target == node2)
@@ -104,3 +107,15 @@
 
 /obj/machinery/atmospherics/unary/isConnectable(obj/machinery/atmospherics/target)
 	return (target == node || ..())
+
+/obj/machinery/atmospherics/pipe/simple/visible/universal/isConnectable(obj/machinery/atmospherics/target)
+	for(var/list/node_layer in universal_nodes)
+		if(target == node_layer[1] || target == node_layer[2])
+			return TRUE
+	return FALSE
+
+/obj/machinery/atmospherics/pipe/simple/hidden/universal/isConnectable(obj/machinery/atmospherics/target)
+	for(var/list/node_layer in universal_nodes)
+		if(target == node_layer[1] || target == node_layer[2])
+			return TRUE
+	return FALSE

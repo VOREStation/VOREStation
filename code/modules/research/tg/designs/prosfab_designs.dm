@@ -13,7 +13,7 @@
 
 //////////////////// Prosthetics ////////////////////
 /datum/design_techweb/prosfab/pros/torso
-	materials = list(MAT_STEEL = 30000, MAT_GLASS = 7500)
+	materials = list(MAT_STEEL = MATERIAL_COST(15), MAT_GLASS = MATERIAL_COST(3.75))
 	var/gender = MALE
 
 /datum/design_techweb/prosfab/pros/torso/male
@@ -38,7 +38,7 @@
 	name = "Prosthetic Head"
 	id = "pros_head"
 	build_path = /obj/item/organ/external/head
-	materials = list(MAT_STEEL = 18750, MAT_GLASS = 3750)
+	materials = list(MAT_STEEL = MATERIAL_COST(9.375), MAT_GLASS = MATERIAL_COST(1.875))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "head_m"
 
@@ -46,7 +46,7 @@
 	name = "Prosthetic Left Arm"
 	id = "pros_l_arm"
 	build_path = /obj/item/organ/external/arm
-	materials = list(MAT_STEEL = 10125)
+	materials = list(MAT_STEEL = MATERIAL_COST(5.0625))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "l_arm"
 
@@ -54,7 +54,7 @@
 	name = "Prosthetic Left Hand"
 	id = "pros_l_hand"
 	build_path = /obj/item/organ/external/hand
-	materials = list(MAT_STEEL = 3375)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.6875))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "l_hand"
 
@@ -62,7 +62,7 @@
 	name = "Prosthetic Right Arm"
 	id = "pros_r_arm"
 	build_path = /obj/item/organ/external/arm/right
-	materials = list(MAT_STEEL = 10125)
+	materials = list(MAT_STEEL = MATERIAL_COST(5.0625))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "r_arm"
 
@@ -70,7 +70,7 @@
 	name = "Prosthetic Right Hand"
 	id = "pros_r_hand"
 	build_path = /obj/item/organ/external/hand/right
-	materials = list(MAT_STEEL = 3375)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.6875))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "r_hand"
 
@@ -78,7 +78,7 @@
 	name = "Prosthetic Left Leg"
 	id = "pros_l_leg"
 	build_path = /obj/item/organ/external/leg
-	materials = list(MAT_STEEL = 8437)
+	materials = list(MAT_STEEL = MATERIAL_COST(4.2185))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "l_leg"
 
@@ -86,7 +86,7 @@
 	name = "Prosthetic Left Foot"
 	id = "pros_l_foot"
 	build_path = /obj/item/organ/external/foot
-	materials = list(MAT_STEEL = 2813)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.4065))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "l_foot"
 
@@ -94,7 +94,7 @@
 	name = "Prosthetic Right Leg"
 	id = "pros_r_leg"
 	build_path = /obj/item/organ/external/leg/right
-	materials = list(MAT_STEEL = 8437)
+	materials = list(MAT_STEEL = MATERIAL_COST(4.2185))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "r_leg"
 
@@ -102,7 +102,7 @@
 	name = "Prosthetic Right Foot"
 	id = "pros_r_foot"
 	build_path = /obj/item/organ/external/foot/right
-	materials = list(MAT_STEEL = 2813)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.4065))
 	research_icon = 'icons/mob/human_races/robotic.dmi'
 	research_icon_state = "r_foot"
 
@@ -115,79 +115,79 @@
 	name = "Prosthetic Powercell"
 	id = "pros_cell"
 	build_path = /obj/item/organ/internal/cell
-	materials = list(MAT_STEEL = 7500, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_GLASS = MATERIAL_COST(1.5))
 
 /datum/design_techweb/prosfab/pros/internal/eyes
 	name = "Prosthetic Eyes"
 	id = "pros_eyes"
 	build_path = /obj/item/organ/internal/eyes/robot
-	materials = list(MAT_STEEL = 5625, MAT_GLASS = 5625)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.8125), MAT_GLASS = MATERIAL_COST(2.8125))
 
 /datum/design_techweb/prosfab/pros/internal/hydraulic
 	name = "Hydraulic Hub"
 	id = "pros_hydraulic"
 	build_path = /obj/item/organ/internal/heart/machine
-	materials = list(MAT_STEEL = 7500, MAT_PLASTIC = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_PLASTIC = MATERIAL_COST(1.5))
 
 /datum/design_techweb/prosfab/pros/internal/reagcycler
 	name = "Reagent Cycler"
 	id = "pros_reagcycler"
 	build_path = /obj/item/organ/internal/stomach/machine
-	materials = list(MAT_STEEL = 7500, MAT_PLASTIC = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_PLASTIC = MATERIAL_COST(1.5))
 
 /datum/design_techweb/prosfab/pros/internal/heatsink
 	name = "Heatsink"
 	id = "pros_heatsink"
 	build_path = /obj/item/organ/internal/robotic/heatsink
-	materials = list(MAT_STEEL = 7500, MAT_PLASTIC = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_PLASTIC = MATERIAL_COST(1.5))
 
 /datum/design_techweb/prosfab/pros/internal/diagnostic
 	name = "Diagnostic Controller"
 	id = "pros_diagnostic"
 	build_path = /obj/item/organ/internal/robotic/diagnostic
-	materials = list(MAT_STEEL = 7500, MAT_PLASTIC = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_PLASTIC = MATERIAL_COST(1.5))
 
 /datum/design_techweb/prosfab/pros/internal/heart
 	name = "Prosthetic Heart"
 	id = "pros_heart"
 	build_path = /obj/item/organ/internal/heart
-	materials = list(MAT_STEEL = 5625, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.8125), MAT_GLASS = MATERIAL_COST(0.5))
 
 /datum/design_techweb/prosfab/pros/internal/lungs
 	name = "Prosthetic Lungs"
 	id = "pros_lung"
 	build_path = /obj/item/organ/internal/lungs
-	materials = list(MAT_STEEL = 5625, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.8125), MAT_GLASS = MATERIAL_COST(0.5))
 
 /datum/design_techweb/prosfab/pros/internal/liver
 	name = "Prosthetic Liver"
 	id = "pros_liver"
 	build_path = /obj/item/organ/internal/liver
-	materials = list(MAT_STEEL = 5625, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.8125), MAT_GLASS = MATERIAL_COST(0.5))
 
 /datum/design_techweb/prosfab/pros/internal/kidneys
 	name = "Prosthetic Kidneys"
 	id = "pros_kidney"
 	build_path = /obj/item/organ/internal/kidneys
-	materials = list(MAT_STEEL = 5625, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.8125), MAT_GLASS = MATERIAL_COST(0.5))
 
 /datum/design_techweb/prosfab/pros/internal/spleen
 	name = "Prosthetic Spleen"
 	id = "pros_spleen"
 	build_path = /obj/item/organ/internal/spleen
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 750)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(0.375))
 
 /datum/design_techweb/prosfab/pros/internal/larynx
 	name = "Prosthetic Larynx"
 	id = "pros_larynx"
 	build_path = /obj/item/organ/internal/voicebox
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 750, MAT_PLASTIC = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.375), MAT_PLASTIC = MATERIAL_COST(0.25))
 
 /datum/design_techweb/prosfab/pros/internal/stomach
 	name = "Prosthetic Stomach"
 	id = "pros_stomach"
 	build_path = /obj/item/organ/internal/stomach
-	materials = list(MAT_STEEL = 5625, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.8125), MAT_GLASS = MATERIAL_COST(0.5))
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design_techweb/prosfab/cyborg
@@ -195,49 +195,49 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_COMPONENTS
 	)
-	materials = list(MAT_STEEL = 3750)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.875))
 
 /datum/design_techweb/prosfab/cyborg/exoskeleton
 	name = "Robot Exoskeleton"
 	id = "robot_exoskeleton"
 	build_path = /obj/item/robot_parts/robot_suit
-	materials = list(MAT_STEEL = 37500)
+	materials = list(MAT_STEEL = MATERIAL_COST(18.75))
 
 /datum/design_techweb/prosfab/cyborg/torso
 	name = "Robot Torso"
 	id = "robot_torso"
 	build_path = /obj/item/robot_parts/chest
-	materials = list(MAT_STEEL = 30000)
+	materials = list(MAT_STEEL = MATERIAL_COST(15))
 
 /datum/design_techweb/prosfab/cyborg/head
 	name = "Robot Head"
 	id = "robot_head"
 	build_path = /obj/item/robot_parts/head
-	materials = list(MAT_STEEL = 18750)
+	materials = list(MAT_STEEL = MATERIAL_COST(9.375))
 
 /datum/design_techweb/prosfab/cyborg/l_arm
 	name = "Robot Left Arm"
 	id = "robot_l_arm"
 	build_path = /obj/item/robot_parts/l_arm
-	materials = list(MAT_STEEL = 13500)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.75))
 
 /datum/design_techweb/prosfab/cyborg/r_arm
 	name = "Robot Right Arm"
 	id = "robot_r_arm"
 	build_path = /obj/item/robot_parts/r_arm
-	materials = list(MAT_STEEL = 13500)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.75))
 
 /datum/design_techweb/prosfab/cyborg/l_leg
 	name = "Robot Left Leg"
 	id = "robot_l_leg"
 	build_path = /obj/item/robot_parts/l_leg
-	materials = list(MAT_STEEL = 11250)
+	materials = list(MAT_STEEL = MATERIAL_COST(5.625))
 
 /datum/design_techweb/prosfab/cyborg/r_leg
 	name = "Robot Right Leg"
 	id = "robot_r_leg"
 	build_path = /obj/item/robot_parts/r_leg
-	materials = list(MAT_STEEL = 11250)
+	materials = list(MAT_STEEL = MATERIAL_COST(5.625))
 
 
 //////////////////// Cyborg Internals ////////////////////
@@ -246,7 +246,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_INTERNALS
 	)
 	build_type = PROSFAB
-	materials = list(MAT_STEEL = 7500)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75))
 
 /datum/design_techweb/prosfab/cyborg/component/binary_communication_device
 	name = "Binary Communication Device"
@@ -294,42 +294,42 @@
 	id = "improved_radio"
 	build_path = /obj/item/robot_parts/robot_component/radio/upgraded
 	// req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
-	materials = list(MAT_STEEL = 10000, MAT_DIAMOND = 2000, MAT_PLASTEEL = 3000, MAT_GLASS = 6500, MAT_SILVER = 3000, MAT_MORPHIUM = 560, MAT_DURASTEEL = 800)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_DIAMOND = MATERIAL_COST(1), MAT_PLASTEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(3.25), MAT_SILVER = MATERIAL_COST(1.5), MAT_MORPHIUM = MATERIAL_COST(0.28), MAT_DURASTEEL = MATERIAL_COST(0.4))
 
 /datum/design_techweb/prosfab/cyborg/component/actuator_upgraded
 	name = "Improved Actuator"
 	id = "improved_actuator"
 	build_path = /obj/item/robot_parts/robot_component/actuator/upgraded
 	// req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
-	materials = list(MAT_STEEL = 10000, MAT_PLASTEEL = 2500, MAT_MORPHIUM = 500, MAT_DURASTEEL = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_PLASTEEL = MATERIAL_COST(1.25), MAT_MORPHIUM = MATERIAL_COST(0.25), MAT_DURASTEEL = MATERIAL_COST(0.25))
 
 /datum/design_techweb/prosfab/cyborg/component/diagnosis_unit_upgraded
 	name = "Improved Diagnosis Unit"
 	id = "improved_diagnosis_unit"
 	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit/upgraded
 	// req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
-	materials = list(MAT_STEEL = 10000, MAT_DIAMOND = 2000, MAT_URANIUM = 4000, MAT_PLASTEEL = 1000, MAT_GLASS = 400, MAT_SILVER = 1000, MAT_MORPHIUM = 420, MAT_DURASTEEL = 600)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_DIAMOND = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(2), MAT_PLASTEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.2), MAT_SILVER = MATERIAL_COST(0.5), MAT_MORPHIUM = MATERIAL_COST(0.21), MAT_DURASTEEL = MATERIAL_COST(0.3))
 
 /datum/design_techweb/prosfab/cyborg/component/camera_upgraded
 	name = "Improved Camera"
 	id = "improved_camera"
 	build_path = /obj/item/robot_parts/robot_component/camera/upgraded
 	// req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
-	materials = list(MAT_STEEL = 10000, MAT_DIAMOND = 2000, MAT_PLASTEEL = 3000, MAT_GLASS = 6500, MAT_SILVER = 3000, MAT_MORPHIUM = 560, MAT_DURASTEEL = 800)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_DIAMOND = MATERIAL_COST(1), MAT_PLASTEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(3.25), MAT_SILVER = MATERIAL_COST(1.5), MAT_MORPHIUM = MATERIAL_COST(0.28), MAT_DURASTEEL = MATERIAL_COST(0.4))
 
 /datum/design_techweb/prosfab/cyborg/component/binary_communication_device/upgraded
 	name = "Improved Binary Communication Device"
 	id = "improved_binary_communication_device"
 	build_path = /obj/item/robot_parts/robot_component/binary_communication_device/upgraded
 	// req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
-	materials = list(MAT_STEEL = 10000, MAT_DIAMOND = 2000, MAT_PLASTEEL = 3000, MAT_GLASS = 6500, MAT_GOLD = 3000, MAT_DURASTEEL = 800)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_DIAMOND = MATERIAL_COST(1), MAT_PLASTEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(3.25), MAT_GOLD = MATERIAL_COST(1.5), MAT_DURASTEEL = MATERIAL_COST(0.4))
 
 /datum/design_techweb/prosfab/cyborg/component/armour_very_heavy
 	name = "Armour Plating (Prototype)"
 	id = "titan_armour"
 	build_path = /obj/item/robot_parts/robot_component/armour/armour_titan
 	// req_tech = list(TECH_MATERIAL = 9, TECH_PRECURSOR = 3)
-	materials = list(MAT_STEEL = 12000, MAT_MORPHIUM = 3000, MAT_DURASTEEL = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_MORPHIUM = MATERIAL_COST(1.5), MAT_DURASTEEL = MATERIAL_COST(2.5))
 
 
 //////////////////// Cyborg Modules ////////////////////
@@ -338,7 +338,7 @@
 		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_UTILITY
 	)
 	build_type = PROSFAB
-	materials = list(MAT_STEEL = 7500)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75))
 
 // Section for utility upgrades
 
@@ -358,7 +358,7 @@
 	name = "Emergency Restart Module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	id = "borg_restart_module"
-	materials = list(MAT_STEEL = 45000, MAT_GLASS = 3750)
+	materials = list(MAT_STEEL = MATERIAL_COST(22.5), MAT_GLASS = MATERIAL_COST(1.875))
 	build_path = /obj/item/borg/upgrade/utility/restart
 
 // Section for basic upgrades for all cyborgs
@@ -371,14 +371,14 @@
 	name = "Size Alteration Module"
 	id = "borg_sizeshift_module"
 	// req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/borg/upgrade/basic/sizeshift
 
 /datum/design_techweb/prosfab/robot_upgrade/basic/vtec
 	name = "VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	id = "borg_vtec_module"
-	materials = list(MAT_STEEL = 60000, MAT_GLASS = 4500, MAT_GOLD = 3750)
+	materials = list(MAT_STEEL = MATERIAL_COST(30), MAT_GLASS = MATERIAL_COST(2.25), MAT_GOLD = MATERIAL_COST(1.875))
 	build_path = /obj/item/borg/upgrade/basic/vtec
 
 /datum/design_techweb/prosfab/robot_upgrade/basic/syndicate
@@ -386,7 +386,7 @@
 	desc = "Allows for the construction of lethal upgrades for cyborgs."
 	id = "borg_syndicate_module"
 	// req_tech = list(TECH_COMBAT = 4, TECH_ILLEGAL = 3)
-	materials = list(MAT_STEEL = 7500, MAT_GLASS = 11250, MAT_DIAMOND = 7500)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_GLASS = MATERIAL_COST(5.625), MAT_DIAMOND = MATERIAL_COST(3.75))
 	build_path = /obj/item/borg/upgrade/basic/syndicate
 
 /datum/design_techweb/prosfab/robot_upgrade/basic/language
@@ -394,7 +394,7 @@
 	desc = "Used to let cyborgs other than clerical or service speak a variety of languages."
 	id = "borg_language_module"
 	// req_tech = list(TECH_DATA = 6, TECH_MATERIAL = 6)
-	materials = list(MAT_STEEL = 25000, MAT_GLASS = 3000, MAT_GOLD = 350)
+	materials = list(MAT_STEEL = MATERIAL_COST(12.5), MAT_GLASS = MATERIAL_COST(1.5), MAT_GOLD = MATERIAL_COST(0.175))
 	build_path = /obj/item/borg/upgrade/basic/language
 
 // Section for advanced upgrades for all cyborgs
@@ -407,28 +407,28 @@
 	name = "Robohound Capacity Expansion Module"
 	id = "borg_hound_capacity_module"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2)
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/borg/upgrade/advanced/bellysizeupgrade
 
 /datum/design_techweb/prosfab/robot_upgrade/advanced/sizegun
 	name = "Size Gun Module"
 	id = "borg_sizegun_module"
 	// req_tech = list(TECH_COMBAT = 3, TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/borg/upgrade/advanced/sizegun
 
 /datum/design_techweb/prosfab/robot_upgrade/advanced/jetpack
 	name = "Jetpack Module"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	id = "borg_jetpack_module"
-	materials = list(MAT_STEEL = 7500, MAT_PHORON = 11250, MAT_URANIUM = 15000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3.75), MAT_PHORON = MATERIAL_COST(5.625), MAT_URANIUM = MATERIAL_COST(7.5))
 	build_path = /obj/item/borg/upgrade/advanced/jetpack
 
 /datum/design_techweb/prosfab/robot_upgrade/advanced/advhealth
 	name = "Advanced Health Analyzer Module"
 	desc = "An advanced health analyzer suitable for diagnosing more serious injuries."
 	id = "borg_advhealth_module"
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6500, MAT_DIAMOND = 350)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(3.25), MAT_DIAMOND = MATERIAL_COST(0.175))
 	build_path = /obj/item/borg/upgrade/advanced/advhealth
 
 /*
@@ -443,7 +443,7 @@
 	name = "Robohound Capability Expansion Module"
 	id = "borg_hound_capability_module"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
-	materials = list(MAT_STEEL = 8000, MAT_GLASS = 6000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(3))
 	build_path = /obj/item/borg/upgrade/restricted/bellycapupgrade
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/advrped
@@ -454,7 +454,7 @@
 	desc = "Exactly the same as a standard Advanced RPED, but this one has mounting hardware for a Science Borg."
 	id = "borg_advrped_module"
 	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 6)
-	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000)
+	materials = list(MAT_STEEL = MATERIAL_COST(15), MAT_GLASS = MATERIAL_COST(5))
 	build_path = /obj/item/borg/upgrade/restricted/advrped
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/diamonddrill
@@ -465,7 +465,7 @@
 	desc = "A mining drill with a diamond tip, made for use by Mining Borgs."
 	id = "borg_ddrill_module"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 5, TECH_ENGINEERING = 5)
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/borg/upgrade/restricted/diamonddrill
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/pka
@@ -476,7 +476,7 @@
 	desc = "A mining weapon designed for clearing rocks and hostile wildlife. This model is equiped with a self upgrade system, allowing it to attach modules hands free."
 	id = "borg_pka_module"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
-	materials = list(MAT_PLASTEEL = 5000, MAT_GLASS = 1000, MAT_URANIUM = 500, MAT_PLATINUM = 350)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.25), MAT_PLATINUM = MATERIAL_COST(0.175))
 	build_path = /obj/item/borg/upgrade/restricted/pka
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/adv_scanner
@@ -487,7 +487,7 @@
 	desc = "An upgrade module to improve the potency of the integrated ore scanner."
 	id = "borg_adv_scanner_module"
 	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1500, MAT_DIAMOND = 350)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(2), MAT_GOLD = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.175))
 	build_path = /obj/item/borg/upgrade/restricted/adv_scanner
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/adv_snatcher
@@ -498,7 +498,7 @@
 	desc = "An upgrade module to expand the robot's sheet storage capacity."
 	id = "borg_adv_snatcher_module"
 	// req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 8, TECH_POWER = 6)
-	materials = list(MAT_STEEL = 12000, MAT_GLASS = 8000, MAT_PLASTEEL = 2000, MAT_DURASTEEL = 500, MAT_DIAMOND = 700)
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_GLASS = MATERIAL_COST(4), MAT_PLASTEEL = MATERIAL_COST(1), MAT_DURASTEEL = MATERIAL_COST(0.25), MAT_DIAMOND = MATERIAL_COST(0.35))
 	build_path = /obj/item/borg/upgrade/restricted/adv_snatcher
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/adv_mailbag
@@ -508,7 +508,7 @@
 	name = "Mail Compartment Upgrade"
 	desc = "An upgrade module to expand the robot's postage capacity."
 	id = "borg_adv_mailbag"
-	materials = list(MAT_STEEL = 12000, MAT_GLASS = 8000, MAT_PLASTEEL = 2000, MAT_DURASTEEL = 500, MAT_DIAMOND = 700)
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_GLASS = MATERIAL_COST(4), MAT_PLASTEEL = MATERIAL_COST(1), MAT_DURASTEEL = MATERIAL_COST(0.25), MAT_DIAMOND = MATERIAL_COST(0.35))
 	build_path = /obj/item/borg/upgrade/restricted/adv_mailbag
 
 /datum/design_techweb/prosfab/robot_upgrade/restricted/tasercooler
@@ -518,7 +518,7 @@
 	name = "Rapid Taser Cooling Module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	id = "borg_taser_module"
-	materials = list(MAT_STEEL = 60000, MAT_GLASS = 4500, MAT_GOLD = 1500, MAT_DIAMOND = 375)
+	materials = list(MAT_STEEL = MATERIAL_COST(30), MAT_GLASS = MATERIAL_COST(2.25), MAT_GOLD = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.1875))
 	build_path = /obj/item/borg/upgrade/restricted/tasercooler
 
 // Synthmorph Bags.
@@ -526,42 +526,42 @@
 	name = "Synthmorph Storage Bag"
 	desc = "Used to store or slowly defragment an FBP."
 	id = "misc_synth_bag"
-	materials = list(MAT_STEEL = 250, MAT_GLASS = 250, MAT_PLASTIC = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.125), MAT_GLASS = MATERIAL_COST(0.125), MAT_PLASTIC = MATERIAL_COST(1))
 	build_path = /obj/item/bodybag/cryobag/robobag
 
 /datum/design_techweb/prosfab/badge_nt
 	name = "NanoTrasen Tag"
 	desc = "Used to identify an empty NanoTrasen FBP."
 	id = "misc_synth_bag_tag_nt"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag
 
 /datum/design_techweb/prosfab/badge_morph
 	name = "Morpheus Tag"
 	desc = "Used to identify an empty Morpheus FBP."
 	id = "misc_synth_bag_tag_morph"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/morpheus
 
 /datum/design_techweb/prosfab/badge_wardtaka
 	name = "Ward-Takahashi Tag"
 	desc = "Used to identify an empty Ward-Takahashi FBP."
 	id = "misc_synth_bag_tag_wardtaka"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/wardtaka
 
 /datum/design_techweb/prosfab/badge_zenghu
 	name = "Zeng-Hu Tag"
 	desc = "Used to identify an empty Zeng-Hu FBP."
 	id = "misc_synth_bag_tag_zenghu"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/zenghu
 
 /datum/design_techweb/prosfab/badge_gilthari
 	name = "Gilthari Tag"
 	desc = "Used to identify an empty Gilthari FBP."
 	id = "misc_synth_bag_tag_gilthari"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_GOLD = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/gilthari
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_PHORON = 2)
 
@@ -569,7 +569,7 @@
 	name = "Vey-Medical Tag"
 	desc = "Used to identify an empty Vey-Medical FBP."
 	id = "misc_synth_bag_tag_veymed"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/veymed
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ILLEGAL = 1, TECH_BIO = 4)
 
@@ -577,28 +577,28 @@
 	name = "Hephaestus Tag"
 	desc = "Used to identify an empty Hephaestus FBP."
 	id = "misc_synth_bag_tag_heph"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/hephaestus
 
 /datum/design_techweb/prosfab/badge_grayson
 	name = "Grayson Tag"
 	desc = "Used to identify an empty Grayson FBP."
 	id = "misc_synth_bag_tag_grayson"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/grayson
 
 /datum/design_techweb/prosfab/badge_xion
 	name = "Xion Tag"
 	desc = "Used to identify an empty Xion FBP."
 	id = "misc_synth_bag_tag_xion"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500, MAT_PLASTIC = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_PLASTIC = MATERIAL_COST(0.5))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/xion
 
 /datum/design_techweb/prosfab/badge_bishop
 	name = "Bishop Tag"
 	desc = "Used to identify an empty Bishop FBP."
 	id = "misc_synth_bag_tag_bishop"
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 2000, MAT_PLASTIC = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(1), MAT_PLASTIC = MATERIAL_COST(0.25))
 	build_path = /obj/item/clothing/accessory/badge/corporate_tag/bishop
 
 // Replacement protean bits
@@ -607,14 +607,14 @@
 	name = "Protean Orchestrator"
 	id = "prot_orch"
 	build_path = /obj/item/organ/internal/nano/orchestrator
-	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(1))
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 
 /datum/design_techweb/prosfab/refactory
 	name = "Protean Refactory"
 	id = "prot_refact"
 	build_path = /obj/item/organ/internal/nano/refactory
-	materials = list(MAT_STEEL = 8000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(1))
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 
 ///// pAI parts!!!
@@ -625,7 +625,7 @@
 	category = list(
 		RND_CATEGORY_PROSFAB_PAI
 	)
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.5))
 
 /datum/design_techweb/prosfab/paiparts/cell
 	name = "pAI Cell"
@@ -664,7 +664,7 @@
 
 /datum/design_techweb/disk
 	build_type = IMPRINTER
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 1000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5))
 	lathe_time_factor = 1.5
 	category = list(
 		RND_CATEGORY_PROSFAB
@@ -710,5 +710,5 @@
 	name = "Anomalous Particle Gun Module"
 	desc = "An anomalous particle gun, for anomaly harvesting."
 	id = "borg_anomgun_module"
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500, MAT_URANIUM = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1.75), MAT_PHORON = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(0.75))
 	build_path = /obj/item/borg/upgrade/restricted/anomalygun

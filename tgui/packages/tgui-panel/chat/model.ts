@@ -16,7 +16,7 @@ export function canPageAcceptType(page: Page, type: string): boolean {
 export function typeIsImportant(type: string): boolean {
   let isImportant = false;
   for (const typeDef of MESSAGE_TYPES) {
-    if (typeDef.type === type && !!typeDef.important) {
+    if (typeDef.type === type && typeDef.important) {
       isImportant = true;
       break;
     }
