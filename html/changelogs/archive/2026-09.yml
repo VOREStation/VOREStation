@@ -146,3 +146,9 @@
 2026-09-23:
   Kashargul:
   - bugfix: persistent smart storages
+2026-09-24:
+  Diana:
+  - bugfix: Being electrocuted will properly stun you at high damage and weaken you
+      at low damage
+  Will:
+  - bugfix: Surgery is no longer attempted when any item is used on a mob
