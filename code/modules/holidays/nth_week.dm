@@ -46,7 +46,7 @@
 	name = HOLIDAY_SYSADMIN
 	begin_week = 4
 	begin_month = JULY
-	begin_week = FRIDAY
+	begin_weekday = FRIDAY
 
 /datum/holiday/nth_week/sysadmin/greet()
 	return "Wait… what exactly is SysAdmin Day? Oh, it's only the single greatest 24 hours on the planet… and pretty much the most important holiday of the year. \
