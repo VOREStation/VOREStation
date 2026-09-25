@@ -502,10 +502,11 @@ SUBSYSTEM_DEF(ticker)
 	remaining_time -= 60 SECONDS
 	if(remaining_time >= 60 SECONDS)
 		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(remaining_time)]."))
-		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time), 60 SECONDS)
-		return
+		if(remaining_time > 60 SECONDS)
+			countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time), 60 SECONDS)
+			return
 	if(remaining_time <= 60 SECONDS && remaining_time > 0)
-		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time - 1 SECOND), remaining_time)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time), max((remaining_time - 1 SECOND), 0))
 		return
 	if(!delay_end)
 		to_chat(world, span_boldannounce("Rebooting World."))
