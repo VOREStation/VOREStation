@@ -31,6 +31,7 @@
 
 #define HOLIDAY_DOCTORDAY "Doctor's Day"
 #define HOLIDAY_FRIENDSHIPDAY "Friendship Day"
+#define HOLIDAY_SYSADMIN "SysAdmin Day"
 
 #define HOLIDAY_VOREDAY "Vore Day"
 #define HOLIDAY_OBON "Obon"

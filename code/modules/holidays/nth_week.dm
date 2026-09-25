@@ -41,3 +41,13 @@
 	return "Originally an old holiday from Earth, Thanksgiving follows many of the \
 					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
 					for what one has in life."
+
+/datum/holiday/nth_week/sysadmin
+	name = HOLIDAY_SYSADMIN
+	begin_week = 4
+	begin_month = JULY
+	begin_week = FRIDAY
+
+/datum/holiday/nth_week/sysadmin/greet()
+	return "Wait… what exactly is SysAdmin Day? Oh, it's only the single greatest 24 hours on the planet… and pretty much the most important holiday of the year. \
+				It's also the perfect opportunity to pay tribute to the heroic men and women who, come rain or shine, prevent disasters, keep IT secure and put out tech fires left and right."
