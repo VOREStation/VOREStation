@@ -365,6 +365,10 @@
 	else
 		return 0
 
+/// Allows for conditional situations where an atom has more or less rad resistance depending on its state.
+/atom/proc/get_rad_insulation()
+	return rad_insulation
+
 // Show a message to all mobs and objects in sight of this atom
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"

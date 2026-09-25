@@ -36,11 +36,10 @@ SUBSYSTEM_DEF(radiation)
 	for (var/turf/turf_to_irradiate as anything in cached_turfs_to_process)
 		turfs_iterated += 1
 
-		for(var/obj/machinery/power/rad_collector in turf_to_irradiate)
-			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
-			continue
-
 		var/current_insulation = calculate_radiation_insulation(source, turf_to_irradiate, pulse_information, cached_rad_insulations)
+		for(var/obj/machinery/power/rad_collector in turf_to_irradiate)
+			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
+
 		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
 			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
