@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	var/message_range = world.view
 	var/italics = 0
 	var/do_sound = TRUE
-	if(!voice_sounds_list || !voice_sounds_list.len || (comsig_flags & COMSIG_SAY_DISABLE_SPEAK_NOISE))
+	if(!voice_sounds_list || !voice_sounds_list.len)
 		do_sound = FALSE
 
 	//Speaking into radios
@@ -331,17 +331,19 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	else if(custom_say)
 		verb = "[custom_say]"
 
+	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, verb)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK)
+		return 1
+	if(comsig_flags & COMSIG_SAY_DISABLE_SPEAK_NOISE)
+		do_sound = FALSE
+
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
 			var/sign_action = "[pick(S.speaking.signlang_verb)]."
 			automatic_custom_emote(VISIBLE_MESSAGE,sign_action)
 			do_sound = FALSE
-
-	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
-	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, verb)
-	if((comsig_flags & COMSIG_SAY_FORBID_SPEAK))
-		return 1
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()
