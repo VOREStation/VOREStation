@@ -892,6 +892,7 @@
 #include "code\datums\elements\godmode.dm"
 #include "code\datums\elements\light_blocking.dm"
 #include "code\datums\elements\radiation_protected_clothing.dm"
+#include "code\datums\elements\radio_creeper.dm"
 #include "code\datums\elements\rotatable.dm"
 #include "code\datums\elements\sellable.dm"
 #include "code\datums\elements\slosh.dm"

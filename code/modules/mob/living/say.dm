@@ -193,10 +193,9 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	//Clean up any remaining space on the left
 	message = trim_left(message)
 
-	// VOREStation Edit - Reflect messages as needed, no sanitizing because parse_languages will handle it for us
+	// Reflect messages as needed, no sanitizing because parse_languages will handle it for us
 	if(reflect_if_needed(message, src))
 		return
-	// VOREStation Edit End
 
 	// If the message ends in an alphanumeric character (therefore, not punctuation),
 	// and autopunctuation is turned on, add a period.
@@ -207,9 +206,13 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
+	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_pieces, speaking, message, whispering, message_mode)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Sometimes we just want to do nothing at all, like passing the message to a TTS object
+		return 1
+
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
-		if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
+		if(!(comsig_flags & COMSIG_SAY_IGNORE_MIME_VOW) && HAS_MIND_TRAIT(src, TRAIT_MIMING))
 			to_chat(src, span_green("You stop yourself from signing in favor of the art of mimery!"))
 			return FALSE
 		S.speaking.broadcast(src, S.message)
@@ -219,15 +222,23 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		log_runtime(EXCEPTION("Message failed to generate pieces. [message] - [json_encode(message_pieces)]"))
 		return 0
 
-	if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
+	if(!(comsig_flags & COMSIG_SAY_IGNORE_MIME_VOW) && HAS_MIND_TRAIT(src, TRAIT_MIMING))
 		to_chat(src, span_green("Your vow of silence prevents you from speaking!"))
 		return
 
 	// If you're muzzled, you can only speak sign language
 	// However, sign language is handled above.
-	if(is_muzzled())
+	if(!(comsig_flags & COMSIG_SAY_IGNORE_MUZZLING) && is_muzzled())
 		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
+
+	// Component control flags, lets us tweak the properties of says into what we need them to be.
+	if(comsig_flags & COMSIG_SAY_FORBID_RADIOS)
+		message_mode = null // We don't want to use any radios thanks.
+	if(comsig_flags & COMSIG_SAY_FORBID_WHISPERING)
+		whispering = FALSE
+	if(comsig_flags & COMSIG_SAY_FORCE_WHISPERING)
+		whispering = TRUE
 
 	//Whisper vars
 	var/w_scramble_range = 5	//The range at which you get ***as*th**wi****
@@ -249,7 +260,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//For speech disorders (hulk, slurring, stuttering)
 	var/list/message_data = list(message_pieces, verb, whispering)
-	if(handle_speech_problems(message_data))
+	if(!(comsig_flags & COMSIG_SAY_FORBID_SPEECH_PROBLEMS) && handle_speech_problems(message_data))
 		message_pieces = message_data[1]
 		whispering = message_data[3]
 
@@ -320,6 +331,13 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	else if(custom_say)
 		verb = "[custom_say]"
 
+	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, verb)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK)
+		return 1
+	if(comsig_flags & COMSIG_SAY_DISABLE_SPEAK_NOISE)
+		do_sound = FALSE
+
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
@@ -334,21 +352,27 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	//Atmosphere calculations (speaker's side only, for now)
 	var/turf/T = get_turf(src)
 	if(T)
-		//Air is too thin to carry sound at all, contact speech only
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = environment ? environment.return_pressure() : 0
-		if(pressure < SOUND_MINIMUM_PRESSURE)
-			message_range = 1
+		if(!(comsig_flags & COMSIG_SAY_IGNORE_AIR_PRESSURE))
+			//Air is too thin to carry sound at all, contact speech only
+			var/datum/gas_mixture/environment = T.return_air()
+			var/pressure = environment ? environment.return_pressure() : 0
+			if(pressure < SOUND_MINIMUM_PRESSURE)
+				message_range = 1
 
-		//Air is nearing minimum levels, make text italics as a hint, and muffle sound
-		if(pressure < ONE_ATMOSPHERE * 0.4)
-			italics = 1
-			sound_vol *= 0.5
+			//Air is nearing minimum levels, make text italics as a hint, and muffle sound
+			if(pressure < ONE_ATMOSPHERE * 0.4)
+				italics = 1
+				sound_vol *= 0.5
 
 		//Obtain the mobs and objects in the message range
-		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
-		listening = results["mobs"]
-		listening_obj = results["objs"]
+		var/mobs_can_hear = !(comsig_flags & COMSIG_SAY_FORBID_MOBS_HEARING)
+		var/objs_can_hear = !(comsig_flags & COMSIG_SAY_FORBID_OBJS_HEARING)
+		if(mobs_can_hear || objs_can_hear) // We check before if we need to do the big heavy range check at all.
+			var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
+			if(mobs_can_hear)
+				listening = results["mobs"]
+			if(objs_can_hear)
+				listening_obj = results["objs"]
 	else
 		return 1 //If we're in nullspace, then forget it.
 
@@ -381,7 +405,8 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 			if(M && src) //If we still exist, when the spawn processes
 				// Ghosts don't hear whispers
-				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
+				var/is_whisper = whispering || (comsig_flags & COMSIG_SAY_HIDDEN_FROM_GHOSTS)
+				if(is_whisper && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
 				(!(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || (isbelly(M.loc) && src == M.loc:owner))  && !check_rights_for(M.client, R_HOLDER))))
 					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), 2)
 					return
@@ -395,7 +420,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 							var/image/I1 = listening[M] || speech_bubble
 							images_to_clients[I1] |= M.client
 							M << I1
-				if(whispering && !isobserver(M)) //Don't even bother with these unless whispering
+				if(is_whisper && !isobserver(M)) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
 						if(M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2))
 							if(M.client && !runechat_enabled)
