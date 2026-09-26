@@ -79,6 +79,15 @@
 	else
 		set_light(0)
 
+/turf/space/MakeSlippery()
+	return
+
+/turf/space/MakeDry()
+	return
+
+/turf/space/handle_slip(mob/living/M, weaken_amount, obj/slipped_on, lube, slip_dist = 0, stun_amount, force_drop)
+	return FALSE
+
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(istype(C, /obj/item/stack/rods))

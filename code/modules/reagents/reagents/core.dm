@@ -277,14 +277,14 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if (environment && environment.temperature > min_temperature) // Abstracted as steam or something
+	if(environment && environment.temperature > min_temperature) // Abstracted as steam or something
 		var/removed_heat = between(0, volume * WATER_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if (prob(5))
 			T.visible_message(span_warning("The water sizzles as it lands on \the [T]!"))
 
-	else if(volume >= 10)
-		T.wet_floor(1)
+	if(volume >= 10)
+		T.MakeSlippery(TURF_WET_WATER, 40 SECONDS, min(volume * 3 SECONDS, 300 SECONDS))
 
 /datum/reagent/water/touch_obj(obj/O, amount)
 	..()

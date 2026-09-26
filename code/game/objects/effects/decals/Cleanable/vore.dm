@@ -43,5 +43,9 @@
 	name = custombasename
 	desc = custombasedesc
 
+//This will just be an issue until someone fixes this which will probably not happen
 /obj/effect/decal/cleanable/blood/reagent/Crossed(mob/living/carbon/human/perp)
 	//Nothing, we dont wanna spread our mess all over, at least not until people want that
+	//return //Not anymore
+	amount = 0 //Reo, you're so smart. This really need to be refactored to not be a blood subtype holy shit.
+	. = ..() //Fuck you.

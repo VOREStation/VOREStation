@@ -39,7 +39,7 @@
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
 			visible_message(span_infoplain(span_bold("\The [src]") + " squirts a puddle of water on the floor!"))
-			T.wet_floor()
+			T.MakeSlippery(TURF_WET_WATER, 20 SECONDS, 15 SECONDS)
 
 	if(!red_switch && !blue_switch && green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))

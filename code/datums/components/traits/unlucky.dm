@@ -83,7 +83,7 @@
 
 /datum/component/omen/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_accident))
-	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
+	RegisterSignal(parent, COMSIG_ON_LIVING_SLIP, PROC_REF(check_slip))
 	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
 	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
 	RegisterSignal(parent, COMSIG_MOB_ROLLED_DICE, PROC_REF(check_roll))
@@ -91,7 +91,7 @@
 	RegisterSignal(parent, COMSIG_ITEM_PICKUP, PROC_REF(check_pickup))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_ITEM_PICKUP))
+	UnregisterSignal(parent, list(COMSIG_ON_LIVING_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_ITEM_PICKUP))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -314,8 +314,11 @@
 		consume_omen()
 
 /// If we get knocked down, see if we have a really bad slip and bash our head hard
-/datum/component/omen/proc/check_slip(mob/living/our_guy, amount)
+/datum/component/omen/proc/check_slip(mob/living/our_guy, weaken_amount, slipped_on, lube, slip_dist)
 	SIGNAL_HANDLER
+
+	if(isbelly(our_guy.loc)) //Prevent cracking your skull against soft squishy gutflesh
+		return
 
 	if(prob(30)) // AAAA
 		our_guy.emote("scream")

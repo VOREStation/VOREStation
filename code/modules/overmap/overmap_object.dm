@@ -105,6 +105,7 @@
 	return dat
 
 /obj/effect/overmap/Crossed(obj/effect/overmap/visitable/other)
+	. = ..()
 	if(istype(other))
 		for(var/obj/effect/overmap/visitable/O in loc)
 			SSskybox.rebuild_skyboxes(O.map_z)

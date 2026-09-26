@@ -148,9 +148,9 @@
 	return
 
 /obj/effect/ebeam/deadly/Crossed(atom/A)
+	. = ..()
 	if(A.is_incorporeal())
 		return
-	..()
 	A.ex_act(1)
 
 // 'Reactive' beam parts do something when touched or stood in.

@@ -1,7 +1,5 @@
 /turf/simulated
 	name = "station"
-	var/wet = TURFSLIP_DRY
-	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
 	var/turf_resource_types
@@ -20,48 +18,6 @@
 	var/climbable = FALSE //Adds proc to wall if set to TRUE on its initialization, defined here since not all walls are subtypes of wall
 
 	var/icon_edge = 'icons/turf/outdoors_edge.dmi'	//Allows for alternative edge icon files
-	var/wet_cleanup_timer
-
-// This is not great.
-/turf/simulated/proc/wet_floor(wet_val = 1)
-	if(wet >= TURFSLIP_ICE)	//Can't mop up ice
-		return
-	wet = wet_val
-	if(wet_overlay)
-		cut_overlay(wet_overlay)
-	wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
-	add_overlay(wet_overlay)
-	if(wet_cleanup_timer)
-		deltimer(wet_cleanup_timer)
-		wet_cleanup_timer = null
-	if(wet == TURFSLIP_LUBE)
-		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 160 SECONDS, TIMER_STOPPABLE)
-	else
-		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 40 SECONDS, TIMER_STOPPABLE)
-
-/turf/simulated/proc/wet_floor_finish()
-	wet = TURFSLIP_DRY
-	if(wet_cleanup_timer)
-		deltimer(wet_cleanup_timer)
-		wet_cleanup_timer = null
-	if(wet_overlay)
-		cut_overlay(wet_overlay)
-		wet_overlay = null
-
-/turf/simulated/proc/freeze_floor()
-	if(!wet) // Water is required for it to freeze.
-		return
-	wet = TURFSLIP_ICE
-	if(wet_overlay)
-		cut_overlay(wet_overlay)
-		wet_overlay = null
-	wet_overlay = image('icons/turf/overlays.dmi',src,"snowfloor")
-	add_overlay(wet_overlay)
-	spawn(5 MINUTES)
-		wet = TURFSLIP_DRY
-		if(wet_overlay)
-			cut_overlay(wet_overlay)
-			wet_overlay = null
 
 /turf/simulated/Initialize(mapload)
 	. = ..()
@@ -135,10 +91,8 @@
 					from.AddTracks(H.species.get_move_trail(H),bloodDNA,0,H.dir,bloodcolor) // Going
 
 				bloodDNA = null
-
-		if(check_slipping(M,dirtslip))
-			var/datum/component/turfslip/TSC = M.LoadComponent(/datum/component/turfslip)
-			TSC.start_slip(src,dirtslip)
+			if(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES))
+				H.slip(8, src, NO_SLIP_WHEN_WALKING | SLIDE, 1) //Call slip directly, since it'd be wasteful to make a component for every dirt in existance, and then only use it situationally for a specific trait.
 	..()
 
 //returns 1 if made bloody, returns 0 otherwise

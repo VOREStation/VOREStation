@@ -495,6 +495,10 @@
 	inertia_dir = 0
 	return 1
 
+/// Called when this mob slips over, override as needed
+/mob/proc/slip(weaken_amount, obj/slipped_on, lube, slip_dist, stun, force_drop)
+	return
+
 /mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
 
 	var/dense_object = 0

@@ -450,6 +450,34 @@ emp_act
 					src.anchored = TRUE
 					src.pinned += thrown_object
 
+/mob/living/carbon/human/can_slip(lube)
+	if(!(lube & GALOSHES_DONT_HELP))	//normal slip checks here.
+		if(shoes && ((shoes.item_flags & NOSLIP) || (shoes.item_flags & NOSLIP_LUBE)))
+			return FALSE
+		//Footwear negates a species' natural traction.
+		var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
+		var/foot_covered = FALSE
+		for(var/obj/item/clothing/C in equipment)
+			if(C.body_parts_covered & FEET)
+				foot_covered = TRUE
+
+		if(!foot_covered && species && ((species.flags & NO_SLIP) || (species.flags & NO_SLIP)))
+			return FALSE
+	else								//"greater" slip checks
+		if(shoes && (shoes.item_flags & NOSLIP_LUBE))
+			return FALSE
+		//Footwear negates a species' natural traction. //Copied instead of earlier so it only has to run if shoe checks fail.
+		var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
+		var/foot_covered = FALSE
+		for(var/obj/item/clothing/C in equipment)
+			if(C.body_parts_covered & FEET)
+				foot_covered = TRUE
+
+		if(!foot_covered && species && (species.flags & NOSLIP_LUBE))
+			return FALSE
+
+	return ..()
+
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
 /mob/living/carbon/human/proc/can_catch(obj/item/O)
 	if(!isitem(O))

@@ -49,8 +49,21 @@
 #define TURFSLIP_LUBE 2
 #define TURFSLIP_ICE 3
 
+//Wet floor type flags. Stronger ones should be higher in number.
+#define TURF_DRY			(0)
+#define TURF_WET_WATER		(1<<0)
+#define TURF_WET_PERMAFROST	(1<<1)
+#define TURF_WET_ICE 		(1<<2)
+#define TURF_WET_LUBE		(1<<3)
+#define TURF_WET_SUPERLUBE	(1<<4)
+
+#define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
+
 ///Returns all turfs in a zlevel
 #define Z_TURFS(ZLEVEL) block(1, 1, ZLEVEL, world.maxx, world.maxy, ZLEVEL)
+
+//Maximum amount of time, (in deciseconds) a tile can be wet for.
+#define MAXIMUM_WET_TIME 5 MINUTES
 
 /// Digging loot with a shovel
 #define TURF_DIG_LOOT_ENDLESS 0

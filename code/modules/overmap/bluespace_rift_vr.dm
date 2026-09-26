@@ -25,10 +25,9 @@
 	paused = FALSE
 
 /obj/effect/overmap/bluespace_rift/Crossed(atom/movable/AM)
+	. = ..()
 	if(istype(AM, /obj/effect/overmap/visitable/ship) && !paused && partner)
 		partner.take_this(AM)
-	else
-		return ..()
 
 /obj/effect/overmap/bluespace_rift/attack_ghost(mob/observer/dead/user)
 	if(!partner && check_rights_for(user?.client, R_HOLDER))

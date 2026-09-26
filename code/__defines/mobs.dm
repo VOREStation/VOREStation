@@ -190,6 +190,12 @@
 #define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_ALL (~INCAPACITATION_NONE)
 
+#define NO_SLIP_WHEN_WALKING	(1<<0)
+#define SLIDE					(1<<1)
+#define SLIDE_RECURSIVE			(1<<2)	// replaces SLIDE_ICE from TG code. Makes sliding slips extend when passing over a slippery object with this.
+#define GALOSHES_DONT_HELP		(1<<3)	// Lube. Requires stronger anti-slip to stop slipping.
+#define SLIP_WHEN_CRAWLING		(1<<4)
+
 #define MODIFIER_STACK_FORBID	1	// Disallows stacking entirely.
 #define MODIFIER_STACK_EXTEND	2	// Disallows a second instance, but will extend the first instance if possible.
 #define MODIFIER_STACK_ALLOWED	3	// Multiple instances are allowed.
