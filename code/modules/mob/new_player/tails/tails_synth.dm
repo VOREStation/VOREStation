@@ -8,6 +8,7 @@
 	name = "Zeng-Hu Tajaran Synth tail"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_synth.dmi'
 	icon_state = "zenghu_taj"
+	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/wartacosushi_tail //brightened +20RGB from matching roboparts
 	name = "Ward-Takahashi Tail"
