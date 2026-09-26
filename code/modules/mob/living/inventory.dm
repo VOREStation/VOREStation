@@ -283,7 +283,16 @@
 	data["slots"] = slots
 
 	data["internals"] = host.internals
-	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.back, /obj/item/tank)
+	var/internals_valid = FALSE
+	if(istype(host.wear_mask, /obj/item/clothing/mask))
+		if(istype(host.back, /obj/item/tank) || istype(host.l_hand, /obj/item/tank) || istype(host.r_hand, /obj/item/tank))
+			internals_valid = TRUE
+		else if(ishuman(host))
+			var/mob/living/carbon/human/human_host = host
+			if(istype(human_host.r_store, /obj/item/tank) || istype(human_host.l_store, /obj/item/tank) || istype(human_host.s_store, /obj/item/tank))
+				internals_valid = TRUE
+
+	data["internalsValid"] = internals_valid
 
 	return data
 
