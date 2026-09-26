@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(supply)
 	var/list/order_history = list()			// History of orders, showing edits made by users
 	var/list/adm_order_history = list() 	// Complete history of all orders, for admin use
 	var/list/adm_export_history = list()	// Complete history of all crates sent back on the shuttle, for admin use
+	var/list/exported_research_mobs = list()// Number of mob types sold from cargo, used to calculate diminishing returns
 	//shuttle movement
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle
@@ -58,7 +59,10 @@ SUBSYSTEM_DEF(supply)
 //To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
-		return 1
+		var/mob/living/check_living = A
+		// Mobs inside stasis cages can be sold. otherwise loose mobs or mobs with clients are forbidden.
+		if(!istype(check_living.loc, /obj/structure/stasis_cage) || check_living.client)
+			return 1
 	if(istype(A,/obj/item/disk/nuclear))
 		return 1
 	if(istype(A,/obj/machinery/nuclearbomb))

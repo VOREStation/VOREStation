@@ -17,7 +17,9 @@ export function cmdTrace(ctx: CommandContext): void {
     print(`  Effect: ${effect}`, '#ff8800');
   }
   print(`  Cloak: ${state.cloakOn ? 'ON (-20% crack speed)' : 'off'}`);
-  print(`  Heat: ${state.heat}  ${state.heat > 0 ? '(use bounty to inspect)' : ''}`);
+  print(
+    `  Heat: ${state.heat}  ${state.heat > 0 ? '(use bounty to inspect)' : ''}`,
+  );
 }
 
 // ── cloak ─────────────────────────────────────────────────────────────────────
@@ -47,7 +49,11 @@ export function cmdVpn(args: readonly string[], ctx: CommandContext): void {
     print('No VPN Bursts in inventory.', '#ff8800');
     return;
   }
-  setG((prev) => ({ ...prev, trace: 0, inv: { ...prev.inv, VPN: prev.inv.VPN - 1 } }));
+  setG((prev) => ({
+    ...prev,
+    trace: 0,
+    inv: { ...prev.inv, VPN: prev.inv.VPN - 1 },
+  }));
   act('use_vpn');
   print('VPN Burst consumed. Trace reset to 0%.', '#33ff33');
 }
@@ -57,7 +63,9 @@ export function cmdVpn(args: readonly string[], ctx: CommandContext): void {
 export function cmdLaunder(ctx: CommandContext): void {
   const { gRef, setG, print, act } = ctx;
   const state = gRef.current;
-  const cost = Math.floor((400 + (state.trace / 100) * 400) * (1 + state.heat * 0.5));
+  const cost = Math.floor(
+    (400 + (state.trace / 100) * 400) * (1 + state.heat * 0.5),
+  );
   if (state.wallet < cost) {
     print(`Insufficient funds. Launder costs ${fmtMoney(cost)}.`, '#ff8800');
     return;

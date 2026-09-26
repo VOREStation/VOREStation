@@ -22,7 +22,7 @@
 				rig.req_one_access = initial(rig.req_one_access)
 		if(WIRE_RIG_INTERFACE_SHOCK)
 			rig.electrified = mend ? 0 : -1
-			rig.shock(usr,100)
+			rig.shock(usr,100) // TODO - REMOVE USR
 
 /datum/wires/rig/on_pulse(wire)
 	var/obj/item/rig/rig = holder
@@ -37,14 +37,14 @@
 			rig.malfunctioning += 10
 			if(rig.malfunction_delay <= 0)
 				rig.malfunction_delay = 20
-			rig.shock(usr,100)
+			rig.shock(usr,100) // TODO - REMOVE USR
 		if(WIRE_RIG_INTERFACE_LOCK)
 			rig.interface_locked = !rig.interface_locked
 			rig.visible_message("\The [rig] clicks audibly as the software interface [rig.interface_locked?"darkens":"brightens"].")
 		if(WIRE_RIG_INTERFACE_SHOCK)
 			if(rig.electrified != -1)
 				rig.electrified = 30
-			rig.shock(usr,100)
+			rig.shock(usr,100) // TODO - REMOVE USR
 
 /datum/wires/rig/interactable(mob/user)
 	var/obj/item/rig/rig = holder

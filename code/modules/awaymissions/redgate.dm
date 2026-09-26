@@ -74,6 +74,8 @@
 				to_chat(M, span_notice("The redgate refused your pulled item."))
 		else
 			playsound(src,'sound/effects/ominous-hum-2.ogg', 100,1)
+			if(egg_interdict(M, ourturf))
+				return
 			M.forceMove(ourturf)		//Let's just do forcemove, I don't really want people teleporting to weird places if they have bluespace stuff
 	else
 		to_chat(M, span_notice("Something blocks your way."))

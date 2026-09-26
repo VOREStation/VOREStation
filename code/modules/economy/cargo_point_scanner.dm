@@ -27,23 +27,36 @@
 	if(istype(AM,/obj/effect))
 		return 0
 
-	var/final_output = span_boldnotice("\The [src] assesses the supply point value of \the [AM]...\n")
+	var/final_output = span_boldnotice("\The [src] assesses the value of \the [AM]...\n")
 	playsound(src, 'sound/machines/beep.ogg', 50, 1)
 
 	// Some things cannot be sold
-	if(isliving(AM) || isstructure(AM) || isturf(AM))
+	if(isliving(AM) || isturf(AM))
 		final_output += span_danger("-Cannot be sold.")
 		to_chat(user,final_output)
 		return 0
 
-	// Get item value
-	var/value = SEND_SIGNAL(AM,COMSIG_ITEM_SCAN_PROFIT)
+	var/value = 0
+	if(istype(AM,/obj/structure/closet/crate))
+		// Scan all contents in crate
+		for(var/atom/movable/thing in AM.contents)
+			value += SEND_SIGNAL(thing,COMSIG_ITEM_SCAN_PROFIT)
+	else
+		// Get single item value
+		value = SEND_SIGNAL(AM,COMSIG_ITEM_SCAN_PROFIT)
+
 	if(!value)
 		final_output += span_danger("-It's worth nothing.")
 		to_chat(user,final_output)
 		return 0
 
+	// Stasis cages are for RESEARCH!
+	if(istype(AM,/obj/structure/stasis_cage))
+		final_output += span_notice("-Its contents can be studied for [value] research points.")
+		to_chat(user,final_output)
+		return value
+
 	var/price = SSsupply.points_to_cash(value)
-	final_output += span_notice("-It can be sold for [value] points, or [price] [price > 1 ? "thalers" : "thaler"]")
+	final_output += span_notice("-It can be sold for [value] supply points, or [price] [price > 1 ? "thalers" : "thaler"]")
 	to_chat(user,final_output)
 	return value

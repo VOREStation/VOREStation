@@ -35,12 +35,12 @@
 // Amnesty box
 /obj/machinery/disposal/turn_in
 	name = "amnesty bin"
-	desc = "A pneumatic waste disposal unit. A place to legally turn in contraban to security."
+	desc = "A pneumatic waste disposal unit. A place to legally turn in contraband to security."
 	icon_state = "green"
 
 /obj/machinery/disposal/wall/turn_in
 	name = "amnesty bin"
-	desc = "A pneumatic waste disposal unit. A place to legally turn in contraban to security."
+	desc = "A pneumatic waste disposal unit. A place to legally turn in contraband to security."
 	icon_state = "greenwall"
 
 // Gets mail

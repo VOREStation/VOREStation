@@ -383,8 +383,8 @@ emp_act
 
 		//check if we hit
 		var/miss_chance = 15
-		if (thrown_object.throw_source)
-			var/distance = get_dist(thrown_object.throw_source, loc)
+		if(throwingdatum?.starting_turf)
+			var/distance = get_dist(throwingdatum.starting_turf, loc)
 			miss_chance = max(15*(distance-2), 0)
 		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = thrower)
 
@@ -433,8 +433,8 @@ emp_act
 		var/mass = thrown_object.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(thrown_object.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
-			var/dir = get_dir(thrown_object.throw_source, src)
+		if(throwingdatum?.starting_turf && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
+			var/dir = get_dir(throwingdatum.starting_turf, src)
 
 			visible_message(span_filter_warning("[span_red("[src] staggers under the impact!")]"),span_filter_warning("[span_red("You stagger under the impact!")]"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)

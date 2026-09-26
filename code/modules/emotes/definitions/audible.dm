@@ -302,6 +302,18 @@
 	emote_message_mute_3p = "silently purrs."
 	emote_sound = 'sound/voice/cat_purr_long.ogg'
 
+/datum/decl/emote/audible/catgrowl
+	key = "catgrowl"
+	emote_message_3p = "growls like a big cat!"
+	emote_message_mute_3p = "growls like a big cat!"
+	emote_sound = 'sound/voice/cougar.ogg'
+
+/datum/decl/emote/audible/catgrowl2
+	key = "catgrowl2"
+	emote_message_3p = "growls like an upset big cat!"
+	emote_message_mute_3p = "growls like an upset big cat!"
+	emote_sound = 'sound/voice/lynx.ogg'
+
 /datum/decl/emote/audible/fennecscream
 	key = "fennecscream"
 	emote_message_3p = "screeches!"

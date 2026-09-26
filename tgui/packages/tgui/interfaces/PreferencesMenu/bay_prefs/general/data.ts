@@ -329,7 +329,11 @@ export type GeneralDataStatic = Partial<{
   available_wing_styles: string[];
 }>;
 
-export type StandardStyle = { name: string; icon: string; icon_state: string };
+export type StandardStyle = {
+  name: string;
+  icon: string | null;
+  icon_state: string | null;
+};
 
 export type EarStyle = StandardStyle & {
   type: string;
@@ -406,6 +410,8 @@ export type Species = {
   flags: SpeciesFlags;
   spawn_flags: SpawnFlags;
   appearance_flags: AppearanceFlags;
+  whitelisted: BooleanLike;
+  disabled: BooleanLike;
 };
 
 export enum TraitPrefType {

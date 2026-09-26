@@ -199,6 +199,9 @@
 		..()
 
 /mob/living/bot/emag_act(remaining_charges, mob/user)
+	locked = 0
+	req_access = list()
+	req_one_access = list()
 	return 0
 
 /mob/living/bot/proc/handleAI()

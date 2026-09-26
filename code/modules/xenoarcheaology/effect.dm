@@ -175,6 +175,8 @@
 			. += "drain the blood of subjects, creating creatures or anomalous artifacts in the process"
 		if(EFFECT_DNASWITCH)
 			. += "mutate the cells of the organism that touches it, resulting in rampant mutations"
+		if(EFFECT_ANOMALY)
+			. += "emit strange, anomalous energies"
 		else
 			. += "have no previously-known anomalous properties"
 

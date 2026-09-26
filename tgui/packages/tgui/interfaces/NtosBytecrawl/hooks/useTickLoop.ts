@@ -2,14 +2,15 @@
 // Per-tick game loop: job progress, trace, burn, contracts, bounties, fragments.
 
 import {
-  type Dispatch as ReactDispatch,
   type MutableRefObject,
+  type Dispatch as ReactDispatch,
   type SetStateAction,
   useEffect,
   useRef,
 } from 'react';
 
 import { CPU_UPGRADES, STL_UPGRADES, TICK_MS } from '../constants';
+import { fmtMoney } from '../format';
 import {
   computeBountyTick,
   computeBurnTick,
@@ -20,7 +21,6 @@ import {
   traceSlowFactor,
 } from '../logic';
 import type { GState, Line } from '../types';
-import { fmtMoney } from '../format';
 
 export function useTickLoop(
   phase: 'setup' | 'playing',
@@ -89,7 +89,13 @@ export function useTickLoop(
         );
 
         // ── Burn ────────────────────────────────────────────────────────────
-        const burnResult = computeBurnTick(newTrace, prev.heat, prev.wallet, newJobs, prev.cache);
+        const burnResult = computeBurnTick(
+          newTrace,
+          prev.heat,
+          prev.wallet,
+          newJobs,
+          prev.cache,
+        );
         if (burnResult.burned) {
           setLines((l) => [
             ...l,
@@ -110,19 +116,23 @@ export function useTickLoop(
         if (contractPayout > 0) {
           setLines((l) => [
             ...l,
-            { text: `[CONTRACT] Guaranteed payout: ${fmtMoney(contractPayout)}`, color: '#33ff33' },
+            {
+              text: `[CONTRACT] Guaranteed payout: ${fmtMoney(contractPayout)}`,
+              color: '#33ff33',
+            },
           ]);
         }
 
         // ── Bounty ──────────────────────────────────────────────────────────
-        const { newLastBounty, bountyPayout, justUnlocked, newBountyUnlocked } = computeBountyTick(
-          prev.lastBounty,
-          prev.bountyUnlocked,
-          prev.playtime,
-          prev.cpu,
-          prev.stl,
-          prev.ghost.market,
-        );
+        const { newLastBounty, bountyPayout, justUnlocked, newBountyUnlocked } =
+          computeBountyTick(
+            prev.lastBounty,
+            prev.bountyUnlocked,
+            prev.playtime,
+            prev.cpu,
+            prev.stl,
+            prev.ghost.market,
+          );
         if (justUnlocked) {
           setLines((l) => [
             ...l,
@@ -135,16 +145,19 @@ export function useTickLoop(
         if (bountyPayout > 0) {
           setLines((l) => [
             ...l,
-            { text: `[BOUNTY] Anonymous payout: ${fmtMoney(bountyPayout)}`, color: '#33cc33' },
+            {
+              text: `[BOUNTY] Anonymous payout: ${fmtMoney(bountyPayout)}`,
+              color: '#33cc33',
+            },
           ]);
         }
 
         // ── Fragment harvester ───────────────────────────────────────────────
-        const { newFragTimer, generated: fragGenerated, newInv } = computeFragTick(
-          prev.fragTimer,
-          prev.hasFragHarvester,
-          prev.inv,
-        );
+        const {
+          newFragTimer,
+          generated: fragGenerated,
+          newInv,
+        } = computeFragTick(prev.fragTimer, prev.hasFragHarvester, prev.inv);
         if (fragGenerated) {
           setLines((l) => [
             ...l,

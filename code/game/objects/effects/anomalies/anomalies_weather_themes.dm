@@ -57,6 +57,9 @@
 	T.vis_contents -= visuals
 
 /datum/anomalous_weather/proc/affect_turf(turf/to_affect)
+	if(isnull(to_affect))
+		return
+
 	if(iswall(to_affect) || isopenturf(to_affect))
 		return
 

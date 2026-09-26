@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(radiation)
 		var/datum/radiation_pulse_information/pulse_information = processing[1]
 
 		var/datum/weakref/source_ref = pulse_information.source_ref
-		var/atom/source = source_ref.resolve()
+		var/atom/source = source_ref?.resolve()
 		if (isnull(source))
 			processing.Cut(1, 2)
 			continue
@@ -33,38 +33,23 @@ SUBSYSTEM_DEF(radiation)
 	var/list/cached_rad_insulations = list()
 	var/list/cached_turfs_to_process = pulse_information.turfs_to_process
 	var/turfs_iterated = 0
-	var/pulse_strength = pulse_information.strength
 	for (var/turf/turf_to_irradiate as anything in cached_turfs_to_process)
 		turfs_iterated += 1
 
+		var/current_insulation = calculate_radiation_insulation(source, turf_to_irradiate, pulse_information, cached_rad_insulations)
 		for(var/obj/machinery/power/rad_collector in turf_to_irradiate)
-			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, 1) //We just do it here and skip all the math to make it faster. Sure, we could have something blocking the rad collectors, but this is faster and has better CPU gains in exchange for negligible gameplay impact.
-			continue
+			SEND_SIGNAL(rad_collector, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 		for(var/obj/item/geiger/geiger_counter in turf_to_irradiate)
-			geiger_check(source, pulse_information, geiger_counter, geiger_counter)
+			SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 		for(var/mob/living/target in turf_to_irradiate)
 			var/list/contents_to_check = target.get_all_contents_type(/obj/item/geiger)
 			for(var/obj/item/geiger/geiger_counter in contents_to_check)
-				geiger_check(source, pulse_information, geiger_counter, target)
+				SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
 			if(!can_irradiate_basic(target))
 				continue
-
-			var/current_insulation = 1
-			for (var/turf/turf_in_between in get_line(source, target) - get_turf(source))
-				var/insulation = cached_rad_insulations[turf_in_between]
-				if (isnull(insulation))
-					insulation = turf_in_between.rad_insulation
-					for (var/atom/on_turf as anything in turf_in_between.contents)
-						insulation *= on_turf.rad_insulation
-					cached_rad_insulations[turf_in_between] = insulation
-
-				current_insulation *= insulation
-
-				if (current_insulation <= pulse_information.threshold)
-					break
 
 			SEND_SIGNAL(target, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)
 
@@ -76,22 +61,13 @@ SUBSYSTEM_DEF(radiation)
 				continue
 
 			/// Perceived chance of target getting irradiated.
-			var/perceived_chance
-			/// Intensity variable which will describe the radiation pulse.
-			/// It is used by perceived intensity, which diminishes over range. The chance of the target getting irradiated is determined by perceived_intensity.
-			/// Intensity is calculated so that the chance of getting irradiated at half of the max range is the same as the chance parameter.
-			var/intensity
-			/// Diminishes over range. Used by perceived chance, which is the actual chance to get irradiated.
-			var/perceived_intensity
+			var/perceived_chance = 100
+			var/pulse_strength
 
-			if(pulse_information.chance < 100) // Prevents log(0) runtime if chance is 100%
-				intensity = -log(1 - pulse_information.chance / 100) * (1 + pulse_information.max_range / 2) ** 2
-				perceived_intensity = intensity * INVERSE((1 + get_dist_euclidean(source, target)) ** 2) // Diminishes over range.
-				perceived_intensity *= (current_insulation - pulse_information.threshold) * INVERSE(1 - pulse_information.threshold) // Perceived intensity decreases as objects that absorb radiation block its trajectory.
-				perceived_chance = 100 * (1 - NUM_E ** -perceived_intensity)
-				pulse_strength = pulse_strength * (1 - NUM_E ** -perceived_intensity)
-			else
-				perceived_chance = 100
+			var/recieved_intensity = calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(source, target), current_insulation)
+			if(pulse_information.chance < 100)
+				perceived_chance = RAD_SOLVE_CHANCE(recieved_intensity)
+			pulse_strength = RAD_SOLVE_MOBRADS(pulse_information.strength, recieved_intensity)
 
 			var/irradiation_result = SEND_SIGNAL(target, COMSIG_IN_THRESHOLD_OF_IRRADIATION, pulse_information)
 			if (irradiation_result & CANCEL_IRRADIATION)
@@ -173,25 +149,3 @@ SUBSYSTEM_DEF(radiation)
 				break
 
 	return (protected_limbs/limb_count)
-
-///Proc for when geiger counter is checked. This is called twice: Once when the geiger counter is in range of a pulse itself and once when a geiger counter is on a mob that is in range of a pulse.
-/datum/controller/subsystem/radiation/proc/geiger_check(atom/source, datum/radiation_pulse_information/pulse_information, obj/item/geiger/geiger_counter, atom/target)
-	if(!target)
-		target = geiger_counter
-
-	var/current_insulation = 1
-	var/list/cached_rad_insulations = list()
-	for(var/turf/turf_in_between in get_line(source, target) - get_turf(source))
-		var/insulation = cached_rad_insulations[turf_in_between]
-		if(isnull(insulation))
-			insulation = turf_in_between.rad_insulation
-			for (var/atom/on_turf as anything in turf_in_between.contents)
-				insulation *= on_turf.rad_insulation
-			cached_rad_insulations[turf_in_between] = insulation
-
-		current_insulation *= insulation
-
-		if(current_insulation <= pulse_information.threshold)
-			continue
-
-	SEND_SIGNAL(geiger_counter, COMSIG_IN_RANGE_OF_IRRADIATION, pulse_information, current_insulation)

@@ -383,9 +383,10 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			return 1
 	return 0
 
-
+/* Disable abiotic lockout
 /mob/proc/abiotic(full_body = 0)
 	return 0
+*/
 
 //converts intent-strings into numbers and back
 /proc/intent_numeric(argument)

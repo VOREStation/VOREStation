@@ -167,13 +167,19 @@ export function CreateObjectSettings(props: CreateObjectSettingsProps) {
 
   useEffect(() => {
     const loadStoredValues = async () => {
-      const storedCordsType = await storage.get('spawnpanel-offset_type');
-      const storedSpawnLocation = await storage.get(
-        'spawnpanel-where_target_type',
-      );
-      const storedDirection = await storage.get('spawnpanel-direction');
-      const storedObjectName = await storage.get('spawnpanel-atom_name');
-      const storedOffset = await storage.get('spawnpanel-offset');
+      const [
+        storedCordsType,
+        storedSpawnLocation,
+        storedDirection,
+        storedObjectName,
+        storedOffset,
+      ] = await Promise.all([
+        storage.get('spawnpanel-offset_type'),
+        storage.get('spawnpanel-where_target_type'),
+        storage.get('spawnpanel-direction'),
+        storage.get('spawnpanel-atom_name'),
+        storage.get('spawnpanel-offset'),
+      ]);
 
       if (storedCordsType !== undefined) setCordsType(storedCordsType);
       if (storedSpawnLocation) setSpawnLocation(storedSpawnLocation);

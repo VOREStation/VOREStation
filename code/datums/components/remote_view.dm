@@ -147,8 +147,6 @@
 	settings.register_signals(host_mob, src)
 	if(settings.relay_movement) // Handle relayed movement
 		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
-	if(settings.release_view_to_turf || isturf(remote_view_target)) // So it triggers if we are inside an item too... And if the item is being moved around by pull...
-		RegisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(handle_recursive_move))
 
 	// Update the mob's vision after we attach everything
 	host_mob.handle_vision()
@@ -173,8 +171,6 @@
 	settings.unregister_signals(host_mob, src)
 	if(settings.relay_movement) // Handle relayed movement
 		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
-	if(settings.release_view_to_turf || isturf(remote_view_target))
-		UnregisterSignal(host_mob, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Signal handlers
@@ -232,13 +228,6 @@
 	host_mob.client.eye = remote_view_mob.client.eye
 	host_mob.client.perspective = remote_view_mob.client.perspective
 
-/datum/component/remote_view/proc/handle_recursive_move(datum/source, atom/old_loc, atom/current_loc)
-	SIGNAL_HANDLER
-	PROTECTED_PROC(TRUE)
-	RETURN_TYPE(null)
-	var/needs_to_force_turf_decouple = ismob(old_loc) && isturf(current_loc) // Handle an edge case where another mob is dropped by a mob with someone else inside them
-	release_remote_view(needs_to_force_turf_decouple)
-
 /datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -249,46 +238,16 @@
 	// I'd move this into the config datum if it didn't require the component to also be passed too. Lets avoid GetComponent on a hotpath.
 	return settings.handle_relay_movement(src, host_mob, direction)
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Horrible byond hack
-// This is only here to solve an issue where dropping a held mob while inside a mob will linger on the turf of that mob forever
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/component/remote_view/proc/release_remote_view(force_turf_decouple = FALSE)
+/datum/component/remote_view/proc/release_remote_view()
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(null)
-	// to_chat(world, "RELEASING: [remote_view_target] : forced turf decouple? [force_turf_decouple]")
+	// to_chat(world, "RELEASING: [remote_view_target]")
 	var/mob/cache_mob = host_mob
-	var/releases_to_turf = settings.release_view_to_turf
 	qdel(src) // Delete here so the remote view is nice and clean
 	if(QDELETED(cache_mob) || !cache_mob.client)
 		// to_chat(world, "--DELETED")
 		return
-
-	// We're nothing special, ask the mob to check if it should start a new remote view (like if we were dropped into a belly from being held by another mob!)
-	if(!releases_to_turf && !force_turf_decouple)
-		// to_chat(world, "--Reset perspective")
-		cache_mob.reset_perspective()
-		return
-
-	// Check to see if it's legal to release the view. Our top level object MUST NOT be a mob!
-	var/emergency = 0
-	var/atom/movable/recursive_scan = cache_mob.loc
-	if(!force_turf_decouple && !isturf(recursive_scan)) // If our actual mob was placed on a turf, skip all of this recursion checking. We're good to decouple.
-		while(recursive_scan && !isturf(recursive_scan) && emergency++ < 64)
-			if(ismob(recursive_scan))
-				// to_chat(world, "--held by mob still")
-				cache_mob.reset_perspective() // We're still inside another mob... Do not decouple to turf. Hold onto our current target.
-				return
-			recursive_scan = recursive_scan.loc
-
-	// Focus on the turf, this prevents the view lingering on a mob forever
-	// to_chat(world, "--turf decouple")
-	// Decouple to turf, this is a hack.
-	// Yes this is required.
-	spawn(0) // Yes I hate it.
-		cache_mob.AddComponent(/datum/component/remote_view)
-	// Good luck refactoring this until the byond issue is fixed. This needs to happen AFTER the move resolves, but needs to be called by recursive move...
-
+	cache_mob.reset_perspective()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Accessors

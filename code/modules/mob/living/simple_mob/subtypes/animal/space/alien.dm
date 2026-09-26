@@ -35,6 +35,9 @@
 
 	can_be_drop_prey = FALSE
 
+	export_research_value = TECHWEB_TIER_2_POINTS
+	export_research_diminished_max = 4
+
 /mob/living/simple_mob/animal/space/alien/drone
 	name = "alien drone"
 	icon_state = "aliend_running"

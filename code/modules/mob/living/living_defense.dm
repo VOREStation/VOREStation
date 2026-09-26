@@ -217,7 +217,7 @@
 
 	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
 
-	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
+	if(I.force >= 5 && I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
 		var/turf/simulated/location = get_turf(src)
 		if(istype(location)) location.add_blood_floor(src)
 
@@ -255,15 +255,6 @@
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
-
-		if (prob(miss_chance))
-			visible_message(span_notice("\The [O] misses [src] narrowly!"))
-			return
-
 		src.visible_message(span_filter_warning("[span_red("[src] has been hit by [O].")]"))
 		var/armor = run_armor_check(null, "melee")
 
@@ -281,8 +272,8 @@
 		var/mass = O.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
-			var/dir = get_dir(O.throw_source, src)
+		if(throwingdatum.starting_turf && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
+			var/dir = get_dir(throwingdatum.starting_turf, src)
 
 			visible_message(span_filter_warning("[span_red("[src] staggers under the impact!")]"),span_filter_warning("[span_red("You stagger under the impact!")]"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)

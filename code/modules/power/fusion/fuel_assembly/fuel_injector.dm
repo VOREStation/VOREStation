@@ -85,6 +85,10 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	return ..()
 
 /obj/machinery/fusion_fuel_injector/attack_hand(mob/user)
+	if(..())
+		return TRUE
+	if(!Adjacent(user))
+		return TRUE
 
 	if(injecting)
 		to_chat(user, span_warning("Shut \the [src] off before playing with the fuel rod!"))

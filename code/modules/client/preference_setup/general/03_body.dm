@@ -378,6 +378,8 @@
 			"flags" = S.flags,
 			"spawn_flags" = S.spawn_flags,
 			"appearance_flags" = S.appearance_flags,
+			"whitelisted" = (S.spawn_flags & SPECIES_IS_WHITELISTED), // Whitelist required to play this species
+			"species_disabled" = !(S.spawn_flags & SPECIES_CAN_JOIN) // In the species list, but unavailable to join as, but also not hidden entirely with SPECIES_IS_RESTRICTED
 		))
 	data["species"] = species_list
 
@@ -549,7 +551,6 @@
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("marking_remove")
 			var/M = params["marking"]
-			winshow(user, "prefs_markings_subwindow", FALSE)
 			pref.body_markings -= M
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("marking_color")

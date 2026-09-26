@@ -1,7 +1,3 @@
-#define SWITCH_TAIL_LAYER_UPPER    	"Upper"
-#define SWITCH_TAIL_LAYER_STANDARD 	"Standard"
-#define SWITCH_TAIL_LAYER_LOWER	   	"Lower"
-
 /mob/living/carbon/human/verb/toggle_resizing_immunity()
 	set name = "Toggle Resizing Immunity"
 	set desc = "Toggles your ability to resist resizing attempts"
@@ -76,7 +72,7 @@
 	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", GLOB.tail_layer_options, read_preference(/datum/preference/choiced/human/tail_layering))
 	if(!input)
 		return
-	var/tail_option =  GLOB.tail_layer_options[input]
+	var/tail_option = GLOB.tail_layer_options[input]
 	if(!tail_option)
 		return
 	tail_layering = tail_option
@@ -117,7 +113,3 @@
 	else
 		message = "hides their tail."
 	visible_message(span_filter_notice("[src] [message]"))
-
-#undef SWITCH_TAIL_LAYER_UPPER
-#undef SWITCH_TAIL_LAYER_STANDARD
-#undef SWITCH_TAIL_LAYER_LOWER

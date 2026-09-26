@@ -67,6 +67,9 @@
 	var/random_color = FALSE
 	var/rarechance = 1
 
+	export_research_value = TECHWEB_TIER_1_POINTS
+	export_research_diminished_max = 4
+
 	var/static/list/carp_colors = list(\
 	"lightpurple" = "#c3b9f1", \
 	"lightpink" = "#da77a8", \
