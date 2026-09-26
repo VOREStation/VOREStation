@@ -7,3 +7,6 @@
 #define CEREALMAKER			0x20
 
 #define RECIPE_REAGENT_REPLACE		0 //Reagents in the ingredients are discarded.
+
+#define PS_RESULT_STACK		"stack"
+#define PS_RESULT_ITEM		"item"
