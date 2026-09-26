@@ -78,6 +78,7 @@
 	var/list/modkits = list()
 
 	var/recharge_timerid
+	borg_flags = COUNTS_AS_ROBOT_PKA
 
 /obj/item/gun/energy/kinetic_accelerator/consume_next_projectile()
 	if(overheat)
