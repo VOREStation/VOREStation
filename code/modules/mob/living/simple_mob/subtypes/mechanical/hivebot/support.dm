@@ -103,6 +103,8 @@
 	water_resist = 1 //Harry lives under the sea!
 
 /mob/living/simple_mob/mechanical/hivebot/support/harry/death()
+	if(QDELETED(src))
+		return
 	..()
 	visible_message(span_warning("Connection... terminated... Sweet Release... obtained."),span_danger("\The [src] blows apart!"))
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)

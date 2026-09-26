@@ -777,6 +777,8 @@
 
 //HOLOSEEDSPAWNCODE
 /mob/living/simple_mob/animal/synx/ai/pet/holo/death()
+	if(QDELETED(src))
+		return
 	..()
 	visible_message(span_notice("\The [src] fades away!"))
 	var/location = get_turf(src)
