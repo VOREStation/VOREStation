@@ -131,6 +131,24 @@
 	#define COMSIG_BLOCK_EYECONTACT (1<<0)
 ///from base of /mob/update_sight(): ()
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"
+////from /mob/living/direct_say(): (list/message_pieces)
+#define COMSIG_MOB_SAY_PREPARE "mob_say_prepare"
+	#define COMSIG_SAY_FORBID_SPEAK (1<<0)
+	#define COMSIG_SAY_IGNORE_MIME_VOW (1<<1)
+	#define COMSIG_SAY_IGNORE_MUZZLING (1<<2)
+	#define COMSIG_SAY_FORBID_RADIOS (1<<3)
+	#define COMSIG_SAY_FORBID_WHISPERING (1<<4)
+	#define COMSIG_SAY_FORCE_WHISPERING (1<<5)
+	#define COMSIG_SAY_DISABLE_SPEAK_NOISE (1<<6)
+	#define COMSIG_SAY_IGNORE_AIR_PRESSURE (1<<7)
+	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<8)
+	#define COMSIG_SAY_FORBIT_OBJS_HEARING (1<<9)
+	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<10)
+////from /mob/living/direct_say(): (list/message_pieces, verb)
+#define COMSIG_MOB_SAY_FINALIZE "mob_say_finalize"
+	// Reuses the comsig flags of COMSIG_MOB_SAY_PREPARE
+
+/* TG handling
 ////from /mob/living/say(): ()
 #define COMSIG_MOB_SAY "mob_say"
 	#define COMPONENT_UPPERCASE_SPEECH (1<<0)
@@ -146,6 +164,7 @@
 	#define SPEECH_RANGE 9
 	#define SPEECH_SAYMODE 10
 	#define SPEECH_MODS 11
+*/
 
 ///from /datum/component/speechmod/handle_speech(): ()
 #define COMSIG_TRY_MODIFY_SPEECH "try_modify_speech"
