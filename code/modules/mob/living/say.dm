@@ -206,8 +206,9 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
-	//Component preprepare message pieces
-	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_pieces)
+	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_pieces, speaking, message, whispering)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Sometimes we just want to do nothing at all, like passing the message to a TTS object
+		return 1
 
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
@@ -259,7 +260,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//For speech disorders (hulk, slurring, stuttering)
 	var/list/message_data = list(message_pieces, verb, whispering)
-	if(handle_speech_problems(message_data))
+	if(!(comsig_flags & COMSIG_SAY_FORBID_SPEECH_PROBLEMS) && handle_speech_problems(message_data))
 		message_pieces = message_data[1]
 		whispering = message_data[3]
 
@@ -337,8 +338,8 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 			automatic_custom_emote(VISIBLE_MESSAGE,sign_action)
 			do_sound = FALSE
 
-	// Final handling, MERGE the returned flags, so either signal can use the remaining flags.
-	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, verb)
+	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, verb)
 	if((comsig_flags & COMSIG_SAY_FORBID_SPEAK))
 		return 1
 
