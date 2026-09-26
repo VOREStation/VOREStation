@@ -206,7 +206,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
-	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_pieces, speaking, message, whispering)
+	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_pieces, speaking, message, whispering, message_mode)
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Sometimes we just want to do nothing at all, like passing the message to a TTS object
 		return 1
 
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 			do_sound = FALSE
 
 	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
-	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, verb)
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, verb)
 	if((comsig_flags & COMSIG_SAY_FORBID_SPEAK))
 		return 1
 

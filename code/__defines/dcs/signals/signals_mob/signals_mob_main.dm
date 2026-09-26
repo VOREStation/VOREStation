@@ -131,7 +131,7 @@
 	#define COMSIG_BLOCK_EYECONTACT (1<<0)
 ///from base of /mob/update_sight(): ()
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"
-////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering)
+////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, message_mode)
 #define COMSIG_MOB_SAY_PREPARE "mob_say_prepare"
 	#define COMSIG_SAY_FORBID_SPEAK (1<<0) // Remember to handle logging ourselves if we use this to cancel the say chain, but still send a message somehow!
 	#define COMSIG_SAY_IGNORE_MIME_VOW (1<<1)
@@ -145,7 +145,7 @@
 	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<9)
 	#define COMSIG_SAY_FORBID_OBJS_HEARING (1<<10)
 	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<11)
-////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, say_verb)
+////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, message_mode, say_verb)
 #define COMSIG_MOB_SAY_FINALIZE "mob_say_finalize"
 	// Reuses the comsig flags of COMSIG_MOB_SAY_PREPARE
 
