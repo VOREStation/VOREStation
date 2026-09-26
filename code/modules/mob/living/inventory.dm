@@ -289,7 +289,7 @@
 			internals_valid = TRUE
 		else if(ishuman(host))
 			var/mob/living/carbon/human/human_host = host
-			if(istype(human_host.r_store, /obj/item/tank) || istype(human_host.l_store, /obj/item/tank) || istype(human_host.s_store, /obj/item/tank))
+			if(istype(human_host.r_store, /obj/item/tank) || istype(human_host.l_store, /obj/item/tank) || istype(human_host.s_store, /obj/item/tank) || istype(human_host.belt, /obj/item/tank))
 				internals_valid = TRUE
 
 	data["internalsValid"] = internals_valid
