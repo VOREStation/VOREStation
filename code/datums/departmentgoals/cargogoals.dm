@@ -124,7 +124,7 @@
 
 /datum/goal/cargo/deliver_mail/New()
 	. = ..()
-	goal_count = rand(40, 70)
+	goal_count = rand(40, 50)
 	goal_text = "Nothing stops the mail. Deliver [goal_count] envelopes to their corresponding employer."
 	RegisterSignal(SSdcs, COMSIG_GLOB_MAIL_DELIVERED, PROC_REF(handle_mail_delivery))
 
