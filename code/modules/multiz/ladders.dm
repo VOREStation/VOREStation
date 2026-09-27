@@ -144,14 +144,65 @@
 		climb_modifier = MS.species.climb_mult
 
 	if(do_after(M, (climb_time * climb_modifier), target = src))
+		var/mob/living/climber = M
 		var/turf/T = get_turf(target_ladder)
+		var/list/imminent_prey = list()
+		var/mob/living/imminent_pred = null
 		for(var/atom/A in T)
 			if(!A.CanPass(M, M.loc, 1.5, 0))
+				if(isliving(A)) //Check spontvore, but only if we dont have a pred in line.
+					var/mob/living/in_the_way = A
+					//going down, priorize the mover
+					if(direction == "down") //not sure if im a fan of this being a string but whatever.
+						if(can_drop_vore(pred = climber, prey = in_the_way))
+							imminent_prey += in_the_way
+							continue
+						if(can_drop_vore(pred = in_the_way, prey = climber)) //if they can be prey, it'll block other
+							if(in_the_way in imminent_prey) //If they're going to be prey, they cant be pred here
+								continue
+							imminent_pred = in_the_way
+							continue
+					else //Going up, priorize the person blocking
+						if(can_drop_vore(pred = in_the_way, prey = climber))
+							imminent_pred = in_the_way
+							continue
+						if(can_drop_vore(pred = climber, prey = in_the_way))
+							imminent_prey += in_the_way
+							continue
+
+
 				to_chat(M, span_notice("\The [A] is blocking \the [src]."))
 				return FALSE
+
 		if(egg_interdict(M, T))
 			return
-		return M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
+
+		if(imminent_pred)
+			var/imminent_tummy = imminent_pred.vore_selected
+			if(direction == "up" && imminent_pred.spont_belly_rear) //climbing up, and going right up under them! how lewd...
+				imminent_tummy = imminent_pred.spont_belly_rear
+			if(direction == "up")
+				imminent_pred.visible_message(span_warning("\the [climber] tries to climb up from below, only to run into [imminent_pred]'s [imminent_tummy]!"), span_danger("\the [climber] vanishes into your [imminent_tummy] as they tried to climb up!"))
+			else //Dropping down
+				imminent_pred.visible_message(span_warning("\the [climber] drops into [imminent_pred]'s [imminent_tummy] as they come down from above!"), span_danger("\the [climber] drops into your [imminent_tummy] as they come down from above!"))
+			imminent_pred.begin_instant_nom(climber, climber, imminent_pred, imminent_tummy)
+			return //We went through... in one way or another.
+
+		//Lets move the person before they vore people.
+		. = M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
+
+		if(length(imminent_prey))
+			var/imminent_tummy = climber.vore_selected
+			if(direction == "down" && climber.spont_belly_rear)
+				imminent_tummy = climber.spont_belly_rear
+			for(var/mob/living/dropsnack in imminent_prey)
+				if(direction == "up")
+					climber.visible_message(span_warning("\The [dropsnack] suddenly slips into [climber]'s [imminent_tummy] as they come up from beneath them!"), span_danger("\The [dropsnack] slips into your [imminent_tummy] as you come up from below!"))
+				else
+					climber.visible_message(span_warning("\The [climber] drops down onto [dropsnack] as they rappel down the ladder, making them vanish with their [imminent_tummy]!"), span_danger("You drop down onto [dropsnack] as you come down from the ladder, making them vanish into your [imminent_tummy]!"))
+				climber.begin_instant_nom(climber, dropsnack, climber, imminent_tummy)
+
+		return
 
 /obj/structure/ladder/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density
