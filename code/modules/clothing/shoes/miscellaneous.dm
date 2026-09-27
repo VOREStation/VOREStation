@@ -99,18 +99,9 @@
 	icon_state = "clown"
 	slowdown = SHOES_SLOWDOWN+0.5
 	force = 0
-	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
-
-/obj/item/clothing/shoes/clown_shoes/handle_movement(turf/walking, running)
-	if(running)
-		if(footstep >= 2)
-			footstep = 0
-			playsound(src, "clownstep", 50, 1) // this will get annoying very fast.
-		else
-			footstep++
-	else
-		playsound(src, "clownstep", 20, 1)
+	custom_footstep = "clownstep"
+	custom_footstep_volume = 75
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
@@ -260,3 +251,21 @@
 	desc = "These shoes feature long lace straps and flattened off toes. Great for the most elegant of dances!"
 	icon_state = "ballet"
 	item_state = "ballet"
+
+/obj/item/clothing/shoes/dry_galoshes
+	desc = "A pair of purple rubber boots, designed to prevent slipping on wet surfaces while also drying them."
+	name = "absorbent galoshes"
+	icon = 'icons/inventory/feet/item.dmi'
+	icon_state = "galoshes_dry"
+	permeability_coefficient = 0.05
+	siemens_coefficient = 0
+	flags = NOCONDUCT
+	item_flags = NOSLIP
+	slowdown = SHOES_SLOWDOWN+0.5
+	species_restricted = null
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
+
+/obj/item/clothing/shoes/dry_galoshes/Initialize(mapload)
+	.=..()
+	LoadComponent(/datum/component/dry)
