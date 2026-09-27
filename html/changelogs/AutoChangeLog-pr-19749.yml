@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Makes the jackboot variants accessible via the security wardrobe vendor instead of loadout only."
