@@ -24,7 +24,10 @@
 
 /datum/surgery_step/limb/attach
 	surgery_name = "Attach Limb"
-	allowed_tools = list(/obj/item = 100)
+	allowed_tools = list(
+		/obj/item/organ/external = 100,
+		/obj/item/gripper = 100
+	)
 
 	min_duration = 50
 	max_duration = 70
@@ -34,15 +37,14 @@
 		return FALSE
 	var/obj/item/organ/external/E = tool
 	if(istype(user,/mob/living/silicon/robot))
-		if(istype(E, /obj/item/gripper))
-			var/obj/item/gripper/gripper = E
-			var/obj/item/wrapped = gripper.get_wrapped_item()
-			if(wrapped)
-				E = wrapped
-			else
-				return
-		else
+		if(!istype(E, /obj/item/gripper))
 			return
+		var/obj/item/gripper/gripper = E
+		var/obj/item/wrapped = gripper.get_wrapped_item()
+		if(!istype(wrapped, /obj/item/organ/external))
+			return
+		E = wrapped
+
 	var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected)
@@ -107,7 +109,6 @@
 
 /datum/surgery_step/limb/connect
 	surgery_name = "Connect Limb"
-	// allowed_tools = list(/obj/item = 100)
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,
 		/obj/item/stack/cable_coil = 75,
