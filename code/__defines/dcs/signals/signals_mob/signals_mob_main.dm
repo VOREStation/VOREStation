@@ -145,7 +145,7 @@
 	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<9)
 	#define COMSIG_SAY_FORBID_OBJS_HEARING (1<<10)
 	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<11)
-////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, message_mode, say_verb)
+////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, message_mode, list/say_verb)
 #define COMSIG_MOB_SAY_FINALIZE "mob_say_finalize"
 	// Reuses the comsig flags of COMSIG_MOB_SAY_PREPARE
 

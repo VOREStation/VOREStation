@@ -332,7 +332,9 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		verb = "[custom_say]"
 
 	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
-	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, verb)
+	var/list/say_verb_modifier = list(verb) // So the component can modify the list value and change the say description verb for the rest of the say proc if it's not going to end the proc
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, say_verb_modifier)
+	verb = say_verb_modifier[1]
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK)
 		return 1
 	if(comsig_flags & COMSIG_SAY_DISABLE_SPEAK_NOISE)
