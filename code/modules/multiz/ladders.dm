@@ -181,11 +181,14 @@
 			var/imminent_tummy = imminent_pred.vore_selected
 			if(direction == "up" && imminent_pred.spont_belly_rear) //climbing up, and going right up under them! how lewd...
 				imminent_tummy = imminent_pred.spont_belly_rear
+			//Nom before the message so the prey sees the messages
+			imminent_pred.begin_instant_nom(climber, climber, imminent_pred, imminent_tummy)
 			if(direction == "up")
+				to_chat(climber, span_danger("you run into [imminent_pred]'s [imminent_tummy] as you try to climb up!"))
 				imminent_pred.visible_message(span_warning("\the [climber] tries to climb up from below, only to run into [imminent_pred]'s [imminent_tummy]!"), span_danger("\the [climber] vanishes into your [imminent_tummy] as they tried to climb up!"))
 			else //Dropping down
+				to_chat(climber, span_danger("you drop into [imminent_pred]'s [imminent_tummy] as you come down the ladder!"))
 				imminent_pred.visible_message(span_warning("\the [climber] drops into [imminent_pred]'s [imminent_tummy] as they come down from above!"), span_danger("\the [climber] drops into your [imminent_tummy] as they come down from above!"))
-			imminent_pred.begin_instant_nom(climber, climber, imminent_pred, imminent_tummy)
 			return //We went through... in one way or another.
 
 		//Lets move the person before they vore people.
@@ -197,9 +200,11 @@
 				imminent_tummy = climber.spont_belly_rear
 			for(var/mob/living/dropsnack in imminent_prey)
 				if(direction == "up")
+					to_chat(dropsnack, span_danger("You slip into [climber]'s [imminent_tummy] as they come up from below!"))
 					climber.visible_message(span_warning("\The [dropsnack] suddenly slips into [climber]'s [imminent_tummy] as they come up from beneath them!"), span_danger("\The [dropsnack] slips into your [imminent_tummy] as you come up from below!"))
 				else
-					climber.visible_message(span_warning("\The [climber] drops down onto [dropsnack] as they rappel down the ladder, making them vanish with their [imminent_tummy]!"), span_danger("You drop down onto [dropsnack] as you come down from the ladder, making them vanish into your [imminent_tummy]!"))
+					to_chat(dropsnack, span_danger("\The [climber] drops down onto you, making you vanish into their [imminent_tummy]!"))
+					climber.visible_message(span_warning("\The [climber] drops down onto [dropsnack] as they come down the ladder, making them vanish with their [imminent_tummy]!"), span_danger("You drop down onto [dropsnack] as you come down from the ladder, making them vanish into your [imminent_tummy]!"))
 				climber.begin_instant_nom(climber, dropsnack, climber, imminent_tummy)
 
 		return
