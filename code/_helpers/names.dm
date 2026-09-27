@@ -19,7 +19,7 @@ GLOBAL_VAR(church_name)
 	if(istype(using_map))
 		return using_map.boss_name
 
-/proc/change_command_name(var/name)
+/proc/change_command_name(name)
 
 	using_map.boss_name = name
 
@@ -100,7 +100,7 @@ GLOBAL_VAR(religion_name)
 	return new_station_name
 
 // Is this even used?
-/proc/world_name(var/name)
+/proc/world_name(name)
 
 	using_map.station_name = name
 

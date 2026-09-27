@@ -35,7 +35,7 @@
 	var/list/map
 
 //Builds an empty map
-/datum/rogue/asteroid/New(var/core, var/tw, var/tu)
+/datum/rogue/asteroid/New(core, tw, tu)
 	GLOB.rm_controller.dbg("A(n): New asteroid, with: C:[core], TW:[tw], TU:[tu].")
 
 	if(core)
@@ -52,7 +52,7 @@
 	GLOB.rm_controller.dbg("A(n): Created empty map lists. Map now has [map.len] X-lists.")
 
 //Adds something to a spot in the asteroid map
-/datum/rogue/asteroid/proc/spot_add(var/x,var/y,var/thing)
+/datum/rogue/asteroid/proc/spot_add(x,y,thing)
 	if(!x || !y || !thing)
 		return
 
@@ -62,7 +62,7 @@
 	GLOB.rm_controller.dbg("A(n): [x],[y] now contains [work.len] items.")
 
 //Removes something from a spot in the asteroid map
-/datum/rogue/asteroid/proc/spot_remove(var/x,var/y,var/thing)
+/datum/rogue/asteroid/proc/spot_remove(x,y,thing)
 	if(!x || !y || !thing)
 		return
 
@@ -70,7 +70,7 @@
 	work.Add(thing)
 
 //Just removes everything from a spot in the asteroid map
-/datum/rogue/asteroid/proc/spot_clear(var/x,var/y)
+/datum/rogue/asteroid/proc/spot_clear(x,y)
 	if(!x || !y)
 		return
 

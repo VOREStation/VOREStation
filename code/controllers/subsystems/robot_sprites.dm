@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(robot_sprites)
 					cyborg_sprites_by_module[RS.module_type] = list()
 				cyborg_sprites_by_module[RS.module_type] |= RS
 
-/datum/controller/subsystem/robot_sprites/proc/get_module_sprites(var/module, var/mob/living/silicon/robot/wlcheck)
+/datum/controller/subsystem/robot_sprites/proc/get_module_sprites(module, mob/living/silicon/robot/wlcheck)
 	. = list()
 
 	if(!module || !(module in cyborg_sprites_by_module))
@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(robot_sprites)
 
 	return
 
-/datum/controller/subsystem/robot_sprites/proc/get_module_sprites_len(var/module, var/mob/living/silicon/robot/wlcheck)
+/datum/controller/subsystem/robot_sprites/proc/get_module_sprites_len(module, mob/living/silicon/robot/wlcheck)
 	if(!module || (!(module in cyborg_sprites_by_module) && !(module in whitelisted_sprites_by_module)))
 		return 0
 
@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(robot_sprites)
 
 	return length(sprite_list)
 
-/datum/controller/subsystem/robot_sprites/proc/get_default_module_sprite(var/module)
+/datum/controller/subsystem/robot_sprites/proc/get_default_module_sprite(module)
 
 	var/list/module_sprites = get_module_sprites(module)
 
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(robot_sprites)
 
 	return chosen_sprite
 
-/datum/controller/subsystem/robot_sprites/proc/get_whitelisted_sprites(var/ckey, var/spritename, var/module)
+/datum/controller/subsystem/robot_sprites/proc/get_whitelisted_sprites(ckey, spritename, module)
 	. = list()
 
 	if(!ckey || !spritename || !module || !(module in whitelisted_sprites_by_module))

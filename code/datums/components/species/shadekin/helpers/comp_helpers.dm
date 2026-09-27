@@ -195,19 +195,19 @@
 	return max_dark_energy
 
 ///Sets the shadekin's energy TO the given value.
-/datum/component/shadekin/proc/shadekin_set_energy(var/new_energy)
+/datum/component/shadekin/proc/shadekin_set_energy(new_energy)
 	if(!isnum(new_energy))
 		return
 	dark_energy = CLAMP(new_energy, 0, max_dark_energy)
 
 ///Sets the shadekin's maximum energy.
-/datum/component/shadekin/proc/shadekin_set_max_energy(var/new_max_energy)
+/datum/component/shadekin/proc/shadekin_set_max_energy(new_max_energy)
 	if(!isnum(new_max_energy))
 		return //No.
 	max_dark_energy = new_max_energy
 
 ///Adjusts the shadekin's energy by the given amount.
-/datum/component/shadekin/proc/shadekin_adjust_energy(var/amount)
+/datum/component/shadekin/proc/shadekin_adjust_energy(amount)
 	if(!isnum(amount))
 		return //No
 	shadekin_set_energy(dark_energy + amount)
@@ -224,7 +224,7 @@
 		current_gains += nutrition_conversion_scaling
 	return current_gains
 
-/datum/component/shadekin/proc/attack_dephase(var/turf/T = null, atom/dephaser)
+/datum/component/shadekin/proc/attack_dephase(turf/T = null, atom/dephaser)
 	// no assigned dephase-target, just use our own
 	if(!T)
 		T = get_turf(owner)

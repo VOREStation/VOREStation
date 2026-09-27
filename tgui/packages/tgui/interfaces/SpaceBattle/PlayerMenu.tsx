@@ -1,6 +1,9 @@
 import { useBackend } from 'tgui/backend';
+import {
+  AnimatedArrows,
+  AnimatedArrowsLeft,
+} from 'tgui/interfaces/common/AnimatedArrows';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
-import { AnimatedArrows, AnimatedArrowsLeft } from '../common/AnimatedArrows';
 import { VorePanelTooltip } from '../VorePanel/VorePanelElements/VorePanelTooltip';
 import { gameStateToText, gameTooltip } from './constants';
 import { stateToColor } from './functions';

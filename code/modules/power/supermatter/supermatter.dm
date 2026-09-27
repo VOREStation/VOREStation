@@ -240,7 +240,7 @@
 			new /obj/item/broken_sm(TS)
 
 //Changes color and luminosity of the light to these values if they were not already set
-/obj/machinery/power/supermatter/proc/shift_light(var/lum, var/clr)
+/obj/machinery/power/supermatter/proc/shift_light(lum, clr)
 	if(lum != light_range || clr != light_color)
 		set_light(lum, l_color = clr)
 
@@ -418,9 +418,9 @@
 		src,
 		max_range = CLAMP(round(power * 0.025), 5, 50),
 		threshold = CLAMP(RAD_MEDIUM_INSULATION - (power * 0.00025), 0.1, RAD_MEDIUM_INSULATION),
-		chance = max(round(power * 0.01), DEFAULT_RADIATION_CHANCE),
+		chance = CLAMP(round(power * 0.25), 50, 100), // The SM should be feared, also makes it better match old rad scaling behavior, as chance scales rads applied!
 		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
-		strength = max(round(power * 0.5), 50)
+		strength = max(round(power * 1.5), 56.9) // With base 50% chance this will become 50Bq at 0 power
 	)
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
@@ -428,7 +428,7 @@
 	return 1
 
 
-/obj/machinery/power/supermatter/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/supermatter/bullet_act(obj/item/projectile/Proj)
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
 		return 0	// This stops people from being able to really power up the supermatter
@@ -516,7 +516,7 @@
 	Consume(AM)
 
 
-/obj/machinery/power/supermatter/proc/Consume(var/mob/living/user)
+/obj/machinery/power/supermatter/proc/Consume(mob/living/user)
 	if(istype(user))
 		user.dust()
 		power += 200
@@ -540,7 +540,7 @@
 		strength = 200
 	)
 
-/proc/supermatter_pull(var/atom/target, var/pull_range = 255, var/pull_power = STAGE_FIVE)
+/proc/supermatter_pull(atom/target, pull_range = 255, pull_power = STAGE_FIVE)
 	for(var/atom/A in range(pull_range, target))
 		A.singularity_pull(target, pull_power)
 

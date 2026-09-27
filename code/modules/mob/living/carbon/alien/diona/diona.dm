@@ -56,18 +56,18 @@ GLOBAL_LIST_INIT(nymph_default_emotes, list(
 	add_language(LANGUAGE_GALCOM)
 	add_verb(src, /mob/living/carbon/alien/diona/proc/merge)
 
-/mob/living/carbon/alien/diona/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/carbon/alien/diona/put_in_hands(obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return 1
 
-/mob/living/carbon/alien/diona/proc/wear_hat(var/obj/item/new_hat)
+/mob/living/carbon/alien/diona/proc/wear_hat(obj/item/new_hat)
 	if(hat)
 		return
 	hat = new_hat
 	new_hat.loc = src
 	update_icons()
 
-/mob/living/carbon/alien/diona/proc/handle_npc(var/mob/living/carbon/alien/diona/D)
+/mob/living/carbon/alien/diona/proc/handle_npc(mob/living/carbon/alien/diona/D)
 	if(D.stat != CONSCIOUS)
 		return
 	if(prob(33) && D.canmove && isturf(D.loc) && !D.pulledby) //won't move if being pulled

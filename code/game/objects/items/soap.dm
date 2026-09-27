@@ -22,7 +22,7 @@
 	create_reagents(5)
 	. = ..()
 
-/obj/item/soap/proc/wet(var/cleaner = FALSE)
+/obj/item/soap/proc/wet(cleaner = FALSE)
 	if(cleaner)
 		reagents.add_reagent(REAGENT_ID_CLEANER, 5)
 	else

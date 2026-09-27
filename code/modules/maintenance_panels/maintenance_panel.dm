@@ -12,7 +12,7 @@
 	shardtype = null
 	opacity = 1 // Difficult to see past
 
-/obj/structure/window/maintenance_panel/apply_silicate(var/amount)
+/obj/structure/window/maintenance_panel/apply_silicate(amount)
 	return // can't fix it like that
 
 /obj/structure/window/maintenance_panel/updateSilicate()
@@ -44,7 +44,7 @@
 	. = ..()
 
 
-/obj/structure/window/maintenance_panel/take_damage(var/damage = 0,  var/sound_effect = 1)
+/obj/structure/window/maintenance_panel/take_damage(damage = 0,  sound_effect = 1)
 	var/initialhealth = health
 	health = max(0, health - damage)
 	if(health <= 0)
@@ -66,7 +66,7 @@
 		visible_message("\the [src] looks like it's taking damage!")
 		update_icon()
 
-/obj/structure/window/maintenance_panel/shatter(var/display_message = 1)
+/obj/structure/window/maintenance_panel/shatter(display_message = 1)
 	playsound(src, pick(list('sound/effects/metalscrape1.ogg','sound/effects/metalscrape2.ogg','sound/effects/metalscrape3.ogg')), 70, 1)
 	if(display_message)
 		visible_message("\the [src] thunks free of the wall!")

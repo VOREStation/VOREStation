@@ -30,7 +30,7 @@
 	var/list/obj/asteroid_spawner/rockspawns = list()
 	var/list/obj/rogue_mobspawner/mobspawns = list()
 
-/datum/rogue/zonemaster/New(var/area/A)
+/datum/rogue/zonemaster/New(area/A)
 	ASSERT(A)
 	myarea = A
 	myshuttle_landmark = locate(/obj/effect/shuttle_landmark) in myarea
@@ -56,7 +56,7 @@
 ///////////////////////////////
 ///// Asteroid Generation /////
 ///////////////////////////////
-/datum/rogue/zonemaster/proc/generate_asteroid(var/core_min = 2, var/core_max = 5)
+/datum/rogue/zonemaster/proc/generate_asteroid(core_min = 2, core_max = 5)
 	//Chance for a predefined structure instead, more common later
 	if(prob(GLOB.rm_controller.diffstep*4))
 		GLOB.rm_controller.dbg("ZM(ga): Fell into prefab asteroid chance.")
@@ -114,7 +114,7 @@
 	GLOB.rm_controller.dbg("ZM(ga): Asteroid generation done.")
 	return A
 
-/datum/rogue/zonemaster/proc/place_asteroid(var/datum/rogue/asteroid/A,var/obj/asteroid_spawner/SP)
+/datum/rogue/zonemaster/proc/place_asteroid(datum/rogue/asteroid/A,obj/asteroid_spawner/SP)
 	ASSERT(SP && A)
 
 	GLOB.rm_controller.dbg("ZM(pa): Placing at point [SP.x],[SP.y],[SP.z].")
@@ -167,7 +167,7 @@
 	for(var/turf/T in changedturfs)
 		T.update_icon(1)
 
-/datum/rogue/zonemaster/proc/place_resources(var/turf/simulated/mineral/M)
+/datum/rogue/zonemaster/proc/place_resources(turf/simulated/mineral/M)
 	#define XENOARCH_SPAWN_CHANCE 0.3
 	#define DIGSITESIZE_LOWER 4
 	#define DIGSITESIZE_UPPER 12
@@ -274,7 +274,7 @@
 ///////////////////////////////
 
 //Overall 'prepare' proc (marks as ready)
-/datum/rogue/zonemaster/proc/prepare_zone(var/delay = 0)
+/datum/rogue/zonemaster/proc/prepare_zone(delay = 0)
 	GLOB.rm_controller.unmark_clean(src)
 	GLOB.rm_controller.dbg("ZM(p): Preparing zone with difficulty level [GLOB.rm_controller.diffstep].")
 
@@ -319,7 +319,7 @@
 	return myarea
 
 //Randomize the landmarks that are enabled
-/datum/rogue/zonemaster/proc/randomize_spawns(var/chance = 50)
+/datum/rogue/zonemaster/proc/randomize_spawns(chance = 50)
 	GLOB.rm_controller.dbg("ZM(rs): Previously [rockspawns.len] rockspawns.")
 	rockspawns.Cut()
 	GLOB.rm_controller.dbg("ZM(rs): Now [rockspawns.len] rockspawns.")
@@ -341,7 +341,7 @@
 ///////////////////////////////
 ///// Zone Cleaning ///////////
 ///////////////////////////////
-/datum/rogue/zonemaster/proc/score_zone(var/bonus = 10)
+/datum/rogue/zonemaster/proc/score_zone(bonus = 10)
 	GLOB.rm_controller.dbg("ZM(sz): Scoring zone with area [myarea].")
 	scored = 1
 	var/tally = bonus
@@ -377,7 +377,7 @@
 	return tally
 
 //Overall 'destroy' proc (marks as unready)
-/datum/rogue/zonemaster/proc/clean_zone(var/delay = 1)
+/datum/rogue/zonemaster/proc/clean_zone(delay = 1)
 	GLOB.rm_controller.dbg("ZM(cz): Cleaning zone with area [myarea].")
 	log_world("RM(stats): CLEAN start [myarea] at [world.time] prepared at [prepared_at].") //DEBUG code for playtest stats gathering.
 	GLOB.rm_controller.unmark_ready(src)

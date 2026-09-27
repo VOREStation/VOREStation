@@ -56,7 +56,7 @@
 	. = ..()
 	create_reagents(15)
 
-/obj/item/clothing/accessory/ring/reagent/equipped(var/mob/living/carbon/human/H)
+/obj/item/clothing/accessory/ring/reagent/equipped(mob/living/carbon/human/H)
 	..()
 	if(istype(H) && H.gloves==src)
 
@@ -113,7 +113,7 @@
 	change_name(user)
 	nameset = TRUE
 
-/obj/item/clothing/accessory/ring/seal/signet/proc/change_name(var/signet_name = "Unknown")
+/obj/item/clothing/accessory/ring/seal/signet/proc/change_name(signet_name = "Unknown")
 	name = "[signet_name]'s signet ring"
 	desc = "A signet ring belonging to [signet_name], for when you're too sophisticated to sign letters."
 
@@ -149,7 +149,7 @@
 	icon_state = "material"
 	material_slowdown_multiplier = 0 //it's a ring, it's never gonna be heavy enough to matter
 
-/obj/item/clothing/accessory/ring/material/Initialize(mapload, var/new_material)
+/obj/item/clothing/accessory/ring/material/Initialize(mapload, new_material)
 	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL

@@ -320,7 +320,7 @@
 				return TRUE
 			if(isliving(user))
 				var/mob/living/trashcheck = user
-				if(trashcheck.adminbus_trash)
+				if(trashcheck.expanded_trasheat)
 					return TRUE
 	if(isliving(target)) //quick prefs test. Better safe than sorry
 		var/mob/living/caneat = target
@@ -335,7 +335,7 @@
 			return TRUE
 	return FALSE
 
-/obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
+/obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, attack_modifier = 1, click_parameters)
 	if(istype(A,/obj/structure) && vac_power > 0)
 		afterattack(A.loc, user, click_parameters)
 		return TRUE

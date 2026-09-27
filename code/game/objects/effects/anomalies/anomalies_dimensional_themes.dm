@@ -60,7 +60,7 @@
 		var/random_spawn_picked = pick(random_spawns)
 		new random_spawn_picked(affected_turf)
 
-/datum/dimension_theme/proc/can_convert(var/turf/affected_turf)
+/datum/dimension_theme/proc/can_convert(turf/affected_turf)
 	if(istype(affected_turf, /turf/unsimulated))
 		return FALSE
 	if(isspace(affected_turf))

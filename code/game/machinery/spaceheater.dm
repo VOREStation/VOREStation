@@ -41,7 +41,7 @@
 	update_icon()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/space_heater/RefreshParts(var/limited = 0)
+/obj/machinery/space_heater/RefreshParts(limited = 0)
 	min_temperature = DEFAULT_MIN_TEMP
 	max_temperature = DEFAULT_MAX_TEMP
 	heating_power = DEFAULT_HEATING_POWER

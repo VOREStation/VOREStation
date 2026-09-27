@@ -73,12 +73,12 @@
 	target = null
 	return ..()
 
-/obj/structure/fake_stairs/Bumped(var/atom/movable/AM)
+/obj/structure/fake_stairs/Bumped(atom/movable/AM)
 	if(!target)
 		return
 	target.take(AM)
 
-/obj/structure/fake_stairs/proc/take(var/atom/movable/AM)
+/obj/structure/fake_stairs/proc/take(atom/movable/AM)
 	var/dir_to_use = stepoff_dir ? stepoff_dir : dir
 	var/turf/T = get_step(src, dir_to_use)
 	if(!T)

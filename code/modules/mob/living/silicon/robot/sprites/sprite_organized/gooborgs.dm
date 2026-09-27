@@ -112,7 +112,7 @@
 	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_MELEE_SPRITE //Melee is baton.
 	hat_offset = GOOBORG_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/tall/security/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/security/gooborg/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
@@ -169,7 +169,7 @@
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_MELEE_SPRITE //Baton
 	hat_offset = GOOBORG_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/tall/combat/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat/gooborg/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	return ..()
@@ -225,7 +225,7 @@
 	sprite_hud_icon_state = "malf" //malf!!
 	hat_offset = GOOBORG_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/tall/ninja/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/ninja/gooborg/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
@@ -250,7 +250,7 @@
 	module_type = list("Combat Medic", "Mechanist", "Protector") //You get all three modules.
 	hat_offset = GOOBORG_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/tall/combat_medic/gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/tall/combat_medic/gooborg/get_eyes_overlay(mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else

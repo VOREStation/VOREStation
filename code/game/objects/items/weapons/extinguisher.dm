@@ -10,7 +10,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 10
-	matter = list(MAT_STEEL = 90)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.045))
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	drop_sound = 'sound/items/drop/gascan.ogg'
 	pickup_sound = 'sound/items/pickup/gascan.ogg'
@@ -72,7 +72,7 @@
 	desc = "The safety is [safety ? "on" : "off"]."
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
-/obj/item/extinguisher/proc/propel_object(var/obj/O, mob/user, movementdirection)
+/obj/item/extinguisher/proc/propel_object(obj/O, mob/user, movementdirection)
 	if(O.anchored) return
 
 	var/obj/structure/bed/chair/C
@@ -90,7 +90,7 @@
 		O.Move(get_step(user,movementdirection), movementdirection)
 		sleep(3)
 
-/obj/item/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
+/obj/item/extinguisher/afterattack(atom/target, mob/user, flag)
 	//TODO; Add support for reagents in water.
 
 	if( istype(target, /obj/structure/reagent_dispensers) && flag)

@@ -61,7 +61,7 @@
 				add_attack_logs(D,M,"Ran over with [src.name]")
 
 //trains are commonly open topped, so there is a chance the projectile will hit the mob riding the train instead
-/obj/vehicle/train/bullet_act(var/obj/item/projectile/Proj)
+/obj/vehicle/train/bullet_act(obj/item/projectile/Proj)
 	if(has_buckled_mobs() && prob(70))
 		var/mob/living/L = pick(buckled_mobs)
 		L.bullet_act(Proj)
@@ -105,7 +105,7 @@
 
 	return 1
 
-/obj/vehicle/train/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/vehicle/train/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
 		return
 	if(istype(C,/obj/vehicle/train))
@@ -245,5 +245,5 @@
 		T.update_car(train_length, active_engines)
 		T = T.lead
 
-/obj/vehicle/train/proc/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/proc/update_car(train_length, active_engines)
 	return

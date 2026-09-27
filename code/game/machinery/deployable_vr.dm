@@ -57,20 +57,20 @@
 		topple()
 	..()
 
-/obj/structure/barricade/cutout/attack_hand(var/mob/user)
+/obj/structure/barricade/cutout/attack_hand(mob/user)
 	if((. = ..()))
 		return
 
 	if(toppled)
 		untopple()
 
-/obj/structure/barricade/cutout/examine(var/mob/user)
+/obj/structure/barricade/cutout/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
 		. += span_notice("... from this distance, they seem to be made of [material.name] ...")
 
-/obj/structure/barricade/cutout/attackby(var/obj/I, var/mob/user)
+/obj/structure/barricade/cutout/attackby(obj/I, mob/user)
 	if(is_type_in_list(I, painters))
 		var/choice = tgui_input_list(user, "What would you like to paint the cutout as?", "Cutout Painting", cutout_types)
 		if(!choice || !Adjacent(user) || I != user.get_active_hand())

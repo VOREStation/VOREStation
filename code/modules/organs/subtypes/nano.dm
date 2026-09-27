@@ -112,7 +112,7 @@
 	organ_tag = O_FACT
 	parent_organ = BP_TORSO
 
-	var/list/materials = list(MAT_STEEL = 0)
+	var/list/materials = list(MAT_STEEL = MATERIAL_COST(0))
 	var/max_storage = 10000
 	organ_verbs = list(
 		/mob/living/carbon/human/proc/reagent_purge
@@ -126,12 +126,12 @@
 	. = ..()
 	icon_state = "refactory"
 
-/obj/item/organ/internal/nano/refactory/proc/get_stored_material(var/material)
+/obj/item/organ/internal/nano/refactory/proc/get_stored_material(material)
 	if(status & ORGAN_DEAD)
 		return 0
 	return materials[material] || 0
 
-/obj/item/organ/internal/nano/refactory/proc/add_stored_material(var/material,var/amt)
+/obj/item/organ/internal/nano/refactory/proc/add_stored_material(material,amt)
 	if(status & ORGAN_DEAD)
 		return 0
 	var/increase = min(amt,max(max_storage-materials[material],0))
@@ -142,7 +142,7 @@
 
 	return increase
 
-/obj/item/organ/internal/nano/refactory/proc/use_stored_material(var/material,var/amt)
+/obj/item/organ/internal/nano/refactory/proc/use_stored_material(material,amt)
 	if(status & ORGAN_DEAD)
 		return 0
 

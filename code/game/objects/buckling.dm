@@ -116,7 +116,7 @@
 	return
 
 //Wrapper procs that handle sanity and user feedback
-/atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = FALSE)
+/atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, forced = FALSE, silent = FALSE)
 	if(!SSticker)
 		to_chat(user, span_warning("You can't buckle anyone in before the game starts."))
 		return FALSE // Is this really needed?

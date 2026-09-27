@@ -25,10 +25,10 @@
 				if(istype(T))
 					T.update_icon()
 
-/datum/random_map/noise/sif/get_appropriate_path(var/value)
+/datum/random_map/noise/sif/get_appropriate_path(value)
 	return /turf/simulated/floor/outdoors/snow/sif/planetuse
 
-/datum/random_map/noise/sif/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/sif/get_additional_spawns(value, turf/T)
 	if(prob(45) || T.check_density())
 		return
 	switch(value)
@@ -66,10 +66,10 @@
 /datum/random_map/noise/sif/forest
 	descriptor = "Sif forest (roundstart)"
 
-/datum/random_map/noise/sif/forest/get_appropriate_path(var/value)
+/datum/random_map/noise/sif/forest/get_appropriate_path(value)
 	return /turf/simulated/floor/outdoors/snow/sif/planetuse
 
-/datum/random_map/noise/sif/forest/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/sif/forest/get_additional_spawns(value, turf/T)
 	if(prob(25) || T.check_density())
 		return
 	switch(value)
@@ -101,14 +101,14 @@
 	keep_outside = TRUE
 	refresh_icons_post_apply = FALSE
 
-/datum/random_map/noise/sif/underground/get_appropriate_path(var/value)
+/datum/random_map/noise/sif/underground/get_appropriate_path(value)
 	switch(value)
 		if(0 to 2)
 			return /turf/simulated/floor/outdoors/mud/sif/planetuse
 		if(3 to 4)
 			return /turf/simulated/floor/outdoors/dirt/sif/planetuse
 
-/datum/random_map/noise/sif/underground/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/sif/underground/get_additional_spawns(value, turf/T)
 	if(value <= 1 && prob(30)) // Mud is very fun-gy.
 		new /obj/structure/flora/mushroom(T)
 	else if(!prob(30))

@@ -146,7 +146,7 @@
 		for(var/path in powertypes)
 			GLOB.protean_abilities += new path()
 
-/datum/species/protean/create_organs(var/mob/living/carbon/human/H)
+/datum/species/protean/create_organs(mob/living/carbon/human/H)
 	var/obj/item/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
@@ -159,55 +159,55 @@
 	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key
 
-/datum/species/protean/get_bodytype(var/mob/living/carbon/human/H)
+/datum/species/protean/get_bodytype(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_bodytype(H)
 
-/datum/species/protean/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
+/datum/species/protean/get_icobase(mob/living/carbon/human/H, get_deform)
 	if(!H || base_species == name) return ..(null, get_deform)
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_icobase(H, get_deform)
 
-/datum/species/protean/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
+/datum/species/protean/get_valid_shapeshifter_forms(mob/living/carbon/human/H)
 	var/list/protean_shapeshifting_forms = GLOB.playable_species.Copy() - SPECIES_PROMETHEAN //Removing the 'static' here fixes it returning an empty list. I do not know WHY that is the case, but it is for some reason. This needs to be investigated further, but this fixes the issue at the moment.
 	return protean_shapeshifting_forms
 
-/datum/species/protean/get_tail(var/mob/living/carbon/human/H)
+/datum/species/protean/get_tail(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_tail(H)
 
-/datum/species/protean/get_tail_animation(var/mob/living/carbon/human/H)
+/datum/species/protean/get_tail_animation(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_tail_animation(H)
 
-/datum/species/protean/get_tail_hair(var/mob/living/carbon/human/H)
+/datum/species/protean/get_tail_hair(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_tail_hair(H)
 
-/datum/species/protean/get_blood_mask(var/mob/living/carbon/human/H)
+/datum/species/protean/get_blood_mask(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_blood_mask(H)
 
-/datum/species/protean/get_damage_mask(var/mob/living/carbon/human/H)
+/datum/species/protean/get_damage_mask(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_damage_mask(H)
 
-/datum/species/protean/get_damage_overlays(var/mob/living/carbon/human/H)
+/datum/species/protean/get_damage_overlays(mob/living/carbon/human/H)
 	if(!H || base_species == name) return ..()
 	var/datum/species/S = GLOB.all_species[base_species]
 	return S.get_damage_overlays(H)
 
-/datum/species/protean/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/protean/handle_post_spawn(mob/living/carbon/human/H)
 	..()
 	H.synth_color = TRUE
 
-/datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
+/datum/species/protean/equip_survival_gear(mob/living/carbon/human/H)
 	..()
 	var/obj/item/stack/material/steel/metal_stack = new(null, 5)
 
@@ -232,16 +232,16 @@
 
 		new /obj/item/rig/protean(H,H)
 
-/datum/species/protean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
+/datum/species/protean/hug(mob/living/carbon/human/H, mob/living/target)
 	return ..() //Wut
 
-/datum/species/protean/get_blood_colour(var/mob/living/carbon/human/H)
+/datum/species/protean/get_blood_colour(mob/living/carbon/human/H)
 	return rgb(80,80,80,230)
 
-/datum/species/protean/get_flesh_colour(var/mob/living/carbon/human/H)
+/datum/species/protean/get_flesh_colour(mob/living/carbon/human/H)
 	return rgb(80,80,80,230)
 
-/datum/species/protean/handle_death(var/mob/living/carbon/human/H)
+/datum/species/protean/handle_death(mob/living/carbon/human/H)
 	if(!H)
 		return //No body?
 	if(OurRig)
@@ -262,7 +262,7 @@
 			H.nano_rig_transform(1)
 	pseudodead = 1
 
-/datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/protean/handle_environment_special(mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.getMaxHealth()*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
@@ -287,10 +287,10 @@
 
 	return ..()
 
-/datum/species/protean/get_additional_examine_text(var/mob/living/carbon/human/H)
+/datum/species/protean/get_additional_examine_text(mob/living/carbon/human/H)
 	return ..() //Hmm, what could be done here?
 
-/datum/species/protean/update_misc_tabs(var/mob/living/carbon/human/H)
+/datum/species/protean/update_misc_tabs(mob/living/carbon/human/H)
 	..()
 	var/list/L = list()
 	var/obj/item/organ/internal/nano/refactory/refactory = H.nano_get_refactory()
@@ -433,7 +433,7 @@
 	var/validstring = "VALID THROUGH END OF: "
 	var/registring = "REGISTRANT: "
 
-/obj/item/clothing/accessory/permit/nanotech/set_name(var/new_name)
+/obj/item/clothing/accessory/permit/nanotech/set_name(new_name)
 	owner = 1
 	if(new_name)
 		name += " ([new_name])"

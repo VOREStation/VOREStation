@@ -48,7 +48,7 @@
 	attack_self(H)
 	return
 
-/obj/item/teleportation_scroll/proc/teleportscroll(var/mob/user)
+/obj/item/teleportation_scroll/proc/teleportscroll(mob/user)
 	var/A = tgui_input_list(user, "Area to jump to:", "Teleportation Scroll", GLOB.teleportlocs)
 	if(!A)
 		return

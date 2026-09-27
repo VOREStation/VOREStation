@@ -28,7 +28,7 @@
 	else
 		icon_state = disabled ? "liquid_dispenser" : "liquid_dispenser_on"
 
-/obj/machinery/ai_slipper/proc/setState(var/enabled, var/uses)
+/obj/machinery/ai_slipper/proc/setState(enabled, uses)
 	disabled = disabled
 	uses = uses
 	power_change()

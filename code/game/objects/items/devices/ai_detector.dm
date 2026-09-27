@@ -80,7 +80,7 @@
 /obj/item/multitool/ai_detector/update_icon()
 	icon_state = "[initial(icon_state)][detect_state]"
 
-/obj/item/multitool/ai_detector/proc/update_warning(var/old_state, var/new_state)
+/obj/item/multitool/ai_detector/proc/update_warning(old_state, new_state)
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// Now to warn our holder, if the state changes.

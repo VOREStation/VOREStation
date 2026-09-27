@@ -14,7 +14,7 @@
 	active_power_usage = 200
 	power_channel = EQUIP
 	circuit = /obj/item/circuitboard/papershredder
-	var/max_paper = 10
+	var/max_paper = 40
 	var/paperamount = 0
 	var/list/shred_amounts = list(
 		/obj/item/photo = 1,
@@ -31,7 +31,11 @@
 	update_icon()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/papershredder/examine(mob/user as mob)
+	. = ..()
+	. += "A little amber screen shows there's [paperamount] sheets worth of paper in the bin."
+
+/obj/machinery/papershredder/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/storage))
 		empty_bin(user, W)
@@ -88,7 +92,7 @@
 
 	empty_bin(usr)
 
-/obj/machinery/papershredder/proc/empty_bin(var/mob/living/user, var/obj/item/storage/empty_into)
+/obj/machinery/papershredder/proc/empty_bin(mob/living/user, obj/item/storage/empty_into)
 
 	// Sanity.
 	if(empty_into && !istype(empty_into))
@@ -156,13 +160,13 @@
 	pixel_y = rand(-5,5)
 	if(prob(65)) color = pick("#BABABA","#7F7F7F")
 
-/obj/item/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)
+/obj/item/shreddedp/attackby(obj/item/W as obj, mob/user)
 	if(istype(W, /obj/item/flame/lighter))
 		burnpaper(W, user)
 	else
 		..()
 
-/obj/item/shreddedp/proc/burnpaper(var/obj/item/flame/lighter/P, var/mob/user)
+/obj/item/shreddedp/proc/burnpaper(obj/item/flame/lighter/P, mob/user)
 	if(user.restrained())
 		return
 	if(!P.lit)

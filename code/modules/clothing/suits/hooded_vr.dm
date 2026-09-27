@@ -115,14 +115,14 @@
 	desc = "A giant hotdog costume, comes with authentic artificial hotdog scent."
 	icon_state = "hotdog"
 	item_state_slots = list(slot_r_hand_str = "hotdog", slot_l_hand_str = "hotdog")
-	hoodtype = /obj/item/clothing/head/hood_vr/hotdog_hood
+	hoodtype = /obj/item/clothing/head/hood/hotdog_hood
 
 /obj/item/clothing/suit/storage/hooded/foodcostume/turnip	//Honey wake up, new vorny jail uniform just dropped.
 	name = "turnip costume"
 	desc = "A giant turnip costume, extra padding helps the wearer stand in the same spot for hours."
 	icon_state = "turnip"
 	item_state_slots = list(slot_r_hand_str = "turnip", slot_l_hand_str = "turnip")
-	hoodtype = /obj/item/clothing/head/hood_vr/turnip_hood
+	hoodtype = /obj/item/clothing/head/hood/turnip_hood
 
 //Functional hoodie
 

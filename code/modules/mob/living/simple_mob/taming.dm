@@ -13,7 +13,7 @@
 		if(L in tamers)
 			return TRUE
 
-/mob/living/simple_mob/proc/can_tame(var/obj/O, var/mob/user)
+/mob/living/simple_mob/proc/can_tame(obj/O, mob/user)
 	if(!LAZYLEN(tame_items))
 		return FALSE
 
@@ -29,19 +29,19 @@
 
 	return FALSE
 
-/mob/living/simple_mob/proc/unique_tame_check(var/obj/O, var/mob/user)
+/mob/living/simple_mob/proc/unique_tame_check(obj/O, mob/user)
 	if(do_after(user, 0.5 SECONDS, target = src))
 		return TRUE
 	return FALSE
 
-/mob/living/simple_mob/proc/tame_prob(var/obj/O, var/mob/user)
+/mob/living/simple_mob/proc/tame_prob(obj/O, mob/user)
 	for(var/path in tame_items)
 		if(istype(O, path))
 			if(prob(tame_items[path]))
 				return TRUE
 	return FALSE
 
-/mob/living/simple_mob/proc/do_tame(var/obj/O, var/mob/user)
+/mob/living/simple_mob/proc/do_tame(obj/O, mob/user)
 	if(!user)
 		return
 
@@ -53,10 +53,10 @@
 	tamers |= user
 	ai_holder.forget_everything()
 
-/mob/living/simple_mob/proc/handle_tame_item(var/obj/O, var/mob/user)
+/mob/living/simple_mob/proc/handle_tame_item(obj/O, mob/user)
 	user.drop_from_inventory(O)
 	qdel(O)
 
-/mob/living/simple_mob/proc/fail_tame(var/obj/O, var/mob/user)
+/mob/living/simple_mob/proc/fail_tame(obj/O, mob/user)
 	user.drop_from_inventory(O)
 	qdel(O)

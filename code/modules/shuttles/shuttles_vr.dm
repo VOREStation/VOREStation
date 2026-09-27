@@ -1,7 +1,7 @@
 /datum/shuttle
 	var/move_direction //Null is legacy behavior, otherwise people are thrown in the opposite direction
 
-/datum/shuttle/proc/throw_a_mob(var/mob/living/carbon/M, direction)
+/datum/shuttle/proc/throw_a_mob(mob/living/carbon/M, direction)
 	direction = turn(direction, 180)
 	var/atom/target
 	switch(direction)

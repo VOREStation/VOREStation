@@ -65,7 +65,7 @@
 	if(!(pref.species_sound))
 		pref.species_sound = "Unset"
 
-/datum/category_item/player_setup_item/general/size/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/size/copy_to_mob(mob/living/carbon/human/character)
 	character.weight			= pref.weight_vr
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss

@@ -51,13 +51,13 @@
 	else
 		overlay_state = initial(overlay_state)
 
-/obj/item/clothing/accessory/holster/machete/rapier/holster(var/obj/item/I, var/mob/living/user)
+/obj/item/clothing/accessory/holster/machete/rapier/holster(obj/item/I, mob/living/user)
 	..()
 	occupied()
 	if(has_suit)
 		has_suit.update_clothing_icon()
 
-/obj/item/clothing/accessory/holster/machete/rapier/unholster(var/obj/item/I, var/mob/living/user)
+/obj/item/clothing/accessory/holster/machete/rapier/unholster(obj/item/I, mob/living/user)
 	..()
 	occupied()
 	if(has_suit)

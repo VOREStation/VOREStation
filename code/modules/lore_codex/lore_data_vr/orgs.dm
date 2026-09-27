@@ -3,7 +3,7 @@
 	var/desired_type = null
 	var/auto_keywords = list()
 
-/datum/lore/codex/category/auto_org/New(var/new_holder, var/new_parent)
+/datum/lore/codex/category/auto_org/New(new_holder, new_parent)
 	..(new_holder, new_parent)
 	keywords += auto_keywords
 	for(var/path in GLOB.loremaster.organizations)

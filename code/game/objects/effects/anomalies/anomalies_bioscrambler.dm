@@ -35,6 +35,8 @@
 	playsound(src, 'sound/effects/cosmic_energy.ogg', vol = 50, vary = TRUE)
 	COOLDOWN_START(src, pulse_cooldown, pulse_delay)
 	for(var/mob/living/carbon/human/nearby in viewers(range, src))
+		if(nearby.isSynthetic() || nearby.species.flags & NO_DNA)
+			continue
 		var/susceptibility = GetAnomalySusceptibility(nearby)
 		if(prob(susceptibility * 100))
 			randmutb(nearby)
@@ -73,9 +75,14 @@
 			continue
 		if(SEND_SIGNAL(target, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 			continue
+		if(target.isSynthetic() || target.species.flags & NO_DNA)
+			continue
+		if(target.is_incorporeal())
+			continue
 		if(target.stat >= UNCONSCIOUS)
 			continue
-		if(istype(get_area(target), /area/crew_quarters))
+		var/area/target_area = get_area(target)
+		if(target_area.flag_check(AREA_FORBID_EVENTS))
 			continue
 		var/distance_from_target = get_dist(src, target)
 		if(distance_from_target >= closest_distance)

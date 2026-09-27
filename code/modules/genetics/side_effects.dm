@@ -19,7 +19,7 @@
 	// start the side effect, this should give some cue as to what's happening,
 	// such as gasping. These cues need to be unique among side-effects.
 
-/datum/genetics/side_effect/proc/finish(var/datum/weakref/WR)
+/datum/genetics/side_effect/proc/finish(datum/weakref/WR)
 	var/mob/living/carbon/human/H = WR.resolve()
 	if(!H || !ishuman(H)) return FALSE
 	H.genetic_side_effects -= src

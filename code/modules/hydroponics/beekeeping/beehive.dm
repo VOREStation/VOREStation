@@ -34,12 +34,12 @@
 			if(81 to 100)
 				add_overlay("bees3")
 
-/obj/machinery/beehive/examine(var/mob/user)
+/obj/machinery/beehive/examine(mob/user)
 	. = ..()
 	if(!closed)
 		. += "The lid is open."
 
-/obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/beehive/attackby(obj/item/I, mob/user)
 	if(I.has_tool_quality(TOOL_CROWBAR))
 		closed = !closed
 		user.visible_message(span_notice("[user] [closed ? "closes" : "opens"] \the [src]."), span_notice("You [closed ? "close" : "open"] \the [src]."))
@@ -126,7 +126,7 @@
 			qdel(src)
 		return
 
-/obj/machinery/beehive/attack_hand(var/mob/user)
+/obj/machinery/beehive/attack_hand(mob/user)
 	if(!closed)
 		if(honeycombs < 100)
 			to_chat(user, span_notice("There are no filled honeycombs."))
@@ -212,7 +212,7 @@
 	if(processing)
 		icon_state = "[icon_state]_moving"
 
-/obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/honey_extractor/attackby(obj/item/I, mob/user)
 	if(processing)
 		to_chat(user, span_notice("\The [src] is currently spinning, wait until it's finished."))
 		return

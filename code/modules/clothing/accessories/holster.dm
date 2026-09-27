@@ -10,7 +10,7 @@
 	var/holster_out = 'sound/items/holsterout.ogg'
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
+/obj/item/clothing/accessory/holster/proc/holster(obj/item/I, mob/living/user)
 	if(holstered && istype(user))
 		to_chat(user, span_warning("There is already \a [holstered] holstered here!"))
 		return

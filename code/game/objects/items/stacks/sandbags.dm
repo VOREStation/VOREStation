@@ -32,7 +32,7 @@
 
 	bag_material = MAT_SYNCLOTH
 
-/obj/item/stack/sandbags/Initialize(mapload, var/amt, var/bag_mat)
+/obj/item/stack/sandbags/Initialize(mapload, amt, bag_mat)
 	. = ..(mapload, amt)
 	recipes = GLOB.sandbag_recipes
 	update_icon()
@@ -48,7 +48,7 @@
 
 	slowdown = round(amount / 10, 0.1)
 
-/obj/item/stack/sandbags/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
+/obj/item/stack/sandbags/produce_recipe(datum/stack_recipe/recipe, quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
@@ -130,7 +130,7 @@
 	var/bag_material = MAT_CLOTH
 	custom_handling = TRUE
 
-/obj/item/stack/emptysandbag/Initialize(mapload, var/amt, var/bag_mat)
+/obj/item/stack/emptysandbag/Initialize(mapload, amt, bag_mat)
 	. = ..(mapload, amt)
 	if(bag_mat)
 		bag_material = bag_mat

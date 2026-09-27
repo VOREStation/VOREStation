@@ -50,7 +50,7 @@
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
-/mob/living/simple_mob/vore/bee/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/bee/Process_Spacemove(check_drift = 0)
 	return 1	//No drifting in space for space bee!
 
 // Activate Noms!
@@ -58,7 +58,7 @@
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/bee/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/bee/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

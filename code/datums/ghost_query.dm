@@ -27,7 +27,7 @@
 		our_timer(wait_time)
 		return
 
-/datum/ghost_query/proc/our_timer(var/current_wait_time)
+/datum/ghost_query/proc/our_timer(current_wait_time)
 	if(current_wait_time)
 		addtimer(CALLBACK(src, PROC_REF(our_timer), FALSE), current_wait_time, TIMER_DELETE_ME)
 	else
@@ -56,7 +56,7 @@
 	return TRUE
 
 /// Send async alerts and ask for responses. Expects you to have tested D for client and type already
-/datum/ghost_query/proc/ask_question(var/mob/observer/dead/D)
+/datum/ghost_query/proc/ask_question(mob/observer/dead/D)
 	if(jobban_isbanned(D, JOB_GHOSTROLES))
 		return
 

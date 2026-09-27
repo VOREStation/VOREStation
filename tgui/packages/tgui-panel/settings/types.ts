@@ -34,6 +34,8 @@ export const settingsSchema = z.object({
   ttsVoice: z.string(),
   version: z.number(),
   view: viewSchema,
+  websocketEnabled: z.boolean(),
+  websocketServer: z.string(),
   visibleMessages: z.number(),
   visibleMessageLimit: z.number(),
 });

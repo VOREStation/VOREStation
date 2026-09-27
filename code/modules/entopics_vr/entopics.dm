@@ -13,7 +13,7 @@
 	var/image/my_image
 	var/registered = FALSE // Less expensive to make it a finite state than to use |= on entopic_images or anything like that.
 
-/datum/entopic/New(var/atom/aholder, var/icon/aicon, var/aicon_state, var/aalpha, var/aplane, var/alayer, var/aoverride, var/aname, var/asuffix)
+/datum/entopic/New(atom/aholder, icon/aicon, aicon_state, aalpha, aplane, alayer, aoverride, aname, asuffix)
 	ASSERT(aholder && (isicon(aicon) || isicon(icon)))
 
 	//Everything we need to set in the initializer
@@ -118,7 +118,7 @@
 	. = ..()
 	ent_debug = new(aholder = src, aicon = icon, aicon_state = "holo_Jin")
 
-/proc/entopic_icon_helper(var/atom/A,var/holo = TRUE)
+/proc/entopic_icon_helper(atom/A,holo = TRUE)
 	ASSERT(A)
 
 	var/icon/CI = getCompoundIcon(A)

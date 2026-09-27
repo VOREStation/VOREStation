@@ -209,12 +209,12 @@ if $grep '\.proc/' $code_x_515 ; then
     FAILED=1
 fi;
 
-#part "var in proc args"
-#if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
-#	echo
-#	echo -e "${RED}ERROR: changed files contains proc argument starting with 'var'.${NC}"
-#	FAILED=1
-#fi;
+part "var in proc args"
+if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: changed files contains proc argument starting with 'var'.${NC}"
+	FAILED=1
+fi;
 
 part "unmanaged global vars"
 if grep -P '^/*var/' $code_files; then

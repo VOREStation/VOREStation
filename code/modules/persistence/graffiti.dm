@@ -15,7 +15,7 @@
 	var/graffiti_age = 0
 	var/author = "unknown"
 
-/obj/effect/decal/writing/Initialize(mapload, var/_age, var/_message, var/_author)
+/obj/effect/decal/writing/Initialize(mapload, _age, _message, _author)
 	. = ..()
 	if(!isnull(_age))
 		graffiti_age = _age
@@ -42,7 +42,7 @@
 	. = ..()
 	. += "\n It reads \"[message]\"."
 
-/obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)
+/obj/effect/decal/writing/attackby(obj/item/thing, mob/user)
 	if(thing.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/welder = thing.get_welder()
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, target = src) && !QDELETED(src))

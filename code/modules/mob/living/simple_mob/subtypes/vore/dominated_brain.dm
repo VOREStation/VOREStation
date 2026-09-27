@@ -26,7 +26,7 @@
 	var/prey_ooc_dislikes
 	var/was_mob
 
-/mob/living/dominated_brain/Initialize(mapload, var/mob/living/pred, preyname, var/mob/living/prey)
+/mob/living/dominated_brain/Initialize(mapload, mob/living/pred, preyname, mob/living/prey)
 	prey_name = preyname
 	if(prey)
 		prey_body = prey
@@ -44,7 +44,7 @@
 	if(!ckey)
 		qdel(src)
 
-/mob/living/dominated_brain/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/dominated_brain/say_understands(mob/other, datum/language/speaking = null)
 	if(pred_body.say_understands(other, speaking))
 		return TRUE
 	else return FALSE

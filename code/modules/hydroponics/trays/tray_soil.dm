@@ -7,7 +7,7 @@
 	tray_light = 0
 	frozen = -1
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O,/obj/item/tank))
 		return
 	if(istype(O,/obj/item/shovel))
@@ -50,7 +50,7 @@
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(mapload,var/datum/seed/newseed)
+/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(mapload,datum/seed/newseed)
 	. = ..()
 	if(isopenturf(loc))
 		return INITIALIZE_HINT_QDEL

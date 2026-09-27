@@ -2,12 +2,12 @@
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-	matter = list(MAT_STEEL = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05))
 	var/armed = 0
 	special_handling = TRUE
 
 
-/obj/item/assembly/mousetrap/examine(var/mob/user)
+/obj/item/assembly/mousetrap/examine(mob/user)
 	. = ..(user)
 	if(armed)
 		. += "It looks like it's armed."
@@ -20,7 +20,7 @@
 	if(holder)
 		holder.update_icon()
 
-/obj/item/assembly/mousetrap/proc/triggered(var/mob/target, var/type = "feet")
+/obj/item/assembly/mousetrap/proc/triggered(mob/target, type = "feet")
 	if(!armed)
 		return
 	var/obj/item/organ/external/affecting = null
@@ -28,7 +28,7 @@
 		var/mob/living/carbon/human/H = target
 		switch(type)
 			if("feet")
-				if(!H.shoes)
+				if(!H.shoes && !(H.species.flags & NO_MINOR_CUT))
 					affecting = H.get_organ(pick(BP_L_LEG, BP_R_LEG))
 					H.Weaken(3)
 			if(BP_L_HAND, BP_R_HAND)
@@ -70,7 +70,7 @@
 	update_icon()
 	playsound(user, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
 
-/obj/item/assembly/mousetrap/attack_hand(var/mob/living/user)
+/obj/item/assembly/mousetrap/attack_hand(mob/living/user)
 	if(armed)
 		if(CLUMSY_FAIL_CHANCE(user))
 			var/which_hand = BP_L_HAND
@@ -82,7 +82,7 @@
 			return
 	..()
 
-/obj/item/assembly/mousetrap/Crossed(var/atom/movable/AM)
+/obj/item/assembly/mousetrap/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal())
 		return
 	if(armed)
@@ -96,7 +96,7 @@
 			triggered(AM)
 	..()
 
-/obj/item/assembly/mousetrap/on_found(var/mob/living/finder)
+/obj/item/assembly/mousetrap/on_found(mob/living/finder)
 	if(armed)
 		finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking [p_their()] fingers."), \
 							   span_warning("You accidentally trigger [src]!"))
@@ -104,7 +104,7 @@
 		return 1	//end the search!
 	return 0
 
-/obj/item/assembly/mousetrap/hitby(var/atom/movable/source, datum/thrownthing/throwingdatum)
+/obj/item/assembly/mousetrap/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	if(!armed)
 		return ..()
 	visible_message(span_warning("[src] is triggered by [source]."))

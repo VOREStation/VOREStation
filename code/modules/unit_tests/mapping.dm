@@ -32,7 +32,7 @@
 	if(failed)
 		TEST_FAIL("Machinery had an illegal access id.")
 
-/datum/unit_test/proc/validate_list(var/list/access_list, var/obj/machinery/thing, name_list)
+/datum/unit_test/proc/validate_list(list/access_list, obj/machinery/thing, name_list)
 	if(!access_list)
 		return FALSE // null is legal
 

@@ -16,7 +16,7 @@
 	var/amt_chips_to_dispense = 250
 	var/speaking = FALSE // Whether or not we are saying one message (to prevent overlap)
 
-/obj/machinery/oneuse_chipmachine/proc/state_message(var/message, var/delay=0)
+/obj/machinery/oneuse_chipmachine/proc/state_message(message, delay=0)
 	PROTECTED_PROC(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 	// If we don't want a delay, say the message
@@ -201,7 +201,7 @@
 
 /area/redgate/underwater_casino/indoors/lower/dorms
 	name = UNDERWATER_CASINO_NAME + " - Dorms"
-	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_BLOCK_INSTANT_BUILDING
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_BLOCK_INSTANT_BUILDING | AREA_CRYOPLANET_SHIELDED
 
 /area/redgate/underwater_casino/indoors/lower/dorms/dorm1
 	name = UNDERWATER_CASINO_NAME + " - Dormitory One"

@@ -62,7 +62,14 @@ export function computeBurnTick(
   cache: readonly CacheItem[],
 ): BurnResult {
   if (trace < 100) {
-    return { burned: false, newTrace: trace, newHeat: heat, newWallet: wallet, newJobs: jobs, newCache: cache };
+    return {
+      burned: false,
+      newTrace: trace,
+      newHeat: heat,
+      newWallet: wallet,
+      newJobs: jobs,
+      newCache: cache,
+    };
   }
   return {
     burned: true,

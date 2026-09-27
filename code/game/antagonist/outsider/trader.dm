@@ -27,7 +27,7 @@ GLOBAL_DATUM(traders, /datum/antagonist/trader)
 
 	can_speak_aooc = FALSE // They're not real antags.
 
-/datum/antagonist/trader/create_default(var/mob/source)
+/datum/antagonist/trader/create_default(mob/source)
 	var/mob/living/carbon/human/M = ..()
 	if(istype(M)) M.age = rand(25,45)
 
@@ -35,13 +35,13 @@ GLOBAL_DATUM(traders, /datum/antagonist/trader)
 	..()
 	GLOB.traders = src
 
-/datum/antagonist/trader/greet(var/datum/mind/player)
+/datum/antagonist/trader/greet(datum/mind/player)
 	if(!..())
 		return
 	to_chat(player.current, "The Beruang is an independent cargo hauler, unless you decide otherwise. You're on your way to [station_name()].")
 	to_chat(player.current, "You may want to discuss a collective story with the rest of your crew. More members may be joining, so don't move out straight away!")
 
-/datum/antagonist/trader/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/trader/equip(mob/living/carbon/human/player)
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(src), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(src), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/brown(src), slot_gloves)
@@ -60,7 +60,7 @@ GLOBAL_DATUM(traders, /datum/antagonist/trader)
 
 	return 1
 
-/datum/antagonist/trader/update_access(var/mob/living/player)
+/datum/antagonist/trader/update_access(mob/living/player)
 	for(var/obj/item/storage/wallet/W in player.contents)
 		for(var/obj/item/card/id/id in W.contents)
 			id.name = "[player.real_name]'s Passport"

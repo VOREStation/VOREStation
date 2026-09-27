@@ -8,9 +8,9 @@ import { FONTS_DISABLED } from './constants';
 import { setClientTheme } from './themes';
 import type { SettingsState } from './types';
 
-let statFontTimer: NodeJS.Timeout;
-let statTabsTimer: NodeJS.Timeout;
-let overrideRule: HTMLStyleElement;
+let statFontTimer: ReturnType<typeof setTimeout> | undefined;
+let statTabsTimer: ReturnType<typeof setTimeout> | undefined;
+let overrideRule: HTMLStyleElement | undefined;
 let overrideFontFamily: string | undefined;
 let overrideFontSize: string;
 

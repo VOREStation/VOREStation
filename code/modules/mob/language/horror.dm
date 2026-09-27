@@ -15,7 +15,7 @@
 		"d'rekkathnor", "khari'd", "gual'te", "nikka", "nikt'o", "barada", "kla'atu", "barhah", "hra" ,"zar'garis", "spiri", "malum")
 
 //Special, spooky effects when you speak.
-/datum/language/redspace/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/redspace/broadcast(mob/living/speaker,message,speaker_mask)
 	if(prob(10))
 		speaker.hallucination += 5
 

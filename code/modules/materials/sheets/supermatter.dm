@@ -45,7 +45,7 @@
 	w_class = min(5, round(amount / 10) + 1)
 	throw_range = round(amount / 7) + 1
 
-/obj/item/stack/material/supermatter/use(var/used)
+/obj/item/stack/material/supermatter/use(used)
 	. = ..()
 	update_mass()
 	return

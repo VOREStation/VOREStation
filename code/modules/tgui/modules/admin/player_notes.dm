@@ -16,7 +16,7 @@
 	if(!QDELETED(src))
 		qdel(src)
 
-/datum/tgui_module/player_notes/proc/filter_ckeys(var/page, var/filter)
+/datum/tgui_module/player_notes/proc/filter_ckeys(page, filter)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -249,7 +249,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/datum/admins/proc/player_has_info_legacy(var/key as text)
+/datum/admins/proc/player_has_info_legacy(key as text)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos

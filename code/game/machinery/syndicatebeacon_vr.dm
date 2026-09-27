@@ -1,6 +1,6 @@
 //  Virgo modified syndie beacon, does not give objectives
 
-/obj/machinery/syndicate_beacon/virgo/attack_hand(var/mob/user)
+/obj/machinery/syndicate_beacon/virgo/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat = span_darkgreen(span_italics("Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br>"))
 	if(ishuman(user) || isAI(user))

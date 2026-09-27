@@ -85,7 +85,7 @@
 		scan_rating += S.rating
 	simulation_delay = 25 SECONDS - scan_rating SECONDS
 
-/obj/machinery/bomb_tester/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/bomb_tester/attackby(obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))
@@ -106,7 +106,7 @@
 			return
 	..()
 
-/obj/machinery/bomb_tester/attack_hand(var/mob/user)
+/obj/machinery/bomb_tester/attack_hand(mob/user)
 	add_fingerprint(user)
 	tgui_interact(user)
 
@@ -242,7 +242,7 @@
 			var/dev = round((mult*strength)*0.15)
 			var/heavy = round((mult*strength)*0.35)
 			var/light = round((mult*strength)*0.80)
-			simulation_results += "<hr>Final Result: Explosive tank rupture. [dev?"Extreme damage within [2*dev] meters. ":""][heavy?"Heavy damage within [2*heavy] meters. ":""][light?"Light damage within [2*light] meters. ":""]Hazardous shrapnel produced."
+			simulation_results += "<hr>Final Result: Explosive tank rupture. [dev?"Extreme damage within [dev] meters. ":""][heavy?"Heavy damage within [heavy] meters. ":""][light?"Light damage within [light] meters. ":""]Hazardous shrapnel produced."
 			return 1
 		else
 			faketank_integrity -= 7
@@ -254,9 +254,10 @@
 			return 1
 		else
 			faketank_integrity -= 5
-
+	/*
 	else if(pressure > TANK_LEAK_PRESSURE || faketank.temperature - T0C > 173)
 		faketank_integrity -= 1
+	*/
 	return 0
 
 /obj/machinery/bomb_tester/proc/single_tank_sim()
@@ -362,7 +363,7 @@
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results
 
-/obj/machinery/bomb_tester/proc/format_gas_for_results(var/datum/gas_mixture/G)
+/obj/machinery/bomb_tester/proc/format_gas_for_results(datum/gas_mixture/G)
 	G.update_values() //Just in case
 	var/results = ""
 	var/pressure = G.return_pressure()

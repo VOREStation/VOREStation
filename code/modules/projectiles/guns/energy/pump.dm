@@ -31,7 +31,7 @@
 	else
 		return ..()
 
-/obj/item/gun/energy/locked/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/locked/emag_act(remaining_charges,mob/user)
 	..()
 	if(lockable)
 		locked = !locked
@@ -80,7 +80,7 @@
 	)
 	recoil_mode = 0
 
-/obj/item/gun/energy/locked/frontier/unload_ammo(var/mob/user)
+/obj/item/gun/energy/locked/frontier/unload_ammo(mob/user)
 	if(recharging)
 		return
 	recharging = 1
@@ -205,7 +205,7 @@
 	set name = "Use Scope"
 	set popup_menu = 1
 
-	toggle_scope(2.0)
+	toggle_scope(usr, 2.0)
 
 /obj/item/gun/energy/locked/frontier/rifle/update_icon()
 	if(recharging)

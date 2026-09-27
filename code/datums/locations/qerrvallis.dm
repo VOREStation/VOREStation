@@ -4,7 +4,7 @@
 	name = "Qerr'Vallis"
 	desc = "The home system of the Skrell, which translates to 'Star of the royals' or 'Light of the Crown'."
 
-/datum/locations/qerrvallis/New(var/creator)
+/datum/locations/qerrvallis/New(creator)
 	contents.Add(
 		new /datum/locations/qerrbalak(src)
 		)
@@ -15,7 +15,7 @@
 	desc = "The homeworld of the Skrell. It is a planet with a humid atmosphere, featuring plenty of swamps and jungles. \
 	The world is filled with Skrellian cities which often sit on stilts."
 
-/datum/locations/qerrbalak/New(var/creator)
+/datum/locations/qerrbalak/New(creator)
 	contents.Add(
 		new /datum/locations/qarrkloa(src),
 		new /datum/locations/moglar(src),

@@ -36,7 +36,7 @@
 	addtimer(CALLBACK(dropped, TYPE_PROC_REF(/atom/movable,end_fall), crushing), 0.7 SECONDS)
 	qdel(src)
 
-/atom/movable/proc/end_fall(var/crushing = FALSE)
+/atom/movable/proc/end_fall(crushing = FALSE)
 	if(isliving(src))
 		var/mob/living/L = src
 		for(var/mob/living/P in loc)

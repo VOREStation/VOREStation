@@ -37,7 +37,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
 
-/obj/item/organ/internal/brain/proc/implant_assist(var/targ_icon_state = null)
+/obj/item/organ/internal/brain/proc/implant_assist(targ_icon_state = null)
 	name = "[owner.real_name]'s assisted [initial(name)]"
 	if(targ_icon_state)
 		icon_state = targ_icon_state
@@ -96,7 +96,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	QDEL_NULL(brainmob)
 	. = ..()
 
-/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/internal/brain/proc/transfer_identity(mob/living/carbon/H)
 
 	if(!brainmob)
 		brainmob = new(src)
@@ -133,7 +133,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	else
 		. += "This one seems particularly lifeless. Perhaps it will regain some of its luster later..."
 
-/obj/item/organ/internal/brain/removed(var/mob/living/user)
+/obj/item/organ/internal/brain/removed(mob/living/user)
 
 	if(name == initial(name))
 		name = "\the [owner.real_name]'s [initial(name)]"
@@ -150,7 +150,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	..()
 
-/obj/item/organ/internal/brain/replaced(var/mob/living/target)
+/obj/item/organ/internal/brain/replaced(mob/living/target)
 
 	if(target.key)
 		target.ghostize()
@@ -210,7 +210,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		var/mob/living/carbon/human/H = loc
 		color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
 
-/obj/item/organ/internal/brain/slime/removed(var/mob/living/user)
+/obj/item/organ/internal/brain/slime/removed(mob/living/user)
 	if(istype(owner))
 		owner_flavor_text = owner.flavor_texts.Copy()
 	..()
@@ -306,12 +306,12 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	required_reagents = list(REAGENT_ID_PHORON = 40)
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/promethean_brain_revival/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/promethean_brain_revival/can_happen(datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/organ/internal/brain/slime))
 		return ..()
 	return FALSE
 
-/datum/decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(datum/reagents/holder)
 	var/obj/item/organ/internal/brain/slime/brain = holder.my_atom
 	if(brain.reviveBody())
 		brain.visible_message(span_notice("[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!"))

@@ -3,7 +3,7 @@
 	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
 	icon_state = "signaller"
 	item_state = "signaler"
-	matter = list(MAT_STEEL = 1000, MAT_GLASS = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.1))
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
 	secured = TRUE
@@ -70,7 +70,7 @@
 
 	update_icon()
 
-/obj/item/assembly/signaler/attackby(var/obj/item/W, mob/user, params)
+/obj/item/assembly/signaler/attackby(obj/item/W, mob/user, params)
 	if(issignaler(W))
 		var/obj/item/assembly/signaler/signaler2 = W
 		if(secured && signaler2.secured)
@@ -95,7 +95,7 @@
 	radio_connection.post_signal(src, signal)
 	COOLDOWN_START(src, next_activate, activation_cooldown)
 
-/obj/item/assembly/signaler/pulse(var/radio = 0)
+/obj/item/assembly/signaler/pulse(radio = 0)
 	if(is_jammed(src))
 		return FALSE
 	if(connected && wires)

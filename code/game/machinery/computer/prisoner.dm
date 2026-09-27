@@ -15,7 +15,7 @@
 	var/stop = 0.0
 	var/screen = 0 // 0 - No Access Denied, 1 - Access allowed
 
-/obj/machinery/computer/prisoner/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/prisoner/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/prisoner/attack_hand(mob/user)

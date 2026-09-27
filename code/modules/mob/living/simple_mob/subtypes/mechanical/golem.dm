@@ -78,7 +78,7 @@
 	s.start()
 	qdel(src)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/place_spell_in_hand(var/path)
+/mob/living/simple_mob/mechanical/technomancer_golem/place_spell_in_hand(path)
 	if(!path || !ispath(path))
 		return FALSE
 	if(active_spell)

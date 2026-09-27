@@ -163,6 +163,7 @@ export const CameraConsoleContent = (props) => {
           <Stack.Item>
             <Dropdown
               searchInput
+              styledInput
               autoScroll={false}
               mb={1}
               width={networkFilter ? '155px' : '177px'}

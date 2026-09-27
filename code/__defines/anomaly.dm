@@ -48,6 +48,17 @@
 #define WEATHER_ANOMALY "weather_anomaly"
 #define DUST_ANOMALY "dust_anomaly"
 
+#define ANOMALY_ALL list( \
+	GRAVITATIONAL_ANOMALY, \
+	FLUX_ANOMALY, \
+	PYRO_ANOMALY, \
+	BIOSCRAMBLER_ANOMALY, \
+	HALLUCINATION_ANOMALY, \
+	DIMENSIONAL_ANOMALY, \
+	WEATHER_ANOMALY, \
+	DUST_ANOMALY \
+)
+
 #define ANOMALY_PARTICLE_SIGMA		"Sigma particles"
 #define ANOMALY_PARTICLE_DELTA		"Delta particles"
 #define ANOMALY_PARTICLE_ZETA		"Zeta particles"

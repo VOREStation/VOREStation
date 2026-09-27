@@ -108,13 +108,13 @@
 	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
 
 	if(prey.is_slipping)
-		success_msg = span_vwarning("[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!")
+		success_msg = span_vwarning("[prey] suddenly slides into [pred]'s [lowertext(belly.get_belly_name())]!")
 	else if(pred.is_slipping)
-		success_msg = span_vwarning("[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!")
+		success_msg = span_vwarning("[prey] suddenly slips inside of [pred]'s [lowertext(belly.get_belly_name())] as [pred] slides into them!")
 	else if(user == pred) //Feeding someone to yourself
-		success_msg = span_vwarning("[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
+		success_msg = span_vwarning("[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.get_belly_name())]!")
 	else //Feeding someone to another person
-		success_msg = span_vwarning("[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
+		success_msg = span_vwarning("[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.get_belly_name())]!")
 	return success_msg
 
 /**
@@ -127,13 +127,13 @@
 	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
 
 	if(prey.is_slipping)
-		attempt_msg = span_vwarning("It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!")
+		attempt_msg = span_vwarning("It seems like [prey] is about to slide into [pred]'s [lowertext(belly.get_belly_name())]!")
 	else if(pred.is_slipping)
-		attempt_msg = span_vwarning("It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!")
+		attempt_msg = span_vwarning("It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.get_belly_name())] as [pred] comes sliding over!")
 	else if(user == pred) //Feeding someone to yourself
-		attempt_msg = span_vwarning("[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
+		attempt_msg = span_vwarning("[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.get_belly_name())]!")
 	else //Feeding someone to another person
-		attempt_msg = span_vwarning("[user] is attempting to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
+		attempt_msg = span_vwarning("[user] is attempting to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.get_belly_name())]!")
 	return attempt_msg
 
 /**

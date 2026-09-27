@@ -7,6 +7,7 @@ import { MindRecordModal } from './MindRecordModal';
 import {
   ResleevingConsoleCoreDump,
   ResleevingConsoleDiskPrep,
+  ResleevingConsoleDumpProgress,
 } from './ResleevingConsoleCoreDump';
 import {
   ResleevingConsoleBody,
@@ -18,7 +19,7 @@ import type { Data } from './types';
 
 export const ResleevingConsole = (props) => {
   const { data } = useBackend<Data>();
-  const { coredumped, emergency } = data;
+  const { coredumped, dump_progress, emergency } = data;
   let body: React.JSX.Element = (
     <Stack fill vertical>
       <ResleevingConsoleTemp />
@@ -40,6 +41,9 @@ export const ResleevingConsole = (props) => {
   }
   if (emergency) {
     body = <ResleevingConsoleDiskPrep />;
+  }
+  if (dump_progress) {
+    body = <ResleevingConsoleDumpProgress />;
   }
   return (
     <Window width={640} height={520}>

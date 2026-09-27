@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = 0					//currently only used for custom objectives.
 
-/datum/objective/New(var/text)
+/datum/objective/New(text)
 	GLOB.all_objectives |= src
 	if(text)
 		explanation_text = text
@@ -568,7 +568,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	return 1
 
 
-/datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
+/datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
 	target_amount = rand (lowbound,highbound)
 	if (SSticker)
 		var/n_p = 1 //autowin

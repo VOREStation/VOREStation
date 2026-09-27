@@ -31,7 +31,7 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(next_offer)), offer_time) //It seems like only the /hidden type actually makes use of this...
 
-/obj/item/uplink/get_item_cost(var/item_type, var/item_cost)
+/obj/item/uplink/get_item_cost(item_type, item_cost)
 	return (discount_item && (item_type == discount_item)) ? max(1, round(item_cost*discount_amount)) : item_cost
 
 /obj/item/uplink/proc/next_offer()
@@ -82,7 +82,7 @@
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
-/obj/item/uplink/hidden/proc/check_trigger(mob/user as mob, var/value, var/target)
+/obj/item/uplink/hidden/proc/check_trigger(mob/user as mob, value, target)
 	if(value == target)
 		trigger(user)
 		return TRUE

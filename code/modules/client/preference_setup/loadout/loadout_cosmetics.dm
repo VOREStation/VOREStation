@@ -29,7 +29,7 @@
 	// can't set description, it'll look funny
 	gear_tweaks = list(GLOB.gear_tweak_free_color_choice, GLOB.gear_tweak_free_name)
 
-/datum/gear/cosmetic/nailpolish/spawn_item(var/location, var/metadata)
+/datum/gear/cosmetic/nailpolish/spawn_item(location, metadata)
 	var/obj/item/nailpolish/polish = ..()
 	polish.set_colour(polish.color)
 	polish.color = null

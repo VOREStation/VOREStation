@@ -67,7 +67,7 @@
 	vision_range = 1
 	wander = FALSE
 
-/mob/living/simple_mob/vore/mantrap/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+/mob/living/simple_mob/vore/mantrap/Crossed(atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 	if(src.stat)

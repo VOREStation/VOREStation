@@ -57,7 +57,7 @@
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
 /// Performs a single reagent addition. Returns its success (or error) status at doing so.
-/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/datum/reagents/target_reagents, var/mob/user, var/reagent_id, var/amount)
+/obj/item/reagent_containers/borghypo/proc/try_add_reagent(datum/reagents/target_reagents, mob/user, reagent_id, amount)
 	var/reagent_volume = reagent_volumes[reagent_id]
 	if(!reagent_volume || reagent_volume < amount)
 		return BORGHYPO_STATUS_NOCHARGE
@@ -74,7 +74,7 @@
 	return BORGHYPO_STATUS_SUCCESS
 
 /// Attempts to add one reagent or multiple reagents, depending on if this hypo is currently set to dispense a recipe, (see `is_dispensing_recipe`.) Returns its success (or error) status at doing so.
-/obj/item/reagent_containers/borghypo/proc/try_injection(var/datum/reagents/target_reagents, var/mob/user)
+/obj/item/reagent_containers/borghypo/proc/try_injection(datum/reagents/target_reagents, mob/user)
 	if(is_dispensing_recipe && selected_recipe_id)
 		// Add reagents with our selected ID
 		var/foundRecipe = saved_recipes[selected_recipe_id]
@@ -190,7 +190,7 @@
 	return
 
 /* No longer necessary because we use TGUI for this now!
-/obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
+/obj/item/reagent_containers/borghypo/Topic(href, list/href_list)
 	if(href_list["reagent"])
 		var/t = reagent_ids.Find(href_list["reagent"])
 		if(t)
@@ -400,7 +400,7 @@
 /obj/item/reagent_containers/borghypo/service/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	return NONE
 
-/obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/borghypo/service/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 

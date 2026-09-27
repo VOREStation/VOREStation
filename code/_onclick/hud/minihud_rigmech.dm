@@ -8,7 +8,7 @@
 
 	needs_processing = TRUE
 
-/datum/mini_hud/rig/New(var/datum/hud/other, var/obj/item/rig/owner)
+/datum/mini_hud/rig/New(datum/hud/other, obj/item/rig/owner)
 	owner_rig = owner
 	power = new ()
 	health = new ()
@@ -57,7 +57,7 @@
 
 	needs_processing = TRUE
 
-/datum/mini_hud/mech/New(var/datum/hud/other, var/obj/mecha/owner)
+/datum/mini_hud/mech/New(datum/hud/other, obj/mecha/owner)
 	owner_mech = owner
 	power = new ()
 	health = new ()

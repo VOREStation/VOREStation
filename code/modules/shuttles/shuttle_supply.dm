@@ -6,7 +6,7 @@
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
 	category = /datum/shuttle/autodock/ferry/supply
 
-/datum/shuttle/autodock/ferry/supply/short_jump(var/obj/effect/shuttle_landmark/destination)
+/datum/shuttle/autodock/ferry/supply/short_jump(obj/effect/shuttle_landmark/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 

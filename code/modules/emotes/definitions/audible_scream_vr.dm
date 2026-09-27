@@ -1,4 +1,4 @@
-/datum/decl/emote/audible/scream/get_emote_sound(var/atom/user)
+/datum/decl/emote/audible/scream/get_emote_sound(atom/user)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -13,4 +13,5 @@
 /datum/decl/emote/audible/malehumanscream
 	key = "malehumanscream"
 	emote_message_3p = "screams!"
+	emote_message_mute_3p = "screams silently!"
 	emote_sound = 'sound/voice/malescream_2.ogg'

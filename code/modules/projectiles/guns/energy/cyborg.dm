@@ -2,15 +2,15 @@
 /// Some things are included in here for relevence's sake (like the dogborg blade)
 
 
-/obj/item/gun/energy/robotic/proc/gun_flag_check(var/flag_to_check) //Checks for the flag of the gun.
+/obj/item/gun/energy/robotic/proc/gun_flag_check(flag_to_check) //Checks for the flag of the gun.
 	return (borg_flags & flag_to_check)
 
-/obj/item/melee/robotic/proc/weapon_flag_check(var/flag_to_check) //Checks for the flag of the gun.
+/obj/item/melee/robotic/proc/weapon_flag_check(flag_to_check) //Checks for the flag of the gun.
 	return (borg_flags & flag_to_check)
 
 // THESE ARE OUTLIERS THAT SHOULD BE INCLUDED IN /MELEE BUT ARE SO HARDCODED THAT DOING SUCH WOULD BE A NIGHTMARE.
 // THIS LIST SHOULD BE SHORT AND ONLY INCLUDE THINGS THAT ARE ABSOLUTELY NECESSARY.
-/obj/item/pickaxe/proc/weapon_flag_check(var/flag_to_check) //Checks for the flag of the gun.
+/obj/item/pickaxe/proc/weapon_flag_check(flag_to_check) //Checks for the flag of the gun.
 	return (borg_flags & flag_to_check)
 
 
@@ -251,7 +251,7 @@
 	deductcharge(600)
 	return ..()
 
-/obj/item/melee/robotic/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/robotic/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -375,7 +375,7 @@
 	Striking a lesser robotic entity will compel it to attack you, as well.  It also does extra burn damage to robotic entities, but it does \
 	very little damage to purely organic targets."
 
-/obj/item/melee/robotic/blade/ionic/afterattack(var/atom/movable/AM, var/mob/living/user, var/proximity)
+/obj/item/melee/robotic/blade/ionic/afterattack(atom/movable/AM, mob/living/user, proximity)
 	if(istype(AM, /obj) && proximity)
 		// EMP stuff.
 		var/obj/O = AM
@@ -384,7 +384,7 @@
 		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
 
-/obj/item/melee/robotic/blade/ionic/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/robotic/blade/ionic/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	. = ..()
 	if(target.isSynthetic())
 		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
@@ -474,7 +474,7 @@
 		deductcharge(hitcost)
 	return ..()
 
-/obj/item/melee/robotic/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/robotic/baton/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -529,7 +529,7 @@
 	agonyforce = 25 // Less efficent than a regular baton.
 	attack_verb = list("poked")
 
-/obj/item/melee/robotic/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/robotic/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	..(target, user, hit_zone)
 	if(target.has_AI())
 		target.taunt(user)

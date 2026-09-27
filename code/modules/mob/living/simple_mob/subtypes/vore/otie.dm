@@ -239,7 +239,7 @@
 	icon_living = "hotiesc"
 	icon_rest = "hotiesc_rest"
 
-/mob/living/simple_mob/vore/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
+/mob/living/simple_mob/vore/otie/attackby(obj/item/O, mob/user) // Trade donuts for bellybrig victims.
 	if(istype(O, /obj/item/reagent_containers/food))
 		qdel(O)
 		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -254,7 +254,7 @@
 		return
 	. = ..()
 
-/mob/living/simple_mob/vore/otie/security/feed_grabbed_to_self(var/mob/living/user, var/mob/living/prey) // Make the gut start out safe for bellybrigging.
+/mob/living/simple_mob/vore/otie/security/feed_grabbed_to_self(mob/living/user, mob/living/prey) // Make the gut start out safe for bellybrigging.
 	if(ishuman(prey))
 		vore_selected.digest_mode = DM_HOLD
 		if(check_threat(prey) >= 4)
@@ -263,7 +263,7 @@
 		vore_selected.digest_mode = DM_DIGEST
 	. = ..()
 
-/mob/living/simple_mob/vore/otie/security/proc/check_threat(var/mob/living/M)
+/mob/living/simple_mob/vore/otie/security/proc/check_threat(mob/living/M)
 	if(!M || !ishuman(M) || M.stat == DEAD || src == M)
 		return 0
 	return M.assess_perp(0, 0, 0, check_records, check_arrest)
@@ -338,7 +338,7 @@
 
 /datum/ai_holder/simple_mob/melee/evasive/otie
 
-/datum/ai_holder/simple_mob/melee/evasive/otie/New(var/mob/living/simple_mob/vore/otie/new_holder)
+/datum/ai_holder/simple_mob/melee/evasive/otie/New(mob/living/simple_mob/vore/otie/new_holder)
 	.=..()
 	if(new_holder.tamed)
 		hostile = FALSE

@@ -902,7 +902,7 @@
 	if(target)
 		target.update_dna()
 
-/datum/tgui_module/appearance_changer/proc/can_change(mob/living/carbon/human/target, var/flag)
+/datum/tgui_module/appearance_changer/proc/can_change(mob/living/carbon/human/target, flag)
 	return target && (flags & flag)
 
 /datum/tgui_module/appearance_changer/proc/can_change_skin_tone(mob/living/carbon/human/target)
@@ -1156,7 +1156,7 @@
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen), TRUE)
 
-/datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
+/datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(datum/transhuman/body_record/current_project)
 	if(owner)
 		UnregisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		QDEL_NULL(owner)

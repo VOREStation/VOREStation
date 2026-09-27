@@ -19,7 +19,7 @@
 	icon_state = "flashlight"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.01))
 	actions_types = list(/datum/action/item_action/toggle_flashlight)
 
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
@@ -252,7 +252,7 @@
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
 
-/obj/item/flashlight/proc/flicker(var/amount = rand(10, 20), var/flicker_color, var/forced)
+/obj/item/flashlight/proc/flicker(amount = rand(10, 20), flicker_color, forced)
 	if(flickering)
 		return
 	if(!flicker_color)
@@ -265,7 +265,7 @@
 	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting) //BEWARE, ESOTERIC BULLSHIT HERE.
 	if(flicker_color && light_color != flicker_color)
 		set_light_color(flicker_color)
-		OL.directional_atom.color = flicker_color
+		OL.directional_atom?.color = flicker_color
 	do_flicker(amount, flicker_color, original_color, original_on, OL, 1)
 
 
@@ -276,7 +276,7 @@
 /// original_on is if we were originally on or not.
 /// OL is our overlay for lighting.
 /// ticker is how many times we have flickered so far.
-/obj/item/flashlight/proc/do_flicker(var/amount = rand(10, 20), var/flicker_color, var/original_color, var/original_on, var/datum/component/overlay_lighting/OL, var/ticker)
+/obj/item/flashlight/proc/do_flicker(amount = rand(10, 20), flicker_color, original_color, original_on, datum/component/overlay_lighting/OL, ticker)
 	if(ticker >= amount) //We have flickered enough times. Terminate the cycle.
 		finish_flicker(original_color, original_on, OL)
 		return
@@ -286,7 +286,7 @@
 		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 	addtimer(CALLBACK(src, PROC_REF(do_flicker), amount, flicker_color, original_color, original_on, OL, ++ticker), rand(5,15), TIMER_DELETE_ME)
 
-/obj/item/flashlight/proc/finish_flicker(var/original_color, var/original_on, var/datum/component/overlay_lighting/OL)
+/obj/item/flashlight/proc/finish_flicker(original_color, original_on, datum/component/overlay_lighting/OL)
 	set_light_color(original_color)
 	OL.directional_atom?.color = original_color
 	on = original_on
@@ -345,7 +345,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list ("smacked", "thwacked", "thunked")
-	matter = list(MAT_STEEL = 200,MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.1),MAT_GLASS = MATERIAL_COST(0.025))
 	hitsound = "swing_hit"
 
 /obj/item/flashlight/drone
@@ -511,6 +511,14 @@
 	if(. == CAN_USE)
 		user.visible_message(span_notice("[user] cracks and shakes \the [name]."), span_notice("You crack and shake \the [src], turning it on!"))
 		START_PROCESSING(SSobj, src)
+
+/obj/item/flashlight/glowstick/random
+
+/obj/item/flashlight/glowstick/random/Initialize(mapload)
+	. = ..()
+	var/stick_to_pick = pick(typesof(/obj/item/flashlight/glowstick) - /obj/item/flashlight/glowstick/random)
+	new stick_to_pick(loc)
+	return INITIALIZE_HINT_QDEL
 
 /obj/item/flashlight/glowstick/red
 	name = "red glowstick"

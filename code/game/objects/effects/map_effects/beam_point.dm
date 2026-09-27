@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 // Checks if the two points have an active beam between them.
 // Used to make sure two points don't have more than one beam.
-/obj/effect/map_effect/beam_point/proc/has_active_beam(var/obj/effect/map_effect/beam_point/them)
+/obj/effect/map_effect/beam_point/proc/has_active_beam(obj/effect/map_effect/beam_point/them)
 	// First, check our beams.
 	for(var/datum/beam/B in my_beams)
 		if(B.target == them)
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 	return FALSE
 
-/obj/effect/map_effect/beam_point/proc/build_beam(var/atom/beam_target)
+/obj/effect/map_effect/beam_point/proc/build_beam(atom/beam_target)
 	if(!beam_target)
 		log_mapping("[src] ([src.type] \[[x],[y],[z]\]) failed to build its beam due to not having a target.")
 		return FALSE
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 	return TRUE
 
-/obj/effect/map_effect/beam_point/proc/destroy_beam(var/datum/beam/B)
+/obj/effect/map_effect/beam_point/proc/destroy_beam(datum/beam/B)
 	if(!B)
 		log_mapping("[src] ([src.type] \[[x],[y],[z]\]) was asked to destroy a beam that does not exist.")
 		return FALSE

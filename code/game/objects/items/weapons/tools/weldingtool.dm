@@ -17,7 +17,7 @@
 	w_class = ITEMSIZE_SMALL
 
 	//Cost to make in the autolathe
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.015))
 
 	//R&D tech level
 
@@ -182,7 +182,7 @@
 	return max_fuel
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(amount)
@@ -265,7 +265,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weldingtool/proc/setWelding(set_welding, mob/M)
 	if(!status)	return
 
 	var/turf/T = get_turf(src)
@@ -363,7 +363,7 @@
 	desc = "A slightly larger welder with a larger tank."
 	icon_state = "indwelder"
 	max_fuel = 40
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
@@ -371,7 +371,7 @@
 	icon_state = "upindwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.06))
 
 /obj/item/weldingtool/mini
 	name = "emergency welding tool"
@@ -379,7 +379,7 @@
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_METAL = 30, MAT_GLASS = 10)
+	matter = list(MAT_METAL = 30, MAT_GLASS = MATERIAL_COST(0.005))
 	change_icons = 0
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
@@ -434,7 +434,7 @@
 	icon_state = "exwelder"
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.06))
 	toolspeed = 0.5
 	change_icons = 0
 	flame_intensity = 3
@@ -583,7 +583,7 @@
 		return power_supply.maxcharge
 	return 0
 
-/obj/item/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/electric/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
@@ -691,7 +691,7 @@
 /obj/item/weldingtool/dummy/get_fuel()
 	return get_max_fuel()
 
-/obj/item/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/dummy/remove_fuel(amount = 1, mob/M = null)
 	return TRUE
 
 /obj/item/weldingtool/dummy/isOn()

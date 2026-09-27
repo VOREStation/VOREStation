@@ -75,7 +75,7 @@
 	else
 		return reactive_activation(user, damage_source, attack_text, damage)
 
-/obj/item/clothing/suit/armor/reactive/proc/cooldown_activation(var/mob/living/carbon/human/owner)
+/obj/item/clothing/suit/armor/reactive/proc/cooldown_activation(mob/living/carbon/human/owner)
 	owner.visible_message(cooldown_message)
 
 /obj/item/clothing/suit/armor/reactive/proc/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0)

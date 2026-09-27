@@ -60,6 +60,6 @@ SUBSYSTEM_DEF(inactivity)
 	msg = "Kicked: [number_kicked]"
 	return ..()
 
-/datum/controller/subsystem/inactivity/proc/can_kick(var/client/C)
+/datum/controller/subsystem/inactivity/proc/can_kick(client/C)
 	if(check_rights_for(C, R_HOLDER|R_MENTOR)) return FALSE //VOREStation Add - Don't kick admins.
 	return TRUE

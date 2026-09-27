@@ -43,14 +43,14 @@
 /datum/decl/chemical_reaction/instant/slime
 	var/required = null
 
-/datum/decl/chemical_reaction/instant/slime/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/can_happen(datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, required))
 		var/obj/item/slime_extract/T = holder.my_atom
 		if(T.uses > 0)
 			return ..()
 	return FALSE
 
-/datum/decl/chemical_reaction/instant/slime/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/on_reaction(datum/reagents/holder)
 	var/obj/item/slime_extract/T = holder.my_atom
 	T.uses--
 	if(T.uses <= 0)
@@ -76,7 +76,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/grey
 
-/datum/decl/chemical_reaction/instant/slime/grey_new_slime/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/grey_new_slime/on_reaction(datum/reagents/holder)
 	holder.my_atom.visible_message(span_warning("Infused with phoron, the core begins to quiver and grow, and soon a new baby slime emerges from it!"))
 	new /mob/living/simple_mob/slime/xenobio(get_turf(holder.my_atom))
 	..()
@@ -89,7 +89,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/grey
 
-/datum/decl/chemical_reaction/instant/slime/grey_monkey/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/grey_monkey/on_reaction(datum/reagents/holder)
 	for(var/i = 1 to 4)
 		new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
 	..()
@@ -275,7 +275,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/blue
 
-/datum/decl/chemical_reaction/instant/slime/blue_stability/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/blue_stability/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/stabilizer(get_turf(holder.my_atom))
 	..()
 
@@ -299,7 +299,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/purple
 
-/datum/decl/chemical_reaction/instant/slime/purple_steroid/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/purple_steroid/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/steroid(get_turf(holder.my_atom))
 	..()
 
@@ -321,7 +321,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/orange
 
-/datum/decl/chemical_reaction/instant/slime/orange_fire/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/orange_fire/on_reaction(datum/reagents/holder)
 	log_and_message_admins("Orange extract reaction (fire) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	holder.my_atom.visible_message(span_danger("\The [src] begins to vibrate violently!"))
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
@@ -358,7 +358,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
-/datum/decl/chemical_reaction/instant/slime/yellow_emp/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/yellow_emp/on_reaction(datum/reagents/holder)
 	log_and_message_admins("Yellow extract reaction (emp) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	holder.my_atom.visible_message(span_danger("\The [src] begins to vibrate violently!"))
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
@@ -376,7 +376,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
-/datum/decl/chemical_reaction/instant/slime/yellow_battery/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/yellow_battery/on_reaction(datum/reagents/holder)
 	new /obj/item/cell/slime(get_turf(holder.my_atom))
 	..()
 
@@ -388,7 +388,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
-/datum/decl/chemical_reaction/instant/slime/yellow_flashlight/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/yellow_flashlight/on_reaction(datum/reagents/holder)
 	new /obj/item/flashlight/slime(get_turf(holder.my_atom))
 	..()
 
@@ -471,7 +471,7 @@
 	required = /obj/item/slime_extract/dark_blue
 
 // This iterates over a ZAS zone's contents, so that things seperated in other zones aren't subjected to the temperature drop.
-/datum/decl/chemical_reaction/instant/slime/dark_blue_cold_snap/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/dark_blue_cold_snap/on_reaction(datum/reagents/holder)
 	var/turf/simulated/T = get_turf(holder.my_atom)
 	if(!T) // Nullspace lacks zones.
 		return
@@ -552,7 +552,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/red
 
-/datum/decl/chemical_reaction/instant/slime/red_enrage/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/red_enrage/on_reaction(datum/reagents/holder)
 	for(var/mob/living/simple_mob/slime/S in view(get_turf(holder.my_atom)))
 		if(S.stat)
 			continue
@@ -588,7 +588,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/red
 
-/datum/decl/chemical_reaction/instant/slime/red_mutation/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/red_mutation/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/mutator(get_turf(holder.my_atom))
 	..()
 
@@ -692,7 +692,7 @@
 	required = /obj/item/slime_extract/oil
 
 
-/datum/decl/chemical_reaction/instant/slime/oil_griff/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/oil_griff/on_reaction(datum/reagents/holder)
 	..()
 	var/obj/item/slime_extract/E = holder.my_atom
 	var/power = 1
@@ -729,7 +729,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/bluespace
 
-/datum/decl/chemical_reaction/instant/slime/bluespace_lesser/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/bluespace_lesser/on_reaction(datum/reagents/holder)
 	for(var/i = 1 to 5)
 		new /obj/item/slime_crystal(get_turf(holder.my_atom))
 	..()
@@ -741,7 +741,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/bluespace
 
-/datum/decl/chemical_reaction/instant/slime/bluespace_greater/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/bluespace_greater/on_reaction(datum/reagents/holder)
 	new /obj/item/disposable_teleporter/slime(get_turf(holder.my_atom))
 	..()
 
@@ -763,7 +763,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/cerulean
 
-/datum/decl/chemical_reaction/instant/slime/cerulean_enhancer/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/cerulean_enhancer/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/enhancer(get_turf(holder.my_atom))
 	..()
 
@@ -785,7 +785,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/amber
 
-/datum/decl/chemical_reaction/instant/slime/amber_slimefood/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/amber_slimefood/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/feeding(get_turf(holder.my_atom))
 	..()
 
@@ -797,7 +797,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/amber
 
-/datum/decl/chemical_reaction/instant/slime/amber_peoplefood/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/amber_peoplefood/on_reaction(datum/reagents/holder)
 	new /obj/item/reagent_containers/food/snacks/slime(get_turf(holder.my_atom))
 	..()
 
@@ -820,7 +820,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/sapphire
 
-/datum/decl/chemical_reaction/instant/slime/sapphire_promethean/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/sapphire_promethean/on_reaction(datum/reagents/holder)
 	new /obj/item/slime_cube(get_turf(holder.my_atom))
 	..()
 
@@ -841,7 +841,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/ruby
 
-/datum/decl/chemical_reaction/instant/slime/ruby_swole/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/ruby_swole/on_reaction(datum/reagents/holder)
 	for(var/mob/living/L in range(1, holder.my_atom))
 		L.add_modifier(/datum/modifier/slime_strength, 10 MINUTES, src)
 	..()
@@ -869,7 +869,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/ruby
 
-/datum/decl/chemical_reaction/instant/slime/ruby_loyalty/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/ruby_loyalty/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/loyalty(get_turf(holder.my_atom))
 	..()
 
@@ -890,7 +890,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/emerald
 
-/datum/decl/chemical_reaction/instant/slime/emerald_fast/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/emerald_fast/on_reaction(datum/reagents/holder)
 	for(var/mob/living/L in range(1, holder.my_atom))
 		L.add_modifier(/datum/modifier/slime_agility, 10 MINUTES, src)
 	..()
@@ -927,7 +927,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/light_pink
 
-/datum/decl/chemical_reaction/instant/slime/light_pink_docility/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/light_pink_docility/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/docility(get_turf(holder.my_atom))
 	..()
 
@@ -939,7 +939,7 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/light_pink
 
-/datum/decl/chemical_reaction/instant/slime/light_pink_friendship/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/light_pink_friendship/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/friendship(get_turf(holder.my_atom))
 	..()
 
@@ -964,7 +964,7 @@
 	required = /obj/item/slime_extract/rainbow
 
 
-/datum/decl/chemical_reaction/instant/slime/rainbow_random_slime/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/rainbow_random_slime/on_reaction(datum/reagents/holder)
 	var/mob/living/simple_mob/slime/xenobio/S
 	var/list/slime_types = typesof(/mob/living/simple_mob/slime/xenobio)
 
@@ -987,6 +987,6 @@
 	result_amount = 1
 	required = /obj/item/slime_extract/rainbow
 
-/datum/decl/chemical_reaction/instant/slime/rainbow_unity/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/slime/rainbow_unity/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/unity(get_turf(holder.my_atom))
 	..()

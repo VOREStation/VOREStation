@@ -79,7 +79,7 @@
 	data["dos_crashed"] = dos_failure
 	return data
 
-/obj/machinery/ntnet_relay/attack_hand(var/mob/living/user)
+/obj/machinery/ntnet_relay/attack_hand(mob/living/user)
 	tgui_interact(user)
 
 /obj/machinery/ntnet_relay/tgui_act(action, params)
@@ -138,7 +138,7 @@
 	QDEL_NULL(soundloop)
 	. = ..()
 
-/obj/machinery/ntnet_relay/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/ntnet_relay/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))

@@ -380,3 +380,10 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/mystery_box/hat
+	name = "Hat Mystery Box"
+	desc = "Contains a crate with five random hats."
+	contains = list()
+	cost = 50
+	containertype = /obj/structure/largecrate/mysteryhats

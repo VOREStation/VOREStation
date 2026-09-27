@@ -411,9 +411,9 @@
 	icon = 'icons/obj/doors/Doorphoron.dmi'
 	mineral = MAT_PHORON
 
-/obj/machinery/door/airlock/phoron/attackby(obj/C, mob/user)
+/obj/machinery/door/airlock/phoron/attackby(obj/item/C, mob/user)
 	if(C)
-		ignite(is_hot(C))
+		ignite(C.is_hot())
 	. = ..()
 
 /obj/machinery/door/airlock/phoron/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

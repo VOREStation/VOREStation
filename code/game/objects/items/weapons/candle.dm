@@ -44,7 +44,7 @@
 			light()
 
 
-/obj/item/flame/candle/proc/light(var/flavor_text = span_notice("\The [usr] lights the [src]."))
+/obj/item/flame/candle/proc/light(flavor_text = span_notice("\The [usr] lights the [src]."))
 	if(!lit)
 		lit = TRUE
 		visible_message(flavor_text)

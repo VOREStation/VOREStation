@@ -48,7 +48,7 @@
 
 	adjust_plasma(1)
 
-/obj/item/organ/internal/xenos/plasmavessel/proc/adjust_plasma(var/amount = 0)
+/obj/item/organ/internal/xenos/plasmavessel/proc/adjust_plasma(amount = 0)
 	stored_plasma = CLAMP(stored_plasma + amount, 0, max_plasma)
 
 /obj/item/organ/internal/xenos/plasmavessel/grey
@@ -108,11 +108,11 @@
 	icon_state = "xenode"
 	organ_tag = O_HIVE
 
-/obj/item/organ/internal/xenos/hivenode/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/internal/xenos/hivenode/replaced(mob/living/carbon/human/target,obj/item/organ/external/affected)
 	..()
 	target.add_language(LANGUAGE_HIVEMIND) //You need this to speak the language, so...
 
-/obj/item/organ/internal/xenos/hivenode/removed(var/mob/living/user)
+/obj/item/organ/internal/xenos/hivenode/removed(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		human.remove_language(LANGUAGE_HIVEMIND)

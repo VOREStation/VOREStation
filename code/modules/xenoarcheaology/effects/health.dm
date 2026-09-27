@@ -15,7 +15,7 @@
 	else
 		effect_color = "#6d1212"
 
-/datum/artifact_effect/health/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/health/DoEffectTouch(mob/toucher)
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		var/obj/item/anobattery/battery = holder

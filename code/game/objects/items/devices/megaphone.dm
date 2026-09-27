@@ -12,7 +12,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/megaphone/proc/can_broadcast(var/mob/living/user)
+/obj/item/megaphone/proc/can_broadcast(mob/living/user)
 	if(user.client)
 		if(user.client.prefs.muted & MUTE_IC)
 			to_chat(user, span_warning("You cannot speak in IC (muted)."))
@@ -31,7 +31,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/megaphone/proc/do_broadcast(var/mob/living/user, var/message)
+/obj/item/megaphone/proc/do_broadcast(mob/living/user, message)
 	if(emagged)
 		if(insults)
 			var/insult = pick(insultmsg)
@@ -57,7 +57,7 @@
 	spamcheck = world.time + 20
 	do_broadcast(user, message)
 
-/obj/item/megaphone/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/megaphone/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		to_chat(user, span_warning("You overload [src]'s voice synthesizer."))
 		emagged = TRUE
@@ -78,7 +78,7 @@
 
 	insultmsg = list("HONK?!", "HONK!", "HOOOOOOOONK!", "...!", "HUNK.", "Honk?")
 
-/obj/item/megaphone/super/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/megaphone/super/emag_act(remaining_charges, mob/user)
 	..()
 	if(emagged)
 		if(!(11 in volume_options))
@@ -103,7 +103,7 @@
 
 	adjust_volume(usr)
 
-/obj/item/megaphone/super/proc/adjust_volume(var/mob/living/user)
+/obj/item/megaphone/super/proc/adjust_volume(mob/living/user)
 	var/new_volume = tgui_input_list(user, "Set Volume", "Set Volume", volume_options)
 
 	if(new_volume && Adjacent(user))
@@ -116,7 +116,7 @@
 
 	adjust_font(usr)
 
-/obj/item/megaphone/super/proc/adjust_font(var/mob/living/user)
+/obj/item/megaphone/super/proc/adjust_font(mob/living/user)
 	var/new_font = tgui_input_list(user, "Set Volume", "Set Volume", font_options)
 
 	if(new_font && Adjacent(user))
@@ -129,13 +129,13 @@
 
 	adjust_color(usr)
 
-/obj/item/megaphone/super/proc/adjust_color(var/mob/living/user)
+/obj/item/megaphone/super/proc/adjust_color(mob/living/user)
 	var/new_color = tgui_input_list(user, "Set Volume", "Set Volume", color_options)
 
 	if(new_color && Adjacent(user))
 		broadcast_color = new_color
 
-/obj/item/megaphone/super/do_broadcast(var/mob/living/user, var/message)
+/obj/item/megaphone/super/do_broadcast(mob/living/user, message)
 	if(emagged)
 		if(insults)
 			var/insult = pick(insultmsg)

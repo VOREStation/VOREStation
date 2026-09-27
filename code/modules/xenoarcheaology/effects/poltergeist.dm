@@ -6,7 +6,7 @@
 	effect_state = "shield2"
 	effect_color = "#a824c9"
 
-/datum/artifact_effect/poltergeist/proc/throw_at_mob(var/mob/living/target, var/damage = 20)
+/datum/artifact_effect/poltergeist/proc/throw_at_mob(mob/living/target, damage = 20)
 	var/list/valid_targets = list()
 
 	for(var/obj/O in oview(world.view, target))
@@ -18,7 +18,7 @@
 		obj_to_throw.visible_message(span_alien("\The [obj_to_throw] levitates, before hurtling toward [target]!"))
 		obj_to_throw.throw_at(target, world.view, min(40, damage * GetAnomalySusceptibility(target)))
 
-/datum/artifact_effect/poltergeist/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/poltergeist/DoEffectTouch(mob/user)
 	throw_at_mob(user, rand(10, 30))
 
 /datum/artifact_effect/poltergeist/DoEffectAura()

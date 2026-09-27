@@ -42,12 +42,12 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 //Meteor spawning global procs
 ///////////////////////////////
 
-/proc/spawn_meteors(var/number = 10, var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteors(number = 10, list/meteortypes, startSide, zlevel)
 	log_game("Spawning [number] meteors on the [dir2text(startSide)] of [zlevel]")
 	for(var/i = 0; i < number; i++)
 		spawn_meteor(meteortypes, startSide, zlevel)
 
-/proc/spawn_meteor(var/list/meteortypes, var/startSide, var/startLevel)
+/proc/spawn_meteor(list/meteortypes, startSide, startLevel)
 	if(isnull(startSide))
 		startSide = pick(GLOB.cardinal)
 	if(isnull(startLevel))
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	return T
 
 // Override for special behavior when getting hit by meteors, and only meteors.  Return one if the meteor hasn't been 'stopped'.
-/atom/proc/handle_meteor_impact(var/obj/effect/meteor/meteor)
+/atom/proc/handle_meteor_impact(obj/effect/meteor/meteor)
 	return TRUE
 
 ///////////////////////
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target)
 	return istype(mover, /obj/effect/meteor) ? TRUE : ..()
 
-/obj/effect/meteor/proc/ram_turf(var/turf/T)
+/obj/effect/meteor/proc/ram_turf(turf/T)
 	//first bust whatever is in the turf
 	for(var/atom/A in T)
 		if(A == src) // Don't hit ourselves.
@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	if(hits <= 0)
 		die(TRUE)
 
-/obj/effect/meteor/proc/die(var/explode = TRUE)
+/obj/effect/meteor/proc/die(explode = TRUE)
 	make_debris()
 	meteor_effect(explode)
 	qdel(src)
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 		return
 	..()
 
-/obj/effect/meteor/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/meteor/bullet_act(obj/item/projectile/Proj)
 	if(Proj.excavation_amount)
 		get_hit()
 
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 		var/dist = get_dist(M.loc, src.loc)
 		shake_camera(M, dist > 20 ? 3 : 5, dist > 20 ? 1 : 3)
 
-/obj/effect/meteor/proc/meteor_effect(var/explode)
+/obj/effect/meteor/proc/meteor_effect(explode)
 	if(heavy)
 		shake_players()
 
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	dropamt = 3
 	wall_power = 200
 
-/obj/effect/meteor/medium/meteor_effect(var/explode)
+/obj/effect/meteor/medium/meteor_effect(explode)
 	..()
 	if(explode)
 		explosion(src.loc, 0, 1, 2, 3, 0)
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	dropamt = 4
 	wall_power = 400
 
-/obj/effect/meteor/big/meteor_effect(var/explode)
+/obj/effect/meteor/big/meteor_effect(explode)
 	..()
 	if(explode)
 		explosion(src.loc, 1, 2, 3, 4, 0)
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	meteordrop = /obj/item/ore/phoron
 	wall_power = 100
 
-/obj/effect/meteor/flaming/meteor_effect(var/explode)
+/obj/effect/meteor/flaming/meteor_effect(explode)
 	..()
 	if(explode)
 		explosion(src.loc, 1, 2, 3, 4, 0, 0, 5)
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	meteordrop = /obj/item/ore/uranium
 	wall_power = 75
 
-/obj/effect/meteor/irradiated/meteor_effect(var/explode)
+/obj/effect/meteor/irradiated/meteor_effect(explode)
 	..()
 	if(explode)
 		explosion(src.loc, 0, 0, 4, 3, 0)
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	dropamt = 3
 	wall_power = 80
 
-/obj/effect/meteor/emp/meteor_effect(var/explode)
+/obj/effect/meteor/emp/meteor_effect(explode)
 	..()
 	// Best case scenario: Comparable to a low-yield EMP grenade.
 	// Worst case scenario: Comparable to a standard yield EMP grenade.
@@ -345,7 +345,7 @@ GLOBAL_LIST_INIT(meteors_catastrophic, list(
 	meteordrop = /obj/item/ore/phoron
 	wall_power = 150
 
-/obj/effect/meteor/tunguska/meteor_effect(var/explode)
+/obj/effect/meteor/tunguska/meteor_effect(explode)
 	..()
 	if(explode)
 		explosion(src.loc, 3, 6, 9, 20, 0)

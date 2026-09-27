@@ -271,7 +271,7 @@
 	return 42
 
 //If atom stands under open space, it can prevent fall, or not
-/atom/proc/can_prevent_fall(var/atom/movable/mover, var/turf/coming_from)
+/atom/proc/can_prevent_fall(atom/movable/mover, turf/coming_from)
 	return (!CanPass(mover, coming_from))
 
 ////////////////////////////
@@ -420,7 +420,7 @@
 		return TRUE
 
 // So you'll slam when falling onto a catwalk
-/obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
+/obj/structure/catwalk/CheckFall(atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
 /obj/structure/lattice/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
@@ -434,13 +434,13 @@
 		return FALSE // TODO - Technically should be density = TRUE and flags |= ON_BORDER
 
 // So you'll slam when falling onto a grille
-/obj/structure/lattice/CheckFall(var/atom/movable/falling_atom)
+/obj/structure/lattice/CheckFall(atom/movable/falling_atom)
 	if(istype(falling_atom) && falling_atom.checkpass(PASSGRILLE))
 		return FALSE
 	return falling_atom.fall_impact(src)
 
 // Actually process the falling movement and impacts.
-/atom/movable/proc/handle_fall(var/turf/landing)
+/atom/movable/proc/handle_fall(turf/landing)
 	var/turf/oldloc = loc
 
 	// Now lets move there!
@@ -453,15 +453,15 @@
 		return
 	fall_impact(A)
 
-/atom/movable/proc/special_fall_handle(var/atom/A)
+/atom/movable/proc/special_fall_handle(atom/A)
 	return FALSE
 
-/mob/living/carbon/human/special_fall_handle(var/atom/A)
+/mob/living/carbon/human/special_fall_handle(atom/A)
 	if(species)
 		return species.fall_impact_special(src, A)
 	return FALSE
 
-/atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
+/atom/movable/proc/find_fall_target(turf/oldloc, turf/landing)
 	if(isopenspace(oldloc))
 		oldloc.visible_message(span_notice("\The [src] falls down through \the [oldloc]!"), span_notice("You hear something falling through the air."))
 
@@ -478,7 +478,7 @@
 	if(landing.CheckFall(src))
 		return landing
 
-/mob/living/carbon/human/find_fall_target(var/turf/landing)
+/mob/living/carbon/human/find_fall_target(turf/landing)
 	if(species)
 		var/atom/A = species.find_fall_target_special(src, landing)
 		if(A)
@@ -490,36 +490,36 @@
 // ## THE FALLING PROCS ###
 
 // Called on everything that falling_atom might hit. Return TRUE if you're handling it so find_fall_target() will stop checking.
-/atom/proc/CheckFall(var/atom/movable/falling_atom)
+/atom/proc/CheckFall(atom/movable/falling_atom)
 	if(density && !(flags & ON_BORDER))
 		return TRUE
 
 // If you are hit: how is it handled.
 // Return TRUE if the generic fall_impact should be called
 // Return FALSE if you handled it yourself or if there's no effect from hitting you
-/atom/proc/check_impact(var/atom/movable/falling_atom)
+/atom/proc/check_impact(atom/movable/falling_atom)
 	if(density && !(flags & ON_BORDER))
 		return TRUE
 
 // By default all turfs are gonna let you hit them regardless of density.
-/turf/CheckFall(var/atom/movable/falling_atom)
+/turf/CheckFall(atom/movable/falling_atom)
 	return TRUE
 
-/turf/check_impact(var/atom/movable/falling_atom)
+/turf/check_impact(atom/movable/falling_atom)
 	return TRUE
 
 // Obviously you can't really hit open space.
-/turf/simulated/open/CheckFall(var/atom/movable/falling_atom)
+/turf/simulated/open/CheckFall(atom/movable/falling_atom)
 	return FALSE
 
-/turf/simulated/open/check_impact(var/atom/movable/falling_atom)
+/turf/simulated/open/check_impact(atom/movable/falling_atom)
 	return FALSE
 
 // Or actual space.
-/turf/space/CheckFall(var/atom/movable/falling_atom)
+/turf/space/CheckFall(atom/movable/falling_atom)
 	return FALSE
 
-/turf/space/check_impact(var/atom/movable/falling_atom)
+/turf/space/check_impact(atom/movable/falling_atom)
 	return FALSE
 
 // Can't fall onto ghosts
@@ -537,14 +537,14 @@
 // If silent is True, the proc won't play sound or give a message.
 // If planetary is True, it's harder to stop the fall damage
 
-/atom/movable/proc/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 10, var/silent = FALSE, var/planetary = FALSE)
+/atom/movable/proc/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 10, silent = FALSE, planetary = FALSE)
 	if(!silent)
 		visible_message("\The [src] falls from above and slams into \the [hit_atom]!", "You hear something slam into \the [hit_atom].")
 	for(var/atom/movable/A in src.contents)
 		A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
 
 // Take damage from falling and hitting the ground
-/mob/living/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 5, var/silent = FALSE, var/planetary = FALSE)
+/mob/living/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 5, silent = FALSE, planetary = FALSE)
 	var/turf/landing = get_turf(hit_atom)
 	var/safe_fall = FALSE
 	if(src.softfall || (isanimal(src) && src.mob_size <= MOB_SMALL))
@@ -642,7 +642,7 @@
 		return parachuting
 
 //Mech Code
-/obj/mecha/handle_fall(var/turf/landing)
+/obj/mecha/handle_fall(turf/landing)
 	// First things first, break any lattice
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, loc)
 	if(lattice)
@@ -653,7 +653,7 @@
 	// Then call parent to have us actually fall
 	return ..()
 
-/obj/mecha/fall_impact(var/atom/hit_atom, var/damage_min = 15, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
+/obj/mecha/fall_impact(atom/hit_atom, damage_min = 15, damage_max = 30, silent = FALSE, planetary = FALSE)
 	// Anything on the same tile as the landing tile is gonna have a bad day.
 	for(var/mob/living/L in hit_atom.contents)
 		L.visible_message(span_danger("\The [src] crushes \the [L] as it lands on them!"))

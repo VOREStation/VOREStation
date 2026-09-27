@@ -30,7 +30,7 @@
 	spark_system = null
 	return ..()
 
-/obj/item/spell/reflect/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/spell/reflect/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 

@@ -25,7 +25,7 @@ GLOBAL_DATUM(ninjas, /datum/antagonist/ninja)
 /datum/antagonist/ninja/attempt_random_spawn()
 	if(CONFIG_GET(flag/ninjas_allowed)) ..()
 
-/datum/antagonist/ninja/create_objectives(var/datum/mind/ninja)
+/datum/antagonist/ninja/create_objectives(datum/mind/ninja)
 
 	if(!..())
 		return
@@ -74,7 +74,7 @@ GLOBAL_DATUM(ninjas, /datum/antagonist/ninja)
 	ninja_objective.owner = ninja
 	ninja.objectives += ninja_objective
 
-/datum/antagonist/ninja/greet(var/datum/mind/player)
+/datum/antagonist/ninja/greet(datum/mind/player)
 
 	if(!..())
 		return 0
@@ -82,7 +82,7 @@ GLOBAL_DATUM(ninjas, /datum/antagonist/ninja)
 	player.store_memory(span_bold("Directive:") + " " + span_danger("[directive]") + "<br>")
 	to_chat(player, span_bold("Remember your directive:") + " [directive].")
 
-/datum/antagonist/ninja/update_antag_mob(var/datum/mind/player)
+/datum/antagonist/ninja/update_antag_mob(datum/mind/player)
 	..()
 	var/ninja_title = pick(GLOB.ninja_titles)
 	var/ninja_name = pick(GLOB.ninja_names)
@@ -92,7 +92,7 @@ GLOBAL_DATUM(ninjas, /datum/antagonist/ninja)
 		H.name = H.real_name
 	player.name = H.name
 
-/datum/antagonist/ninja/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/ninja/equip(mob/living/carbon/human/player)
 
 	if(!..())
 		return 0

@@ -76,7 +76,7 @@
 			new /obj/item/stack/rods(src.loc, 2) //VOREstation Edit: Conservation of mass
 			qdel(src)
 
-/obj/structure/catwalk/attack_robot(var/mob/user)
+/obj/structure/catwalk/attack_robot(mob/user)
 	if(Adjacent(user))
 		attack_hand(user)
 

@@ -15,6 +15,7 @@
 	var/active_category = null
 	var/menu_tab = 0
 	var/list/expanded_packs = list()
+	var/price_mode = FALSE // Show in supply points(TRUE) or thalers(FALSE)
 
 // Supply control console
 /obj/machinery/computer/supplycomp/control
@@ -23,14 +24,13 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
 	light_color = "#b88b2e"
-	req_access = list(ACCESS_CARGO)
 	circuit = /obj/item/circuitboard/supplycomp/control
 	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS
 
-/obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/user as mob)
 	if(..())
 		return
 	if(!allowed(user))
@@ -39,7 +39,7 @@
 	tgui_interact(user)
 	return
 
-/obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/supplycomp/emag_act(remaining_charges, mob/user)
 	if(!can_order_contraband)
 		to_chat(user, span_notice("Special supplies unlocked."))
 		authorization |= SUP_CONTRABAND
@@ -155,6 +155,8 @@
 	data["receipts"] = receipts
 	data["contraband"] = can_order_contraband || (authorization & SUP_CONTRABAND)
 	data["modal"] = tgui_modal_data(src)
+	data["price_mod"] = price_mode
+	data["cash_points"] = SSsupply.money_per_points
 	return data
 
 /obj/machinery/computer/supplycomp/tgui_static_data(mob/user)
@@ -483,10 +485,12 @@
 				if("force_shuttle")
 					shuttle.force_launch(src)
 			. = TRUE
-
+		if("change_cash_mode")
+			price_mode = !price_mode
+			. = TRUE
 	add_fingerprint(ui.user)
 
-/obj/machinery/computer/supplycomp/proc/post_signal(var/command)
+/obj/machinery/computer/supplycomp/proc/post_signal(command)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency) return

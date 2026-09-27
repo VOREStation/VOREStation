@@ -209,7 +209,7 @@
 		return
 	..()
 
-/obj/machinery/casino_prize_dispenser/proc/pay_with_chips(var/obj/item/spacecasinocash/cashmoney, mob/user, var/price)
+/obj/machinery/casino_prize_dispenser/proc/pay_with_chips(obj/item/spacecasinocash/cashmoney, mob/user, price)
 	//"cashmoney_:[cashmoney] user:[user] currently_vending:[currently_vending]"
 	if(price > cashmoney.worth)
 		to_chat(user, "[icon2html(cashmoney, user.client)] " + span_warning("That is not enough chips."))
@@ -339,7 +339,7 @@
 	log[++log.len] = prize_log
 	//Currently doesnt have an ingame way to show. Can only be viewed through View-Variables, to ensure theres no chance of players ckeys exposed - Jack
 
-/obj/machinery/casino_prize_dispenser/proc/speak(var/message)
+/obj/machinery/casino_prize_dispenser/proc/speak(message)
 	if(stat & NOPOWER)
 		return
 

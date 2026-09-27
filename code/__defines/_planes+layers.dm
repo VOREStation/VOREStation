@@ -59,6 +59,7 @@ What is the naming convention for planes or layers?
 
 // Turf Planes
 #define PLATING_PLANE			-44 // Plating
+	#define FLOOR_HEATER_LAYER	2.03 // Under objects, even when planeswapped
 	#define DISPOSAL_LAYER		2.1 // Under objects, even when planeswapped
 	#define PIPES_LAYER			2.2	// Under objects, even when planeswapped
 	#define WIRES_LAYER			2.3 // Under objects, even when planeswapped

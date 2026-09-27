@@ -13,7 +13,7 @@
 	var/min_mob_buckle_size = MOB_SMALL
 	var/max_mob_buckle_size = MOB_LARGE
 
-/obj/structure/bed/chair/wheelchair/Initialize(mapload, var/new_material, var/new_padding_material)
+/obj/structure/bed/chair/wheelchair/Initialize(mapload, new_material, new_padding_material)
 	. = ..()
 	update_icon()
 
@@ -232,6 +232,8 @@
 	..()
 
 /obj/structure/bed/chair/wheelchair/MouseDrop(over_object, src_location, over_location)
+	if(usr.is_incorporeal())
+		return
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return

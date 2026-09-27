@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(pai)
 			))
 	return data
 
-/datum/controller/subsystem/pai/proc/get_detailed_invite_data(var/ghost_ref)
+/datum/controller/subsystem/pai/proc/get_detailed_invite_data(ghost_ref)
 	RETURN_TYPE(/list)
 	SHOULD_NOT_OVERRIDE(TRUE)
 

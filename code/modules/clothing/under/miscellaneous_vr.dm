@@ -158,7 +158,7 @@
 		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
 		to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in thirty seconds."))
 
-/obj/item/clothing/gloves/bluespace/examine(var/mob/user)
+/obj/item/clothing/gloves/bluespace/examine(mob/user)
 	. = ..()
 	var/cooldowntime = round((10 SECONDS - (world.time - last_activated)) * 0.1)
 	if(Adjacent(user))
@@ -167,7 +167,7 @@
 		if(emagged)
 			. += span_warning("The crystal is flickering.")
 
-/obj/item/clothing/gloves/bluespace/emag_act(R_charges, var/mob/user, emag_source)
+/obj/item/clothing/gloves/bluespace/emag_act(R_charges, mob/user, emag_source)
 	. = ..()
 	if(!emagged)
 		emagged = TRUE

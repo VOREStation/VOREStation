@@ -29,7 +29,7 @@ GLOBAL_DATUM(ert, /datum/antagonist/ert)
 	can_hear_aooc = FALSE // They're the good guys.
 	can_speak_aooc = FALSE	// Just in case the above var bugs, or gets touched.
 
-/datum/antagonist/ert/create_default(var/mob/source)
+/datum/antagonist/ert/create_default(mob/source)
 	var/mob/living/carbon/human/M = ..()
 	if(istype(M)) M.age = rand(25,45)
 
@@ -37,13 +37,13 @@ GLOBAL_DATUM(ert, /datum/antagonist/ert)
 	..()
 	GLOB.ert = src
 
-/datum/antagonist/ert/greet(var/datum/mind/player)
+/datum/antagonist/ert/greet(datum/mind/player)
 	if(!..())
 		return
 	to_chat(player.current, "The Emergency Response Team works for Asset Protection; your job is to protect [using_map.company_name]'s ass-ets. There is a code red alert on [station_name()], you are tasked to go and fix the problem.")
 	to_chat(player.current, "You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready.")
 
-/datum/antagonist/ert/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/ert/equip(mob/living/carbon/human/player)
 
 	//Special radio setup
 	player.equip_to_slot_or_del(new /obj/item/radio/headset/ert(src), slot_l_ear)

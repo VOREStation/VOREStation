@@ -50,7 +50,7 @@
 	desc = "An interface between visitors and the residential oversight systems tasked with keeping track of all visitors in the residential district."
 */
 
-/obj/machinery/cryopod/proc/log_special_item(var/atom/movable/item,var/mob/to_despawn)
+/obj/machinery/cryopod/proc/log_special_item(atom/movable/item,mob/to_despawn)
 	ASSERT(item && to_despawn)
 
 	var/loaded_from_key

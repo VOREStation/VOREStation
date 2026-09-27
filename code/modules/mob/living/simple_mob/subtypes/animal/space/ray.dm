@@ -65,7 +65,7 @@
 
 	var/knockdown_chance = 66
 
-/mob/living/simple_mob/animal/space/ray/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/animal/space/ray/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))

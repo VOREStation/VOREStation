@@ -21,5 +21,5 @@
 	icon = 'icons/goonstation/featherzone.dmi'
 	icon_state = "flockdoor"
 
-/obj/structure/simple_door/flock/Initialize(mapload, var/newmat)
+/obj/structure/simple_door/flock/Initialize(mapload, newmat)
 	. = ..(mapload, MAT_FLOKIUM)

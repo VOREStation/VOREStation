@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(c_minutes, 0)
 GLOBAL_DATUM(banlist, /savefile)
 
 
-/proc/CheckBan(var/ckey, var/id, var/address)
+/proc/CheckBan(ckey, id, address)
 	if(!GLOB.banlist)		// if Banlist cannot be located for some reason
 		LoadBans()		// try to load the bans
 		if(!GLOB.banlist)	// uh oh, can't find bans!

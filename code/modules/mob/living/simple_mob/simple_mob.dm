@@ -166,12 +166,14 @@
 	var/heal_countdown = 5				//VOREStation Edit - A cooldown ticker for passive healing
 	var/list/myid_access = list() //VOREStation Edit
 	var/ID_provided = FALSE //VOREStation Edit
-	// VOREStation Add: Move/Shoot/Attack delays based on damage
 	var/damage_fatigue_mult = 1			// Our multiplier for how heavily mobs are affected by injury. [UPDATE THIS IF THE FORMULA CHANGES]: Formula = injury_level = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5))
 	var/injury_level = 0 				// What our injury level is. Rather than being the flat damage, this is the amount added to various delays to simulate injuries in a manner as lightweight as possible.
 	var/threshold = 0.6					// When we start slowing down. Configure this setting per-mob. Default is 60%
 	var/injury_enrages = FALSE			// Do injuries enrage (aka strengthen) our mob? If yes, we'll interpret how hurt we are differently.
-	// VOREStation Add End
+
+	// Stasis cage cargo export values
+	var/export_research_value				// Amount of research points gained when this mob is sold from cargo in a stasis cage
+	var/export_research_diminished_max   	// Amount of mobs that can be sold before the value reaches its lowest point
 
 	var/has_recoloured = FALSE
 	var/hunting_cooldown = 0
@@ -371,13 +373,13 @@
 	movement_target = null
 
 
-/mob/living/simple_mob/say_quote(var/message, var/datum/language/speaking = null)
+/mob/living/simple_mob/say_quote(message, datum/language/speaking = null)
 	if(speak_emote.len)
 		. = pick(speak_emote)
 	else if(speaking)
 		. = ..()
 
-/mob/living/simple_mob/get_speech_ending(verb, var/ending)
+/mob/living/simple_mob/get_speech_ending(verb, ending)
 	return verb
 
 /mob/living/simple_mob/is_sentient()
@@ -392,7 +394,7 @@
 	add_overlay(hud_list)
 
 //Makes it so that simplemobs can understand galcomm without being able to speak it.
-/mob/living/simple_mob/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/simple_mob/say_understands(mob/other, datum/language/speaking = null)
 	if(understands_common && (speaking?.name == LANGUAGE_GALCOM || !speaking))
 		return TRUE
 	return ..()
@@ -404,7 +406,7 @@
  * How injured are we? Returns a number that is then added to movement cooldown and firing/melee delay respectively.
  * Called by movement_delay and our firing/melee delay checks
 */
-/mob/living/simple_mob/proc/get_injury_level(var/mob/living/simple_mob/M)
+/mob/living/simple_mob/proc/get_injury_level(mob/living/simple_mob/M)
 	var/h = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss // We're not updating our actual health here bc we want updatehealth() and other checks to handle that
 	if(h > 0) 												// Safety to prevent division by 0 errors
 		if((h / getMaxHealth()) <= threshold) 				// Essentially, did our health go down? We don't modify want to modify our total slowdown if we didn't actually take damage, and aren't below our threshold %

@@ -13,7 +13,7 @@
 	var/image/I
 	var/turf/T
 
-/datum/technomancer_marker/New(var/mob/user)
+/datum/technomancer_marker/New(mob/user)
 	U = WEAKREF(user)
 	T = get_turf(user)
 	I = image('icons/goonstation/featherzone.dmi', T, "spawn-wall")
@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-/obj/item/spell/mark/on_use_cast(var/mob/living/user)
+/obj/item/spell/mark/on_use_cast(mob/living/user)
 	if(!allowed_to_teleport()) // Otherwise you could teleport back to the admin Z-level.
 		to_chat(user, span_warning("You can't teleport here!"))
 		return 0
@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-/obj/item/spell/recall/on_use_cast(var/mob/living/user)
+/obj/item/spell/recall/on_use_cast(mob/living/user)
 	if(pay_energy(3000))
 		var/datum/technomancer_marker/marker = GLOB.mark_spells[WEAKREF(user)] //VOREStation Add - Multiple technomancer support
 		if(!istype(marker))

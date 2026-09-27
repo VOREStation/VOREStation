@@ -66,7 +66,7 @@
 		if(health <= (maxHealth * 0.5)) // At half health, and fighting someone currently.
 			berserk()
 
-/mob/living/simple_mob/animal/sif/savik/fail_tame(var/obj/O, var/mob/user)
+/mob/living/simple_mob/animal/sif/savik/fail_tame(obj/O, mob/user)
 	..()
 
 	if(prob(30))	// They don't like people messing with them and their food.

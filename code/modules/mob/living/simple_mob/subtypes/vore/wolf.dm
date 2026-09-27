@@ -43,7 +43,7 @@
 	pain_emote_1p = list("yelp", "whine", "bark", "growl")
 	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 
-/mob/living/simple_mob/animal/vore/wolf/load_default_bellies()
+/mob/living/simple_mob/vore/wolf/load_default_bellies()
 	. = ..()
 
 	var/obj/belly/B = vore_selected
@@ -78,7 +78,7 @@
 	minbodytemp = 0
 	maxbodytemp = 700
 
-/mob/living/simple_mob/vore/wolf/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/wolf/space/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /mob/living/simple_mob/vore/wolf/direwolf

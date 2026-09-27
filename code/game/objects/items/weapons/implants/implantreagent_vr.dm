@@ -55,7 +55,7 @@
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
 			to_chat(imp_in, span_warning("[pick(full_message)]"))
 
-/obj/item/implant/reagent_generator/proc/do_generation(var/mob/living/L)
+/obj/item/implant/reagent_generator/proc/do_generation(mob/living/L)
 	L.adjust_nutrition(-gen_cost)
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
@@ -68,7 +68,7 @@
 
 	do_reagent_implant(usr)
 
-/mob/living/carbon/human/proc/do_reagent_implant(var/mob/living/carbon/human/user = usr)
+/mob/living/carbon/human/proc/do_reagent_implant(mob/living/carbon/human/user = usr)
 	if(!isliving(user) || !user.checkClickCooldown())
 		return
 

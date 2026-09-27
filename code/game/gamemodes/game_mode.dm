@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
-/datum/game_mode/proc/can_start(var/do_not_spawn)
+/datum/game_mode/proc/can_start(do_not_spawn)
 	var/playerC = 0
 	for(var/mob/new_player/player in GLOB.player_list)
 		if((player.client)&&(player.ready))
@@ -371,7 +371,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
 
-/datum/game_mode/proc/get_players_for_role(var/role, var/antag_id, var/ghosts_only)
+/datum/game_mode/proc/get_players_for_role(role, antag_id, ghosts_only)
 	var/list/players = list()
 	var/list/candidates = list()
 
@@ -524,7 +524,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	if(dudes.len == 0) return null
 	return pick(dudes)
 
-/proc/show_objectives(var/datum/mind/player)
+/proc/show_objectives(datum/mind/player)
 
 	if(!player || !player.current) return
 

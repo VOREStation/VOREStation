@@ -20,3 +20,174 @@
   - qol: Grippers can grab valid items out of storage space
   Kashargul:
   - bugfix: missing param in the mute command
+2026-05-04:
+  Diana:
+  - qol: AI can now use camera consoles in a more intuitive way.
+  - bugfix: Cyborgs can no longer build a camera network with multiple camera consoles
+      that follows them wherever they move.
+  - bugfix: Fixes a bug with accessories searching for nearby users.
+  - bugfix: Fixes a bug where partslathe had every part.
+  - bugfix: Fixes a bug where windows would delete the shield gen containment field
+  - bugfix: Attempting to drop non-item entities (unintended) into disposal will no
+      longer runtime.
+  - bugfix: Fixes a borg runtime
+  - bugfix: Horsemask now properly makes you neigh. Also adds an easter egg...This
+      mask isn't ever used, so...
+  - bugfix: Fixes some doafters
+  Guti:
+  - rscadd: Added voltaic combat heart
+  - balance: Harvested anomalies now generate a few more points
+  - balance: Reverts the point gain balance from research samples
+  - balance: Halved the max HP that an anomaly can lose when hit by containment particles
+  - bugfix: Fixed anomaly picker not giving three options
+  - bugfix: Fixed being able to re-roll through multiple anomaly types with the anomaly
+      picker
+  - bugfix: Fixed anomaly cores staying on hand when releasing it from there
+  - code_imp: Added "critical_condition" trait
+  - rscadd: Added a new research sample sprite
+  Nova:
+  - bugfix: fixed that copying a character could make them inherit stale data from
+      the new slot.
+  - refactor: character background prefs converted to TG
+  - refactor: player background now migrated to TG prefs
+  - refactor: converted job preferences to TG
+  Will:
+  - bugfix: crates and other climbable objects no longer harm mobs they cross while
+      moved
+  - rscadd: Cargo can now order most materials at a markup and only in full stacks
+  - balance: Many material stacks have had their sell prices changed
+  - bugfix: Attempting to sell non-material stacks on the supply shuttle no longer
+      runtime
+2026-05-06:
+  Kashargul:
+  - code_imp: removes var/ inside of procs
+2026-05-13:
+  ReoDaProtovali:
+  - qol: stools face the direction you're facing when you drop them
+  Will:
+  - rscadd: Upports snowbulls from yawnwider
+  tacoguy7765093:
+  - balance: RMS material cost changed.
+2026-05-14:
+  Diana:
+  - image: Adds a new 'chu' tail
+  - bugfix: Borg wires no longer become EMP'd.
+  - bugfix: Fixes borg gripper interactions with stacks of items.
+  Kashargul:
+  - code_imp: dependency up
+  - code_imp: typescript 6
+  - qol: updates chat highlights
+2026-05-15:
+  Cerami:
+  - bugfix: adjusts mob vore pref to only be for mobs as preds
+2026-05-17:
+  Diana:
+  - bugfix: Beakers can splash people again
+  Kashargul:
+  - bugfix: gps entries using a stable key
+2026-05-18:
+  Cerami:
+  - bugfix: Adds an emergency failsafe to the fulton if it doesn't see a valid tile
+      to transport to.
+  Will:
+  - rscadd: Upports yawnwider cryogenic planets
+  - rscadd: Upports yawnwider station boiler and radiators
+2026-05-19:
+  Will:
+  - bugfix: wearing a mask no longer prevent stuttering, hyperzine, and wingding say
+      modifiers
+  - bugfix: Scrubbers no longer rarely divide by 0 when calculating scrubbing power
+      used on their first tick if the pipe network is in a certain state
+  - code_imp: gas mixture datum inits temp to TCMB instead of 0
+  - bugfix: shuttles and elevators are ignored by the cryoplanets subsystem
+2026-05-23:
+  Diana:
+  - bugfix: Fixes clicking carbons with tongue to properly lick.
+  - rscadd: Inflation. You can now view how much your supply points are worth in thalers!
+  - rscadd: You can now sell food, mechs, slime cores, and bombs.
+  - rscadd: Adds a cargo scanner item that tells you how much the item you're scanning
+      is worth!
+  - bugfix: Bombs will no longer to into negative integrity.
+  - bugfix: Bomb simulator now gives sane numbers.
+  - bugfix: You can no longer Fulton into Central Command
+  Guti:
+  - rscadd: Added the vow of silence.
+  - rscadd: Added mime backpacks
+  - rscadd: Added mimery abilities to mimes. Invisible wall, invisible chair, and
+      invisible box.
+  - rscadd: Added the mime stamp
+  - rscadd: Mimes now start with a bottle of nothing in their loadout
+  - rscadd: Mimes drink a small amount of brute/burn when drinking Nothing.
+  - rscadd: Added mime-specific lines for emotes
+  - qol: Mimes won't do (most) sounds when emoting
+  - qol: Mimes don't have to pick the Mute trait anymore, as they spawn with a vow
+      of silence.
+  ReoDaProtovali:
+  - bugfix: Fixes a hard del caused by disposal bins not trying to unlink on destruction,
+      resulting in uncleared refs.
+  Will:
+  - bugfix: Station boiler radiators respect boiler fuel
+  - bugfix: Borg sleepers and various other borg items should function properly again
+  - image: merged downstream _yw dmis into main dmi files
+  - code_imp: Upports borealis majoris planet to virgo
+  Will, Reo:
+  - rscadd: multiple atmo pumps can be constructed on the same turf
+  - rscadd: atmo pumps can be constructed on all pipe layers
+  - rscadd: canister connectors can be constructed for all pipe layers
+  - rscadd: vents and scrubbers support aux and fuel pipe layers
+  - rscadd: pressure tanks can be constructed and destructed, and now support all
+      pipe layers
+  - rscadd: rpd and pipe dispenser can produce pressure tanks
+  - rscadd: all connections into a universal pipe adaptor function, and are no longer
+      limited to one per side when building the network
+  - bugfix: bad recipes removed from the rpd and pipe dispenser (use the correct layer
+      select for them instead)
+  - bugfix: atmo machines that support multiple pipe layer connections now properly
+      link to pipes nearby if more than one compatible type of pipe is present in
+      the linking direction
+  - bugfix: aux, fuel, scrubber, and supply pipes no longer reset their color (and
+      ignore RPD color) when deconstructed
+  - bugfix: volume pumps no longer have broken map icons
+  - bugfix: added missing volume pump on prefab
+2026-05-24:
+  Diana:
+  - rscadd: Small chance for pain emote when taking a painful attack.
+  - bugfix: Fixes a bug where pain would spam your chat with pain messages if they
+      were significantly strong.
+  - bugfix: Pain messages have proper times now, instead of having possibly 0 times
+      per message.
+  Willburd:
+  - bugfix: borgs can pick up stacks of paper with misc gripper
+2026-05-25:
+  Diana:
+  - bugfix: You can tug leashes again.
+  Will:
+  - rscadd: Pipe connected gas meters can no be built on each pipe layer (fuel, aux,
+      scrubber, etc)
+  - qol: Pipe connected gas meters can be examined from further away
+2026-05-27:
+  Kashargul:
+  - code_imp: update tgui-core to 6.0.0
+  - bugfix: searchable dropdown display
+  SabreKnight:
+  - bugfix: TEG tgui crash when unlinked
+  Will:
+  - bugfix: multiple universal pipe connections properly init during map loading
+  - refactor: Optimizes cryoplanet subsystem
+2026-05-28:
+  Will:
+  - refactor: Remote view code cleanup
+  - bugfix: Several remote view bugs where the screen would turn black or be left
+      behind
+  - code_imp: duplicated health hud code removed
+  - bugfix: Fixes universal pipe init again
+  - bugfix: Reverts gas meter pipe attachment to how it was before, but keeps visual
+      offset
+2026-05-31:
+  Cerami:
+  - bugfix: Fix morph's body takeover to work on bellies beyond the first
+  Will:
+  - code_imp: corrects base arguments of remote_view_config/handle_relay_movement()
+      proc
+  - bugfix: remote views with hud modifiers end correctly instead of waiting an extra
+      life tick

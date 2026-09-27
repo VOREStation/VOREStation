@@ -7,7 +7,7 @@
 	. = ..()
 	QDEL_IN(src, 2 SECONDS)
 
-/image/client_only/motion_echo/place_from_root(var/turf/At)
+/image/client_only/motion_echo/place_from_root(turf/At)
 	. = ..()
 	var/rand_limit = 12
 	pixel_x += rand(-rand_limit,rand_limit)

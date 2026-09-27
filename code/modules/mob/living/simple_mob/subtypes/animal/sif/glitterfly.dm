@@ -91,7 +91,7 @@
 /mob/living/simple_mob/animal/sif/glitterfly/rare/Initialize(mapload)
 	. = ..()
 
-/mob/living/simple_mob/animal/sif/glitterfly/unique_tame_check(var/obj/O, var/mob/user)
+/mob/living/simple_mob/animal/sif/glitterfly/unique_tame_check(obj/O, mob/user)
 	. = ..()
 
 	if(.)

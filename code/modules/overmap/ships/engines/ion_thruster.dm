@@ -2,7 +2,7 @@
 	name = "ion thruster"
 	var/obj/machinery/ion_engine/thruster
 
-/datum/ship_engine/ion/New(var/obj/machinery/_holder)
+/datum/ship_engine/ion/New(obj/machinery/_holder)
 	..()
 	thruster = _holder
 
@@ -19,7 +19,7 @@
 /datum/ship_engine/ion/burn()
 	return thruster.thrust_burn()
 
-/datum/ship_engine/ion/set_thrust_limit(var/new_limit)
+/datum/ship_engine/ion/set_thrust_limit(new_limit)
 	thruster.thrust_limit = new_limit
 
 /datum/ship_engine/ion/get_thrust_limit()

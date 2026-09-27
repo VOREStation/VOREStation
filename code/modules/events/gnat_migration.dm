@@ -28,7 +28,7 @@
 	if(count_spawned_gnats() < gnat_cap)
 		spawn_fish(rand(3, 3 + severity * 2) - 1, 1, severity + 2)
 
-/datum/event/gnat_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
+/datum/event/gnat_migration/proc/spawn_fish(num_groups, group_size_min, group_size_max, dir)
 	if(isnull(dir))
 		dir = (victim && prob(80)) ? victim.fore_dir : pick(GLOB.cardinal)
 
@@ -69,7 +69,7 @@
 		i++
 
 // Spawn a single gnat at given location.
-/datum/event/gnat_migration/proc/spawn_one_gnat(var/loc)
+/datum/event/gnat_migration/proc/spawn_one_gnat(loc)
 	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/gnat(loc)
 	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_gnat_destruction))
 	spawned_gnat.Add(M)
@@ -83,7 +83,7 @@
 			. += 1
 
 // If gnat is bomphed, remove it from the list.
-/datum/event/gnat_migration/proc/on_gnat_destruction(var/mob/M)
+/datum/event/gnat_migration/proc/on_gnat_destruction(mob/M)
 	SIGNAL_HANDLER
 	spawned_gnat -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)

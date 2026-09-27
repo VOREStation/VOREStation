@@ -95,13 +95,14 @@
 	item_state = "card-id"
 
 /obj/item/card/emag
-	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
+	desc = "It's a card with a magnetic strip attached to some circuitry. The shoddy wiring is only good for a dozen uses or so."
+	description_antag = "A well known tool among certain circles. It allows bypass of security systems for a frightingly large amount of devices, robots or machinery. It does tend to leave visible traces."
 	icon_state = "emag"
 	item_state = "card-id"
 	var/uses = 10
 
-/obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, var/click_parameters)
+/obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, click_parameters)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
 		return ..(A, user, click_parameters)
@@ -137,10 +138,11 @@
 
 
 /obj/item/card/emag/borg
+	desc = "It's a card with a magnetic strip attached to some circuitry."
 	uses = 12
 	var/burnt_out = FALSE
 
-/obj/item/card/emag/borg/afterattack(atom/A, mob/user, proximity, var/click_parameters)
+/obj/item/card/emag/borg/afterattack(atom/A, mob/user, proximity, click_parameters)
 	if(!proximity || burnt_out) return
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)

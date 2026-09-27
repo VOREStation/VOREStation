@@ -90,7 +90,7 @@
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.
 
-/datum/visualnet/proc/updateVisibility(atom/A, var/opacity_check = 1)
+/datum/visualnet/proc/updateVisibility(atom/A, opacity_check = 1)
 
 	if(!SSticker || (opacity_check && !A.opacity))
 		return
@@ -109,7 +109,7 @@
 // Setting the choice to 0 will remove the camera from the chunks.
 // If you want to update the chunks around an object, without adding/removing a camera, use choice 2.
 
-/datum/visualnet/proc/majorChunkChange(atom/c, var/choice)
+/datum/visualnet/proc/majorChunkChange(atom/c, choice)
 	// 0xf = 15
 	if(!c)
 		return
@@ -130,7 +130,7 @@
 					onMajorChunkChange(c, choice, chunk)
 					chunk.hasChanged()
 
-/datum/visualnet/proc/onMajorChunkChange(atom/c, var/choice, var/datum/chunk/chunk)
+/datum/visualnet/proc/onMajorChunkChange(atom/c, choice, datum/chunk/chunk)
 
 // Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
 
@@ -139,7 +139,7 @@
 	var/turf/position = get_turf(target)
 	return checkTurfVis(position)
 
-/datum/visualnet/proc/checkTurfVis(var/turf/position)
+/datum/visualnet/proc/checkTurfVis(turf/position)
 	var/datum/chunk/chunk = getChunk(position.x, position.y, position.z)
 	if(chunk)
 		if(chunk.changed)

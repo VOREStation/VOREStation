@@ -19,7 +19,7 @@
 	if(href_list["print"])
 		print_report(usr)
 
-/obj/item/analyzer/xeno_analyzer/proc/print_report(var/mob/living/user)
+/obj/item/analyzer/xeno_analyzer/proc/print_report(mob/living/user)
 	if(!last_data)
 		to_chat(user, "There is no scan data to print.")
 		return
@@ -38,7 +38,7 @@
 	print_report(user)
 	return 0
 
-/obj/item/analyzer/xeno_analyzer/afterattack(var/target, mob/user, flag)
+/obj/item/analyzer/xeno_analyzer/afterattack(target, mob/user, flag)
 	if(!flag) return
 
 	var/datum/xeno/traits/trait_info

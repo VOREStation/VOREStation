@@ -1,9 +1,8 @@
 import { useBackend } from 'tgui/backend';
+import { BufferContents } from 'tgui/interfaces/common/ChemicalContents';
+import { modalOpen } from 'tgui/interfaces/common/ComplexModal';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
-import { BeakerContents } from '../common/BeakerContents';
-import { modalOpen } from '../common/ComplexModal';
 import { transferAmounts } from './constants';
 import type { reagent } from './types';
 
@@ -17,22 +16,25 @@ export const ChemMasterBuffer = (props: {
     <Section
       title="Buffer"
       buttons={
-        <Box color="label" inline>
-          Transferring to&nbsp;
-          <Button
-            icon={mode ? 'flask' : 'trash'}
-            color={!mode && 'bad'}
-            onClick={() => act('toggle')}
-          >
-            {mode ? 'Beaker' : 'Disposal'}
-          </Button>
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <Box color="label">Transferring to</Box>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon={mode ? 'flask' : 'trash'}
+              color={!mode && 'bad'}
+              onClick={() => act('toggle')}
+            >
+              {mode ? 'Beaker' : 'Disposal'}
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       {bufferReagents.length > 0 ? (
-        <BeakerContents
-          beakerLoaded
-          beakerContents={bufferReagents}
+        <BufferContents
+          bufferContents={bufferReagents}
           buttons={(chemical, i) => (
             <Stack mb={i < bufferReagents.length - 1 && '2px'}>
               <Stack.Item>
@@ -41,7 +43,6 @@ export const ChemMasterBuffer = (props: {
                   onClick={() =>
                     modalOpen('analyze', {
                       idx: i + 1,
-                      beaker: 0,
                     })
                   }
                 >
@@ -92,7 +93,7 @@ export const ChemMasterBuffer = (props: {
           )}
         />
       ) : (
-        <Box color="label">Buffer is empty.</Box>
+        <Box color="label">The buffer is empty.</Box>
       )}
     </Section>
   );

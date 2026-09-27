@@ -68,7 +68,7 @@
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_FAILURE
 
-/obj/item/forensics/swab/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/forensics/swab/afterattack(atom/A, mob/user, proximity)
 
 	if(!proximity || istype(A, /obj/machinery/dnaforensics))
 		return
@@ -81,7 +81,7 @@
 
 	var/list/choices = list()
 	if(A.forensic_data?.has_blooddna())
-		choices |= "Blood"
+		choices |= "DNA"
 	if(istype(A, /obj/item/clothing))
 		choices |= "Gunshot Residue"
 
@@ -98,10 +98,10 @@
 		return
 
 	var/sample_type
-	if(choice == "Blood")
+	if(choice == "DNA")
 		if(!A.forensic_data?.has_blooddna()) return
 		dna = A.forensic_data?.get_blooddna().Copy()
-		sample_type = "blood"
+		sample_type = "DNA"
 
 	else if(choice == "Gunshot Residue")
 		var/obj/item/clothing/B = A
@@ -116,7 +116,7 @@
 		set_used(sample_type, A)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FORENSICS_COLLECTED, A, user)
 
-/obj/item/forensics/swab/proc/set_used(var/sample_str, var/atom/source)
+/obj/item/forensics/swab/proc/set_used(sample_str, atom/source)
 	name = "[initial(name)] ([sample_str] - [source])"
 	desc = "[initial(desc)] The label on the vial reads 'Sample of [sample_str] from [source].'."
 	icon_state = "swab_used"

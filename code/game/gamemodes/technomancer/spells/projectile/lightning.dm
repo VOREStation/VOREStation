@@ -32,7 +32,7 @@
 
 	var/power = 60				//How hard it will hit for with electrocute_act().
 
-/obj/item/projectile/beam/lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
+/obj/item/projectile/beam/lightning/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))

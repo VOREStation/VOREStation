@@ -283,7 +283,7 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "exercise_mat"
 
-/obj/item/bedsheet/pillow/exercise/attackby(var/obj/item/component, mob/user as mob)
+/obj/item/bedsheet/pillow/exercise/attackby(obj/item/component, mob/user as mob)
 	return
 
 /obj/item/entrepreneur/dumbbell
@@ -444,7 +444,7 @@
 		return 0
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
 
-/obj/item/entrepreneur/spirit_board/attack_ghost(var/mob/observer/dead/user)
+/obj/item/entrepreneur/spirit_board/attack_ghost(mob/observer/dead/user)
 	if(!ghost_enabled)
 		return
 	if(jobban_isbanned(user, JOB_GHOSTROLES))

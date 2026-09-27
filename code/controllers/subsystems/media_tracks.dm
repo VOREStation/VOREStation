@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(media_tracks)
 
 	to_chat(C, span_warning("Couldn't find a track matching the specified parameters."))
 
-/datum/controller/subsystem/media_tracks/proc/add_track(var/mob/user, var/new_url, var/new_title, var/new_duration, var/new_artist, var/new_genre, var/new_secret, var/new_lobby)
+/datum/controller/subsystem/media_tracks/proc/add_track(mob/user, new_url, new_title, new_duration, new_artist, new_genre, new_secret, new_lobby)
 	if(!check_rights(R_DEBUG|R_FUN))
 		return
 	var/datum/track/T = new(new_url, new_title, new_duration, new_artist, new_genre, new_secret, new_lobby)
@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(media_tracks)
 	sort_tracks()
 	return
 
-/datum/controller/subsystem/media_tracks/proc/remove_track(var/mob/user, var/datum/track/T)
+/datum/controller/subsystem/media_tracks/proc/remove_track(mob/user, datum/track/T)
 	if(!check_rights(R_DEBUG|R_FUN))
 		return
 

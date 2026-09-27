@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(radio)
 	GLOB.autospeaker = new (null, FALSE, null, null, TRUE) //Set up Global Announcer
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/radio/proc/add_object(obj/device as obj, var/new_frequency as num, var/radio_filter = null as text|null)
+/datum/controller/subsystem/radio/proc/add_object(obj/device as obj, new_frequency as num, radio_filter = null as text|null)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(radio)
 
 	return 1
 
-/datum/controller/subsystem/radio/proc/return_frequency(var/new_frequency as num)
+/datum/controller/subsystem/radio/proc/return_frequency(new_frequency as num)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(radio)
 	var/frequency as num
 	var/list/list/obj/devices = list()
 
-/datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, var/radio_filter = null as text|null, var/range = null as num|null)
+/datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, radio_filter = null as text|null, range = null as num|null)
 	var/turf/start_point
 	if(range)
 		start_point = get_turf(source)
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(radio)
 			send_to_filter(source, signal, next_filter, start_point, range)
 
 //Sends a signal to all machines belonging to a given filter. Should be called by post_signal()
-/datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/radio_filter, var/turf/start_point = null, var/range = null)
+/datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, radio_filter, turf/start_point = null, range = null)
 	if (range && !start_point)
 		return
 
@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(radio)
 
 		device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 
-/datum/radio_frequency/proc/add_listener(obj/device as obj, var/radio_filter as text|null)
+/datum/radio_frequency/proc/add_listener(obj/device as obj, radio_filter as text|null)
 	if (!radio_filter)
 		radio_filter = RADIO_DEFAULT
 	//log_admin("add_listener(device=[device],radio_filter=[radio_filter]) frequency=[frequency]")

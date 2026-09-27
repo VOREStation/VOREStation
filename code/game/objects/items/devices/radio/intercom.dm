@@ -75,6 +75,26 @@
 	name = "entertainment intercom"
 	frequency = ENT_FREQ
 
+/obj/item/radio/intercom/atc
+	name = "Air Traffic Control intercom"
+	frequency = ATC_FREQ
+
+/obj/item/radio/intercom/atc/Initialize(mapload)
+	. = ..()
+	internal_channels = list(
+		num2text(ATC_FREQ) = list()
+	)
+
+/obj/item/radio/intercom/culture
+	name = "culture intercom"
+	frequency = CULTURE_FREQ
+
+/obj/item/radio/intercom/culture/Initialize(mapload)
+	. = ..()
+	internal_channels = list(
+		num2text(CULTURE_FREQ) = list()
+	)
+
 /obj/item/radio/intercom/science
 	name = "station intercom (Science)"
 	channels=list("Science")
@@ -206,11 +226,11 @@
 			set_light_on(TRUE)
 
 //VOREStation Add Start
-/obj/item/radio/intercom/ctrl_click_ai(var/mob/user)
+/obj/item/radio/intercom/ctrl_click_ai(mob/user)
 	ToggleBroadcast()
 	to_chat(user, span_notice("\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>."))
 
-/obj/item/radio/intercom/AIAltClick(var/mob/user)
+/obj/item/radio/intercom/AIAltClick(mob/user)
 	if(frequency == AI_FREQ)
 		set_frequency(initial(frequency))
 		to_chat(user, span_notice("\The [src]'s frequency is now set to [span_green(span_bold("Default"))]."))
@@ -221,7 +241,7 @@
 /obj/item/radio/intercom/locked
 	var/locked_frequency
 
-/obj/item/radio/intercom/locked/set_frequency(var/frequency)
+/obj/item/radio/intercom/locked/set_frequency(frequency)
 	if(frequency == locked_frequency)
 		..(locked_frequency)
 

@@ -17,12 +17,12 @@
 
 	muzzle_type = /obj/effect/projectile/muzzle/bullet
 
-/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/on_hit(atom/target, blocked = 0)
 	if (..(target, blocked))
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
+/obj/item/projectile/bullet/attack_mob(mob/living/target_mob, distance, miss_modifier)
 	if(penetrating > 0 && damage > 20 && prob(damage))
 		mob_passthrough_check = 1
 	else
@@ -35,7 +35,7 @@
 		return 0
 	return ..()
 
-/obj/item/projectile/bullet/check_penetrate(var/atom/A)
+/obj/item/projectile/bullet/check_penetrate(atom/A)
 	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
 	if(istype(A, /obj/mecha))
@@ -188,7 +188,7 @@
 
 	combustion = FALSE
 
-/obj/item/projectile/bullet/shotgun/ion/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/shotgun/ion/on_hit(atom/target, blocked = 0)
 	..()
 	empulse(target, 0, 0, 0, 0)	//Only affects what it hits
 	return 1
@@ -298,7 +298,7 @@
 	edge = TRUE
 	hud_state = "pistol_fire"
 
-/obj/item/projectile/bullet/burstbullet/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/burstbullet/on_hit(atom/target, blocked = 0)
 	if(isturf(target))
 		explosion(target, -1, 0, 2)
 	..()
@@ -440,17 +440,17 @@
 	range = 15
 	hud_state = "grenade_dummy"
 
-/obj/item/projectile/bullet/foam_dart/on_impact(var/atom/A)
+/obj/item/projectile/bullet/foam_dart/on_impact(atom/A)
 	. = ..()
 	var/turf/T = get_turf(loc)
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
 
 ///Doesn't give a damn about what faction you're on, hits you anyway.
-/obj/item/projectile/bullet/foam_dart/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/foam_dart/on_hit(atom/target, blocked = 0)
 	handle_lasertag_attack(target, firer, tag_damage = 1, vest_override = TRUE)
 
-/obj/item/projectile/bullet/foam_dart/on_range(var/atom/A)
+/obj/item/projectile/bullet/foam_dart/on_range(atom/A)
 	. = ..()
 	var/turf/T = get_turf(loc)
 	if(istype(T))
@@ -473,17 +473,17 @@
 	range = 15
 	hud_state = "grenade_he"
 
-/obj/item/projectile/bullet/foam_dart_riot/on_impact(var/atom/A)
+/obj/item/projectile/bullet/foam_dart_riot/on_impact(atom/A)
 	. = ..()
 	var/turf/T = get_turf(loc)
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
 
-/obj/item/projectile/bullet/foam_dart_riot/on_range(var/atom/A)
+/obj/item/projectile/bullet/foam_dart_riot/on_range(atom/A)
 	. = ..()
 	var/turf/T = get_turf(loc)
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
 
-/obj/item/projectile/bullet/foam_dart_riot/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/foam_dart_riot/on_hit(atom/target, blocked = 0)
 	handle_lasertag_attack(target, firer, 5, vest_override = TRUE) //Insult to injury.

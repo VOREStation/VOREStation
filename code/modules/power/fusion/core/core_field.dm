@@ -47,7 +47,7 @@
 	var/last_range
 	var/last_power
 
-/obj/effect/fusion_em_field/Initialize(mapload, var/obj/machinery/power/fusion_core/new_owned_core)
+/obj/effect/fusion_em_field/Initialize(mapload, obj/machinery/power/fusion_core/new_owned_core)
 	. = ..()
 
 	set_light(light_min_range,light_min_power)
@@ -266,7 +266,7 @@
 		else if(critical >= 25)
 			visible_message(span_danger("\The [src] rumbles and quivers slightly, vibrating the deck."))
 */
-/obj/effect/fusion_em_field/proc/ChangeFieldStrength(var/new_strength)
+/obj/effect/fusion_em_field/proc/ChangeFieldStrength(new_strength)
 	var/calc_size = 1
 	if(new_strength <= 50)
 		calc_size = 1
@@ -279,7 +279,7 @@
 	field_strength = new_strength
 	change_size(calc_size)
 
-/obj/effect/fusion_em_field/proc/AddEnergy(var/a_energy, var/a_plasma_temperature)
+/obj/effect/fusion_em_field/proc/AddEnergy(a_energy, a_plasma_temperature)
 	energy += a_energy
 	plasma_temperature += a_plasma_temperature
 	if(a_energy && percent_unstable > 0)
@@ -290,14 +290,14 @@
 		energy -= 100
 		plasma_temperature += 1
 
-/obj/effect/fusion_em_field/proc/AddParticles(var/name, var/quantity = 1)
+/obj/effect/fusion_em_field/proc/AddParticles(name, quantity = 1)
 	if(name in dormant_reactant_quantities)
 		dormant_reactant_quantities[name] += quantity
 	else if(name != "proton" && name != "electron" && name != "neutron")
 		dormant_reactant_quantities.Add(name)
 		dormant_reactant_quantities[name] = quantity
 
-/obj/effect/fusion_em_field/proc/RadiateAll(var/ratio_lost = 1)
+/obj/effect/fusion_em_field/proc/RadiateAll(ratio_lost = 1)
 
 	// Create our plasma field and dump it into our environment.
 	var/turf/T = get_turf(src)
@@ -335,10 +335,10 @@
 
 	radiation_pulse(
 		src,
-		max_range = 7,
-		threshold = RAD_HEAVY_INSULATION,
-		chance = URANIUM_IRRADIATION_CHANCE,
-		strength = energy * 0.001 //Might need to be increased.
+		max_range = 14,
+		threshold = RAD_EXTREME_INSULATION,
+		chance = 100,
+		strength = radiation * 0.01 //This is what happens when it EXPLODES.
 		)
 	Radiate()
 
@@ -363,7 +363,7 @@
 			tick_instability += rand(15,30)
 			AM.emp_act(empsev)
 
-/obj/effect/fusion_em_field/proc/change_size(var/newsize = 1)
+/obj/effect/fusion_em_field/proc/change_size(newsize = 1)
 	var/changed = 0
 	switch(newsize)
 		if(1)
@@ -524,7 +524,7 @@
 		owned_core = null
 	. = ..()
 
-/obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/fusion_em_field/bullet_act(obj/item/projectile/Proj)
 	AddEnergy(Proj.damage)
 	update_icon()
 	return 0
@@ -544,13 +544,13 @@
 	return
 
 //Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
-/obj/effect/fusion_em_field/proc/radiation_scale()
+/obj/effect/fusion_em_field/proc/radiation_scale() // Power sits ~50. Sometimes higher, sometimes lower.cal
 	radiation_pulse(
 		src,
-		max_range = 5,
-		threshold = RAD_MEDIUM_INSULATION,
+		max_range = CLAMP(round(energy * 0.25), 7, 50),
+		threshold = RAD_EXTREME_INSULATION,
 		chance = (URANIUM_IRRADIATION_CHANCE + (plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR)),
-		strength = energy * 0.01 //Might need to be increased.
+		strength = max(round(plasma_temperature / PLASMA_TEMP_RADIATION_DIVISIOR) * 0.7, 100) //Increased. Now on par with the mag traps. This room is LETHAL when it's running.
 	)
 
 //Somehow fixing the radiation issue managed to break this, but moving it to it's own proc seemed to have fixed it. I don't know.

@@ -69,7 +69,7 @@ export const PAIActiveCompanion = (props: { activeData: ActivePAIData }) => {
           >
             <LabeledList>
               <LabeledList.Item label="Owner">
-                {!!master_name && !!master_dna ? (
+                {master_name && master_dna ? (
                   <>
                     <Box style={{ textDecoration: 'underline' }} inline>
                       {master_name}

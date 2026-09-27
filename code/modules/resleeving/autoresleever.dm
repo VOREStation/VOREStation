@@ -60,14 +60,14 @@ GLOBAL_LIST_EMPTY(active_autoresleevers)
 	else
 		to_chat(user, span_warning("You need to have been spawned in order to respawn here."))
 
-/obj/machinery/transhuman/autoresleever/attackby(var/mob/user)	//Let's not let people mess with this.
+/obj/machinery/transhuman/autoresleever/attackby(mob/user)	//Let's not let people mess with this.
 	update_icon()
 	if(isobserver(user))
 		attack_ghost(user)
 	else
 		return
 
-/obj/machinery/transhuman/autoresleever/proc/autoresleeve(var/mob/observer/dead/ghost)
+/obj/machinery/transhuman/autoresleever/proc/autoresleeve(mob/observer/dead/ghost)
 	if(stat & (BROKEN | MAINT | EMPED)) // Let it still work when power is just off, it has it's own backup reserve or something.
 		to_chat(ghost, span_warning("This machine is not functioning..."))
 		return

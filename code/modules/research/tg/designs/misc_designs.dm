@@ -6,7 +6,7 @@
 	id = "pda"
 	// req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	build_path = /obj/item/pda
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
@@ -18,7 +18,7 @@
 	desc = "A cartridge containing PDA software."
 	// req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
@@ -109,7 +109,7 @@
 	id = "tech_disk"
 	// req_tech = list(TECH_DATA = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 10)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.005))
 	build_path = /obj/item/disk/tech_disk
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
@@ -122,7 +122,7 @@
 	id = "disk_botany"
 	// req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 10, MAT_URANIUM = 5)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.005), MAT_URANIUM = MATERIAL_COST(0.0025))
 	build_path = /obj/item/disk/botany
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
@@ -133,7 +133,7 @@
 	name = "Borg-O's Recipe"
 	desc = "A recipe for the cult classic Borg-O's meal. Warning: Not suitable for organic consumption."
 	id = "borgos1"
-	materials = list(MAT_STEEL = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5))
 	build_path = /obj/item/trash/rkibble
 	build_type = PROTOLATHE //I...I guess???
 	category = list(
@@ -146,7 +146,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 25000, MAT_GLASS = 25000, MAT_TITANIUM = 2500, MAT_DURASTEEL = 1000, MAT_DIAMOND = 200, MAT_URANIUM = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(12.5), MAT_GLASS = MATERIAL_COST(12.5), MAT_TITANIUM = MATERIAL_COST(1.25), MAT_DURASTEEL = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.1), MAT_URANIUM = MATERIAL_COST(0.25))
 	build_path = /obj/item/survivalcapsule
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -158,7 +158,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_luxury"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 35000, MAT_GLASS = 35000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 2500, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(17.5), MAT_GLASS = MATERIAL_COST(17.5), MAT_TITANIUM = MATERIAL_COST(2.5), MAT_DURASTEEL = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/survivalcapsule/luxury
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -170,7 +170,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_sauna"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 35000, MAT_GLASS = 35000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 5000, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(17.5), MAT_GLASS = MATERIAL_COST(17.5), MAT_TITANIUM = MATERIAL_COST(2.5), MAT_DURASTEEL = MATERIAL_COST(2.5), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/survivalcapsule/sauna
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -182,7 +182,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_luxuryalt"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 35000, MAT_GLASS = 35000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 5000, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(17.5), MAT_GLASS = MATERIAL_COST(17.5), MAT_TITANIUM = MATERIAL_COST(2.5), MAT_DURASTEEL = MATERIAL_COST(2.5), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/survivalcapsule/luxuryalt
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -194,7 +194,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_kitchen"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 35000, MAT_GLASS = 35000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 5000, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(17.5), MAT_GLASS = MATERIAL_COST(17.5), MAT_TITANIUM = MATERIAL_COST(2.5), MAT_DURASTEEL = MATERIAL_COST(2.5), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/survivalcapsule/kitchen
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -206,7 +206,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_pocketdorm"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 25000, MAT_GLASS = 25000, MAT_TITANIUM = 2500, MAT_DURASTEEL = 1000, MAT_DIAMOND = 200, MAT_URANIUM = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(12.5), MAT_GLASS = MATERIAL_COST(12.5), MAT_TITANIUM = MATERIAL_COST(1.25), MAT_DURASTEEL = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.1), MAT_URANIUM = MATERIAL_COST(0.25))
 	build_path = /obj/item/survivalcapsule/pocketdorm
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -218,7 +218,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_recroom"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 40000, MAT_GLASS = 40000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 2500, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(20), MAT_GLASS = MATERIAL_COST(20), MAT_TITANIUM = MATERIAL_COST(2.5), MAT_DURASTEEL = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/survivalcapsule/recroom
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -230,7 +230,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_luxurybar"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	materials = list(MAT_STEEL = MATERIAL_COST(25), MAT_GLASS = MATERIAL_COST(25), MAT_TITANIUM = MATERIAL_COST(3), MAT_DURASTEEL = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.375), MAT_URANIUM = MATERIAL_COST(0.75)) // These are 11x11 rooms in a pocket. They NEED to be expensive!
 	build_path = /obj/item/survivalcapsule/luxurybar
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -242,7 +242,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_luxurycabin"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	materials = list(MAT_STEEL = MATERIAL_COST(25), MAT_GLASS = MATERIAL_COST(25), MAT_TITANIUM = MATERIAL_COST(3), MAT_DURASTEEL = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.375), MAT_URANIUM = MATERIAL_COST(0.75)) // These are 11x11 rooms in a pocket. They NEED to be expensive!
 	build_path = /obj/item/survivalcapsule/luxurycabin
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -254,7 +254,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_cafe"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	materials = list(MAT_STEEL = MATERIAL_COST(25), MAT_GLASS = MATERIAL_COST(25), MAT_TITANIUM = MATERIAL_COST(3), MAT_DURASTEEL = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.375), MAT_URANIUM = MATERIAL_COST(0.75)) // These are 11x11 rooms in a pocket. They NEED to be expensive!
 	build_path = /obj/item/survivalcapsule/cafe
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -266,7 +266,7 @@
 	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
 	id = "shelter_capsule_luxuryrecroom"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	materials = list(MAT_STEEL = MATERIAL_COST(25), MAT_GLASS = MATERIAL_COST(25), MAT_TITANIUM = MATERIAL_COST(3), MAT_DURASTEEL = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.375), MAT_URANIUM = MATERIAL_COST(0.75)) // These are 11x11 rooms in a pocket. They NEED to be expensive!
 	build_path = /obj/item/survivalcapsule/luxuryrecroom
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
@@ -332,7 +332,7 @@
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
 	id = "sticky_tape"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTIC = 500)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.25))
 	build_path = /obj/item/tape_roll
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
@@ -345,7 +345,7 @@
 	desc = "A small electronic device able to ignite combustable substances."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "igniter"
-	materials = list(MAT_STEEL = 625, MAT_GLASS = 60)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125), MAT_GLASS = MATERIAL_COST(0.03))
 	build_path = /obj/item/assembly/igniter
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -358,7 +358,7 @@
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "infrared_emitter"
-	materials = list(MAT_STEEL = 1250, MAT_GLASS = 625)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.625), MAT_GLASS = MATERIAL_COST(0.3125))
 	build_path = /obj/item/assembly/infra
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -371,7 +371,7 @@
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "prox_sensor"
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 250)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.125))
 	build_path = /obj/item/assembly/prox_sensor
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -384,7 +384,7 @@
 	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "signaler"
-	materials = list(MAT_STEEL = 1250, MAT_GLASS = 250)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.625), MAT_GLASS = MATERIAL_COST(0.125))
 	build_path = /obj/item/assembly/signaler
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -397,7 +397,7 @@
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "timer"
-	materials = list(MAT_STEEL = 625, MAT_GLASS = 60)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125), MAT_GLASS = MATERIAL_COST(0.03))
 	build_path = /obj/item/assembly/timer
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -411,7 +411,7 @@
 	desc = "This upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "sleevecard"
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5))
 	build_path = /obj/item/paicard/sleevecard
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -424,7 +424,7 @@
 	desc = "A pre-fabricated security camera kit, ready to be assembled and mounted to a surface."
 	build_type = AUTOLATHE | PROTOLATHE
 	id = "camera_assembly"
-	materials = list(MAT_STEEL = 875, MAT_GLASS = 375)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.4375), MAT_GLASS = MATERIAL_COST(0.1875))
 	build_path = /obj/item/camera_assembly
 	category = list(
 		RND_CATEGORY_INITIAL,
@@ -436,7 +436,7 @@
 	name = "hoist kit"
 	desc = "A setup kit for a hoist that can be used to lift things."
 	id = "hoist_kit"
-	materials = list(MAT_STEEL = 9000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4.5))
 	build_path = /obj/item/hoist_kit
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list(

@@ -23,7 +23,7 @@
 /obj/item/blobcore_chunk/is_open_container()
 	return 1
 
-/obj/item/blobcore_chunk/Initialize(mapload, var/datum/blob_type/parentblob = null)
+/obj/item/blobcore_chunk/Initialize(mapload, datum/blob_type/parentblob = null)
 	. = ..()
 
 	create_reagents(120)
@@ -36,7 +36,7 @@
 
 	. = ..()
 
-/obj/item/blobcore_chunk/proc/setup_blobtype(var/datum/blob_type/parentblob = null)
+/obj/item/blobcore_chunk/proc/setup_blobtype(datum/blob_type/parentblob = null)
 	if(!parentblob)
 		name = "inert [initial(name)]"
 
@@ -65,7 +65,7 @@
 		blob_type.chunk_unique(src, args)
 	return
 
-/obj/item/blobcore_chunk/proc/get_carrier(var/atom/target)
+/obj/item/blobcore_chunk/proc/get_carrier(atom/target)
 	var/atom/A = target ? target.loc : src
 
 	if(isturf(A) || isarea(A))	// Something has gone horribly wrong if the second is true.
@@ -107,7 +107,7 @@
 		else
 			to_chat(user, span_alien("\The [src] stills, returning to a death-like state."))
 
-/obj/item/blobcore_chunk/proc/regen(var/newfaction = null)
+/obj/item/blobcore_chunk/proc/regen(newfaction = null)
 	if(istype(blob_type))
 		if(newfaction)
 			blob_type.faction = newfaction
@@ -126,12 +126,12 @@
 	required_reagents = list(REAGENT_ID_PHORON = 60)
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/can_happen(datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/blobcore_chunk))
 		return ..()
 	return FALSE
 
-/datum/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen())
 		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
@@ -146,7 +146,7 @@
 	required_reagents = list(REAGENT_ID_HYDROPHORON = 40, REAGENT_ID_PERIDAXON = 20, REAGENT_ID_MUTAGEN = 20)
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(datum/reagents/holder)
 	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen("neutral"))
 		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))

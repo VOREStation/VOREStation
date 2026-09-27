@@ -59,7 +59,7 @@
 			else
 				. = span_red(.)
 
-/mob/living/proc/chat_healthbar(var/mob/living/reciever, onExamine = FALSE, override = FALSE)
+/mob/living/proc/chat_healthbar(mob/living/reciever, onExamine = FALSE, override = FALSE)
 	if(!reciever)	//No one to send it to, don't bother
 		return
 	if(!reciever.client)	//No one is home, don't bother

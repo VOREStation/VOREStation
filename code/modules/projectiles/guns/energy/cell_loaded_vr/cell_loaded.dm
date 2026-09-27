@@ -102,12 +102,12 @@
 
 	return TRUE
 */
-/obj/item/gun/projectile/cell_loaded/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/cell_loaded/load_ammo(obj/item/A, mob/user)
 	. = ..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		switch_to(ammo_magazine.stored_ammo[1])
 
-/obj/item/gun/projectile/cell_loaded/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/cell_loaded/unload_ammo(mob/user, allow_dump=1)
 	chambered = null
 	return ..()
 

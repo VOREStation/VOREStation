@@ -24,7 +24,7 @@
 	spore_projectile = /obj/item/projectile/bullet/thorn
 
 // Even if the melee attack is enough to one-shot this blob, it gets to retaliate at least once.
-/datum/blob_type/reactive_spines/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
+/datum/blob_type/reactive_spines/on_received_damage(obj/structure/blob/B, damage, damage_type, mob/living/attacker)
 	if(damage > 0 && attacker && get_dist(B, attacker) <= 1)
 		B.visible_message(span_danger("The [name] retaliates, lashing out at \the [attacker]!"))
 		B.blob_attack_animation(attacker, B.overmind)
@@ -32,7 +32,7 @@
 	return ..()
 
 // We're expecting 1 to be a target, 2 to be an old move loc, and 3 to be a new move loc.
-/datum/blob_type/reactive_spines/chunk_unique(obj/item/blobcore_chunk/B, var/list/extra_data = null)
+/datum/blob_type/reactive_spines/chunk_unique(obj/item/blobcore_chunk/B, list/extra_data = null)
 	if(!LAZYLEN(extra_data))
 		return
 

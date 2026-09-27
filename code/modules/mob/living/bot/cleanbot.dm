@@ -43,7 +43,7 @@
 		ignore_list += gib
 		addtimer(CALLBACK(src,PROC_REF(clear_ignored_gib), gib), 1 MINUTE, TIMER_DELETE_ME)
 
-/mob/living/bot/cleanbot/proc/clear_ignored_gib(var/obj/gibref)
+/mob/living/bot/cleanbot/proc/clear_ignored_gib(obj/gibref)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	ignore_list -= gibref
@@ -88,7 +88,7 @@
 	GLOB.cleanbot_reserved_turfs -= target
 	..()
 
-/mob/living/bot/cleanbot/confirmTarget(var/obj/effect/decal/cleanable/D)
+/mob/living/bot/cleanbot/confirmTarget(obj/effect/decal/cleanable/D)
 	if(!..())
 		return FALSE
 	if(D.loc in GLOB.cleanbot_reserved_turfs)
@@ -103,8 +103,8 @@
 	if(get_turf(target) == src.loc)
 		UnarmedAttack(target)
 
-//mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
-/mob/living/bot/cleanbot/UnarmedAttack(atom/D, var/proximity)
+//mob/living/bot/cleanbot/UnarmedAttack(obj/effect/decal/cleanable/D, proximity)
+/mob/living/bot/cleanbot/UnarmedAttack(atom/D, proximity)
 	if(!..())
 		return
 
@@ -176,7 +176,7 @@
 	else
 		icon_state = "cleanbot[on]"
 
-/mob/living/bot/cleanbot/attack_hand(var/mob/user)
+/mob/living/bot/cleanbot/attack_hand(mob/user)
 	tgui_interact(user)
 
 /mob/living/bot/cleanbot/tgui_interact(mob/user, datum/tgui/ui)
@@ -230,7 +230,7 @@
 			to_chat(ui.user, span_notice("You press the weird button."))
 			. = TRUE
 
-/mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/cleanbot/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!wet_floors || !spray_blood)
 		if(user)
@@ -257,7 +257,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/created_name = "Cleanbot"
 
-/obj/item/bucket_sensor/attackby(var/obj/item/W, var/mob/user)
+/obj/item/bucket_sensor/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm) || (istype(W, /obj/item/organ/external/arm) && ((W.name == "robotic left arm") || (W.name == "robotic right arm"))))
 		user.drop_item()

@@ -5,7 +5,7 @@
 	var/our_color = "#FFFFFF"
 	var/our_brightness = 1.0
 
-/datum/sun_holder/New(var/source)
+/datum/sun_holder/New(source)
 	sun = new(null)
 	our_planet = source
 
@@ -108,7 +108,7 @@
 		var/atom/movable/sun_visuals_overlap/SVO = spreads[key]
 		SVO.alpha = new_alpha
 
-/atom/movable/sun_visuals/proc/apply_to_turf(var/turf/T)
+/atom/movable/sun_visuals/proc/apply_to_turf(turf/T)
 	T.vis_contents += src
 	T.dynamic_lumcount += 0.5
 	T.set_luminosity(1, TRUE)
@@ -157,7 +157,7 @@
 	if(LAZYLEN(localspreads))
 		turfs_providing_spreads[T] = localspreads
 
-/atom/movable/sun_visuals/proc/remove_from_turf(var/turf/T)
+/atom/movable/sun_visuals/proc/remove_from_turf(turf/T)
 	T.vis_contents -= src
 	T.dynamic_lumcount -= 0.5
 	T.set_luminosity(0, TRUE)

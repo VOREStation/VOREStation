@@ -62,10 +62,12 @@ export const VorePanelEditDropdown = (
         <Dropdown
           fluid
           searchInput={searchInput}
+          styledInput={searchInput}
           color={color}
           onSelected={saneAct}
           options={options}
           selected={entry}
+          displayText={entry}
           icon={icon}
         />
       </Stack.Item>

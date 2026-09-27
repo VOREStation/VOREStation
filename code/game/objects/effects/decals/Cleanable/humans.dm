@@ -53,7 +53,7 @@
 						qdel(B)
 
 //VOREstation edit - Moved timer call to Init, and made it not call on mapload
-/obj/effect/decal/cleanable/blood/Initialize(mapload, var/_age)
+/obj/effect/decal/cleanable/blood/Initialize(mapload, _age)
 	. = ..()
 	if(!mapload)
 		addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount+1))
@@ -233,7 +233,7 @@
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)

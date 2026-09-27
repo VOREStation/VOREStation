@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 
 
 ////////////////////////////////
-/proc/message_admins(var/msg)
+/proc/message_admins(msg)
 	msg = span_filter_adminlog(span_log_message(span_prefix("ADMIN LOG:") + span_message("[msg]")))
 	//log_admin_private(msg) //log_and_message_admins is for this
 
@@ -13,7 +13,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 					html = msg,
 					confidential = TRUE)
 
-/proc/msg_admin_attack(var/text) //Toggleable Attack Messages
+/proc/msg_admin_attack(text) //Toggleable Attack Messages
 	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
 		if(check_rights_for(C, (R_ADMIN|R_MOD)))
@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						html = msg,
 						confidential = TRUE)
 
-/proc/admin_notice(var/message, var/rights)
+/proc/admin_notice(message, rights)
 	for(var/mob/M in GLOB.mob_list)
 		var/C = M.client
 
@@ -125,7 +125,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			else if(ishuman(player))
 				body += {"<a href='byond://?_src_=holder;[HrefToken()];turn_ai=[REF(player)]'>Make AI</a> |
 					<a href='byond://?_src_=holder;[HrefToken()];turn_robot=[REF(player)]'>Make Robot</a> |
-					<a href='byond://?_src_=holder;[HrefToken()];turn_alien=[REF(player)]'>Make Alien</a>
+					<a href='byond://?_src_=holder;[HrefToken()];turn_alien=[REF(player)]'>Make Alien</a> |
 				"}
 
 			//Simple Animals
@@ -178,32 +178,38 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 
 			body += {"<br><br>
 				"} + span_bold("Rudimentary transformation:") + span_normal("<br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.") + {"<br>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(player)]'>Observer</a> |
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(player)]'>Observer</a>
+				<br>
+				\[ Crew: <a href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=[REF(player)]'>Human</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=[REF(player)]'>Unathi</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=[REF(player)]'>Tajaran</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=[REF(player)]'>Skrell</a> \]
+				<br>
+				\[ <a href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=[REF(player)]'>Nymph</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=[REF(player)]'>Diona</a> \]
+				<br>
 				\[ Xenos: <a href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=[REF(player)]'>Larva</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=[REF(player)]'>Drone</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=[REF(player)]'>Hunter</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=[REF(player)]'>Sentinel</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=[REF(player)]'>Queen</a> \] |
-				\[ Crew: <a href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=[REF(player)]'>Human</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=[REF(player)]'>Unathi</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=[REF(player)]'>Tajaran</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=[REF(player)]'>Skrell</a> \] | \[
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=[REF(player)]'>Nymph</a>
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=[REF(player)]'>Diona</a> \] |
-				\[ slime: <a href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=[REF(player)]'>Baby</a>,
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=[REF(player)]'>Queen</a> \]
+				<br>
+				\[ Slime: <a href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=[REF(player)]'>Baby</a>
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=[REF(player)]'>Adult</a> \]
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(player)]'>Monkey</a> |
+				<br>
+				\[ Animals : <a href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(player)]'>Monkey</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=[REF(player)]'>Cyborg</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=[REF(player)]'>Cat</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=[REF(player)]'>Runtime</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=[REF(player)]'>Corgi</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=[REF(player)]'>Ian</a> |
 				<a href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=[REF(player)]'>Crab</a> |
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=[REF(player)]'>Coffee</a> |
-				\[ Construct: <a href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=[REF(player)]'>Armoured</a> ,
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=[REF(player)]'>Builder</a> ,
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=[REF(player)]'>Wraith</a> \]
-				<a href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=[REF(player)]'>Shade</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=[REF(player)]'>Coffee</a> \]
+				<br>
+				\[ Construct: <a href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=[REF(player)]'>Armoured</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=[REF(player)]'>Builder</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=[REF(player)]'>Wraith</a>
+				<a href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=[REF(player)]'>Shade</a> \]
 				<br>
 			"}
 	body += {"<br><br>
@@ -262,7 +268,7 @@ ADMIN_VERB(PlayerNotes, R_ADMIN|R_MOD|R_EVENT|R_DEBUG, "Player Notes", "Access t
 	A.tgui_interact(user)
 
 
-/datum/admins/proc/player_has_info(var/key as text)
+/datum/admins/proc/player_has_info(key as text)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
@@ -378,7 +384,7 @@ ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "A
 						//dat+="-[MESSAGE.body] <br>"
 						var/pic_data
 						if(MESSAGE.img)
-							user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							send_rsc(user, MESSAGE.img, "tmp_photo[i].png")
 							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
 						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
 						dat+="<br>"
@@ -493,7 +499,7 @@ ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "A
 				"} + span_bold("Photo:") + {":
 			"}
 			if(GLOB.news_network.wanted_issue.img)
-				user << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
+				send_rsc(user, GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 				dat+="<br><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"
@@ -554,7 +560,7 @@ ADMIN_VERB(access_news_network, R_ADMIN|R_EVENT, "Access Newscaster Network", "A
 	popup.open()
 
 /*
-/datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
+/datum/admins/proc/Secrets(datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
 
 	// Print the header with category selection buttons.
@@ -927,7 +933,7 @@ ADMIN_VERB(adrev, R_SERVER, "Toggle Revive", "Toggle admin revives.", ADMIN_CATE
 	message_admins(span_blue("Toggled reviving to [CONFIG_GET(flag/allow_admin_rev)]."))
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/unprison(mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -943,7 +949,7 @@ ADMIN_VERB(adrev, R_SERVER, "Toggle Revive", "Toggle admin revives.", ADMIN_CATE
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
+/proc/is_special_character(character) // returns 1 for special characters and 2 for heroes of gamemode
 	if(!SSticker|| !SSticker.mode)
 		return 0
 	var/datum/mind/M
@@ -1223,7 +1229,7 @@ ADMIN_VERB(toggleguests, R_HOST, "Toggle guests", "Guests can't enter.", ADMIN_C
 
 //Returns 1 to let the dragdrop code know we are trapping this event
 //Returns 0 if we don't plan to trap the event
-/datum/admins/proc/cmd_ghost_drag(var/mob/observer/dead/frommob, var/mob/living/tomob)
+/datum/admins/proc/cmd_ghost_drag(mob/observer/dead/frommob, mob/living/tomob)
 	if(!istype(frommob))
 		return //Extra sanity check to make sure only observers are shoved into things
 
@@ -1322,7 +1328,7 @@ ADMIN_VERB(sendFax, R_ADMIN|R_MOD|R_EVENT, "Send Fax", "Sends a fax to this mach
 
 /datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
 
-/datum/admins/proc/faxCallback(var/obj/item/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
+/datum/admins/proc/faxCallback(obj/item/paper/admin/P, obj/machinery/photocopier/faxmachine/destination)
 	var/customname = tgui_input_text(src.owner, "Pick a title for the report", "Title")
 
 	P.name = "[P.origin] - [customname]"

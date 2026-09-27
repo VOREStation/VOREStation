@@ -26,7 +26,7 @@
 		icon_state = "teshariplushie_white"
 		item_state = "teshariplushie_white"
 
-/obj/item/holder/micro/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
+/obj/item/holder/micro/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer,icon/clip_mask = null)
 	var/mob/living/carbon/human/H = held_mob
 	// Only proceed if dealing with a tesh (or something shaped like a tesh)
 	if(istype(H) && H.species.get_bodytype() == SPECIES_TESHARI)

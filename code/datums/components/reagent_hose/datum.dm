@@ -13,7 +13,7 @@
 	VAR_PRIVATE/initial_distance = HOSE_MAX_DISTANCE
 	VAR_PRIVATE/datum/beam/current_beam = null
 
-/datum/hose/proc/get_pairing(var/datum/component/hose_connector/target)
+/datum/hose/proc/get_pairing(datum/component/hose_connector/target)
 	RETURN_TYPE(/datum/component/hose_connector)
 	if(target)
 		if(target == node1)
@@ -29,7 +29,7 @@
 /datum/hose/proc/has_pairing()
 	return (node1 && node2)
 
-/datum/hose/proc/disconnect(var/mob/user = null)
+/datum/hose/proc/disconnect(mob/user = null)
 	// Stop processing, we're disconnecting anyway
 	STOP_PROCESSING(SSfastprocess, src)
 	var/list/drop_locs = list()
@@ -57,7 +57,7 @@
 		initial_distance = 0
 	update_beam()
 
-/datum/hose/proc/set_hose(var/datum/component/hose_connector/target1, var/datum/component/hose_connector/target2, var/distancetonode)
+/datum/hose/proc/set_hose(datum/component/hose_connector/target1, datum/component/hose_connector/target2, distancetonode)
 	if(target1 && target2)
 		node1 = target1
 		node2 = target2

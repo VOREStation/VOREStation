@@ -7,7 +7,7 @@
 	density = FALSE
 	circuit = /obj/item/circuitboard/artifact_scanpad
 
-/obj/machinery/artifact_scanpad/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/artifact_scanpad/attackby(obj/I as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	if(default_deconstruction_crowbar(user, I))

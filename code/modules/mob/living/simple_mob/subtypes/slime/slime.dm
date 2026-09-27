@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(slime_default_emotes, list(
 	return
 
 // Hat simulator
-/mob/living/simple_mob/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+/mob/living/simple_mob/slime/proc/give_hat(obj/item/clothing/head/new_hat, mob/living/user)
 	if(!istype(new_hat))
 		to_chat(user, span_warning("\The [new_hat] isn't a hat."))
 		return
@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(slime_default_emotes, list(
 		update_icon()
 		return
 
-/mob/living/simple_mob/slime/proc/remove_hat(var/mob/living/user)
+/mob/living/simple_mob/slime/proc/remove_hat(mob/living/user)
 	if(!hat)
 		to_chat(user, span_warning("\The [src] doesn't have a hat to remove."))
 	else

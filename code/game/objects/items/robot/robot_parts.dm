@@ -287,7 +287,7 @@
 		to_chat(user, span_notice("You insert the flash into the eye socket!"))
 
 
-/obj/item/robot_parts/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/robot_parts/emag_act(remaining_charges, mob/user)
 	if(sabotaged)
 		to_chat(user, span_warning("[src] is already sabotaged!"))
 	else

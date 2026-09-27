@@ -53,7 +53,7 @@
 		return
 	lleill_change_shape(new_species)
 
-/mob/living/carbon/human/proc/lleill_change_shape(var/new_species = null)
+/mob/living/carbon/human/proc/lleill_change_shape(new_species = null)
 	if(!new_species)
 		return
 
@@ -78,7 +78,7 @@
 		return
 	lleill_set_colour(new_skin)
 
-/mob/living/carbon/human/proc/lleill_set_colour(var/new_skin)
+/mob/living/carbon/human/proc/lleill_set_colour(new_skin)
 
 	r_skin =   hex2num(copytext(new_skin, 2, 4))
 	g_skin =   hex2num(copytext(new_skin, 4, 6))
@@ -486,7 +486,7 @@
 	species.update_lleill_hud(src)
 
 
-/mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
+/mob/living/carbon/human/proc/spawn_beast_mob(chosen_beast)
 	var/tf_type = chosen_beast
 	if(!ispath(tf_type))
 		return

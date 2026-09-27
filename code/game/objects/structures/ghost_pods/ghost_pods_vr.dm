@@ -9,7 +9,7 @@
 	var/remains_active = FALSE
 	var/activated = FALSE
 
-/obj/structure/ghost_pod/manual/attack_ghost(var/mob/observer/dead/user)
+/obj/structure/ghost_pod/manual/attack_ghost(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_warning("You cannot inhabit this creature because you are banned from playing ghost roles."))
 		return
@@ -45,7 +45,7 @@
 
 	create_occupant(user)
 
-/obj/structure/ghost_pod/proc/ghostpod_startup(var/notify = FALSE)
+/obj/structure/ghost_pod/proc/ghostpod_startup(notify = FALSE)
 	GLOB.active_ghost_pods |= src
 	if(notify)
 		trigger()

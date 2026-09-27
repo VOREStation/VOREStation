@@ -23,6 +23,7 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0 //They're thick rubber boots! Of course they won't conduct electricity!
+	flags = NOCONDUCT
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null
@@ -101,7 +102,7 @@
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
 
-/obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
+/obj/item/clothing/shoes/clown_shoes/handle_movement(turf/walking, running)
 	if(running)
 		if(footstep >= 2)
 			footstep = 0

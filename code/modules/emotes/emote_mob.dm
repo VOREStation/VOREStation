@@ -6,14 +6,14 @@
 /mob/proc/get_available_emotes()
 	return GLOB.default_mob_emotes.Copy()
 
-/mob/proc/can_emote(var/emote_type)
+/mob/proc/can_emote(emote_type)
 	return (stat == CONSCIOUS)
 
 #define EMOTE_REFRESH_SPAM_COOLDOWN (5 SECONDS)
-/mob/living/can_emote(var/emote_type)
+/mob/living/can_emote(emote_type)
 	return (..() && !(silent && emote_type == AUDIBLE_MESSAGE))
 
-/mob/proc/emote(var/act, var/m_type, var/message)
+/mob/proc/emote(act, m_type, message)
 	set waitfor = FALSE
 	// s-s-snowflake
 	if(src.stat == DEAD && act != "deathgasp")
@@ -105,7 +105,7 @@
 
 #undef EMOTE_REFRESH_SPAM_COOLDOWN
 
-/mob/proc/format_emote(var/emoter = null, var/message = null)
+/mob/proc/format_emote(emoter = null, message = null)
 	var/pretext
 	var/subtext
 	var/nametext
@@ -161,7 +161,7 @@
 	return list("pretext" = pretext, "nametext" = nametext, "subtext" = subtext)
 
 // Specific mob type exceptions below.
-/mob/living/silicon/ai/emote(var/act, var/type, var/message)
+/mob/living/silicon/ai/emote(act, type, message)
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src]) //Is the AI using a holopad?
 		src.holopad_emote(message)

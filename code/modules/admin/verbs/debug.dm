@@ -349,7 +349,7 @@ ADMIN_VERB(cmd_admin_areatest, R_DEBUG, "Test areas", "Manually tests all areas 
 	for(var/areatype in areas_without_camera)
 		to_chat(world, "* [areatype]")
 
-ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mob.", ADMIN_CATEGORY_FUN_EVENT_KIT, input)
+ADMIN_VERB(cmd_admin_dress, R_FUN, "Select equipment", "Select equipment for a mob.", ADMIN_CATEGORY_FUN_EVENT_KIT, input)
 	if(!input)
 		input = tgui_input_list(user, "Pick Target", "Select the target to dress.", getmobs())
 		if(!input)
@@ -369,7 +369,7 @@ ADMIN_VERB(cmd_admin_dress, R_FUN, "elect equipment", "Select equipment for a mo
 	feedback_add_details("admin_verb","SEQ")
 	dressup_human(target_human, outfit, 1)
 
-/proc/dressup_human(var/mob/living/carbon/human/H, var/datum/decl/hierarchy/outfit/outfit)
+/proc/dressup_human(mob/living/carbon/human/H, datum/decl/hierarchy/outfit/outfit)
 	if(!H || !outfit)
 		return
 	if(outfit.undress)
@@ -514,7 +514,7 @@ ADMIN_VERB(cmd_debug_using_map, R_DEBUG, "Debug Map Datum", "Debug the map metad
 	user.debug_variables(using_map)
 
 // DNA2 - Admin Hax
-/client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
+/client/proc/cmd_admin_toggle_block(mob/M,block)
 	if(!SSticker)
 		tgui_alert_async(src, "Wait until the game starts")
 		return

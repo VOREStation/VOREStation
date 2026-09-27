@@ -40,7 +40,7 @@
 	if(holder.wearer.stat == 2)
 		engage(1)
 
-/obj/item/rig_module/self_destruct/engage(var/skip_check)
+/obj/item/rig_module/self_destruct/engage(skip_check)
 	if(!skip_check && usr && tgui_alert(usr, "Are you sure you want to push that button?", "Self-destruct", list("No", "Yes")) != "Yes")
 		return
 	if(holder && holder.wearer)

@@ -1,12 +1,12 @@
 /datum/design_techweb/implant
-	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 
 /datum/design_techweb/implant/backup
 	name = "Backup implant"
 	id = "implant_backup"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_DATA = 4, TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/implantcase/backup
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
@@ -18,7 +18,7 @@
 	id = "implant_size"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_DATA = 4, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/implanter/sizecontrol
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
@@ -53,7 +53,7 @@
 	id = "research_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/organ/internal/augment/armmounted/hand
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS
@@ -66,7 +66,7 @@
 	id = "tool_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3))
 	build_path = /obj/item/organ/internal/augment/armmounted/shoulder/multiple
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS
@@ -79,7 +79,7 @@
 	id = "surgical_implant"
 	// req_tech = list(TECH_BIO = 6, TECH_MATERIAL = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/organ/internal/augment/armmounted/shoulder/multiple/medical
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_TOOLS
@@ -92,7 +92,7 @@
 	id = "blade_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 4, TECH_COMBAT = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/organ/internal/augment/armmounted/hand/blade
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -105,7 +105,7 @@
 	id = "armblade_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 5, TECH_COMBAT = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 1000, MAT_GOLD = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(1))
 	build_path = /obj/item/organ/internal/augment/armmounted/shoulder/blade
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -118,7 +118,7 @@
 	id = "sword_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 6, TECH_COMBAT = 6, TECH_ENGINEERING = 5, TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 1000, MAT_GOLD = 2000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/organ/internal/augment/armmounted/hand/sword
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -130,7 +130,7 @@
 	desc = "A small implant that fits into a subject's pelvix. It deploys allows the user to analyze their vitals on demand."
 	id = "health_scan_implant"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_SILVER = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/organ/internal/augment/bioaugment/health_scan
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -143,7 +143,7 @@
 	id = "dartbow_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 4, TECH_COMBAT = 6, TECH_ILLEGAL = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_PHORON = 4000, MAT_GOLD = 4000, MAT_DIAMOND = 6000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_PHORON = MATERIAL_COST(2), MAT_GOLD = MATERIAL_COST(2), MAT_DIAMOND = MATERIAL_COST(3))
 	build_path = /obj/item/organ/internal/augment/armmounted/dartbow
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -156,7 +156,7 @@
 	id = "taser_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 4, TECH_COMBAT = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 2000, MAT_GOLD = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/organ/internal/augment/armmounted/taser
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -169,7 +169,7 @@
 	id = "laser_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 4, TECH_COMBAT = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 6000, MAT_GOLD = 4000, MAT_DIAMOND = 4000, MAT_PHORON = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_SILVER = MATERIAL_COST(3), MAT_GOLD = MATERIAL_COST(2), MAT_DIAMOND = MATERIAL_COST(2), MAT_PHORON = MATERIAL_COST(1))
 	build_path = /obj/item/organ/internal/augment/armmounted
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -182,7 +182,7 @@
 	id = "surge_implant"
 	// req_tech = list(TECH_BIO = 5, TECH_MATERIAL = 4, TECH_POWER = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_PHORON = 1000, MAT_GOLD = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_PHORON = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(1))
 	build_path = /obj/item/organ/internal/augment/armmounted/shoulder/surge
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -195,7 +195,7 @@
 	id = "thermal_implant"
 	// req_tech = list(TECH_BIO = 7, TECH_MATERIAL = 4, TECH_POWER = 7, TECH_ENGINEERING = 7, TECH_COMBAT = 5, TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_PHORON = 10000, MAT_GOLD = 2000, MAT_DIAMOND = 10000, MAT_SILVER = 4000, MAT_TITANIUM = 1000) //this is thermals. this is expensive, yo.
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(3), MAT_PHORON = MATERIAL_COST(5), MAT_GOLD = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(5), MAT_SILVER = MATERIAL_COST(2), MAT_TITANIUM = MATERIAL_COST(0.5)) //this is thermals. this is expensive, yo.
 	build_path = /obj/item/organ/internal/augment/bioaugment/thermalshades
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
@@ -207,7 +207,7 @@
 	id = "nif"
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 8000, MAT_URANIUM = 6000, MAT_DIAMOND = 6000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(4), MAT_URANIUM = MATERIAL_COST(3), MAT_DIAMOND = MATERIAL_COST(3))
 	build_path = /obj/item/nif
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC
@@ -219,7 +219,7 @@
 	id = "bioadapnif"
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 15000, MAT_URANIUM = 10000, MAT_DIAMOND = 10000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(7.5), MAT_URANIUM = MATERIAL_COST(5), MAT_DIAMOND = MATERIAL_COST(5))
 	build_path = /obj/item/nif/bioadap
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_MISC

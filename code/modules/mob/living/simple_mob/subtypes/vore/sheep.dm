@@ -86,7 +86,7 @@
 //If you just update icon_living it should still work with vore states and dying, you'll just need to make and label the sprites appropriately.
 //Make sure you un-comment the variables above too.
 
-/mob/living/simple_mob/vore/sheep/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/sheep/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/material/knife) || istype(O, /obj/item/tool/wirecutters))
 		if(user.a_intent != I_HELP)
 			return ..()

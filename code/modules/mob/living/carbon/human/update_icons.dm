@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	//Do any species specific layering updates, such as when hiding.
 	update_icon_special()
 
-/mob/living/carbon/human/update_transform(var/instant = FALSE)
+/mob/living/carbon/human/update_transform(instant = FALSE)
 	var/desired_scale_x = size_multiplier * icon_scale_x
 	var/desired_scale_y = size_multiplier * icon_scale_y
 	desired_scale_x *= species.icon_scale_x
@@ -534,8 +534,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!species.has_glowing_eyes)
 		return
 
-	//Our glowy eyes should be hidden if some equipment hides them.
-	if(!should_have_organ(O_EYES) || (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
+	//Our glowy eyes should be hidden if some equipment hides them. | Added Promethean/dispersed eyes species support for Glowing Eyes.
+	if((!should_have_organ(O_EYES) && !species.dispersed_eyes) || (head && (head.flags_inv & BLOCKHAIR)) || (wear_mask && (wear_mask.flags_inv & BLOCKHAIR)))
 		return
 
 	//Get the head, we'll need it later.
@@ -550,7 +550,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/icon/eyes_icon = new/icon(head_organ.eye_icon_location, head_organ.eye_icon)
 	if(!findtext(head_organ.eye_icon, regex("-colored")))
-		if(eyes)
+		if(species.dispersed_eyes) // Set so all species who would lack eye organs due to dispersed eyes can still use Glowing Eyes.
+			eyes_icon.Blend(rgb(r_eyes, g_eyes, b_eyes))
+		else if(eyes)
 			eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 		else
 			eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
@@ -1050,7 +1052,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	return tail_icon
 
-/mob/living/carbon/human/proc/set_tail_state(var/t_state)
+/mob/living/carbon/human/proc/set_tail_state(t_state)
 	var/tail_layer = get_tail_layer()
 	if(src.tail_style && src.tail_style.clip_mask_state)
 		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
@@ -1218,7 +1220,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		overlays_standing[SURGERY_LAYER] = total
 		apply_layer(SURGERY_LAYER)
 
-/mob/living/carbon/human/proc/get_wing_image(var/under_layer)
+/mob/living/carbon/human/proc/get_wing_image(under_layer)
 	if(QDESTROYING(src))
 		return
 
@@ -1456,7 +1458,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			struggle_anim_taur = FALSE
 			update_vore_tail_sprite()
 
-/mob/living/carbon/human/proc/GetAppearanceFromPrefs(var/flavourtext, var/oocnotes)
+/mob/living/carbon/human/proc/GetAppearanceFromPrefs(flavourtext, oocnotes)
 	/* Jank code that effectively creates the client's mob from save, then copies its appearance to our current mob.
 	Intended to be used with shapeshifter species so we don't reset their organs in doing so.*/
 	if(client.prefs)

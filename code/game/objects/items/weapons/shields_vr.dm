@@ -57,7 +57,7 @@
 			H.update_inv_l_hand()
 			H.update_inv_r_hand()
 
-/obj/item/shield/riot/explorer/proc/update_flashlight(var/mob/user = null)
+/obj/item/shield/riot/explorer/proc/update_flashlight(mob/user = null)
 	if(on && !light_applied)
 		set_light(brightness_on)
 		light_applied = 1

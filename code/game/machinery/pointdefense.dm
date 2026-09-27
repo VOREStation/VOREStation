@@ -92,7 +92,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	data["turrets"] = turrets
 	return data
 
-/obj/machinery/pointdefense_control/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/pointdefense_control/attackby(obj/item/W, mob/user)
 	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
@@ -139,10 +139,55 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	. = ..()
 	default_apply_parts()
 	update_icon()
+	apply_mapped_upgrades()
 
 /obj/machinery/pointdefense/Destroy(force, ...)
 	. = ..()
 	engaging = null
+
+/obj/machinery/pointdefense/apply_mapped_upgrades()
+	// Detect new parts placed by mappers
+	var/list/parts_found = list()
+	for(var/i = 1, i <= loc.contents.len, i++)
+		var/obj/item/W = loc.contents[i]
+		if(istype(W, /obj/item/stock_parts/capacitor))
+			parts_found.Add(W)
+		if(istype(W, /obj/item/stock_parts/manipulator))
+			parts_found.Add(W)
+		if(istype(W, /obj/item/stock_parts/scanning_module))
+			parts_found.Add(W)
+
+	// Wipe old parts for new ones!
+	if(parts_found.len == 0)
+		return
+	if(locate(/obj/item/stock_parts/capacitor) in parts_found)
+		while(TRUE)
+			var/obj/item/stock_parts/capacitor/C = locate(/obj/item/stock_parts/capacitor) in component_parts
+			if(isnull(C))
+				break
+			component_parts.Remove(C)
+			qdel(C)
+	if(locate(/obj/item/stock_parts/manipulator) in parts_found)
+		while(TRUE)
+			var/obj/item/stock_parts/manipulator/M = locate(/obj/item/stock_parts/manipulator) in component_parts
+			if(isnull(M))
+				break
+			component_parts.Remove(M)
+			qdel(M)
+	if(locate(/obj/item/stock_parts/scanning_module) in parts_found)
+		while(TRUE)
+			var/obj/item/stock_parts/scanning_module/S = locate(/obj/item/stock_parts/scanning_module) in component_parts
+			if(isnull(S))
+				break
+			component_parts.Remove(S)
+			qdel(S)
+
+	// Rebuild from mapper's parts
+	for(var/i = 1, i <= parts_found.len, i++)
+		var/obj/item/W = parts_found[i]
+		component_parts.Add(W)
+		W.forceMove(src)
+	RefreshParts()
 
 /obj/machinery/pointdefense/get_description_interaction()
 	. = ..()
@@ -170,7 +215,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 
-/obj/machinery/pointdefense/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/pointdefense/attackby(obj/item/W, mob/user)
 	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src))
@@ -192,7 +237,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 			return FALSE
 	return TRUE
 
-/obj/machinery/pointdefense/proc/Shoot(var/datum/weakref/target)
+/obj/machinery/pointdefense/proc/Shoot(datum/weakref/target)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
 		engaging = null
@@ -206,7 +251,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 
 	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
-/obj/machinery/pointdefense/proc/finish_shot(var/datum/weakref/target)
+/obj/machinery/pointdefense/proc/finish_shot(datum/weakref/target)
 
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	engaging = null
@@ -273,7 +318,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 			Shoot(target)
 			return
 
-/obj/machinery/pointdefense/proc/targeting_check(var/obj/effect/meteor/M)
+/obj/machinery/pointdefense/proc/targeting_check(obj/effect/meteor/M)
 	// Target in range
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
 	if(!(M.z in connected_z_levels))

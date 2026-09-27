@@ -15,7 +15,7 @@
 	cast_methods = CAST_COMBINE
 	aspect = ASPECT_CHROMATIC
 
-/obj/item/spell/aspect_aura/on_combine_cast(obj/item/W, var/mob/living/carbon/human/user)
+/obj/item/spell/aspect_aura/on_combine_cast(obj/item/W, mob/living/carbon/human/user)
 	if(istype(W, /obj/item/spell))
 		var/obj/item/spell/spell = W
 		if(!spell.aspect || spell.aspect == ASPECT_CHROMATIC)

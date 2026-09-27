@@ -25,10 +25,10 @@
 										"Read our top tips for investors", \
 										"%author% wants you to know if it's a safe bet to buy")
 
-/datum/industry/proc/generateProductName(var/company_name)
+/datum/industry/proc/generateProductName(company_name)
 	return
 
-/datum/industry/proc/generateInCharacterProductArticle(var/product_name, var/datum/stock/S)
+/datum/industry/proc/generateInCharacterProductArticle(product_name, datum/stock/S)
 	var/datum/article/A = new
 	var/list/add_tokens = list("company_name" = S.name, "product_name" = product_name, "outlet" = A.outlet, "author" = A.author)
 	A.about = S
@@ -48,7 +48,7 @@
 	A.article = A.detokenize(article, tokens, add_tokens)
 	return A
 
-/datum/industry/proc/detokenize(var/str)
+/datum/industry/proc/detokenize(str)
 	for (var/T in tokens)
 		str = replacetext(str, "%[T]%", pick(tokens[T]))
 	return str
@@ -77,7 +77,7 @@
 								"Will %company_name% grow on %industrial% wasteland? Owners of %product_name% may decide", \
 								"%company_name% looking to reap profits off the %industrial% sector with %product_name%")
 
-/datum/industry/agriculture/generateProductName(var/company_name)
+/datum/industry/agriculture/generateProductName(company_name)
 	var/list/products = list("water tank", "cattle prod", "scythe", "plough", "sickle", "cultivator", "loy", "spade", "hoe", "daisy grubber", "cotton gin")
 	var/list/prefix = list("[company_name]'s ", "The [company_name] ", "The fully automatic ", "The full-duplex ", "The semi-automatic ", "The drone-mounted ", "The industry-leading ", "The world-class ")
 	var/list/suffix = list(" of farming", " multiplex", " +[rand(1,15)]", " [consonant()][rand(1000, 9999)]", " hybrid", " maximus", " extreme")
@@ -155,7 +155,7 @@
 	else
 		return "[latin_number(n - (n % 10))] [lowertext(latin_number(n % 10))]"
 
-/datum/industry/it/generateProductName(var/company_name)
+/datum/industry/it/generateProductName(company_name)
 	var/list/products = list("generator", "laptop", "keyboard", "memory card", "display", "operating system", "processor", "graphics card", "nanobots", "power supply", "pAI", "mech", "capacitor", "cell")
 	var/list/prefix = list("The [company_name] ", "The high performance ", "The mobile ", "The portable ", "The professional ", "The extreme ", "The incredible ", "The blazing fast ", "The bleeding edge ", "The bluespace-powered ", null)
 	var/L = pick(consonant(), "Seed ", "Radiant ", "Robust ", "Pentathon ", "Athlete ", "Phantom ", "Semper Fi ")
@@ -171,7 +171,7 @@
 		"jobs" = list("electrical engineers", "microengineers", "developers")
 	)
 
-/datum/industry/communications/generateProductName(var/company_name)
+/datum/industry/communications/generateProductName(company_name)
 	var/list/products = list("mobile phone", "PDA", "tablet computer", "newscaster", "social network")
 	var/list/prefix = list("The [company_name] ", "The high performance ", "The mobile ", "The portable ", "The professional ", "The extreme ", "The incredible ", "The blazing fast ", "The bleeding edge ", null)
 	var/L = pick("[lowertext(consonant())]Phone ", "Universe ", "Xperience ", "Next ", "Engin-Y ", "Cyborg ", "[consonant()]")
@@ -187,7 +187,7 @@
 		"jobs" = list("medical doctors", "nurses", "paramedics", "psychologists", "psychiatrists", "chemists")
 	)
 
-/datum/industry/health/generateProductName(var/company_name)
+/datum/industry/health/generateProductName(company_name)
 	var/list/prefix = list("amino", "nucleo", "nitro", "panto", "meth", "eth", "as", "algo", "coca", "hero", "lotsu", "opiod", "morph", "trinitro", "prop", "but", "acet", "acyclo", "lansop", "dyclo", "hydro", "oxycod", "vicod", "cannabi", "cryo", "dex", "chloro")
 	var/list/suffix = list("phen", "pirin", "pyrine", "ane", "amphetamine", "prazoline", "ine", "yl", "amine", "aminophen", "one", "ide", "phenate", "anol", "toulene", "glycerine", "vir", "tol", "trinic", "oxide")
 	var/list/uses = list("antidepressant", "analgesic", "anesthetic", "antiretroviral", "antiviral", "antibiotic", "cough drop", "depressant", "hangover cure", "homeopathic", "fertility drug", "hypnotic", "narcotic", "laxative", "multivitamin", "patch", "purgative", "relaxant", "steroid", "sleeping pill", "suppository", "tranquilizer")
@@ -201,7 +201,7 @@
 		"jobs" = list("shopkeepers", "assistants", "manual daytime hygiene engineers", "janitors", "chefs", "cooks")
 	)
 
-/datum/industry/consumer/generateProductName(var/company)
+/datum/industry/consumer/generateProductName(company)
 	var/list/meat = list("chicken", "lizard", "corgi", "monkey", "goat", "fly", "xenomorph", "human", "walrus", "wendigo", "bear", "clown", "turkey", "pork", "carp", "crab", "mimic", "mystery")
 	var/list/qualifier = list("synthetic", "organic", "bio", "diet", "sugar-free", "paleolithic", "homeopathic", "recycled", "reclaimed", "vat-grown")
 	return "The [pick(qualifier)] [pick(meat)] meat product line. "
@@ -214,7 +214,7 @@
 		"jobs" = list("shaft miners", "drill operators", "mining foremen")
 	)
 
-/datum/industry/mining/generateProductName(var/company)
+/datum/industry/mining/generateProductName(company)
 	var/list/equipment = list("drill", "pickaxe", "shovel", "jackhammer", "mini-pickaxe", "power hammer", "power gloves", "power armor", "hardsuit", "kinetic accelerator", "resonator", "oxygen tank", "emergency bike horn")
 	var/list/material = list("mauxite", "pharosium", "molitz", "adamantium", "mithril", "cobryl", "bohrum", "claretine", "viscerite", "syreline", "cerenkite", "plasmastone", "gold", "koshmarite", "phoron", "carbon dioxide", "powered")
 	return "The [pick(material)] [pick(equipment)]. "
@@ -227,7 +227,7 @@
 		"jobs" = list("security officers", "government officials", "soldiers", "weapons engineers")
 	)
 
-/datum/industry/defense/generateProductName(var/company)
+/datum/industry/defense/generateProductName(company)
 	var/list/equipment = list("energy gun", "laser gun", "machine gun", "grenade", "stun baton", "artillery", "bomb", "attack drone", "missile", "chem sprayer")
 	var/list/material = list("bluespace", "stealth", "heat-seeking", "crime-seeking", "wide-range", "bioterror", "auto-reloading", "smart", "sentient", "rapid-fire", "species-targeting", "mass-market", "perpetual-motion", "nuclear", "fission", "fusion")
 	return "The [pick(material)] [pick(equipment)]. "

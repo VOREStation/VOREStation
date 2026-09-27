@@ -116,7 +116,8 @@
 //Fuel
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
-	desc = "A fuel tank."
+	desc = "A fuel tank. Filled with flammable fuel suitable for welding tools, or some small engines. Unless someone siphoned it again!"
+	description_antag = "Explosive if filled with fuel. Can be wrenched open to spill fuel over the floor."
 	icon_state = REAGENT_ID_FUEL
 	amount_per_transfer_from_this = 10
 	var/modded = 0
@@ -244,7 +245,7 @@
 	return ..()
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		if(istype(Proj.firer))
 			message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>).")
@@ -500,7 +501,7 @@
 	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
 	AddElement(/datum/element/climbable)
 
-/obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/reagent_dispensers/cookingoil/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		explode()
 

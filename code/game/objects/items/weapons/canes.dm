@@ -10,7 +10,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/cane/crutch
@@ -42,7 +42,7 @@
 		concealed_blade = null
 		update_icon()
 
-/obj/item/cane/concealed/attackby(var/obj/item/material/sword/katana/caneblade/W, var/mob/user)
+/obj/item/cane/concealed/attackby(obj/item/material/sword/katana/caneblade/W, mob/user)
 	if(!src.concealed_blade && istype(W))
 		user.visible_message(span_warning("[user] has sheathed \a [W] into [user.p_their()] [src]!"), "You sheathe \the [W] into \the [src].")
 		playsound(src, 'sound/weapons/holster/sheathin.ogg', 50, 1)

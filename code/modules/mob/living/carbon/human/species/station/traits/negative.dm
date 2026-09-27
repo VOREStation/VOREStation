@@ -47,7 +47,7 @@
 	custom_only = FALSE
 	banned_species = list(SPECIES_TESHARI, SPECIES_SHADEKIN_CREW) //These are already this weak.
 
-/datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/endurance_low/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -59,7 +59,7 @@
 	custom_only = FALSE
 	banned_species = list(SPECIES_TESHARI) //These are already this weak.
 
-/datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/endurance_very_low/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -140,7 +140,7 @@
 	cost = -2 //I feel like this should be higher, but let's see where it goes
 	excludes = list(/datum/trait/negative/boneless, /datum/trait/negative/boneless/major, /datum/trait/positive/densebones)
 
-/datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/hollow/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/organ/external/O in H.organs)
 		O.min_broken_damage *= 0.5
@@ -160,14 +160,6 @@
 	activation_message="You feel off balance..."
 	primitive_expression_messages=list("staggers")
 	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/positive/heavyweight)
-
-/datum/trait/negative/neural_hypersensitivity
-	name = "Neural Hypersensitivity"
-	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Makes all pain effects twice as strong, and occur at half as much damage."
-	cost = -1
-	var_changes = list("trauma_mod" = 2)
-	can_take = ORGANICS
-	custom_only = FALSE
 
 /datum/trait/negative/breathes
 	cost = -2
@@ -306,7 +298,7 @@
 	activation_message="You can't seem to see anything."
 	primitive_expression_messages=list("stumbles aimlessly.")
 
-/datum/trait/negative/blindness/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/trait/negative/blindness/handle_environment_special(mob/living/carbon/human/H)
 	H.sdisabilities |= sdisability 		//no matter what you do, the blindess still comes for you // Traitgenes tweaked to be consistant with other gene traits by using var
 
 /datum/trait/negative/agoraphobia
@@ -350,7 +342,7 @@
 	cost = -12 // Similar to Very Low Endurance, this straight up will require you NEVER getting in a fight. This is extremely crippling. I salute the madlad that takes this.
 	var_changes = list("total_health" = 25)
 
-/datum/trait/negative/endurance_glass/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/endurance_glass/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -431,6 +423,14 @@
 	activation_message="You feel as though the airflow around you is painful..."
 	primitive_expression_messages=list("bumps their toe, screaming in pain")
 
+/datum/trait/negative/neural_hypersensitivity
+	name = "Neural Hypersensitivity" //Would rename this to 'Pain Intolerance, Extreme' but for savefile reasons, it stays this name.
+	desc = "You are frail and sensitive to pain. You experience 100% more pain from all sources."
+	cost = -5
+	var_changes = list("pain_mod" = 2)
+	can_take = ORGANICS
+	custom_only = FALSE
+
 /datum/trait/negative/sensitive_biochem
 	name = "Sensitive Biochemistry, Minor"
 	desc = "Your biochemistry is a little delicate, rendering you more susceptible to the negative effects of some chemicals. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Chemical toxin damage and negative drug effects are 25% stronger on you. Additionally, knockout drugs work 25% faster on you."
@@ -476,7 +476,7 @@
 	custom_only = FALSE
 	excludes = list(/datum/trait/negative/bad_shooter)
 
-/datum/trait/negative/thick_digits/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/thick_digits/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/thickdigits)
 
@@ -645,7 +645,7 @@
 	limb_health = 0.5
 	excludes = list(/datum/trait/negative/hollow, /datum/trait/positive/densebones, /datum/trait/negative/boneless)
 
-/datum/trait/negative/boneless/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/boneless/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/organ/external/ex_organ in H.organs)
 		ex_organ.cannot_break = TRUE
@@ -694,7 +694,7 @@
 	var_changes = list("emp_dmg_mod" = 1.3, "emp_stun_mod" = 1.3, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE))
 	excludes = list(/datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
 
-/datum/trait/negative/faultwires/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/faultwires/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/empweakness)
 
@@ -707,7 +707,7 @@
 	var_changes = list("emp_dmg_mod" = 1.6, "emp_stun_mod" = 1.6, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE | EMP_WEAKEN))
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
 
-/datum/trait/negative/poorconstruction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/poorconstruction/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/majorempweakness)
 
@@ -784,11 +784,11 @@
 	activation_message="Something feels odd..."
 	*/
 
-/datum/trait/negative/medical_allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/medical_allergy/apply(datum/species/S,mob/living/carbon/human/H)
 	S.medallergens |= medallergen
 	..()
 
-/datum/trait/negative/medical_allergy/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/medical_allergy/unapply(datum/species/S,mob/living/carbon/human/H)
 	S.medallergens &= ~medallergen
 	..()
 

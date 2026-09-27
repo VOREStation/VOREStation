@@ -29,7 +29,7 @@
 	var/list/air_scrub_info = list()
 	var/list/air_alarms = list()
 
-/area/proc/elect_main_air_alarm(var/exclude_self = FALSE)
+/area/proc/elect_main_air_alarm(exclude_self = FALSE)
 	// loop through all sensors to update the area's sensor list as well
 	main_air_alarm = null
 	var/list/checks = list()
@@ -219,7 +219,7 @@
 		return
 	scan_atmo()
 
-/obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
+/obj/machinery/alarm/proc/handle_heating_cooling(datum/gas_mixture/environment)
 	DECLARE_TLV_VALUES
 	LOAD_TLV_VALUES(TLV["temperature"], target_temperature)
 	if(!regulating_temperature)
@@ -271,7 +271,7 @@
 
 			environment.merge(gas)
 
-/obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
+/obj/machinery/alarm/proc/overall_danger_level(datum/gas_mixture/environment)
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature/environment.volume
 	var/environment_pressure = environment.return_pressure()
 
@@ -411,7 +411,7 @@
 	else if(dev_type == "AVP")
 		alarm_area.air_vent_info[id_tag] = signal.data
 
-/obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
+/obj/machinery/alarm/proc/register_env_machine(m_id, device_type)
 	var/new_name
 	if(device_type == "AVP")
 		new_name = "[alarm_area.name] Vent Pump #[alarm_area.air_vent_names.len+1]"
@@ -440,7 +440,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+/obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
 		return 0
 
@@ -492,7 +492,7 @@
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 0))
 
-/obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
+/obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
 	if(report_danger_level && alarm_area.atmosalert(new_danger_level, src))
 		post_alert(new_danger_level)
 	for(var/obj/machinery/alarm/AA in alarm_area.air_alarms)

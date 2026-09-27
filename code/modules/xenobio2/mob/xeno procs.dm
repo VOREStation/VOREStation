@@ -112,7 +112,7 @@ Divergence proc, used in mutation to make unique datums.
 /mob/living/simple_mob/xeno/proc/RandomizeTraits()
 	return
 
-/mob/living/simple_mob/xeno/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null)
+/mob/living/simple_mob/xeno/hear_say(list/message_pieces, verb = "says", italics = 0, mob/speaker = null)
 	if(traitdat.traits[TRAIT_XENO_CANLEARN])
 		if(!(message in speak))
 			speech_buffer.Add(multilingual_to_message(message_pieces))
@@ -131,7 +131,7 @@ Divergence proc, used in mutation to make unique datums.
 /mob/living/simple_mob/xeno/proc/BuildReagentLists()
 	return
 
-/mob/living/simple_mob/xeno/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_mob/xeno/bullet_act(obj/item/projectile/P)
 	//Shamelessly stolen from ablative armor.
 	if((traitdat.traits[TRAIT_XENO_CHROMATIC]) && istype(P, /obj/item/projectile/beam))
 		visible_message(span_danger(")\The beam reflects off of the [src]!"))

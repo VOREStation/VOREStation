@@ -68,7 +68,7 @@
 		return
 
 
-/obj/machinery/implantchair/attackby(var/obj/item/G, var/mob/user)
+/obj/machinery/implantchair/attackby(obj/item/G, mob/user)
 	if(istype(G, /obj/item/grab))
 		var/obj/item/grab/grab = G
 		if(!ismob(grab.affecting))
@@ -83,7 +83,7 @@
 	return
 
 
-/obj/machinery/implantchair/proc/go_out(var/mob/M)
+/obj/machinery/implantchair/proc/go_out(mob/M)
 	if(!( src.occupant ))
 		return
 	if(M == occupant) // so that the guy inside can't eject himself -Agouri
@@ -112,7 +112,7 @@
 	return 1
 
 
-/obj/machinery/implantchair/proc/implant(var/mob/M)
+/obj/machinery/implantchair/proc/implant(mob/M)
 	if (!istype(M, /mob/living/carbon))
 		return
 	if(!implant_list.len)	return

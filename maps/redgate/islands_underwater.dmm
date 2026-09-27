@@ -1218,7 +1218,7 @@
 /area/redgate/islands/robotics)
 "yl" = (
 /obj/structure/flora/underwater/grass2,
-/obj/item/clothing/head/hood_vr/hotdog_hood,
+/obj/item/clothing/head/hood/hotdog_hood,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "ym" = (

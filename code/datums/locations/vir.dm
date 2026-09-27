@@ -4,7 +4,7 @@
 	name = "Vir"
 	desc = "Vir is a human system that sits between the inner and outer systems of human-controlled space."
 
-/datum/locations/vir/New(var/creator)
+/datum/locations/vir/New(creator)
 	contents.Add(
 		new /datum/locations/firnir(src),
 		new /datum/locations/tyr(src),
@@ -41,7 +41,7 @@
 	desc = "A gas giant, with a large number of moons.  Captured asteroids, to be specific.  Many of these asteroids are being used by different companies for \
 	various purposes.  The temperature of the gas giant is 150 kelvin (-108°C)"
 
-/datum/locations/kara/New(var/creator)
+/datum/locations/kara/New(creator)
 	contents.Add(
 		new /datum/locations/northern_star(src)
 		)
@@ -52,7 +52,7 @@
 	desc = "The Northern Star is an asteroid colony owned and operated by NanoTrasen, among many other asteroid installations. \
 	Originally conceived as 'just another pitstop' for weary asteroid miners, it has grown to become a significant installation in the Kara subsystem."
 
-/datum/locations/northern_star/New(var/creator)
+/datum/locations/northern_star/New(creator)
 	contents.Add(
 		new /datum/locations/northern_star_interior(src)
 		)

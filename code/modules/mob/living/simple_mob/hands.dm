@@ -10,7 +10,7 @@
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
 	return
 
-/mob/living/simple_mob/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/simple_mob/put_in_hands(obj/item/W) // No hands.
 	if(has_hands)
 		put_in_active_hand(W)
 		return 1
@@ -18,12 +18,12 @@
 	return 1
 
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/living/simple_mob/put_in_active_hand(var/obj/item/W)
+/mob/living/simple_mob/put_in_active_hand(obj/item/W)
 	if(!has_hands)
 		return FALSE
 	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
 
-/mob/living/simple_mob/put_in_l_hand(var/obj/item/W)
+/mob/living/simple_mob/put_in_l_hand(obj/item/W)
 	if(!..() || l_hand)
 		return 0
 	W.forceMove(src)
@@ -33,7 +33,7 @@
 	update_inv_l_hand()
 	return TRUE
 
-/mob/living/simple_mob/put_in_r_hand(var/obj/item/W)
+/mob/living/simple_mob/put_in_r_hand(obj/item/W)
 	if(!..() || r_hand)
 		return 0
 	W.forceMove(src)
@@ -118,14 +118,14 @@
 	update_icon()
 
 //Can insert extra huds into the hud holder here.
-/mob/living/simple_mob/proc/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+/mob/living/simple_mob/proc/extra_huds(datum/hud/hud,icon/ui_style,list/hud_elements)
 	return
 
 //If they can or cannot use tools/machines/etc
 /mob/living/simple_mob/IsAdvancedToolUser()
 	return has_hands
 
-/mob/living/simple_mob/proc/IsHumanoidToolUser(var/atom/tool)
+/mob/living/simple_mob/proc/IsHumanoidToolUser(atom/tool)
 	if(!humanoid_hands)
 		var/display_name = null
 		if(tool)

@@ -28,7 +28,7 @@
 /mob/proc/update_inv_active_hand()
 	return
 
-/mob/living/update_inv_active_hand(var/A)
+/mob/living/update_inv_active_hand(A)
 	if(hand)
 		update_inv_l_hand(A)
 	else

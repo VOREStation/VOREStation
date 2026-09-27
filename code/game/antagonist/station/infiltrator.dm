@@ -18,7 +18,7 @@ GLOBAL_DATUM(infiltrators, /datum/antagonist/traitor/infiltrator)
 	..()
 	GLOB.infiltrators = src
 
-/datum/antagonist/traitor/infiltrator/equip(var/mob/living/carbon/human/traitor_mob)
+/datum/antagonist/traitor/infiltrator/equip(mob/living/carbon/human/traitor_mob)
 	..() // Give the uplink and other stuff.
 	// Now for the special headset.
 

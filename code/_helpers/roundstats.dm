@@ -28,6 +28,71 @@ GLOBAL_VAR_INIT(items_digested_roundstat, 0)
 GLOBAL_LIST_EMPTY(security_printer_tickets)
 GLOBAL_LIST_EMPTY(refined_chems_sold)
 
+
+/datum/controller/subsystem/ticker/proc/PlayerStats()
+	for(var/mob/Player in GLOB.player_list)
+		if(Player.mind && !isnewplayer(Player))
+			if(Player.stat != DEAD)
+				var/turf/playerTurf = get_turf(Player)
+				if(SSemergency_shuttle.departed && SSemergency_shuttle.evac)
+					if(isNotAdminLevel(playerTurf.z))
+						to_chat(Player, span_filter_system(span_blue(span_bold("You survived the round, but remained on [station_name()] as [Player.real_name]."))))
+					else
+						to_chat(Player, span_filter_system(span_green(span_bold("You managed to survive the events on [station_name()] as [Player.real_name]."))))
+				else if(isAdminLevel(playerTurf.z))
+					to_chat(Player, span_filter_system(span_green(span_bold("You successfully underwent crew transfer after events on [station_name()] as [Player.real_name]."))))
+				else if(issilicon(Player))
+					to_chat(Player, span_filter_system(span_green(span_bold("You remain operational after the events on [station_name()] as [Player.real_name]."))))
+				else
+					to_chat(Player, span_filter_system(span_blue(span_bold("You missed the crew transfer after the events on [station_name()] as [Player.real_name]."))))
+			else
+				if(isobserver(Player))
+					var/mob/observer/dead/O = Player
+					if(!O.started_as_observer)
+						to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
+				else
+					to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
+	to_chat(world, span_filter_system("<br>"))
+
+	for (var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
+		if (aiPlayer.stat != 2)
+			to_chat(world, span_filter_system(span_bold("[aiPlayer.name]'s laws at the end of the round were:")))
+		else
+			to_chat(world, span_filter_system(span_bold("[aiPlayer.name]'s laws when it was deactivated were:")))
+		aiPlayer.show_laws(1)
+
+		if (aiPlayer.connected_robots.len)
+			var/robolist = span_bold("The AI's loyal minions were:") + " "
+			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
+				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"
+			to_chat(world, span_filter_system("[robolist]"))
+
+	var/dronecount = 0
+
+	for (var/mob/living/silicon/robot/robo in GLOB.mob_list)
+
+		if(istype(robo, /mob/living/silicon/robot/platform))
+			var/mob/living/silicon/robot/platform/tank = robo
+			if(!tank.has_had_player)
+				continue
+
+		if(istype(robo,/mob/living/silicon/robot/drone) && !istype(robo,/mob/living/silicon/robot/drone/swarm))
+			dronecount++
+			continue
+
+		if (!robo.connected_ai)
+			var/list/robot_stat_display = list()
+			if (robo.stat != 2)
+				robot_stat_display += span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))
+			else
+				robot_stat_display += span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))
+
+			robot_stat_display += robo.laws.get_formatted_laws()
+			to_chat(world, robot_stat_display.Join("\n"))
+
+	if(dronecount)
+		to_chat(world, span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))
+
 /datum/controller/subsystem/ticker/proc/RoundTrivia()//bazinga
 	var/list/valid_stats_list = list() //This is to be populated with the good shit
 
@@ -90,16 +155,29 @@ GLOBAL_LIST_EMPTY(refined_chems_sold)
 			points += GLOB.refined_chems_sold[D]["value"]
 
 			if(GLOB.refined_chems_sold[D]["units"] >= 1000) // Don't spam the list
-				var/dols = GLOB.refined_chems_sold[D]["value"] * SSsupply.points_per_money
+				var/dols = GLOB.refined_chems_sold[D]["value"] * SSsupply.money_per_points
 				dols = FLOOR(dols * 100,1) / 100 // Truncate decimals
 				valid_stats_list.Add("[GLOB.refined_chems_sold[D]["units"]]u of [D], for [GLOB.refined_chems_sold[D]["value"]] points! A total of [dols] [dols > 1 ? "thalers" : "thaler"]")
 
-		var/end_dols = points * SSsupply.points_per_money
+		var/end_dols = points * SSsupply.money_per_points
 		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
 		valid_stats_list.Add("For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
 
+	if(SSsupply.warheads_sold > 0)
+		var/end_dols = SSsupply.warheads_value * SSsupply.money_per_points
+		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
+		valid_stats_list.Add("[SSsupply.warheads_sold] TTV warheads were sold! For a total of: [SSsupply.warheads_value] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
+
+	//NYI
+	if(SSsupply.watts_sold >= 1 GIGAWATTS)
+		var/gws = FLOOR(SSsupply.watts_sold / (1 GIGAWATTS),1) // Truncate decimals
+		points = FLOOR(SSsupply.watts_sold / SSsupply.points_per_watt,1)
+		var/end_dols = points * SSsupply.money_per_points
+		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
+		valid_stats_list.Add("[gws] gigawatt[gws > 1 ? "s" : ""] of power were sold! For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
+
 	if(SSnerdle)
-		var/word_export = "This shift's nerdle Was: [SSnerdle.target_word]! <br>"
+		var/word_export = "This shift's nerdle was: [SSnerdle.target_word]! <br>"
 		word_export += "There were [SSnerdle.total_players] players this shift!<br>"
 		var/list/splashes = list("We know what you are!", "That's how we do!", "Basically free!", "Hear them roar!", "The streak is alive!","Don't fall for them tricks!")
 		for(var/i in 1 to SSnerdle.player_attempts.len)

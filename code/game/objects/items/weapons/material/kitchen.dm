@@ -43,7 +43,7 @@
 		I.color = loaded_color
 		add_overlay(I)
 
-/obj/item/material/kitchen/utensil/proc/load_food(var/mob/user, var/obj/item/reagent_containers/food/snacks/loading)
+/obj/item/material/kitchen/utensil/proc/load_food(mob/user, obj/item/reagent_containers/food/snacks/loading)
 	if (reagents.total_volume > 0)
 		to_chat(user, span_danger("There is already something on \the [src]."))
 		return

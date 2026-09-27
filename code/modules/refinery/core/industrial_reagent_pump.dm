@@ -33,7 +33,7 @@
 
 	refinery_transfer()
 
-/obj/machinery/reagent_refinery/minimum_reagents_for_transfer(var/obj/machinery/reagent_refinery/target)
+/obj/machinery/reagent_refinery/minimum_reagents_for_transfer(obj/machinery/reagent_refinery/target)
 	if(istype(target,/obj/machinery/reagent_refinery/mixer)) // Special handling for mixer. Don't pump unless we can pump at least our transfer amount!
 		var/obj/machinery/reagent_refinery/mixer/M = target
 		if(M.got_input)
@@ -51,7 +51,7 @@
 /obj/machinery/reagent_refinery/pump/attack_hand(mob/user)
 	set_APTFT()
 
-/obj/machinery/reagent_refinery/pump/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
+/obj/machinery/reagent_refinery/pump/handle_transfer(atom/origin_machine, datum/reagents/RT, source_forward_dir, transfer_rate, filter_id = "")
 	// pumps, furnaces, splitters and filters can only be FED in a straight line
 	if(source_forward_dir != dir)
 		return 0

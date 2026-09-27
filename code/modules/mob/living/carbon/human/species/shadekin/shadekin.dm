@@ -103,7 +103,7 @@
 	species_component = list(/datum/component/shadekin, /datum/component/radiation_effects/shadekin)
 	component_requires_late_recalc = TRUE
 
-/datum/species/shadekin/handle_death(var/mob/living/carbon/human/H)
+/datum/species/shadekin/handle_death(mob/living/carbon/human/H)
 	var/special_handling = FALSE //varswitch for downstream
 	H.clear_dark_maws() //clear dark maws on death or similar
 	var/datum/component/shadekin/SK = H.get_shadekin_component()
@@ -216,7 +216,7 @@
 /datum/species/shadekin/get_random_name()
 	return "shadekin"
 
-/datum/species/shadekin/post_spawn_special(var/mob/living/carbon/human/H)
+/datum/species/shadekin/post_spawn_special(mob/living/carbon/human/H)
 	.=..()
 
 	var/datum/component/shadekin/SK = H.get_shadekin_component()
@@ -241,7 +241,7 @@
 
 	H.health = H.getMaxHealth()
 
-/datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
+/datum/species/shadekin/produceCopy(list/traits, mob/living/carbon/human/H, custom_base, reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	var/datum/species/shadekin/new_copy = ..()
 	new_copy.total_health = total_health
 

@@ -3,7 +3,7 @@
 	emote_message_3p = "pings."
 	emote_sound = 'sound/machines/ping.ogg'
 
-/datum/decl/emote/audible/synth/mob_can_use(var/mob/living/user)
+/datum/decl/emote/audible/synth/mob_can_use(mob/living/user)
 	if(istype(user) && user.isSynthetic())
 		return ..()
 	return FALSE
@@ -45,7 +45,7 @@
 	emote_message_3p_target = "shows TARGET USER_THEIR legal authorization barcode."
 	emote_sound = 'sound/voice/biamthelaw.ogg'
 
-/datum/decl/emote/audible/synth/security/mob_can_use(var/mob/living/silicon/robot/user)
+/datum/decl/emote/audible/synth/security/mob_can_use(mob/living/silicon/robot/user)
 	return ..() && (istype(user) && (istype(user.module, /obj/item/robot_module/robot/security)))
 
 /datum/decl/emote/audible/synth/security/halt

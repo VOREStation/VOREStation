@@ -91,7 +91,7 @@
 
 
 
-/datum/artifact_effect/feelings/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/feelings/DoEffectTouch(mob/user)
 	if(user)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user

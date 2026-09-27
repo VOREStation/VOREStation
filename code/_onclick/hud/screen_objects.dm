@@ -864,7 +864,7 @@
 	owner = null
 	return ..()
 
-/atom/movable/screen/movable/mapper_holder/proc/update(var/atom/movable/screen/mapper/map, var/atom/movable/screen/mapper/extras_holder/extras, ping = FALSE)
+/atom/movable/screen/movable/mapper_holder/proc/update(atom/movable/screen/mapper/map, atom/movable/screen/mapper/extras_holder/extras, ping = FALSE)
 	if(!running)
 		running = TRUE
 		if(ping)
@@ -895,7 +895,7 @@
 		owner.pinging = !owner.pinging
 		on()
 
-/atom/movable/screen/movable/mapper_holder/proc/off(var/inform = TRUE)
+/atom/movable/screen/movable/mapper_holder/proc/off(inform = TRUE)
 	frame.cut_overlay("powlight")
 	bg.vis_contents.Cut()
 	vis_contents.Remove(mask_ping, mask_full, extras_holder)
@@ -904,7 +904,7 @@
 	if(inform)
 		owner.stop_updates()
 
-/atom/movable/screen/movable/mapper_holder/proc/on(var/inform = TRUE)
+/atom/movable/screen/movable/mapper_holder/proc/on(inform = TRUE)
 	frame.add_overlay("powlight")
 	if(inform)
 		owner.start_updates()
@@ -1036,7 +1036,7 @@
 	gun.switch_firemodes(user)
 	return TRUE
 
-/atom/movable/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
+/atom/movable/screen/ammo/proc/add_hud(mob/living/user, obj/item/gun/G)
 
 	if(!user?.client)
 		return
@@ -1049,10 +1049,10 @@
 
 	user.client.screen += src
 
-/atom/movable/screen/ammo/proc/remove_hud(var/mob/living/user)
+/atom/movable/screen/ammo/proc/remove_hud(mob/living/user)
 	user?.client?.screen -= src
 
-/atom/movable/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/gun/G)
+/atom/movable/screen/ammo/proc/update_hud(mob/living/user, obj/item/gun/G)
 	if(!user?.client?.screen.Find(src))
 		return
 

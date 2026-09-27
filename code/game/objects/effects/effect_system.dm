@@ -192,7 +192,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(istype(M))
 		affect(M)
 
-/obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
+/obj/effect/effect/smoke/proc/affect(mob/living/carbon/M)
 	if (!istype(M))
 		return 0
 	if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
@@ -213,7 +213,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/Initialize(mapload, var/lifetime=10, var/range=null, var/power=null, var/color=null)
+/obj/effect/effect/smoke/illumination/Initialize(mapload, lifetime=10, range=null, power=null, color=null)
 	time_to_live=lifetime
 	. = ..()
 	set_light(range, power, color)
@@ -231,7 +231,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	for(var/mob/living/L in get_turf(src))
 		affect(L)
 
-/obj/effect/effect/smoke/bad/affect(var/mob/living/L)
+/obj/effect/effect/smoke/bad/affect(mob/living/L)
 	if (!..())
 		return 0
 	if(L.needs_to_breathe())
@@ -242,7 +242,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect/effect/smoke/bad/noxious
 	opacity = 0
 
-/obj/effect/effect/smoke/bad/noxious/affect(var/mob/living/L)
+/obj/effect/effect/smoke/bad/noxious/affect(mob/living/L)
 	if (!..())
 		return 0
 	if(L.needs_to_breathe())
@@ -273,7 +273,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	for(var/mob/living/L in get_turf(src))
 		affect(L)
 
-/obj/effect/effect/smoke/bad/burntfood/affect(var/mob/living/L) // This stuff is extra-vile.
+/obj/effect/effect/smoke/bad/burntfood/affect(mob/living/L) // This stuff is extra-vile.
 	if (!..())
 		return 0
 	if(L.needs_to_breathe())
@@ -369,7 +369,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(direct)
 		direction = direct
 
-/datum/effect/effect/system/smoke_spread/start(var/I)
+/datum/effect/effect/system/smoke_spread/start(I)
 	var/i = 0
 	for(i=0, i<src.number, i++)
 		if(src.total_smoke > 20)

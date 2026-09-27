@@ -1,5 +1,5 @@
 /// Change currently viewed camera
-/mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
+/mob/living/silicon/pai/proc/switchCamera(obj/machinery/camera/C)
 	if (!C)
 		src.reset_perspective()
 		return 0
@@ -134,7 +134,7 @@
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				to_chat(G, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 
-/mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
+/mob/living/silicon/pai/proc/pai_nom(mob/living/T in oview(1))
 	set name = "pAI Nom"
 	set category = "Abilities.pAI Commands"
 	set desc = "Allows you to eat someone while unfolded. Can't be used while in card form."
@@ -172,7 +172,7 @@
 		update_icon()
 		card.setEmotion(card.current_emotion)
 
-/mob/living/silicon/pai/proc/hug(var/mob/living/silicon/pai/H, var/mob/living/target)
+/mob/living/silicon/pai/proc/hug(mob/living/silicon/pai/H, mob/living/target)
 
 	var/t_him = "them"
 	if(ishuman(target))

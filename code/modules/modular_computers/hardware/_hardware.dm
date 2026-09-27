@@ -56,7 +56,7 @@
 
 
 /// Returns a list of lines containing diagnostic information for display.
-/obj/item/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/computer_hardware/proc/diagnostics(mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
 /obj/item/computer_hardware/Initialize(mapload)
@@ -84,7 +84,7 @@
 	// Good to go.
 	return TRUE
 
-/obj/item/computer_hardware/examine(var/mob/user)
+/obj/item/computer_hardware/examine(mob/user)
 	. = ..()
 	if(damage > damage_failure)
 		. += span_danger("It seems to be severely damaged!")
@@ -94,6 +94,6 @@
 		. += "It seems to be slightly damaged."
 
 /// Damages the component. Contains necessary checks. Negative damage "heals" the component.
-/obj/item/computer_hardware/take_damage(var/amount)
+/obj/item/computer_hardware/take_damage(amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.

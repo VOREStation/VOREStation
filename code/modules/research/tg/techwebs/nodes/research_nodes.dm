@@ -68,6 +68,7 @@
 		"beacon",
 		"beacon_locator",
 		"chameleon",
+		"clerical",
 		"shelter_capsule",
 		"shelter_capsule_luxury",
 		"shelter_capsule_recroom",

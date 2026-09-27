@@ -2,16 +2,14 @@
  * Copyright (c) 2020 bobbahbrown (https://github.com/bobbahbrown)
  * SPDX-License-Identifier: MIT
  */
-
-@use '../colors.scss';
-@use '../base.scss';
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .InputModal__Section .Section__title {
   flex-shrink: 0;
 }
 
 .InputModal__Section .Section__titleText {
-  font-size: base.em(12px);
+  font-size: fn.em(12px);
   white-space: pre-line;
 }
 

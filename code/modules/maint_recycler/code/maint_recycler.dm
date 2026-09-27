@@ -124,7 +124,7 @@
 
 
 
-/obj/machinery/maint_recycler/fall_apart(var/severity = 3, var/scatter = TRUE)
+/obj/machinery/maint_recycler/fall_apart(severity = 3, scatter = TRUE)
 	return FALSE //don't fall apart
 
 /obj/machinery/maint_recycler/dismantle()
@@ -264,7 +264,7 @@
 
 	visible_message("\The [source] bounces off of the rim of \the [src]'s processing compartment!")
 
-/obj/machinery/maint_recycler/proc/deny_act(var/obj/item/O,var/mob/user)
+/obj/machinery/maint_recycler/proc/deny_act(obj/item/O,mob/user)
 	set_screen_state("screen_deny",10)
 	to_chat(user, span_warning("\The [src] rejects \the [O]!"))
 	if(prob(99))
@@ -274,7 +274,7 @@
 		playsound(src, 'code/modules/maint_recycler/sfx/voice/mad/denied.ogg', 75)
 
 //add people to the evil list, and be mean to them
-/obj/machinery/maint_recycler/proc/evil_act(var/obj/item/O,var/mob/user)
+/obj/machinery/maint_recycler/proc/evil_act(obj/item/O,mob/user)
 	var/isRepeat = is_user_hostile(user)
 	if(!isRepeat && user.key)
 		hostile_towards |= user.key
@@ -295,7 +295,7 @@
 
 	credit_user(user,-10) //get fucked
 
-/obj/machinery/maint_recycler/proc/close_door(var/mob/user)
+/obj/machinery/maint_recycler/proc/close_door(mob/user)
 	if(!door_open || door_locked) return
 	door_moving = TRUE
 	flick("door closing",hatch)
@@ -303,7 +303,7 @@
 	addtimer(CALLBACK(src, PROC_REF(door_finished_moving), FALSE), 1 SECOND)
 
 
-/obj/machinery/maint_recycler/proc/open_door(var/mob/user)
+/obj/machinery/maint_recycler/proc/open_door(mob/user)
 	if(door_open || door_locked) return
 	door_moving = TRUE
 	flick("door opening",hatch)
@@ -311,7 +311,7 @@
 	addtimer(CALLBACK(src, PROC_REF(door_finished_moving), TRUE), 1 SECOND)
 
 
-/obj/machinery/maint_recycler/proc/door_finished_moving(var/open)
+/obj/machinery/maint_recycler/proc/door_finished_moving(open)
 	door_moving = FALSE
 	door_open = open
 	if(open)
@@ -320,22 +320,22 @@
 		hatch.icon_state = "door closed"
 
 
-/obj/machinery/maint_recycler/proc/shoot_at(var/mob/victim, var/burst = 3)
+/obj/machinery/maint_recycler/proc/shoot_at(mob/victim, burst = 3)
 	if(victim == null) return
 	for(var/i = 1 to burst)
 		addtimer(CALLBACK(src, PROC_REF(shoot), victim), (0.3 * i SECONDS))
 
-/obj/machinery/maint_recycler/proc/shoot(var/mob/victim)
+/obj/machinery/maint_recycler/proc/shoot(mob/victim)
 	var/projectile = /obj/item/projectile/beam/stun
 	var/obj/item/projectile/P = new projectile(loc)
 	playsound(src, 'sound/weapons/Taser.ogg', 30, 1)
 	P.old_style_target(victim)
 	P.fire()
 
-/obj/machinery/maint_recycler/container_resist(var/mob/living)
+/obj/machinery/maint_recycler/container_resist(mob/living)
 	eject_item(living) //100% chance. don't sweat it.
 
-/obj/machinery/maint_recycler/proc/eject_item(var/mob/user)
+/obj/machinery/maint_recycler/proc/eject_item(mob/user)
 	if(inserted_item)
 		if(!door_open)
 			open_door(user)
@@ -344,7 +344,7 @@
 			eject_item_act(user)
 
 
-/obj/machinery/maint_recycler/proc/eject_item_act(var/mob/user)
+/obj/machinery/maint_recycler/proc/eject_item_act(mob/user)
 	inserted_item.forceMove(get_turf(src))
 	visible_message(span_warning("[src] ejects \the [inserted_item] from its recycling chamber!"))
 	inserted_item.throw_at(get_step(src,SOUTH),5,1,src)
@@ -352,7 +352,7 @@
 	update_icon()
 
 
-/obj/machinery/maint_recycler/proc/start_recycling(var/mob/user)
+/obj/machinery/maint_recycler/proc/start_recycling(mob/user)
 	if(inserted_item)
 		if(door_open)
 			close_door(user)
@@ -360,7 +360,7 @@
 		else
 			recycle_act(user)
 
-/obj/machinery/maint_recycler/proc/recycle_act(var/mob/user)
+/obj/machinery/maint_recycler/proc/recycle_act(mob/user)
 	if(!inserted_item)
 		to_chat(user, span_warning("\The [src] doesn't have anything to recycle!"))
 		return //sanity check
@@ -370,7 +370,7 @@
 	addtimer(CALLBACK(src, PROC_REF(post_recycle), user), 2 SECONDS)
 
 
-/obj/machinery/maint_recycler/proc/post_recycle(var/mob/user)
+/obj/machinery/maint_recycler/proc/post_recycle(mob/user)
 	var/value = try_get_obj_value(inserted_item)
 	credit_user(user,value)
 	if(istype(inserted_item,/mob))
@@ -484,7 +484,7 @@ TGUI PROCS
 UTILITY PROCS
 */
 
-/obj/machinery/maint_recycler/proc/credit_user(var/mob/user, var/amount)
+/obj/machinery/maint_recycler/proc/credit_user(mob/user, amount)
 	if(!user || !user.client || !user.client.prefs) return
 	var/currentValue = 	user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
 	user.client?.prefs?.write_preference_by_type(/datum/preference/numeric/recycler_points, min(currentValue + amount,999))
@@ -494,25 +494,25 @@ UTILITY PROCS
 		granted_points[user.key] = amount
 
 
-/obj/machinery/maint_recycler/proc/user_balance(var/mob/user)
+/obj/machinery/maint_recycler/proc/user_balance(mob/user)
 	return user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
 
-/obj/machinery/maint_recycler/proc/canRecycle(var/mob/user, var/potentialValue)
+/obj/machinery/maint_recycler/proc/canRecycle(mob/user, potentialValue)
 	if(!user.key) return FALSE
 	if(granted_points[user.key]+potentialValue > point_cap) return FALSE
 	return TRUE
 
-/obj/machinery/maint_recycler/proc/mob_consent_check(var/mob/probable_victim)
+/obj/machinery/maint_recycler/proc/mob_consent_check(mob/probable_victim)
 	if(probable_victim.key)
 		if(probable_victim.client) //sanity check to make sure they are alright with getting squished to death
 			return (tgui_alert(probable_victim,"Do you want to be put in \The [src]? Industrial machinery is pretty damn deadly, you'll probably die. to death. A fine paste.", "Welcome to the Hydralulic Press Prompt", list("OSHA is for chumps", "what the fuck? get me outta here!")) == "OSHA is for chumps")
 		else return FALSE //no logged out users
 	else return TRUE //mindless mobs that've never felt the gentle touch of a client are fine
 
-/obj/machinery/maint_recycler/proc/is_user_hostile(var/mob/user) //negative points modifier for getting more.
+/obj/machinery/maint_recycler/proc/is_user_hostile(mob/user) //negative points modifier for getting more.
 	return (user.key in hostile_towards)
 
-/obj/machinery/maint_recycler/proc/try_get_obj_value(var/obj/candidate)
+/obj/machinery/maint_recycler/proc/try_get_obj_value(obj/candidate)
 	if(candidate == null) return null //default
 	var/init_price = 0
 	init_price = item_whitelist[candidate.type]
@@ -529,7 +529,7 @@ UTILITY PROCS
 
 	return init_price
 
-/obj/machinery/maint_recycler/proc/get_item_whitelist(var/obj/whitelistCandidate)
+/obj/machinery/maint_recycler/proc/get_item_whitelist(obj/whitelistCandidate)
 
 	. = RECYCLER_FORBIDDEN //default state
 
@@ -548,7 +548,7 @@ UTILITY PROCS
 	if(stat & NOPOWER)
 		set_on_state(FALSE)
 
-/obj/machinery/maint_recycler/proc/set_screen_state(var/state, var/duration = 10)
+/obj/machinery/maint_recycler/proc/set_screen_state(state, duration = 10)
 	if(!is_on) return
 	monitor_screen.icon_state = state
 	addtimer(CALLBACK(src, PROC_REF(reset_screen_state)), duration)
@@ -561,7 +561,7 @@ UTILITY PROCS
 	else
 		monitor_screen.icon_state = "screen_default"
 
-/obj/machinery/maint_recycler/proc/set_on_state(var/state)
+/obj/machinery/maint_recycler/proc/set_on_state(state)
 	if(is_on == state) return
 	is_on = state
 	if(is_on)

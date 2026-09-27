@@ -5,11 +5,11 @@
 	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
 	var/list/bad_external_organs = list()// organs we check until they are good.
 
-/mob/living/proc/get_bodypart_name(var/zone)
+/mob/living/proc/get_bodypart_name(zone)
 	var/obj/item/organ/external/E = get_organ(zone)
 	if(E) . = E.name
 
-/mob/living/proc/get_organ(var/zone)
+/mob/living/proc/get_organ(zone)
 	if(!zone)
 		zone = BP_TORSO
 	else if (zone in list( O_EYES, O_MOUTH ))

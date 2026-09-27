@@ -57,6 +57,9 @@
 	T.vis_contents -= visuals
 
 /datum/anomalous_weather/proc/affect_turf(turf/to_affect)
+	if(isnull(to_affect))
+		return
+
 	if(iswall(to_affect) || isopenturf(to_affect))
 		return
 
@@ -109,7 +112,7 @@
 		affected_mob.wash(CLEAN_ALL)
 		affected_mob.water_act(2)
 
-/datum/anomalous_weather/proc/do_special(var/turf/simulated/T)
+/datum/anomalous_weather/proc/do_special(turf/simulated/T)
 	return
 
 /datum/anomalous_weather/proc/hear_sounds(mob/M, adding)

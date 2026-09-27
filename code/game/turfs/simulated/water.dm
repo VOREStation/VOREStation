@@ -55,7 +55,7 @@
 
 	else return ..()
 
-/turf/simulated/floor/water/return_air_for_internal_lifeform(var/mob/living/L)
+/turf/simulated/floor/water/return_air_for_internal_lifeform(mob/living/L)
 	if(L && L.lying)
 		if(L.can_breathe_water()) // For squid.
 			var/datum/gas_mixture/water_breath = new()
@@ -99,17 +99,19 @@
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
+	if(AM.throwing)
+		return ..()
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.hovering || L.flying || L.is_incorporeal())
-			return
+			return ..()
 		L.update_water()
 		if(L.check_submerged() <= 0)
-			return
+			return ..()
 		if(!istype(oldloc, /turf/simulated/floor/water))
 			to_chat(L, span_warning("You get drenched in water from entering \the [src]!"))
 	AM.water_act(5)
-	..()
+	. = ..()
 
 /turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
 	if(isliving(AM))

@@ -5,7 +5,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new)
 	var/list/datum/uplink_item/items
 	var/list/datum/uplink_category/categories
 
-/datum/uplink/New(var/type)
+/datum/uplink/New(type)
 	items_assoc = list()
 	items = init_subtypes(/datum/uplink_item)
 	categories = init_subtypes(/datum/uplink_category)
@@ -43,7 +43,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new)
 
 
 
-/datum/uplink_item/proc/buy(var/obj/item/uplink/U, var/mob/user)
+/datum/uplink_item/proc/buy(obj/item/uplink/U, mob/user)
 	var/extra_args = extra_args(user)
 	if(!extra_args)
 		return
@@ -66,16 +66,16 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new)
 	return goods
 
 // Any additional arguments you wish to send to the get_goods
-/datum/uplink_item/proc/extra_args(var/mob/user)
+/datum/uplink_item/proc/extra_args(mob/user)
 	return TRUE
 
-/datum/uplink_item/proc/can_buy(var/obj/item/uplink/U, var/telecrystals)
+/datum/uplink_item/proc/can_buy(obj/item/uplink/U, telecrystals)
 	if(cost(U, telecrystals) > telecrystals)
 		return FALSE
 
 	return TRUE
 
-/datum/uplink_item/proc/cost(var/obj/item/uplink/U, var/telecrystals)
+/datum/uplink_item/proc/cost(obj/item/uplink/U, telecrystals)
 	. = item_cost
 	if(U)
 		. = U.get_item_cost(src, .)
@@ -84,7 +84,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new)
 	return desc
 
 // get_goods does not necessarily return physical objects, it is simply a way to acquire the uplink item without paying
-/datum/uplink_item/proc/get_goods(var/obj/item/uplink/U, var/location, var/mob/user)
+/datum/uplink_item/proc/get_goods(obj/item/uplink/U, location, mob/user)
 	return FALSE
 
 /datum/uplink_item/proc/log_icon()
@@ -179,7 +179,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new)
 /****************
 * Support procs *
 ****************/
-/proc/get_random_uplink_items(var/obj/item/uplink/U, var/remaining_TC, var/location)
+/proc/get_random_uplink_items(obj/item/uplink/U, remaining_TC, location)
 	var/list/bought_items = list()
 	while(remaining_TC)
 		var/datum/uplink_item/I = GLOB.default_uplink_selection.get_random_item(remaining_TC, U, bought_items)
@@ -190,7 +190,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new)
 
 	return bought_items
 
-/proc/get_surplus_items(var/obj/item/uplink/U, var/remaining_TC, var/location)
+/proc/get_surplus_items(obj/item/uplink/U, remaining_TC, location)
 	var/list/bought_items = list()
 	var/override = TRUE
 	while(remaining_TC)

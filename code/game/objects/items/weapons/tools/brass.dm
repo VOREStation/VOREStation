@@ -28,4 +28,4 @@
 	desc = "A welder made from brass fittings."
 	icon_state = "brasswelder"
 	max_fuel = 20
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.03))

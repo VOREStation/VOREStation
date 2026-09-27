@@ -54,13 +54,13 @@
 		if(WIRE_MAIN_POWER1, WIRE_MAIN_POWER2)
 			if(!mend)
 				if(isliving(usr))
-					A.shock(usr, 50)
+					A.shock(usr, 50) // TODO - REMOVE USR
 				A.shorted = TRUE
 
 			else if(!is_cut(WIRE_MAIN_POWER1) && !is_cut(WIRE_MAIN_POWER2))
 				A.shorted = FALSE
 				if(isliving(usr))
-					A.shock(usr, 50)
+					A.shock(usr, 50) // TODO - REMOVE USR
 
 		if(WIRE_AI_CONTROL)
 			A.aidisabled = !mend

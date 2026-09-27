@@ -12,7 +12,7 @@
 	GLOB.command_announcement.Announce("A solar storm has been detected approaching \the [station_name()]. Please halt all EVA activites immediately and return to the interior of the [using_map.facility_type].", "Anomaly Alert", new_sound = ANNOUNCER_MSG_RADIATION)
 	adjust_solar_output(1.5)
 
-/datum/event/solar_storm/proc/adjust_solar_output(var/mult = 1)
+/datum/event/solar_storm/proc/adjust_solar_output(mult = 1)
 	if(isnull(base_solar_gen_rate)) base_solar_gen_rate = GLOB.solar_gen_rate
 	GLOB.solar_gen_rate = mult * base_solar_gen_rate
 

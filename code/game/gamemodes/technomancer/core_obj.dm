@@ -137,7 +137,7 @@
 	var/obj/item/technomancer_core/core = null
 	var/ability_icon_state = null
 
-/obj/spellbutton/Initialize(mapload, var/path, var/new_name, var/new_icon_state)
+/obj/spellbutton/Initialize(mapload, path, new_name, new_icon_state)
 	. = ..()
 	src.core = loc
 	if(!path || !ispath(path) || !istype(core))
@@ -162,7 +162,7 @@
 		var/obj/item/technomancer_core/core = back
 		. += setup_technomancer_stat(core)
 
-/mob/living/carbon/human/proc/setup_technomancer_stat(var/obj/item/technomancer_core/core)
+/mob/living/carbon/human/proc/setup_technomancer_stat(obj/item/technomancer_core/core)
 	. = list()
 	if(core)
 		var/charge_status = "[core.energy]/[core.max_energy] ([round( (core.energy / core.max_energy) * 100)]%) \
@@ -174,7 +174,7 @@
 		for(var/obj/spellbutton/button in core.spells)
 			. += button
 
-/obj/item/technomancer_core/proc/add_spell(var/path, var/new_name, var/ability_icon_state)
+/obj/item/technomancer_core/proc/add_spell(path, new_name, ability_icon_state)
 	if(!path || !ispath(path))
 		message_admins("ERROR: /obj/item/technomancer_core/add_spell() was not given a proper path!  \
 		The path supplied was [path].")
@@ -184,7 +184,7 @@
 	if(wearer)
 		wearer.ability_master.add_technomancer_ability(spell, ability_icon_state)
 
-/obj/item/technomancer_core/proc/remove_spell(var/obj/spellbutton/spell_to_remove)
+/obj/item/technomancer_core/proc/remove_spell(obj/spellbutton/spell_to_remove)
 	if(spell_to_remove in spells)
 		spells.Remove(spell_to_remove)
 		if(wearer)
@@ -198,7 +198,7 @@
 		spells.Remove(spell)
 		qdel(spell)
 
-/obj/item/technomancer_core/proc/has_spell(var/datum/technomancer/spell_to_check)
+/obj/item/technomancer_core/proc/has_spell(datum/technomancer/spell_to_check)
 	for(var/obj/spellbutton/spell in spells)
 		if(spell.spellpath == spell_to_check.obj_path)
 			return 1

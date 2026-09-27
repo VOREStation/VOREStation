@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 /obj/machinery/atmospherics/valve/shutoff/update_icon()
 	icon_state = "vclamp[open]"
 
-/obj/machinery/atmospherics/valve/shutoff/examine(var/mob/user)
+/obj/machinery/atmospherics/valve/shutoff/examine(mob/user)
 	. = ..()
 	. += "The automatic shutoff circuit is [close_on_leaks ? "enabled" : "disabled"]."
 
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 /obj/machinery/atmospherics/valve/shutoff/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/atmospherics/valve/shutoff/attack_hand(var/mob/user)
+/obj/machinery/atmospherics/valve/shutoff/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	update_icon(1)
 	close_on_leaks = !close_on_leaks
@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 	return TRUE
 
 // Alt+Click now toggles the open/close function, when the autoseal is disabled
-/obj/machinery/atmospherics/valve/shutoff/click_alt(var/mob/user)
+/obj/machinery/atmospherics/valve/shutoff/click_alt(mob/user)
 	if(isliving(user))
 		if(close_on_leaks)
 			to_chat(user, "You try to manually [open ? "close" : "open"] the valve, but it [open ? "opens" : "closes"] automatically again.")

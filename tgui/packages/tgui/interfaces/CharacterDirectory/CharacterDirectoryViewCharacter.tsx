@@ -1,5 +1,5 @@
+import { MarkdownSpoilerText } from 'tgui/interfaces/common/SpoilerText';
 import { Box, Button, Section, Table } from 'tgui-core/components';
-import { MarkdownSpoilerText } from '../common/SpoilerText';
 import { getTagColor } from './constants';
 import { validateLink } from './functions';
 import type { mobEntry } from './types';

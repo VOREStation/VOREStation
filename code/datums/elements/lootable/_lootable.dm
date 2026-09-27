@@ -29,7 +29,7 @@
 	UnregisterSignal(target, COMSIG_LOOT_REWARD)
 
 /// Calculates and drops loot, the source's turf is where it will be dropped, L is the searching mob, and searched_by is a passed list for storing who has searched a loot pile.
-/datum/element/lootable/proc/loot(atom/source,mob/living/L,var/list/searched_by, wake_chance = 0)
+/datum/element/lootable/proc/loot(atom/source,mob/living/L,list/searched_by, wake_chance = 0)
 	SIGNAL_HANDLER
 	// The loot's all gone.
 	if(loot_depletion)
@@ -54,10 +54,10 @@
 	var/obj/item/loot = null
 	var/span = "notice" // Blue
 
-	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len) // If you're unlucky, you will always find bad stuff.
+	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len && prob(15)) // If you're unlucky, you will probably find bad stuff.
 		loot = produce_unlucky_item(source)
 		span = "cult" // Purple and bold.
-		if(prob(1))
+		if(prob(6))
 			to_chat(L, span_danger("You cut your hand on something in the trash!"))
 			L.apply_damage(2, BRUTE, pick(BP_L_HAND, BP_R_HAND), used_weapon = "sharp object")
 			var/datum/disease/advance/random/random_disease = new /datum/disease/advance/random()
@@ -153,6 +153,6 @@
 	return produce_rare_item(source)
 
 /// Restores a removed gamma loot item back to the loot table
-/proc/restore_gamma_loot(var/w_type)
+/proc/restore_gamma_loot(w_type)
 	GLOB.allocated_gamma_loot -= w_type
 	GLOB.unique_gamma_loot += w_type

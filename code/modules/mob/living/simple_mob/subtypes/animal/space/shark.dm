@@ -45,7 +45,7 @@
 
 	var/knockdown_chance = 10	//slightly reduced their knockdown prob compared to carp given their greater power
 
-/mob/living/simple_mob/animal/space/shark/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/animal/space/shark/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))

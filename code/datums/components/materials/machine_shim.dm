@@ -71,7 +71,7 @@
 	return shim.linked_machine
 
 /// deprecated, do not use
-/mob/proc/check_current_machine(var/obj/checking)
+/mob/proc/check_current_machine(obj/checking)
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
 	if(!shim)
 		return FALSE
@@ -84,7 +84,7 @@
 		qdel(shim)
 
 /// deprecated, do not use
-/mob/proc/set_machine(var/obj/O)
+/mob/proc/set_machine(obj/O)
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
 	if(shim)
 		if(shim.linked_machine == O) // Already in use
@@ -120,10 +120,10 @@
 		in_use = is_in_use
 
 /// deprecated, do not use
-/obj/machinery/CouldUseTopic(var/mob/user)
+/obj/machinery/CouldUseTopic(mob/user)
 	..()
 	user.set_machine(src)
 
 /// deprecated, do not use
-/obj/machinery/CouldNotUseTopic(var/mob/user)
+/obj/machinery/CouldNotUseTopic(mob/user)
 	user.unset_machine()

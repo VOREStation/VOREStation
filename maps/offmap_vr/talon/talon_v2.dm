@@ -141,6 +141,8 @@
 ///////////////////////////
 //// The Various Machines
 /obj/machinery/telecomms/allinone/talon
+	id = "talon_aio"
+	network = "Talon"
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
 /obj/item/paper/secret_vendornote

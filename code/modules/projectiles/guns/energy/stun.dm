@@ -47,7 +47,7 @@
 	icon_state = "crossbow"
 	w_class = ITEMSIZE_SMALL
 	item_state = "crossbow"
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	silenced = 1
 	projectile_type = /obj/item/projectile/energy/bolt
@@ -66,7 +66,7 @@
 	icon_state = "crossbowlarge"
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	matter = list(MAT_STEEL = 200000)
+	matter = list(MAT_STEEL = MATERIAL_COST(100))
 	slot_flags = SLOT_BELT
 	projectile_type = /obj/item/projectile/energy/bolt/large
 
@@ -108,7 +108,7 @@
 	several TSCs have been trying to get a hold of the blueprints for half a decade."
 	var/unique_reskin
 
-/obj/item/gun/energy/stunrevolver/detective/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/stunrevolver/detective/update_icon(ignore_inhands)
 	if(power_supply == null)
 		if(unique_reskin)
 			icon_state = "[unique_reskin]_open"

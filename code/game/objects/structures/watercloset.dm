@@ -541,23 +541,21 @@
 	A.wash(CLEAN_RAD | CLEAN_TYPE_WEAK) // Clean radiation non-instantly
 	A.wash(CLEAN_WASH)
 	A.wash(CLEAN_SCRUB)
+
+	if(isliving(A))
+		var/mob/living/L = A
+		check_heat(L)
+		L.extinguish_mob()
+		L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
+		L.radiation = CLAMP(L.radiation - 5, 0, RADIATION_CAP)
+		//flush away reagents on the skin
+		if(iscarbon(A))
+			var/mob/living/carbon/C = A
+			if(C.touching)
+				var/remove_amount = C.touching.maximum_volume * C.reagent_permeability() //take off your suit first
+				C.touching.remove_any(remove_amount)
+
 	reagents.splash(A, reaction_volume / 20, 1, TRUE, min_spill = 0, max_spill = 0) //Reaction volume needs to be divided by 20 due to a larger internal volume
-
-	if(!isliving(A))
-		return
-	var/mob/living/L = A
-	check_heat(L)
-	L.extinguish_mob()
-	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
-	L.radiation = CLAMP(L.radiation - 5, 0, RADIATION_CAP)
-
-	if(!iscarbon(A))
-		return
-	//flush away reagents on the skin
-	var/mob/living/carbon/C = A
-	if(C.touching)
-		var/remove_amount = C.touching.maximum_volume * C.reagent_permeability() //take off your suit first
-		C.touching.remove_any(remove_amount)
 
 /obj/machinery/shower/process()
 	if(on)
@@ -708,7 +706,7 @@
 		user.forceMove(src)
 		to_chat(user, span_vnotice("You have been swallowed alive by the rubber ducky. Your entire body compacted up and squeezed into the tiny space that makes up the oddly realistic and not at all rubbery stomach. The walls themselves are kneading over you, grinding some sort of fluids into your trapped body. You can even hear the sound of bodily functions echoing around you..."))
 
-/obj/item/bikehorn/rubberducky/pink/container_resist(var/mob/living/escapee)
+/obj/item/bikehorn/rubberducky/pink/container_resist(mob/living/escapee)
 	if(isdisposalpacket(loc))
 		escapee.forceMove(loc)
 	else
@@ -909,7 +907,7 @@
 	AddComponent(/datum/component/hose_connector/endless_source/water)
 	AddComponent(/datum/component/hose_connector/endless_drain)
 
-/obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
+/obj/structure/sink/MouseDrop_T(obj/item/thing, mob/user)
 	..()
 	if(!istype(thing) || !thing.is_open_container())
 		return ..()

@@ -8,7 +8,7 @@
 	suit = /obj/item/clothing/suit/storage/apron
 	r_hand = /obj/item/material/twohanded/fireaxe/foam
 
-/datum/decl/hierarchy/outfit/costume/masked_killer/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/costume/masked_killer/post_equip(mob/living/carbon/human/H)
 	var/victim = get_mannequin(H.ckey)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
 		carried_item.add_blood(victim) //Oh yes, there will be blood.. just not blood from the killer because that's odd. //If I knew how to make fake blood, I would
@@ -21,7 +21,7 @@
 	glasses = /obj/item/clothing/glasses/fakesunglasses
 	l_pocket = /obj/item/toy/sword
 
-/datum/decl/hierarchy/outfit/costume/professional/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/costume/professional/post_equip(mob/living/carbon/human/H)
 	var/obj/item/storage/briefcase/new_briefcase = new(H)
 	for(var/obj/item/briefcase_item in new_briefcase)
 		qdel(briefcase_item)
@@ -40,7 +40,7 @@
 	head = /obj/item/clothing/head/beret
 	r_hand = /obj/item/gun/projectile/revolver/capgun
 
-/datum/decl/hierarchy/outfit/costume/horrorcop/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/costume/horrorcop/post_equip(mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
 	if(LAZYLEN(U.accessories))
 		for(var/obj/item/clothing/accessory/A in U.accessories)
@@ -57,7 +57,7 @@
 	suit = /obj/item/clothing/accessory/poncho
 	r_hand = /obj/item/gun/projectile/revolver/capgun
 
-/datum/decl/hierarchy/outfit/costume/cowboy/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/costume/cowboy/post_equip(mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
 	if(LAZYLEN(U.accessories))
 		for(var/obj/item/clothing/accessory/A in U.accessories)

@@ -69,7 +69,7 @@
 	mouse_opacity = 0
 	var/delete_me = FALSE
 
-/obj/effect/decal/cleanable/dirt/Initialize(mapload, var/_age, var/dirt)
+/obj/effect/decal/cleanable/dirt/Initialize(mapload, _age, dirt)
 	.=..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL

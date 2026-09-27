@@ -93,6 +93,12 @@ macro "borghotkeymode"
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
 	elem
+		name = "SHIFT+EAST"
+		command = "tiltclock"
+	elem
+		name = "SHIFT+WEST"
+		command = "tiltcounterclock"
+	elem
 		name = "INSERT"
 		command = "a-intent right"
 	elem
@@ -373,6 +379,12 @@ macro "macro"
 	elem "ctrlshifteast"
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+	elem "tiltclock"
+		name = "SHIFT+EAST"
+		command = "tiltclock"
+	elem "tiltcounterclock"
+		name = "SHIFT+WEST"
+		command = "tiltcounterclock"
 	elem "insert"
 		name = "INSERT"
 		command = "a-intent right"
@@ -612,6 +624,12 @@ macro "hotkeymode"
 	elem "ctrlshifteast"
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+	elem "tiltclock"
+		name = "SHIFT+EAST"
+		command = "tiltclock"
+	elem "tiltcounterclock"
+		name = "SHIFT+WEST"
+		command = "tiltcounterclock"
 	elem "insert"
 		name = "INSERT"
 		command = "a-intent right"
@@ -920,6 +938,12 @@ macro "borgmacro"
 	elem "ctrlshifteast"
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+	elem "tiltclock"
+		name = "SHIFT+EAST"
+		command = "tiltclock"
+	elem "tiltcounterclock"
+		name = "SHIFT+WEST"
+		command = "tiltcounterclock"
 	elem "insert"
 		name = "INSERT"
 		command = "a-intent right"
@@ -1410,30 +1434,6 @@ window "popupwindow"
 		statusbar = false
 		can-resize = false
 
-window "prefs_markings_subwindow"
-	elem "prefs_markings_subwindow"
-		type = MAIN
-		pos = 281,0
-		size = 400x400
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		background-color = none
-		is-visible = false
-		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "Marking Selection Editing"
-		statusbar = false
-		can-minimize = false
-		outer-size = 416x439
-		inner-size = 400x400
-	elem "prefs_markings_browser"
-		type = BROWSER
-		pos = 0,0
-		size = 400x400
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		background-color = none
-		saved-params = ""
-
 window "rpane"
 	elem "rpane"
 		type = MAIN
@@ -1673,3 +1673,7 @@ window "statwindow"
 		anchor2 = 100,100
 		is-visible = false
 		saved-params = ""
+
+window "character_preview_map"
+	elem "character_preview_map"
+	type = BROWSER

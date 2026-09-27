@@ -6,7 +6,7 @@
 	var/list/keywords = list() // Used for searching.
 	var/datum/codex_tree/holder = null
 
-/datum/lore/codex/New(var/new_holder, var/new_parent)
+/datum/lore/codex/New(new_holder, new_parent)
 	..()
 	holder = new_holder
 	parent = new_parent
@@ -35,7 +35,7 @@
 	return
 
 // Use this to quickly link to a different page
-/datum/lore/codex/proc/quick_link(var/target, var/word_to_display)
+/datum/lore/codex/proc/quick_link(target, word_to_display)
 	if(isnull(word_to_display))
 		word_to_display = target
 	return "<a href='byond://?src=\ref[src];quick_link=[target]'>[word_to_display]</a>"

@@ -16,12 +16,12 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
+/atom/Click(location, control, params) // This is their reaction to being clicked on (standard proc)
 	if(src)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
 		usr.ClickOn(src, params)
 
-/atom/DblClick(var/location, var/control, var/params)
+/atom/DblClick(location, control, params)
 	if(src)
 		usr.DblClickOn(src, params)
 
@@ -194,7 +194,7 @@
 				trigger_aiming(TARGET_CAN_CLICK)
 	return 1
 
-/mob/proc/setClickCooldown(var/timeout)
+/mob/proc/setClickCooldown(timeout)
 	next_click = max(world.time + timeout, next_click)
 
 /mob/proc/checkClickCooldown()
@@ -203,7 +203,7 @@
 	return TRUE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
-/mob/proc/DblClickOn(atom/A, var/params)
+/mob/proc/DblClickOn(atom/A, params)
 	return
 
 /*
@@ -216,10 +216,10 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(var/atom/A, var/proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag)
 	return
 
-/mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+/mob/living/UnarmedAttack(atom/A, proximity_flag)
 
 	if(is_incorporeal())
 		return 0
@@ -245,7 +245,7 @@
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
 */
-/mob/proc/RangedAttack(var/atom/A, var/params)
+/mob/proc/RangedAttack(atom/A, params)
 	if(!mutations.len) return
 	if((LASER_EYES in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
@@ -260,7 +260,7 @@
 	Used when you are handcuffed and click things.
 	Not currently used by anything but could easily be.
 */
-/mob/proc/RestrainedClickOn(var/atom/A)
+/mob/proc/RestrainedClickOn(atom/A)
 	return
 
 /*
@@ -318,12 +318,22 @@
 	LE.fire()
 
 /mob/living/carbon/human/LaserEyes(atom/A, params)
-	if(nutrition>0)
-		..()
-		nutrition = max(nutrition - rand(1,5),0)
-		handle_regular_hud_updates()
-	else
+	if(!nutrition)
 		to_chat(src, span_warning("You're out of energy!  You need food!"))
+		return
+	if(glasses && glasses.body_parts_covered & EYES)
+		var/obj/item/clothing/our_glasses = glasses
+		if(istype(our_glasses) && our_glasses.flash_protection > FLASH_PROTECTION_NONE)
+			to_chat(src, span_warning("Your glasses block your laser vision!"))
+			return
+	if(head && head.body_parts_covered & FACE)
+		var/obj/item/clothing/our_head = head
+		if(istype(our_head) && our_head.flash_protection > FLASH_PROTECTION_NONE)
+			to_chat(src, span_warning("Your helmet blocks your laser vision!"))
+			return
+	..()
+	nutrition = max(nutrition - 25,0)
+	handle_regular_hud_updates()
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/atom_to_face)

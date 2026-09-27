@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(sqlite)
 // General error checking for SQLite.
 // Returns true if something went wrong. Also writes a log.
 // The desc parameter should be unique for each call, to make it easier to track down where the error occured.
-/datum/controller/subsystem/sqlite/proc/sqlite_check_for_errors(var/database/query/query_used, var/desc)
+/datum/controller/subsystem/sqlite/proc/sqlite_check_for_errors(database/query/query_used, desc)
 	if(query_used && query_used.ErrorMsg())
 		log_sql("SQLite Error: [desc] : [query_used.ErrorMsg()]")
 		return TRUE

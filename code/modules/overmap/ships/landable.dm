@@ -102,7 +102,7 @@
 /obj/effect/shuttle_landmark/ship/is_valid(datum/shuttle/shuttle)
 	return (isnull(loc) || ..()) // If it doesn't exist yet, its clear
 
-/obj/effect/shuttle_landmark/ship/create_warning_effect(var/datum/shuttle/shuttle)
+/obj/effect/shuttle_landmark/ship/create_warning_effect(datum/shuttle/shuttle)
 	if(isnull(loc))
 		return
 	..()

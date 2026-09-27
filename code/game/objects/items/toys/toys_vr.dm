@@ -797,7 +797,7 @@
 	icon_state = "aliencharacter"
 
 /obj/random/miniature/item_to_spawn()
-	return pick(typesof(/obj/item/toy/character))
+	return pick(subtypesof(/obj/item/toy/character))
 
 /*
  * Snake popper
@@ -806,6 +806,7 @@
 	name = "bread tube"
 	desc = "Bread in a tube. Chewy...and surprisingly tasty."
 	description_fluff = "This is the product that brought Centauri Provisions into the limelight. A product of the earliest extrasolar colony of Heaven, the Bread Tube, while bland, contains all the nutrients a spacer needs to get through the day and is decidedly edible when compared to some of its competitors. Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
+	description_antag = "Frying the safeties will replace the contents with a real, BIG snake!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "tastybread"
 	var/popped = 0
@@ -1124,7 +1125,7 @@
 	icon_state = "monster_bait"
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/toy/monster_bait/afterattack(var/atom/A, var/mob/user)
+/obj/item/toy/monster_bait/afterattack(atom/A, mob/user)
 	var/mob/living/simple_mob/M = A
 	if(M.z != user.z || get_dist(user,M) > 1)
 		to_chat(user, span_notice("You need to stand right next to \the [M] to bait it."))

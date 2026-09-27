@@ -5,7 +5,7 @@
 
 	var/id_tag
 
-/datum/embedded_program/New(var/obj/machinery/embedded_controller/M)
+/datum/embedded_program/New(obj/machinery/embedded_controller/M)
 	master = M
 	if (istype(M, /obj/machinery/embedded_controller/radio))
 		var/obj/machinery/embedded_controller/radio/R = M

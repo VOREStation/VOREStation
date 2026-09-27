@@ -1,4 +1,4 @@
-/obj/item/clothing/glasses/proc/prescribe(var/mob/user)
+/obj/item/clothing/glasses/proc/prescribe(mob/user)
 	prescription = !prescription
 
 	//Look it's really not that fancy. It's not ACTUALLY unique scrip data.
@@ -19,7 +19,7 @@
 	icon_state = "modkit"
 	var/scrip_loaded = 0
 
-/obj/item/glasses_kit/afterattack(var/target, var/mob/living/carbon/human/user, var/proximity)
+/obj/item/glasses_kit/afterattack(target, mob/living/carbon/human/user, proximity)
 	if(!proximity)
 		return
 	if(!istype(user))

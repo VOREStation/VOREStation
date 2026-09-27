@@ -41,20 +41,20 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/cap/change_color(var/new_color)
+/obj/machinery/atmospherics/pipe/cap/change_color(new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node)
 		node.update_underlays()
 
-/obj/machinery/atmospherics/pipe/cap/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/cap/update_icon(safety = 0)
 	alpha = 255
 
 	cut_overlays()
 	add_overlay(GLOB.icon_manager.get_atmos_icon("pipe", , pipe_color, "cap[icon_connect_type]"))
 
 /obj/machinery/atmospherics/pipe/cap/atmos_init()
-	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src, dir)))
 		if (can_be_node(target, 1))
 			node = target
 			break

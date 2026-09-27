@@ -65,7 +65,7 @@
 
 	var/datum/religion/my_religion
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 	purchase_log = list()
 	antag_holder = new

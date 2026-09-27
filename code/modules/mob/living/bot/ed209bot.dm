@@ -54,7 +54,7 @@
 /mob/living/bot/secbot/ed209/handleRangedTarget()
 	RangedAttack(target)
 
-/mob/living/bot/secbot/ed209/RangedAttack(var/atom/A)
+/mob/living/bot/secbot/ed209/RangedAttack(atom/A)
 	if(last_shot + shot_delay > world.time)
 		to_chat(src, "You are not ready to fire yet!")
 		return
@@ -83,7 +83,7 @@
 	created_name = "ED-209 Security Robot"
 	var/lasercolor = ""
 
-/obj/item/secbot_assembly/ed209_assembly/attackby(var/obj/item/W, var/mob/user)
+/obj/item/secbot_assembly/ed209_assembly/attackby(obj/item/W, mob/user)
 	..()
 
 	if(istype(W, /obj/item/pen))

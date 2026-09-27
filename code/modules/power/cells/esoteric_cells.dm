@@ -5,7 +5,7 @@
 	icon_state = "modded"
 	charge = 10000
 	maxcharge = 10000
-	matter = list(MAT_STEEL = 1000, MAT_GLASS = 80, MAT_SILVER = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.04), MAT_SILVER = MATERIAL_COST(0.05))
 	self_recharge = TRUE
 	charge_amount = 150
 

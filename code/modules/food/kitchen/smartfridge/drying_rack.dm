@@ -1,7 +1,6 @@
 /obj/machinery/smartfridge/drying_rack
 	name = "\improper Drying Rack"
 	desc = "A machine for drying plants."
-	wrenchable = 1
 	icon_state = "drying_rack"
 	icon_base = "drying_rack"
 	circuit = /obj/item/circuitboard/smartfridge/drying
@@ -10,7 +9,7 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
 		var/obj/item/reagent_containers/food/snacks/S = O
 		if (S.dried_type)

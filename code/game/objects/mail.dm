@@ -248,7 +248,7 @@
 	playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
 	qdel(src)
 
-/obj/item/mail/proc/initialize_for_recipient(var/datum/mind/recipient, var/preset_goodies = FALSE)
+/obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient, preset_goodies = FALSE)
 	var/current_title = recipient.role_alt_title ? recipient.role_alt_title : recipient.assigned_role
 	name = "[initial(name)] for [recipient.name] ([current_title])"
 	recipient_ref = WEAKREF(recipient)
@@ -452,6 +452,7 @@ ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player,
 		to_chat(user, span_notice("Succesful delivery acknowledged! [cargo_points] points added to Supply."))
 		playsound(loc, 'sound/items/mail/mailapproved.ogg', 50, TRUE)
 		SSsupply.points += cargo_points
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MAIL_DELIVERED)
 
 // JUNK MAIL STUFF
 

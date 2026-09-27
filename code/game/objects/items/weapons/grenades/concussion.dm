@@ -14,7 +14,7 @@
 	qdel(src)
 	return
 
-/obj/proc/concussion_blast(atom/target, var/radius = 5)
+/obj/proc/concussion_blast(atom/target, radius = 5)
 	var/turf/T = get_turf(target)
 	if(is_below_sound_pressure(T))
 		visible_message(span_notice("Whump."))

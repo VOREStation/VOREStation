@@ -2,6 +2,7 @@
 /obj/machinery/gibber
 	name = "gibber"
 	desc = "The name isn't descriptive enough?"
+	description_antag = "An emag could disable the safety guard. You sicko."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
 	density = TRUE
@@ -45,7 +46,7 @@
 	input_plate = null
 	return ..()
 
-/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
+/obj/machinery/gibber/autogibber/Bumped(atom/A)
 	if(!input_plate) return
 
 	if(ismob(A))
@@ -91,12 +92,12 @@
 	. = ..()
 	. += "The safety guard is [emagged ? span_danger("disabled") : "enabled"]."
 
-/obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/gibber/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
 	to_chat(user, span_danger("You [emagged ? "disable" : "enable"] the gibber safety guard."))
 	return 1
 
-/obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/gibber/attackby(obj/item/W, mob/user)
 	var/obj/item/grab/G = W
 
 	if(default_unfasten_wrench(user, W, 40))
@@ -117,7 +118,7 @@
 		return
 	move_into_gibber(user,target)
 
-/obj/machinery/gibber/proc/move_into_gibber(var/mob/user,var/mob/living/victim)
+/obj/machinery/gibber/proc/move_into_gibber(mob/user,mob/living/victim)
 
 	if(src.occupant)
 		to_chat(user, span_danger("The gibber is full, empty it first!"))
@@ -135,10 +136,11 @@
 		to_chat(user, span_danger("The gibber safety guard is engaged!"))
 		return
 
-
+	/* Disable abiotic lockout
 	if(victim.abiotic(1))
 		to_chat(user, span_danger("Subject may not have abiotic items on."))
 		return
+	*/
 
 	user.visible_message(span_danger("[user] starts to put [victim] into the gibber!"))
 	src.add_fingerprint(user)

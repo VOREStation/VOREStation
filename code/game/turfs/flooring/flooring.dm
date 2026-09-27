@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 		floor_types["[flooring_path]"] = new flooring_path
 	return floor_types
 
-/proc/get_flooring_data(var/flooring_path)
+/proc/get_flooring_data(flooring_path)
 	return GLOB.flooring_types["[flooring_path]"]
 
 // State values:
@@ -112,10 +112,10 @@ GLOBAL_LIST_INIT(flooring_types, populate_flooring_types())
 
 	var/check_season = FALSE	//VOREStation Addition
 
-/datum/decl/flooring/proc/get_plating_type(var/turf/T)
+/datum/decl/flooring/proc/get_plating_type(turf/T)
 	return plating_type
 
-/datum/decl/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = BUILTIN_DECAL_LAYER)
+/datum/decl/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0, layer = BUILTIN_DECAL_LAYER)
 	if(!LAZYACCESS(flooring_cache, cache_key))
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer

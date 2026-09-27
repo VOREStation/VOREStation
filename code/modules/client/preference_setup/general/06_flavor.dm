@@ -38,7 +38,7 @@
 	return
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/flavor/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/flavor/copy_to_mob(mob/living/carbon/human/character)
 	character.flavor_texts["general"]	= pref.flavor_texts["general"]
 	character.flavor_texts["head"]		= pref.flavor_texts["head"]
 	character.flavor_texts["face"]		= pref.flavor_texts["face"]
@@ -81,7 +81,7 @@
 				log_admin("[user]/[user.ckey] set their custom link to [pref.custom_link]")
 
 // README: This must stay for SetFlavorText to work!
-/datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/general/flavor/OnTopic(href,list/href_list, mob/user)
 	if(href_list["flavor_text"])
 		switch(href_list["flavor_text"])
 			if("open")

@@ -6,6 +6,7 @@ import {
   Input,
   LabeledList,
   Section,
+  Stack,
   Table,
   Tabs,
 } from 'tgui-core/components';
@@ -46,24 +47,32 @@ export const AccountsTerminal = (props) => {
 
   return (
     <Window width={400} height={640}>
-      <Window.Content scrollable>
-        <Section>
-          <LabeledList>
-            <LabeledList.Item label="Machine" color="average">
-              {machine_id}
-            </LabeledList.Item>
-            <LabeledList.Item label="ID">
-              <Button
-                icon={id_inserted ? 'eject' : 'sign-in-alt'}
-                fluid
-                onClick={() => act('insert_card')}
-              >
-                {id_card}
-              </Button>
-            </LabeledList.Item>
-          </LabeledList>
-        </Section>
-        {access_level > 0 && <AccountTerminalContent />}
+      <Window.Content>
+        <Stack fill vertical>
+          <Stack.Item>
+            <Section>
+              <LabeledList>
+                <LabeledList.Item label="Machine" color="average">
+                  {machine_id}
+                </LabeledList.Item>
+                <LabeledList.Item label="ID">
+                  <Button
+                    icon={id_inserted ? 'eject' : 'sign-in-alt'}
+                    fluid
+                    onClick={() => act('insert_card')}
+                  >
+                    {id_card}
+                  </Button>
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Stack.Item>
+          {access_level > 0 && (
+            <Stack.Item grow>
+              <AccountTerminalContent />
+            </Stack.Item>
+          )}
+        </Stack>
       </Window.Content>
     </Window>
   );
@@ -75,32 +84,38 @@ const AccountTerminalContent = (props) => {
   const { creating_new_account, detailed_account_view } = data;
 
   return (
-    <Section title="Menu">
-      <Tabs>
-        <Tabs.Tab
-          selected={!creating_new_account && !detailed_account_view}
-          icon="home"
-          onClick={() => act('view_accounts_list')}
-        >
-          Home
-        </Tabs.Tab>
-        <Tabs.Tab
-          selected={!!creating_new_account}
-          icon="cog"
-          onClick={() => act('create_account')}
-        >
-          New Account
-        </Tabs.Tab>
-        {!creating_new_account ? (
-          <Tabs.Tab icon="print" onClick={() => act('print')}>
-            Print
-          </Tabs.Tab>
-        ) : (
-          ''
-        )}
-      </Tabs>
-      {(creating_new_account && <NewAccountView />) ||
-        (detailed_account_view && <DetailedView />) || <ListView />}
+    <Section fill title="Menu">
+      <Stack vertical fill>
+        <Stack.Item>
+          <Tabs>
+            <Tabs.Tab
+              selected={!creating_new_account && !detailed_account_view}
+              icon="home"
+              onClick={() => act('view_accounts_list')}
+            >
+              Home
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={!!creating_new_account}
+              icon="cog"
+              onClick={() => act('create_account')}
+            >
+              New Account
+            </Tabs.Tab>
+            {!creating_new_account ? (
+              <Tabs.Tab icon="print" onClick={() => act('print')}>
+                Print
+              </Tabs.Tab>
+            ) : (
+              ''
+            )}
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item grow>
+          {(creating_new_account && <NewAccountView />) ||
+            (detailed_account_view && <DetailedView />) || <ListView />}
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };
@@ -112,7 +127,7 @@ const NewAccountView = (props) => {
   const [newMoney, setMoney] = useSharedState('money', '');
 
   return (
-    <Section title="Create Account">
+    <Section fill scrollable title="Create Account">
       <LabeledList>
         <LabeledList.Item label="Account Holder">
           <Input value={holder} fluid onChange={(val) => setHolder(val)} />
@@ -154,6 +169,8 @@ const DetailedView = (props) => {
 
   return (
     <Section
+      fill
+      scrollable
       title="Account Details"
       buttons={
         <Button
@@ -234,11 +251,12 @@ const ListView = (props) => {
   const { accounts } = data;
 
   return (
-    <Section title="NanoTrasen Accounts">
+    <Section fill scrollable title="NanoTrasen Accounts">
       {(accounts.length && (
         <LabeledList>
           {accounts.map((acc) => (
             <LabeledList.Item
+              labelWrap
               label={acc.owner_name + acc.suspended}
               color={acc.suspended ? 'bad' : undefined}
               key={acc.account_index}

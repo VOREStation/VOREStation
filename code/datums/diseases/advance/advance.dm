@@ -88,6 +88,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		if(resistance && !(id in affected_mob.GetResistances()))
 			affected_mob.GetResistances()[id] = id
 		remove_virus()
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ADV_DISEASE_CURED, id)
 	qdel(src)
 
 /datum/disease/advance/Copy()
@@ -552,7 +553,7 @@ ADMIN_VERB(AdminCreateVirus, R_SPAWN|R_EVENT, "Create Advanced Virus", "Create a
 /*
 *	Generates a random name for a disease, depending on where it comes from
 */
-/datum/disease/advance/proc/random_disease_name(var/atom/diseasesource)
+/datum/disease/advance/proc/random_disease_name(atom/diseasesource)
 
 	if(length(symptoms) == 1)
 		var/datum/symptom/main_symptom = symptoms[1]

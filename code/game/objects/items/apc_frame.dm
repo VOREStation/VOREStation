@@ -7,7 +7,7 @@
 	icon_state = "apc_frame"
 	refund_amt = 2
 	build_wall_only = TRUE
-	matter = list(MAT_STEEL = 100, MAT_GLASS = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.015))
 
 /obj/item/frame/apc/try_build(turf/on_wall, mob/user as mob)
 	if (get_dist(on_wall, user)>1)

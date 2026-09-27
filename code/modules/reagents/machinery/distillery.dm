@@ -246,7 +246,7 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/use_power(var/amount, var/chan = -1)
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/use_power(amount, chan = -1)
 	last_power_draw = amount
 	if(use_cell && cell && cell.charge)
 		var/cellcharge = cell.charge

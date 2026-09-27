@@ -83,7 +83,7 @@
 		occupant_message(message)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/material/P)
+/obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(obj/item/stack/material/P)
 	if(P.type == fuel.type && P.get_amount())
 		var/to_load = max(max_fuel - fuel.get_amount()*fuel.perunit,0)
 		if(to_load)

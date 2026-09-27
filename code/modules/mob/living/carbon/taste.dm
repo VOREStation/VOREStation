@@ -1,4 +1,4 @@
-/mob/living/carbon/proc/ingest(var/datum/reagents/from, var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
+/mob/living/carbon/proc/ingest(datum/reagents/from, datum/reagents/target, amount = 1, multiplier = 1, copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
 	/* Synths should be able to taste because... reasons
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -38,7 +38,7 @@ calculate text size per text.
 		for(var/datum/reagent/R in reagent_list)
 			if(!R.taste_mult)
 				continue
-			if(R.id == REAGENT_ID_NUTRIMENT) //this is ugly but apparently only nutriment (not subtypes) has taste data TODO figure out why
+			if(R.id == REAGENT_ID_NUTRIMENT || R.id == REAGENT_ID_NUTRIPASTE) //this is ugly but apparently only nutriment (not subtypes) has taste data TODO figure out why
 				var/list/taste_data = R.get_data()
 				for(var/taste in taste_data)
 					if(taste in tastes)

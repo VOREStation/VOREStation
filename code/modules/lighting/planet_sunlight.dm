@@ -25,7 +25,7 @@
 	var/atom/movable/sun_vis_simple/vis_shade
 	var/list/shandlers = list()
 
-/datum/planet_sunlight_handler/New(var/planet)
+/datum/planet_sunlight_handler/New(planet)
 	. = ..()
 	var/datum/planet/P = planet
 	var/datum/simple_sun/S = planet
@@ -119,7 +119,7 @@
 /datum/simple_sun/planetary
 	var/datum/sun_holder/sun
 
-/datum/simple_sun/planetary/New(var/datum/planet/planet)
+/datum/simple_sun/planetary/New(datum/planet/planet)
 	sun = planet.sun_holder
 
 /datum/simple_sun/planetary/update()

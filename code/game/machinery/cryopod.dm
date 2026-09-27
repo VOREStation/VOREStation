@@ -356,7 +356,7 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/robot/despawn_occupant(var/mob/to_despawn)
+/obj/machinery/cryopod/robot/despawn_occupant(mob/to_despawn)
 	var/mob/living/silicon/robot/R = to_despawn
 	if(!istype(R)) return ..()
 
@@ -378,7 +378,7 @@
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
-/obj/machinery/cryopod/proc/despawn_occupant(var/mob/to_despawn)
+/obj/machinery/cryopod/proc/despawn_occupant(mob/to_despawn)
 	//Recursively despawn mobs
 	for(var/mob/M in to_despawn)
 		despawn_occupant(M)
@@ -559,7 +559,7 @@
 	qdel(to_despawn)
 	set_occupant(null)
 
-/obj/machinery/cryopod/attackby(var/obj/item/G as obj, var/mob/user as mob)
+/obj/machinery/cryopod/attackby(obj/item/G as obj, mob/user as mob)
 
 	if(istype(G, /obj/item/grab))
 
@@ -656,12 +656,12 @@
 	for(var/obj/machinery/gateway/G in range(1,src))
 		G.icon_state = "on"
 
-/obj/machinery/cryopod/robot/door/gateway/go_out(var/skip_move = FALSE)
+/obj/machinery/cryopod/robot/door/gateway/go_out(skip_move = FALSE)
 	..(skip_move)
 	for(var/obj/machinery/gateway/G in range(1,src))
 		G.icon_state = "off"
 
-/obj/machinery/cryopod/proc/go_out(var/skip_move = FALSE)
+/obj/machinery/cryopod/proc/go_out(skip_move = FALSE)
 
 	if(!occupant)
 		return
@@ -677,18 +677,18 @@
 
 	return
 
-/obj/machinery/cryopod/proc/set_occupant(var/new_occupant)
+/obj/machinery/cryopod/proc/set_occupant(new_occupant)
 	occupant = new_occupant
 	name = initial(name)
 	if(occupant)
 		name = "[name] ([occupant])"
 
-/obj/machinery/cryopod/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/cryopod/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user))
 		return
 	go_in(target, user)
 
-/obj/machinery/cryopod/proc/go_in(var/mob/M, var/mob/user)
+/obj/machinery/cryopod/proc/go_in(mob/M, mob/user)
 	if(!check_occupant_allowed(M))
 		return
 	if(!M)

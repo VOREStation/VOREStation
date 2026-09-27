@@ -25,7 +25,7 @@
 
 	var/list/active_beams = list()
 
-/datum/blob_type/ectoplasmic_horror/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/ectoplasmic_horror/on_pulse(obj/structure/blob/B)
 	if(B.type == /obj/structure/blob && (locate(/obj/structure/blob/node) in oview(2, get_turf(B))))
 		B.visible_message(span_alien("The [name] quakes, before hardening."))
 		new/obj/structure/blob/shield(get_turf(B), B.overmind)
@@ -58,7 +58,7 @@
 							if(!QDELETED(drain_beam))
 								qdel(drain_beam)
 
-/datum/blob_type/ectoplasmic_horror/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+/datum/blob_type/ectoplasmic_horror/on_received_damage(obj/structure/blob/B, damage, damage_type)
 	if(prob(round(damage * 0.5)))
 		B.visible_message(span_alien("\The [B] shimmers, distorting through some unseen dimension."))
 		var/initial_alpha = B.alpha

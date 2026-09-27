@@ -17,7 +17,7 @@
 
 	reagent_type = REAGENT_ID_WATER
 
-/turf/simulated/floor/water/underwater/return_air_for_internal_lifeform(var/mob/living/L)
+/turf/simulated/floor/water/underwater/return_air_for_internal_lifeform(mob/living/L)
 	if(L.can_breathe_water()) // For squid.
 		var/datum/gas_mixture/water_breath = new()
 		var/datum/gas_mixture/above_air = return_air()

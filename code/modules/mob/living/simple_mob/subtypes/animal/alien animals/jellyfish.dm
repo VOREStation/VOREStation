@@ -109,7 +109,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	B.escapechance = 15
 
 
-/mob/living/simple_mob/vore/alienanimals/space_jellyfish/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		var/leech = rand(1,100)
@@ -151,7 +151,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 		adjust_nutrition(-400)
 		reproduction_cooldown = 60
 
-/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Process_Spacemove(check_drift = 0)
 	return TRUE
 
 /datum/ai_holder/simple_mob/melee/evasive/jellyfish

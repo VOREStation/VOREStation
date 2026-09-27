@@ -467,7 +467,7 @@
 
 /datum/ai_holder/simple_mob/melee/evasive/zorgoia
 
-/datum/ai_holder/simple_mob/melee/evasive/zorgoia/New(var/mob/living/simple_mob/vore/zorgoia/new_holder)
+/datum/ai_holder/simple_mob/melee/evasive/zorgoia/New(mob/living/simple_mob/vore/zorgoia/new_holder)
 	.=..()
 	if(new_holder.tamed)
 		hostile = FALSE

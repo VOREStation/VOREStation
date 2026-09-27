@@ -57,7 +57,7 @@
 		showcase.layer = src.layer - 0.1
 		underlays += showcase
 
-/obj/structure/vehiclecage/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/structure/vehiclecage/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(user && (user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C)))
 		return
 
@@ -70,7 +70,7 @@
 	if(!my_vehicle)
 		load_vehicle(V, user)
 
-/obj/structure/vehiclecage/proc/load_vehicle(var/obj/vehicle/V, mob/user as mob)
+/obj/structure/vehiclecage/proc/load_vehicle(obj/vehicle/V, mob/user as mob)
 	if(user)
 		user.visible_message(span_notice("[user] loads \the [V] into \the [src]."), \
 								span_notice("You load \the [V] into \the [src]."), \

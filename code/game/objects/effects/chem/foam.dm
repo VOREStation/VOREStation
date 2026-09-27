@@ -17,7 +17,7 @@
 	var/dries = 1 //VOREStation Add
 	var/slips = 0 //VOREStation Add
 
-/obj/effect/effect/foam/Initialize(mapload, var/ismetal = 0)
+/obj/effect/effect/foam/Initialize(mapload, ismetal = 0)
 	. = ..()
 	//icon_state = "[ismetal? "m" : ""]foam" //VOREStation Removal
 	metal = ismetal
@@ -80,7 +80,7 @@
 		spawn(5)
 			qdel(src)
 
-/obj/effect/effect/foam/Crossed(var/atom/movable/AM)
+/obj/effect/effect/foam/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal())
 		return
 	if(metal)
@@ -94,7 +94,7 @@
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/metal = 0				// 0 = foam, 1 = metalfoam, 2 = ironfoam
 
-/datum/effect/effect/system/foam_spread/set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
+/datum/effect/effect/system/foam_spread/set_up(amt=5, loca, datum/reagents/carry = null, metalfoam = 0)
 	amount = round(sqrt(amt / 3), 1)
 	if(istype(loca, /turf/))
 		location = loca
@@ -160,13 +160,13 @@
 /obj/structure/foamedmetal/ex_act(severity)
 	qdel(src)
 
-/obj/structure/foamedmetal/bullet_act(var/obj/item/projectile/P)
+/obj/structure/foamedmetal/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/test))
 		return
 	else if(metal == 1 || prob(50))
 		qdel(src)
 
-/obj/structure/foamedmetal/attack_hand(var/mob/user)
+/obj/structure/foamedmetal/attack_hand(mob/user)
 	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
 		user.visible_message(span_warning("[user] smashes through the foamed metal."), span_notice("You smash through the metal foam wall."))
 		qdel(src)
@@ -174,7 +174,7 @@
 		to_chat(user, span_notice("You hit the metal foam but bounce off it."))
 	return
 
-/obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/foamedmetal/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		G.affecting.loc = src.loc

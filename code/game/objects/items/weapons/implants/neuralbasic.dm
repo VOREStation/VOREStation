@@ -6,7 +6,7 @@
 	var/target_state = null
 	var/robotic_brain = FALSE
 
-/obj/item/implant/neural/post_implant(var/mob/source)
+/obj/item/implant/neural/post_implant(mob/source)
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
 		if(H.species.has_organ[O_BRAIN])

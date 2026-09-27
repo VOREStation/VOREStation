@@ -14,7 +14,7 @@
 	throw_range = 4
 	actions_types = list(/datum/action/item_action/toggle_heatsink)
 
-	matter = list(MAT_STEEL = 15000, MAT_GLASS = 3500)
+	matter = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_GLASS = MATERIAL_COST(1.75))
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
@@ -116,7 +116,7 @@
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/suit_cooling_unit/proc/turn_off(var/failed)
+/obj/item/suit_cooling_unit/proc/turn_off(failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
 	STOP_PROCESSING(SSobj, src)
@@ -142,7 +142,7 @@
 
 	toggle(user)
 
-/obj/item/suit_cooling_unit/proc/toggle(var/mob/user)
+/obj/item/suit_cooling_unit/proc/toggle(mob/user)
 	if(on)
 		turn_off()
 	else

@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M as mob in view(1)) // Allows the user to lick themselves. Given how rarely this trait is used, I don't see an issue with a slight buff.
+/mob/living/carbon/human/proc/lick_wounds(mob/living/carbon/M as mob in view(1)) // Allows the user to lick themselves. Given how rarely this trait is used, I don't see an issue with a slight buff.
 	set name = "Lick Wounds"
 	set category = "Abilities.General"
 	set desc = "Disinfect and heal small wounds with your saliva."

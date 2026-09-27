@@ -6,7 +6,7 @@
 	item_state = "pen"
 	var/pointer_icon_state
 	slot_flags = SLOT_BELT
-	matter = list(MAT_GLASS = 500, MAT_STEEL = 500)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.25), MAT_STEEL = MATERIAL_COST(0.25))
 	w_class = ITEMSIZE_SMALL //Increased to 2, because diodes are w_class 2. Conservation of matter.
 	var/turf/pointer_loc
 	var/energy = 8
@@ -30,7 +30,7 @@
 /obj/item/laser_pointer/purple
 	pointer_icon_state = "purple_laser"
 
-/obj/item/laser_pointer/Initialize(mapload, var/laser_path)
+/obj/item/laser_pointer/Initialize(mapload, laser_path)
 	. = ..()
 	if(ispath(laser_path))
 		diode = new laser_path
@@ -68,12 +68,12 @@
 		..()
 	return
 
-/obj/item/laser_pointer/afterattack(var/atom/target, var/mob/living/user, flag, params)
+/obj/item/laser_pointer/afterattack(atom/target, mob/living/user, flag, params)
 	if(flag)	//we're placing the object on a table or in backpack
 		return
 	laser_act(target, user)
 
-/obj/item/laser_pointer/proc/laser_act(var/atom/target, var/mob/living/user)
+/obj/item/laser_pointer/proc/laser_act(atom/target, mob/living/user)
 	if(!(user in (viewers(world.view,target))))
 		return
 	if(!(target in view(user, world.view)))

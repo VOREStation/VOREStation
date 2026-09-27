@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(floor_decals)
 	layer = DECAL_LAYER
 	var/supplied_dir
 
-/obj/effect/floor_decal/Initialize(mapload, var/newdir, var/newcolour)
+/obj/effect/floor_decal/Initialize(mapload, newdir, newcolour)
 	supplied_dir = newdir
 	if(newcolour)
 		color = newcolour
@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(floor_decals)
 	I.alpha = alpha
 	return I
 
-/obj/effect/floor_decal/proc/get_cache_key(var/turf/T)
+/obj/effect/floor_decal/proc/get_cache_key(turf/T)
 	return "[alpha]-[color]-[dir]-[icon_state]-[T.layer]"
 
 /obj/effect/floor_decal/reset

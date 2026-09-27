@@ -73,14 +73,14 @@
 /obj/effect/accelerated_particle/singularity_act()
 	return
 
-/obj/effect/accelerated_particle/proc/toxmob(var/mob/living/M)
+/obj/effect/accelerated_particle/proc/toxmob(mob/living/M)
 	var/radiation = (energy*2)
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
 	//to_chat(M, span_warning("You feel odd."))
 
 
-/obj/effect/accelerated_particle/proc/move(var/lag)
+/obj/effect/accelerated_particle/proc/move(lag)
 	if(target)
 		if(movetotarget)
 			if(!step_towards(src,target))

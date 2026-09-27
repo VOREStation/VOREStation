@@ -56,7 +56,7 @@
 		var/confirm = tgui_alert(user, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
 		if(confirm == "Yes")
 			//rip guest pass </3
-			user.visible_message(span_infoplain(span_bold("\The [user]") + "deactivates \the [src]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " deactivates \the [src]."))
 			icon_state = "guest-invalid"
 			update_icon()
 			expiration_time = world.time
@@ -132,7 +132,7 @@
 		return
 	..()
 
-/obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/guestpass/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/computer/guestpass/verb/eject_id()
@@ -155,7 +155,7 @@
 		to_chat(usr, span_warning("There is nothing to remove from the console."))
 	return
 
-/obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/guestpass/attack_hand(mob/user as mob)
 	if(..())
 		return
 

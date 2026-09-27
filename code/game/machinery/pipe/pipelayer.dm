@@ -74,7 +74,7 @@
 	user.visible_message(span_notice("[user] has [!on?"de":""]activated \the [src]."), span_notice("You [!on?"de":""]activate \the [src]."))
 	return
 
-/obj/machinery/pipelayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/pipelayer/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -122,7 +122,7 @@
 	on = 0
 	return
 
-/obj/machinery/pipelayer/proc/load_metal(var/obj/item/stack/MM)
+/obj/machinery/pipelayer/proc/load_metal(obj/item/stack/MM)
 	if(istype(MM) && MM.get_amount())
 		var/cur_amount = metal
 		var/to_load = max(max_metal - round(cur_amount),0)
@@ -151,14 +151,14 @@
 		amount_ejected += S.get_amount()
 	return amount_ejected
 
-/obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
+/obj/machinery/pipelayer/proc/dismantleFloor(turf/new_turf)
 	if(istype(new_turf, /turf/simulated/floor))
 		var/turf/simulated/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()
 
-/obj/machinery/pipelayer/proc/layPipe(var/turf/w_turf,var/M_Dir,var/old_dir)
+/obj/machinery/pipelayer/proc/layPipe(turf/w_turf,M_Dir,old_dir)
 	if(!on || !(M_Dir in list(NORTH, SOUTH, EAST, WEST)) || M_Dir==old_dir)
 		return reset()
 	if(!use_metal(pipe_cost))

@@ -11,11 +11,11 @@
 	name = T_BOARD("supply ordering console")
 	build_path = /obj/machinery/computer/supplycomp/control
 
-/obj/item/circuitboard/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
+/obj/item/circuitboard/supplycomp/construct(obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		SC.can_order_contraband = contraband_enabled
 
-/obj/item/circuitboard/supplycomp/atom_deconstruct(disassembled = TRUE, var/obj/machinery/computer/supplycomp/SC)
+/obj/item/circuitboard/supplycomp/atom_deconstruct(disassembled = TRUE, obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		contraband_enabled = SC.can_order_contraband
 

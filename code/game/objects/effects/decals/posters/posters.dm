@@ -1,5 +1,5 @@
 /// Returns a randomly picked poster decl of the subtype specified by the path argument. If the exact argument is true, it will return the decl from the decls_repository of the exact path specified.
-/proc/get_poster_decl(var/path = null, var/exact = TRUE, var/forbid_types)
+/proc/get_poster_decl(path = null, exact = TRUE, forbid_types)
 	if(ispath(path))
 		if(exact)
 			return GLOB.decls_repository.get_decl(path)
@@ -43,7 +43,7 @@
 	return poster_decl
 
 //Places the poster on a wall
-/obj/item/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/poster/afterattack(atom/A, mob/user, adjacent, clickparams)
 	if(!adjacent)
 		return FALSE
 
@@ -99,7 +99,7 @@
 	VAR_PROTECTED/roll_type = /obj/item/poster
 	VAR_PRIVATE/ruined = FALSE
 
-/obj/structure/sign/poster/Initialize(mapload, var/placement_dir = null, var/obj/item/poster/P = null)
+/obj/structure/sign/poster/Initialize(mapload, placement_dir = null, obj/item/poster/P = null)
 	. = ..()
 
 	if(ispath(poster_decl))

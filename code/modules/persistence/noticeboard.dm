@@ -24,14 +24,14 @@
 
 	update_icon()
 
-/obj/structure/noticeboard/proc/add_paper(var/atom/movable/paper, var/skip_icon_update)
+/obj/structure/noticeboard/proc/add_paper(atom/movable/paper, skip_icon_update)
 	if(istype(paper))
 		LAZYDISTINCTADD(notices, paper)
 		paper.forceMove(src)
 		if(!skip_icon_update)
 			update_icon()
 
-/obj/structure/noticeboard/proc/remove_paper(var/atom/movable/paper, var/skip_icon_update)
+/obj/structure/noticeboard/proc/remove_paper(atom/movable/paper, skip_icon_update)
 	if(istype(paper) && paper.loc == src)
 		paper.dropInto(loc)
 		LAZYREMOVE(notices, paper)
@@ -97,10 +97,10 @@
 		return
 	return ..()
 
-/obj/structure/noticeboard/attack_ai(var/mob/user)
+/obj/structure/noticeboard/attack_ai(mob/user)
 	examine(user)
 
-/obj/structure/noticeboard/attack_hand(var/mob/user)
+/obj/structure/noticeboard/attack_hand(mob/user)
 	examine(user)
 
 /obj/structure/noticeboard/examine(mob/user)

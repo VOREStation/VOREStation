@@ -582,7 +582,7 @@
 	result_amount = 1
 	var/sheet_to_give = /obj/item/stack/material/iron
 
-/datum/decl/chemical_reaction/instant/solidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/solidification/on_reaction(datum/reagents/holder, created_volume)
 	var/sheets = FLOOR(created_volume,1)
 	if(sheets)
 		new sheet_to_give(get_turf(holder.my_atom), sheets)
@@ -652,7 +652,7 @@
 	required_reagents = list(REAGENT_ID_PACID = 1, REAGENT_ID_PLASTICIDE = 2)
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/plastication/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/plastication/on_reaction(datum/reagents/holder, created_volume)
 	var/sheets = FLOOR(created_volume,1)
 	if(sheets)
 		new /obj/item/stack/material/plastic(get_turf(holder.my_atom), sheets)
@@ -664,7 +664,7 @@
 	required_reagents = list(REAGENT_ID_COOKINGOIL = 10, REAGENT_ID_LYE = 2)
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/soapification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/soapification/on_reaction(datum/reagents/holder, created_volume)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/soap(get_turf(holder.my_atom))
 
@@ -692,7 +692,7 @@
 	result_amount = 2
 	var/carpet_type = /obj/item/stack/tile/carpet
 
-/datum/decl/chemical_reaction/instant/carpetify/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/carpetify/on_reaction(datum/reagents/holder, created_volume)
 	var/sheets = FLOOR(created_volume,1)
 	if(sheets)
 		new carpet_type(get_turf(holder.my_atom), sheets)
@@ -745,7 +745,7 @@
 	required_reagents = list(REAGENT_ID_CALCIUM = 2, REAGENT_ID_SILICATE = 2, REAGENT_ID_WATER = 2)
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/concrete/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/concrete/on_reaction(datum/reagents/holder, created_volume)
 	var/sheets = FLOOR(created_volume,1)
 	if(sheets)
 		new /obj/item/stack/material/concrete(get_turf(holder.my_atom), sheets)
@@ -760,7 +760,7 @@
 	result_amount = 2
 	mix_message = null
 
-/datum/decl/chemical_reaction/instant/explosion_potassium/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/explosion_potassium/on_reaction(datum/reagents/holder, created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/10, 1), holder.my_atom, 0, 0)
 	if(isliving(holder.my_atom))
@@ -783,7 +783,7 @@
 	required_reagents = list(REAGENT_ID_ALUMINIUM = 1, REAGENT_ID_POTASSIUM = 1, REAGENT_ID_SULFUR = 1 )
 	result_amount = null
 
-/datum/decl/chemical_reaction/instant/flash_powder/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, 1, location)
@@ -815,7 +815,7 @@
 	required_reagents = list(REAGENT_ID_URANIUM = 1, REAGENT_ID_IRON = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
-/datum/decl/chemical_reaction/instant/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
 	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
@@ -836,7 +836,7 @@
 
 #ifndef UNIT_TESTS
 // If it becomes possible to make this without exploding and clearing reagents, remove the UNIT_TESTS wrapper
-/datum/decl/chemical_reaction/instant/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
 	if(isliving(holder.my_atom))
@@ -859,7 +859,7 @@
 	required_reagents = list(REAGENT_ID_ALUMINIUM = 1, REAGENT_ID_PHORON = 1, REAGENT_ID_SACID = 1 )
 	result_amount = 1
 
-/datum/decl/chemical_reaction/instant/napalm/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/napalm/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = get_turf(holder.my_atom.loc)
 	for(var/turf/simulated/floor/target_tile in range(0,location))
 		target_tile.assume_gas(GAS_VOLATILE_FUEL, created_volume, 400+T0C)
@@ -874,7 +874,7 @@
 	required_reagents = list(REAGENT_ID_POTASSIUM = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHOSPHORUS = 1)
 	result_amount = 0.4
 
-/datum/decl/chemical_reaction/instant/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
 	S.attach(location)
@@ -896,7 +896,7 @@
 	result_amount = 2
 	mix_message = "The solution violently bubbles!"
 
-/datum/decl/chemical_reaction/instant/foam/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/foam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
@@ -918,7 +918,7 @@
 	required_reagents = list(REAGENT_ID_ALUMINIUM = 3, REAGENT_ID_FOAMINGAGENT = 1, REAGENT_ID_PACID = 1)
 	result_amount = 5
 
-/datum/decl/chemical_reaction/instant/metalfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/metalfoam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
@@ -936,7 +936,7 @@
 	required_reagents = list(REAGENT_ID_IRON = 3, REAGENT_ID_FOAMINGAGENT = 1, REAGENT_ID_PACID = 1)
 	result_amount = 5
 
-/datum/decl/chemical_reaction/instant/ironfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/decl/chemical_reaction/instant/ironfoam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
@@ -1036,7 +1036,7 @@
 	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BLOOD = 2)
 	result_amount = 5
 
-/datum/decl/chemical_reaction/instant/blood_paint/send_data(var/datum/reagents/T)
+/datum/decl/chemical_reaction/instant/blood_paint/send_data(datum/reagents/T)
 	var/t = T.get_data(REAGENT_ID_BLOOD)
 	if(t && t["blood_colour"])
 		return t["blood_colour"]

@@ -131,7 +131,7 @@
 		if(species.emp_sensitivity & EMP_OXY_DMG)
 			src.adjustOxyLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null, stun = 1)
 	if(SEND_SIGNAL(src, COMSIG_BEING_ELECTROCUTED, shock_damage, source, siemens_coeff, def_zone, stun) & COMPONENT_CARBON_CANCEL_ELECTROCUTE)
 		return 0	// Cancelled by a component
 	if(def_zone == BP_L_HAND || def_zone == BP_R_HAND) //Diona (And any other potential plant people) hands don't get shocked.
@@ -163,13 +163,13 @@
 	if(stun)
 		switch(shock_damage)
 			if(16 to 20)
-				Stun(2)
-			if(21 to 25)
 				Weaken(2)
+			if(21 to 25)
+				Stun(2)
 			if(26 to 30)
-				Weaken(5)
+				Stun(5)
 			if(31 to INFINITY)
-				Weaken(10) //This should work for now, more is really silly and makes you lay there forever
+				Stun(10) //This should work for now, more is really silly and makes you lay there forever
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)
@@ -230,10 +230,15 @@
 					status += "burning and feels like it's on fire"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
+				var/has_critical_wound = FALSE
 				if(LAZYLEN(org.wounds))
 					for(var/datum/wound/W in org.wounds)
 						if(W.internal)
 							status += "[can_feel_pain(org) ? "hurting and " : ""]showing a slowly growing bruise"
+						else if(W.can_autoheal() && W.wound_damage() >= WOUND_CRITICAL_HEAL_LIMIT)
+							has_critical_wound = TRUE
+				if(has_critical_wound)
+					status += "insufficiently treated"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)
@@ -294,8 +299,9 @@
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
 						src.ignite_mob()
-					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
-					update_canmove()
+					M.resting = !M.resting
+					M.AdjustWeakened(-3)
+					M.update_canmove()
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
@@ -325,7 +331,7 @@
 /mob/living/carbon/proc/getDNA()
 	return dna
 
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
+/mob/living/carbon/proc/setDNA(datum/dna/newDNA)
 	dna = newDNA
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
@@ -366,7 +372,7 @@
 
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
@@ -385,6 +391,8 @@
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_THREADY)
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
+		else //Anything too high just returns thready.
+			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/Bump(atom/A)
@@ -400,7 +408,7 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+/mob/living/carbon/slip(slipped_on,stun_duration=8)
 	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
 	if(buckled)
 		return FALSE
@@ -414,13 +422,13 @@
 	Weaken(FLOOR(stun_duration/2, 1))
 	return TRUE
 
-/mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+/mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
 
-/mob/living/carbon/proc/remove_chemical_effect(var/effect, var/magnitude)
+/mob/living/carbon/proc/remove_chemical_effect(effect, magnitude)
 	if(effect in chem_effects)
 		chem_effects[effect] = magnitude ? max(0,chem_effects[effect]-magnitude) : 0
 
@@ -436,10 +444,10 @@
 
 	return species.default_language ? GLOB.all_languages[species.default_language] : GLOB.all_languages[LANGUAGE_GIBBERISH]
 
-/mob/living/carbon/proc/should_have_organ(var/organ_check)
+/mob/living/carbon/proc/should_have_organ(organ_check)
 	return 0
 
-/mob/living/carbon/can_feel_pain(var/check_organ)
+/mob/living/carbon/can_feel_pain(check_organ)
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)
@@ -539,7 +547,7 @@
 			if(src.wear_mask.wash(clean_types))
 				src.update_inv_wear_mask(0)
 
-/mob/living/carbon/proc/food_preference(var/allergen_type) //RS edit
+/mob/living/carbon/proc/food_preference(allergen_type) //RS edit
 	if(!species) // carbon/brains have no species
 		return FALSE
 

@@ -52,7 +52,7 @@
 	return
 
 
-/obj/machinery/injector_maker/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/injector_maker/attackby(obj/item/O, mob/user)
 
 	if (istype(O, /obj/item/multitool))
 		return ..()
@@ -246,7 +246,7 @@
 				update_icon()
 
 
-/obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name, var/material, mob/user)
+/obj/machinery/injector_maker/proc/make_injector(size, amount, new_name, material, mob/user)
 	if(!beaker)
 		return
 	var/amount_per_injector = null

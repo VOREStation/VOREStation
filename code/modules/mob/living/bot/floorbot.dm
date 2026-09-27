@@ -60,10 +60,10 @@
 		data["bmode"] = dir2text(targetdirection)
 	return data
 
-/mob/living/bot/floorbot/attack_hand(var/mob/user)
+/mob/living/bot/floorbot/attack_hand(mob/user)
 	tgui_interact(user)
 
-/mob/living/bot/floorbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/floorbot/emag_act(remaining_charges, mob/user)
 	. = ..()
 	if(!emagged)
 		emagged = 1
@@ -160,7 +160,7 @@
 				target = S
 				return
 
-/mob/living/bot/floorbot/confirmTarget(var/atom/A) // The fact that we do some checks twice may seem confusing but remember that the bot's settings may be toggled while it's moving and we want them to stop in that case
+/mob/living/bot/floorbot/confirmTarget(atom/A) // The fact that we do some checks twice may seem confusing but remember that the bot's settings may be toggled while it's moving and we want them to stop in that case
 	if(!..())
 		return 0
 
@@ -193,7 +193,7 @@
 	var/turf/simulated/floor/T = A
 	return (istype(T) && (T.broken || T.burnt || (improvefloors && !T.flooring)) && (get_turf(T) == loc || prob(40)))
 
-/mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/floorbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 
@@ -305,7 +305,7 @@
 	//qdel(src)
 	return ..()
 
-/mob/living/bot/floorbot/proc/addTiles(var/am)
+/mob/living/bot/floorbot/proc/addTiles(am)
 	amount += am
 	if(amount < 0)
 		amount = 0
@@ -340,7 +340,7 @@
 
 /* Assembly */
 
-/obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/living/user as mob)
+/obj/item/storage/toolbox/mechanical/attackby(obj/item/stack/tile/floor/T, mob/living/user as mob)
 	if(!istype(T, /obj/item/stack/tile/floor))
 		..()
 		return
@@ -371,7 +371,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles/attackby(obj/item/W, mob/user as mob)
 	..()
 	if(isprox(W))
 		qdel(W)
@@ -401,7 +401,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/toolbox_tiles_sensor/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles_sensor/attackby(obj/item/W, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm) || (istype(W, /obj/item/organ/external/arm) && ((W.name == "robotic right arm") || (W.name == "robotic left arm"))))
 		qdel(W)

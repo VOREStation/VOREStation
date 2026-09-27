@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(xenoarch)
 		artifact_turf.artifact_find = new()
 
 /// This is the proc that is used when a Z level runs out of artifacts. This means you have 'completed' your job and now you get bonus goodies to keep you occupied.
-/datum/controller/subsystem/xenoarch/proc/continual_generation(var/mob/living/user)
+/datum/controller/subsystem/xenoarch/proc/continual_generation(mob/living/user)
 
 	/// So, to preface this, I had to do a lot of testing with this to ensure it wouldn't cause mass lag and that it properly functioned.
 	/// At first, I tried to make it scan mineral in the user's Z. There's not really any preexisting functionality for this that I could find, so that was a negative.

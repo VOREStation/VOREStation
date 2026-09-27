@@ -16,7 +16,7 @@
 	icon_state = "boulder[rand(1,4)]"
 	excavation_level = rand(5, 50)
 
-/obj/structure/boulder/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/boulder/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/core_sampler))
 		src.geological_data.artifact_distance = rand(-100,100) / 100
 		src.geological_data.artifact_id = artifact_find.artifact_id

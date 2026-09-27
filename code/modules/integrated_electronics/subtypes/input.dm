@@ -558,7 +558,7 @@
 				message = "text"
 			exonet.send_message(target_address, message, text)
 
-/obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+/obj/item/integrated_circuit/input/receive_exonet_message(atom/origin_atom, origin_address, message, text)
 	set_pin_data(IC_OUTPUT, 1, origin_address)
 	set_pin_data(IC_OUTPUT, 2, message)
 	set_pin_data(IC_OUTPUT, 3, text)
@@ -720,7 +720,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
-/obj/item/integrated_circuit/input/sensor/proc/scan(var/atom/A)
+/obj/item/integrated_circuit/input/sensor/proc/scan(atom/A)
 	var/ignore_bags = get_pin_data(IC_INPUT, 1)
 	if(ignore_bags)
 		if(istype(A, /obj/item/storage))

@@ -53,7 +53,7 @@
 	return proximity_flag
 
 // Uses dark magic to operate the NanoUI of this computer.
-/obj/machinery/computer/power_monitor/tgui_interact(mob/user, var/datum/tgui/ui = null)
+/obj/machinery/computer/power_monitor/tgui_interact(mob/user, datum/tgui/ui = null)
 	power_monitor.tgui_interact(user, ui)
 
 // Verifies if any warnings were registered by connected sensors.

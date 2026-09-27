@@ -6,7 +6,7 @@
 	effect_state = "summoning"
 	effect_color = "#5f0000"
 
-/datum/artifact_effect/berserk/proc/apply_berserk(var/mob/living/L)
+/datum/artifact_effect/berserk/proc/apply_berserk(mob/living/L)
 	if(!isliving(L))
 		return FALSE
 
@@ -26,7 +26,7 @@
 			it quickly passes."))
 		return FALSE
 
-/datum/artifact_effect/berserk/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/berserk/DoEffectTouch(mob/toucher)
 	if(toucher && isliving(toucher))
 		apply_berserk(toucher)
 		return TRUE

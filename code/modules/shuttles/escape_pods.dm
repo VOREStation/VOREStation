@@ -99,7 +99,7 @@
 		"internalTemplateName" = "EscapePodBerthConsole",
 	)
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/emag_act(remaining_charges, mob/user)
 	if (!emagged)
 		to_chat(user, span_notice("You emag the [src], arming the escape pod!"))
 		emagged = 1

@@ -7,7 +7,7 @@ GLOBAL_DATUM_INIT(crew_repository, /datum/repository/crew, new)
 	cache_data = list()
 	..()
 
-/datum/repository/crew/proc/health_data(var/zLevel)
+/datum/repository/crew/proc/health_data(zLevel)
 	var/list/crewmembers = list()
 	if(!zLevel)
 		return crewmembers

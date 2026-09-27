@@ -124,8 +124,3 @@
 		if(above.created_name) L.name = above.created_name
 		L.attempt_connection()
 		qdel(above)
-
-// Make them constructable in hand
-/datum/material/steel/generate_recipes()
-	..()
-	recipes += new/datum/stack_recipe("ladder assembly", /obj/structure/ladder_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1)

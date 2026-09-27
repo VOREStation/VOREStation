@@ -36,7 +36,7 @@
 	else
 		icon_state = "shibari_[rope_mode]"
 
-/obj/item/clothing/suit/shibari/equipped(var/mob/living/user,var/slot)
+/obj/item/clothing/suit/shibari/equipped(mob/living/user,slot)
 	. = ..()
 	if((rope_mode == SHIBARI_ARMS) || (rope_mode == SHIBARI_BOTH))
 		if(slot == slot_wear_suit)

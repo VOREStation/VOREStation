@@ -16,7 +16,7 @@
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/stuffing_feeder = FALSE			// Can feed foods to others whole, like trash eater can eat them on their own.
-	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/expanded_trasheat = FALSE			// Allows eating anything that is not blacklisted, even if it fails criteria..
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
@@ -63,7 +63,6 @@
 		LAZYINITLIST(vore_organs)
 		var/obj/belly/B = new /obj/belly(src)
 		vore_selected = B
-		B.immutable = TRUE
 		B.name = "Stomach"
 		B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
 		B.can_taste = TRUE
@@ -271,7 +270,7 @@
 //
 //	Proc for applying vore preferences, given bellies
 //
-/mob/proc/copy_from_prefs_vr(var/bellies = TRUE, var/full_vorgans = FALSE) // full_vorgans var to bypass 1-belly load optimization.
+/mob/proc/copy_from_prefs_vr(bellies = TRUE, full_vorgans = FALSE) // full_vorgans var to bypass 1-belly load optimization.
 	if(!client || !client.prefs_vr)
 		to_chat(src,span_warning("You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev."))
 		return FALSE
@@ -287,10 +286,9 @@
 		QDEL_LIST(vore_organs)
 		for(var/entry in P.belly_prefs)
 			list_to_object(entry,src)
-		if(!vore_organs.len)
+		if(!length(vore_organs))
 			var/obj/belly/B = new /obj/belly(src)
 			vore_selected = B
-			B.immutable = TRUE
 			B.name = "Stomach"
 			B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
 			B.can_taste = TRUE
@@ -367,7 +365,7 @@
 
 	return remember_default
 
-/datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
+/datum/preferences/proc/return_to_character_slot(mob/user, remembered_default)
 	load_character(remembered_default)
 	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
@@ -375,7 +373,7 @@
 //
 // Release everything in every vore organ
 //
-/mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
+/mob/living/proc/release_vore_contents(include_absorbed = TRUE, silent = FALSE)
 	for(var/obj/belly/B as anything in vore_organs)
 		B.release_all_contents(include_absorbed, silent)
 
@@ -580,8 +578,7 @@
 	else if(iscapturecrystal(loc))
 		var/obj/item/capture_crystal/crystal = loc
 		crystal.unleash()
-		crystal.bound_mob = null
-		crystal.bound_mob = capture_crystal = 0
+		crystal.mob_was_deleted()
 		clear_fullscreen(ATOM_BELLY_FULLSCREEN)
 		log_and_message_admins("used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]", src)
 
@@ -700,7 +697,7 @@
 /obj/belly/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/belly/return_air_for_internal_lifeform(var/mob/living/lifeform)
+/obj/belly/return_air_for_internal_lifeform(mob/living/lifeform)
 	//Free air until someone wants to code processing it for reals from predbreaths
 	var/air_type = /datum/gas_mixture/belly_air
 	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
@@ -778,7 +775,7 @@
 	gas = list(
 		GAS_CH4 = 100)
 
-/mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+/mob/living/proc/feed_grabbed_to_self_falling_nom(mob/living/user, mob/living/prey)
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
@@ -836,51 +833,6 @@
 
 /mob/living/proc/get_digestion_efficiency_modifier()
 	return 1
-
-/mob/living/proc/eat_trash()
-	set name = "Eat Trash"
-	set category = "Abilities.Vore"
-	set desc = "Consume held garbage."
-
-	if(stat || is_paralyzed() || weakened || stunned || world.time < last_special)
-		to_chat(src, span_warning("You can't do that in your current state."))
-		return
-
-	if(!vore_selected)
-		to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
-		return
-
-	var/obj/item/I = get_active_hand()
-	if(!I)
-		to_chat(src, span_notice("You are not holding anything."))
-		return
-
-	if(is_type_in_list(I, GLOB.edible_trash) || adminbus_trash || is_type_in_list(I,GLOB.edible_tech) && isSynthetic()) // adds edible tech for synth
-		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
-			return
-		drop_item()
-		vore_selected.nom_atom(I)
-		updateVRPanel()
-		log_admin("VORE: [src] used Eat Trash to swallow [I].")
-		I.after_trash_eaten(src)
-		visible_message(span_vwarning(src.vore_selected.belly_format_string(src.vore_selected.trash_eater_in, I, item=I)))
-		return
-	to_chat(src, span_notice("This snack is too powerful to go down that easily."))
-	return
-
-/mob/living/proc/toggle_trash_catching() //Ported from chompstation
-	set name = "Toggle Trash Catching"
-	set category = "Abilities.Vore"
-	set desc = "Toggle Trash Eater throw vore abilities."
-	trash_catching = !trash_catching
-	to_chat(src, span_vwarning("Trash catching [trash_catching ? "enabled" : "disabled"]."))
-
-/mob/living/proc/eat_minerals() //Actual eating abstracted so the user isn't given a prompt due to an argument in this verb.
-	set name = "Eat Minerals"
-	set category = "Abilities.Vore"
-	set desc = "Consume held raw ore, gems and refined minerals. Snack time!"
-
-	handle_eat_minerals()
 
 /mob/living/proc/handle_eat_minerals(obj/item/snack, mob/living/user)
 	var/mob/living/feeder = user ? user : src //Whoever's doing the feeding - us or someone else.
@@ -1580,7 +1532,7 @@
 			if(soundfile)
 				playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises)
 
-/mob/living/proc/vore_bellyrub(var/mob/living/T in view(1,src))
+/mob/living/proc/vore_bellyrub(mob/living/T in view(1,src))
 
 	if(!T)
 		return FALSE
@@ -1610,8 +1562,8 @@
 	set name = "Restrict Trash Eater"
 	set category = "Abilities.Vore"
 	set desc = "Toggle Trash Eater restriction level."
-	adminbus_trash = !adminbus_trash
-	to_chat(src, span_vwarning("Trash Eater restriction level set to [adminbus_trash ? "everything not blacklisted" : "only whitelisted items"]."))
+	expanded_trasheat = !expanded_trasheat
+	to_chat(src, span_vwarning("Trash Eater restriction level set to [expanded_trasheat ? "everything not blacklisted" : "only whitelisted items"]."))
 
 /mob/living/proc/liquidbelly_visuals()
 	set name = "Toggle Liquidbelly Visuals"

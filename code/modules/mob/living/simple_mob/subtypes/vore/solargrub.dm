@@ -65,6 +65,9 @@ GLOBAL_VAR_INIT(moth_amount, 0)
 	allow_mind_transfer = TRUE
 	glow_override = TRUE
 
+	export_research_value = TECHWEB_TIER_1_POINTS
+	export_research_diminished_max = 6
+
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
 
@@ -131,7 +134,7 @@ GLOBAL_VAR_INIT(moth_amount, 0)
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
 
-/mob/living/simple_mob/vore/solargrub/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/solargrub/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(shock_chance))

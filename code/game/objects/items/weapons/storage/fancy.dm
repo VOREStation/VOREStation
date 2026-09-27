@@ -28,7 +28,7 @@
 	var/open_state
 	var/closed_state
 
-/obj/item/storage/fancy/update_icon(var/itemremoved = 0)
+/obj/item/storage/fancy/update_icon(itemremoved = 0)
 	var/total_contents = contents.len - itemremoved
 	icon_state = "[icon_type]box[total_contents]"
 	return
@@ -509,7 +509,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
+/obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
 	var/total_contents = contents.len - itemremoved
 	icon_state = "vialbox[total_contents]"
 	cut_overlays()
@@ -552,6 +552,6 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/fancy/heartbox/update_icon(var/itemremoved = 0)
+/obj/item/storage/fancy/heartbox/update_icon(itemremoved = 0)
 	if (contents.len == 0)
 		icon_state = "heartbox_empty"

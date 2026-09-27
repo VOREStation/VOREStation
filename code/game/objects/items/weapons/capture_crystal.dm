@@ -337,8 +337,15 @@
 	else if(!M.capture_crystal || M.capture_caught)
 		to_chat(U, span_warning("This creature is not suitable for capture."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-	else if(tgui_alert(M, "Would you like to be caught by in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
-		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No","Yes")) == "Yes")
+	//What if someone slips and tries to capture themselves?
+	else if(M == U && tgui_alert(M, "Would you like to be caught by [src]? You will be bound to the will of whomever claims ownership of the crystal.", "Become Caught",list("No","Yes")) == "Yes")
+		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No", "Yes")) == "Yes")
+			log_admin("[key_name(M)] has, by their own volition and discretion, decided to catch themselves with [src].")
+			capture(M, null)
+			return
+	//Make sure the player can opt out of getting captured
+	else if(M != U && tgui_alert(M, "Would you like to be caught in [src] by [U]? You will be bound to their will.", "Become Caught",list("No", "Yes")) == "Yes")
+		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No", "Yes")) == "Yes")
 			log_admin("[key_name(M)] has agreed to become caught by [key_name(U)].")
 			capture(M, U)
 			recall(U)
@@ -490,14 +497,14 @@
 	thing.overlays += coolanimation
 	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.1 SECOND, TIMER_DELETE_ME)
 
-/obj/item/capture_crystal/proc/animate_action_finished(atom/thing,var/image/coolanimation)
+/obj/item/capture_crystal/proc/animate_action_finished(atom/thing,image/coolanimation)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	thing.overlays -= coolanimation
 	qdel(coolanimation)
 
 //IF the crystal somehow ends up in a tummy and digesting with a bound mob who doesn't want to be eaten, let's move them to the ground
-/obj/item/capture_crystal/digest_act(var/atom/movable/item_storage = null)
+/obj/item/capture_crystal/digest_act(atom/movable/item_storage = null)
 	if(bound_mob)
 		if((bound_mob in contents) && !bound_mob.devourable)
 			bound_mob.forceMove(src.drop_location())

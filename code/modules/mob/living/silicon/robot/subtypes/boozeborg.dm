@@ -42,7 +42,7 @@
 	//src.modules += new /obj/item/storage/bag/plants(src)
 	//src.modules += new /obj/item/robot_harvester(src)
 	src.modules += new /obj/item/material/knife(src)
-	src.modules += new /obj/item/material/kitchen/rollingpin(src)
+	src.modules += new /obj/item/material/kitchen/rollingpin/cyborg(src)
 	src.modules += new /obj/item/multitool/cyborg(src) //to freeze trays
 	src.modules += new /obj/item/dogborg/jaws/small(src)
 	src.modules += new /obj/item/dogborg/boop_module(src)
@@ -100,7 +100,7 @@
 	R.wideborg = TRUE
 	add_verb(R,/mob/living/silicon/robot/proc/ex_reserve_refill) //TGPanel
 
-/obj/item/robot_module/robot/booze/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/robot/booze/respawn_consumable(mob/living/silicon/robot/R, amount)
 	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
 	E.reagents.add_reagent("enzyme", 2 * amount)
 	if(src.emag)

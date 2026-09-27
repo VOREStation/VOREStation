@@ -1,8 +1,7 @@
 import { useBackend } from 'tgui/backend';
+import { ComplexModal } from 'tgui/interfaces/common/ComplexModal';
 import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
-
-import { ComplexModal } from '../common/ComplexModal';
 import { DNAModifierIrradiating } from './DNAModifierIrradiating';
 import { DNAModifierMain } from './DNAModifierMain';
 import { DNAModifierOccupant } from './DNAModifierOccupant';

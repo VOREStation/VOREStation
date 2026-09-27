@@ -73,18 +73,18 @@
 	. = ..()
 	dir = SOUTH //we need to do this
 
-/obj/item/remote_scene_tool/voodoo_doll/proc/get_outline_color(var/r,var/g,var/b,var/a, var/offset = 30)
+/obj/item/remote_scene_tool/voodoo_doll/proc/get_outline_color(r,g,b,a, offset = 30)
 	var/new_rgba = rgb(r-offset,g-offset,b-offset,a)
 	return new_rgba
 
-/obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_matrix(var/list/data)
+/obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_matrix(list/data)
 	var/matrix/output = matrix()
 	output.Translate(data[DATA_X_OFFSET], data[DATA_Y_OFFSET])
 	output.Turn(data[DATA_ROTATION])
 	output.Scale(data[DATA_SCALE], data[DATA_SCALE])
 	return output
 
-/obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_image(var/image/input, var/matrix/newtransform, var/outline_width = 0, var/outline_color = rgb(50,50,50))
+/obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_image(image/input, matrix/newtransform, outline_width = 0, outline_color = rgb(50,50,50))
 	if(input == null)
 		return null
 

@@ -1,6 +1,6 @@
 // Handles hunger, starvation, growth, and eatting humans.
 
-/mob/living/simple_mob/slime/xenobio/adjust_nutrition(input, var/heal = 1)
+/mob/living/simple_mob/slime/xenobio/adjust_nutrition(input, heal = 1)
 	..(input)
 
 	if(input > 0)

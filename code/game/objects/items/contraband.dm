@@ -77,7 +77,7 @@
 
 /// Snorting.
 
-/obj/item/reagent_containers/powder/attackby(var/obj/item/W, var/mob/living/user)
+/obj/item/reagent_containers/powder/attackby(obj/item/W, mob/living/user)
 
 	if(!ishuman(user)) /// You gotta be fleshy to snort the naughty drugs.
 		return ..()

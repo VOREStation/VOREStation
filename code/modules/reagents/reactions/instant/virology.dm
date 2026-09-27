@@ -194,7 +194,7 @@
 	required_reagents = list(REAGENT_ID_ADRANOL = 1)
 	catalysts = list(REAGENT_ID_BLOOD = 1)
 
-/datum/decl/chemical_reaction/instant/mix_virus/rem_virus/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/mix_virus/rem_virus/on_reaction(datum/reagents/holder)
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
 	if(B && B.data)
 		var/datum/disease/advance/D = locate(/datum/disease/advance) in B.data["viruses"]
@@ -215,7 +215,7 @@
 	required_reagents = list(REAGENT_ID_IMMUNOSUPRIZINE = 1)
 	catalysts = list(REAGENT_ID_BLOOD = 1)
 
-/datum/decl/chemical_reaction/instant/neuter_virus/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/neuter_virus/on_reaction(datum/reagents/holder)
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
 	if(B && B.data)
 		var/datum/disease/advance/D = locate(/datum/disease/advance) in B.data["viruses"]
@@ -228,7 +228,7 @@
 	required_reagents = list(REAGENT_ID_SPACEACILLIN = 1)
 	catalysts = list(REAGENT_ID_BLOOD = 1)
 
-/datum/decl/chemical_reaction/instant/falter_virus/on_reaction(var/datum/reagents/holder)
+/datum/decl/chemical_reaction/instant/falter_virus/on_reaction(datum/reagents/holder)
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
 	if(B && B.data)
 		var/datum/disease/advance/D = locate(/datum/disease/advance) in B.data["viruses"]

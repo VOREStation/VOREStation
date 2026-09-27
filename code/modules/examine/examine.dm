@@ -34,7 +34,7 @@
 	return list()
 
 // Quickly adds the boilerplate code to add an image and padding for the image.
-/proc/desc_panel_image(var/icon_state)
+/proc/desc_panel_image(icon_state)
 	return "[icon2html(GLOB.description_icons[icon_state], usr)]&emsp;"
 
 /mob/living/get_description_fluff()
@@ -88,7 +88,7 @@
 	to_chat(src, final_string)
 	update_examine_panel(A)
 
-/mob/proc/embedded_info(var/atom/A)
+/mob/proc/embedded_info(atom/A)
 	. = ""
 	if(!(client?.prefs?.read_preference(/datum/preference/choiced/examine_mode) == EXAMINE_MODE_VERBOSE))
 		return
@@ -138,7 +138,7 @@
 		return TRUE
 	return FALSE
 
-/mob/proc/update_examine_panel(var/atom/A)
+/mob/proc/update_examine_panel(atom/A)
 	if(client)
 		var/is_antag = antag_check()
 		client.update_description_holders(A, is_antag)

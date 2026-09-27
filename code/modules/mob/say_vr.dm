@@ -39,7 +39,7 @@
 	else
 		emote_vr(message)
 
-/mob/proc/custom_emote_vr(var/m_type=1,var/message = null,var/mode_selection = FALSE) //This would normally go in emote.dm
+/mob/proc/custom_emote_vr(m_type=1,message = null,mode_selection = FALSE) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
 		return
@@ -220,7 +220,7 @@
 			spawn(0)
 				O.see_emote(src, message, 2)
 
-/mob/proc/emote_vr(var/act, var/type, var/message, var/mode_selection) //This would normally go in say.dm
+/mob/proc/emote_vr(act, type, message, mode_selection) //This would normally go in say.dm
 	if(act == "me")
 		return custom_emote_vr(type, message, mode_selection)
 

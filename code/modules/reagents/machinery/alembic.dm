@@ -31,7 +31,7 @@
 		icon_state = "alembic-bubble"
 	return
 
-/obj/machinery/alembic/attackby(var/obj/item/potion_material/O, var/mob/user)
+/obj/machinery/alembic/attackby(obj/item/potion_material/O, mob/user)
 	if(istype(O,/obj/item/potion_material))
 		if(potion_reagent != 0 )
 			to_chat(user, span_warning("There is already a reagent in the alembic!"))

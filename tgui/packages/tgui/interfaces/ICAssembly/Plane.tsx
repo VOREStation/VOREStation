@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend, useSharedState } from 'tgui/backend';
+import {
+  type Connection,
+  Connections,
+} from 'tgui/interfaces/common/Connections';
 // TODO: Replace when tgui-core is fixed https://github.com/tgstation/tgui-core/issues/25
 import { InfinitePlane } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
-
-import { type Connection, Connections } from '../common/Connections';
 import { CircuitComponent } from './CircuitComponent';
 import type { PortProps } from './Port';
 import {

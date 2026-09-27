@@ -62,14 +62,14 @@
 
 //Food costumes
 // Hotdog suit hood
-/obj/item/clothing/head/hood_vr/hotdog_hood
+/obj/item/clothing/head/hood/hotdog_hood
 	name = "Hotdog suit hood"
 	desc = "The hood of a hotdog suit, attached to said hotdog suit." //Honestly i just don't know how to force the costume to hide hats.
 	icon_state = "hotdog_hood"
 	flags_inv = HIDEEARS|BLOCKHAIR
 
 // Turnip suit hood
-/obj/item/clothing/head/hood_vr/turnip_hood
+/obj/item/clothing/head/hood/turnip_hood
 	name = "Turnip suit hood"
 	desc = "The hood of a hotdog suit, attached to said hotdog suit. Most cooks cut this part off and throw it in the garbage"
 	icon_state = "turnip_hood"

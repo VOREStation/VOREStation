@@ -1,5 +1,5 @@
 //todo, figure out a better place for this
-/proc/get_humanoid_displacement_map_image(var/mob/living/carbon/human/target,var/list/discarded_layer_indicies, var/icon/displacement_map, var/outlineWidth = 0, var/render_target = null)
+/proc/get_humanoid_displacement_map_image(mob/living/carbon/human/target,list/discarded_layer_indicies, icon/displacement_map, outlineWidth = 0, render_target = null)
 
 	var/list/to_overlays = target.overlays_standing.Copy()
 

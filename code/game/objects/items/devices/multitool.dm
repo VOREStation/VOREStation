@@ -18,7 +18,7 @@
 	drop_sound = 'sound/items/drop/multitool.ogg'
 	pickup_sound = 'sound/items/pickup/multitool.ogg'
 
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.01))
 
 	var/mode_index = 1
 	var/toolmode = MULTITOOL_MODE_STANDARD

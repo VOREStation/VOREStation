@@ -62,7 +62,7 @@
 			var/mob/ourmob = new M(Turf)
 			adjust_mob(ourmob)
 
-/area/proc/adjust_mob(var/mob/living/simple_mob/M)
+/area/proc/adjust_mob(mob/living/simple_mob/M)
 	if(!isanimal(M))
 		log_admin("[src] spawned [M.type], which is not a simplemob, FIXIT")
 		return

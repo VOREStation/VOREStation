@@ -259,7 +259,7 @@
 ////
 //  Blob Form
 ////
-/mob/living/carbon/human/proc/nano_blobform(var/forced)
+/mob/living/carbon/human/proc/nano_blobform(forced)
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	//set category = "Abilities.Protean"
@@ -314,7 +314,7 @@
 ////
 //	Rig Transform
 ////
-/mob/living/carbon/human/proc/nano_rig_transform(var/forced, var/devour = FALSE)
+/mob/living/carbon/human/proc/nano_rig_transform(forced, devour = FALSE)
 	set name = "Modify Form - Hardsuit"
 	set desc = "Allows a protean to retract its mass into its hardsuit module at will."
 	//set category = "Abilities.Protean"
@@ -808,14 +808,14 @@
 	return ..(locate(/obj/item/organ/internal/nano/refactory) in internal_organs)
 
 //I hate this whole bit but I want proteans to be able to "die" and still be "alive" in their blob as a suit
-/mob/living/carbon/human/proc/nano_dead_check(var/mob/living/protie)
+/mob/living/carbon/human/proc/nano_dead_check(mob/living/protie)
 	if(istype(src.species, /datum/species/protean))
 		var/datum/species/protean/S = src.species
 		if(S.pseudodead)
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/nano_set_dead(var/num)
+/mob/living/carbon/human/proc/nano_set_dead(num)
 	if(istype(src.species, /datum/species/protean))
 		var/datum/species/protean/S = src.species
 		S.pseudodead = num
@@ -831,7 +831,7 @@
 /obj/effect/protean_ability/proc/atom_button_text()
 	return src
 
-/obj/effect/protean_ability/Click(var/location, var/control, var/params)
+/obj/effect/protean_ability/Click(location, control, params)
 	var/list/clickprops = params2list(params)
 	var/opts = clickprops["shift"]
 
@@ -846,7 +846,7 @@
 			var/mob/living/simple_mob/protean_blob/blob = usr
 			do_ability(blob.humanform)
 
-/obj/effect/protean_ability/proc/do_ability(var/mob/living/L)
+/obj/effect/protean_ability/proc/do_ability(mob/living/L)
 	if(istype(L))
 		call(L,to_call)()
 	return 0

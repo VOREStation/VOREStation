@@ -57,7 +57,7 @@
 	. = ..()
 	emitter = new(src)
 
-/obj/item/gun/energy/floragun/examine(var/mob/user)
+/obj/item/gun/energy/floragun/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "It has [emitter ? emitter : "no micro laser"] installed."
@@ -181,7 +181,7 @@
 	battery_lock = 1
 	charge_meter = 0
 
-/obj/item/gun/energy/staff/special_check(var/mob/user)
+/obj/item/gun/energy/staff/special_check(mob/user)
 	if((user.mind && !GLOB.wizards.is_antagonist(user.mind)))
 		to_chat(user, span_warning("You focus your mind on \the [src], but nothing happens!"))
 		return 0
@@ -261,7 +261,7 @@
 
 	var/power_cycle = FALSE
 
-/obj/item/gun/energy/maghowitzer/proc/pick_random_target(var/turf/T)
+/obj/item/gun/energy/maghowitzer/proc/pick_random_target(turf/T)
 	var/foundmob = FALSE
 	var/foundmobs = list()
 	for(var/mob/living/L in T.contents)

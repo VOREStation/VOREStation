@@ -15,7 +15,7 @@
 	else if((GLOB.world_time_month == bday_month) && (GLOB.world_time_day > bday_day))	//your birthday was earlier this month
 		birthday()
 
-/mob/living/carbon/human/proc/birthday(var/birthday = 0)
+/mob/living/carbon/human/proc/birthday(birthday = 0)
 	var/msg
 	var/lastyear = read_preference(/datum/preference/numeric/human/last_bday_note)
 	write_preference_directly(/datum/preference/numeric/human/last_bday_note, GLOB.world_time_year, WRITE_PREF_MANUAL)	//We only want to ask once a year per character, this persists, update early in case of shenanigans

@@ -16,7 +16,7 @@ GLOBAL_DATUM_INIT(moved_event, /datum/decl/observ/moved, new)
 	name = "Moved"
 	expected_type = /atom/movable
 
-/datum/decl/observ/moved/register(var/atom/movable/mover, var/datum/listener, var/proc_call)
+/datum/decl/observ/moved/register(atom/movable/mover, datum/listener, proc_call)
 	. = ..()
 
 	// Listen to the parent if possible.
@@ -29,11 +29,11 @@ GLOBAL_DATUM_INIT(moved_event, /datum/decl/observ/moved, new)
 * Movement Handling *
 ********************/
 /*
-/atom/movable/Entered(var/atom/movable/am, atom/old_loc)
+/atom/movable/Entered(atom/movable/am, atom/old_loc)
 	. = ..()
 	am.RegisterSignal(src,COMSIG_MOVABLE_ATTEMPTED_MOVE, /atom/movable/proc/recursive_move, override = TRUE)
 
-/atom/movable/Exited(var/atom/movable/am, atom/old_loc)
+/atom/movable/Exited(atom/movable/am, atom/old_loc)
 	. = ..()
 	am.UnregisterSignal(src,COMSIG_MOVABLE_ATTEMPTED_MOVE)
 */

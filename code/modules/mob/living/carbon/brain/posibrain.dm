@@ -35,7 +35,7 @@
 			if(O.client.prefs.be_special & BE_AI)
 				question(O.client)
 
-/obj/item/mmi/digital/posibrain/proc/question(var/client/C)
+/obj/item/mmi/digital/posibrain/proc/question(client/C)
 	spawn(0)
 		if(!C)	return
 		var/response = tgui_alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", list("Yes", "No", "Never for this round"))
@@ -48,7 +48,7 @@
 			C.prefs.be_special ^= BE_AI
 
 
-/obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/posibrain/transfer_identity(mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
@@ -56,7 +56,7 @@
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/mmi/digital/posibrain/proc/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/posibrain/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a positronic brain now.")
 	src.searching = 0
 	src.brainmob.mind = candidate.mind

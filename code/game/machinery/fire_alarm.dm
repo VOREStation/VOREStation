@@ -183,7 +183,7 @@ FIRE ALARM
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
 
-/obj/machinery/firealarm/proc/alarm(var/duration = 0, mob/user)
+/obj/machinery/firealarm/proc/alarm(duration = 0, mob/user)
 	if(!(working))
 		return
 	var/area/area = get_area(src)
@@ -194,7 +194,7 @@ FIRE ALARM
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
 
-/obj/machinery/firealarm/proc/set_security_level(var/newlevel)
+/obj/machinery/firealarm/proc/set_security_level(newlevel)
 	if(seclevel != newlevel)
 		seclevel = newlevel
 		update_icon()

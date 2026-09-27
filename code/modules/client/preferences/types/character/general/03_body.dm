@@ -223,7 +223,8 @@
 	return assoc_to_keys(GLOB.tail_layer_options)
 
 /datum/preference/choiced/human/tail_layering/create_default_value()
-	return GLOB.tail_layer_options[2]
+	var/list/possible = get_choices()
+	return possible[2]
 
 /datum/preference/choiced/human/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
 	target.tail_layering = GLOB.tail_layer_options[value]

@@ -27,7 +27,7 @@
 			M.see_rift(src)
 	eat()
 
-/obj/singularity/narsie/large/exit/acquire(var/mob/food)
+/obj/singularity/narsie/large/exit/acquire(mob/food)
 	return
 
 /obj/singularity/narsie/large/exit/consume(const/atom/A)
@@ -75,7 +75,7 @@
 	//thou shall always be able to see the rift
 	var/image/riftimage = null
 
-/mob/proc/see_rift(var/obj/singularity/narsie/large/exit/R)
+/mob/proc/see_rift(obj/singularity/narsie/large/exit/R)
 	var/turf/T_mob = get_turf(src)
 	if((R.z == T_mob.z) && (get_dist(R,T_mob) <= (R.consume_range+10)) && !(R in view(T_mob)))
 		if(!riftimage)

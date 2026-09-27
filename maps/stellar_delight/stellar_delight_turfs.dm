@@ -1,4 +1,4 @@
-/turf/simulated/mineral/virgo2/make_ore(var/rare_ore)					// Override V2 ore generation
+/turf/simulated/mineral/virgo2/make_ore(rare_ore)					// Override V2 ore generation
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name

@@ -1,4 +1,4 @@
-/proc/get_newspaper_header(newspaper, var/list/subjects, bgcolor)
+/proc/get_newspaper_header(newspaper, list/subjects, bgcolor)
 
 	var/dat
 

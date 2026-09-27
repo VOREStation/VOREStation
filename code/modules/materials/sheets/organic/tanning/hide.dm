@@ -10,7 +10,7 @@
 	stacktype = "hide"
 	no_variants = TRUE
 // This needs to be very clearly documented for players. Whether it should stay in the main description is up for debate.
-/obj/item/stack/animalhide/examine(var/mob/user)
+/obj/item/stack/animalhide/examine(mob/user)
 	. = ..()
 	. += description_info
 

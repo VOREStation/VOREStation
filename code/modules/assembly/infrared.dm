@@ -4,7 +4,7 @@
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
-	matter = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.25))
 
 	wires = WIRE_PULSE
 
@@ -32,7 +32,7 @@
 	update_icon()
 	return secured
 
-/obj/item/assembly/infra/proc/toggle_state(var/picked)
+/obj/item/assembly/infra/proc/toggle_state(picked)
 	if(!isnull(picked))
 		on = picked
 	else
@@ -63,7 +63,7 @@
 	if(!i_beams && secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))
 		create_beams()
 
-/obj/item/assembly/infra/proc/create_beams(var/limit = 8)
+/obj/item/assembly/infra/proc/create_beams(limit = 8)
 	var/current_spot = get_turf(src)
 	for(var/i = 1 to limit)
 		var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(current_spot)
@@ -170,7 +170,7 @@
 /obj/effect/beam/i_beam/Bumped()
 	hit()
 
-/obj/effect/beam/i_beam/Crossed(var/atom/movable/AM)
+/obj/effect/beam/i_beam/Crossed(atom/movable/AM)
 	if(AM.is_incorporeal())
 		return
 	if(istype(AM, /obj/effect/beam))

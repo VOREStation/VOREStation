@@ -73,7 +73,7 @@
 		flick("emppulse",T)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), T), 0.8 SECONDS, TIMER_DELETE_ME)
 
-/obj/item/chameleon/proc/disrupt(var/delete_dummy = 1)
+/obj/item/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
@@ -102,7 +102,7 @@
 	var/can_move = 1
 	var/obj/item/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/chameleon/C)
+/obj/effect/dummy/chameleon/proc/activate(obj/O, mob/M, new_icon, new_iconstate, new_overlays, obj/item/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -137,7 +137,7 @@
 /obj/effect/dummy/chameleon/proc/allow_move()
 	can_move = 1
 
-/obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
+/obj/effect/dummy/chameleon/relaymove(mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
 
 	if(can_move)

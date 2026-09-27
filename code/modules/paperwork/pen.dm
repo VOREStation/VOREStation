@@ -26,7 +26,7 @@
 	w_class = ITEMSIZE_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list(MAT_STEEL = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.005))
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/accessory.ogg'
@@ -298,10 +298,10 @@
 	*/
 	signature = tgui_input_text(user, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature, MAX_MESSAGE_LEN)
 
-/obj/item/pen/proc/get_signature(var/mob/user)
+/obj/item/pen/proc/get_signature(mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/pen/chameleon/get_signature(var/mob/user)
+/obj/item/pen/chameleon/get_signature(mob/user)
 	return signature ? signature : "Anonymous"
 
 /obj/item/pen/chameleon/verb/set_colour()

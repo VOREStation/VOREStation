@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	. = ..()
 
 //set the control of the panel to a given computer if closer than SOLAR_MAX_DIST
-/obj/machinery/power/solar/proc/set_control(var/obj/machinery/power/solar_control/SC)
+/obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
 	ASSERT(!control)
 	if(SC && (get_dist(src, SC) > SOLAR_MAX_DIST))
 		return 0
@@ -226,11 +226,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 	anchored = FALSE
 	var/tracker = 0
 
-/obj/item/solar_assembly/attack_hand(var/mob/user)
+/obj/item/solar_assembly/attack_hand(mob/user)
 	if(!anchored || !isturf(loc)) // You can't pick it up
 		..()
 
-/obj/item/solar_assembly/attackby(var/obj/item/W, var/mob/user)
+/obj/item/solar_assembly/attackby(obj/item/W, mob/user)
 	if (!isturf(loc))
 		return 0
 	if(!anchored)
@@ -333,13 +333,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 			connected_tracker.set_angle(SSsolars.get_solar_angle(get_turf(src)))
 		set_panels(cdir)
 
-/obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
+/obj/machinery/power/solar_control/proc/add_panel(obj/machinery/power/solar/P)
 	var/sgen = P.get_power_supplied()
 	connected_power -= connected_panels[P] // Just in case it was already in there
 	connected_panels[P] = sgen
 	connected_power += sgen
 
-/obj/machinery/power/solar_control/proc/remove_panel(var/obj/machinery/power/solar/P)
+/obj/machinery/power/solar_control/proc/remove_panel(obj/machinery/power/solar/P)
 	connected_power -= connected_panels[P]
 	connected_panels.Remove(P)
 	SSsolars.panel_run[REF(src)] -= P // clear hardref in subsystem
@@ -530,7 +530,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			return TRUE
 
 /// rotates all connected panels to the passed angle, very expensive as it does them all at once in a single frame. This is what SSsolars does, but much more rude about it.
-/obj/machinery/power/solar_control/proc/set_panels(var/cdir)
+/obj/machinery/power/solar_control/proc/set_panels(cdir)
 	var/sum = 0
 	for(var/obj/machinery/power/solar/S in connected_panels)
 		sum += S.update_power_generation(src)

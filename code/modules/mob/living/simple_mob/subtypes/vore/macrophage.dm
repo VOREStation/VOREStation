@@ -96,13 +96,13 @@
 		var/mob/living/carbon/human/H = A
 		H.ContractDisease(base_disease)
 /*
-/mob/living/simple_mob/vore/aggressive/macrophage/do_special_attack(var/atom/A)
+/mob/living/simple_mob/vore/aggressive/macrophage/do_special_attack(atom/A)
 	. = TRUE
 	set_AI_busy(TRUE)
 	do_windup_animation(A, 20)
 	addtimer(CALLBACK(src, PROC_REF(charge), A), 20, TIMER_STOPPABLE)
 
-/mob/living/simple_mob/vore/aggressive/macrophage/proc/charge(var/atom/A)
+/mob/living/simple_mob/vore/aggressive/macrophage/proc/charge(atom/A)
 	if(QDELETED(A) || !isturf(get_turf(A)))
 		set_AI_busy(FALSE)
 		return

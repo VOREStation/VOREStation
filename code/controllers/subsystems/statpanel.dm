@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(statpanels)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/statpanels/proc/update_misc_tabs(var/client/target,var/mob/target_mob)
+/datum/controller/subsystem/statpanels/proc/update_misc_tabs(client/target,mob/target_mob)
 	target_mob.update_misc_tabs()
 	for(var/tab in target_mob.misc_tabs)
 		if(length(target_mob.misc_tabs[tab]) == 0 && (tab in target.misc_tabs))

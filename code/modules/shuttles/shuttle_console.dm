@@ -28,7 +28,7 @@
 
 	tgui_interact(user)
 
-/obj/machinery/computer/shuttle_control/proc/shuttlerich_tgui_data(var/datum/shuttle/autodock/shuttle)
+/obj/machinery/computer/shuttle_control/proc/shuttlerich_tgui_data(datum/shuttle/autodock/shuttle)
 	var/shuttle_state
 	switch(shuttle.moving_status)
 		if(SHUTTLE_IDLE) shuttle_state = "idle"
@@ -68,7 +68,7 @@
 
 // This is a subset of the actual checks; contains those that give messages to the user.
 // This enables us to give nice error messages as well as not even bother proceeding if we can't.
-/obj/machinery/computer/shuttle_control/proc/can_move(var/datum/shuttle/autodock/shuttle, var/user)
+/obj/machinery/computer/shuttle_control/proc/can_move(datum/shuttle/autodock/shuttle, user)
 	var/cannot_depart = shuttle.current_location.cannot_depart(shuttle)
 	if(cannot_depart)
 		to_chat(user, span_warning("[cannot_depart]"))
@@ -132,13 +132,13 @@
 	return shuttlerich_tgui_data(shuttle)
 
 // Call to set the linked shuttle tag; override to add behaviour to shuttle tag changes
-/obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)
+/obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(new_shuttle_tag)
 	if(shuttle_tag == new_shuttle_tag)
 		return FALSE
 	shuttle_tag = new_shuttle_tag
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/shuttle_control/emag_act(remaining_charges, mob/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()
@@ -146,7 +146,7 @@
 		to_chat(user, "You short out the console's ID checking system. It's now available to everyone!")
 		return 1
 
-/obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/shuttle_control/bullet_act(obj/item/projectile/Proj)
 	visible_message("\The [Proj] ricochets off \the [src]!")
 
 /obj/machinery/computer/shuttle_control/ex_act()

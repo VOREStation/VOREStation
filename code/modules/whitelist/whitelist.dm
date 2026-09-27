@@ -21,7 +21,7 @@
 			. += key
 
 
-/proc/load_whitelist(var/key)
+/proc/load_whitelist(key)
 	var/filename = "data/player_saves/[copytext(ckey(key),1,2)]/[ckey(key)]/whitelist.json"
 	try
 		// Check the player-specific whitelist file, if it exists.
@@ -50,7 +50,7 @@
 
 
 // Returns true if the specified path is in the player's whitelists, false otw.
-/client/proc/is_whitelisted(var/path)
+/client/proc/is_whitelisted(path)
 	if(istext(path))
 		path = text2path(path)
 	if(!ispath(path))
@@ -61,7 +61,7 @@
 	return src.whitelists[path]
 
 
-/proc/is_alien_whitelisted(mob/M, var/datum/species/species)
+/proc/is_alien_whitelisted(mob/M, datum/species/species)
 	//They are admin or the whitelist isn't in use
 	if(whitelist_overrides(M))
 		return TRUE
@@ -78,7 +78,7 @@
 	return C.is_whitelisted(species.type)
 
 
-/proc/is_lang_whitelisted(mob/M, var/datum/language/language)
+/proc/is_lang_whitelisted(mob/M, datum/language/language)
 	//They are admin or the whitelist isn't in use
 	if(whitelist_overrides(M))
 		return TRUE

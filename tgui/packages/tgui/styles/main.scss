@@ -4,22 +4,26 @@
  */
 
 @use 'sass:meta';
-@use 'base';
 @use '~tgui-core/styles';
 
-// Core styles
-@include meta.load-css('./reset.scss');
-@include meta.load-css('./css-variables.scss');
+// Tgui core bulk imports
+@include meta.load-css('~tgui-core/styles/all-atomic.scss');
+@include meta.load-css('~tgui-core/styles/all-themes.scss');
+@include meta.load-css('~tgui-core/styles/reset.scss');
 
-// Atomic classes
-@include meta.load-css('./atomic/candystripe.scss');
-@include meta.load-css('./atomic/centered-image.scss');
-@include meta.load-css('./atomic/color.scss');
-@include meta.load-css('./atomic/debug-layout.scss');
-@include meta.load-css('./atomic/fit-text.scss');
-@include meta.load-css('./atomic/links.scss');
-@include meta.load-css('./atomic/outline.scss');
+// Non core atomic
 @include meta.load-css('./atomic/text.scss');
+
+// Local Themes
+@include meta.load-css('./themes/nuclear.scss');
+@include meta.load-css('./themes/crtsoul.scss');
+@include meta.load-css('./themes/pda-retro.scss');
+@include meta.load-css('./themes/abstract.scss');
+@include meta.load-css('./themes/bingle.scss');
+@include meta.load-css('./themes/algae.scss');
+
+// Core styles
+@include meta.load-css('./css-variables.scss');
 
 // Components
 @include meta.load-css('./components/NanoMap.scss');

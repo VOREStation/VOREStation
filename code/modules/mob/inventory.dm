@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
+/mob/proc/slot_is_accessible(slot, obj/item/I, mob/user=null)
 	return 1
 
 //puts the item "W" into an appropriate slot in a human's inventory
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return list()
 
 //Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_l_hand(var/obj/item/W)
+/mob/proc/put_in_l_hand(obj/item/W)
 	if(!istype(W))
 		return FALSE
 	if(QDELETED(W))
@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return TRUE
 
 //Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_r_hand(var/obj/item/W)
+/mob/proc/put_in_r_hand(obj/item/W)
 	if(!istype(W))
 		return FALSE
 	if(QDELETED(W))
@@ -149,17 +149,17 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return TRUE
 
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/proc/put_in_active_hand(var/obj/item/W)
+/mob/proc/put_in_active_hand(obj/item/W)
 	return 0 // Moved to human procs because only they need to use hands.
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/proc/put_in_inactive_hand(var/obj/item/W)
+/mob/proc/put_in_inactive_hand(obj/item/W)
 	return 0 // As above.
 
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/I)
+/mob/proc/put_in_hands(obj/item/I)
 	if(!I)
 		return 0
 	I.forceMove(drop_location())
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
 
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
+/mob/proc/drop_from_inventory(obj/item/W, atom/target)
 	if(!W)
 		return FALSE
 	if(isnull(target) && isdisposalpacket(src.loc))
@@ -186,15 +186,15 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return TRUE
 
 //Drops the item in our left hand
-/mob/proc/drop_l_hand(var/atom/Target)
+/mob/proc/drop_l_hand(atom/Target)
 	return 0
 
 //Drops the item in our right hand
-/mob/proc/drop_r_hand(var/atom/Target)
+/mob/proc/drop_r_hand(atom/Target)
 	return 0
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
-/mob/proc/drop_item(var/atom/Target)
+/mob/proc/drop_item(atom/Target)
 	return
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, force = 0, var/atom/target) //Force overrides NODROP for things like wizarditis and admin undress.
+/mob/proc/unEquip(obj/item/I, force = 0, atom/target) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!(force || canUnEquip(I)))
 		return FALSE
 	drop_from_inventory(I, target)
@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return SLOT_BACK
 
 //Attemps to remove an object on a mob.
-/mob/proc/remove_from_mob(var/obj/item_dropping, var/atom/target)
+/mob/proc/remove_from_mob(obj/item_dropping, atom/target)
 	if(!item_dropping) // Nothing to remove, so we succeed.
 		return 1
 	src.u_equip(item_dropping)
@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list(
 	return TRUE
 
 //Returns the item equipped to the specified slot, if any.
-/mob/proc/get_equipped_item(var/slot)
+/mob/proc/get_equipped_item(slot)
 	return null
 
 //Outdated but still in use apparently. This should at least be a human proc.

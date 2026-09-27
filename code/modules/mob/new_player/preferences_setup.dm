@@ -35,7 +35,7 @@
 
 
 
-/datum/preferences/proc/randomize_hair_color(var/target = "hair")
+/datum/preferences/proc/randomize_hair_color(target = "hair")
 	if(prob (75) && target == "facial") // Chance to inherit hair color
 		update_preference_by_type(/datum/preference/color/human/facial_color, read_preference(/datum/preference/color/human/hair_color))
 		return
@@ -181,7 +181,7 @@
 
 	update_preference_by_type(/datum/preference/color/human/skin_color, rgb(red, green, blue))
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
+/datum/preferences/proc/dress_preview_mob(mob/living/carbon/human/mannequin)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)
 	copy_to(mannequin, TRUE)

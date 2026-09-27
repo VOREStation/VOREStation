@@ -18,7 +18,7 @@
 
 	var/poster_type = /obj/structure/sign/poster
 
-/obj/item/contraband/poster/Initialize(mapload, var/given_serial = 0)
+/obj/item/contraband/poster/Initialize(mapload, given_serial = 0)
 	if(!serial_number)
 		if(given_serial == 0)
 			serial_number = rand(1, poster_designs.len)
@@ -28,7 +28,7 @@
 	. = ..()
 
 //Places the poster on a wall
-/obj/item/contraband/poster/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/contraband/poster/afterattack(atom/A, mob/user, adjacent, clickparams)
 	if (!adjacent)
 		return
 
@@ -83,7 +83,7 @@
 	icon_state = "rolled_poster_nt"
 	poster_type = /obj/structure/sign/poster/nanotrasen
 
-/obj/item/contraband/poster/nanotrasen/Initialize(mapload, var/given_serial = 0)
+/obj/item/contraband/poster/nanotrasen/Initialize(mapload, given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, NT_poster_designs.len)
 	else
@@ -96,7 +96,7 @@
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface. This one is made from some kind of e-paper, and could display almost anything!"
 	poster_type = /obj/structure/sign/poster/custom
 
-/obj/item/contraband/poster/custom/Initialize(mapload, var/given_serial = 0)
+/obj/item/contraband/poster/custom/Initialize(mapload, given_serial = 0)
 	if(given_serial == 0)
 		serial_number = 1 //Decidedly unrandom
 	else
@@ -137,7 +137,7 @@
 	var/roll_type
 	var/poster_set = FALSE
 
-/obj/structure/sign/poster/Initialize(mapload, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/contraband/poster)
+/obj/structure/sign/poster/Initialize(mapload, placement_dir=null, serial=null, itemtype = /obj/item/contraband/poster)
 	. = ..()
 
 	if(!serial)
@@ -172,7 +172,7 @@
 		var/datum/poster/design = new path
 		set_poster(design)
 
-/obj/structure/sign/poster/proc/set_poster(var/datum/poster/design)
+/obj/structure/sign/poster/proc/set_poster(datum/poster/design)
 	name = "[initial(name)] - [design.name]"
 	desc = "[initial(desc)] [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
@@ -226,7 +226,7 @@
 /obj/structure/sign/poster/nanotrasen
 	roll_type = /obj/item/contraband/poster/nanotrasen
 
-/obj/structure/sign/poster/nanotrasen/Initialize(mapload, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/contraband/poster/nanotrasen)
+/obj/structure/sign/poster/nanotrasen/Initialize(mapload, placement_dir=null, serial=null, itemtype = /obj/item/contraband/poster/nanotrasen)
 	if(!serial)
 		serial = rand(1, NT_poster_designs.len)
 

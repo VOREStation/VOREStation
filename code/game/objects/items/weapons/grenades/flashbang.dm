@@ -26,7 +26,7 @@
 
 	qdel(src)
 
-/obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+/obj/item/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
 	if(M.is_incorporeal())
 		return
 

@@ -76,7 +76,7 @@
 	Consume(AM)
 
 
-/turf/unsimulated/wall/supermatter/proc/Consume(var/mob/living/user)
+/turf/unsimulated/wall/supermatter/proc/Consume(mob/living/user)
 	if(istype(user,/mob/observer))
 		return
 

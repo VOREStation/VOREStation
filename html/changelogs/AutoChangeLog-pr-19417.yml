@@ -1,5 +1,0 @@
-author: "Nova"
-delete-after: True
-changes:
-  - refactor: "character background prefs converted to TG"
-  - refactor: "player background now migrated to TG prefs"

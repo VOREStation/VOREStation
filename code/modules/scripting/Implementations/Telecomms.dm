@@ -48,7 +48,7 @@
  *   var/datum/signal/signal - a telecomms signal
  * Returns: None
  */
-/datum/TCS_Compiler/proc/Run(var/datum/signal/signal)
+/datum/TCS_Compiler/proc/Run(datum/signal/signal)
 
 	if(!ready)
 		return
@@ -215,7 +215,7 @@
 
 /*  -- Actual language proc code --  */
 
-/datum/signal/proc/mem(var/address, var/value)
+/datum/signal/proc/mem(address, value)
 
 	if(istext(address))
 		var/obj/machinery/telecomms/server/S = data["server"]
@@ -227,7 +227,7 @@
 			S.memory[address] = value
 
 
-/datum/signal/proc/tcombroadcast(var/message, var/freq, var/source, var/job)
+/datum/signal/proc/tcombroadcast(message, freq, source, job)
 
 	var/datum/signal/newsign = new
 	var/obj/machinery/telecomms/server/S = data["server"]

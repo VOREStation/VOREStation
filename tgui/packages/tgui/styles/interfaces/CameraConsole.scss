@@ -1,18 +1,18 @@
-@use '../base.scss';
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .CameraConsole__left {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  width: base.em(220px);
+  width: fn.em(220px);
 }
 
 .CameraConsole__right {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: base.em(220px);
+  left: fn.em(220px);
   right: 0;
   background-color: var(--camera-console-background);
 }
@@ -38,7 +38,7 @@
 
 .CameraConsole__map {
   position: absolute;
-  top: base.em(26px);
+  top: fn.em(26px);
   bottom: 0;
   left: 0;
   right: 0;

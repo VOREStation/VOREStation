@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(sc_safecode, list("[rand(0,9)]", "[rand(0,9)]", "[rand(0,9)]", 
 	if(prob(25))
 		mezzer()
 
-/obj/machinery/singularity/narsie/sc_Narsie/consume(var/atom/A)
+/obj/machinery/singularity/narsie/sc_Narsie/consume(atom/A)
 	if(is_type_in_list(A, uneatable))
 		return 0
 	if (isliving(A))

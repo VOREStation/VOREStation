@@ -9,21 +9,21 @@
 
 /datum/surgery_step/robotics/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (isslime(target))
-		return 0
+		return FALSE
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
-		return 0
+		return FALSE
 	if(!ishuman(target))
-		return 0
+		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)
-		return 0
+		return FALSE
 	if (affected.status & ORGAN_DESTROYED)
-		return 0
+		return FALSE
 	if (!(affected.robotic == ORGAN_ROBOT || affected.robotic == ORGAN_LIFELIKE)) //VOREStation Edit - No good on ORGAN_NANOFORM
-		return 0
+		return FALSE
 	if(coverage_check(user, target, affected, tool))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 ///////////////////////////////////////////////////////////////
 // Unscrew Hatch Surgery
@@ -208,7 +208,7 @@
 		if(istype(tool, /obj/item/weldingtool))
 			var/obj/item/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
-				return 0
+				return FALSE
 		return affected && affected.open == BONE_RETRACTED && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
 
 /datum/surgery_step/robotics/repair_brute/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -379,9 +379,9 @@
 /datum/surgery_step/robotics/detatch_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
-		return 0
+		return FALSE
 	if(affected.open < 3)
-		return 0
+		return FALSE
 
 	var/list/attached_organs = list() //Let's see if we have any organs able to be detached!
 	for(var/organ in target.internal_organs_by_name)
@@ -390,7 +390,7 @@
 			attached_organs |= organ
 
 	if(!attached_organs.len) //No organs able to be detached!
-		return 0
+		return FALSE
 
 	return ..()
 
@@ -443,9 +443,9 @@
 /datum/surgery_step/robotics/attach_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
-		return 0
+		return FALSE
 	if(affected.open < 3)
-		return 0
+		return FALSE
 
 	var/list/attachable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
@@ -454,7 +454,7 @@
 			attachable_organs |= organ
 
 	if(!attachable_organs.len)
-		return 0
+		return FALSE
 
 	return ..()
 
@@ -512,10 +512,10 @@
 	var/obj/item/mmi/M = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && affected.open == BONE_RETRACTED))
-		return 0
+		return FALSE
 
 	if(!istype(M))
-		return 0
+		return FALSE
 
 	/* VOREStation Edit - Don't worry about it. We can put these in regardless, because resleeving might make it useful after.
 	if(!M.brainmob || !M.brainmob.client || !M.brainmob.ckey || M.brainmob.stat >= DEAD)
@@ -538,7 +538,7 @@
 		user.balloon_alert(user, "your subject already has a brain")
 		return SURGERY_FAILURE
 
-	return 1
+	return TRUE
 
 /datum/surgery_step/robotics/install_mmi/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -615,10 +615,10 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	if(!(affected && affected.open == BONE_RETRACTED))
-		return 0
+		return FALSE
 
 	if(!istype(N))
-		return 0
+		return FALSE
 
 	if(!N.held_mob.client || N.held_mob.stat >= DEAD)
 		to_chat(user, span_danger("That nymph is not viable."))
@@ -645,7 +645,7 @@
 		user.balloon_alert(user, "your subject already has a cephalon")
 		return SURGERY_FAILURE
 
-	return 1
+	return TRUE
 
 /datum/surgery_step/robotics/install_nymph/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

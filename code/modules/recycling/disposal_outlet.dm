@@ -27,6 +27,7 @@
 		SEND_SIGNAL(src, COMSIG_DISPOSAL_LINK, trunk)
 
 /obj/structure/disposaloutlet/Destroy()
+	SEND_SIGNAL(src, COMSIG_DISPOSAL_UNLINK) //Just to be safe.
 	target = null
 	. = ..()
 

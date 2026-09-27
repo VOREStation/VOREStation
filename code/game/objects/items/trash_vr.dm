@@ -1,6 +1,6 @@
 // Custom garbage or whatever
 
-/obj/item/trash/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/trash/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.trashcan == 1)
@@ -25,6 +25,27 @@
 	desc = "Contains every type of scrap material your robot puppy needs to grow big and strong."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "kibble"
+	var/bitecount = 0
+	var/bites = 5
+
+/obj/item/trash/rkibble/attack_robot(mob/user)
+	. = ..()
+	if(isrobot(user))
+		var/mob/living/silicon/robot/our_robot = user
+		var/dist = get_dist(src, user)
+		if(dist > 1)
+			return
+		bitecount++
+		our_robot.cell?.give(50)
+		user.setClickCooldown(user.get_attack_speed(user))
+		//TODO I want to give borgs charge here but I don't know how to do that yet.
+		if(bitecount>=5)
+			user.balloon_alert_visible("\the [user] finishes eating \the [src]", \
+			"finished eating \the [src].")
+			qdel(src)
+			return
+		user.balloon_alert_visible("\the [user] nibbles \the [src]", \
+		"nibbled \the [src].")
 
 /obj/item/trash/fancyplate
 	name = "dirty fancy plate"

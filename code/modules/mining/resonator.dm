@@ -26,7 +26,7 @@
 	icon_state = "resonator_u"
 	fieldlimit = 5
 
-/obj/item/resonator/proc/CreateResonance(var/target, var/creator)
+/obj/item/resonator/proc/CreateResonance(target, creator)
 	var/turf/T = get_turf(target)
 	if(locate(/obj/effect/resonance) in T)
 		return
@@ -114,7 +114,7 @@
 	mouse_opacity = 0
 	var/resonance_damage = 20
 
-/obj/effect/resonance/Initialize(mapload, var/creator = null, var/timetoburst)
+/obj/effect/resonance/Initialize(mapload, creator = null, timetoburst)
 	. = ..()
 	// Start small and grow to big size as we are about to burst
 	transform = matrix()*0.75
@@ -122,7 +122,7 @@
 	// Queue the actual bursting
 	addtimer(CALLBACK(src, PROC_REF(burst), creator), timetoburst)
 
-/obj/effect/resonance/proc/burst(var/creator = null)
+/obj/effect/resonance/proc/burst(creator = null)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return

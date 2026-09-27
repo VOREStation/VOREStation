@@ -16,7 +16,7 @@
 	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/output)
 
-/obj/machinery/pump_relay/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/pump_relay/attackby(obj/item/O as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))

@@ -1,6 +1,6 @@
 // This checks an individual player's activity level.  People who have been afk for a few minutes aren't punished as much as those
 // who were afk for hours, as they're most likely gone for good.
-/datum/metric/proc/assess_player_activity(var/mob/M)
+/datum/metric/proc/assess_player_activity(mob/M)
 	. = 100
 	if(!M)
 		. = 0
@@ -22,7 +22,7 @@
 	. = max(. , 0) // No negative numbers, or else people could drag other, non-afk players down.
 
 // This checks a whole department's collective activity.
-/datum/metric/proc/assess_department(var/department)
+/datum/metric/proc/assess_department(department)
 	if(!department)
 		return
 	var/departmental_activity = 0
@@ -36,7 +36,7 @@
 		departmental_activity = departmental_activity / departmental_size // Average it out.
 	return departmental_activity
 
-/datum/metric/proc/assess_all_departments(var/cutoff_number = 3, var/list/department_blacklist = list())
+/datum/metric/proc/assess_all_departments(cutoff_number = 3, list/department_blacklist = list())
 	var/list/activity = list()
 	for(var/department in departments)
 		activity[department] = assess_department(department)

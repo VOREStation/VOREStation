@@ -36,7 +36,10 @@ export function useMarketLoop(
         if (event) {
           setLines((l) => [
             ...l,
-            { text: `[MARKET] ${event.key} ${event.dir}: $${event.price}/GB`, color: '#ffff00' },
+            {
+              text: `[MARKET] ${event.key} ${event.dir}: $${event.price}/GB`,
+              color: '#ffff00',
+            },
           ]);
         }
 
