@@ -152,3 +152,6 @@
       at low damage
   Will:
   - bugfix: Surgery is no longer attempted when any item is used on a mob
+2026-09-27:
+  Diana:
+  - qol: Hard feet stops mousetraps from stunning you.
