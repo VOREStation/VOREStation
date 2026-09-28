@@ -1,6 +1,7 @@
 
 /obj/item/mecha_parts/component/actuator
 	name = "mecha actuator"
+	desc = "The hydraulics and associated powertrain of a mech."
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "motor"
 	w_class = ITEMSIZE_HUGE
@@ -25,6 +26,7 @@
 
 /obj/item/mecha_parts/component/actuator/hispeed
 	name = "overclocked mecha actuator"
+	desc = "The hydraulics and powertrain of a mech. This one's warranty was voided a while ago."
 
 	step_delay = -1
 
