@@ -140,7 +140,7 @@
 //Foam
 /obj/structure/reagent_dispensers/foam
 	name = "foam tank"
-	desc = "A foam tank."
+	desc = "A foam tank. Used for firefighting, not bathing."
 	icon_state = "foam"
 	amount_per_transfer_from_this = 10
 

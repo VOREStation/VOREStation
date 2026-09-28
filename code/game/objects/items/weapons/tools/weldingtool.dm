@@ -658,6 +658,10 @@
 /obj/item/weldingtool/electric/mounted
 	use_external_power = 1
 
+//No power information given we use an external source.
+/obj/item/weldingtool/electric/mounted/examine(mob/user)
+		. = ..()
+
 /obj/item/weldingtool/electric/mounted/exosuit
 	var/obj/item/mecha_parts/mecha_equipment/equip_mount = null
 	flame_intensity = 1
