@@ -9031,6 +9031,9 @@
 /obj/structure/noticeboard{
 	pixel_y = -32
 	},
+/obj/machinery/camera/network/civilian{
+	dir = 8
+	},
 /turf/simulated/floor/lino{
 	edge_blending_priority = 0.1
 	},
@@ -12004,8 +12007,7 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/cargo/office)
 "Hz" = (
-/obj/structure/table/marble,
-/obj/machinery/camera/network/civilian{
+/obj/machinery/synthesizer{
 	dir = 8
 	},
 /turf/simulated/floor/lino{
