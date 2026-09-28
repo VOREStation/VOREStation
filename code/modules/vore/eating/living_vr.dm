@@ -554,6 +554,7 @@
 		//Actual escaping
 		absorbed = FALSE	//Make sure we're not absorbed
 		muffled = FALSE		//Removes Muffling
+		slip_protect = world.time + 25 //Prevent slipping back in immediately.
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		SetSleeping(0) //Wake up instantly if asleep
 		for(var/mob/living/simple_mob/SA in range(10))
