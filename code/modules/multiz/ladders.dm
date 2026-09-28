@@ -184,11 +184,11 @@
 			//Nom before the message so the prey sees the messages
 			imminent_pred.begin_instant_nom(climber, climber, imminent_pred, imminent_tummy)
 			if(direction == "up")
-				to_chat(climber, span_danger("you run into [imminent_pred]'s [imminent_tummy] as you try to climb up!"))
-				imminent_pred.visible_message(span_warning("\the [climber] tries to climb up from below, only to run into [imminent_pred]'s [imminent_tummy]!"), span_danger("\the [climber] vanishes into your [imminent_tummy] as they tried to climb up!"))
+				to_chat(climber, span_danger("You run into [imminent_pred]'s [imminent_tummy] as you try to climb up!"))
+				imminent_pred.visible_message(span_warning("\The [climber] tries to climb up from below, only to run into [imminent_pred]'s [imminent_tummy]!"), span_danger("\The [climber] vanishes into your [imminent_tummy] as they tried to climb up!"))
 			else //Dropping down
-				to_chat(climber, span_danger("you drop into [imminent_pred]'s [imminent_tummy] as you come down the ladder!"))
-				imminent_pred.visible_message(span_warning("\the [climber] drops into [imminent_pred]'s [imminent_tummy] as they come down from above!"), span_danger("\the [climber] drops into your [imminent_tummy] as they come down from above!"))
+				to_chat(climber, span_danger("You drop into [imminent_pred]'s [imminent_tummy] as you come down the ladder!"))
+				imminent_pred.visible_message(span_warning("\The [climber] drops into [imminent_pred]'s [imminent_tummy] as they come down from above!"), span_danger("\The [climber] drops into your [imminent_tummy] as they come down from above!"))
 			return //We went through... in one way or another.
 
 		//Lets move the person before they vore people.
