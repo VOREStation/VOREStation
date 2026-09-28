@@ -155,3 +155,13 @@
 2026-09-27:
   Diana:
   - qol: Hard feet stops mousetraps from stunning you.
+2026-09-28:
+  Cameron-The-Raven:
+  - rscadd: Powerloader footstep sounds are able to be selected.
+  - bugfix: Clown shoes now no longer play the squeak and footstep sound at the same
+      time.
+  Diana:
+  - bugfix: Batons will no longer do lethal damage when on grab intent
+  - bugfix: Tasers will no longer do lethal damage if you shoot yourself.
+  - qol: Makes the jackboot variants accessible via the security wardrobe vendor instead
+      of loadout only.
