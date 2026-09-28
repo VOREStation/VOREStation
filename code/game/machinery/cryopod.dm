@@ -191,6 +191,7 @@
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
+	description_info = "Allows you to exit the round. Your character will be de-spawned, and all your items removed. It's announced on the radio, too."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryopod_0"
 	density = TRUE
