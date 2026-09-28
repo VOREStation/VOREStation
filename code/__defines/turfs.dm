@@ -43,12 +43,6 @@
 	(CENTER).x + (H_RADIUS), (CENTER).y + (V_RADIUS), (CENTER).z \
 	)
 
-// Wet turfs have different slipping intensities
-#define TURFSLIP_DRY 0
-#define TURFSLIP_WET 1
-#define TURFSLIP_LUBE 2
-#define TURFSLIP_ICE 3
-
 //Wet floor type flags. Stronger ones should be higher in number.
 #define TURF_DRY			(0)
 #define TURF_WET_WATER		(1<<0)
