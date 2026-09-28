@@ -165,8 +165,8 @@
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "It appears to be producing [power_gen*power_output] W."
-		. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
+		. += span_notice("It appears to be producing [power_gen*power_output] W.")
+		. += span_notice("There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
 		if(IsBroken())
 			. += span_warning("It seems to have broken down.")
 		if(overheating)
