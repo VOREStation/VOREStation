@@ -28,7 +28,6 @@
 
 /obj/machinery/shield_capacitor/examine(mob/user)
 	. = ..()
-	. += span_notice("It is currently facing [dir].")
 	if(anchored)
 		. += span_notice("It is wrenched down to the floor.")
 
