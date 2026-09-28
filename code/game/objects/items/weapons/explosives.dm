@@ -85,6 +85,7 @@
 			W.dismantle_wall(1,1,1)
 		else if(isliving(target))
 			target.ex_act(2) // c4 can't gib mobs anymore.
+			target.apply_damage(25, BRUTE)
 		else
 			target.ex_act(1)
 	if(target)
