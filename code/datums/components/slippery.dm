@@ -24,5 +24,7 @@
 /datum/component/slippery/proc/Slip(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 	var/mob/victim = AM
+	if(source == victim) //prevent mobs with the slippery component from slipping on themself, as funny as it is.
+		return
 	if(istype(victim) && victim.slip(weaken_time, source, lube_flags, slip_dist, stun_time, force_drop_items) && callback)
 		callback.Invoke(victim)

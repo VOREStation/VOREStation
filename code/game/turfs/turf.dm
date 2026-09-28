@@ -569,6 +569,9 @@
 		slip_dist += rand(1,5)
 		lube |= SLIDE
 
+	//Stop rotation lock, it'll affect slide direction if we dont stop this
+	M.facing_dir = null
+
 	if(M.slip_timer || M.slipping)
 		if(lube & SLIDE_RECURSIVE)
 			playsound(M.loc, 'sound/misc/slip.ogg', 25, 1, -1)
@@ -636,7 +639,8 @@
 		return
 	if(!dir)
 		dir = M.dir
-	//var/old_mob_dir = M.dir //so the spin completes
+
+	var/old_mob_dir = M.dir //so the spin completes
 	//Spinning would be bad, but we move anyways, which sets the dir back the right way, so it ends up looking a bit jank, but ultimately works with recursive slips anyhow. Funny!
 	M.spin(1, 1) // this will sleep(), Scary... (but it shouldnt be blocking so it's fine probably)
 	M.slipping = slip_dist
@@ -658,6 +662,8 @@
 		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //"Slipping" after the slide ends for the purposes of recursive slip catches
 		M.slipping = 0
 		return
+
+	M.dir = old_mob_dir //lets the spin continue so you go wheeee!
 
 	//After the slip, send a signal. This trigger spontvore, too.
 	SEND_SIGNAL(M, COMSIG_AFTER_LIVING_SLIDE, M, slip_dist, dir, lube)
