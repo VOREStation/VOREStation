@@ -47,7 +47,7 @@
 		. = ..()
 		if(Adjacent(user))
 			. += span_notice("The generator has [P.air_contents.phoron] units of fuel left, set to produce [power_gen] per cycle.")
-			. += span_notice("It is currently [active? "on" : "off"].")
+			. += span_notice("It is currently [active ? "on" : "off"].")
 
 
 	handleInactive()
