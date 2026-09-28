@@ -236,3 +236,10 @@
 
 /obj/item/storage/toolbox/lunchbox/syndicate/filled
 	filled = TRUE
+
+// Paintable
+/obj/item/storage/toolbox/paintable
+	name = "toolbox"
+	desc = "A metal toolbox with remarkably robust construction."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "custom_toolbox"

@@ -810,6 +810,12 @@
 			. = TRUE
 		if("b_disable_hud")
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
+			if(host.vore_selected.disable_hud)
+				for(var/mob/living/living_prey in host.vore_selected.contents)
+					host.vore_selected.check_hud_disable(living_prey)
+			else
+				for(var/mob/living/living_prey in host.vore_selected.contents)
+					host.vore_selected.check_hud_enable(living_prey)
 			. = TRUE
 		if("b_colorization_enabled") //ALLOWS COLORIZATION.
 			host.vore_selected.colorization_enabled = !host.vore_selected.colorization_enabled

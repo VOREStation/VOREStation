@@ -171,6 +171,9 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	add_language(LANGUAGE_ROOTLOCAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_ZADDAT, 1)
+	add_language(LANGUAGE_VESPINAE, 1)
+	add_language(LANGUAGE_SPACER, 1)
+	add_language(LANGUAGE_ECHOSONG, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.

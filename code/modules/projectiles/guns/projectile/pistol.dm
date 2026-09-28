@@ -475,9 +475,9 @@
 
 /obj/item/gun/projectile/makarov/update_icon()
 	if(ammo_magazine)
-		icon_state = "Makarov"
+		icon_state = "makarov"
 	else
-		icon_state = "Makarov-e"
+		icon_state = "makarov-e"
 
 /*
  * N99 (Fallout)

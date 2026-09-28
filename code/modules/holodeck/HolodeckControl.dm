@@ -1,6 +1,7 @@
 /obj/machinery/computer/HolodeckControl
 	name = "holodeck control console"
 	desc = "A computer used to control a nearby holodeck."
+	description_antag = "You could override the safeties with an emag. Or, just enough access. Could get pretty bloody!"
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"
 
@@ -165,7 +166,7 @@
 		safety_disabled = 1
 		update_projections()
 		to_chat(user, span_notice("You vastly increase projector power and override the safety and security protocols."))
-		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call [using_map.company_name] maintenance and do not use the simulator.")
+		to_chat(user, span_warning("Warning. Automatic shutoff and derezing protocols have been corrupted. Please call [using_map.company_name] maintenance and do not use the simulator."))
 		log_game("[key_name(user)] emagged the Holodeck Control Computer")
 		return 1
 	return

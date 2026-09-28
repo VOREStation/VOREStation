@@ -432,26 +432,49 @@
 	if(cool_rotations <= 0)
 		cool_rotations = 0.5
 	cool_rotations = default_power_gen / cool_rotations
-	switch(runner.nutrition)
-		if(1000 to INFINITY)	//VERY WELL FED, ZOOM!!!!
-			cool_rotations *= (runner.nutrition * 0.001)
-		if(500 to 1000)	//Well fed!
-			cool_rotations = cool_rotations
-		if(400 to 500)
-			cool_rotations *= 0.9
-		if(300 to 400)
-			cool_rotations *= 0.75
-		if(200 to 300)
-			cool_rotations *= 0.5
-		if(100 to 200)
-			cool_rotations *= 0.25
-		else	//TOO HUNGY IT TIME TO STOP!!!
-			unbuckle_mob(runner)
-			runner.visible_message(span_notice("\The [runner], panting and exhausted hops off of \the [src]!"))
+	if(!isrobot(runner))
+		switch(runner.nutrition)
+			if(1000 to INFINITY)	//VERY WELL FED, ZOOM!!!!
+				cool_rotations *= (runner.nutrition * 0.001)
+			if(500 to 1000)	//Well fed!
+				cool_rotations = cool_rotations
+			if(400 to 500)
+				cool_rotations *= 0.9
+			if(300 to 400)
+				cool_rotations *= 0.75
+			if(200 to 300)
+				cool_rotations *= 0.5
+			if(100 to 200)
+				cool_rotations *= 0.25
+			else	//TOO HUNGY IT TIME TO STOP!!!
+				unbuckle_mob(runner)
+				runner.visible_message(span_notice("\The [runner], panting and exhausted hops off of \the [src]!"))
+		runner.nutrition -= nutrition_drain
+	else
+		var/mob/living/silicon/robot/bot = runner
+		if(!bot.cell)
+			cool_rotations = 0
+			return
+		switch(bot.cell?.charge)
+			if(6000 to INFINITY)	//VERY WELL FED, ZOOM!!!!
+				cool_rotations *= (bot.cell.charge * 0.001)
+			if(4000 to 6000)	//Well fed!
+				cool_rotations = cool_rotations
+			if(3000 to 4000)
+				cool_rotations *= 0.9
+			if(2000 to 3000)
+				cool_rotations *= 0.75
+			if(1000 to 2000)
+				cool_rotations *= 0.5
+			if(1 to 1000)
+				cool_rotations *= 0.25
+			else
+				cool_rotations = 0
+				return // Nope nothing!
+		bot.cell.charge -= 10 // Faster for borgs cause they have more to drain
 	if(part_mult > 1)
 		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
 	power_gen = cool_rotations
-	runner.nutrition -= nutrition_drain
 
 /obj/item/circuitboard/machine/reg_d
 	name = T_BOARD("D-Type-REG")

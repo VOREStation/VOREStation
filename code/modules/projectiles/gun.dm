@@ -726,7 +726,7 @@
 			return
 
 		in_chamber.on_hit(M)
-		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
+		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage && in_chamber.damage > 0)
 			log_and_message_admins("commited suicide using \a [src]", user)
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
 			user.death()

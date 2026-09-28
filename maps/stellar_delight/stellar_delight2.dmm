@@ -7206,6 +7206,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "po" = (
@@ -22884,9 +22887,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
 "YD" = (
-/obj/structure/noticeboard{
-	pixel_y = 32
-	},
+/obj/machinery/synthesizer,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "YE" = (

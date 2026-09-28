@@ -4,13 +4,11 @@
 /// Countdown between lobby and the round starting.
 /datum/config_entry/number/lobby_countdown
 	default = 120
-	integer = FALSE
 	min_val = 0
 
 /// Post round murder death kill countdown.
 /datum/config_entry/number/round_end_countdown
 	default = 25
-	integer = FALSE
 	min_val = 0
 
 /// generate numeric suffix based on server port
