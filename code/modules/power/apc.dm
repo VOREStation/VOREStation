@@ -797,7 +797,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/list/data = list(
 		"locked" = locked,
 		"normallyLocked" = locked,
-		"emagged" = emagged,
+		"hacked" = (emagged || hacker),
 		"isOperating" = operating,
 		"externalPower" = main_status,
 		"powerCellStatus" = cell ? cell.percent() : 0,
