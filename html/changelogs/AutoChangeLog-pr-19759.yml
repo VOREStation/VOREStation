@@ -1,0 +1,5 @@
+author: "DIana"
+delete-after: True
+changes:
+  - bugfix: "APC Authentication error shows up if hacked by malf AI"
+  - qol: "AI can now speak/understand more languages"
