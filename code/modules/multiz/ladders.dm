@@ -192,7 +192,7 @@
 			return //We went through... in one way or another.
 
 		//Lets move the person before they vore people.
-		. = M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
+		. = M.forceMove(T)
 
 		if(length(imminent_prey))
 			var/imminent_tummy = climber.vore_selected
