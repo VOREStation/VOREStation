@@ -67,7 +67,7 @@
 
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
-	desc = "A heads-up display that scans the people in view and provides accurate data about their health status.""
+	desc = "A heads-up display that scans the people in view and provides accurate data about their health status."
 	icon_state = "healthhud"
 	icon = 'icons/inventory/eyes/item.dmi'
 

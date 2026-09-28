@@ -4,7 +4,7 @@
 // Mappers: you can use "Generate Instances from Icon-states"
 //  to get the different pieces.
 /obj/structure/transit_tube
-	description = "A transparent tube, often made of reinforced alloyed glass. Most often used for transit between two linked bodies in orbit."
+	desc = "A transparent tube, often made of reinforced alloyed glass. Most often used for transit between two linked bodies in orbit."
 	icon = 'icons/obj/pipes/transit_tube.dmi'
 	icon_state = "E-W"
 	density = TRUE

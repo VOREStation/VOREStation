@@ -547,7 +547,7 @@ GLOBAL_LIST_EMPTY(smeses)
 
 /obj/machinery/power/smes/examine(mob/user)
 	. = ..()
-	. += span_filter_notice("The service hatch is [panel_open ? "open" : "closed"].")
+	. += span_notice("The service hatch is [panel_open ? "open" : "closed"].")
 	if(!damage)
 		return
 	var/damage_percentage = round((damage / maxdamage) * 100)
