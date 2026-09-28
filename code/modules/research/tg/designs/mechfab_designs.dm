@@ -817,7 +817,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/mechfab/polecat
-	desc = "A part used in the construction of the Gopher micro mech series"
+	desc = "A part used in the construction of the Polecat micro mech series"
 	category = list(
 		RND_CATEGORY_MECHFAB_POLECAT + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
