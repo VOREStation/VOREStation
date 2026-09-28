@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 /obj/machinery/gravity_generator
 	name = "gravitational generator"
-	desc = "A device which produces a graviton field when set up."
+	desc = "A device which produces a graviton field when set up. This one is a Nebulon XTR-9, a reliable example found aboard many Nanotrasen stations. It is manufactured by Aether Atmospherics as an unusual departure from their usual product line."
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	anchored = TRUE
 	density = TRUE

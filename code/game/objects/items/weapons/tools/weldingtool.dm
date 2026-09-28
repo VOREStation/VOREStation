@@ -4,6 +4,7 @@
  */
 /obj/item/weldingtool
 	name = "\improper welding tool"
+	desc = "One of the most ubiquitous tools found on the frontier. You can use that thing to weld things together, cut things apart, heat them up, burn them down, light a cigarette, slide through horrible blob creatures, and more. Takes welding fuel."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	item_state = "welder"
@@ -65,7 +66,7 @@
 /obj/item/weldingtool/examine(mob/user)
 	. = ..()
 	if(max_fuel && loc == user)
-		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
+		. += span_notice("It contains [get_fuel()]/[src.max_fuel] units of fuel!")
 
 /obj/item/weldingtool/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(ishuman(M) && user.a_intent == I_HELP)

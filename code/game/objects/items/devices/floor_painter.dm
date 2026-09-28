@@ -1,5 +1,6 @@
 /obj/item/floor_painter
 	name = "paint sprayer"
+	desc = "An advanced, paint synthetizer. The intended use is to spray useful signage and underlines to guide crewmembers. The expected one is glorified grafiti."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
 

@@ -222,7 +222,8 @@
 
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
-	desc = "A storage unit for robots."
+	desc = "A storage unit for robots. It's bigger than it looks."
+	description_info = "This is cryo for cyborgs and drones!"
 	icon = 'icons/obj/robot_storage.dmi'
 	icon_state = "pod_0"
 	base_icon_state = "pod_0"

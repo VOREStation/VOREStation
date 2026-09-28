@@ -6,7 +6,7 @@
 	density = TRUE
 
 	name = "Heat Exchanger"
-	desc = "Exchanges heat between two input gases. Setup for fast heat transfer"
+	desc = "Exchanges heat between two input gases. Setup for fast heat transfer."
 
 	var/obj/machinery/atmospherics/unary/heat_exchanger/partner = null
 	var/update_cycle

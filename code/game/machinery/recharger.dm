@@ -71,12 +71,12 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 	. = ..()
 
 	if(get_dist(user, src) <= 5)
-		. += "[charging ? "[charging]" : "Nothing"] is in [src]."
+		. += span_notice("[charging ? "[charging]" : "Nothing"] is in [src].")
 		if(charging)
 			var/obj/item/cell/C = charging.get_cell()
 			if(C)				// Sometimes we get things without cells in it.
-				. += "Current charge: [C.charge] / [C.maxcharge]"
-
+				. += span_notice("Current charge: [C.charge] / [C.maxcharge]"
+)
 ///Checks valid items to see if there's any reasons we wouldn't allow them to be put in.
 /obj/machinery/recharger/proc/do_allowed_checks(obj/item/G, mob/user)
 	. = FALSE

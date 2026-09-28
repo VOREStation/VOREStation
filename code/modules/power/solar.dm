@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 /obj/machinery/power/solar
 	name = "solar panel"
-	desc = "A solar electrical generator."
+	desc = "A device that converts sunlight into electricity through witchcraft known as photovoltaic. This array comes with a small motor, so it can rotate and track the sun, provided a controller tells it how."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
 	anchored = TRUE

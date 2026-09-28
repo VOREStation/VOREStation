@@ -62,6 +62,7 @@
 
 /obj/item/book/manual/wiki/robotics_manual
 	name = "Guide to Robotics"
+	desc = "Everything you need to know for proper maintenance of cyborgs, mechatronic machinery and more. Experience not included. "
 	icon_state ="evabook"
 	item_state = "book3"
 	author = "Simple Robotics"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned

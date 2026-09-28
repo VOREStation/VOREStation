@@ -1,5 +1,6 @@
 /obj/machinery/beehive
 	name = "beehive"
+	desc = "Bees live in there, and they pay rent in delicious, delicious honey."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "beehive"
 	density = TRUE
@@ -189,7 +190,7 @@
 	. = ..()
 
 	if(Adjacent(user))
-		. += "It has [honey] units of honey in its storage tank."
+		. += span_notice("It has [honey] units of honey in its storage tank.")
 
 /obj/machinery/honey_extractor/power_change()
 	. = ..()

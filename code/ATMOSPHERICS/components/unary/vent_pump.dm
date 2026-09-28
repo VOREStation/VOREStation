@@ -13,7 +13,7 @@
 	pipe_state = "uvent"
 
 	name = "Air Vent"
-	desc = "Has a valve and pump attached to it"
+	desc = "Has a valve and pump attached to it."
 	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 30000			//7500 W ~ 10 HP //VOREStation Edit - 30000 W
