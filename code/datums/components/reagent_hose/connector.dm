@@ -213,7 +213,7 @@
 
 /// Pumps reagents out of carrier
 /datum/component/hose_connector/input
-	name = "hose input"
+	name = "Hose input"
 	flow_direction = HOSE_INPUT
 
 /datum/component/hose_connector/input/handle_pump(datum/reagents/connected_to)
@@ -222,7 +222,7 @@
 
 /// Pumps reagents into carrier
 /datum/component/hose_connector/output
-	name = "hose output"
+	name = "Hose output"
 	flow_direction = HOSE_OUTPUT
 
 /datum/component/hose_connector/output/handle_pump(datum/reagents/connected_to)
@@ -231,7 +231,7 @@
 
 /// Endless source, produces a reagent and pumps it out forever. Does not require attached object to have reagents.
 /datum/component/hose_connector/endless_source
-	name = "source connector"
+	name = "Source connector"
 	force_name = TRUE
 	flow_direction = HOSE_OUTPUT
 	var/reagent_id = null
@@ -250,7 +250,7 @@
 
 /// Endless drain, removes reagents from existance
 /datum/component/hose_connector/endless_drain
-	name = "drain connector"
+	name = "Drain connector"
 	force_name = TRUE
 	flow_direction = HOSE_INPUT
 
