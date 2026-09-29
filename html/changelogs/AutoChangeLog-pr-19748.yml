@@ -1,6 +1,0 @@
-author: "Lira"
-delete-after: True
-changes:
-  - bugfix: "Fixed round end timer skipping 1 minute remaining warning."
-  - bugfix: "Give the final Rebooting World message a one second buffer before reboot as intended."
-  - bugfix: "config time for round end and start now uses full seconds only"
