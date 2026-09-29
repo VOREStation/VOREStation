@@ -1134,7 +1134,7 @@
 	brute_mod = 1.35
 	burn_mod =  1.35
 	mob_size = MOB_MEDIUM
-	pass_flags = PASSTABLE
+//	pass_flags = PASSTABLE //Default off, but we have the verb to turn it on.
 	holder_type = /obj/item/holder/micro
 //	short_sighted = 1
 	has_vibration_sense = TRUE
