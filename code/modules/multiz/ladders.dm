@@ -149,33 +149,36 @@
 		var/list/imminent_prey = list()
 		var/mob/living/imminent_pred = null
 		for(var/atom/A in T)
-			if(!A.CanPass(M, M.loc, 1.5, 0))
-				if(isliving(A)) //Check spontvore, but only if we dont have a pred in line.
-					var/mob/living/in_the_way = A
-					//going down, priorize the mover
-					if(direction == "down") //not sure if im a fan of this being a string but whatever.
-						if(can_drop_vore(pred = climber, prey = in_the_way))
-							imminent_prey += in_the_way
+			if(A.CanPass(M, M.loc, 1.5, 0))
+				continue
+			if(isliving(A) && isliving(climber)) //Check spontvore, but only if we dont have a pred in line.
+				var/mob/living/in_the_way = A
+				//going down, priorize the mover
+				if(direction == "down") //not sure if im a fan of this being a string but whatever.
+					if(can_drop_vore(pred = climber, prey = in_the_way))
+						imminent_prey += in_the_way
+						continue
+					if(can_drop_vore(pred = in_the_way, prey = climber)) //if they can be prey, it'll block other
+						if(in_the_way in imminent_prey) //If they're going to be prey, they cant be pred here
 							continue
-						if(can_drop_vore(pred = in_the_way, prey = climber)) //if they can be prey, it'll block other
-							if(in_the_way in imminent_prey) //If they're going to be prey, they cant be pred here
-								continue
-							imminent_pred = in_the_way
-							continue
-					else //Going up, priorize the person blocking
-						if(can_drop_vore(pred = in_the_way, prey = climber))
-							imminent_pred = in_the_way
-							continue
-						if(can_drop_vore(pred = climber, prey = in_the_way))
-							imminent_prey += in_the_way
-							continue
+						imminent_pred = in_the_way
+						continue
+				else //Going up, priorize the person blocking
+					if(can_drop_vore(pred = in_the_way, prey = climber))
+						imminent_pred = in_the_way
+						continue //Need to continue instead of break here since other things could potentially block passage up and down, which also blocks vore :(
+					if(can_drop_vore(pred = climber, prey = in_the_way))
+						imminent_prey += in_the_way
+						continue
 
-
-				to_chat(M, span_notice("\The [A] is blocking \the [src]."))
-				return FALSE
+			to_chat(M, span_notice("\The [A] is blocking \the [src]."))
+			return FALSE
 
 		if(egg_interdict(M, T))
 			return
+
+		if(!isliving(climber)) //Climber isnt /living somehow. skip the vorechecks and move instantly
+			return M.forceMove(T)
 
 		if(imminent_pred)
 			var/imminent_tummy = imminent_pred.vore_selected
@@ -206,8 +209,6 @@
 					to_chat(dropsnack, span_danger("\The [climber] drops down onto you, making you vanish into their [imminent_tummy]!"))
 					climber.visible_message(span_warning("\The [climber] drops down onto [dropsnack] as they come down the ladder, making them vanish with their [imminent_tummy]!"), span_danger("You drop down onto [dropsnack] as you come down from the ladder, making them vanish into your [imminent_tummy]!"))
 				climber.begin_instant_nom(climber, dropsnack, climber, imminent_tummy)
-
-		return
 
 /obj/structure/ladder/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density
