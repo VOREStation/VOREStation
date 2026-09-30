@@ -56,10 +56,14 @@
 					return
 				do_attack_animation(A, TRUE) //Homph.~
 				eat_trash_proc(A)
+			else
+				attack_target(A)
 
 		if(I_DISARM)
 			if(has_hands)
 				A.attack_hand(src)
+			else
+				attack_target(A)
 
 /mob/living/simple_mob/RangedAttack(atom/A)
 //	setClickCooldown(get_attack_speed())
