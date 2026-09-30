@@ -241,10 +241,6 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
-	// Component control flags, lets us tweak the properties of says into what we need them to be.
-	if(comsig_flags & COMSIG_SAY_FORBID_RADIOS)
-		message_mode = null // We don't want to use any radios thanks.
-
 	//Whisper vars
 	var/w_scramble_range = 5	//The range at which you get ***as*th**wi****
 	var/w_adverb				//An adverb prepended to the verb in whispers
@@ -266,13 +262,14 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	//For speech disorders (hulk, slurring, stuttering)
 	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb)
 	if(!(comsig_flags & COMSIG_SAY_FORBID_SPEECH_PROBLEMS) && handle_speech_problems(message_data))
-		message_pieces = message_data[1]
-		whispering = message_data[3]
-
-		if(verb != message_data[2]) //They changed our verb
+		speaking = message_data[SPEECH_SPEAKINGLANG]
+		whispering = message_data[SPEECH_WHISPERING]
+		message_mode = message_data[SPEECH_MSGMODE]
+		message_pieces = message_data[SPEECH_MSGPIECES]
+		if(verb != message_data[SPEECH_MSGVERB]) //They changed our verb
 			if(whispering)
 				w_adverb = pick("quietly", "softly")
-			verb = message_data[2]
+			verb = message_data[SPEECH_MSGVERB]
 
 	//Whisper may have adverbs, add those if one was set
 	if(w_adverb)

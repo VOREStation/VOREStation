@@ -136,13 +136,12 @@
 	#define COMSIG_SAY_FORBID_SPEAK (1<<0) // Remember to handle logging ourselves if we use this to cancel the say chain, but still send a message somehow!
 	#define COMSIG_SAY_IGNORE_MIME_VOW (1<<1)
 	#define COMSIG_SAY_IGNORE_MUZZLING (1<<2)
-	#define COMSIG_SAY_FORBID_RADIOS (1<<3)
-	#define COMSIG_SAY_FORBID_SPEECH_PROBLEMS (1<<4)
-	#define COMSIG_SAY_DISABLE_SPEAK_NOISE (1<<5)
-	#define COMSIG_SAY_IGNORE_AIR_PRESSURE (1<<6)
-	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<7)
-	#define COMSIG_SAY_FORBID_OBJS_HEARING (1<<8)
-	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<9)
+	#define COMSIG_SAY_FORBID_SPEECH_PROBLEMS (1<<3)
+	#define COMSIG_SAY_DISABLE_SPEAK_NOISE (1<<4)
+	#define COMSIG_SAY_IGNORE_AIR_PRESSURE (1<<5)
+	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<6)
+	#define COMSIG_SAY_FORBID_OBJS_HEARING (1<<7)
+	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<8)
 	// used to access message_data argslist
 	#define SPEECH_MESSAGE 1
 	#define SPEECH_SPEAKINGLANG 2
