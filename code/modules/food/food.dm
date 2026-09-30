@@ -62,8 +62,7 @@
 		pixel_y = (CELLSIZE * (0.5 + cell_y)) - center_of_mass_y
 
 /obj/item/reagent_containers/food/container_resist(mob/living/Micro)
-	if(food_inserted_micros)
-		LAZYREMOVE(food_inserted_micros, Micro)
+	LAZYREMOVE(food_inserted_micros, Micro)
 	if(isdisposalpacket(loc))
 		Micro.forceMove(loc)
 	else

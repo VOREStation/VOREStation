@@ -643,8 +643,7 @@
 	//You are in food and for some reason can't resist out
 	else if(istype(loc, /obj/item/reagent_containers/food))
 		var/obj/item/reagent_containers/food/F = src.loc
-		if(F.food_inserted_micros)
-			LAZYREMOVE(F.food_inserted_micros, src)
+		LAZYREMOVE(F.food_inserted_micros, src)
 		src.forceMove(get_turf(F))
 		log_and_message_admins("used the OOC escape button to get out of a food item.", src)
 

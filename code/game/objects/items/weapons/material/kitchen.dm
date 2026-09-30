@@ -27,10 +27,10 @@
 	create_reagents(scoop_volume)
 
 /obj/item/material/kitchen/utensil/Destroy()
-	if(food_inserted_micros)
+	if(LAZYLEN(food_inserted_micros))
 		for(var/mob/M in food_inserted_micros)
 			M.dropInto(loc)
-			LAZYREMOVE(food_inserted_micros, M)
+			food_inserted_micros -= M
 	. = ..()
 
 	return
@@ -61,7 +61,7 @@
 	loaded_color = loading.filling_color
 
 	if(LAZYLEN(loading.food_inserted_micros))
-		for(var/mob/living/Micro in loading.food_inserted_micros)
+		for(var/mob/living/micro in loading.food_inserted_micros)
 			var/do_transfer = FALSE
 
 			if(!loading.reagents.total_volume)
@@ -72,9 +72,9 @@
 					do_transfer = TRUE
 
 			if(do_transfer)
-				Micro.forceMove(src)
-				LAZYREMOVE(loading.food_inserted_micros, Micro)
-				LAZYADD(food_inserted_micros, Micro)
+				micro.forceMove(src)
+				loading.food_inserted_micros -= micro
+				food_inserted_micros += micro
 
 	if (loading.reagents.total_volume <= 0)
 		qdel(loading)
@@ -95,12 +95,12 @@
 	if(loaded && reagents.total_volume > 0)
 		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		if(LAZYLEN(food_inserted_micros))
-			for(var/mob/living/Micro in food_inserted_micros)
-				LAZYREMOVE(food_inserted_micros, Micro)
-				if(!can_food_vore(M, Micro))
-					Micro.forceMove(get_turf(src))
+			for(var/mob/living/micro in food_inserted_micros)
+				food_inserted_micros -= micro
+				if(!can_food_vore(M, micro))
+					micro.forceMove(get_turf(src))
 				else
-					M.vore_selected.nom_atom(Micro)
+					M.vore_selected.nom_atom(micro)
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return ITEM_INTERACT_FAILURE
@@ -125,14 +125,13 @@
 		cut_overlays()
 	return
 
-/obj/item/material/kitchen/utensil/container_resist(mob/living/Micro)
-	if(LAZYLEN(food_inserted_micros))
-		LAZYREMOVE(food_inserted_micros, Micro)
+/obj/item/material/kitchen/utensil/container_resist(mob/living/micro)
+	LAZYREMOVE(food_inserted_micros, micro)
 	if(isdisposalpacket(loc))
-		Micro.forceMove(loc)
+		micro.forceMove(loc)
 	else
-		Micro.forceMove(get_turf(src))
-	to_chat(Micro, span_warning("You climb off of \the [src]."))
+		micro.forceMove(get_turf(src))
+	to_chat(micro, span_warning("You climb off of \the [src]."))
 
 /obj/item/material/kitchen/utensil/fork
 	name = "fork"

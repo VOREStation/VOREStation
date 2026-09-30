@@ -39,10 +39,10 @@
 	return
 
 /obj/item/reagent_containers/food/drinks/Destroy()
-	if(food_inserted_micros)
+	if(LAZYLEN(food_inserted_micros))
 		for(var/mob/mob in food_inserted_micros)
 			mob.dropInto(loc)
-			LAZYREMOVE(food_inserted_micros, mob)
+			food_inserted_micros -= mob
 	. = ..()
 
 	return
@@ -103,7 +103,7 @@
 
 			if(do_nom)
 				eater.vore_selected.nom_atom(micro)
-				LAZYREMOVE(food_inserted_micros, micro)
+				food_inserted_micros -= micro
 
 	if(!reagents.total_volume && changed)
 		eater.visible_message(span_notice("[eater] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))

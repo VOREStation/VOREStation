@@ -78,7 +78,7 @@
 
 			if(do_nom)
 				eater.vore_selected.nom_atom(micro)
-				LAZYREMOVE(food_inserted_micros, micro)
+				food_inserted_micros -= micro
 
 	if(!reagents.total_volume)
 		eater.balloon_alert_visible("eats \the [src].","finishes eating \the [src].")
@@ -360,10 +360,10 @@
 				reagents.trans_to_obj(slice, reagents_per_slice)
 				if(LAZYLEN(food_inserted_micros) && istype(slice, /obj/item/reagent_containers/food/snacks))
 					var/obj/item/reagent_containers/food/snacks/S = slice
-					for(var/mob/living/Micro in food_inserted_micros)
-						Micro.forceMove(S)
-						LAZYADD(S.food_inserted_micros, Micro)
-						LAZYREMOVE(food_inserted_micros, Micro)
+					for(var/mob/living/micro in food_inserted_micros)
+						micro.forceMove(S)
+						S.food_inserted_micros += micro
+						food_inserted_micros -= micro
 			on_slice_extra()
 
 			qdel(src)
@@ -372,10 +372,10 @@
 /obj/item/reagent_containers/food/snacks/proc/on_slice_extra()
 	return
 
-/obj/item/reagent_containers/food/snacks/MouseDrop_T(mob/living/Micro, mob/user)
-	if(!user.stat && istype(Micro) && (Micro == user) && Adjacent(Micro) && (Micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
-		Micro.forceMove(src)
-		LAZYADD(food_inserted_micros, Micro)
+/obj/item/reagent_containers/food/snacks/MouseDrop_T(mob/living/micro, mob/user)
+	if(!user.stat && istype(micro) && (micro == user) && Adjacent(micro) && (micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		micro.forceMove(src)
+		LAZYADD(food_inserted_micros, micro)
 		to_chat(user, span_warning("You climb into \the [src]."))
 		return
 
@@ -388,8 +388,7 @@
 	if(contents)
 		for(var/atom/movable/something in contents)
 			something.dropInto(loc)
-			if(LAZYLEN(food_inserted_micros) && (something in food_inserted_micros))
-				LAZYREMOVE(food_inserted_micros, something)
+			LAZYREMOVE(food_inserted_micros, something)
 	. = ..()
 
 	return
