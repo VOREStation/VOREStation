@@ -82,38 +82,38 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message
 
 	if(source == "CentCom")
 		if(!isliving(target_mob))
-			to_chat(user, "CentCom messages can only be sent to living mobs.")
+			to_chat(user, span_warning("CentCom messages can only be sent to living mobs."))
 			return
 		var/mob/living/L = target_mob
 		if(!L.CanObtainCentcommMessage())
-			to_chat(user, "The person you are trying to contact is not wearing a headset.")
+			to_chat(user, span_warning("The person you are trying to contact is not wearing a headset."))
 			return
 
 	if(source == "Syndicate")
 		if(!isliving(target_mob))
-			to_chat(user, "Syndicate messages can only be sent to living mobs.")
+			to_chat(user, span_warning("Syndicate messages can only be sent to living mobs."))
 			return
 		var/mob/living/L = target_mob
 		if(!L.CanObtainCentcommMessage())
-			to_chat(user, "The person you are trying to contact is not wearing a headset.")
+			to_chat(user, span_warning("The person you are trying to contact is not wearing a headset."))
 			return
 
 	if(source == "Talon HQ")
 		if(!isliving(target_mob))
-			to_chat(user, "Talon HQ messages can only be sent to living mobs.")
+			to_chat(user, span_warning("Talon HQ messages can only be sent to living mobs."))
 			return
 		var/mob/living/L = target_mob
 		if(!L.CanObtainCentcommMessage())
-			to_chat(user, "The person you are trying to contact is not wearing a headset.")
+			to_chat(user, span_warning("The person you are trying to contact is not wearing a headset."))
 			return
 
 	if(source == "SolGov")
 		if(!isliving(target_mob))
-			to_chat(user, "SolGov messages can only be sent to living mobs.")
+			to_chat(user, span_warning("SolGov messages can only be sent to living mobs."))
 			return
 		var/mob/living/L = target_mob
 		if(!L.CanObtainCentcommMessage())
-			to_chat(user, "The person you are trying to contact is not wearing a headset.")
+			to_chat(user, span_warning("The person you are trying to contact is not wearing a headset."))
 			return
 
 	var/custom_sender = ""
@@ -146,17 +146,17 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message
 
 	switch(source)
 		if("Subtle Message")
-			to_chat(target_mob, span_bold("You hear a voice in your head... " + span_italics(msg)))
+			to_chat(target_mob, span_infoplain(span_bold("You hear a voice in your head... " + span_italics(msg))))
 		if("CentCom")
-			to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"" + span_bold(span_blue("Central Command")) + " is on touch. Stand by for important message: " + span_bold("\"[msg]\"") + " End of transmission.\"")
+			to_chat(target_mob, span_infoplain("You hear a crackle in your headset, followed by a voice: \"" + span_bold(span_blue("Central Command")) + " is on touch. Stand by for important message: " + span_bold("\"[msg]\"") + " End of transmission.\""))
 		if("Syndicate")
-			to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"Expect a message from " + span_bold(span_italics(span_red("Syndicate"))) + ". Listen carefully, Agent: " + span_bold("\"[msg]\"") + " End of transmission.\"")
+			to_chat(target_mob, span_infoplain("You hear a crackle in your headset, followed by a voice: \"Expect a message from " + span_bold(span_italics(span_red("Syndicate"))) + ". Listen carefully, Agent: " + span_bold("\"[msg]\"") + " End of transmission.\""))
 		if("Talon HQ")
-			to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"" + span_bold(span_orange("Talon Headquarter")) + " is on touch. Stand by for important message: " + span_bold("\"[msg]\"") + " End of transmission.\"")
+			to_chat(target_mob, span_infoplain("You hear a crackle in your headset, followed by a voice: \"" + span_bold(span_orange("Talon Headquarter")) + " is on touch. Stand by for important message: " + span_bold("\"[msg]\"") + " End of transmission.\""))
 		if("SolGov")
-			to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"" + span_bold(span_yellow("Solar Government")) + " is on touch. Stand by for important message: " + span_bold("\"[msg]\"") + " End of transmission.\"")
+			to_chat(target_mob, span_infoplain("You hear a crackle in your headset, followed by a voice: \"" + span_bold(span_yellow("Solar Government")) + " is on touch. Stand by for important message: " + span_bold("\"[msg]\"") + " End of transmission.\""))
 		if("Custom")
-			to_chat(target_mob, "You hear a crackle in your headset, followed by a voice: \"Expect a message from [custom_sender]. Message: " + span_bold("\"[msg]\"") + " End of transmission.\"")
+			to_chat(target_mob, span_infoplain("You hear a crackle in your headset, followed by a voice: \"Expect a message from [custom_sender]. Message: " + span_bold("\"[msg]\"") + " End of transmission.\""))
 
 	log_admin("SubtlePM([source]): [key_name(user)] -> [key_name(target_mob)] : [msg]")
 	msg = span_admin_pm_notice(span_bold(" SubtleMessage([source]): [key_name_admin(user)] -> [key_name_admin(target_mob)] :") + " [msg]")

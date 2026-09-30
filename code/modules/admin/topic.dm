@@ -1357,7 +1357,7 @@
 			return
 
 		if(!L.CanObtainCentcommMessage())
-			to_chat(usr, "The person you are trying to contact is not wearing a headset")
+			to_chat(usr, span_warning("The person you are trying to contact is not wearing a headset"))
 			return
 		message_admins("[key_name_admin(usr)] has started replying to Emergency message.")
 
