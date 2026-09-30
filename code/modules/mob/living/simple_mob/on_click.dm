@@ -50,6 +50,7 @@
 					return
 				visible_message(span_warning("\The [src] is attempting to [vore_selected.vore_verb] \the [snack]"))
 				do_windup_animation(A, 1 SECOND) //Mlaaaah...
+				setClickCooldown(get_attack_speed(src))
 				if(!do_after(src, 1 SECOND, A))
 					animate(src) //Cancel the windup animation if we're interrupted
 					return
