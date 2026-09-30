@@ -75,7 +75,6 @@ ADMIN_VERB(cmd_check_new_players, R_HOLDER, "Check new Players", "Check the acco
 	to_chat(user, "No matches for that age range found.")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message", mob/target_mob in get_mob_with_client_list())
-
 	var/source = tgui_input_list(user, "Select the message source:", "Subtle Message for [target_mob.key]", list("Subtle Message", "CentCom", "Syndicate", "Talon HQ", "SolGov", "Custom"))
 	if(!source)
 		return
