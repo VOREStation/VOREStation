@@ -269,19 +269,20 @@
 
 /obj/structure/closet/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
-		if(opened)
-			if(anchored)
-				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
-			else
-				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
-				if(!src) return
-				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
-				anchored = !anchored
-				return
-		else
+		if(!opened)
 			to_chat(user, span_notice("You can't reach the anchoring bolts when the door is closed!"))
-	else if(opened)
+			return
+		if(anchored)
+			user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+		else
+			user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+		if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
+			if(!src) return
+			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
+			anchored = !anchored
+		return
+
+	if(opened)
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
 			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
@@ -319,9 +320,15 @@
 		if(W)
 			W.do_drop_animation(user)
 			W.forceMove(loc)
-	else if(istype(W, /obj/item/packageWrap))
 		return
-	else if(seal_tool)
+
+	if(istype(W, /obj/item/packageWrap))
+		return
+
+	if(istype(W,/obj/item/cargo_scanner))
+		return
+
+	if(seal_tool)
 		if(istype(W, seal_tool))
 			var/obj/item/S = W
 			if(S.has_tool_quality(TOOL_WELDER))
@@ -338,9 +345,9 @@
 				update_icon()
 				for(var/mob/M in viewers(src))
 					M.show_message(span_warning("[src] has been [sealed?"sealed":"unsealed"] by [user.name]."), 3)
-	else
-		attack_hand(user)
-	return
+		return
+
+	return attack_hand(user)
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 	if(istype(O, /atom/movable/screen))	//fix for HUD elements making their way into the world	-Pete

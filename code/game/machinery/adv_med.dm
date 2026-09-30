@@ -58,9 +58,11 @@
 			to_chat(user, span_warning("\The [H.affecting] has other entities attached to it. Remove them first."))
 			return
 		var/mob/M = H.affecting
+		/* Disable abiotic lockout
 		if(M.abiotic())
 			to_chat(user, span_notice("Subject cannot have abiotic items on."))
 			return
+		*/
 		M.forceMove(src)
 		occupant = M
 		update_icon()
@@ -77,7 +79,7 @@
 /obj/machinery/bodyscanner/MouseDrop_T(mob/living/carbon/human/O, mob/user as mob)
 	if(!istype(O))
 		return 0 //not a mob
-	if(user.incapacitated())
+	if(user.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return 0 //user shouldn't be doing things
 	if(O.anchored)
 		return 0 //mob is anchored???
@@ -94,9 +96,11 @@
 
 	if(O.buckled)
 		return 0
+	/* Disable abiotic lockout
 	if(O.abiotic())
 		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return 0
+	*/
 	if(O.has_buckled_mobs())
 		to_chat(user, span_warning("\The [O] has other entities attached to it. Remove them first."))
 		return
@@ -114,7 +118,7 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
-	if(user.incapacitated())
+	if(user.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return 0 //maybe they should be able to get out with cuffs, but whatever
 	go_out()
 
@@ -123,7 +127,7 @@
 	set category = "Object"
 	set name = "Eject Body Scanner"
 
-	if(usr.incapacitated())
+	if(usr.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return
 	go_out()
 	add_fingerprint(usr)
@@ -242,7 +246,6 @@
 		occupantData["hasBorer"] = H.has_brain_worms()
 		occupantData["hasWithdrawl"] = has_withdrawl
 
-		occupantData["allergens"] = assembly_allergy_list(H.species.allergens, H.species.medallergens)
 		occupantData["hasAllergens"] = islist(occupantData["allergens"])
 
 		occupantData["colourblind"] = null

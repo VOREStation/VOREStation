@@ -498,7 +498,10 @@
 		if(selected.message_mode || selected.digest_mode == DM_UNABSORB)
 			tab_data["possible_messages"] += UNABSORB_MESSAGE
 		if(!selected_message)
-			selected_message = DIGEST_MESSAGE
+			if(length(tab_data["possible_messages"]))
+				selected_message = tab_data["possible_messages"][1]
+			else
+				selected_message = DIGEST_MESSAGE
 		if(selected_message == DIGEST_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_DIGEST])

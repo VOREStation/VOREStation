@@ -25,7 +25,7 @@
 	for (var/x = 1 to limit_x)
 		for (var/y = 1 to limit_y)
 			tmp_cell = TRANSLATE_COORD(x, y)
-			if (CELL_ALIVE(map[tmp_cell]))
+			if (map[tmp_cell] == WALL_CHAR)
 				ore_turfs += tmp_cell
 
 	#ifdef TESTING

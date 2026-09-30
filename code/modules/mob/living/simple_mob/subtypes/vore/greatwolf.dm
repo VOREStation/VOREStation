@@ -58,6 +58,9 @@
 	pain_emote_1p = list("yelp", "whine", "bark", "growl")
 	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 
+	export_research_value = TECHWEB_TIER_2_POINTS
+	export_research_diminished_max = 3
+
 /mob/living/simple_mob/vore/greatwolf/black
 	name = "great black wolf"
 	desc = "A massive black wolf with a sandy colored underside, and intimidating amber eyes. Much like a dire wolf, but bigger. Passive, until you give it a reason to not be."

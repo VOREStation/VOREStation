@@ -10,11 +10,15 @@
 		"iceaxe",
 		// "conveyor_switch",
 		// "conveyor_belt",
+		"ore_unloader",
 		// "mass_driver",
 		// "recycler",
-		// "stack_machine",
-		// "stack_console",
+		"stack_machine",
+		"stack_console",
+		"ore_processor",
+		"ore_processor_console",
 		"hoist_kit",
+		"mint",
 	)
 
 /datum/techweb_node/mining

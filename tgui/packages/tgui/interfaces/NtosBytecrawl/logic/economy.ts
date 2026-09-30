@@ -54,16 +54,33 @@ export function computeBountyTick(
   const nowUnlocked = bountyUnlocked || justUnlocked;
 
   if (!nowUnlocked) {
-    return { newLastBounty: lastBounty, bountyPayout: 0, justUnlocked, newBountyUnlocked: false };
+    return {
+      newLastBounty: lastBounty,
+      bountyPayout: 0,
+      justUnlocked,
+      newBountyUnlocked: false,
+    };
   }
 
   const next = lastBounty + 1;
   if (next < BOUNTY_INTERVAL) {
-    return { newLastBounty: next, bountyPayout: 0, justUnlocked, newBountyUnlocked: nowUnlocked };
+    return {
+      newLastBounty: next,
+      bountyPayout: 0,
+      justUnlocked,
+      newBountyUnlocked: nowUnlocked,
+    };
   }
 
-  const bp = Math.floor(rand(800, 2400) * (1 + (cpu + stl) * 0.08) * ghostMarket);
-  return { newLastBounty: 0, bountyPayout: bp, justUnlocked, newBountyUnlocked: nowUnlocked };
+  const bp = Math.floor(
+    rand(800, 2400) * (1 + (cpu + stl) * 0.08) * ghostMarket,
+  );
+  return {
+    newLastBounty: 0,
+    bountyPayout: bp,
+    justUnlocked,
+    newBountyUnlocked: nowUnlocked,
+  };
 }
 
 // ── Fragment harvester ────────────────────────────────────────────────────────

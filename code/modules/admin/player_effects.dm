@@ -219,18 +219,21 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			Tar.fear = 200
 
 		if("spin")
-			var/speed = tgui_input_number(ui.user, "Spin speed (minimum 0.1):", "Speed")
-			if(speed < 0.1)
+			var/speed = tgui_input_number(ui.user, "Spin speed (minimum 0.1):", "Speed", 1, min_value = 0.1, round_value = FALSE)
+			if(isnull(speed) || speed < 0.1)
 				return
 			var/loops = tgui_input_number(ui.user, "Number of loops (-1 for infinite):", "Loops")
+			if(isnull(loops))
+				return
 			var/direction_ask = tgui_alert(ui.user, "Clockwise or Anti-Clockwise", "Direction", list("Clockwise", "Anti-Clockwise", "Cancel"))
 			var/direction
-			if(direction_ask == "Clockwise")
-				direction = 1
-			if(direction_ask == "Anti-Clockwise")
-				direction = 0
-			if(direction_ask == "Cancel")
-				return
+			switch(direction_ask)
+				if("Cancel", null)
+					return
+				if("Clockwise")
+					direction = 1
+				if("Anti-Clockwise")
+					direction = 0
 			target.SpinAnimation(speed, loops, direction)
 
 		if("squish")

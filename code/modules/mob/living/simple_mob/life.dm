@@ -183,7 +183,7 @@
 	if(purge)
 		purge -= 1
 
-/mob/living/simple_mob/
+/mob/living/simple_mob
 	var/update_icon_timer
 
 /mob/living/simple_mob/death(gibbed, deathmessage = "dies!")

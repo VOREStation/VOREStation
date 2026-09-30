@@ -192,7 +192,7 @@
 					if(!ui.user.get_active_hand())
 						ui.user.put_in_hands(scan)
 					scan = null
-				if(bot_login)
+				else if(bot_login)
 					scan = null
 					bot_login = FALSE
 				else

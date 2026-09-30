@@ -54,8 +54,8 @@ export const RecipeElement = (props: { recipe: Recipe; title: string }) => {
   );
 };
 
-const Multipliers = (props) => {
-  const { act, data } = useBackend();
+const Multipliers = (props: { recipe: Recipe; maxMultiplier: number }) => {
+  const { act } = useBackend();
 
   const { recipe, maxMultiplier } = props;
 

@@ -133,8 +133,14 @@
 	var/mob/living/carbon/WC = get_occupant()
 	go_out()
 	for(var/obj/O in src)
-		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
-			O.forceMove(get_turf(src)) //Ejects items that manage to get in there (exluding the components)
+		//Ejects items that manage to get in there (exluding the components, and beakers)
+		if(O == beaker)
+			continue
+		if(O == circuit)
+			continue
+		if(O in component_parts)
+			continue
+		O.forceMove(get_turf(src))
 	if(!WC)
 		for(var/mob/M in src)//Failsafe so you can get mobs out
 			M.forceMove(get_turf(src))
@@ -166,9 +172,11 @@
 	if(WC)
 		to_chat(usr, span_warning("The scanner is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(usr.abiotic())
 		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
+	*/
 	if(WC)
 		to_chat(usr, span_warning("There is already something inside."))
 		return
@@ -221,9 +229,11 @@
 	if(get_occupant())
 		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(G.affecting.abiotic())
 		to_chat(user, span_warning("The subject cannot have abiotic items on."))
 		return
+	*/
 	put_in(G.affecting)
 	src.add_fingerprint(user)
 	qdel(G)
@@ -597,11 +607,7 @@
 		if("ejectOccupant")
 			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 			connected.eject_occupant()
-			// Eject disk too, because we can't get to the UI otherwise
-			if(!disk)
-				return TRUE
-			disk.forceMove(get_turf(src))
-			disk = null
+			return TRUE
 		// Transfer Buffer Management
 		if("bufferOption")
 			var/bufferOption = params["option"]

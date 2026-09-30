@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 /obj/machinery/power/apc/proc/togglelock(mob/user)
-	if(emagged)
+	if(emagged || hacker)
 		to_chat(user, "The panel is unresponsive.")
 	else if(opened)
 		to_chat(user, "You must close the cover to swipe an ID card.")
@@ -687,8 +687,6 @@ GLOBAL_LIST_EMPTY(apcs)
 		to_chat(user, "You must close the wire panel.")
 	else if(stat & (BROKEN|MAINT))
 		to_chat(user, "Nothing happens.")
-	else if(hacker)
-		to_chat(user, span_warning("Access denied."))
 	else
 		if(allowed(user) && !wires.is_cut(WIRE_IDSCAN))
 			locked = !locked
@@ -699,7 +697,8 @@ GLOBAL_LIST_EMPTY(apcs)
 
 /obj/machinery/power/apc/click_alt(mob/user)
 	..()
-	togglelock(user)
+	if(Adjacent(user) || isrobot(user))
+		togglelock(user)
 
 /obj/machinery/power/apc/emag_act(remaining_charges, mob/user)
 	if(!(emagged || hacker))		// trying to unlock with an emag card
@@ -796,7 +795,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/list/data = list(
 		"locked" = locked,
 		"normallyLocked" = locked,
-		"emagged" = emagged,
+		"hacked" = (emagged || hacker),
 		"isOperating" = operating,
 		"externalPower" = main_status,
 		"powerCellStatus" = cell ? cell.percent() : 0,

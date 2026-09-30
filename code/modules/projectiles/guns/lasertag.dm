@@ -26,7 +26,7 @@
 			var/obj/item/clothing/suit/lasertag/laser_suit = target
 			laser_suit.handle_hit(tag_damage)
 			return TRUE
-	if(attacker)
+	else if(attacker)
 		to_chat(attacker, span_warning("You need to be wearing your laser tag vest to use this!"))
 	return FALSE
 
@@ -56,6 +56,8 @@
 	return ..()
 
 /obj/item/gun/energy/lasertag/blue
+	name = "blue laser tag gun"
+	desc = "A laser tag gun that works when wearing a blue vest!"
 	icon_state = "bluetag"
 	item_state = "bluetag"
 	projectile_type = /obj/item/projectile/beam/lasertag/blue
@@ -69,6 +71,8 @@
 	item_state = "retro"
 
 /obj/item/gun/energy/lasertag/red
+	name = "red laser tag gun"
+	desc = "A laser tag gun that works when wearing a red vest!"
 	icon_state = "redtag"
 	item_state = "redtag"
 	projectile_type = /obj/item/projectile/beam/lasertag/red
@@ -107,9 +111,41 @@
 	///If we need a vest on ourselves to use it or not.
 	var/vest_override = FALSE
 	///How much damage it does to the lasertag vest. Generally for oneshots.
-	var/tag_damage = 5
+	var/tag_damage = 1
 	///What vests we are allowed to hit with the knife.
 	var/list/allowed_suits = list(/obj/item/clothing/suit/lasertag/bluetag, /obj/item/clothing/suit/lasertag/redtag, /obj/item/clothing/suit/lasertag/omni)
+
+/obj/item/lasertagknife/examine(mob/user, infix, suffix)
+	. = ..()
+	. += "It is currently set to do [tag_damage] damage per hit. Alt-click to adjust."
+
+/obj/item/lasertagknife/click_alt(mob/user)
+	if(isliving(user))
+		adjust_damage_proc(user)
+
+/obj/item/lasertagknife/verb/adjust_damage()
+	set name = "Adjust Knife Damage"
+	set category = "Object"
+	set src in usr
+	if(isliving(usr))
+		adjust_damage_proc(usr)
+
+/obj/item/lasertagknife/proc/adjust_damage_proc(mob/living/user)
+	if(user.stat)
+		to_chat(user, span_warning("You must be conscious to adjust the knife damage!"))
+	var/max_damage = 10
+	var/min_damage = 1
+	var/new_damage = tgui_input_number(user, "Select knife damage (Between 1 and 10)", "Tag Health", tag_damage, max_damage, min_damage, round_value=TRUE) //If you need to go above 10, ask admins.
+	if(isnull(new_damage))
+		return null
+	if(new_damage > max_damage || new_damage < min_damage)
+		to_chat(user, span_danger("Invalid damage value! Must be between [min_damage] and [max_damage]."))
+		return null
+	if(!Adjacent(user))
+		to_chat(user, span_danger("You must be adjacent to the knife to adjust its healing timer!"))
+		return null
+	tag_damage = new_damage
+	user.visible_message(user, span_notice("Set [src]'s damage to [tag_damage]!"))
 
 /obj/item/lasertagknife/blue
 	name = "blue laser tag dagger"

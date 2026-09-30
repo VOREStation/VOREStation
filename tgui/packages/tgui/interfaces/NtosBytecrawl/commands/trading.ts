@@ -22,8 +22,13 @@ export function cmdSell(args: readonly string[], ctx: CommandContext): void {
       const price = state.market[item.type] * state.ghost.market;
       const revenue = Math.floor(item.gb * price);
       total += revenue;
-      print(`  Sold ${item.id}: ${item.gb.toFixed(2)}GB ${DATA_FULLNAMES[item.type]} — ${fmtMoney(revenue)}`, '#33ff33');
-      newLog.push(`SELL ${item.id} ${item.gb.toFixed(2)}GB ${item.type} +${fmtMoney(revenue)}`);
+      print(
+        `  Sold ${item.id}: ${item.gb.toFixed(2)}GB ${DATA_FULLNAMES[item.type]} — ${fmtMoney(revenue)}`,
+        '#33ff33',
+      );
+      newLog.push(
+        `SELL ${item.id} ${item.gb.toFixed(2)}GB ${item.type} +${fmtMoney(revenue)}`,
+      );
     }
     setG((prev) => ({
       ...prev,
@@ -71,7 +76,12 @@ export function cmdSell(args: readonly string[], ctx: CommandContext): void {
 export function cmdMarket(_args: readonly string[], ctx: CommandContext): void {
   const { gRef, print } = ctx;
   const state = gRef.current;
-  const BASELINES: Record<string, number> = { CRD: 820, FIN: 1240, CRP: 960, CLS: 3100 };
+  const BASELINES: Record<string, number> = {
+    CRD: 820,
+    FIN: 1240,
+    CRP: 960,
+    CLS: 3100,
+  };
   const trend = (k: string): string => {
     const cur = state.market[k];
     const base = BASELINES[k] ?? cur;

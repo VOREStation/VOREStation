@@ -79,43 +79,6 @@
 /obj/item/projectile/energy/hook/on_impact(atom/A)
 	perform_intent_unique(get_turf(A))
 
-/obj/item/projectile/energy/hook/proc/ranged_disarm(mob/living/carbon/human/H)
-	if(istype(H))
-		var/list/holding = list(H.get_active_hand() = 60, H.get_inactive_hand() = 40)
-
-		for(var/obj/item/gun/W in holding)	// Guns are complex devices, both of a mechanical and electronic nature. A weird gravity ball or other type of object trying to pull or grab it is likely not safe.
-			if(W && prob(holding[W]))
-				var/list/turfs = list()
-				for(var/turf/T in view())
-					turfs += T
-				if(turfs.len)
-					var/turf/target = pick(turfs)
-					visible_message(span_danger("[H]'s [W] goes off due to \the [src]!"))
-					return W.afterattack(target,H)
-
-		if(!(H.species.flags & NO_SLIP) && prob(50))
-			var/armor_check = H.run_armor_check(def_zone, "melee")
-			H.apply_effect(3, WEAKEN, armor_check)
-			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			if(armor_check < 60)
-				visible_message(span_danger("\The [src] has pushed [H]!"))
-			else
-				visible_message(span_warning("\The [src] attempted to push [H]!"))
-			return
-
-		else
-			if(H.break_all_grabs(firer))
-				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				return
-
-			for(var/obj/item/I in holding)
-				if(I)
-					H.drop_from_inventory(I)
-					visible_message(span_danger("\The [src] has disarmed [H]!"))
-					playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					return
-
-
 /obj/item/projectile/energy/hook/proc/perform_intent_unique(atom/target)
 	playsound(src, impact_sound, 40, 1)
 	var/success = FALSE
@@ -169,12 +132,12 @@
 				if(I_HURT)
 					if(prob(10) && ishuman(L))
 						to_chat(L, span_warning("\The [src] rips at your hands!"))
-						ranged_disarm(L)
+						ranged_disarm(L, null)
 					success = TRUE
 					done_mob_unique = TRUE
 				if(I_DISARM)
 					if(prob(disarm_chance) && ishuman(L))
-						ranged_disarm(L)
+						ranged_disarm(L, null)
 					else
 						L.visible_message(span_danger("\The [src] sends \the [L] stumbling backwards."))
 						L.throw_at(get_turf(get_step(L,get_dir(firer,L))), 1, 1, src)

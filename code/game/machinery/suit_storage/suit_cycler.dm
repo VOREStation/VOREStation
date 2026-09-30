@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler
 	name = "suit cycler"
 	desc = "An industrial machine for painting and refitting voidsuits."
+	description_antag = "Safeties can be overriden with the use of a cryptographic sequencer. Or emag, if you aren't a nerd."
 	anchored = TRUE
 	density = TRUE
 

@@ -405,3 +405,45 @@
 							/obj/item/stock_parts/motor = 1,
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/console_screen = 1)
+
+/obj/item/circuitboard/mat_processor
+	name = T_BOARD("material processor")
+	build_path = /obj/machinery/mineral/processing_unit
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+							/obj/item/stock_parts/motor = 1,
+							/obj/item/stock_parts/manipulator = 2,
+							/obj/item/stock_parts/micro_laser = 4)
+
+/obj/item/circuitboard/mat_processor_console
+	name = T_BOARD("material processor console")
+	build_path = /obj/machinery/mineral/processing_unit_console
+	board_type = new /datum/frame/frame_types/mat_production_console
+
+/obj/item/circuitboard/mat_stacker
+	name = T_BOARD("stacking machine")
+	build_path = /obj/machinery/mineral/stacking_machine
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+							/obj/item/stock_parts/motor = 2,
+							/obj/item/stock_parts/manipulator = 2)
+
+/obj/item/circuitboard/mat_stacker_console
+	name = T_BOARD("stacking machine console")
+	build_path = /obj/machinery/mineral/stacking_unit_console
+	board_type = new /datum/frame/frame_types/mat_production_console
+
+/obj/item/circuitboard/mat_unloader
+	name = T_BOARD("unloading machine")
+	build_path = /obj/machinery/mineral/unloading_machine
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+							/obj/item/stock_parts/motor = 2,
+							/obj/item/stock_parts/manipulator = 1)
+
+/obj/item/circuitboard/mat_mint
+	name = T_BOARD("mint")
+	build_path = /obj/machinery/mineral/mint
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list(
+							/obj/item/stock_parts/motor = 4)
