@@ -84,10 +84,13 @@
 	timeoff_factor = 1
 	access = list(ACCESS_TALON, ACCESS_TALON_BRIDGE, ACCESS_TALON_MEDICAL, ACCESS_TALON_ENGINEER, ACCESS_TALON_CARGO, ACCESS_TALON_SECURITY, ACCESS_TALON_PILOT)
 	minimal_access = list(ACCESS_TALON, ACCESS_TALON_BRIDGE, ACCESS_TALON_MEDICAL, ACCESS_TALON_ENGINEER, ACCESS_TALON_CARGO, ACCESS_TALON_SECURITY, ACCESS_TALON_PILOT)
-	alt_titles = list(JOB_ALT_TALON_TECHNICIAN = /datum/alt_title/talon_tech)
+	alt_titles = list(JOB_ALT_TALON_TECHNICIAN = /datum/alt_title/talon_tech, JOB_ALT_TALON_ATMOSTECHIAN = /datum/alt_title/talon_tech_atmo)
 
 /datum/alt_title/talon_tech
 	title = JOB_ALT_TALON_TECHNICIAN
+
+/datum/alt_title/talon_tech_atmo
+	title = JOB_ALT_TALON_ATMOSTECHIAN
 
 
 /datum/job/talon_pilot
