@@ -62,7 +62,6 @@
 /datum/alt_title/talon_medic
 	title = JOB_ALT_TALON_MEDIC
 
-
 /datum/job/talon_engineer
 	title = JOB_TALON_ENGINEER
 	flag = TALENG
@@ -92,7 +91,6 @@
 /datum/alt_title/talon_tech_atmo
 	title = JOB_ALT_TALON_ATMOSTECHIAN
 
-
 /datum/job/talon_pilot
 	title = JOB_TALON_PILOT
 	flag = TALPIL
@@ -118,7 +116,6 @@
 
 /datum/alt_title/talon_helmsman
 	title = JOB_ALT_TALON_HELMSMAN
-
 
 /datum/job/talon_guard
 	title = JOB_TALON_GUARD
