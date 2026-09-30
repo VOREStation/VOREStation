@@ -1400,7 +1400,7 @@
 		log_admin("[src.owner] replied to [key_name(H)]'s illegal message with the message [input].")
 		if(!isAI(H))
 			to_chat(H, span_filter_notice("You hear something crackle in your headset for a moment before a voice speaks."))
-		to_chat(H, span_info("Please stand by for a message from " + span_bold(span_italics(span_red("Syndicate")))+ "."))
+		to_chat(H, span_info("Please stand by for a message from " + span_bold(span_italics(span_red("Syndicate"))) + "."))
 		to_chat(H, span_info("Message as follows, agent."))
 		to_chat(H, span_boldnotice("[input]"))
 		to_chat(H, span_info("End of transmission."))
