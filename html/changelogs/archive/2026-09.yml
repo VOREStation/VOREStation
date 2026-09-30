@@ -155,3 +155,24 @@
 2026-09-27:
   Diana:
   - qol: Hard feet stops mousetraps from stunning you.
+2026-09-28:
+  Cameron-The-Raven:
+  - rscadd: Powerloader footstep sounds are able to be selected.
+  - bugfix: Clown shoes now no longer play the squeak and footstep sound at the same
+      time.
+  Diana:
+  - bugfix: Batons will no longer do lethal damage when on grab intent
+  - bugfix: Tasers will no longer do lethal damage if you shoot yourself.
+  - qol: Makes the jackboot variants accessible via the security wardrobe vendor instead
+      of loadout only.
+2026-09-29:
+  DIana:
+  - bugfix: APC Authentication error shows up if hacked by malf AI
+  - qol: AI can now speak/understand more languages
+  Lira:
+  - bugfix: Fixed round end timer skipping 1 minute remaining warning.
+  - bugfix: Give the final Rebooting World message a one second buffer before reboot
+      as intended.
+  - bugfix: config time for round end and start now uses full seconds only
+  lbnesquik:
+  - rscadd: Gave drones atmospheric analysers, signalers and an engineering gripper

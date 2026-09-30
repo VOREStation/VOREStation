@@ -1,0 +1,5 @@
+author: "Cameron-The-Raven"
+delete-after: True
+changes:
+  - spellcheck: "Renamed 'weapon power cell' to 'advanced device power cell' to indicate it can be used in more than just weapons."
+  - balance: "Allows any department to make the power cell."
