@@ -149,6 +149,7 @@
 	#define SPEECH_MSGMODE 4
 	#define SPEECH_MSGPIECES 5
 	#define SPEECH_MSGVERB 6
+	#define SPEECH_RANGE 7
 ////from /mob/living/direct_say(): (list/message_data)
 #define COMSIG_MOB_SAY_PREPARE "mob_say_prepare"
 	// Reuses the comsig flags of COMSIG_MOB_PRESAY

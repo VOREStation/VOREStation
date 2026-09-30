@@ -169,13 +169,15 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	direct_say(message, speaking, whispering)
 
 /mob/living/direct_say(message, datum/language/speaking = null, whispering = 0)
-	var/list/message_data = list(message, speaking, whispering, null, null, null)
+	var/message_range = world.view
+	var/list/message_data = list(message, speaking, whispering, null, null, null, message_range)
 	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY, message_data)
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Forbid sending at all
 		return 1
 	message = message_data[SPEECH_MESSAGE]
 	speaking = message_data[SPEECH_SPEAKINGLANG]
 	whispering = message_data[SPEECH_WHISPERING]
+	message_range = message_data[SPEECH_RANGE]
 
 	// Handle automatic whispering mode
 	if(autowhisper)
@@ -209,7 +211,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
-	message_data = list(message, speaking, whispering, message_mode, message_pieces, null)
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, null, message_range)
 	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_data)
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Sometimes we just want to do nothing at all, like passing the message to a TTS object
 		return 1
@@ -218,6 +220,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	whispering = message_data[SPEECH_WHISPERING]
 	message_mode = message_data[SPEECH_MSGMODE]
 	message_pieces = message_data[SPEECH_MSGPIECES]
+	message_range = message_data[SPEECH_RANGE]
 
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
@@ -260,12 +263,13 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		w_not_heard = "[first_piece.speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb)
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb, message_range)
 	if(!(comsig_flags & COMSIG_SAY_FORBID_SPEECH_PROBLEMS) && handle_speech_problems(message_data))
 		speaking = message_data[SPEECH_SPEAKINGLANG]
 		whispering = message_data[SPEECH_WHISPERING]
 		message_mode = message_data[SPEECH_MSGMODE]
 		message_pieces = message_data[SPEECH_MSGPIECES]
+		message_range = message_data[SPEECH_RANGE]
 		if(verb != message_data[SPEECH_MSGVERB]) //They changed our verb
 			if(whispering)
 				w_adverb = pick("quietly", "softly")
@@ -290,7 +294,6 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	var/sound_vol = handle_v[2]
 
 	//Default range and italics, may be overridden past here
-	var/message_range = world.view
 	var/italics = 0
 	var/do_sound = TRUE
 	if(!voice_sounds_list || !voice_sounds_list.len)
@@ -334,7 +337,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		verb = "[custom_say]"
 
 	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
-	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb)
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb, message_range)
 	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_data)
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK)
 		return 1
@@ -345,6 +348,7 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	whispering = message_data[SPEECH_WHISPERING]
 	message_mode = message_data[SPEECH_MSGMODE]
 	message_pieces = message_data[SPEECH_MSGPIECES]
+	message_range = message_data[SPEECH_RANGE]
 	verb = message_data[SPEECH_MSGVERB]
 
 	//Handle nonverbal languages here
