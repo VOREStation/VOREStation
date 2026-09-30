@@ -44,14 +44,21 @@
 				A.attack_hand(src)
 			else if(isliving(A) && src.client && !vore_attack_override)
 				animal_nom(A)
-			else
-				attack_target(A)
+			else if(isitem(A))
+				var/obj/item/snack = A
+				if(!snack.check_item_devourability(src))
+					return
+				visible_message(span_warning("\The [src] is attempting to [vore_selected.vore_verb] \the [snack]"))
+				do_windup_animation(A, 1 SECOND) //Mlaaaah...
+				if(!do_after(src, 1 SECOND, A))
+					animate(src) //Cancel the windup animation if we're interrupted
+					return
+				do_attack_animation(A, TRUE) //Homph.~
+				eat_trash_proc(A)
 
 		if(I_DISARM)
 			if(has_hands)
 				A.attack_hand(src)
-			else
-				attack_target(A)
 
 /mob/living/simple_mob/RangedAttack(atom/A)
 //	setClickCooldown(get_attack_speed())
