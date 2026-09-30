@@ -125,7 +125,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_subtle_message, R_HOLDER, "Subtle Message
 		custom_sender = tgui_input_text(user, "Enter the sender's name:", "Sender for [target_mob.key]")
 		if(!custom_sender)
 			return
-		custom_sender = span_bold(sanitize(custom_sender))
+		custom_sender = span_bold(custom_sender)
 		switch(col_choice)
 			if("Green")
 				custom_sender = span_green(custom_sender)
