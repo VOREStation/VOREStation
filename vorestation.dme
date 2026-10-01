@@ -713,6 +713,7 @@
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\overlay_lighting.dm"
 #include "code\datums\components\radiation_countdown.dm"
+#include "code\datums\components\radio_jamming.dm"
 #include "code\datums\components\radioactive_exposure.dm"
 #include "code\datums\components\reactive_icon_update.dm"
 #include "code\datums\components\recursive_move.dm"

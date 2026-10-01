@@ -1,21 +1,36 @@
 GLOBAL_LIST_EMPTY(active_radio_jammers)
 
-/proc/is_jammed(obj/radio)
-	var/turf/Tr = get_turf(radio)
-	if(!Tr) return 0 //Nullspace radios don't get jammed.
+/// Returns a list of radiojammer info for the first jammer affecting a turf. Returns null if nothing affects it.
+/proc/is_jammed(atom/movable/check_thing)
+	RETURN_TYPE(/list)
+
+	// Allows /obj to be passed, but we always work by turf.
+	var/turf/Tr = check_thing
+	if(!isturf(check_thing))
+		check_thing = get_turf(check_thing)
+	//Nullspace radios don't get jammed.
+	if(!Tr)
+		return null
 
 	var/area/our_area = get_area(Tr)
-
 	if(our_area.no_comms)
 		return TRUE
+	if(!Tr || !length(GLOB.active_radio_jammers))
+		return null
 
 	for(var/obj/item/radio_jammer/J as anything in GLOB.active_radio_jammers)
-		var/turf/Tj = get_turf(J)
+		var/datum/component/radio_jammer/comp = J
+		var/turf/Tcj = comp.get_host_turf()
+		if(!Tcj || !comp.enabled)
+			continue
+		if(Tcj.z != Tr.z)
+			continue
+		var/dist = get_dist(Tcj,Tr)
+		if(dist > comp.jam_range)
+			continue
+		return list("jammer" = comp, "distance" = dist)
 
-		if(J.on && Tj.z == Tr.z) //If we're on the same Z, it's worth checking.
-			var/dist = get_dist(Tj,Tr)
-			if(dist <= J.jam_range)
-				return list("jammer" = J, "distance" = dist)
+	return null
 
 /obj/item/radio_jammer
 	name = "subspace jammer"
@@ -25,8 +40,7 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 	var/active_state = "jammer1"
 	var/last_overlay_percent = null // Stores overlay icon_state to avoid excessive recreation of overlays.
 
-	var/on = 0
-	var/jam_range = 7
+	var/on = TRUE
 	var/obj/item/cell/device/weapon/power_source
 	var/tick_cost = 5 //VOREStation Edit - For the ERPs.
 
@@ -36,7 +50,11 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 /obj/item/radio_jammer/Initialize(mapload)
 	. = ..()
 	power_source = new(src)
-	update_icon() // So it starts with the full overlay.
+
+/obj/item/radio_jammer/Initialize(mapload)
+	. = ..()
+	update_icon()
+	AddComponent(/datum/component/radio_jammer, 7)
 
 /obj/item/radio_jammer/Destroy()
 	if(on)
@@ -51,16 +69,18 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 	if(user)
 		to_chat(user,span_warning("\The [src] deactivates."))
 	STOP_PROCESSING(SSobj, src)
-	GLOB.active_radio_jammers -= src
-	on = FALSE
+	var/datum/component/radio_jammer/comp = GetComponent(/datum/component/radio_jammer)
+	comp.disable()
+	on = comp.enabled
 	update_icon()
 
 /obj/item/radio_jammer/proc/turn_on(mob/user)
 	if(user)
 		to_chat(user,span_notice("\The [src] is now active."))
 	START_PROCESSING(SSobj, src)
-	GLOB.active_radio_jammers += src
-	on = TRUE
+	var/datum/component/radio_jammer/comp = GetComponent(/datum/component/radio_jammer)
+	comp.enable()
+	on = comp.enabled
 	update_icon()
 
 /obj/item/radio_jammer/process()
@@ -124,8 +144,11 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 
 //Unlimited use, unlimited range jammer for admins. Turn it on, drop it somewhere, it works.
 /obj/item/radio_jammer/admin
-	jam_range = 255
 	tick_cost = 0
+
+/obj/item/radio_jammer/admin/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/radio_jammer, 255)
 
 ///Checks to see if the clothing is in a belly that jams sensors or blocks tracking.
 /proc/is_vore_jammed(atom/current)
