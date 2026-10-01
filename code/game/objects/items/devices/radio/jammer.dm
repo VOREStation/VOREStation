@@ -1,36 +1,3 @@
-GLOBAL_LIST_EMPTY(active_radio_jammers)
-
-/// Returns a list of radiojammer info for the first jammer affecting a turf. Returns null if nothing affects it.
-/proc/is_jammed(atom/movable/check_thing)
-	RETURN_TYPE(/list)
-
-	// Allows /obj to be passed, but we always work by turf.
-	var/turf/jammed_turf = check_thing
-	if(!isturf(check_thing))
-		check_thing = get_turf(check_thing)
-	//Nullspace radios don't get jammed.
-	if(!jammed_turf)
-		return null
-
-	var/area/our_area = get_area(jammed_turf)
-	if(our_area?.no_comms)
-		return TRUE
-	if(!length(GLOB.active_radio_jammers))
-		return null
-
-	for(var/datum/component/radio_jammer/comp in GLOB.active_radio_jammers)
-		var/turf/components_turf = comp.get_host_turf()
-		if(!components_turf || !comp.can_jam())
-			continue
-		if(components_turf.z != jammed_turf.z)
-			continue
-		var/dist = get_dist(components_turf,jammed_turf)
-		if(dist > comp.jamming_range())
-			continue
-		return list("jammer" = comp, "distance" = dist)
-
-	return null
-
 /obj/item/radio_jammer
 	name = "subspace jammer"
 	desc = "Primarily for blocking subspace communications, preventing the use of headsets, PDAs, and communicators. Also masks suit sensors."	// Added suit sensor jamming
@@ -49,9 +16,6 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 /obj/item/radio_jammer/Initialize(mapload)
 	. = ..()
 	power_source = new(src)
-
-/obj/item/radio_jammer/Initialize(mapload)
-	. = ..()
 	update_icon()
 	AddComponent(/datum/component/radio_jammer, 7)
 
