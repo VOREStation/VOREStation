@@ -7,8 +7,8 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 
 	// Allows /obj to be passed, but we always work by turf.
 	var/turf/jammed_turf = check_thing
-	if(!isturf(check_thing))
-		check_thing = get_turf(check_thing)
+	if(!isturf(jammed_turf))
+		jammed_turf = get_turf(check_thing)
 	//Nullspace radios don't get jammed.
 	if(!jammed_turf)
 		return null
