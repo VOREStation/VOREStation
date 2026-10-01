@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 		return null
 
 	var/area/our_area = get_area(jammed_turf)
-	if(our_area.no_comms)
+	if(our_area?.no_comms)
 		return TRUE
 	if(!length(GLOB.active_radio_jammers))
 		return null
