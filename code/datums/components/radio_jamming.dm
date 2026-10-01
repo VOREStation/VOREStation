@@ -1,6 +1,6 @@
 /datum/component/radio_jammer
-	var/jam_range
-	var/enabled = TRUE
+	VAR_PRIVATE/jam_range
+	VAR_PRIVATE/enabled = TRUE
 
 /datum/component/radio_jammer/Initialize(range = 3)
 	GLOB.active_radio_jammers += src
@@ -39,9 +39,17 @@
 		return
 	GLOB.active_radio_jammers -= src
 	enabled = FALSE
+	return enabled
 
 /datum/component/radio_jammer/proc/enable()
 	if(enabled)
 		return
 	GLOB.active_radio_jammers += src
 	enabled = TRUE
+	return enabled
+
+/datum/component/radio_jammer/proc/can_jam()
+	return enabled
+
+/datum/component/radio_jammer/proc/jamming_range()
+	return jam_range

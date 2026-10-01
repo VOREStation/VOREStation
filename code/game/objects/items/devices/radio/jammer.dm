@@ -5,28 +5,27 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 	RETURN_TYPE(/list)
 
 	// Allows /obj to be passed, but we always work by turf.
-	var/turf/Tr = check_thing
+	var/turf/jammed_turf = check_thing
 	if(!isturf(check_thing))
 		check_thing = get_turf(check_thing)
 	//Nullspace radios don't get jammed.
-	if(!Tr)
+	if(!jammed_turf)
 		return null
 
-	var/area/our_area = get_area(Tr)
+	var/area/our_area = get_area(jammed_turf)
 	if(our_area.no_comms)
 		return TRUE
-	if(!Tr || !length(GLOB.active_radio_jammers))
+	if(!length(GLOB.active_radio_jammers))
 		return null
 
-	for(var/obj/item/radio_jammer/J as anything in GLOB.active_radio_jammers)
-		var/datum/component/radio_jammer/comp = J
-		var/turf/Tcj = comp.get_host_turf()
-		if(!Tcj || !comp.enabled)
+	for(var/datum/component/radio_jammer/comp in GLOB.active_radio_jammers)
+		var/turf/components_turf = comp.get_host_turf()
+		if(!components_turf || !comp.can_jam())
 			continue
-		if(Tcj.z != Tr.z)
+		if(components_turf.z != jammed_turf.z)
 			continue
-		var/dist = get_dist(Tcj,Tr)
-		if(dist > comp.jam_range)
+		var/dist = get_dist(components_turf,jammed_turf)
+		if(dist > comp.jamming_range())
 			continue
 		return list("jammer" = comp, "distance" = dist)
 
@@ -70,8 +69,7 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 		to_chat(user,span_warning("\The [src] deactivates."))
 	STOP_PROCESSING(SSobj, src)
 	var/datum/component/radio_jammer/comp = GetComponent(/datum/component/radio_jammer)
-	comp.disable()
-	on = comp.enabled
+	on = comp.disable()
 	update_icon()
 
 /obj/item/radio_jammer/proc/turn_on(mob/user)
@@ -79,8 +77,7 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 		to_chat(user,span_notice("\The [src] is now active."))
 	START_PROCESSING(SSobj, src)
 	var/datum/component/radio_jammer/comp = GetComponent(/datum/component/radio_jammer)
-	comp.enable()
-	on = comp.enabled
+	on = comp.enable()
 	update_icon()
 
 /obj/item/radio_jammer/process()
