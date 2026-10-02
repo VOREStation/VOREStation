@@ -145,6 +145,11 @@
 	seedtype = PLANT_GNOMES
 	icon_state = "gnomes"
 
+/obj/fruitspawner/smoles
+	name = "smoles spawner"
+	seedtype = PLANT_SMOLES
+	icon_state = "gnomes"
+
 /obj/fruitspawner/grapes
 	name = "grapes spawner"
 	seedtype = PLANT_GRAPES
