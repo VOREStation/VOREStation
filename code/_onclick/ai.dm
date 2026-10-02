@@ -129,31 +129,29 @@
 /atom/proc/AIShiftClick()
 	return
 
+/atom/proc/ctrl_click_ai(mob/user)
+	return
+
+/atom/proc/AIMiddleClick(mob/living/silicon/user)
+	return 0
+
+/atom/proc/AIAltClick(atom/A)
+	return click_alt(A)
+
+
+
+// Interactions start here.//
+
+// Airlocks
 /obj/machinery/door/airlock/AIShiftClick(mob/user)  // Opens and closes doors!
 	add_fingerprint(user)
 	user_toggle_open(user)
 	return 1
 
-/atom/proc/ctrl_click_ai(mob/user)
-	return
-
 /obj/machinery/door/airlock/ctrl_click_ai(mob/user) // Bolts doors
 	add_fingerprint(user)
 	toggle_bolt(user)
 	return 1
-
-/obj/machinery/power/apc/ctrl_click_ai(mob/user) // turns off/on APCs.
-	add_fingerprint(user)
-	toggle_breaker()
-	return 1
-
-/obj/machinery/turretid/ctrl_click_ai() //turns off/on Turrets
-	enabled = !enabled
-	updateTurrets()
-	return TRUE
-
-/atom/proc/AIAltClick(atom/A)
-	return click_alt(A)
 
 /obj/machinery/door/airlock/AIAltClick(mob/user) // Electrifies doors.
 	add_fingerprint(user)
@@ -168,15 +166,6 @@
 	zap.append_client(user.client)
 	return 1
 
-/obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
-	if(lethal_is_configurable)
-		lethal = !lethal
-		updateTurrets()
-	return TRUE
-
-/atom/proc/AIMiddleClick(mob/living/silicon/user)
-	return 0
-
 /obj/machinery/door/airlock/AIMiddleClick(mob/user) // Toggles door bolt lights.
 	if(..())
 		return
@@ -188,6 +177,30 @@
 	to_chat(user, span_notice("Lights are now [lights ? "on." : "off."]"))
 	update_icon()
 	return TRUE
+
+// APC
+/obj/machinery/power/apc/ctrl_click_ai(mob/user) // turns off/on APCs.
+	add_fingerprint(user)
+	toggle_breaker()
+	return 1
+
+// Turret controls
+/obj/machinery/turretid/ctrl_click_ai() //turns off/on Turrets
+	enabled = !enabled
+	updateTurrets()
+	return TRUE
+
+
+
+
+/obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
+	if(lethal_is_configurable)
+		lethal = !lethal
+		updateTurrets()
+	return TRUE
+
+
+
 
 //
 // Override AdjacentQuick for AltClicking
