@@ -33,7 +33,7 @@
 	is_shifting = TRUE
 
 	//Shifting in
-	if(incorporeal_move)
+	if(is_incorporeal())
 		name = real_name
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
@@ -119,7 +119,7 @@
 		to_chat(src,span_warning("You can't do a shift while passively shifting!"))
 		return FALSE
 
-	if(incorporeal_move)
+	if(is_incorporeal())
 		to_chat(src,span_warning("You can't return to the physical world yet!"))
 		return FALSE
 
@@ -217,7 +217,7 @@
 
 	var/turf/T = get_turf(src)
 
-	if(incorporeal_move)
+	if(is_incorporeal())
 		to_chat(src,span_warning("You must be in the physical world to create blood!"))
 		return FALSE
 

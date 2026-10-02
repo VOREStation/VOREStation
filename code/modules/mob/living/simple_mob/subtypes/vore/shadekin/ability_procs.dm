@@ -22,11 +22,6 @@
 		phase_out(T)
 	doing_phase = FALSE
 
-/mob/living/simple_mob/shadekin/is_incorporeal()
-	if(comp.in_phase)
-		return TRUE
-	. = ..()
-
 // Healing others
 /mob/living/simple_mob/shadekin/proc/mend_other()
 	//I hate to crunch a view() but I only want ones I can see
