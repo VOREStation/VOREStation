@@ -50,7 +50,6 @@
 	vore_icons = SA_ICON_LIVING
 	vore_escape_chance = 25
 
-	var/shifted_out = FALSE
 	var/shift_state = AB_SHIFT_NONE
 	var/last_shift = 0
 	var/blood_spawn = 0
@@ -67,11 +66,6 @@
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "You slide down the slick, slippery gullet of the creature. It's warm, and the air is thick. You can feel the doughy walls of the creatures gut push and knead into your form! Slimy juices coat your form stinging against your flesh as they waste no time to start digesting you. The creature's heartbeat and the gurgling of their stomach are all you can hear as your jostled about, treated like nothing but food."
-
-/mob/living/simple_mob/vore/demon/is_incorporeal()
-	if(shifted_out)
-		return TRUE
-	. = ..()
 
 /mob/living/simple_mob/vore/demon/Life()
 	. = ..()
