@@ -147,6 +147,7 @@
 	settings.register_signals(host_mob, src)
 	if(settings.relay_movement) // Handle relayed movement
 		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
+		RegisterSignal(host_mob, COMSIG_MOB_ATTEMPT_ZMOVE, PROC_REF(handle_attempt_zmovement))
 
 	// Update the mob's vision after we attach everything
 	host_mob.handle_vision()
@@ -171,6 +172,7 @@
 	settings.unregister_signals(host_mob, src)
 	if(settings.relay_movement) // Handle relayed movement
 		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
+		UnregisterSignal(host_mob, COMSIG_MOB_ATTEMPT_ZMOVE)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Signal handlers
@@ -234,9 +236,16 @@
 	PRIVATE_PROC(TRUE)
 	// Don't forward movement to ourselves if we're using a spyglass or something
 	if(host_mob == remote_view_target)
-		return
-	// I'd move this into the config datum if it didn't require the component to also be passed too. Lets avoid GetComponent on a hotpath.
+		return FALSE
 	return settings.handle_relay_movement(src, host_mob, direction)
+
+/datum/component/remote_view/proc/handle_attempt_zmovement(datum/source, direction, turf/destination)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(host_mob == remote_view_target)
+		return FALSE
+	return settings.handle_attempt_zmovement(src, host_mob, direction, destination)
 
 /datum/component/remote_view/proc/release_remote_view()
 	PROTECTED_PROC(TRUE)

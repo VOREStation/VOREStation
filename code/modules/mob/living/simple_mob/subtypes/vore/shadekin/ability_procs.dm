@@ -22,26 +22,10 @@
 		phase_out(T)
 	doing_phase = FALSE
 
-/mob/living/simple_mob/shadekin/UnarmedAttack()
+/mob/living/simple_mob/shadekin/is_incorporeal()
 	if(comp.in_phase)
-		return FALSE //Nope.
-
-	. = ..()
-
-/mob/living/simple_mob/shadekin/can_fall()
-	if(comp.in_phase)
-		return FALSE //Nope!
-
-	return ..()
-
-/mob/living/simple_mob/shadekin/zMove(direction)
-	if(comp.in_phase)
-		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-		if(destination)
-			forceMove(destination)
 		return TRUE
-
-	return ..()
+	. = ..()
 
 // Healing others
 /mob/living/simple_mob/shadekin/proc/mend_other()
