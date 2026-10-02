@@ -354,8 +354,6 @@
 /obj/item/clothing/under/rank/talon/refreshed
 	name = "Talon jumpsuit"
 	desc = "A expertly made and stretchy jumpsuit that was made for manueverability in mind. It has a belt with a silver belt buckle on the uniform. There is also a ITV Talon patch on the right shoulder, and an empty velcro spot for another patch on the left shoulder. Snazzy and beneficial."
-	icon = 'icons/inventory/uniform/item.dmi'
-	icon_override = 'icons/inventory/uniform/mob.dmi'
 	icon_state = "talon_basic_refreshed"
 	item_state = "talon_basic_refreshed"
 
