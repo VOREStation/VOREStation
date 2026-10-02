@@ -138,56 +138,54 @@
 /atom/proc/BorgCtrlShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	user.click_ctrl_shift(user)
 
+/atom/proc/BorgShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
+	ShiftClick(user)
+
+/atom/proc/BorgCtrlClick(mob/living/silicon/robot/user) //forward to human click if not overriden
+	user.base_click_ctrl(src)
+
+/atom/proc/BorgAltClick(mob/living/silicon/robot/user)
+	click_alt(user)
+	return
+
+
+// Interactions start here.//
+
 /obj/machinery/door/airlock/BorgCtrlShiftClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
 	AIclick_ctrl_shift(user)
 
-/atom/proc/BorgShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
-	ShiftClick(user)
-
 /obj/machinery/door/airlock/BorgShiftClick(mob/living/silicon/robot/user)  // Opens and closes doors! Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
-
 	AIShiftClick(user)
 
-/atom/proc/BorgCtrlClick(mob/living/silicon/robot/user) //forward to human click if not overriden
-	user.base_click_ctrl(src)
 
 /obj/machinery/door/airlock/BorgCtrlClick(mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
-
 	ctrl_click_ai(user)
 
 /obj/machinery/power/apc/BorgCtrlClick(mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
-
 	ctrl_click_ai(user)
 
 /obj/machinery/turretid/BorgCtrlClick(mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
-
 	ctrl_click_ai(user)
-
-/atom/proc/BorgAltClick(mob/living/silicon/robot/user)
-	click_alt(user)
-	return
 
 /obj/machinery/door/airlock/BorgAltClick(mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
-
 	AIAltClick(user)
 
 /obj/machinery/turretid/BorgAltClick(mob/living/silicon/robot/user) //turret lethal on/off. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
-
 	AIAltClick(user)
 
 /*
