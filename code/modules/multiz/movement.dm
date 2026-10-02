@@ -15,7 +15,7 @@
 /mob/proc/zMove(direction)
 	SHOULD_NOT_OVERRIDE(TRUE) // Keep snowflake logic HERE in one place where it can actually be found.
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(SEND_SIGNAL(src, COMSIG_MOB_ATTEMPT_ZMOVE, direction, destination))
+	if(SEND_SIGNAL(src, COMSIG_MOB_ZMOVE, direction, destination))
 		return FALSE
 
 	if(eyeobj)

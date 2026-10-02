@@ -315,7 +315,7 @@
 ///from base of /client/Move(n, direct) : (direction) returns bool, if component handled movement
 #define COMSIG_MOB_RELAY_MOVEMENT "mob_relay_movement"
 ///from base of /mob/proc/zMove(direction): (direction, destination) returns bool, if component handled movement
-#define COMSIG_MOB_ATTEMPT_ZMOVE "mob_attempt_z_move"
+#define COMSIG_MOB_ZMOVE "mob_z_move"
 ///From /mob/handle_vision().
 #define COMSIG_MOB_HANDLE_VISION "mob_handle_vision"
 ///From /mob/handle_regular_hud_updates().
