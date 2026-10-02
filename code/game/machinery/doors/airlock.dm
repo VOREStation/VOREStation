@@ -9,7 +9,7 @@
 /obj/machinery/door/airlock
 	name = "Airlock"
 	description_info = "If you hold left ctrl whilst left-clicking on an airlock, you can ring the doorbell to announce your presence to anyone on the other side! Alternately if you are on HARM intent when doing this, you will bang loudly on the door!<br><br>AIs and Cyborgs can also quickly open/close, bolt/unbolt, and electrify/de-electrify doors at a distance by holding left shift, left control, or left alt respectively whilst left-clicking."
-	description_silicon = "You can bolt this with ctrl-click."
+	description_silicon = "Open with shift-click, operate the bolts with ctrl-click, and alt-click to electrify. Careful with that last one."
 	icon = 'icons/obj/doors/doorint.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
