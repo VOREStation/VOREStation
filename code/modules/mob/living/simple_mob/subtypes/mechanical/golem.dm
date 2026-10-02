@@ -70,6 +70,8 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/technomancer_golem/death()
+	if(QDELETED(src))
+		return
 	..()
 	visible_message("\The [src] disintegrates!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)

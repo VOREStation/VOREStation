@@ -67,5 +67,7 @@
 
 
 /mob/living/simple_mob/mechanical/corrupt_maint_drone/death()
+	if(QDELETED(src))
+		return
 	..(null,"is smashed into pieces!")
 	qdel(src)
