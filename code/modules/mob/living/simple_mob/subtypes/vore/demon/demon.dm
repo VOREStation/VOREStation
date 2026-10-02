@@ -79,7 +79,7 @@
 		density = FALSE
 
 /mob/living/simple_mob/vore/demon/update_canmove()
-	if(is_incorporeal())
+	if(is_shifting)
 		canmove = FALSE
 		return canmove
 	. = ..()
