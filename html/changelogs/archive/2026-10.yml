@@ -1,3 +1,6 @@
 2026-10-01:
   Diana:
   - rscadd: Xenochimera interactions with the sleevemate added.
+2026-10-02:
+  Kashargul:
+  - bugfix: vore death pref not being applied properly on login
