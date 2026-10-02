@@ -190,9 +190,6 @@
 	updateTurrets()
 	return TRUE
 
-
-
-
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
 	if(lethal_is_configurable)
 		lethal = !lethal
