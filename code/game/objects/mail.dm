@@ -424,7 +424,7 @@ ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player,
 		var/datum/mind/recipient = recipient_mob.mind
 
 		if(isnull(recipient) || isnull(recipient.current))
-			to_chat(user, span_warning("Consent Verification failed: Target mind is missing!"))
+			to_chat(user, span_warning("Consent Verification failed: Scanned mail has no recipient!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
