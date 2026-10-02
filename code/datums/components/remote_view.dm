@@ -147,7 +147,7 @@
 	settings.register_signals(host_mob, src)
 	if(settings.relay_movement) // Handle relayed movement
 		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
-		RegisterSignal(host_mob, COMSIG_MOB_ATTEMPT_ZMOVE, PROC_REF(handle_attempt_zmovement))
+		RegisterSignal(host_mob, COMSIG_MOB_ZMOVE, PROC_REF(handle_attempt_zmovement))
 
 	// Update the mob's vision after we attach everything
 	host_mob.handle_vision()
@@ -172,7 +172,7 @@
 	settings.unregister_signals(host_mob, src)
 	if(settings.relay_movement) // Handle relayed movement
 		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
-		UnregisterSignal(host_mob, COMSIG_MOB_ATTEMPT_ZMOVE)
+		UnregisterSignal(host_mob, COMSIG_MOB_ZMOVE)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Signal handlers
