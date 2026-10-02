@@ -14,7 +14,7 @@
 	if(displayed_message_flags & MS_FLAG_STRUGGLE_OUTSIDE)
 		resist_struggle_outside(living_prey)
 
-	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && !private_struggle && resist_triggers_animation && affects_vore_sprites)
+	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && !private_struggle && (resist_triggers_animation == SQUIRM_NORMAL || SQUIRM_BOTH)  && affects_vore_sprites)
 		owner.vs_animate(belly_sprite_to_affect)
 
 	if(!private_struggle)
@@ -256,6 +256,10 @@
 
 	if(!private_struggle)
 		resist_play_sound()
+
+	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) && (resist_triggers_animation == SQUIRM_NORMAL || SQUIRM_BOTH) && affects_vore_sprites)
+		owner.vs_animate(belly_sprite_to_affect)
+
 
 	//absorb resists
 	if(escapable || owner.stat) //If the stomach has escapable enabled or the owner is dead/unconscious
