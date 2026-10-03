@@ -88,6 +88,11 @@
 		update_coverage()
 	return internal_process()
 
+/obj/machinery/camera/examine(mob/user)
+	. = ..()
+	if(!status)
+		. += to_chat(user, span_warning("\The [src] is broken."))
+
 /obj/machinery/camera/proc/internal_process()
 	return
 
