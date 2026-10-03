@@ -1,6 +1,7 @@
 /obj/item/pizzavoucher
 	name = "free pizza voucher"
 	desc = "A pocket-sized plastic slip with a button in the middle. The writing on it seems to have faded."
+	description_antag = "Careful! Emagging this will mess with the delivery, crushing the recipient under it! Which, is probably fine and dandy for you! Just, don't forget about it."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "pizza_voucher"
 	var/spent = FALSE

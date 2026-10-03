@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 /obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
+	description_antag = "There's a flexible cover near the ballast. Someone figured you can inject phoron in there as a rigged explosive. Just, don't do it while it is on."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
@@ -1198,6 +1199,16 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/turf/our_turf = get_turf(src)
+		if(!our_turf)
+			return
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		air_contents.volume = 2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*air_contents.volume/(R_IDEAL_GAS_EQUATION*T20C))
+		our_turf.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade

@@ -18,7 +18,8 @@
 	var/extra_overlay2 //Tertiary.
 	var/show_species_tail = FALSE // If false, do not render species' tail.
 	var/clothing_can_hide = TRUE // If true, clothing with HIDETAIL hides it
-	var/ani_state // State when wagging/animated
+	///State when wagging/animated. Toggled via *vwag command
+	var/ani_state
 	var/extra_overlay_w // Wagging state for extra overlay
 	var/extra_overlay2_w // Tertiary wagging.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.

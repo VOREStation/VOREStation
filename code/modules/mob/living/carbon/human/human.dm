@@ -847,6 +847,7 @@
 		to_chat(src, span_warning("You don't have the dexterity to use that!"))
 	return 0
 
+/* Disable abiotic lockout
 /mob/living/carbon/human/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
 		return 1
@@ -855,7 +856,7 @@
 		return 1
 
 	return 0
-
+*/
 
 /mob/living/carbon/human/proc/check_dna()
 	dna.check_integrity(src)
@@ -1135,9 +1136,9 @@
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
-	if(!dna ||!dna.uni_identity)
+	if(!dna ||!dna.unique_enzymes) // Hash of the hash of a player's name to keep consistency between respawns
 		return
-	return md5(dna.uni_identity)
+	return md5(dna.unique_enzymes)
 
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
@@ -2053,6 +2054,9 @@
 			return
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
+
+/mob/living/carbon/human/CanObtainCentcommMessage()
+	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
 
 	/*
 	if(href_list[VV_HK_PURRBATION])

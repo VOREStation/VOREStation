@@ -13,7 +13,7 @@
 	if(!ishuman(target))
 		return FALSE
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if (affected)
+	if(affected)
 		return FALSE
 	var/list/organ_data = target.species.has_limbs["[target_zone]"]
 	return !isnull(organ_data)
@@ -24,7 +24,10 @@
 
 /datum/surgery_step/limb/attach
 	surgery_name = "Attach Limb"
-	allowed_tools = list(/obj/item/organ/external = 100)
+	allowed_tools = list(
+		/obj/item/organ/external = 100,
+		/obj/item/gripper = 100
+	)
 
 	min_duration = 50
 	max_duration = 70
@@ -33,6 +36,15 @@
 	if(!istype(tool))
 		return FALSE
 	var/obj/item/organ/external/E = tool
+	if(istype(user,/mob/living/silicon/robot))
+		if(!istype(E, /obj/item/gripper))
+			return
+		var/obj/item/gripper/gripper = E
+		var/obj/item/wrapped = gripper.get_wrapped_item()
+		if(!istype(wrapped, /obj/item/organ/external))
+			return
+		E = wrapped
+
 	var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected)
@@ -55,12 +67,18 @@
 		return TRUE
 
 /datum/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(isrobot(user) && istype(tool, /obj/item/gripper))
+		var/obj/item/gripper/G = tool
+		tool = G.get_wrapped_item()
 	var/obj/item/organ/external/E = tool
 	user.visible_message(span_filter_notice("[user] starts attaching [E.name] to [target]'s [E.amputation_point]."), \
 	span_filter_notice("You start attaching [E.name] to [target]'s [E.amputation_point]."))
 	user.balloon_alert_visible("starts attaching [E.name] to [target]'s [E.amputation_point]", "attaching [E.name] to [E.amputation_point]")
 
 /datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(isrobot(user) && istype(tool, /obj/item/gripper))
+		var/obj/item/gripper/G = tool
+		tool = G.get_wrapped_item()
 	var/obj/item/organ/external/E = tool
 	user.visible_message(span_notice("[user] has attached [target]'s [E.name] to the [E.amputation_point]."),	\
 	span_notice("You have attached [target]'s [E.name] to the [E.amputation_point]."))
@@ -92,9 +110,9 @@
 /datum/surgery_step/limb/connect
 	surgery_name = "Connect Limb"
 	allowed_tools = list(
-	/obj/item/surgical/hemostat = 100,	\
-	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/assembly/mousetrap = 25
+		/obj/item/surgical/hemostat = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 25
 	)
 	can_infect = 1
 

@@ -5,13 +5,13 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1685
+export BYOND_MINOR=1687
 
 # Macro Count
 export MACRO_COUNT=7
 
 #rust_g git tag
-export RUST_G_VERSION=6.2.0
+export RUST_G_VERSION=7.0.0
 
 # Bun version
 export BUN_VERSION=1.3.14

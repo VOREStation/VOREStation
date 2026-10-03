@@ -14,7 +14,7 @@
 	active_power_usage = 200
 	power_channel = EQUIP
 	circuit = /obj/item/circuitboard/papershredder
-	var/max_paper = 10
+	var/max_paper = 40
 	var/paperamount = 0
 	var/list/shred_amounts = list(
 		/obj/item/photo = 1,
@@ -30,6 +30,10 @@
 	default_apply_parts()
 	update_icon()
 	AddElement(/datum/element/climbable)
+
+/obj/machinery/papershredder/examine(mob/user as mob)
+	. = ..()
+	. += "A little amber screen shows there's [paperamount] sheets worth of paper in the bin."
 
 /obj/machinery/papershredder/attackby(obj/item/W, mob/user)
 

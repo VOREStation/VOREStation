@@ -101,7 +101,7 @@
 			if(REAGENT_ID_SODIUMCHLORIDE)
 				name = "Salt Shaker"
 				desc = "Salt. From space oceans, presumably."
-				icon_state = "saltshaker"
+				icon_state = "saltshakersmall"
 				center_of_mass_x = 17
 				center_of_mass_y = 11
 			if(REAGENT_ID_BLACKPEPPER)

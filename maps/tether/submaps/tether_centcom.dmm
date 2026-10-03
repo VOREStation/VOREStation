@@ -484,12 +484,6 @@
 /obj/machinery/chem_master,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
-"bt" = (
-/obj/machinery/door/blast/regular{
-	dir = 4
-	},
-/turf/simulated/wall/r_wall,
-/area/centcom/terminal)
 "bu" = (
 /obj/structure/sign/warning{
 	name = "\improper STAND AWAY FROM TRACK EDGE"
@@ -662,6 +656,12 @@
 /obj/item/storage/firstaid/fire,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
+"bN" = (
+/obj/machinery/door/blast/regular{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/centcom/terminal)
 "bP" = (
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/ccboat)
@@ -6083,17 +6083,6 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "yY" = (
-/obj/machinery/disease2/diseaseanalyser,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
-"yZ" = (
-/obj/machinery/disease2/incubator,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -6920,7 +6909,6 @@
 /obj/effect/floor_decal/corner/green/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/computer/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "DH" = (
@@ -9862,17 +9850,6 @@
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"Lu" = (
-/obj/machinery/computer/diseasesplicer,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/obj/machinery/camera/network/crescent,
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
 "Lv" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-22"
@@ -13778,7 +13755,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "Vt" = (
-/obj/machinery/disease2/isolator,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -25079,7 +25055,7 @@ al
 ZQ
 ZQ
 aw
-Lu
+yT
 kC
 SJ
 SJ
@@ -25221,7 +25197,7 @@ al
 ZQ
 ZQ
 aw
-yZ
+yY
 lS
 Ib
 DH
@@ -25843,7 +25819,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 Ok
 Ok
 Ok
@@ -25871,7 +25847,7 @@ mG
 Ok
 Ok
 Ok
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -25985,7 +25961,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 CW
 CW
 Dc
@@ -26013,7 +25989,7 @@ Dc
 jQ
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26127,7 +26103,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 CW
 CW
 Dc
@@ -26155,7 +26131,7 @@ nz
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26269,7 +26245,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 eX
 eX
 Dc
@@ -26297,7 +26273,7 @@ XZ
 Dc
 eX
 eX
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26411,7 +26387,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 CW
 CW
 Dc
@@ -26439,7 +26415,7 @@ XZ
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26553,7 +26529,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 CW
 CW
 GN
@@ -26581,7 +26557,7 @@ BM
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26695,7 +26671,7 @@ bp
 bp
 bp
 ZQ
-bt
+bN
 CW
 CW
 GN
@@ -26723,7 +26699,7 @@ iO
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26837,7 +26813,7 @@ tw
 nQ
 bp
 ZQ
-bt
+bN
 CW
 CW
 GN
@@ -26865,7 +26841,7 @@ ZU
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -26979,7 +26955,7 @@ dh
 dh
 bp
 ZQ
-bt
+bN
 CW
 CW
 Dc
@@ -27007,7 +26983,7 @@ XZ
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -27121,7 +27097,7 @@ AO
 oC
 bp
 ZQ
-bt
+bN
 eX
 eX
 Dc
@@ -27149,7 +27125,7 @@ XZ
 Dc
 eX
 eX
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -27263,7 +27239,7 @@ bp
 bp
 bp
 ZQ
-bt
+bN
 CW
 CW
 Dc
@@ -27291,7 +27267,7 @@ nz
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -27405,7 +27381,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 CW
 CW
 Dc
@@ -27433,7 +27409,7 @@ Dc
 Dc
 CW
 CW
-bt
+bN
 ZQ
 ZQ
 ZQ
@@ -27547,7 +27523,7 @@ ZQ
 ZQ
 ZQ
 ZQ
-bt
+bN
 Kd
 Kd
 Kd
@@ -27575,7 +27551,7 @@ sB
 Kd
 Kd
 Kd
-bt
+bN
 ZQ
 ZQ
 ZQ

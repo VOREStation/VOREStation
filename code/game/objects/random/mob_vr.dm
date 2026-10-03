@@ -2,7 +2,7 @@
 	name = "Random Illegal Weapon"
 	desc = "This is a random illegal weapon."
 	icon = 'icons/obj/gun.dmi'
-	icon_state = "p08"
+	icon_state = "pistol"
 	spawn_nothing_percentage = 50
 /obj/random/weapon/item_to_spawn()
 	return pick(prob(11);/obj/random/ammo_all,

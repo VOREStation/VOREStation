@@ -70,8 +70,12 @@ const SpeciesImageButton = (props: {
   species_name: string;
   onClick: () => void;
   selected: BooleanLike;
+  whitelisted: BooleanLike;
+  disabled: BooleanLike;
 }) => {
-  const { species_name, onClick, selected } = props;
+  const { species_name, onClick, selected, whitelisted, disabled } = props;
+  const status = disabled ? '!' : whitelisted ? '*' : undefined;
+  const color = disabled ? 'bad' : whitelisted ? 'average' : undefined;
   if (species_name === 'Custom Species') {
     return (
       <ImageButton
@@ -79,7 +83,9 @@ const SpeciesImageButton = (props: {
         imageSrc={resolveAsset('preview_custom_animation.gif')}
         selected={selected}
         onClick={onClick}
+        color={color}
       >
+        {status}
         {species_name}
       </ImageButton>
     );
@@ -90,7 +96,9 @@ const SpeciesImageButton = (props: {
         imageSrc={resolveAsset('preview_protean_animation.gif')}
         selected={selected}
         onClick={onClick}
+        color={color}
       >
+        {status}
         {species_name}
       </ImageButton>
     );
@@ -103,7 +111,9 @@ const SpeciesImageButton = (props: {
       dmIconState={species_name}
       selected={selected}
       onClick={onClick}
+      color={color}
     >
+      {status}
       {species_name}
     </ImageButton>
   );
@@ -257,6 +267,8 @@ export const SubtabSpecies = (props: {
             onClick={() => setViewingSpecies(species.name)}
             selected={species.name === data.species}
             species_name={species.name}
+            whitelisted={species.whitelisted}
+            disabled={species.disabled}
           />
         ))}
       </Stack.Item>

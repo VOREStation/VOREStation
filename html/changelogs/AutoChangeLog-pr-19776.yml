@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "admin spawn flavour cancelling not interrupting the spawn"

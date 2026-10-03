@@ -1,6 +1,7 @@
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."
+	description_antag = "It looks pretty smashable. You could also just cut the wires."
 	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - New Icons
 	icon_state = "camera"
 	use_power = USE_POWER_ACTIVE
