@@ -767,6 +767,7 @@
 	if(isliving(M))
 		var/mob/living/slip = M
 		slip.slip_protect = world.time + 25 // This is to prevent slipping back into your pred if they stand on soap or something.
+		owner.slip_protect = world.time + 25 //And to prevent your pred from immediately becomming food in the same situation
 	//Place them into our drop_location
 	M.forceMove(drop_location())
 	items_preserved -= M
