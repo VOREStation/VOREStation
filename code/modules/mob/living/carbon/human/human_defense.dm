@@ -450,6 +450,8 @@ emp_act
 					src.pinned += thrown_object
 
 /mob/living/carbon/human/can_slip(lube)
+	if(lube & PUZZLE_ICE) //Skip the gear checks for puzzle ice.
+		return ..()
 	if(!(lube & GALOSHES_DONT_HELP))	//normal slip checks here.
 		if(shoes && ((shoes.item_flags & NOSLIP) || (shoes.item_flags & NOSLIP_LUBE)))
 			return FALSE

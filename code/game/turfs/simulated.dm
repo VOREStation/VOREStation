@@ -92,7 +92,7 @@
 
 				bloodDNA = null
 			if(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES))
-				H.slip(8, src, NO_SLIP_WHEN_WALKING | SLIDE, 1) //Call slip directly, since it'd be wasteful to make a component for every dirt in existance, and then only use it situationally for a specific trait.
+				H.slip(8, src, NO_SLIP_WHEN_WALKING, 1) //Call slip directly, since it'd be wasteful to make a component for every dirt in existance, and then only use it situationally for a specific trait.
 	..()
 
 //returns 1 if made bloody, returns 0 otherwise

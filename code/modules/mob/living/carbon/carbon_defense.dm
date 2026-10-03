@@ -160,6 +160,8 @@
 	//Not on this plane of existance (and also not able to touch whatever would be slipping them, probably.)
 	if(is_incorporeal())
 		return FALSE
+	if(lube & PUZZLE_ICE) //Puzzle ice. Gear cant help block these slips.
+		return TRUE
 	// General magboot check to my knowledge. Should block lube-level slips.
 	if(Check_Shoegrip())
 		return FALSE

@@ -190,9 +190,9 @@
 #define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_ALL (~INCAPACITATION_NONE)
 
-#define NO_SLIP_WHEN_WALKING	(1<<0)
-#define SLIDE					(1<<1)
-#define SLIDE_RECURSIVE			(1<<2)	// replaces SLIDE_ICE from TG code. Makes sliding slips extend when passing over a slippery object with this.
+#define NO_SLIP_WHEN_WALKING	(1<<0)	// Water mostly. Dont slip over when walking over it.
+#define SLIDE_RECURSIVE			(1<<1)	// Slip_distance gets re-applied when sliding over another slippery component of this tier.
+#define PUZZLE_ICE				(1<<2)	// Specific slips that cant be countered most of the time.
 #define GALOSHES_DONT_HELP		(1<<3)	// Lube. Requires stronger anti-slip to stop slipping.
 #define SLIP_WHEN_CRAWLING		(1<<4)
 

@@ -567,7 +567,6 @@
 	//Unlucky with slippery
 	if(HAS_TRAIT(M, TRAIT_UNLUCKY)) //Adds onto the existing slide.
 		slip_dist += rand(1,5)
-		lube |= SLIDE
 
 	//Stop rotation lock, it'll affect slide direction if we dont stop this
 	M.facing_dir = null

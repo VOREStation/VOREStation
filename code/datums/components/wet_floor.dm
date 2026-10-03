@@ -86,19 +86,19 @@
 			slip_distance = 0
 		if(TURF_WET_LUBE)
 			intensity = 8
-			lube_flags = SLIDE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP
+			lube_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP
 			slip_distance = 4
 		if(TURF_WET_ICE)
 			intensity = 12
-			lube_flags = SLIDE | GALOSHES_DONT_HELP
+			lube_flags = GALOSHES_DONT_HELP
 			slip_distance = 4
 		if(TURF_WET_PERMAFROST)
 			intensity = 12
-			lube_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP
+			lube_flags = PUZZLE_ICE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP
 			slip_distance = 1
 		if(TURF_WET_SUPERLUBE)
 			intensity = 12
-			lube_flags = SLIDE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
+			lube_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
 			slip_distance = 4
 		else
 			qdel(parent.GetComponent(/datum/component/slippery))

@@ -3620,6 +3620,8 @@
 #include "code\modules\mob\living\silicon\login.dm"
 #include "code\modules\mob\living\silicon\say.dm"
 #include "code\modules\mob\living\silicon\silicon.dm"
+#include "code\modules\mob\living\silicon\silicon_defense.dm"
+#include "code\modules\mob\living\silicon\silicon_movement.dm"
 #include "code\modules\mob\living\silicon\silicon_vr.dm"
 #include "code\modules\mob\living\silicon\subystems.dm"
 #include "code\modules\mob\living\silicon\ai\ai.dm"
