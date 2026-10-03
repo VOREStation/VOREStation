@@ -660,9 +660,14 @@
 	var/water_speed = 0		//Speed boost/decrease in water, lower/negative values mean more speed
 	var/snow_speed = 0		//Speed boost/decrease on snow, lower/negative values mean more speed
 
-	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
+	///How quiet/loud liquid sloshing from bellies is when using this shoe. Directly multiplies the volume by this number.
+	var/step_volume_mod = 1
 	var/obj/item/clothing/shoes/shoes = null	//If we are wearing shoes in our shoes. Used primarily for magboots.
 	var/blocks_footsteps = TRUE //Does this shoe block custom footstep sounds?
+	///Uses a custom footstep sound instead of default. Uses 'get_sfx'
+	var/custom_footstep = null
+	///Custom volume sound for the above.
+	var/custom_footstep_volume = null
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -1103,7 +1108,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_uniforms.dmi',
 		)
 	name = "under"
-	body_parts_covered = ARMS|LEGS|ARMS
+	body_parts_covered = ARMS|LEGS|CHEST
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
 	heat_protection = ARMS|LEGS|CHEST

@@ -1,7 +1,6 @@
 /obj/machinery/smartfridge/drying_rack
 	name = "\improper Drying Rack"
 	desc = "A machine for drying plants."
-	wrenchable = 1
 	icon_state = "drying_rack"
 	icon_base = "drying_rack"
 	circuit = /obj/item/circuitboard/smartfridge/drying

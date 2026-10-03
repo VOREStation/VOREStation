@@ -171,6 +171,20 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	add_language(LANGUAGE_ROOTLOCAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_ZADDAT, 1)
+	add_language(LANGUAGE_VESPINAE, 1)
+	add_language(LANGUAGE_SPACER, 1)
+	add_language(LANGUAGE_ECHOSONG, 1)
+	add_language(LANGUAGE_TEPPI, 1)
+	add_language(LANGUAGE_VOX, 1)
+	add_language(LANGUAGE_ENOCHIAN, 1)
+	add_language(LANGUAGE_DAEMON, 1)
+	add_language(LANGUAGE_ECUREUILIAN, 1)
+	add_language(LANGUAGE_CANILUNZT, 1)
+	add_language(LANGUAGE_SAGARU, 1)
+	add_language(LANGUAGE_BIRDSONG, 1)
+	add_language(LANGUAGE_DRUDAKAR, 1)
+	add_language(LANGUAGE_PROMETHEAN, 1)
+	add_language(LANGUAGE_ALAI, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -1030,6 +1044,9 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	GLOB.ai_list -= src
 	GLOB.silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
+
+/mob/living/silicon/ai/CanObtainCentcommMessage()
+	return TRUE
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

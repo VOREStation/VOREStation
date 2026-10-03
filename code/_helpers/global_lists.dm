@@ -347,6 +347,7 @@ GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
 	"Mech" = FOOTSTEP_MOB_MECHY,
+	"Power Loader" = FOOTSTEP_MOB_POWERLOADER,
 	"Heavy" = FOOTSTEP_MOB_HEAVY,
 	"Heavy Alt" = FOOTSTEP_MOB_HEAVY_ALT,
 	"Slime" = FOOTSTEP_MOB_SLIME,
@@ -1611,6 +1612,8 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, list(
 	))
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
+
+GLOBAL_LIST_EMPTY(storage_filters)
 
 //Chamelion clothing was all stupid so it's done here instead.
 //Jumpsuit

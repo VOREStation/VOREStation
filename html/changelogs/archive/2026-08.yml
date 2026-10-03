@@ -82,3 +82,38 @@
   - code_imp: adds warning for byond 1682 to 1686
   - code_imp: update rust g to 7.0.0
   - bugfix: a length issue for unicode input on text inputs
+2026-08-22:
+  Kashargul:
+  - bugfix: undeleted sql query
+  lbnesquik:
+  - spellcheck: fixed a typo.
+2026-08-23:
+  Diana:
+  - balance: Laser eyes now take 25 nutrition per shot, up from rand(1,5)
+  - balance: Laser eyes can not be used if wearing flash protective eye/headwear.
+  - bugfix: 0 damage attacks no longer generate blood.
+  - qol: Small blunt attacks no longer generate blood.
+  FluffMedic:
+  - maptweak: Alters maps slightly to comply with new unit tests
+  Guti:
+  - rscadd: Added maintenance pills
+  Will:
+  - bugfix: disposals being flushable by phased shadekin
+  - bugfix: wheelchairs being collapsible by phased shadekin
+  - bugfix: IV stands cannot be interacted with by phased shadekin
+  lbnesquik:
+  - balance: Increase the paper shredder paper capacity.
+  - qol: Added a lil' description for it too.
+2026-08-24:
+  Diana:
+  - bugfix: Showers will now apply the reagent they're filled with properly.
+2026-08-27:
+  Will:
+  - qol: Limbs with massive wounds that cannot be be healed with bruise packs or ointment
+      will now show examine feedback that the treatment is insufficient.
+2026-08-31:
+  Diana:
+  - bugfix: Shadekin properly have their vision flags set when phasing back in
+  - bugfix: Horror armor will no longer be stuck on permanently pre-death but post-cure
+  Will:
+  - bugfix: VR sleeper properly ends remote view when exited

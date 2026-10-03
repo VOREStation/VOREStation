@@ -137,7 +137,7 @@
 	if(mult_icons && confirm)
 		flick("[initial(icon_state)]2",src)
 
-	if(confirm) //Don't show a message at all if there's no recognised language, that'd just be annoying.
+	if(confirm && L.stat == CONSCIOUS) //Don't show a message at all if there's no recognised language, that'd just be annoying.
 		to_chat(L, span_filter_say("<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\""))
 
 /obj/item/universal_translator/limited/sol

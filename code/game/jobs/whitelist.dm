@@ -253,6 +253,7 @@ ADMIN_VERB(open_whitelist_editor, R_ADMIN|R_SERVER, "Open Whitelist Editor", "Op
 			message_admins("Error loading jobwhitelist from database. Loading from [global.config.directory]/jobwhitelist.txt.")
 			log_sql("Error loading jobwhitelist from database. Loading from [global.config.directory]/jobwhitelist.txt.")
 			load_jobwhitelist(dbfail = TRUE)
+			qdel(query_load_jobwhitelist)
 			return
 		else
 			while(query_load_jobwhitelist.NextRow())

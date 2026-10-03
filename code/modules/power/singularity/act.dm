@@ -65,6 +65,9 @@
 /obj/effect/overlay/singularity_pull()
 	return
 
+/obj/effect/abstract/singularity_act()
+	return
+
 /obj/machinery/power/supermatter/shard/singularity_act()
 	qdel(src)
 	return 5000
