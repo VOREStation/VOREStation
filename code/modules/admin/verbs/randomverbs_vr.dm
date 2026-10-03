@@ -36,7 +36,9 @@ ADMIN_VERB(spawn_character_mob, R_SPAWN, "Spawn Character As Mob", "Spawn a spec
 	if(vorgans == "No")
 		organs = 0
 
-	var/flavor = tgui_alert(user, "Spawn mob with their character's flavor text?", "Flavor text", list("General", "Robot", "Cancel"))
+	var/flavor = tgui_alert(user, "Spawn mob with their character's flavor text?", "Flavor text", list("General", "Robot", "None"))
+	if(!flavor)
+		return
 
 	var/spawnloc
 	if(!user.mob)
