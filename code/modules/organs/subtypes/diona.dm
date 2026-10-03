@@ -11,10 +11,6 @@
 		var/mob/living/carbon/alien/diona/D = new(target)
 		var/datum/ghosttrap/plant/P = get_ghost_trap("living plant")
 		P.request_player(D, "A diona nymph has split off from its gestalt. ")
-		spawn(60)
-			if(D)
-				if(!D.ckey || !D.client)
-					D.death()
 		return
 
 /obj/item/organ/external/diona
