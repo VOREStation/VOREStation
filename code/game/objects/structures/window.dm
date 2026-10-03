@@ -23,6 +23,8 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/fulltile = FALSE // Set to true on full-tile variants.
+	var/pattern = PATTERN_VERTICAL_STRIPE
+	var/use_holiday_colours = FALSE
 	rad_insulation = RAD_VERY_LIGHT_INSULATION //Windows can have multiple placed on one tile, meaning you have to account for the potential that someone could just build a bunch of windows on one tile to prevent rads entirely.
 
 /obj/structure/window/examine(mob/user)
@@ -369,6 +371,11 @@
 	if (constructed)
 		anchored = FALSE
 		state = 0
+
+	if(use_holiday_colours)
+		var/custom_color = request_decoration_colors(src, pattern)
+		if(custom_color)
+			color = custom_color
 
 	// If we started anchored we'll need to disable rotation
 	AddElement(/datum/element/rotatable)
