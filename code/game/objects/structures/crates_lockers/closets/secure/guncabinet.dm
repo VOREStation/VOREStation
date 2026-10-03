@@ -86,7 +86,6 @@
 
 #define DEFAULT_RACK_SLOTS 4
 #define DEFAULT_MAX_ROWS 1
-#define GUNCABINET_SLOTS_PER_ROW 4
 #define GUNCABINET_SPACER_X 3
 #define GUNCABINET_SPACER_Y 3
 
@@ -167,13 +166,11 @@
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/Entered(atom/movable/AM)
 	. = ..()
-	if(invisible_appearance_holder)
-		invisible_appearance_holder.vis_contents += AM
+	invisible_appearance_holder.vis_contents += AM
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/Exited(atom/movable/AM)
 	. = ..()
-	if(invisible_appearance_holder)
-		invisible_appearance_holder.vis_contents -= AM
+	invisible_appearance_holder.vis_contents -= AM
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -186,8 +183,6 @@
 		"welded" = welded,
 		"locked" = locked,
 		"open" = opened,
-		"max_gun_rows" = max_gun_rows,
-		"slots_per_row" = slots_per_row
 	)
 	var/list/slots_data = list()
 
@@ -207,15 +202,16 @@
 				"maxCharge" = max_charge,
 				"depleted" = (current_charge <= 0),
 			))
-		else
-			UNTYPED_LIST_ADD(slots_data, list(
-				"index" = i,
-				"ref" = null,
-				"name" = "Empty Slot",
-				"charge" = 0,
-				"maxCharge" = 0,
-				"depleted" = TRUE,
-			))
+			continue
+
+		UNTYPED_LIST_ADD(slots_data, list(
+			"index" = i,
+			"ref" = null,
+			"name" = "Empty Slot",
+			"charge" = 0,
+			"maxCharge" = 0,
+			"depleted" = TRUE,
+		))
 
 	data["slots"] = slots_data
 	return data
@@ -228,6 +224,9 @@
 
 	switch(action)
 		if("open")
+			if(locked)
+				to_chat(ui.user, span_warning("\the [src] is locked."))
+				return FALSE
 			opened = !opened
 			update_icon()
 			return TRUE
@@ -404,9 +403,9 @@
 		if(!Wald.remove_fuel(0,user))
 			if(!Wald.isOn())
 				return
-			else
-				to_chat(user, span_notice("You need more welding fuel to complete this task."))
-				return
+
+			to_chat(user, span_notice("You need more welding fuel to complete this task."))
+			return
 
 		if(!opened && locked)
 			user.visible_message(span_warning("[user] begins to cuts through [src]'s lock with [I]!"))
@@ -569,7 +568,6 @@
 #undef GUN_SIDEARM
 #undef GUN_LONGARM
 #undef GUN_HEAVY
-#undef GUNCABINET_SLOTS_PER_ROW
 #undef GUNCABINET_SPACER_X
 #undef GUNCABINET_SPACER_Y
 #undef CABINET_NORMAL
