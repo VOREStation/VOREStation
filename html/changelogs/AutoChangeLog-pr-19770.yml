@@ -1,0 +1,9 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Recon skimmer UAV can now move up and down z levels while being piloted"
+  - code_imp: "COMSIG_MOB_ZMOVE signal added"
+  - code_imp: "remote view component updated to allow z movement handling"
+  - refactor: "zMove cleaned up"
+  - refactor: "cleaned up several mobs not using is_incorporeal checks properly"
+  - bugfix: "shadekin dephasing flickers no longer runtimes desklamps"
