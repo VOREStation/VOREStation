@@ -251,7 +251,7 @@
 				var/obj/item/I = W
 				if (I.hitsound)
 					playsound(src, I.hitsound, 50, 1, -1)
-		take_damage(W.force)
+			take_damage(W.force)
 
 	else
 		..()
