@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(active_radio_jammers)
 		return null
 	return get_turf(parent)
 
-/datum/component/radio_jammer/proc/handle_prepare_say(atom/source, list/message_pieces, datum/language/speaking, message, whispering, message_mode)
+/datum/component/radio_jammer/proc/handle_prepare_say(atom/source, list/message_data)
 	SIGNAL_HANDLER
 	if(!enabled)
 		return
