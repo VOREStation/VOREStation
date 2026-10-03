@@ -29,7 +29,7 @@
 
 /datum/goal/research/extract_slime_cores/New()
 	. = ..()
-	goal_count = rand(50,100)
+	goal_count = rand(30,60)
 	goal_text = "Extract the cores of [goal_count] slimes, regardless of type."
 	RegisterSignal(SSdcs,COMSIG_GLOB_HARVEST_SLIME_CORE,PROC_REF(handle_slime_harvest))
 
@@ -49,7 +49,7 @@
 
 /datum/goal/research/build_mechs/New()
 	. = ..()
-	goal_count = rand(10,20)
+	goal_count = rand(5,10)
 	goal_text = "Flex the RnD budget and produce [goal_count] mechs of any type."
 	RegisterSignal(SSdcs,COMSIG_GLOB_MECH_CONSTRUCTED,PROC_REF(handle_mech_construction))
 
