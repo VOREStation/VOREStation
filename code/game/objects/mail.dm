@@ -11,7 +11,7 @@
 	/// Destination tagging for the mail sorter.
 	var/sortTag = 0
 	/// Who this mail is for and who can open it.
-	var/datum/weakref/recipient_ref
+	var/recipient_ref
 	/// How many goodies this mail contains.
 	var/goodie_count = 1
 	// Goodies which can be given to anyone.
@@ -78,10 +78,6 @@
 		var/stamp_count = rand(1, stamp_max)
 		for(var/i = 1, i <= stamp_count, i++)
 			stamps += list("stamp_[rand(2, 8)]")
-
-/obj/item/mail/Destroy()
-	recipient_ref = null
-	. = ..()
 
 /obj/item/mail/blank
 	desc = "A blank envelope."
@@ -216,8 +212,7 @@
 
 /obj/item/mail/proc/unwrap(mob/user)
 	if(recipient_ref)
-		var/datum/mind/recipient = recipient_ref.resolve()
-		if(recipient && recipient.current?.dna.unique_enzymes != user.dna.unique_enzymes)
+		if(recipient_ref != user.dna.unique_enzymes)
 			balloon_alert(user, "you can't open somebody's mail! That's <em>illegal</em>")
 			return FALSE
 
@@ -251,7 +246,7 @@
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient, preset_goodies = FALSE)
 	var/current_title = recipient.role_alt_title ? recipient.role_alt_title : recipient.assigned_role
 	name = "[initial(name)] for [recipient.name] ([current_title])"
-	recipient_ref = WEAKREF(recipient)
+	recipient_ref = recipient.current.dna.unique_enzymes
 
 	var/datum/job/this_job = SSjob.occupations_by_name[recipient.assigned_role]
 
@@ -425,18 +420,19 @@ ADMIN_VERB(spawn_mail, R_SPAWN, "Spawn Mail", "Spawn mail for a specific player,
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
-		var/datum/mind/recipient
-		if(saved.recipient_ref)
-			recipient = saved.recipient_ref.resolve()
+		var/mob/living/recipient_mob = A
+		var/datum/mind/recipient = recipient_mob.mind
 
 		if(isnull(recipient) || isnull(recipient.current))
+			to_chat(user, span_warning("Consent Verification failed: Scanned mail has no recipient!"))
+			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
 		if(recipient.current.stat == DEAD)
 			to_chat(user, span_warning("Consent Verification failed: You can't deliver mail to a corpse!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		if(recipient.current.dna.unique_enzymes != recipient.current.dna.unique_enzymes)
+		if(saved.recipient_ref != recipient.current.dna.unique_enzymes)
 			to_chat(user, span_warning("Identity Verification failed: Target is not authorized recipient of this envelope!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
