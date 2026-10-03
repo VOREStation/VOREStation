@@ -105,7 +105,7 @@
 			return
 
 	// Add the new stats
-	parent.LoadComponent(/datum/component/slippery, intensity, lube_flags, slip_distance)
+	parent.AddComponent(/datum/component/slippery, intensity, lube_flags, slip_distance)
 
 /datum/component/wet_floor/proc/dry(datum/source, strength = TURF_WET_WATER, immediate = FALSE, duration_decrease = INFINITY)
 	for(var/i in time_left_list)
