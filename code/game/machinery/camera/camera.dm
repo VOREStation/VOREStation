@@ -71,7 +71,7 @@
 
 /obj/machinery/camera/Destroy()
 	//already busted!
-	if(state == 0)
+	if(status == 0)
 		return
 	if(isMotion())
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
