@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixed mail not available to be opened after being resleeved/respawned"
+  - bugfix: "Fixed mail scanner allowing anyone to be scanned for the reward"
