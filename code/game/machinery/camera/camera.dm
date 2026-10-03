@@ -19,7 +19,8 @@
 	var/bugged = 0
 	var/obj/item/camera_assembly/assembly = null
 
-	var/toughness = 5 //sorta fragile
+	var/toughness = 5 //sorta fragileh
+	var/damage_threshold = 5
 
 	//OTHER
 
@@ -127,7 +128,7 @@
 	if (!isobj(source))
 		return
 	var/obj/item/O = source
-	if(O.throwforce >= src.toughness)
+	if(O.throwforce >= src.damage_threshold)
 		visible_message(span_boldwarning("[src] was hit by [O]."))
 	take_damage(O.throwforce)
 
@@ -238,7 +239,7 @@
 
 	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
 		user.setClickCooldown(user.get_attack_speed(W))
-		if (W.force >= src.toughness)
+		if (W.force >= src.damage_threshold)
 			user.do_attack_animation(src)
 			visible_message(span_boldwarning("[src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with [W] by [user]!"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
