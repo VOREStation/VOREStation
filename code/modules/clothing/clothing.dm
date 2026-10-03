@@ -1108,7 +1108,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_uniforms.dmi',
 		)
 	name = "under"
-	body_parts_covered = ARMS|LEGS|ARMS
+	body_parts_covered = ARMS|LEGS|CHEST
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
 	heat_protection = ARMS|LEGS|CHEST

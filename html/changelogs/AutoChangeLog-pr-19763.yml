@@ -1,0 +1,6 @@
+author: "Will"
+delete-after: True
+changes:
+  - code_imp: "unifies say signal arguments into a singular shared and passed list for each signal call"
+  - bugfix: "message replacing masks no longer mute you, and instead replace your message with their own"
+  - qol: "Megaphone uses say input when held in your active hand"
