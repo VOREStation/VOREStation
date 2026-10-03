@@ -13,7 +13,7 @@
 	var/list/network = list(NETWORK_DEFAULT)
 	var/c_tag = null
 	var/c_tag_order = 999
-	var/status = 1
+	var/status = TRUE
 	anchored = TRUE
 	var/invuln = 0
 	var/bugged = 0
@@ -71,7 +71,7 @@
 
 /obj/machinery/camera/Destroy()
 	//already busted!
-	if(status == 0)
+	if(status == FALSE)
 		return
 	if(isMotion())
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
@@ -149,7 +149,7 @@
 		return
 
 	if(user.species.can_shred(user, FALSE, 11))
-		set_status(0)
+		set_status(FALSE)
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())
 		visible_message(span_warning("\The [user] slashes at [src]!"))
@@ -160,7 +160,7 @@
 /obj/machinery/camera/attack_generic(mob/user as mob)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
-		set_status(0)
+		set_status(FALSE)
 		S.do_attack_animation(src)
 		S.setClickCooldown(user.get_attack_speed())
 		visible_message(span_warning("\The [user] [pick(S.attacktext)] \the [src]!"))
