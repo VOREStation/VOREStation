@@ -1,0 +1,4 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - rscadd: "Simplemobs can do trasheat with grab intent"

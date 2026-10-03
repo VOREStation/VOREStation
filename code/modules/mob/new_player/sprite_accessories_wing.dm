@@ -627,6 +627,16 @@
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
+/datum/sprite_accessory/wing/large_harpy_wings_bat
+	name = "Harpy arm-wings(Large), bat"
+	desc = ""
+	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
+	icon_state = "Big_bat_arm_wings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "Big_bat_arm_wingsmarkings"
+	wing_offset = 16
+
 /datum/sprite_accessory/wing/naga_wings
 	name = "Naga wings"
 	desc = ""

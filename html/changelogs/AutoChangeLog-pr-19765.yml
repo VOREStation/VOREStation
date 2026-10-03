@@ -1,0 +1,7 @@
+author: "Azzy.Dreemurr"
+delete-after: True
+changes:
+  - rscadd: "Added alternative job title for Talon Engineer: \"Talon Atmospheric Technician"
+  - image: "New Engineer, Atmos and Miner Talon uniforms! And Talon uniform avaible for Teshari!"
+  - spellcheck: "Previously, Talon proper uniform was designed for medical professionals, now renamed as Talon medic uniform"
+  - refactor: "refactor talon jumpsuit code to a more correct view"
