@@ -3707,6 +3707,7 @@
 #include "code\modules\mob\living\silicon\robot\sprites\standard.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\syndicate.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\catborgs.dm"
+#include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\centiborgs.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\gooborgs.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\myomer_dogborg.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\sprite_organized\rabbot.dm"
