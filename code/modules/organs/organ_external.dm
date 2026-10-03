@@ -1058,7 +1058,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/obj/item/organ/external/stump/stump = new (victim, 0, src)
 			if(robotic >= ORGAN_ROBOT)
 				stump.robotize()
-			stump.wounds |= W
 			victim.organs |= stump
 			stump.update_damages()
 
