@@ -221,7 +221,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
-	. += "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!"
+	. += span_notice("There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
 
 //magazine icon state caching
 GLOBAL_LIST_EMPTY(magazine_icondata_keys)

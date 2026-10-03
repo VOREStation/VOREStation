@@ -99,13 +99,13 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 	switch(construction_state)
 		if(0)
-			. += "Looks like it's not attached to the flooring."
+			. += span_notice("Looks like it's not attached to the flooring.")
 		if(1)
-			. += "It is missing some cables."
+			. += span_notice("It is missing some cables.")
 		if(2)
-			. += "The panel is open."
+			. += span_notice("The panel is open.")
 		if(3)
-			. += "It is assembled."
+			. += span_notice("It is assembled.")
 
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user)
 	if(istool(W))

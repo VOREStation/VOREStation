@@ -392,7 +392,7 @@
 
 /datum/design_techweb/radio_headset
 	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	id = "radio_headset"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_STEEL = MATERIAL_COST(0.06))

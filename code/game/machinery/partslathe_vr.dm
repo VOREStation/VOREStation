@@ -18,6 +18,7 @@
 
 /obj/machinery/partslathe
 	name = "parts lathe"
+	desc = "The middle child of autolathes and protolathes."
 	icon = 'icons/obj/partslathe_vr.dmi'
 	icon_state = "partslathe-idle"
 	circuit = /obj/item/circuitboard/partslathe

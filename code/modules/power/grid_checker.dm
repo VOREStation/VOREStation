@@ -1,6 +1,6 @@
 /obj/machinery/power/grid_checker
 	name = "grid checker"
-	desc = "A machine that reacts to unstable conditions in the powernet, by safely shutting everything down.  Probably better \
+	desc = "A machine that reacts to unstable conditions in the powernet, by safely shutting everything down. Probably better \
 	than the alternative."
 	icon_state = "gridchecker_on"
 	circuit = /obj/item/circuitboard/grid_checker

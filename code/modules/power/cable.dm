@@ -585,13 +585,13 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of power cable."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_RED
 	gender = NEUTER
-	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2

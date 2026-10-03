@@ -47,7 +47,7 @@
 
 // Used to show how much stuff (matter units, cell charge, etc) is left inside.
 /obj/item/rcd/proc/display_resources()
-	return "It currently holds [stored_matter]/[max_stored_matter] matter-units."
+	return span_notice("It currently holds [stored_matter]/[max_stored_matter] matter-units.")
 
 // Used to add new cartridges.
 /* VOREStation Tweak - Wow this is annoying, moved to _vr file for overhaul
