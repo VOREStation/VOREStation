@@ -70,6 +70,9 @@
 	// VOREStation Edit End
 
 /obj/machinery/camera/Destroy()
+	//already busted!
+	if(state == 0)
+		return
 	if(isMotion())
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	deactivate(null, 0) //kick anyone viewing out
