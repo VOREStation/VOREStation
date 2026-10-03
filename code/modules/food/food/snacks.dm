@@ -372,7 +372,7 @@
 /obj/item/reagent_containers/food/snacks/proc/on_slice_extra()
 	return
 
-/obj/item/reagent_containers/food/snacks/MouseDrop_T(mob/living/micro, mob/user)
+/obj/item/reagent_containers/food/snacks/MouseDrop_T(mob/living/micro, mob/user, src_location, over_location, src_control, over_control, params)
 	if(!user.stat && istype(micro) && (micro == user) && Adjacent(micro) && (micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
 		micro.forceMove(src)
 		LAZYADD(food_inserted_micros, micro)
