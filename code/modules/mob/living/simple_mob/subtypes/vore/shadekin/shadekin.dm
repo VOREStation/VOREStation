@@ -342,11 +342,6 @@
 			comp.set_light_and_darkness(-0.25,0.75)
 			comp.nutrition_conversion_scaling = 1.5
 
-/mob/living/simple_mob/shadekin/is_incorporeal()
-	if(comp.in_phase)
-		return TRUE
-	return FALSE
-
 /* //VOREStation AI Removal
 //Friendly ones wander towards people, maybe shy-ly if they are set to shy
 /mob/living/simple_mob/shadekin/handle_wander_movement()

@@ -13,11 +13,40 @@
 		to_chat(src, span_notice("You move down."))
 
 /mob/proc/zMove(direction)
+	SHOULD_NOT_OVERRIDE(TRUE) // Keep snowflake logic HERE in one place where it can actually be found.
+	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
+	if(SEND_SIGNAL(src, COMSIG_MOB_ZMOVE, direction, destination))
+		return FALSE
+
 	if(eyeobj)
-		return eyeobj.zMove(direction)
+		if(!destination)
+			to_chat(src, span_notice("There is nothing of interest in this direction."))
+			return FALSE
+		eyeobj.setLoc(destination) // TODO - Investigate if this can be changed to forceMove() and merged with the observer case below
+		return TRUE
+
+	if(isobserver(src))
+		if(!destination)
+			to_chat(src, span_notice("There is nothing of interest in this direction."))
+			return FALSE
+		forceMove(destination)
+		return TRUE
+
 	if(istype(loc,/obj/mecha))
 		var/obj/mecha/mech = loc
 		return mech.relaymove(src,direction)
+
+	if(isliving(src))
+		var/mob/living/liv = src
+		if(liv.is_ventcrawling && istype(loc,/obj/machinery/atmospherics/pipe/zpipe))
+			var/obj/machinery/atmospherics/pipe/zpipe/currentpipe = loc
+			if(istype(currentpipe.node1,/obj/machinery/atmospherics/pipe/zpipe))
+				currentpipe.ventcrawl_to(src, currentpipe.node1, direction)
+				return TRUE
+			else if(istype(currentpipe.node2,/obj/machinery/atmospherics/pipe/zpipe))
+				currentpipe.ventcrawl_to(src, currentpipe.node2, direction)
+				return TRUE
+			return FALSE
 
 	var/swim_modifier = 1
 	var/climb_modifier = 1
@@ -28,21 +57,20 @@
 
 	if(!can_ztravel())
 		to_chat(src, span_warning("You lack means of travel in that direction."))
-		return
+		return FALSE
 
 	var/turf/start = loc
 	if(!istype(start))
 		to_chat(src, span_notice("You are unable to move from here."))
-		return 0
+		return FALSE
 
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(!destination)
 		to_chat(src, span_notice("There is nothing of interest in this direction."))
-		return 0
+		return FALSE
 
 	if(is_incorporeal())
 		forceMove(destination)
-		return 1
+		return TRUE
 
 	var/obj/structure/ladder/ladder = locate() in start.contents
 	if((direction == UP ? ladder?.target_up : ladder?.target_down) && (ladder?.allowed_directions & direction))
@@ -51,7 +79,7 @@
 
 	if(!start.CanZPass(src, direction))
 		to_chat(src, span_warning("\The [start] is in the way."))
-		return 0
+		return FALSE
 
 	if(direction == DOWN)
 		if(isdiveablewater(start) && !destination.density)
@@ -62,16 +90,15 @@
 				to_chat(src, span_notice("You reach the sea floor."))
 			else
 				to_chat(src, span_warning("You stopped swimming downwards."))
-				return 0
+				return FALSE
 
 		else if(!destination.CanZPass(src, direction)) // one for the down and non-special case
 			to_chat(src, span_warning("\The [destination] blocks your way."))
-			return 0
+			return FALSE
 
 	else if(!destination.CanZPass(src, direction)) // and one for up
 		to_chat(src, span_warning("\The [destination] blocks your way."))
-		return 0
-
+		return FALSE
 
 	var/area/area = get_area(src)
 	if(area.get_gravity() && !can_overcome_gravity())
@@ -87,7 +114,7 @@
 					to_chat(src, span_notice("You pull yourself up."))
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
-					return 0
+					return FALSE
 
 			else if(isdiveablewater(destination))
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
@@ -97,7 +124,7 @@
 					to_chat(src, span_notice("You reach the surface."))
 				else
 					to_chat(src, span_warning("You stopped swimming upwards."))
-					return 0
+					return FALSE
 
 			else if(catwalk?.hatch_open)
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * climb_modifier), 1)
@@ -106,26 +133,26 @@
 				destination = get_step(destination, dir) // mob's dir
 				if(!destination?.Enter(src, old_dest))
 					to_chat(src, span_notice("There's something in the way up above in that direction, try another."))
-					return 0
+					return FALSE
 				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
 				if(do_after(src, pull_up_time, target = src))
 					to_chat(src, span_notice("You pull yourself up."))
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
-					return 0
+					return FALSE
 
 			// Explicit check if the destination turf allows full passing
 			else if(!destination.CanZPass(src, direction))
 				to_chat(src, span_warning("Something solid above stops you from passing."))
-				return 0
+				return FALSE
 
-			else if(isliving(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
+			else if(isliving(src))
 				var/mob/living/H = src
 				if(H.flying)
 					if(H.incapacitated(INCAPACITATION_ALL))
 						to_chat(src, span_notice("You can't fly in your current state."))
 						H.stop_flying() //Should already be done, but just in case.
-						return 0
+						return FALSE
 					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
 					to_chat(src, span_notice("You begin to fly upwards..."))
 					H.audible_message(span_notice("[H] begins to flap \his wings, preparing to move upwards!"), runemessage = "flap flap")
@@ -133,21 +160,23 @@
 						to_chat(src, span_notice("You fly upwards."))
 					else
 						to_chat(src, span_warning("You stopped flying upwards."))
-						return 0
+						return FALSE
 				else
 					to_chat(src, span_warning("Gravity stops you from moving upward."))
-					return 0 //VOREStation Edit End.
+					return FALSE
 
 			else
 				to_chat(src, span_warning("Gravity stops you from moving upward."))
-				return 0
+				return FALSE
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
 			to_chat(src, span_warning("\The [A] blocks you."))
-			return 0
+			return FALSE
+
 	if(!Move(destination))
-		return 0
+		return FALSE
+
 	if(isliving(src))
 		var/list/atom/movable/pulling = list()
 		var/mob/living/L = src
@@ -161,7 +190,8 @@
 			src.audible_message(span_notice("[src] moves down."))
 		for(var/atom/movable/P in pulling)
 			P.forceMove(destination)
-	return 1
+
+	return TRUE
 
 /mob/proc/can_overcome_gravity()
 	return FALSE
@@ -174,32 +204,8 @@
 	if(!.)
 		return species && species.can_overcome_gravity(src)
 
-/mob/observer/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		forceMove(destination)
-	else
-		to_chat(src, span_notice("There is nothing of interest in this direction."))
-
-/mob/observer/eye/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		setLoc(destination)
-	else
-		to_chat(src, span_notice("There is nothing of interest in this direction."))
-
 /mob/proc/can_ztravel()
 	return 0
-
-/mob/living/zMove(direction)
-	//Sort of a lame hack to allow ztravel through zpipes. Should be improved.
-	if(is_ventcrawling && istype(loc,/obj/machinery/atmospherics/pipe/zpipe))
-		var/obj/machinery/atmospherics/pipe/zpipe/currentpipe = loc
-		if(istype(currentpipe.node1,/obj/machinery/atmospherics/pipe/zpipe))
-			currentpipe.ventcrawl_to(src, currentpipe.node1, direction)
-		else if(istype(currentpipe.node2,/obj/machinery/atmospherics/pipe/zpipe))
-			currentpipe.ventcrawl_to(src, currentpipe.node2, direction)
-	return ..()
 
 /mob/observer/can_ztravel()
 	return TRUE
