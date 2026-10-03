@@ -188,6 +188,21 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	my_area -= src
 	return ..()
 
+/obj/machinery/camera/reinforced
+	desc = "Used to monitor room. This one has reinforced enclosure."
+	toughness = 40
+
+/obj/machinery/camera/reinforced/ex_act(severity)
+	. = ..()
+	if(src.invuln)
+		return
+
+	//camera dies if an explosion touches it!
+	if(severity <= 2 || prob(10))
+		destroy()
+
+	..() //and give it the regular chance of being deleted outright
+
 // CHECKS
 
 /obj/machinery/camera/proc/isEmpProof()
