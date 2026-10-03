@@ -50,19 +50,25 @@
 				continue
 			if(!track.implanted)
 				continue
+			var/xyz = "?.?.?"
 			var/loc_display = "Unknown"
 			var/mob/living/L = track.imp_in
 			if((get_z(L) in using_map.station_levels) && !istype(L.loc, /turf/space))
 				loc_display = T.loc
+				xyz = "[T.x].[T.y].[T.z]"
 			if(track.malfunction)
 				loc_display = pick(GLOB.teleportlocs)
-			if(is_vore_jammed(track))
+				xyz = "[rand(1,300)].[rand(1,300)].[rand(1,10)]"
+			var/area/A = get_area(L)
+			if(is_vore_jammed(track) || !A || A.flag_check(AREA_BLOCK_SUIT_SENSORS) || is_jammed(T))
 				loc_display = "E4R@4"
+				xyz = "[rand(1,300)].[rand(1,300)].[rand(1,10)]"
 			trackImplants.Add(list(list(
 				"host" = L,
 				"ref" = "\ref[track]",
 				"id" = "[track.id]",
 				"loc" = "[loc_display]",
+				"coords" = xyz,
 			)))
 
 	return list("locked" = !screen, "chemImplants" = chemImplants, "trackImplants" = trackImplants)
