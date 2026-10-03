@@ -286,8 +286,12 @@
 		icon_state = initial(icon_state)
 
 /obj/machinery/camera/take_damage(force, message)
-	//prob(25) gives an average of 3-4 hits
-	if (force >= toughness && (force > toughness*4 || prob(25)))
+	//Chance to be destroyed outright
+	if(prob(10))
+		destroy()
+		return
+	toughness -= force
+	if(toughness <= 0)
 		destroy()
 
 //Used when someone breaks a camera
