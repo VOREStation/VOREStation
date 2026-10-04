@@ -201,6 +201,15 @@
 		if(SK)
 			SK.shadekin_adjust_energy(attack_damage)
 
+/datum/unarmed_attack/bite/sharp/xenochimera
+
+/datum/unarmed_attack/bite/sharp/xenochimera/apply_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
+	..()
+	if(target == user)
+		return
+	var/datum/disease/roanoke/xenochi_disease = new /datum/disease/roanoke(0)
+	target.ContractDisease(xenochi_disease, zone)
+
 /datum/unarmed_attack/claws/chimera //special feral attack that gets stronger as they get angrier
 	sparring_variant_type = /datum/unarmed_attack/claws/chimera
 
@@ -209,9 +218,11 @@
 		return damage
 	return user.species.unarmed_bonus + damage + min(user.get_feralness()/5, 40)
 
-/datum/unarmed_attack/claws/chimera/apply_effects(mob/living/carbon/human/user,mob/living/carbon/human/target,armour,attack_damage,zone)
+/datum/unarmed_attack/claws/chimera/apply_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, armour, attack_damage, zone)
 	..()
-	if(user.get_feralness() && !(target == user))
+	if(target == user)
+		return
+	if(user.get_feralness())
 		var/selfdamage = (min((user.get_feralness()/10), 20)-7.5)
 		if(selfdamage > 0)
 			var/selfdamagezone = null
@@ -220,3 +231,6 @@
 			else
 				selfdamagezone=pick(BP_R_ARM, BP_R_HAND)
 			user.apply_damage(selfdamage, BRUTE, selfdamagezone, 0, FALSE, FALSE)
+
+	var/datum/disease/roanoke/xenochi_disease = new /datum/disease/roanoke(0)
+	target.ContractDisease(xenochi_disease, zone)
