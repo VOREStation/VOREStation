@@ -1728,19 +1728,6 @@
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
-	has_organ = list(    //Same organ list as tajarans, except for their SPECIAL BRAIN.
-		O_HEART =		/obj/item/organ/internal/heart,
-		O_LUNGS =		/obj/item/organ/internal/lungs,
-		O_VOICE =		/obj/item/organ/internal/voicebox,
-		O_LIVER =		/obj/item/organ/internal/liver,
-		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
-		O_SPLEEN =		/obj/item/organ/internal/spleen,
-		O_BRAIN =		/obj/item/organ/internal/brain,
-		O_EYES =		/obj/item/organ/internal/eyes,
-		O_STOMACH =		/obj/item/organ/internal/stomach,
-		O_INTESTINE =	/obj/item/organ/internal/intestine
-		)
-
 	flesh_color = "#AFA59E"
 	base_color 	= "#333333"
 	blood_color = "#14AD8B"
