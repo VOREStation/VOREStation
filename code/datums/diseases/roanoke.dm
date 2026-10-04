@@ -19,7 +19,7 @@
 	if(!..())
 		return FALSE
 	var/mob/living/carbon/human/M = affected_mob
-	var/list/obj/item/organ/organ_target = pick(M.organs + M.internal_organs)
+	var/obj/item/organ/organ_target = pick(M.organs + M.internal_organs)
 	switch(stage)
 		if(2)
 			if(prob(1))
