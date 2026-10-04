@@ -15,19 +15,11 @@
 	disease_flags = CURABLE | CAN_CARRY | CAN_NOT_POPULATE
 	virus_modifiers = BYPASSES_IMMUNITY | SPREAD_DEAD
 
-	var/list/obj/item/organ/organ_list = list()
-	var/obj/item/organ/O
-
-/datum/disease/roanoke/Start()
-	var/mob/living/carbon/human/M = affected_mob
-
-	organ_list += M.organs
-	organ_list += M.internal_organs
-
 /datum/disease/roanoke/stage_act()
 	if(!..())
 		return FALSE
 	var/mob/living/carbon/human/M = affected_mob
+	var/list/obj/item/organ/organ_target = pick(M.organs + M.internal_organs)
 	switch(stage)
 		if(2)
 			if(prob(1))
@@ -44,26 +36,23 @@
 				if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
 					fever(M)
 			if(prob(1))
-				O = pick(organ_list)
-				O.adjust_germ_level(rand(5, 10))
+				organ_target.adjust_germ_level(rand(5, 10))
 		if(4)
 			if(prob(1))
 				to_chat(M, span_warning(pick("You feel hot.", "You feel like you're burning.")))
 				if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
 					fever(M)
 			if(prob(2))
-				O = pick(organ_list)
-				O.adjust_germ_level(rand(5, 10))
+				organ_target.adjust_germ_level(rand(5, 10))
 		if(5)
 			if(prob(1))
 				to_chat(M, span_warning(pick("You feel hot.", "You feel like you're burning.")))
 				if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
 					fever(M)
 			if(prob(2))
-				O = pick(organ_list)
-				O.adjust_germ_level(rand(5, 10))
+				organ_target.adjust_germ_level(rand(5, 10))
 			if(prob(1))
-				O.take_damage(rand(1, 3))
+				organ_target.take_damage(rand(1, 3))
 		if(6)
 			if(prob(1))
 				to_chat(M, span_warning(pick("You feel hot.", "You feel like you're burning.")))
@@ -71,15 +60,13 @@
 					fever(M)
 
 			if(prob(2))
-				O = pick(organ_list)
-				O.adjust_germ_level(rand(5, 10))
+				organ_target.adjust_germ_level(rand(5, 10))
 
 			if(prob(2))
-				O.take_damage(rand(1, 3))
+				organ_target.take_damage(rand(1, 3))
 
 			if(prob(1) && prob(10))
-				O = pick(organ_list)
-				var/obj/item/organ/external/E = O.parent_organ
+				var/obj/item/organ/external/E = organ_target.parent_organ
 				var/datum/wound/W = new /datum/wound/internal_bleeding(5)
 				E.wounds += W
 				E.update_damages()
