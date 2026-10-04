@@ -203,7 +203,7 @@
 
 /datum/unarmed_attack/bite/sharp/xenochimera
 
-/datum/unarmed_attack/bite/sharp/xenochimera/apply_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
+/datum/unarmed_attack/bite/sharp/xenochimera/apply_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, armour, attack_damage, zone)
 	..()
 	user.attempt_xenochimera_infection(user, target, armour, attack_damage, zone)
 
