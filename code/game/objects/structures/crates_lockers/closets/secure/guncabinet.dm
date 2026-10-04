@@ -117,16 +117,11 @@
 	/// Use these if you're adjusting how close or wide the slots are, default 3 pixels.
 	var/gun_sprite_spacingx = GUNCABINET_SPACER_X
 	var/gun_sprite_spacingy = GUNCABINET_SPACER_Y
-	/// For our UI updates
-	var/atom/movable/overlay/invisible_appearance_holder
 	/// Slot array storing references to placed weapons, needed so people can put it whereever instead of defaulting to slot 0
 	var/list/slots
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/Initialize(mapload)
 	. = ..()
-	invisible_appearance_holder = new /atom/movable/overlay(src)
-	invisible_appearance_holder.invisibility = INVISIBILITY_MAXIMUM
-	vis_contents += invisible_appearance_holder
 
 	if(max_gun_rows > 0)
 		slots_per_row = ceil(max_gun_slots / max_gun_rows)
@@ -164,14 +159,6 @@
 
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/fancy/Entered(atom/movable/AM)
-	. = ..()
-	invisible_appearance_holder.vis_contents += AM
-
-/obj/structure/closet/secure_closet/guncabinet/fancy/Exited(atom/movable/AM)
-	. = ..()
-	invisible_appearance_holder.vis_contents -= AM
-
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -197,6 +184,8 @@
 			UNTYPED_LIST_ADD(slots_data, list(
 				"index" = i,
 				"ref" = REF(G),
+				"icon" = G.icon,
+				"state" = G.icon_state,
 				"name" = capitalize(G.name),
 				"charge" = current_charge,
 				"maxCharge" = max_charge,
@@ -207,6 +196,8 @@
 		UNTYPED_LIST_ADD(slots_data, list(
 			"index" = i,
 			"ref" = null,
+			"icon" = null,
+			"state" = null,
 			"name" = "Empty Slot",
 			"charge" = 0,
 			"maxCharge" = 0,

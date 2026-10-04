@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
+  DmIcon,
   Icon,
-  Image,
   ProgressBar,
   Section,
   Stack,
@@ -15,6 +14,8 @@ import type { BooleanLike } from 'tgui-core/react';
 type SlotData = {
   index: number;
   ref: string | null;
+  icon: string | null;
+  state: string | null;
   name: string;
   charge: number;
   maxCharge: number;
@@ -72,7 +73,7 @@ export const GunLocker = (props) => {
             <Section title="Weapon Rack" fill>
               <Stack fill g={5}>
                 {slots.map((slot) => {
-                  const hasWeapon = slot.ref;
+                  const hasWeapon = slot.icon;
 
                   return (
                     <Stack.Item key={slot.index}>
@@ -91,8 +92,11 @@ export const GunLocker = (props) => {
                                 border: '1px solid rgba(255, 255, 255, 0.1)',
                               }}
                             >
-                              {hasWeapon && slot.ref ? (
-                                <AppearanceDisplay iconSrc={slot.ref} />
+                              {hasWeapon && slot.icon && slot.state ? (
+                                <AppearanceDisplay
+                                  icon={slot.icon}
+                                  state={slot.state}
+                                />
                               ) : (
                                 <Box color="label">—</Box>
                               )}
@@ -166,39 +170,19 @@ export const GunLocker = (props) => {
   );
 };
 
-/**
- * Waits until two XMLHttpRequests have loaded at iconSrc before calling cb().
- */
-function getTwice(iconSrc: string, cb: () => void) {
-  const xhr = new XMLHttpRequest();
-  // Block effect until we load
-  xhr.open('GET', `${iconSrc}?preload`);
-  xhr.send();
-  xhr.onload = () => {
-    const xhr = new XMLHttpRequest();
-    // Block effect until we load
-    xhr.open('GET', `${iconSrc}?preload2`);
-    xhr.send();
-    xhr.onload = cb;
-  };
-}
-
-export const AppearanceDisplay = (props: { iconSrc: string }) => {
-  const { iconSrc } = props;
-  const [icon, setIcon] = useState<string>();
-
-  // This forces two XMLHttpRequests to go through
-  // before we try and render the icon for real.
-  // Basically just makes sure BYOND knows we really want this icon instead of possibly getting back a transparent png.
-  useEffect(() => {
-    getTwice(iconSrc, () => {
-      setIcon(iconSrc);
-    });
-  }, [iconSrc]);
+export const AppearanceDisplay = (props: { icon: string; state: string }) => {
+  const { icon, state } = props;
 
   if (icon) {
     return (
-      <Image fixErrors src={icon} ml={-1} mt={-1} height="96px" width="96px" />
+      <DmIcon
+        icon={icon}
+        icon_state={state}
+        ml={-1}
+        mt={-1}
+        height="96px"
+        width="96px"
+      />
     );
   } else {
     return <Icon name="spinner" size={2.2} spin color="gray" />;
