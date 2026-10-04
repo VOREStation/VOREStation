@@ -20,6 +20,11 @@
 	joint = "structural ligament"
 	dislocated = -1
 
+/obj/item/organ/external/diona/robotize(company, skip_prosthetics, keep_organs)
+	for(var/obj/item/organ/thing in internal_organs) //otherwise we spawn dead due to order of operations.
+		thing.robotize()
+	..(company = company, skip_prosthetics = skip_prosthetics, keep_organs = TRUE) //always keep organs. Ideally, we remove all the organs but we can't remove it from the species list for some reason.
+
 /obj/item/organ/external/diona/chest
 	name = "core trunk"
 	organ_tag = BP_TORSO
@@ -170,11 +175,6 @@
 	parent_organ = BP_GROIN
 	organ_tag = O_ANCHOR
 
-/obj/item/organ/internal/diona/node
-	name = "receptor node"
-	parent_organ = BP_HEAD
-	organ_tag = O_RESPONSE
-
 /obj/item/organ/internal/diona/nutrients
 	name = O_NUTRIENT
 	parent_organ = BP_TORSO
@@ -212,7 +212,7 @@
 	if(!owner?.isSynthetic())
 		vital = FALSE
 
-/obj/item/organ/internal/brain/cephalon/robotize()
+/obj/item/organ/internal/brain/cephalon/robotize(company, skip_prosthetics, keep_organs)
 	return
 
 /obj/item/organ/internal/brain/cephalon/mechassist()
