@@ -14,17 +14,15 @@
 
 /mob/proc/zMove(direction)
 	SHOULD_NOT_OVERRIDE(TRUE) // Keep snowflake logic HERE in one place where it can actually be found.
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
+	var/turf/destination = (direction == UP) ? GetAbove(eyeobj ? eyeobj : src) : GetBelow(eyeobj ? eyeobj : src)
 	if(SEND_SIGNAL(src, COMSIG_MOB_ZMOVE, direction, destination))
 		return FALSE
 
 	if(eyeobj)
-		// AI eye uses the eye's destination! or we'll use the core's!
-		destination = (direction == UP) ? GetAbove(eyeobj) : GetBelow(eyeobj)
 		if(!destination)
 			to_chat(src, span_notice("There is nothing of interest in this direction."))
 			return FALSE
-		eyeobj.setLoc(destination) // TODO - Investigate if this can be changed to forceMove() and merged with the observer case below
+		eyeobj.setLoc(destination)
 		return TRUE
 
 	if(isobserver(src))
