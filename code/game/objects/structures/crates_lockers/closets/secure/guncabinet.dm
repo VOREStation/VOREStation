@@ -238,18 +238,18 @@
 
 		if("insert_slot")
 			var/target_slot = text2num(params["slot_index"])
-			var/obj/item/gun/held_gun = usr.get_active_held_item()
-			insert_weapon(held_gun, target_slot, usr)
+			var/obj/item/gun/held_gun = ui.user.get_active_held_item()
+			insert_weapon(held_gun, target_slot, ui.user)
 			return TRUE
 
 		if("eject_slot")
 			var/target_slot = text2num(params["slot_index"])
 			var/obj/item/gun/G = locate(params["ref"]) in src
-			if(!G && target_slot && target_slot <= slots.len)
+			if(!G && target_slot && target_slot <= length(slots))
 				G = slots[target_slot]
 
-			if(G && eject_weapon(G, usr))
-				if(target_slot && target_slot <= slots.len)
+			if(G && eject_weapon(G, ui.user))
+				if(target_slot && target_slot <= length(slots))
 					slots[target_slot] = null
 				return TRUE
 
