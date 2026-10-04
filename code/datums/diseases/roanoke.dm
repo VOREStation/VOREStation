@@ -80,3 +80,13 @@
 /datum/disease/roanoke/proc/fever(mob/living/M, datum/disease/D)
 	M.bodytemperature = min(M.bodytemperature + (2 * stage), BODYTEMP_HEAT_DAMAGE_LIMIT - 1)
 	return TRUE
+
+///Attempts infecting the target with roanoke.
+/mob/living/carbon/human/proc/attempt_xenochimera_infection(mob/living/carbon/human/user, mob/living/carbon/human/target, armour, attack_damage, zone)
+	var/enabled = FALSE //Disabled on virgo, used downstream.
+	if(!enabled || (target == user))
+		return
+	var/datum/component/xenochimera/xc = user.get_xenochimera_component()
+	if(xc)
+		var/datum/disease/roanoke/xenochi_disease = new /datum/disease/roanoke(0)
+		target.ContractDisease(xenochi_disease, zone)

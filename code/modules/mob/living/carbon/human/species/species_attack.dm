@@ -205,10 +205,7 @@
 
 /datum/unarmed_attack/bite/sharp/xenochimera/apply_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
 	..()
-	if(target == user)
-		return
-	var/datum/disease/roanoke/xenochi_disease = new /datum/disease/roanoke(0)
-	target.ContractDisease(xenochi_disease, zone)
+	user.attempt_xenochimera_infection(user, target, armour, attack_damage, zone)
 
 /datum/unarmed_attack/claws/chimera //special feral attack that gets stronger as they get angrier
 	sparring_variant_type = /datum/unarmed_attack/claws/chimera
@@ -231,6 +228,4 @@
 			else
 				selfdamagezone=pick(BP_R_ARM, BP_R_HAND)
 			user.apply_damage(selfdamage, BRUTE, selfdamagezone, 0, FALSE, FALSE)
-
-	var/datum/disease/roanoke/xenochi_disease = new /datum/disease/roanoke(0)
-	target.ContractDisease(xenochi_disease, zone)
+	user.attempt_xenochimera_infection(user, target, armour, attack_damage, zone)
