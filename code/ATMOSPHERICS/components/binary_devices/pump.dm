@@ -274,7 +274,7 @@ Thus, the two variables affect pump operation are set in New():
 		atom_deconstruct()
 
 /obj/machinery/atmospherics/binary/pump/click_alt(mob/user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(1)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access denied."))
 		return CLICK_ACTION_BLOCKING
@@ -286,7 +286,7 @@ Thus, the two variables affect pump operation are set in New():
 
 
 /obj/machinery/atmospherics/binary/pump/click_ctrl(mob/user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(1)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access denied."))
 		return CLICK_ACTION_BLOCKING
