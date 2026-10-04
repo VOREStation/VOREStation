@@ -19,6 +19,8 @@
 		return FALSE
 
 	if(eyeobj)
+		// AI eye uses the eye's destination! or we'll use the core's!
+		destination = (direction == UP) ? GetAbove(eyeobj) : GetBelow(eyeobj)
 		if(!destination)
 			to_chat(src, span_notice("There is nothing of interest in this direction."))
 			return FALSE
