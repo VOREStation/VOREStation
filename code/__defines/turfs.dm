@@ -55,3 +55,12 @@
 /// Digging loot with a shovel
 #define TURF_DIG_LOOT_ENDLESS 0
 #define TURF_DIG_LOOT_EXHAUSTED 100
+
+/// Generate horizontal striped color turf decals
+#define PATTERN_DEFAULT "default"
+/// Generate vertical striped color turf decals
+#define PATTERN_VERTICAL_STRIPE "vertical"
+/// Generate random color turf decals
+#define PATTERN_RANDOM "random"
+/// Generate rainbow color turf decals
+#define PATTERN_RAINBOW "rainbow"

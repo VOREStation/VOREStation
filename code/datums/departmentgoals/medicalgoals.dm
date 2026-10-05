@@ -10,7 +10,7 @@
 
 /datum/goal/medical/autopsies/New()
 	. = ..()
-	goal_count = rand(15,30)
+	goal_count = rand(10,20)
 	goal_text = "Perform at least [goal_count] autopsies on deceased monkeys or crew to train medical skills or determine cause of death."
 	RegisterSignal(SSdcs,COMSIG_GLOB_AUTOPSY_PERFORMED,PROC_REF(handle_autopsy_perform))
 
@@ -38,7 +38,7 @@
 
 /datum/goal/medical/virology/New()
 	. = ..()
-	goal_count = rand(10, 20)
+	goal_count = rand(5, 10)
 	goal_text = "Ensure the galaxy doesn't suffer from a variety of advanced diseases, obtain the cure for [goal_count] of them."
 	RegisterSignal(SSdcs, COMSIG_GLOB_ADV_DISEASE_CURED, PROC_REF(handle_disease_cure))
 

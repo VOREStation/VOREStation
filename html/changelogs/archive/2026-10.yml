@@ -4,3 +4,67 @@
 2026-10-02:
   Kashargul:
   - bugfix: vore death pref not being applied properly on login
+2026-10-04:
+  Azzy.Dreemurr:
+  - rscadd: 'Added alternative job title for Talon Engineer: "Talon Atmospheric Technician'
+  - image: New Engineer, Atmos and Miner Talon uniforms! And Talon uniform avaible
+      for Teshari!
+  - spellcheck: Previously, Talon proper uniform was designed for medical professionals,
+      now renamed as Talon medic uniform
+  - refactor: refactor talon jumpsuit code to a more correct view
+  Azzy.Dreemurr&Kashargul:
+  - admin: 'Subtle PM Admin updated. Now you can use this feature to send messages
+      on behalf of: CentCom, Syndicate, Talon HQ, SolGov and Custom.'
+  AzzyDreemurr13:
+  - rscadd: Now vore spawn in belly is available on Talon
+  Diana:
+  - qol: Clean surgery amputation no longer does enough damage to break the groin
+      of people with specific traits
+  - bugfix: Messy limb loss will no longer cause you to gain max health instead of
+      obtain injuries. Instead does a fixed amount of damage.
+  - bugfix: Messy limb loss will no longer carry over the wounds of a limb. (i.e you
+      amputate a limb to treat IB)
+  - bugfix: Jumpsuits properly give chest protection now
+  - code_imp: Removes a broken check for inserting diona nymphs into FBPs
+  Guti:
+  - bugfix: Fixed mail not available to be opened after being resleeved/respawned
+  - bugfix: Fixed mail scanner allowing anyone to be scanned for the reward
+  Kashargul:
+  - bugfix: VR spawn is no longer accessible from late join, there's no implementation
+      for this. Use the ghost join menu while observing
+  - bugfix: trash piles keeping random objects within their contents whilst moving
+      the qdeleted random spawner into view
+  - bugfix: admin spawn flavour cancelling not interrupting the spawn
+  ReoDaProtovali:
+  - rscadd: spont vore interaction to ladder climbing
+  - rscadd: Simplemobs can do trasheat with grab intent
+  SpringSkipper:
+  - rscadd: Adds large bat wing-arms
+  Will:
+  - rscadd: Recon skimmer UAV can now move up and down z levels while being piloted
+  - code_imp: COMSIG_MOB_ZMOVE signal added
+  - code_imp: remote view component updated to allow z movement handling
+  - refactor: zMove cleaned up
+  - refactor: cleaned up several mobs not using is_incorporeal checks properly
+  - bugfix: shadekin dephasing flickers no longer runtimes desklamps
+  - code_imp: Radio jammer component
+  - rscadd: Prisoner monitor console now shows the coords of the tracking implant
+      if it is not jammed
+  - balance: crew monitor blocking bellies now also block tracking implants
+  - balance: death alarms and tracking implants respect radio jammers
+  - balance: UAV connection is blocked by radio jammers
+  - code_imp: unifies say signal arguments into a singular shared and passed list
+      for each signal call
+  - bugfix: message replacing masks no longer mute you, and instead replace your message
+      with their own
+  - qol: Megaphone uses say input when held in your active hand
+  lbnesquik:
+  - balance: Reduced some department goals numbers to make them more interesting to
+      pursue.
+  - rscadd: Add a slight phoron effect to breaking phoron filled lights
+  - balance: Increase the damage of C4 if you manage to strap it onto someone.
+  - balance: Made planting C4 onto a mob twice as long compared to anything else.
+  - code_imp: Remove a comment in the code that isn't relevant anymore.
+2026-10-05:
+  Will:
+  - bugfix: AI eye correctly moves up and down z levels
