@@ -1021,6 +1021,7 @@ Talon winter coat
 	cost = 1
 
 /datum/gear/suit/cloak_shoulder/New()
+	..()
 	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/suit/cloak_shoulder_right
@@ -1029,6 +1030,7 @@ Talon winter coat
 	cost = 1
 
 /datum/gear/suit/cloak_shoulder_right/New()
+	..()
 	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 //Mantles, mostly for heads of staff
@@ -1038,6 +1040,7 @@ Talon winter coat
 	cost = 1
 
 /datum/gear/suit/roles/mantle/New()
+	..()
 	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/suit/roles/mantles
@@ -1103,6 +1106,7 @@ Talon winter coat
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/shroud
 
 /datum/gear/suit/roles/shroud/New()
+	..()
 	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/suit/roles/capshroud
