@@ -40,7 +40,7 @@
 	reset_time = SPRINGTRAP_AUTO_RESET_TIME
 	stored_kit = /obj/item/spring_trap_kit/custom //Cant be disassembled or modified
 
-/obj/structure/springtrap/mapper_custom/start_active
+/obj/structure/spring_trap/mapper_custom/start_active
 	sprung = FALSE
 
 /obj/structure/spring_trap/adminbus
@@ -74,7 +74,8 @@
 /obj/structure/spring_trap/mapper_custom/Initialize(mapload, obj/item/spring_trap_kit/resetting/crafted_kit)
 	. = ..()
 	if(name != /obj/structure/spring_trap::name && istype(stored_kit, /obj/item/spring_trap_kit/custom)) //Is it not just "spring trap"
-		stored_kit?.custom_name = name //It should always be a /custom type from this subtype.
+		var/obj/item/spring_trap_kit/custom/customkit = stored_kit
+		customkit.custom_name = name //It should always be a /custom type from this subtype.
 
 /obj/structure/spring_trap/Destroy()
 	stored_kit = null
@@ -231,7 +232,7 @@
 
 /obj/item/spring_trap_kit
 	name = "spring trap assembly kit"
-	desc = "A large metal tile and a large, home-made spring bundled together for easy assembly. \n\n" span_notice("It could have a motor added to let it self-reset.")
+	desc = "A large metal tile and a large, home-made spring bundled together for easy assembly. \n\n" + span_notice("It could have a motor added to let it self-reset.")
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spring_trap-kit"
 	matter = list(MAT_STEEL = MATERIAL_COST(9))
@@ -297,7 +298,7 @@
 		if(!do_after(user, 3 SECONDS))
 			return
 		user.visible_message(span_notice("[user] diassembles \the [src]"), span_notice("You disassemble \the [src]"))
-		new /obj/item/stack/sheets/steel(drop_location(), 8)
+		new /obj/item/stack/material/steel(drop_location(), 8)
 		new /obj/item/stack/rods(drop_location(), 2)
 		for(var/i, i < motor_upgrades, i++)
 			new /obj/item/stock_parts/motor(drop_location())
