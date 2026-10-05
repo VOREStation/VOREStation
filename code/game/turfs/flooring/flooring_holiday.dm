@@ -8,7 +8,7 @@
 	icon_state = "corner_white"
 	pattern = PATTERN_VERTICAL_STRIPE
 
-/obj/effect/floor_decal/corner/holiday/Initialize(mapload, newdir, newcolour)
+/obj/effect/floor_decal/corner/holiday/Initialize(mapload, newdir, newcolor)
 	var/custom_color = request_decoration_colors(src, pattern)
 	if(custom_color)
 		color = custom_color
