@@ -19,7 +19,8 @@
 	var/bugged = 0
 	var/obj/item/camera_assembly/assembly = null
 
-	var/toughness = 5 //sorta fragileh
+	var/toughness
+	var/initial_toughness = 5 //sorta fragileh
 	var/damage_threshold = 5
 
 	//OTHER
@@ -40,6 +41,7 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
+	toughness = initial_toughness
 	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
@@ -93,7 +95,9 @@
 
 /obj/machinery/camera/examine(mob/user)
 	. = ..()
-	if(!status)
+	if(panel_open)
+		. += to_chat(user, span_notice("The maintenance panel is open."))
+	if(stat & BROKEN)
 		. += to_chat(user, span_warning("\The [src] is broken."))
 
 /obj/machinery/camera/proc/internal_process()
@@ -195,6 +199,7 @@
 				if(stat & BROKEN)
 					assembly.state = 2
 					to_chat(user, span_notice("You repaired \the [src] frame."))
+					toughness = initial_toughness
 				else
 					assembly.state = 1
 					to_chat(user, span_notice("You cut \the [src] free from the wall."))
@@ -268,6 +273,8 @@
 		return
 
 	set_status(!src.status)
+	if(stat & BROKEN)
+		return
 	if (!(src.status))
 		if(user)
 			visible_message(span_notice(" [user] has deactivated [src]!"))
@@ -277,6 +284,8 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 	else
+		if(stat & BROKEN)
+			return
 		if(user)
 			visible_message(span_notice(" [user] has reactivated [src]!"))
 			add_hiddenprint(user)
@@ -293,6 +302,7 @@
 	toughness -= force
 	if(toughness <= 0)
 		destroy()
+		toughness = 0
 
 //Used when someone breaks a camera
 /obj/machinery/camera/proc/destroy()
