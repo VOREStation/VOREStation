@@ -65,3 +65,6 @@
   - balance: Increase the damage of C4 if you manage to strap it onto someone.
   - balance: Made planting C4 onto a mob twice as long compared to anything else.
   - code_imp: Remove a comment in the code that isn't relevant anymore.
+2026-10-05:
+  Will:
+  - bugfix: AI eye correctly moves up and down z levels
