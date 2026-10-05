@@ -36,6 +36,13 @@
 /obj/structure/spring_trap/self_resetting_turbo/start_active
 	sprung = FALSE
 
+/obj/structure/spring_trap/mapper_custom //Use this one for map-edited reset times, please
+	reset_time = SPRINGTRAP_AUTO_RESET_TIME
+	stored_kit = /obj/item/spring_trap_kit/custom //Cant be disassembled or modified
+
+/obj/structure/springtrap/mapper_custom/start_active
+	sprung = FALSE
+
 /obj/structure/spring_trap/adminbus
 	name = "SPROINGINATOR 9000!!!"
 	reset_time = 0.1 SECONDS //Not a define, because it's always going to be speedy.
@@ -63,6 +70,11 @@
 	if(reset_time)
 		desc += "This one seems to have a motor that will re-tension the coil after [reset_time / 10] seconds." //Deciseconds
 	update_icon() //Set sprung state if it's a newly built that needs to be set.
+
+/obj/structure/spring_trap/mapper_custom/Initialize(mapload, obj/item/spring_trap_kit/resetting/crafted_kit)
+	. = ..()
+	if(name != /obj/structure/spring_trap::name && istype(stored_kit, /obj/item/spring_trap_kit/custom)) //Is it not just "spring trap"
+		stored_kit?.custom_name = name //It should always be a /custom type from this subtype.
 
 /obj/structure/spring_trap/Destroy()
 	stored_kit = null
@@ -245,12 +257,14 @@
 	name = "self-resetting spring trap assembly kit"
 	desc = "A large metal tile, a large home-made spring and a motor bundled together for easy assembly. \n\n" + span_warning("The motor seems to be non-standard, and is permanantly affixed to the tile...")
 	motor_upgrades = 10 //So you cant modify it.
+	var/custom_name //A custom name for the springtrap, if it had one.
 
 /obj/item/spring_trap_kit/custom/adminbus
 	name = "SPROINGINATOR 9000 assembly kit"
 	desc = "SPROING! SPROING! SPROING! THE BOUNCING NEVER ENDS!"
 	reset_time = 0.1 SECONDS //the SECONDS macro feels a bit unnessesary tbh.
 	motor_upgrades = 9001 // IT'S A DATED OLD MEME!!
+	custom_name = "SPROINGINATOR 9000!!!"
 
 /obj/item/spring_trap_kit/attack_self(mob/user, modifiers)
 	. = ..()
@@ -300,12 +314,12 @@
 	user.drop_from_inventory(src, get_turf(user))
 	src.forceMove(spring_trap)
 
-/obj/item/spring_trap_kit/custom/adminbus/build_trap(mob/user) //Copypasta, ew, but also only for adminbus version
+/obj/item/spring_trap_kit/custom/build_trap(mob/user) //Copypasta, ew, but also only for admin/mapperbus versions
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	var/obj/structure/spring_trap/spring_trap = new(get_turf(user), src)
 	spring_trap.add_fingerprint(user)
 	spring_trap.dir = user.dir
-	spring_trap.name = "SPROINGINATOR 9000!!!" //All because I wanted it to have a funny name... :(
+	spring_trap.name = custom_name //All because I wanted it to have a funny name... :(
 	if(reset_time)
 		spring_trap.reset_time = reset_time
 	user.drop_from_inventory(src, get_turf(user))
