@@ -172,3 +172,54 @@ GLOBAL_VAR_INIT(rollover_safety_date, 0) // set in world/New to the server start
 	if(hour)
 		hourT = " and [hour] hour[(hour != 1)? "s":""]"
 	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
+
+///Returns a string day as an integer in ISO format 1 (Monday) - 7 (Sunday)
+/proc/weekday_to_iso(ddd)
+	switch (ddd)
+		if (MONDAY)
+			return 1
+		if (TUESDAY)
+			return 2
+		if (WEDNESDAY)
+			return 3
+		if (THURSDAY)
+			return 4
+		if (FRIDAY)
+			return 5
+		if (SATURDAY)
+			return 6
+		if (SUNDAY)
+			return 7
+
+///Returns an integer in ISO format 1 (Monday) - 7 (Sunday) as a string day
+/proc/iso_to_weekday(ddd)
+	switch (ddd)
+		if (1)
+			return MONDAY
+		if (2)
+			return TUESDAY
+		if (3)
+			return WEDNESDAY
+		if (4)
+			return THURSDAY
+		if (5)
+			return FRIDAY
+		if (6)
+			return SATURDAY
+		if (7)
+			return SUNDAY
+
+/// Returns the day (mon, tues, wen...) in number format, 1 (monday) - 7 (sunday) from the passed in date (year, month, day)
+/// All inputs are expected indexed at 1
+/proc/day_of_month(year, month, day)
+	// https://en.wikipedia.org/wiki/Zeller%27s_congruence
+	var/m = month < 3 ? month + 12 : month // month (march = 3, april = 4...february = 14)
+	var/K = year % 100 // year of century
+	var/J = round(year / 100) // zero-based century
+	// day 0-6 saturday to friday:
+	var/h = (day + round(13 * (m + 1) / 5) + K + round(K / 4) + round(J / 4) - 2 * J) % 7
+	//convert to ISO 1-7 monday first format
+	return ((h + 5) % 7) + 1
+
+/proc/first_day_of_month(year, month)
+	return day_of_month(year, month, 1)
