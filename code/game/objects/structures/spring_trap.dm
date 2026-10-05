@@ -219,7 +219,7 @@
 
 /obj/item/spring_trap_kit
 	name = "spring trap assembly kit"
-	desc = "A large metal tile and a large, home-made spring bundled together for easy assembly. \nIt could probably have a motor added to let it self-reset."
+	desc = "A large metal tile and a large, home-made spring bundled together for easy assembly. \n\n" span_notice("It could have a motor added to let it self-reset.")
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spring_trap-kit"
 	matter = list(MAT_STEEL = MATERIAL_COST(9))
@@ -229,7 +229,7 @@
 
 /obj/item/spring_trap_kit/resetting
 	name = "self-resetting spring trap assembly kit"
-	desc = "A large metal tile, a large, home-made spring and a motor bundled together for easy assembly. \nAnother motor could probably be added to let it reset even faster!"
+	desc = "A large metal tile, a large, home-made spring and a motor bundled together for easy assembly. \n\n" + span_notice("Another motor could be added to let it reset even faster!")
 	matter = list(MAT_STEEL = MATERIAL_COST(9.8), MAT_GLASS = MATERIAL_COST(0.013)) // 9 sheets, plus the cost of a motor.
 	reset_time = SPRINGTRAP_AUTO_RESET_TIME
 	motor_upgrades = 1
@@ -243,7 +243,7 @@
 
 /obj/item/spring_trap_kit/custom //For mapperbus traps.
 	name = "self-resetting spring trap assembly kit"
-	desc = "A large metal tile, a large home-made spring and a motor bundled together for easy assembly. \nThe motor seems to be non-standard, and is permanantly affixed to the tile..."
+	desc = "A large metal tile, a large home-made spring and a motor bundled together for easy assembly. \n\n" + span_warning("The motor seems to be non-standard, and is permanantly affixed to the tile...")
 	motor_upgrades = 10 //So you cant modify it.
 
 /obj/item/spring_trap_kit/custom/adminbus
@@ -300,12 +300,12 @@
 	user.drop_from_inventory(src, get_turf(user))
 	src.forceMove(spring_trap)
 
-/obj/item/spring_trap_kit/custom/adminbus/build_trap(mob/user)
+/obj/item/spring_trap_kit/custom/adminbus/build_trap(mob/user) //Copypasta, ew, but also only for adminbus version
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	var/obj/structure/spring_trap/spring_trap = new(get_turf(user), src)
 	spring_trap.add_fingerprint(user)
 	spring_trap.dir = user.dir
-	spring_trap.name = "SPROINGINATOR 9000!!!"
+	spring_trap.name = "SPROINGINATOR 9000!!!" //All because I wanted it to have a funny name... :(
 	if(reset_time)
 		spring_trap.reset_time = reset_time
 	user.drop_from_inventory(src, get_turf(user))
