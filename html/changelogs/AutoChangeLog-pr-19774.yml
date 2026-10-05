@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Clean surgery amputation no longer does enough damage to break the groin of people with specific traits"
-  - bugfix: "Messy limb loss will no longer cause you to gain max health instead of obtain injuries. Instead does a fixed amount of damage."
-  - bugfix: "Messy limb loss will no longer carry over the wounds of a limb. (i.e you amputate a limb to treat IB)"

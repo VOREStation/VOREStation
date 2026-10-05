@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "VR spawn is no longer accessible from late join, there's no implementation for this. Use the ghost join menu while observing"
