@@ -256,14 +256,13 @@
 /obj/item/spring_trap_kit/custom //For mapperbus traps.
 	name = "self-resetting spring trap assembly kit"
 	desc = "A large metal tile, a large home-made spring and a motor bundled together for easy assembly. \n\n" + span_warning("The motor seems to be non-standard, and is permanantly affixed to the tile...")
-	motor_upgrades = 10 //So you cant modify it.
+	motor_upgrades = -1 //So you cant modify it.
 	var/custom_name //A custom name for the springtrap, if it had one.
 
 /obj/item/spring_trap_kit/custom/adminbus
 	name = "SPROINGINATOR 9000 assembly kit"
 	desc = "SPROING! SPROING! SPROING! THE BOUNCING NEVER ENDS!"
 	reset_time = 0.1 SECONDS //the SECONDS macro feels a bit unnessesary tbh.
-	motor_upgrades = 9001 // IT'S A DATED OLD MEME!!
 	custom_name = "SPROINGINATOR 9000!!!"
 
 /obj/item/spring_trap_kit/attack_self(mob/user, modifiers)
@@ -276,7 +275,7 @@
 
 /obj/item/spring_trap_kit/attackby(obj/item/W, mob/user)
 	. = ..()
-	if(motor_upgrades > 5) //Maybe not a great way to do it, but it can be adjusted later if more levels are desired or whatever.
+	if(motor_upgrades = -1) //Maybe not a great way to do it, but whatever. Can't be modified.
 		return
 	if(istype(W, /obj/item/stock_parts/motor))
 		if(motor_upgrades >= 2)
