@@ -2,7 +2,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	can_transfer = TRUE
 	var/highest_strength = TURF_DRY
-	var/lube_flags = NONE			//why do we have this?
+	var/slip_flags = NONE			//why do we have this?
 	var/slip_distance = 0
 	var/list/time_left_list			//In deciseconds.
 	var/static/mutable_appearance/permafrost_overlay = mutable_appearance('icons/effects/water.dmi', "ice_floor")
@@ -78,34 +78,34 @@
 
 /datum/component/wet_floor/proc/update_flags()
 	var/intensity
-	lube_flags = NONE
+	slip_flags = NONE
 	switch(highest_strength)
 		if(TURF_WET_WATER)
 			intensity = 6
-			lube_flags = NO_SLIP_WHEN_WALKING
+			slip_flags = NO_SLIP_WHEN_WALKING
 			slip_distance = 0
 		if(TURF_WET_LUBE)
 			intensity = 8
-			lube_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP
+			slip_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP
 			slip_distance = 4
 		if(TURF_WET_ICE)
 			intensity = 12
-			lube_flags = GALOSHES_DONT_HELP
+			slip_flags = GALOSHES_DONT_HELP
 			slip_distance = 4
 		if(TURF_WET_PERMAFROST)
 			intensity = 12
-			lube_flags = PUZZLE_ICE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP
+			slip_flags = PUZZLE_ICE | SLIDE_RECURSIVE | GALOSHES_DONT_HELP
 			slip_distance = 1
 		if(TURF_WET_SUPERLUBE)
 			intensity = 12
-			lube_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
+			slip_flags = SLIDE_RECURSIVE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
 			slip_distance = 4
 		else
 			qdel(parent.GetComponent(/datum/component/slippery))
 			return
 
 	// Add the new stats
-	parent.AddComponent(/datum/component/slippery, intensity, lube_flags, slip_distance)
+	parent.AddComponent(/datum/component/slippery, intensity, slip_flags, slip_distance)
 
 /datum/component/wet_floor/proc/dry(datum/source, strength = TURF_WET_WATER, immediate = FALSE, duration_decrease = INFINITY)
 	for(var/i in time_left_list)
