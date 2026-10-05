@@ -1011,6 +1011,7 @@ Talon winter coat
 	cost = 1
 
 /datum/gear/suit/cloak_half/New()
+	..()
 	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 //Shoulder cloak
