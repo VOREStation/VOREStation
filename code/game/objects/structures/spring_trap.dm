@@ -46,7 +46,7 @@
 /obj/structure/spring_trap/adminbus
 	name = "SPROINGINATOR 9000!!!"
 	reset_time = 0.1 SECONDS //Not a define, because it's always going to be speedy.
-	stored_kit = /obj/item/spring_trap_kit/adminbus
+	stored_kit = /obj/item/spring_trap_kit/custom/adminbus
 
 /obj/structure/spring_trap/adminbus/start_active
 	sprung = FALSE
