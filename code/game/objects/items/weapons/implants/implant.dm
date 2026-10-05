@@ -537,6 +537,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	if(!t) // Failsafe
 		STOP_PROCESSING(SSobj, src)
 		return
+	if(is_jammed(M))
+		STOP_PROCESSING(SSobj, src)
+		return
 	switch (cause)
 		if("death")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
