@@ -89,6 +89,7 @@
 	activate()
 
 /obj/machinery/holoplant/Crossed(mob/living/L)
+	. = ..()
 	if(!interference && plant && istype(L))
 		flicker()
 
