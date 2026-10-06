@@ -389,6 +389,10 @@
 	inflict_heat_damage(20) // Another 20, however this is instantly applied to unprotected mobs.
 	adjustFireLoss(10) // Lava cannot be 100% resisted with fire protection.
 
+///Override for subtypes if they can slip.
+/mob/living/proc/can_slip(lube)
+	return FALSE
+
 /mob/living/proc/reagent_permeability()
 	return 1
 
