@@ -1,0 +1,15 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - rscdel: "Deleted the turf_slip component"
+  - balance: "Lube bypasses anti-slips. Fear the slide."
+  - balance: "magboots still counter lube."
+  - bugfix: "fixed slipvore."
+  - bugfix: "fixed a few sources trying to freeze the floor without ever really being able to on their own."
+  - sound: "Slip volume is based on how hard you slip. (longer weaken = louder)"
+  - image: "ported over TG's water.dmi, which should let turfs have a slightly different water overlay if they're not a tiled-turf. Might need to be adjusted though."
+  - code_imp: "Emptied clown_items.dm. Oops. I'll definitely try to reorganize and move some stuff back into it in a later PR, bike horns have no reason to be defined in weapons.dm"
+  - refactor: "Completely refactored slips to trigger based on a component. Could also probably be added to stuff with admin tools for in-round shenanigans"
+  - refactor: "Completely changed the actual slipping process to be checks based on the mob type, and then handled by the turf the mob is on."
+  - refactor: "Completely refactored wet floors to be component based."
+  - server: "Wet floors subsystem exists now,"
