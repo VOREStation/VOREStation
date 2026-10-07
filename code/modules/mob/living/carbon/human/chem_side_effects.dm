@@ -4,85 +4,84 @@
 	var/name = "None"
 	var/strength = 0
 	var/start = 0
-	var/list/triggers
 	var/list/cures
 	var/cure_message
 
-/datum/medical_effect/proc/manifest(mob/living/carbon/human/H)
-	for(var/R in cures)
-		if(H.reagents.has_reagent(R))
-			return 0
-	for(var/R in triggers)
-		if(H.reagents.get_reagent_amount(R) >= triggers[R])
-			return 1
-	return 0
+/// Begin processing the side effect
+/datum/medical_effect/proc/manifest(mob/living/carbon/human/H, strength)
+	if(cure(H, FALSE))
+		return
+	src.strength = strength
+	start = H.life_tick
+	LAZYADD(H.side_effects, src)
 
+/// Finish processing the side effect
+/datum/medical_effect/proc/subside(mob/living/carbon/human/H)
+	LAZYREMOVE(H.side_effects, src)
+	qdel(src)
+
+/// Performs the effect, has large gaps between being triggered
 /datum/medical_effect/proc/on_life(mob/living/carbon/human/H, strength)
 	return
 
-/datum/medical_effect/proc/cure(mob/living/carbon/human/H)
+/// Checks the mob's body for a cure reagent, returns true if any are present
+/datum/medical_effect/proc/cure(mob/living/carbon/human/H, show_message)
 	for(var/R in cures)
-		if(H.reagents.has_reagent(R))
-			if (cure_message)
-				to_chat(H, span_blue("[cure_message]"))
-			return 1
-	return 0
+		if(!H.bloodstr.has_reagent(R))
+			continue
+		if(H.ingested.has_reagent(R))
+			continue
+		if (show_message && cure_message)
+			to_chat(H, span_blue("[cure_message]"))
+		return TRUE
+	return FALSE
 
 
 // MOB HELPERS
 // ===========
-/mob/living/carbon/human/var/list/datum/medical_effect/side_effects = list()
-/mob/proc/add_side_effect(name, strength = 0)
-/mob/living/carbon/human/add_side_effect(name, strength = 0)
-	for(var/datum/medical_effect/M in src.side_effects)
-		if(M.name == name)
-			M.strength = max(M.strength, 10)
-			M.start = life_tick
+/mob/living/carbon/human
+	var/list/datum/medical_effect/side_effects = null
+
+/mob/proc/add_side_effect(effect_path, strength = 0)
+	return
+
+/mob/living/carbon/human/add_side_effect(effect_path, strength = 0)
+	if(length(side_effects)) // Find an effect already active on our mob
+		for(var/datum/medical_effect/effect in side_effects)
+			if(!istype(effect, effect_path))
+				continue
+			effect.strength = max(effect.strength, strength)
+			effect.start = life_tick
 			return
-
-
-	var/T = side_effects[name]
-	if (!T)
-		return
-
-	var/datum/medical_effect/M = new T
-	if(M.name == name)
-		M.strength = strength
-		M.start = life_tick
-		side_effects += M
+	// Add the effect if it didn't exist
+	var/datum/medical_effect/created_effect = new effect_path()
+	created_effect.manifest(src, strength)
 
 /mob/living/carbon/human/proc/handle_medical_side_effects()
 	//Going to handle those things only every few ticks.
 	if(life_tick % 15 != 0)
-		return 0
-
-	var/list/L = subtypesof(/datum/medical_effect)
-	for(var/T in L)
-		var/datum/medical_effect/M = new T
-		if (M.manifest(src))
-			src.add_side_effect(M.name)
-
+		return
+	if(!length(side_effects))
+		return
 	// One full cycle(in terms of strength) every 10 minutes
 	for (var/datum/medical_effect/M in side_effects)
-		if (!M) continue
-		var/strength_percent = sin((life_tick - M.start) / 2)
-
 		// Only do anything if the effect is currently strong enough
-		if(strength_percent >= 0.4)
-			if (M.cure(src) || M.strength > 50)
-				side_effects -= M
-				M = null
-			else
-				if(life_tick % 45 == 0)
-					M.on_life(src, strength_percent*M.strength)
-				// Effect slowly growing stronger
-				M.strength+=0.08
+		var/strength_percent = sin((life_tick - M.start) / 2)
+		if(strength_percent < 0.4)
+			continue
+		// End the effect after a long enough time has passed, or it is cured
+		M.strength += 0.08
+		if (M.cure(src,TRUE) || M.strength > 50)
+			M.subside(src)
+			continue
+		if(life_tick % 45 == 0)
+			M.on_life(src, strength_percent * M.strength)
 
 // HEADACHE
 // ========
 /datum/medical_effect/headache
 	name = "Headache"
-	triggers = list(REAGENT_ID_CRYOXADONE = 10, REAGENT_ID_BICARIDINE = 15, REAGENT_ID_TRICORDRAZINE = 15)
+	// triggers = list(REAGENT_ID_CRYOXADONE = 10, REAGENT_ID_BICARIDINE = 15, REAGENT_ID_TRICORDRAZINE = 15)
 	cures = list(REAGENT_ID_ALKYSINE, REAGENT_ID_TRAMADOL, REAGENT_ID_PARACETAMOL, REAGENT_ID_OXYCODONE)
 	cure_message = "Your head stops throbbing..."
 
@@ -99,7 +98,7 @@
 // ===========
 /datum/medical_effect/bad_stomach
 	name = "Bad Stomach"
-	triggers = list(REAGENT_ID_KELOTANE = 30, REAGENT_ID_DERMALINE = 15)
+	// triggers = list(REAGENT_ID_KELOTANE = 30, REAGENT_ID_DERMALINE = 15)
 	cures = list(REAGENT_ID_ANTITOXIN)
 	cure_message = "Your stomach feels a little better now..."
 
@@ -116,7 +115,7 @@
 // ======
 /datum/medical_effect/cramps
 	name = "Cramps"
-	triggers = list(REAGENT_ID_ANTITOXIN = 30, REAGENT_ID_TRAMADOL = 15)
+	// triggers = list(REAGENT_ID_ANTITOXIN = 30, REAGENT_ID_TRAMADOL = 15)
 	cures = list(REAGENT_ID_INAPROVALINE)
 	cure_message = "The cramps let up..."
 
@@ -134,7 +133,7 @@
 // ====
 /datum/medical_effect/itch
 	name = "Itch"
-	triggers = list(REAGENT_ID_BLISS = 10)
+	// triggers = list(REAGENT_ID_BLISS = 10)
 	cures = list(REAGENT_ID_INAPROVALINE)
 	cure_message = "The itching stops..."
 
