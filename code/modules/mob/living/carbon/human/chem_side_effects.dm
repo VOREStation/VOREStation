@@ -1,5 +1,7 @@
 // MEDICAL SIDE EFFECT BASE
 // ========================
+#define MAX_EFFECT_STRENGTH 50
+
 /datum/medical_effect
 	var/name = "None"
 	var/strength = 0
@@ -7,9 +9,9 @@
 	var/list/cures
 	var/cure_message
 
-/// Begin processing the side effect
-/datum/medical_effect/proc/manifest(mob/living/carbon/human/H, strength)
-	if(cure(H, FALSE))
+/datum/medical_effect/New(mob/living/carbon/human/H, strength)
+	if(cure(H))
+		qdel(src)
 		return
 	src.strength = strength
 	start = H.life_tick
@@ -17,6 +19,8 @@
 
 /// Finish processing the side effect
 /datum/medical_effect/proc/subside(mob/living/carbon/human/H)
+	if (cure_message)
+		to_chat(H, span_blue("[cure_message]"))
 	LAZYREMOVE(H.side_effects, src)
 	qdel(src)
 
@@ -25,14 +29,12 @@
 	return
 
 /// Checks the mob's body for a cure reagent, returns true if any are present
-/datum/medical_effect/proc/cure(mob/living/carbon/human/H, show_message)
+/datum/medical_effect/proc/cure(mob/living/carbon/human/H)
 	for(var/R in cures)
 		if(!H.bloodstr.has_reagent(R))
 			continue
 		if(H.ingested.has_reagent(R))
 			continue
-		if (show_message && cure_message)
-			to_chat(H, span_blue("[cure_message]"))
 		return TRUE
 	return FALSE
 
@@ -46,6 +48,10 @@
 	return
 
 /mob/living/carbon/human/add_side_effect(effect_path, strength = 0)
+	if(!effect_path)
+		return
+	if(strength > MAX_EFFECT_STRENGTH) // Effect would expire instantly
+		return
 	if(length(side_effects)) // Find an effect already active on our mob
 		for(var/datum/medical_effect/effect in side_effects)
 			if(!istype(effect, effect_path))
@@ -54,8 +60,7 @@
 			effect.start = life_tick
 			return
 	// Add the effect if it didn't exist
-	var/datum/medical_effect/created_effect = new effect_path()
-	created_effect.manifest(src, strength)
+	new effect_path(src, strength)
 
 /mob/living/carbon/human/proc/handle_medical_side_effects()
 	//Going to handle those things only every few ticks.
@@ -71,7 +76,7 @@
 			continue
 		// End the effect after a long enough time has passed, or it is cured
 		M.strength += 0.08
-		if (M.cure(src,TRUE) || M.strength > 50)
+		if (M.cure(src) || M.strength > MAX_EFFECT_STRENGTH)
 			M.subside(src)
 			continue
 		if(life_tick % 45 == 0)
@@ -146,3 +151,5 @@
 		if(31 to INFINITY)
 			H.automatic_custom_emote(VISIBLE_MESSAGE, "shivers slightly.", check_stat = TRUE)
 			H.custom_pain("This itch makes it really hard to concentrate.",1)
+
+#undef MAX_EFFECT_STRENGTH
