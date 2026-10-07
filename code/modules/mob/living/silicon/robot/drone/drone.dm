@@ -132,6 +132,12 @@ GLOBAL_LIST_EMPTY(mob_hat_cache)
 		icon_state = shell_types[random]
 		shell_accessories = list("[icon_state]-eyes-blue")
 
+	for(var/holiday_name in GLOB.holidays)
+		var/datum/holiday/holiday_today = GLOB.holidays[holiday_name]
+		var/obj/item/potential_hat = holiday_today.holiday_hat
+		if(!isnull(potential_hat) && isnull(hat))
+			hat = potential_hat
+
 	update_icon()
 	updatename()
 

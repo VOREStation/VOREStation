@@ -59,6 +59,7 @@
 			audible_message(span_maroon("[honk_text]"))
 
 /obj/item/bikehorn/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(isliving(AM))
