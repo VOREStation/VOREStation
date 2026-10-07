@@ -123,8 +123,8 @@
 	var/autotransfer_max_amount = 0			// Maximum amount of things to pass at once.
 	var/tmp/list/autotransfer_queue = list()// Reserve for above things.
 	//Auto-transfer flags for whitelist
-	var/tmp/static/list/autotransfer_flags_list = list("Creatures" = AT_FLAG_CREATURES, "Absorbed" = AT_FLAG_ABSORBED, "Carbon" = AT_FLAG_CARBON, "Silicon" = AT_FLAG_SILICON, "Mobs" = AT_FLAG_MOBS, "Animals" = AT_FLAG_ANIMALS, "Mice" = AT_FLAG_MICE, "Dead" = AT_FLAG_DEAD, "Observers" = AT_FLAG_OBSERVER, "Digestable Creatures" = AT_FLAG_CANDIGEST, "Absorbable Creatures" = AT_FLAG_CANABSORB, "Full Health" = AT_FLAG_HEALTHY)
-	var/tmp/static/list/autotransfer_flags_list_items = list("Items" = AT_FLAG_ITEMS, "Trash" = AT_FLAG_TRASH, "Eggs" = AT_FLAG_EGGS, "Remains" = AT_FLAG_REMAINS, "Indigestible Items" = AT_FLAG_INDIGESTIBLE, "Recyclable Items" = AT_FLAG_RECYCLABLE, "Ores" = AT_FLAG_ORES, "Clothes and Bags" = AT_FLAG_CLOTHES, "Food" = AT_FLAG_FOOD)
+	var/tmp/static/list/autotransfer_flags_list = list(AT_CREATURES = AT_FLAG_CREATURES, AT_ABSORBED = AT_FLAG_ABSORBED, AT_CARBON = AT_FLAG_CARBON, AT_SILICON = AT_FLAG_SILICON, AT_MOBS = AT_FLAG_MOBS, AT_ANIMALS = AT_FLAG_ANIMALS, AT_MICE = AT_FLAG_MICE, AT_DEAD = AT_FLAG_DEAD, AT_OBSERVERS = AT_FLAG_OBSERVER, AT_CANDIGEST = AT_FLAG_CANDIGEST, AT_CANABSORB = AT_FLAG_CANABSORB, AT_HEALTHY = AT_FLAG_HEALTHY)
+	var/tmp/static/list/autotransfer_flags_list_items = list(AT_ITEMS = AT_FLAG_ITEMS, AT_TRASH = AT_FLAG_TRASH, AT_EGGS = AT_FLAG_EGGS, AT_REMAINS = AT_FLAG_REMAINS, AT_INDIGESTIBLE = AT_FLAG_INDIGESTIBLE, AT_RECYCLABLE = AT_FLAG_RECYCLABLE, AT_ORES = AT_FLAG_ORES, AT_CLOTHES = AT_FLAG_CLOTHES, AT_FOOD = AT_FLAG_FOOD)
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -1219,117 +1219,117 @@
 //Autotransfer filter
 /obj/belly/proc/autotransfer_filter(atom/movable/prey, whitelist, blacklist)
 	if(ismob(prey))
-		if(blacklist & autotransfer_flags_list["Absorbed"])
+		if(blacklist & autotransfer_flags_list[AT_ABSORBED])
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if(L.absorbed) return FALSE
 		if(blacklist != 2) // Default is 2 for Absorbed, if it's not 2, check everything else
-			if(blacklist & autotransfer_flags_list["Creatures"])
+			if(blacklist & autotransfer_flags_list[AT_CREATURES])
 				if(isliving(prey)) return FALSE
-			if(blacklist & autotransfer_flags_list["Carbon"])
+			if(blacklist & autotransfer_flags_list[AT_CARBON])
 				if(iscarbon(prey)) return FALSE
-			if(blacklist & autotransfer_flags_list["Silicon"])
+			if(blacklist & autotransfer_flags_list[AT_SILICON])
 				if(issilicon(prey)) return FALSE
-			if(blacklist & autotransfer_flags_list["Mobs"])
+			if(blacklist & autotransfer_flags_list[AT_MOBS])
 				if(isanimal(prey)) return FALSE
-			if(blacklist & autotransfer_flags_list["Animals"])
+			if(blacklist & autotransfer_flags_list[AT_ANIMALS])
 				if(istype(prey, /mob/living/simple_mob/animal)) return FALSE
-			if(blacklist & autotransfer_flags_list["Mice"])
+			if(blacklist & autotransfer_flags_list[AT_MICE])
 				if(ismouse(prey)) return FALSE
-			if(blacklist & autotransfer_flags_list["Dead"])
+			if(blacklist & autotransfer_flags_list[AT_DEAD])
 				if(isliving(prey))
 					var/mob/living/L = prey
 					if(L.stat == DEAD) return FALSE
-			if(blacklist & autotransfer_flags_list["Observers"])
+			if(blacklist & autotransfer_flags_list[AT_OBSERVERS])
 				if(isobserver(prey)) return FALSE
-			if(blacklist & autotransfer_flags_list["Digestable Creatures"])
+			if(blacklist & autotransfer_flags_list[AT_CANDIGEST])
 				if(isliving(prey))
 					var/mob/living/L = prey
 					if(L.digestable) return FALSE
-			if(blacklist & autotransfer_flags_list["Absorbable Creatures"])
+			if(blacklist & autotransfer_flags_list[AT_CANABSORB])
 				if(isliving(prey))
 					var/mob/living/L = prey
 					if(L.absorbable) return FALSE
-			if(blacklist & autotransfer_flags_list["Full Health"])
+			if(blacklist & autotransfer_flags_list[AT_HEALTHY])
 				if(isliving(prey))
 					var/mob/living/L = prey
 					if((L.getOxyLoss() + L.getToxLoss() + L.getFireLoss() + L.getBruteLoss() + L.getCloneLoss()) == 0) return FALSE
 		if(whitelist == 0) return TRUE
-		if(whitelist & autotransfer_flags_list["Creatures"])
+		if(whitelist & autotransfer_flags_list[AT_CREATURES])
 			if(isliving(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list["Absorbed"])
+		if(whitelist & autotransfer_flags_list[AT_ABSORBED])
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if(L.absorbed) return TRUE
-		if(whitelist & autotransfer_flags_list["Carbon"])
+		if(whitelist & autotransfer_flags_list[AT_CARBON])
 			if(iscarbon(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list["Silicon"])
+		if(whitelist & autotransfer_flags_list[AT_SILICON])
 			if(issilicon(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list["Mobs"])
+		if(whitelist & autotransfer_flags_list[AT_MOBS])
 			if(isanimal(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list["Animals"])
+		if(whitelist & autotransfer_flags_list[AT_ANIMALS])
 			if(istype(prey, /mob/living/simple_mob/animal)) return TRUE
-		if(whitelist & autotransfer_flags_list["Mice"])
+		if(whitelist & autotransfer_flags_list[AT_MICE])
 			if(ismouse(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list["Dead"])
+		if(whitelist & autotransfer_flags_list[AT_DEAD])
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if(L.stat == DEAD) return TRUE
-		if(whitelist & autotransfer_flags_list["Observers"])
+		if(whitelist & autotransfer_flags_list[AT_OBSERVERS])
 			if(isobserver(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list["Digestable Creatures"])
+		if(whitelist & autotransfer_flags_list[AT_CANDIGEST])
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if(L.digestable) return TRUE
-		if(whitelist & autotransfer_flags_list["Absorbable Creatures"])
+		if(whitelist & autotransfer_flags_list[AT_CANABSORB])
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if(L.absorbable) return TRUE
-		if(whitelist & autotransfer_flags_list["Full Health"])
+		if(whitelist & autotransfer_flags_list[AT_HEALTHY])
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if((L.getOxyLoss() + L.getToxLoss() + L.getFireLoss() + L.getBruteLoss() + L.getCloneLoss()) == 0) return TRUE
 	else
-		if(blacklist & autotransfer_flags_list_items["Items"])
+		if(blacklist & autotransfer_flags_list_items[AT_ITEMS])
 			if(isitem(prey)) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Trash"])
+		if(blacklist & autotransfer_flags_list_items[AT_TRASH])
 			if(istype(prey, /obj/item/trash)) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Eggs"])
+		if(blacklist & autotransfer_flags_list_items[AT_EGGS])
 			if(istype(prey, /obj/item/storage/vore_egg)) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Remains"])
+		if(blacklist & autotransfer_flags_list_items[AT_REMAINS])
 			if(istype(prey, /obj/item/digestion_remains)) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Indigestible Items"])
+		if(blacklist & autotransfer_flags_list_items[AT_INDIGESTIBLE])
 			if(prey in items_preserved) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Recyclable Items"])
+		if(blacklist & autotransfer_flags_list_items[AT_RECYCLABLE])
 			if(isitem(prey))
 				var/obj/item/I = prey
 				if(I.matter) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Ores"])
+		if(blacklist & autotransfer_flags_list_items[AT_ORES])
 			if(istype(prey, /obj/item/ore)) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Clothes and Bags"])
+		if(blacklist & autotransfer_flags_list_items[AT_CLOTHES])
 			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return FALSE
-		if(blacklist & autotransfer_flags_list_items["Food"])
+		if(blacklist & autotransfer_flags_list_items[AT_FOOD])
 			if(istype(prey, /obj/item/reagent_containers/food)) return FALSE
 		if(whitelist == 0) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Items"])
+		if(whitelist & autotransfer_flags_list_items[AT_ITEMS])
 			if(isitem(prey)) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Trash"])
+		if(whitelist & autotransfer_flags_list_items[AT_TRASH])
 			if(istype(prey, /obj/item/trash)) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Eggs"])
+		if(whitelist & autotransfer_flags_list_items[AT_EGGS])
 			if(istype(prey, /obj/item/storage/vore_egg)) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Remains"])
+		if(whitelist & autotransfer_flags_list_items[AT_REMAINS])
 			if(istype(prey, /obj/item/digestion_remains)) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Indigestible Items"])
+		if(whitelist & autotransfer_flags_list_items[AT_INDIGESTIBLE])
 			if(prey in items_preserved) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Recyclable Items"])
+		if(whitelist & autotransfer_flags_list_items[AT_RECYCLABLE])
 			if(isitem(prey))
 				var/obj/item/I = prey
 				if(I.matter) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Ores"])
+		if(whitelist & autotransfer_flags_list_items[AT_ORES])
 			if(istype(prey, /obj/item/ore)) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Clothes and Bags"])
+		if(whitelist & autotransfer_flags_list_items[AT_CLOTHES])
 			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return TRUE
-		if(whitelist & autotransfer_flags_list_items["Food"])
+		if(whitelist & autotransfer_flags_list_items[AT_FOOD])
 			if(istype(prey, /obj/item/reagent_containers/food)) return TRUE
 	return FALSE
 

@@ -65,6 +65,20 @@
 //For belly fullscreen shennanigans outside of bellies, due to Life() clearing belly fullscreens outside of bellies.
 #define ATOM_BELLY_FULLSCREEN "belly_atom_vfx"
 
+//Auto-transfer options
+#define AT_CREATURES	"Creatures"
+#define AT_ABSORBED		"Absorbed"
+#define AT_CARBON		"Carbon"
+#define AT_SILICON		"Silicon"
+#define AT_MOBS			"Mobs"
+#define AT_ANIMALS		"Animals"
+#define AT_MICE			"Mice"
+#define AT_DEAD			"Dead"
+#define AT_CANDIGEST	"Digestable Creatures"
+#define AT_CANABSORB	"Absorbable Creatures"
+#define AT_HEALTHY		"Full Health"
+#define AT_OBSERVERS	"Observers"
+
 //Auto-transfer mob flags
 #define AT_FLAG_CREATURES		0x1
 #define AT_FLAG_ABSORBED		0x2
@@ -77,7 +91,18 @@
 #define AT_FLAG_CANDIGEST		0x100
 #define AT_FLAG_CANABSORB		0x200
 #define AT_FLAG_HEALTHY			0x400
-#define AT_FLAG_OBSERVER		0x800
+#define AT_FLAG_OBSERVERS		0x800
+
+//Auto-transfer item options
+#define AT_ITEMS		"Items"
+#define AT_TRASH		"Trash"
+#define AT_EGGS			"Eggs"
+#define AT_REMAINS		"Remains"
+#define AT_INDIGESTIBLE	"Indigestible Items"
+#define AT_RECYCLABLE	"Recyclable Items"
+#define AT_ORES			"Ores"
+#define AT_CLOTHES		"Clothes and Bags"
+#define AT_FOOD			"Food"
 
 //Auto-transfer item flags
 #define AT_FLAG_ITEMS			0x1
