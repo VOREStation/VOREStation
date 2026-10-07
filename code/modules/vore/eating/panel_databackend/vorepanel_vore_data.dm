@@ -336,6 +336,7 @@
 					"stat" = 0,
 					"ref" = "\ref[O]",
 					"outside" = TRUE,
+					"damage" = 1
 				)
 				if(show_pictures) //disables icon mode
 					if(selected.contents.len <= max_icon_content)
