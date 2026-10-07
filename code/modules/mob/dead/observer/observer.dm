@@ -354,15 +354,25 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/dead/proc/jumpable_mobs()
 	var/list/mobs = getmobs()
-	if(check_rights_for(client, R_HOLDER))
-		return mobs
+	var/admin = check_rights_for(client, R_HOLDER)
 
-	for(var/key in mobs)
+	for(var/mob/key in mobs)
+
+		if(isnewplayer(key) || isnull(key.loc)) //Nullspace or not in the game yet.
+			mobs -= key
+			continue
+
+		if(admin) //Admins can jump to people in secret/hidden areas.
+			continue
+
 		var/mobz = get_z(mobs[key])
 		if(mobz in using_map?.secret_levels)
 			mobs -= key
+			continue
+
 		if(mobz in using_map?.hidden_levels)
 			mobs -= key
+			continue
 
 	return mobs
 
@@ -427,14 +437,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			stop_following()
 		return
 
-	//RS Port #658 Start
 	var/area/A = get_area(destination)
 	if(A?.flag_check(AREA_BLOCK_GHOSTS) && !isbelly(destination) && !admin_ghosted && !just_spawned)
 		to_chat(src,span_warning("Sorry, that area does not allow ghosts."))
 		if(following)
 			stop_following()
 		return
-	//RS Port #658 End
 	return ..()
 
 /mob/observer/dead/Move(atom/newloc, direct = 0, movetime)
