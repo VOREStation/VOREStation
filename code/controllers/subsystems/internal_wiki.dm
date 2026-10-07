@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(internal_wiki)
 
 	rustg_file_write(json_str, file_directory)
 	var/file_hash = rustg_hash_file(RUSTG_HASH_MD5, file_directory)
-	SSassets.transport.register_asset("intwiki_[set_cat]", fcopy_rsc(file_directory), file_hash)
+	SSassets.transport.register_asset("intwiki_[set_cat].json", fcopy_rsc(file_directory), file_hash)
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Donation system, for the joke of course
