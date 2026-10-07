@@ -123,7 +123,7 @@
 	var/autotransfer_max_amount = 0			// Maximum amount of things to pass at once.
 	var/tmp/list/autotransfer_queue = list()// Reserve for above things.
 	//Auto-transfer flags for whitelist
-	var/tmp/static/list/autotransfer_flags_list = list(AT_CREATURES = AT_FLAG_CREATURES, AT_ABSORBED = AT_FLAG_ABSORBED, AT_CARBON = AT_FLAG_CARBON, AT_SILICON = AT_FLAG_SILICON, AT_MOBS = AT_FLAG_MOBS, AT_ANIMALS = AT_FLAG_ANIMALS, AT_MICE = AT_FLAG_MICE, AT_DEAD = AT_FLAG_DEAD, AT_OBSERVERS = AT_FLAG_OBSERVER, AT_CANDIGEST = AT_FLAG_CANDIGEST, AT_CANABSORB = AT_FLAG_CANABSORB, AT_HEALTHY = AT_FLAG_HEALTHY)
+	var/tmp/static/list/autotransfer_flags_list = list(AT_CREATURES = AT_FLAG_CREATURES, AT_ABSORBED = AT_FLAG_ABSORBED, AT_CARBON = AT_FLAG_CARBON, AT_SILICON = AT_FLAG_SILICON, AT_MOBS = AT_FLAG_MOBS, AT_ANIMALS = AT_FLAG_ANIMALS, AT_MICE = AT_FLAG_MICE, AT_DEAD = AT_FLAG_DEAD, AT_OBSERVERS = AT_FLAG_OBSERVERS, AT_CANDIGEST = AT_FLAG_CANDIGEST, AT_CANABSORB = AT_FLAG_CANABSORB, AT_HEALTHY = AT_FLAG_HEALTHY)
 	var/tmp/static/list/autotransfer_flags_list_items = list(AT_ITEMS = AT_FLAG_ITEMS, AT_TRASH = AT_FLAG_TRASH, AT_EGGS = AT_FLAG_EGGS, AT_REMAINS = AT_FLAG_REMAINS, AT_INDIGESTIBLE = AT_FLAG_INDIGESTIBLE, AT_RECYCLABLE = AT_FLAG_RECYCLABLE, AT_ORES = AT_FLAG_ORES, AT_CLOTHES = AT_FLAG_CLOTHES, AT_FOOD = AT_FLAG_FOOD)
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
