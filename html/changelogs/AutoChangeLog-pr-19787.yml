@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "broken casino chips no longer self delete or stack with actual chips"
