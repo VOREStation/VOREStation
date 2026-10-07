@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/storage
 	name = DEVELOPER_WARNING_NAME
 	var/obj/item/storage/internal/pockets
-	description_info = "This item has storage."
+	description_info = "This item has storage space."
 
 /obj/item/clothing/suit/storage/Initialize(mapload)
 	. = ..()
