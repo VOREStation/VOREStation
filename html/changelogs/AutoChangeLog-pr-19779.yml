@@ -1,0 +1,4 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - qol: "Atmos pumps are quicker to set, nicer for large clusters of pumps"
