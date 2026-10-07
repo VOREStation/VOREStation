@@ -138,6 +138,12 @@ export function ourTypeToOptions(
         tooltip: 'Check the health of your current target.',
       });
     }
+    if (type === 'Living' || type === 'LivingC') {
+      interaction_options.push({
+        name: 'Health',
+        tooltip: 'Display the health of the current target.',
+      });
+    }
     if (type === 'Observer') {
       interaction_options.push({
         name: 'Reform',
@@ -152,12 +158,6 @@ export function ourTypeToOptions(
         color: 'red',
         needsConfirm: true,
         tooltip: 'Process your current target instantly.',
-      });
-    }
-    if (type === 'Living' || type === 'LivingC') {
-      interaction_options.push({
-        name: 'Health',
-        tooltip: 'Display the health of the current target.',
       });
     }
     return [commonOption, ...baseOptions, ...interaction_options];
