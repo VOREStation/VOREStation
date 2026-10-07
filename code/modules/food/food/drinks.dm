@@ -39,17 +39,17 @@
 	return
 
 /obj/item/reagent_containers/food/drinks/Destroy()
-	if(LAZYLEN(food_inserted_micros))
+	if(food_inserted_micros)
 		for(var/mob/mob in food_inserted_micros)
-			mob.dropInto(loc)
-			food_inserted_micros -= mob
+			mob.dropInto(get_turf(src))
+			LAZYREMOVE(food_inserted_micros, mob)
 	. = ..()
 
 	return
 
-/obj/item/reagent_containers/food/drinks/attackby(obj/item/W as obj, mob/user as mob)
-	if(food_can_insert_micro && istype(W, /obj/item/holder))
-		if(!(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)))
+/obj/item/reagent_containers/food/drinks/attackby(obj/item/useditem as obj, mob/user as mob)
+	if(food_can_insert_micro && istype(useditem, /obj/item/holder))
+		if(!(istype(useditem, /obj/item/holder/micro) || istype(useditem, /obj/item/holder/mouse)))
 			. = ..()
 			return
 
@@ -57,7 +57,7 @@
 			to_chat(user, span_warning("You cannot drop anything into \the [src] without opening it first."))
 			return
 
-		var/obj/item/holder/holder = W
+		var/obj/item/holder/holder = useditem
 		var/mob/living/living_mob = holder.held_mob
 
 		living_mob.forceMove(src)
@@ -73,10 +73,10 @@
 
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/Micro, mob/user)
-	if(!user.stat && istype(Micro) && (Micro == user) && Adjacent(Micro) && (Micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
-		Micro.forceMove(src)
-		LAZYADD(food_inserted_micros, Micro)
+/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/micro, mob/user)
+	if(!user.stat && istype(micro) && (micro == user) && Adjacent(micro) && (micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		micro.forceMove(src)
+		LAZYADD(food_inserted_micros, micro)
 		to_chat(user, span_warning("You climb into \the [src]."))
 		return
 
@@ -87,11 +87,10 @@
 	if(!feeder)
 		feeder = eater
 
-	if(LAZYLEN(food_inserted_micros))
+	if(food_inserted_micros)
 		for(var/mob/living/micro in food_inserted_micros)
 			if(!can_food_vore(eater, micro))
 				continue
-
 			var/do_nom = FALSE
 
 			if(!reagents.total_volume)
@@ -103,7 +102,7 @@
 
 			if(do_nom)
 				eater.vore_selected.nom_atom(micro)
-				food_inserted_micros -= micro
+				LAZYREMOVE(food_inserted_micros, micro)
 
 	if(!reagents.total_volume && changed)
 		eater.visible_message(span_notice("[eater] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))
@@ -139,11 +138,11 @@
 		to_chat(user, span_warning("...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b>"))
 		name = "\improper can't of [initial(name)]"	//don't update the name until they try to open it
 
-/obj/item/reagent_containers/food/drinks/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+/obj/item/reagent_containers/food/drinks/attack(mob/living/creature, mob/living/user, target_zone, attack_modifier)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
-	if(standard_feed_mob(user, M))
+	if(standard_feed_mob(user, creature, src))
 		return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_FAILURE
@@ -161,8 +160,34 @@
 	if(!is_open_container())
 		to_chat(user, span_notice("You need to open [src]!"))
 		return TRUE
-	var/original_volume = reagents.total_volume
+
+	if(!reagents || !reagents.total_volume)
+		balloon_alert(user, "\the [src] is empty.")
+		return FALSE
+
+	if(!target.consume_liquid_belly && liquid_belly_check())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+		return FALSE
+	//get our other preference checks
 	.=..()
+
+	if(user == target)
+		self_feed_message(user)
+		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
+		feed_sound(user)
+
+	else
+		other_feed_message_start(user, target)
+		if(!do_after(user, 3 SECONDS, target))
+			return FALSE
+		other_feed_message_finish(user, target)
+
+		var/contained = reagentlist()
+		add_attack_logs(user, target, "Fed from [src] containing [contained]")
+		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
+		feed_sound(user)
+
+	var/original_volume = reagents.total_volume
 	var/changed = !(reagents.total_volume == original_volume)
 	On_Consume(target, user, changed)
 	return

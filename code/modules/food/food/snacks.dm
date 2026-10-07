@@ -62,7 +62,7 @@
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/living/eater, mob/living/feeder)
 	SEND_SIGNAL(src, COMSIG_FOOD_EATEN, eater, feeder)
-	if(LAZYLEN(food_inserted_micros))
+	if(food_inserted_micros)
 		for(var/mob/living/micro in food_inserted_micros)
 			if(!can_food_vore(eater, micro))
 				continue
@@ -78,7 +78,7 @@
 
 			if(do_nom)
 				eater.vore_selected.nom_atom(micro)
-				food_inserted_micros -= micro
+				LAZYREMOVE(food_inserted_micros, micro)
 
 	if(!reagents.total_volume)
 		eater.balloon_alert_visible("eats \the [src].","finishes eating \the [src].")
@@ -119,24 +119,18 @@
 		balloon_alert(user, "the can is closed!")
 		return ITEM_INTERACT_FAILURE
 
-	if(istype(eater, /mob/living/carbon))
-		//TODO: replace with standard_feed_mob() call.
+	if(!eater.consume_liquid_belly && liquid_belly_check())
+		to_chat(user, span_vdanger("[user == eater ? "you can't" : "\The [eater] can't"] consume that, it contains something produced from a belly!"))
+		return ITEM_INTERACT_FAILURE
 
-		if(!eater.consume_liquid_belly)
-			if(liquid_belly_check())
-				to_chat(user, span_infoplain("[user == eater ? "You can't" : "\The [eater] can't"] consume that, it contains something produced from a belly!"))
-				return ITEM_INTERACT_FAILURE
-
-		//micro in food check if someone couldn't be bothered to examine their food.
-		if((!eater.food_vore || !eater.can_be_drop_pred) && LAZYLEN(food_inserted_micros))
-			to_chat(eater, span_vdanger("Ewww, [user == eater ? "You can't" : "\The [eater] can't"] consume that, there's a bug in this!") )
+	if(iscarbon(eater))
+		if(!standard_feed_mob(user, eater))
 			return ITEM_INTERACT_FAILURE
-
+		// These are surprise tools that will help us later
 		var/swallow_whole = FALSE
-		var/obj/belly/belly_target				// These are surprise tools that will help us later
-
-		var/fullness = eater.nutrition + (eater.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
-		if(eater == user)								//If you're eating it yourself
+		var/obj/belly/belly_target
+		//If you're eating it yourself
+		if(eater == user)
 			if(ishuman(eater))
 				var/mob/living/carbon/human/human_eater = eater
 				if(!human_eater.check_has_mouth())
@@ -152,6 +146,7 @@
 					return ITEM_INTERACT_FAILURE
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
+			var/fullness = user.nutrition + (user.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
 			if (fullness <= 50)
 				to_chat(eater, span_danger("You hungrily chew out a piece of [src] and gobble it!"))
 			if (fullness > 50 && fullness <= 150)
@@ -283,19 +278,23 @@
 		else
 			. += span_notice("It was bitten multiple times!")
 
-/obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/storage))
+/obj/item/reagent_containers/food/snacks/attackby(obj/item/usedobject as obj, mob/user as mob)
+	if(istype(usedobject,/obj/item/storage))
 		. = ..() // -> item/attackby()
 		return
 
+	if(user.loc == src)
+		to_chat(user, span_warning("You can't really get a good angle to do that!"))
+		return
+
 	// Eating with forks
-	if(istype(W,/obj/item/material/kitchen/utensil))
-		var/obj/item/material/kitchen/utensil/utensil = W
+	if(istype(usedobject,/obj/item/material/kitchen/utensil))
+		var/obj/item/material/kitchen/utensil/utensil = usedobject
 		utensil.load_food(user, src)
 		return
 
-	if(food_can_insert_micro && istype(W, /obj/item/holder))
-		if(!(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)))
+	if(food_can_insert_micro && istype(usedobject, /obj/item/holder))
+		if(!(istype(usedobject, /obj/item/holder/micro) || istype(usedobject, /obj/item/holder/mouse)))
 			. = ..()
 			return
 
@@ -304,7 +303,7 @@
 			balloon_alert(user, "open \the [src] first!")
 			return
 
-		var/obj/item/holder/holder = W
+		var/obj/item/holder/holder = usedobject
 		var/mob/living/living_mob = holder.held_mob
 
 		living_mob.forceMove(src)
@@ -321,34 +320,34 @@
 
 	if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
-		var/can_slice_here = isturf(src.loc) && ((locate(/obj/structure/table) in src.loc) || (locate(/obj/machinery/optable) in src.loc) || (locate(/obj/item/tray) in src.loc))
-		var/hide_item = !has_edge(W) || !can_slice_here
+		var/can_slice_here = isturf(loc) && ((locate(/obj/structure/table) in loc) || (locate(/obj/machinery/optable) in loc) || (locate(/obj/item/tray) in loc))
+		var/hide_item = !has_edge(usedobject) || !can_slice_here
 
 		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W) || istype(W, /obj/item/holder))
+			if (usedobject.w_class >= w_class || is_robot_module(usedobject) || istype(usedobject, /obj/item/holder))
 				return
 
-			if(tgui_alert(user,"You can't slice \the [src] here. Would you like to hide \the [W] inside it instead?","No Cutting Surface!",list("Yes","No")) != "Yes")
+			if(tgui_alert(user,"You can't slice \the [src] here. Would you like to hide \the [usedobject] inside it instead?","No Cutting Surface!",list("Yes","No")) != "Yes")
 				to_chat(user, span_warning("You cannot slice \the [src] here! You need a table or at least a tray to do it."))
 				balloon_alert(user, "you cannot slice \the [src] here! You need a table or at least a tray to do it.")
 				return
 			else
-				to_chat(user, "Slipped \the [W] inside \the [src].")
-				balloon_alert(user, "slipped \the [W] inside \the [src].")
-				user.drop_from_inventory(W, src)
+				to_chat(user, "Slipped \the [usedobject] inside \the [src].")
+				balloon_alert(user, "slipped \the [usedobject] inside \the [src].")
+				user.drop_from_inventory(usedobject, src)
 				add_fingerprint(user)
-				contents += W
+				contents += usedobject
 				return
 
-		if (has_edge(W))
+		if (has_edge(usedobject))
 			if (!can_slice_here)
 				to_chat(user, span_warning("You cannot slice \the [src] here! You need a table or at least a tray to do it."))
 				balloon_alert(user, "you need a table or at least a tray to slice it.")
 				return
 
 			var/slices_lost = 0
-			if (W.w_class > 3)
-				user.visible_message(span_notice("\The [user] crudely slices \the [src] with [W]!"), span_notice("You crudely slice \the [src] with your [W]!"))
+			if (usedobject.w_class > 3)
+				user.visible_message(span_notice("\The [user] crudely slices \the [src] with [usedobject]!"), span_notice("You crudely slice \the [src] with your [usedobject]!"))
 				user.balloon_alert_visible("crudely slices \the [src]", "crudely sliced \the [src]")
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
@@ -358,12 +357,12 @@
 			for(var/i=1 to (slices_num-slices_lost))
 				var/obj/slice = new slice_path (src.loc)
 				reagents.trans_to_obj(slice, reagents_per_slice)
-				if(LAZYLEN(food_inserted_micros) && istype(slice, /obj/item/reagent_containers/food/snacks))
-					var/obj/item/reagent_containers/food/snacks/S = slice
+				if(food_inserted_micros && istype(slice, /obj/item/reagent_containers/food/snacks))
+					var/obj/item/reagent_containers/food/snacks/sliced = slice
 					for(var/mob/living/micro in food_inserted_micros)
-						micro.forceMove(S)
-						S.food_inserted_micros += micro
-						food_inserted_micros -= micro
+						micro.forceMove(sliced)
+						LAZYREMOVE(food_inserted_micros, micro)
+						LAZYADD(sliced.food_inserted_micros, micro)
 			on_slice_extra()
 
 			qdel(src)
@@ -374,6 +373,11 @@
 
 /obj/item/reagent_containers/food/snacks/MouseDrop_T(mob/living/micro, mob/user, src_location, over_location, src_control, over_control, params)
 	if(!user.stat && istype(micro) && (micro == user) && Adjacent(micro) && (micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		if(package || canned)
+			to_chat(user, span_warning("You cannot climb into \the [src] without opening it first."))
+			balloon_alert(user, "open \the [src] first!")
+			return
+
 		micro.forceMove(src)
 		LAZYADD(food_inserted_micros, micro)
 		to_chat(user, span_warning("You climb into \the [src]."))
@@ -387,14 +391,17 @@
 /obj/item/reagent_containers/food/snacks/Destroy()
 	if(contents)
 		for(var/atom/movable/something in contents)
-			something.dropInto(loc)
-			LAZYREMOVE(food_inserted_micros, something)
+			//special check for mobs that didn't get eaten to not be force moved into nullspace
+			if(ismob(something))
+				container_resist(something, FALSE)
+			else
+				something.dropInto(loc)
 	. = ..()
-
 	return
 
 /obj/item/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
+	food_can_insert_micro = TRUE
 	to_chat(user, span_notice("You unwrap [src]."))
 	balloon_alert(user, "unwrapped \the [src].")
 	playsound(user,opening_sound, 15, 1)
@@ -408,6 +415,7 @@
 
 /obj/item/reagent_containers/food/snacks/proc/uncan(mob/user)
 	canned = FALSE
+	food_can_insert_micro = TRUE
 	to_chat(user, span_notice("You unseal \the [src] with a crack of metal."))
 	balloon_alert(user, "unsealed \the [src]")
 	playsound(loc,opening_sound, rand(10,50), 1)
@@ -427,6 +435,9 @@
 		if(!src && !user.client)
 			user.automatic_custom_emote(VISIBLE_MESSAGE,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]", check_stat = TRUE)
 			qdel(src)
+	if((user.client && !user.food_vore || !user.can_be_drop_pred) && food_inserted_micros)
+		to_chat(user, span_vdanger("Ewww, You can't consume that, there's a bug in this! You've got standards!") )
+		return FALSE
 	On_Consume(user)
 
 //////////////////////////////////////////////////
@@ -7419,6 +7430,8 @@
 /obj/item/reagent_containers/food/snacks/canned
 	icon = 'icons/obj/food_canned.dmi'
 	opening_sound = 'sound/effects/tincanopen.ogg'
+	//canned food's can't be climbed into silly
+	food_can_insert_micro = FALSE
 	canned = TRUE
 
 //////////Just a short line of Canned Consumables, great for treasure in faraway abandoned outposts//////////

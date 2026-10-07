@@ -30,6 +30,13 @@
 
 ///Checks to see if the item fails critieria to allow it to be eaten. Does NOT check the blacklist, as it's checked before this is called.
 /obj/item/proc/check_item_devourability(mob/living/user)
+	//bug check for prefs
+	if(contents)
+		for(var/atom/movable/something in contents)
+			if(ismob(something) && (!user.food_vore || !user.can_be_drop_pred))
+				to_chat(user, span_vdanger("Ewww, You can't consume that, there's a bug in this garbage! You've got standards!") )
+				return FALSE
+
 	//If we've been admin enabled, eat anything that isn't blacklisted.
 	if(user.expanded_trasheat)
 		return TRUE
