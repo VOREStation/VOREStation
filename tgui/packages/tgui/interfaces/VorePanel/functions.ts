@@ -126,7 +126,7 @@ export function ourTypeToOptions(
       },
     ];
     const interaction_options: ActionButtonData[] = [];
-    if (type === 'Human') {
+    if (type === 'Human' || type === 'HumanC') {
       interaction_options.push({
         name: 'Transform',
         color: 'purple',
@@ -146,18 +146,15 @@ export function ourTypeToOptions(
         tooltip: 'Reform your current target.',
       });
     }
-    if (type === 'LivingC') {
+    if (type === 'LivingC' || type === 'HumanC') {
       interaction_options.push({
         name: 'Process',
         color: 'red',
         needsConfirm: true,
         tooltip: 'Process your current target instantly.',
       });
-      interaction_options.push({
-        name: 'Health',
-        tooltip: 'Display the health of the current target.',
-      });
-    } else if (type === 'Living') {
+    }
+    if (type === 'Living' || type === 'LivingC') {
       interaction_options.push({
         name: 'Health',
         tooltip: 'Display the health of the current target.',

@@ -77,6 +77,7 @@
 #define AT_FLAG_CANDIGEST		0x100
 #define AT_FLAG_CANABSORB		0x200
 #define AT_FLAG_HEALTHY			0x400
+#define AT_FLAG_OBSERVER		0x800
 
 //Auto-transfer item flags
 #define AT_FLAG_ITEMS			0x1
