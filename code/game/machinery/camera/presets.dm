@@ -191,8 +191,9 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 // Would love a recolor if it didn't take so many sprites to redo!
 /obj/machinery/camera/reinforced
 	name = "reinforced security camera"
-	desc = "Used to monitor room. This one has reinforced enclosure."
-	toughness = 30
+	desc = "Used to monitor room. This one has a reinforced plastic enclosure."
+	initial_toughness = 25
+	toughness = 25
 
 /obj/machinery/camera/reinforced/ex_act(severity)
 	. = ..()
