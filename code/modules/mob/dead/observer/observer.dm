@@ -161,9 +161,8 @@ Works together with spawning an observer, noted above.
 
 	handle_regular_hud_updates()
 	handle_vision()
-	check_area()	//RS Port #658
+	check_area()
 
-//RS Port #658 Start
 /mob/observer/dead/proc/check_area()
 	if(check_rights_for(client, R_HOLDER))
 		return
@@ -181,7 +180,6 @@ Works together with spawning an observer, noted above.
 	if(istype(O))
 		to_chat(src, span_notice("Now teleporting."))
 		forceMove(O.loc)
-//RS Port #658 End
 
 /mob/proc/ghostize(can_reenter_corpse = 1, aghost = FALSE)
 	reset_perspective(src) // End any remoteview we're in
@@ -263,11 +261,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		to_chat(src, span_warning("Another consciousness is in your body... it is resisting you."))
 		return
-	//VOREStation Add
 	if(GLOB.prevent_respawns.Find(mind.name))
 		to_chat(src, span_warning("You already quit this round as this character, sorry!"))
 		return
-	//VOREStation Add End
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/found_rune
 		for(var/obj/effect/rune/R in mind.current.loc)   //whilst corpse is alive, we can only reenter the body if it's on the rune
