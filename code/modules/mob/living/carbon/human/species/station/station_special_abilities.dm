@@ -533,6 +533,7 @@
 			T.apply_damage(25, BRUTE, T_ext)
 			visible_message(span_danger("[src] severely damages [T]'s [T_ext.name]!"))
 
+		attempt_xenochimera_infection(src, T, attack_damage = 25, zone = T_ext)
 		add_attack_logs(src,T,"Shredded (hardvore)")
 
 /mob/living/proc/shred_limb_temp()
