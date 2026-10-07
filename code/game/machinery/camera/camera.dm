@@ -19,7 +19,7 @@
 	var/bugged = 0
 	var/obj/item/camera_assembly/assembly = null
 
-	var/toughness
+	var/toughness = 5
 	var/initial_toughness = 5 //sorta fragileh
 	var/damage_threshold = 5
 
@@ -41,7 +41,6 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
-	toughness = initial_toughness
 	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
