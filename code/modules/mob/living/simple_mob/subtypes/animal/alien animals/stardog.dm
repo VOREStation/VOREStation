@@ -1345,10 +1345,9 @@
 	teleport_message = span_notice("The thundering drum of the dog's heart beat throbs all around you, while the sweltering heat of its body soaks into you. It's soft and wet as a symphony of gurgles and glorps fills the steamy air!")
 
 /obj/effect/dog_teleporter/food_gobbler/Crossed(atom/movable/AM)
-
+	. = ..()
 	if(istype(AM, /obj/item/reagent_containers/food))
 		gobble_food(AM)
-	else return	..()
 
 /obj/effect/dog_teleporter/food_gobbler/proc/gobble_food(obj/item/I)
 	if(!isitem(I))

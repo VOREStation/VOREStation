@@ -14,7 +14,7 @@
 #define COMSIG_CARBON_HELPED "carbon_helped_someone"
 
 ///When a carbon slips. Called on /turf/open/handle_slip()
-#define COMSIG_ON_CARBON_SLIP "carbon_slip"
+//#define COMSIG_ON_CARBON_SLIP "carbon_slip" //Moved to living level. Look at signals_mob_living.dm COMSIG_ON_LIVING_SLIP
 // /mob/living/carbon physiology signals
 #define COMSIG_CARBON_GAIN_WOUND "carbon_gain_wound" //from /datum/wound/proc/apply_wound() (/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)
 #define COMSIG_CARBON_LOSE_WOUND "carbon_lose_wound" //from /datum/wound/proc/remove_wound() (/mob/living/carbon/C, /datum/wound/W, /obj/item/bodypart/L)

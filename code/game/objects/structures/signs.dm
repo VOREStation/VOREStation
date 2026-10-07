@@ -1500,8 +1500,9 @@
 /obj/structure/sign/calendar/examine(mob/user)
 	. = ..()
 	. += "The calendar shows that the date is [stationdate2text()]."
-	if (GLOB.Holiday.len)
-		. += "Today is " + span_bold(span_green("[english_list(GLOB.Holiday)]")) + "."
+	if(!isnull(GLOB.holidays))
+		var/datum/holiday/holiday = GLOB.holidays[1]
+		. += "Today is " + span_bold(span_green(holiday.name)) + "."
 
 /obj/structure/sign/explosive
 	name = "\improper HIGH EXPLOSIVES sign"

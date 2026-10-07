@@ -328,6 +328,8 @@
 		weight_message_visible = TRUE
 	if(isnull(eating_privacy_global))
 		eating_privacy_global = FALSE
+	if(isnull(vore_death_privacy))
+		vore_death_privacy = FALSE
 	if(isnull(allow_mimicry))
 		allow_mimicry = TRUE
 	if(isnull(nutrition_messages))
@@ -464,6 +466,7 @@
 			"weight_message_visible"	= weight_message_visible,
 			"weight_messages"			= weight_messages,
 			"eating_privacy_global"		= eating_privacy_global,
+			"vore_death_privacy"		= vore_death_privacy,
 			"vore_sprite_color"			= vore_sprite_color,
 			"allow_mimicry"				= allow_mimicry,
 			"vore_sprite_multiply"		= vore_sprite_multiply,

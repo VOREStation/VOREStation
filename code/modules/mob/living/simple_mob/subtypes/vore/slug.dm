@@ -191,6 +191,7 @@
 
 
 /obj/effect/slug_glue/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 

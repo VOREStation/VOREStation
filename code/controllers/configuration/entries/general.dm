@@ -4,13 +4,11 @@
 /// Countdown between lobby and the round starting.
 /datum/config_entry/number/lobby_countdown
 	default = 120
-	integer = FALSE
 	min_val = 0
 
 /// Post round murder death kill countdown.
 /datum/config_entry/number/round_end_countdown
 	default = 25
-	integer = FALSE
 	min_val = 0
 
 /// generate numeric suffix based on server port
@@ -191,7 +189,7 @@
 /datum/config_entry/flag/allow_holidays/ValidateAndSet()
 	. = ..()
 	if(.)
-		GLOB.Holiday = config_entry_value
+		GLOB.holidays = config_entry_value
 
 /datum/config_entry/number/minute_topic_limit
 	config_entry_value = 250
