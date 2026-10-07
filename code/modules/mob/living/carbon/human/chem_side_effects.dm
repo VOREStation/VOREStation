@@ -33,7 +33,7 @@
 	for(var/R in cures)
 		if(!H.bloodstr.has_reagent(R))
 			continue
-		if(H.ingested.has_reagent(R))
+		if(!H.ingested.has_reagent(R))
 			continue
 		return TRUE
 	return FALSE
