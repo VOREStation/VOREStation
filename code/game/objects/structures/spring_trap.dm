@@ -276,7 +276,7 @@
 
 /obj/item/spring_trap_kit/attackby(obj/item/W, mob/user)
 	. = ..()
-	if(motor_upgrades = -1) //Maybe not a great way to do it, but whatever. Can't be modified.
+	if(motor_upgrades == -1) //Maybe not a great way to do it, but whatever. Can't be modified.
 		return
 	if(istype(W, /obj/item/stock_parts/motor))
 		if(motor_upgrades >= 2)
