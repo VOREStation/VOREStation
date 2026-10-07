@@ -1231,7 +1231,7 @@
 			if(blacklist & autotransfer_flags_list["Silicon"])
 				if(issilicon(prey)) return FALSE
 			if(blacklist & autotransfer_flags_list["Mobs"])
-				if(istype(prey, /mob/living/simple_mob)) return FALSE
+				if(isanimal(prey)) return FALSE
 			if(blacklist & autotransfer_flags_list["Animals"])
 				if(istype(prey, /mob/living/simple_mob/animal)) return FALSE
 			if(blacklist & autotransfer_flags_list["Mice"])
@@ -1266,7 +1266,7 @@
 		if(whitelist & autotransfer_flags_list["Silicon"])
 			if(issilicon(prey)) return TRUE
 		if(whitelist & autotransfer_flags_list["Mobs"])
-			if(istype(prey, /mob/living/simple_mob)) return TRUE
+			if(isanimal(prey)) return TRUE
 		if(whitelist & autotransfer_flags_list["Animals"])
 			if(istype(prey, /mob/living/simple_mob/animal)) return TRUE
 		if(whitelist & autotransfer_flags_list["Mice"])
