@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 
 	//camera dies if an explosion touches it!
 	if(severity <= 2 || prob(10))
-		destroy()
+		camera_break()
 
 	..() //and give it the regular chance of being deleted outright
 

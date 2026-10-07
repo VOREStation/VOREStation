@@ -71,7 +71,7 @@
 		layer = ABOVE_MOB_LAYER
 	// VOREStation Edit End
 
-/obj/machinery/camera/camera_break()
+/obj/machinery/camera/Destroy()
 	//already busted!
 	if(status == FALSE)
 		return
