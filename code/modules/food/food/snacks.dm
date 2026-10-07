@@ -265,7 +265,7 @@
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		if(LAZYLEN(food_inserted_micros))
+		if(food_inserted_micros)
 			. += span_notice("It has [english_list(food_inserted_micros)] stuck in it.")
 		if(coating)
 			. += span_notice("It's coated in [coating.name]!")

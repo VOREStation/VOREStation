@@ -41,8 +41,7 @@
 /obj/item/reagent_containers/food/drinks/Destroy()
 	if(food_inserted_micros)
 		for(var/mob/mob in food_inserted_micros)
-			mob.dropInto(get_turf(src))
-			LAZYREMOVE(food_inserted_micros, mob)
+			container_resist(mob, FALSE)
 	. = ..()
 
 	return
@@ -75,6 +74,9 @@
 
 /obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/micro, mob/user)
 	if(!user.stat && istype(micro) && (micro == user) && Adjacent(micro) && (micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		if(!is_open_container())
+			to_chat(user, span_warning("You cannot climb into \the [src] without it being open."))
+			return
 		micro.forceMove(src)
 		LAZYADD(food_inserted_micros, micro)
 		to_chat(user, span_warning("You climb into \the [src]."))
