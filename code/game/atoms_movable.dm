@@ -284,6 +284,12 @@
 		return FALSE
 	return CanPass(AM, loc)
 
+///oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
+/atom/movable/Crossed(atom/movable/AM, oldloc)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+
 /atom/movable/CanPass(atom/movable/mover, turf/target)
 	. = ..()
 	if(locs && locs.len >= 2)	// If something is standing on top of us, let them pass.

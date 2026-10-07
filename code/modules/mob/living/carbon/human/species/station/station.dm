@@ -1677,7 +1677,7 @@
 	name_plural = "Xenochimeras"
 	icobase = 'icons/mob/human_races/r_xenochimera.dmi'
 	deform = 'icons/mob/human_races/r_def_xenochimera.dmi'
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/chimera, /datum/unarmed_attack/bite/sharp)
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/chimera, /datum/unarmed_attack/bite/sharp/xenochimera)
 	darksight = 8		//critters with instincts to hide in the dark need to see in the dark - about as good as tajara.
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
@@ -1723,23 +1723,10 @@
 	//primitive_form = SPECIES_MONKEY_TAJ
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE//Whitelisted as restricted is broken.
-	flags = NO_SLEEVE | NO_DNA | NO_INFECT // | NO_DEFIB // Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is. Leaving NO_DEFIB there for the future/in case reversion to old 'chimera no-defib.
+	flags = NO_SLEEVE | NO_DNA | NO_INFECT
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
-
-	has_organ = list(    //Same organ list as tajarans, except for their SPECIAL BRAIN.
-		O_HEART =		/obj/item/organ/internal/heart,
-		O_LUNGS =		/obj/item/organ/internal/lungs,
-		O_VOICE =		/obj/item/organ/internal/voicebox,
-		O_LIVER =		/obj/item/organ/internal/liver,
-		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
-		O_SPLEEN =		/obj/item/organ/internal/spleen,
-		O_BRAIN =		/obj/item/organ/internal/brain,
-		O_EYES =		/obj/item/organ/internal/eyes,
-		O_STOMACH =		/obj/item/organ/internal/stomach,
-		O_INTESTINE =	/obj/item/organ/internal/intestine
-		)
 
 	flesh_color = "#AFA59E"
 	base_color 	= "#333333"

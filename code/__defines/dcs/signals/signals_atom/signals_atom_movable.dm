@@ -14,6 +14,8 @@
 	#define COMPONENT_BLOCK_CROSS (1<<0)
 ///from base of atom/movable/Move(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS_OVER "movable_cross_am"
+///from base of atom/movable/Crossed(): (/atom/movable)
+#define COMSIG_MOVABLE_CROSSED "movable_crossed"
 ///from base of atom/movable/Bump(): (/atom)
 #define COMSIG_MOVABLE_BUMP "movable_bump"
 	#define COMPONENT_INTERCEPT_BUMPED (1<<0)

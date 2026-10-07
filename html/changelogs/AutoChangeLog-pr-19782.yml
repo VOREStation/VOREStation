@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Xenochimera now heal minor amounts of brute/burn/tox when feral and fed, preventing 'softlock' situations where you would be permanently stuck in pain-crit and KO'd. (Xenochimera can not use healing items normally)"
+  - rscadd: "Roanoke no longer hold hardrefs to organs, resulting in hard dels."

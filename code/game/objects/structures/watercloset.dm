@@ -677,7 +677,7 @@
 		if(honk_text)
 			audible_message(span_maroon("[honk_text]"))
 		var/turf/simulated/whereweare = get_turf(src)
-		whereweare.wet_floor(2)
+		whereweare.MakeSlippery(TURF_WET_LUBE, 160 SECONDS)
 	return
 
 /obj/item/bikehorn/rubberducky/pink

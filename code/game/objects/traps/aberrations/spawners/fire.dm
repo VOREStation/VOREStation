@@ -11,6 +11,7 @@
 	COOLDOWN_DECLARE(fire_timer)
 
 /obj/effect/abberation_fire/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM.is_incorporeal() || isobserver(AM) || istype(AM, /obj/effect/abstract))
 		return
 	if(isobj(AM))
