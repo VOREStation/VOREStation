@@ -86,7 +86,7 @@ export const BrowserDevTools: FeatureToggle = {
 export const obfuscate_key: FeatureToggle = {
   name: 'Obfuscate Key',
   category: 'UI',
-  description: 'Hide your byond ckey from other players in the lobby',
+  description: 'Hide your byond ckey from other players.',
   component: CheckboxInput,
 };
 

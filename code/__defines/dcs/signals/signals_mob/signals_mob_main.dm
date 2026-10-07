@@ -131,41 +131,31 @@
 	#define COMSIG_BLOCK_EYECONTACT (1<<0)
 ///from base of /mob/update_sight(): ()
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"
-////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, message_mode)
-#define COMSIG_MOB_SAY_PREPARE "mob_say_prepare"
+////from /mob/living/direct_say(): (list/message_data)
+#define COMSIG_MOB_SAY "mob_say"
 	#define COMSIG_SAY_FORBID_SPEAK (1<<0) // Remember to handle logging ourselves if we use this to cancel the say chain, but still send a message somehow!
 	#define COMSIG_SAY_IGNORE_MIME_VOW (1<<1)
 	#define COMSIG_SAY_IGNORE_MUZZLING (1<<2)
-	#define COMSIG_SAY_FORBID_RADIOS (1<<3)
-	#define COMSIG_SAY_FORBID_WHISPERING (1<<4)
-	#define COMSIG_SAY_FORCE_WHISPERING (1<<5)
-	#define COMSIG_SAY_FORBID_SPEECH_PROBLEMS (1<<6)
-	#define COMSIG_SAY_DISABLE_SPEAK_NOISE (1<<7)
-	#define COMSIG_SAY_IGNORE_AIR_PRESSURE (1<<8)
-	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<9)
-	#define COMSIG_SAY_FORBID_OBJS_HEARING (1<<10)
-	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<11)
-////from /mob/living/direct_say(): (list/message_pieces, datum/language/speaking, message, whispering, message_mode, list/say_verb)
-#define COMSIG_MOB_SAY_FINALIZE "mob_say_finalize"
-	// Reuses the comsig flags of COMSIG_MOB_SAY_PREPARE
-
-/* TG handling
-////from /mob/living/say(): ()
-#define COMSIG_MOB_SAY "mob_say"
-	#define COMPONENT_UPPERCASE_SPEECH (1<<0)
-	// used to access COMSIG_MOB_SAY argslist
+	#define COMSIG_SAY_FORBID_SPEECH_PROBLEMS (1<<3)
+	#define COMSIG_SAY_DISABLE_SPEAK_NOISE (1<<4)
+	#define COMSIG_SAY_IGNORE_AIR_PRESSURE (1<<5)
+	#define COMSIG_SAY_FORBID_MOBS_HEARING (1<<6)
+	#define COMSIG_SAY_FORBID_OBJS_HEARING (1<<7)
+	#define COMSIG_SAY_HIDDEN_FROM_GHOSTS (1<<8)
+	// used to access message_data argslist
 	#define SPEECH_MESSAGE 1
-	#define SPEECH_BUBBLE_TYPE 2
-	#define SPEECH_SPANS 3
-	#define SPEECH_SANITIZE 4
-	#define SPEECH_LANGUAGE 5
-	#define SPEECH_IGNORE_SPAM 6
-	#define SPEECH_FORCED 7
-	#define SPEECH_FILTERPROOF 8
-	#define SPEECH_RANGE 9
-	#define SPEECH_SAYMODE 10
-	#define SPEECH_MODS 11
-*/
+	#define SPEECH_SPEAKINGLANG 2
+	#define SPEECH_WHISPERING 3
+	#define SPEECH_MSGMODE 4
+	#define SPEECH_MSGPIECES 5
+	#define SPEECH_MSGVERB 6
+	#define SPEECH_RANGE 7
+////from /mob/living/direct_say(): (list/message_data)
+#define COMSIG_MOB_SAY_PREPARE "mob_say_prepare"
+	// Reuses the comsig flags of COMSIG_MOB_PRESAY
+////from /mob/living/direct_say(): (list/message_data)
+#define COMSIG_MOB_SAY_FINALIZE "mob_say_finalize"
+	// Reuses the comsig flags of COMSIG_MOB_PRESAY
 
 ///from /datum/component/speechmod/handle_speech(): ()
 #define COMSIG_TRY_MODIFY_SPEECH "try_modify_speech"
@@ -281,7 +271,7 @@
 /// from /mob/proc/change_mob_type_unchecked() : ()
 #define COMSIG_MOB_CHANGED_TYPE "mob_changed_type"
 
-/// from /mob/proc/slip(): (knockdown_amonut, obj/slipped_on, lube_flags [mobs.dm], paralyze, force_drop)
+/// from /mob/proc/slip(): (knockdown_amonut, obj/slipped_on, slip_flags [mobs.dm], paralyze, force_drop)
 #define COMSIG_MOB_SLIPPED "mob_slipped"
 
 /// From the base of /datum/component/callouts/proc/callout_picker(mob/user, atom/clicked_atom): (datum/callout_option/callout, atom/target)
@@ -314,6 +304,8 @@
 
 ///from base of /client/Move(n, direct) : (direction) returns bool, if component handled movement
 #define COMSIG_MOB_RELAY_MOVEMENT "mob_relay_movement"
+///from base of /mob/proc/zMove(direction): (direction, destination) returns bool, if component handled movement
+#define COMSIG_MOB_ZMOVE "mob_z_move"
 ///From /mob/handle_vision().
 #define COMSIG_MOB_HANDLE_VISION "mob_handle_vision"
 ///From /mob/handle_regular_hud_updates().

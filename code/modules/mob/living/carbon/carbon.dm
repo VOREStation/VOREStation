@@ -408,20 +408,6 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(slipped_on,stun_duration=8)
-	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
-	if(buckled)
-		return FALSE
-	stop_pulling()
-	to_chat(src, span_warning("You slipped on [slipped_on]!"))
-	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-	if(HAS_TRAIT(src, SLIP_REFLEX_TRAIT) && !lying)
-		if(world.time >= next_emote)
-			src.emote("sflip")
-			return TRUE
-	Weaken(FLOOR(stun_duration/2, 1))
-	return TRUE
-
 /mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect in chem_effects)
 		chem_effects[effect] += magnitude

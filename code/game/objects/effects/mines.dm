@@ -84,6 +84,7 @@
 	..()
 
 /obj/effect/mine/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	Bumped(AM)

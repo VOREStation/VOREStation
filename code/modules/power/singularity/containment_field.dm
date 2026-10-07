@@ -48,6 +48,7 @@
 	return 0
 
 /obj/machinery/containment_field/Crossed(atom/A)
+	. = ..()
 	if(!istype(A) || A.is_incorporeal())
 		return
 	if(isliving(A))
