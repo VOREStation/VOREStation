@@ -1275,8 +1275,8 @@
 			if(isliving(prey))
 				var/mob/living/L = prey
 				if(L.stat == DEAD) return TRUE
-			if(blacklist & autotransfer_flags_list["Observers"])
-				if(isobserver(prey)) return TRUE
+		if(whitelist & autotransfer_flags_list["Observers"])
+			if(isobserver(prey)) return TRUE
 		if(whitelist & autotransfer_flags_list["Digestable Creatures"])
 			if(isliving(prey))
 				var/mob/living/L = prey
