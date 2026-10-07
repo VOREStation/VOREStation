@@ -71,7 +71,7 @@
 		layer = ABOVE_MOB_LAYER
 	// VOREStation Edit End
 
-/obj/machinery/camera/Destroy()
+/obj/machinery/camera/camera_break()
 	//already busted!
 	if(status == FALSE)
 		return
@@ -126,14 +126,14 @@
 
 	//camera dies if an explosion touches it!
 	if(severity <= 2 || prob(50))
-		destroy()
+		camera_break()
 
 	..() //and give it the regular chance of being deleted outright
 
 /obj/machinery/camera/blob_act()
 	if((stat & BROKEN) || invuln)
 		return
-	destroy()
+	camera_break()
 
 /obj/machinery/camera/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
@@ -159,7 +159,7 @@
 		visible_message(span_warning("\The [user] slashes at [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
-		destroy()
+		camera_break()
 
 /obj/machinery/camera/attack_generic(mob/user as mob)
 	if(isanimal(user))
@@ -170,7 +170,7 @@
 		visible_message(span_warning("\The [user] [pick(S.attacktext)] \the [src]!"))
 		playsound(src, S.attack_sound, 100, 1)
 		add_hiddenprint(user)
-		destroy()
+		camera_break()
 	..()
 
 /obj/machinery/camera/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -297,15 +297,15 @@
 /obj/machinery/camera/take_damage(force, message)
 	//Chance to be destroyed outright
 	if(prob(10))
-		destroy()
+		camera_break()
 		return
 	toughness -= force
 	if(toughness <= 0)
-		destroy()
+		camera_break()
 		toughness = 0
 
 //Used when someone breaks a camera
-/obj/machinery/camera/proc/destroy()
+/obj/machinery/camera/proc/camera_break()
 	stat |= BROKEN
 	wires.cut_all()
 
