@@ -77,7 +77,8 @@
 			info["nutrition"] = M.nutrition
 		else if(isitem(O))
 			var/obj/item/our_item = O
-			info["damage"] = our_item.digest_stage / our_item.w_class
+			if(!isnull(our_item.digest_stage))
+				info["damage"] = our_item.digest_stage / our_item.w_class
 
 		UNTYPED_LIST_ADD(inside_contents, info)
 
@@ -369,7 +370,8 @@
 					info["nutrition"] = datarget.nutrition
 				else if(isitem(O))
 					var/obj/item/our_item = O
-					info["damage"] = our_item.digest_stage / our_item.w_class
+					if(!isnull(our_item.digest_stage))
+						info["damage"] = our_item.digest_stage / our_item.w_class
 
 				info["our_type"] = our_type
 				LAZYADD(selected_contents, list(info))
