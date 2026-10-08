@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "display health and nutrition in the vorepanel"
+  - qol: "add observers to the autotransfer filter as their own category"
+  - bugfix: "immediate process missing for carbons"
