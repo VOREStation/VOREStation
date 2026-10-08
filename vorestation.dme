@@ -3533,7 +3533,6 @@
 #include "code\modules\mob\living\carbon\brain\robot.dm"
 #include "code\modules\mob\living\carbon\brain\say.dm"
 #include "code\modules\mob\living\carbon\human\appearance.dm"
-#include "code\modules\mob\living\carbon\human\chem_side_effects.dm"
 #include "code\modules\mob\living\carbon\human\death.dm"
 #include "code\modules\mob\living\carbon\human\death_vr.dm"
 #include "code\modules\mob\living\carbon\human\emote.dm"

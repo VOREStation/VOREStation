@@ -68,7 +68,7 @@
 
 			SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
-			handle_medical_side_effects()
+			// handle_medical_side_effects() // Disabled, the code was non-functional for a decade, randomly readding it because it's suddenly fixed is undesired currently.
 
 			handle_heartbeat()
 			handle_nif()
