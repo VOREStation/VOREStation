@@ -61,14 +61,17 @@
 		pixel_x = (CELLSIZE * (0.5 + cell_x)) - center_of_mass_x
 		pixel_y = (CELLSIZE * (0.5 + cell_y)) - center_of_mass_y
 
-/obj/item/reagent_containers/food/container_resist(mob/living/M)
-	if(food_inserted_micros)
-		food_inserted_micros -= M
+/obj/item/reagent_containers/food/container_resist(mob/living/micro, willingly = TRUE)
+	LAZYREMOVE(food_inserted_micros, micro)
 	if(isdisposalpacket(loc))
-		M.forceMove(loc)
+		micro.forceMove(loc)
 	else
-		M.forceMove(get_turf(src))
-	to_chat(M, span_warning("You climb out of \the [src]."))
+		micro.forceMove(get_turf(src))
+
+	if(willingly)
+		to_chat(micro, span_warning("You climb out of \the [src]."))
+	else
+		to_chat(micro, span_warning("You're dumped out of \the [src]."))
 
 #undef CELLS
 #undef CELLSIZE

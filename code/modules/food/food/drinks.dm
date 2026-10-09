@@ -41,15 +41,14 @@
 /obj/item/reagent_containers/food/drinks/Destroy()
 	if(food_inserted_micros)
 		for(var/mob/mob in food_inserted_micros)
-			mob.dropInto(loc)
-			food_inserted_micros -= mob
+			container_resist(mob, FALSE)
 	. = ..()
 
 	return
 
-/obj/item/reagent_containers/food/drinks/attackby(obj/item/W as obj, mob/user as mob)
-	if(food_can_insert_micro && istype(W, /obj/item/holder))
-		if(!(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)))
+/obj/item/reagent_containers/food/drinks/attackby(obj/item/useditem as obj, mob/user as mob)
+	if(food_can_insert_micro && istype(useditem, /obj/item/holder))
+		if(!(istype(useditem, /obj/item/holder/micro) || istype(useditem, /obj/item/holder/mouse)))
 			. = ..()
 			return
 
@@ -57,11 +56,7 @@
 			to_chat(user, span_warning("You cannot drop anything into \the [src] without opening it first."))
 			return
 
-		var/obj/item/holder/holder = W
-
-		if(!food_inserted_micros)
-			food_inserted_micros = list()
-
+		var/obj/item/holder/holder = useditem
 		var/mob/living/living_mob = holder.held_mob
 
 		living_mob.forceMove(src)
@@ -69,7 +64,7 @@
 		user.drop_from_inventory(holder)
 		qdel(holder)
 
-		food_inserted_micros += living_mob
+		LAZYADD(food_inserted_micros, living_mob)
 
 		to_chat(user, span_warning("You drop [living_mob] into \the [src]."))
 		to_chat(living_mob, span_warning("[user] drops you into \the [src]."))
@@ -77,15 +72,13 @@
 
 	return ..()
 
-/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/M, mob/user)
-	if(!user.stat && istype(M) && (M == user) && Adjacent(M) && (M.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
-		if(!food_inserted_micros)
-			food_inserted_micros = list()
-
-		M.forceMove(src)
-
-		food_inserted_micros += M
-
+/obj/item/reagent_containers/food/drinks/MouseDrop_T(mob/living/micro, mob/user)
+	if(!user.stat && istype(micro) && (micro == user) && Adjacent(micro) && (micro.get_effective_size(TRUE) <= 0.50) && food_can_insert_micro)
+		if(!is_open_container())
+			to_chat(user, span_warning("You cannot climb into \the [src] without it being open."))
+			return
+		micro.forceMove(src)
+		LAZYADD(food_inserted_micros, micro)
 		to_chat(user, span_warning("You climb into \the [src]."))
 		return
 
@@ -96,11 +89,10 @@
 	if(!feeder)
 		feeder = eater
 
-	if(food_inserted_micros && food_inserted_micros.len)
+	if(food_inserted_micros)
 		for(var/mob/living/micro in food_inserted_micros)
 			if(!can_food_vore(eater, micro))
 				continue
-
 			var/do_nom = FALSE
 
 			if(!reagents.total_volume)
@@ -112,7 +104,7 @@
 
 			if(do_nom)
 				eater.vore_selected.nom_atom(micro)
-				food_inserted_micros -= micro
+				LAZYREMOVE(food_inserted_micros, micro)
 
 	if(!reagents.total_volume && changed)
 		eater.visible_message(span_notice("[eater] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))
@@ -148,11 +140,11 @@
 		to_chat(user, span_warning("...wait a second, this one doesn't have a ring pull. It's not a <b>can</b>, it's a <b>can't!</b>"))
 		name = "\improper can't of [initial(name)]"	//don't update the name until they try to open it
 
-/obj/item/reagent_containers/food/drinks/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+/obj/item/reagent_containers/food/drinks/attack(mob/living/creature, mob/living/user, target_zone, attack_modifier)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
-	if(standard_feed_mob(user, M))
+	if(standard_feed_mob(user, creature, src))
 		return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_FAILURE
@@ -170,8 +162,34 @@
 	if(!is_open_container())
 		to_chat(user, span_notice("You need to open [src]!"))
 		return TRUE
-	var/original_volume = reagents.total_volume
+
+	if(!reagents || !reagents.total_volume)
+		balloon_alert(user, "\the [src] is empty.")
+		return FALSE
+
+	if(!target.consume_liquid_belly && liquid_belly_check())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+		return FALSE
+	//get our other preference checks
 	.=..()
+
+	if(user == target)
+		self_feed_message(user)
+		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
+		feed_sound(user)
+
+	else
+		other_feed_message_start(user, target)
+		if(!do_after(user, 3 SECONDS, target))
+			return FALSE
+		other_feed_message_finish(user, target)
+
+		var/contained = reagentlist()
+		add_attack_logs(user, target, "Fed from [src] containing [contained]")
+		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
+		feed_sound(user)
+
+	var/original_volume = reagents.total_volume
 	var/changed = !(reagents.total_volume == original_volume)
 	On_Consume(target, user, changed)
 	return
@@ -212,7 +230,7 @@
 	if(Adjacent(user))
 		if(cant_open)
 			. += span_warning("It doesn't have a ring pull!")
-		if(food_inserted_micros && food_inserted_micros.len)
+		if(LAZYLEN(food_inserted_micros))
 			. += span_notice("It has [english_list(food_inserted_micros)] [!reagents?.total_volume ? "sitting" : "floating"] in it.")
 		if(!reagents?.total_volume)
 			. += span_notice("It is empty!")
