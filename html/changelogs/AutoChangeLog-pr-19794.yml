@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - code_imp: "Moved mech trackers to their own list"
