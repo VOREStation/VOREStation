@@ -140,6 +140,8 @@
 	return
 
 /mob/living/simple_mob/vore/solarmoth/death()
+	if(stat == DEAD)
+		return
 	explode()
 	..()
 

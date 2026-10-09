@@ -27,6 +27,8 @@
 	can_be_drop_prey = FALSE
 
 /mob/living/simple_mob/humanoid/death()
+	if(QDELETED(src))
+		return
 	..()
 	if(corpse)
 		var/mob/new_corpse = new corpse(src.loc)

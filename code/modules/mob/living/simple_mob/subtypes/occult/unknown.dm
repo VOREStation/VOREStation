@@ -58,6 +58,8 @@
 	combustion = TRUE
 
 /mob/living/simple_mob/glitch_boss/death(gibbed, deathmessage="suddenly %runtime error in unknown.dm, line 56%")
+	if(QDELETED(src))
+		return
 	. = ..()
 	new /obj/effect/temp_visual/glitch(get_turf(src))
 	qdel(src)
@@ -326,6 +328,8 @@
 	prob_respawn = 60
 
 /mob/living/simple_mob/glitch_boss_fake/death(gibbed, deathmessage="disappears in cloud of static.")
+	if(QDELETED(src))
+		return
 	new /obj/effect/temp_visual/glitch(get_turf(src))
 	if(prob(prob_respawn))
 		new /mob/living/simple_mob/glitch_boss_fake(get_turf(src))
