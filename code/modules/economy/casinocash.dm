@@ -57,7 +57,9 @@
 
 		var/obj/item/spacecasinocash/SC = W
 
-		SC.adjust_worth(src.worth)
+		if(isnull(SC.adjust_worth(src.worth)))
+			return
+
 		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 
@@ -96,14 +98,16 @@
 	src.desc = "They are worth [worth] casino credits."
 
 /obj/item/spacecasinocash/proc/adjust_worth(adjust_worth = 0, update = 1)
+	if(worth == 0 || adjust_worth == 0)
+		return null
 	worth += adjust_worth
 	if(worth > 0)
 		if(update)
 			update_icon()
 		return worth
-	else
-		qdel(src)
-		return 0
+
+	qdel(src)
+	return 0
 
 /obj/item/spacecasinocash/proc/set_worth(new_worth = 0, update = 1)
 	worth = max(0, new_worth)
@@ -115,8 +119,11 @@
 	. = ..(user)
 	if(.)
 		return TRUE
+
+	if(worth <= 0)
+		return
 	var/amount = tgui_input_number(user, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20, src.worth)
-	if(!src || QDELETED(src))
+	if(QDELETED(src))
 		return
 	amount = round(CLAMP(amount, 0, src.worth))
 
@@ -238,7 +245,8 @@
 
 		var/obj/item/spacecasinocash_fake/SC = W
 
-		SC.adjust_worth(src.worth)
+		if(isnull(SC.adjust_worth(src.worth)))
+			return
 		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 
@@ -277,14 +285,16 @@
 	src.desc = "They are worth [worth] replica casino credits."
 
 /obj/item/spacecasinocash_fake/proc/adjust_worth(adjust_worth = 0, update = 1)
+	if(worth == 0 || adjust_worth == 0)
+		return null
 	worth += adjust_worth
 	if(worth > 0)
 		if(update)
 			update_icon()
 		return worth
-	else
-		qdel(src)
-		return 0
+
+	qdel(src)
+	return 0
 
 /obj/item/spacecasinocash_fake/proc/set_worth(new_worth = 0, update = 1)
 	worth = max(0, new_worth)
@@ -296,8 +306,11 @@
 	. = ..(user)
 	if(.)
 		return TRUE
+
+	if(worth <= 0)
+		return
 	var/amount = tgui_input_number(user, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20, src.worth)
-	if(!src || QDELETED(src))
+	if(QDELETED(src))
 		return
 	amount = round(CLAMP(amount, 0, src.worth))
 

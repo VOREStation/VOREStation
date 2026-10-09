@@ -92,3 +92,30 @@
       the mob type, and then handled by the turf the mob is on.
   - refactor: Completely refactored wet floors to be component based.
   - server: Wet floors subsystem exists now,
+2026-10-08:
+  Diana:
+  - rscadd: Obfuscate Key now hides your key in the who list
+  - qol: Xenochimera now heal minor amounts of brute/burn/tox when feral and fed,
+      preventing 'softlock' situations where you would be permanently stuck in pain-crit
+      and KO'd. (Xenochimera can not use healing items normally)
+  - rscadd: Roanoke no longer hold hardrefs to organs, resulting in hard dels.
+  - bugfix: FBP Diona no longer spawn dead
+  - qol: Diona nymphs no longer suicide after being mindless for 6 seconds
+  - balance: FBP diona shells no longer take 30% more damage from brute and burn
+  Kashargul:
+  - spellcheck: fix spelling in the vorespawn warning text
+  - bugfix: broken casino chips no longer self delete or stack with actual chips
+  ReoDaProtovali:
+  - qol: Atmos pumps are quicker to set, nicer for large clusters of pumps
+  lbnesquik:
+  - qol: Description info now tells you if a coat/suit has storage.
+2026-10-09:
+  Diana:
+  - bugfix: Jump/Orbit will no longer show invalid targets.
+  Kashargul:
+  - code_imp: updates dependencies
+  - qol: display health and nutrition in the vorepanel
+  - qol: add observers to the autotransfer filter as their own category
+  - bugfix: immediate process missing for carbons
+  Will:
+  - code_imp: Moved mech trackers to their own list
