@@ -20,7 +20,7 @@
 	value = CATALOGUER_REWARD_MEDIUM
 
 /datum/category_item/catalogue/information/blackbox/quarantined_shuttle
-	name = "Black Box Data - MBT-540"
+	name = "Black Box Data - MBT-921"
 	desc = {"
 		<B>Pilot's Log for Major Bill's Transportation Shuttle MBT-540</B><BR>
 		Routine flight inbound for VIMC Outpost C-12 6:35AM 03/12/2298, Estimated arrival 7:05AM. 16 passengers, 2 crew.<BR>

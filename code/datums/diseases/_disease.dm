@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/list/required_organs = list()
 	var/list/strain_data = list()
 	var/initial = TRUE
+	var/wiki_hidden = FALSE
 
 /datum/disease/Destroy()
 	affected_mob = null
