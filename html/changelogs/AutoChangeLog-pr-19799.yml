@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Glass wire now damages mobs and does not break from ghosts."
