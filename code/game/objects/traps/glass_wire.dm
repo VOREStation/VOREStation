@@ -42,24 +42,14 @@
 
 /obj/item/material/barbedwire/glass/check_step(atom/movable/AM)
 	. = ..()
-	if(!.)
-		return FALSE
+	if(.) //Child did the work already.
+		return TRUE
 	if(istype(AM,/obj/effect/abstract)) // Stops flashlight beams from breaking them
 		return FALSE // Maybe special handling someday, like making them shine?
-	if(anchored)
-		if(isliving(AM))
-			var/mob/living/L = AM
-			L.visible_message(
-				span_danger("[L] steps in \the [src]."),
-				span_danger("You step in \the [src]!"),
-				span_infoplain(span_bold("You hear a sharp rustling!"))
-				)
-			attack_mob(L)
-			update_icon()
-			return TRUE
-		else
-			health = 0
-			check_health()
+	if(anchored) //Child takes care of the isliving part.
+		health = 0
+		check_health()
+		return TRUE
 	return FALSE
 
 /obj/item/material/barbedwire/glass/attack_mob(mob/living/L)
