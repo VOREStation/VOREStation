@@ -183,7 +183,10 @@
 
 	character.set_gender(pref.read_preference(/datum/preference/choiced/gender/biological))
 
-	character.synthetic = pref.read_preference(/datum/preference/choiced/species) == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	if(pref.read_preference(/datum/preference/choiced/species) == "Protean") //Whoever set synthetic to null before if you wern't a protean broke synth rejuving.
+		character.synthetic = GLOB.all_robolimbs["protean"]	// It took me so fucking long to find this I fucking hate you and I hope you step on a lego
+		// There's literally zero reason to set it to null, either, like what the fuck.
+
 	var/list/pref_organ_data = pref.read_preference(/datum/preference/organ_data)
 	var/list/pref_rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
 	var/list/organs_to_edit = list()

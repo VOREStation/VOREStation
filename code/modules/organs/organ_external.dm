@@ -639,7 +639,7 @@ This function completely restores a damaged organ to perfect condition.
 	for(var/obj/implanted_object in implants)
 		if(istype(implanted_object,/obj/item/implant) || istype(implanted_object,/obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
 			continue
-		implanted_object.loc = get_turf(src)
+		implanted_object.forceMove(owner.drop_location()) //Drop it out.
 		implants -= implanted_object
 	if(!owner.has_embedded_objects())
 		owner.clear_alert("embeddedobject")
@@ -647,10 +647,10 @@ This function completely restores a damaged organ to perfect condition.
 	if(owner && !ignore_prosthetic_prefs)
 		if(owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
 			var/list/organ_data = owner.client.prefs.read_preference(/datum/preference/organ_data)
-			var/status = organ_data?[organ_tag]
-			if(status == "amputated")
+			var/robot_status = organ_data?[organ_tag]
+			if(robot_status == "amputated")
 				remove_rejuv()
-			else if(status == "cyborg")
+			else if(robot_status == "cyborg")
 				var/list/rlimb_data = owner.client.prefs.read_preference(/datum/preference/rlimb_data)
 				var/robodata = rlimb_data?[organ_tag]
 				if(robodata)
