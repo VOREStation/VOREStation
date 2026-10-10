@@ -119,3 +119,6 @@
   - bugfix: immediate process missing for carbons
   Will:
   - code_imp: Moved mech trackers to their own list
+2026-10-10:
+  Diana:
+  - bugfix: Glass wire no longer runtimes when crossed.
