@@ -8,6 +8,9 @@ export const vorespawnAbsorbedColor = [undefined, 'green', 'orange'] as const;
 
 export const selectiveBellyOptions = ['Digest', 'Absorb'];
 
+export const resistAnimationOptions = ['None', 'Only Normal Prey', 'Only Absorb Prey','Both'];
+
+
 export const digestModeToColor = {
   Default: undefined,
   Hold: undefined,

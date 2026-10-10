@@ -133,7 +133,7 @@ export type Belly = {
   count_items_for_sprite: BooleanLike;
   item_multiplier: number;
   health_impacts_size: BooleanLike;
-  resist_triggers_animation: BooleanLike;
+  resist_triggers_animation: string;
   size_factor_for_sprite: number;
   belly_sprite_to_affect: string;
 
