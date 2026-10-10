@@ -1,6 +1,7 @@
 
 /obj/item/mecha_parts/component/hull
 	name = "mecha hull"
+	desc = "Hull elements. It's the plating that goes on the chassis before the rest."
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "hull"
 	w_class = ITEMSIZE_HUGE
@@ -20,6 +21,7 @@
 
 /obj/item/mecha_parts/component/hull/durable
 	name = "durable mecha hull"
+	desc = "Hull elements. It's the plating that goes on the chassis before the rest. This one's heavier, but sturdier."
 
 	step_delay = 4
 	integrity_danger_mod = 0.3
@@ -27,12 +29,14 @@
 
 /obj/item/mecha_parts/component/hull/lightweight
 	name = "lightweight mecha hull"
+	desc = "Hull elements. It's the plating that goes on the chassis before the rest. Lightweight, reducing the strain on locomotion."
 
 	step_delay = 1
 	integrity_danger_mod = 0.3
 
 /obj/item/mecha_parts/component/hull/fighter
 	name = "fighter hull"
+	desc = "Hull elements. It's the plating that goes on the chassis before the rest. This one is very light, but not very sturdy. Only works for fighter crafts."
 
 	step_delay = 0
 	integrity_danger_mod = 0.5

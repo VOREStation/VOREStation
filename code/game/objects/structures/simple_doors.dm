@@ -1,5 +1,6 @@
 /obj/structure/simple_door
 	name = "door"
+	desc = "A regular door. Usually found only found outside space-stations."
 	description_info = "If you hold left alt whilst left-clicking on a door, you can knock on it to announce your presence to anyone on the other side! Alternately if you are on HARM intent when doing this, you will bang loudly on the door!"
 	density = TRUE
 	anchored = TRUE

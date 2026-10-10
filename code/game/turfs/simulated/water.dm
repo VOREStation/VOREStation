@@ -146,7 +146,7 @@
 
 /turf/simulated/floor/water/deep/pool
 	name = "deep pool"
-	desc = "Don't worry, it's not closed."
+	desc = "Deep enough to ask for a lifeguard to be around."
 	outdoors = OUTDOORS_NO
 
 /mob/living/proc/can_breathe_water()
