@@ -13,13 +13,15 @@
 	var/list/network = list(NETWORK_DEFAULT)
 	var/c_tag = null
 	var/c_tag_order = 999
-	var/status = 1
+	var/status = TRUE
 	anchored = TRUE
 	var/invuln = 0
 	var/bugged = 0
 	var/obj/item/camera_assembly/assembly = null
 
-	var/toughness = 5 //sorta fragile
+	var/toughness = 5
+	var/initial_toughness = 5 //sorta fragileh
+	var/damage_threshold = 5
 
 	//OTHER
 
@@ -87,6 +89,13 @@
 		update_coverage()
 	return internal_process()
 
+/obj/machinery/camera/examine(mob/user)
+	. = ..()
+	if(panel_open)
+		. += to_chat(user, span_notice("The maintenance panel is open."))
+	if(stat & BROKEN)
+		. += to_chat(user, span_warning("\The [src] is broken."))
+
 /obj/machinery/camera/proc/internal_process()
 	return
 
@@ -113,21 +122,21 @@
 
 	//camera dies if an explosion touches it!
 	if(severity <= 2 || prob(50))
-		destroy()
+		camera_break()
 
 	..() //and give it the regular chance of being deleted outright
 
 /obj/machinery/camera/blob_act()
 	if((stat & BROKEN) || invuln)
 		return
-	destroy()
+	camera_break()
 
 /obj/machinery/camera/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	if (!isobj(source))
 		return
 	var/obj/item/O = source
-	if(O.throwforce >= src.toughness)
+	if(O.throwforce >= src.damage_threshold)
 		visible_message(span_boldwarning("[src] was hit by [O]."))
 	take_damage(O.throwforce)
 
@@ -140,24 +149,24 @@
 		return
 
 	if(user.species.can_shred(user, FALSE, 11))
-		set_status(0)
+		set_status(FALSE)
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())
 		visible_message(span_warning("\The [user] slashes at [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
-		destroy()
+		camera_break()
 
 /obj/machinery/camera/attack_generic(mob/user as mob)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
-		set_status(0)
+		set_status(FALSE)
 		S.do_attack_animation(src)
 		S.setClickCooldown(user.get_attack_speed())
 		visible_message(span_warning("\The [user] [pick(S.attacktext)] \the [src]!"))
 		playsound(src, S.attack_sound, 100, 1)
 		add_hiddenprint(user)
-		destroy()
+		camera_break()
 	..()
 
 /obj/machinery/camera/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -186,6 +195,7 @@
 				if(stat & BROKEN)
 					assembly.state = 2
 					to_chat(user, span_notice("You repaired \the [src] frame."))
+					toughness = initial_toughness
 				else
 					assembly.state = 1
 					to_chat(user, span_notice("You cut \the [src] free from the wall."))
@@ -236,16 +246,16 @@
 			to_chat(user, span_notice("Camera bugged."))
 			src.bugged = 1
 
-	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
+	else if(W.damtype == BRUTE || W.damtype == BURN || W.damtype == SEARING) //bashing cameras
 		user.setClickCooldown(user.get_attack_speed(W))
-		if (W.force >= src.toughness)
+		if (W.force >= src.damage_threshold)
 			user.do_attack_animation(src)
 			visible_message(span_boldwarning("[src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with [W] by [user]!"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
 				var/obj/item/I = W
 				if (I.hitsound)
 					playsound(src, I.hitsound, 50, 1, -1)
-		take_damage(W.force)
+			take_damage(W.force)
 
 	else
 		..()
@@ -259,6 +269,8 @@
 		return
 
 	set_status(!src.status)
+	if(stat & BROKEN)
+		return
 	if (!(src.status))
 		if(user)
 			visible_message(span_notice(" [user] has deactivated [src]!"))
@@ -268,6 +280,8 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 	else
+		if(stat & BROKEN)
+			return
 		if(user)
 			visible_message(span_notice(" [user] has reactivated [src]!"))
 			add_hiddenprint(user)
@@ -277,12 +291,17 @@
 		icon_state = initial(icon_state)
 
 /obj/machinery/camera/take_damage(force, message)
-	//prob(25) gives an average of 3-4 hits
-	if (force >= toughness && (force > toughness*4 || prob(25)))
-		destroy()
+	//Chance to be destroyed outright
+	if(prob(10))
+		camera_break()
+		return
+	toughness -= force
+	if(toughness <= 0)
+		camera_break()
+		toughness = 0
 
 //Used when someone breaks a camera
-/obj/machinery/camera/proc/destroy()
+/obj/machinery/camera/proc/camera_break()
 	stat |= BROKEN
 	wires.cut_all()
 
