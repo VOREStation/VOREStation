@@ -109,3 +109,16 @@
   - qol: Atmos pumps are quicker to set, nicer for large clusters of pumps
   lbnesquik:
   - qol: Description info now tells you if a coat/suit has storage.
+2026-10-09:
+  Diana:
+  - bugfix: Jump/Orbit will no longer show invalid targets.
+  Kashargul:
+  - code_imp: updates dependencies
+  - qol: display health and nutrition in the vorepanel
+  - qol: add observers to the autotransfer filter as their own category
+  - bugfix: immediate process missing for carbons
+  Will:
+  - code_imp: Moved mech trackers to their own list
+2026-10-10:
+  Diana:
+  - bugfix: Glass wire no longer runtimes when crossed.

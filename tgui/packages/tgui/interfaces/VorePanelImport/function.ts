@@ -28,7 +28,7 @@ export function handleImportData(importString: string | string[]): DesiredData {
       return ourBellies;
     }
 
-    if (parsedData.bellies && parsedData.soulcatcher) {
+    if (Array.isArray(parsedData.bellies)) {
       const ourBellies = {
         unknown: {
           bellies: Array.isArray(parsedData.bellies) ? parsedData.bellies : [],
