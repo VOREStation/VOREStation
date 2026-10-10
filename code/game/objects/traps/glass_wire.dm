@@ -7,6 +7,7 @@
 	applies_material_colour = FALSE
 	named_from_material = FALSE
 	drops_debris = FALSE
+	force = 15
 
 /obj/item/material/barbedwire/glass/start_active
 	anchored = TRUE
@@ -44,8 +45,8 @@
 	. = ..()
 	if(.) //Child did the work already.
 		return TRUE
-	if(istype(AM,/obj/effect/abstract)) // Stops flashlight beams from breaking them
-		return FALSE // Maybe special handling someday, like making them shine?
+	if(!isobj(AM))
+		return FALSE
 	if(anchored) //Child takes care of the isliving part.
 		health = 0
 		check_health()
