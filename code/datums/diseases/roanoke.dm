@@ -84,7 +84,7 @@
 ///Attempts infecting the target with roanoke.
 /mob/living/proc/attempt_xenochimera_infection(mob/living/user, mob/living/target, armour, attack_damage, zone)
 	var/enabled = FALSE //Disabled on virgo, used downstream.
-	if(!enabled || (target == user))
+	if(!enabled || (target == user) || HAS_TRAIT(user, NON_INFECTIOUS_XENOCHIMERA_TRAIT))
 		return
 	var/datum/component/xenochimera/xc = user.get_xenochimera_component()
 	if(xc)
