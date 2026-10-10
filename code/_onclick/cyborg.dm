@@ -96,7 +96,7 @@
 		// No adjacency checks
 
 		var/resolved = W.resolve_attackby(A, src, click_parameters = params)
-		if((resolved != ITEM_INTERACT_SUCCESS)  && A && W)
+		if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 			W.afterattack(A,src,1,params)
 		return
 
@@ -108,7 +108,7 @@
 		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach))) // see adjacent.dm, allows robots to use ranged melee weapons
 			SEND_SIGNAL(src, COMSIG_ROBOT_ITEM_ATTACK, W, src, params) //This is we ATTEMPTED to attack someone.
 			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
-			if((resolved != ITEM_INTERACT_SUCCESS)  && A && W)
+			if((resolved != ITEM_INTERACT_SUCCESS) && A && W)
 				W.afterattack(A, src, 1, params)
 			return
 		else
@@ -138,56 +138,64 @@
 /atom/proc/BorgCtrlShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	user.click_ctrl_shift(user)
 
-/obj/machinery/door/airlock/BorgCtrlShiftClick(mob/living/silicon/robot/user)
-	if(user.bolt && !user.bolt.malfunction)
-		return
-
-	AIclick_ctrl_shift(user)
-
 /atom/proc/BorgShiftClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	ShiftClick(user)
 
-/obj/machinery/door/airlock/BorgShiftClick(mob/living/silicon/robot/user)  // Opens and closes doors! Forwards to AI code.
-	if(user.bolt && !user.bolt.malfunction)
-		return
-
-	AIShiftClick(user)
-
 /atom/proc/BorgCtrlClick(mob/living/silicon/robot/user) //forward to human click if not overriden
 	user.base_click_ctrl(src)
-
-/obj/machinery/door/airlock/BorgCtrlClick(mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
-	if(user.bolt && !user.bolt.malfunction)
-		return
-
-	ctrl_click_ai(user)
-
-/obj/machinery/power/apc/BorgCtrlClick(mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
-	if(user.bolt && !user.bolt.malfunction)
-		return
-
-	ctrl_click_ai(user)
-
-/obj/machinery/turretid/BorgCtrlClick(mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
-	if(user.bolt && !user.bolt.malfunction)
-		return
-
-	ctrl_click_ai(user)
 
 /atom/proc/BorgAltClick(mob/living/silicon/robot/user)
 	click_alt(user)
 	return
 
-/obj/machinery/door/airlock/BorgAltClick(mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.
+
+// Interactions start here.//
+
+// Airlocks
+// Opens and closes doors! Forwards to AI code.
+/obj/machinery/door/airlock/BorgShiftClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
+	AIShiftClick(user)
 
+ // Bolts doors. Forwards to AI code.
+/obj/machinery/door/airlock/BorgCtrlClick(mob/living/silicon/robot/user)
+	if(user.bolt && !user.bolt.malfunction)
+		return
+	ctrl_click_ai(user)
+
+ // Electrifies doors. Forwards to AI code.
+/obj/machinery/door/airlock/BorgAltClick(mob/living/silicon/robot/user)
+	if(user.bolt && !user.bolt.malfunction)
+		return
 	AIAltClick(user)
 
-/obj/machinery/turretid/BorgAltClick(mob/living/silicon/robot/user) //turret lethal on/off. Forwards to AI code.
+// Does... Nothing. But it's here!
+/obj/machinery/door/airlock/BorgCtrlShiftClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
+	AIclick_ctrl_shift(user)
 
+
+// APC
+// turns off/on APCs. Forwards to AI code.
+/obj/machinery/power/apc/BorgCtrlClick(mob/living/silicon/robot/user)
+	if(user.bolt && !user.bolt.malfunction)
+		return
+	ctrl_click_ai(user)
+
+
+// Turrets
+ //turret control on/off. Forwards to AI code.
+/obj/machinery/turretid/BorgCtrlClick(mob/living/silicon/robot/user)
+	if(user.bolt && !user.bolt.malfunction)
+		return
+	ctrl_click_ai(user)
+
+ //turret lethal on/off. Forwards to AI code.
+/obj/machinery/turretid/BorgAltClick(mob/living/silicon/robot/user)
+	if(user.bolt && !user.bolt.malfunction)
+		return
 	AIAltClick(user)
 
 /*
