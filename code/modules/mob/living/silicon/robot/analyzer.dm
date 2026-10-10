@@ -210,11 +210,8 @@
 			to_chat(user, "<hr>")
 			to_chat(user, span_notice("General Statistics:"))
 			to_chat(user, span_notice("Movement Weight: [Mecha.get_step_delay()]") + "<br>")
-
 			to_chat(user, "<hr>")
 			to_chat(user, span_notice("Equipement mounts:"))
-			to_chat(user, span_notice("Movement Weight: [Mecha.get_step_delay()]") + "<br>")
-
 			var/output2 = span_notice( "Analyzing Results for \the [Mecha]:") + {"<b>
 				Available hull slots:</b> [Mecha.max_hull_equip-Mecha.hull_equipment.len]
 				<b>Available weapon slots:</b> [Mecha.max_weapon_equip-Mecha.weapon_equipment.len]
@@ -222,11 +219,8 @@
 				<b>Available utility slots:</b> [Mecha.max_utility_equip-Mecha.utility_equipment.len]
 				<b>Available micro utility slots:</b> [Mecha.max_micro_utility_equip-Mecha.micro_utility_equipment.len]
 				<b>Available universal slots:</b> [Mecha.max_universal_equip-Mecha.universal_equipment.len]
-				<b>Available special slots:</b> [Mecha.max_special_equip-Mecha.special_equipment.len]
-				</div></div>"}
-
+				<b>Available special slots:</b> [Mecha.max_special_equip-Mecha.special_equipment.len]"}
 			to_chat(user, output2)
-			to_chat(user, "<hr>")
 
 	src.add_fingerprint(user)
 	return
