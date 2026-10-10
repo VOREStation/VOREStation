@@ -45,6 +45,8 @@
 	. = ..()
 	if(.) //Child did the work already.
 		return TRUE
+	if(!AM.is_incorporeal())
+		return FALSE
 	if(!isobj(AM))
 		return FALSE
 	if(anchored) //Child takes care of the isliving part.
