@@ -25,17 +25,19 @@
 	//100 max hp w/ 75 damage = (25/100) * 100 = 75HP
 	//200 max hp w/ 50 damage = (50/200) * 100 = 75HP
 	if(species.pain_mod)
-		var/health_percent = ((health / getMaxHealth()) * 100) / species.pain_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
+		var/health_percent = (health / getMaxHealth()) * 100 //Species pain sensitivity does not apply to painkillers, so we apply it before
 
 		var/hal_pain = getHalLoss() * species.pain_mod
 		//var/hal_pain = can_feel_pain() ? (getHalLoss() * 2) * species.pain_mod : 0 //Variant for if you want pain immune people to not be affected by halloss slowdown.
+		// Specific pain to respect traits
+		var/pain_threshold = 60 + (30 * (1 - (1 / species.pain_mod)))
 
-		if((health_percent <= 60 || hal_pain >= 25) && !chem_effects[CE_NARCOTICS]) //Have taken 40% of our max health in damage OR we have >=25 halloss pain
+		if((health_percent <= pain_threshold || hal_pain >= 25) && !chem_effects[CE_NARCOTICS]) //Have taken 40% of our max health in damage OR we have >=25 halloss pain
 
 			if(health_percent < 0)
 				health_percent = 0 //Crit already has its own negative effects, so
 
-			var/amount_damaged = 100 - health_percent //Get the percent.
+			var/amount_damaged = (100 - health_percent) *  species.pain_mod //Get the percent.
 
 			if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
 				var/painkiller_strength = chem_effects[CE_PAINKILLER]
