@@ -122,3 +122,12 @@
 2026-10-10:
   Diana:
   - bugfix: Glass wire no longer runtimes when crossed.
+2026-10-11:
+  Diana:
+  - bugfix: Glass wire now damages mobs and does not break from ghosts.
+  ReoDaProtovali:
+  - qol: Rejuvenation doesnt set your nutrition to 400 if it's above 400.
+  - bugfix: status updates on prey in vorebellies should show up in the rare circumstance
+      they go from dead to conscious instantly
+  - bugfix: fixed full body prothetics getting their synthetic var set to null when
+      rejuvenated
