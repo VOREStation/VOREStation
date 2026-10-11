@@ -3,7 +3,6 @@ import {
   ModeSpan,
   STRUGGLE_OUTSIDE_ABSORBED_MESSAGE,
   STRUGGLE_OUTSIDE_MESSAGE,
-  VorePrefFlags,
 } from './constants';
 import {
   formatListEmotes,
@@ -20,7 +19,11 @@ import {
 } from './VorePanelExportBellyStringHelpers';
 
 // prettier-ignore
-export const generateBellyString = (belly: Belly, index: number) => {
+export const generateBellyString = (
+  belly: Belly,
+  index: number,
+  vore_pref_type_list: Record<string, number>,
+) => {
   const {
     // General Information
     name,
@@ -263,11 +266,11 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += `Addons:<br>${GetAddons(addons)}<br><br>`;
 
   result += '<b>== Type and Specifics ==</b><br>';
-  for (const flag in VorePrefFlags) {
-    if ((vore_pref_type_flags & Number(flag)) !== 0) {
-      result += `<span class="badge text-bg-success">${VorePrefFlags[flag]}</span>`;
+  for (const [type, flag] of Object.entries(vore_pref_type_list)) {
+    if ((vore_pref_type_flags & flag) !== 0) {
+      result += `<span class="badge text-bg-success">${type}</span>`;
     } else {
-      result += `<span class="badge text-bg-danger">${VorePrefFlags[flag]}</span>`;
+      result += `<span class="badge text-bg-danger">${type}</span>`;
     }
   }
 

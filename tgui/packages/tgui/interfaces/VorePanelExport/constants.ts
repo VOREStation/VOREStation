@@ -77,28 +77,3 @@ export const SoulcatcherSettingsFlag = {
 
 export const STRUGGLE_OUTSIDE_MESSAGE = 0x1;
 export const STRUGGLE_OUTSIDE_ABSORBED_MESSAGE = 0x2;
-
-export const VorePrefFlags = {
-  '1': 'Oral Vore',
-  '2': 'Anal Vore',
-  '4': 'Cock Vore',
-  '8': 'Sheath Vore',
-  '16': 'Bladder Vore',
-  '32': 'Unbirth',
-  '64': 'Udder Vore',
-  '128': 'Tail Vore',
-  '256': 'Absorption',
-  '512': 'Soul Vore',
-  '1024': 'Hard Vore',
-  '2048': 'Dirty / Filth',
-  '4096': 'High Damage',
-  '8196': 'Plinko',
-  '16384': 'Other / Unlisted Vore',
-  '32768': 'Cock Transformation',
-  '65536': 'Pussy Transformation',
-  '131072': 'Anus Transformation',
-  '262144': 'Paw Transformation',
-  '524288': 'Tail Transformation',
-  '1048576': 'Object Transformation',
-  '2097152': 'Other / Unlisted Transformation',
-};

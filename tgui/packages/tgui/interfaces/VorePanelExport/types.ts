@@ -4,6 +4,7 @@ export type Data = {
   db_version: string;
   db_repo: string;
   mob_name: string;
+  vore_pref_type_list: Record<string, number>;
   bellies?: Belly[];
   soulcatcher?: Soulcatcher;
 };
