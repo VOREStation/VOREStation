@@ -5,7 +5,7 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1687
+export BYOND_MINOR=1688
 
 # Macro Count
 export MACRO_COUNT=7
@@ -14,22 +14,22 @@ export MACRO_COUNT=7
 export RUST_G_VERSION=7.0.0
 
 # Bun version
-export BUN_VERSION=1.3.14
+export BUN_VERSION=1.4.2
 
 # SpacemanDMM git tag
-export SPACEMAN_DMM_VERSION=suite-1.11
+export SPACEMAN_DMM_VERSION=suite-1.12
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.12.3
+export PYTHON_VERSION=3.13.9
 
 #dreamluau repo
 export DREAMLUAU_REPO="tgstation/dreamluau"
 
 #dreamluau git tag
-export DREAMLUAU_VERSION=0.1.4
+export DREAMLUAU_VERSION=0.2.2
 
 #hypnagogic repo
 export CUTTER_REPO=spacestation13/hypnagogic
 
 #hypnagogic git tag
-export CUTTER_VERSION=v5.0.0
+export CUTTER_VERSION=v5.0.1

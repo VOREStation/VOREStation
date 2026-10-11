@@ -165,7 +165,7 @@ GLOBAL_DATUM(sleevemate_mob, /mob/living/carbon/human/dummy/mannequin)
 	if(!H.ckey)
 		output += span_warning("No mind in that body") + " [stored_mind != null ? "\[<a href='byond://?src=\ref[src];target=\ref[H];mindupload=1'>Upload</a>\]" : null]<br>"
 
-	else if(H.mind && (is_changeling(H) || (HAS_TRAIT(H, UNIQUE_MINDSTRUCTURE) || (ckey(H.mind.key) != H.ckey))))
+	else if(H.mind && (is_changeling(H) || (HAS_TRAIT(H, UNIQUE_MINDSTRUCTURE) || (ckey(H.mind.key) != H.ckey) || (H.get_xenochimera_component()))))
 		output += span_boldwarning("Incorrect mind-sleeve match or hiveminded neurological structure") + "<br>"
 
 	else if(H.mind && ckey(H.mind.key) == H.ckey)

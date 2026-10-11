@@ -209,6 +209,8 @@ export type ContentData = {
   outside: BooleanLike;
   icon: string;
   our_type: string;
+  damage: number;
+  nutrition?: number;
 };
 
 export type BellyLiquidData = {

@@ -128,6 +128,12 @@
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 
+//Turns out, moving all of the slip check to can_slip() means this proc doesnt really do anything.
+/*
+/mob/living/carbon/human/slip(weaken_amount, obj/slipped_on, lube, stun, force_drop)
+	return ..(knockdown_amount, slipped_on, lube, stun, force_drop)
+*/
+
 /mob/living/carbon/human/Moved()
 	. = ..()
 	if(embedded_flag)

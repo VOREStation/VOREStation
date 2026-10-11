@@ -45,6 +45,9 @@
 /turf/simulated/floor/lava/make_plating(place_product, defer_icon_update)
 	return
 
+/turf/simulated/floor/lava/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
+	return
+
 /turf/simulated/floor/lava/set_flooring(datum/decl/flooring/newflooring, initializing)
 	if(newflooring?.type == initial_flooring)
 		return ..()

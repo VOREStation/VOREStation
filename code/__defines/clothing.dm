@@ -27,6 +27,7 @@ NOTICE: Do not leave trailing commas!!!!
 	/obj/item/spacecash, \
 	/obj/item/clothing/head/soft, \
 	/obj/item/taperoll, \
+	/obj/item/tape_roll, \
 	/obj/item/analyzer, \
 	/obj/item/reagent_scanner, \
 	/obj/item/healthanalyzer, \

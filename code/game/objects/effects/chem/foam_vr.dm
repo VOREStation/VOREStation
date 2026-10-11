@@ -4,7 +4,7 @@
 	color = "#A6FAFF"
 	var/lifetime = 3
 	dries = FALSE // We do this ourselves
-	slips = FALSE
+	slippery_foam = FALSE
 
 /obj/effect/effect/foam/firefighting/Initialize(mapload)
 	. = ..()

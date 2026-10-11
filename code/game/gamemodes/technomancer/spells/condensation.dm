@@ -34,7 +34,7 @@
 						if(check_for_scepter())
 							if(istype(desired_turf, /turf/simulated))
 								var/turf/simulated/frozen = desired_turf
-								frozen.freeze_floor()
+								frozen.MakeSlippery(TURF_WET_ICE, 160 SECONDS)
 			if(check_for_scepter())
 				add_attack_logs(user,hit_atom,"Iced the floor with [src] at [T.x],[T.y],[T.z]")
 			else

@@ -91,6 +91,7 @@
 	can_buckle = TRUE
 
 /obj/effect/weaversilk/trap/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	var/datum/component/weaver/comp = AM.GetComponent(/datum/component/weaver)
@@ -110,7 +111,6 @@
 			to_chat(L, span_danger("The sticky fibers of \the [src] ensnare, trapping you in place!"))
 			trap_active = FALSE
 			desc += " Actually, it looks like it's been all spent."
-	..()
 
 
 

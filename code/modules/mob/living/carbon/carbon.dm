@@ -163,13 +163,13 @@
 	if(stun)
 		switch(shock_damage)
 			if(16 to 20)
-				Stun(2)
-			if(21 to 25)
 				Weaken(2)
+			if(21 to 25)
+				Stun(2)
 			if(26 to 30)
-				Weaken(5)
+				Stun(5)
 			if(31 to INFINITY)
-				Weaken(10) //This should work for now, more is really silly and makes you lay there forever
+				Stun(10) //This should work for now, more is really silly and makes you lay there forever
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)
@@ -407,20 +407,6 @@
 
 /mob/living/carbon/cannot_use_vents()
 	return
-
-/mob/living/carbon/slip(slipped_on,stun_duration=8)
-	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
-	if(buckled)
-		return FALSE
-	stop_pulling()
-	to_chat(src, span_warning("You slipped on [slipped_on]!"))
-	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-	if(HAS_TRAIT(src, SLIP_REFLEX_TRAIT) && !lying)
-		if(world.time >= next_emote)
-			src.emote("sflip")
-			return TRUE
-	Weaken(FLOOR(stun_duration/2, 1))
-	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(effect, magnitude = 1)
 	if(effect in chem_effects)

@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Initialize()
 	setup_departments()
 	setup_occupations()
+	fill_holidays() // Fills holidays, for special mail/roles/other funny things. I don't like it here, but I kind of ran out of choices.
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/job/proc/setup_occupations(faction = FACTION_STATION)

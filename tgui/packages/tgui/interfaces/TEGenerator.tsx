@@ -4,6 +4,7 @@ import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
+  Button,
   Icon,
   LabeledList,
   ProgressBar,
@@ -11,6 +12,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { formatPower, formatSiUnit } from 'tgui-core/format';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   totalOutput: number;
@@ -28,10 +30,11 @@ type Circulator = {
   inletTemperature: number;
   outletPressure: number;
   outletTemperature: number;
+  reversed: BooleanLike;
 };
 
 export const TEGenerator = (props) => {
-  const { data } = useBackend<Data>();
+  const { act, data } = useBackend<Data>();
 
   const { totalOutput, maxTotalOutput, thermalOutput, primary, secondary } =
     data;
@@ -39,7 +42,29 @@ export const TEGenerator = (props) => {
   return (
     <Window width={550} height={350}>
       <Window.Content>
-        <Section title="Status">
+        <Section
+          title="Status"
+          buttons={
+            <>
+              <Button
+                icon="refresh"
+                onClick={() => act('reverse_primary')}
+                disabled={!primary}
+                color={primary?.reversed ? 'bad' : 'good'}
+              >
+                Reverse Primary
+              </Button>
+              <Button
+                icon="refresh"
+                onClick={() => act('reverse_secondary')}
+                disabled={!secondary}
+                color={secondary?.reversed ? 'bad' : 'good'}
+              >
+                Reverse Secondary
+              </Button>
+            </>
+          }
+        >
           <LabeledList>
             <LabeledList.Item label="Total Output">
               <ProgressBar value={totalOutput} maxValue={maxTotalOutput}>

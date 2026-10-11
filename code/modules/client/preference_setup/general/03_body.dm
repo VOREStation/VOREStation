@@ -183,7 +183,10 @@
 
 	character.set_gender(pref.read_preference(/datum/preference/choiced/gender/biological))
 
-	character.synthetic = pref.read_preference(/datum/preference/choiced/species) == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	if(pref.read_preference(/datum/preference/choiced/species) == "Protean") //Whoever set synthetic to null before if you wern't a protean broke synth rejuving.
+		character.synthetic = GLOB.all_robolimbs["protean"]	// It took me so fucking long to find this I fucking hate you and I hope you step on a lego
+		// There's literally zero reason to set it to null, either, like what the fuck.
+
 	var/list/pref_organ_data = pref.read_preference(/datum/preference/organ_data)
 	var/list/pref_rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
 	var/list/organs_to_edit = list()
@@ -378,6 +381,8 @@
 			"flags" = S.flags,
 			"spawn_flags" = S.spawn_flags,
 			"appearance_flags" = S.appearance_flags,
+			"whitelisted" = (S.spawn_flags & SPECIES_IS_WHITELISTED), // Whitelist required to play this species
+			"species_disabled" = !(S.spawn_flags & SPECIES_CAN_JOIN) // In the species list, but unavailable to join as, but also not hidden entirely with SPECIES_IS_RESTRICTED
 		))
 	data["species"] = species_list
 

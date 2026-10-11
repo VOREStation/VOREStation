@@ -414,7 +414,7 @@
 	departmental_flags = ALL
 
 /datum/design_techweb/weapon_cell
-	name = "Weapon Cell"
+	name = "Large Device Cell"
 	id = "weapon_cell"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.025))
@@ -423,7 +423,7 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+	departmental_flags = ALL
 
 // RPEDs
 /datum/design_techweb/RPED

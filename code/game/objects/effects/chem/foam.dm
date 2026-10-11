@@ -14,8 +14,9 @@
 	var/amount = 3
 	var/expand = 1
 	var/metal = 0
-	var/dries = 1 //VOREStation Add
-	var/slips = 0 //VOREStation Add
+	var/dries = TRUE //VOREStation Add
+	/// Whether or not this foam should be slippery.
+	var/slippery_foam = TRUE
 
 /obj/effect/effect/foam/Initialize(mapload, ismetal = 0)
 	. = ..()
@@ -26,6 +27,8 @@
 		addtimer(CALLBACK(src, PROC_REF(post_spread)), 3 + metal * 3)
 		addtimer(CALLBACK(src, PROC_REF(pre_harden)), 12 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(harden)), 15 SECONDS)
+	if(slippery_foam)
+		AddComponent(/datum/component/slippery, 10)
 
 /obj/effect/effect/foam/proc/post_spread()
 	process()
@@ -81,13 +84,11 @@
 			qdel(src)
 
 /obj/effect/effect/foam/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(metal)
 		return
-	if(slips && isliving(AM)) //VOREStation Add
-		var/mob/living/M = AM
-		M.slip("the foam", 6)
 
 /datum/effect/effect/system/foam_spread
 	var/amount = 5				// the size of the foam spread.

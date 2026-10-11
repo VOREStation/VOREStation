@@ -1,6 +1,6 @@
 //KEEP THE STREAK ALIVE
 SUBSYSTEM_DEF(nerdle)
-	name = "nerdle"
+	name = "Nerdle"
 	priority = FIRE_PRIORITY_APPRECIATE
 	runlevels = RUNLEVEL_GAME
 	flags = SS_BACKGROUND | SS_NO_FIRE

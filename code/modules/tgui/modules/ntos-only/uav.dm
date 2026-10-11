@@ -123,7 +123,9 @@
 	// 2 is strong
 	var/obj/item/modular_computer/host = tgui_host() //Better not add this to anything other than modular computers.
 	if(!istype(host))
-		return
+		return 0
+	if(is_jammed(host) || is_jammed(AM))
+		return 0
 	var/our_signal = host.get_ntnet_status() //1 low, 2 good, 3 wired, 0 none
 	var/their_z = get_z(AM)
 
@@ -200,6 +202,18 @@
 	if(tgui_owner?.current_uav)
 		return tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
 	return FALSE
+
+/datum/remote_view_config/uav_control/handle_attempt_zmovement(datum/component/remote_view/owner_component, mob/host_mob, direction, turf/destination)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+	if(!tgui_owner?.current_uav)
+		return ..()
+
+	var/turf/start = get_turf(tgui_owner.current_uav)
+	if(!start.CanZPass(tgui_owner.current_uav, direction))
+		to_chat(host_mob, span_warning("\The [start] is in the way."))
+		return TRUE
+	tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
+	return TRUE
 
 /datum/remote_view_config/uav_control/handle_apply_visuals(mob/host_mob)
 	var/datum/tgui_module/uav/tgui_owner = get_component_coordinator(host_mob)

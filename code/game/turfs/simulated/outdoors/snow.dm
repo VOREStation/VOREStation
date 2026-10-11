@@ -52,7 +52,15 @@
 	desc = "Looks slippery."
 	edge_blending_priority = 0
 	can_be_plated = FALSE
-	wet = TURFSLIP_ICE
+
+/turf/simulated/floor/outdoors/ice/Initialize(mapload, floortype)
+	. = ..()
+	MakeSlippery(TURF_WET_PERMAFROST, INFINITY, 0, INFINITY, TRUE)
+
+/turf/simulated/floor/outdoors/ice/Destroy()
+	MakeDry(TURF_WET_PERMAFROST)
+	. = ..()
+
 
 /turf/simulated/floor/outdoors/ice/dark
 	name = "black ice"

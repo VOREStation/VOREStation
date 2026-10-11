@@ -81,11 +81,8 @@
 		return FALSE
 	. = ..()
 
-/mob/living/simple_mob/vore/demonAI/zMove(direction)
+/mob/living/simple_mob/vore/demonAI/is_incorporeal()
 	if(shifted_out)
-		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-		if(destination)
-			forceMove(destination)
 		return TRUE
 	. = ..()
 

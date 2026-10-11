@@ -1,12 +1,12 @@
-pygit2==1.19.2
-bidict==0.23.1
+pygit2==1.20.1
+bidict==0.24.1
 Pillow==12.3.0
 # changelogs
 PyYaml==6.0.3
-beautifulsoup4==4.14.3
+beautifulsoup4==4.15.0
 
 # ezdb
-mysql-connector-python==9.6.0
+mysql-connector-python==26.7.0
 
 # icon cutter
-numpy==2.4.4
+numpy==2.5.3

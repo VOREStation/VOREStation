@@ -24,6 +24,7 @@
 	return
 
 /obj/structure/portal_event/Crossed(AM as mob|obj)
+	. = ..()
 	if(ismob(AM) && !(isliving(AM)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)

@@ -57,6 +57,30 @@
 	spamcheck = world.time + 20
 	do_broadcast(user, message)
 
+/obj/item/megaphone/equipped(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_SAY_PREPARE, PROC_REF(handle_prepare_say))
+
+/obj/item/megaphone/dropped(mob/user, equipping, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_SAY_PREPARE)
+
+/obj/item/megaphone/proc/handle_prepare_say(atom/source, list/message_data)
+	SIGNAL_HANDLER
+	if(message_data[SPEECH_MSGMODE]) // Ignore megaphone if trying to use the radio
+		return
+	if(loc != source || !isliving(source))
+		return
+	var/mob/living/my_mob = source
+	if(src != my_mob.get_active_hand())
+		return
+	if(!can_broadcast(my_mob))
+		return
+
+	spamcheck = world.time + 20
+	do_broadcast(my_mob, capitalize(message_data[SPEECH_MESSAGE]))
+	return COMSIG_SAY_FORBID_SPEAK
+
 /obj/item/megaphone/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		to_chat(user, span_warning("You overload [src]'s voice synthesizer."))

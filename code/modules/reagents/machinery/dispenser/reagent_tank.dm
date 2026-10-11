@@ -488,6 +488,26 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
 
+/obj/structure/reagent_dispensers/beerkeg/irish
+	name = "special irish drink keg"
+	desc = "A keg full of a cocktail drink made from imported irish whiskey."
+
+/obj/structure/reagent_dispensers/beerkeg/irish/Initialize(mapload)
+	. = ..()
+	reagents.remove_any(1000)
+	var/reagent_id = pick(REAGENT_ID_IRISHCOFFEE, REAGENT_ID_IRISHCREAM, REAGENT_ID_IRISHCARBOMB, REAGENT_ID_B52)
+	reagents.add_reagent(reagent_id, 1000)
+
+/obj/structure/reagent_dispensers/beerkeg/pirate
+	name = "vintage rum keg"
+	desc = "A keg of Captain Pete's Spiced Rum from over half a century ago. Old recipe, strong and authentic flavor, y'aaarrrr..."
+	icon_state = "beertankfantasy"
+
+/obj/structure/reagent_dispensers/beerkeg/pirate/Initialize(mapload)
+	. = ..()
+	reagents.remove_any(1000)
+	reagents.add_reagent(REAGENT_ID_RUM, 1000)
+
 //Cooking oil refill tank
 /obj/structure/reagent_dispensers/cookingoil
 	name = "cooking oil tank"

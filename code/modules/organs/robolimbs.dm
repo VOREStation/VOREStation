@@ -177,9 +177,6 @@ GLOBAL_DATUM(basic_robolimb, /datum/robolimb)
 	unavailable_to_build = 1
 	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_TAJARAN, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
 	suggested_species = SPECIES_DIONA
-	// Dionaea are naturally very tanky, so the robotic limbs are actually far weaker than their normal bodies.
-	robo_brute_mod = 1.3
-	robo_burn_mod = 1.3
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC			//VOREStation Edit - remove the restrictions
 
 /datum/robolimb/cybersolutions

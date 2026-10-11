@@ -33,8 +33,7 @@
 	is_shifting = TRUE
 
 	//Shifting in
-	if(shifted_out)
-		shifted_out = FALSE
+	if(is_incorporeal())
 		name = real_name
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
@@ -85,7 +84,6 @@
 
 	//Shifting out
 	else
-		shifted_out = TRUE
 		shift_state = AB_SHIFT_PASSIVE
 		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		real_name = name
@@ -121,7 +119,7 @@
 		to_chat(src,span_warning("You can't do a shift while passively shifting!"))
 		return FALSE
 
-	if(shifted_out)
+	if(is_incorporeal())
 		to_chat(src,span_warning("You can't return to the physical world yet!"))
 		return FALSE
 
@@ -142,7 +140,6 @@
 	canmove = FALSE
 	is_shifting = TRUE
 
-	shifted_out = TRUE
 	automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 	real_name = name
 	name = "Something"
@@ -165,7 +162,6 @@
 	force_max_speed = TRUE
 
 	spawn(300)
-		shifted_out = FALSE
 		name = real_name
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
@@ -221,7 +217,7 @@
 
 	var/turf/T = get_turf(src)
 
-	if(shifted_out)
+	if(is_incorporeal())
 		to_chat(src,span_warning("You must be in the physical world to create blood!"))
 		return FALSE
 

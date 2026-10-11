@@ -81,6 +81,7 @@
 	return ..(NORTH)
 
 /obj/structure/reflector/Crossed(atom/movable/AM)	//Ok so this is my solution to garbage projectile code. Please god let this work.
+	. = ..()
 	if(istype(AM,/obj/item/projectile))
 		AM.Bump(src)
 

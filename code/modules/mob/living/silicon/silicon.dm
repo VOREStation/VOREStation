@@ -425,3 +425,6 @@
 
 /mob/living/silicon/can_feed()
 	return FALSE
+
+/mob/living/silicon/CanObtainCentcommMessage()
+	return istype(common_radio, /obj/item/radio)

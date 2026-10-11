@@ -66,6 +66,10 @@
 	#define COMPONENT_LIVING_CANCEL_LIFE_PROCESSING (1<<0)
 ///From living/set_resting(): (new_resting, silent, instant)
 #define COMSIG_LIVING_RESTING "living_resting"
+///When a mob slips. Called on /turf/simulated/handle_slip()
+#define COMSIG_ON_LIVING_SLIP "living_slip"
+///When after every foced movement a mob slides due to a lube or ice-like slip. Called on /turf/simulated/slip_slide()
+#define COMSIG_AFTER_LIVING_SLIDE "living_slide"
 
 ///from base of element/bane/activate(): (item/weapon, mob/user)
 #define COMSIG_LIVING_BANED "living_baned"

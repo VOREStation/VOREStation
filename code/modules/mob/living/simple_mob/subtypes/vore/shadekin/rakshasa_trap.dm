@@ -56,6 +56,7 @@
 
 
 /obj/structure/gootrap/Crossed(AM as mob|obj)
+	. = ..()
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
 		if(L.m_intent == I_RUN)
@@ -69,4 +70,3 @@
 				anchored = 0
 			deployed = 0
 			message_admins("[key_name(usr)] has stepped in the goo trap.")
-	..()

@@ -4,4 +4,4 @@
 
 /mob/living/simple_mob/clowns/big/c_shift/Initialize(mapload)
 	. = ..()
-	comp = LoadComponent(comp)
+	AddComponent(/datum/component/shadekin/phase_only)

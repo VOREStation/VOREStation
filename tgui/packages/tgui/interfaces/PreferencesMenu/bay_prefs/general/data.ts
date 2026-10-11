@@ -410,6 +410,8 @@ export type Species = {
   flags: SpeciesFlags;
   spawn_flags: SpawnFlags;
   appearance_flags: AppearanceFlags;
+  whitelisted: BooleanLike;
+  disabled: BooleanLike;
 };
 
 export enum TraitPrefType {

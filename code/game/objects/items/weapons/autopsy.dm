@@ -68,7 +68,7 @@
 
 /obj/item/autopsy_scanner/verb/print_data()
 	set category = "Object"
-	set src in view(usr, 1)
+	set src in view(1)
 	set name = "Print Data"
 	if(usr.stat || !(ishuman(usr)))
 		to_chat(usr, "No.")

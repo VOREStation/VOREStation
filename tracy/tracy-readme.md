@@ -8,6 +8,7 @@ byond-tracy glues together a byond server with the tracy profiler allowing you t
 ## supported byond versions
 | windows  | linux    |
 | -------- | -------- |
+| 516.1688 | 516.1688 |
 | 516.1687 | 516.1687 |
 | 516.1686 | 516.1686 |
 | 516.1685 | 516.1685 |
@@ -54,7 +55,7 @@ byond-tracy glues together a byond server with the tracy profiler allowing you t
 *except `515.1612` on Linux as there was no release*
 
 ## supported tracy versions
-`0.8.1` `0.8.2` `0.9.0` `0.9.1` `0.10.0` `0.11.0` `0.11.1` `0.12.0` `0.13.0` `0.13.1`
+`0.8.1` `0.8.2` `0.9.*` `0.10.*` `0.11.*` `0.12.*` `0.13.*` `0.14.0` `0.14.1`
 
 ## usage
 simply call `init` from `prof.dll` to begin collecting profile data and connect using [tracy-server](https://github.com/wolfpld/tracy/releases) `Tracy.exe`
@@ -89,7 +90,7 @@ UTRACY_BIND_PORT
 
 You can download a precompiled byond-tracy executable from the [latest release](https://github.com/spacestation13/byond-tracy/releases/latest).
 
-The Linux one is unlikely to work on your system. No guarantee or warranty given for the binaries.
+**The Linux one is unlikely to work on your system.** No guarantee or warranty given for the binaries.
 
 no build system included, simply invoke your preferred c11 compiler.
 examples:
@@ -107,11 +108,11 @@ gcc -std=c11 -m32 -shared -fPIC -Ofast -s -DNDEBUG prof.c -pthread -o libprof.so
 
 ## developing
 
-To add offsets (required for every new BYOND version), you find them here: https://spacestation13.github.io/byond-tracy-offset-extractor
+Offsets (required for every new BYOND version), are from here: https://spacestation13.github.io/byond-tracy-offset-extractor
 
-It's already in copypaste form for the `offsets/` headers (non-experimental). Be sure to update the README table.
+They get automatically PR'd when a new BYOND version releases.
 
-Then just PR it and maybe ping ZeWaka in #tooling-questions to merge it.
+Feel free to submit PRs and maybe ping ZeWaka in coderbus #tooling-questions to merge it.
 
 ## LICENSE
 
