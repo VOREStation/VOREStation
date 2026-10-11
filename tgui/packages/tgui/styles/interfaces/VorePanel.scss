@@ -68,7 +68,8 @@
 .VorePanel__Floating {
   height: auto;
   max-height: 325px;
-  width: 580px;
+  width: auto;
+  max-width: 580px;
 
   background-color: var(--color-section);
   backdrop-filter: var(--blur-medium);
