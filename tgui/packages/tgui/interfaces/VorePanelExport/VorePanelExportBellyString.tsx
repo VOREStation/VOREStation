@@ -263,14 +263,8 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += `Addons:<br>${GetAddons(addons)}<br><br>`;
 
   result += '<b>== Type and Specifics ==</b><br>';
-  const arr: string[] = [];
-  let parsedFlag = vore_pref_type_flags;
-  while (parsedFlag !== 0) {
-    arr.push(String(parsedFlag));
-    parsedFlag = Math.floor(parsedFlag / 2);
-  }
   for (const flag in VorePrefFlags) {
-    if (arr.includes(flag)) {
+    if ((vore_pref_type_flags & Number(flag)) !== 0) {
       result += `<span class="badge text-bg-success">${VorePrefFlags[flag]}</span>`;
     } else {
       result += `<span class="badge text-bg-danger">${VorePrefFlags[flag]}</span>`;
