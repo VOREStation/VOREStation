@@ -597,7 +597,7 @@
 			return 0
 	*/
 	user.setClickCooldown(user.get_attack_speed(tool))
-	if(!do_after(user, 1 SECOND, owner))
+	if(!do_after(user, 1 SECOND * tool.toolspeed, owner))
 		to_chat(user, span_warning("You must stand still to do that."))
 		return 0
 
