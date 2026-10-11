@@ -101,7 +101,7 @@
 	var/disturbed_sleep = rand(1,100) //spawning of mobs, for now only the trash panda.
 	if(disturbed_sleep <= wake_chance)
 		new /mob/living/simple_mob/animal/passive/raccoon(get_turf(source))
-		source.visible_message("A raccoon jumps out of the trash!.")
+		source.visible_message("A raccoon jumps out of the trash!")
 
 	// Check if we should delete on depletion
 	if(!loot_depletion)
