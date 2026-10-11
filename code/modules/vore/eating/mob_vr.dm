@@ -97,7 +97,7 @@
 	var/belly_rub_target = null
 	var/soulcatcher_pref_flags = NONE			//Default disabled
 	var/persistend_edit_mode = FALSE
-	var/vore_pref_type_flags = VORE_TYPE_FLAG_ORAL
+	var/vore_pref_type_flags = ALL // Set to all by default to allow mobs to be devoured in all ways. Players should adjust to their liking
 
 	var/voice_freq = 42500	// Preference for character voice frequency
 	var/emote_sound_mode = EMOTE_SOUND_VOICE_FREQ

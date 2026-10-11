@@ -844,6 +844,9 @@
 		var/mob/mob_prey = prey
 		if(owner.stat == DEAD)
 			return
+		if(!(mob_prey.vore_pref_type_flags & vore_pref_type_flags))
+			to_chat(owner, span_vwarning("Vore type preferences do not align!"))
+			return
 		if(mob_prey.buckled)
 			mob_prey.buckled.unbuckle_mob()
 		if(mob_prey.ckey)
