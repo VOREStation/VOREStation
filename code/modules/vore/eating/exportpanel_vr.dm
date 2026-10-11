@@ -34,7 +34,6 @@
 	var/list/data = list()
 	var/mob/living/host = user
 
-
 	for(var/belly in host.vore_organs)
 		if(isbelly(belly))
 			var/obj/belly/B = belly
