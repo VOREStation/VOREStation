@@ -274,6 +274,7 @@
 	var/last_transfer_log = 0				// Prevent server message spam!
 	var/next_transfer_log = 0				// Prevent server message spam!
 	var/entrance_log_count = 0				// Entrance count before spawm
+	var/vore_pref_type_flags = VORE_TYPE_FLAG_ORAL		// Vore type and special attributes for user flagging used for pref checking
 	flags = NOREACT|REMOTEVIEW_ON_ENTER		// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
@@ -282,6 +283,7 @@
 	"name",
 	"desc",
 	"display_name",
+	"vore_pref_type_flags",
 	"absorbed_desc",
 	"message_mode",
 	"vore_sound",
@@ -1342,6 +1344,7 @@
 	dupe.name = name
 	dupe.desc = desc
 	dupe.display_name = display_name
+	dupe.vore_pref_type_flags = vore_pref_type_flags
 	dupe.message_mode = message_mode
 	dupe.absorbed_desc = absorbed_desc
 	dupe.vore_sound = vore_sound

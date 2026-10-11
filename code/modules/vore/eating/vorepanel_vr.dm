@@ -748,6 +748,14 @@
 				host.client.prefs_vr.no_latejoin_prey_warning_persists = host.no_latejoin_prey_warning_persists
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_vore_pref_types")
+			var/toggle_pref_flag = params["val"]
+			if(!(toggle_pref_flag in GLOB.vore_pref_types))
+				return FALSE
+			host.vore_pref_type_flags ^= GLOB.vore_pref_types[toggle_pref_flag]
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.vore_pref_type_flags = host.vore_pref_type_flags
+			return TRUE
 		//Soulcatcher prefs
 		if("toggle_soulcatcher_allow_capture")
 			host.soulcatcher_pref_flags ^= SOULCATCHER_ALLOW_CAPTURE

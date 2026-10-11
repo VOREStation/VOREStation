@@ -3,6 +3,7 @@ import {
   ModeSpan,
   STRUGGLE_OUTSIDE_ABSORBED_MESSAGE,
   STRUGGLE_OUTSIDE_MESSAGE,
+  VorePrefFlags,
 } from './constants';
 import {
   formatListEmotes,
@@ -34,6 +35,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     mode,
     addons,
     item_mode,
+    vore_pref_type_flags,
 
     // Options
     digest_brute,
@@ -252,7 +254,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
   const temperatureCelsius = Math.round((bellytemperature - 273.15) * 10) / 10;
   const temperatureSpan = `<span${temperature_damage ? ' style="color: red;"' : ''}>${temperatureCelsius}°C</span>`;
 
-  result += `${name} - (${damageSpans}/${temperatureSpan}) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
+  result += `${name} (${display_name}) - (${damageSpans}/${temperatureSpan}) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
 
   result += '</button></h2>';
 
@@ -260,6 +262,22 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<div class="accordion-body">';
   result += `Addons:<br>${GetAddons(addons)}<br><br>`;
 
+  result += '<b>== Type and Specifics ==</b><br>';
+  const arr: string[] = [];
+  let parsedFlag = vore_pref_type_flags;
+  while (parsedFlag !== 0) {
+    arr.push(String(parsedFlag));
+    parsedFlag = Math.floor(parsedFlag / 2);
+  }
+  for (const flag in VorePrefFlags) {
+    if (arr.includes(flag)) {
+      result += `<span class="badge text-bg-success">${VorePrefFlags[flag]}</span>`;
+    } else {
+      result += `<span class="badge text-bg-danger">${VorePrefFlags[flag]}</span>`;
+    }
+  }
+
+  result += '<br><hr>';
   result += '<b>== Descriptions ==</b><br>';
 
   const infoFields = [

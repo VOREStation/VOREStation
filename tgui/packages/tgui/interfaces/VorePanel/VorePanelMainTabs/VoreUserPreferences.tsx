@@ -62,6 +62,7 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
     soulcatcher_allow_deletion,
     soulcatcher_allow_takeover,
     max_voreoverlay_alpha,
+    vore_pref_types,
   } = prefs;
 
   const preferences: LocalPrefs = {
@@ -767,6 +768,7 @@ export const VoreUserPreferences = (props: { prefs: PrefData }) => {
         devourable={devourable}
         preferences={preferences}
         dropdownPreferences={dropdown_preferences}
+        vore_pref_types={vore_pref_types}
       />
       <VoreUserPreferencesSpontaneous
         can_be_drop_prey={can_be_drop_prey}

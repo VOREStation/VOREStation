@@ -23,6 +23,7 @@ export type Belly = {
   mode: string;
   addons: string[];
   item_mode: string;
+  vore_pref_type_flags: number;
 
   // Options
   digest_brute: number;
