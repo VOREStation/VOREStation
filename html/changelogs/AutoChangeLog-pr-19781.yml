@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "FBP Diona no longer spawn dead"
-  - qol: "Diona nymphs no longer suicide after being mindless for 6 seconds"
-  - balance: "FBP diona shells no longer take 30% more damage from brute and burn"
