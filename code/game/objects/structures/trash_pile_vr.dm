@@ -120,7 +120,10 @@
 
 		//Do the searching
 		busy = TRUE
-		if(do_after(user, rand(4 SECONDS,6 SECONDS), target = src))
+		var/search_time = rand(4 SECONDS,6 SECONDS)
+		if(HAS_TRAIT(H, TRAIT_SCAVENGER))
+			search_time = 1 SECONDS
+		if(do_after(user, search_time, target = src))
 			if(hider && prob(50))
 				//If there was a hider, chance to reveal them
 				to_chat(hider,span_danger("You've been discovered!"))

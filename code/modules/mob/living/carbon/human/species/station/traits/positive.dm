@@ -948,3 +948,13 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
 	add_verb(H, /mob/living/proc/name_change_verb)
+
+/datum/trait/positive/scavenger
+	name ="Scavenger"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster!"
+	cost = 2
+	custom_only = FALSE
+
+/datum/trait/positive/scavenger/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER, ROUNDSTART_TRAIT)
