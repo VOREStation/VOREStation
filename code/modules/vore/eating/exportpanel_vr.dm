@@ -23,13 +23,17 @@
 	if(..())
 		return TRUE
 
+/datum/vore_look/export_panel/tgui_static_data(mob/user)
+	. = ..()
+	.["vore_pref_type_list"] = GLOB.vore_pref_types
+	.["db_version"] = "0.3"
+	.["db_repo"] = "vorestation"
+	.["mob_name"] = host.read_preference(/datum/preference/name/real_name)
+
 /datum/vore_look/export_panel/tgui_data(mob/user)
 	var/list/data = list()
 	var/mob/living/host = user
 
-	data["db_version"] = "0.3"
-	data["db_repo"] = "vorestation"
-	data["mob_name"] = host.read_preference(/datum/preference/name/real_name)
 
 	for(var/belly in host.vore_organs)
 		if(isbelly(belly))
