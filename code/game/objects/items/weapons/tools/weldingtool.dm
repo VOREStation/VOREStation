@@ -72,7 +72,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
+		if(!S || S.robotic < ORGAN_ROBOT || S.open == BONE_RETRACTED)
 			return ..()
 
 		//VOREStation Add - No welding nanoform limbs
