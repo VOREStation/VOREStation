@@ -8,6 +8,7 @@ import {
   Image,
   Input,
   LabeledList,
+  ProgressBar,
   Section,
   Stack,
 } from 'tgui-core/components';
@@ -249,46 +250,69 @@ export const VoreContentsPanel = (props: {
               <Stack wrap="wrap" justify="center" align="center">
                 {displayedContents?.map((thing) => (
                   <Stack.Item key={thing.ref} basis="32%">
-                    <Button
-                      width="64px"
-                      selected={thing.ref === selectedAtom?.ref}
-                      color={thing.absorbed ? 'purple' : stats[thing.stat]}
-                      style={{
-                        verticalAlign: 'middle',
-                        marginRight: '5px',
-                        borderRadius: '20px',
-                      }}
-                      onClick={() => {
-                        if (selectedAtom?.ref === thing.ref) {
-                          setSelectedAtom(null);
-                        } else {
-                          setSelectedAtom(thing);
-                        }
-                      }}
-                    >
-                      <Image
-                        src={`data:image/jpeg;base64,${thing.icon}`}
-                        width="64px"
-                        height="64px"
-                        style={{
-                          marginLeft: '-5px',
-                        }}
-                      />
-                    </Button>
-                    {thing.ref === selectedAtom?.ref &&
-                      (!!stats[thing.stat] || !!thing.absorbed) && (
-                        <>
-                          <ColorBox
-                            color={
-                              thing.absorbed ? 'purple' : stats[thing.stat]
+                    <Stack>
+                      <Stack.Item>
+                        <Button
+                          width="64px"
+                          selected={thing.ref === selectedAtom?.ref}
+                          color={thing.absorbed ? 'purple' : stats[thing.stat]}
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '5px',
+                            borderRadius: '20px',
+                          }}
+                          onClick={() => {
+                            if (selectedAtom?.ref === thing.ref) {
+                              setSelectedAtom(null);
+                            } else {
+                              setSelectedAtom(thing);
                             }
+                          }}
+                        >
+                          <Image
+                            src={`data:image/jpeg;base64,${thing.icon}`}
+                            width="64px"
+                            height="64px"
+                            style={{
+                              marginLeft: '-5px',
+                            }}
                           />
-                          <Box inline preserveWhitespace>
-                            {' '}
-                          </Box>
-                        </>
-                      )}
-                    {thing.name}
+                        </Button>
+                        {thing.ref === selectedAtom?.ref &&
+                          (!!stats[thing.stat] || !!thing.absorbed) && (
+                            <>
+                              <ColorBox
+                                color={
+                                  thing.absorbed ? 'purple' : stats[thing.stat]
+                                }
+                              />
+                              <Box inline preserveWhitespace>
+                                {' '}
+                              </Box>
+                            </>
+                          )}
+                      </Stack.Item>
+                      <Stack.Item grow>
+                        <Stack vertical g={0}>
+                          <Stack.Item>
+                            <ProgressBar
+                              value={thing.damage}
+                              ranges={{
+                                bad: [0, 0.2],
+                                average: [0.2, 0.8],
+                                good: [0.8, 1],
+                              }}
+                            />
+                          </Stack.Item>
+                          {!!thing.nutrition && (
+                            <Stack.Item>
+                              Nutrition: {thing.nutrition}
+                            </Stack.Item>
+                          )}
+                          <Stack.Item>{thing.name}</Stack.Item>
+                        </Stack>
+                      </Stack.Item>
+                    </Stack>
                   </Stack.Item>
                 ))}
               </Stack>
@@ -311,6 +335,21 @@ export const VoreContentsPanel = (props: {
                       }}
                     >
                       <Stack align="center">
+                        <Stack.Item grow>
+                          <ProgressBar
+                            value={thing.damage}
+                            ranges={{
+                              bad: [0, 0.2],
+                              average: [0.2, 0.8],
+                              good: [0.8, 1],
+                            }}
+                          />
+                        </Stack.Item>
+                        {!!thing.nutrition && (
+                          <Stack.Item grow>
+                            Nutrition: {thing.nutrition}
+                          </Stack.Item>
+                        )}
                         <Stack.Item grow>Interact</Stack.Item>
                         {thing.ref === selectedAtom?.ref && (
                           <ColorBox
