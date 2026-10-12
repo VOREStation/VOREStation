@@ -279,6 +279,27 @@
 				if(space_turf.edge & EAST)
 					our_image.pixel_x = -112
 
+			if(lad.x == 1)
+				add_edge_images(our_image, mirror_from, -1, 0)
+
+			if(lad.x == world.maxx)
+				add_edge_images(our_image, mirror_from, 1, 0)
+
+			if(lad.y == 1)
+				add_edge_images(our_image, mirror_from, 0, -1)
+
+			if(lad.y == world.maxy)
+				add_edge_images(our_image, mirror_from, 0, 1)
+
+			if(lad.x == 1 && lad.y == 1)
+				add_corner_images(our_image, mirror_from, -1, -1)
+			else if(lad.x == 1 && lad.y == world.maxy)
+				add_corner_images(our_image, mirror_from, -1, 1)
+			else if(lad.x == world.maxx && lad.y == 1)
+				add_corner_images(our_image, mirror_from, 1, -1)
+			else if(lad.x == world.maxx && lad.y == world.maxy)
+				add_corner_images(our_image, mirror_from, 1, 1)
+
 			turfs[lad] = our_image
 
 	for(var/obj/machinery/camera/camera as anything in SScameras.cameras)
@@ -301,3 +322,18 @@
 		var/image/new_static = turfs[obscured_turf]
 		active_static_images += new_static
 		obscuredTurfs[obscured_turf] = new_static
+
+/datum/camerachunk/proc/add_edge_images(image/our_image, atom/mirror_from, x_dir, y_dir)
+	for(var/i in 1 to 8)
+		var/mutable_appearance/MA = mutable_appearance(mirror_from)
+		MA.pixel_x = i * 32 * x_dir
+		MA.pixel_y = i * 32 * y_dir
+		our_image.overlays += MA
+
+/datum/camerachunk/proc/add_corner_images(image/our_image, atom/mirror_from, x_dir, y_dir)
+	for(var/x in 1 to 8)
+		for(var/y in 1 to 8)
+			var/mutable_appearance/MA = mutable_appearance(mirror_from)
+			MA.pixel_x = x * 32 * x_dir
+			MA.pixel_y = y * 32 * y_dir
+			our_image.overlays += MA
