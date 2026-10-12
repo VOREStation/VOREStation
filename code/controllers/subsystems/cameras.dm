@@ -75,11 +75,11 @@ SUBSYSTEM_DEF(cameras)
 /datum/controller/subsystem/cameras/proc/generate_chunk(x, y, z)
 	x = GET_CHUNK_COORD(x)
 	y = GET_CHUNK_COORD(y)
-	var/turf/lowest = get_lowest_turf(locate(x, y, z))
-	var/key = "[x],[y],[lowest.z]"
+	//var/turf/lowest = get_lowest_turf(locate(x, y, z))
+	var/key = "[x],[y],[z]"
 	. = chunks[key]
 	if(!.)
-		. = new /datum/camerachunk(x, y, lowest.z)
+		. = new /datum/camerachunk(x, y, z)
 		chunks[key] = .
 
 /// Updates what the camera eye can see.

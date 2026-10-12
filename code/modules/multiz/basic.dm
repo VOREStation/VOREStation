@@ -36,22 +36,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/map_data)
 		return null
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
 
-/proc/get_lowest_turf(atom/ref)
-	var/turf/us = get_turf(ref)
-	var/turf/next = GetBelow(us)
-	while(next)
-		us = next
-		next = GetBelow(us)
-	return us
-
-/proc/get_highest_turf(atom/ref)
-	var/turf/us = get_turf(ref)
-	var/turf/next = GetAbove(us)
-	while(next)
-		us = next
-		next = GetAbove(us)
-	return us
-
 /proc/GetConnectedZlevels(z)
 	. = list(z)
 	for(var/level = z, HasBelow(level), level--)

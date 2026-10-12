@@ -246,8 +246,8 @@
 	src.x = x
 	src.y = y
 	src.lower_z = lower_z
-	var/turf/upper_turf = get_highest_turf(locate(x, y, lower_z))
-	src.upper_z = upper_turf.z
+	// var/turf/upper_turf = get_highest_turf(locate(x, y, lower_z))
+	src.upper_z = lower_z
 
 	var/list/cameras = src.cameras
 	var/list/turfs = src.turfs
