@@ -205,7 +205,7 @@
 
 /obj/machinery/mineral/stacking_machine/Bumped(AM)
 	. = ..()
-	if(!isitem(AM))
+	if(!isitem(AM) || QDELETED(AM))
 		return
 	var/turf/output = get_step(src,output_dir)
 	if(!output)
