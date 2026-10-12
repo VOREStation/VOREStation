@@ -98,18 +98,6 @@ SUBSYSTEM_DEF(cameras)
 		var/x2 = min(world.maxx, eye_turf.x + static_range)
 		var/y2 = min(world.maxy, eye_turf.y + static_range)
 
-		if(eye_turf.x - static_range <= edge_padding)
-			x1 = max(1, x1 - edge_padding)
-
-		if(eye_turf.y - static_range <= edge_padding)
-			y1 = max(1, y1 - edge_padding)
-
-		if(eye_turf.x + static_range >= world.maxx - edge_padding)
-			x2 = min(world.maxx, x2 + edge_padding)
-
-		if(eye_turf.y + static_range >= world.maxy - edge_padding)
-			y2 = min(world.maxy, y2 + edge_padding)
-
 		x1 = GET_CHUNK_COORD(x1)
 		y1 = GET_CHUNK_COORD(y1)
 
