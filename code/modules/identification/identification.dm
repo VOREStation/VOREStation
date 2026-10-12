@@ -93,7 +93,7 @@
 	holder.description_info = unidentified_description_info
 	holder.description_fluff = null
 	holder.description_antag = null
-	holder.description_silicon
+	holder.description_silicon = null
 
 // Makes a name for an object that is not identified. It picks one string out of each list inside naming_list.
 /datum/identification/proc/generate_unidentified_name()
