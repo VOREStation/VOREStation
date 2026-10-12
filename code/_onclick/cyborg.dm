@@ -158,13 +158,13 @@
 		return
 	AIShiftClick(user)
 
- // Bolts doors. Forwards to AI code.
+// Bolts doors. Forwards to AI code.
 /obj/machinery/door/airlock/BorgCtrlClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
 	ctrl_click_ai(user)
 
- // Electrifies doors. Forwards to AI code.
+// Electrifies doors. Forwards to AI code.
 /obj/machinery/door/airlock/BorgAltClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
@@ -186,13 +186,13 @@
 
 
 // Turrets
- //turret control on/off. Forwards to AI code.
+//turret control on/off. Forwards to AI code.
 /obj/machinery/turretid/BorgCtrlClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
 	ctrl_click_ai(user)
 
- //turret lethal on/off. Forwards to AI code.
+//turret lethal on/off. Forwards to AI code.
 /obj/machinery/turretid/BorgAltClick(mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
