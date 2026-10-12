@@ -1,0 +1,6 @@
+author: "ReoDaProtovali"
+delete-after: True
+changes:
+  - bugfix: "Fixes cable coil being used before repairs are actually done."
+  - bugfix: "do_after progress bar when repairing should now appear over the mob it is owned by, instead of the limb organ itself."
+  - bugfix: "Fixes robo_repair not accounting for toolspeed"
