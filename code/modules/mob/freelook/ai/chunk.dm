@@ -266,6 +266,19 @@
 		for(var/turf/lad as anything in CORNER_BLOCK(chunk_corner, CHUNK_SIZE, CHUNK_SIZE)) //we use CHUNK_SIZE for width and height here as it handles subtracting 1 from those two parameters by itself
 			var/image/our_image = new /image(mirror_from)
 			our_image.loc = lad
+
+			// See SSskybox
+			if(istype(lad, /turf/space))
+				var/turf/space/space_turf = lad
+				if(space_turf.edge & SOUTH)
+					our_image.pixel_y = 112
+				if(space_turf.edge & NORTH)
+					our_image.pixel_y = -112
+				if(space_turf.edge & WEST)
+					our_image.pixel_x = 112
+				if(space_turf.edge & EAST)
+					our_image.pixel_x = -112
+
 			turfs[lad] = our_image
 
 	for(var/obj/machinery/camera/camera as anything in SScameras.cameras)

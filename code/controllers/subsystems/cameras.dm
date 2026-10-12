@@ -90,10 +90,28 @@ SUBSYSTEM_DEF(cameras)
 	var/turf/eye_turf = get_turf(eye)
 	if(eye.loc)
 		var/static_range = eye.static_visibility_range
+		// Check SSskybox as for why
+		var/edge_padding = 5
+
 		var/x1 = max(1, eye_turf.x - static_range)
 		var/y1 = max(1, eye_turf.y - static_range)
 		var/x2 = min(world.maxx, eye_turf.x + static_range)
 		var/y2 = min(world.maxy, eye_turf.y + static_range)
+
+		if(eye_turf.x - static_range <= edge_padding)
+			x1 = max(1, x1 - edge_padding)
+
+		if(eye_turf.y - static_range <= edge_padding)
+			y1 = max(1, y1 - edge_padding)
+
+		if(eye_turf.x + static_range >= world.maxx - edge_padding)
+			x2 = min(world.maxx, x2 + edge_padding)
+
+		if(eye_turf.y + static_range >= world.maxy - edge_padding)
+			y2 = min(world.maxy, y2 + edge_padding)
+
+		x1 = GET_CHUNK_COORD(x1)
+		y1 = GET_CHUNK_COORD(y1)
 
 		for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 			for(var/y = y1; y <= y2; y += CHUNK_SIZE)
