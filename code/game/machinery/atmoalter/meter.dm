@@ -1,6 +1,6 @@
 /obj/machinery/meter
-	name = "meter"
-	desc = "It measures something."
+	name = "digital gas meter"
+	desc = "This device attaches to a pipe, and provide a readout of the contents pressure and temperature."
 	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
@@ -90,11 +90,11 @@
 	else if(target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
-			. += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+			. += span_notice("The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)")
 		else
-			. += "The sensor error light is blinking."
+			. += span_notice("The sensor error light is blinking.")
 	else
-		. += "The connect error light is blinking."
+		. += span_notice("The connect error light is blinking.")
 
 /obj/machinery/meter/Click()
 

@@ -1,7 +1,7 @@
 ////////////////////DOORBELL CHIME///////////////////////////////////////
 /obj/machinery/doorbell_chime
 	name = "doorbell chime"
-	desc = "Small wall-mounted chime triggered by a doorbell"
+	desc = "Small wall-mounted chime triggered by a doorbell."
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "dbchime-standby"
 	use_power = USE_POWER_IDLE

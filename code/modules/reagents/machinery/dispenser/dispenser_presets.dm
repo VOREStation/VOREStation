@@ -60,7 +60,7 @@
 
 /obj/machinery/chemical_dispenser/bar_soft
 	name = "soft drink dispenser"
-	desc = "A soda machine."
+	desc = "A decadent machine, offering all kinds of sodas, and a few others, on tap."
 	icon_state = "soda_dispenser"
 	ui_title = "Soda Dispenser"
 	accept_drinking = TRUE

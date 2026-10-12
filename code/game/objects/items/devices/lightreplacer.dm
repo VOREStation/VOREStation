@@ -65,7 +65,7 @@
 /obj/item/lightreplacer/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
-		. += "It has [uses] lights remaining."
+		. += span_notice("It has [uses] lights remaining.")
 
 /obj/item/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_GLASS || istype(W, /obj/item/stack/material/cyborg/glass))

@@ -310,7 +310,7 @@
 
 /obj/item/toy/figure/Initialize(mapload)
 	. = ..()
-	desc = "A \"Space Life\" brand [name]"
+	desc = "A \"Space Life\" brand [name]."
 
 /obj/item/toy/figure/attack_self(mob/user)
 	. = ..(user)

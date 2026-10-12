@@ -61,7 +61,7 @@
 /obj/item/extinguisher/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) == 0)
-		. += "[src] has [src.reagents.total_volume] units of foam left!"
+		. += span_notice("[src] has [src.reagents.total_volume] units of foam left!")
 
 /obj/item/extinguisher/attack_self(mob/user)
 	. = ..(user)
