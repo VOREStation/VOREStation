@@ -91,8 +91,6 @@ SUBSYSTEM_DEF(cameras)
 	if(eye.loc)
 		var/static_range = eye.static_visibility_range
 		// Check SSskybox as for why
-		var/edge_padding = 5
-
 		var/x1 = max(1, eye_turf.x - static_range)
 		var/y1 = max(1, eye_turf.y - static_range)
 		var/x2 = min(world.maxx, eye_turf.x + static_range)
