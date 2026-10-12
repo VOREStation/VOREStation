@@ -37,6 +37,7 @@
 	manual_unbuckle(user)
 
 /obj/effect/plant/Crossed(atom/movable/O)
+	. = ..()
 	if(O.is_incorporeal())
 		return
 	if(isliving(O))

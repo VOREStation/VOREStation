@@ -33,6 +33,8 @@
 		return FALSE
 	if(!pred.can_be_drop_pred || !prey.can_be_drop_prey)
 		return FALSE
+	if((pred in prey.buckled_mobs) || (prey in pred.buckled_mobs))
+		return FALSE
 	return TRUE
 
 /proc/can_stumble_vore(mob/living/pred, mob/living/prey)
@@ -75,7 +77,7 @@
 		return FALSE
 	if(!pred.slip_vore && !prey.slip_vore)
 		return FALSE
-	if(!pred.is_slipping && !prey.is_slipping)
+	if(!pred.slip_timer && !prey.slip_timer)
 		return FALSE
 	if(world.time <= prey.slip_protect)
 		return FALSE

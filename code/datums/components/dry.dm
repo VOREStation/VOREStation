@@ -1,5 +1,5 @@
 /datum/component/dry
-	var/turf/simulated/T
+	var/turf/T
 	var/obj/effect/decal/cleanable/blood/B
 
 /datum/component/dry/Initialize()
@@ -14,6 +14,6 @@
 	T = get_turf(parent)
 	B = locate(/obj/effect/decal/cleanable/blood) in T
 
-	T.wet_floor_finish()
+	T.MakeDry(TURF_WET_WATER, TRUE)
 	if(B)
 		B.dry()

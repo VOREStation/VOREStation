@@ -29,7 +29,7 @@
 
 
 	var/list/beacons = list()
-	for(var/obj/item/mecha_parts/mecha_tracking/TR in world)
+	for(var/obj/item/mecha_parts/mecha_tracking/TR in GLOB.mech_trackers)
 		var/list/tr_data = TR.tgui_data(user)
 		if(tr_data)
 			beacons.Add(list(tr_data))
@@ -75,6 +75,14 @@
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion2"
+
+/obj/item/mecha_parts/mecha_tracking/Initialize(mapload)
+	. = ..()
+	GLOB.mech_trackers += src
+
+/obj/item/mecha_parts/mecha_tracking/Destroy()
+	GLOB.mech_trackers -= src
+	. = ..()
 
 /obj/item/mecha_parts/mecha_tracking/tgui_data(mob/user)
 	var/list/data = ..()

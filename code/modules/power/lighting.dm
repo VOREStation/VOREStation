@@ -1199,6 +1199,16 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/turf/our_turf = get_turf(src)
+		if(!our_turf)
+			return
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		air_contents.volume = 2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*air_contents.volume/(R_IDEAL_GAS_EQUATION*T20C))
+		our_turf.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade

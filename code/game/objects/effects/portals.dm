@@ -22,6 +22,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	return
 
 /obj/effect/portal/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		if(!event)
 			return

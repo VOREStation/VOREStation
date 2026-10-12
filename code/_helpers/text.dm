@@ -794,3 +794,13 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 ///Properly format a string of text by using replacetext()
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
+
+GLOBAL_LIST_INIT(hex_characters, list("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"))
+
+/proc/random_string(length, list/characters)
+	. = ""
+	for(var/i in 1 to length)
+		. += pick(characters)
+
+/proc/random_short_color()
+	return random_string(3, GLOB.hex_characters)

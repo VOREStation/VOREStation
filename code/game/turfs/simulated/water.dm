@@ -125,6 +125,9 @@
 			to_chat(L, span_warning("You climb out of \the [src]."))
 	..()
 
+/turf/simulated/floor/water/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
+	return
+
 /turf/simulated/floor/water/deep
 	name = "deep water"
 	desc = "A body of water.  It seems quite deep."
