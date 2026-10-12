@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - refactor: "removed a duplicated medical side effects file, and cleaned up the code to stop lifetick memory bloat"
