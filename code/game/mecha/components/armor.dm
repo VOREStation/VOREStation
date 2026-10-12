@@ -1,6 +1,7 @@
 
 /obj/item/mecha_parts/component/armor
 	name = "mecha plating"
+	desc = "Plates of armor meant to shield a mech. What? Did you expect anything else?"
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "armor"
 	w_class = ITEMSIZE_HUGE

@@ -85,13 +85,13 @@
 		. += "\The [src] has a \the [cell] attached."
 
 		if(cell.charge <= cell.maxcharge*0.25)
-			. += "It appears to have a low amount of power remaining."
+			. += span_notice("It appears to have a low amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
-			. += "It appears to have an average amount of power remaining."
+			. += span_notice("It appears to have an average amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
-			. += "It appears to have an above average amount of power remaining."
+			. += span_notice("It appears to have an above average amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
-			. += "It appears to have a high amount of power remaining."
+			. += span_notice("It appears to have a high amount of power remaining.")
 
 /obj/item/flashlight/attack_self(mob/user)
 	. = ..(user)
