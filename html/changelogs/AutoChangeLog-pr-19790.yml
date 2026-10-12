@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Add a 'Silicon Description' like the already present 'Antag Description' and 'Flavor Description' helpers"
