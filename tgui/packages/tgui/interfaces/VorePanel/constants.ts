@@ -122,9 +122,9 @@ export const modeToTooltip = {
 } as const;
 
 export const typeToTooltip = {
-  'Oral Vore': 'The act of consuming a prey with the mouth .',
+  'Oral Vore': 'The act of consuming a prey with the mouth.',
   'Anal Vore': 'The act of consuming a prey with the rearhole.',
-  'Cock Vore': 'The act of consuming a prey with a cock .',
+  'Cock Vore': 'The act of consuming a prey with a cock.',
   'Sheath Vore': 'The act of consuming a prey into the sheath.',
   'Bladder Vore': 'The act of consuming a prey into the bladder.',
   Unbirth: 'The act of consuming a prey with a pussy.',
@@ -138,7 +138,7 @@ export const typeToTooltip = {
     'The act of doing dirty / filthy things to a prey. Includes messy internals.',
   'High Damage':
     'The act of severely damaging the prey. (High damage bellies or high potency liquids)',
-  Plinko: 'Autoamtic transfer setups without much interaction.',
+  Plinko: 'Automatic transfer setups without much interaction.',
   'Other / Unlisted Vore': 'The act of consuming a prey in another manner.',
   'Cock Transformation': 'The act of transforming a prey into a cock.',
   'Pussy Transformation': 'The act of transforming a prey into a pussy.',
