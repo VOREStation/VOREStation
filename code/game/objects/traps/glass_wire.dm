@@ -60,6 +60,12 @@
 /obj/item/material/barbedwire/glass/attack_mob(mob/living/L)
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)
 
+	if(!ishuman(L)) // Only humans can take limb damage
+		if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE))
+			to_chat(L, span_danger("You narrowly avoid being cut by \the [src]!"))
+		break_wire()
+		return
+
 	var/target_zone = ran_zone()
 	var/obj/item/organ/external/affecting = L.get_organ(target_zone)
 
