@@ -755,6 +755,7 @@
 			host.vore_pref_type_flags ^= GLOB.vore_pref_types[toggle_pref_flag]
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.vore_pref_type_flags = host.vore_pref_type_flags
+			unsaved_changes = TRUE
 			return TRUE
 		//Soulcatcher prefs
 		if("toggle_soulcatcher_allow_capture")
