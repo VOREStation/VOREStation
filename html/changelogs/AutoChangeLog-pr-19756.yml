@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Large description improvement. Added descriptions to a number of objects missing them. Fixed a bunch of typos, and made a lot of them fit in span_notice, the blueish text."
-  - code_imp: "Shifted some lines around."
