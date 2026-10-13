@@ -34,7 +34,7 @@ export const VoreUserPreferencesDevouring = (props: {
               <LabeledList.Item label="Vore Types and Specifics">
                 <VorePanelEditCheckboxes
                   editMode
-                  tooltip="Select your vore type preferences and specificts for some topics."
+                  tooltip="Select your vore type preferences and specifics for some topics."
                   options={vore_pref_types}
                   action="toggle_vore_pref_types"
                   tooltipList={typeToTooltip}
