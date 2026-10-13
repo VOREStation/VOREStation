@@ -43,6 +43,8 @@
 
 /obj/item/material/barbedwire/glass/check_step(atom/movable/AM)
 	. = ..()
+	if(istype(AM,/obj/effect/abstract/directional_lighting)) // Shines when lit directly
+		flick("abb_glass_flash",src)
 	if(.) //Child did the work already.
 		return TRUE
 	if(!AM.is_incorporeal())
