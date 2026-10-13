@@ -1035,6 +1035,15 @@
 		dat += span_red(span_bold("LOOC DISABLED")) + "<br>"
 	dat += span_bold("Devourable:") + " [devourable ? span_green("Enabled") : span_red("Disabled")]<br>"
 	if(devourable)
+		dat += span_bold("Vore Types:") + " "
+		var/index = 0
+		for(var/Vore_pref, flag in GLOB.vore_pref_types)
+			if(vore_pref_type_flags & flag)
+				if(index > 0)
+					dat += ", "
+				dat += span_green(Vore_pref)
+				index++
+		dat += "<br>"
 		dat += span_bold("Healbelly permission:") + " [permit_healbelly ? span_green("Allowed") : span_red("Disallowed")]<br>"
 		dat += span_bold("Digestable:") + " [digestable ? span_green("Enabled") : span_red("Disabled")]<br>"
 		dat += span_bold("Absorption Permission:") + " [absorbable ? span_green("Allowed") : span_red("Disallowed")]<br>"
@@ -1077,14 +1086,6 @@
 	dat += span_bold("Global Vore Privacy is:") + " [eating_privacy_global ? span_green("Subtle") : span_red("Loud")]<br>"
 	dat += span_bold("Current active belly:") + " [vore_selected ? vore_selected.get_belly_name(TRUE) : "None"]<br>"
 	dat += span_bold("Belly rub target:") + " [belly_rub_target ? belly_rub_target : (vore_selected ? vore_selected.get_belly_name(TRUE) : "None")]<br>"
-	dat += span_bold("Vore Types:") + " "
-	var/index = 0
-	for(var/Vore_pref, flag in GLOB.vore_pref_types)
-		if(vore_pref_type_flags & flag)
-			if(index > 0)
-				dat += ", "
-			dat += span_green(Vore_pref)
-			index++
 
 	var/datum/browser/popup = new(user, "[name]mvp", "Vore Prefs: [src]", 300, 700, src)
 	popup.set_content(dat)
