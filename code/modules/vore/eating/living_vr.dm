@@ -1080,13 +1080,11 @@
 	dat += span_bold("Vore Types:") + " "
 	var/index = 0
 	for(var/Vore_pref, flag in GLOB.vore_pref_types)
-		if(index > 0)
-			dat += ", "
 		if(vore_pref_type_flags & flag)
+			if(index > 0)
+				dat += ", "
 			dat += span_green(Vore_pref)
-		else
-			dat += span_red(Vore_pref)
-		index++
+			index++
 
 	var/datum/browser/popup = new(user, "[name]mvp", "Vore Prefs: [src]", 300, 700, src)
 	popup.set_content(dat)
