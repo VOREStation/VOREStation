@@ -167,7 +167,7 @@
 	if(pred == prey)
 		return FALSE
 
-	if(!(prey.vore_pref_type_flags & belly.vore_pref_type_flags))
+	if(!((prey.vore_pref_type_flags & belly.vore_pref_type_flags) == prey.vore_pref_type_flags))
 		to_chat(user, span_vwarning("Vore type preferences do not align!"))
 		return FALSE
 
