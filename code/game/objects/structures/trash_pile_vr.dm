@@ -121,7 +121,7 @@
 		//Do the searching
 		busy = TRUE
 		var/search_time = rand(4 SECONDS,6 SECONDS)
-		if(HAS_TRAIT(H, TRAIT_SCAVENGER))
+		if(HAS_TRAIT(H, TRAIT_SCAVENGER) || HAS_TRAIT(H, TRAIT_SCAVENGER_EXPERT))
 			search_time = 1 SECONDS
 		if(do_after(user, search_time, target = src))
 			if(hider && prob(50))

@@ -79,11 +79,12 @@
 	else  // Welp.
 		loot = produce_common_item(source)
 
-	// Handle randomized items in our tables.
-	if(istype(loot,/obj/random))
-		var/obj/random/randy = loot
-		var/new_I = randy.spawn_item()
-		QDEL_SWAP(loot,new_I)
+	// // Handle randomized items in our tables.
+	// if(istype(loot,/obj/random))
+	// 	var/obj/random/randy = loot
+	// 	var/new_I = randy.spawn_item()
+	// 	QDEL_SWAP(loot,new_I)
+	loot = randylootspawn(loot)
 
 	//We either have an item to hand over or we don't, at this point!
 	if(QDELETED(loot))
@@ -99,6 +100,20 @@
 			final_message = span_alium(final_message)
 	to_chat(L, span_info(final_message))
 	var/disturbed_sleep = rand(1,100) //spawning of mobs, for now only the trash panda.
+
+	if(HAS_TRAIT(L, TRAIT_SCAVENGER_EXPERT) && prob(100)) //Free stuff!
+	// && unlucky_loot.len && prob(15)
+		to_chat(L, span_info("You've managed to spot something else of worth!"))
+		var/newloot = rand(1,100)
+		if((newloot < 50) && common_loot.len)
+			randylootspawn(produce_common_item(source))
+		if((newloot < 25) && uncommon_loot.len)
+			randylootspawn(produce_uncommon_item(source))
+		if((newloot < 10) && rare_loot.len)
+			randylootspawn(produce_rare_item(source))
+		if((newloot < 1) && GLOB.unique_gamma_loot.len)
+			randylootspawn(produce_gamma_item(source))
+
 	if(disturbed_sleep <= wake_chance)
 		new /mob/living/simple_mob/animal/passive/raccoon(get_turf(source))
 		source.visible_message("A raccoon jumps out of the trash!")
@@ -120,6 +135,14 @@
 /datum/element/lootable/proc/produce_unlucky_item(atom/source)
 	var/path = pick(unlucky_loot)
 	return new path(get_turf(source))
+
+
+/datum/element/lootable/proc/randylootspawn(obj/item/loot)
+	if(istype(loot,/obj/random))
+		var/obj/random/randy = loot
+		var/new_I = randy.spawn_item()
+		QDEL_SWAP(loot,new_I)
+		return loot
 
 /datum/element/lootable/proc/produce_common_item(atom/source)
 	var/path = pick(common_loot)

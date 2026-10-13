@@ -92,6 +92,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Trait applied to mobs when on Critical condition
 #define TRAIT_CRITICAL_CONDITION "critical_condition"
 #define TRAIT_SCAVENGER "scavenger"
+#define TRAIT_SCAVENGER_EXPERT "scavenger_expert"
 
 /**
  *

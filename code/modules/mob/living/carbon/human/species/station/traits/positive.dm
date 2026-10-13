@@ -952,9 +952,21 @@
 /datum/trait/positive/scavenger
 	name ="Scavenger"
 	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster!"
-	cost = 2
+	cost = 0
 	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger_expert)
 
 /datum/trait/positive/scavenger/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	ADD_TRAIT(H, TRAIT_SCAVENGER, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/scavenger_expert
+	name ="Scavenger Expert"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster! And not only that, you can occassionally find extras!"
+	cost = 2
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger)
+
+/datum/trait/positive/scavenger_expert/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER_EXPERT, ROUNDSTART_TRAIT)
