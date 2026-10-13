@@ -1,7 +1,7 @@
 /obj/item/material/barbedwire/glass
 	name = "glass wire"
 	desc = "Thin webs of strewn glass, very easy to break."
-	icon = 'icons/obj/traps/abberations.dmi'
+	icon = 'icons/obj/traps/aberrations.dmi'
 	icon_state = "abb_glass"
 	default_material = MAT_GLASS
 	applies_material_colour = FALSE

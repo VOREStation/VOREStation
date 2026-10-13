@@ -9,7 +9,7 @@
 
 //The things that actually light you on fire.
 /obj/effect/abstract/aberration/fire
-	icon = 'icons/obj/traps/abberations.dmi'
+	icon = 'icons/obj/traps/aberrations.dmi'
 	icon_state = "abb_fire"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	COOLDOWN_DECLARE(fire_timer)
