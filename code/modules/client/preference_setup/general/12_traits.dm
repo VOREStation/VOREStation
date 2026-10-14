@@ -171,12 +171,13 @@
 
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(mob/living/carbon/human/character)
-	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
-		pref.dirty_synth = 1
-		pref.gross_meatbag = 0
-	else
-		pref.gross_meatbag = 1
-		pref.dirty_synth = 0
+	if(!ismannequin(character))
+		if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
+			pref.dirty_synth = 1
+			pref.gross_meatbag = 0
+		else
+			pref.gross_meatbag = 1
+			pref.dirty_synth = 0
 
 	var/datum/species/S = character.species
 	var/datum/species/new_S = S.produceCopy(pref.pos_traits + pref.neu_traits + pref.neg_traits, character, pref.custom_base, TRUE)
