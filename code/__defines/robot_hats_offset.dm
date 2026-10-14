@@ -112,3 +112,9 @@
 	SPRITE_HAT_OFFSET = list("north" = list(16, -8), "south" = list(16, -8), "east" = list(24, -9), "west" = list(8, -9)), \
 	SPRITE_HAT_REST_OFFSET = list("north" = list(16, -14), "south" = list(16, -14), "east" = list(24, -15), "west" = list(8, -15)), \
 	)
+
+#define CENTIBORG_HAT_OFFSET \
+	list( \
+	SPRITE_HAT_OFFSET = list("north" = list(16, 29), "south" = list(16, 29), "east" = list(35, 28), "west" = list(-3, 28)), \
+	SPRITE_HAT_REST_OFFSET = list("north" = list(16, 19), "south" = list(16, 19), "east" = list(35, 18), "west" = list(-3, 18)) \
+	)
