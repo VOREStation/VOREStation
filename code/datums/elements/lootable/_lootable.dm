@@ -80,14 +80,15 @@
 		loot = produce_common_item(source)
 
 	// // Handle randomized items in our tables.
-	// if(istype(loot,/obj/random))
-	// 	var/obj/random/randy = loot
-	// 	var/new_I = randy.spawn_item()
-	// 	QDEL_SWAP(loot,new_I)
+	if(istype(loot,/obj/random))
+		var/obj/random/randy = loot
+		var/new_I = randy.spawn_item()
+		QDEL_SWAP(loot,new_I)
 	loot = randylootspawn(loot)
 
 	//We either have an item to hand over or we don't, at this point!
 	if(QDELETED(loot))
+		to_chat(L, span_notice("QDELETED"))
 		return
 
 	var/final_message = "You found \a [loot]!"
@@ -137,12 +138,12 @@
 	return new path(get_turf(source))
 
 
-/datum/element/lootable/proc/randylootspawn(obj/item/loot)
-	if(istype(loot,/obj/random))
-		var/obj/random/randy = loot
+/datum/element/lootable/proc/randylootspawn(obj/item/the_object)
+	if(istype(the_object,/obj/random))
+		var/obj/random/randy = the_object
 		var/new_I = randy.spawn_item()
-		QDEL_SWAP(loot,new_I)
-		return loot
+		QDEL_SWAP(the_object, new_I)
+		return the_object
 
 /datum/element/lootable/proc/produce_common_item(atom/source)
 	var/path = pick(common_loot)
