@@ -67,6 +67,8 @@
 
 //Emergency teleport - Until a spriter makes something better
 /mob/living/simple_mob/animal/passive/cat/tabiranth/death(gibbed, deathmessage = "teleports away!")
+	if(stat == DEAD)
+		return
 	cut_overlays()
 	icon_state = ""
 	flick("kphaseout",src)

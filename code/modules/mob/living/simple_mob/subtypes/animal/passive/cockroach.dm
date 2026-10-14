@@ -49,6 +49,8 @@
 
 //Deletes the body upon death
 /mob/living/simple_mob/animal/passive/cockroach/death()
+	if(QDELETED(src))
+		return
 	new /obj/effect/decal/cleanable/bug_remains(src.loc)
 	qdel(src)
 
