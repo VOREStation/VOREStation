@@ -484,7 +484,7 @@
 	products = list(/obj/item/clothing/under/rank/scientist = 4,
 					/obj/item/clothing/suit/bio_suit = 4,
 					/obj/item/clothing/head/bio_hood = 4,
-					/obj/item/transfer_valve = 6,
+					/obj/item/transfer_valve = 8,
 					/obj/item/assembly/timer = 8,
 					/obj/item/assembly/signaler = 8,
 					/obj/item/assembly/prox_sensor = 8,
