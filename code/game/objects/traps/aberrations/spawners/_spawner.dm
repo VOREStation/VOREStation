@@ -40,7 +40,7 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/effect/abstract/aberration/spawner/Destroy()
-	LAZYCLEARLIST(prior_random_rolls)
+	prior_random_rolls.Cut()
 	. = ..()
 
 
