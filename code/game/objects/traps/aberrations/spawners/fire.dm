@@ -18,7 +18,7 @@
 	. = ..()
 	if(AM.is_incorporeal() || isobserver(AM) || istype(AM, /obj/effect/abstract))
 		return
-	if(isitem(AM)) // Outpost 21 edit(port) - Crash fix
+	if(isitem(AM))
 		var/obj/item/item_check = AM
 		if(item_check.item_flags & ABSTRACT)
 			return
