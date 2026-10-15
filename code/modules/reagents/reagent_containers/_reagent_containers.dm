@@ -91,64 +91,21 @@
 /obj/item/reagent_containers/proc/feed_sound(mob/user)
 	return
 
-/obj/item/reagent_containers/proc/standard_feed_mob(mob/user, mob/target) // This goes into attack
-	if(!istype(target) || !target.can_feed())
+/obj/item/reagent_containers/proc/standard_pour_into(mob/user, atom/target) // This goes into afterattack and yes, it's atom-level
+	if(!target.is_open_container() || !target.reagents)
 		return FALSE
 
 	if(!reagents || !reagents.total_volume)
-		balloon_alert(user, "\the [src] is empty.")
-		return TRUE
-
-	if(!target.consume_liquid_belly)
-		if(liquid_belly_check())
-			to_chat(user, span_infoplain("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
-			return FALSE
-
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(!H.check_has_mouth())
-			balloon_alert(user, "[user == target ? "you don't" : "\the [H] doesn't"] have a mouth!")
-			return FALSE
-		var/obj/item/blocked = H.check_mouth_coverage()
-		if(blocked)
-			balloon_alert(user, "\the [blocked] is in the way!")
-			return FALSE
-
-	user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
-	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target, user)
-	if(user == target)
-		self_feed_message(user)
-		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
-		feed_sound(user)
-		return TRUE
-
-	else
-		other_feed_message_start(user, target)
-		if(!do_after(user, 3 SECONDS, target))
-			return FALSE
-		other_feed_message_finish(user, target)
-
-		var/contained = reagentlist()
-		add_attack_logs(user,target,"Fed from [src.name] containing [contained]")
-		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
-		feed_sound(user)
-		return TRUE
-
-/obj/item/reagent_containers/proc/standard_pour_into(mob/user, atom/target) // This goes into afterattack and yes, it's atom-level
-	if(!target.is_open_container() || !target.reagents)
-		return 0
-
-	if(!reagents || !reagents.total_volume)
 		balloon_alert(usr, "[src] is empty!")
-		return 1
+		return TRUE
 
 	if(!target.reagents.get_free_space())
 		balloon_alert(usr, "[target] is full!")
-		return 1
+		return TRUE
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	balloon_alert(user, "transfered [trans] units to [target]")
-	return 1
+	return TRUE
 
 /obj/item/reagent_containers/proc/liquid_belly_check()
 	if(!reagents)
