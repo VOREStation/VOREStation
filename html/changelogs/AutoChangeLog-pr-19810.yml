@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "prosthetics prefs being linked between preview and real prefs"
+  - bugfix: "synth and amputated preview not being restorable"
