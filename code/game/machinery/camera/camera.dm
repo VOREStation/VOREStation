@@ -282,8 +282,6 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 	else
-		if(stat & BROKEN)
-			return
 		if(user)
 			visible_message(span_notice(" [user] has reactivated [src]!"))
 			add_hiddenprint(user)
