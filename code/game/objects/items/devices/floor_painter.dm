@@ -1,5 +1,6 @@
 /obj/item/floor_painter
 	name = "paint sprayer"
+	desc = "An advanced, paint synthetizer. The intended use is to spray useful signage and underlines to guide crewmembers. The expected one is glorified grafiti."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
 
@@ -122,7 +123,7 @@
 
 /obj/item/floor_painter/examine(mob/user)
 	. = ..()
-	. += "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint."
+	. += span_notice("It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint.")
 
 /obj/item/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"

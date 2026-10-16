@@ -1,7 +1,7 @@
 ////FIELD GEN START //shameless copypasta from fieldgen, powersink, and grille
 /obj/machinery/shieldwallgen
 		name = "shield generator"
-		desc = "A shield generator."
+		desc = "A shield generator. They require at least another active generator to project their field."
 		icon = 'icons/obj/stationobjs.dmi'
 		icon_state = "Shield_Gen"
 		anchored = FALSE

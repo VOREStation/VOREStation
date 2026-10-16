@@ -289,7 +289,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/sugar
 	name = REAGENT_ID_SUGAR
-	desc = "Sweetness in a bottle"
+	desc = "Sweetness in a bottle."
 	icon_state = "sugarsmall"
 
 /obj/item/reagent_containers/food/condiment/small/sugar/Initialize(mapload)

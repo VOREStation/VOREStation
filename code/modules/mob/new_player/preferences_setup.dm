@@ -254,6 +254,11 @@
 
 	update_character_previews(mannequin)
 
+/datum/preferences/proc/restore_preview_organs()
+	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	mannequin.species.create_organs(mannequin)
+	mannequin.restore_all_organs()
+
 /datum/preferences/proc/get_highest_job()
 	var/datum/job/highJob
 	// Determine what job is marked as 'High' priority, and dress them up as such.

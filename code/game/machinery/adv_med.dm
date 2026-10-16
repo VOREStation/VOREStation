@@ -1,9 +1,8 @@
 // Pretty much everything here is stolen from the dna scanner FYI
 
 /obj/machinery/bodyscanner
-	var/mob/living/carbon/human/occupant
-	var/locked
 	name = "Body Scanner"
+	desc = "An advanced, modern medical scanner. It provides a full body readout of your patient."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
 	density = TRUE
@@ -15,6 +14,8 @@
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
+	var/mob/living/carbon/human/occupant
+	var/locked
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
 	var/scan_level = SCANNABLE_DIFFICULT //By default, we start with level 2 scanning level.
@@ -704,10 +705,8 @@
 
 //Body Scan Console
 /obj/machinery/body_scanconsole
-	var/obj/machinery/bodyscanner/scanner
-	var/delete
-	var/temphtml
 	name = "Body Scanner Console"
+	desc = "The display console for a linked scanner. The font is overly formal."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scannerconsole"
 	dir = 8
@@ -715,6 +714,9 @@
 	anchored = TRUE
 	unacidable = TRUE
 	circuit = /obj/item/circuitboard/scanner_console
+	var/obj/machinery/bodyscanner/scanner
+	var/delete
+	var/temphtml
 	var/printing = null
 
 /obj/machinery/body_scanconsole/Initialize(mapload)
