@@ -98,3 +98,23 @@
 		return
 
 	forceMove(L)
+
+/mob/observer/dead/verb/seeDepartmentGoals()
+	set category = "Ghost.Game"
+	set name = "See Departmental Goals"
+	set desc = "See departmental Goals. Not that you can't help with those right now."
+	set popup_menu = FALSE
+
+	if(!isobserver(src)) //Make sure they're an observer!
+		return
+
+	if(!SSdepartmentgoals.active_department_goals)
+		to_chat(src, span_infoplain("It appears there's no department goals. Complain to the employee gratification office of your nearest Nanotrasen admistrative center."))
+		return
+	to_chat(src, span_boldnotice("Current Departemental Goals : <hr>"))
+	var/chat_output = ""
+	for(var/category in SSdepartmentgoals.active_department_goals)
+		var/list/dept_goal = SSdepartmentgoals.active_department_goals[category]
+		for(var/datum/goal/goal in dept_goal)
+			chat_output += "[goal.name] - [goal.goal_text] <br>Progress : [FLOOR((goal.current_count / goal.goal_count) * 100, 1)]%<hr>"
+	to_chat(src, span_notice(chat_output))
