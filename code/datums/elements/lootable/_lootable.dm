@@ -126,8 +126,8 @@
 	var/path = pick(unlucky_loot)
 	return new path(get_turf(source))
 
-
-/datum/element/lootable/proc/randylootspawn(obj/item/the_object
+// The proc that handles spawning objects.
+/datum/element/lootable/proc/randylootspawn(obj/item/the_object)
 	// Handle randomized items in our tables.
 	if(istype(the_object,/obj/random))
 		var/obj/random/randy = the_object
