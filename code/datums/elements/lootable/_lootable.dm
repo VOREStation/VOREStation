@@ -79,17 +79,8 @@
 	else  // Welp.
 		loot = produce_common_item(source)
 
-	// // Handle randomized items in our tables.
-	if(istype(loot,/obj/random))
-		var/obj/random/randy = loot
-		var/new_I = randy.spawn_item()
-		QDEL_SWAP(loot,new_I)
 	loot = randylootspawn(loot)
 
-	//We either have an item to hand over or we don't, at this point!
-	if(QDELETED(loot))
-		to_chat(L, span_notice("QDELETED"))
-		return
 
 	var/final_message = "You found \a [loot]!"
 	switch(span)
@@ -102,8 +93,7 @@
 	to_chat(L, span_info(final_message))
 	var/disturbed_sleep = rand(1,100) //spawning of mobs, for now only the trash panda.
 
-	if(HAS_TRAIT(L, TRAIT_SCAVENGER_EXPERT) && prob(100)) //Free stuff!
-	// && unlucky_loot.len && prob(15)
+	if(HAS_TRAIT(L, TRAIT_SCAVENGER_EXPERT) && prob(30)) //Free stuff!
 		to_chat(L, span_info("You've managed to spot something else of worth!"))
 		var/newloot = rand(1,100)
 		if((newloot < 25) && uncommon_loot.len)
@@ -137,12 +127,17 @@
 	return new path(get_turf(source))
 
 
-/datum/element/lootable/proc/randylootspawn(obj/item/the_object)
+/datum/element/lootable/proc/randylootspawn(obj/item/the_object
+	// Handle randomized items in our tables.
 	if(istype(the_object,/obj/random))
 		var/obj/random/randy = the_object
 		var/new_I = randy.spawn_item()
 		QDEL_SWAP(the_object, new_I)
-		return the_object
+
+	//We either have an item to hand over or we don't, at this point!
+	if(QDELETED(the_object))
+		return
+	return the_object
 
 /datum/element/lootable/proc/produce_common_item(atom/source)
 	var/path = pick(common_loot)
