@@ -8,7 +8,14 @@ import { getCurrentTimestamp } from './VorePanelExportTimestamp';
 export const downloadPrefs = (extension: string) => {
   const { data } = useBackend<Data>();
 
-  const { db_version, db_repo, mob_name, bellies, soulcatcher } = data;
+  const {
+    db_version,
+    db_repo,
+    mob_name,
+    vore_pref_type_list,
+    bellies,
+    soulcatcher,
+  } = data;
 
   if (!bellies) {
     return;
@@ -50,9 +57,12 @@ export const downloadPrefs = (extension: string) => {
       },
     );
     validBellies.forEach((belly, i) => {
-      blob = new Blob([blob, generateBellyString(belly, i)], {
-        type: 'text/html',
-      });
+      blob = new Blob(
+        [blob, generateBellyString(belly, i, vore_pref_type_list)],
+        {
+          type: 'text/html',
+        },
+      );
     });
     if (soulcatcher) {
       blob = new Blob([blob, generateSoulcatcherString(soulcatcher)], {

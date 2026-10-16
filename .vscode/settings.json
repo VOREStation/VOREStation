@@ -31,5 +31,6 @@
 	"dreammaker.objectTreePane": true,
 	"dreammaker.autoUpdate": true,
 	"dreammaker.tickOnCreate": true,
-	"tgstationTestExplorer.project.DMEName": "vorestation.dme"
+	"tgstationTestExplorer.project.DMEName": "vorestation.dme",
+	"js/ts.experimental.useTsgo": true
 }

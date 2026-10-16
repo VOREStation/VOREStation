@@ -96,6 +96,7 @@
 	var/list/soulcatcher_prefs = list()
 	var/max_voreoverlay_alpha = 255
 	var/persistend_edit_mode = FALSE
+	var/vore_pref_type_flags = VORE_TYPE_FLAG_ORAL
 
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
@@ -264,6 +265,7 @@
 	soulcatcher_prefs = json_from_file["soulcatcher_prefs"]
 	persistend_edit_mode = json_from_file["persistend_edit_mode"]
 	max_voreoverlay_alpha = json_from_file["max_voreoverlay_alpha"]
+	vore_pref_type_flags = json_from_file["vore_pref_type_flags"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -409,6 +411,8 @@
 		persistend_edit_mode = FALSE
 	if(isnull(max_voreoverlay_alpha))
 		max_voreoverlay_alpha = 255
+	if(isnull(vore_pref_type_flags))
+		vore_pref_type_flags = VORE_TYPE_FLAG_ORAL
 
 	return TRUE
 
@@ -483,6 +487,7 @@
 			"soulcatcher_prefs"			= soulcatcher_prefs,
 			"persistend_edit_mode" = persistend_edit_mode,
 			"max_voreoverlay_alpha" = max_voreoverlay_alpha,
+			"vore_pref_type_flags" = vore_pref_type_flags,
 		)
 
 	//List to JSON

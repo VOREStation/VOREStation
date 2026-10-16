@@ -167,6 +167,10 @@
 	if(pred == prey)
 		return FALSE
 
+	if(!((prey.vore_pref_type_flags & belly.vore_pref_type_flags) == belly.vore_pref_type_flags))
+		to_chat(user, span_vwarning("Vore type preferences do not align!"))
+		return FALSE
+
 	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
 	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
 	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
