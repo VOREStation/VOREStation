@@ -4,6 +4,10 @@
 	var/chance_rare = 1				// Ditto, but for rare_loot list.
 	var/chance_gamma = 0			// Singledrop global loot table shared with all piles.
 
+	var/chance_scav_uncommon = 25	// Not that kind of scavs. It's for people with the scavenger_expert trait.
+	var/chance_scav_rare = 10
+	var/chance_scav_gamma = 1
+
 	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/loot_depletion = FALSE		// If true, loot piles can be 'depleted' after a certain number of searches by different players, where no more loot can be obtained.
 	var/loot_left = 0				// Maximum number of times a pile can be looted before no loot will remain for anyone
@@ -95,12 +99,11 @@
 
 	if(HAS_TRAIT(L, TRAIT_SCAVENGER_EXPERT) && prob(30)) //Free stuff!
 		to_chat(L, span_info("You've managed to spot something else of worth!"))
-		var/newloot = rand(1,100)
-		if((newloot < 25) && uncommon_loot.len)
+		if((prob(chance_scav_uncommon)) && uncommon_loot.len)
 			randylootspawn(produce_uncommon_item(source))
-		else if((newloot < 10) && rare_loot.len)
+		else if((prob(chance_scav_rare)) && rare_loot.len)
 			randylootspawn(produce_rare_item(source))
-		else if((newloot < 1) && GLOB.unique_gamma_loot.len)
+		else if((prob(chance_scav_gamma) && GLOB.unique_gamma_loot.len))
 			randylootspawn(produce_gamma_item(source))
 		else
 			randylootspawn(produce_common_item(source))
