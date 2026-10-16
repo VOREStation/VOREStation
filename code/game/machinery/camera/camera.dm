@@ -91,9 +91,11 @@
 /obj/machinery/camera/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += to_chat(user, span_notice("The maintenance panel is open."))
+		. += span_notice("The maintenance panel is open.")
+	if(toughness <= initial(toughness) && !BROKEN)
+		. += span_warning("\The [src] is looking damaged!")
 	if(stat & BROKEN)
-		. += to_chat(user, span_warning("\The [src] is broken."))
+		. += span_warning("\The [src] is completely broken.")
 
 /obj/machinery/camera/proc/internal_process()
 	return
