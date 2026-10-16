@@ -192,7 +192,6 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 /obj/machinery/camera/reinforced
 	name = "reinforced security camera"
 	desc = "Used to monitor room. This one has a reinforced plastic enclosure."
-	initial_toughness = 25
 	toughness = 25
 
 /obj/machinery/camera/reinforced/ex_act(severity)

@@ -20,7 +20,6 @@
 	var/obj/item/camera_assembly/assembly = null
 
 	var/toughness = 5
-	var/initial_toughness = 5 //sorta fragileh
 	var/damage_threshold = 5
 
 	//OTHER
@@ -195,7 +194,7 @@
 				if(stat & BROKEN)
 					assembly.state = 2
 					to_chat(user, span_notice("You repaired \the [src] frame."))
-					toughness = initial_toughness
+					toughness = initial(toughness)
 				else
 					assembly.state = 1
 					to_chat(user, span_notice("You cut \the [src] free from the wall."))
