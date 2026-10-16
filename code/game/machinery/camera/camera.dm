@@ -95,7 +95,7 @@
 	if(toughness <= initial(toughness) && !BROKEN)
 		. += span_warning("\The [src] is looking damaged!")
 	if(stat & BROKEN)
-		. += span_warning("\The [src] is completely broken.")
+		. += span_warning("\The [src] is completely broken. Maybe you could slice the cover and re-use the assembly?")
 
 /obj/machinery/camera/proc/internal_process()
 	return
@@ -195,7 +195,7 @@
 				assembly.dir = src.dir
 				if(stat & BROKEN)
 					assembly.state = 2
-					to_chat(user, span_notice("You repaired \the [src] frame."))
+					to_chat(user, span_notice("You've sliced out all the electronics from \the [src] frame. Now, you can rebuild it."))
 					toughness = initial(toughness)
 				else
 					assembly.state = 1
@@ -420,7 +420,7 @@
 		return
 
 	if(stat & BROKEN)
-		to_chat(user, span_warning("\The [src] is completely broken."))
+		to_chat(user, span_warning("\The [src] is completely broken. Weld it open, and start from there."))
 		return
 
 	wires.Interact(user)
