@@ -270,6 +270,7 @@
 		return
 
 	set_status(!src.status)
+	// Can't control a wrecked camera.
 	if(stat & BROKEN)
 		return
 	if (!(src.status))
@@ -315,6 +316,7 @@
 	spark_system.set_up(5, 0, loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
+	visible_message(span_warning("\The [src] breaks open in a shower of sparks!"))
 
 /obj/machinery/camera/proc/set_status(newstatus)
 	if (status != newstatus)
@@ -403,7 +405,7 @@
 		return 0
 
 	// Do after stuff here
-	to_chat(user, span_notice("You start to weld [src].."))
+	to_chat(user, span_notice("You start to weld [src]..."))
 	playsound(src, WT.usesound, 50, 1)
 	WT.eyecheck(user)
 	busy = 1
@@ -420,7 +422,7 @@
 		return
 
 	if(stat & BROKEN)
-		to_chat(user, span_warning("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is completely broken."))
 		return
 
 	wires.Interact(user)
