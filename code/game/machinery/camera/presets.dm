@@ -188,6 +188,23 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	my_area -= src
 	return ..()
 
+// Would love a recolor if it didn't take so many sprites to redo!
+/obj/machinery/camera/reinforced
+	name = "reinforced security camera"
+	desc = "Used to monitor rooms. This one has a reinforced plastic enclosure."
+	toughness = 25
+
+/obj/machinery/camera/reinforced/ex_act(severity)
+	. = ..()
+	if(src.invuln)
+		return
+
+	//camera dies if an explosion touches it!
+	if(severity <= 2 || prob(10))
+		camera_break()
+
+	..() //and give it the regular chance of being deleted outright
+
 // CHECKS
 
 /obj/machinery/camera/proc/isEmpProof()
