@@ -1,7 +1,7 @@
 /obj/item/material/barbedwire/glass
 	name = "glass wire"
 	desc = "Thin webs of strewn glass, very easy to break."
-	icon = 'icons/obj/traps/abberations.dmi'
+	icon = 'icons/obj/traps/aberrations.dmi'
 	icon_state = "abb_glass"
 	default_material = MAT_GLASS
 	applies_material_colour = FALSE
@@ -43,6 +43,8 @@
 
 /obj/item/material/barbedwire/glass/check_step(atom/movable/AM)
 	. = ..()
+	if(istype(AM,/obj/effect/abstract/directional_lighting)) // Shines when lit directly
+		flick("abb_glass_flash",src)
 	if(.) //Child did the work already.
 		return TRUE
 	if(!AM.is_incorporeal())
@@ -57,6 +59,12 @@
 
 /obj/item/material/barbedwire/glass/attack_mob(mob/living/L)
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)
+
+	if(!ishuman(L)) // Only humans can take limb damage
+		if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE))
+			to_chat(L, span_danger("You narrowly avoid being cut by \the [src]!"))
+		break_wire()
+		return
 
 	var/target_zone = ran_zone()
 	var/obj/item/organ/external/affecting = L.get_organ(target_zone)
