@@ -291,10 +291,6 @@
 		icon_state = initial(icon_state)
 
 /obj/machinery/camera/take_damage(force, message)
-	//Chance to be destroyed outright
-	if(prob(10))
-		camera_break()
-		return
 	toughness -= force
 	if(toughness <= 0)
 		camera_break()
