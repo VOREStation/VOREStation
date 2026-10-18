@@ -65,7 +65,7 @@
 					cure()
 					return
 				if(infected.get_xenochimera_component())
-					to_chat(infected, span_cult("An alien presence attempts to prod at our mind and body, but our unique anatomy devours the encroachers."))
+					to_chat(infected, span_cult("An alien presence attempts to prod at our mind and body, but our unique anatomy finally devours the encroacher."))
 					cure()
 					return
 				if(!infected.has_modifier_of_type(/datum/modifier/redspace_corruption))
