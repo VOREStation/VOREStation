@@ -64,6 +64,7 @@
 	desc = "A suction cupped mass of flesh, shaped like a foot."
 	name = "fleshy grippers"
 	icon_state = "lingspacesuit"
+	icon_base = null
 	actions_types = list(/datum/action/item_action/toggle_grippers)
 	canremove = FALSE
 	item_flags = DROPDEL | NOSTRIP
