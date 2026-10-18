@@ -338,7 +338,7 @@
 				Victim.die_off()
 
 /obj/item/projectile/bullet/incendiary/flamethrower/large
-	damage = 5
+	damage = 10
 	incendiary = 3
 	flammability = 2
 	range = 6
