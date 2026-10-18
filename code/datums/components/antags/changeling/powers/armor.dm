@@ -67,28 +67,13 @@
 	actions_types = list(/datum/action/item_action/toggle_grippers)
 	canremove = FALSE
 	item_flags = DROPDEL | NOSTRIP
+	mag_enable = "We cling to the terrain below us."
+	mag_disable = "We release our grip on the floor."
 
 /obj/item/clothing/shoes/magboots/changeling/set_slowdown()
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
 	if (magpulse)
 		slowdown += 1		//It's already tied to a slowdown suit, 6 slowdown is huge.
-
-/obj/item/clothing/shoes/magboots/changeling/attack_self(mob/user)
-	. = ..(user)
-	if(.)
-		return TRUE
-	if(magpulse)
-		item_flags &= ~NOSLIP
-		magpulse = 0
-		set_slowdown()
-		force = 3
-		to_chat(user, "We release our grip on the floor.")
-	else
-		item_flags |= NOSLIP
-		magpulse = 1
-		set_slowdown()
-		force = 5
-		to_chat(user, "We cling to the terrain below us.")
 
 //Armor
 
