@@ -64,6 +64,10 @@
 					to_chat(infected, span_cult("An alien presence attempts to prod at your mind, but at the final hour the effects of the corruption subsides."))
 					cure()
 					return
+				if(infected.get_xenochimera_component())
+					to_chat(infected, span_cult("An alien presence attempts to prod at our mind and body, but our unique anatomy devours the encroachers."))
+					cure()
+					return
 				if(!infected.has_modifier_of_type(/datum/modifier/redspace_corruption))
 					infected.add_modifier(/datum/modifier/redspace_corruption)
 					to_chat(infected, span_cult("You feel something latch into your mind, something melding with every fiber of your being."))
