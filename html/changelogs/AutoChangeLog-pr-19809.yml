@@ -1,0 +1,6 @@
+author: "Will, Ignus"
+delete-after: True
+changes:
+  - rscadd: "Glass wire aberration flickers when flashlight beam crosses it"
+  - code_imp: "Cleaned up aberration code and fixed typo"
+  - bugfix: "glass wire aberrations affect simple mobs correctly"
