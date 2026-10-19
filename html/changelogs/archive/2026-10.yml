@@ -155,3 +155,10 @@
   Kashargul:
   - bugfix: prosthetics prefs being linked between preview and real prefs
   - bugfix: synth and amputated preview not being restorable
+2026-10-19:
+  Guti:
+  - bugfix: fixed the "nothing" holiday happening
+  Will, Ignus:
+  - rscadd: Glass wire aberration flickers when flashlight beam crosses it
+  - code_imp: Cleaned up aberration code and fixed typo
+  - bugfix: glass wire aberrations affect simple mobs correctly
