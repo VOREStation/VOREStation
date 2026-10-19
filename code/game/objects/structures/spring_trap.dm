@@ -142,7 +142,7 @@
 
 /obj/structure/spring_trap/attack_hand(mob/user)
 	if(!sprung)
-		user.visible_message(span_danger("[user] starts to disarm \the [src]."), span_notice("You begin disarming \the [src]."), "You hear the slow creaking of a spring.")
+		user.visible_message(span_danger("[user] starts to disarm \the [src]."), span_notice("You begin disarming \the [src]."), span_hear("You hear the slow creaking of a spring."))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 
 		if(do_after(user, 2 SECONDS, target = src)) //Misclick hugboxxing, mostly.
@@ -157,7 +157,7 @@
 		var/time_to_reset = SPRINGTRAP_MANUAL_RESET_TIME //Dynamic time to reset manually. Decreased if you're assisting an auto-resetting trap along.
 		if(reset_timer_id)
 			time_to_reset = min(time_to_reset, (timeleft(reset_timer_id) / 2)) //Set reset time to half of remaining auto-reset time, if it's smaller than the default time.
-		user.visible_message(span_danger("[user] starts to reset \the [src]."), span_notice("You begin resetting \the [src]."), "You hear the slow creaking of a spring.")
+		user.visible_message(span_danger("[user] starts to reset \the [src]."), span_notice("You begin resetting \the [src]."), span_hear("You hear the slow creaking of a spring."))
 		if(do_after(user, time_to_reset, target = src))
 			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 			if(reset_timer_id)
@@ -172,7 +172,7 @@
 
 	SSmotiontracker.ping(src, 100)
 	playsound(src, 'sound/effects/metal_close.ogg', 70, 1)
-	visible_message(span_danger("[target] triggers \the [src]."), span_danger("You trigger \the [src]."), span_infoplain(span_danger("you hear a SPROING!")))
+	visible_message(span_danger("[target] triggers \the [src]."), span_danger("You trigger \the [src]."), span_hear(span_danger("you hear a SPROING!")))
 
 	var/turf/land_turf = get_ranged_target_turf(T, dir, max_distance)
 
@@ -225,7 +225,7 @@
 	if(!sprung)
 		return FALSE
 	SSmotiontracker.ping(src, 100)
-	visible_message(span_notice("[src] clicks as it resets itself."), "You hear the slow creaking of a spring, followed by a click.")
+	visible_message(span_notice("[src] clicks as it resets itself."), span_hear("You hear the slow creaking of a spring, followed by a click."))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	sprung = FALSE
 	update_icon()
