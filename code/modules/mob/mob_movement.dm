@@ -502,7 +502,7 @@
 /mob/proc/slip(weaken_amount, obj/slipped_on, lube, slip_dist, stun, force_drop)
 	return
 
-/mob/proc/Check_Dense_Objectje() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
+/mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
 
 	var/dense_object = 0
 	var/shoegrip
