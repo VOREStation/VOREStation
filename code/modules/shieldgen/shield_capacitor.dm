@@ -4,7 +4,7 @@
 
 /obj/machinery/shield_capacitor
 	name = "shield capacitor"
-	desc = "A machine that charges a shield generator."
+	desc = "A machine that charges a shield generator. It stores extra electricity to assists a main generator during high-draw events."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "capacitor"
 	var/active = 0
@@ -24,6 +24,13 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/rotatable)
+
+
+/obj/machinery/shield_capacitor/examine(mob/user)
+	. = ..()
+	if(anchored)
+		. += span_notice("It is wrenched down to the floor.")
+
 
 /obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"

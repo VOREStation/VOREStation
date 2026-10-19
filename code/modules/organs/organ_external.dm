@@ -565,7 +565,7 @@
 	return result
 
 //Helper proc used by various tools for repairing robot limbs
-/obj/item/organ/external/proc/robo_repair(repair_amount, damage_type, damage_desc, obj/item/tool, mob/living/user)
+/obj/item/organ/external/proc/robo_repair(repair_amount, damage_type, damage_desc, obj/item/tool, mob/living/user, stack_use = 0)
 	if((src.robotic < ORGAN_ROBOT))
 		return 0
 
@@ -597,18 +597,22 @@
 			return 0
 	*/
 	user.setClickCooldown(user.get_attack_speed(tool))
-	if(!do_after(user, 1 SECOND, src))
+	if(!do_after(user, 1 SECOND * tool.toolspeed, owner))
 		to_chat(user, span_warning("You must stand still to do that."))
 		return 0
 
 	switch(damage_type)
-		if(BRUTE) src.heal_damage(repair_amount, 0, 0, 1)
-		if(BURN)  src.heal_damage(0, repair_amount, 0, 1)
-		if("omni")src.heal_damage(repair_amount, repair_amount, 0, 1)
+		if(BRUTE) src.heal_damage(repair_amount, 0, FALSE, TRUE)
+		if(BURN)  src.heal_damage(0, repair_amount, FALSE, TRUE)
+		if("omni")src.heal_damage(repair_amount, repair_amount, FALSE, TRUE)
+
+	if(stack_use && istype(tool, /obj/item/stack)) //Why are you setting a stack usage if it's not a stack?
+		var/obj/item/stack/repair_stack = tool
+		repair_stack.use(stack_use)
 
 	if(damage_desc)
 		var/fix_verb = "patches"
-		if(damage_amount > repair_amount)
+		if(damage_amount <= repair_amount)
 			fix_verb = "finishes patching"
 			disfigured = FALSE //Prevents some edgecases where you can repair despite hitting disfigurement thresholds, they're fully healed at this point anyways.
 		if(user == src.owner)
@@ -639,7 +643,7 @@ This function completely restores a damaged organ to perfect condition.
 	for(var/obj/implanted_object in implants)
 		if(istype(implanted_object,/obj/item/implant) || istype(implanted_object,/obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
 			continue
-		implanted_object.loc = get_turf(src)
+		implanted_object.forceMove(owner.drop_location()) //Drop it out.
 		implants -= implanted_object
 	if(!owner.has_embedded_objects())
 		owner.clear_alert("embeddedobject")
@@ -647,10 +651,10 @@ This function completely restores a damaged organ to perfect condition.
 	if(owner && !ignore_prosthetic_prefs)
 		if(owner.client && owner.client.prefs && owner.client.prefs.read_preference(/datum/preference/name/real_name) == owner.real_name)
 			var/list/organ_data = owner.client.prefs.read_preference(/datum/preference/organ_data)
-			var/status = organ_data?[organ_tag]
-			if(status == "amputated")
+			var/robot_status = organ_data?[organ_tag]
+			if(robot_status == "amputated")
 				remove_rejuv()
-			else if(status == "cyborg")
+			else if(robot_status == "cyborg")
 				var/list/rlimb_data = owner.client.prefs.read_preference(/datum/preference/rlimb_data)
 				var/robodata = rlimb_data?[organ_tag]
 				if(robodata)

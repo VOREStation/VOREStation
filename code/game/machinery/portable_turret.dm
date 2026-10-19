@@ -5,7 +5,7 @@
 
 /datum/category_item/catalogue/technology/turret
 	name = "Turrets"
-	desc = "This imtimidating machine is essentially an automated gun. It is able to \
+	desc = "This intimidating machine is essentially an automated gun. It is able to \
 	scan its immediate environment, and if it determines that a threat is nearby, it will \
 	open up, aim the barrel of the weapon at the threat, and engage it until the threat \
 	goes away, it dies (if using a lethal gun), or the turret is destroyed. This has made them \
@@ -38,6 +38,7 @@
 
 /obj/machinery/porta_turret
 	name = "turret"
+	desc = "A large, emplaced turret. You'd better not stay still in front of it."
 	catalogue_data = list(/datum/category_item/catalogue/technology/turret)
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_cover_normal"

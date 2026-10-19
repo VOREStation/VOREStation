@@ -183,7 +183,10 @@
 
 	character.set_gender(pref.read_preference(/datum/preference/choiced/gender/biological))
 
-	character.synthetic = pref.read_preference(/datum/preference/choiced/species) == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	if(pref.read_preference(/datum/preference/choiced/species) == "Protean") //Whoever set synthetic to null before if you wern't a protean broke synth rejuving.
+		character.synthetic = GLOB.all_robolimbs["protean"]	// It took me so fucking long to find this I fucking hate you and I hope you step on a lego
+		// There's literally zero reason to set it to null, either, like what the fuck.
+
 	var/list/pref_organ_data = pref.read_preference(/datum/preference/organ_data)
 	var/list/pref_rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
 	var/list/organs_to_edit = list()
@@ -244,8 +247,8 @@
 
 /datum/category_item/player_setup_item/general/body/proc/reset_limbs()
 	// Reset organ and robolimb data
-	pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], list())
-	pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], list())
+	pref.update_preference_by_type(/datum/preference/organ_data, list())
+	pref.update_preference_by_type(/datum/preference/rlimb_data, list())
 
 	// Sanitize the name so that there aren't any numbers sticking around.
 	// Is this still necessary with TG conversation?
@@ -862,8 +865,8 @@
 
 			switch(new_state)
 				if("Normal")
-					var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
-					var/list/rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
+					var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
+					var/list/rlimb_data = check_list_copy(pref.read_preference(/datum/preference/rlimb_data))
 					organ_data[limb] = null
 					rlimb_data[limb] = null
 					if(limb == BP_TORSO) // depends on standardization
@@ -876,21 +879,22 @@
 					if(third_limb)
 						organ_data[third_limb] = null
 						rlimb_data[third_limb] = null
-					pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
-					pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
+					pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
+					pref.update_preference_by_type(/datum/preference/rlimb_data, rlimb_data)
+					pref.restore_preview_organs()
 
 				if("Amputated")
 					if(limb == BP_TORSO) // depends on standardization
 						return
-					var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
-					var/list/rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
+					var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
+					var/list/rlimb_data = check_list_copy(pref.read_preference(/datum/preference/rlimb_data))
 					organ_data[limb] = "amputated"
 					rlimb_data[limb] = null
 					if(second_limb)
 						organ_data[second_limb] = "amputated"
 						rlimb_data[second_limb] = null
-					pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
-					pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
+					pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
+					pref.update_preference_by_type(/datum/preference/rlimb_data, rlimb_data)
 
 				if("Prosthesis")
 					var/list/usable_manufacturers = list()
@@ -909,8 +913,8 @@
 					if(!choice)
 						return
 
-					var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
-					var/list/rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
+					var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
+					var/list/rlimb_data = check_list_copy(pref.read_preference(/datum/preference/rlimb_data))
 					rlimb_data[limb] = choice
 					organ_data[limb] = "cyborg"
 
@@ -930,8 +934,9 @@
 							organ_data[O_BRAIN] = FBP_ASSISTED
 						for(var/internal_organ in list(O_HEART,O_EYES))
 							organ_data[internal_organ] = FBP_MECHANICAL
-					pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
-					pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
+					pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
+					pref.update_preference_by_type(/datum/preference/rlimb_data, rlimb_data)
+					pref.restore_preview_organs()
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -940,7 +945,7 @@
 			if(!(zone in O_STANDARD))
 				return
 
-			var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+			var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
 			if(zone == O_BRAIN && organ_data[BP_HEAD] != "cyborg")
 				to_chat(user, span_warning("You may only select a cybernetic or synthetic brain if you have a full prosthetic body."))
 				return
@@ -978,7 +983,7 @@
 					organ_data[zone] = FBP_DIGITAL
 				if("Positronic")
 					organ_data[zone] = FBP_MECHANICAL
-			pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
+			pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 

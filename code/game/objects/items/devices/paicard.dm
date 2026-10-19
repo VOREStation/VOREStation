@@ -1,5 +1,6 @@
 /obj/item/paicard
 	name = "personal AI device"
+	desc = "A personal AI device. A device capable of handling companion AI programs of varying quality, and to provide them with a suitable body through patented technology."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pai"
 	item_state = "electronic"
