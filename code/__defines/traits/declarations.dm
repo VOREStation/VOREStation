@@ -91,6 +91,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HALT_RADIATION_EFFECTS "halt_radiation_effects"
 /// Trait applied to mobs when on Critical condition
 #define TRAIT_CRITICAL_CONDITION "critical_condition"
+/// Trait applied for when a mob unconditionaly has no gravity.
+#define TRAIT_NO_GRAVITY "no_gravity"
 
 /**
  *

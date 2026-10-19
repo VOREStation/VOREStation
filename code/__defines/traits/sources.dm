@@ -11,3 +11,5 @@
 #define UNHOLY_TRAIT "unholy"
 /// trait associated to a stat value or range of
 #define STAT_TRAIT "stat"
+/// trait associated with an aberration
+#define ABERRATION_TRAIT "aberration"
