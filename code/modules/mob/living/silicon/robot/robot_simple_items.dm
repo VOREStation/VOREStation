@@ -6,7 +6,7 @@
 
 /obj/item/robotic_multibelt
 	name = "Robotic multitool"
-	desc = "An integrated toolbelt that holds various tools."
+	desc = "An integrated toolset that holds various tools."
 	description_info = "Pressing Z will interact with the item the multibelt has selected.<br>\
 	Pressing Ctrl+Z will open the radial menu to allow item swapping!<br>\
 	Use Ctrl + Click to open the menu for the selected item.<br>\
@@ -257,7 +257,7 @@
 
 /obj/item/robotic_multibelt/medical
 	name = "Robotic surgical multitool"
-	desc = "An integrated surgical toolbelt."
+	desc = "An integrated surgical toolset."
 	icon_state = "toolkit_engiborg"
 
 	cyborg_integrated_tools = list(
@@ -331,7 +331,7 @@
 //Service multibelt!
 /obj/item/robotic_multibelt/service
 	name = "Service multitool"
-	desc = "An integrated service toolbelt."
+	desc = "An integrated service toolset."
 	icon_state = "toolkit_medborg"
 
 	cyborg_integrated_tools = list(
@@ -350,7 +350,7 @@
 //Botanical multibelt!
 /obj/item/robotic_multibelt/botanical
 	name = "Botanical multitool"
-	desc = "An integrated botanical toolbelt."
+	desc = "An integrated botanical toolset."
 	icon_state = "toolkit_engiborg"
 
 	cyborg_integrated_tools = list(
@@ -394,7 +394,7 @@
 
 /obj/item/robotic_multibelt/syndicate
 	name = "Syndicate Robotic multitool"
-	desc = "An integrated toolbelt that holds various tools. This one comes with a multitool-hacktool."
+	desc = "An integrated toolset that holds various tools. This one comes with a multitool-hacktool."
 	cyborg_integrated_tools = list(
 		/obj/item/tool/screwdriver/cyborg = null,
 		/obj/item/tool/wrench/cyborg = null,
