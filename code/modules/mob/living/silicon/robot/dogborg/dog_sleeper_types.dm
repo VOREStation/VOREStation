@@ -19,7 +19,7 @@
 	stabilizer = FALSE
 	medsensor = FALSE
 
- //sci-borg gut.
+//sci-borg gut.
 /obj/item/dogborg/sleeper/compactor/analyzer
 	name = "Digestive Analyzer"
 	desc = "A mounted destructive analyzer unit with fuel processor, for 'deep scientific analysis'."
@@ -48,7 +48,7 @@
 	recycles = FALSE
 */
 
- //Miner borg belly
+//Miner borg belly
 /obj/item/dogborg/sleeper/compactor/supply
 	name = "Supply Storage"
 	desc = "A mounted survival unit with fuel processor, helpful with both deliveries and assisting injured miners."
