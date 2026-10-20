@@ -1,4 +1,5 @@
-/obj/item/dogborg/sleeper/K9 //The K9 portabrig
+//The K9 portabrig
+/obj/item/dogborg/sleeper/K9
 	name = "Brig-Belly"
 	desc = "A mounted portable-brig that holds criminals for processing or 'processing'."
 	icon_state = "sleeperb"
@@ -6,7 +7,8 @@
 	stabilizer = TRUE
 	medsensor = FALSE
 
-/obj/item/dogborg/sleeper/compactor //Janihound gut.
+//Janihound gut
+/obj/item/dogborg/sleeper/compactor
 	name = "Garbage Processor"
 	desc = "A mounted garbage compactor unit with fuel processor, capable of processing any kind of contaminant."
 	icon_state = "compactor"
@@ -17,7 +19,8 @@
 	stabilizer = FALSE
 	medsensor = FALSE
 
-/obj/item/dogborg/sleeper/compactor/analyzer //sci-borg gut.
+ //sci-borg gut.
+/obj/item/dogborg/sleeper/compactor/analyzer
 	name = "Digestive Analyzer"
 	desc = "A mounted destructive analyzer unit with fuel processor, for 'deep scientific analysis'."
 	icon_state = "analyzer"
@@ -26,6 +29,7 @@
 	analyzer = TRUE
 	recycles = FALSE
 
+// Engineering Version
 /obj/item/dogborg/sleeper/compactor/decompiler
 	name = "Matter Decompiler"
 	desc = "A mounted matter decompiling unit with fuel processor, for recycling anything and everyone."
@@ -33,6 +37,7 @@
 	max_item_count = 10
 	decompiler = TRUE
 	recycles = TRUE
+
 /*
 /obj/item/dogborg/sleeper/compactor/delivery //Unfinished and unimplemented, still testing.
 	name = "Cargo Belly"
@@ -43,7 +48,8 @@
 	recycles = FALSE
 */
 
-/obj/item/dogborg/sleeper/compactor/supply //Miner borg belly
+ //Miner borg belly
+/obj/item/dogborg/sleeper/compactor/supply
 	name = "Supply Storage"
 	desc = "A mounted survival unit with fuel processor, helpful with both deliveries and assisting injured miners."
 	icon_state = "sleeperc"
@@ -108,7 +114,8 @@
 	icon_state = "sleeperert"
 	injection_chems = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_TRAMADOL) // short list
 
-/obj/item/dogborg/sleeper/trauma //Trauma borg belly
+//Trauma borg belly
+/obj/item/dogborg/sleeper/trauma
 	name = "Recovery Belly"
 	desc = "A downgraded model of the sleeper belly, intended primarily for post-surgery recovery."
 	icon_state = "sleeper"

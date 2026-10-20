@@ -9,6 +9,7 @@
 	desc = "An integrated toolbelt that holds various tools."
 	description_info = "Pressing Z will interact with the item the multibelt has selected.<br>\
 	Pressing Ctrl+Z will open the radial menu to allow item swapping!<br>\
+	Use Ctrl + Click to open the menu for the selected item.<br>\
 	Clicking on the selected object will also open the radial menu."
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
@@ -37,7 +38,7 @@
 /obj/item/robotic_multibelt/examine(mob/user)
 	. = ..()
 	if(selected_item)
-		. += span_notice("\The [src] is currently set to \the [selected_item].")
+		. += span_notice("\The [src] is currently set to \the [selected_item].<hr>")
 		. += selected_item.examine(user)
 
 /obj/item/robotic_multibelt/proc/get_module()
@@ -448,7 +449,7 @@
 
 /obj/item/robotic_multibelt/materials
 	name = "Robotic Material Dispenser"
-	desc = "An integrated material dispenser! Click once to select your material. Use Ctrl + Click to open the menu for the selected material."
+	desc = "An integrated material dispenser! Click once to select your material."
 	icon_state = "toolkit_material"
 
 	cyborg_integrated_tools = list()
@@ -637,14 +638,16 @@
 
 /obj/item/gripper/engineering
 	name = "Engineering Gripper"
-	desc = "An integrated Engineering Gripper."
+	desc = "An integrated Engineering Gripper. This one also supports circuits and sheets."
 	icon_state = "gripper-omni"
+
 	can_hold = list(BASIC_GRIPPER, CIRCUIT_GRIPPER, SHEET_GRIPPER)
 
 /obj/item/gripper/drone
 	name = "Drone Gripper"
-	desc = "An integrated Drone Gripper."
+	desc = "An integrated Drone Gripper. Less capable than a dedicated engineering gripper, but it does handle sheets."
 	icon_state = "gripper-old"
+
 	can_hold = list(BASIC_GRIPPER, SHEET_GRIPPER)
 
 /obj/item/gripper/omni
@@ -677,7 +680,7 @@
 
 /obj/item/gripper/medical
 	name = "medical gripper"
-	desc = "A simple grasping tool for medical work."
+	desc = "A simple grasping tool for medical work. Clean, smooth, and guaranteed not to drop organs on the floor."
 	icon_state = "gripper-flesh"
 
 	can_hold = list(BASIC_GRIPPER, ORGAN_GRIPPER, MEDICAL_GRIPPER)

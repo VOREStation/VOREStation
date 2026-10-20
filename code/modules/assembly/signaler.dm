@@ -1,6 +1,6 @@
 /obj/item/assembly/signaler
 	name = "remote signaling device"
-	desc = "Used to remotely activate devices.  Tap against another secured signaler to transfer configuration."
+	desc = "Used to remotely activate devices. Tap against another secured signaler to transfer configuration."
 	icon_state = "signaller"
 	item_state = "signaler"
 	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.1))

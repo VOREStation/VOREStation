@@ -17,11 +17,11 @@
 	var/cooldown = FALSE //To prevent spam
 	var/wires_type = WIRE_RECEIVE | WIRE_PULSE
 
-	var/const/WIRE_RECEIVE = 1			//Allows Pulsed(0) to call Activate()
+	var/const/WIRE_RECEIVE = 1				//Allows Pulsed(0) to call Activate()
 	var/const/WIRE_PULSE = 2				//Allows Pulse(0) to act on the holder
 	var/const/WIRE_PULSE_SPECIAL = 4		//Allows Pulse(0) to act on the holders special assembly
 	var/const/WIRE_RADIO_RECEIVE = 8		//Allows Pulsed(1) to call Activate()
-	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio message
+	var/const/WIRE_RADIO_PULSE = 16			//Allows Pulse(1) to send a radio message
 
 	///var used for attack_self chain
 	var/special_handling = FALSE
@@ -84,9 +84,9 @@
 	. = ..()
 	if((in_range(src, user) || loc == user))
 		if(secured)
-			. += "\The [src] is ready!"
+			. += span_notice("\The [src] is ready!")
 		else
-			. += "\The [src] can be attached!"
+			. += span_notice("\The [src] can be attached!")
 
 /obj/item/assembly/attack_self(mob/user)
 	. = ..(user)
