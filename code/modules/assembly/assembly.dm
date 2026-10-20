@@ -11,7 +11,7 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound =  'sound/items/pickup/component.ogg'
 
-	var/secured = 1
+	var/secured = TRUE
 	var/list/attached_overlays = null
 	var/obj/item/assembly_holder/holder = null
 	var/cooldown = FALSE //To prevent spam
@@ -28,6 +28,8 @@
 
 	COOLDOWN_DECLARE(next_activate)
 	var/activation_cooldown = 3 SECONDS
+
+	var/mounted = FALSE						// Currently only used on cyborg signalers.
 
 /obj/item/assembly/proc/holder_movement()
 	return
@@ -64,6 +66,9 @@
 		return TRUE
 
 /obj/item/assembly/attackby(obj/item/W as obj, mob/user as mob)
+	if(mounted)
+		to_chat(user, span_notice("\The [src] is secured firmly to [src.loc.name], it can't be unsecured."))
+		return
 	if(isassembly(W))
 		var/obj/item/assembly/A = W
 		if((!A.secured) && (!secured))
@@ -82,7 +87,7 @@
 
 /obj/item/assembly/examine(mob/user)
 	. = ..()
-	if((in_range(src, user) || loc == user))
+	if((in_range(src, user) || loc == user) && !mounted)
 		if(secured)
 			. += span_notice("\The [src] is ready!")
 		else

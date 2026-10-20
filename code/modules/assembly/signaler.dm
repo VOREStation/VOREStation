@@ -148,3 +148,7 @@
 		SSradio.remove_object(src,frequency)
 	frequency = ZERO_FREQ
 	. = ..()
+
+/obj/item/assembly/signaler/mounted
+	name = "integrated signaler"
+	mounted = TRUE
