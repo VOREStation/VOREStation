@@ -89,7 +89,7 @@
 
 /obj/item/dogborg/sleeper/compactor/generic
 	name = "Internal Cache"
-	desc = "An internal storage of no particularly specific purpose.."
+	desc = "An internal storage of no particularly specific purpose..."
 	icon_state = "sleeperd"
 	max_item_count = 10
 	recycles = FALSE

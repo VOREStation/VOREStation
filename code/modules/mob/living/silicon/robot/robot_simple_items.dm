@@ -14,6 +14,7 @@
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg"
 	w_class = ITEMSIZE_HUGE
+	throwforce = 0
 
 	var/obj/item/selected_item = null
 
@@ -137,6 +138,7 @@
 	icon_state = "toolkit_engiborg_screwdriver"
 	random_color = FALSE
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/tool/crowbar/cyborg
 	name = "hydraulic crowbar"
@@ -146,6 +148,7 @@
 	icon_state = "toolkit_engiborg_crowbar"
 	force = 10
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/tool/crowbar/cyborg/jaws
 	name = "puppy jaws"
@@ -155,6 +158,7 @@
 	hitsound = 'sound/weapons/bite.ogg'
 	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
 	force = 15
+	throwforce = 0
 
 /obj/item/weldingtool/electric/mounted/cyborg
 	name = "integrated electric welding tool"
@@ -165,6 +169,7 @@
 	toolspeed = 0.5
 	welding = FALSE
 	no_passive_burn = TRUE
+	throwforce = 0
 
 /obj/item/weldingtool/electric/mounted/cyborg/update_icon()
 	. = ..()
@@ -182,6 +187,7 @@
 	usesound = 'sound/items/jaws_cut.ogg'
 	random_color = FALSE
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/tool/wrench/cyborg
 	name = "automatic wrench"
@@ -190,6 +196,7 @@
 	icon_state = "toolkit_engiborg_wrench"
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/multitool/cyborg
 	name = "multitool"
@@ -197,6 +204,7 @@
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/multitool/cyborg/update_icon()
 	icon_state = "toolkit_engiborg_multitool"
@@ -212,6 +220,7 @@
 	RED: You are currently being watched by the AI.<br>\
 	FLASHING RED AND ORANGE: You are currently being TRACKED by the AI.<br>\
 	FLASHING ORANGE AND BLUE: The AI has attempted to track you but has failed to do so due to being outside camera range."
+	throwforce = 0
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -221,6 +230,7 @@
 	uses_charge = 1
 	charge_costs = list(1)
 	custom_handling = TRUE
+	throwforce = 0
 
 /obj/item/stack/cable_coil/cyborg/attack_self(mob/user)
 	. = ..(user)
@@ -268,37 +278,45 @@
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_medborg_retractor"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/hemostat/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_medborg_hemostat"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/cautery/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_medborg_cautery"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/surgicaldrill/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_medborg_drill"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/scalpel/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_medborg_scalpel"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/circular_saw/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "toolkit_medborg_saw"
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/bonegel/cyborg
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/FixOVein/cyborg
 	toolspeed = 0.5
+	throwforce = 0
 
 /obj/item/surgical/bonesetter/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
@@ -308,6 +326,7 @@
 /obj/item/surgical/bioregen/cyborg
 	icon_state = "cyborg_bioregen"
 	toolspeed = 0.5
+	throwforce = 0
 
 //Service multibelt!
 /obj/item/robotic_multibelt/service
@@ -326,6 +345,7 @@
 		/obj/item/multitool/cyborg = null,
 		/obj/item/reagent_containers/spray = null
 		)
+	throwforce = 0
 
 //Botanical multibelt!
 /obj/item/robotic_multibelt/botanical
@@ -347,25 +367,30 @@
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_cultivator"
 	applies_material_colour = FALSE
+	throwforce = 0
 
 /obj/item/material/knife/machete/hatchet/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_hatchet"
 	applies_material_colour = FALSE
+	throwforce = 0
 
 /obj/item/analyzer/plant_analyzer/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_secateur"
+	throwforce = 0
 
 /obj/item/material/knife/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_knife"
 	applies_material_colour = FALSE
+	throwforce = 0
 
 /obj/item/material/kitchen/rollingpin/cyborg
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_rolling_pin"
 	applies_material_colour = FALSE
+	throwforce = 0
 
 /obj/item/robotic_multibelt/syndicate
 	name = "Syndicate Robotic multitool"
