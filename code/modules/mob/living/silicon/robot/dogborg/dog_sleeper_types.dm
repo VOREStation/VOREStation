@@ -153,7 +153,7 @@
 
 /obj/item/dogborg/sleeper/command //Command borg belly
 	name = "Bluespace Filing Belly"
-	desc = "A mounted bluespace storage unit for carrying paperwork"
+	desc = "A mounted bluespace storage unit for carrying paperwork."
 	icon_state = "sleeperd"
 	injection_chems = null
 	compactor = TRUE

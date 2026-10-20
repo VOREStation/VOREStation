@@ -306,6 +306,8 @@
 	. = ..()
 	if(!held)
 		. += span_notice("The rack is empty.")
+	else
+		. += span_notice("There's [held] in storage.")
 
 /obj/item/roller_holder/attack_self(mob/user)
 	. = ..(user)
