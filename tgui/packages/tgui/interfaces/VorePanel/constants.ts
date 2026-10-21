@@ -121,6 +121,35 @@ export const modeToTooltip = {
     'Prey will be constantly made wet. This means they will drip if you let them out.',
 } as const;
 
+export const typeToTooltip = {
+  'Oral Vore': 'The act of consuming a prey with the mouth.',
+  'Anal Vore': 'The act of consuming a prey with the rearhole.',
+  'Cock Vore': 'The act of consuming a prey with a cock.',
+  'Sheath Vore': 'The act of consuming a prey into the sheath.',
+  'Bladder Vore': 'The act of consuming a prey into the bladder.',
+  Unbirth: 'The act of consuming a prey with a pussy.',
+  'Udder Vore': 'The act of consuming a prey with the udder.',
+  'Tail Vore': 'The act of consuming a prey with the tail.',
+  Absorption: 'The act of absorbing a prey.',
+  'Soul Vore': "The act of consuming a prey's soul.",
+  'Hard Vore':
+    'The act of brutally devouring / goring a prey. Includes bone break bellies.',
+  'Dirty / Filth':
+    'The act of doing dirty / filthy things to a prey. Includes messy internals.',
+  'High Damage':
+    'The act of severely damaging the prey. (High damage bellies or high potency liquids)',
+  Plinko: 'Automatic transfer setups without much interaction.',
+  'Other / Unlisted Vore': 'The act of consuming a prey in another manner.',
+  'Cock Transformation': 'The act of transforming a prey into a cock.',
+  'Pussy Transformation': 'The act of transforming a prey into a pussy.',
+  'Anus Transformation': 'The act of transforming a prey into a rearhole.',
+  'Paw Transformation': 'The act of transforming a prey into a paw',
+  'Tail Transformation': 'The act of transforming a prey into a tail.',
+  'Object Transformation': 'The act of transforming a prey into an object.',
+  'Other / Unlisted Transformation':
+    'The act of transforming a prey into something else.',
+} as const;
+
 export const spriteToTooltip = {
   'Normal Belly Sprite':
     "This belly will effect the mob's belly sprite if available.",
