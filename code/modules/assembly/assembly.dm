@@ -67,7 +67,7 @@
 
 /obj/item/assembly/attackby(obj/item/W as obj, mob/user as mob)
 	if(mounted)
-		to_chat(user, span_notice("\The [src] is secured firmly to [src.loc.loc], it can't be unsecured."))
+		to_chat(user, span_notice("\The [src] is secured firmly, it can't be unsecured."))
 		return
 	if(isassembly(W))
 		var/obj/item/assembly/A = W
