@@ -3002,10 +3002,6 @@
 /obj/effect/wingrille_spawn/reinforced/crescent,
 /turf/simulated/floor/tiled,
 /area/bridge)
-"gJ" = (
-/obj/structure/lattice,
-/turf/simulated/wall/r_wall,
-/area/space)
 "gK" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/engine_airlock)
@@ -3070,13 +3066,6 @@
 	},
 /turf/space,
 /area/space)
-"gX" = (
-/obj/structure/cable/cyan{
-	icon_state = "2-4"
-	},
-/obj/structure/lattice,
-/turf/simulated/floor/airless,
-/area/engineering/engine_room)
 "gY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -13526,7 +13515,7 @@ aa
 aa
 aa
 aa
-gX
+Dd
 rY
 aa
 aa
@@ -14057,7 +14046,7 @@ OV
 tW
 aa
 aa
-aa
+Zp
 aa
 aa
 aa
@@ -14158,9 +14147,9 @@ VK
 VK
 tW
 wW
-gJ
 wW
-aa
+wW
+Zp
 aa
 aa
 aa
@@ -14261,7 +14250,7 @@ Dd
 Gk
 aa
 aa
-gJ
+wW
 aa
 aa
 aa
