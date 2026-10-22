@@ -827,7 +827,7 @@
 /datum/trait/positive/hardy_weakspecies
 	name = "Unusually Hardy"
 	desc = "In spite of the standards of your specie, you've somehow managed to raise your strength to levels comparable with the human, or skrell baseline. You carry heavy equipment with no particular slowdown."
-	cost = 4
+	cost = 4 // Expensive!
 	var_changes = list("item_slowdown_mod" = 1)
 	custom_only = FALSE
 	allowed_species = list(SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
@@ -836,7 +836,7 @@
 /datum/trait/positive/hardy_major_weakspecies
 	name = "Unusually Hardy, Major"
 	desc = "In the distant past, you'd have gotten a great shot at being a powerful soldier, or warlord. Now? You could probably make it into the interstellar olympics. You carry heavy equipment with less slowdown than the rest of your specie."
-	cost = 6 //Very expensive
+	cost = 6 //Very expensive!
 	var_changes = list("item_slowdown_mod" = 0.7)
 	custom_only = FALSE
 	allowed_species = list( SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
