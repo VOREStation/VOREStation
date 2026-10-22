@@ -20,7 +20,7 @@
 
 	var/list/possible = list()
 	for(var/mob/living/silicon/robot/R as anything in GLOB.available_ai_shells)
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) && shell_z_valid(R.z))
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) && R.shell_z_valid(R.z))
 			possible += R
 
 	if(!LAZYLEN(possible))
@@ -64,9 +64,6 @@
 	var/found_z = check_z
 	// Try to get the turf so that we don't get disconnected when inside rechargers or disposals
 	var/turf/check_turf = get_turf(src)
-	if(isdisposalpacket(loc)) // Disposal holders fail get_turf() and required snowflake handling
-		check_turf = get_turf(loc.loc)
 	if(isturf(check_turf))
 		found_z = check_turf.z
-
 	return !(using_map.ai_shell_restricted && !(found_z in using_map.ai_shell_allowed_levels))
