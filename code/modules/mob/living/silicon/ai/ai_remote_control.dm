@@ -20,16 +20,8 @@
 
 	var/list/possible = list()
 	for(var/mob/living/silicon/robot/R as anything in GLOB.available_ai_shells)
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) )	//VOREStation Edit: shell restrictions
-			// Try to get the turf so that we don't get disconnected when inside rechargers or disposals
-			var/turf/shell_turf = get_turf(R)
-			if(istype(shell_turf))
-				if(!(using_map.ai_shell_restricted && !(shell_turf.z in using_map.ai_shell_allowed_levels)))
-					possible += R
-					continue
-			// If all else fails, we're probably in nullspace, this is likely to fail, but maybe there is some condition i'm unaware of where this works.
-			if(!(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)))
-				possible += R
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) && shell_z_valid(R.z))
+			possible += R
 
 	if(!LAZYLEN(possible))
 		to_chat(src, span_warning("No usable AI shell beacons detected."))
@@ -67,3 +59,14 @@
 	if(deployed_shell) // Forcibly call back AI in event of things such as damage, EMP or power loss.
 		message = span_danger(message)
 		deployed_shell.undeploy(message)
+
+/mob/living/silicon/robot/proc/shell_z_valid(var/check_z)
+	var/found_z = check_z
+	// Try to get the turf so that we don't get disconnected when inside rechargers or disposals
+	var/turf/check_turf = get_turf(src)
+	if(isdisposalpacket(loc)) // Disposal holders fail get_turf() and required snowflake handling
+		check_turf = get_turf(loc.loc)
+	if(isturf(check_turf))
+		found_z = check_turf.z
+
+	return !(using_map.ai_shell_restricted && !(found_z in using_map.ai_shell_allowed_levels))
