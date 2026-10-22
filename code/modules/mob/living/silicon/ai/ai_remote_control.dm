@@ -21,16 +21,13 @@
 	var/list/possible = list()
 	for(var/mob/living/silicon/robot/R as anything in GLOB.available_ai_shells)
 		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) )	//VOREStation Edit: shell restrictions
-			if(istype(R.loc, /obj/machinery/recharge_station))	//Check Rechargers
-				var/obj/machinery/recharge_station/RS = R.loc
-				if(!(using_map.ai_shell_restricted && !(RS.z in using_map.ai_shell_allowed_levels)))	//Allow station borgs to be redeployed from Chargers.
+			// Try to get the turf so that we don't get disconnected when inside rechargers or disposals
+			var/turf/shell_turf = get_turf(R)
+			if(istype(shell_turf))
+				if(!(using_map.ai_shell_restricted && !(shell_turf.z in using_map.ai_shell_allowed_levels)))
 					possible += R
-
-			if(isbelly(R.loc))	//check belly space
-				var/obj/belly/B = R.loc
-				if(!(using_map.ai_shell_restricted && !(B.owner.z in using_map.ai_shell_allowed_levels)))	//No smuggling in borgs
-					possible += R
-
+					continue
+			// If all else fails, we're probably in nullspace, this is likely to fail, but maybe there is some condition i'm unaware of where this works.
 			if(!(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)))
 				possible += R
 

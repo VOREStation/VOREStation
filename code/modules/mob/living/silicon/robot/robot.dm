@@ -1533,7 +1533,11 @@
 
 /mob/living/silicon/robot/onTransitZ(old_z, new_z)
 	if(shell)
-		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
+		var/found_z = new_z
+		if(!isturf(loc)) // Our location is set before this is called
+			var/turf/check_turf = get_turf(src)
+			found_z = check_turf.z
+		if(deployed && using_map.ai_shell_restricted && !(found_z in using_map.ai_shell_allowed_levels))
 			to_chat(src, span_warning("Your connection with the shell is suddenly interrupted!"))
 			undeploy()
 	..()
