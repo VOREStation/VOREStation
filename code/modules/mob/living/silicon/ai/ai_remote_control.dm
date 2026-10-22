@@ -60,7 +60,7 @@
 		message = span_danger(message)
 		deployed_shell.undeploy(message)
 
-/mob/living/silicon/robot/proc/shell_z_valid(var/check_z)
+/mob/living/silicon/robot/proc/shell_z_valid(check_z)
 	var/found_z = check_z
 	// Try to get the turf so that we don't get disconnected when inside rechargers or disposals
 	var/turf/check_turf = get_turf(src)
