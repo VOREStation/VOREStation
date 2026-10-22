@@ -1,3 +1,5 @@
+#define SELF_COMPONENTS 4 //Parts inside
+
 /obj/machinery/smartfridge
 	name = "\improper SmartFridge"
 	desc = "For storing all sorts of things! This one doesn't accept any of them!"
@@ -92,7 +94,7 @@
 
 	if(stat & (NOPOWER))
 		icon_state = "[icon_base]-off"
-		switch(contents.len)
+		switch(contents.len - SELF_COMPONENTS)
 			if(0)
 				add_overlay("[icon_base]-0-off")
 			if(1 to 3)
@@ -103,8 +105,8 @@
 				add_overlay("[icon_base]-[icon_contents]3-off")
 	else
 		icon_state = icon_base
-		switch(contents.len)
-			if(0)
+		switch(contents.len - SELF_COMPONENTS)
+			if(-INFINITY to 0)
 				add_overlay("[icon_base]-0")
 			if(1 to 3)
 				add_overlay("[icon_base]-[icon_contents]1")
@@ -303,3 +305,5 @@
 			to_chat(ui.user, span_warning("Access denied."))
 			return TRUE
 	return ..()
+
+#undef SELF_COMPONENTS
