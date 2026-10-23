@@ -529,7 +529,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 /mob/living/silicon/ai/reset_perspective(atom/new_eye)
 	if(istype(new_eye,/obj/machinery/camera))
 		camera = new_eye
-	else
+	else if(camera_light_on)
 		lightNearbyCamera()
 
 	if(new_eye != GLOB.ai_camera_room_landmark)
