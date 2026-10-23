@@ -1595,7 +1595,8 @@
 	set desc = "Check your current nutrition level."
 
 	if(isrobot(src))
-		to_chat(src, span_vnotice("Current battery level: [nutrition]."))
+		var/mob/living/silicon/robot/boboptherobot = src
+		to_chat(src, span_vnotice("Current battery charge: [boboptherobot.cell.charge]."))
 	else if(isAI(src))
 		var/mob/living/silicon/ai/AI_self = src
 		if(AI_self.APU_power) //On APU power, thus not connect to APC
@@ -1606,9 +1607,9 @@
 			if (istype(T, /turf/space))
 				to_chat(AI_self, span_valert("Unable to verify! No power connection detected!"))
 			else if(current_area.apc.operating == 0) // We are in an area with a non-working APC.
-				to_chat(AI_self, span_vnotice("Our check for external power from [current_area]'s APC came back empty!"))
+				to_chat(AI_self, span_valert("Our check for external power from [current_area]'s APC came back empty!"))
 			else if(current_area.apc.cell)
-				to_chat(AI_self, span_vnotice("Current battery level: [current_area.apc.cell.charge]."))
+				to_chat(AI_self, span_vnotice("Current APC battery level: [current_area.apc.cell.charge]."))
 	else
 		to_chat(src, span_vnotice("Current nutrition level: [nutrition]."))
 
