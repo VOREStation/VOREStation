@@ -230,7 +230,7 @@ SUBSYSTEM_DEF(mapping)
 	var/z_level = connected
 	if(isturf(z_level))
 		z_level = connected.z
-	return using_map.zlevels[z_level] //Deviation from TG. Instead of z_level_to_stack[z_level] we use zlevels[z_level]
+	return using_map.zlevels["[z_level]"] //Deviation from TG. Instead of z_level_to_stack[z_level] we use zlevels[z_level]
 
 /datum/controller/subsystem/mapping/stat_entry(msg)
 	if (!GLOB.Debug2)

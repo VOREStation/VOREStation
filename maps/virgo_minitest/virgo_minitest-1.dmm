@@ -1920,6 +1920,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
+"en" = (
+/obj/effect/shuttle_landmark/multidemo_start,
+/turf/space,
+/area/space)
 "eo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2964,7 +2968,9 @@
 	id_tag = "webdemo_docker_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor)
+/obj/effect/shuttle_landmark/station_inside,
+/turf/simulated/shuttle/floor,
+/area/space)
 "gS" = (
 /obj/structure/shuttle/engine/heater,
 /turf/simulated/shuttle/plating)
@@ -3037,7 +3043,9 @@
 	id_tag = "ferrydemo_shuttle_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor)
+/obj/effect/shuttle_landmark/station_dockpoint2,
+/turf/simulated/shuttle/floor,
+/area/space)
 "hp" = (
 /obj/effect/landmark{
 	name = "JoinLate"
@@ -4697,7 +4705,9 @@
 	id_tag = "overmapdemo_docker_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/obj/effect/shuttle_landmark/station_dockpoint1,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/space)
 "qt" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -8305,7 +8315,7 @@ aa
 aa
 aa
 aa
-aa
+en
 aa
 aa
 aa
