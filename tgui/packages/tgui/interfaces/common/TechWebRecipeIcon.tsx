@@ -60,7 +60,7 @@ export const TechWebRecipeIcon = (props: {
               ? `scale(${32 / transformValue},${32 / transformValue})`
               : undefined,
             transformOrigin: 'top left',
-            margin: `${offset > 0 ? offset : 0}px ${offset < 0 ? -offset : 0}px`,
+            margin: `${Math.max(offset, 0)}px ${Math.max(-offset, 0)}px`,
           }}
         />
       </Box>
