@@ -1597,17 +1597,18 @@
 	if(isrobot(src))
 		to_chat(src, span_vnotice("Current battery level: [nutrition]."))
 	else if(isAI(src))
-		if(src.APU_power) //On APU power, thus not connect to APC
-			to_chat(src, span_valert("Energy is currently being supplied by your Auxiliary Power Unit."))
+		var/mob/living/silicon/ai/AI_self = src
+		if(AI_self.APU_power) //On APU power, thus not connect to APC
+			to_chat(AI_self, span_valert("Energy is currently being supplied by your Auxiliary Power Unit."))
 		else
-			var/area/current_area = get_area(src)
-			var/turf/T = get_turf(src)
+			var/area/current_area = get_area(AI_self)
+			var/turf/T = get_turf(AI_self)
 			if (istype(T, /turf/space))
-				to_chat(src, span_valert("Unable to verify! No power connection detected!"))
-			else if(lacks_power()) // We are in an area with an APC without power.
-				to_chat(src, span_vnotice("Our check for external power from [current_area]'s APC came back empty!"))
-			else if(area.apc.cell)
-				to_chat(src, span_vnotice("Current battery level: [area.apc.cell.charge]."))
+				to_chat(AI_self, span_valert("Unable to verify! No power connection detected!"))
+			else if(current_area.apc.operating == 0) // We are in an area with a non-working APC.
+				to_chat(AI_self, span_vnotice("Our check for external power from [current_area]'s APC came back empty!"))
+			else if(current_area.apc.cell)
+				to_chat(AI_self, span_vnotice("Current battery level: [current_area.apc.cell.charge]."))
 	else
 		to_chat(src, span_vnotice("Current nutrition level: [nutrition]."))
 
