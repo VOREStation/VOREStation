@@ -1593,7 +1593,11 @@
 	set name = "Check Nutrition"
 	set category = "Abilities.Vore"
 	set desc = "Check your current nutrition level."
-	to_chat(src, span_vnotice("Current nutrition level: [nutrition]."))
+
+	if(isrobot(src))
+		to_chat(src, span_vnotice("Current battery level: [nutrition]."))
+	else
+		to_chat(src, span_vnotice("Current nutrition level: [nutrition]."))
 
 // This proc will either return the first belly the mob is in or return null if they're not in one
 /mob/living/proc/surrounding_belly()
