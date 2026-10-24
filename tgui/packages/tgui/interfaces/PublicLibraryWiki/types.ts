@@ -14,16 +14,16 @@ export type Data = {
 } & Required<PageData>;
 
 export type PageData = {
-  material_data: MaterialData | null;
-  particle_data: ParticleData | null;
-  catalog_data: CatalogData | null;
-  ore_data: OreData | null;
-  botany_data: BotanyData | null;
-  chemistry_data: ReagentData | null;
-  drink_data: DrinkData | null;
-  food_data: FoodData | null;
-  virus_data: VirusData | null;
-  gene_data: GeneData | null;
+  material_id: string | null;
+  particle_id: string | null;
+  catalog_id: string | null;
+  ore_id: string | null;
+  botany_id: string | null;
+  chemistry_id: string | null;
+  drink_id: string | null;
+  food_id: string | null;
+  virus_id: string | null;
+  gene_id: string | null;
 };
 
 export type FoodData = DrinkData & Partial<{ recipe: RedipeData }>;
