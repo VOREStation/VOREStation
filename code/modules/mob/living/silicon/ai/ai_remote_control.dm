@@ -20,19 +20,8 @@
 
 	var/list/possible = list()
 	for(var/mob/living/silicon/robot/R as anything in GLOB.available_ai_shells)
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) )	//VOREStation Edit: shell restrictions
-			if(istype(R.loc, /obj/machinery/recharge_station))	//Check Rechargers
-				var/obj/machinery/recharge_station/RS = R.loc
-				if(!(using_map.ai_shell_restricted && !(RS.z in using_map.ai_shell_allowed_levels)))	//Allow station borgs to be redeployed from Chargers.
-					possible += R
-
-			if(isbelly(R.loc))	//check belly space
-				var/obj/belly/B = R.loc
-				if(!(using_map.ai_shell_restricted && !(B.owner.z in using_map.ai_shell_allowed_levels)))	//No smuggling in borgs
-					possible += R
-
-			if(!(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)))
-				possible += R
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) ) && R.shell_z_valid(R.z))
+			possible += R
 
 	if(!LAZYLEN(possible))
 		to_chat(src, span_warning("No usable AI shell beacons detected."))
@@ -70,3 +59,11 @@
 	if(deployed_shell) // Forcibly call back AI in event of things such as damage, EMP or power loss.
 		message = span_danger(message)
 		deployed_shell.undeploy(message)
+
+/mob/living/silicon/robot/proc/shell_z_valid(check_z)
+	var/found_z = check_z
+	// Try to get the turf so that we don't get disconnected when inside rechargers or disposals
+	var/turf/check_turf = get_turf(src)
+	if(isturf(check_turf))
+		found_z = check_turf.z
+	return !(using_map.ai_shell_restricted && !(found_z in using_map.ai_shell_allowed_levels))
