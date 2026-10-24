@@ -1831,6 +1831,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
+"ea" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "eb" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -2971,7 +2977,8 @@
 /turf/simulated/floor/tiled,
 /area/bridge)
 "gD" = (
-/turf/simulated/shuttle/wall/voidcraft/blue)
+/turf/simulated/shuttle/wall/voidcraft/blue,
+/area/shuttle/webdemo)
 "gE" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
@@ -2986,7 +2993,8 @@
 	},
 /area/tcommsat/chamber)
 "gG" = (
-/turf/simulated/shuttle/wall)
+/turf/simulated/shuttle/wall,
+/area/shuttle/ferrydemo)
 "gH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -3019,7 +3027,8 @@
 /area/space)
 "gN" = (
 /obj/structure/shuttle/window,
-/turf/simulated/shuttle/plating)
+/turf/simulated/shuttle/plating,
+/area/shuttle/webdemo)
 "gO" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -3053,10 +3062,12 @@
 	id_tag = "webdemo_docker_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "gS" = (
 /obj/structure/shuttle/engine/heater,
-/turf/simulated/shuttle/plating)
+/turf/simulated/shuttle/plating,
+/area/shuttle/ferrydemo)
 "gT" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -3068,10 +3079,12 @@
 /area/engineering/engine_room)
 "gU" = (
 /obj/structure/shuttle,
-/turf/simulated/shuttle/wall)
+/turf/simulated/shuttle/wall,
+/area/shuttle/ferrydemo)
 "gV" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/simulated/shuttle/plating)
+/turf/simulated/shuttle/plating,
+/area/shuttle/ferrydemo)
 "gW" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -3127,7 +3140,8 @@
 	layer = 3.1;
 	pixel_x = -28
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
 "he" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3156,13 +3170,15 @@
 	name = "ferry-demo shuttle control console";
 	shuttle_tag = "Ferry-Demo"
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
 "hi" = (
 /turf/simulated/floor/airless,
 /area/solar/starboard)
 "hj" = (
 /obj/structure/table/reinforced,
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "hk" = (
 /obj/machinery/computer/shuttle_control{
 	dir = 8;
@@ -3184,7 +3200,8 @@
 	name = "multi-demo shuttle control console";
 	shuttle_tag = "Multi-Demo"
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
 "hn" = (
 /obj/machinery/light,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
@@ -3192,7 +3209,8 @@
 	layer = 3.1;
 	pixel_x = -28
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
 "ho" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -3200,7 +3218,8 @@
 	id_tag = "ferrydemo_shuttle_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
 "hp" = (
 /obj/effect/landmark{
 	name = "JoinLate"
@@ -3224,7 +3243,8 @@
 	id_tag = "multidemo_shuttle_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
 "hs" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable{
@@ -3239,9 +3259,11 @@
 	layer = 3.1;
 	pixel_x = -28
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "hu" = (
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "hv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3256,14 +3278,16 @@
 /area/solar/starboard)
 "hw" = (
 /obj/structure/shuttle,
-/turf/simulated/shuttle/wall/voidcraft/blue)
+/turf/simulated/shuttle/wall/voidcraft/blue,
+/area/shuttle/webdemo)
 "hx" = (
 /obj/machinery/computer/shuttle_control/web{
 	my_doors = list("webdemo_docker_hatch" = "Hatch");
 	name = "Web-Demo Console";
 	shuttle_tag = "Web-Demo"
 	},
-/turf/simulated/shuttle/floor)
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "hy" = (
 /obj/machinery/light{
 	dir = 4
@@ -3279,21 +3303,27 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor)
+/obj/effect/shuttle_landmark/station_inside,
+/turf/simulated/shuttle/floor,
+/area/shuttle/webdemo)
 "hA" = (
 /obj/structure/shuttle/engine/heater,
-/turf/simulated/shuttle/plating/carry)
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/webdemo)
 "hB" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/simulated/shuttle/plating/carry)
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/webdemo)
 "hC" = (
 /obj/machinery/shipsensors,
-/turf/simulated/shuttle/floor/voidcraft/external/light)
+/turf/simulated/shuttle/floor/voidcraft/external/light,
+/area/shuttle/webdemo)
 "hD" = (
 /obj/machinery/ion_engine{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating/carry)
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/webdemo)
 "hE" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -4079,15 +4109,55 @@
 	},
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
+"jF" = (
+/obj/structure/shuttle/window,
+/turf/simulated/shuttle/plating,
+/area/shuttle/ferrydemo)
 "jG" = (
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
+"jH" = (
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
+"jI" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/shuttle_landmark/station_dockpoint1,
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
+"jJ" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
 "jK" = (
 /obj/machinery/camera/network/civilian{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
+"jL" = (
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor,
+/area/shuttle/ferrydemo)
+"jM" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/multidemo)
+"jN" = (
+/obj/structure/shuttle/engine/heater,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/multidemo)
+"jO" = (
+/obj/structure/shuttle,
+/turf/simulated/shuttle/wall/voidcraft/blue,
+/area/shuttle/multidemo)
+"jP" = (
+/obj/structure/shuttle/window,
+/turf/simulated/shuttle/plating,
+/area/shuttle/multidemo)
 "jQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4499,7 +4569,8 @@
 /area/crew_quarters/bar)
 "kU" = (
 /obj/structure/shuttle,
-/turf/simulated/shuttle/wall/voidcraft/green)
+/turf/simulated/shuttle/wall/voidcraft/green,
+/area/shuttle/webdemo)
 "kV" = (
 /obj/effect/floor_decal/milspec/color/green/half{
 	dir = 8
@@ -5168,6 +5239,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/ai_cyborg_station)
+"mB" = (
+/turf/simulated/shuttle/wall/voidcraft/blue,
+/area/shuttle/multidemo)
+"mC" = (
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
+"mD" = (
+/obj/effect/shuttle_landmark/multidemo_nearby,
+/turf/space,
+/area/space)
 "mE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5180,6 +5261,13 @@
 	},
 /turf/simulated/floor,
 /area/engineering/workshop)
+"mF" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/shuttle_landmark/multidemo_start,
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
 "mG" = (
 /obj/machinery/light{
 	dir = 8
@@ -5188,6 +5276,40 @@
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/engine_gas)
+"mH" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
+"mI" = (
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor,
+/area/shuttle/multidemo)
+"mJ" = (
+/obj/effect/shuttle_landmark/ferrydemo_space,
+/turf/space,
+/area/space)
+"mK" = (
+/obj/effect/shuttle_landmark/shared_space,
+/turf/space,
+/area/space)
+"mL" = (
+/obj/effect/shuttle_landmark/webdemo_faraway,
+/turf/space,
+/area/space)
+"mM" = (
+/obj/effect/shuttle_landmark/transit/webdemo_transit,
+/turf/space,
+/area/space)
+"mN" = (
+/obj/effect/shuttle_landmark/transit/ferrydemo_transit,
+/turf/space,
+/area/space)
+"mO" = (
+/obj/effect/shuttle_landmark/transit/multidemo_transit,
+/turf/space,
+/area/space)
 "mP" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor,
@@ -5549,7 +5671,8 @@
 	id_tag = "overmapdemo_docker_hatch";
 	locked = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "qt" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -5567,7 +5690,8 @@
 	name = "Overmap-Demo Shuttle Control";
 	shuttle_tag = "Overmap-Demo"
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "qH" = (
 /obj/structure/closet/radiation,
 /turf/simulated/floor/tiled/techmaint,
@@ -5975,7 +6099,8 @@
 	dir = 8;
 	throwpass = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "vQ" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -6376,7 +6501,8 @@
 /area/engineering/engine_monitoring)
 "zf" = (
 /obj/effect/wingrille_spawn/reinforced,
-/turf/simulated/shuttle/floor/voidcraft/external/light)
+/turf/simulated/shuttle/floor/voidcraft/external/light,
+/area/shuttle/webdemo)
 "zg" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -6434,7 +6560,9 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/obj/effect/shuttle_landmark/station_dockpoint2,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "Aa" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
@@ -6938,7 +7066,8 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "Gz" = (
-/turf/simulated/shuttle/wall/voidcraft/green)
+/turf/simulated/shuttle/wall/voidcraft/green,
+/area/shuttle/webdemo)
 "GB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /obj/structure/lattice,
@@ -7552,7 +7681,8 @@
 /obj/machinery/computer/ship/navigation{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "Od" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -8143,7 +8273,8 @@
 /obj/machinery/computer/ship/sensors{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/voidcraft/light)
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "Un" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1379;
@@ -8426,7 +8557,8 @@
 /area/engineering/engine_gas)
 "XZ" = (
 /obj/machinery/computer/ship/helm,
-/turf/simulated/shuttle/floor/voidcraft/light)
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/shuttle/webdemo)
 "Yb" = (
 /obj/machinery/camera/network/civilian{
 	dir = 9
@@ -9148,7 +9280,7 @@ aa
 aa
 aa
 aa
-aa
+mD
 aa
 aa
 aa
@@ -10068,8 +10200,8 @@ aa
 aa
 aa
 aa
-hA
-hB
+jN
+jM
 aa
 fY
 gf
@@ -10166,11 +10298,11 @@ aa
 aa
 aa
 aa
-gD
-gN
+mB
+jP
 hr
-gN
-hw
+jP
+jO
 aa
 aa
 fY
@@ -10268,11 +10400,11 @@ aa
 aa
 aa
 aa
-gN
+jP
 hm
-hz
+mF
 hn
-gN
+jP
 aa
 aa
 fY
@@ -10370,11 +10502,11 @@ aa
 aa
 aa
 aa
-gN
-hj
-hz
-hu
-gN
+jP
+mI
+mH
+mC
+jP
 aa
 aa
 fY
@@ -10472,11 +10604,11 @@ aa
 aa
 aa
 aa
-gD
-gN
-gN
-gN
-gD
+mB
+jP
+jP
+jP
+mB
 aa
 aa
 fY
@@ -10578,8 +10710,8 @@ aa
 aa
 aa
 aa
-hA
-hB
+jN
+jM
 aa
 fY
 GC
@@ -10694,7 +10826,7 @@ gf
 gf
 gN
 hj
-hz
+ea
 hu
 gN
 gf
@@ -11586,7 +11718,7 @@ aa
 aa
 aa
 aa
-aa
+mJ
 aa
 aa
 aa
@@ -11911,9 +12043,9 @@ aa
 aa
 aa
 gG
-gN
+jF
 ho
-gN
+jF
 gU
 aa
 aa
@@ -12012,11 +12144,11 @@ aa
 aa
 aa
 aa
-gN
+jF
 hh
-hz
+jI
 hd
-gN
+jF
 aa
 aa
 zf
@@ -12114,11 +12246,11 @@ aa
 aa
 aa
 aa
-gN
-hj
-hz
-hu
-gN
+jF
+jL
+jJ
+jH
+jF
 aa
 aa
 zf
@@ -12217,9 +12349,9 @@ aa
 aa
 aa
 gG
-gN
-gN
-gN
+jF
+jF
+jF
 gG
 aa
 aa
@@ -12889,7 +13021,7 @@ aa
 aa
 aa
 aa
-aa
+mK
 aa
 aa
 aa
@@ -14398,7 +14530,7 @@ aa
 aa
 aa
 aa
-aa
+mM
 aa
 aa
 aa
@@ -15826,7 +15958,7 @@ aa
 aa
 aa
 aa
-aa
+mN
 aa
 aa
 aa
@@ -17152,7 +17284,7 @@ aa
 aa
 aa
 aa
-aa
+mO
 aa
 aa
 aa
@@ -17675,7 +17807,7 @@ aa
 aa
 aa
 aa
-aa
+mL
 aa
 aa
 aa
