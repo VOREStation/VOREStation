@@ -615,7 +615,7 @@
 	M.add_chemical_effect(CE_PAINKILLER, 200 * chem_effective)
 	M.add_chemical_effect(CE_SLOWDOWN, 1)
 	M.add_chemical_effect(CE_NARCOTICS, 1)
-	M.eye_blurry = min(M.eye_blurry + 10, 250 * chem_effective)
+	M.eye_blurry = min(M.eye_blurry + 10, 100 * chem_effective)
 
 /datum/reagent/oxycodone/overdose(mob/living/carbon/M, alien)
 	..()
@@ -771,7 +771,7 @@
 				I.damage = max(I.damage - removed, 0)
 				H.Confuse(5)
 			if(I.damage <= 5 && I.organ_tag == O_EYES)
-				H.eye_blurry = min(M.eye_blurry + 10, 250) //Eyes need to reset, or something
+				H.eye_blurry = min(M.eye_blurry + 10, 100) //Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
 		if(alien == IS_SLIME)
 			H.add_chemical_effect(CE_PAINKILLER, 20 * M.species.chem_strength_pain)
@@ -836,7 +836,7 @@
 /datum/reagent/myelamine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
-	M.eye_blurry = min(M.eye_blurry + (repair_strength * removed), 250)
+	M.eye_blurry = min(M.eye_blurry + (repair_strength * removed), 100)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength
