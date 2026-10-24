@@ -6910,10 +6910,6 @@
 /obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Power - Main"
 	},
-/obj/item/smes_coil,
-/obj/item/smes_coil,
-/obj/item/smes_coil,
-/obj/item/smes_coil,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
