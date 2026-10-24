@@ -164,7 +164,7 @@
 
 	try_infect(target, hit_zone)
 
-/datum/component/infective/proc/try_infect_attack_zone(obj/item/source, mob/living/carbon/target, mob/living/user, hit_zone)
+/datum/component/infective/proc/try_infect_attack_zone(obj/item/source, mob/living/carbon/target, mob/living/user, hit_zone, effective_force)
 	SIGNAL_HANDLER
 
 	try_infect(target, hit_zone)
