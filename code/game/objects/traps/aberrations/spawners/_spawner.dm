@@ -5,6 +5,8 @@
 	///What range we spawn our effects.
 	var/range = 4
 
+	alpha = 0
+
 	///If we use random range or not
 	var/random_range = TRUE
 
