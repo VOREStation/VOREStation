@@ -313,6 +313,11 @@ em {
   color: hsl(124, 50%, 21%);
 }
 
+.admin {
+  color: hsl(225, 100%, 63%);
+  font-weight: bold;
+}
+
 .ooc .admin {
   color: hsl(15, 100%, 36%);
 }
@@ -362,11 +367,6 @@ img.icon.bigicon {
 
 .adminsay {
   color: hsl(16, 100%, 50%);
-  font-weight: bold;
-}
-
-.admin {
-  color: hsl(225, 100%, 63%);
   font-weight: bold;
 }
 
