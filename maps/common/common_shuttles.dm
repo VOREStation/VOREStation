@@ -44,7 +44,6 @@
 	dynamic_lighting = 0
 
 // Minitest overmap
-
 /obj/effect/overmap/visitable/sector/virgo_minitest/station
 	name = "Minitest Station"
 	desc = "The Virgo Minitest Station.  A small base useful for testing and loading quickly!"
