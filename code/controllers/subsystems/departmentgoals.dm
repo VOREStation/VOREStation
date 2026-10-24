@@ -122,13 +122,6 @@ SUBSYSTEM_DEF(departmentgoals)
 
 
 // Move these helpers when upported or make a tgui instead
-/mob/verb/check_round_goals()
-	set name = "Check Round Goals"
-	set desc = "View currently active round goals, and if they have been completed."
-	set category = "IC.Notes"
-
-	SSdepartmentgoals.show_goal_status_to(usr)
-
 ADMIN_VERB(add_department_goal, R_EVENT, "Add Department Goal", "Adds a goal for the station to reach.", ADMIN_CATEGORY_EVENTS)
 	var/choice = tgui_input_list(usr,"Choose goal to add:","New Goal", subtypesof(/datum/goal))
 	if(!choice)
