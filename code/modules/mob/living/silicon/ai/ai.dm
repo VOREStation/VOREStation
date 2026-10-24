@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	var/obj/item/communicator/aiCommunicator = null
 	var/obj/item/multitool/aiMulti = null
 	var/obj/item/radio/headset/heads/ai_integrated/aiRadio = null
-	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
+	var/camera_light_on = FALSE	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 	var/control_disabled = 0
@@ -482,7 +482,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		unset_machine()
 		src << browse(null, t1)
 	if (href_list["switchcamera"])
-		switchCamera(locate(href_list["switchcamera"])) in GLOB.cameranet.cameras
+		switchCamera(locate(href_list["switchcamera"])) in SScameras.cameras
 	if (href_list["showalerts"])
 		subsystem_alarm_monitor()
 	//Carn: holopad requests
@@ -519,7 +519,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	return
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/observer/eye/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes)
+	SScameras.update_eye_chunk(moved_eye)
 
 /mob/living/silicon/ai/forceMove(atom/destination, direction, movetime)
 	. = ..()
@@ -527,10 +527,11 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		end_multicam()
 
 /mob/living/silicon/ai/reset_perspective(atom/new_eye)
-	if(camera)
-		camera.set_light(0)
 	if(istype(new_eye,/obj/machinery/camera))
 		camera = new_eye
+	else if(camera_light_on)
+		lightNearbyCamera()
+
 	if(new_eye != GLOB.ai_camera_room_landmark)
 		end_multicam()
 	. = ..()
@@ -541,6 +542,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	if(istype(new_eye,/obj/machinery/camera))
 		if(camera_light_on)
 			new_eye.set_light(AI_CAMERA_LUMINOSITY)
+			lightNearbyCamera()
 		else
 			new_eye.set_light(0)
 
@@ -571,7 +573,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		return
 
 	var/list/cameralist = new()
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for (var/obj/machinery/camera/C in SScameras.cameras)
 		if(!C.can_use())
 			continue
 		var/list/tempnetwork = difflist(C.network, GLOB.restricted_camera_networks, 1)
@@ -595,7 +597,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 
 	src.network = network
 
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for(var/obj/machinery/camera/C in SScameras.cameras)
 		if(!C.can_use())
 			continue
 		if(network in C.network)
@@ -753,40 +755,42 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		return
 
 	camera_light_on = !camera_light_on
-	to_chat(src, span_filter_notice("Camera lights [camera_light_on ? "activated" : "deactivated"]."))
 	if(!camera_light_on)
 		if(camera)
 			camera.set_light(0)
 			camera = null
-	else
-		lightNearbyCamera()
+			to_chat(src, span_filter_notice("Camera lights deactivated."))
+		return
 
-
+	if(lightNearbyCamera())
+		to_chat(src, span_filter_notice("Camera lights activated."))
 
 // Handled camera lighting, when toggled.
 // It will get the nearest camera from the eyeobj, lighting it.
-
 /mob/living/silicon/ai/proc/lightNearbyCamera()
-	if(camera_light_on && camera_light_on < world.timeofday)
-		if(src.camera)
-			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
-			if(camera && src.camera != camera)
-				src.camera.set_light(0)
-				if(!camera.light_disabled)
-					src.camera = camera
-					src.camera.set_light(AI_CAMERA_LUMINOSITY)
-				else
-					src.camera = null
-			else if(isnull(camera))
-				src.camera.set_light(0)
-				src.camera = null
-		else
-			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
-			if(camera && !camera.light_disabled)
+	if(src.camera)
+		var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
+		if(isnull(camera))
+			src.camera.set_light(0)
+			src.camera = null
+			return FALSE
+		if(src.camera == camera)
+			src.camera.set_light(AI_CAMERA_LUMINOSITY)
+			return TRUE
+		if(src.camera != camera)
+			src.camera.set_light(0)
+			if(!camera.light_disabled)
 				src.camera = camera
 				src.camera.set_light(AI_CAMERA_LUMINOSITY)
-		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
+				return TRUE
+			src.camera = null
+			return FALSE
 
+	var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
+	if(camera && !camera.light_disabled)
+		src.camera = camera
+		src.camera.set_light(AI_CAMERA_LUMINOSITY)
+	return TRUE
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/aicard))
