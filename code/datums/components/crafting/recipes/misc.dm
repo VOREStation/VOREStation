@@ -26,20 +26,3 @@
 	)
 	time = 5 SECONDS
 	category = CAT_MISC
-
-/datum/crafting_recipe/spring_trap_self_resetting
-	name = "self-resetting spring trap"
-	result = /obj/item/spring_trap_kit/resetting
-	reqs = list(
-		list(/obj/item/stack/material/steel = 8),
-		list(/obj/item/stack/rods = 2),
-		list(/obj/item/stock_parts/motor = 1),
-		list(/obj/item/stack/cable_coil = 2)
-	)
-	tool_behaviors = list(
-		TOOL_SCREWDRIVER,
-		TOOL_WELDER,
-		TOOL_CROWBAR
-	)
-	time = 5 SECONDS
-	category = CAT_MISC
