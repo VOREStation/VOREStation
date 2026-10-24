@@ -5314,6 +5314,10 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor,
 /area/engineering/workshop)
+"mQ" = (
+/obj/effect/overmap/visitable/sector/virgo_minitest/station,
+/turf/space,
+/area/space)
 "mR" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -8900,7 +8904,7 @@ aa
 aa
 aa
 aa
-aa
+mQ
 aa
 "}
 (3,1,1) = {"
@@ -9280,7 +9284,7 @@ aa
 aa
 aa
 aa
-mD
+aa
 aa
 aa
 aa
@@ -10210,7 +10214,7 @@ gf
 gf
 gf
 gf
-gf
+gA
 gf
 gf
 gf
@@ -12139,7 +12143,7 @@ fi
 aa
 aa
 aa
-aa
+mD
 aa
 aa
 aa
@@ -17182,7 +17186,7 @@ aa
 aa
 aa
 aa
-aa
+mO
 aa
 aa
 aa
@@ -17284,7 +17288,6 @@ aa
 aa
 aa
 aa
-mO
 aa
 aa
 aa
@@ -17300,6 +17303,7 @@ aa
 aa
 aa
 aa
+mL
 aa
 aa
 aa
@@ -17807,7 +17811,7 @@ aa
 aa
 aa
 aa
-mL
+aa
 aa
 aa
 aa
