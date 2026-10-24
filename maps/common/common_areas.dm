@@ -238,7 +238,6 @@
 	name = "POI - Temple of the Seven"
 
 // Minitest Areas
-
 /area/shuttle/overmapdemo
 	name = "Overmap-Demo Suttle"
 	music = "music/escape.ogg"
