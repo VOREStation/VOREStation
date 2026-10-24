@@ -1291,6 +1291,7 @@
 #include "code\game\machinery\Beacon.dm"
 #include "code\game\machinery\biogenerator.dm"
 #include "code\game\machinery\bioprinter.dm"
+#include "code\game\machinery\bodycamera.dm"
 #include "code\game\machinery\bomb_tester_vr.dm"
 #include "code\game\machinery\buttons.dm"
 #include "code\game\machinery\buttons_vr.dm"

@@ -35,13 +35,14 @@
 #define NETWORK_TELECOM "Telecomms"
 #define NETWORK_EXPLORATION "Exploration"
 #define NETWORK_XENOBIO "Xenobiology"
-#define NETWORK_THUNDER "Entertainment"		//VOREStation Edit: broader definition
+#define NETWORK_THUNDER "Entertainment"
+#define NETWORK_BODYCAM "Body Cameras"
 #define NETWORK_COMMUNICATORS "Communicators"
 #define NETWORK_ALARM_ATMOS "Atmosphere Alarms"
 #define NETWORK_ALARM_POWER "Power Alarms"
 #define NETWORK_ALARM_FIRE "Fire Alarms"
-#define NETWORK_TALON_HELMETS "TalonHelmets" //VOREStation Add
-#define NETWORK_TALON_SHIP "TalonShip" //VOREStation Add
+#define NETWORK_TALON_HELMETS "TalonHelmets"
+#define NETWORK_TALON_SHIP "TalonShip"
 
 //Camera networks
 #define NETWORK_TETHER "Tether"

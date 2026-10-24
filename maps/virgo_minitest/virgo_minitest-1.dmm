@@ -1920,10 +1920,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay)
-"en" = (
-/obj/effect/shuttle_landmark/multidemo_start,
-/turf/space,
-/area/space)
 "eo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2968,9 +2964,7 @@
 	id_tag = "webdemo_docker_hatch";
 	locked = 1
 	},
-/obj/effect/shuttle_landmark/station_inside,
-/turf/simulated/shuttle/floor,
-/area/space)
+/turf/simulated/shuttle/floor)
 "gS" = (
 /obj/structure/shuttle/engine/heater,
 /turf/simulated/shuttle/plating)
@@ -3043,9 +3037,7 @@
 	id_tag = "ferrydemo_shuttle_hatch";
 	locked = 1
 	},
-/obj/effect/shuttle_landmark/station_dockpoint2,
-/turf/simulated/shuttle/floor,
-/area/space)
+/turf/simulated/shuttle/floor)
 "hp" = (
 /obj/effect/landmark{
 	name = "JoinLate"
@@ -4705,9 +4697,7 @@
 	id_tag = "overmapdemo_docker_hatch";
 	locked = 1
 	},
-/obj/effect/shuttle_landmark/station_dockpoint1,
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/space)
+/turf/simulated/shuttle/floor/voidcraft/light)
 "qt" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -6920,6 +6910,10 @@
 /obj/machinery/power/smes/buildable/engine_default{
 	RCon_tag = "Power - Main"
 	},
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -8315,7 +8309,7 @@ aa
 aa
 aa
 aa
-en
+aa
 aa
 aa
 aa

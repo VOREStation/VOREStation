@@ -160,6 +160,170 @@
 	if(camera.status)
 		SEND_SIGNAL(camera, COMSIG_MOVABLE_ATTEMPTED_MOVE) // Forward the movement signal
 
+// Security Bodycam
+
+/obj/item/clothing/accessory/bodycam
+	name = "Body Camera"
+	desc = "A small body camera for security personnel. It can be attached to your uniform! Use in hand to configure."
+	icon_state = "eshield"
+	item_state = "eshield"
+	w_class = ITEMSIZE_COST_TINY
+	slot_flags = ACCESSORY_SLOT_DECOR
+	appearance_flags = RESET_COLOR
+	icon = 'icons/obj/weapons.dmi'
+	var/channel = "Default Bodycamera Feed"
+	var/obj/machinery/camera/network/bodycamera/bcamera
+	var/obj/item/radio/bradio
+	var/datum/weakref/showing
+	var/showing_name
+	special_handling = TRUE
+
+/obj/item/clothing/accessory/bodycam/Initialize(mapload)
+	. = ..()
+	GLOB.listening_objects += src
+
+/obj/item/clothing/accessory/bodycam/Destroy()
+	GLOB.listening_objects -= src
+	qdel(bcamera)
+	qdel(bradio)
+	bcamera = null
+	bradio = null
+	..()
+
+/obj/item/clothing/accessory/bodycam/examine()
+	. = ..()
+	. += "Video feed is [bcamera.status ? "on" : "off"]"
+	. += "Audio feed is [bradio.broadcasting ? "on" : "off"]"
+
+/obj/item/clothing/accessory/bodycam/Initialize(mapload)
+	. = ..()
+	bcamera = new(src)
+	bcamera.c_tag = channel
+	bcamera.status = FALSE
+	bradio = new(src)
+	bradio.listening = FALSE
+	bradio.set_frequency(BDCM_FREQ)
+	bradio.icon = src.icon
+	bradio.icon_state = src.icon_state
+	update_icon()
+
+/obj/item/clothing/accessory/bodycam/hear_talk(mob/M, list/message_pieces, verb)
+	bradio.hear_talk(M, message_pieces, verb)
+	. = ..()
+
+/obj/item/clothing/accessory/bodycam/attack_self(mob/user)
+	. = ..(user)
+	if(.)
+		return TRUE
+	add_fingerprint(user)
+	//user.set_machine(src)
+	show_bodycam_ui(user)
+
+/obj/item/clothing/accessory/bodycam/proc/show_bodycam_ui(mob/user)
+	var/dat = list()
+	dat += "Channel name is: <a href='byond://?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
+	dat += "Video streaming is <a href='byond://?src=\ref[src];video=1'>[bcamera.status ? "on" : "off"]</a><br>"
+	if(bcamera.status && showing_name)
+		dat += "- You're showing [showing_name] to your viewers.<br>"
+	dat += "Mic is <a href='byond://?src=\ref[src];sound=1'>[bradio.broadcasting ? "on" : "off"]</a><br>"
+	dat += "Sound is being broadcasted on frequency [format_frequency(bradio.frequency)] ([get_frequency_name(bradio.frequency)])<br>"
+	var/datum/browser/popup = new(user, "Hovercamera", "Eye Buddy", 300, 390, src)
+	popup.set_content(jointext(dat,null))
+	popup.open()
+
+/obj/item/clothing/accessory/bodycam/Topic(bred, href_list, state = GLOB.tgui_physical_state)
+
+	if(..())
+		return 1
+	if(href_list["channel"])
+		var/nc = tgui_input_text(usr, "Channel name", "Select new channel name", channel, MAX_NAME_LEN)
+		nc = sanitize(nc,MAX_NAME_LEN)
+		if(nc)
+			channel = nc
+			bcamera.c_tag = channel
+			to_chat(usr, span_notice("New channel name - '[channel]' is set"))
+	if(href_list["video"])
+		bcamera.set_status(!bcamera.status)
+		var/turf/here = get_turf(usr)
+		if(bcamera.status)
+			to_chat(usr,span_notice("Video streaming activated. Broadcasting on channel '[channel]'"))
+			if(here)
+				here.visible_message(span_notice("[usr] turns on their body camera."))
+			show_bodycamera_tvs(loc)
+		else
+			to_chat(usr,span_notice("Video streaming deactivated."))
+			if(here)
+				here.visible_message(span_warning("[usr] turns off their body camera!"))
+			hide_bodycamera_tvs()
+			for(var/obj/machinery/computer/security/telescreen/bodycamera/ES as anything in GLOB.bodycamera_screens)
+				ES.stop_showing()
+		update_icon()
+	if(href_list["sound"])
+		bradio.ToggleBroadcast()
+		if(bradio.broadcasting)
+			to_chat(usr,span_notice("Audio streaming activated. Broadcasting on frequency [format_frequency(bradio.frequency)]."))
+		else
+			to_chat(usr,span_notice("Audio streaming deactivated."))
+	if(!href_list["close"])
+		attack_self(usr)
+
+/obj/item/clothing/accessory/bodycam/proc/show_bodycamera_tvs(atom/thing)
+	if(showing)
+		hide_bodycamera_tvs(showing)
+
+	showing = WEAKREF(thing)
+	showing_name = "[thing]"
+	for(var/obj/machinery/computer/security/telescreen/bodycamera/ES as anything in GLOB.bodycamera_screens)
+		ES.show_thing(thing, src)
+
+	START_PROCESSING(SSobj, src)
+
+/obj/item/clothing/accessory/bodycam/proc/hide_bodycamera_tvs()
+	if(!showing)
+		return
+	for(var/obj/machinery/computer/security/telescreen/bodycamera/ES as anything in GLOB.bodycamera_screens)
+		ES.maybe_stop_showing(showing)
+	STOP_PROCESSING(SSobj, src)
+	showing = null
+	showing_name = null
+
+/obj/item/clothing/accessory/bodycam/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+	. = ..()
+	if(bcamera.status && loc != old_loc)
+		show_bodycamera_tvs(loc)
+
+/*  // Kinda unneeded, since this one is worn on the suit.
+/obj/item/clothing/accessory/bodycam/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(bcamera.status && !isturf(target))
+		show_bodycamera_tvs(target)
+		user.visible_message("<b>[user]</b> aims [src] at [target].", "You aim [src] at [target].")
+		if(user.machine == src)
+			show_bodycam_ui(user) // refresh the UI
+*/
+/obj/item/clothing/accessory/bodycam/process()
+	if(!showing)
+		return PROCESS_KILL
+
+	var/atom/A = showing.resolve()
+	if(!A || QDELETED(A))
+		show_bodycamera_tvs(loc)
+
+	if(get_dist(get_turf(src), get_turf(A)) > 0) // No realtime updates
+		update_feed()
+
+/obj/item/clothing/accessory/bodycam/proc/update_feed()
+	if(bcamera.status)
+		SEND_SIGNAL(bcamera, COMSIG_MOVABLE_ATTEMPTED_MOVE) // Forward the movement signal
+
+/obj/item/clothing/accessory/bodycam/update_icon()
+	..()
+	var/mob/living/carbon/human/H = loc
+	if(istype(H))
+		H.update_inv_r_hand()
+		H.update_inv_l_hand()
+		H.update_inv_belt()
+
 //Assembly by roboticist
 
 /obj/item/robot_parts/head/attackby(obj/item/assembly/S, mob/user as mob)
