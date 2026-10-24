@@ -164,12 +164,13 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += "It appears to be producing [power_gen*power_output] W."
-	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken())
-		. += span_warning("It seems to have broken down.")
-	if(overheating)
-		. += span_danger("It is overheating!")
+	if(Adjacent(user))
+		. += span_notice("It appears to be producing [power_gen*power_output] W.")
+		. += span_notice("There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
+		if(IsBroken())
+			. += span_warning("It seems to have broken down.")
+		if(overheating)
+			. += span_danger("It is overheating!")
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet

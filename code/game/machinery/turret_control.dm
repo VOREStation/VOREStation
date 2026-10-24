@@ -9,6 +9,7 @@
 /obj/machinery/turretid
 	name = "turret control panel"
 	desc = "Used to control a room's automated defenses."
+	description_silicon = "Ctrl-click to toggle turrets, Alt-click to toggle lethals!"
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
 	anchored = TRUE

@@ -38,7 +38,7 @@ GLOBAL_LIST(holidays)
 
 // Run at the start of a round
 /proc/Holiday_Game_Start()
-	if(isnull(GLOB.holidays))
+	if(isemptylist(GLOB.holidays))
 		return
 
 	var/list/holidays = list()
@@ -51,9 +51,8 @@ GLOBAL_LIST(holidays)
 	var/holidays_string = english_list(holidays, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
 	to_chat(world, span_filter_system(span_blue("and...")))
 	to_chat(world, span_filter_system("<h4>Happy [holidays_string] Everybody!</h4>"))
-	if(holiday_blurbs.len != 0)
-		for(var/blurb in holiday_blurbs)
-			to_chat(world, span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
+	for(var/blurb in holiday_blurbs)
+		to_chat(world, span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
 	return
 
 //Allows GA and GM to set the Holiday

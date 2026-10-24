@@ -213,6 +213,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 
 #define STRONG_IMMUNITY_TRAIT "strongimmunity"
+#define NON_INFECTIOUS_XENOCHIMERA_TRAIT "non_infectious_xenochimera"
 
 #define SLIP_REFLEX_TRAIT "slip_reflex"
 

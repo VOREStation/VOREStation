@@ -1,3 +1,4 @@
+// Not the material doors.
 /obj/machinery/door
 	name = "Door"
 	desc = "It opens and closes."
