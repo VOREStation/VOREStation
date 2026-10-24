@@ -348,6 +348,7 @@ MRE Stuff
 /obj/item/reagent_containers/food/snacks/tgmc_mre_component
 	name = "\improper MRE component"
 	package = TRUE
+	food_can_insert_micro = FALSE
 	bitesize = 1
 	icon_state = "tgmcmre_entree"
 	var/flavor = "boneless pork ribs"
