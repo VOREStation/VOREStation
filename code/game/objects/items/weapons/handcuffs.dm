@@ -185,6 +185,8 @@
 	color = "#FFFFFF"
 
 /obj/item/handcuffs/cyborg
+	name = "handcuff replicator"
+	desc = "A set of small robotic arms that handily restrain suspect. Now, integrating a mini fabricator to never run out!"
 	dispenser = 1
 
 /obj/item/handcuffs/cable/tape

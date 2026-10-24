@@ -4,6 +4,7 @@
 /obj/item/storage/pouch
 	name = "storage pouch (medium)"
 	desc = "This storage pouch can be used to provide some additional storage for quick access."
+	description_info = "This can be used to scoop items off the floor. Activate it to drop everything. Alt-click to open."
 	icon = 'icons/inventory/pockets/item.dmi'
 	slot_flags = SLOT_POCKET
 	drop_sound = 'sound/items/drop/backpack.ogg'
@@ -140,7 +141,6 @@
 
 /obj/item/storage/pouch/eng_parts/borg
 	name = "parts storage unit"
-	desc = "Can only hold machinery components."
 	max_storage_space = INVENTORY_POUCH_SPACE*5 // Borgs need some love here, so very expanded space
 
 /obj/item/storage/pouch/medical
