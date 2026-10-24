@@ -68,7 +68,6 @@
 //
 // Making Overmap Shuttle into a Landable Ship
 //
-
 /obj/effect/overmap/visitable/ship/landable/overmapdemo
 	name = "VSS Overmap Demo"
 	desc = "Small little shuttle nonetheless capable of overmap travel!"
