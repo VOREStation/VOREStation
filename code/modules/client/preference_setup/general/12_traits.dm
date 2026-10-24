@@ -306,6 +306,7 @@
 					else
 						picklist = GLOB.everyone_traits_positive.Copy() - pref.pos_traits
 						mylist = pref.pos_traits
+					picklist -= GLOB.species_banned_traits[pref_species_for_traits][3]
 				if(NEUTRAL_MODE)
 					if(pref_species_for_traits == SPECIES_CUSTOM)
 						picklist = GLOB.neutral_traits.Copy() - pref.neu_traits
@@ -313,6 +314,7 @@
 					else
 						picklist = GLOB.everyone_traits_neutral.Copy() - pref.neu_traits
 						mylist = pref.neu_traits
+					picklist -= GLOB.species_banned_traits[pref_species_for_traits][2]
 				if(NEGATIVE_MODE)
 					if(pref_species_for_traits == SPECIES_CUSTOM)
 						picklist = GLOB.negative_traits.Copy() - pref.neg_traits
@@ -320,6 +322,7 @@
 					else
 						picklist = GLOB.everyone_traits_negative.Copy() - pref.neg_traits
 						mylist = pref.neg_traits
+					picklist -= GLOB.species_banned_traits[pref_species_for_traits][1]
 
 			if(isnull(picklist))
 				return TOPIC_REFRESH
@@ -370,20 +373,7 @@
 
 				var/conflict = FALSE
 
-				if(pref.dirty_synth && !(instance.can_take & SYNTHETICS))
-					tgui_alert_async(user, "The trait you've selected can only be taken by organic characters!", "Error")
-					return TOPIC_REFRESH
-
-				if(pref.gross_meatbag && !(instance.can_take & ORGANICS))
-					tgui_alert_async(user, "The trait you've selected can only be taken by synthetic characters!", "Error")
-					return TOPIC_REFRESH
-
-				if(pref_species_for_traits in instance.banned_species)
-					tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
-					return TOPIC_REFRESH
-
-				if( LAZYLEN(instance.allowed_species) && !(pref_species_for_traits in instance.allowed_species))
-					tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
+				if(!instance.can_take_trait(user, pref_species_for_traits, pref.gross_meatbag, pref.dirty_synth, FALSE))
 					return TOPIC_REFRESH
 
 				if(trait_choice in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
