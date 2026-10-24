@@ -183,7 +183,9 @@
 		if(imminent_pred)
 			var/imminent_tummy = imminent_pred.vore_selected
 			if(direction == "up" && imminent_pred.spont_belly_rear) //climbing up, and going right up under them! how lewd...
-				imminent_tummy = imminent_pred.spont_belly_rear
+				for(var/obj/belly/lookup_belly in imminent_pred.vore_organs)
+					if(lookup_belly.name == imminent_pred.spont_belly_rear)
+						imminent_tummy = lookup_belly
 			//Nom before the message so the prey sees the messages
 			imminent_pred.begin_instant_nom(climber, climber, imminent_pred, imminent_tummy)
 			if(direction == "up")
@@ -200,7 +202,9 @@
 		if(length(imminent_prey))
 			var/imminent_tummy = climber.vore_selected
 			if(direction == "down" && climber.spont_belly_rear)
-				imminent_tummy = climber.spont_belly_rear
+				for(var/obj/belly/lookup_belly in climber.vore_organs)
+					if(lookup_belly.name == climber.spont_belly_rear)
+						imminent_tummy = lookup_belly
 			for(var/mob/living/dropsnack in imminent_prey)
 				if(direction == "up")
 					to_chat(dropsnack, span_danger("You slip into [climber]'s [imminent_tummy] as they come up from below!"))

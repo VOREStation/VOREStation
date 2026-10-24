@@ -162,3 +162,12 @@
   - rscadd: Glass wire aberration flickers when flashlight beam crosses it
   - code_imp: Cleaned up aberration code and fixed typo
   - bugfix: glass wire aberrations affect simple mobs correctly
+2026-10-20:
+  Diana:
+  - bugfix: Phoron Thrower (Antag weapon) now does proper burn damage per submunition.
+  ReoDaProtovali:
+  - bugfix: Fixes synth rejuvenation for real, without breaking character setup
+  - bugfix: Fixes potential character setup issues caused by previous fix attempt
+2026-10-21:
+  lbnesquik:
+  - bugfix: Fixed minitest medical apc not having a power cable
