@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Eye blurriness can no longer infinitely raise. Now has a cap of 200 seconds."

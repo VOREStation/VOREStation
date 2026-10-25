@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - bugfix: "Fix smartfridges appearing partially filled despite being empty."
