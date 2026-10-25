@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useCallback, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { getIconFromRefMap } from 'tgui/events/handlers/assets';
-import { Box, Button, ImageButton, Input, Section } from 'tgui-core/components';
+import { Box, Button, ImageButton, Input, Section, Stack } from 'tgui-core/components';
 import {
   ColorizedImageButton,
   ColorPicker,
@@ -106,10 +106,32 @@ export const HairDimmer = (props: {
       fill
       scrollable
       buttons={
-        <Button onClick={() => setShow(BodyPopup.None)} color="bad">
-          Close
-        </Button>
+        <Stack>
+          <Stack.Item>
+            <Button onClick={() => act('pick_random_hairstyle')} color="blue">
+            Random
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button onClick={() => setShow(BodyPopup.None)} color="bad">
+            Close
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
+
+        // <HairImageButton
+        //   key={hairStyle}
+        //   hairStyle={hairStyle}
+        //   hairColor={hairColor}
+        //   serverData={serverData}
+        //   tooltip={hairStyle}
+        //   onClick={() => {
+        //     act('set_hair_style', { hair_style: hairStyle });
+        //   }}
+        //   selected={hairStyle === data.h_style}
+        // ></HairImageButton>
+
     >
       {our_species.appearance_flags & AppearanceFlags.HAS_HAIR_COLOR ? (
         <ColorPicker

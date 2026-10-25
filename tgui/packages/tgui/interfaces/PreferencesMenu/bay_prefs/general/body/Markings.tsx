@@ -77,6 +77,9 @@ export const MarkingsPopup = (props: {
           >
             Add Marking
           </Button>
+          <Button onClick={() => act('pick_random_markings')} color="blue">
+            Random.
+          </Button>
           <Button onClick={() => setShow(BodyPopup.None)} color="bad">
             Close
           </Button>
@@ -322,6 +325,11 @@ export const AddMarkingWindow = (props: {
                 onChange={(val) => setSearch(val)}
                 value={search}
               />
+            </Stack.Item>
+            <Stack.Item>
+              <Button onClick={() => act('pick_random_markings')} color="purple">
+                Random.
+              </Button>
             </Stack.Item>
             <Stack.Item>
               <Button.Checkbox
