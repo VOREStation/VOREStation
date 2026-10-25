@@ -108,4 +108,4 @@
 	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
-	show_goal_status_to(src)
+	SSdepartmentgoals.show_goal_status_to(src)
