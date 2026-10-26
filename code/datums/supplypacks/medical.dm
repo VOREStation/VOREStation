@@ -450,3 +450,30 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Compact Defibrillator crate"
 	access = ACCESS_MEDICAL_EQUIP
+
+/datum/supply_pack/med/augments/rotary_arm_toolkit
+	name = "Rotary Toolkit Implant crate"
+	desc = "An implant. Requires Medical Equipment access."
+	contains = list(/obj/item/organ/internal/augment/armmounted/shoulder/multiple = 1)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Rotary Toolkit Implant crate"
+	access = ACCESS_MEDICAL_EQUIP
+
+/datum/supply_pack/med/augments/rotary_arm_toolkit
+	name = "Medical Self-Scanner Implant crate"
+	desc = "An implant. Requires Medical Equipment access."
+	contains = list(/obj/item/organ/internal/augment/bioaugment/health_scan = 1)
+	cost = 30
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Medical Self-Scanner Implant crate"
+	access = ACCESS_MEDICAL_EQUIP
+
+/datum/supply_pack/med/augments/rotary_arm_toolkit
+	name = "Rotary Toolkit Implant crate"
+	desc = "An implant. Requires Medical Equipment access."
+	contains = list(/obj/item/organ/internal/augment/armmounted/shoulder/multiple = 1)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Rotary Toolkit Implant crate"
+	access = ACCESS_MEDICAL_EQUIP
