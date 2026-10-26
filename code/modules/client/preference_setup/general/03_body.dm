@@ -501,15 +501,6 @@
 				pref.update_preference_by_type(/datum/preference/color/human/hair_color, new_hair)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
 		if("pick_random_hairstyle")
-/* 			var/new_h_style = params["hair_style"]
-			if(new_h_style in pref.get_available_styles(GLOB.hair_styles_list))
-				pref.h_style = new_h_style
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-			var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
-			if(valid_hairstyles.len)
-				if(!(pref.h_style in valid_hairstyles))
-					pref.h_style = pick(valid_hairstyles)
- */
 			var/hairstyles = pref.get_available_styles(GLOB.hair_styles_list)
 			var/new_h_style = pick(hairstyles)
 			pref.h_style = new_h_style

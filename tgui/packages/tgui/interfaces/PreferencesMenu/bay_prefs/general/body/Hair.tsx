@@ -119,19 +119,6 @@ export const HairDimmer = (props: {
           </Stack.Item>
         </Stack>
       }
-
-        // <HairImageButton
-        //   key={hairStyle}
-        //   hairStyle={hairStyle}
-        //   hairColor={hairColor}
-        //   serverData={serverData}
-        //   tooltip={hairStyle}
-        //   onClick={() => {
-        //     act('set_hair_style', { hair_style: hairStyle });
-        //   }}
-        //   selected={hairStyle === data.h_style}
-        // ></HairImageButton>
-
     >
       {our_species.appearance_flags & AppearanceFlags.HAS_HAIR_COLOR ? (
         <ColorPicker
