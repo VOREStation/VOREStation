@@ -453,27 +453,36 @@
 
 /datum/supply_pack/med/augments/rotary_arm_toolkit
 	name = "Rotary Toolkit Implant crate"
-	desc = "An implant. Requires Medical Equipment access."
+	desc = "An implant that contains a variety of tools, jammed inside the arm of a volunteer, or otherwise. Requires Medical access."
 	contains = list(/obj/item/organ/internal/augment/armmounted/shoulder/multiple = 1)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Rotary Toolkit Implant crate"
-	access = ACCESS_MEDICAL_EQUIP
+	access = ACCESS_MEDICAL
 
-/datum/supply_pack/med/augments/rotary_arm_toolkit
+/datum/supply_pack/med/augments/medical_scanner_implant
 	name = "Medical Self-Scanner Implant crate"
-	desc = "An implant. Requires Medical Equipment access."
+	desc = "An implant that allows the user to get a read on their vitals. Requires Medical access."
 	contains = list(/obj/item/organ/internal/augment/bioaugment/health_scan = 1)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Medical Self-Scanner Implant crate"
-	access = ACCESS_MEDICAL_EQUIP
+	access = ACCESS_MEDICAL
 
-/datum/supply_pack/med/augments/rotary_arm_toolkit
-	name = "Rotary Toolkit Implant crate"
-	desc = "An implant. Requires Medical Equipment access."
-	contains = list(/obj/item/organ/internal/augment/armmounted/shoulder/multiple = 1)
+/datum/supply_pack/med/augments/normal_nif
+	name = "Nanite Implant Framework crate"
+	desc = "A NIF, also known as a nanite brain implant that allows you to check your phone at anytime.  Requires Medical access."
+	contains = list(/obj/item/nif = 1)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Rotary Toolkit Implant crate"
-	access = ACCESS_MEDICAL_EQUIP
+	containername = "Nanite Implant Framework crate"
+	access = ACCESS_MEDICAL
+
+/datum/supply_pack/med/augments/bioadaptive_nif
+	name = "Bioadaptive Nanite Implant Framework crate"
+	desc = "A NIF, also known as a nanite brain implant that allows you to check your phone at anytime. This one works with a wider range of bodies.  Requires Medical access."
+	contains = list(/obj/item/nif/bioadap = 1)
+	cost = 60
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Bioadaptive Nanite Implant Framework crate"
+	access = ACCESS_MEDICAL
