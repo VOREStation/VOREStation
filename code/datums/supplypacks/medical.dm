@@ -452,9 +452,18 @@
 	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/augments/rotary_arm_toolkit
-	name = "Rotary Toolkit Implant crate"
+	name = "Rotary Engineering Toolkit Implant crate"
 	desc = "An implant that contains a variety of tools, jammed inside the arm of a volunteer, or otherwise. Requires Medical access."
 	contains = list(/obj/item/organ/internal/augment/armmounted/shoulder/multiple = 1)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Rotary Toolkit Implant crate"
+	access = ACCESS_MEDICAL
+
+/datum/supply_pack/med/augments/rotary_arm_toolkit
+	name = "Rotary Surgery Toolkit Implant crate"
+	desc = "An implant that contains a variety of tools, jammed inside the arm of a volunteer, or otherwise. Requires Medical access."
+	contains = list(/obj/item/organ/internal/augment/armmounted/shoulder/multiple/medical = 1)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Rotary Toolkit Implant crate"
@@ -468,6 +477,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Medical Self-Scanner Implant crate"
 	access = ACCESS_MEDICAL
+
 
 /datum/supply_pack/med/augments/normal_nif
 	name = "Nanite Implant Framework crate"
