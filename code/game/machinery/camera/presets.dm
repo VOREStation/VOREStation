@@ -202,7 +202,13 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	if(severity <= 2 || prob(10))
 		camera_break()
 
-	..() //and give it the regular chance of being deleted outright
+	..()
+
+// For mappers, mostly.
+/obj/machinery/camera/bomb_proof
+	name = "bomb proof security camera"
+	desc = "An ultra reinforced security camera meant to resist pretty much any explosion."
+	toughness = 100
 
 // CHECKS
 
@@ -211,6 +217,12 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 		return FALSE
 	var/O = locate(/obj/item/stack/material/osmium) in assembly.upgrades
 	return O
+
+/obj/machinery/camera/proc/isBombProof()
+	if(!assembly)
+		return FALSE
+	if()
+
 
 /obj/machinery/camera/proc/isXRay()
 	if(!assembly)

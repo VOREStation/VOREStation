@@ -118,7 +118,7 @@
 	take_damage(P.get_structure_damage())
 
 /obj/machinery/camera/ex_act(severity)
-	if(src.invuln)
+	if(src.invuln || resistance_flags & BOMB_PROOFBOMB_PROOF)
 		return
 
 	//camera dies if an explosion touches it!
