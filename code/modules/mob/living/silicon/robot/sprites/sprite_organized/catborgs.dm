@@ -44,6 +44,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -61,6 +62,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_engi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -79,6 +81,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_jani.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -96,6 +99,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_medicat.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -114,6 +118,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sci.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -131,6 +136,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sec.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -148,6 +154,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2)
@@ -177,6 +184,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -193,6 +201,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_engineering.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -209,6 +218,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_medical.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -227,6 +237,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_science.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -243,6 +254,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_security.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -260,6 +272,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -277,6 +290,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_janitor.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -294,6 +308,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_combatmed.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -319,6 +334,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_glow_sprites = TRUE
+	has_custom_open_sprites = TRUE
 	sprite_decals = list("decals")
 	is_whitelisted = FALSE //Putting this here as a declaration that it is NOT whitelisted.
 	// whitelist_ckey = "cameron653" //The owner of the character.
