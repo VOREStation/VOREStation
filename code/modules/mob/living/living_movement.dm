@@ -297,6 +297,8 @@ default behaviour is:
 
 	if(!isturf(loc))
 		return
+	else if(HAS_TRAIT(src, TRAIT_NO_GRAVITY))
+		inertial_drift()
 	else if(lastarea?.get_gravity() == 0)
 		inertial_drift()
 	else if(flying)
