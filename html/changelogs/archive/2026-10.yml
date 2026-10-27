@@ -162,3 +162,30 @@
   - rscadd: Glass wire aberration flickers when flashlight beam crosses it
   - code_imp: Cleaned up aberration code and fixed typo
   - bugfix: glass wire aberrations affect simple mobs correctly
+2026-10-20:
+  Diana:
+  - bugfix: Phoron Thrower (Antag weapon) now does proper burn damage per submunition.
+  ReoDaProtovali:
+  - bugfix: Fixes synth rejuvenation for real, without breaking character setup
+  - bugfix: Fixes potential character setup issues caused by previous fix attempt
+2026-10-21:
+  lbnesquik:
+  - bugfix: Fixed minitest medical apc not having a power cable
+2026-10-25:
+  Diana:
+  - bugfix: Eye blurriness can no longer infinitely raise. Now has a cap of 200 seconds.
+  Kashargul:
+  - bugfix: minitest objects sitting isolated on the map define
+  - bugfix: runtime in robot sleeper when there is no patient
+  - bugfix: ladder spont vore
+  - code_imp: updates dependencies
+  Will:
+  - bugfix: AI shell will not get disconnected on a valid AI z level when entering
+      some objects
+  lbnesquik:
+  - bugfix: fixed the left arm tattoo being off 1 pixel.
+  - bugfix: Fix smartfridges appearing partially filled despite being empty.
+  - rscadd: Added hardy versions for slowed species can't normally take it.
+2026-10-26:
+  Will:
+  - bugfix: Hose connectors do not run process while not in use
