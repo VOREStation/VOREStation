@@ -9,7 +9,7 @@
 
 /obj/item/pipe_dispenser
 	name = "Rapid Piping Device (RPD)"
-	desc = "A device used to rapidly pipe things."
+	desc = "A device used to rapidly pipe things. But, it can also be used to destroy. You feel the weight of responsability on your shoulders."
 	icon = 'icons/obj/tools_vr.dmi'
 	icon_state = "rpd"
 	item_state = "rpd"

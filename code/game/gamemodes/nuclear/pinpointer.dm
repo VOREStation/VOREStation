@@ -329,7 +329,11 @@
 
 
 /obj/item/pinpointer/shuttle/merc
+	name = "mercenary pinpointer"
+	desc = "Points back to your shuttle. Assuming this cheaply made thing works."
 	shuttle_comp_id = "Mercenary"
 
 /obj/item/pinpointer/shuttle/heist
+	name = "heist pinpointer"
+	desc = "Points back to your shuttle. Assuming this cheaply made thing works."
 	shuttle_comp_id = "Skipjack"

@@ -215,8 +215,8 @@
 /obj/item/rcd/electric/display_resources()
 	var/obj/item/cell/cell = get_cell()
 	if(cell)
-		return "The power source connected to \the [src] has a charge of [cell.percent()]%."
-	return "It lacks a source of power, and cannot function."
+		return span_notice("The power source connected to \the [src] has a charge of [cell.percent()]%.")
+	return span_notice("It lacks a source of power, and cannot function.")
 
 
 
@@ -233,6 +233,9 @@
 	if(isrobot(loc)) // In a borg.
 		var/mob/living/silicon/robot/R = loc
 		return R.cell
+	if(istype(loc, /obj/item/robot_module)) // In a borg.
+		var/mob/living/silicon/robot/R = loc.loc
+		return R.cell
 	if(istype(loc, /obj/item/rig_module)) // In a RIG.
 		var/obj/item/rig_module/module = loc
 		if(module.holder) // Is it attached to a RIG?
@@ -246,19 +249,21 @@
 
 // RCDs for borgs.
 /obj/item/rcd/electric/mounted/borg
-	can_remove_rwalls = TRUE
 	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, drawing directly from your cell."
+	can_remove_rwalls = TRUE
 	electric_cost_coefficent = 41.66 // Twice as efficent, out of pity.
 	toolspeed = 0.5 // Twice as fast, since borg versions typically have this.
 
 /obj/item/rcd/electric/mounted/borg/swarm
-	can_remove_rwalls = FALSE
 	name = "Rapid Assimilation Device"
+	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, drawing directly from your cell. This one is a smaller, less powerful version."
+	can_remove_rwalls = FALSE
 	ranged = TRUE
 	toolspeed = 0.7
 	material_to_use = MAT_STEELHULL
 
 /obj/item/rcd/electric/mounted/borg/lesser
+	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, drawing directly from your cell. This one is a smaller, less powerful version."
 	can_remove_rwalls = FALSE
 
 
