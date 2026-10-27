@@ -1431,15 +1431,17 @@
 				if(0)
 					user.drop_item()
 					E.attach(src)
-					user.visible_message("[user] attaches [W] to [src]", "You attach [W] to [src]", "clunk", runemessage="clunk")
+					user.visible_message("[user] attaches \the [W] to [src].", "You attach [W] to [src].", "clunk", runemessage="clunk")
 				if(1)
-					to_chat(user, "You were unable to attach [W] to [src].")
+					to_chat(user, "You were unable to attach \the [W] to [src].")
 				if(2)
 					to_chat(user, "You can only attach one [W] to [src].")
 				if(3)
-					to_chat(user, "[src] lacks equipment slots for [W].")
+					to_chat(user, "[src] lacks equipment slots for \the [W].")
+				if(4)
+					to_chat(user, "[src] isn't compatible with \the [W].")
 				else //Out of bounds
-					to_chat(user, "You were unable to attach [W] to [src].")
+					to_chat(user, "You were unable to attach \the [W] to [src].")
 		return
 
 	if(istype(W, /obj/item/mecha_parts/component) && state == MECHA_CELL_OUT)
