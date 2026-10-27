@@ -54,7 +54,7 @@
 			AP.set_broken()
 
 
-/datum/game_mode/malfunction/verb/hack_camera(obj/machinery/camera/target in GLOB.cameranet.cameras)
+/datum/game_mode/malfunction/verb/hack_camera(obj/machinery/camera/target in SScameras.cameras)
 	set name = "Hack Camera"
 	set desc = "100 CPU - Hacks existing camera, allowing you to add upgrade of your choice to it. Alternatively it lets you reactivate broken camera."
 	set category = "Software"
