@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(everyone_traits_neutral)	// Neutral traits available to all sp
 GLOBAL_LIST_EMPTY(everyone_traits_negative)	// Neutral traits available to all species, indexed by path
 GLOBAL_LIST_EMPTY(traits_costs)		// Just path = cost list, saves time in char setup
 GLOBAL_LIST_EMPTY(all_traits)			// All of 'em at once (same instances)
+GLOBAL_LIST_EMPTY(species_banned_traits) // per-species sublists for each trait category, only contains traits that are banned for that species
 
 GLOBAL_LIST_EMPTY(active_ghost_pods) //NYI - Used downstream
 GLOBAL_LIST_EMPTY(latejoin_gatewaystation) //NYI - Used downstream
@@ -647,6 +648,18 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 	// Shakey shakey shake
 	sortTim(GLOB.all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
 
+	// Setup species lists
+	for(var/datum/species/spec as anything in subtypesof(/datum/species))
+		if(!spec.name)
+			continue
+		if(spec.spawn_flags & SPECIES_IS_RESTRICTED) // Must be playable
+			continue
+		GLOB.species_banned_traits[spec.name] = list(
+			list(), // negative
+			list(), // neutral
+			list() // positive
+		)
+
 	// Split 'em up
 	for(var/traitpath in GLOB.all_traits)
 		var/datum/trait/T = GLOB.all_traits[traitpath]
@@ -666,6 +679,12 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 					if(!(T.custom_only))
 						GLOB.everyone_traits_positive[traitpath] = T
 
+			// Assemble each species' list
+			for(var/spec in GLOB.species_banned_traits)
+				if(T.can_take_trait(null, spec, null, null, TRUE))
+					continue
+				var/list/sub_list =  GLOB.species_banned_traits[spec][2 + category] // range is 2 + (-1 to +1), converting to byond list index.
+				sub_list[traitpath] = T.type
 
 	// Weaver recipe stuff
 	paths = subtypesof(/datum/weaver_recipe/structure)
