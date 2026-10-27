@@ -9,6 +9,16 @@
 /datum/preference/toggle/human/bday_announce/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
+/datum/preference/toggle/living/radio_announce
+	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	savefile_key = "radio_announce"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_CHARACTER
+	can_randomize = FALSE
+
+/datum/preference/toggle/living/radio_announce/apply_to_living(mob/living/target, value)
+	return
+
 
 // Numerics
 /datum/preference/numeric/human/age
