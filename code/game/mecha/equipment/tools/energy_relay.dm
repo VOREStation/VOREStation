@@ -52,8 +52,8 @@
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/can_attach(obj/mecha/M)
 	if(..())
 		if(!M.proc_res["dyngetcharge"])// && !M.proc_res["dynusepower"])
-			return 1
-	return 0
+			return 0
+	return 1
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/dyngetcharge()
 	if(equip_ready) //disabled
