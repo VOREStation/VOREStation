@@ -232,7 +232,7 @@
 
 /obj/item/spring_trap_kit
 	name = "spring trap assembly kit"
-	desc = "A large metal tile and a large, home-made spring bundled together for easy assembly. \n\n" + span_notice("It could have a motor added to let it self-reset.")
+	desc = "A large, solid metal tile and sturdy home-made spring bundled together for easy assembly. \n\n" + span_notice("It could have a motor added to let it self-reset.")
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spring_trap-kit"
 	matter = list(MAT_STEEL = MATERIAL_COST(9))
@@ -242,21 +242,21 @@
 
 /obj/item/spring_trap_kit/resetting
 	name = "self-resetting spring trap assembly kit"
-	desc = "A large metal tile, a large, home-made spring and a motor bundled together for easy assembly. \n\n" + span_notice("Another motor could be added to let it reset even faster!")
+	desc = "A large, solid metal tile, a sturdy home-made spring and a motor bundled together for easy assembly. \n\n" + span_notice("Another motor could be added to let it reset even faster!")
 	matter = list(MAT_STEEL = MATERIAL_COST(9.8), MAT_GLASS = MATERIAL_COST(0.013)) // 9 sheets, plus the cost of a motor.
 	reset_time = SPRINGTRAP_AUTO_RESET_TIME
 	motor_upgrades = 1
 
 /obj/item/spring_trap_kit/resetting_fast
 	name = "turbo self-resetting spring trap assembly kit"
-	desc = "A large metal tile, a large, home-made spring and two motors bundled together for easy assembly."
+	desc = "A large, solid metal tile, a sturdy home-made spring and two motors bundled together for easy assembly."
 	matter = list(MAT_STEEL = MATERIAL_COST(10.6), MAT_GLASS = MATERIAL_COST(0.026)) // 9 sheets, plus the cost of two motors.
 	reset_time = SPRINGTRAP_AUTO_RESET_TIME / 3 //Fast
 	motor_upgrades = 2
 
 /obj/item/spring_trap_kit/custom //For mapperbus traps.
 	name = "self-resetting spring trap assembly kit"
-	desc = "A large metal tile, a large home-made spring and a motor bundled together for easy assembly. \n\n" + span_warning("The motor seems to be non-standard, and is permanantly affixed to the tile...")
+	desc = "A large, solid metal tile, a sturdy large home-made spring and a motor bundled together for easy assembly. \n\n" + span_warning("The motor seems to be non-standard, and is permanantly affixed to the tile...")
 	motor_upgrades = -1 //So you cant modify it.
 	var/custom_name //A custom name for the springtrap, if it had one.
 
@@ -291,8 +291,11 @@
 			if(1)
 				type_to_create = /obj/item/spring_trap_kit/resetting_fast
 		new type_to_create(drop_location()) //Should place at the user's feet, or the tile it's on, or in the vorebelly the user is in one, or whatever else.
+		user.temporarilyRemoveItemFromInventory(W)
 		qdel(W) //Motor Gone
 		qdel(src)
+		return
+
 	if(W.has_tool_quality(TOOL_WRENCH))
 		user.visible_message(span_notice("[user] starts disassmbling \the [src]."), span_notice("You start disassembling \the [src]"))
 		if(!do_after(user, 3 SECONDS))
@@ -303,6 +306,7 @@
 		for(var/i, i < motor_upgrades, i++)
 			new /obj/item/stock_parts/motor(drop_location())
 		qdel(src)
+		return
 
 /obj/item/spring_trap_kit/proc/build_trap(mob/user)
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
