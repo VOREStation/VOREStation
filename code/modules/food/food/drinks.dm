@@ -167,9 +167,6 @@
 		balloon_alert(user, "\the [src] is empty.")
 		return FALSE
 
-	if(!target.consume_liquid_belly && liquid_belly_check())
-		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
-		return FALSE
 	//get our other preference checks
 	.=..()
 
