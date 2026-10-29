@@ -16,6 +16,8 @@
 	/// This is who currently owns the action, and most often, this is who is using the action if it is triggered
 	/// This can be the same as "target" but is not ALWAYS the same - this is set and unset with Grant() and Remove()
 	var/mob/owner
+	/// If False, the owner of this action does not get a hud and cannot activate it on their own
+	var/owner_has_control = TRUE
 	/// Flags that will determine of the owner / user of the action can... use the action
 	var/check_flags = NONE
 	/// Whether the button becomes transparent when it can't be used or just reddened
@@ -45,6 +47,9 @@
 	var/overlay_icon = 'icons/mob/actions/backgrounds.dmi'
 	/// This is the icon state for any FOREGROUND overlay icons on the button (such as borders)
 	var/overlay_icon_state
+
+	/// Toggles whether this action is usable or not
+	var/action_disabled = FALSE
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -92,7 +97,8 @@
 	owner = grant_to
 	RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
-	GiveAction(grant_to)
+	if(owner_has_control)
+		GiveAction(grant_to)
 
 /// Remove the passed mob from being owner of our action
 /datum/action/proc/Remove(mob/remove_from)
@@ -127,6 +133,8 @@
 /// Whether our action is currently available to use or not
 /datum/action/proc/IsAvailable()
 	if(!owner)
+		return FALSE
+	if(action_disabled)
 		return FALSE
 	if(check_flags & AB_CHECK_RESTRAINED)
 		if(owner.restrained())
