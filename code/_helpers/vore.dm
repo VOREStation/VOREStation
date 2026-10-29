@@ -92,6 +92,11 @@
 		to_chat(user, span_vdanger("Ewww, [user == target ? "You can't" : "\The [target] can't"] consume that, there's a bug in this!") )
 		return FALSE
 
+	//belly reagent check
+	if(!target.consume_liquid_belly && liquid_belly_check())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+		return FALSE
+
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(!H.check_has_mouth())
@@ -101,4 +106,13 @@
 		if(blocked)
 			balloon_alert(user, "\the [blocked] is in the way!")
 			return FALSE
+
 	return TRUE
+
+/obj/item/proc/liquid_belly_check()
+	if(!reagents)
+		return FALSE
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.from_belly)
+			return TRUE
+	return FALSE

@@ -107,14 +107,6 @@
 	balloon_alert(user, "transfered [trans] units to [target]")
 	return TRUE
 
-/obj/item/reagent_containers/proc/liquid_belly_check()
-	if(!reagents)
-		return FALSE
-	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.from_belly)
-			return TRUE
-	return FALSE
-
 /obj/item/reagent_containers/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
 	. = ..()
 	EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_ISOLATE)

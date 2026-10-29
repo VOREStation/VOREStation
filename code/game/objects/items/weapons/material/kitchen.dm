@@ -12,12 +12,16 @@
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = TRUE
 	edge = TRUE
-	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
-	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	/// 6 when wielded with hardness 60 (steel)
+	force_divisor = 0.1
+	/// 5 when thrown with weight 20 (steel)
+	thrown_force_divisor = 0.25
 	var/scoop_volume = 5
-	var/loaded // Name for currently loaded food object.
-	var/loaded_color // Color for currently loaded food object.
-
+	/// Name for currently loaded food object. Becomes a holder reference if there's a micro
+	var/loaded
+	/// Color for currently loaded food object.
+	var/loaded_color
+	/// Micros in the inventory, should be just the holder but...
 	var/list/food_inserted_micros
 
 /obj/item/material/kitchen/utensil/Initialize(mapload)
@@ -27,6 +31,9 @@
 	create_reagents(scoop_volume)
 
 /obj/item/material/kitchen/utensil/Destroy()
+	if(loaded && isholder(loaded))
+		var/obj/item/holder/held = loaded
+		held.dump_mob()
 	if(food_inserted_micros)
 		for(var/mob/creature in food_inserted_micros)
 			container_resist(creature, FALSE)
@@ -37,9 +44,17 @@
 	. = ..()
 	cut_overlays()
 	if(loaded)
-		var/image/I = new(icon, "loadedfood")
-		I.color = loaded_color
-		add_overlay(I)
+		if(isholder(loaded))
+			//show the micro on our utensil
+			var/obj/item/holder/held = loaded
+			var/icon/micro_icon = icon(held)
+			var/mutable_appearance/micro_overlay = mutable_appearance(icon, micro_icon)
+			micro_overlay.pixel_y = 6
+			add_overlay(micro_overlay)
+		else
+			var/image/I = new(icon, "loadedfood")
+			I.color = loaded_color
+			add_overlay(I)
 
 /obj/item/material/kitchen/utensil/proc/load_food(mob/user, obj/item/reagent_containers/food/snacks/loading)
 	if(user.loc == loading)
@@ -60,7 +75,7 @@
 	loading.reagents.trans_to_obj(src, min(loading.reagents.total_volume, scoop_volume))
 	loaded_color = loading.filling_color
 
-	if(loading.food_inserted_micros)
+	if(loading)
 		for(var/mob/living/micro in loading.food_inserted_micros)
 			var/do_transfer = FALSE
 
@@ -103,11 +118,18 @@
 		else
 			return ..()
 
-	if(creature != user && creature.food_vore && (creature.get_effective_size(TRUE) <= 0.50))
-		creature.visible_message(span_bold("\The [user]") + "scoops [creature] up with \the [src].")
-		LAZYADD(food_inserted_micros, creature)
-		loaded = creature.name
-		creature.forceMove(src)
+	if(creature != user)
+		if(!user.check_for_scoopable(creature))
+			return ITEM_INTERACT_FAILURE
+		creature.visible_message(span_bold("\The [user]") + " scoops [creature] up with \the [src].")
+		//using the holder for overlay nonsense
+		var/obj/item/holder/held = new creature.holder_type(get_turf(user), creature)
+		held.sync(creature)
+		//we would add the micro to the food list but the holder handles stuff a lot better.
+		loaded = held
+		update_icon()
+		//we've picked someone up, count it just like we would food
+		return ITEM_INTERACT_SUCCESS
 
 	if(loaded)
 		if(!standard_feed_mob(user, creature))
@@ -117,6 +139,13 @@
 				to_chat(user, span_vdanger("[user == creature ? "you can't" : "\The [creature] can't"] consume that, it contains something produced from a belly!"))
 				return ITEM_INTERACT_FAILURE
 			reagents.trans_to_mob(creature, reagents.total_volume, CHEM_INGEST)
+		if(isholder(loaded))
+			var/obj/item/holder/held = loaded
+			for(var/mob/living/micro in held.contents)
+				if(!can_food_vore(creature, micro))
+					micro.forceMove(get_turf(creature))
+				else
+					creature.vore_selected.nom_atom(micro)
 		if(food_inserted_micros)
 			for(var/mob/living/micro in food_inserted_micros)
 				LAZYREMOVE(food_inserted_micros, micro)
@@ -162,20 +191,23 @@
 	. = ..()
 	if(reagents.total_volume > 0)
 		reagents.clear_reagents()
-		cut_overlays()
-	loaded = null
+	//handle the holder
+	if(loaded && isholder(loaded))
+		var/obj/item/holder/held = loaded
+		held.dump_mob()
+	//handle 'hidden' micros from food transferring
 	if(food_inserted_micros)
-		for(var/mob/living/micro in food_inserted_micros)
-			container_resist(micro, FALSE)
+		for(var/mob/creature in food_inserted_micros)
+			container_resist(creature, FALSE)
+	loaded = null
+	cut_overlays()
 	return
 
-/obj/item/material/kitchen/utensil/proc/liquid_belly_check()
-	if(!reagents)
-		return FALSE
-	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.from_belly)
-			return TRUE
-	return FALSE
+/obj/item/material/kitchen/utensil/examine()
+	if(isholder(loaded))
+		. += span_notice("It has [loaded] stuck in it.")
+	if(food_inserted_micros)
+		. += span_notice("It has [english_list(food_inserted_micros)] stuck in it.")
 
 /obj/item/material/kitchen/utensil/container_resist(mob/living/micro, willingly = TRUE)
 	if(isdisposalpacket(loc))
