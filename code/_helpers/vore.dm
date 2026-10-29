@@ -82,3 +82,39 @@
 	if(world.time <= prey.slip_protect)
 		return FALSE
 	return TRUE
+
+//Elevating this to allow utensils the same checks as reagent containers do for vore prefs.
+/obj/item/proc/standard_feed_mob(mob/user, mob/target) // This goes into attack
+	if(!istype(target) || !target.can_feed())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that!"))
+		return FALSE
+
+	//micro in food check if someone couldn't be bothered to examine their food.
+	if(!target.food_vore || !target.can_be_drop_pred)
+		to_chat(user, span_vdanger("Ewww, [user == target ? "You can't" : "\The [target] can't"] consume that, there's a bug in this!") )
+		return FALSE
+
+	//belly reagent check
+	if(!target.consume_liquid_belly && liquid_belly_check())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+		return FALSE
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(!H.check_has_mouth())
+			balloon_alert(user, "[user == target ? "you don't" : "\the [H] doesn't"] have a mouth!")
+			return FALSE
+		var/obj/item/blocked = H.check_mouth_coverage()
+		if(blocked)
+			balloon_alert(user, "\the [blocked] is in the way!")
+			return FALSE
+
+	return TRUE
+
+/obj/item/proc/liquid_belly_check()
+	if(!reagents)
+		return FALSE
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.from_belly)
+			return TRUE
+	return FALSE
