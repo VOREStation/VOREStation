@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(refined_chems_sold)
 			dronecount++
 			continue
 
-		if (!robo.connected_ai)
+		if (!robo.connected_ai && robo.mind)
 			var/list/robot_stat_display = list()
 			if (robo.stat != 2)
 				robot_stat_display += span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))
