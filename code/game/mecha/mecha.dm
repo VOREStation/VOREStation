@@ -1426,12 +1426,22 @@
 	if(istype(W, /obj/item/mecha_parts/mecha_equipment))
 		var/obj/item/mecha_parts/mecha_equipment/E = W
 		spawn()
-			if(E.can_attach(src))
-				user.drop_item()
-				E.attach(src)
-				user.visible_message("[user] attaches [W] to [src]", "You attach [W] to [src]")
-			else
-				to_chat(user, "You were unable to attach [W] to [src]")
+			// Values references are in a comment above the proc.
+			switch(E.can_attach(src))
+				if(0)
+					user.drop_item()
+					E.attach(src)
+					user.visible_message("[user] attaches \the [W] to [src].", "You attach [W] to [src].", "clunk", runemessage="clunk")
+				if(1)
+					to_chat(user, "You were unable to attach \the [W] to [src].")
+				if(2)
+					to_chat(user, "You can only attach one [W] to [src].")
+				if(3)
+					to_chat(user, "[src] lacks equipment slots for \the [W].")
+				if(4)
+					to_chat(user, "[src] isn't compatible with \the [W].")
+				else //Out of bounds
+					to_chat(user, "You were unable to attach \the [W] to [src].")
 		return
 
 	if(istype(W, /obj/item/mecha_parts/component) && state == MECHA_CELL_OUT)
@@ -1465,18 +1475,18 @@
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(state==MECHA_BOLTS_SECURED)
 			state = MECHA_PANEL_LOOSE
-			to_chat(user, "You undo the securing bolts.")
+			to_chat(user, span_infoplain("You undo the securing bolts."))
 		else if(state==MECHA_PANEL_LOOSE)
 			state = MECHA_BOLTS_SECURED
-			to_chat(user, "You tighten the securing bolts.")
+			to_chat(user, span_infoplain("You tighten the securing bolts."))
 		return
 	else if(W.has_tool_quality(TOOL_CROWBAR))
 		if(state==MECHA_PANEL_LOOSE)
 			state = MECHA_CELL_OPEN
-			to_chat(user, "You open the hatch to the power unit")
+			to_chat(user, span_infoplain("You open the hatch to the power unit."))
 		else if(state==MECHA_CELL_OPEN)
 			state=MECHA_PANEL_LOOSE
-			to_chat(user, "You close the hatch to the power unit")
+			to_chat(user, span_infoplain("You close the hatch to the power unit."))
 		else if(state==MECHA_CELL_OUT)
 			var/list/removable_components = list()
 			for(var/slot in internal_components)
@@ -1499,23 +1509,23 @@
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.use(2))
 				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
-				to_chat(user, "You replace the fused wires.")
+				to_chat(user, span_infoplain("You replace the fused wires."))
 			else
-				to_chat(user, "There's not enough wire to finish the task.")
+				to_chat(user, span_infoplain("There's not enough wire to finish the task."))
 		return
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
-			to_chat(user, "You repair the damaged temperature controller.")
+			to_chat(user, span_infoplain("You repair the damaged temperature controller."))
 		else if(state==MECHA_CELL_OPEN && src.cell)
 			src.cell.forceMove(src.loc)
 			src.cell = null
 			state = MECHA_CELL_OUT
-			to_chat(user, "You unscrew and pry out the powercell.")
+			to_chat(user, span_infoplain("You unscrew and pry out the powercell."))
 			src.mecha_log_message("Powercell removed")
 		else if(state==MECHA_CELL_OUT && src.cell)
 			state=MECHA_CELL_OPEN
-			to_chat(user, "You screw the cell in place")
+			to_chat(user, span_infoplain("You screw the cell in place."))
 		return
 
 	else if(istype(W, /obj/item/multitool))
@@ -1533,13 +1543,13 @@
 	else if(istype(W, /obj/item/cell))
 		if(state==MECHA_CELL_OUT)
 			if(!src.cell)
-				to_chat(user, "You install the powercell")
+				to_chat(user, span_infoplain("You install the powercell."))
 				user.drop_item()
 				W.forceMove(src)
 				src.cell = W
 				src.mecha_log_message("Powercell installed")
 			else
-				to_chat(user, "There's already a powercell installed.")
+				to_chat(user, span_infoplain("There's already a powercell installed."))
 		return
 
 	else if(W.has_tool_quality(TOOL_WELDER) && user.a_intent != I_HURT)
@@ -1974,16 +1984,16 @@
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message(span_infoplain(span_bold("\The [user]") + " starts to climb into [src.name]"))
+		visible_message(span_infoplain(span_bold("\The [user]") + " starts to climb into [src.name]."))
 		if(enter_after(40, user))
 			if(!src.occupant)
 				moved_inside(user)
 				if(ishuman(occupant)) //Aeiou
 					GrantActions(occupant, 1)
 			else if(src.occupant != user)
-				to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
+				to_chat(usr, span_infoplain("[src.occupant] was faster. Try better next time, loser."))
 		else
-			to_chat(user, "You stop entering the exosuit.")
+			to_chat(user, span_infoplain("You stop entering the exosuit."))
 	return
 
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
