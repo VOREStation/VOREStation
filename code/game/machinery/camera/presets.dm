@@ -188,6 +188,28 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	my_area -= src
 	return ..()
 
+// Would love a recolor if it didn't take so many sprites to redo!
+/obj/machinery/camera/reinforced
+	name = "reinforced security camera"
+	desc = "Used to monitor rooms. This one has a reinforced plastic enclosure."
+	toughness = 25
+
+/obj/machinery/camera/reinforced/ex_act(severity)
+	. = ..()
+	if(src.invuln)
+		return
+
+	if(severity <= 2 || prob(10))
+		camera_break()
+
+	..()
+
+// For mappers, mostly.
+/obj/machinery/camera/bomb_proof
+	name = "bomb proof security camera"
+	desc = "An ultra reinforced security camera meant to resist pretty much any explosion."
+	toughness = 100
+
 // CHECKS
 
 /obj/machinery/camera/proc/isEmpProof()
@@ -195,6 +217,12 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 		return FALSE
 	var/O = locate(/obj/item/stack/material/osmium) in assembly.upgrades
 	return O
+
+/obj/machinery/camera/proc/isBombProof()
+	if(!assembly)
+		return FALSE
+	if()
+
 
 /obj/machinery/camera/proc/isXRay()
 	if(!assembly)
