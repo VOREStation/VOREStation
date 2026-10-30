@@ -776,7 +776,8 @@
 /obj/item/clothing/under/rank/khi
 	name = DEVELOPER_WARNING_NAME
 	desc = "Why did you spawn this one? Dork."
-	sensor_mode = 3
+	sensor_mode = SUIT_SENSOR_TRACKING
+	random_sensor = FALSE
 	icon_state = "khi_uniform"
 
 /obj/item/clothing/under/rank/khi/cmd //Command version
@@ -1778,7 +1779,7 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "nikki_outfit"
-	sensor_mode = 3 // I'm a dumbass and forget these all the time please understand :(
+	sensor_mode = SUIT_SENSOR_TRACKING // I'm a dumbass and forget these all the time please understand :(
 
 /obj/item/clothing/under/skirt/outfit/fluff/nikki/mob_can_equip(mob/living/carbon/human/M, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(..())

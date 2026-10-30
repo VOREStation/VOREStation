@@ -47,6 +47,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/organ/internal/augment/suit_sensors
+	name = "Vital Sensors Implant"
+	id = "implant_suit_sensors"
+
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(1))
+	build_path = /obj/item/organ/internal/augment/suit_sensors
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_HEALTH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/organ/internal/augment/armmounted/hand
 	name = "Resonant Analyzer Implant"
 	desc = "An augment that fits neatly into the hand, useful for determining the usefulness of an object for research."
