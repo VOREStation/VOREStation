@@ -176,6 +176,11 @@
 		to_chat(user, span_warning("Invalid player selected!"))
 		return
 
+	if((get_z(target)) in using_map.station_levels)
+	tgui_alert_async(user,{"
+		You are about to spawn outside of the main staiton levels. Remember that this spawn method is to facilitates scenes, and not to abuse it.
+		"},"OOC Warning")
+
 	to_chat(user, span_notice("Inbelly spawn request sent to predator."))
 	to_chat(target, span_notice("Incoming belly spawn request."))
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, inbelly_spawn_prompt), user.client), 1.5 SECONDS, TIMER_DELETE_ME) // Hand reins over to them
