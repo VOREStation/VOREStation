@@ -131,6 +131,7 @@
 					client.prefs.update_preference_by_type(/datum/preference/name/real_name, random_name(client.prefs.read_preference(/datum/preference/choiced/gender/identifying)))
 				observer.real_name = client.prefs.read_preference(/datum/preference/name/real_name)
 				observer.name = observer.real_name
+				observer.desc = "It's a g-g-g-g-ghooooost!"
 				if(!check_rights_for(client, R_HOLDER) && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
 					remove_verb(observer, /mob/observer/dead/verb/toggle_antagHUD)        // Poor guys, don't know what they are missing!
 
