@@ -31,7 +31,7 @@
 	if(src.stat == DEAD || sensor_imp.status == ORGAN_DEAD) //cant use this while dead
 		return
 
-	if(sensor_status >= SUIT_SENSORS_BROKEN) //locked is greater than broken, apparently.
+	if(sensor_imp.sensor_status >= SUIT_SENSORS_BROKEN) //locked is greater than broken, apparently.
 		to_chat(src, span_warning("Your implant doesnt respond!"))
 		return
 
@@ -53,7 +53,7 @@
 
 	sensor_imp.sensor_mode = modes[switchMode]
 
-	switch(sensor_mode)
+	switch(sensor_imp.sensor_mode)
 		if(SUIT_SENSOR_OFF)
 			to_chat(src, "You disable your [sensor_imp].")
 		if(SUIT_SENSOR_BINARY)
