@@ -186,6 +186,12 @@
 /obj/item/ghost_trap/proc/catch_ghost(mob/passing_entity)
 	if(!ismob(passing_entity)) //wtf did you do
 		return
+
+	if(captured_entity)
+		var/mob/has_captured = captured_entity.resolve()
+		if(has_captured) //No catching if we already have a ghost.
+			return
+
 	captured_entity = WEAKREF(passing_entity)
 
 	if(isliving(passing_entity))
