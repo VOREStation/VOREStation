@@ -28,10 +28,9 @@
 	RegisterSignal(carrier, COMSIG_HOSE_FORCEPUMP, PROC_REF(force_pump))
 	carrier.verbs |= /atom/proc/disconnect_hose
 
-	START_PROCESSING(SSobj, src)
-
 /datum/component/hose_connector/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(carrier, COMSIG_ATOM_EXAMINE)
 	UnregisterSignal(carrier, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(carrier, COMSIG_HOSE_FORCEPUMP)
@@ -65,11 +64,13 @@
 		if(!reagents.total_volume)
 			reagents.trans_to_holder(connected_reagents(), reagents.maximum_volume)
 			reagents.clear_reagents() // Wipe it to avoid exploits
+		STOP_PROCESSING(SSobj, src)
 		return
 	var/datum/reagents/connected_to = connected_reagents()
 	if(!connected_to) // Emergency. the vorebelly was deleted or something. Lets just hard lock that out from maintaining state by disconnecting the tube.
 		reagents.clear_reagents()
 		my_hose.disconnect()
+		STOP_PROCESSING(SSobj, src)
 		return
 	handle_pump(connected_to)
 
@@ -103,6 +104,7 @@
 		carrier.visible_message("[user] disconnects \the hose from \the [carrier].")
 		my_hose.disconnect(user)
 		QDEL_NULL(my_hose)
+		STOP_PROCESSING(SSobj, src)
 
 /datum/component/hose_connector/proc/connect(datum/hose/H = null)
 	my_hose = H
@@ -147,6 +149,10 @@
 	// Hose prepared!
 	var/datum/hose/H = new()
 	H.set_hose(src, target, distancetonode, user)
+	if(!(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSobj, src)
+	if(!(target.datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSobj, target)
 	return TRUE
 
 /datum/component/hose_connector/proc/get_pairing()

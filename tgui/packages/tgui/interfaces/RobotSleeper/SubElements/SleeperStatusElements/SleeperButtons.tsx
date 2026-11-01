@@ -5,7 +5,7 @@ import type { Data } from '../../types';
 
 export const SleeperButtons = (props) => {
   const { act, data } = useBackend<Data>();
-  const { eject_port, cleaning, medsensor, name } = data;
+  const { eject_port, cleaning, medsensor, name, our_patient } = data;
 
   return (
     <>
@@ -54,6 +54,7 @@ export const SleeperButtons = (props) => {
           {!!medsensor && (
             <Stack.Item>
               <Button
+                disabled={!our_patient}
                 onClick={() => act('analyze')}
                 tooltip="Scan patient for detailed information."
               >

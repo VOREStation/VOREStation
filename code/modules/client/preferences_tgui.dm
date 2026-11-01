@@ -153,6 +153,7 @@
 			load_character()
 			client.prefs_vr.load_vore()
 			sanitize_preferences()
+			restore_preview_organs()
 			. = TRUE
 		if("resetslot")
 			if(!isnewplayer(ui.user))
@@ -163,6 +164,7 @@
 				return
 			reset_slot()
 			sanitize_preferences()
+			restore_preview_organs()
 			. = TRUE
 		if("copy")
 			if(!isnewplayer(ui.user))

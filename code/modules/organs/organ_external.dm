@@ -641,7 +641,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
-		if(istype(implanted_object,/obj/item/implant) || istype(implanted_object,/obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
+		if(istype(implanted_object, /obj/item/implant) || istype(implanted_object, /obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
 			continue
 		implanted_object.forceMove(owner.drop_location()) //Drop it out.
 		implants -= implanted_object
@@ -1335,7 +1335,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		while(null in owner.internal_organs)
 			owner.internal_organs -= null
 		owner.refresh_modular_limb_verbs()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/proc/mutate()
 	if(src.robotic >= ORGAN_ROBOT)
