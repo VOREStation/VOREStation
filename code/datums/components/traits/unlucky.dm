@@ -324,7 +324,7 @@
 		our_guy.emote("scream")
 		to_chat(our_guy, span_cult("What a horrible night... To have a curse!"))
 
-	if(prob(5 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
+	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
 		var/max_health_coefficient = (our_guy.maxHealth * 0.5)
