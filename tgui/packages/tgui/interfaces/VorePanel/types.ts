@@ -179,7 +179,7 @@ export type BellyVisualData = {
   item_voresprite: BooleanLike;
   item_multiplier: number;
   health_voresprite: number;
-  resist_animation: BooleanLike;
+  resist_animation: string;
   voresprite_size_factor: number;
   belly_sprite_to_affect: string;
   belly_sprite_options: string[] | null;
