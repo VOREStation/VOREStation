@@ -146,6 +146,7 @@
 					micro.forceMove(get_turf(creature))
 				else
 					creature.vore_selected.nom_atom(micro)
+				loaded = null
 		if(food_inserted_micros)
 			for(var/mob/living/micro in food_inserted_micros)
 				LAZYREMOVE(food_inserted_micros, micro)
@@ -203,11 +204,13 @@
 	cut_overlays()
 	return
 
-/obj/item/material/kitchen/utensil/examine()
-	if(isholder(loaded))
-		. += span_notice("It has [loaded] stuck in it.")
-	if(food_inserted_micros)
-		. += span_notice("It has [english_list(food_inserted_micros)] stuck in it.")
+/obj/item/material/kitchen/utensil/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		if(isholder(loaded))
+			. += span_notice("It has [loaded] stuck in it.")
+		if(food_inserted_micros)
+			. += span_notice("It has [english_list(food_inserted_micros)] stuck in it.")
 
 /obj/item/material/kitchen/utensil/container_resist(mob/living/micro, willingly = TRUE)
 	if(isdisposalpacket(loc))
