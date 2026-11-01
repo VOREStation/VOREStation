@@ -27,6 +27,7 @@
 
 /obj/item/camera/siliconcam/proc/injectmasteralbum(mob/user, obj/item/photo/p) //stores image information to a list similar to that of the datacore
 	var/mob/living/silicon/robot/C = user
+	playsound(user, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 50, 1, -3)
 	if(C.connected_ai)
 		C.connected_ai.aiCamera.injectaialbum(p.copy(1), " (synced from [C.name])")
 		to_chat(C.connected_ai, span_unconscious("Image uploaded by [C.name]"))

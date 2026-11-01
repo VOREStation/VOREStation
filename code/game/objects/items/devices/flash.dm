@@ -322,6 +322,7 @@
 
 /obj/item/flash/robot
 	name = "mounted flash"
+	desc = "Used for blinding and disorienting. This one is reinforced, and runs directly off your powercell."
 	can_break = FALSE
 	use_external_power = TRUE
 	charge_only = TRUE

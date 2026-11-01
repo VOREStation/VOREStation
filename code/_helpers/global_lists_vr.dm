@@ -1186,7 +1186,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/stack/hose, \
 	/obj/item/stack/animalhide, \
 	/obj/item/stack/hairlesshide, \
-	/obj/item/stack/wetleather
+	/obj/item/stack/wetleather, \
+	/obj/item/pipe
 
 #define OMNI_GRIPPER \
 	/obj/item

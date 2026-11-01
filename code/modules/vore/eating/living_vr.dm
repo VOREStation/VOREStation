@@ -1296,6 +1296,7 @@
  */
 /atom/movable/screen/vore_panel
 	name = "vore panel"
+	desc = "Open your vore panel."
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "vore"
 	screen_loc = ui_smallquad
