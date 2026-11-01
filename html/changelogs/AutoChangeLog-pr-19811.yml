@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "Add gas analyzers, screwdrivers & grenade casings to the toximate vendor. Also increased the amount of parts on sale."
