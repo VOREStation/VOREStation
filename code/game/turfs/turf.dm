@@ -617,12 +617,14 @@
 		M.slipping = slip_dist
 
 
+	if(!M.slip_timer)
+		SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
+
 	if(slip_dist > 0)
 		M.slip_timer = addtimer(CALLBACK(src, PROC_REF(slip_slide), M, slip_dist, olddir, lube), 1, TIMER_DELETE_ME|TIMER_STOPPABLE)
 	else
 		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //Non sliding slip time
 
-	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
 	/* // Im doing my own thing, maybe forced movement can be a thing later, though.
 	if(lube & SLIDE)
 		new /datum/forced_movement(M, get_ranged_target_turf(M, olddir, 4), 1, FALSE, CALLBACK(C, PROC_REF(spin), 1, 1))
