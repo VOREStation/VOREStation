@@ -42,7 +42,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/examine()
 	. = ..()
-	. += "Current security level: [seclevel]"
+	. += span_notice("Current security level: [seclevel]")
 
 /obj/machinery/firealarm/Initialize(mapload)
 	. = ..()

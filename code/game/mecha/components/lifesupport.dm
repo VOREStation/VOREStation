@@ -1,6 +1,7 @@
 
 /obj/item/mecha_parts/component/gas
 	name = "mecha life-support"
+	desc = "Everything needed to keep you aliove. Air, heat, in a relatively compact package."
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "lifesupport"
 	w_class = ITEMSIZE_HUGE
@@ -20,6 +21,7 @@
 
 /obj/item/mecha_parts/component/gas/reinforced
 	name = "reinforced mecha life-support"
+	desc = "A sturdier reinforcement on the standard. Bigger, too."
 
 	emp_resistance = 2
 	max_integrity = 80

@@ -1,6 +1,6 @@
 /obj/structure/bed/chair/wheelchair
 	name = "wheelchair"
-	desc = "You sit in this. Either by will or force."
+	desc = "A normal, standard wheelchair. It looks to have absolutely no frills attached."
 	icon = 'icons/obj/wheelchair.dmi'
 	icon_state = "wheelchair"
 	anchored = FALSE
@@ -19,13 +19,13 @@
 
 /obj/structure/bed/chair/wheelchair/motor
 	name = "electric wheelchair"
-	desc = "A motorized wheelchair controlled with a joystick on one armrest"
+	desc = "A motorized wheelchair controlled with a joystick on one armrest."
 	icon_state = "motorchair"
 	folded_type = /obj/item/wheelchair/motor
 
 /obj/structure/bed/chair/wheelchair/smallmotor
 	name = "small electric wheelchair"
-	desc = "A small motorized wheelchair, it looks around the right size for a Teshari"
+	desc = "A small motorized wheelchair, it looks around the right size for a Teshari."
 	icon_state = "teshchair"
 	min_mob_buckle_size = MOB_SMALL
 	max_mob_buckle_size = MOB_MEDIUM

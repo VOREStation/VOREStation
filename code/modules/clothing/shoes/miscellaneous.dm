@@ -18,7 +18,7 @@
 	step_volume_mod = 0	//It's a mime
 
 /obj/item/clothing/shoes/galoshes
-	desc = "Rubber boots"
+	desc = "Thick rubber boots. Worn mostly by janitors wading through wet floors and much worse."
 	name = "galoshes"
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05

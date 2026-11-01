@@ -2,6 +2,7 @@
 /obj/structure/mirror
 	name = "mirror"
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
+	description_info = "You can use this to change your looks!"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	layer = ABOVE_WINDOW_LAYER

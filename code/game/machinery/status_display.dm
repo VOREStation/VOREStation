@@ -15,6 +15,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_WINDOW_LAYER
 	name = "status display"
+	desc = "A cheap, mass produced screen linked to command consoles. Used to display alerts, information, or whatever else the bridge secretary decided this time."
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE

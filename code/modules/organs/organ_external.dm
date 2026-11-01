@@ -565,7 +565,7 @@
 	return result
 
 //Helper proc used by various tools for repairing robot limbs
-/obj/item/organ/external/proc/robo_repair(repair_amount, damage_type, damage_desc, obj/item/tool, mob/living/user)
+/obj/item/organ/external/proc/robo_repair(repair_amount, damage_type, damage_desc, obj/item/tool, mob/living/user, stack_use = 0)
 	if((src.robotic < ORGAN_ROBOT))
 		return 0
 
@@ -597,18 +597,22 @@
 			return 0
 	*/
 	user.setClickCooldown(user.get_attack_speed(tool))
-	if(!do_after(user, 1 SECOND, src))
+	if(!do_after(user, 1 SECOND * tool.toolspeed, owner))
 		to_chat(user, span_warning("You must stand still to do that."))
 		return 0
 
 	switch(damage_type)
-		if(BRUTE) src.heal_damage(repair_amount, 0, 0, 1)
-		if(BURN)  src.heal_damage(0, repair_amount, 0, 1)
-		if("omni")src.heal_damage(repair_amount, repair_amount, 0, 1)
+		if(BRUTE) src.heal_damage(repair_amount, 0, FALSE, TRUE)
+		if(BURN)  src.heal_damage(0, repair_amount, FALSE, TRUE)
+		if("omni")src.heal_damage(repair_amount, repair_amount, FALSE, TRUE)
+
+	if(stack_use && istype(tool, /obj/item/stack)) //Why are you setting a stack usage if it's not a stack?
+		var/obj/item/stack/repair_stack = tool
+		repair_stack.use(stack_use)
 
 	if(damage_desc)
 		var/fix_verb = "patches"
-		if(damage_amount > repair_amount)
+		if(damage_amount <= repair_amount)
 			fix_verb = "finishes patching"
 			disfigured = FALSE //Prevents some edgecases where you can repair despite hitting disfigurement thresholds, they're fully healed at this point anyways.
 		if(user == src.owner)
@@ -637,7 +641,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
-		if(istype(implanted_object,/obj/item/implant) || istype(implanted_object,/obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
+		if(istype(implanted_object, /obj/item/implant) || istype(implanted_object, /obj/item/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
 			continue
 		implanted_object.forceMove(owner.drop_location()) //Drop it out.
 		implants -= implanted_object
@@ -1331,7 +1335,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		while(null in owner.internal_organs)
 			owner.internal_organs -= null
 		owner.refresh_modular_limb_verbs()
-	return 1
+	return TRUE
 
 /obj/item/organ/external/proc/mutate()
 	if(src.robotic >= ORGAN_ROBOT)

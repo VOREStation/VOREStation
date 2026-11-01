@@ -90,7 +90,7 @@
 //Water
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
-	desc = "A water tank."
+	desc = "A water tank. Life-saving water, now on wheels!"
 	icon_state = "water"
 	amount_per_transfer_from_this = 10
 
@@ -140,7 +140,7 @@
 //Foam
 /obj/structure/reagent_dispensers/foam
 	name = "foam tank"
-	desc = "A foam tank."
+	desc = "A foam tank. Used for firefighting, not bathing."
 	icon_state = "foam"
 	amount_per_transfer_from_this = 10
 
@@ -329,10 +329,10 @@
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
-	desc = "A machine that dispenses water to drink."
-	amount_per_transfer_from_this = 5
+	desc = "A machine that dispenses water to drink. Imagine how many conversations it has heard."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
+	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	anchored = TRUE
 	has_sockets = FALSE

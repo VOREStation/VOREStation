@@ -341,6 +341,8 @@
 				to_chat(patient, span_danger("[our_hound.name]'s [src.name] fills with caustic enzymes around you!"))
 			return TRUE
 		if("analyze")
+			if(!patient)
+				return FALSE
 			med_analyzer.scan_mob(patient, our_hound)
 			return TRUE
 		if("port")

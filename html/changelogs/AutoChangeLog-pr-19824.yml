@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "Fix NIF internal communicators from using the handheld icon"
