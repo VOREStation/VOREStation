@@ -327,13 +327,13 @@
 	if(prob(5 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
-		var/max_health_coefficient = (our_guy.maxHealth * 0.5)
+		var/max_health_coefficient = (our_guy.maxHealth * 0.1)
 		our_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
 			var/mob/living/carbon/human/human_guy = our_guy
 			if(human_guy.should_have_organ(O_BRAIN))
 				for(var/obj/item/organ/internal/brain/brain in human_guy.internal_organs)
-					brain.take_damage(30 * damage_mod) //60 damage kills.
+					brain.take_damage(2 * damage_mod) //60 damage kills.
 			if(human_guy.glasses && human_guy.canUnEquip(human_guy.glasses))
 				var/turf/T = get_turf(human_guy)
 				if(T)
