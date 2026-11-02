@@ -236,3 +236,24 @@
 
 /area/submap/space_rocks/seventemple
 	name = "POI - Temple of the Seven"
+
+// Minitest Areas
+/area/shuttle/overmapdemo
+	name = "Overmap-Demo Suttle"
+	music = "music/escape.ogg"
+	icon_state = "shuttle"
+
+/area/shuttle/ferrydemo
+	name = "Ferry-Demo Suttle"
+	music = "music/escape.ogg"
+	icon_state = "shuttle"
+
+/area/shuttle/multidemo
+	name = "Multi-Demo Suttle"
+	music = "music/escape.ogg"
+	icon_state = "shuttlegrn"
+
+/area/shuttle/webdemo
+	name = "Web-Demo Suttle"
+	icon_state = "shuttlered"
+	music = "music/escape.ogg"
