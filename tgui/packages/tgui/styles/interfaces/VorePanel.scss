@@ -66,8 +66,11 @@
 }
 
 .VorePanel__Floating {
-  height: 325px;
-  width: 580px;
+  height: auto;
+  max-height: 325px;
+  width: auto;
+  max-width: 580px;
+
   background-color: var(--color-section);
   backdrop-filter: var(--blur-medium);
   border: var(--border-thickness-tiny) solid var(--color-border);
@@ -75,11 +78,8 @@
   box-shadow: var(--shadow-glow-medium) hsla(0, 0%, 0%, 0.5);
   margin: var(--space-m);
   color: var(--color-text);
-  overflow-y: scroll;
+
+  overflow-y: auto;
   overflow-x: hidden;
   padding: var(--space-m);
-}
-
-.VorePanel__Floating.VorePanel__noScroll {
-  overflow-y: hidden;
 }

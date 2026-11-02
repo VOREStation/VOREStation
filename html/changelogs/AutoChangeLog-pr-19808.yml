@@ -1,0 +1,7 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "adds vore type flags to tag bellies"
+  - bugfix: "some css layout on the vorepanel floating"
+  - bugfix: "an error in export flag handling for html export"
+  - code_imp: "enable typescript 7 as default"

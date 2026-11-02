@@ -1,4 +1,8 @@
 /datum/vore_look/proc/get_preference_data(mob/owner)
+	var/list/vore_pref_type_list = list()
+	for(var/flag_name in GLOB.vore_pref_types)
+		UNTYPED_LIST_ADD(vore_pref_type_list, list("label" = flag_name, "selection" = owner.vore_pref_type_flags & GLOB.vore_pref_types[flag_name]))
+
 	return list(
 		"digestable" = owner.digestable,
 		"devourable" = owner.devourable,
@@ -57,6 +61,7 @@
 		"soulcatcher_allow_takeover" = owner.soulcatcher_pref_flags & SOULCATCHER_ALLOW_TAKEOVER,
 		"soulcatcher_allow_deletion" = (global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION) + global_flag_check(owner.soulcatcher_pref_flags, SOULCATCHER_ALLOW_DELETION_INSTANT)),
 		"max_voreoverlay_alpha" = owner.max_voreoverlay_alpha,
+		"vore_pref_types" = vore_pref_type_list,
 		"dropdown_preferences" = list(
 			"strip_active" = owner.size_strip_preference,
 			"selective_active" = owner.selective_preference, //Reveal active selective mode in prefs
