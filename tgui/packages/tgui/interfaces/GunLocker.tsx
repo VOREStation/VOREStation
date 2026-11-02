@@ -39,11 +39,13 @@ export const GunLocker = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section title="Cabinet Controls">
-              <Stack align="center" justify="space-between">
+              <Stack>
                 <Stack.Item>
                   <Box inline color={locked ? 'red' : 'green'} bold mr={2}>
                     {locked ? 'LOCKED' : 'UNLOCKED'}
                   </Box>
+                </Stack.Item>
+                <Stack.Item grow>
                   <Box inline color={welded ? 'yellow' : 'transparent'} bold>
                     {welded ? 'ERROR: LOCK DAMAGED' : ''}
                   </Box>
@@ -57,6 +59,8 @@ export const GunLocker = (props) => {
                   >
                     {locked ? 'Unlock Cabinet' : 'Lock Cabinet'}
                   </Button>
+                </Stack.Item>
+                <Stack.Item>
                   <Button
                     icon={open ? 'door-open' : 'door-closed'}
                     color={open ? 'green' : 'red'}
