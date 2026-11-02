@@ -11,6 +11,7 @@
 	max_temperature = 30000
 	infra_luminosity = 8
 	force = 40
+	trample_damage = 35 		//fat boy
 	wreckage = /obj/effect/decal/mecha_wreckage/durand
 
 	damage_minimum = 15			//Big stompy

@@ -953,16 +953,15 @@
 		var/mob/living/carbon/human/unfortunateLad = M
 		if(!unfortunateLad.lying)
 			return
-		msg_admin_attack("[src] trampled [key_name(unfortunateLad)] at (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[unfortunateLad.x];Y=[unfortunateLad.y];Z=[unfortunateLad.z]'>JMP</a>)" )
 		src.visible_message("<span class='danger'>\The [src] runs over \the [unfortunateLad]!</span>")
 		unfortunateLad.apply_damage(trample_damage, BRUTE)
 		add_attack_logs(occupant, unfortunateLad, "was trampled by [src] for [trample_damage]")
 		playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 		return
 
-	else
+	else if(isanimal(M))
 		var/mob/living/L = M
-		src.visible_message("<span class='danger'>\The [src] runs over \the [L]!</span>")
+		src.visible_message("<span class='danger'>\The [src] stomps over \the [L]!</span>")
 		if(istype(L, /mob/living/simple_mob))
 			if(issmall(L) && (L.stat == DEAD))
 				L.gib()
