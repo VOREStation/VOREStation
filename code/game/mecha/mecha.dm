@@ -943,6 +943,13 @@
 		. = ..(obstacle)
 	return
 
+/obj/mecha/proc/trample(mob/living/M)
+	if(!isLiving(M)) //Avoid stacking damage forever onto dead things.
+		return
+	if(ishuman(M))
+
+
+
 /obj/mecha/proc/phase()	// Force the mecha to move forward by phasing.
 	set waitfor = FALSE
 	if(can_phase)
