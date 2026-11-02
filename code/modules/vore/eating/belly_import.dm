@@ -75,6 +75,10 @@
 			if(new_mode in new_belly.digest_modes)
 				new_belly.digest_mode = new_mode
 
+		if(isnan(belly_data["vore_pref_type_flags"]))
+			new_belly.vore_pref_type_flags = NONE
+			new_belly.vore_pref_type_flags ^= belly_data["vore_pref_type_flags"]
+
 		if(istext(belly_data["item_mode"]))
 			var/new_item_mode = html_encode(belly_data["item_mode"])
 			if(new_item_mode in new_belly.item_digest_modes)

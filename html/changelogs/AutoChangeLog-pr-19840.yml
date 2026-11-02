@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - qol: "Make it so the cyborg shells without a mind don't count for round end"
