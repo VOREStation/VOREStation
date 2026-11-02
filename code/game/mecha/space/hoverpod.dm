@@ -10,6 +10,7 @@
 	max_temperature = 20000
 	health = 150
 	maxhealth = 150
+	trample_damage = 0
 	infra_luminosity = 6
 	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
 	cargo_capacity = 5

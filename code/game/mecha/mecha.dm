@@ -949,6 +949,8 @@
 		return
 	if(occupant.a_intent != I_HURT)
 		return // Only while on harm intent.
+	if(trample_damage == 0)
+		return // No damage
 	if(ishuman(M))
 		var/mob/living/carbon/human/unfortunateLad = M
 		if(!unfortunateLad.lying)
