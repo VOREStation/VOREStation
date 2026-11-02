@@ -80,7 +80,7 @@ export const GunLocker = (props) => {
                   const hasWeapon = slot.icon;
 
                   return (
-                    <Stack.Item key={slot.index} maxWidth="20%">
+                    <Stack.Item key={slot.index} maxWidth="21%">
                       <Section fill title={`Slot ${slot.index}`}>
                         <Stack g={1.5} vertical align="center">
                           <Stack.Item>
