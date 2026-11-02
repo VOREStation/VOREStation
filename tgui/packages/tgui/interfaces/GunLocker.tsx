@@ -80,7 +80,7 @@ export const GunLocker = (props) => {
                   const hasWeapon = slot.icon;
 
                   return (
-                    <Stack.Item key={slot.index}>
+                    <Stack.Item key={slot.index} maxWidth="20%">
                       <Section fill title={`Slot ${slot.index}`}>
                         <Stack g={1.5} vertical align="center">
                           <Stack.Item>
@@ -106,12 +106,12 @@ export const GunLocker = (props) => {
                               )}
                             </Box>
                           </Stack.Item>
-                          <Stack.Item>
+                          <Stack.Item maxWidth="100%">
                             <Box
                               bold
+                              nowrap
                               textAlign="center"
                               color={hasWeapon ? 'default' : 'label'}
-                              nowrap
                               overflow="hidden"
                               fontSize="11px"
                               style={{
