@@ -224,7 +224,6 @@
 
 		if("toggle_lock")
 			togglelock(ui.user)
-			update_icon()
 			return TRUE
 
 		if("insert_slot")
@@ -265,6 +264,7 @@
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
 				to_chat(O, span_notice("\the [src] has been [locked ? null : "un"]locked by [user]."))
+		update_icon()
 	else
 		to_chat(user, span_notice("Access Denied"))
 
