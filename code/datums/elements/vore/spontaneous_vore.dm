@@ -7,7 +7,8 @@
 	RegisterSignal(target, COMSIG_LIVING_STUMBLED_INTO, PROC_REF(handle_stumble))
 	RegisterSignal(target, COMSIG_LIVING_FALLING_DOWN, PROC_REF(handle_fall))
 	RegisterSignal(target, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, PROC_REF(handle_hitby))
-	RegisterSignal(target, COMSIG_MOVABLE_CROSS, PROC_REF(handle_crossed))
+	//RegisterSignal(target, COMSIG_MOVABLE_CROSS, PROC_REF(handle_crossed))
+	RegisterSignals(target, list(COMSIG_ON_LIVING_SLIP, COMSIG_AFTER_LIVING_SLIDE), PROC_REF(handle_slipnom))
 
 /datum/element/spontaneous_vore/Detach(datum/target)
 	. = ..()
@@ -130,27 +131,29 @@
 				log_vore("[source] Was Devoured by [thrown_mob.name] via throw vore.")
 			return COMSIG_CANCEL_HITBY
 
-//source = person standing up
-//crossed = person sliding
-/datum/element/spontaneous_vore/proc/handle_crossed(mob/living/source, mob/living/crossed)
+//source = person sliding
+//victim = person being slid into (or past)
+/datum/element/spontaneous_vore/proc/handle_slipnom(mob/living/source)
 	SIGNAL_HANDLER
 
-	if(source == crossed || !istype(crossed))
-		return
+	for(var/mob/living/victim in source.loc) //Specifically loc. This can result in spont vore inside of non-turfs like closets, and vorebellies for shenanigans.
+
+		if(source == victim || !istype(victim))
+			continue
 
 
-	//Person being slipped into eats the person slipping
-	if(can_slip_vore(pred = source, prey = crossed))	//If we can vore them go for it
-		var/obj/belly/destination_belly = source.get_current_spont_belly(crossed)
-		if(!destination_belly)
+		//Person being slipped into eats the person slipping
+		if(can_slip_vore(pred = victim, prey = source))
+			var/obj/belly/destination_belly = victim.get_current_spont_belly(source)
+			if(!destination_belly)
+				continue
+			source.begin_instant_nom(victim, prey = source, pred = victim, belly = destination_belly) //Must be
 			return
-		source.begin_instant_nom(source, prey = crossed, pred = source, belly = destination_belly)
-		return COMPONENT_BLOCK_CROSS
 
-	//The person slipping eats the person being slipped into
-	else if(can_slip_vore(pred = crossed, prey = source))
-		var/obj/belly/destination_belly = crossed.get_current_spont_belly(source)
-		if(!destination_belly)
-			return
-		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = destination_belly) //Must be
-		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.
+		//The person slipping eats the person being slipped into
+		else if(can_slip_vore(pred = source, prey = victim))	//If we can vore them go for it
+			var/obj/belly/destination_belly = source.get_current_spont_belly(victim)
+			if(!destination_belly)
+				continue
+			source.begin_instant_nom(source, prey = victim, pred = source, belly = destination_belly)
+			continue //We DON'T block it here. Pred can slip onto the prey's tile, no problem.

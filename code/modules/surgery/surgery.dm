@@ -53,6 +53,9 @@
 			if(IS_WRENCH)
 				if(tool.has_tool_quality(TOOL_WRENCH))
 					return allowed_procs[P]
+			if(IS_WELDER)
+				if(tool.has_tool_quality(TOOL_WELDER))
+					return allowed_procs[P]
 	return FALSE
 
 

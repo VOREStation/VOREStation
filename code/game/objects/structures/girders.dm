@@ -90,6 +90,7 @@
 
 /obj/structure/girder/proc/displace()
 	name = "displaced [girder_material.display_name] [initial(name)]"
+	desc = "The bolted frame for a wall. Without the wall, bit."
 	icon_state = "displaced"
 	anchored = FALSE
 	health = (displaced_health - round(current_damage / 4))

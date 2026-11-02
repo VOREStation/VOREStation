@@ -446,7 +446,7 @@
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"
-	desc = "Medical drug dispenser."
+	desc = "Medical drug dispenser. Alongside other bits and bobs."
 	description_fluff = "NanoMed is NanoTrasen's medical science division, and provides almost all of the modern medbay essentials in-house at no extra charge. By using this vending machine, employees accept liability for products that may or may not be temporarily replaced by placebos or experimental treatments."
 	icon_state = "med"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
@@ -481,14 +481,18 @@
 /obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
-	products = list(/obj/item/clothing/under/rank/scientist = 6,
-					/obj/item/clothing/suit/bio_suit = 6,
-					/obj/item/clothing/head/bio_hood = 6,
-					/obj/item/transfer_valve = 6,
-					/obj/item/assembly/timer = 6,
-					/obj/item/assembly/signaler = 6,
-					/obj/item/assembly/prox_sensor = 6,
-					/obj/item/assembly/igniter = 6)
+	products = list(/obj/item/clothing/under/rank/scientist = 4,
+					/obj/item/clothing/suit/bio_suit = 4,
+					/obj/item/clothing/head/bio_hood = 4,
+					/obj/item/transfer_valve = 8,
+					/obj/item/assembly/timer = 8,
+					/obj/item/assembly/signaler = 8,
+					/obj/item/assembly/prox_sensor = 8,
+					/obj/item/assembly/igniter = 8,
+					/obj/item/grenade/chem_grenade = 6,
+					/obj/item/tool/screwdriver = 4,
+					/obj/item/analyzer = 4
+					)
 	req_log_access = ACCESS_RD
 	has_logs = 1
 

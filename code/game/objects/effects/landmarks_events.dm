@@ -46,6 +46,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	. = ..()
 
 /obj/effect/landmark/event_trigger/Crossed(atom/movable/AM)
+	. = ..()
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM

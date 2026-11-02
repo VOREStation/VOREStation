@@ -1,7 +1,7 @@
 //Barricades!
 /obj/structure/barricade
 	name = "barricade"
-	desc = "This space is blocked off by a barricade."
+	desc = "This space is blocked off by a barricade. It's built in such an annoying way that there's no dismantling it."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barricade"
 	anchored = TRUE

@@ -144,21 +144,21 @@
 	if(silent || (sdisabilities & MUTE) || is_paralyzed())
 		// MUTE shouldn't suppress noise language (audible say emotes), consistent with * emotes bypassing mute in say().
 		if((sdisabilities & MUTE) && !silent && !is_paralyzed())
-			var/list/pieces = message_data[1]
+			var/list/pieces = message_data[SPEECH_MSGPIECES]
 			if(islist(pieces) && LAZYLEN(pieces))
 				var/datum/multilingual_say_piece/first = pieces[1]
 				if(istype(first) && first.speaking == GLOB.all_languages["Noise"])
 					return ..()
-		message_data[1] = ""
+		message_data[SPEECH_MSGPIECES] = ""
 		return 1
 
 	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange) //only horsemasks do this.
-			message_data[1] = pick(M.say_messages)
-			message_data[2] = pick(M.say_verbs)
+			message_data[SPEECH_MSGPIECES] = list(new /datum/multilingual_say_piece(GLOB.all_languages[LANGUAGE_GALCOM], pick(M.say_messages))) // Equestria, OBLITERATE!
+			message_data[SPEECH_MSGVERB] = pick(M.say_verbs)
 			if(istype(M, /obj/item/clothing/mask/horsehead) && prob(0.5))
-				message_data[2] = "HIIII EVERYPONY"
+				message_data[SPEECH_MSGVERB] = "HIIII EVERYPONY"
 			return 1
 
 	if((CE_SPEEDBOOST in chem_effects) || (get_jittery() >= 100 && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
@@ -166,7 +166,7 @@
 		var/static/regex/speedboost_initial = new (@"&[a-z]{2,5};|&#\d{2};","g")
 		// Not herestring because bad vs code syntax highlight panics at apostrophe
 		var/static/regex/speedboost_main = new ("\[ ',!?.;\]","g")
-		for(var/datum/multilingual_say_piece/S in message_data[1])
+		for(var/datum/multilingual_say_piece/S in message_data[SPEECH_MSGPIECES])
 			S.message = speedboost_initial.Replace(S.message, "")
 			S.message = speedboost_main.Replace(S.message, "")
 		return 1

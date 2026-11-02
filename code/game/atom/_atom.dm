@@ -318,6 +318,10 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	return
 
+///Handle the atom being slipped over.
+/atom/proc/handle_slip(mob/living/M, weaken_amount, obj/slipped_on, lube, slip_dist = 0, stun_amount, force_drop)
+	return
+
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
 

@@ -14,12 +14,13 @@
 	UnregisterSignal(target, COMSIG_MOB_SAY_FINALIZE)
 
 /// We want to ensure the message gets to finalize with the proper comsig flags
-/datum/element/radio_creeper/proc/handle_prepare_say(atom/source, list/message_pieces, datum/language/speaking, message, whispering, message_mode)
+/datum/element/radio_creeper/proc/handle_prepare_say(atom/source, list/message_data)
 	SIGNAL_HANDLER
-	return COMSIG_SAY_IGNORE_MIME_VOW | COMSIG_SAY_IGNORE_MUZZLING | COMSIG_SAY_FORBID_WHISPERING | COMSIG_SAY_HIDDEN_FROM_GHOSTS
+	message_data[SPEECH_WHISPERING] = FALSE // Disable whisper
+	return COMSIG_SAY_IGNORE_MIME_VOW | COMSIG_SAY_IGNORE_MUZZLING | COMSIG_SAY_HIDDEN_FROM_GHOSTS
 
 /// Handle the radio transmission of the message. In all cases we want to cancel the rest of say() and send the message to the radio.
-/datum/element/radio_creeper/proc/handle_finalize_say(atom/source, list/message_pieces, datum/language/speaking, message, whispering, message_mode, list/say_verb)
+/datum/element/radio_creeper/proc/handle_finalize_say(atom/source, list/message_data)
 	SIGNAL_HANDLER
 	var/turf/our_turf = get_turf(source)
 	if(!our_turf)
@@ -33,8 +34,8 @@
 	// Transmit the message directly to nearby radios, use fake data so that we are not broadcasting to more than the forced radio list
 	var/mob/M = source
 	var/datum/radio_frequency/connection = SSradio.return_frequency(PUB_FREQ)
-	Broadcast_Message(connection, M, FALSE, message_to_multilingual(pick(M.speak_emote)), null, message_pieces, M.voice_name, "Unknown", M.real_name, M.voice_name, DATA_FAKE, 0, list(0), PUB_FREQ, say_verb[1], listeners)
+	Broadcast_Message(connection, M, FALSE, message_to_multilingual(pick(M.speak_emote)), null, message_data[SPEECH_MSGPIECES], M.voice_name, "Unknown", M.real_name, M.voice_name, DATA_FAKE, 0, list(0), PUB_FREQ, message_data[SPEECH_MSGVERB], listeners)
 
 	// We don't need the rest of saycode. So we also need to log what was said as well.
-	source.log_talk(message, LOG_SAY, color="#c0c0c0")
+	source.log_talk(message_data[SPEECH_MESSAGE], LOG_SAY, color="#c0c0c0")
 	return COMSIG_SAY_FORBID_SPEAK

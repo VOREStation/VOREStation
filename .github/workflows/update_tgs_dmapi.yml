@@ -7,7 +7,7 @@ on:
 
 jobs:
   update-dmapi:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     name: Update the TGS DMAPI
     permissions:
       contents: write
@@ -40,7 +40,7 @@ jobs:
 
       - name: Generate App Token
         id: app-token-generation
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@v3.3.0
         if: env.APP_PRIVATE_KEY != '' && env.APP_CLIENT_ID != ''
         with:
           client-id: ${{ secrets.APP_CLIENT_ID }}

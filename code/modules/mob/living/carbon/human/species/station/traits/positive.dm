@@ -824,6 +824,24 @@
 	var_changes = list("item_slowdown_mod" = 0.0)
 	excludes = list(/datum/trait/positive/speed_fast,/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
+/datum/trait/positive/hardy_weakspecies
+	name = "Unusually Hardy"
+	desc = "In spite of the standards of your specie, you've somehow managed to raise your strength to levels comparable with the human, or skrell baseline. You carry heavy equipment with no particular slowdown."
+	cost = 4 // Expensive!
+	var_changes = list("item_slowdown_mod" = 1)
+	custom_only = FALSE
+	allowed_species = list(SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
+	excludes = list(/datum/trait/positive/hardy_major_weakspecies)
+
+/datum/trait/positive/hardy_major_weakspecies
+	name = "Unusually Hardy, Major"
+	desc = "In the distant past, you'd have gotten a great shot at being a powerful soldier, or warlord. Now? You could probably make it into the interstellar olympics. You carry heavy equipment with less slowdown than the rest of your specie."
+	cost = 7 // Very expensive! You must reallllly want that!
+	var_changes = list("item_slowdown_mod" = 0.7)
+	custom_only = FALSE
+	allowed_species = list( SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
+	excludes = list(/datum/trait/positive/hardy_weakspecies)
+
 /datum/trait/positive/bloodsucker_plus
 	name = "Evolved Bloodsucker"
 	desc = "Makes you able to gain nutrition by draining blood as well as eating food. To compensate, you get fangs that can be used to drain blood from prey."
@@ -948,3 +966,25 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
 	add_verb(H, /mob/living/proc/name_change_verb)
+
+/datum/trait/positive/scavenger
+	name ="Scavenger"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster!"
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger_expert)
+
+/datum/trait/positive/scavenger/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/scavenger_expert
+	name ="Scavenger Expert"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster! And not only that, you can occassionally find extras!"
+	cost = 2
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger)
+
+/datum/trait/positive/scavenger_expert/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER_EXPERT, ROUNDSTART_TRAIT)

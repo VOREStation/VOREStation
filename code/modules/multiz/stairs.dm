@@ -135,11 +135,11 @@
 	return FALSE
 
 /obj/structure/stairs/bottom/Crossed(atom/movable/AM, atom/oldloc)
+	. = ..()
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.has_AI())
 			use_stairs(AM, oldloc)
-	..()
 
 /obj/structure/stairs/bottom/use_stairs(atom/movable/AM, atom/oldloc)
 	// If we're coming from the top of the stairs, don't trap us in an infinite staircase

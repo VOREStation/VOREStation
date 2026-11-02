@@ -85,13 +85,13 @@
 		. += "\The [src] has a \the [cell] attached."
 
 		if(cell.charge <= cell.maxcharge*0.25)
-			. += "It appears to have a low amount of power remaining."
+			. += span_notice("It appears to have a low amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
-			. += "It appears to have an average amount of power remaining."
+			. += span_notice("It appears to have an average amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
-			. += "It appears to have an above average amount of power remaining."
+			. += span_notice("It appears to have an above average amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
-			. += "It appears to have a high amount of power remaining."
+			. += span_notice("It appears to have a high amount of power remaining.")
 
 /obj/item/flashlight/attack_self(mob/user)
 	. = ..(user)
@@ -288,7 +288,7 @@
 
 /obj/item/flashlight/proc/finish_flicker(original_color, original_on, datum/component/overlay_lighting/OL)
 	set_light_color(original_color)
-	OL.directional_atom?.color = original_color
+	OL?.directional_atom?.color = original_color
 	on = original_on
 	flickering = FALSE
 	update_brightness()

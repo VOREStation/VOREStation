@@ -1,0 +1,40 @@
+2026-11-01:
+  Diana:
+  - bugfix: Multiple entities can no longer be trapped in a ghost trap
+2026-11-02:
+  Kashargul:
+  - qol: adds vore type flags to tag bellies
+  - bugfix: some css layout on the vorepanel floating
+  - bugfix: an error in export flag handling for html export
+  - code_imp: enable typescript 7 as default
+  - bugfix: an edge case vore panl tgui crash on old save files
+  ReoDaProtovali:
+  - rscadd: Added a trap to the trap when you try to modify a spring trap without
+      first disarming it
+  - rscadd: Turbo spring traps which are 3 times faster at resetting
+  - rscadd: custom subtype for mappers to fuck with, without creating invalid item
+      states.
+  - rscadd: Added the ability to disassemble traps back into their base components
+  - rscdel: Removed the crafting UI recipe for the auto-resetting trap. Just shove
+      a motor into an existing trap now.
+  - qol: Upgrading traps is easier, as stated above. Hints to this is added to the
+      description of the assembly kits.
+  - bugfix: fixes resetting sometimes occurring multiple times when resetting an automatic
+      trap manually.
+  - bugfix: fixes icon state being incorrect when building a new trap
+  - sound: changed the sound on springtrap trigger to metal_close.ogg
+  - code_imp: defines now exist to allow easy mass-changing of springtrap reset times.
+  - admin: Springtraps now only log for launching ckey'ed mobs, and log for all of
+      them, instead of only the initial victim (multiple could be launched from a
+      single trigger)
+  - admin: adminbus subtype is a bit faster. For bussin' purposes.
+  lbnesquik:
+  - qol: Make it so ghosts have a lil funny description
+  - rscadd: Added some cybernetic implants on order via cargo
+  - bugfix: fixed a typo
+  - rscadd: Added a scavenging trait that makes you search lootables faster
+  - qol: Add gas analyzers, screwdrivers & grenade casings to the toximate vendor.
+      Also increased the amount of parts on sale.
+  - qol: Make it so the cyborg shells without a mind don't count for round end
+  - rscadd: Add mecha equipment slots information to the cyborg / mecha analyzer
+  - bugfix: Fix NIF internal communicators from using the handheld icon

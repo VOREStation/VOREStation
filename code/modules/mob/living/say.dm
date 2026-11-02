@@ -89,10 +89,8 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise
 /mob/living/proc/handle_speech_problems(list/message_data)
-	var/list/message_pieces = message_data[1]
-	var/verb = message_data[2]
-	var/whispering = message_data[3]
-	. = 0
+	var/list/message_pieces = message_data[SPEECH_MSGPIECES]
+	. = FALSE
 
 	// Technically this rerolls the verb for as many say pieces as there are. _shrug_
 	for(var/datum/multilingual_say_piece/S in message_pieces)
@@ -101,34 +99,31 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 		if(disabilities & CENSORED)
 			S.message = censor_swears(S.message) // Googlybonkers
-			. = 1
-
+			. = TRUE
 		if((HULK in mutations) && health >= 25 && length(S.message))
 			S.message = "[uppertext(S.message)]!!!"
-			verb = pick("yells","roars","hollers")
-			whispering = 0
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("yells","roars","hollers")
+			message_data[SPEECH_WHISPERING] = FALSE
+			. = TRUE
 		if(slurring)
 			S.message = slur(S.message)
-			verb = pick("slobbers","slurs")
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("slobbers","slurs")
+			. = TRUE
 		if(stuttering)
 			S.message = stutter(S.message)
-			verb = pick("stammers","stutters")
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("stammers","stutters")
+			. = TRUE
 		if(muffled)
-			verb = pick("muffles")
-			whispering = 1
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("muffles")
+			message_data[SPEECH_WHISPERING] = TRUE
+			. = TRUE
 		if(disabilities & WINGDINGS)
-			verb = pick("gibbers","gabbers","gahoos","gazonks") // Yeah lets just be stupid
+			message_data[SPEECH_MSGVERB] = pick("gibbers","gabbers","gahoos","gazonks") // Yeah lets just be stupid
 			S.message = Gibberish(S.message, 100) // Googlybonkers
 			S.message = span_wingdings((S.message))
-			. = 1
+			. = TRUE
 
-	message_data[1] = message_pieces
-	message_data[2] = verb
-	message_data[3] = whispering
+	message_data[SPEECH_MSGPIECES] = message_pieces
 
 /mob/living/proc/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	if(message_mode == "intercom")
@@ -174,6 +169,16 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	direct_say(message, speaking, whispering)
 
 /mob/living/direct_say(message, datum/language/speaking = null, whispering = 0)
+	var/message_range = world.view
+	var/list/message_data = list(message, speaking, whispering, null, null, null, message_range)
+	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY, message_data)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Forbid sending at all
+		return 1
+	message = message_data[SPEECH_MESSAGE]
+	speaking = message_data[SPEECH_SPEAKINGLANG]
+	whispering = message_data[SPEECH_WHISPERING]
+	message_range = message_data[SPEECH_RANGE]
+
 	// Handle automatic whispering mode
 	if(autowhisper)
 		whispering = 1
@@ -206,9 +211,16 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
-	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_pieces, speaking, message, whispering, message_mode)
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, null, message_range)
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_data)
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Sometimes we just want to do nothing at all, like passing the message to a TTS object
 		return 1
+	message = message_data[SPEECH_MESSAGE]
+	speaking = message_data[SPEECH_SPEAKINGLANG]
+	whispering = message_data[SPEECH_WHISPERING]
+	message_mode = message_data[SPEECH_MSGMODE]
+	message_pieces = message_data[SPEECH_MSGPIECES]
+	message_range = message_data[SPEECH_RANGE]
 
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
@@ -232,14 +244,6 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
-	// Component control flags, lets us tweak the properties of says into what we need them to be.
-	if(comsig_flags & COMSIG_SAY_FORBID_RADIOS)
-		message_mode = null // We don't want to use any radios thanks.
-	if(comsig_flags & COMSIG_SAY_FORBID_WHISPERING)
-		whispering = FALSE
-	if(comsig_flags & COMSIG_SAY_FORCE_WHISPERING)
-		whispering = TRUE
-
 	//Whisper vars
 	var/w_scramble_range = 5	//The range at which you get ***as*th**wi****
 	var/w_adverb				//An adverb prepended to the verb in whispers
@@ -259,15 +263,17 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		w_not_heard = "[first_piece.speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	var/list/message_data = list(message_pieces, verb, whispering)
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb, message_range)
 	if(!(comsig_flags & COMSIG_SAY_FORBID_SPEECH_PROBLEMS) && handle_speech_problems(message_data))
-		message_pieces = message_data[1]
-		whispering = message_data[3]
-
-		if(verb != message_data[2]) //They changed our verb
+		speaking = message_data[SPEECH_SPEAKINGLANG]
+		whispering = message_data[SPEECH_WHISPERING]
+		message_mode = message_data[SPEECH_MSGMODE]
+		message_pieces = message_data[SPEECH_MSGPIECES]
+		message_range = message_data[SPEECH_RANGE]
+		if(verb != message_data[SPEECH_MSGVERB]) //They changed our verb
 			if(whispering)
 				w_adverb = pick("quietly", "softly")
-			verb = message_data[2]
+			verb = message_data[SPEECH_MSGVERB]
 
 	//Whisper may have adverbs, add those if one was set
 	if(w_adverb)
@@ -288,7 +294,6 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 	var/sound_vol = handle_v[2]
 
 	//Default range and italics, may be overridden past here
-	var/message_range = world.view
 	var/italics = 0
 	var/do_sound = TRUE
 	if(!voice_sounds_list || !voice_sounds_list.len)
@@ -332,13 +337,19 @@ GLOBAL_LIST_EMPTY(channel_to_radio_key)
 		verb = "[custom_say]"
 
 	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
-	var/list/say_verb_modifier = list(verb) // So the component can modify the list value and change the say description verb for the rest of the say proc if it's not going to end the proc
-	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_pieces, speaking, message, whispering, message_mode, say_verb_modifier)
-	verb = say_verb_modifier[1]
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb, message_range)
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_data)
 	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK)
 		return 1
 	if(comsig_flags & COMSIG_SAY_DISABLE_SPEAK_NOISE)
 		do_sound = FALSE
+	message = message_data[SPEECH_MESSAGE]
+	speaking = message_data[SPEECH_SPEAKINGLANG]
+	whispering = message_data[SPEECH_WHISPERING]
+	message_mode = message_data[SPEECH_MSGMODE]
+	message_pieces = message_data[SPEECH_MSGPIECES]
+	message_range = message_data[SPEECH_RANGE]
+	verb = message_data[SPEECH_MSGVERB]
 
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)

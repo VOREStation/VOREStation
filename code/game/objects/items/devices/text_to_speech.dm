@@ -51,9 +51,9 @@
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_SAY_PREPARE)
 
-/obj/item/text_to_speech/proc/handle_prepare_say(atom/source, list/message_pieces, datum/language/speaking, message, whispering, message_mode)
+/obj/item/text_to_speech/proc/handle_prepare_say(atom/source, list/message_data)
 	SIGNAL_HANDLER
-	if(message_mode) // Ignore TTS if trying to use the radio
+	if(message_data[SPEECH_MSGMODE]) // Ignore TTS if trying to use the radio
 		return
 	if(loc != source || !isliving(source))
 		return
@@ -61,5 +61,5 @@
 	if(src != my_mob.get_active_hand())
 		return
 
-	send_tts(message, my_mob)
+	send_tts(message_data[SPEECH_MESSAGE], my_mob)
 	return COMSIG_SAY_FORBID_SPEAK // We don't want to speak at all if the TTS is actively being used

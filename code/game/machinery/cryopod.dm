@@ -191,6 +191,7 @@
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
+	description_info = "Allows you to exit the round. Your character will be de-spawned, and all your items removed. It's announced on the radio, too."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryopod_0"
 	density = TRUE
@@ -222,7 +223,8 @@
 
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
-	desc = "A storage unit for robots."
+	desc = "A storage unit for robots. It's bigger than it looks."
+	description_info = "This is cryo for cyborgs and drones!"
 	icon = 'icons/obj/robot_storage.dmi'
 	icon_state = "pod_0"
 	base_icon_state = "pod_0"

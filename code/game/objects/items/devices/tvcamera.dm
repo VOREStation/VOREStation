@@ -29,8 +29,8 @@
 
 /obj/item/tvcamera/examine()
 	. = ..()
-	. += "Video feed is [camera.status ? "on" : "off"]"
-	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
+	. += span_notice("Video feed is [camera.status ? "on" : "off"]")
+	. += span_notice("Audio feed is [radio.broadcasting ? "on" : "off"]")
 
 /obj/item/tvcamera/Initialize(mapload)
 	. = ..()

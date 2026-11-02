@@ -185,10 +185,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(time_to_live)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), time_to_live, TIMER_DELETE_ME)
 
-/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob)
+	. = ..()
 	if(M.is_incorporeal())
 		return
-	..()
 	if(istype(M))
 		affect(M)
 

@@ -135,3 +135,24 @@
 
 /// in the grim darkness of the thirteenth space station there is no timezones, since they break IC game times. Use this for all IC/round time values
 #define NO_TIMEZONE 0
+
+#define JANUARY 1
+#define FEBRUARY 2
+#define MARCH 3
+#define APRIL 4
+#define MAY 5
+#define JUNE 6
+#define JULY 7
+#define AUGUST 8
+#define SEPTEMBER 9
+#define OCTOBER 10
+#define NOVEMBER 11
+#define DECEMBER 12
+
+#define MONDAY "Mon"
+#define TUESDAY "Tue"
+#define WEDNESDAY "Wed"
+#define THURSDAY "Thu"
+#define FRIDAY "Fri"
+#define SATURDAY "Sat"
+#define SUNDAY "Sun"

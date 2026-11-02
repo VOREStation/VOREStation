@@ -5,7 +5,7 @@
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	desc = "A heads-up display that scans people in view and provides accurate data about their health status."
 	icon_state = "healthhud"
 	item_state_slots = list(slot_r_hand_str = "headset", slot_l_hand_str = "headset")
 	body_parts_covered = 0
@@ -20,7 +20,7 @@
 
 /obj/item/clothing/glasses/hud/security
 	name = "Security HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
+	desc = "A heads-up display that scans people in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
 	item_state_slots = list(slot_r_hand_str = "headset", slot_l_hand_str = "headset")
 	body_parts_covered = 0

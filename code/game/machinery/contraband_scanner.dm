@@ -27,6 +27,7 @@
 	var/list/contraband = list(/obj/item/melee,/obj/item/gun,/obj/item/material)
 
 /obj/machinery/contraband_scanner/Crossed(mob/living/M as mob)
+	. = ..()
 	if(M.is_incorporeal())
 		return
 	if(isliving(M))
@@ -63,5 +64,3 @@
 										B.open()
 						if(power_fields)
 							A.arfgs_deactivate()
-
-	..()

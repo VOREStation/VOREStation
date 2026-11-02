@@ -87,6 +87,7 @@
 	icon_rest = "mouse_[rank]_sleep"
 
 /mob/living/simple_mob/animal/space/mouse_army/Crossed(AM as mob|obj)
+	. = ..()
 	var/mob/SK = AM
 	if(SK.is_incorporeal())
 		return
@@ -95,7 +96,6 @@
 			var/mob/M = AM
 			M.visible_message(span_blue("[icon2html(src,viewers(M))] Squeek!"))
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
-	..()
 
 /mob/living/simple_mob/animal/space/mouse_army/death()
 	layer = MOB_LAYER

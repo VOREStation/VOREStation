@@ -51,10 +51,12 @@
 	name = "engine"
 	density = TRUE
 	anchored = TRUE
+	desc = "Spaceship engine."
 
 /obj/structure/shuttle/engine/heater
 	name = "heater"
 	icon_state = "heater"
+	desc = "Auxiliary support for propulsion machinery."
 
 /obj/structure/shuttle/engine/platform
 	name = "platform"
