@@ -574,7 +574,8 @@
 	if(M.slip_timer || M.slipping)
 		if(lube & SLIDE_RECURSIVE)
 			playsound(M.loc, 'sound/misc/slip.ogg', 25, 1, -1)
-			deltimer(M.slip_timer) //Remove it here so it can be set anew
+			if(M.slip_timer)
+				deltimer(M.slip_timer) //Remove it here so it can be set anew
 			M.slip_timer = null
 			slip_dist = max(M.slipping, slip_dist) //Extend Slips
 		else //Slipping, slip isnt recursive, slip is blocked.
@@ -590,8 +591,12 @@
 				M.slip_timer = VARSET_IN(M, slip_timer, null, 2)
 				M.slipping = 0
 				// Because we're stopping here, but we're still slipping, send the signal for it now.
-				SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
+				SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist, force_drop)
 				return TRUE
+
+	// Gets called here so that you dont have issues with non-recursive slips glugging up mob information with stuff about the current slip.
+	// If you need that information, you should be able to extrapolate it from the parameters forwarded to the signal.
+	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist, force_drop)
 
 	//At this point, we're getting into doing the actual slip
 	if(force_drop)
@@ -622,7 +627,6 @@
 	else
 		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //Non sliding slip time
 
-	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
 	/* // Im doing my own thing, maybe forced movement can be a thing later, though.
 	if(lube & SLIDE)
 		new /datum/forced_movement(M, get_ranged_target_turf(M, olddir, 4), 1, FALSE, CALLBACK(C, PROC_REF(spin), 1, 1))
