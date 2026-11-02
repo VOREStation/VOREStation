@@ -221,8 +221,10 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 /obj/machinery/camera/proc/isBombProof()
 	if(!assembly)
 		return FALSE
-	if()
-
+	if(resistance_flags & BOMB_PROOF)
+		return TRUE
+	else
+		return FALSE
 
 /obj/machinery/camera/proc/isXRay()
 	if(!assembly)
