@@ -176,7 +176,7 @@
 		to_chat(user, span_warning("Invalid player selected!"))
 		return
 
-	if((get_z(target)) in using_map.station_levels)
+	if(!((get_z(target)) in using_map.station_levels))
 	tgui_alert_async(user,{"
 		You are about to spawn outside of the main staiton levels. Remember that this spawn method is to facilitates scenes, and not to abuse it.
 		"},"OOC Warning")
