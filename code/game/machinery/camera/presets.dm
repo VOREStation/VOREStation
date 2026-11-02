@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	name = "bomb proof security camera"
 	desc = "An ultra reinforced security camera meant to resist pretty much any explosion."
 	toughness = 100
-
+	resistance_flags = BOMB_PROOF
 // CHECKS
 
 /obj/machinery/camera/proc/isEmpProof()
