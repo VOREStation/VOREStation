@@ -22,7 +22,7 @@
 	var/mimic_active = TRUE
 	var/nest = null
 
-/obj/structure/closet/crate/mimic/open()
+/obj/structure/closet/crate/mimic/open(mob/user)
 	if(src.opened)
 		return 0
 	if(!src.can_open())
@@ -162,7 +162,7 @@
 	density = 1
 	opacity = 1
 
-/obj/structure/closet/crate/mimic/airlock/open()
+/obj/structure/closet/crate/mimic/airlock/open(mob/user)
 	if(src.opened)
 		return 0
 	if(!src.can_open())
@@ -259,7 +259,7 @@
 	else
 		icon_state = "cmimic"
 
-/obj/structure/closet/crate/mimic/closet/open()
+/obj/structure/closet/crate/mimic/closet/open(mob/user)
 	if(src.opened)
 		return 0
 	if(!src.can_open())

@@ -13,7 +13,7 @@
 	..()
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/open() //Don't dump everything to the floor, why would this be a good idea?
+/obj/structure/closet/secure_closet/guncabinet/open(mob/user) //Don't dump everything to the floor, why would this be a good idea?
 	if(opened)
 		return FALSE
 	if(!can_open())
@@ -23,7 +23,7 @@
 	update_icon()
 	return TRUE
 
-/obj/structure/closet/secure_closet/guncabinet/close() //Don't auto scoop
+/obj/structure/closet/secure_closet/guncabinet/close(mob/user) //Don't auto scoop
 	if(!opened)
 		return FALSE
 	if(!can_close())
@@ -158,6 +158,13 @@
 		slots[empty_slot] = G
 
 	update_icon()
+
+/obj/structure/closet/secure_closet/guncabinet/fancy/open(mob/user) //Don't dump everything to the floor, why would this be a good idea?
+	. = ..()
+	if(. && user)
+		tgui_interact(user)
+
+	return .
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

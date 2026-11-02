@@ -66,10 +66,10 @@
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
 
-/obj/structure/closet/statue/open()
+/obj/structure/closet/statue/open(mob/user)
 	return
 
-/obj/structure/closet/statue/close()
+/obj/structure/closet/statue/close(mob/user)
 	return
 
 /obj/structure/closet/statue/toggle()

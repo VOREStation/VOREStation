@@ -130,7 +130,8 @@
 	for(var/mob/M in src)
 		M.forceMove(loc)
 
-/obj/structure/closet/proc/open()
+///Proc for opening a locker. User is not always guaranteed, make sure you check we have a user if you're doing things involving it.
+/obj/structure/closet/proc/open(mob/user)
 	if(opened)
 		return 0
 
@@ -146,7 +147,8 @@
 	animate_door()
 	return 1
 
-/obj/structure/closet/proc/close()
+///Proc for closing a locker. User is not always guaranteed, make sure you check we have a user if you're doing things involving it.
+/obj/structure/closet/proc/close(mob/user)
 	if(!opened)
 		return 0
 	if(!can_close())
@@ -223,7 +225,7 @@
 /obj/structure/closet/proc/toggle(mob/user as mob)
 	if(is_animating_door)
 		return
-	if(!(opened ? close() : open()))
+	if(!(opened ? close(user) : open(user)))
 		to_chat(user, span_notice("It won't budge!"))
 		return
 
@@ -381,7 +383,7 @@
 	if(user.stat || !isturf(loc))
 		return
 
-	if(!open())
+	if(!open(user))
 		to_chat(user, span_notice("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
