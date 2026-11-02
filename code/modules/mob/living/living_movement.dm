@@ -225,7 +225,7 @@ default behaviour is:
 			var/obj/vehicle/V = AM
 			V.RunOver(src)
 	if(istype(AM, /obj/mecha))
-		var//obj/mecha/mecha = AM
+		var/obj/mecha/mecha = AM
 		mecha.trample(src)
 
 // Almost all of this handles pulling movables behind us

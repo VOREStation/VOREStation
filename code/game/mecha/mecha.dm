@@ -945,28 +945,16 @@
 	return
 
 /obj/mecha/proc/trample(mob/living/M)
-	if(!isLiving(M)) //Avoid stacking damage forever onto dead things.
+	if(!isliving(M))
 		return
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/unfortunateLad = M
 		if(unfortunateLad.lying)
-			unfortunateLad.attack_log += "\[[time_stamp()]\]<font color='orange'> Was trampled by [src]</font>"
-			msg_admin_attack("[src] trampled [key_name(unfortunateLad)] at (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[D.x];Y=[D.y];Z=[D.z]'>JMP</a>)" )
-			src.visible_message("<span class='danger'>\The [src] runs over \the [D]!</span>")
+			msg_admin_attack("[src] trampled [key_name(unfortunateLad)] at (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[unfortunateLad.x];Y=[unfortunateLad.y];Z=[unfortunateLad.z]'>JMP</a>)" )
+			src.visible_message("<span class='danger'>\The [src] runs over \the [unfortunateLad]!</span>")
 			unfortunateLad.apply_damage(trample_damage, BRUTE)
-			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-			return TRUE
-
-		else
-			var/mob/living/L = M
-			src.visible_message("<span class='danger'>\The [src] runs over \the [L]!</span>")
-			if(istype(L, /mob/living/simple_mob))
-				if(issmall(L) && (L.stat == DEAD))
-					L.gib()
-					playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-					return TRUE
-			L.apply_damage(trample_damage, BRUTE)
+			add_attack_logs(occupant, unfortunateLad, "was trample by [src] for [trample_damage]")
 			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 			return TRUE
 
