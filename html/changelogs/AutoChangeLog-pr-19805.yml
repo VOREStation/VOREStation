@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - bugfix: "fixed a typo"
-  - rscadd: "Added a scavenging trait that makes you search lootables faster"

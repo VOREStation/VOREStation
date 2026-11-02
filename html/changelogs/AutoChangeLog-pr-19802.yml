@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - rscadd: "Add mecha equipment slots information to the cyborg / mecha analyzer"
