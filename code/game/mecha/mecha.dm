@@ -958,7 +958,6 @@
 			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 			return TRUE
 
-
 /obj/mecha/proc/phase()	// Force the mecha to move forward by phasing.
 	set waitfor = FALSE
 	if(can_phase)
