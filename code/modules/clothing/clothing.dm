@@ -1319,16 +1319,16 @@
 	if (src.loc == user)
 		switch(sensor_mode)
 			if(SUIT_SENSOR_OFF)
-				user.visible_message("[user] adjusts their sensors.", "You disable your suit's remote sensing equipment.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("You disable your suit's remote sensing equipment."))
 			if(SUIT_SENSOR_BINARY)
-				user.visible_message("[user] adjusts their sensors.", "Your suit will now report whether you are live or dead.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("Your suit will now report whether you are live or dead."))
 			if(SUIT_SENSOR_VITAL)
-				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("Your suit will now report your vital lifesigns."))
 			if(SUIT_SENSOR_TRACKING)
-				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns as well as your coordinate position.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("Your suit will now report your vital lifesigns as well as your coordinate position."))
 
 	else if (istype(src.loc, /mob))
-		user.visible_message("[user] adjusts [src.loc]'s sensors.", "You adjust [src.loc]'s sensors.")
+		user.visible_message(span_notice("[user] adjusts [src.loc]'s sensors."), span_notice("You adjust [src.loc]'s sensors."))
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"
@@ -1416,7 +1416,7 @@
 		sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_OFF, SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)
 		if(ismob(loc))
 			var/mob/M = loc
-			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
+			to_chat(M, span_warning("The sensors on the [src] change rapidly!"))
 
 /obj/item/clothing/Destroy()
 	STOP_PROCESSING(SSobj, src)

@@ -55,13 +55,13 @@
 
 	switch(sensor_imp.sensor_mode)
 		if(SUIT_SENSOR_OFF)
-			to_chat(src, "You disable your [sensor_imp].")
+			to_chat(src, span_notice("You disable your [sensor_imp]."))
 		if(SUIT_SENSOR_BINARY)
-			to_chat(src, "Your [sensor_imp] will now report whether you are live or dead.")
+			to_chat(src, span_notice("Your [sensor_imp] will now report whether you are live or dead."))
 		if(SUIT_SENSOR_VITAL)
-			to_chat(src, "Your [sensor_imp] will now report your vital lifesigns.")
+			to_chat(src, span_notice("Your [sensor_imp] will now report your vital lifesigns."))
 		if(SUIT_SENSOR_TRACKING)
-			to_chat(src, "Your [sensor_imp] will now report your vital lifesigns as well as your coordinate position.")
+			to_chat(src, span_notice("Your [sensor_imp] will now report your vital lifesigns as well as your coordinate position."))
 
 /obj/item/organ/internal/augment/suit_sensors/prison
 	name = "prisoner vital sensor implant"
