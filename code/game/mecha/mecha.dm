@@ -955,7 +955,7 @@
 		var/mob/living/carbon/human/unfortunateLad = M
 		if(!unfortunateLad.lying)
 			return
-		src.visible_message("<span class='danger'>\The [src] runs over \the [unfortunateLad]!</span>")
+		src.visible_message("<span class='danger'>\The [src] stomps \the [unfortunateLad]!</span>")
 		unfortunateLad.apply_damage(trample_damage, BRUTE)
 		add_attack_logs(occupant, unfortunateLad, "was trampled by [src] for [trample_damage]")
 		playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
