@@ -966,3 +966,15 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
 	add_verb(H, /mob/living/proc/name_change_verb)
+
+/datum/trait/positive/leap
+	name = "Leaper"
+	desc = "You have powerful legs, allowing you to do a short leap."
+	cost = 3
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_TAJARAN) // These two are natural leapers
+
+/datum/trait/positive/leap/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	var/datum/action/cooldown/mob_cooldown/leap/jump = new()
+	jump.Grant(H)

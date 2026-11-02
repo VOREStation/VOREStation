@@ -9,6 +9,7 @@
 	var/leap_distance = 3
 
 /datum/action/cooldown/mob_cooldown/leap/Activate(atom/target)
+	owner.do_windup_animation(get_step(get_turf(owner), owner.dir), leap_windup)
 	if(do_after(owner, leap_windup, owner))
 		launch_towards(get_turf(owner))
 		StartCooldown()

@@ -804,9 +804,9 @@
 
 /datum/species/proc/apply_actions(mob/living/carbon/human/H)
 	if(LAZYLEN(species_abilities))
-		for(var/datum/action/to_grant in species_abilities)
-			to_grant = new to_grant()
-			to_grant.Grant(H)
+		for(var/to_grant in species_abilities)
+			var/datum/action/action = new to_grant
+			action.Grant(H)
 
 /datum/species/proc/produceCopy(list/traits, mob/living/carbon/human/H, custom_base, reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)
