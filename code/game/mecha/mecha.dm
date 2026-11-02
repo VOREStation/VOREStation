@@ -45,6 +45,7 @@
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
+	var/trample_damage = 15
 	var/damage_type = BRUTE
 
 	var/mech_faction = null
@@ -946,8 +947,28 @@
 /obj/mecha/proc/trample(mob/living/M)
 	if(!isLiving(M)) //Avoid stacking damage forever onto dead things.
 		return
-	if(ishuman(M))
 
+	if(ishuman(M))
+		var/mob/living/carbon/human/unfortunateLad = M
+		if(unfortunateLad.lying)
+			unfortunateLad.attack_log += "\[[time_stamp()]\]<font color='orange'> Was trampled by [src]</font>"
+			msg_admin_attack("[src] trampled [key_name(unfortunateLad)] at (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[D.x];Y=[D.y];Z=[D.z]'>JMP</a>)" )
+			src.visible_message("<span class='danger'>\The [src] runs over \the [D]!</span>")
+			unfortunateLad.apply_damage(trample_damage, BRUTE)
+			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+			return TRUE
+
+		else
+			var/mob/living/L = M
+			src.visible_message("<span class='danger'>\The [src] runs over \the [L]!</span>")
+			if(istype(L, /mob/living/simple_mob))
+				if(issmall(L) && (L.stat == DEAD))
+					L.gib()
+					playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+					return TRUE
+			L.apply_damage(trample_damage, BRUTE)
+			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+			return TRUE
 
 
 /obj/mecha/proc/phase()	// Force the mecha to move forward by phasing.
