@@ -1115,7 +1115,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return null
 
 	//give us our riding verbs if needed, loaf adjustment stuff, etc.
-	handle_tail_side_effects()
+	if(apply_to_mob)
+		handle_tail_side_effects()
 
 	// Get torso alpha channel
 	var/torso_alpha = 255
@@ -1409,7 +1410,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	apply_layer(WING_LAYER)
 	apply_layer(WING_LOWER_LAYER)
 
-/mob/living/carbon/human/proc/get_wing_image(under_layer)
+/// Get our wing image + sock info, also with voodoo doll protections
+/mob/living/carbon/human/proc/get_wing_image(under_layer, ignore_clothing = FALSE)
 	if(QDESTROYING(src))
 		return
 
@@ -1431,7 +1433,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(wing_style)
 		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
 		var/sock_color = (socksuit?.requires_tailsock && socksuit.tailsock_toggle) ? socksuit.get_tailsock_color() : null
-		if(!sock_color && wing_style.clothing_can_hide && (wear_suit?.flags_inv & HIDEWINGS))
+		if(!sock_color && !ignore_clothing && wing_style.clothing_can_hide && (wear_suit?.flags_inv & HIDEWINGS))
 			return null
 		var/is_flapping = flapping && wing_style.ani_state
 		var/wing_state = is_flapping ? wing_style.ani_state : wing_style.icon_state
@@ -1460,22 +1462,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 				ex2.color = rgb(r_wing3, g_wing3, b_wing3)
 				ex2.layer = FLOAT_LAYER + 0.02
 				base_wing.overlays += ex2
-
-		// Primary extra overlay
-		if(wing_style.extra_overlay)
-			var/ex1_state = (is_flapping && wing_style.extra_overlay_w) ? wing_style.extra_overlay_w : wing_style.extra_overlay
-			var/mutable_appearance/ex1 = mutable_appearance(wing_style.icon, ex1_state)
-			ex1.color = rgb(r_wing2, g_wing2, b_wing2)
-			ex1.layer = FLOAT_LAYER + 0.01
-			base_wing.overlays += ex1
-
-		// Secondary extra overlay
-		if(wing_style.extra_overlay2)
-			var/ex2_state = (is_flapping && wing_style.extra_overlay2_w) ? wing_style.extra_overlay2_w : wing_style.extra_overlay2
-			var/mutable_appearance/ex2 = mutable_appearance(wing_style.icon, ex2_state)
-			ex2.color = rgb(r_wing3, g_wing3, b_wing3)
-			ex2.layer = FLOAT_LAYER + 0.02
-			base_wing.overlays += ex2
 
 		working = image(base_wing)
 		if(sock_color)

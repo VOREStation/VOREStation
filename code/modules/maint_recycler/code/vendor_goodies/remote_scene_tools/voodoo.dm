@@ -75,8 +75,7 @@
 	dir = SOUTH //we need to do this
 
 /obj/item/remote_scene_tool/voodoo_doll/proc/get_outline_color(r,g,b,a, offset = 30)
-	var/new_rgba = rgb(r-offset,g-offset,b-offset,a)
-	return new_rgba
+	return rgb(max(r - offset, 0), max(g - offset, 0), max(b - offset, 0), isnull(a) ? 255 : a)
 
 /obj/item/remote_scene_tool/voodoo_doll/proc/generate_layer_matrix(list/data)
 	var/matrix/output = matrix()
@@ -129,7 +128,7 @@
 	if(istype(owner, /mob/living/carbon/human/teshari))
 		return // No flesh horror, sorry
 
-	if(!ismob(loc) && !ismob(loc.loc))
+	if(!ismob(loc) && !ismob(loc?.loc))
 		return // Only render when worn/held on a mob
 
 	if(no_fun_mode)
@@ -147,9 +146,14 @@
 
 		// tail fetching (handles species default, synthetic, and custom tails)
 		var/image/full_tail = buddy.update_tail_layer(apply_to_mob = FALSE)	//MUST BE FALSE OR THE DOLL EATS A TAURS WHOLE ASS
+		// A sheathed tail/wing is drawn in the sock color, so the outline should follow that instead of the character colors
+		var/obj/item/clothing/suit/socksuit = istype(buddy.wear_suit, /obj/item/clothing/suit) ? buddy.wear_suit : null
+		var/list/sock_rgb = (socksuit?.requires_tailsock && socksuit.tailsock_toggle) ? rgb2num(socksuit.get_tailsock_color()) : null
 		if(full_tail)
 			var/tailoutlinecolor = DEFAULT_RGB_OUTLINE
-			if(tail_style?.do_colouration)
+			if(sock_rgb)
+				tailoutlinecolor = get_outline_color(sock_rgb[1], sock_rgb[2], sock_rgb[3], 255)
+			else if(tail_style?.do_colouration)
 				tailoutlinecolor = get_outline_color(buddy.r_tail, buddy.g_tail, buddy.b_tail, buddy.a_tail)
 
 			var/matrix/target_matrix = generate_layer_matrix(is_tail_taur ? taur_data : tail_data)
@@ -162,17 +166,19 @@
 
 		// Wings
 		var/wingoutlinecolor = DEFAULT_RGB_OUTLINE
-		if(buddy.wing_style?.do_colouration)
+		if(sock_rgb)
+			wingoutlinecolor = get_outline_color(sock_rgb[1], sock_rgb[2], sock_rgb[3], 255)
+		else if(buddy.wing_style?.do_colouration)
 			wingoutlinecolor = get_outline_color(buddy.r_wing, buddy.g_wing, buddy.b_wing, buddy.a_wing)
 
-		var/image/wing_image = generate_layer_image(buddy.get_wing_image(FALSE), generate_layer_matrix(wing_data), outline_size, wingoutlinecolor)
-		var/image/under_wing_image = generate_layer_image(buddy.get_wing_image(TRUE), generate_layer_matrix(wing_data), outline_size, wingoutlinecolor)
+		var/image/wing_image = generate_layer_image(buddy.get_wing_image(FALSE, ignore_clothing = TRUE), generate_layer_matrix(wing_data), outline_size, wingoutlinecolor)
+		var/image/under_wing_image = buddy.wing_style?.multi_dir ? generate_layer_image(buddy.get_wing_image(TRUE, ignore_clothing = TRUE), generate_layer_matrix(wing_data), outline_size, wingoutlinecolor) : null
 
 		// Ears & Headgear
 		var/ear_icon = buddy.get_ears_overlay()
 		var/image/ear_image = generate_layer_image(image(icon = ear_icon), generate_layer_matrix(ear_data))
 
-		var/hat_icon = buddy.head?.make_worn_icon(body_type = buddy.species.get_bodytype(src), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
+		var/hat_icon = buddy.head?.make_worn_icon(body_type = buddy.species.get_bodytype(buddy), slot_name = slot_head_str, default_icon = INV_HEAD_DEF_ICON, default_layer = HEAD_LAYER)
 		var/image/hat_image = generate_layer_image(image(icon = hat_icon), generate_layer_matrix(hat_data))
 
 		// Apply Overlays / Underlays
