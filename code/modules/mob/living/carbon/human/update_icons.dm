@@ -264,11 +264,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			if(digitigrade && (part.organ_tag == BP_R_LEG  || part.organ_tag == BP_L_LEG || part.organ_tag == BP_R_FOOT || part.organ_tag == BP_L_FOOT))
 				icon_key += "_digi"
 
-			if(tail_style)
-				pixel_x = tail_style.mob_offset_x
-				pixel_y = tail_style.mob_offset_y
-				default_pixel_x = tail_style.mob_offset_x
-				default_pixel_y = tail_style.mob_offset_y
+	//ensure offsets don't get orphaned for tail specific overrides
+	var/base_tail_x = tail_style ? tail_style.mob_offset_x : 0
+	var/base_tail_y = tail_style ? tail_style.mob_offset_y : 0
+	if(default_pixel_x != base_tail_x || default_pixel_y != base_tail_y)
+		pixel_x += base_tail_x - default_pixel_x
+		pixel_y += base_tail_y - default_pixel_y
+		default_pixel_x = base_tail_x
+		default_pixel_y = base_tail_y
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
@@ -1349,7 +1352,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		vorebelly_ma.color = base_color
 
 	var/image/working = image(vorebelly_ma)
-	working.pixel_x = TAURIZED_DEFAULT
+	// just in case, offsets for the belly too I guess
+	working.pixel_x = tail_style.offset_x
+	working.pixel_y = tail_style.offset_y
 
 	if(tail_style.em_block) // Let 'em glow still
 		working.overlays += em_block_image_generic(working)
