@@ -1170,11 +1170,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/target_state = is_wagging ? tailtype.ani_state : tailtype.icon_state
 		// The greyscale sock sprite. Defaults to the base state; pre-colored tails and taurs have a dedicated one.
 		var/sock_state = (is_wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
-
+		var/sock_color = sock_active ? socksuit.get_tailsock_color() : null
 		// taur body / base tail / tailsock override icon
 		var/image/working
 		if(sock_active && !split_tail)
-			working = build_tail_image(tailtype.tailsock_icon, sock_state, socksuit.tailsock_color)
+			working = build_tail_image(tailtype.tailsock_icon, sock_state, sock_color)
 		else
 			working = build_tail_image(target_icon, target_state, basecolor, \
 				tailtype.extra_overlay ? (is_wagging ? tailtype.extra_overlay_w : tailtype.extra_overlay) : null, markingcolor, \
@@ -1187,8 +1187,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			var/marking2 = is_wagging ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
 			if(sock_active)
 				var/keep = istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy) // current big leggy special case
-				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, socksuit.tailsock_color, \
-					keep ? marking1 : null, socksuit.tailsock_color, keep ? marking2 : null, socksuit.tailsock_color)
+				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, sock_color, \
+					keep ? marking1 : null, sock_color, keep ? marking2 : null, sock_color)
 				upper_sock_img.alpha = socksuit.alpha
 			else if(tailtype.do_colouration)
 				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, basecolor, marking1, markingcolor, marking2, markingcolor2)
@@ -1361,7 +1361,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/obj/item/clothing/suit/sockable = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
 	//scootchin' on by here to tailsock the tummy since it's important.
 	if(sockable && sockable.tailsock_toggle && sockable.tailsock_color)
-		vorebelly_ma.color = sockable.tailsock_color
+		vorebelly_ma.color = sockable.get_tailsock_color()
 	else
 		var/base_color = vore_sprite_color["taur belly"]
 		vorebelly_ma.color = base_color
@@ -1396,22 +1396,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	var/image/wing_image = get_wing_image(FALSE)
 
-	// Fetch wear_suit and check for tailsock coloration, because it makes sense to. Unless it's an accessory.
-	var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
-	var/wing_color = (istype(socksuit) && socksuit.requires_tailsock && socksuit.tailsock_toggle && socksuit.tailsock_color) ? socksuit.tailsock_color : null
-
 	if(wing_image)
 		wing_image.layer = BODY_LAYER + WING_LAYER
-		if(wing_color)
-			wing_image.color = wing_color
 		overlays_standing[WING_LAYER] = wing_image
 
 	if(wing_style && wing_style.multi_dir)
 		wing_image = get_wing_image(TRUE)
 		if(wing_image)
 			wing_image.layer = BODY_LAYER + WING_LOWER_LAYER
-			if(wing_color)
-				wing_image.color = wing_color
 			overlays_standing[WING_LOWER_LAYER] = wing_image
 
 	apply_layer(WING_LAYER)
@@ -1422,7 +1414,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		return
 
 	//early hidden wing return
-	if(wings_hidden)
+	if(wings_hidden && (!wing_style || wing_style.can_toggle_hidden()))
 		return null
 
 	var/image/working = null
@@ -1437,27 +1429,37 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	//If you have custom wings selected
 	if(wing_style)
+		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+		var/sock_color = (socksuit?.requires_tailsock && socksuit.tailsock_toggle) ? socksuit.get_tailsock_color() : null
+		if(!sock_color && wing_style.clothing_can_hide && (wear_suit?.flags_inv & HIDEWINGS))
+			return null
 		var/is_flapping = flapping && wing_style.ani_state
 		var/wing_state = is_flapping ? wing_style.ani_state : wing_style.icon_state
 		if(wing_style.multi_dir)
 			wing_state += "_[under_layer ? "back" : "front"]"
 
-		//wing sock handling
-		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
-		var/winged_sock = (istype(socksuit) && socksuit.requires_tailsock && socksuit.tailsock_toggle && socksuit.tailsock_color) ? socksuit.tailsock_color : null
-
-		if(winged_sock)
+		if(sock_color)
 			wing_state += "_sock"
-			var/mutable_appearance/socked_wing = mutable_appearance(wing_style.icon, wing_state)
-			socked_wing.color = socksuit.tailsock_color
-			working = image(socked_wing)
-			working.alpha = socksuit.alpha
-			return working
 
 		// Base wing appearance
 		var/mutable_appearance/base_wing = mutable_appearance(wing_style.icon, wing_state)
-		if(wing_style.do_colouration)
-			base_wing.color = rgb(r_wing, g_wing, b_wing)
+		if(sock_color)
+			base_wing.color = sock_color
+		else
+			if(wing_style.do_colouration)
+				base_wing.color = rgb(r_wing, g_wing, b_wing)
+			if(wing_style.extra_overlay)
+				var/ex1_state = (is_flapping && wing_style.extra_overlay_w) ? wing_style.extra_overlay_w : wing_style.extra_overlay
+				var/mutable_appearance/ex1 = mutable_appearance(wing_style.icon, ex1_state)
+				ex1.color = rgb(r_wing2, g_wing2, b_wing2)
+				ex1.layer = FLOAT_LAYER + 0.01
+				base_wing.overlays += ex1
+			if(wing_style.extra_overlay2)
+				var/ex2_state = (is_flapping && wing_style.extra_overlay2_w) ? wing_style.extra_overlay2_w : wing_style.extra_overlay2
+				var/mutable_appearance/ex2 = mutable_appearance(wing_style.icon, ex2_state)
+				ex2.color = rgb(r_wing3, g_wing3, b_wing3)
+				ex2.layer = FLOAT_LAYER + 0.02
+				base_wing.overlays += ex2
 
 		// Primary extra overlay
 		if(wing_style.extra_overlay)
@@ -1476,7 +1478,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			base_wing.overlays += ex2
 
 		working = image(base_wing)
-		if(a_wing != null)
+		if(sock_color)
+			working.alpha = socksuit.alpha
+		else if(!isnull(a_wing))
 			working.alpha = a_wing
 
 		if(wing_style.em_block)

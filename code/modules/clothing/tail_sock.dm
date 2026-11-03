@@ -87,6 +87,32 @@
 	///It's a little thing, but feedback can help someone wondering why a suit isn't hinding their tails/butt.
 	. += span_notice("The dynamic sheathing toggle is [tailsock_toggle ? "enabled" : "disabled"].")
 
+///for people who weirdly paint their stuff with terrible matrix colors I guess.
+/obj/item/clothing/suit/proc/get_tailsock_color()
+	if(!color)
+		return tailsock_color
+	// Plain hex tint, the painted color is the sheath color
+	if(!islist(color))
+		return color
+	// Color matrix: run pure white through it, so the result is the color the painter actually made
+	var/list/color_matrix = color
+	var/matrix_length = length(color_matrix)
+	if(!(matrix_length in list(9, 12, 16, 20)) || !isnum(color_matrix[1]))
+		return tailsock_color
+	// 9 and 12 entry matrices are rgb only (3 per row), 16 and 20 also carry alpha (4 per row)
+	var/row_width = (matrix_length == 9 || matrix_length == 12) ? 3 : 4
+	// 12 and 20 entry matrices end with a row of constant offsets, which are stored as 0-1 values
+	var/constants_start = (matrix_length == 12 || matrix_length == 20) ? row_width * row_width : 0
+	var/list/painted_rgb = list(0, 0, 0)
+	for(var/output_channel in 1 to 3)
+		var/channel_total = 0
+		for(var/input_channel in 1 to 3)
+			channel_total += 255 * color_matrix[(input_channel - 1) * row_width + output_channel]
+		if(constants_start)
+			channel_total += color_matrix[constants_start + output_channel] * 255
+		painted_rgb[output_channel] = clamp(round(channel_total), 0, 255)
+	return rgb(painted_rgb[1], painted_rgb[2], painted_rgb[3])
+
 //The following for specific sock colors more than anything.
 
 //Fire suits

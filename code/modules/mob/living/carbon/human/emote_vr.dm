@@ -68,6 +68,12 @@
 	set name = "Show/Hide wings"
 	set category = "IC.Settings"
 	set desc = "Hide your wings, or show them if you already hid them."
+	if(!wing_style)
+		to_chat(src,span_notice("You have no wings to hide!"))
+		return
+	if(!wing_style.can_toggle_hidden())
+		to_chat(src,span_notice("Your current wings are too considerable to hide!"))
+		return
 	wings_hidden = !wings_hidden
 	update_wing_showing()
 	var/message = ""

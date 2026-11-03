@@ -14,7 +14,7 @@
 	em_block = TRUE
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
-	var/clothing_can_hide = TRUE // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
+	var/clothing_can_hide = TRUE // If true, clothing with HIDEWINGS hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
 	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
 	var/desc = DEVELOPER_WARNING_NAME
 	var/ani_state // State when flapping/animated
@@ -25,6 +25,10 @@
 
 	var/wing_offset = 0
 	var/multi_dir = FALSE		// Does it use different sprites at different layers? _front will be added for sprites on low layer, _back to high layer
+
+///Wings can be too big to hide
+/datum/sprite_accessory/wing/proc/can_toggle_hidden()
+	return icon != 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
 	name = "large feathered wings (colorable)"

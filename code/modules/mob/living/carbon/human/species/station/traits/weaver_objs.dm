@@ -128,4 +128,4 @@
 	desc = "A webbed cocoon that completely restrains the wearer."
 	icon_state = "web_bindings"
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDEWINGS
