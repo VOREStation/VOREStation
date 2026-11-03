@@ -57,7 +57,9 @@
 	if(tint_ovr)
 		tint = tint_ovr
 
-	if(H.tail_style?.clip_mask_state)
+	if(istaurtail(H.tail_style))
+		tail_lower_dirs = list(NORTH, SOUTH, EAST, WEST)
+	else if(H.tail_style?.clip_mask_state)
 		tail_lower_dirs.Cut()
 	else if(H.tail_style)
 		tail_lower_dirs = H.tail_style.lower_layer_dirs.Copy()
