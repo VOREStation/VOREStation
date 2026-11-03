@@ -80,15 +80,15 @@ if (!(Test-Path "$PythonDir/Scripts/pip.exe")) {
 
 # Use pip to install our requirements
 if (!(Test-Path "$PythonDir/requirements.txt") -or ((Get-FileHash "$Tools/requirements.txt").hash -ne (Get-FileHash "$PythonDir/requirements.txt").hash)) {
-	$host.ui.RawUI.WindowTitle = "Updating dependencies..."
+    $host.ui.RawUI.WindowTitle = "Updating dependencies..."
 
-	& $PythonExe -m pip install -U pip -r "$Tools/requirements.txt"
-	if ($LASTEXITCODE -ne 0) {
-		exit $LASTEXITCODE
-	}
+    & $PythonExe -m pip install --no-warn-script-location -U pip -r "$Tools/requirements.txt"
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
 
-	Copy-Item "$Tools/requirements.txt" "$PythonDir/requirements.txt"
-	Write-Output "`n---`n"
+    Copy-Item "$Tools/requirements.txt" "$PythonDir/requirements.txt"
+    Write-Output "`n---`n"
 }
 
 # Invoke python with all command-line arguments
