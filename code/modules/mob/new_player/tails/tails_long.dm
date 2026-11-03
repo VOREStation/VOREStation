@@ -60,6 +60,8 @@
 	icon_state = "nightstalker_desert"
 	ani_state = "nightstalker_desert_w"
 	do_colouration = FALSE // We're not coloring this, these are pre-colored
+	tailsock_iconstate = "nightstalker_diamondback"
+	tailsock_wagicon = "nightstalker_diamondback_w"
 
 /datum/sprite_accessory/tail/longtail/diamondback_nightstalker
 	name = "Diamondback Nightstalker Tail (dual-color, vwag)"

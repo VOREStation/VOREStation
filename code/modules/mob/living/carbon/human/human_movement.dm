@@ -317,6 +317,6 @@
 	. = ..()
 	//we already check our tail through these procs now, tailsock/taur tail overlay needs higher priority to be updated correctly.
 	//this has specifically been updated to mutable_appearance and is not as costly as it used to be.
-	if(. && old_dir != new_dir && (old_dir == NORTH || new_dir == NORTH))
+	if(dir != old_dir && (old_dir == NORTH || dir == NORTH))
 		update_tail_showing()
 		update_inv_wear_suit()

@@ -1047,6 +1047,33 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	// Build and apply tail/tailsock layers directly
 	update_tail_layer(tail_layer, apply_to_mob = TRUE)
 
+	//debugging excessive overlays
+	/*
+	if(istype(src, /mob/living/carbon/human/dummy))
+		var/tracked = 0
+		for(var/entry in overlays_standing)
+			if(entry)
+				tracked += islist(entry) ? length(entry) : 1
+		log_world("tail dbg: overlays=[length(overlays)] tracked=[tracked] diff=[length(overlays) - tracked] style=[tail_style?.type]") */
+
+/// Outsourced tail image building, hopefully cuts down on bloat
+/mob/living/carbon/human/proc/build_tail_image(icon/tailtobuild, base_state, base_color, markings = null, color2 = null, markings2 = null, color3 = null)
+	var/image/tail_image = image(tailtobuild, icon_state = null)
+	var/mutable_appearance/base = mutable_appearance(tailtobuild, base_state)
+	if(base_color)
+		base.color = base_color
+	tail_image.overlays += base
+	if(markings && markings != "none")
+		var/mutable_appearance/markingsoverlay = mutable_appearance(tailtobuild, markings)
+		markingsoverlay.color = color2
+		markingsoverlay.layer = FLOAT_LAYER + 0.01
+		tail_image.overlays += markingsoverlay
+	if(markings2 && markings2 != "none")
+		var/mutable_appearance/markingsoverlay2 = mutable_appearance(tailtobuild, markings2)
+		markingsoverlay2.color = color3
+		markingsoverlay2.layer = FLOAT_LAYER + 0.02
+		tail_image.overlays += markingsoverlay2
+	return tail_image
 
 /// Handle offsets and verb-additions outside of image generation
 /mob/living/carbon/human/proc/handle_tail_side_effects()
@@ -1103,109 +1130,72 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(tail_style)
 		var/datum/sprite_accessory/tail/tailtype = tail_style
 
-		// Offset Calculations
+		// Get our suit informations, this'll tell us if we need a sock or not
 		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
-		var/off_x = tailtype.offset_x + (socksuit && !socksuit.icon_override ? socksuit.pixel_x : 0)
-		var/off_y = tailtype.offset_y + (socksuit && !socksuit.icon_override ? socksuit.pixel_y : 0)
-
-		// State & Color Caches
+		var/sock_active = socksuit && socksuit.requires_tailsock && socksuit.tailsock_toggle
 		var/is_wagging = wagging && tailtype.ani_state
+		var/off_x = tailtype.offset_x
+		var/off_y = tailtype.offset_y
+		var/tail_alpha = (a_tail != null) ? min(a_tail, torso_alpha) : torso_alpha // match our tail alpha to the torso
+
+		// Only taur-style bodies need a separate, higher tail piece.
+		var/split_tail = istaurtail(tailtype) || istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy)
+		if(split_tail && target_layer == TAIL_UPPER_LAYER_HIGH)
+			target_layer = TAIL_UPPER_LAYER // body must not share a slot with its own tail piece
+		// Taurs only get the HIGH piece in "high" facings (north) S/E/W stay low
+		// set_dir() already re-runs update_tail_showing() when turning to/from NORTH.
+		var/north_tail = !istaurtail(tailtype) || !(dir in tailtype.lower_layer_dirs)
+
+		var/basecolor = tailtype.do_colouration ? rgb(r_tail, g_tail, b_tail) : null
+		var/markingcolor = rgb(r_tail2, g_tail2, b_tail2)
+		var/markingcolor2 = rgb(r_tail3, g_tail3, b_tail3)
+
 		var/target_icon = (tailtype.can_loaf && resting) ? tailtype.icon_loaf : tailtype.icon
 		var/target_state = is_wagging ? tailtype.ani_state : tailtype.icon_state
+		// The greyscale sock sprite. Defaults to the base state; pre-colored tails and taurs have a dedicated one.
+		var/sock_state = (is_wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
 
-		var/col1 = tailtype.do_colouration ? rgb(r_tail, g_tail, b_tail) : null
-		var/col2 = tailtype.extra_overlay ? rgb(r_tail2, g_tail2, b_tail2) : null
-		var/col3 = tailtype.extra_overlay2 ? rgb(r_tail3, g_tail3, b_tail3) : null
+		// taur body / base tail / tailsock override icon
+		var/image/working
+		if(sock_active && !split_tail)
+			working = build_tail_image(tailtype.tailsock_icon, sock_state, socksuit.tailsock_color)
+		else
+			working = build_tail_image(target_icon, target_state, basecolor, \
+				tailtype.extra_overlay ? (is_wagging ? tailtype.extra_overlay_w : tailtype.extra_overlay) : null, markingcolor, \
+				tailtype.extra_overlay2 ? (is_wagging ? tailtype.extra_overlay2_w : tailtype.extra_overlay2) : null, markingcolor2)
 
-		// Base Lower Tail
-		var/image/working = image(target_icon, icon_state = null)
+		// Tail piece, only for taur-style bodies
+		var/image/upper_sock_img = null
+		if(split_tail)
+			var/marking1 = is_wagging ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
+			var/marking2 = is_wagging ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
+			if(sock_active)
+				var/keep = istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy) // current big leggy special case
+				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, socksuit.tailsock_color, \
+					keep ? marking1 : null, socksuit.tailsock_color, keep ? marking2 : null, socksuit.tailsock_color)
+				upper_sock_img.alpha = socksuit.alpha
+			else if(tailtype.do_colouration)
+				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, basecolor, marking1, markingcolor, marking2, markingcolor2)
+				upper_sock_img.alpha = tail_alpha
+			else
+				// pre-colored split tail: old behavior, the real sprite uncolored
+				upper_sock_img = build_tail_image(tailtype.icon, target_state, null)
+				upper_sock_img.alpha = tail_alpha
 
-		var/mutable_appearance/base_tail = mutable_appearance(target_icon, target_state)
-		if(col1)
-			base_tail.color = col1
-		working.overlays += base_tail
+			if(!north_tail)
+				if(sock_active)
+					upper_sock_img.layer = FLOAT_LAYER + 0.1 // above the body inside working; must be set BEFORE it is added
+					working.overlays += upper_sock_img
+				upper_sock_img = null
 
-		if(tailtype.extra_overlay)
-			var/ex1_state = is_wagging ? tailtype.extra_overlay_w : tailtype.extra_overlay
-			var/mutable_appearance/ex1 = mutable_appearance(target_icon, ex1_state)
-			ex1.color = col2
-			working.overlays += ex1
-
-		if(tailtype.extra_overlay2)
-			var/ex2_state = is_wagging ? tailtype.extra_overlay2_w : tailtype.extra_overlay2
-			var/mutable_appearance/ex2 = mutable_appearance(target_icon, ex2_state)
-			ex2.color = col3
-			working.overlays += ex2
-
+		// em block goes on before the layer/offset are set, so the offset isn't applied twice
 		if(tailtype.em_block)
 			working.overlays += em_block_image_generic(working)
 
 		working.layer = target_layer
 		working.pixel_x = off_x
 		working.pixel_y = off_y
-		// match our tail alpha to the torso
-		working.alpha = (a_tail != null) ? min(a_tail, torso_alpha) : torso_alpha
-
-		// Upper Layer / Tailsock Construction
-		var/image/upper_sock_img = null
-		var/has_sock = (socksuit && socksuit.requires_tailsock && socksuit.tailsock_toggle)
-
-		if(has_sock)
-			var/icon/sock_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : socksuit.icon
-			var/sock_state = is_wagging && tailtype.tailsock_wagicon ? tailtype.tailsock_wagicon : \
-							(tailtype.tailsock_iconstate ? tailtype.tailsock_iconstate : socksuit.item_state)
-
-			if(sock_icon && sock_state)
-				upper_sock_img = image(icon = sock_icon, icon_state = sock_state)
-				upper_sock_img.alpha = socksuit.alpha
-				//specific big leggy override because I can't be assed to dedicate more sprite state bloat
-				if(istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy))
-					if(tailtype.tailsock_markings)
-						var/lstate1 = wagging ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
-						upper_sock_img.overlays += mutable_appearance(sock_icon, lstate1)
-					if(tailtype.tailsock_markings2)
-						var/lstate2 = wagging ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
-						upper_sock_img.overlays += mutable_appearance(sock_icon, lstate2)
-
-				if(socksuit.tailsock_color)
-					upper_sock_img.color = socksuit.tailsock_color
-
-				if(target_layer != TAIL_LOWER_LAYER)
-					var/mutable_appearance/sock_overlay = mutable_appearance(sock_icon, sock_state)
-					if(socksuit.tailsock_color)
-						sock_overlay.color = socksuit.tailsock_color
-					sock_overlay.alpha = socksuit.alpha
-					sock_overlay.layer = FLOAT_LAYER + 0.1
-					working.overlays += sock_overlay
-		else
-			// No sock worn - generate upper tail overlay
-			var/icon/sock_mark_icon = tailtype.tailsock_icon ? tailtype.tailsock_icon : tailtype.icon
-
-			// Snowflake tails don't need additional colors
-			if(!tailtype.do_colouration)
-				upper_sock_img = image(icon = tailtype.icon, icon_state = target_state)
-			else
-				var/n_state = (wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
-				upper_sock_img = image(icon = sock_mark_icon, icon_state = n_state)
-
-				var/mutable_appearance/base_north = mutable_appearance(sock_mark_icon, n_state)
-				if(col1)
-					base_north.color = col1
-				upper_sock_img.overlays += base_north
-
-				if(tailtype.tailsock_markings)
-					var/m1_state = wagging ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
-					var/mutable_appearance/m1 = mutable_appearance(sock_mark_icon, m1_state)
-					m1.color = col2
-					m1.layer = FLOAT_LAYER + 0.01
-					upper_sock_img.overlays += m1
-
-				if(tailtype.tailsock_markings2)
-					var/m2_state = wagging ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
-					var/mutable_appearance/m2 = mutable_appearance(sock_mark_icon, m2_state)
-					m2.color = col3
-					m2.layer = FLOAT_LAYER + 0.02
-					upper_sock_img.overlays += m2
+		working.alpha = tail_alpha
 
 		if(apply_to_mob)
 			overlays_standing[target_layer] = working
