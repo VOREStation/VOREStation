@@ -960,11 +960,12 @@
 	var/special_hood_handling = FALSE
 	var/toggleicon
 	actions_types = list()
-
 	var/taurized = FALSE
+	/// Is the suit snowflake'd as tauric already?
+	var/snowflake_taur_suit = FALSE
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
-	preserve_item = 1
+	preserve_item = TRUE
 	equip_sound = 'sound/items/jumpsuit_equip.ogg'
 
 
@@ -982,6 +983,8 @@
 	MakeHood()
 	toggleicon = "[initial(icon_state)]"
 	. = ..()
+	if(icon == 'icons/inventory/suit/taursuits_snowflake.dmi')
+		snowflake_taur_suit = TRUE
 
 /obj/item/clothing/suit/Destroy()
 	QDEL_NULL(hood)
@@ -1069,8 +1072,8 @@
 
 ///Establishes Icon overrides for taur bodies
 /obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
-	/// If we don't have a taur tail OR we're showin' that taur butt, reset overrides.
-	if(!has_taur_tail || showtaurbutts)
+	/// If we don't have a taur tail, we're showin' that taur butt, or the suit is natively drawn for taurs, reset overrides.
++	if(!has_taur_tail || showtaurbutts || snowflake_taur_suit)
 		icon_override = initial(icon_override)
 		taurized = FALSE
 		return
