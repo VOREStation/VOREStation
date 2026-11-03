@@ -46,6 +46,10 @@
 	locker_class = GUN_SIDEARM
 	overlay_type = "pistol"
 
+/obj/item/gun/projectile/makarov
+	locker_class = GUN_SIDEARM
+	overlay_type = "pistoleris"
+
 /obj/item/gun/projectile/aps
 	locker_class = GUN_SIDEARM
 	overlay_type = "PDW"
@@ -56,13 +60,21 @@
 
 /obj/item/gun/projectile/lamia
 	locker_class = GUN_SIDEARM
+	overlay_type = "pistoleris"
+
+/obj/item/gun/projectile/derringer
+	locker_class = GUN_SIDEARM
 	overlay_type = "revolver"
 
-/obj/item/gun/projectile/dartgun/research
+/obj/item/gun/projectile/dartgun
 	locker_class = GUN_SIDEARM
 	overlay_type = "dartgun"
 
 /obj/item/gun/projectile/gyropistol
+	locker_class = GUN_SIDEARM
+	overlay_type = "pistol"
+
+/obj/item/gun/projectile/p92x
 	locker_class = GUN_SIDEARM
 	overlay_type = "pistol"
 
@@ -288,6 +300,14 @@
 	locker_class = GUN_LONGARM
 	overlay_type = "l6"
 
+/obj/item/gun/magnetic/railgun
+	locker_class = GUN_LONGARM
+	overlay_type = "erifle"
+
+/obj/item/gun/projectile/smartgun
+	locker_class = GUN_LONGARM
+	overlay_type = "smartgun"
+
 /* Heavy Weapons */
 //aka, shit usually too big to fit into my armory sprites.
 
@@ -301,6 +321,9 @@
 	locker_class = GUN_HEAVY
 
 /obj/item/gun/projectile/SVD
+	locker_class = GUN_HEAVY
+
+/obj/item/gun/launcher/crossbow/bow
 	locker_class = GUN_HEAVY
 
 #undef GUN_SIDEARM
