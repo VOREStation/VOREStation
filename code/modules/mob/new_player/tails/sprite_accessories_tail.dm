@@ -96,6 +96,10 @@
 	if(extra_overlay2_w)
 		tailsock_wagmarkings2 = extra_overlay2_w
 
+///used to decide if it needs a hard regenerate_icons call due to taur bodies or big legs, etc
+/datum/sprite_accessory/tail/proc/affects_body()
+	return (clip_mask_state || length(hide_body_parts) || mob_offset_x || mob_offset_y) ? TRUE : FALSE
+
 // Default invis tail
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"

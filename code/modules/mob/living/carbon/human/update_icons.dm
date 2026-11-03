@@ -1018,6 +1018,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	apply_layer(L_HAND_LAYER)
 
+/// Ensure our layers are correct
 /mob/living/carbon/human/proc/get_tail_layer()
 	var/list/lower_layer_dirs = LOWER_TAIL_DIRS // Tail below clothing on side views too.
 	if(!tail_style) // Sanity checks good checks.
@@ -1030,6 +1031,17 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	else
 		return TAIL_UPPER_LAYER
 
+///Used specifically for the appearance changer nonsense.
+/mob/living/carbon/human/proc/refresh_tail_style(datum/sprite_accessory/tail/old_style)
+	if(old_style == tail_style || (!old_style?.affects_body() && !tail_style?.affects_body()))
+		update_tail_showing()
+		return
+	var/obj/item/clothing/suit/worn_suit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+	if(worn_suit)
+		worn_suit.taurize(src, istaurtail(tail_style))
+	regenerate_icons()
+
+///check our tail and update accordingly
 /mob/living/carbon/human/proc/update_tail_showing()
 	if(QDESTROYING(src))
 		return
@@ -1097,7 +1109,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			add_verb(src, /mob/living/proc/toggle_rider_reins)
 
 
-// Let's make a tail! Surely a unified one works better than trying to pass info back and forth, right?
+/// Let's make a tail! Surely a unified one works better than trying to pass info back and forth, right?
 /mob/living/carbon/human/proc/update_tail_layer(target_layer = null, apply_to_mob = TRUE)
 	if(QDESTROYING(src) || tail_hidden)
 		return null
@@ -1250,7 +1262,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	//And in the end, it didnt't even matter..
 	return null
 
-//tail animation handling
+///tail animation handling
 /mob/living/carbon/human/proc/set_tail_state(t_state)
 	if(QDESTROYING(src) || !tail_style)
 		return null
@@ -1259,6 +1271,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	update_tail_showing()
 	return overlays_standing[get_tail_layer()]
 
+/// animation check
 /mob/living/carbon/human/proc/animate_tail_reset()
 	if(QDESTROYING(src) || !tail_style)
 		return
@@ -1270,6 +1283,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		// Resets tail state based on current wagging flag
 		set_tail_state(wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)
 
+/// technically obsolete
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src) || !tail_style)
 		return
@@ -1278,6 +1292,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(tail_style.ani_state)
 		set_tail_state(tail_style.ani_state)
 
+/// technically obsolete
 /mob/living/carbon/human/proc/animate_tail_stop()
 	if(QDESTROYING(src) || !tail_style)
 		return
