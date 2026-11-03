@@ -1039,8 +1039,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	// Use default, let clip mask handle everything
 	if(tail_style && tail_style.clip_mask_state && !istaurtail(tail_style))
 		tail_layer = TAIL_UPPER_LAYER
-	if(tail_layer == TAIL_UPPER_LAYER)
-		tail_layer = tail_layering
+	else if(tail_layer == TAIL_UPPER_LAYER)
+		//north gets a special fixed layer, but we also have to remember lower_layer_dirs too
+		tail_layer = (dir == NORTH) ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
 
 	update_vore_tail_sprite()
 
@@ -1108,7 +1109,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		torso_alpha = chest.alpha
 
 	if(!target_layer)
-		target_layer = get_tail_layer() || tail_layering
+		target_layer = get_tail_layer() || TAIL_UPPER_LAYER
 
 	// Synth Tail check
 	var/datum/robolimb/model = isSynthetic()

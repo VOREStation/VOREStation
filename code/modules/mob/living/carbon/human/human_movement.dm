@@ -317,6 +317,12 @@
 	. = ..()
 	//we already check our tail through these procs now, tailsock/taur tail overlay needs higher priority to be updated correctly.
 	//this has specifically been updated to mutable_appearance and is not as costly as it used to be.
-	if(dir != old_dir && (old_dir == NORTH || dir == NORTH))
+	if(dir == old_dir)
+		return
+	var/layer_changed = (old_dir == NORTH || dir == NORTH)
+	if(!layer_changed && tail_style)
+		// tails with their own lower_layer_dirs change layers on side turns too
+		layer_changed = ((old_dir in tail_style.lower_layer_dirs) != (dir in tail_style.lower_layer_dirs))
+	if(layer_changed)
 		update_tail_showing()
 		update_inv_wear_suit()

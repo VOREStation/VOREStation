@@ -38,7 +38,9 @@
 	ani_state = "bigleggy_stanced"
 	extra_overlay_w = "bigleggy_markings_stanced"
 	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/biglegs.dmi'
-	clip_mask_state = "taur_clip_mask_def" //Leaving this here to make it clear it it's INTENTIONAL it shows above clothes. Use the marking if you want it to show UNDER clothes!
+	//Leaving this here to make it clear it it's INTENTIONAL it shows above clothes. Use the marking if you want it to show UNDER clothes!
+	clip_mask_state = "taur_clip_mask_def"
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT)
 
 /datum/sprite_accessory/tail/longtail/bigleggy/canine
 	name = "Big Leggies (Canine Tail)"
