@@ -4315,6 +4315,7 @@
 #include "code\modules\power\power.dm"
 #include "code\modules\power\powernet.dm"
 #include "code\modules\power\privacy_switch.dm"
+#include "code\modules\power\rteg.dm"
 #include "code\modules\power\smes.dm"
 #include "code\modules\power\smes_construction.dm"
 #include "code\modules\power\smes_prefabs.dm"
