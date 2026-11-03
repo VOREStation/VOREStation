@@ -9,8 +9,8 @@
 	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/sprite_accessories/wings.dmi'
 	do_colouration = FALSE //Set to 1 to enable coloration using the tail color.
-
-	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	// Only appliciable if do_coloration = TRUE, Multiply = white bias, Add = black bias
+	color_blend_mode = ICON_MULTIPLY
 	em_block = TRUE
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
@@ -30,13 +30,11 @@
 	name = "large feathered wings (colorable)"
 	icon_state = "feathered2"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/spider_legs //Not really /WINGS/ but they protrude from the back, kinda. Might as well have them here.
 	name = "spider legs"
 	icon_state = "spider-legs"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/moth
 	name = "moth wings"
@@ -46,24 +44,20 @@
 	name = "moth wings, colorable"
 	icon_state = "moth"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/dragonfly
 	name = "dragonfly"
 	icon_state = "dragonfly"
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
 	icon_state = "feathered"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/feathered_medium
 	name = "medium feathered wings, colorable" // Keekenox made these feathery things with a little bit more shape to them than the other wings. They are medium sized wing boys.
 	icon_state = "feathered3"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/bat_black
 	name = "bat wings, black"
@@ -73,40 +67,33 @@
 	name = "bat wings, colorable"
 	icon_state = "bat-color"
 	do_colouration = TRUE
+	color_blend_mode = ICON_ADD
 
 /datum/sprite_accessory/wing/bat_red
 	name = "bat wings, red"
 	icon_state = "bat-red"
 
-/datum/sprite_accessory/wing/bat_purpley
-	name = "bat wings, purple"
-	icon_state = "bat-purple"
-
 /datum/sprite_accessory/wing/harpywings
 	name = "harpy wings, colorable"
 	icon_state = "harpywings"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 
 /datum/sprite_accessory/wing/mantisarms
 	name = "Mantis arms"
 	icon_state = "mantisarms_s"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/harpywings_alt
 	name = "harpy wings alt, archeopteryx"
 	icon_state = "harpywings_alt"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "harpywings_altmarkings"
 
 /datum/sprite_accessory/wing/harpywings_alt_neckfur
 	name = "harpy wings alt, archeopteryx & neckfur"
 	icon_state = "harpywings_alt"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "harpywings_altmarkings"
 	extra_overlay2 = "neckfur"
 
@@ -114,14 +101,12 @@
 	name = "harpy wings, bat"
 	icon_state = "harpywings_bat"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "harpywings_batmarkings"
 
 /datum/sprite_accessory/wing/harpywings_bat_neckfur
 	name = "harpy wings, bat & neckfur"
 	icon_state = "harpywings_bat"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "harpywings_batmarkings"
 	extra_overlay2 = "neckfur"
 
@@ -129,33 +114,28 @@
 	name = "harpy arm wings, colorable"
 	icon_state = "harpyarmwings"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/harpyarmwings_alt
 	name = "harpy arm wings alt, colorable"
 	icon_state = "harpyarmwings_alt"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/harpyarmwings_alt_neckfur
 	name = "harpy arm wings alt & neckfur"
 	icon_state = "harpyarmwings_alt"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "neckfur"
 
 /datum/sprite_accessory/wing/harpyarmwings_bat
 	name = "harpy arm wings, bat"
 	icon_state = "harpyarmwings_bat"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "harpyarmwings_batmarkings"
 
 /datum/sprite_accessory/wing/harpyarmwings_bat_neckfur
 	name = "harpy arm wings, bat & neckfur"
 	icon_state = "harpyarmwings_bat"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "harpyarmwings_batmarkings"
 	extra_overlay2 = "neckfur"
 
@@ -163,21 +143,18 @@
 	name = "neck fur"
 	icon_state = "neckfur"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "neckfur_markings"
 
 /datum/sprite_accessory/wing/neckfur_noback
 	name = "neck fur (without back part)"
 	icon_state = "neckfur_noback"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "neckfur_markings"
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
 	icon_state = "feathered"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/beewings
 	name = "bee wings"
@@ -192,7 +169,6 @@
 	name = "gazer eyestalks, colorable"
 	icon_state = "eyestalkc"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "eyestalkc_eyes"
 
 /datum/sprite_accessory/wing/moth_full
@@ -203,7 +179,6 @@
 	name = "moth antenna and wings, colorable"
 	icon_state = "moth_full_gray"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/snag
 	name = "xenomorph backplate"
@@ -213,41 +188,36 @@
 	name = "demon wings (colorable)"
 	icon_state = "sepulchre_wingsc"
 	do_colouration = TRUE
+	color_blend_mode = ICON_ADD
 
 /datum/sprite_accessory/wing/sepulchre_c_yw_w
 	name = "demon wings (colorable, whitescale)"
 	icon_state = "sepulchre_wingsc_w"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/cyberdragon
 	name = "Cyber dragon wing (colorable)"
 	icon_state = "cyberdragon_s"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/cyberdragon_red
 	name = "Cyber dragon wing (red)"
 	icon_state = "cyberdragon_red_s"
-	do_colouration = FALSE
 
 /datum/sprite_accessory/wing/cyberdoe
 	name = "Cyber doe wing"
 	icon_state = "cyberdoe_s"
-	do_colouration = FALSE
 
 /datum/sprite_accessory/wing/drago_wing
 	name = "Cybernetic Dragon wings"
 	icon_state = "drago_wing"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "drago_wing_2"
 
 /datum/sprite_accessory/wing/aeromorph_flat
 	name = "aeromorph wings, flat"
 	icon_state = "aeromorph_flat"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "aeromorph_flat_1"
 	extra_overlay2 = "aeromorph_flat_2"
 
@@ -263,47 +233,40 @@
 	name = "snail shell, colorable"
 	icon_state = "snail_shell"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "snail_shell_markings"
 
 /datum/sprite_accessory/wing/sectdrone_wing //We should some day make a variable to make some wings not be able to fly
 	name = "Sect drone wings (To use with bodytype marking)"
 	icon_state = "sectdrone_wing"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/winglets //smol wingarms at the elbow
 	name = "feathered winglets"
 	icon_state = "winglets"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/wingarms_speckles
 	name = "wingarms, speckled"
 	icon_state = "wingarms_speckles"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wingarms_speckles-speckles"
 
 /datum/sprite_accessory/wing/wingarms_2tone
 	name = "wingarms, 2 colors"
 	icon_state = "wingarms_2tone"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wingarms_2tone-1"
 
 /datum/sprite_accessory/wing/feather2_speckles
 	name = "large feathered wings, speckled"
 	icon_state = "feather2_speckles"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "feather2_speckles-speckles"
 
 /datum/sprite_accessory/wing/feather2_tricolor
 	name = "large feathered wings, tricolor"
 	icon_state = "feather2_tricolor"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "feather2_tricolor-1"
 	extra_overlay2 = "feather2_tricolor-2"
 
@@ -312,7 +275,6 @@
 	// not ckey locked, just couldn't think of a better icon state name
 	icon_state = "shadow_tricolor"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shadow_tricolor-1"
 	extra_overlay2 = "shadow_tricolor-2"
 
@@ -321,7 +283,6 @@
 	// not ckey locked, just couldn't think of a better icon state name
 	icon_state = "shadow_tricolor"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "shadow_tricolor-1"
 	extra_overlay2 = "shadow_tricolor-2-sparkle"
 
@@ -330,95 +291,86 @@
 	name = "pterodactyl wings"
 	icon_state = "pterodactyl_wing_frame"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "pterodactyl_wing_membrane"
 
 /datum/sprite_accessory/wing/kaiju_spines_a
 	name = "kaiju spines A, colorable"
 	icon_state = "kaiju_spikes_a"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/kaiju_spines_a_glow
 	name = "kaiju spines A, colorable, glow"
 	icon_state = "kaiju_spikes_a"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kaiju_spikes_a_glow"
 
 /datum/sprite_accessory/wing/cyberangel
 	name = "Cyber angel wing (colorable)"
 	icon_state = "cyber_angel"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/bat_purpley
+	name = "bat wings, purple"
+	icon_state = "bat-purple"
 
 /datum/sprite_accessory/wing/dragon2
 	name = "Dragon wings, large, colorable"
 	icon_state = "dragon_2"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "dragon_2_mark"
 
 /datum/sprite_accessory/wing/snagc
 	name = "xenomorph backplate, colorable"
 	icon_state = "csnag-backplate"
 	do_colouration = TRUE
+	color_blend_mode = ICON_ADD
 
 /datum/sprite_accessory/wing/snagc2
 	name = "xenomorph backplate, colorable 2"
 	icon_state = "csnag-backplate-2"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/xeno_queen
 	name = "xenomorph backplate (queen)"
 	icon_state = "xeno_queen"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/snail
 	name = "Snail shell"
 	icon_state = "snail_shell_new"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/xeno_standard_backplate
 	name = "Xenomorph backplate (standard)"
 	icon_state = "xeno_standard"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/xeno_royal_backplate
 	name = "Xenomorph backplate (royal)"
 	icon_state = "xeno_royal"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/xeno_down_backplate
 	name = "Xenomorph backplate (down)"
 	icon_state = "xeno_down"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/cloakwings
 	name = "Cloaking Moth Wings with Eyes (Colorable)"
 	icon_state = "cloakmoth"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "cloakmoth_eyes"
 
 /datum/sprite_accessory/wing/cybertendrils
 	name = "Cyber Tendrils"
 	icon_state = "cybertendrils"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "cybertendrils_plugs"
 
 /datum/sprite_accessory/wing/jet_wing
 	name = "Aeromorph Jet Wings (Colorable)"
 	icon_state = "jet_wing"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "jet_wing_1"
 	extra_overlay2 = "jet_wing_2"
 
@@ -498,20 +450,17 @@
 	name = "Moth Wings (Colorable)"
 	icon_state = "mothwings_no_antennae_color"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/mothwings_luna_colorable
 	name = "Moth Wings (Luna, Colorable)"
 	icon_state = "mothwings_luna_colorable"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/sect_drone_alt
 	name = "Sect drone wings Alt. (To use with bodytype marking)"
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "sectdrone_wing_alt"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
 /datum/sprite_accessory/wing/sect_drone_alt_nomark
@@ -519,7 +468,6 @@
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "sectdrone_wing_alt_nomark"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
 /datum/sprite_accessory/wing/taurdragon
@@ -527,7 +475,6 @@
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "taurdrake_wing"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
 /datum/sprite_accessory/wing/large_harpy_wings_ch
@@ -535,7 +482,14 @@
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "Harpy_wings"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
+	wing_offset = 16
+
+/datum/sprite_accessory/wing/large_harpy_wings_bat
+	name = "Harpy arm-wings(Large), bat"
+	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
+	icon_state = "Big_bat_arm_wings"
+	do_colouration = TRUE
+	extra_overlay = "Big_bat_arm_wingsmarkings"
 	wing_offset = 16
 
 /datum/sprite_accessory/wing/large_harpy_wings_bat
@@ -553,7 +507,6 @@
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "naga_wing"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
 /datum/sprite_accessory/wing/sloogshell
@@ -561,14 +514,12 @@
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "sloogshell"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
 
 /datum/sprite_accessory/wing/xeno_queen_new
 	name = "xenomorph backplate (queen, new)"
 	icon_state = "xeno_queen_new"
 	do_colouration = TRUE
-	color_blend_mode = ICON_MULTIPLY
 
 //exclusive wings
 /datum/sprite_accessory/wing/kara
