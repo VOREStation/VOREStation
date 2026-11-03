@@ -2,7 +2,7 @@
 	name = "\improper RTEG"
 	desc = "A power generator that runs on solid phoron sheets. Rated for 80 kW max safe output."
 	power_gen = 600 KILOWATTS	//Watts output per power_output level
-	icon_state = "smes"
+	icon_state = "rteg"
 	anchored = TRUE
 
 /obj/machinery/power/port_gen/rteg/Initialize(mapload)
