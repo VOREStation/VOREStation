@@ -1073,7 +1073,7 @@
 ///Establishes Icon overrides for taur bodies
 /obj/item/clothing/suit/proc/taurize(mob/living/carbon/human/taur, has_taur_tail = FALSE)
 	/// If we don't have a taur tail, we're showin' that taur butt, or the suit is natively drawn for taurs, reset overrides.
-+	if(!has_taur_tail || showtaurbutts || snowflake_taur_suit)
+	if(!has_taur_tail || showtaurbutts || snowflake_taur_suit)
 		icon_override = initial(icon_override)
 		taurized = FALSE
 		return
