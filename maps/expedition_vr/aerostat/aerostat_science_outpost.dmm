@@ -9126,6 +9126,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior{
+	frequency = 1381
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "Iy" = (
