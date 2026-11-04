@@ -576,7 +576,7 @@
 			playsound(M.loc, 'sound/misc/slip.ogg', 25, 1, -1)
 			if(M.slip_timer)
 				deltimer(M.slip_timer) //Remove it here so it can be set anew
-			M.slip_timer = null
+				M.slip_timer = null
 			slip_dist = max(M.slipping, slip_dist) //Extend Slips
 		else //Slipping, slip isnt recursive, slip is blocked.
 			return FALSE
