@@ -1,12 +1,15 @@
 /obj/machinery/power/port_gen/rteg
 	name = "\improper RTEG"
-	desc = "A power generator that runs on solid phoron sheets. Rated for 80 kW max safe output."
-	power_gen = 600 KILOWATTS	//Watts output per power_output level
+	desc = "A bulky, expensive morphium-phoron pumped pseudo-RTEG meant to be used as a baseline, backup power source for large, remote installations or ships. A safe, never off source of power that is nevertheless quite expensive quite deadly if the electronics modulating the reaction go bad. They are EMP shielded, water and dust proof resistant, and hidden in a big casing, so as long as you leave it be, it should be fine. Probably."
+	description_info = "Provides the bare minimum of power for a station to avoid full blackouts."
+	description_antag = "You probably shouldn't emag this."
+	power_gen = 600 KILOWATTS
 	icon_state = "rteg"
 	anchored = TRUE
 
 /obj/machinery/power/port_gen/rteg/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 	if(anchored)
 		connect_to_network()
 
@@ -53,6 +56,24 @@
 		else if(default_part_replacement(user, O))
 			return
 	return ..()
+
+/obj/machinery/power/port_gen/rteg/explode()
+	//a BIG burst of radiation
+	var/rads = 300
+	radiation_pulse(
+		src,
+		max_range = (rads/10),
+		threshold = RAD_HEAVY_INSULATION,
+		chance = DEFAULT_RADIATION_CHANCE,
+		strength = rads
+	)
+
+	explosion(src.loc, 3, 3, 5, 3)
+	qdel(src)
+
+/obj/machinery/power/port_gen/rteg/emp_act(severity, recursive)
+	. = ..()
+	return
 
 /obj/machinery/power/port_gen/rteg/attack_hand(mob/user)
 	..()
