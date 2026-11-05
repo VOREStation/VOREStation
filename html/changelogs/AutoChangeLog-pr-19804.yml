@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Made it possible for ghosts to see current department goals with a verb."
