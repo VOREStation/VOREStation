@@ -1,0 +1,8 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Epinephirine will no longer cause a cylic 'take damage which causes more epi which causes more damage' cycle."
+  - balance: "Epi now gives CE_SPEEDBOOST 1 instead of CE_SPEEDBOOST 3. Now hyperzine speed instead of tickspeed."
+  - bugfix: "Lingboots actually work now."
+  - bugfix: "Disabilities reapply after rejuv."
+  - bugfix: "Horror Event Disease is cured by xenochimeraism."
