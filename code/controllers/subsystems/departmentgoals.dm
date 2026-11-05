@@ -123,27 +123,27 @@ SUBSYSTEM_DEF(departmentgoals)
 
 // Move these helpers when upported or make a tgui instead
 ADMIN_VERB(add_department_goal, R_EVENT, "Add Department Goal", "Adds a goal for the station to reach.", ADMIN_CATEGORY_EVENTS)
-	var/choice = tgui_input_list(usr,"Choose goal to add:","New Goal", subtypesof(/datum/goal))
+	var/choice = tgui_input_list(user, "Choose goal to add:", "New Goal", subtypesof(/datum/goal))
 	if(!choice)
 		return
 
 	var/datum/goal/template = choice
 	var/list/dept_goals = SSdepartmentgoals.active_department_goals[template.category]
 	dept_goals += new template()
-	log_admin("[key_name(usr)] has added a department goal: [template.name].")
+	log_admin("[key_name(user)] has added a department goal: [template.name].")
 
 ADMIN_VERB(remove_department_goal, R_EVENT, "Remove Department Goal", "Remove a goal from the station's current department goals.", ADMIN_CATEGORY_EVENTS)
 	var/list/all_goals = list()
 	for(var/category in SSdepartmentgoals.active_department_goals)
 		all_goals += SSdepartmentgoals.active_department_goals[category]
 	if(!length(all_goals))
-		to_chat(usr, span_warning("There are no station goals."))
+		to_chat(user, span_warning("There are no station goals."))
 		return
 
-	var/datum/goal/choice = tgui_input_list(usr,"Choose goal to remove:","Remove Goal", all_goals)
+	var/datum/goal/choice = tgui_input_list(user, "Choose goal to remove:", "Remove Goal", all_goals)
 	if(!choice)
 		return
 
-	log_admin("[key_name(usr)] has removed the department goal: [choice].")
+	log_admin("[key_name(user)] has removed the department goal: [choice].")
 	SSdepartmentgoals.active_department_goals[choice.category] -= choice
 	qdel(choice)
