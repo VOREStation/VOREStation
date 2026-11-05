@@ -1,0 +1,4 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - bugfix: "fixed airlock helper errors in Aerostat and Overrun Tourist ship"
