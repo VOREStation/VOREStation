@@ -111,6 +111,8 @@
 	playsound(src, projectilesound, 80, 1)
 
 /mob/living/simple_mob/vore/alienanimals/space_ghost/death(gibbed, deathmessage = "fades away!")
+	if(QDELETED(src))
+		return
 	. = ..()
 	qdel(src)
 
@@ -186,6 +188,8 @@
 	speak_chance = 0
 
 /mob/living/simple_mob/vore/alienanimals/spooky_ghost/death(gibbed, deathmessage = "fades away!")
+	if(QDELETED(src))
+		return
 	. = ..()
 	qdel(src)
 

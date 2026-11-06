@@ -144,6 +144,8 @@
 	return FALSE
 
 /mob/living/simple_mob/vore/aggressive/mimic/death()
+	if(QDELETED(src))
+		return
 	..()
 	if(real_crate)
 		real_crate.forceMove(loc)
@@ -239,6 +241,8 @@
 	return FALSE
 
 /mob/living/simple_mob/vore/aggressive/mimic/airlock/death()
+	if(QDELETED(src))
+		return
 	new/obj/machinery/door/airlock/maintenance/common (src.loc)
 	real_crate = null
 	qdel(src)
@@ -334,6 +338,8 @@
 	return FALSE
 
 /mob/living/simple_mob/vore/aggressive/mimic/closet/death()
+	if(QDELETED(src))
+		return
 	..()
 	if(real_crate)
 		real_crate.forceMove(loc)
@@ -423,6 +429,8 @@
 	base_attack_cooldown = 5
 
 /mob/living/simple_mob/vore/aggressive/mimic/floor/death()
+	if(QDELETED(src))
+		return
 	qdel(src)
 
 /obj/effect/floormimic/tile
