@@ -164,6 +164,7 @@
 		to_chat(user, span_warning("Linked pad is not responding to ping."))
 		return
 	src.add_fingerprint(user)
+	visible_message("Charging...")
 	doteleport(user)
 
 /obj/machinery/power/quantumpad/proc/sparks()
