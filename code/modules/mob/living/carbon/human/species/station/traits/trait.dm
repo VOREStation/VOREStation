@@ -186,3 +186,26 @@
 
 /datum/trait/proc/handle_environment_special(mob/living/carbon/human/H)
 	return
+
+/datum/trait/proc/can_take_trait(user, pref_species_for_traits, is_organic, is_synth, only_check_species)
+	if(!only_check_species)
+		if(is_synth && !(can_take & SYNTHETICS))
+			if(user)
+				tgui_alert_async(user, "The trait you've selected can only be taken by organic characters!", "Error")
+			return FALSE
+
+		if(is_organic && !(can_take & ORGANICS))
+			if(user)
+				tgui_alert_async(user, "The trait you've selected can only be taken by synthetic characters!", "Error")
+			return FALSE
+
+	if(pref_species_for_traits in banned_species)
+		if(user)
+			tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
+		return FALSE
+
+	if( LAZYLEN(allowed_species) && !(pref_species_for_traits in allowed_species))
+		if(user)
+			tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
+		return FALSE
+	return TRUE
