@@ -1,5 +1,7 @@
 #define TK_MAXRANGE 15
 
+#define CLICK_CD_CLICK_ABILITY 6
+
 /// Action has succeeded, preventing further alt click interaction
 #define CLICK_ACTION_SUCCESS (1<<0)
 /// Action failed, preventing further alt click interaction

@@ -988,3 +988,15 @@
 /datum/trait/positive/scavenger_expert/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	ADD_TRAIT(H, TRAIT_SCAVENGER_EXPERT, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/leap
+	name = "Leaper"
+	desc = "You have powerful legs, allowing you to do a short leap."
+	cost = 3
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_TAJARAN) // These two are natural leapers
+
+/datum/trait/positive/leap/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	var/datum/action/cooldown/mob_cooldown/leap/jump = new()
+	jump.Grant(H)
