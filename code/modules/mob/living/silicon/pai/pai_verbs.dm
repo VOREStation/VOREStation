@@ -45,7 +45,7 @@
 	speak_query = sayverbs[(sayverbs.len>2 ? 3 : sayverbs.len)]
 
 /mob/living/silicon/pai/verb/allowmodification()
-	set name = "Change Access Modifcation Permission"
+	set name = "Change Access Modification Permission"
 	set category = "Abilities.pAI Commands"
 	set desc = "Allows people to modify your access or block people from modifying your access."
 

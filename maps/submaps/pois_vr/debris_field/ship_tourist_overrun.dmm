@@ -75,8 +75,7 @@
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	pixel_x = -27;
-	pixel_y = 32;
-	req_one_access = null
+	pixel_y = 32
 	},
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -257,8 +256,7 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	pixel_x = 30;
-	pixel_y = 32;
-	req_one_access = null
+	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -267,7 +265,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/yellow,
-/area/submap/debrisfield/luxury_boat/crew)
+/area/submap/debrisfield/luxury_boat/engine)
 "gP" = (
 /obj/machinery/power/port_gen/pacman/super,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -1000,8 +998,6 @@
 	dir = 4;
 	door_color = "#323d80";
 	name = "Bridge";
-	req_access = null;
-	req_one_access = null;
 	stripe_color = "#f7d35c"
 	},
 /obj/machinery/door/firedoor/glass,
