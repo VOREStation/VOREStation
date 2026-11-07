@@ -23,7 +23,7 @@
 
 	var/ghostimage = null
 	var/datum/visualnet/visualnet
-	var/use_static = TRUE
+	var/use_visibility = TRUE
 	var/static_visibility_range = 16
 
 /mob/observer/eye/Initialize(mapload)
@@ -69,8 +69,8 @@
 				visualnet.updateVisibility(owner, 0)
 				owner.loc = loc
 				visualnet.updateVisibility(owner, 0)
-			if(use_static)
-				visualnet.visibility(src, owner.client)
+			if(use_visibility)
+				SScameras.update_eye_chunk(src)
 			return 1
 	return 0
 
