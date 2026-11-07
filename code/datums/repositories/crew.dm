@@ -21,58 +21,56 @@ GLOBAL_DATUM_INIT(crew_repository, /datum/repository/crew, new)
 	if(world.time < cache_entry.timestamp)
 		return cache_entry.data
 
-	var/tracked = scan()
-	for(var/obj/item/clothing/under/C in tracked)
+	for(var/mob/living/carbon/C in GLOB.mob_list)
 		var/turf/pos = get_turf(C)
 		var/area/B = pos?.loc //No sensor in Dorm
-		if((C.has_sensor) && (pos?.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(B.flag_check(AREA_BLOCK_SUIT_SENSORS)) && !(is_jammed(C)) && !(is_vore_jammed(C)))
-			if(ishuman(C.loc))
-				var/mob/living/carbon/human/H = C.loc
-				if(H.w_uniform != C)
-					continue
+		if(pos?.z != zLevel || B.flag_check(AREA_BLOCK_SUIT_SENSORS) || is_jammed(C) || is_vore_jammed(C))
+			continue
 
-				var/list/crewmemberData = list("dead"=0, "oxy"=-1, "tox"=-1, "fire"=-1, "brute"=-1, "area"="", "x"=-1, "y"=-1, "realZ"=-1, "z"="", "ref" = "\ref[H]")
+		if(isanimal(C.loc))
+			var/mob/living/simple_mob/tf_holder = C.loc
+			if(tf_holder.tf_mob_holder == C) //Exclude characters that are TFd into other mobs.
+				continue
 
-				crewmemberData["sensor_type"] = C.sensor_mode
-				crewmemberData["name"] = H.get_authentification_name(if_no_id="Unknown")
-				crewmemberData["rank"] = H.get_authentification_rank(if_no_id="Unknown", if_no_job="No Job")
-				crewmemberData["assignment"] = H.get_assignment(if_no_id="Unknown", if_no_job="No Job")
+		var/sensor_level = C.get_sensor_level()
+		if(sensor_level <= SUIT_SENSOR_OFF)
+			continue
 
-				if(C.sensor_mode >= SUIT_SENSOR_BINARY)
-					crewmemberData["dead"] = H.stat == DEAD
+		var/list/crewmemberData = list("dead"=0, "oxy"=-1, "tox"=-1, "fire"=-1, "brute"=-1, "area"="", "x"=-1, "y"=-1, "realZ"=-1, "z"="", "ref" = "\ref[C]")
 
-				if(C.sensor_mode >= SUIT_SENSOR_VITAL)
-					crewmemberData["stat"] = H.stat
-					crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
-					crewmemberData["tox"] = round(H.getToxLoss(), 1)
-					crewmemberData["fire"] = round(H.getFireLoss(), 1)
-					crewmemberData["brute"] = round(H.getBruteLoss(), 1)
+		crewmemberData["sensor_type"] = sensor_level
+		if(ishuman(C))
+			var/mob/living/carbon/human/H_mob = C
+			crewmemberData["name"] = H_mob.get_authentification_name(if_no_id="Unknown")
+			crewmemberData["rank"] = H_mob.get_authentification_rank(if_no_id="Unknown", if_no_job="No Job")
+			crewmemberData["assignment"] = H_mob.get_assignment(if_no_id="Unknown", if_no_job="No Job")
+		else //non-human carbons just always show up as unknown
+			crewmemberData["name"] = "Unknown"
+			crewmemberData["rank"] = "No Job"
+			crewmemberData["assignment"] = "No Job"
 
-				if(C.sensor_mode >= SUIT_SENSOR_TRACKING)
-					var/area/A = get_area(H)
-					crewmemberData["area"] = sanitize(A.get_name())
-					crewmemberData["x"] = pos.x
-					crewmemberData["y"] = pos.y
-					crewmemberData["realZ"] = pos.z
-					crewmemberData["z"] = using_map.get_zlevel_name(pos.z)
+		if(sensor_level >= SUIT_SENSOR_BINARY)
+			crewmemberData["dead"] = C.stat == DEAD
 
-				crewmembers[++crewmembers.len] = crewmemberData
+		if(sensor_level >= SUIT_SENSOR_VITAL)
+			crewmemberData["stat"] = C.stat
+			crewmemberData["oxy"] = round(C.getOxyLoss(), 1)
+			crewmemberData["tox"] = round(C.getToxLoss(), 1)
+			crewmemberData["fire"] = round(C.getFireLoss(), 1)
+			crewmemberData["brute"] = round(C.getBruteLoss(), 1)
+
+		if(sensor_level >= SUIT_SENSOR_TRACKING)
+			var/area/A = get_area(C)
+			crewmemberData["area"] = sanitize(A.get_name())
+			crewmemberData["x"] = pos.x
+			crewmemberData["y"] = pos.y
+			crewmemberData["realZ"] = pos.z
+			crewmemberData["z"] = using_map.get_zlevel_name(pos.z)
+
+		crewmembers[++crewmembers.len] = crewmemberData
 
 	crewmembers = sortByKey(crewmembers, "name")
 	cache_entry.timestamp = world.time + 5 SECONDS
 	cache_entry.data = crewmembers
 
 	return crewmembers
-
-/datum/repository/crew/proc/scan()
-	var/list/tracked = list()
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		if(isanimal(H.loc))
-			var/mob/living/simple_mob/tf_holder = H.loc
-			if(tf_holder.tf_mob_holder == H) //Exclude characters that are TFd into other mobs.
-				continue
-		if(istype(H.w_uniform, /obj/item/clothing/under))
-			var/obj/item/clothing/under/C = H.w_uniform
-			if (C.has_sensor)
-				tracked |= C
-	return tracked

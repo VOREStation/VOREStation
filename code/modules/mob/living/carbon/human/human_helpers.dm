@@ -236,6 +236,13 @@
 
 	return FALSE
 
+/mob/living/carbon/human/get_sensor_level()
+	. = ..()
+	if(istype(w_uniform, /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = w_uniform
+		//return the highest sensor mode we have, incase it differs between implant or whatever else is able to give suit sensor readouts.
+		. = max(U.sensor_mode, .)
+
 #undef HUMAN_EATING_NO_ISSUE
 #undef HUMAN_EATING_NO_MOUTH
 #undef HUMAN_EATING_BLOCKED_MOUTH

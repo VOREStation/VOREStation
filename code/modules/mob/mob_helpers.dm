@@ -64,21 +64,6 @@
 			return 1
 	return 0
 
-/proc/hassensorlevel(A, level)
-	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
-		return U.sensor_mode >= level
-	return 0
-
-/proc/getsensorlevel(A)
-	var/mob/living/carbon/human/H = A
-	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
-		return U.sensor_mode
-	return SUIT_SENSOR_OFF
-
-
 /proc/is_admin(mob/user)
 	return check_rights_for(user.client, R_ADMIN|R_EVENT) != 0
 
