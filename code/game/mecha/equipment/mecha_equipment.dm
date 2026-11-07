@@ -151,8 +151,6 @@
 * 4 - Type of exosuit isn't compatible with this
 */
 /obj/item/mecha_parts/mecha_equipment/proc/can_attach(obj/mecha/M as obj)
-	//if(M.equipment.len >= M.max_equip)
-	//	return 0
 	if(!allow_duplicate)
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in M.equipment) //Exact duplicate components aren't allowed.
 			if(ME.type == src.type)
