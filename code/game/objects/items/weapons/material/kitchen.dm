@@ -38,13 +38,28 @@
 	release_micros()
 	. = ..()
 
+/// A snapshot of the micro, shrunk and sat on the utensil.
+/obj/item/material/kitchen/utensil/proc/build_micro_overlay(mob/living/micro)
+	var/mutable_appearance/snack = new /mutable_appearance(micro)
+	snack.layer = FLOAT_LAYER
+	snack.plane = FLOAT_PLANE
+	snack.dir = SOUTH
+	snack.pixel_x = 0
+	snack.pixel_y = micro_offset_y
+	snack.transform = matrix().Scale(micro_scale)
+	// otherwise the utensil's material tint colors the micro
+	snack.appearance_flags = RESET_COLOR|RESET_ALPHA|KEEP_TOGETHER
+	return snack
+
 /obj/item/material/kitchen/utensil/update_icon()
 	. = ..()
 	cut_overlays()
-	vis_contents.Cut()
-	if(isholder(loaded))
-		//show the micro on the utensil
-		vis_contents += loaded
+	var/obj/item/holder/held = isholder(loaded) ? loaded : null
+	if(held)
+		// Show the micro on our utensil
+		if(held.held_mob)
+			add_overlay(build_micro_overlay(held.held_mob))
+
 	else if(loaded)
 		var/image/I = new(icon, "loadedfood")
 		I.color = loaded_color
@@ -140,8 +155,6 @@
 
 	var/obj/item/holder/held = new /obj/item/holder/micro(src, micro)
 	held.sync(micro)
-	held.transform = matrix().Scale(micro_scale)
-	held.pixel_y = micro_offset_y
 	loaded = held
 	user.visible_message(span_notice("\The [user] scoops \the [micro] up onto \the [src]."), span_notice("You scoop \the [micro] up onto \the [src]."))
 	to_chat(micro, span_warning("\The [user] scoops you up onto \the [src]!"))
@@ -220,7 +233,9 @@
 		for(var/mob/living/micro in food_inserted_micros.Copy())
 			LAZYREMOVE(food_inserted_micros, micro)
 			swallow_or_drop(creature, micro)
-	playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
+	if(!held)
+		//only monch sound if it's anything but the micro alone
+		playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
 	loaded = null
 	update_icon()
 	return ITEM_INTERACT_SUCCESS
