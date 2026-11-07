@@ -230,18 +230,18 @@
 /mob/living/proc/check_for_scoopable(mob/living/micro)
 	if(!istype(micro) || src == micro)
 		return FALSE
-	if(!(pickup_pref && micro.pickup_pref && micro.pickup_active))
+	if(!(micro.pickup_pref && pickup_pref && pickup_active))
 		return FALSE
-	if(!(micro.a_intent == I_HELP))
+	if(!(a_intent == I_HELP))
 		return FALSE
-	if(isanimal(micro))
-		var/mob/living/simple_mob/creature = micro
-		if(!creature.has_hands)
+	if(isanimal(src))
+		var/mob/living/simple_mob/grabber = src
+		if(!grabber.has_hands)
 			return FALSE
-	var/size_diff = micro.get_effective_size(FALSE) - get_effective_size(TRUE)
-	if(size_diff >= 0.50 || mob_size < MOB_SMALL || size_diff >= get_effective_size())
-		if(buckled)
-			to_chat(src,span_notice("You have to unbuckle \the [src] before you pick them up."))
+	var/size_diff = get_effective_size(FALSE) - micro.get_effective_size(TRUE)
+	if(size_diff >= 0.50 || micro.mob_size < MOB_SMALL || size_diff >= micro.get_effective_size())
+		if(micro.buckled)
+			to_chat(src,span_notice("You have to unbuckle \the [micro] before you pick them up."))
 			return FALSE
 		return TRUE
 	return FALSE

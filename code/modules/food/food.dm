@@ -68,6 +68,12 @@
 	else
 		micro.forceMove(get_turf(src))
 
+	//make sure the micro isn't black screen'd after the food is qdel'd for whatever reason
+	micro.reset_perspective()
+	spawn(0)
+		if(micro && isturf(micro.loc))
+			micro.reset_perspective()
+
 	if(willingly)
 		to_chat(micro, span_warning("You climb out of \the [src]."))
 	else

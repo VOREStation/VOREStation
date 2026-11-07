@@ -2,8 +2,8 @@
 	icon = 'icons/obj/kitchen.dmi'
 
 /*
- * Utensils
- */
+* Utensils
+*/
 /obj/item/material/kitchen/utensil
 	drop_sound = 'sound/items/drop/knife.ogg'
 	pickup_sound = 'sound/items/pickup/knife.ogg'
@@ -124,7 +124,7 @@
 		return TRUE
 	if(loaded || food_inserted_micros)
 		user.visible_message(span_notice("\The [user] dumps something off from the [src]."))
-		on_rag_wipe()
+		clear_utensil()
 
 //Get on the spoon, Shinji
 /obj/item/material/kitchen/utensil/proc/scoop_micro(mob/living/micro, mob/living/user)
@@ -199,6 +199,7 @@
 			to_chat(creature, span_danger("You wince as you take another unwilling bite from [src]. You can feel your stomach getting firm as it reaches its limits."))
 		else
 			to_chat(creature, span_danger("You glug down the bite from [src], you are reaching the very limits of what you can eat, but maybe a few more bites could be managed..."))
+	else
 		user.visible_message(span_warning("\The [user] begins to feed \the [creature]!"))
 		if(!(creature.can_force_feed(user, loaded_name) && do_after(user, 5 SECONDS, creature)))
 			return ITEM_INTERACT_FAILURE
@@ -224,13 +225,17 @@
 	update_icon()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/material/kitchen/utensil/on_rag_wipe()
-	. = ..()
+/// this way on_rag_wipe but now it actually works
+/obj/item/material/kitchen/utensil/proc/clear_utensil()
 	if(reagents.total_volume > 0)
 		reagents.clear_reagents()
 	release_micros()
 	loaded = null
 	update_icon()
+
+/obj/item/material/kitchen/utensil/on_rag_wipe()
+	. = ..()
+	clear_utensil()
 
 /obj/item/material/kitchen/utensil/examine(mob/user)
 	. = ..()
@@ -245,7 +250,11 @@
 		micro.forceMove(loc)
 	else
 		micro.forceMove(get_turf(src))
-
+	//make sure the micro isn't black screen'd after the utensil is qdel'd for whatever reason
+	micro.reset_perspective()
+	spawn(0)
+		if(micro && isturf(micro.loc))
+			micro.reset_perspective()
 	if(willingly)
 		to_chat(micro, span_warning("You climb off of \the [src]."))
 	else
@@ -295,8 +304,8 @@
 	default_material = MAT_PLASTIC
 
 /*
- * Knives
- */
+* Knives
+*/
 
 /* From the time of Clowns. Commented out for posterity, and sanity.
 /obj/item/material/knife/attack(target as mob, mob/living/user as mob)
@@ -310,8 +319,8 @@
 	default_material = MAT_PLASTIC
 
 /*
- * Rolling Pins
- */
+* Rolling Pins
+*/
 
 /obj/item/material/kitchen/rollingpin
 	name = "rolling pin"
