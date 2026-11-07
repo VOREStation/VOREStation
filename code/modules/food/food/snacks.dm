@@ -399,6 +399,10 @@
 	. = ..()
 	return
 
+///handled in attack, after preference checks
+/obj/item/reagent_containers/food/snacks/feed_reagents(mob/user, mob/target)
+	return TRUE
+
 /obj/item/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
 	food_can_insert_micro = TRUE
@@ -428,6 +432,9 @@
 /obj/item/reagent_containers/food/snacks/attack_generic(mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
+	if(LAZYLEN(food_inserted_micros) && ((user.client && !user.food_vore) || !user.can_be_drop_pred))
+		to_chat(user, span_vdanger("Ewww, You can't consume that, there's a bug in this! You've got standards!") )
+		return FALSE
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
@@ -435,9 +442,6 @@
 		if(!src && !user.client)
 			user.automatic_custom_emote(VISIBLE_MESSAGE,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]", check_stat = TRUE)
 			qdel(src)
-	if((user.client && !user.food_vore || !user.can_be_drop_pred) && food_inserted_micros)
-		to_chat(user, span_vdanger("Ewww, You can't consume that, there's a bug in this! You've got standards!") )
-		return FALSE
 	On_Consume(user)
 
 //////////////////////////////////////////////////

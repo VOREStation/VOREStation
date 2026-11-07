@@ -83,6 +83,9 @@
 		return FALSE
 	return TRUE
 
+/obj/item/proc/holds_mob()
+	return (locate(/mob/living) in contents) ? TRUE : FALSE
+
 //Elevating this to allow utensils the same checks as reagent containers do for vore prefs.
 /obj/item/proc/standard_feed_mob(mob/user, mob/target) // This goes into attack
 	if(!istype(target) || !target.can_feed())
@@ -90,7 +93,7 @@
 		return FALSE
 
 	//micro in food check if someone couldn't be bothered to examine their food.
-	if(!target.food_vore || !target.can_be_drop_pred)
+	if(holds_mob() && (!target.food_vore || !target.can_be_drop_pred))
 		to_chat(user, span_vdanger("Ewww, [user == target ? "You can't" : "\The [target] can't"] consume that, there's a bug in this!") )
 		return FALSE
 
@@ -108,7 +111,6 @@
 		if(blocked)
 			balloon_alert(user, "\the [blocked] is in the way!")
 			return FALSE
-
 	return TRUE
 
 /obj/item/proc/liquid_belly_check()

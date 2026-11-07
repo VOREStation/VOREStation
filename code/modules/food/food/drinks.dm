@@ -163,33 +163,12 @@
 		to_chat(user, span_notice("You need to open [src]!"))
 		return TRUE
 
-	if(!reagents || !reagents.total_volume)
-		balloon_alert(user, "\the [src] is empty.")
-		return FALSE
-
-	//get our other preference checks
-	.=..()
-
-	if(user == target)
-		self_feed_message(user)
-		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
-		feed_sound(user)
-
-	else
-		other_feed_message_start(user, target)
-		if(!do_after(user, 3 SECONDS, target))
-			return FALSE
-		other_feed_message_finish(user, target)
-
-		var/contained = reagentlist()
-		add_attack_logs(user, target, "Fed from [src] containing [contained]")
-		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
-		feed_sound(user)
-
 	var/original_volume = reagents.total_volume
-	var/changed = !(reagents.total_volume == original_volume)
-	On_Consume(target, user, changed)
-	return
+	. = ..() // preference checks, then the feeding itself
+ 	var/changed = !(reagents.total_volume == original_volume)
+	if(.)
+		On_Consume(target, user, changed)
+	return .
 
 /obj/item/reagent_containers/food/drinks/standard_dispenser_refill(mob/user, obj/structure/reagent_dispensers/target)
 	if(!is_open_container())

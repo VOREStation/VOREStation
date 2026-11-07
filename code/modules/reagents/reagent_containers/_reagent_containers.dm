@@ -91,6 +91,36 @@
 /obj/item/reagent_containers/proc/feed_sound(mob/user)
 	return
 
+/obj/item/reagent_containers/standard_feed_mob(mob/user, mob/target)
+	if(!..()) // shared preference checks
+		return FALSE
+	return feed_reagents(user, target)
+
+/// we gotta make the standard_feed_mob check before this, since stuff in a container could have prefbreak.
+/obj/item/reagent_containers/proc/feed_reagents(mob/user, mob/target)
+	if(!reagents || !reagents.total_volume)
+		balloon_alert(user, "\the [src] is empty.")
+		return TRUE
+
+	user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
+	SEND_SIGNAL(src, COMSIG_GLASS_DRANK, target, user)
+	if(user == target)
+		self_feed_message(user)
+		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
+		feed_sound(user)
+		return TRUE
+
+	other_feed_message_start(user, target)
+	if(!do_after(user, 3 SECONDS, target))
+		return FALSE
+	other_feed_message_finish(user, target)
+
+	var/contained = reagentlist()
+	add_attack_logs(user, target, "Fed from [name] containing [contained]")
+	reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
+	feed_sound(user)
+	return TRUE
+
 /obj/item/reagent_containers/proc/standard_pour_into(mob/user, atom/target) // This goes into afterattack and yes, it's atom-level
 	if(!target.is_open_container() || !target.reagents)
 		return FALSE

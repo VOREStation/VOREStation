@@ -23,6 +23,10 @@
 	var/loaded_color
 	/// Micros in the inventory, should be just the holder but...
 	var/list/food_inserted_micros
+	/// How big a micro looks while sitting on the utensil
+	var/micro_scale = 0.5
+	/// Pixel offset of a micro sitting on the utensil
+	var/micro_offset_y = 4
 
 /obj/item/material/kitchen/utensil/Initialize(mapload)
 	. = ..()
@@ -31,30 +35,49 @@
 	create_reagents(scoop_volume)
 
 /obj/item/material/kitchen/utensil/Destroy()
-	if(loaded && isholder(loaded))
-		var/obj/item/holder/held = loaded
-		held.dump_mob()
-	if(food_inserted_micros)
-		for(var/mob/creature in food_inserted_micros)
-			container_resist(creature, FALSE)
+	release_micros()
 	. = ..()
-	return
 
 /obj/item/material/kitchen/utensil/update_icon()
 	. = ..()
 	cut_overlays()
-	if(loaded)
-		if(isholder(loaded))
-			//show the micro on our utensil
-			var/obj/item/holder/held = loaded
-			var/icon/micro_icon = icon(held)
-			var/mutable_appearance/micro_overlay = mutable_appearance(icon, micro_icon)
-			micro_overlay.pixel_y = 6
-			add_overlay(micro_overlay)
-		else
-			var/image/I = new(icon, "loadedfood")
-			I.color = loaded_color
-			add_overlay(I)
+	vis_contents.Cut()
+	if(isholder(loaded))
+		//show the micro on the utensil
+		vis_contents += loaded
+	else if(loaded)
+		var/image/I = new(icon, "loadedfood")
+		I.color = loaded_color
+		add_overlay(I)
+
+///micro check so we don't oblivate them from byond memory
+/obj/item/material/kitchen/utensil/holds_mob()
+	return (isholder(loaded) || LAZYLEN(food_inserted_micros) || ..()) ? TRUE : FALSE
+
+/obj/item/material/kitchen/utensil/Exited(atom/movable/thing, atom/OldLoc)
+	. = ..()
+	if(thing == loaded)
+		loaded = null
+		update_icon()
+
+/obj/item/material/kitchen/utensil/proc/release_micros()
+	if(isholder(loaded))
+		var/obj/item/holder/held = loaded
+		var/mob/living/micro = held.held_mob
+		loaded = null
+		if(micro)
+			micro.forceMove(get_turf(src))
+		qdel(held)
+	if(food_inserted_micros)
+		for(var/mob/living/micro in food_inserted_micros.Copy())
+			container_resist(micro, FALSE)
+
+/// Actually carry out the nomming behavior
+/obj/item/material/kitchen/utensil/proc/swallow_or_drop(mob/living/carbon/eater, mob/living/micro)
+	if(can_food_vore(eater, micro) && eater.vore_selected)
+		eater.vore_selected.nom_atom(micro)
+	else
+		micro.forceMove(get_turf(eater))
 
 /obj/item/material/kitchen/utensil/proc/load_food(mob/user, obj/item/reagent_containers/food/snacks/loading)
 	if(user.loc == loading)
@@ -103,6 +126,29 @@
 		user.visible_message(span_notice("\The [user] dumps something off from the [src]."))
 		on_rag_wipe()
 
+//Get on the spoon, Shinji
+/obj/item/material/kitchen/utensil/proc/scoop_micro(mob/living/micro, mob/living/user)
+	if(!user.check_for_scoopable(micro))
+		to_chat(user, span_warning("You can't scoop up \the [micro] with \the [src]."))
+		return ITEM_INTERACT_FAILURE
+	if(micro.buckled || length(micro.pinned))
+		to_chat(user, span_warning("\The [micro] can't be scooped up right now."))
+		return ITEM_INTERACT_FAILURE
+	if(micro.touch_reaction_flags & SPECIES_TRAIT_PICKUP_DODGE)
+		user.visible_message(span_notice("\The [micro] deftly evades [user]'s attempt to scoop them up!"))
+		return ITEM_INTERACT_FAILURE
+
+	var/obj/item/holder/held = new /obj/item/holder/micro(src, micro)
+	held.sync(micro)
+	held.transform = matrix().Scale(micro_scale)
+	held.pixel_y = micro_offset_y
+	loaded = held
+	user.visible_message(span_notice("\The [user] scoops \the [micro] up onto \the [src]."), span_notice("You scoop \the [micro] up onto \the [src]."))
+	to_chat(micro, span_warning("\The [user] scoops you up onto \the [src]!"))
+	add_attack_logs(user, micro, "Scooped onto [src]", FALSE)
+	update_icon()
+	return ITEM_INTERACT_SUCCESS
+
 /obj/item/material/kitchen/utensil/attack(mob/living/carbon/creature, mob/living/user, target_zone, attack_modifier)
 	if(!istype(creature))
 		return ..()
@@ -118,99 +164,81 @@
 		else
 			return ..()
 
-	if(creature != user)
-		if(!user.check_for_scoopable(creature))
-			return ITEM_INTERACT_FAILURE
-		creature.visible_message(span_bold("\The [user]") + " scoops [creature] up with \the [src].")
-		//using the holder for overlay nonsense
-		var/obj/item/holder/held = new creature.holder_type(get_turf(user), creature)
-		held.sync(creature)
-		//we would add the micro to the food list but the holder handles stuff a lot better.
-		loaded = held
-		update_icon()
-		//we've picked someone up, count it just like we would food
-		return ITEM_INTERACT_SUCCESS
+	//try to scoop up the tiny you just clicked
+	if(creature != user && !loaded && !reagents.total_volume)
+		return scoop_micro(creature, user)
 
-	if(loaded)
-		if(!standard_feed_mob(user, creature))
-			return ITEM_INTERACT_FAILURE
-		if(reagents)
-			if(!creature.consume_liquid_belly && liquid_belly_check())
-				to_chat(user, span_vdanger("[user == creature ? "you can't" : "\The [creature] can't"] consume that, it contains something produced from a belly!"))
-				return ITEM_INTERACT_FAILURE
-			reagents.trans_to_mob(creature, reagents.total_volume, CHEM_INGEST)
-		if(isholder(loaded))
-			var/obj/item/holder/held = loaded
-			for(var/mob/living/micro in held.contents)
-				if(!can_food_vore(creature, micro))
-					micro.forceMove(get_turf(creature))
-				else
-					creature.vore_selected.nom_atom(micro)
-				loaded = null
-		if(food_inserted_micros)
-			for(var/mob/living/micro in food_inserted_micros)
-				LAZYREMOVE(food_inserted_micros, micro)
-				if(!can_food_vore(creature, micro))
-					micro.forceMove(get_turf(creature))
-				else
-					creature.vore_selected.nom_atom(micro)
-		if(creature == user)
-			if(!creature.can_eat(loaded))
-				return ITEM_INTERACT_FAILURE
-			creature.visible_message(span_bold("\The [user]") + " eats some of [loaded] with \the [src].")
-			var/fullness = creature.nutrition + (creature.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
-			if (fullness <= 50)
-				to_chat(creature, span_danger("You nearly swallow the whole [src] in your ravanous hunger!"))
-			if (fullness > 50 && fullness <= 150)
-				to_chat(creature, span_notice("You hungrily dump the contents of [src] into your gob."))
-			if (fullness > 150 && fullness <= 1000)
-				to_chat(creature, span_notice("You take a bite from [src]."))
-			if (fullness > 1000 && fullness <= 3000)
-				to_chat(creature, span_notice("You force another mouthful from [src]."))
-			if (fullness > 3000 && fullness <= 5500)
-				to_chat(creature, span_danger("You wince as you take another unwilling bite from [src]. You can feel your stomach getting firm as it reaches its limits."))
-			if (fullness > 5500 && fullness <= 6000)
-				to_chat(creature, span_danger("You glug down the bite from [src], you are reaching the very limits of what you can eat, but maybe a few more bites could be managed..."))
-			if (fullness > 6000) // There has to be a limit eventually.
-				to_chat(creature, span_danger("Nope. That's it. You literally cannot take another bite, not even a wafer thin mint."))
-				return ITEM_INTERACT_FAILURE
-		else
-			user.visible_message(span_warning("\The [user] begins to feed \the [creature]!"))
-			if(!(creature.can_force_feed(user, loaded) && do_after(user, 5 SECONDS, creature)))
-				return ITEM_INTERACT_FAILURE
-			creature.visible_message(span_bold("\The [user]") + " feeds some of [loaded] to \the [creature] with \the [src].")
-		playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
-		loaded = null
-		update_icon()
-		return ITEM_INTERACT_SUCCESS
-
-	else
-		to_chat(user, span_warning("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
+	var/obj/item/holder/held = isholder(loaded) ? loaded : null
+	if(!held && !(loaded && reagents.total_volume > 0))
+		to_chat(user, span_warning("You don't have anything on \the [src]."))
 		return ITEM_INTERACT_FAILURE
+
+	// eating, drinking and utensils all go through the same preference checks
+	if(!standard_feed_mob(user, creature))
+		return ITEM_INTERACT_FAILURE
+
+	var/loaded_name = held ? "\the [held]" : loaded
+	if(creature == user)
+		if(!creature.can_eat())
+			return ITEM_INTERACT_FAILURE
+		var/fullness = creature.nutrition + (creature.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
+		//Early return if you're too fat
+		if (fullness > 6000)
+			to_chat(creature, span_danger("Nope. That's it. You literally cannot take another bite, not even a wafer thin mint."))
+			return ITEM_INTERACT_FAILURE
+		creature.visible_message(span_bold("\The [user]") + " eats some of [loaded_name] with \the [src].")
+		if (fullness <= 50)
+			to_chat(creature, span_danger("You nearly swallow the whole [src] in your ravanous hunger!"))
+		else if (fullness <= 150)
+			to_chat(creature, span_notice("You hungrily dump the contents of [src] into your gob."))
+		else if (fullness <= 1000)
+			to_chat(creature, span_notice("You take a bite from [src]."))
+		else if (fullness <= 3000)
+			to_chat(creature, span_notice("You force another mouthful from [src]."))
+		else if (fullness <= 5500)
+			to_chat(creature, span_danger("You wince as you take another unwilling bite from [src]. You can feel your stomach getting firm as it reaches its limits."))
+		else
+			to_chat(creature, span_danger("You glug down the bite from [src], you are reaching the very limits of what you can eat, but maybe a few more bites could be managed..."))
+		user.visible_message(span_warning("\The [user] begins to feed \the [creature]!"))
+		if(!(creature.can_force_feed(user, loaded_name) && do_after(user, 5 SECONDS, creature)))
+			return ITEM_INTERACT_FAILURE
+		if(!loaded || (held && loaded != held))
+			return ITEM_INTERACT_FAILURE // it got dumped or the micro got away while we were busy
+		creature.visible_message(span_bold("\The [user]") + " feeds some of [loaded_name] to \the [creature] with \the [src].")
+
+	// the feeding went through, now actually hand everything over
+	if(reagents.total_volume > 0)
+		reagents.trans_to_mob(creature, reagents.total_volume, CHEM_INGEST)
+	if(held)
+		var/mob/living/micro = held.held_mob
+		loaded = null
+		if(micro)
+			swallow_or_drop(creature, micro)
+		qdel(held)
+	if(food_inserted_micros)
+		for(var/mob/living/micro in food_inserted_micros.Copy())
+			LAZYREMOVE(food_inserted_micros, micro)
+			swallow_or_drop(creature, micro)
+	playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
+	loaded = null
+	update_icon()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/material/kitchen/utensil/on_rag_wipe()
 	. = ..()
 	if(reagents.total_volume > 0)
 		reagents.clear_reagents()
-	//handle the holder
-	if(loaded && isholder(loaded))
-		var/obj/item/holder/held = loaded
-		held.dump_mob()
-	//handle 'hidden' micros from food transferring
-	if(food_inserted_micros)
-		for(var/mob/creature in food_inserted_micros)
-			container_resist(creature, FALSE)
+	release_micros()
 	loaded = null
-	cut_overlays()
-	return
+	update_icon()
 
 /obj/item/material/kitchen/utensil/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		if(isholder(loaded))
-			. += span_notice("It has [loaded] stuck in it.")
+			. += span_notice("It has [loaded] sitting on it.")
 		if(food_inserted_micros)
-			. += span_notice("It has [english_list(food_inserted_micros)] stuck in it.")
+			. += span_notice("It has [english_list(food_inserted_micros)] sitting on it.")
 
 /obj/item/material/kitchen/utensil/container_resist(mob/living/micro, willingly = TRUE)
 	if(isdisposalpacket(loc))
