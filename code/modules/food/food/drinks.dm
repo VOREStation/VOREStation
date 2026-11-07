@@ -165,7 +165,7 @@
 
 	var/original_volume = reagents.total_volume
 	. = ..() // preference checks, then the feeding itself
- 	var/changed = !(reagents.total_volume == original_volume)
+	var/changed = !(reagents.total_volume == original_volume)
 	if(.)
 		On_Consume(target, user, changed)
 	return .
