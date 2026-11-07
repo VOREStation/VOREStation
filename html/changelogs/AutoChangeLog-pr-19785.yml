@@ -1,0 +1,8 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - bugfix: "fixed cameras not being damaged by searing weapons"
+  - code_imp: "fixed a bug where you could 'reactivate' a camera by hitting it enough"
+  - code_imp: "converted a camera variable to true | false flags."
+  - qol: "Made it so examining a broken camera tells you it is broken"
+  - code_imp: "Converted cameras to an HP system so you can have stronger cameras"
