@@ -51,10 +51,10 @@ Bonus
 	if(!..())
 		return
 	if(A.resistance >= 5)
-		power = 1.5
+		power = 2.5
 		unsafe = TRUE
 		if(A.resistance >= 10)
-			power = 2.5
+			power = 5
 
 /datum/symptom/fever/Activate(datum/disease/advance/A)
 	if(!..())
