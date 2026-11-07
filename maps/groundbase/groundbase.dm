@@ -5,7 +5,6 @@
 	#include "groundbase_telecomms.dm"
 	#include "groundbase_things.dm"
 	#include "groundbase_events.dm"
-	#include "groundbase_poi_maps.dm"
 	#include "..\~map_system\maps_vr.dm"
 
 	#ifndef AWAY_MISSION_TEST //Don't include these for just testing away missions
