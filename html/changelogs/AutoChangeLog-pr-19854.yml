@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - code_imp: "added COMSIG_EXTERNAL_ORGAN_STANCE_DAMAGE_APPLICATION signal"
-  - code_imp: "added COMSIG_EXTERNAL_ORGAN_GRASP_DAMAGE_APPLICATION signal"
-  - code_imp: "added COMSIG_MOB_HEAR_SAY signal"
-  - bugfix: "missing parent call for remote view gene's signals"
