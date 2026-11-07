@@ -36,7 +36,7 @@
 				break
 
 	if(!input_plate)
-		log_world("## MISC a [src] didn't find an input plate.")
+		log_world("## MISC [src] at [AREACOORD(src.loc)] couldn't find an input plate.")
 
 /obj/machinery/gibber/Destroy()
 	occupant = null
