@@ -86,3 +86,9 @@
 
 /obj/machinery/power/port_gen/rteg/attack_ai(mob/user)
 	TogglePower()
+
+/obj/machinery/power/port_gen/rteg/stellar_delight
+	power_gen = 450 KILOWATTS
+
+/obj/machinery/power/port_gen/rteg/tether
+	power_gen = 600 KILOWATTS
