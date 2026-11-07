@@ -955,7 +955,7 @@
 		var/mob/living/carbon/human/unfortunateLad = M
 		if(!unfortunateLad.lying)
 			return
-		src.visible_message("<span class='danger'>\The [src] stomps \the [unfortunateLad]!</span>")
+		src.visible_message(span_danger("\The [src] stomps \the [unfortunateLad]!"))
 		unfortunateLad.apply_damage(trample_damage, BRUTE)
 		add_attack_logs(occupant, unfortunateLad, "was trampled by [src] for [trample_damage]")
 		playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
@@ -963,7 +963,7 @@
 
 	else if(isanimal(M))
 		var/mob/living/L = M
-		src.visible_message("<span class='danger'>\The [src] stomps over \the [L]!</span>")
+		src.visible_message(span_danger("\The [src] stomps over \the [L]!"))
 		if(istype(L, /mob/living/simple_mob))
 			if(issmall(L) && (L.stat == DEAD))
 				L.gib()
