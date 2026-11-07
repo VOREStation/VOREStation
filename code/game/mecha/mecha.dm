@@ -1435,12 +1435,12 @@
 				if(1)
 					to_chat(user, "You were unable to attach \the [W] to [src].")
 				if(2)
-					to_chat(user, "You can only attach one [W] to [src].")
+					to_chat(user, "You can only attach one of \the [W] to [src].")
 				if(3)
 					to_chat(user, "[src] lacks equipment slots for \the [W].")
 				if(4)
 					to_chat(user, "[src] isn't compatible with \the [W].")
-				else //Out of bounds
+				else //Not supposed to happen.
 					to_chat(user, "You were unable to attach \the [W] to [src].")
 		return
 
