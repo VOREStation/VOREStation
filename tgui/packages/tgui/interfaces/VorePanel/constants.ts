@@ -128,6 +128,7 @@ export const typeToTooltip = {
   'Sheath Vore': 'The act of consuming a prey into the sheath.',
   'Bladder Vore': 'The act of consuming a prey into the bladder.',
   Unbirth: 'The act of consuming a prey with a pussy.',
+  'Breast Vore': 'The act of consuming a prey with a breast.',
   'Udder Vore': 'The act of consuming a prey with the udder.',
   'Tail Vore': 'The act of consuming a prey with the tail.',
   Absorption: 'The act of absorbing a prey.',

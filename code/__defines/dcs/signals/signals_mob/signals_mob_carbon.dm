@@ -199,6 +199,10 @@
 	#define COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE (1<<0)
 ///from /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs, permutation, projectile)
 #define COMSIG_EXTERNAL_ORGAN_POST_DAMAGE_APPLICATION "external_organ_post_damage_application"
+///from /mob/living/carbon/human/proc/handle_stance()
+#define COMSIG_EXTERNAL_ORGAN_STANCE_DAMAGE_APPLICATION "external_organ_stance_damage_application"
+///from /mob/living/carbon/human/proc/handle_grasp()
+#define COMSIG_EXTERNAL_ORGAN_GRASP_DAMAGE_APPLICATION "external_organ_grasp_damage_application"
 ///from /obj/item/organ/take_damage(amount, silent)
 #define COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION "internal_organ_pre_damage_application"
 ///Return this in response if you don't want internal organ damage to be dealt via the normal proc.

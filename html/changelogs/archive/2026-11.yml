@@ -53,3 +53,13 @@
   - rscadd: Made it possible for ghosts to see current department goals with a verb.
   - rscadd: Added a random button to randomly pick a hair, or beard, or tail, or wings,
       etc.
+2026-11-07:
+  ReoDaProtovali:
+  - bugfix: Fixes repeated headsmashing when you slide recursively
+  - bugfix: Fixes an inconsistant runtime with trying to delete slip_timer when it
+      is sometimes null
+  Will:
+  - code_imp: added COMSIG_EXTERNAL_ORGAN_STANCE_DAMAGE_APPLICATION signal
+  - code_imp: added COMSIG_EXTERNAL_ORGAN_GRASP_DAMAGE_APPLICATION signal
+  - code_imp: added COMSIG_MOB_HEAR_SAY signal
+  - bugfix: missing parent call for remote view gene's signals

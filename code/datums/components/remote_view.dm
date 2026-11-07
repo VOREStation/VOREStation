@@ -285,6 +285,7 @@
 /datum/component/remote_view/mremote_mutation
 
 /datum/component/remote_view/mremote_mutation/RegisterWithParent()
+	. = ..()
 	// Remote view mutation stops viewing when mobs die or if we lose the mutation/gene
 	RegisterSignal(host_mob, COMSIG_MOB_DNA_MUTATION, PROC_REF(on_mutation))
 	RegisterSignal(remote_view_target, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
