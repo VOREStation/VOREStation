@@ -78,11 +78,11 @@
 /obj/machinery/power/port_gen/rteg/attack_hand(mob/user)
 	..()
 	if (!anchored)
-		to_chat(user, "[src] can't safely be power-cycled while being unanchored.")
+		to_chat(user, span_warning("[src] can't safely be power-cycled while being unanchored."))
 		return
 	add_fingerprint(user)
 	TogglePower()
 
 
-/obj/machinery/power/port_gen/rteg/attack_ai(mob/user as mob)
+/obj/machinery/power/port_gen/rteg/attack_ai(mob/user)
 	TogglePower()
