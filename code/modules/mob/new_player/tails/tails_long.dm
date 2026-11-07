@@ -60,6 +60,8 @@
 	icon_state = "nightstalker_desert"
 	ani_state = "nightstalker_desert_w"
 	do_colouration = FALSE // We're not coloring this, these are pre-colored
+	tailsock_iconstate = "nightstalker_diamondback"
+	tailsock_wagicon = "nightstalker_diamondback_w"
 
 /datum/sprite_accessory/tail/longtail/diamondback_nightstalker
 	name = "Diamondback Nightstalker Tail (dual-color, vwag)"
@@ -104,14 +106,12 @@
 
 /datum/sprite_accessory/tail/longtail/flagtail
 	name = "Flagtail"
-	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
 	icon_state = "flagtail"
 	extra_overlay = "flagtail-1"
 	extra_overlay2 = "flagtail-2"
 
 /datum/sprite_accessory/tail/longtail/chonksqrl
 	name = "Squirrel (Big)"
-	icon = 'icons/rogue-star/tails_64x32_rs.dmi'
 	icon_state = "chonksqrl"
 	extra_overlay = "chonksqrl-m1"
 	extra_overlay2 = "chonksqrl-m2"

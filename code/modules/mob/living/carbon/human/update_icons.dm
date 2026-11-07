@@ -264,11 +264,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			if(digitigrade && (part.organ_tag == BP_R_LEG  || part.organ_tag == BP_L_LEG || part.organ_tag == BP_R_FOOT || part.organ_tag == BP_L_FOOT))
 				icon_key += "_digi"
 
-			if(tail_style)
-				pixel_x = tail_style.mob_offset_x
-				pixel_y = tail_style.mob_offset_y
-				default_pixel_x = tail_style.mob_offset_x
-				default_pixel_y = tail_style.mob_offset_y
+	//ensure offsets don't get orphaned for tail specific overrides
+	var/base_tail_x = tail_style ? tail_style.mob_offset_x : 0
+	var/base_tail_y = tail_style ? tail_style.mob_offset_y : 0
+	if(default_pixel_x != base_tail_x || default_pixel_y != base_tail_y)
+		pixel_x += base_tail_x - default_pixel_x
+		pixel_y += base_tail_y - default_pixel_y
+		default_pixel_x = base_tail_x
+		default_pixel_y = base_tail_y
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
@@ -287,8 +290,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		var/icon_x_offset = 0
 		var/icon_y_offset = 0
 
-		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
-			if(tail_style.clip_mask)
+		if(istype(tail_style, /datum/sprite_accessory/tail))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
+			if(tail_style.clip_mask) // trim it if we need to, for taur body types that don't have sprite sheets at all.
 				Cutter = new(icon = (tail_style.clip_mask_icon ? tail_style.clip_mask_icon : tail_style.icon), icon_state = tail_style.clip_mask_state)
 
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
@@ -631,30 +634,37 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(UNIFORM_LAYER)
 
-	//Shoes can be affected by uniform being drawn onto them
+	// Shoes can be affected by uniform being drawn onto them
 	update_inv_shoes()
 
 	if(!w_uniform)
 		return
 
+	// Wearing a suit that prevents uniform rendering (e.g. non-RIG full suits)
 	if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space/rig))
-		return //Wearing a suit that prevents uniform rendering
+		return
 
 	var/obj/item/clothing/under/under = w_uniform
+	var/uniform_sprite = (istype(under) && !isnull(under.update_icon_define)) ? under.update_icon_define : INV_W_UNIFORM_DEF_ICON
 
-	var/uniform_sprite
-	if(istype(under) && !isnull(under.update_icon_define))
-		uniform_sprite = under.update_icon_define
-	else
-		uniform_sprite = INV_W_UNIFORM_DEF_ICON
+	var/icon/c_mask = null
 
-	//Build a uniform sprite
-	var/icon/c_mask = tail_style?.clip_mask
-	if(c_mask)
-		var/obj/item/clothing/suit/S = wear_suit
-		if((wear_suit?.flags_inv & HIDETAIL) || (istype(S) && S.taurized)) // Reasons to not mask: 1. If you're wearing a suit that hides the tail or if you're wearing a taurized suit.
-			c_mask = null
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	// Check if a taur body is active on the mob
+	var/tail_is_rendered = (overlays_standing[get_tail_layer()] || overlays_standing[TAIL_UPPER_LAYER_HIGH])
+
+	// Clip uniform pants/legs off at the waist IF:
+	// Taur body with a mask and not fitted for taurs. Which is basically all of them lmaooo.
+	if(tail_is_rendered && tail_style?.clip_mask && (istype(under) && !under.taurized))
+		c_mask = tail_style.clip_mask
+
+	// Build uniform sprite with clip mask applied
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(
+		body_type = species.get_bodytype(src),
+		slot_name = slot_w_uniform_str,
+		default_icon = uniform_sprite,
+		default_layer = UNIFORM_LAYER,
+		clip_mask = c_mask
+	)
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -755,37 +765,49 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
+	// Clean up existing shoe layers
 	remove_layer(SHOES_LAYER)
-	remove_layer(SHOES_LAYER_ALT) //Dumb alternate layer for shoes being under the uniform.
+	remove_layer(SHOES_LAYER_ALT)
 
-	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
-		return //Either nothing to draw, or it'd be hidden.
+	// Shoe check, don't bother if we ain't showing with our suit/uniform
+	if(!shoes || (wear_suit && (wear_suit.flags_inv & HIDESHOES)) || (w_uniform && (w_uniform.flags_inv & HIDESHOES)))
+		return
 
-	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
-		var/obj/item/organ/external/foot/foot = get_organ(f)
-		if(istype(foot) && foot.is_hidden_by_sprite_accessory(clothing_only = TRUE)) //If either foot is hidden by the tail, don't render footwear.
+	// Species check
+	if(species && (species.flags & HIDESHOES))
+		return
+
+	// Tail/taur checks
+	if(tail_style)
+		if(istaurtail(tail_style))
 			return
 
+		// If the tail accessory hides both feet, then we yeet shoes too
+		if(tail_style.hide_body_parts && (BP_L_FOOT in tail_style.hide_body_parts) && (BP_R_FOOT in tail_style.hide_body_parts))
+			return
+
+	// is_hidden_by_sprite_accessory check
+	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
+		var/obj/item/organ/external/foot/foot = get_organ(f)
+		if(istype(foot) && foot.is_hidden_by_sprite_accessory(clothing_only = TRUE))
+			return
+
+	// finally let's actually try to draw some shoes.
 	var/obj/item/clothing/shoes/shoe = shoes
-	var/shoe_sprite
+	var/shoe_sprite = (istype(shoe) && !isnull(shoe.update_icon_define)) ? shoe.update_icon_define : INV_FEET_DEF_ICON
 
-	if(istype(shoe) && !isnull(shoe.update_icon_define))
-		shoe_sprite = shoe.update_icon_define
-	else
-		shoe_sprite = INV_FEET_DEF_ICON
-
-	//Allow for shoe layer toggle nonsense
 	var/shoe_layer = SHOES_LAYER
-	if(istype(shoes, /obj/item/clothing/shoes))
-		var/obj/item/clothing/shoes/ushoes = shoes
-		if(ushoes.shoes_under_pants == 1)
-			shoe_layer = SHOES_LAYER_ALT
+	if(istype(shoe) && shoe.shoes_under_pants)
+		shoe_layer = SHOES_LAYER_ALT
 
-	//NB: the use of a var for the layer on this one
-	overlays_standing[shoe_layer] = shoes.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_shoes_str, default_icon = shoe_sprite, default_layer = shoe_layer)
+	overlays_standing[shoe_layer] = shoe.make_worn_icon(
+		body_type = species.get_bodytype(src),
+		slot_name = slot_shoes_str,
+		default_icon = shoe_sprite,
+		default_layer = shoe_layer
+	)
 
-	apply_layer(SHOES_LAYER)
-	apply_layer(SHOES_LAYER_ALT)
+	apply_layer(shoe_layer)
 
 /mob/living/carbon/human/update_inv_s_store()
 	if(QDESTROYING(src))
@@ -849,31 +871,42 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	remove_layer(SUIT_LAYER)
 
-	//Hide/show other layers if necessary
+	// Hide/show uniform & shoes
 	update_inv_w_uniform()
 	update_inv_shoes()
+
+	// Always ensure tail/taur states are updated so overlay existence is current
 	update_tail_showing()
 	update_wing_showing()
 
 	if(!wear_suit)
-		return //No point, no suit.
+		return // No point, no suit.
 
-	var/obj/item/clothing/suit/suit = wear_suit
-	var/suit_sprite
+	var/obj/item/clothing/suit/suit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+	var/suit_sprite = (istype(suit) && !isnull(suit.update_icon_define)) ? suit.update_icon_define : INV_SUIT_DEF_ICON
 
-	if(istype(suit) && !isnull(suit.update_icon_define))
-		suit_sprite = suit.update_icon_define
-	else
-		suit_sprite = INV_SUIT_DEF_ICON
+	// Check if we've got a tail to render, for clipping reasons.
+	var/tail_is_rendered = FALSE
+	for(var/layer in TAIL_LAYER_CLEARING)
+		if(overlays_standing[layer])
+			tail_is_rendered = TRUE
+			break
 
+	// Check if a taur body is active and requires clipping the lower half of the suit off
 	var/icon/c_mask = null
-	var/tail_is_rendered = overlays_standing[TAIL_LOWER_LAYER] || overlays_standing[tail_layering]
-	var/valid_clip_mask = tail_style?.clip_mask
 
-	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
-		c_mask = valid_clip_mask
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+	// Apply the clip mask to trim our suit for taur body fitting
+	if(tail_is_rendered && tail_style?.clip_mask && (tail_style?.requires_clipping || !(istype(suit) && suit.taurized)))
+		c_mask = tail_style.clip_mask
 
+	// Generate suit overlay
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(
+		body_type = species.get_bodytype(src),
+		slot_name = slot_wear_suit_str,
+		default_icon = suit_sprite,
+		default_layer = SUIT_LAYER,
+		clip_mask = c_mask
+	)
 	apply_layer(SUIT_LAYER)
 
 /mob/living/carbon/human/update_inv_pockets()
@@ -985,144 +1018,375 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 
 	apply_layer(L_HAND_LAYER)
 
+/// Ensure our layers are correct
 /mob/living/carbon/human/proc/get_tail_layer()
-	var/list/lower_layer_dirs = list(SOUTH, EAST, WEST) //Tail below clothing on side views too.
-	if(tail_style)
+	var/list/lower_layer_dirs = LOWER_TAIL_DIRS // Tail below clothing on side views too.
+	if(!tail_style) // Sanity checks good checks.
+		return
+	else
 		lower_layer_dirs = tail_style.lower_layer_dirs.Copy()
 
-	if(dir in lower_layer_dirs)
+	if(istaurtail(tail_style) || (dir in lower_layer_dirs))
 		return TAIL_LOWER_LAYER
 	else
 		return TAIL_UPPER_LAYER
 
+///Used specifically for the appearance changer nonsense.
+/mob/living/carbon/human/proc/refresh_tail_style(datum/sprite_accessory/tail/old_style)
+	if(old_style == tail_style || (!old_style?.affects_body() && !tail_style?.affects_body()))
+		update_tail_showing()
+		return
+	var/obj/item/clothing/suit/worn_suit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+	if(worn_suit)
+		worn_suit.taurize(src, istaurtail(tail_style))
+	regenerate_icons()
+
+///check our tail and update accordingly
 /mob/living/carbon/human/proc/update_tail_showing()
 	if(QDESTROYING(src))
 		return
 
-	remove_layer(TAIL_UPPER_LAYER)
-	remove_layer(TAIL_UPPER_LAYER_HIGH)
-	remove_layer(TAIL_UPPER_LAYER_LOW)
-	remove_layer(TAIL_LOWER_LAYER)
+	// Clear previous tail layer assignments
+	for(var/layers in TAIL_LAYER_CLEARING)
+		remove_layer(layers)
 
 	var/tail_layer = get_tail_layer()
-	if(src.tail_style && src.tail_style.clip_mask_state)
-		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
-	if(tail_layer == TAIL_UPPER_LAYER)
-		tail_layer = tail_layering
+	// Use default, let clip mask handle everything
+	if(tail_style && tail_style.clip_mask_state && !istaurtail(tail_style))
+		tail_layer = TAIL_UPPER_LAYER
+	else if(tail_layer == TAIL_UPPER_LAYER)
+		//north gets a special fixed layer, but we also have to remember lower_layer_dirs too
+		tail_layer = (dir == NORTH) ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
 
 	update_vore_tail_sprite()
 
+	// Build and apply tail/tailsock layers directly
+	update_tail_layer(tail_layer, apply_to_mob = TRUE)
+
+	//debugging excessive overlays
+	/*
+	if(istype(src, /mob/living/carbon/human/dummy))
+		var/tracked = 0
+		for(var/entry in overlays_standing)
+			if(entry)
+				tracked += islist(entry) ? length(entry) : 1
+		log_world("tail dbg: overlays=[length(overlays)] tracked=[tracked] diff=[length(overlays) - tracked] style=[tail_style?.type]") */
+
+/// Outsourced tail image building, hopefully cuts down on bloat
+/mob/living/carbon/human/proc/build_tail_image(icon/tailtobuild, base_state, base_color, markings = null, color2 = null, markings2 = null, color3 = null)
+	var/image/tail_image = image(tailtobuild, icon_state = null)
+	var/mutable_appearance/base = mutable_appearance(tailtobuild, base_state)
+	if(base_color)
+		base.color = base_color
+	tail_image.overlays += base
+	if(markings && markings != "none")
+		var/mutable_appearance/markingsoverlay = mutable_appearance(tailtobuild, markings)
+		markingsoverlay.color = color2
+		markingsoverlay.layer = FLOAT_LAYER + 0.01
+		tail_image.overlays += markingsoverlay
+	if(markings2 && markings2 != "none")
+		var/mutable_appearance/markingsoverlay2 = mutable_appearance(tailtobuild, markings2)
+		markingsoverlay2.color = color3
+		markingsoverlay2.layer = FLOAT_LAYER + 0.02
+		tail_image.overlays += markingsoverlay2
+	return tail_image
+
+/// Handle offsets and verb-additions outside of image generation
+/mob/living/carbon/human/proc/handle_tail_side_effects()
+	if(!tail_style)
+		return
+
+	// Taur loafing pixel_y adjustment
+	if(tail_style.can_loaf && !is_shifted)
+		pixel_y = resting ? -tail_style.loaf_offset * size_multiplier : default_pixel_y
+
+	// Taur riding verb initialization
+	if(istaurtail(tail_style))
+		var/datum/sprite_accessory/tail/taur/taurtype = tail_style
+		if(taurtype.can_ride && !riding_datum)
+			riding_datum = new /datum/riding/taur(src)
+			add_verb(src, /mob/living/carbon/human/proc/taur_mount)
+			add_verb(src, /mob/living/proc/toggle_rider_reins)
+
+
+/// Let's make a tail! Surely a unified one works better than trying to pass info back and forth, right?
+/mob/living/carbon/human/proc/update_tail_layer(target_layer = null, apply_to_mob = TRUE)
+	if(QDESTROYING(src) || tail_hidden)
+		return null
+
+	//give us our riding verbs if needed, loaf adjustment stuff, etc.
+	if(apply_to_mob)
+		handle_tail_side_effects()
+
+	// Get torso alpha channel
+	var/torso_alpha = 255
 	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
+	if(chest)
+		torso_alpha = chest.alpha
 
-	var/image/tail_image = get_tail_image()
-	if(tail_image)
-		tail_image.layer = BODY_LAYER+tail_layer
-		overlays_standing[tail_layer] = tail_image
-		apply_layer(tail_layer)
-		return
+	if(!target_layer)
+		target_layer = get_tail_layer() || TAIL_UPPER_LAYER
 
-	var/species_tail = species?.get_tail(src) // Species tail icon_state prefix.
+	// Synth Tail check
+	var/datum/robolimb/model = isSynthetic()
+	if(istype(model) && model.includes_tail && !tail_style)
+		var/mutable_appearance/syn_tail = mutable_appearance(synthetic.icon, "tail")
+		syn_tail.color = rgb(r_skin, g_skin, b_skin)
 
-	//This one is actually not that bad I guess.
-	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
-		var/icon/tail_s = get_tail_icon()
-		tail_image = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+tail_layer)
-		tail_image.alpha = chest?.transparent ? 180 : 255
-		overlays_standing[tail_layer] = tail_image
-		animate_tail_reset()
+		var/image/syn_img = image(syn_tail)
+		syn_img.alpha = torso_alpha
+		syn_img.layer = target_layer
 
-//TODO: Is this the appropriate place for this, and not on species...?
-/mob/living/carbon/human/proc/get_tail_icon()
-	var/icon_key = "[species.get_race_key(src)][r_skin][g_skin][b_skin][r_hair][g_hair][b_hair]"
-	var/icon/tail_icon = GLOB.tail_icon_cache[icon_key]
-	if(!tail_icon)
-		//generate a new one
-		var/species_tail_anim = species.get_tail_animation(src)
-		if(!species_tail_anim && species.icobase_tail) species_tail_anim = species.icobase //Allow override of file for non-animated tails
-		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
-		tail_icon = new/icon(species_tail_anim)
-		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
-		// The following will not work with animated tails.
-		var/use_species_tail = species.get_tail_hair(src)
-		if(use_species_tail)
-			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), species.color_mult ? ICON_MULTIPLY : ICON_ADD)				//Check for species color_mult
-			tail_icon.Blend(hair_icon, ICON_OVERLAY)
-		GLOB.tail_icon_cache[icon_key] = tail_icon
+		if(apply_to_mob)
+			overlays_standing[target_layer] = syn_img
+			apply_layer(target_layer)
 
-	return tail_icon
+		return syn_img
 
+	// Custom Tail check
+	if(tail_style)
+		var/datum/sprite_accessory/tail/tailtype = tail_style
+
+		// Get our suit informations, this'll tell us if we need a sock or not
+		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+		var/sock_active = socksuit && socksuit.requires_tailsock && socksuit.tailsock_toggle
+		var/is_wagging = wagging && tailtype.ani_state
+		var/off_x = tailtype.offset_x
+		var/off_y = tailtype.offset_y
+		var/tail_alpha = (a_tail != null) ? min(a_tail, torso_alpha) : torso_alpha // match our tail alpha to the torso
+
+		// Only taur-style bodies need a separate, higher tail piece.
+		var/split_tail = istaurtail(tailtype) || istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy)
+		if(split_tail && target_layer == TAIL_UPPER_LAYER_HIGH)
+			target_layer = TAIL_UPPER_LAYER // body must not share a slot with its own tail piece
+		// Taurs only get the HIGH piece in "high" facings (north) S/E/W stay low
+		// set_dir() already re-runs update_tail_showing() when turning to/from NORTH.
+		var/north_tail = !istaurtail(tailtype) || !(dir in tailtype.lower_layer_dirs)
+
+		var/basecolor = tailtype.do_colouration ? rgb(r_tail, g_tail, b_tail) : null
+		var/markingcolor = rgb(r_tail2, g_tail2, b_tail2)
+		var/markingcolor2 = rgb(r_tail3, g_tail3, b_tail3)
+
+		var/target_icon = (tailtype.can_loaf && resting) ? tailtype.icon_loaf : tailtype.icon
+		var/target_state = is_wagging ? tailtype.ani_state : tailtype.icon_state
+		// The greyscale sock sprite. Defaults to the base state; pre-colored tails and taurs have a dedicated one.
+		var/sock_state = (is_wagging && tailtype.tailsock_wagicon) ? tailtype.tailsock_wagicon : tailtype.tailsock_iconstate
+		var/sock_color = sock_active ? socksuit.get_tailsock_color() : null
+		// taur body / base tail / tailsock override icon
+		var/image/working
+		if(sock_active && !split_tail)
+			working = build_tail_image(tailtype.tailsock_icon, sock_state, sock_color)
+		else
+			working = build_tail_image(target_icon, target_state, basecolor, \
+				tailtype.extra_overlay ? (is_wagging ? tailtype.extra_overlay_w : tailtype.extra_overlay) : null, markingcolor, \
+				tailtype.extra_overlay2 ? (is_wagging ? tailtype.extra_overlay2_w : tailtype.extra_overlay2) : null, markingcolor2)
+
+		// Tail piece, only for taur-style bodies
+		var/image/upper_sock_img = null
+		if(split_tail)
+			var/marking1 = is_wagging ? tailtype.tailsock_wagmarkings : tailtype.tailsock_markings
+			var/marking2 = is_wagging ? tailtype.tailsock_wagmarkings2 : tailtype.tailsock_markings2
+			if(sock_active)
+				var/keep = istype(tailtype, /datum/sprite_accessory/tail/longtail/bigleggy) // current big leggy special case
+				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, sock_color, \
+					keep ? marking1 : null, sock_color, keep ? marking2 : null, sock_color)
+				upper_sock_img.alpha = socksuit.alpha
+			else if(tailtype.do_colouration)
+				upper_sock_img = build_tail_image(tailtype.tailsock_icon, sock_state, basecolor, marking1, markingcolor, marking2, markingcolor2)
+				upper_sock_img.alpha = tail_alpha
+			else
+				// pre-colored split tail: old behavior, the real sprite uncolored
+				upper_sock_img = build_tail_image(tailtype.icon, target_state, null)
+				upper_sock_img.alpha = tail_alpha
+
+			if(!north_tail)
+				if(sock_active)
+					upper_sock_img.layer = FLOAT_LAYER + 0.1 // above the body inside working; must be set BEFORE it is added
+					working.overlays += upper_sock_img
+				upper_sock_img = null
+
+		// em block goes on before the layer/offset are set, so the offset isn't applied twice
+		if(tailtype.em_block)
+			working.overlays += em_block_image_generic(working)
+
+		working.layer = target_layer
+		working.pixel_x = off_x
+		working.pixel_y = off_y
+		working.alpha = tail_alpha
+
+		if(apply_to_mob)
+			overlays_standing[target_layer] = working
+			apply_layer(target_layer)
+
+			if(upper_sock_img)
+				upper_sock_img.layer = TAIL_UPPER_LAYER_HIGH
+				upper_sock_img.pixel_x = off_x
+				upper_sock_img.pixel_y = off_y
+				overlays_standing[TAIL_UPPER_LAYER_HIGH] = upper_sock_img
+				apply_layer(TAIL_UPPER_LAYER_HIGH)
+
+		return working
+
+	else if(species && species.tail)
+		//prepare the cache for these honestly trivial and rarely used tail modes
+		var/race_key = species.get_race_key(src)
+		var/icon_key = "[race_key]_[r_skin]_[g_skin]_[b_skin]_[r_hair]_[g_hair]_[b_hair]"
+
+		var/mutable_appearance/tail_app = GLOB.tail_icon_cache[icon_key]
+
+		if(!tail_app)
+			var/species_tail_anim = species.get_tail_animation(src) || species.icobase_tail || species.icobase || 'icons/effects/species.dmi'
+			tail_app = mutable_appearance(species_tail_anim, "[tail_style]")
+			tail_app.color = rgb(r_skin, g_skin, b_skin)
+			tail_app.blend_mode = species.color_mult ? BLEND_MULTIPLY : BLEND_ADD
+
+			var/use_species_tail = species.get_tail_hair(src)
+			if(use_species_tail)
+				var/tail_species_state = "[species.get_tail(src)]_[use_species_tail]"
+				var/mutable_appearance/hair_app = mutable_appearance('icons/effects/species.dmi', tail_species_state)
+				hair_app.color = rgb(r_hair, g_hair, b_hair)
+				hair_app.blend_mode = tail_app.blend_mode
+				tail_app.overlays += hair_app
+
+			GLOB.tail_icon_cache[icon_key] = tail_app
+
+		var/image/species_tail_img = image(tail_app)
+		species_tail_img.alpha = torso_alpha
+		species_tail_img.layer = target_layer
+
+		if(apply_to_mob)
+			overlays_standing[target_layer] = species_tail_img
+			apply_layer(target_layer)
+
+		return species_tail_img
+
+	//And in the end, it didnt't even matter..
+	return null
+
+///tail animation handling
 /mob/living/carbon/human/proc/set_tail_state(t_state)
-	var/tail_layer = get_tail_layer()
-	if(src.tail_style && src.tail_style.clip_mask_state)
-		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
-	if(tail_layer == TAIL_UPPER_LAYER)
-		tail_layer = tail_layering
-	var/image/tail_overlay = overlays_standing[tail_layer]
+	if(QDESTROYING(src) || !tail_style)
+		return null
 
-	remove_layer(TAIL_UPPER_LAYER)
-	remove_layer(TAIL_UPPER_LAYER_HIGH)
-	remove_layer(TAIL_UPPER_LAYER_LOW)
-	remove_layer(TAIL_LOWER_LAYER)
+	wagging = (tail_style.ani_state && t_state == tail_style.ani_state)
+	update_tail_showing()
+	return overlays_standing[get_tail_layer()]
 
-	if(tail_overlay)
-		overlays_standing[tail_layer] = tail_overlay
-		if(species.get_tail_animation(src))
-			tail_overlay.icon_state = t_state
-			. = tail_overlay
-
-	apply_layer(tail_layer)
-
-//Not really once, since BYOND can't do that.
-//Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
-//You can sort of flick images now with flick_overlay -Aro
-/mob/living/carbon/human/proc/animate_tail_once()
-	if(QDESTROYING(src))
-		return
-
-	var/t_state = "[species.get_tail(src)]_once"
-	var/tail_layer = get_tail_layer()
-	if(src.tail_style && src.tail_style.clip_mask_state)
-		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
-
-	var/image/tail_overlay = overlays_standing[tail_layer]
-	if(tail_overlay && tail_overlay.icon_state == t_state)
-		return //let the existing animation finish
-
-	tail_overlay = set_tail_state(t_state) // Calls remove_layer & apply_layer
-	if(tail_overlay)
-		spawn(20)
-			//check that the animation hasn't changed in the meantime
-			if(overlays_standing[tail_layer] == tail_overlay && tail_overlay.icon_state == t_state)
-				animate_tail_stop()
-
-/mob/living/carbon/human/proc/animate_tail_start()
-	if(QDESTROYING(src))
-		return
-
-	set_tail_state("[species.get_tail(src)]_slow[rand(0,9)]")
-
-/mob/living/carbon/human/proc/animate_tail_fast()
-	if(QDESTROYING(src))
-		return
-
-	set_tail_state("[species.get_tail(src)]_loop[rand(0,9)]")
-
+/// animation check
 /mob/living/carbon/human/proc/animate_tail_reset()
-	if(QDESTROYING(src))
+	if(QDESTROYING(src) || !tail_style)
 		return
 
-	if(stat != DEAD)
-		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
+	if(stat == DEAD)
+		set_tail_state(tail_style.icon_state)
+		toggle_tail(FALSE) // Stop wagging on death
 	else
-		set_tail_state("[species.get_tail(src)]_static")
-		toggle_tail(FALSE) //So tails stop when someone dies. TODO - Fix this hack ~Leshana
+		// Resets tail state based on current wagging flag
+		set_tail_state(wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)
 
+/// technically obsolete
+/mob/living/carbon/human/proc/animate_tail_start()
+	if(QDESTROYING(src) || !tail_style)
+		return
+
+	toggle_tail(TRUE)
+	if(tail_style.ani_state)
+		set_tail_state(tail_style.ani_state)
+
+/// technically obsolete
 /mob/living/carbon/human/proc/animate_tail_stop()
+	if(QDESTROYING(src) || !tail_style)
+		return
+
+	toggle_tail(FALSE)
+	set_tail_state(tail_style.icon_state)
+
+/mob/living/carbon/human/proc/update_vore_belly_sprite()
 	if(QDESTROYING(src))
 		return
 
-	set_tail_state("[species.get_tail(src)]_static")
+	remove_layer(VORE_BELLY_LAYER)
+
+	var/image/vore_belly_image = get_vore_belly_image()
+	if(vore_belly_image)
+		vore_belly_image.layer = BODY_LAYER+VORE_BELLY_LAYER
+		overlays_standing[VORE_BELLY_LAYER] = vore_belly_image
+		vore_belly_image.plane = PLANE_CH_STOMACH //This one line of code. This ONE LINE OF CODE TOOK 6 HOURS TO FIGURE OUT. THANK YOU REDCAT.
+		vore_belly_image.appearance_flags = appearance_flags
+
+	apply_layer(VORE_BELLY_LAYER)
+
+/mob/living/carbon/human/proc/get_vore_belly_image()
+	if(!(wear_suit && wear_suit.flags_inv & HIDETAIL))
+		var/vs_fullness = vore_fullness_ex["stomach"]
+		var/icon/vorebelly_s = new/icon(icon = 'icons/mob/vore/Bellies.dmi', icon_state = "[species.vore_belly_default_variant]Belly[vs_fullness][struggle_anim_stomach ? "" : " idle"]")
+		vorebelly_s.Blend(vore_sprite_color["stomach"], vore_sprite_multiply["stomach"] ? ICON_MULTIPLY : ICON_ADD)
+		var/image/working = image(vorebelly_s)
+		working.overlays += em_block_image_generic(working)
+		return working
+	return null
+
+/mob/living/carbon/human/proc/vore_belly_animation()
+	if(!struggle_anim_stomach)
+		struggle_anim_stomach = TRUE
+		update_vore_belly_sprite()
+		spawn(1.2 SECONDS)
+			struggle_anim_stomach = FALSE
+			update_vore_belly_sprite()
+
+/mob/living/carbon/human/proc/update_vore_tail_sprite()
+	if(QDESTROYING(src))
+		return
+
+	remove_layer(VORE_TAIL_LAYER)
+	var/image/vore_tail_image = get_vore_tail_image()
+	if(vore_tail_image)
+		vore_tail_image.layer = BODY_LAYER + VORE_TAIL_LAYER
+		// This one line of code. THIS ONE LINE OF CODE TOOK 6 HOURS TO FIGURE OUT. THANK YOU REDCAT.
+		vore_tail_image.plane = PLANE_CH_STOMACH
+		vore_tail_image.appearance_flags = appearance_flags
+		overlays_standing[VORE_TAIL_LAYER] = vore_tail_image
+	apply_layer(VORE_TAIL_LAYER)
+
+/mob/living/carbon/human/proc/get_vore_tail_image()
+	if(!tail_style || !istaurtail(tail_style) || !tail_style.vore_tail_sprite_variant)
+		return null
+
+	var/vs_fullness = vore_fullness_ex["taur belly"]
+	var/loaf_alt = lying && tail_style.belly_variant_when_loaf
+	var/fullness_icons = min(tail_style.fullness_icons, vs_fullness)
+	var/target_state = "Taur[tail_style.vore_tail_sprite_variant]-Belly-[fullness_icons][loaf_alt ? " loaf" : (struggle_anim_taur ? "" : " idle")]"
+	// optimizing this with mutable_appearance, since it includes support for animations!
+	var/mutable_appearance/vorebelly_ma = mutable_appearance(tail_style.bellies_icon_path, target_state)
+	// is the wear_suit actually an accessory check
+	var/obj/item/clothing/suit/sockable = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+	//scootchin' on by here to tailsock the tummy since it's important.
+	if(sockable && sockable.tailsock_toggle && sockable.tailsock_color)
+		vorebelly_ma.color = sockable.get_tailsock_color()
+	else
+		var/base_color = vore_sprite_color["taur belly"]
+		vorebelly_ma.color = base_color
+
+	var/image/working = image(vorebelly_ma)
+	// just in case, offsets for the belly too I guess
+	working.pixel_x = tail_style.offset_x
+	working.pixel_y = tail_style.offset_y
+
+	if(tail_style.em_block) // Let 'em glow still
+		working.overlays += em_block_image_generic(working)
+
+	return working
+
+/mob/living/carbon/human/proc/vore_tail_animation()
+	if(tail_style.struggle_anim && !struggle_anim_taur)
+		struggle_anim_taur = TRUE
+		update_vore_tail_sprite()
+		spawn(12)
+			// Prevent runtimes if the mob is destroyed while the animation timer was ticking
+			if(!src || QDESTROYING(src))
+				return
+			struggle_anim_taur = FALSE
+			update_vore_tail_sprite()
 
 /mob/living/carbon/human/proc/update_wing_showing()
 	if(QDESTROYING(src))
@@ -1134,16 +1398,86 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/image/wing_image = get_wing_image(FALSE)
 
 	if(wing_image)
-		wing_image.layer = BODY_LAYER+WING_LAYER
+		wing_image.layer = BODY_LAYER + WING_LAYER
 		overlays_standing[WING_LAYER] = wing_image
+
 	if(wing_style && wing_style.multi_dir)
 		wing_image = get_wing_image(TRUE)
 		if(wing_image)
-			wing_image.layer = BODY_LAYER+WING_LOWER_LAYER
+			wing_image.layer = BODY_LAYER + WING_LOWER_LAYER
 			overlays_standing[WING_LOWER_LAYER] = wing_image
 
 	apply_layer(WING_LAYER)
 	apply_layer(WING_LOWER_LAYER)
+
+/// Get our wing image + sock info, also with voodoo doll protections
+/mob/living/carbon/human/proc/get_wing_image(under_layer, ignore_clothing = FALSE)
+	if(QDESTROYING(src))
+		return
+
+	//early hidden wing return
+	if(wings_hidden && (!wing_style || wing_style.can_toggle_hidden()))
+		return null
+
+	var/image/working = null
+
+	//If you are FBP with wing style and didn't set a custom one
+	if(synthetic && synthetic.includes_wing && !wing_style)
+		var/icon/wing_s = new/icon("icon" = synthetic.icon, "icon_state" = "wing") //I dunno. If synths have some custom wing?
+		wing_s.Blend(rgb(r_skin, g_skin, b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
+		working = image(wing_s)
+		working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
+		return working
+
+	//If you have custom wings selected
+	if(wing_style)
+		var/obj/item/clothing/suit/socksuit = istype(wear_suit, /obj/item/clothing/suit) ? wear_suit : null
+		var/sock_color = (socksuit?.requires_tailsock && socksuit.tailsock_toggle) ? socksuit.get_tailsock_color() : null
+		if(!sock_color && !ignore_clothing && wing_style.clothing_can_hide && (wear_suit?.flags_inv & HIDEWINGS))
+			return null
+		var/is_flapping = flapping && wing_style.ani_state
+		var/wing_state = is_flapping ? wing_style.ani_state : wing_style.icon_state
+		if(wing_style.multi_dir)
+			wing_state += "_[under_layer ? "back" : "front"]"
+
+		if(sock_color)
+			wing_state += "_sock"
+
+		// Base wing appearance
+		var/mutable_appearance/base_wing = mutable_appearance(wing_style.icon, wing_state)
+		if(sock_color)
+			base_wing.color = sock_color
+		else
+			if(wing_style.do_colouration)
+				base_wing.color = rgb(r_wing, g_wing, b_wing)
+			if(wing_style.extra_overlay)
+				var/ex1_state = (is_flapping && wing_style.extra_overlay_w) ? wing_style.extra_overlay_w : wing_style.extra_overlay
+				var/mutable_appearance/ex1 = mutable_appearance(wing_style.icon, ex1_state)
+				ex1.color = rgb(r_wing2, g_wing2, b_wing2)
+				ex1.layer = FLOAT_LAYER + 0.01
+				base_wing.overlays += ex1
+			if(wing_style.extra_overlay2)
+				var/ex2_state = (is_flapping && wing_style.extra_overlay2_w) ? wing_style.extra_overlay2_w : wing_style.extra_overlay2
+				var/mutable_appearance/ex2 = mutable_appearance(wing_style.icon, ex2_state)
+				ex2.color = rgb(r_wing3, g_wing3, b_wing3)
+				ex2.layer = FLOAT_LAYER + 0.02
+				base_wing.overlays += ex2
+
+		working = image(base_wing)
+		if(sock_color)
+			working.alpha = socksuit.alpha
+		else if(!isnull(a_wing))
+			working.alpha = a_wing
+
+		if(wing_style.em_block)
+			working.overlays += em_block_image_generic(working)
+
+		if(wing_style.wing_offset)
+			working.pixel_x -= wing_style.wing_offset
+
+		return working
+
+	return null
 
 /mob/living/carbon/human/update_modifier_visuals()
 	if(QDESTROYING(src))
@@ -1220,49 +1554,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		overlays_standing[SURGERY_LAYER] = total
 		apply_layer(SURGERY_LAYER)
 
-/mob/living/carbon/human/proc/get_wing_image(under_layer)
-	if(QDESTROYING(src))
-		return
-
-	//If you are FBP with wing style and didn't set a custom one
-	if(synthetic && synthetic.includes_wing && !wing_style && !wings_hidden)
-		var/icon/wing_s = new/icon("icon" = synthetic.icon, "icon_state" = "wing") //I dunno. If synths have some custom wing?
-		wing_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
-		var/image/working = image(wing_s)
-		working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
-		return working
-
-	//If you have custom wings selected
-	if(wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL) && !wings_hidden)
-		var/wing_state = (flapping && wing_style.ani_state) ? wing_style.ani_state : wing_style.icon_state
-		if(wing_style.multi_dir)
-			wing_state += "_[under_layer ? "back" : "front"]"
-		var/icon/wing_s = new/icon("icon" = wing_style.icon, "icon_state" = wing_state)
-		if(wing_style.do_colouration)
-			wing_s.Blend(rgb(src.r_wing, src.g_wing, src.b_wing), wing_style.color_blend_mode)
-		if(wing_style.extra_overlay)
-			var/icon/overlay = new/icon("icon" = wing_style.icon, "icon_state" = wing_style.extra_overlay)
-			overlay.Blend(rgb(src.r_wing2, src.g_wing2, src.b_wing2), wing_style.color_blend_mode)
-			wing_s.Blend(overlay, ICON_OVERLAY)
-			qdel(overlay)
-		if(wing_style.extra_overlay2)
-			var/icon/overlay = new/icon("icon" = wing_style.icon, "icon_state" = wing_style.extra_overlay2)
-			if(wing_style.ani_state)
-				overlay = new/icon("icon" = wing_style.icon, "icon_state" = wing_style.extra_overlay2_w)
-				overlay.Blend(rgb(src.r_wing3, src.g_wing3, src.b_wing3), wing_style.color_blend_mode)
-				wing_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-			else
-				overlay.Blend(rgb(src.r_wing3, src.g_wing3, src.b_wing3), wing_style.color_blend_mode)
-				wing_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-		var/image/working = image(wing_s)
-		working.alpha = src.a_wing
-		if(wing_style.em_block)
-			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
-		working.pixel_x -= wing_style.wing_offset
-		return working
-
 /mob/living/carbon/human/proc/get_ears_overlay()
 	//If you are FBP with ear style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
@@ -1318,145 +1609,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 			rendered.Blend(ears_s, ICON_OVERLAY)
 
 	return rendered
-
-/mob/living/carbon/human/proc/get_tail_image()
-	//If you are FBP with tail style and didn't set a custom one
-	var/datum/robolimb/model = isSynthetic()
-	if(istype(model) && model.includes_tail && !tail_style && !tail_hidden)
-		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
-		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
-		return image(tail_s)
-
-	//If you have a custom tail selected
-	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
-		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state))
-		if(tail_style.can_loaf && !is_shifted)
-			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly. Taur Loafing
-		if(tail_style.do_colouration)
-			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
-		if(tail_style.extra_overlay)
-			var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay)
-			if(wagging && tail_style.ani_state)
-				overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay_w)
-				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-			else
-				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-
-		if(tail_style.extra_overlay2)
-			var/icon/overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2)
-			if(wagging && tail_style.ani_state)
-				overlay = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2_w)
-				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-			else
-				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
-				tail_s.Blend(overlay, ICON_OVERLAY)
-				qdel(overlay)
-
-		var/image/working = image(tail_s)
-		if(tail_style.em_block)
-			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
-
-		if(istaurtail(tail_style))
-			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
-			working.pixel_x = tail_style.offset_x
-			working.pixel_y = tail_style.offset_y
-			if(taurtype.can_ride && !riding_datum)
-				riding_datum = new /datum/riding/taur(src)
-				add_verb(src, /mob/living/carbon/human/proc/taur_mount)
-				add_verb(src, /mob/living/proc/toggle_rider_reins)
-		else if(islongtail(tail_style))
-			working.pixel_x = tail_style.offset_x
-			working.pixel_y = tail_style.offset_y
-		working.alpha = src.a_tail
-		return working
-	return null
-
-// TODO - Move this to where it should go ~Leshana
-/mob/living/proc/stop_flying()
-	if(QDESTROYING(src))
-		return
-	flying = FALSE
-	return 1
-
-/mob/living/carbon/human/stop_flying()
-	if((. = ..()))
-		update_wing_showing()
-
-/mob/living/carbon/human/proc/update_vore_belly_sprite()
-	if(QDESTROYING(src))
-		return
-
-	remove_layer(VORE_BELLY_LAYER)
-
-	var/image/vore_belly_image = get_vore_belly_image()
-	if(vore_belly_image)
-		vore_belly_image.layer = BODY_LAYER+VORE_BELLY_LAYER
-		overlays_standing[VORE_BELLY_LAYER] = vore_belly_image
-		vore_belly_image.plane = PLANE_CH_STOMACH //This one line of code. This ONE LINE OF CODE TOOK 6 HOURS TO FIGURE OUT. THANK YOU REDCAT.
-		vore_belly_image.appearance_flags = appearance_flags
-
-	apply_layer(VORE_BELLY_LAYER)
-
-/mob/living/carbon/human/proc/get_vore_belly_image()
-	if(!(wear_suit && wear_suit.flags_inv & HIDETAIL))
-		var/vs_fullness = vore_fullness_ex["stomach"]
-		var/icon/vorebelly_s = new/icon(icon = 'icons/mob/vore/Bellies.dmi', icon_state = "[species.vore_belly_default_variant]Belly[vs_fullness][struggle_anim_stomach ? "" : " idle"]")
-		vorebelly_s.Blend(vore_sprite_color["stomach"], vore_sprite_multiply["stomach"] ? ICON_MULTIPLY : ICON_ADD)
-		var/image/working = image(vorebelly_s)
-		working.overlays += em_block_image_generic(working)
-		return working
-	return null
-
-/mob/living/carbon/human/proc/vore_belly_animation()
-	if(!struggle_anim_stomach)
-		struggle_anim_stomach = TRUE
-		update_vore_belly_sprite()
-		spawn(12)
-			struggle_anim_stomach = FALSE
-			update_vore_belly_sprite()
-
-/mob/living/carbon/human/proc/update_vore_tail_sprite()
-	if(QDESTROYING(src))
-		return
-
-	remove_layer(VORE_TAIL_LAYER)
-
-	var/image/vore_tail_image = get_vore_tail_image()
-	if(vore_tail_image)
-		vore_tail_image.layer = BODY_LAYER+VORE_TAIL_LAYER
-		overlays_standing[VORE_TAIL_LAYER] = vore_tail_image
-		vore_tail_image.plane = PLANE_CH_STOMACH //This one line of code. This ONE LINE OF CODE TOOK 6 HOURS TO FIGURE OUT. THANK YOU REDCAT.
-		vore_tail_image.appearance_flags = appearance_flags
-
-	apply_layer(VORE_TAIL_LAYER)
-
-/mob/living/carbon/human/proc/get_vore_tail_image()
-	if(tail_style && istaurtail(tail_style) && tail_style.vore_tail_sprite_variant)
-		var/vs_fullness = vore_fullness_ex["taur belly"]
-		var/loaf_alt = lying && tail_style.belly_variant_when_loaf
-		var/fullness_icons = min(tail_style.fullness_icons, vs_fullness)
-		var/icon/vorebelly_s = new/icon(icon = tail_style.bellies_icon_path, icon_state = "Taur[tail_style.vore_tail_sprite_variant]-Belly-[fullness_icons][loaf_alt ? " loaf" : (struggle_anim_taur ? "" : " idle")]")
-		vorebelly_s.Blend(vore_sprite_color["taur belly"], vore_sprite_multiply["taur belly"] ? ICON_MULTIPLY : ICON_ADD)
-		var/image/working = image(vorebelly_s)
-		working.pixel_x = -16
-		if(tail_style.em_block)
-			working.overlays += em_block_image_generic(working)
-		return working
-	return null
-
-/mob/living/carbon/human/proc/vore_tail_animation()
-	if(tail_style.struggle_anim && !struggle_anim_taur)
-		struggle_anim_taur = TRUE
-		update_vore_tail_sprite()
-		spawn(12)
-			struggle_anim_taur = FALSE
-			update_vore_tail_sprite()
 
 /mob/living/carbon/human/proc/GetAppearanceFromPrefs(flavourtext, oocnotes)
 	/* Jank code that effectively creates the client's mob from save, then copies its appearance to our current mob.
