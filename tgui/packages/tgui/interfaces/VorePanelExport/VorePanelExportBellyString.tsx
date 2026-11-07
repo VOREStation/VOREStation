@@ -19,7 +19,11 @@ import {
 } from './VorePanelExportBellyStringHelpers';
 
 // prettier-ignore
-export const generateBellyString = (belly: Belly, index: number) => {
+export const generateBellyString = (
+  belly: Belly,
+  index: number,
+  vore_pref_type_list: Record<string, number>,
+) => {
   const {
     // General Information
     name,
@@ -34,6 +38,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     mode,
     addons,
     item_mode,
+    vore_pref_type_flags,
 
     // Options
     digest_brute,
@@ -252,7 +257,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
   const temperatureCelsius = Math.round((bellytemperature - 273.15) * 10) / 10;
   const temperatureSpan = `<span${temperature_damage ? ' style="color: red;"' : ''}>${temperatureCelsius}°C</span>`;
 
-  result += `${name} - (${damageSpans}/${temperatureSpan}) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
+  result += `${name} (${display_name}) - (${damageSpans}/${temperatureSpan}) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
 
   result += '</button></h2>';
 
@@ -260,6 +265,16 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<div class="accordion-body">';
   result += `Addons:<br>${GetAddons(addons)}<br><br>`;
 
+  result += '<b>== Type and Specifics ==</b><br>';
+  for (const [type, flag] of Object.entries(vore_pref_type_list)) {
+    if ((vore_pref_type_flags & flag) !== 0) {
+      result += `<span class="badge text-bg-success">${type}</span>`;
+    } else {
+      result += `<span class="badge text-bg-danger">${type}</span>`;
+    }
+  }
+
+  result += '<br><hr>';
   result += '<b>== Descriptions ==</b><br>';
 
   const infoFields = [

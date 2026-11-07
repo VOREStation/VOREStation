@@ -751,11 +751,11 @@
 
 	// shut down ongoing problems
 	radiation = 0
-	nutrition = 400
+	if(nutrition < 400)
+		nutrition = 400
 	bodytemperature = T20C
 	sdisabilities = 0
 	disabilities = 0
-	resting = FALSE
 
 	if(viruses)
 		viruses.Cut()
@@ -777,6 +777,8 @@
 		GLOB.living_mob_list += src
 		tod = null
 		timeofdeath = 0
+		// Arise!
+		GLOB.cultnet.updateVisibility(src, 0)
 
 	// restore us to conciousness
 	set_stat(CONSCIOUS)
@@ -916,9 +918,6 @@
 			return TRUE
 
 	return FALSE
-
-/mob/living/proc/slip(slipped_on,stun_duration=8)
-	return 0
 
 /mob/living/carbon/drop_from_inventory(obj/item/W, atom/target = null)
 	return !(W in internal_organs) && ..()
@@ -1564,3 +1563,6 @@
 	client.prefs.update_preference_by_type(/datum/preference/toggle/living/ooc_notes_style, ooc_notes_style)
 	if(reopen)
 		ooc_notes_window(user)
+
+/mob/living/proc/CanObtainCentcommMessage()
+	return FALSE

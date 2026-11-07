@@ -529,7 +529,7 @@
 
 /obj/machinery/power/port_gen/large_altevian/examine(mob/user)
 	. = ..()
-	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
+	. += span_notice("There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
 
 /obj/machinery/power/port_gen/large_altevian/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet

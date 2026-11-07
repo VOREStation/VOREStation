@@ -534,15 +534,15 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	var/fitting = get_fitting_name()
 	switch(status)
 		if(LIGHT_OK)
-			. += "It is turned [on? "on" : "off"]."
+			. += span_notice("It is turned [on? "on" : "off"].")
 		if(LIGHT_EMPTY)
-			. += "The [fitting] has been removed."
+			. += span_notice("The [fitting] has been removed.")
 		if(LIGHT_BURNED)
-			. += "The [fitting] is burnt out."
+			. += span_notice("The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
-			. += "The [fitting] has been smashed."
+			. += span_notice("The [fitting] has been smashed.")
 	if(cell)
-		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
+		. += span_notice("Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
 /obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/light/L = light_type
@@ -1199,6 +1199,16 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/turf/our_turf = get_turf(src)
+		if(!our_turf)
+			return
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		air_contents.volume = 2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*air_contents.volume/(R_IDEAL_GAS_EQUATION*T20C))
+		our_turf.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade

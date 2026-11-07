@@ -73,6 +73,9 @@
 			Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
+			if(C.mob.read_preference(/datum/preference/toggle/obfuscate_key))
+				Lines += "\tAnonymous User<br>"
+				continue
 			var/entry = "\t"
 			if(C.holder && C.holder.fakekey)
 				entry += "[C.holder.fakekey]"

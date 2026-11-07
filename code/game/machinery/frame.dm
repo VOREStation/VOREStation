@@ -307,6 +307,7 @@ GLOBAL_LIST(construction_frame_floor)
 /obj/structure/frame
 	anchored = FALSE
 	name = "frame"
+	desc = "This could become anything. Any sort of machine, as long as you have the parts."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
 	flags = WALL_ITEM
@@ -327,7 +328,10 @@ GLOBAL_LIST(construction_frame_floor)
 /obj/structure/frame/examine(mob/user)
 	. = ..()
 	if(circuit)
-		. += "It has \a [circuit] installed."
+		. += span_notice("It has \a [circuit] installed.")
+	if(anchored)
+		. += span_notice("It is anchored.")
+
 
 /obj/structure/frame/proc/update_desc()
 	var/D

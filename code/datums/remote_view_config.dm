@@ -91,6 +91,11 @@
 	var/atom/remote_view_target = owner_component.get_target()
 	return remote_view_target.relaymove(host_mob, direction)
 
+/// Handles attempted zmovement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
+/datum/remote_view_config/proc/handle_attempt_zmovement(datum/component/remote_view/owner_component, mob/host_mob, direction, turf/destination)
+	SIGNAL_HANDLER
+	return FALSE
+
 /// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
 /datum/remote_view_config/proc/handle_apply_visuals(mob/host_mob)
 	SIGNAL_HANDLER

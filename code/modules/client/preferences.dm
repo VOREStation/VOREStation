@@ -331,6 +331,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	load_character(slotnum)
 	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
+	restore_preview_organs()
 	save_preferences()
 	ShowChoices(user)
 

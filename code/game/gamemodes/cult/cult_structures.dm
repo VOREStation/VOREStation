@@ -164,6 +164,7 @@
 	qdel(src)
 
 /obj/effect/gateway/active/Crossed(atom/A)
+	. = ..()
 	if(A.is_incorporeal())
 		return
 	if(!isliving(A))

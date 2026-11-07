@@ -40,7 +40,7 @@
 	var/turf/simulated/T = get_turf(B)
 	if(!istype(T))
 		return
-	T.freeze_floor()
+	T.MakeSlippery(TURF_WET_ICE, 80 SECONDS, 10 SECONDS)
 	var/datum/gas_mixture/env = T.return_air()
 	if(env)
 		env.add_thermal_energy(-10 * 1000)
@@ -51,7 +51,7 @@
 	var/turf/simulated/T = get_turf(B)
 	if(!istype(T))
 		return
-	T.freeze_floor()
+	T.MakeSlippery(TURF_WET_ICE, 80 SECONDS, 10 SECONDS)
 	var/datum/gas_mixture/env = T.return_air()
 	if(env)
 		env.add_thermal_energy(-10 * 1000)

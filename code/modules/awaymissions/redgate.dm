@@ -105,6 +105,7 @@
 	return
 
 /obj/structure/redgate/Crossed(mob/M as mob)
+	. = ..()
 	src.teleport(M)
 	return
 

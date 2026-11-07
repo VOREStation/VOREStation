@@ -126,7 +126,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/organ/internal/augment/bioaugment/health_scan
-	name = "Medical Scaner Implant"
+	name = "Medical Scanner Implant"
 	desc = "A small implant that fits into a subject's pelvix. It deploys allows the user to analyze their vitals on demand."
 	id = "health_scan_implant"
 	build_type = PROTOLATHE

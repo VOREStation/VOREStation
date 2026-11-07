@@ -49,12 +49,17 @@
 /obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if (!flag)
 		return
-	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
+	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
 		return
 	to_chat(user, "Planting explosives...")
+	user.visible_message(span_danger("[user.name] is strapping [src.name] on [target.name]!"))
+	to_chat(target, span_bolddanger("[user.name] is strapping [src.name] onto you!"))
 	user.do_attack_animation(target)
 
-	if(do_after(user, 5 SECONDS, target = target) && in_range(user, target))
+	var/planting_time = 5 SECONDS
+	if(ismob(target))
+		planting_time = 10 SECONDS
+	if(do_after(user, planting_time, target = target) && in_range(user, target))
 		user.drop_item()
 		src.target = target
 		loc = null
@@ -84,7 +89,9 @@
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(1,1,1)
 		else if(isliving(target))
-			target.ex_act(2) // c4 can't gib mobs anymore.
+			var/mob/living/mob = target
+			mob.ex_act(2) // c4 can't gib mobs anymore.
+			mob.apply_damage(50, BRUTE)
 		else
 			target.ex_act(1)
 	if(target)

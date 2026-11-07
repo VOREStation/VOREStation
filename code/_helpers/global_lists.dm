@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(la
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_LIST_EMPTY(mech_trackers) 					//Stores all mech tracker boards
 GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
 GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 
@@ -347,6 +348,7 @@ GLOBAL_LIST_INIT(selectable_footstep, list(
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
 	"Mech" = FOOTSTEP_MOB_MECHY,
+	"Power Loader" = FOOTSTEP_MOB_POWERLOADER,
 	"Heavy" = FOOTSTEP_MOB_HEAVY,
 	"Heavy Alt" = FOOTSTEP_MOB_HEAVY_ALT,
 	"Slime" = FOOTSTEP_MOB_SLIME,

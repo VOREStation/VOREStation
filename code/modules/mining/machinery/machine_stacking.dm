@@ -203,9 +203,9 @@
 			new stacktype (output, stack_amt)
 			stack_storage[sheet] -= stack_amt
 
-/obj/machinery/mineral/stacking_machine/Bumped(AM)
+/obj/machinery/mineral/stacking_machine/Bumped(atom/movable/AM)
 	. = ..()
-	if(!isitem(AM))
+	if(!isitem(AM) || QDELETED(AM))
 		return
 	var/turf/output = get_step(src,output_dir)
 	if(!output)

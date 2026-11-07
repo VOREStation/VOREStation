@@ -64,6 +64,8 @@
 			footstep_ret = GLOB.heavyfootstep
 		if(FOOTSTEP_MOB_MECHY)
 			footstep_ret = GLOB.mechfootstep
+		if(FOOTSTEP_MOB_POWERLOADER)
+			footstep_ret = GLOB.powerloaderfootstep
 		else
 			footstep_ret = GLOB.barefootstep
 	return footstep_ret
@@ -149,14 +151,22 @@
 	if(isnull(prepared_steps))
 		return
 
-	if (source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
+	if(source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
 		play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
 		return
+
+	if(istype(source.shoes, /obj/item/clothing/shoes))
+		var/obj/item/clothing/shoes/feet = source.shoes
+		if(feet.custom_footstep) //Mostly for legacy reasons, such as clown shoes.
+			playsound(source.loc, get_sfx(feet.custom_footstep), feet.custom_footstep_volume * volume * VOLUME_MULTIPLIER, TRUE, e_range + RANGE_ADJUSTMENT, falloff = TRUE, vary = sound_vary)
+			return
+
+
 
 	//cache for sanic speed (lists are references anyways)
 	var/footstep_sounds = GLOB.footstep
 
-	if ( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
+	if( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
 		// we are wearing shoes
 
 		var/obj/item/clothing/shoes/feet = source.shoes

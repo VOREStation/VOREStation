@@ -59,3 +59,7 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+
+/obj/item/bananapeel/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/slippery, 6)

@@ -11,7 +11,7 @@
 
 /obj/machinery/gravity_generator
 	name = "gravitational generator"
-	desc = "A device which produces a gravaton field when set up."
+	desc = "A device which produces a graviton field when set up."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"
 	anchored = TRUE

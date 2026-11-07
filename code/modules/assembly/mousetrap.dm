@@ -28,7 +28,7 @@
 		var/mob/living/carbon/human/H = target
 		switch(type)
 			if("feet")
-				if(!H.shoes)
+				if(!H.shoes && !(H.species.flags & NO_MINOR_CUT))
 					affecting = H.get_organ(pick(BP_L_LEG, BP_R_LEG))
 					H.Weaken(3)
 			if(BP_L_HAND, BP_R_HAND)
@@ -83,6 +83,7 @@
 	..()
 
 /obj/item/assembly/mousetrap/Crossed(atom/movable/AM)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(armed)
@@ -94,7 +95,6 @@
 								  span_warning("You accidentally step on [src]"))
 		if(ismouse(AM))
 			triggered(AM)
-	..()
 
 /obj/item/assembly/mousetrap/on_found(mob/living/finder)
 	if(armed)

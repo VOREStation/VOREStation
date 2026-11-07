@@ -27,14 +27,8 @@ export const generateSoulcatcherString = (soulcatcher: Soulcatcher) => {
   result += '<div class="accordion-body">';
 
   result += '<b>== Settings ==</b><br>';
-  const arr: string[] = [];
-  let parsedFlag = setting_flags;
-  while (parsedFlag !== 0) {
-    arr.push(String(parsedFlag));
-    parsedFlag = Math.floor(parsedFlag / 2);
-  }
   for (const flag in SoulcatcherSettingsFlag) {
-    if (arr.includes(flag)) {
+    if ((setting_flags & Number(flag)) !== 0) {
       result += `<span class="badge text-bg-success">${SoulcatcherSettingsFlag[flag]}</span>`;
     } else {
       result += `<span class="badge text-bg-danger">${SoulcatcherSettingsFlag[flag]}</span>`;

@@ -83,7 +83,7 @@
 	if(!connected_trunk)
 		return FALSE
 
-	var/obj/structure/disposalholder/packet = new()	// virtual holder object which actually travels through the pipes.
+	var/obj/structure/disposalholder/packet = new(disposal_owner)	// virtual holder object which actually travels through the pipes.
 	packet.init(flushed_items, flush_gas)
 
 	// start the holder processing movement

@@ -541,8 +541,10 @@
 				span_warning("[target] reflexively bites your hand!"), )
 			if(H.hand)
 				H.apply_damage(1, BRUTE, BP_L_HAND)
+				target.attempt_xenochimera_infection(target, H, attack_damage = 1, zone = BP_L_HAND)
 			else
 				H.apply_damage(1, BRUTE, BP_R_HAND)
+				target.attempt_xenochimera_infection(target, H, attack_damage = 1, zone = BP_R_HAND)
 		else
 			H.visible_message( \
 				span_notice("[H] pats [target] on the head."), \
@@ -558,8 +560,10 @@
 				span_warning("[target] reflexively bites your hand!"), )
 			if(H.hand)
 				H.apply_damage(1, BRUTE, BP_L_HAND)
+				target.attempt_xenochimera_infection(target, H, attack_damage = 1, zone = BP_L_HAND)
 			else
 				H.apply_damage(1, BRUTE, BP_R_HAND)
+				target.attempt_xenochimera_infection(target, H, attack_damage = 1, zone = BP_R_HAND)
 		else
 			H.visible_message( \
 				span_notice("[H] boops [target]'s nose."), \

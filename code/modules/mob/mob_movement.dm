@@ -218,7 +218,7 @@
 		return TRUE
 
 	// Can't control ourselves when drifting
-	if((isspace(loc) || my_mob.lastarea?.get_gravity() == 0) && isturf(loc))
+	if((isspace(loc) || my_mob.lastarea?.get_gravity() == 0) && isturf(loc) || HAS_TRAIT(my_mob, TRAIT_NO_GRAVITY))
 		if(!my_mob.Process_Spacemove(0))
 			return 0
 
@@ -484,6 +484,9 @@
 	if(is_incorporeal())
 		return
 
+	if(HAS_TRAIT(src, TRAIT_NO_GRAVITY))
+		return 0
+
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
 		return 0
@@ -494,6 +497,10 @@
 		return 0
 	inertia_dir = 0
 	return 1
+
+/// Called when this mob slips over, override as needed
+/mob/proc/slip(weaken_amount, obj/slipped_on, lube, slip_dist, stun, force_drop)
+	return
 
 /mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
 
