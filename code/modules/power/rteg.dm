@@ -6,12 +6,15 @@
 	power_gen = 600 KILOWATTS
 	icon_state = "rteg"
 	anchored = TRUE
+	var/starts_on = FALSE
 
 /obj/machinery/power/port_gen/rteg/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 	if(anchored)
 		connect_to_network()
+		if(starts_on)
+			TogglePower()
 
 /obj/machinery/power/port_gen/rteg/examine(mob/user)
 	. = ..()
@@ -89,6 +92,8 @@
 
 /obj/machinery/power/port_gen/rteg/stellar_delight
 	power_gen = 450 KILOWATTS
+	starts_on = TRUE
 
 /obj/machinery/power/port_gen/rteg/tether
 	power_gen = 600 KILOWATTS
+	starts_on = TRUE
