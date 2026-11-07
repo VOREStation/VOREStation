@@ -51,10 +51,10 @@ Bonus
 	if(!..())
 		return
 	if(A.resistance >= 5)
-		power = 1.5
+		power = 2.5
 		unsafe = TRUE
 		if(A.resistance >= 10)
-			power = 2.5
+			power = 5
 
 /datum/symptom/fever/Activate(datum/disease/advance/A)
 	if(!..())
@@ -69,7 +69,10 @@ Bonus
 	set_body_temp(A.affected_mob, A)
 
 /datum/symptom/fever/proc/set_body_temp(mob/living/M, datum/disease/advance/A)
+	if(M.bodytemperature >= BODYTEMP_HEAT_DAMAGE_LIMIT + 100) //If body temp is already that high or beyond, don't lower it.
+		return
+
 	if(!unsafe)
-		M.bodytemperature = min(M.bodytemperature + max((3 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT - 1)))
-	else
-		M.bodytemperature = min(M.bodytemperature + max((3 * power) * A.stage, (BODYTEMP_HEAT_DAMAGE_LIMIT + 20)))
+		M.bodytemperature = min(M.bodytemperature + max((10 * power), (3 * A.stage)), (BODYTEMP_HEAT_DAMAGE_LIMIT - 1)) //+10 at max power w/o becoming unsafe, +15 at max stage.
+		return
+	M.bodytemperature = M.bodytemperature + max((9 * power), (5 * A.stage)) //+45 at max power (power 5) 13.5 at power 1.5, +25 at max stage. +45 because it prevents you from geting immediate damage from it when you get +50
