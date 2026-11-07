@@ -687,11 +687,12 @@
 		to_chat(M, span_notice("You slipped[ slipped_on ? " on the [slipped_on.name]" : ""]!"))
 		playsound(M.loc, 'sound/misc/slip.ogg', clamp(15 + (2.5 * weaken_amount), 25, 75), 1, -1) //Slip volume scales with slip strength
 
+	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
+
 	//At this point, we're getting into doing the actual slip
 	if(force_drop)
 		M.drop_both_hands()
 
-	SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist)
 
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.

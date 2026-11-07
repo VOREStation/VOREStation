@@ -38,3 +38,18 @@
   - qol: Make it so the cyborg shells without a mind don't count for round end
   - rscadd: Add mecha equipment slots information to the cyborg / mecha analyzer
   - bugfix: Fix NIF internal communicators from using the handheld icon
+2026-11-06:
+  Diana:
+  - bugfix: Epinephirine will no longer cause a cylic 'take damage which causes more
+      epi which causes more damage' cycle.
+  - balance: Epi now gives CE_SPEEDBOOST 1 instead of CE_SPEEDBOOST 3. Now hyperzine
+      speed instead of tickspeed.
+  - bugfix: Lingboots actually work now.
+  - bugfix: Disabilities reapply after rejuv.
+  - bugfix: Horror Event Disease is cured by xenochimeraism.
+  Poojawa:
+  - bugfix: fixed airlock helper errors in Aerostat and Overrun Tourist ship
+  lbnesquik:
+  - rscadd: Made it possible for ghosts to see current department goals with a verb.
+  - rscadd: Added a random button to randomly pick a hair, or beard, or tail, or wings,
+      etc.

@@ -98,3 +98,14 @@
 		return
 
 	forceMove(L)
+
+/mob/observer/dead/verb/seeDepartmentGoals()
+	set category = "Ghost.Game"
+	set name = "See Departmental Goals"
+	set desc = "See departmental Goals. Not that you can't help with those right now."
+	set popup_menu = FALSE
+
+	if(!isobserver(src)) //Make sure they're an observer!
+		return
+
+	SSdepartmentgoals.show_goal_status_to(src)
