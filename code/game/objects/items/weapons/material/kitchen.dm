@@ -66,8 +66,12 @@
 		add_overlay(I)
 
 ///micro check so we don't oblivate them from byond memory
-/obj/item/material/kitchen/utensil/holds_mob()
-	return (isholder(loaded) || LAZYLEN(food_inserted_micros) || ..()) ? TRUE : FALSE
+/obj/item/material/kitchen/utensil/get_held_micros()
+	. = ..()
+	if(isholder(loaded))
+		var/obj/item/holder/held = loaded
+		if(held.held_mob)
+			. += held.held_mob
 
 /obj/item/material/kitchen/utensil/Exited(atom/movable/thing, atom/OldLoc)
 	. = ..()

@@ -435,6 +435,13 @@
 	if(LAZYLEN(food_inserted_micros) && ((user.client && !user.food_vore) || !user.can_be_drop_pred))
 		to_chat(user, span_vdanger("Ewww, You can't consume that, there's a bug in this! You've got standards!") )
 		return FALSE
+	//belly tag preferences
+	for(var/mob/living/micro in food_inserted_micros)
+		if(!vore_types_align(user, micro))
+			to_chat(user, span_vwarning("Vore type preferences do not align for \the [micro]!"))
+			to_chat(micro, span_vwarning("Your vore type preferences do not allow \the [src] to be eaten by \the [user]!"))
+			return FALSE
+
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
