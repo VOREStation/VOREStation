@@ -25,8 +25,9 @@
 	var/list/food_inserted_micros
 	/// How big a micro looks while sitting on the utensil
 	var/micro_scale = 0.5
-	/// Pixel offset of a micro sitting on the utensil
-	var/micro_offset_y = 4
+	/// Pixel offsets of a micro sitting on the utensil
+	var/micro_offset_x = 10
+	var/micro_offset_y = 24
 
 /obj/item/material/kitchen/utensil/Initialize(mapload)
 	. = ..()
@@ -40,16 +41,22 @@
 
 /// A snapshot of the micro, shrunk and sat on the utensil.
 /obj/item/material/kitchen/utensil/proc/build_micro_overlay(mob/living/micro)
-	var/mutable_appearance/snack = new /mutable_appearance(micro)
-	snack.layer = FLOAT_LAYER
-	snack.plane = FLOAT_PLANE
-	snack.dir = SOUTH
-	snack.pixel_x = 0
-	snack.pixel_y = micro_offset_y
-	snack.transform = matrix().Scale(micro_scale)
+	var/icon/flatsnack = getFlatIcon(micro, SOUTH, no_anim = TRUE)
+	if(!flatsnack)
+		return null
+	var/scaled_width = max(1, round(flatsnack.Width() * micro_scale))
+	var/scaled_height = max(1, round(flatsnack.Height() * micro_scale))
+	flatsnack.Scale(scaled_width, scaled_height)
+	// slide it so its center lands on the spot we want, then cut it down to one tile
+	var/left = round(micro_offset_x - scaled_width / 2)
+	var/bottom = round(micro_offset_y - scaled_height / 2)
+	flatsnack.Crop(1 - left, 1 - bottom, world.icon_size - left, world.icon_size - bottom)
+	var/image/snackrifice = image(flatsnack)
+	snackrifice.layer = FLOAT_LAYER
+	snackrifice.plane = FLOAT_PLANE
 	// otherwise the utensil's material tint colors the micro
-	snack.appearance_flags = RESET_COLOR|RESET_ALPHA|KEEP_TOGETHER
-	return snack
+	snackrifice.appearance_flags = RESET_ALPHA
+	return snackrifice
 
 /obj/item/material/kitchen/utensil/update_icon()
 	. = ..()
@@ -58,12 +65,14 @@
 	if(held)
 		// Show the micro on our utensil
 		if(held.held_mob)
-			add_overlay(build_micro_overlay(held.held_mob))
+			var/image/snackrifice = build_micro_overlay(held.held_mob)
+			if(snackrifice)
+				add_untinted_overlay(snackrifice)
 
 	else if(loaded)
-		var/image/I = new(icon, "loadedfood")
-		I.color = loaded_color
-		add_overlay(I)
+		var/image/food = new(icon, "loadedfood")
+		food.color = loaded_color
+		add_untinted_overlay(food)
 
 ///micro check so we don't oblivate them from byond memory
 /obj/item/material/kitchen/utensil/get_held_micros()
