@@ -63,6 +63,8 @@
 		return FALSE
 	if(!pred.food_vore || !prey.food_vore)
 		return FALSE
+	if(!vore_types_align(pred, prey))
+		return FALSE
 	return TRUE
 
 /proc/can_phase_vore(mob/living/pred, mob/living/prey, allow_incorporeal = FALSE)
@@ -82,3 +84,61 @@
 	if(world.time <= prey.slip_protect)
 		return FALSE
 	return TRUE
+
+///Belly pref check used for utensils and the sort, prey must comply ok with the pred's belly.
+/proc/vore_types_align(mob/living/pred, mob/living/prey)
+	var/obj/belly/belly = pred.vore_selected
+	if(!belly) // nothing to compare against, the other checks deal with having no belly
+		return TRUE
+	return (prey.vore_pref_type_flags & belly.vore_pref_type_flags) == belly.vore_pref_type_flags
+
+/// check each micro in our food/utensil for the pref check
+/obj/item/proc/get_held_micros()
+	. = list()
+	for(var/mob/living/micro in contents)
+		. += micro
+
+/obj/item/proc/holds_mob()
+	return LAZYLEN(get_held_micros()) ? TRUE : FALSE
+
+//Elevating this to allow utensils the same checks as reagent containers do for vore prefs.
+/obj/item/proc/standard_feed_mob(mob/user, mob/target) // This goes into attack
+	if(!istype(target) || !target.can_feed())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that!"))
+		return FALSE
+
+	//micro in food check if someone couldn't be bothered to examine their food.
+	if(holds_mob() && (!target.food_vore || !target.can_be_drop_pred))
+		to_chat(user, span_vdanger("Ewww, [user == target ? "You can't" : "\The [target] can't"] consume that, there's a bug in this!") )
+		return FALSE
+
+	//belly pref check for *all* potential micros in a food/drink or utensil
+	for(var/mob/living/micro in get_held_micros())
+		if(!vore_types_align(target, micro))
+			to_chat(user, span_vwarning("Vore type preferences do not align for \the [micro]!"))
+			to_chat(micro, span_vwarning("Your vore type preferences do not allow \the [src] to be eaten by [user == target ? "them" : "\the [target]"]!"))
+			return FALSE
+
+	//belly reagent check
+	if(!target.consume_liquid_belly && liquid_belly_check())
+		to_chat(user, span_vdanger("[user == target ? "you can't" : "\The [target] can't"] consume that, it contains something produced from a belly!"))
+		return FALSE
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/creature = target
+		if(!creature.check_has_mouth())
+			balloon_alert(user, "[user == target ? "you don't" : "\the [creature] doesn't"] have a mouth!")
+			return FALSE
+		var/obj/item/blocked = creature.check_mouth_coverage()
+		if(blocked)
+			balloon_alert(user, "\the [blocked] is in the way!")
+			return FALSE
+	return TRUE
+
+/obj/item/proc/liquid_belly_check()
+	if(!reagents)
+		return FALSE
+	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.from_belly)
+			return TRUE
+	return FALSE

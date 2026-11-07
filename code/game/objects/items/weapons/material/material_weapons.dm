@@ -45,6 +45,11 @@
 	if(!(material.conductive))
 		src.flags |= NOCONDUCT
 
+/// Allow material sprites to have an untinted addition, mostly for micros on utensils
+/obj/item/material/proc/add_untinted_overlay(image/overlay)
+	overlay.appearance_flags |= (KEEP_APART|RESET_COLOR)
+	add_overlay(overlay)
+
 /obj/item/material/get_material()
 	return material
 

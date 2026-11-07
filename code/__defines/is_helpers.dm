@@ -35,6 +35,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isstorage(A)	istype(A, /obj/item/storage)
 
+#define isholder(A)		istype(A, /obj/item/holder)
+
 #define ismecha(A)      istype(A, /obj/mecha)
 
 #define isstructure(A)	istype(A, /obj/structure)

@@ -33,7 +33,7 @@
 
 /mob/living/get_status_tab_items()
 	. = ..()
-	if(. && istype(loc, /obj/item/holder))
+	if(. && isholder(loc))
 		var/location = ""
 		var/obj/item/holder/H = loc
 		if(ishuman(H.loc))
