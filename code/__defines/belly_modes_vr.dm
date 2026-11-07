@@ -150,6 +150,7 @@
 #define VORE_TYPE_FLAG_TAIL_TF		0x80000
 #define VORE_TYPE_FLAG_OBJECT_TF	0x100000
 #define VORE_TYPE_FLAG_UNLISTED_TF	0x200000
+#define VORE_TYPE_FLAG_BREAST		0x400000
 
 GLOBAL_ALIST_INIT(vore_pref_types, alist(
 	"Oral Vore" = VORE_TYPE_FLAG_ORAL,
@@ -158,6 +159,7 @@ GLOBAL_ALIST_INIT(vore_pref_types, alist(
 	"Sheath Vore" = VORE_TYPE_FLAG_SHEATH,
 	"Bladder Vore" = VORE_TYPE_FLAG_BLADDER,
 	"Unbirth" = VORE_TYPE_FLAG_UNBIRTH,
+	"Breast Vore" = VORE_TYPE_FLAG_BREAST,
 	"Udder Vore" = VORE_TYPE_FLAG_UDDER,
 	"Tail Vore" = VORE_TYPE_FLAG_TAIL,
 	"Absorption" = VORE_TYPE_FLAG_ABSORB,
