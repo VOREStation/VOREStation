@@ -324,6 +324,22 @@ export const TgFontTarget = new Juke.Target({
   },
 });
 
+export const MapMergePythonTarget = new Juke.Target({
+  inputs: ['tools/requirements.txt'],
+  outputs: ['tools/.cache'],
+  executes: async () => {
+    await Juke.exec('cmd.exe', [
+      '/c',
+      'call',
+      'tools/bootstrap/python.bat',
+      '-m',
+      'hooks.install',
+    ]);
+
+    fs.writeFileSync('tools/.cache', 'installed');
+  },
+});
+
 export const TguiTarget = new Juke.Target({
   dependsOn: [BunTarget, BiomeInstallTarget],
   inputs: [
@@ -386,7 +402,7 @@ export const LintTarget = new Juke.Target({
 });
 
 export const BuildTarget = new Juke.Target({
-  dependsOn: [TguiTarget, DmTarget],
+  dependsOn: [TguiTarget, DmTarget, MapMergePythonTarget],
 });
 
 export const ServerTarget = new Juke.Target({
