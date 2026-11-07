@@ -122,7 +122,7 @@
 		return
 
 	//camera dies if an explosion touches it!
-	if(severity <= 2 || prob(50))
+	if(severity <= 2 || prob(250/toughness))
 		camera_break()
 
 	..() //and give it the regular chance of being deleted outright

@@ -194,15 +194,6 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	desc = "Used to monitor rooms. This one has a reinforced plastic enclosure."
 	toughness = 25
 
-/obj/machinery/camera/reinforced/ex_act(severity)
-	. = ..()
-	if(src.invuln)
-		return
-
-	if(severity <= 2 || prob(10))
-		camera_break()
-
-	..()
 
 // For mappers, mostly.
 /obj/machinery/camera/bomb_proof
