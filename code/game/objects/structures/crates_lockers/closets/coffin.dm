@@ -136,12 +136,12 @@
 					return
 	return
 
-/obj/structure/closet/grave/close()
+/obj/structure/closet/grave/close(mob/user)
 	..()
 	if(!opened)
 		sealed = TRUE
 
-/obj/structure/closet/grave/open()
+/obj/structure/closet/grave/open(mob/user)
 	.=..()
 	alpha = 255	// Needed because of grave hiding
 

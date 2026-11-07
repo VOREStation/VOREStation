@@ -187,7 +187,7 @@
 	else
 		return FALSE
 
-/obj/structure/closet/secure_closet/mind/open()
+/obj/structure/closet/secure_closet/mind/open(mob/user)
 	.=..()
 	if(self_del)
 		qdel(src)
