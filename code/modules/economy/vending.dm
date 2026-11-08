@@ -86,6 +86,10 @@
 	var/squish_damage = 25
 	var/crit_chance = 15
 
+	//Chance of being open at round start
+	var/panel_open_chance = 10
+	var/tilted_chance = 2
+
 /obj/machinery/vending/Initialize(mapload)
 	. = ..()
 	set_wires(new /datum/wires/vending(src))
@@ -105,6 +109,11 @@
 
 	if(can_rotate) // If we can't change directions, don't bother.
 		AddElement(/datum/element/rotatable)
+	if(prob(src.panel_open_chance))
+		panel_open = TRUE
+	if(prob(src.tilted_chance))
+		tilted = TRUE
+
 
 GLOBAL_LIST_EMPTY(vending_products)
 /**
