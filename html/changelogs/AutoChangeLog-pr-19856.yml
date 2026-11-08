@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Fever no longer lowers your temperature from lethal to normal."
+  - bugfix: "Fever no longer will instantly make your temperature go from normal to lethal. (Fever slightly adjusted to make up for this bug being fixed.)"
+  - code_imp: "Oxygen braindamage in life() slightly optimized."

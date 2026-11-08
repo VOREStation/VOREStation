@@ -1,0 +1,4 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - qol: "added SPACE_ and VOID_ to suit and helmet spawn menu listing, for those much easier selections."
