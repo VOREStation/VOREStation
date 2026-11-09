@@ -15,7 +15,7 @@
 	for(var/obj/machinery/camera/cam in range(severity_range,C))
 		if(is_valid_camera(cam))
 			if(prob(2*severity))
-				cam.destroy()
+				cam.camera_break()
 			else
 				cam.wires.cut(WIRE_MAIN_POWER1)
 				if(prob(5*severity))

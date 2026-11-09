@@ -4,6 +4,10 @@
 	var/chance_rare = 1				// Ditto, but for rare_loot list.
 	var/chance_gamma = 0			// Singledrop global loot table shared with all piles.
 
+	var/chance_scav_uncommon = 25	// Not that kind of scavs. It's for people with the scavenger_expert trait.
+	var/chance_scav_rare = 10
+	var/chance_scav_gamma = 1
+
 	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/loot_depletion = FALSE		// If true, loot piles can be 'depleted' after a certain number of searches by different players, where no more loot can be obtained.
 	var/loot_left = 0				// Maximum number of times a pile can be looted before no loot will remain for anyone
@@ -79,15 +83,8 @@
 	else  // Welp.
 		loot = produce_common_item(source)
 
-	// Handle randomized items in our tables.
-	if(istype(loot,/obj/random))
-		var/obj/random/randy = loot
-		var/new_I = randy.spawn_item()
-		QDEL_SWAP(loot,new_I)
+	loot = randylootspawn(loot)
 
-	//We either have an item to hand over or we don't, at this point!
-	if(QDELETED(loot))
-		return
 
 	var/final_message = "You found \a [loot]!"
 	switch(span)
@@ -99,9 +96,20 @@
 			final_message = span_alium(final_message)
 	to_chat(L, span_info(final_message))
 	var/disturbed_sleep = rand(1,100) //spawning of mobs, for now only the trash panda.
+
+	if(HAS_TRAIT(L, TRAIT_SCAVENGER_EXPERT) && prob(30)) //Free stuff!
+		to_chat(L, span_info("You've managed to spot something else of worth!"))
+		if((prob(chance_scav_uncommon)) && uncommon_loot.len)
+			randylootspawn(produce_uncommon_item(source))
+		else if((prob(chance_scav_rare)) && rare_loot.len)
+			randylootspawn(produce_rare_item(source))
+		else if((prob(chance_scav_gamma) && GLOB.unique_gamma_loot.len))
+			randylootspawn(produce_gamma_item(source))
+		else
+			randylootspawn(produce_common_item(source))
 	if(disturbed_sleep <= wake_chance)
 		new /mob/living/simple_mob/animal/passive/raccoon(get_turf(source))
-		source.visible_message("A raccoon jumps out of the trash!.")
+		source.visible_message("A raccoon jumps out of the trash!")
 
 	// Check if we should delete on depletion
 	if(!loot_depletion)
@@ -120,6 +128,19 @@
 /datum/element/lootable/proc/produce_unlucky_item(atom/source)
 	var/path = pick(unlucky_loot)
 	return new path(get_turf(source))
+
+// The proc that handles spawning objects.
+/datum/element/lootable/proc/randylootspawn(obj/item/the_object)
+	// Handle randomized items in our tables.
+	if(istype(the_object,/obj/random))
+		var/obj/random/randy = the_object
+		var/new_I = randy.spawn_item()
+		QDEL_SWAP(the_object, new_I)
+
+	//We either have an item to hand over or we don't, at this point!
+	if(QDELETED(the_object))
+		return
+	return the_object
 
 /datum/element/lootable/proc/produce_common_item(atom/source)
 	var/path = pick(common_loot)

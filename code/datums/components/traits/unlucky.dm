@@ -320,6 +320,9 @@
 	if(isbelly(our_guy.loc)) //Prevent cracking your skull against soft squishy gutflesh
 		return
 
+	if(our_guy.lying || our_guy.slip_timer) //Dont fall down and break our head if we're laying down, or currently on a recursive slip.
+		return
+
 	if(prob(30)) // AAAA
 		our_guy.emote("scream")
 		to_chat(our_guy, span_cult("What a horrible night... To have a curse!"))

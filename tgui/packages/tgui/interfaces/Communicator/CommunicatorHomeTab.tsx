@@ -25,17 +25,14 @@ export const CommunicatorHomeTab = (props) => {
             }}
             width="64px"
             height="64px"
-            position="relative"
             onClick={() => act('switch_tab', { switch_tab: app.number })}
           >
             <Icon
+              mt="25%"
               spin={hasNotifications(app.module)}
               color={hasNotifications(app.module) ? 'bad' : null}
               name={app.icon}
-              position="absolute"
               size={3}
-              top="25%"
-              left="25%"
             />
           </Button>
           <Box>{app.module}</Box>
