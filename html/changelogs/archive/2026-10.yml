@@ -186,3 +186,6 @@
   - bugfix: fixed the left arm tattoo being off 1 pixel.
   - bugfix: Fix smartfridges appearing partially filled despite being empty.
   - rscadd: Added hardy versions for slowed species can't normally take it.
+2026-10-26:
+  Will:
+  - bugfix: Hose connectors do not run process while not in use

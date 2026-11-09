@@ -132,6 +132,9 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/toxins)
+"ao" = (
+/turf/simulated/shuttle/wall/voidcraft/green/virgo2/nocol,
+/area/offmap/aerostat/inside/airlock/east)
 "ap" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -874,7 +877,6 @@
 /area/offmap/aerostat/inside/easthall)
 "cr" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = null;
 	icon_state = "door_locked";
 	id_tag = "anomaly_testing_exterior";
 	locked = 1;
@@ -1014,8 +1016,6 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	frequency = null;
-	id_tag = null;
 	locked = 1
 	},
 /obj/effect/map_helper/airlock/door/int_door,
@@ -1111,7 +1111,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/dark,
-/area/offmap/aerostat/inside/xenoarch/chamber)
+/area/offmap/aerostat/inside/xenoarch)
 "cX" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1744,7 +1744,6 @@
 /area/offmap/aerostat/inside/lobby)
 "eG" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = null;
 	icon_state = "door_locked";
 	id_tag = "anomaly_testing_interior";
 	locked = 1;
@@ -2895,7 +2894,7 @@
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/xenoarch/chamber)
+/area/offmap/aerostat/inside/xenoarch)
 "jm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3161,7 +3160,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2/nocol,
-/area/offmap/aerostat/inside/virology)
+/area/offmap/aerostat/inside/airlock/east)
 "kk" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -3964,7 +3963,6 @@
 "no" = (
 /obj/machinery/atmospherics/omni/mixer{
 	name = "Air Mixer";
-	tag_east_con = null;
 	tag_north = 1;
 	tag_north_con = 0.21;
 	tag_south = 1;
@@ -4173,8 +4171,7 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
@@ -5714,7 +5711,6 @@
 "ux" = (
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = 24
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -6719,8 +6715,7 @@
 "yO" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/white,
@@ -7361,12 +7356,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/ne)
-"Bj" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/offmap/aerostat/inside/xenoarch/chamber)
 "Bk" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -7718,8 +7707,7 @@
 "CQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/machinery/camera/network/research_outpost{
@@ -9138,6 +9126,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior{
+	frequency = 1381
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "Iy" = (
@@ -9707,8 +9698,6 @@
 "KW" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/machinery/door/airlock/external{
-	frequency = null;
-	id_tag = null;
 	locked = 1
 	},
 /obj/effect/map_helper/airlock/door/int_door,
@@ -10040,8 +10029,6 @@
 "Ms" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/machinery/door/airlock/external{
-	frequency = null;
-	id_tag = null;
 	locked = 1
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
@@ -10177,7 +10164,6 @@
 	},
 /obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
@@ -12618,7 +12604,6 @@
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = 24
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
@@ -13068,7 +13053,6 @@
 	dir = 8
 	},
 /obj/structure/sink/kitchen{
-	pixel_x = 0;
 	pixel_y = 16
 	},
 /turf/simulated/floor/tiled/white,
@@ -13114,7 +13098,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor,
-/area/offmap/aerostat/inside/xenoarch/chamber)
+/area/offmap/aerostat/inside/xenoarch)
 "YT" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8
@@ -25142,7 +25126,7 @@ aw
 Kk
 jl
 YS
-Bj
+Ah
 cW
 Hu
 Ds
@@ -27857,7 +27841,7 @@ aw
 aw
 aw
 Db
-ot
+tY
 eb
 ec
 ka
@@ -27999,7 +27983,7 @@ aw
 aw
 aw
 aw
-Db
+ao
 dP
 oU
 BK
