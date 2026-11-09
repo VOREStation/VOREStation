@@ -82,7 +82,7 @@
 	health = maxhealth
 
 	if(prob(tape_chance))
-		var/turf/T = get_turf(A)
+		var/turf/T = get_turf(src)
 		var/tape_type = pick(/obj/item/tape/engineering, /obj/item/tape/police)
 		var/obj/item/tape/P = new tape_type(T)
 		P.update_icon()
