@@ -96,7 +96,7 @@
 	var/list/soulcatcher_prefs = list()
 	var/max_voreoverlay_alpha = 255
 	var/persistend_edit_mode = FALSE
-	var/vore_pref_type_flags = VORE_TYPE_FLAG_ORAL
+	var/vore_pref_type_flags = ALL
 
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
@@ -412,7 +412,7 @@
 	if(isnull(max_voreoverlay_alpha))
 		max_voreoverlay_alpha = 255
 	if(isnull(vore_pref_type_flags))
-		vore_pref_type_flags = VORE_TYPE_FLAG_ORAL
+		vore_pref_type_flags = ALL
 
 	return TRUE
 

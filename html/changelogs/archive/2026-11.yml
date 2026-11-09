@@ -53,3 +53,33 @@
   - rscadd: Made it possible for ghosts to see current department goals with a verb.
   - rscadd: Added a random button to randomly pick a hair, or beard, or tail, or wings,
       etc.
+2026-11-07:
+  ReoDaProtovali:
+  - bugfix: Fixes repeated headsmashing when you slide recursively
+  - bugfix: Fixes an inconsistant runtime with trying to delete slip_timer when it
+      is sometimes null
+  Will:
+  - code_imp: added COMSIG_EXTERNAL_ORGAN_STANCE_DAMAGE_APPLICATION signal
+  - code_imp: added COMSIG_EXTERNAL_ORGAN_GRASP_DAMAGE_APPLICATION signal
+  - code_imp: added COMSIG_MOB_HEAR_SAY signal
+  - bugfix: missing parent call for remote view gene's signals
+2026-11-08:
+  Diana:
+  - bugfix: Fever no longer lowers your temperature from lethal to normal.
+  - bugfix: Fever no longer will instantly make your temperature go from normal to
+      lethal. (Fever slightly adjusted to make up for this bug being fixed.)
+  - code_imp: Oxygen braindamage in life() slightly optimized.
+  Kashargul:
+  - qol: adds missing tag for bv
+  - code_imp: adds mapmerge hook install to cbt
+  Poojawa:
+  - qol: added SPACE_ and VOID_ to suit and helmet spawn menu listing, for those much
+      easier selections.
+  ReoDaProtovali:
+  - qol: made it so vore is opt out not opt in
+  lbnesquik:
+  - bugfix: fixed cameras not being damaged by searing weapons
+  - code_imp: fixed a bug where you could 'reactivate' a camera by hitting it enough
+  - code_imp: converted a camera variable to true | false flags.
+  - qol: Made it so examining a broken camera tells you it is broken
+  - code_imp: Converted cameras to an HP system so you can have stronger cameras
