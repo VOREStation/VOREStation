@@ -87,8 +87,8 @@
 	var/crit_chance = 15
 
 	//Chance of being open at round start
-	var/panel_open_chance = 10
-	var/tilted_chance = 2
+	var/panel_open_chance = 5
+	var/tilted_chance = 1
 
 /obj/machinery/vending/Initialize(mapload)
 	. = ..()
@@ -111,8 +111,14 @@
 		AddElement(/datum/element/rotatable)
 	if(prob(src.panel_open_chance))
 		panel_open = TRUE
-	if(prob(src.tilted_chance))
+		add_overlay("[initial(icon_state)]-panel")
+	if(prob(tilted_chance) && tiltable)
 		tilted = TRUE
+		tilted_rotation = pick(90, 270)
+		anchored = FALSE
+		plane = ABOVE_MOB_PLANE
+		var/matrix/to_turn = turn(transform, 90)
+		animate(src, transform = to_turn, 0.2 SECONDS)
 
 
 GLOBAL_LIST_EMPTY(vending_products)
