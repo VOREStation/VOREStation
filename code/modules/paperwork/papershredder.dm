@@ -30,6 +30,7 @@
 	default_apply_parts()
 	update_icon()
 	AddElement(/datum/element/climbable)
+	paperamount = rand(0, 10)
 
 /obj/machinery/papershredder/examine(mob/user as mob)
 	. = ..()
