@@ -122,7 +122,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/turf/simulated/my_tile = loc
 	if(!istype(my_tile) || !my_tile.zone)
-		if(my_tile.fire == src)
+		if(my_tile && my_tile.fire == src)
 			my_tile.fire = null
 		RemoveFire()
 		return 1

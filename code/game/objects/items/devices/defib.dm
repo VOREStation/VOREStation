@@ -476,7 +476,7 @@
 		return // No brain.
 
 	var/obj/item/organ/internal/brain/brain = H.internal_organs_by_name[O_BRAIN]
-	if(!brain)
+	if(!istype(brain)) // Typecheck because MMI holders can be in brain organ slot
 		return // Still no brain.
 
 	// If the brain'd `defib_timer` var gets below this number, brain damage will happen at a linear rate.

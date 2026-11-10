@@ -125,3 +125,6 @@
 
 /mob/new_player/singuloCanEat()
 	return 0
+
+/turf/unsimulated/wall/supermatter/singuloCanEat()
+	return 0

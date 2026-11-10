@@ -189,6 +189,7 @@
 	surgery_name = "Clamp Bleeders"
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,	\
+		/obj/item/tool/wirecutters = 80, \
 		/obj/item/stack/cable_coil = 75, 	\
 		/obj/item/assembly/mousetrap = 25
 	)

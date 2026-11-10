@@ -89,6 +89,7 @@ GLOBAL_LIST_INIT(ai_status_emotions, list(
 	if(!emote)
 		return
 	emotion = emote
+	update()
 
 /obj/machinery/ai_status_display/process()
 	return

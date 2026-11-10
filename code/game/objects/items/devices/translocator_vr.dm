@@ -130,6 +130,7 @@
 			if(nb.tele_network == loc_network)
 				beacons[nb.tele_name] = nb
 		loc_network = null //Consumed
+		rebuild_radial_images()
 
 	if(!(user.ckey in warned_users))
 		warned_users |= user.ckey
