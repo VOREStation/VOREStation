@@ -45,8 +45,6 @@
 	var/icon_tinted
 	var/id_tint
 
-	var/tape_chance = 5
-
 	var/update_adjacent_tiles = TRUE
 
 /obj/machinery/door/attack_generic(mob/user, damage)
@@ -80,13 +78,6 @@
 			bound_height = width * world.icon_size
 
 	health = maxhealth
-
-	if(prob(tape_chance))
-		var/turf/T = get_turf(src)
-		var/tape_type = pick(/obj/item/tape/engineering, /obj/item/tape/police)
-		var/obj/item/tape/P = new tape_type(T)
-		P.update_icon()
-		P.layer = WINDOW_LAYER
 
 	update_icon()
 
