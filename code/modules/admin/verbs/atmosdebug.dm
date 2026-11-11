@@ -32,12 +32,12 @@ ADMIN_VERB(atmosscan, R_DEBUG, "Check Piping", "Check all pipes in game (Only us
 	//all plumbing - yes, some things might get stated twice, doesn't matter.
 	for (var/obj/machinery/atmospherics/plumbing in GLOB.machines)
 		if (plumbing.nodealert)
-			to_chat(user, span_filter_adminlog(span_warning("Unconnected [plumbing.name] located at ([get_area(plumbing.loc)]) [ADMIN_COORDJMP(plumbing.loc)]")))
+			to_chat(user, span_filter_adminlog(span_red("Unconnected [plumbing.name] located at ([get_area(plumbing.loc)]) [ADMIN_COORDJMP(plumbing.loc)]")))
 
 	//Manifolds
 	for (var/obj/machinery/atmospherics/pipe/manifold/pipe in GLOB.machines)
 		if (!pipe.node1 || !pipe.node2 || !pipe.node3)
-			to_chat(user, span_filter_adminlog(span_warning("Unconnected [pipe.name] located at ([get_area(pipe.loc)]) [ADMIN_COORDJMP(pipe.loc)]")))
+			to_chat(user, span_filter_adminlog(span_red("Unconnected [pipe.name] located at ([get_area(pipe.loc)]) [ADMIN_COORDJMP(pipe.loc)]")))
 
 	//Pipes
 	for (var/obj/machinery/atmospherics/pipe/simple/pipe in GLOB.machines)
@@ -45,10 +45,10 @@ ADMIN_VERB(atmosscan, R_DEBUG, "Check Piping", "Check all pipes in game (Only us
 		var/universal_ends = universal_adapter_connected_ends(pipe)
 		if (!isnull(universal_ends))
 			if (universal_ends < 2)
-				to_chat(user, span_filter_adminlog(span_warning("Unconnected [pipe.name] located at ([get_area(pipe.loc)]) [ADMIN_COORDJMP(pipe.loc)] - only [universal_ends] of its 2 ends are connected")))
+				to_chat(user, span_filter_adminlog(span_red("Unconnected [pipe.name] located at ([get_area(pipe.loc)]) [ADMIN_COORDJMP(pipe.loc)] - only [universal_ends] of its 2 ends are connected")))
 			continue
 		if (!pipe.node1 || !pipe.node2)
-			to_chat(user, span_filter_adminlog(span_warning("Unconnected [pipe.name] located at ([get_area(pipe.loc)]) [ADMIN_COORDJMP(pipe.loc)]")))
+			to_chat(user, span_filter_adminlog(span_red("Unconnected [pipe.name] located at ([get_area(pipe.loc)]) [ADMIN_COORDJMP(pipe.loc)]")))
 
 	to_chat(user, span_debug_info("Checking for overlapping pipes..."))
 	next_turf:
@@ -60,7 +60,7 @@ ADMIN_VERB(atmosscan, R_DEBUG, "Check Piping", "Check all pipes in game (Only us
 						for(var/connect_type in pipe.connect_types)
 							connect_types[connect_type] += 1
 						if(connect_types[1] > 1 || connect_types[2] > 1 || connect_types[3] > 1)
-							to_chat(user, span_filter_adminlog(span_warning("Overlapping pipe ([pipe.name]) located at [ADMIN_COORDJMP(pipe.loc)]")))
+							to_chat(user, span_filter_adminlog(span_red("Overlapping pipe ([pipe.name]) located at [ADMIN_COORDJMP(pipe.loc)]")))
 							continue next_turf
 	to_chat(user, span_debug_info("Done"))
 
@@ -76,7 +76,7 @@ ADMIN_VERB(powerdebug, R_DEBUG, "Check Power", "Checks all powernets (Only use o
 		var/obj/structure/cable/C = PN.cables[1]
 		// check for a single cable, don't spam further
 		if(cable_count == 1)
-			to_chat(user, span_filter_adminlog(span_warning("Powernet is a single cable! - cable at ([get_area(C.loc)]) [ADMIN_COORDJMP(C.loc)]")))
+			to_chat(user, span_filter_adminlog(span_red("Powernet is a single cable! - cable at ([get_area(C.loc)]) [ADMIN_COORDJMP(C.loc)]")))
 			continue
 
 		var/list/problems = list()
@@ -87,4 +87,4 @@ ADMIN_VERB(powerdebug, R_DEBUG, "Check Power", "Checks all powernets (Only use o
 		if(!length(problems))
 			continue
 
-		to_chat(user, span_filter_adminlog(span_warning("Powernet with [english_list(problems)]! (Powernet number: [PN.number]) - cable at ([get_area(C.loc)]) [ADMIN_COORDJMP(C.loc)]")))
+		to_chat(user, span_filter_adminlog(span_red("Powernet with [english_list(problems)]! (Powernet number: [PN.number]) - cable at ([get_area(C.loc)]) [ADMIN_COORDJMP(C.loc)]")))
