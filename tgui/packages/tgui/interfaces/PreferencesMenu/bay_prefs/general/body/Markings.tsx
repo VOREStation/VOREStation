@@ -63,23 +63,36 @@ export const MarkingsPopup = (props: {
       scrollable
       buttons={
         <>
+        <Stack>
+          <Stack.Item>
           <Button.Checkbox
             checked={showHuman}
             selected={showHuman}
             onClick={() => setShowHuman((x) => !x)}
-          >
+            >
             Show Human
           </Button.Checkbox>
+          </Stack.Item>
+          <Stack.Item>
           <Button
             icon={showAddMenu ? 'minus' : 'plus'}
             color={showAddMenu ? 'bad' : 'good'}
             onClick={() => setShowAddMenu(!showAddMenu)}
-          >
+            >
             Add Marking
           </Button>
+          </Stack.Item>
+          <Stack.Item>
+          <Button onClick={() => act('pick_random_markings')} color="blue">
+            Random
+          </Button>
+          </Stack.Item>
+          <Stack.Item>
           <Button onClick={() => setShow(BodyPopup.None)} color="bad">
             Close
           </Button>
+          </Stack.Item>
+        </Stack>
         </>
       }
     >

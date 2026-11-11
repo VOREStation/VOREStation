@@ -41,9 +41,18 @@ export const EarsSecondaryDimmer = (props: {
       title="Horns"
       fill
       buttons={
-        <Button onClick={() => setShow(BodyPopup.None)} color="bad">
-          Close
-        </Button>
+        <Stack>
+          <Stack.Item>
+            <Button onClick={() => act('pick_random_horns')} color="blue">
+              Random
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button onClick={() => setShow(BodyPopup.None)} color="bad">
+              Close
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack vertical fill>
