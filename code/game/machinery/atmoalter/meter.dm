@@ -73,6 +73,7 @@
 			"tag" = id,
 			"device" = "AM",
 			"pressure" = round(env_pressure, 0.01),
+			"temperature" = round(environment.temperature,0.01),
 			"sigtype" = "status"
 		)
 		radio_connection.post_signal(src, signal)
