@@ -19,11 +19,13 @@
 	air = new
 	if(isnull(available_landing_sites))
 		available_landing_sites = list()
-		for(var/obj/effect/landmark/event_spawn/dronepod_landing/spot in world)
-			var/area/A = get_area(spot)
+		for(var/obj/effect/landmark/land_spot in GLOB.landmarks_list)
+			if(land_spot.name != "droppod_landing")
+				continue
+			var/area/A = get_area(land_spot)
 			if(!A)
 				continue
-			available_landing_sites["[A]"] = get_turf(spot)
+			available_landing_sites["[A]"] = get_turf(land_spot)
 
 /obj/machinery/transportpod/Destroy()
 	. = ..()
