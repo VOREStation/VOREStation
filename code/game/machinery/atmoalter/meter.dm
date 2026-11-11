@@ -66,14 +66,13 @@
 		var/datum/radio_frequency/radio_connection = SSradio.return_frequency(frequency)
 
 		if(!radio_connection) return
-
 		var/datum/signal/signal = new
 		signal.source = src
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data = list(
 			"tag" = id,
 			"device" = "AM",
-			"pressure" = round(env_pressure),
+			"pressure" = round(env_pressure, 0.01),
 			"sigtype" = "status"
 		)
 		radio_connection.post_signal(src, signal)
@@ -171,3 +170,52 @@
 
 /obj/machinery/meter/turf/attackby(obj/item/W, mob/user)
 	return
+
+///Gas Monitoring Specific Meters
+/obj/machinery/meter/preset
+	///1444
+	frequency = ATMOMETER_FREQ
+
+/obj/machinery/meter/preset/dist_main_meter
+	name = "Distribution Meter"
+	id = "dist_main_meter"
+
+/obj/machinery/meter/preset/scrub_main_meter
+	name = "Waste In Loop Meter"
+	id = "scrub_main_meter"
+
+/obj/machinery/meter/preset/mair_main_meter
+	name = "Standard Air Mix Tank Meter"
+	id = "mair_main_meter"
+
+/obj/machinery/meter/preset/aux_mix_meter
+	name = "Gas Mixing Meter"
+	id = "aux_mix_meter"
+
+/obj/machinery/meter/preset/n2_tank
+	name = "Nitrogen Tank Meter"
+	id = "n2_tank"
+
+/obj/machinery/meter/preset/o2_tank
+	name = "Oxygen Tank Meter"
+	id = "o2_tank"
+
+/obj/machinery/meter/preset/no2_tank
+	name = "Nitrous Oxide Tank Meter"
+	id = "no2_tank"
+
+/obj/machinery/meter/preset/phoron_tank
+	name = "Phoron Tank Meter"
+	id = "phoron_tank"
+
+/obj/machinery/meter/preset/co2_tank
+	name = "Carbon Dioxide Tank Meter"
+	id = "co2_tank"
+
+/obj/machinery/meter/preset/engine_fuel
+	name = "Engine Fuel Meter"
+	id = "engine_fuel"
+
+/obj/machinery/meter/preset/mining_air
+	name = "Mining Airmix Meter"
+	id = "mining_air"

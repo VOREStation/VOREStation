@@ -27841,7 +27841,9 @@
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 10
 	},
-/obj/structure/closet/firecloset,
+/obj/machinery/computer/general_air_control/storage_monitor/station{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
 "aZM" = (

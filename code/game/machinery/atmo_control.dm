@@ -751,6 +751,40 @@
 			radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 			. = TRUE
 
+///For Atmosia Mapping use
+/obj/machinery/computer/general_air_control/storage_monitor
+	name = "Atmospheric Storage Monitor"
+	desc = "Monitors gas pressures in Atmospheric's holding tanks and gas loops."
+	//1444
+	frequency = ATMOMETER_FREQ
+	sensors = list(
+		"dist_main_meter"="Distribution Loop",
+		"scrub_main_meter"="Scrubbers Loop",
+		"mair_main_meter"="Standard Air Mix Reserves",
+		"aux_mix_meter"="Gas Mixing Buffer",
+		"n2_tank"="Nitrogen Reserves",
+		"o2_tank"="Oxygen Reserves",
+		"no2_tank"="Nitrous Oxide Reserves",
+		"phoron_tank"="Phoron Reserves",
+		"co2_tank"="Carbon Dioxide Reserves",
+		"engine_fuel"="Engine Fuel"
+		)
+
+///Station with a mining outpost (Tether)
+/obj/machinery/computer/general_air_control/storage_monitor/station
+	sensors = list(
+		"dist_main_meter"="Distribution Loop",
+		"scrub_main_meter"="Scrubbers Loop",
+		"mair_main_meter"="Standard Air Mix Reserves",
+		"aux_mix_meter"="Gas Mixing Buffer",
+		"n2_tank"="Nitrogen Reserves",
+		"o2_tank"="Oxygen Reserves",
+		"no2_tank"="Nitrous Oxide Reserves",
+		"phoron_tank"="Phoron Reserves",
+		"co2_tank"="Carbon Dioxide Reserves",
+		"mining_air"="Outpost Air Reserves"
+		)
+
 #undef SENSOR_PRESSURE
 #undef SENSOR_TEMPERATURE
 #undef SENSOR_O2
