@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - qol: "Make it so ghost spawns work anywhere players can reach"

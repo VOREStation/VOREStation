@@ -1,6 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - rscadd: "Added leap trait"
-  - code_imp: "Added cooldown action buttons"
-  - bugfix: "Fixed bear traps activating when being thrown over them"
