@@ -215,7 +215,7 @@ default behaviour is:
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 
-	if(ismulebot(AM))
+	if(isMulebot(AM))
 		var/mob/living/bot/mulebot/MB = AM
 		MB.runOver(src)
 
