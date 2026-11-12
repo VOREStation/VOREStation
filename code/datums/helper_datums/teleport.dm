@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 			break
 		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_MECH_EQUIPMENT) && istype(movable, /obj/item/mecha_parts/mecha_equipment))
 			break
-		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_VEHICLE) && istype(movable, /obj/vehicle))
+		if(!(container_flags & TELEPORT_CONTAINER_INCLUDE_VEHICLE) && isVehicle(movable))
 			var/obj/vehicle/vehicle = movable
 			if(vehicle.load)
 				break

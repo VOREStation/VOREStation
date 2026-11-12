@@ -97,13 +97,13 @@
 	if(M.throwing) // Weee!
 		return
 
-	if(istype(M, /obj/mecha))
+	if(ismecha(M))
 		explode(M)
 
-	if(istype(M, /obj/vehicle))
+	if(isVehicle(M))
 		explode(M)
 
-	if(istype(M, /mob/living/))
+	if(isliving(M))
 		var/mob/living/mob = M
 		if(!(mob.hovering || mob.flying || mob.is_incorporeal() || mob.mob_size <= MOB_TINY))
 			explode(M)
