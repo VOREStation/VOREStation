@@ -62,38 +62,36 @@ export const MarkingsPopup = (props: {
       fill
       scrollable
       buttons={
-        <>
         <Stack>
           <Stack.Item>
-          <Button.Checkbox
-            checked={showHuman}
-            selected={showHuman}
-            onClick={() => setShowHuman((x) => !x)}
+            <Button.Checkbox
+              checked={showHuman}
+              selected={showHuman}
+              onClick={() => setShowHuman((x) => !x)}
             >
-            Show Human
-          </Button.Checkbox>
+              Show Human
+            </Button.Checkbox>
           </Stack.Item>
           <Stack.Item>
-          <Button
-            icon={showAddMenu ? 'minus' : 'plus'}
-            color={showAddMenu ? 'bad' : 'good'}
-            onClick={() => setShowAddMenu(!showAddMenu)}
+            <Button
+              icon={showAddMenu ? 'minus' : 'plus'}
+              color={showAddMenu ? 'bad' : 'good'}
+              onClick={() => setShowAddMenu(!showAddMenu)}
             >
-            Add Marking
-          </Button>
+              Add Marking
+            </Button>
           </Stack.Item>
           <Stack.Item>
-          <Button onClick={() => act('pick_random_markings')} color="blue">
-            Random
-          </Button>
+            <Button onClick={() => act('pick_random_markings')} color="blue">
+              Random
+            </Button>
           </Stack.Item>
           <Stack.Item>
-          <Button onClick={() => setShow(BodyPopup.None)} color="bad">
-            Close
-          </Button>
+            <Button onClick={() => setShow(BodyPopup.None)} color="bad">
+              Close
+            </Button>
           </Stack.Item>
         </Stack>
-        </>
       }
     >
       {markings.length === 0 && <Box>No Markings Selected.</Box>}
