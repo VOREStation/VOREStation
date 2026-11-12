@@ -1,7 +1,7 @@
 {
 	"devDependencies": {
-		"@biomejs/biome": "^2.6.4",
-		"prettier": "^3.9.10"
+		"@biomejs/biome": "^2.6.7",
+		"prettier": "^3.10.1"
 	},
 	"scripts": {
 		"tgui:fix": "biome check --write --unsafe tgui",

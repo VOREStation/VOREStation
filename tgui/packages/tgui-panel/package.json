@@ -4,8 +4,8 @@
 	"dependencies": {
 		"common": "workspace:*",
 		"dompurify": "^3.4.17",
-		"es-toolkit": "^1.52.0",
-		"jotai": "^3.0.1",
+		"es-toolkit": "^1.53.2",
+		"jotai": "^3.0.2",
 		"react": "^19.3.1",
 		"react-dom": "^19.3.1",
 		"tgui": "workspace:*",
