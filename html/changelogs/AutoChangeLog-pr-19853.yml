@@ -1,0 +1,5 @@
+author: "Poojawa"
+delete-after: True
+changes:
+  - bugfix: "fixed gibber debug message being useless"
+  - refactor: "mapping debug tools now utilize admin jump hotlinks, universal adaptors don't report as unconnected when they're mapped in with, y'know, adapting pipe networks"

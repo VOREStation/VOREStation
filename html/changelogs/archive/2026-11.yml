@@ -83,3 +83,14 @@
   - code_imp: converted a camera variable to true | false flags.
   - qol: Made it so examining a broken camera tells you it is broken
   - code_imp: Converted cameras to an HP system so you can have stronger cameras
+2026-11-12:
+  Diana:
+  - bugfix: Medicinal patches no longer give a proper error when put on limbs.
+  Guti:
+  - rscadd: Added leap trait
+  - code_imp: Added cooldown action buttons
+  - bugfix: Fixed bear traps activating when being thrown over them
+  lbnesquik:
+  - maptweak: Improved minitest with a proper bar, AI, cyborg area, solars, and other
+      little things.
+  - qol: Make it so ghost spawns work anywhere players can reach
