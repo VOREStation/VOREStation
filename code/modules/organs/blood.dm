@@ -55,6 +55,9 @@ BLOOD_VOLUME_SURVIVE = 40
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return
+
 	if(inStasisNow())
 		return
 

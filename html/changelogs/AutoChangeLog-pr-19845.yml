@@ -1,5 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - bugfix: "Fixes repeated headsmashing when you slide recursively"
-  - bugfix: "Fixes an inconsistant runtime with trying to delete slip_timer when it is sometimes null"

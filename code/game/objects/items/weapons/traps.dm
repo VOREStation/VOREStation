@@ -148,6 +148,8 @@
 	. = ..()
 	if(AM.is_incorporeal())
 		return
+	if(AM.throwing)
+		return
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
 		if(L.m_intent == I_RUN)
