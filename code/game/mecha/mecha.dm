@@ -962,13 +962,12 @@
 		return
 
 	else if(isanimal(M))
-		var/mob/living/L = M
+		var/mob/living/simple_mob/L = M
 		src.visible_message(span_danger("\The [src] stomps over \the [L]!"))
-		if(istype(L, /mob/living/simple_mob))
-			if(issmall(L) && (L.stat == DEAD))
-				L.gib()
-				playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-				return TRUE
+		if(issmall(L) && (L.stat == DEAD))
+			L.gib()
+			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+			return TRUE
 		L.apply_damage(trample_damage, BRUTE)
 		playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 		return TRUE

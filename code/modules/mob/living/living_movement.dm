@@ -224,7 +224,7 @@ default behaviour is:
 			// Checks if we are riding a vehicle instead of our buckled vehicle, so that our trailers don't flatten us either!
 			var/obj/vehicle/V = AM
 			V.RunOver(src)
-	if(istype(AM, /obj/mecha))
+	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
 		mecha.trample(src)
 
