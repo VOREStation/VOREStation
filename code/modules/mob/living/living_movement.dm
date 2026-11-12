@@ -215,11 +215,11 @@ default behaviour is:
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 
-	if(istype(AM, /mob/living/bot/mulebot))
+	if(ismulebot(AM))
 		var/mob/living/bot/mulebot/MB = AM
 		MB.runOver(src)
 
-	if(istype(AM, /obj/vehicle))
+	if(isvehicle(AM))
 		if(!istype(buckled, /obj/vehicle) && !is_incorporeal()) // Don't run ourselves over, needed for going down stairs in vehicles!
 			// Checks if we are riding a vehicle instead of our buckled vehicle, so that our trailers don't flatten us either!
 			var/obj/vehicle/V = AM
