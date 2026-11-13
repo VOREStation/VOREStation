@@ -94,3 +94,15 @@
   - maptweak: Improved minitest with a proper bar, AI, cyborg area, solars, and other
       little things.
   - qol: Make it so ghost spawns work anywhere players can reach
+2026-11-13:
+  Kashargul:
+  - code_imp: update dependencies
+  - bugfix: timer added to qdelled porta gens
+  Poojawa:
+  - bugfix: fixed gibber debug message being useless
+  - refactor: mapping debug tools now utilize admin jump hotlinks, universal adaptors
+      don't report as unconnected when they're mapped in with, y'know, adapting pipe
+      networks
+  Willburd:
+  - rscadd: Adds upgrading medical gauze into burnpacks using dermalaze
+  - refactor: Allows medical stack upgrades to have multiple outcomes
