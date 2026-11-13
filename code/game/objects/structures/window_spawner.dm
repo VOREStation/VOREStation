@@ -110,3 +110,19 @@
 /obj/effect/wingrille_spawn/reinforced/polarized/handle_window_spawn(obj/structure/window/reinforced/polarized/P)
 	if(id)
 		P.id = id
+
+/obj/effect/holidify_window
+	name = "holidify window"
+	icon = 'icons/obj/gifts.dmi'
+	icon_state = "gift1_g"
+	density = TRUE
+	anchored = TRUE
+	var/pattern = PATTERN_DEFAULT
+
+/obj/effect/holidify_window/Initialize(mapload)
+	. = ..()
+	if(pattern && SSticker && SSticker.current_state < GAME_STATE_PLAYING)
+		if(locate(/obj/structure/window) in get_turf(src))
+			var/obj/structure/window/the_window = locate(get_turf(src))
+			the_window.color = request_decoration_colors(the_window, pattern)
+	return INITIALIZE_HINT_QDEL
