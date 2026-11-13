@@ -380,12 +380,14 @@
 	desc = "You have trouble dealing with sudden flashes of light, taking some time for you to recover. The effects of flashes from cameras and security equipment leaves you stunned for some time. 50% increased stun duration from flashes."
 	cost = -1
 	var_changes = list("flash_mod" = 1.5)
+	banned_species = list(SPECIES_ZADDAT)
 
 /datum/trait/negative/light_sensitivity_plus
 	name = "Photosensitivity, Major"
 	desc = "You have trouble dealing with sudden flashes of light, taking quite a long time for you to be able to recover. The effects of flashes from cameras and security equipment leave you stunned for some time. 100% (2x) stun duration from flashes."
 	cost = -2
 	var_changes = list("flash_mod" = 2.0)
+	banned_species = list(SPECIES_ZADDAT)
 
 	//Traitgenes
 	is_genetrait = TRUE
@@ -524,6 +526,7 @@
 	hidden = TRUE //Disabled on Virgo
 	can_take = ORGANICS
 	added_component_path = /datum/component/burninlight // Literally just Zaddat, but you don't start with any suit. Good luck.
+	banned_species = list(SPECIES_ZADDAT)
 
 // Addictions
 /datum/trait/neutral/addiction_alcohol

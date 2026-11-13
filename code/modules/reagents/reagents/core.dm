@@ -305,7 +305,8 @@
 		if(istype(L, /mob/living/simple_mob/slime))
 			var/mob/living/simple_mob/slime/S = L
 			S.adjustToxLoss(15 * amount)
-			S.visible_message(span_warning("[S]'s flesh sizzles where the water touches it!"), span_danger("Your flesh burns in the water!"))
+			if(S.stat != DEAD)
+				S.visible_message(span_warning("[S]'s flesh sizzles where the water touches it!"), span_danger("Your flesh burns in the water!"))
 
 		// Then extinguish people on fire.
 		var/needed = max(0,L.fire_stacks) * 5

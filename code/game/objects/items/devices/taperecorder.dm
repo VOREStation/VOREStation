@@ -166,6 +166,8 @@
 		//count seconds until full, or recording is stopped
 		while(mytape && recording && mytape.used_capacity < mytape.max_capacity)
 			sleep(10)
+			if(!mytape)
+				break
 			mytape.used_capacity++
 			if(mytape.used_capacity >= mytape.max_capacity)
 				if(ismob(loc))
