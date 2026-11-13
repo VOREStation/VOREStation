@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - balance: "Make it so you can make ATV's without osmium"
