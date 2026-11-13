@@ -44,7 +44,7 @@
 	name = "Non-Contagious GBS"
 	medical_name = "Non-Contagious Guillain-Barré Syndrome"
 	desc = "If left untreated death will occur."
-	stage_prob = 5
+	stage_threshold = 60
 	spread_text = "Non-contagious"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	cure_text = REAGENT_CRYOXADONE

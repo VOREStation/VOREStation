@@ -14,7 +14,7 @@
 	The host's cells are slowly rewritten and replaced. Unknown effects if left untreated."
 	danger = DISEASE_BIOHAZARD
 	disease_flags = CAN_NOT_POPULATE
-	stage_prob = 1
+	stage_threshold = 120
 	discovery_threshold = 0 //Doesn't show up on medical HUDs
 
 /datum/disease/fleshy_spread/stage_act()
