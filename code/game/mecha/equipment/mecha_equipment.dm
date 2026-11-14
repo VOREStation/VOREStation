@@ -144,34 +144,33 @@
 
 /**
 * A successful check means we had no error. Otherwise, we return a number for the problem, or the generic 1.
-* 0 - All good!
-* 1 - Generic error
-* 2 - Duplicate
-* 3 - Not enough space
-* 4 - Type of exosuit isn't compatible with this
-*/
+* EQUIP_SUCCESS - All good!
+* EQUIP_FAIL_GENERIC - Generic error
+* EQUIP_FAIL_DUPLICATE - Duplicate
+* EQUIP_FAIL_SPACE - Not enough space
+* EQUIP_FAIL_TYPE - Type of exosuit isn't compatible with this */
 /obj/item/mecha_parts/mecha_equipment/proc/can_attach(obj/mecha/M as obj)
 	if(!allow_duplicate)
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in M.equipment) //Exact duplicate components aren't allowed.
 			if(ME.type == src.type)
-				return 2
+				return EQUIP_FAIL_DUPLICATE
 	if(equip_type == EQUIP_HULL && M.hull_equipment.len >= M.max_hull_equip)
-		return 3
+		return EQUIP_FAIL_SPACE
 	if(equip_type == EQUIP_WEAPON && M.weapon_equipment.len >= M.max_weapon_equip)
-		return 3
+		return EQUIP_FAIL_SPACE
 	if(equip_type == EQUIP_UTILITY && M.utility_equipment.len >= M.max_utility_equip)
-		return 3
+		return EQUIP_FAIL_SPACE
 	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len >= M.max_special_equip)
-		return 3
+		return EQUIP_FAIL_SPACE
 	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len >= M.max_micro_utility_equip)
-		return 3
+		return EQUIP_FAIL_SPACE
 	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len >= M.max_micro_weapon_equip)
-		return 3
+		return EQUIP_FAIL_SPACE
 	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
 		if(equip_type == EQUIP_WEAPON && !istype(M, /obj/mecha/combat))
-			return 4
-		return 0
-	return 1
+			return EQUIP_FAIL_TYPE
+		return EQUIP_SUCCESS
+	return EQUIP_FAIL_GENERIC
 
 /obj/item/mecha_parts/mecha_equipment/proc/attach(obj/mecha/M as obj)
 	//M.equipment += src
