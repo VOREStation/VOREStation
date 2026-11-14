@@ -1441,7 +1441,7 @@
 				if(EQUIP_FAIL_TYPE)
 					to_chat(user, "[src] isn't compatible with \the [W].")
 				else //Not supposed to happen.
-					to_chat(user, "You were unable to attach \the [W] to [src].")
+					to_chat(user, "You were somewhow unable to attach \the [W] to [src].")
 		return
 
 	if(istype(W, /obj/item/mecha_parts/component) && state == MECHA_CELL_OUT)

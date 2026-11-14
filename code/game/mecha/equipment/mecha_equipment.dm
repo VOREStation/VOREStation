@@ -166,11 +166,11 @@
 		return EQUIP_FAIL_SPACE
 	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len >= M.max_micro_weapon_equip)
 		return EQUIP_FAIL_SPACE
-	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
+	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len >= M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
 		if(equip_type == EQUIP_WEAPON && !istype(M, /obj/mecha/combat))
 			return EQUIP_FAIL_TYPE
 		return EQUIP_SUCCESS
-	return EQUIP_FAIL_GENERIC
+	return EQUIP_SUCCESS
 
 /obj/item/mecha_parts/mecha_equipment/proc/attach(obj/mecha/M as obj)
 	//M.equipment += src
