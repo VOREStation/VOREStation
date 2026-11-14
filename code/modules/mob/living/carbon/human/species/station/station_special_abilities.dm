@@ -1215,7 +1215,7 @@
 		to_chat(C, span_warning("You must have a tighter grip to bite this creature."))
 		return
 
-	var/choice = tgui_input_list(src, "What do you wish to inject?", "Reagent", list(REAGENT_APHRODISIAC, "Numbing", "Paralyzing"))
+	var/choice = tgui_input_list(src, "What do you wish to inject?", "Reagent", list(REAGENT_APHRODISIAC, "Numbing", "Paralyzing", REAGENT_MICROCILLIN, REAGENT_MACROCILLIN))
 
 	last_special = world.time + 600
 
@@ -1238,6 +1238,14 @@
 			src.show_message(span_warning("You sink your fangs into [T] and inject your poison!"))
 			src.visible_message(span_red("[src] sinks their fangs into [T]!"))
 			T.bloodstr.add_reagent(REAGENT_ID_PARALYZE_FLUID,20) //Poisons should work when more units are injected
+		else if(choice == REAGENT_MICROCILLIN)
+			src.show_message(span_warning("You sink your fangs into [T] and inject your poison!"))
+			src.visible_message(span_red("[src] sinks their fangs into [T]!"))
+			T.bloodstr.add_reagent(REAGENT_ID_MICROCILLIN,1)
+		else if(choice == REAGENT_MACROCILLIN)
+			src.show_message(span_warning("You sink your fangs into [T] and inject your poison!"))
+			src.visible_message(span_red("[src] sinks their fangs into [T]!"))
+			T.bloodstr.add_reagent(REAGENT_ID_MACROCILLIN,1)
 		else
 			return //Should never happen
 
