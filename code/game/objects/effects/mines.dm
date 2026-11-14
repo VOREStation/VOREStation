@@ -261,7 +261,7 @@
 	s.start()
 	visible_message("\The [src.name] flashes violently before disintegrating!")
 	SSmotiontracker.ping(src,100)
-	empulse(loc, 2, 4, 7, 10, 1) // As strong as an EMP grenade
+	empulse(loc, 1, 2, 3, 4, 1) // As strong as a low-yield EMP grenade. Changed so stepping directly on the mine is still dangerous especially to FBPs, but just being in the general vicinity of one won't be as likely to obliterate you.
 	qdel(src)
 
 /obj/effect/mine/emp/camo
