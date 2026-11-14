@@ -2,7 +2,7 @@
 	name = "Roanoke Syndrome"
 	medical_name = "Roanoke Syndrome"
 	max_stages = 6
-	stage_prob = 2
+	stage_threshold = 120
 	spread_text = "Blood and close contact"
 	spread_flags = DISEASE_SPREAD_BLOOD
 	cure_text = REAGENT_SPACEACILLIN

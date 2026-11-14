@@ -20,7 +20,8 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	//Stages
 	var/stage = 1
 	var/max_stages = 0
-	var/stage_prob = 4
+	var/stage_count = 0
+	var/stage_threshold = 100 // Life tick each 2 seconds, this will take 200s to advance a stage
 
 	/// The fraction of stages the virus must at least be at to show up on medical HUDs. Rounded up.
 	var/discovery_threshold = 0.5
@@ -80,10 +81,13 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	return handle_cure_testing(cure)
 
 /datum/disease/proc/handle_stage_advance(has_cure = FALSE)
-	if(!has_cure && prob(stage_prob))
-		stage = min(stage + 1, max_stages)
-		if(!global_flag_check(virus_modifiers, DISCOVERED) && stage >= CEILING(max_stages * discovery_threshold, 1))
-			virus_modifiers |= DISCOVERED
+	if(!has_cure)
+		stage_count++
+		if(stage_count >= stage_threshold)
+			stage = min(stage + 1, max_stages)
+			stage_count = 0
+			if(!global_flag_check(virus_modifiers, DISCOVERED) && stage >= CEILING(max_stages * discovery_threshold, 1))
+				virus_modifiers |= DISCOVERED
 
 /datum/disease/proc/handle_cure_testing(has_cure = FALSE)
 	if(has_cure && prob(cure_chance))
