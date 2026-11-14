@@ -44,6 +44,7 @@ export type BasicData = {
   bday_day: number;
   bday_announce: BooleanLike;
   spawnpoint: string;
+  radio_announce: BooleanLike;
   ooc_notes_length: number;
 
   languages: { name: string; removable: BooleanLike }[];
