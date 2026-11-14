@@ -15,10 +15,10 @@
 
 	if(istype(target,/obj/item/mecha_parts/mecha_equipment))
 		var/obj/item/mecha_parts/mecha_equipment/ME = target
-		if(ME.can_attach(chassis))
+		if(!ME.can_attach(chassis))
 			occupant_message("[ME] can be integrated. Stand by.")
 			if(do_after(chassis.occupant, 3 SECONDS, target))
-				if(ME.can_attach(chassis) && action_checks(target))
+				if(!ME.can_attach(chassis) && action_checks(target))
 					ME.attach(chassis)
 					occupant_message("[ME] successfully integrated.")
 		else
