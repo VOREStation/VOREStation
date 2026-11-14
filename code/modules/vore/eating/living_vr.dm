@@ -642,13 +642,22 @@
 		forceMove(get_turf(src))
 		log_and_message_admins("[key_name(src)] used the OOC escape button to escape from of a pair of shoes. [ADMIN_FLW(src)] - Shoes [ADMIN_VV(S)]")
 
+	// You're on some sort of utensil or trapped in a holder that's on one and can't resist out
+	else if(istype(loc, /obj/item/material/kitchen/utensil) || (isholder(loc) && istype(loc.loc, /obj/item/material/kitchen/utensil)))
+		var/obj/item/material/kitchen/utensil/utensil_used = isholder(loc) ? loc.loc : loc
+		if(isholder(loc))
+			utensil_used.release_micros()
+		else
+			utensil_used.container_resist(src, TRUE)
+		utensil_used.update_icon()
+		log_and_message_admins("used the OOC escape button to get off of [utensil_used].", src)
+
 	//You are in food and for some reason can't resist out
 	else if(istype(loc, /obj/item/reagent_containers/food))
 		var/obj/item/reagent_containers/food/F = src.loc
-		if(F.food_inserted_micros)
-			F.food_inserted_micros -= src
+		LAZYREMOVE(F.food_inserted_micros, src)
 		src.forceMove(get_turf(F))
-		log_and_message_admins("used the OOC escape button to get out of a food item.", src)
+		log_and_message_admins("used the OOC escape button to get out of [F].", src)
 
 	else if(alerts && alerts["leashed"])
 		var/atom/movable/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
