@@ -25,17 +25,17 @@ export const PublicLibraryWiki = (props) => {
     searchmode,
     search,
     print,
+    food_id,
+    drink_id,
+    chemistry_id,
+    botany_id,
+    material_id,
+    particle_id,
+    catalog_id,
+    ore_id,
+    virus_id,
+    gene_id,
     sub_categories,
-    food_data,
-    drink_data,
-    chemistry_data,
-    botany_data,
-    material_data,
-    particle_data,
-    catalog_data,
-    ore_data,
-    virus_data,
-    gene_data,
     has_donated,
     donated,
     goal,
@@ -147,16 +147,16 @@ export const PublicLibraryWiki = (props) => {
           search={search}
           print={print}
           subCats={sub_categories}
-          food_data={food_data}
-          drink_data={drink_data}
-          chemistry_data={chemistry_data}
-          botany_data={botany_data}
-          ore_data={ore_data}
-          virus_data={virus_data}
-          gene_data={gene_data}
-          material_data={material_data}
-          particle_data={particle_data}
-          catalog_data={catalog_data}
+          food_id={food_id}
+          drink_id={drink_id}
+          chemistry_id={chemistry_id}
+          botany_id={botany_id}
+          ore_id={ore_id}
+          virus_id={virus_id}
+          gene_id={gene_id}
+          material_id={material_id}
+          particle_id={particle_id}
+          catalog_id={catalog_id}
         />
       ) : (
         <WikiMainPage
