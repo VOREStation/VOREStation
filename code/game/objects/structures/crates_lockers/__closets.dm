@@ -130,7 +130,8 @@
 	for(var/mob/M in src)
 		M.forceMove(loc)
 
-/obj/structure/closet/proc/open()
+///Proc for opening a locker. User is not always guaranteed, make sure you check we have a user if you're doing things involving it.
+/obj/structure/closet/proc/open(mob/user)
 	if(opened)
 		return 0
 
@@ -146,7 +147,8 @@
 	animate_door()
 	return 1
 
-/obj/structure/closet/proc/close()
+///Proc for closing a locker. User is not always guaranteed, make sure you check we have a user if you're doing things involving it.
+/obj/structure/closet/proc/close(mob/user)
 	if(!opened)
 		return 0
 	if(!can_close())
@@ -223,11 +225,11 @@
 /obj/structure/closet/proc/toggle(mob/user as mob)
 	if(is_animating_door)
 		return
-	if(!(opened ? close() : open()))
+	if(!(opened ? close(user) : open(user)))
 		to_chat(user, span_notice("It won't budge!"))
 		return
 
-// this should probably use dump_contents()
+// this should probably use dump_contents() //or scatter_contents()
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -381,7 +383,7 @@
 	if(user.stat || !isturf(loc))
 		return
 
-	if(!open())
+	if(!open(user))
 		to_chat(user, span_notice("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
@@ -549,8 +551,18 @@
 /obj/structure/closet/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
 	return proximity_flag
 
-//verb to eat people in the same closet as yourself
+/// Flings all contained atoms outwards in random directions
+/obj/structure/closet/proc/scatter_contents(max_range = 3, throw_speed = 2)
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
 
+	var/list/things_to_scatter = contents.Copy()
+	for(var/atom/movable/AM in things_to_scatter)
+		AM.forceMove(current_turf)
+		AM.throw_at_random(include_own_turf = FALSE, maxrange = max_range, speed = throw_speed)
+
+//verb to eat people in the same closet as yourself
 /obj/structure/closet/verb/hidden_vore()
 	set src in oview(1)
 	set category = "Object"

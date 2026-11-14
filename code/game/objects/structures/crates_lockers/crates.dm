@@ -20,7 +20,7 @@
 /obj/structure/closet/crate/can_close()
 	return 1
 
-/obj/structure/closet/crate/open()
+/obj/structure/closet/crate/open(mob/user)
 	if(src.opened)
 		return 0
 	if(!src.can_open())
@@ -47,7 +47,7 @@
 	update_icon()
 	return 1
 
-/obj/structure/closet/crate/close()
+/obj/structure/closet/crate/close(mob/user)
 	if(!src.opened)
 		return 0
 	if(!src.can_close())
@@ -614,7 +614,7 @@
 	icon = 'icons/obj/closets/bases/large_crate.dmi'
 	closet_appearance = /datum/decl/closet_appearance/large_crate
 
-/obj/structure/closet/crate/large/close()
+/obj/structure/closet/crate/large/close(mob/user)
 	. = ..()
 	if (.)//we can hold up to one large item
 		var/found = 0
@@ -664,7 +664,7 @@
 	closet_appearance = /datum/decl/closet_appearance/large_crate/secure
 
 
-/obj/structure/closet/crate/secure/large/close()
+/obj/structure/closet/crate/secure/large/close(mob/user)
 	. = ..()
 	if (.)//we can hold up to one large item
 		var/found = 0
