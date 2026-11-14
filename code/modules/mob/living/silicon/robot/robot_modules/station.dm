@@ -451,7 +451,7 @@
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/t_scanner(src)
 	src.modules += new /obj/item/analyzer(src)
-	src.modules += new /obj/item/assembly/signaler(src) // Anomaly handling
+	src.modules += new /obj/item/assembly/signaler/mounted(src) // Anomaly handling
 	src.modules += new /obj/item/geiger(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/gripper/engineering(src)
@@ -804,7 +804,7 @@
 	src.modules += new /obj/item/pickaxe/excavationdrill(src)
 	// Anomaly handling
 	src.modules += new /obj/item/analyzer(src)
-	src.modules += new /obj/item/assembly/signaler(src)
+	src.modules += new /obj/item/assembly/signaler/mounted(src)
 	src.modules += new /obj/item/anomaly_scanner(src)
 
 	src.emag += new /obj/item/hand_tele(src)
@@ -876,7 +876,7 @@
 	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/t_scanner(src)
 	src.modules += new /obj/item/analyzer(src)
-	src.modules += new /obj/item/assembly/signaler(src)
+	src.modules += new /obj/item/assembly/signaler/mounted(src)
 	src.modules += new /obj/item/gripper/engineering(src)
 	src.modules += new /obj/item/multitool/cyborg(src)
 	src.modules += new /obj/item/lightreplacer(src)

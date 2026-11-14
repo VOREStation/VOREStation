@@ -11,23 +11,25 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound =  'sound/items/pickup/component.ogg'
 
-	var/secured = 1
+	var/secured = TRUE
 	var/list/attached_overlays = null
 	var/obj/item/assembly_holder/holder = null
 	var/cooldown = FALSE //To prevent spam
 	var/wires_type = WIRE_RECEIVE | WIRE_PULSE
 
-	var/const/WIRE_RECEIVE = 1			//Allows Pulsed(0) to call Activate()
+	var/const/WIRE_RECEIVE = 1				//Allows Pulsed(0) to call Activate()
 	var/const/WIRE_PULSE = 2				//Allows Pulse(0) to act on the holder
 	var/const/WIRE_PULSE_SPECIAL = 4		//Allows Pulse(0) to act on the holders special assembly
 	var/const/WIRE_RADIO_RECEIVE = 8		//Allows Pulsed(1) to call Activate()
-	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio message
+	var/const/WIRE_RADIO_PULSE = 16			//Allows Pulse(1) to send a radio message
 
 	///var used for attack_self chain
 	var/special_handling = FALSE
 
 	COOLDOWN_DECLARE(next_activate)
 	var/activation_cooldown = 3 SECONDS
+
+	var/mounted = FALSE						// Currently only used on cyborg signalers.
 
 /obj/item/assembly/proc/holder_movement()
 	return
@@ -64,6 +66,9 @@
 		return TRUE
 
 /obj/item/assembly/attackby(obj/item/W as obj, mob/user as mob)
+	if(mounted)
+		to_chat(user, span_notice("\The [src] is secured firmly, it can't be unsecured."))
+		return
 	if(isassembly(W))
 		var/obj/item/assembly/A = W
 		if((!A.secured) && (!secured))
@@ -82,11 +87,11 @@
 
 /obj/item/assembly/examine(mob/user)
 	. = ..()
-	if((in_range(src, user) || loc == user))
+	if((in_range(src, user) || loc == user) && !mounted)
 		if(secured)
-			. += "\The [src] is ready!"
+			. += span_notice("\The [src] is ready!")
 		else
-			. += "\The [src] can be attached!"
+			. += span_notice("\The [src] can be attached!")
 
 /obj/item/assembly/attack_self(mob/user)
 	. = ..(user)

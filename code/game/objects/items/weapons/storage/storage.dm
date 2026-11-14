@@ -7,6 +7,7 @@
 
 /obj/item/storage
 	name = "storage"
+	description_info = "You can use alt-click to open it."
 	icon = 'icons/obj/storage.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
