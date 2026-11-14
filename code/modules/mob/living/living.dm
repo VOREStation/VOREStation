@@ -858,7 +858,7 @@
 
 /mob/living/proc/resist_buckle()
 	if(buckled)
-		if(istype(buckled, /obj/vehicle))
+		if(isVehicle(buckled))
 			var/obj/vehicle/vehicle = buckled
 			vehicle.unload()
 		else
@@ -1089,7 +1089,7 @@
 		lying = FALSE
 		canmove = TRUE
 	else
-		if(istype(buckled, /obj/vehicle))
+		if(isVehicle(buckled))
 			var/obj/vehicle/V = buckled
 			if(is_physically_disabled())
 				lying = FALSE
