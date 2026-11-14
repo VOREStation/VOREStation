@@ -1119,9 +1119,9 @@
 	show_messages = 1
 	blood_sprite_state = "uniformblood"
 
-	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
-	var/sensor_mode = 3
-	var/sensorpref = 5
+	var/has_sensor = SUIT_SENSORS_PRESENT //For the crew computer 2 = unable to change mode
+	var/random_sensor = TRUE
+	var/sensor_mode = SUIT_SENSOR_OFF
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
@@ -1192,19 +1192,25 @@
 	if(rolled_sleeves == -1)
 		verbs -= /obj/item/clothing/under/verb/rollsleeves
 
+	if(random_sensor)
+		//Make the sensor mode favor higher levels, except coords.
+		sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_VITAL, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING, SUIT_SENSOR_TRACKING)
+
 	if(!ishuman(loc))
 		return
 
 	var/mob/living/carbon/human/H = loc
-	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
+	if(!ishuman(H))
+		return
+	var/sensorpref = H.sensorpref
+	if(!sensorpref || sensorpref == 5) // "No Preference"
+		return
 	switch(sensorpref)
 		if(1) sensor_mode = SUIT_SENSOR_OFF			//Sensors off
 		if(2) sensor_mode = SUIT_SENSOR_BINARY		//Sensors on binary
 		if(3) sensor_mode = SUIT_SENSOR_VITAL		//Sensors display vitals
 		if(4) sensor_mode = SUIT_SENSOR_TRACKING	//Sensors display vitals and enables tracking
-		if(5) sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)	//Select a random setting
 		else
-			sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)
 			log_runtime("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
 
 /obj/item/clothing/under/proc/update_rolldown_status()
@@ -1265,25 +1271,33 @@
 
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
-	switch(src.sensor_mode)
-		if(0)
-			. += "Its sensors appear to be disabled."
-		if(1)
-			. += "Its binary life sensors appear to be enabled."
-		if(2)
-			. += "Its vital tracker appears to be enabled."
-		if(3)
-			. += "Its vital tracker and tracking beacon appear to be enabled."
+	if(has_sensor == SUIT_SENSORS_BROKEN)
+		. += "Its sensors appear to be shorted out."
+	else if(has_sensor > SUIT_SENSORS_NONE)
+		switch(src.sensor_mode)
+			if(SUIT_SENSOR_OFF)
+				. += "Its sensors appear to be disabled."
+			if(SUIT_SENSOR_BINARY)
+				. += "Its binary life sensors appear to be enabled."
+			if(SUIT_SENSOR_VITAL)
+				. += "Its vital tracker appears to be enabled."
+			if(SUIT_SENSOR_TRACKING)
+				. += "Its vital tracker and tracking beacon appear to be enabled."
 
 /obj/item/clothing/under/proc/set_sensors(mob/user)
-	if (istype(user, /mob/observer)) return
-	if (user.stat || user.restrained()) return
-	if(has_sensor >= 2)
+	if (istype(user, /mob/observer))
+		return
+	if (user.stat || user.restrained())
+		return
+	if(has_sensor == SUIT_SENSORS_LOCKED)
 		to_chat(user, "The controls are locked.")
-		return 0
-	if(has_sensor <= 0)
+		return FALSE
+	if(has_sensor == SUIT_SENSORS_BROKEN)
+		to_chat(user, "The sensors have shorted out!")
+		return FALSE
+	if(has_sensor <= SUIT_SENSORS_NONE)
 		to_chat(user, "This suit does not have any sensors.")
-		return 0
+		return FALSE
 
 	var/list/modes = list(
 		"Off" = SUIT_SENSOR_OFF,
@@ -1305,16 +1319,16 @@
 	if (src.loc == user)
 		switch(sensor_mode)
 			if(SUIT_SENSOR_OFF)
-				user.visible_message("[user] adjusts their sensors.", "You disable your suit's remote sensing equipment.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("You disable your suit's remote sensing equipment."))
 			if(SUIT_SENSOR_BINARY)
-				user.visible_message("[user] adjusts their sensors.", "Your suit will now report whether you are live or dead.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("Your suit will now report whether you are live or dead."))
 			if(SUIT_SENSOR_VITAL)
-				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("Your suit will now report your vital lifesigns."))
 			if(SUIT_SENSOR_TRACKING)
-				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns as well as your coordinate position.")
+				user.visible_message(span_notice("[user] adjusts their sensors."), span_notice("Your suit will now report your vital lifesigns as well as your coordinate position."))
 
 	else if (istype(src.loc, /mob))
-		user.visible_message("[user] adjusts [src.loc]'s sensors.", "You adjust [src.loc]'s sensors.")
+		user.visible_message(span_notice("[user] adjusts [src.loc]'s sensors."), span_notice("You adjust [src.loc]'s sensors."))
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"
@@ -1395,9 +1409,14 @@
 		to_chat(usr, span_notice("You roll down your [src]'s sleeves."))
 	update_clothing_icon()
 
-/obj/item/clothing/under/rank/Initialize(mapload)
-	sensor_mode = pick(0,1,2,3)
+/obj/item/clothing/under/emp_act(severity, recursive)
 	. = ..()
+	if(has_sensor > SUIT_SENSORS_PRESENT)
+		// scramble the mode with more weight towards turning it off.
+		sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_OFF, SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)
+		if(ismob(loc))
+			var/mob/M = loc
+			to_chat(M, span_warning("The sensors on the [src] change rapidly!"))
 
 /obj/item/clothing/Destroy()
 	STOP_PROCESSING(SSobj, src)

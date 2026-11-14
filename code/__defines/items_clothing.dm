@@ -191,11 +191,17 @@
 #define THROWNOBJ_KNOCKBACK_SPEED   15 // The minumum speed of a w_class 2 thrown object that will cause living mobs it hits to be knocked back. Heavier objects can cause knockback at lower speeds.
 #define THROWNOBJ_KNOCKBACK_DIVISOR 2  // Affects how much speed the mob is knocked back with.
 
-// Suit sensor levels
+// Suit sensors: sensor_mode defines
 #define SUIT_SENSOR_OFF      0
 #define SUIT_SENSOR_BINARY   1
 #define SUIT_SENSOR_VITAL    2
 #define SUIT_SENSOR_TRACKING 3
+
+// Suit sensors: has_sensor defines
+#define SUIT_SENSORS_BROKEN -1
+#define SUIT_SENSORS_NONE 0
+#define SUIT_SENSORS_PRESENT 1
+#define SUIT_SENSORS_LOCKED 2
 
 // Hair Defines
 #define HAIR_VERY_SHORT 0x1
