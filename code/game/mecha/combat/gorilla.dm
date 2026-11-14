@@ -17,6 +17,7 @@
 	add_req_access = 0
 	internal_damage_threshold = 25
 	force = 60
+	trample_damage = 50 	//Fattest
 	max_equip = 5
 //This will (Should) never be in the hands of players. If it is, the one who inflicted this monster upon the server can edit these vars to not be insane.
 	max_hull_equip = 5

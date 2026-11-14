@@ -20,6 +20,7 @@
 
 	health = 400
 	maxhealth = 400
+	trample_damage = 0
 
 	infra_luminosity = 6
 

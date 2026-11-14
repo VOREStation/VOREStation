@@ -15,6 +15,7 @@
 	add_req_access = 0
 	internal_damage_threshold = 25
 	force = 45
+	trample_damage = 35 		//fat boy
 	max_equip = 4
 	mech_faction = MECH_FACTION_NT
 

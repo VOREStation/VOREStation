@@ -45,6 +45,7 @@
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
+	var/trample_damage = 15
 	var/damage_type = BRUTE
 
 	var/mech_faction = null
@@ -942,6 +943,34 @@
 	else//No idea when this triggers, so i won't touch it.
 		. = ..(obstacle)
 	return
+
+/obj/mecha/proc/trample(mob/living/M)
+	if(!isliving(M))
+		return
+	if(occupant.a_intent != I_HURT)
+		return // Only while on harm intent.
+	if(trample_damage == 0)
+		return // No damage
+	if(ishuman(M))
+		var/mob/living/carbon/human/unfortunateLad = M
+		if(!unfortunateLad.lying)
+			return
+		src.visible_message(span_danger("\The [src] stomps \the [unfortunateLad]!"))
+		unfortunateLad.apply_damage(trample_damage, BRUTE)
+		add_attack_logs(occupant, unfortunateLad, "was trampled by [src] for [trample_damage]")
+		playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+		return
+
+	else if(isanimal(M))
+		var/mob/living/simple_mob/L = M
+		src.visible_message(span_danger("\The [src] stomps over \the [L]!"))
+		if(issmall(L) && (L.stat == DEAD))
+			L.gib()
+			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+			return TRUE
+		L.apply_damage(trample_damage, BRUTE)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+		return TRUE
 
 /obj/mecha/proc/phase()	// Force the mecha to move forward by phasing.
 	set waitfor = FALSE
