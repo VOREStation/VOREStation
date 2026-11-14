@@ -13,4 +13,4 @@
 	if(istype(M, /obj/mecha/working)) // is this a ripley?
 		. = ..()
 	else
-		return 1
+		return EQUIP_FAIL_TYPE

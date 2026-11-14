@@ -26,8 +26,8 @@
 
 
 // Mecha Attach Messages
-#define EQUIP_SUCCESS 0			"success"
-#define EQUIP_FAIL_GENERIC 1	"fail_generic"
-#define EQUIP_FAIL_DUPLICATE 2	"fail_duplicate"
-#define EQUIP_FAIL_SPACE 3		"fail_space"
-#define EQUIP_FAIL_TYPE 4		"fail_type"
+#define EQUIP_SUCCESS 0
+#define EQUIP_FAIL_GENERIC 1
+#define EQUIP_FAIL_DUPLICATE 2
+#define EQUIP_FAIL_SPACE 3
+#define EQUIP_FAIL_TYPE 4

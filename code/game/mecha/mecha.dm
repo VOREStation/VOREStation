@@ -1426,7 +1426,7 @@
 	if(istype(W, /obj/item/mecha_parts/mecha_equipment))
 		var/obj/item/mecha_parts/mecha_equipment/E = W
 		spawn()
-			// Values references are in a comment above the proc.
+			// See Mecha defines
 			switch(E.can_attach(src))
 				if(EQUIP_SUCCESS)
 					user.drop_item()
