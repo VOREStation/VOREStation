@@ -129,6 +129,8 @@
 	chosen_target = null
 
 /mob/living/simple_mob/ysbryd/death()
+	if(QDELETED(src))
+		return
 	if(chosen_target)
 		disconnect_target()
 	qdel(src)
