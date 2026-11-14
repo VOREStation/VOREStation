@@ -75,6 +75,8 @@
 		/obj/item = 12,
 	)
 
+	var/tape_chance = 5
+
 /obj/machinery/door/airlock/attack_generic(mob/living/user, damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
@@ -1161,6 +1163,13 @@ About the new airlock wires panel:
 		wires = new/datum/wires/airlock(src)
 
 	. = ..()
+
+	if(prob(tape_chance))
+		if(width == 1 && !locate(/obj/item/tape, src.loc))
+			var/tape_type = pick(/obj/item/tape/engineering, /obj/item/tape/police)
+			var/obj/item/tape/P = new tape_type(T)
+			P.update_icon()
+			P.layer = WINDOW_LAYER
 
 	if(closeOtherId != null)
 		for (var/obj/machinery/door/airlock/A in GLOB.machines)

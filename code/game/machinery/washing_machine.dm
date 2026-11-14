@@ -31,6 +31,8 @@
 
 /obj/machinery/washing_machine/Initialize(mapload)
 	. = ..()
+	state = pick(EMPTY_OPEN, EMPTY_CLOSED)
+	update_icon()
 	default_apply_parts()
 	AddElement(/datum/element/climbable)
 
