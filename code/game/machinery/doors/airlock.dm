@@ -75,7 +75,7 @@
 		/obj/item = 12,
 	)
 
-	var/tape_chance = 5
+	var/tape_chance = 0
 
 /obj/machinery/door/airlock/attack_generic(mob/living/user, damage)
 	if(stat & (BROKEN|NOPOWER))
