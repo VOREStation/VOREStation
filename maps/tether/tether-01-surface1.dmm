@@ -21241,6 +21241,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 10
 	},
+/obj/machinery/meter/preset/dist_main_meter,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aKw" = (
@@ -22234,7 +22235,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	dir = 1
 	},
-/obj/machinery/meter,
+/obj/machinery/meter/preset/scrub_main_meter,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aMp" = (
@@ -22256,13 +22257,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aMt" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
-	},
-/obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aMu" = (
@@ -22586,7 +22580,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
 	},
-/obj/machinery/meter,
+/obj/machinery/meter/preset/aux_mix_meter,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aNa" = (
@@ -22989,7 +22983,6 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/green{
 	dir = 8
 	},
-/obj/machinery/meter,
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -23012,7 +23005,7 @@
 /area/engineering/atmos)
 "aNN" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
-/obj/machinery/meter,
+/obj/machinery/meter/preset/mair_main_meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
 "aNO" = (
@@ -24106,7 +24099,7 @@
 /area/engineering/atmos)
 "aPF" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
-/obj/machinery/meter,
+/obj/machinery/meter/preset/o2_tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
 "aPG" = (
@@ -24849,25 +24842,11 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"aRd" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/green{
-	dir = 1
-	},
-/obj/machinery/meter,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
 "aRe" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aRf" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/green{
-	dir = 4
-	},
-/obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aRg" = (
@@ -25199,7 +25178,7 @@
 /area/engineering/atmos)
 "aRM" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
-/obj/machinery/meter,
+/obj/machinery/meter/preset/co2_tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
 "aRN" = (
@@ -28633,6 +28612,11 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"aYy" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/phoron_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos)
 "aYz" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -28642,6 +28626,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"aYA" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/no2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos)
 "aYB" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -28655,11 +28644,15 @@
 	pixel_y = 5
 	},
 /obj/item/storage/box/anomaly{
-	pixel_y = 0;
 	pixel_x = 5
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
+"aYD" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/n2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos)
 "aYE" = (
 /obj/structure/toilet/teleplumbed{
 	pixel_y = 10
@@ -49109,7 +49102,7 @@ aOU
 aOU
 aNZ
 aQx
-aRd
+aMY
 aOB
 aRH
 aSJ
@@ -49255,7 +49248,7 @@ aNa
 aJI
 aSc
 ajx
-aRM
+aYy
 aPG
 aTY
 aIh
@@ -49823,7 +49816,7 @@ aNa
 aJI
 aSd
 ajy
-aRM
+aYA
 aPG
 aTY
 aIh
@@ -50094,7 +50087,7 @@ aJM
 aJI
 aLc
 aJI
-aMt
+aMs
 aNb
 aNJ
 aOe
@@ -50529,7 +50522,7 @@ aOB
 aPC
 aPY
 aOg
-aRf
+aNH
 aRK
 aMm
 aQy
@@ -51098,7 +51091,7 @@ aPF
 aOh
 aMw
 aNg
-aRM
+aYD
 aSg
 aSR
 aTv
