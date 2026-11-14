@@ -247,6 +247,9 @@
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)
+	//might fix the mannequin tail dulpication, but also orphaned overlays in general
+	mannequin.cut_overlays()
+	mannequin.overlays_standing = new /list(TOTAL_LAYERS)
 	dress_preview_mob(mannequin)
 	mannequin.update_transform()
 	mannequin.toggle_tail(setting = animations_toggle)

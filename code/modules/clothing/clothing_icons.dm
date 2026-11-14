@@ -24,6 +24,11 @@
 	if(forensic_data?.has_blooddna() && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		blood_sprite_state = "[blood_overlay_type]blood"
-		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
-		bloodsies.color		= blood_color
+		var/datum/sprite_accessory/tail/taur/taurtail = H.tail_style
+		var/image/bloodsies
+		if(taurized && taurtail.suit_sprites)
+			bloodsies = image(icon = taurtail.suit_sprites, icon_state = blood_sprite_state)
+		else
+			bloodsies = image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
+		bloodsies.color	= blood_color
 		standing.add_overlay(bloodsies)
