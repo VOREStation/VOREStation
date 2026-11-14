@@ -1196,6 +1196,8 @@
 	name = "\improper Engine Room Balcony"
 /area/engineering/foyer_mezzenine
 	name = "\improper Engineering Mezzenine"
+/area/engineering/rteg_room
+	name = "\improper RTEG room"
 
 /area/hallway/station
 	icon_state = "hallC1"
