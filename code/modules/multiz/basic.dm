@@ -1,3 +1,4 @@
+// TODO: Migrate to SSMapping
 // If you add a more comprehensive system, just untick this file.
 GLOBAL_LIST_EMPTY(z_levels)// Each bit re... haha just kidding this is a list of bools now
 

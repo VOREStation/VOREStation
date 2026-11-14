@@ -73,6 +73,8 @@
 	return proximity_flag
 
 GLOBAL_LIST_EMPTY(entertainment_screens)
+GLOBAL_LIST_EMPTY(bodycamera_screens)
+
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
 	desc = "Damn, why do they never have anything interesting on these things? (Alt-click to toggle the display)"
