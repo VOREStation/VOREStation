@@ -58,7 +58,7 @@
 	data["pai_emotions"] = GLOB.pai_emotions
 
 	var/datum/pai_sprite/sprite_datum = SSpai.chassis_data(pai_chassis)
-	if(sprite_datum)
+	if(sprite_datum && SSticker.HasRoundStarted())
 		var/datum/asset/spritesheet_batched/pai_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/pai_icons)
 		data["pai_sprite_datum_class"] = sanitize_css_class_name("[sprite_datum.type]")
 		data["pai_sprite_datum_size"] = spritesheet.icon_size_id(data["pai_sprite_datum_class"] + "S") // just get the south icon's size, the rest will be the same
