@@ -189,6 +189,7 @@
 	surgery_name = "Clamp Bleeders"
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,	\
+		/obj/item/tool/wirecutters = 80, \
 		/obj/item/stack/cable_coil = 75, 	\
 		/obj/item/assembly/mousetrap = 25
 	)
@@ -213,7 +214,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_filter_notice("[user] starts clamping bleeders in [target]'s [affected.name] with \the [tool]."), \
 	span_filter_notice("You start clamping bleeders in [target]'s [affected.name] with \the [tool]."))
-	user.balloon_alert_visible("starts clamping bleeders", "clamping bleders")
+	user.balloon_alert_visible("starts clamping bleeders", "clamping bleeders")
 	target.custom_pain("The pain in your [affected.name] is maddening!", 40)
 	..()
 

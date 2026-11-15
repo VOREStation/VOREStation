@@ -1,5 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - rscadd: "Adds upgrading medical gauze into burnpacks using dermalaze"
-  - refactor: "Allows medical stack upgrades to have multiple outcomes"
