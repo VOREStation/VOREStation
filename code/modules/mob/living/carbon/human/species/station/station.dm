@@ -319,6 +319,10 @@
 	)
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds, /mob/living/carbon/human/proc/tie_hair)
 
+	species_abilities = list(
+		/datum/action/cooldown/mob_cooldown/leap/tajaran
+	)
+
 /datum/species/tajaran/equip_survival_gear(mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -1227,6 +1231,10 @@
 		/datum/decl/emote/audible/teshsqueak,
 		/datum/decl/emote/audible/teshchirp,
 		/datum/decl/emote/audible/teshtrill
+	)
+
+	species_abilities = list(
+		/datum/action/cooldown/mob_cooldown/leap/teshari
 	)
 
 /datum/species/teshari/equip_survival_gear(mob/living/carbon/human/H)

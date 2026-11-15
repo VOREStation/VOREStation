@@ -157,6 +157,9 @@
 #define COMSIG_MOB_SAY_FINALIZE "mob_say_finalize"
 	// Reuses the comsig flags of COMSIG_MOB_PRESAY
 
+///from /mob/proc/hear_say(): (list/message_pieces, verb, italics, mob/speaker, sound/speech_sound, sound_vol)
+#define COMSIG_MOB_HEAR_SAY "mob_hear_say"
+
 ///from /datum/component/speechmod/handle_speech(): ()
 #define COMSIG_TRY_MODIFY_SPEECH "try_modify_speech"
 	///Return value if we prevent speech from being modified

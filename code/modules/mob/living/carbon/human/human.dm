@@ -1298,6 +1298,8 @@
 
 	species.apply_components(src)
 
+	species.apply_actions(src)
+
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor
 

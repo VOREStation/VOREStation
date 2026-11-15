@@ -4,7 +4,7 @@
 	desc = "Some sort of weird, pulsating entity."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "pre_confuse"
-	alpha = 0
+	alpha = 255
 
 	///If the aberration starts active or not.
 	var/start_active = TRUE

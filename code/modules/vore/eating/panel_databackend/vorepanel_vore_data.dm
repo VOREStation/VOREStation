@@ -138,17 +138,21 @@
 		switch(active_vore_tab)
 			if(CONTROL_TAB)
 				var/list/addons = list()
+				var/list/vore_pref_type_list = list()
 				for(var/flag_name in selected.mode_flag_list)
 					UNTYPED_LIST_ADD(addons, list("label" = flag_name, "selection" = selected.mode_flags & selected.mode_flag_list[flag_name]))
+				for(var/flag_name in GLOB.vore_pref_types)
+					UNTYPED_LIST_ADD(vore_pref_type_list, list("label" = flag_name, "selection" = selected.vore_pref_type_flags & GLOB.vore_pref_types[flag_name]))
+
 				var/list/belly_mode_data = list(
 					"mode" = selected.digest_mode,
 					"item_mode" = selected.item_digest_mode,
 					"addons" = addons,
+					"vore_types" = vore_pref_type_list,
 					"name_length" = BELLIES_NAME_MAX,
 					"name_min" = BELLIES_NAME_MIN,
 					"mode_options" = selected.digest_modes,
 					"item_mode_options" = selected.item_digest_modes,
-
 				)
 				selected_list["belly_mode_data"] = belly_mode_data
 

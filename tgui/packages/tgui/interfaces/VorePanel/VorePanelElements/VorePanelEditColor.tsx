@@ -168,7 +168,7 @@ export const VorePanelEditColor = (
           <Floating
             onOpenChange={handleIsOpen}
             placement="top-end"
-            contentClasses="VorePanel__Floating VorePanel__noScroll"
+            contentClasses="VorePanel__Floating"
             content={
               <ColorSelector
                 color={currentColor}

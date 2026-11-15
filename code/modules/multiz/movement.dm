@@ -306,6 +306,9 @@
 	if(!T.CanZPass(src, DOWN) || !below.CanZPass(src, DOWN))
 		return
 
+	if(HAS_TRAIT(src, TRAIT_NO_GRAVITY))
+		return
+
 	// No gravity in space, apparently.
 	var/area/area = get_area(src)
 	if(!area.get_gravity())

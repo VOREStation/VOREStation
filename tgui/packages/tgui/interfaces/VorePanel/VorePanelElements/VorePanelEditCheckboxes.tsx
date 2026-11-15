@@ -68,13 +68,15 @@ export const VorePanelEditCheckboxes = (
               <Box className="VorePanel__floatingButton">+/-</Box>
             </Floating>
           </Stack.Item>
-          <Stack.Item>
-            <VorePanelTooltip
-              tooltip={tooltip}
-              tooltipPosition={tooltipPosition}
-              displayText="?"
-            />
-          </Stack.Item>
+          {!!tooltip && (
+            <Stack.Item>
+              <VorePanelTooltip
+                tooltip={tooltip}
+                tooltipPosition={tooltipPosition}
+                displayText="?"
+              />
+            </Stack.Item>
+          )}
         </>
       )}
       <Stack.Item grow>

@@ -72,6 +72,7 @@
 			GLOB.random_junk_ -= /obj/item/trash/snack_bowl
 			GLOB.random_junk_ -= /obj/item/trash/syndi_cakes
 			GLOB.random_junk_ -= /obj/item/trash/tray
+			GLOB.random_junk_ -= /obj/item/trash/material
 		return pick(GLOB.random_junk_)
 	// Misc. actually useful stuff
 	return get_random_useful_type()

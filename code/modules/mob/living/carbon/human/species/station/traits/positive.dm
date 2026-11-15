@@ -966,3 +966,37 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
 	add_verb(H, /mob/living/proc/name_change_verb)
+
+/datum/trait/positive/scavenger
+	name ="Scavenger"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster!"
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger_expert)
+
+/datum/trait/positive/scavenger/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/scavenger_expert
+	name ="Scavenger Expert"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster! And not only that, you can occassionally find extras!"
+	cost = 2
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger)
+
+/datum/trait/positive/scavenger_expert/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER_EXPERT, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/leap
+	name = "Leaper"
+	desc = "You have powerful legs, allowing you to do a short leap."
+	cost = 3
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_TAJARAN) // These two are natural leapers
+
+/datum/trait/positive/leap/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	var/datum/action/cooldown/mob_cooldown/leap/jump = new()
+	jump.Grant(H)

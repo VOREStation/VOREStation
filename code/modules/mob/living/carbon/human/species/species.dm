@@ -360,6 +360,8 @@
 	var/list/species_component = list() // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
 	var/component_requires_late_recalc = FALSE // If TRUE, the component will do special recalculation stuff at the end of update_icons_body()
 
+	var/list/species_abilities = list() // The abilities this species starts with. Example: Tajarans use /datum/action/cooldown/mob_cooldown/leap/tajaran
+
 	// For Lleill and Hanner
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200
@@ -799,6 +801,12 @@
 	if(LAZYLEN(species_component))
 		for(var/component in species_component)
 			H.LoadComponent(component)
+
+/datum/species/proc/apply_actions(mob/living/carbon/human/H)
+	if(LAZYLEN(species_abilities))
+		for(var/to_grant in species_abilities)
+			var/datum/action/action = new to_grant
+			action.Grant(H)
 
 /datum/species/proc/produceCopy(list/traits, mob/living/carbon/human/H, custom_base, reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)

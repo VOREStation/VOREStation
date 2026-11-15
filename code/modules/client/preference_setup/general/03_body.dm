@@ -500,6 +500,11 @@
 			if(new_hair && has_flag(mob_species, HAS_HAIR_COLOR))
 				pref.update_preference_by_type(/datum/preference/color/human/hair_color, new_hair)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_hairstyle")
+			var/hairstyles = pref.get_available_styles(GLOB.hair_styles_list)
+			var/new_h_style = pick(hairstyles)
+			pref.h_style = new_h_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Facial Hair */
 		if("set_facial_hair_style")
@@ -514,6 +519,10 @@
 			if(new_facial && has_flag(mob_species, HAS_HAIR_COLOR))
 				pref.update_preference_by_type(/datum/preference/color/human/facial_color, new_facial)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_facialhair")
+			var/new_f_style = pick(pref.get_available_styles(GLOB.facial_hair_styles_list))
+			pref.f_style = new_f_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Gradient */
 		if("set_grad_style")
@@ -598,6 +607,12 @@
 			var/zone = params["zone"]
 			pref.body_markings[marking][zone]["on"] = !pref.body_markings[marking][zone]["on"]
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_markings")
+			var/list/usable_markings = pref.body_markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
+			var/new_marking = pick(usable_markings)
+			if(new_marking && (new_marking in usable_markings))
+				pref.body_markings[new_marking] = pref.mass_edit_marking_list(new_marking) //New markings start black
+				return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Ears */
 		if("set_ear_style")
@@ -665,6 +680,14 @@
 			if(new_ear_alpha)
 				pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_ears")
+			var/new_ear_style = pick(pref.get_available_styles(GLOB.ear_styles_list))
+			pref.ear_style = new_ear_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_horns")
+			var/new_ear_style = pick(pref.get_available_styles(GLOB.ear_styles_list))
+			pref.ear_secondary_style = new_ear_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Wings */
 		if("set_wing_style")
@@ -696,6 +719,10 @@
 			if(new_wing_alpha)
 				pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_wings")
+			var/new_style = pick(pref.get_available_styles(GLOB.wing_styles_list))
+			pref.wing_style = new_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Tail */
 		if("set_tail_style")
@@ -727,6 +754,10 @@
 			if(new_tail_alpha)
 				pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_tail")
+			var/new_tail_style = pick(pref.get_available_styles(GLOB.tail_styles_list))
+			pref.tail_style = new_tail_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Species */
 		if("set_species")

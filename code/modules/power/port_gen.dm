@@ -82,15 +82,22 @@
 	switch(severity)
 		if(EMP_HEAVY)
 			stat &= BROKEN
-			if(prob(75)) explode()
+			if(prob(75))
+				explode()
+				return
 		if(EMP_MEDIUM)
-			if(prob(50)) stat &= BROKEN
-			if(prob(10)) explode()
+			if(prob(50))
+				stat &= BROKEN
+			if(prob(10))
+				explode()
+				return
 		if(EMP_LIGHT)
-			if(prob(25)) stat &= BROKEN
+			if(prob(25))
+				stat &= BROKEN
 			base_duration = 3 MINUTES
 		if(EMP_HARMLESS)
-			if(prob(10)) stat &= BROKEN
+			if(prob(10))
+				stat &= BROKEN
 			base_duration = 3 MINUTES
 
 	stat |= EMPED

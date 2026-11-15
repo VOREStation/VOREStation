@@ -29,7 +29,7 @@ export function calcLineHeight(lim: number, height: number): string {
 export function fixCorruptedData(
   toSanitize: string | string[] | null | Record<string, string | number>,
 ): { corrupted?: boolean; data: string | string[] } {
-  if (toSanitize == null) {
+  if (toSanitize === null) {
     return { data: '' };
   }
 
@@ -37,11 +37,11 @@ export function fixCorruptedData(
     return { data: toSanitize };
   }
 
-  const isNumeric = (v: string) => /^\d+$/.test(v);
+  const isNumeric = (value: string): boolean => /^\d+$/.test(value);
 
   const clearedData = Object.entries(toSanitize).map(([key, value]) => {
-    if (!isNumeric(value.toString())) {
-      return value.toString();
+    if (typeof value === 'string' && !isNumeric(value)) {
+      return value;
     }
     if (!isNumeric(key)) {
       return key;

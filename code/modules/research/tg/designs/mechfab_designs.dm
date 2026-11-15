@@ -706,7 +706,7 @@
 	desc = "A space-bike's un-assembled frame."
 	id = "vehicle_chassis_spacebike"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3)
-	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PHORON = MATERIAL_COST(1.5), MAT_OSMIUM = MATERIAL_COST(0.5))
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PHORON = MATERIAL_COST(1.5))
 	build_path = /obj/item/vehicle_assembly/spacebike
 
 /datum/design_techweb/mechfab/vehicle/quadbike_chassis
@@ -714,7 +714,7 @@
 	desc = "A quad bike's un-assembled frame."
 	id = "vehicle_chassis_quadbike"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
-	materials = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5), MAT_OSMIUM = MATERIAL_COST(0.5))
+	materials = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5))
 	build_path = /obj/item/vehicle_assembly/quadbike
 
 /datum/design_techweb/mechfab/vehicle/snowmobile_chassis
@@ -722,7 +722,7 @@
 	desc = "A snowmobile's un-assembled frame."
 	id = "vehicle_chassis_snowmobile"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
-	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5), MAT_OSMIUM = MATERIAL_COST(0.5))
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5))
 	build_path = /obj/item/vehicle_assembly/snowmobile
 
 /datum/design_techweb/mechfab/vehicle/basic //I'm going to just count this as a vehicle...

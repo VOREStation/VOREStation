@@ -29,7 +29,7 @@
 			if(!affecting)
 				to_chat(user, span_warning("The limb is missing!"))
 				return ITEM_INTERACT_FAILURE
-			if(affecting.status >= ORGAN_ROBOT)
+			if(affecting.robotic >= ORGAN_ROBOT)
 				to_chat(user, span_notice("\The [src] won't work on a robotic limb!"))
 				return ITEM_INTERACT_FAILURE
 
@@ -50,7 +50,7 @@
 		if(!affecting)
 			to_chat(user, span_warning("The limb is missing!"))
 			return ITEM_INTERACT_FAILURE
-		if(affecting.status >= ORGAN_ROBOT)
+		if(affecting.robotic >= ORGAN_ROBOT)
 			to_chat(user, span_notice("\The [src] won't work on a robotic limb!"))
 			return ITEM_INTERACT_FAILURE
 

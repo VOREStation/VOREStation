@@ -46,6 +46,12 @@
 			host.vore_selected.digest_mode = new_mode
 			host.vore_selected.updateVRPanels()
 			. = TRUE
+		if("b_types")
+			var/toggle_type = params["val"]
+			if(!(toggle_type in GLOB.vore_pref_types))
+				return FALSE
+			host.vore_selected.vore_pref_type_flags ^= GLOB.vore_pref_types[toggle_type]
+			. = TRUE
 		if("b_addons")
 			var/toggle_addon = params["val"]
 			if(!(toggle_addon in host.vore_selected.mode_flag_list))

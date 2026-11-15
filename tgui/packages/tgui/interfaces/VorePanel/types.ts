@@ -68,6 +68,7 @@ export type BellyModeData = {
   mode: string;
   item_mode: string;
   addons: CheckBoxEntry[];
+  vore_types: CheckBoxEntry[];
   name_length: number;
   name_min: number;
   mode_options: string[];
@@ -357,6 +358,7 @@ export type PrefData = {
   soulcatcher_allow_deletion: BooleanLike;
   soulcatcher_allow_takeover: BooleanLike;
   max_voreoverlay_alpha: number;
+  vore_pref_types: CheckBoxEntry[];
 };
 
 export type DropdownPrefernces = {
