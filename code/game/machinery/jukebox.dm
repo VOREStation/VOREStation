@@ -19,7 +19,6 @@
 	clicksound = 'sound/machines/buttonbeep.ogg'
 
 	// Vars for hacking
-	var/datum/wires/jukebox/wires = null
 	var/hacked = 0 // Whether to show the hidden songs or not
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 	//VOREStation Add
@@ -90,7 +89,7 @@
 		remote.update_music()
 	//VOREStation Add End
 
-/obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
+/obj/machinery/media/jukebox/proc/set_hacked(newhacked)
 	if(hacked == newhacked)
 		return
 	hacked = newhacked
@@ -231,8 +230,7 @@
 						M.Paralyse(4)
 					else
 						M.make_jittery(500)
-				spawn(15)
-					explode()
+				addtimer(CALLBACK(src, PROC_REF(explode)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 			else if(current_track == null)
 				to_chat(ui.user, "No track selected.")
 			else
@@ -249,7 +247,7 @@
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/media/jukebox/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/attack_hand(mob/user as mob)
 	interact(user)
 
 /obj/machinery/media/jukebox/allow_pai_interaction(mob/living/silicon/pai/user, proximity_flag)
@@ -286,7 +284,7 @@
 		return
 	return ..()
 
-/obj/machinery/media/jukebox/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/media/jukebox/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = 1
 		StopPlaying()
@@ -364,14 +362,14 @@
 	return
 /obj/machinery/media/jukebox/ghost/attack_ai(mob/user as mob)
 	return
-/obj/machinery/media/jukebox/ghost/attack_hand(var/mob/user as mob)
+/obj/machinery/media/jukebox/ghost/attack_hand(mob/user as mob)
 	return
 /obj/machinery/media/jukebox/ghost/update_use_power(new_use_power)
 	return
 /obj/machinery/media/jukebox/ghost/power_change()
 	return
 /obj/machinery/media/jukebox/ghost/emp_act(severity, recursive)
-	return
+	return ..()
 /obj/machinery/media/jukebox/ghost/emag_act(remaining_charges, mob/user)
 	return
 /obj/machinery/media/jukebox/ghost/explode()
@@ -383,7 +381,7 @@
 		animate(src, alpha = initial(alpha), time = 10)
 // End junk
 
-/obj/machinery/media/jukebox/ghost/attack_ghost(var/mob/observer/dead/M)
+/obj/machinery/media/jukebox/ghost/attack_ghost(mob/observer/dead/M)
 	if(!istype(M))
 		return
 

@@ -75,7 +75,7 @@
 /obj/vehicle/proc/addVerb(verb_path)
 	src.verbs += verb_path
 
-/obj/vehicle/proc/add_cell(var/obj/item/cell/C=null)
+/obj/vehicle/proc/add_cell(obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C

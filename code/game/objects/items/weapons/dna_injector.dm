@@ -31,34 +31,34 @@
 		//testing("[name]: DNA2 SE blocks after SetValue: [english_list(buf.dna.SE)]")
 	. = ..() // Traitgenes edit - Moved to init
 
-/obj/item/dnainjector/proc/GetRealBlock(var/selblock)
+/obj/item/dnainjector/proc/GetRealBlock(selblock)
 	if(selblock==0)
 		return block
 	else
 		return selblock
 
-/obj/item/dnainjector/proc/GetState(var/selblock=0)
+/obj/item/dnainjector/proc/GetState(selblock=0)
 	var/real_block=GetRealBlock(selblock)
 	if(buf.types&DNA2_BUF_SE)
 		return buf.dna.GetSEState(real_block)
 	else
 		return buf.dna.GetUIState(real_block)
 
-/obj/item/dnainjector/proc/SetState(var/on, var/selblock=0)
+/obj/item/dnainjector/proc/SetState(on, selblock=0)
 	var/real_block=GetRealBlock(selblock)
 	if(buf.types&DNA2_BUF_SE)
 		return buf.dna.SetSEState(real_block,on)
 	else
 		return buf.dna.SetUIState(real_block,on)
 
-/obj/item/dnainjector/proc/GetValue(var/selblock=0)
+/obj/item/dnainjector/proc/GetValue(selblock=0)
 	var/real_block=GetRealBlock(selblock)
 	if(buf.types&DNA2_BUF_SE)
 		return buf.dna.GetSEValue(real_block)
 	else
 		return buf.dna.GetUIValue(real_block)
 
-/obj/item/dnainjector/proc/SetValue(var/val,var/selblock=0)
+/obj/item/dnainjector/proc/SetValue(val,selblock=0)
 	var/real_block=GetRealBlock(selblock)
 	if(buf.types&DNA2_BUF_SE)
 		return buf.dna.SetSEValue(real_block,val)
@@ -116,13 +116,11 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src)
 	return uses
 
-/obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob))
-		return
+/obj/item/dnainjector/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if (!user.IsAdvancedToolUser())
-		return
+		return ITEM_INTERACT_FAILURE
 	if (in_use)
-		return
+		return ITEM_INTERACT_FAILURE
 
 	user.visible_message(span_danger("\The [user] is trying to inject \the [M] with \the [src]!"))
 	in_use = TRUE
@@ -131,7 +129,7 @@
 
 	if(!do_after(user, 5 SECONDS, target = src))
 		in_use = FALSE
-		return
+		return ITEM_INTERACT_FAILURE
 
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -142,15 +140,15 @@
 	var/mob/living/carbon/human/H = M
 	if(!istype(H))
 		to_chat(user, span_warning("Apparently it didn't work..."))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	inject(M, user)
-	return
+	return ITEM_INTERACT_SUCCESS
 
 
 // Traitgenes Injectors are randomized now due to no hardcoded genes. Split into good or bad, and then versions that specify what they do on the label.
 // Otherwise scroll down further for how to make unique injectors
-/obj/item/dnainjector/proc/pick_block(var/datum/gene/trait/G, var/labeled, var/allow_disable, var/force_disable = FALSE)
+/obj/item/dnainjector/proc/pick_block(datum/gene/trait/G, labeled, allow_disable, force_disable = FALSE)
 	if(G)
 		block = G.block
 		datatype = DNA2_BUF_SE

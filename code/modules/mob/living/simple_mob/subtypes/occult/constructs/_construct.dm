@@ -67,7 +67,7 @@
 	can_pain_emote = FALSE
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/construct/place_spell_in_hand(var/path)
+/mob/living/simple_mob/construct/place_spell_in_hand(path)
 	if(!path || !ispath(path))
 		return 0
 
@@ -123,7 +123,7 @@
 	ghostize()
 	qdel(src)
 
-/mob/living/simple_mob/construct/attack_generic(var/mob/user)
+/mob/living/simple_mob/construct/attack_generic(mob/user)
 	if(istype(user, /mob/living/simple_mob/construct/artificer))
 		var/mob/living/simple_mob/construct/artificer/A = user
 		if(health < getMaxHealth())

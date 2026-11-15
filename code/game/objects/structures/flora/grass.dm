@@ -4,7 +4,7 @@
 	icon = 'icons/obj/flora/snowflora.dmi'
 	anchored = TRUE
 
-/obj/structure/flora/grass/Initialize(mapload, var/grass_icon)
+/obj/structure/flora/grass/Initialize(mapload, grass_icon)
 	. = ..()
 	icon_state = grass_icon
 

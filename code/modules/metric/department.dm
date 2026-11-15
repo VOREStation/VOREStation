@@ -1,6 +1,6 @@
 
 // This proc tries to find the department of an arbitrary mob.
-/datum/metric/proc/guess_department(var/mob/M)
+/datum/metric/proc/guess_department(mob/M)
 	var/list/found_roles = list()
 	. = DEPARTMENT_UNKNOWN
 
@@ -53,14 +53,14 @@
 
 // Feed this proc the name of a job, and it will try to figure out what department they are apart of.
 // Improved with the addition of SSjob, which has departments be an actual thing and not a virtual concept.
-/datum/metric/proc/role_name_to_department(var/role_name)
+/datum/metric/proc/role_name_to_department(role_name)
 	var/datum/job/J = SSjob.get_job(role_name)
 	if(istype(J))
 		if(LAZYLEN(J.departments))
 			return J.departments
 	return list(DEPARTMENT_UNKNOWN)
 
-/datum/metric/proc/count_people_in_department(var/department, cutoff = 75)
+/datum/metric/proc/count_people_in_department(department, cutoff = 75)
 	var/list/L = get_people_in_department(department, cutoff)
 	return L.len
 

@@ -19,10 +19,9 @@
 	icon_state = "pickaxe"
 	item_state = "pickaxe"
 	w_class = ITEMSIZE_LARGE
-	matter = list(MAT_STEEL = 2500)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.25))
 	var/digspeed = 36 //moving the delay to an item var so R&D can make improved picks. --NEO
 	var/sand_dig = FALSE // does this thing dig sand?
-	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = "pickaxe"
 	var/drill_verb = "picking"
@@ -38,7 +37,6 @@
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
 	digspeed = 27
-	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
 /obj/item/pickaxe/gold
@@ -46,7 +44,6 @@
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
 	digspeed = 18
-	origin_tech = list(TECH_MATERIAL = 4)
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
 
@@ -55,7 +52,6 @@
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
 	digspeed = 9
-	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
 
@@ -67,8 +63,7 @@
 	item_state = "jackhammer"
 	digspeed = 30 //Only slighty better than a pickaxe
 	sand_dig = TRUE
-	origin_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
-	matter = list(MAT_STEEL = 3750)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.875))
 	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
 	drill_verb = "drilling"
 
@@ -78,8 +73,7 @@
 	item_state = "jackhammer"
 	digspeed = 27
 	sand_dig = TRUE
-	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
-	matter = list(MAT_STEEL = 4000, MAT_PLASTEEL = 2500)
+	matter = list(MAT_STEEL = MATERIAL_COST(2), MAT_PLASTEEL = MATERIAL_COST(1.25))
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
 
@@ -89,8 +83,7 @@
 	item_state = "jackhammer"
 	digspeed = 4 //Digs through walls, girders, and can dig up sand
 	sand_dig = TRUE
-	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
-	matter = list(MAT_STEEL = 4500, MAT_PLASTEEL = 3000, MAT_DIAMONDS = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(2.25), MAT_PLASTEEL = MATERIAL_COST(1.5), MAT_DIAMONDS = 1000)
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
@@ -99,7 +92,6 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	digspeed = 18 //faster than drill, but cannot dig
-	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 	destroy_artefacts = TRUE
@@ -122,8 +114,7 @@
 	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
 	damtype = BURN
 	digspeed = 18 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire
-	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
-	matter = list(MAT_STEEL = 3000, MAT_PLASTEEL = 1500, MAT_DIAMONDS = 500, MAT_PHORON = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_PLASTEEL = MATERIAL_COST(0.75), MAT_DIAMONDS = 500, MAT_PHORON = MATERIAL_COST(0.25))
 	drill_verb = "cutting"
 	drill_sound = 'sound/items/Welder.ogg'
 	sharp = TRUE
@@ -145,8 +136,7 @@
 	force = 8.0
 	throwforce = 4.0
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = FALSE
 	edge = TRUE
@@ -162,8 +152,9 @@
 	icon_state = "whiteshovel"
 	item_state = "whiteshovel"
 	var/datum/material/material
+	resistance_flags = FLAMMABLE
 
-/obj/item/shovel/wood/Initialize(mapload, var/_mat)
+/obj/item/shovel/wood/Initialize(mapload, _mat)
 	. = ..()
 	material = get_material_by_name(_mat)
 	if(!istype(material))
@@ -195,7 +186,7 @@
 	slot_flags = SLOT_BELT
 	item_state = "woodshovel"
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_WOOD = 50)
+	matter = list(MAT_WOOD = MATERIAL_COST(0.025))
 	sharp = 0
 	edge = 1
 
@@ -207,7 +198,7 @@
 	desc = "A sharp tool for climbers and hikers to break up ice and keep themselves from slipping on a steep slope."
 	icon_state = "icepick"
 	item_state = "icepick"
-	matter = list(MAT_STEEL = 12000) //Same as a knife
+	matter = list(MAT_STEEL = MATERIAL_COST(6)) //Same as a knife
 	force = 15 //increasing force for icepick/axe, cause it's a freaking iceaxe.
 	throwforce = 0
 

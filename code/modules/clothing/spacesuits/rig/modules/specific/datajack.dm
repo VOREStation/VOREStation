@@ -29,7 +29,7 @@
 			return 0
 	return 1
 
-/obj/item/rig_module/datajack/accepts_item(var/obj/item/input_device, var/mob/living/user)
+/obj/item/rig_module/datajack/accepts_item(obj/item/input_device, mob/living/user)
 
 	// if(istype(input_device,/obj/item/disk/tech_disk))
 	// 	to_chat(user, "You slot the disk into [src].")
@@ -64,7 +64,7 @@
 	// 	return 1
 	return 0
 
-/obj/item/rig_module/datajack/proc/load_data(var/incoming_data)
+/obj/item/rig_module/datajack/proc/load_data(incoming_data)
 
 	if(islist(incoming_data))
 		for(var/entry in incoming_data)

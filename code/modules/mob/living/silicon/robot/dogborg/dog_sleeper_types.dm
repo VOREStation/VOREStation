@@ -50,49 +50,26 @@
 	injection_chems = list(REAGENT_ID_GLUCOSE,REAGENT_ID_INAPROVALINE,REAGENT_ID_TRICORDRAZINE)
 	max_item_count = 20
 	ore_storage = TRUE
-	var/list/stored_ore = list(
-		ORE_SAND = 0,
-		ORE_HEMATITE = 0,
-		ORE_CARBON = 0,
-		ORE_COPPER = 0,
-		ORE_TIN = 0,
-		ORE_VOPAL = 0,
-		ORE_PAINITE = 0,
-		ORE_QUARTZ = 0,
-		ORE_BAUXITE = 0,
-		ORE_PHORON = 0,
-		ORE_SILVER = 0,
-		ORE_GOLD = 0,
-		ORE_MARBLE = 0,
-		ORE_URANIUM = 0,
-		ORE_DIAMOND = 0,
-		ORE_PLATINUM = 0,
-		ORE_LEAD = 0,
-		ORE_MHYDROGEN = 0,
-		ORE_VERDANTIUM = 0,
-		ORE_RUTILE = 0)
 	medsensor = FALSE
 
-/obj/item/dogborg/sleeper/compactor/supply/Entered(atom/movable/thing, atom/OldLoc)
-	. = ..()
-	if(istype(thing, /obj/item/ore))
-		var/obj/item/ore/ore = thing
-		stored_ore[ore.material]++
-		current_capacity++
-		qdel(ore)
-
-/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/dogborg/sleeper/compactor/supply))
-		var/obj/item/dogborg/sleeper/compactor/supply/S = W
-		for(var/ore in S.stored_ore)
-			if(S.stored_ore[ore] > 0)
-				var/ore_amount = S.stored_ore[ore]	// How many ores does the satchel have?
-				stored_ore[ore] += ore_amount 		// Add the ore to the machine.
-				S.stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
-				S.current_capacity = 0				// Set the amount of ore in the satchel  to 0.
-		to_chat(user, span_notice("You empty the satchel into the box."))
+/obj/item/dogborg/sleeper/compactor/supply/afterattack(atom/movable/target, mob/living/silicon/user, proximity_flag, click_parameters)
+	if(!proximity_flag)
 		return
-	..()
+
+	if(isturf(target))
+		if(ore_bag.gather_all(target, user, TRUE))
+			user.visible_message(span_warning("[user.name]'s [src.name] groans lightly as ore slips inside."), span_notice("Your [src.name] groans lightly as ore slips inside."))
+			playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+			return
+	if(istype(target, /obj/item/ore) && !istype(target, /obj/item/ore/slag) && !istype(target, /obj/item/ore/archeology_debris))
+		var/turf_check = isturf(target.loc) //get_turf intentionally not used here due to clicking ore in a backpack or other weirdness.
+		if(turf_check)
+			if(ore_bag.gather_all(target.loc, user, TRUE))
+				user.visible_message(span_warning("[user.name]'s [src.name] groans lightly as ore slips inside."), span_notice("Your [src.name] groans lightly as ore slips inside."))
+				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+				return
+	. = ..()
+
 
 /obj/item/dogborg/sleeper/compactor/brewer
 	name = "Brew Belly"
@@ -111,19 +88,19 @@
 	max_item_count = 10
 	recycles = FALSE
 
-/obj/item/dogborg/sleeper/compactor/brewer/inject_chem(mob/user, chem)
+/obj/item/dogborg/sleeper/compactor/brewer/inject_chem(mob/living/silicon/robot/user, chem)
 	if(patient && patient.reagents)
 		if((chem in injection_chems) + REAGENT_ID_INAPROVALINE)
-			if(hound.cell.charge < 200) //This is so borgs don't kill themselves with it.
-				to_chat(hound, span_notice("You don't have enough power to synthesize fluids."))
+			if(user.cell.charge < 200) //This is so borgs don't kill themselves with it.
+				to_chat(user, span_notice("You don't have enough power to synthesize fluids."))
 				return
 			else if(patient.reagents.get_reagent_amount(chem) + 10 >= 50) //Preventing people from accidentally killing themselves by trying to inject too many chemicals!
-				to_chat(hound, span_notice("Your stomach is currently too full of fluids to secrete more fluids of this kind."))
+				to_chat(user, span_notice("Your stomach is currently too full of fluids to secrete more fluids of this kind."))
 			else if(patient.reagents.get_reagent_amount(chem) + 10 <= 50) //No overdoses for you
 				patient.reagents.add_reagent(chem, inject_amount)
-				drain(100) //-100 charge per injection
+				drain(user, 100) //-100 charge per injection
 			var/units = round(patient.reagents.get_reagent_amount(chem))
-			to_chat(hound, span_notice("Injecting [units] unit\s into occupant.")) //If they were immersed, the reagents wouldn't leave with them.
+			to_chat(user, span_notice("Injecting [units] unit\s into occupant.")) //If they were immersed, the reagents wouldn't leave with them.
 
 /obj/item/dogborg/sleeper/K9/ert
 	name = "Emergency Storage"

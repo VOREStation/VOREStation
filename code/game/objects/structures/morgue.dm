@@ -35,7 +35,7 @@
 	for(var/obj/structure/closet/body_bag/B in contents)
 		occupants += B.get_occupants()
 
-/obj/structure/morgue/proc/update(var/broadcast=0)
+/obj/structure/morgue/proc/update(broadcast=0)
 	if (src.connected)
 		src.icon_state = "morgue0"
 	else

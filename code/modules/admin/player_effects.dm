@@ -1,5 +1,5 @@
 
-ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in GLOB.mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a player character with various 'special treatments' from a list.", ADMIN_CATEGORY_FUN_EVENT_KIT, mob/target in get_mob_with_client_list())
 	var/datum/eventkit/player_effects/spawner = new()
 	spawner.target = target
 	spawner.tgui_interact(user.mob)
@@ -219,18 +219,21 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			Tar.fear = 200
 
 		if("spin")
-			var/speed = tgui_input_number(ui.user, "Spin speed (minimum 0.1):", "Speed")
-			if(speed < 0.1)
+			var/speed = tgui_input_number(ui.user, "Spin speed (minimum 0.1):", "Speed", 1, min_value = 0.1, round_value = FALSE)
+			if(isnull(speed) || speed < 0.1)
 				return
 			var/loops = tgui_input_number(ui.user, "Number of loops (-1 for infinite):", "Loops")
+			if(isnull(loops))
+				return
 			var/direction_ask = tgui_alert(ui.user, "Clockwise or Anti-Clockwise", "Direction", list("Clockwise", "Anti-Clockwise", "Cancel"))
 			var/direction
-			if(direction_ask == "Clockwise")
-				direction = 1
-			if(direction_ask == "Anti-Clockwise")
-				direction = 0
-			if(direction_ask == "Cancel")
-				return
+			switch(direction_ask)
+				if("Cancel", null)
+					return
+				if("Clockwise")
+					direction = 1
+				if("Anti-Clockwise")
+					direction = 0
 			target.SpinAnimation(speed, loops, direction)
 
 		if("squish")
@@ -268,7 +271,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			if(H.wear_suit)
 				H.unEquip(H.wear_suit)
 			var/obj/item/clothing/suit = new /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog
-			var/obj/item/clothing/hood = new /obj/item/clothing/head/hood_vr/hotdog_hood
+			var/obj/item/clothing/hood = new /obj/item/clothing/head/hood/hotdog_hood
 			H.equip_to_slot_if_possible(suit, slot_wear_suit, 0, 0, 1)
 			H.equip_to_slot_if_possible(hood, slot_head, 0, 0, 1)
 			sleep(5 SECONDS)
@@ -605,7 +608,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			add_verb(Tar, /mob/living/proc/eat_trash)
+			add_verb(Tar, /mob/living/proc/eat_trash_verb)
 			add_verb(Tar, /mob/living/proc/toggle_trash_catching)
 
 		if("active_cloaking")
@@ -752,7 +755,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 			if(where == "Cancel")
 				return
 			if(where == "To Me")
-				ui.user.client.Getmob(target)
+				SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/Getmob, target)
 			if(where == "To Mob")
 				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", GLOB.mob_list)
 				target.on_mob_jump()
@@ -776,19 +779,18 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 				target.dust()
 
 		if("paralyse")
-			var/mob/living/Tar = target
-			if(!istype(Tar))
+			if(!isliving(target))
 				return
-			ui.user.client.holder.paralyze_mob(Tar)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/paralyze_mob, target)
 
 		if("subtle_message")
-			ui.user.client.cmd_admin_subtle_message(target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/cmd_admin_subtle_message, target)
 
 		if("direct_narrate")
-			ui.user.client.cmd_admin_direct_narrate(target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/cmd_admin_direct_narrate, target)
 
 		if("player_panel")
-			SSadmin_verbs.dynamic_invoke_verb(ui.user, /datum/admin_verb/show_player_panel, target)
+			SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
 			ui.user.client.debug_variables(target)

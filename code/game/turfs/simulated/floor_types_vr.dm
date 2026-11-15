@@ -39,7 +39,7 @@
 	icon = 'icons/goonstation/featherzone.dmi'
 	icon_state = "floor"
 
-/turf/simulated/floor/flock/Crossed(var/atom/movable/AM)
+/turf/simulated/floor/flock/Crossed(atom/movable/AM)
 	. = ..()
 	if(isliving(AM))
 		icon_state = "floor-on"

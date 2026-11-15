@@ -18,7 +18,7 @@
 	var/state = FALSE //Saves cost with the lists
 	var/mob/my_mob
 
-/atom/movable/screen/plane_master/augmented/Initialize(mapload, var/mob/M)
+/atom/movable/screen/plane_master/augmented/Initialize(mapload, mob/M)
 	. = ..()
 	my_mob = M
 
@@ -27,7 +27,7 @@
 	my_mob = null
 	. = ..()
 
-/atom/movable/screen/plane_master/augmented/set_visibility(var/want = FALSE)
+/atom/movable/screen/plane_master/augmented/set_visibility(want = FALSE)
 	. = ..()
 	state = want
 	apply()

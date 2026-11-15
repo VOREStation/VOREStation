@@ -55,6 +55,7 @@ export const VoreUserPreferencesSpont = (props: {
               <LabeledList>
                 <LabeledList.Item label="Spont Belly Rear">
                   <VorePanelEditDropdown
+                    searchInput
                     action="set_spont_belly"
                     subAction="rear"
                     icon="crosshairs"
@@ -69,6 +70,7 @@ export const VoreUserPreferencesSpont = (props: {
                 </LabeledList.Item>
                 <LabeledList.Item label="Spont Belly Front">
                   <VorePanelEditDropdown
+                    searchInput
                     action="set_spont_belly"
                     subAction="front"
                     icon="crosshairs"
@@ -87,6 +89,7 @@ export const VoreUserPreferencesSpont = (props: {
               <LabeledList>
                 <LabeledList.Item label="Spont Belly Left">
                   <VorePanelEditDropdown
+                    searchInput
                     action="set_spont_belly"
                     subAction="left"
                     icon="crosshairs"
@@ -101,6 +104,7 @@ export const VoreUserPreferencesSpont = (props: {
                 </LabeledList.Item>
                 <LabeledList.Item label="Spont Belly Right">
                   <VorePanelEditDropdown
+                    searchInput
                     action="set_spont_belly"
                     subAction="right"
                     icon="crosshairs"

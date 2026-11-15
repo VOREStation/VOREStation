@@ -3,7 +3,7 @@
 	paper_type = /obj/item/paper/sticky
 	requires_noticeboard = FALSE
 
-/datum/persistent/paper/sticky/CreateEntryInstance(var/turf/creating, var/list/token)
+/datum/persistent/paper/sticky/CreateEntryInstance(turf/creating, list/token)
 	var/atom/paper = ..()
 	if(paper)
 		//VOREStation add - sometimes they fall off
@@ -17,7 +17,7 @@
 		paper.color =   token["color"]
 	return paper
 
-/datum/persistent/paper/sticky/CompileEntry(var/atom/entry, var/write_file)
+/datum/persistent/paper/sticky/CompileEntry(atom/entry, write_file)
 	. = ..()
 	var/obj/item/paper/sticky/paper = entry
 	LAZYADDASSOC(., "offset_x", paper.pixel_x)

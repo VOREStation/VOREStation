@@ -125,12 +125,16 @@
 #define FIRE_PRIORITY_STARMOVER		11
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_DATABASE		16
+#define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_ASSETS 		20
 #define FIRE_PRIORITY_POIS	 		20
 #define FIRE_PRIORITY_ALARM			20
 #define FIRE_PRIORITY_CHARSETUP     25
 #define FIRE_PRIORITY_AIRFLOW		30
 #define FIRE_PRIORITY_AIR			35
+#define FIRE_PRIORITY_STATIONBOILER	36
+#define FIRE_PRIORITY_CRYOPLANETS	37
+#define FIRE_PRIORITY_BURNING		40
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_PROCESS		45
 #define FIRE_PRIORITY_THROWING 		45
@@ -198,3 +202,10 @@
 
 /// The timer key used to know how long subsystem initialization takes
 #define SS_INIT_TIMER_KEY "ss_init"
+
+// Subsystem delta times or tickrates, in seconds. I.e, how many seconds in between each process() call for objects being processed by that subsystem.
+// Only use these defines if you want to access some other objects processing seconds_per_tick, otherwise use the seconds_per_tick that is sent as a parameter to process()
+// #define SSFLUIDS_DT (SSplumbing.wait/10)
+#define SSMACHINES_DT (SSmachines.wait/10)
+#define SSMOBS_DT (SSmobs.wait/10)
+#define SSOBJ_DT (SSobj.wait/10)

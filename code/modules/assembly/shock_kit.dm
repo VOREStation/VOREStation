@@ -14,7 +14,7 @@
 	..()
 	return
 
-/obj/item/assembly/shock_kit/attackby(var/obj/item/W, var/mob/user)
+/obj/item/assembly/shock_kit/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH) && !status)
 		var/turf/T = loc
 		if(ismob(T))

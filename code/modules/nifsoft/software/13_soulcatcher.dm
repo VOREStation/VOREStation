@@ -26,7 +26,7 @@
 		spawn(0)
 			deactivate()
 
-/datum/nifsoft/soulcatcher/deactivate(var/force = FALSE)
+/datum/nifsoft/soulcatcher/deactivate(force = FALSE)
 	if((. = ..()))
 		return TRUE
 
@@ -60,7 +60,7 @@
 		inside_flavor = load
 	return TRUE
 
-/datum/nifsoft/soulcatcher/proc/notify_into(var/message)
+/datum/nifsoft/soulcatcher/proc/notify_into(message)
 	var/sound = nif.good_sound
 
 	message = " " + span_bold("Soulcatcher") + " displays, \"" + span_notice(span_nif("[message]")) + "\""
@@ -76,7 +76,7 @@
 				html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + message))
 		CS << sound
 
-/datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
+/datum/nifsoft/soulcatcher/proc/say_into(message, mob/living/sender, mob/eyeobj, whisper)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
 
 	//AR Projecting
@@ -107,9 +107,9 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + message))
 
-	sender.log_talk("NSAY (NIF:[nif.human.real_name]): [message]", LOG_SAY)
+	sender.log_talk("NSAY (NIF:[nif.human.real_name]): [message]", LOG_SAY, color="#ff00c8")
 
-/datum/nifsoft/soulcatcher/proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
+/datum/nifsoft/soulcatcher/proc/emote_into(message, mob/living/sender, mob/eyeobj, whisper)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
 
 	//AR Projecting
@@ -135,9 +135,9 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon,CS.client)]NIF\]") + message))
 
-	sender.log_message("NME (NIF:[nif.human.real_name]): [message]", LOG_EMOTE)
+	sender.log_message("NME (NIF:[nif.human.real_name]): [message]", LOG_EMOTE, color="#ff00c8")
 
-/datum/nifsoft/soulcatcher/proc/show_settings(var/mob/living/carbon/human/H)
+/datum/nifsoft/soulcatcher/proc/show_settings(mob/living/carbon/human/H)
 	set waitfor = FALSE
 	var/settings_list = list(
 	"Catching You \[[setting_flags & NIF_SC_CATCHING_ME ? "Enabled" : "Disabled"]\]" = NIF_SC_CATCHING_ME,
@@ -178,7 +178,7 @@
 				var/flag = settings_list[choice]
 				return toggle_setting(flag)
 
-/datum/nifsoft/soulcatcher/proc/toggle_setting(var/flag)
+/datum/nifsoft/soulcatcher/proc/toggle_setting(flag)
 	setting_flags ^= flag
 
 	var/notify_message
@@ -225,7 +225,7 @@
 	return TRUE
 
 //Complex version for catching in-round characters
-/datum/nifsoft/soulcatcher/proc/catch_mob(var/mob/M)
+/datum/nifsoft/soulcatcher/proc/catch_mob(mob/M)
 	if(!M.mind)	return
 	if(!(M.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE) && !isobserver(M)) return // Bypass pref check for observer join
 
@@ -370,13 +370,13 @@
 		return FALSE
 	..()
 
-/mob/living/carbon/brain/caught_soul/face_atom(var/atom/A)
+/mob/living/carbon/brain/caught_soul/face_atom(atom/A)
 	if(eyeobj)
 		return eyeobj.face_atom(A)
 	else
 		return ..(A)
 
-/mob/living/carbon/brain/caught_soul/set_dir(var/direction)
+/mob/living/carbon/brain/caught_soul/set_dir(direction)
 	if(eyeobj)
 		return eyeobj.set_dir(direction)
 	else
@@ -390,11 +390,11 @@
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj,TRUE)
 
-/mob/living/carbon/brain/caught_soul/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/carbon/brain/caught_soul/say(message, datum/language/speaking = null, whispering = 0)
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj)
 
-/mob/living/carbon/brain/caught_soul/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/brain/caught_soul/emote(act,m_type=1,message = null)
 	if(silent) return FALSE
 	if (act == "me")
 		if(silent)
@@ -411,7 +411,7 @@
 	else
 		return FALSE
 
-/mob/living/carbon/brain/caught_soul/custom_emote(var/m_type, var/message)
+/mob/living/carbon/brain/caught_soul/custom_emote(m_type, message)
 	if(silent) return FALSE
 	soulcatcher.emote_into(message,src,eyeobj)
 
@@ -430,7 +430,7 @@
 	icon_state = "beacon"
 	var/mob/living/parent_human
 
-/mob/observer/eye/ar_soul/Initialize(mapload, var/human)
+/mob/observer/eye/ar_soul/Initialize(mapload, human)
 	. = ..()
 	var/mob/brainmob = loc
 	if(!istype(brainmob) || !brainmob.client)

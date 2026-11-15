@@ -53,6 +53,8 @@
 
 /obj/machinery/rnd/server/emp_act(severity, recursive)
 	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	stat |= EMPED
 	addtimer(CALLBACK(src, PROC_REF(fix_emp)), 60 SECONDS)
 	refresh_working()

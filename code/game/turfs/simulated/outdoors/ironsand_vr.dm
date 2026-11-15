@@ -5,6 +5,7 @@
 	icon_state = "ironsand1"
 	edge_blending_priority = 1
 	initial_flooring = /datum/decl/flooring/outdoors/ironsand
+	flags = TURF_CAN_DIG_SHOVEL
 
 /datum/decl/flooring/outdoors/ironsand
 	name = "iron sand"

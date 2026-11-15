@@ -37,7 +37,7 @@
 	clothing_possibilities |= /obj/item/clothing/shoes/black
 	clothing_possibilities |= /obj/item/radio/headset
 
-/obj/structure/ghost_pod/ghost_activated/human/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/ghost_activated/human/create_occupant(mob/M)
 	..()
 	var/turf/T = get_turf(src)
 	var/mob/living/carbon/human/H = new(src)
@@ -111,7 +111,7 @@
 	H.forceMove(T)
 
 	if(make_antag)
-		var/datum/antagonist/antag = GLOB.all_antag_types[make_antag]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[make_antag]
 		if(antag)
 			if(antag.add_antagonist(H.mind, 1, 1, 0, 1, 1))
 				log_admin("\The [src] made [key_name(src)] into a [antag.role_text].")
@@ -165,7 +165,7 @@
 	clothing_possibilities |= /obj/item/clothing/shoes/black
 	clothing_possibilities |= /obj/item/radio/headset
 
-/obj/structure/ghost_pod/manual/human/create_occupant(var/mob/M)
+/obj/structure/ghost_pod/manual/human/create_occupant(mob/M)
 	..()
 	var/turf/T = get_turf(src)
 	var/mob/living/carbon/human/H = new(src)
@@ -233,7 +233,7 @@
 	H.forceMove(T)
 
 	if(make_antag)
-		var/datum/antagonist/antag = GLOB.all_antag_types[make_antag]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[make_antag]
 		if(antag)
 			if(antag.add_antagonist(H.mind, 1, 1, 0, 1, 1))
 				log_admin("\The [src] made [key_name(src)] into a [antag.role_text].")

@@ -16,6 +16,7 @@
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
+	description_antag = "Dangerous if they close on you normally, but you could probably make it worse with an emag."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = null
 	min_force = 20 //minimum amount of force needed to damage the door with a melee weapon
@@ -43,6 +44,10 @@
 /obj/machinery/door/blast/Initialize(mapload)
 	. = ..()
 	implicit_material = get_material_by_name(MAT_PLASTEEL)
+	if(density)
+		rad_insulation = RAD_EXTREME_INSULATION
+	else
+		rad_insulation = RAD_NO_INSULATION
 
 /obj/machinery/door/blast/get_material()
 	return implicit_material
@@ -64,7 +69,6 @@
 		icon_state = icon_state_closed
 	else
 		icon_state = icon_state_open
-	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
 // Proc: emag_act()
@@ -90,6 +94,7 @@
 	update_nearby_tiles()
 	update_icon()
 	set_opacity(0)
+	rad_insulation = RAD_NO_INSULATION
 	addtimer(CALLBACK(src, PROC_REF(complete_force_open)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/door/blast/proc/complete_force_open()
@@ -112,6 +117,7 @@
 	density = TRUE
 	update_nearby_tiles()
 	update_icon()
+	rad_insulation = RAD_EXTREME_INSULATION
 	if(istransparent)
 		set_opacity(0)
 	else
@@ -133,7 +139,7 @@
 // Proc: force_toggle()
 // Parameters: None
 // Description: Opens or closes the door, depending on current state. No checks are done inside this proc.
-/obj/machinery/door/blast/proc/force_toggle(var/forced = 0, mob/user as mob)
+/obj/machinery/door/blast/proc/force_toggle(forced = 0, mob/user as mob)
 	if (forced)
 		playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 
@@ -222,7 +228,7 @@
 // Proc: attack_alien()
 // Parameters: Attacking Xeno mob.
 // Description: Forces open the door after a delay.
-/obj/machinery/door/blast/attack_alien(var/mob/user) //Familiar, right? Doors.
+/obj/machinery/door/blast/attack_alien(mob/user) //Familiar, right? Doors.
 	if(ishuman(user))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -269,7 +275,7 @@
 // Proc: open()
 // Parameters: None
 // Description: Opens the door. Does necessary checks. Automatically closes if autoclose is true
-/obj/machinery/door/blast/open(var/forced = 0)
+/obj/machinery/door/blast/open(forced = 0)
 	if(forced)
 		force_open()
 		return 1

@@ -9,11 +9,11 @@
 	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
 
-/obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
+/obj/item/projectile/bullet/pellet/proc/get_pellets(distance)
 	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
 	return max(pellets - pellet_loss, 1)
 
-/obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
+/obj/item/projectile/bullet/pellet/attack_mob(mob/living/target_mob, distance, miss_modifier)
 	if (pellets < 0) return 1
 
 	var/total_pellets = get_pellets(distance)

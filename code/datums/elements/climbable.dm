@@ -7,7 +7,7 @@
 	VAR_PRIVATE/climb_delay = 3.5 SECONDS
 	VAR_PRIVATE/climb_to_adjacent_turf = FALSE // for railings
 
-/datum/element/climbable/Attach(obj/target, var/climb_delay = 3.5 SECONDS, var/vaulting = FALSE)
+/datum/element/climbable/Attach(obj/target, climb_delay = 3.5 SECONDS, vaulting = FALSE)
 	. = ..()
 	if(!isobj(target))
 		return ELEMENT_INCOMPATIBLE
@@ -31,18 +31,20 @@
 	source.verbs -= /obj/proc/climb_on
 
 	REMOVE_TRAIT(source, TRAIT_CLIMBABLE, ELEMENT_TRAIT(type))
+	if(current_climbers)
+		current_climbers -= source
 	return ..()
 
 
 /// Starts climbing the object
-/datum/element/climbable/proc/start_climb(var/obj/climbed_thing, mob/user)
+/datum/element/climbable/proc/start_climb(obj/climbed_thing, mob/user)
 	SIGNAL_HANDLER
 	var/mob/living/H = user
 	if(istype(H) && can_climb(climbed_thing,H))
 		addtimer(CALLBACK(src, PROC_REF(do_climb), climbed_thing, user, climb_delay), 0, TIMER_DELETE_ME) // Isolate from signal handler
 
 /// Check if the mob is in any condition to climb the object, if the destination is blocked, and how to climb it
-/datum/element/climbable/proc/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
+/datum/element/climbable/proc/can_climb(obj/climbed_thing, mob/living/user, post_climb_check=0)
 	if(user.is_incorporeal()) // No! Bad shadekin!
 		return FALSE
 
@@ -69,7 +71,7 @@
 	return TRUE
 
 /// Performs the wait and any remaining checks before the climb resolves.
-/datum/element/climbable/proc/do_climb(var/obj/climbed_thing, var/mob/living/user, var/delay_time)
+/datum/element/climbable/proc/do_climb(obj/climbed_thing, mob/living/user, delay_time)
 	if(QDELETED(user) || QDELETED(climbed_thing))
 		return
 
@@ -88,14 +90,14 @@
 	LAZYREMOVEASSOC(current_climbers, climbed_thing, user)
 
 /// Resolve the climb by moving the mob to its final destination.
-/datum/element/climbable/proc/climb_to(var/obj/climbed_thing, var/mob/living/user)
+/datum/element/climbable/proc/climb_to(obj/climbed_thing, mob/living/user)
 	if(climb_to_adjacent_turf && get_turf(user) == get_turf(climbed_thing))
 		user.forceMove(get_step(climbed_thing, climbed_thing.dir))
 	else
 		user.forceMove(get_turf(climbed_thing))
 
 /// Check if a mob is capable of climbing at all
-/datum/element/climbable/proc/can_touch(var/obj/climbed_thing, var/mob/user)
+/datum/element/climbable/proc/can_touch(obj/climbed_thing, mob/user)
 	if (!user)
 		return 0
 	if(!climbed_thing.Adjacent(user))
@@ -117,7 +119,7 @@
 		shaken(climbed_thing, null)
 
 /// Shakes an object, if anyone is climbing it, causes them to fall off it.
-/datum/element/climbable/proc/shaken(var/obj/climbed_thing, var/mob/user)
+/datum/element/climbable/proc/shaken(obj/climbed_thing, mob/user)
 	SIGNAL_HANDLER
 	var/list/climbers = LAZYACCESS(current_climbers, climbed_thing)
 	// You cannot shake yourself
@@ -127,11 +129,6 @@
 		user.visible_message(span_warning("\The [user] shakes \the [climbed_thing]."), span_notice("You shake \the [climbed_thing]."))
 
 	for(var/mob/living/M in climbers)
-		M.Weaken(1)
-		to_chat(M, span_danger("You topple as you are shaken off \the [climbed_thing]!"))
-		climbers.Cut(1,2)
-
-	for(var/mob/living/M in get_turf(climbed_thing))
 		if(M.is_incorporeal())
 			continue
 		if(M.lying) //No spamming this on people.
@@ -139,42 +136,33 @@
 		if(M.pulling == climbed_thing) // Pulling stuff up stairs can get weird
 			continue
 
+		// Knock off climbers
 		M.Weaken(3)
-		to_chat(M, span_danger("You topple as \the [climbed_thing] moves under you!"))
+		to_chat(M, span_danger("You topple as you are shaken off \the [climbed_thing]!"))
+		climbers -= M
 
-		if(prob(25))
-			var/damage = rand(15,30)
-			var/mob/living/carbon/human/H = M
-			if(!istype(H))
-				to_chat(H, span_danger("You land heavily!"))
-				M.adjustBruteLoss(damage)
-				continue
+		// Tumble down damage
+		if(!prob(25))
+			return
 
-			var/obj/item/organ/external/affecting
+		// Apply damage to simple mobs, if human we go for specific limbs
+		var/damage = rand(10,20)
+		var/mob/living/carbon/human/H = M
+		if(!istype(H))
+			to_chat(H, span_danger("You land heavily!"))
+			M.adjustBruteLoss(damage)
+			continue
 
-			switch(pick(list("ankle","wrist","head","knee","elbow")))
-				if("ankle")
-					affecting = H.get_organ(pick(BP_L_FOOT, BP_R_FOOT))
-				if("knee")
-					affecting = H.get_organ(pick(BP_L_LEG, BP_R_LEG))
-				if("wrist")
-					affecting = H.get_organ(pick(BP_L_HAND, BP_R_HAND))
-				if("elbow")
-					affecting = H.get_organ(pick(BP_L_ARM, BP_R_ARM))
-				if("head")
-					affecting = H.get_organ(BP_HEAD)
+		// Try to hurt a specific limb
+		var/obj/item/organ/external/affecting = H.get_organ(pick(BP_ALL))
+		if(affecting)
+			to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
+			affecting.take_damage(damage, used_weapon = "Misadventure")
+			return
 
-			if(affecting)
-				to_chat(M, span_danger("You land heavily on your [affecting.name]!"))
-				affecting.take_damage(damage, 0)
-				if(affecting.parent)
-					affecting.parent.add_autopsy_data("Misadventure", damage)
-			else
-				to_chat(H, span_danger("You land heavily!"))
-				H.adjustBruteLoss(damage)
-
-			H.UpdateDamageIcon()
-			H.updatehealth()
+		// If no limb to hurt, just randomly apply damage
+		to_chat(H, span_danger("You land heavily!"))
+		H.adjustBruteLoss(damage)
 
 /datum/element/climbable/proc/on_examine(datum/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
@@ -188,7 +176,7 @@
 		delay_time /= 2
 	. = ..(climbed_thing, user, delay_time)
 
-/datum/element/climbable/cliff/can_climb(var/obj/climbed_thing, var/mob/living/user, post_climb_check=0)
+/datum/element/climbable/cliff/can_climb(obj/climbed_thing, mob/living/user, post_climb_check=0)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/shoes/shoes = H.shoes
@@ -200,14 +188,14 @@
 
 
 // Breaks if climbed while unanchored, railings.
-/datum/element/climbable/unanchored_can_break/climb_to(var/obj/climbed_thing, var/mob/living/user)
+/datum/element/climbable/unanchored_can_break/climb_to(obj/climbed_thing, mob/living/user)
 	. = ..()
 	if(!climbed_thing.anchored)
 		climbed_thing.take_damage(9999) // Fatboy, was originally maxhealth, but that var doesn't exist on everything
 
 
 // Table flipping is important!
-/datum/element/climbable/table/climb_to(var/obj/climbed_thing, mob/living/mover)
+/datum/element/climbable/table/climb_to(obj/climbed_thing, mob/living/mover)
 	var/obj/structure/table/TBL = climbed_thing
 	if(TBL.flipped == 1 && mover.loc == TBL.loc)
 		var/turf/T = get_step(climbed_thing, TBL.dir)
@@ -227,7 +215,7 @@
 	SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, usr)
 
 /// Checks if something is blocking our climb destination, ignores climbable objects
-/proc/can_climb_turf(var/obj/climbed_thing)
+/proc/can_climb_turf(obj/climbed_thing)
 	var/turf/T = get_turf(climbed_thing)
 	if(!T || !istype(T))
 		return "empty void"
@@ -239,7 +227,7 @@
 	return 0
 
 /// Check if the destination turf for vaulting is blocked by something. Extremely similar to above.
-/proc/can_climb_neighbor_turf(var/obj/climbed_thing)
+/proc/can_climb_neighbor_turf(obj/climbed_thing)
 	var/turf/T = get_step(climbed_thing, climbed_thing.dir)
 	if(!T || !istype(T))
 		return 0

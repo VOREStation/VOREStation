@@ -58,7 +58,6 @@
 	name = "large memory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3)
 	power_draw_per_use = 4
 	number_of_pins = 8
 
@@ -68,7 +67,6 @@
 	icon_state = "memory16"
 	w_class = ITEMSIZE_NORMAL
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4)
 	power_draw_per_use = 8
 	number_of_pins = 16
 
@@ -85,11 +83,11 @@
 /obj/item/integrated_circuit/memory/constant/do_work()
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
-
+/*
 /obj/item/integrated_circuit/memory/constant/emp_act(severity, recursive)
 	// Prevents default EMP behavior for single-slot constants memory.
 	return
-
+*/
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	. = ..(user)
 	if(.)

@@ -98,6 +98,7 @@ export const VoreUserPreferencesAesthetic = (props: {
               <LabeledList>
                 <LabeledList.Item label="Belly Rub Target">
                   <VorePanelEditDropdown
+                    searchInput
                     action={'set_belly_rub'}
                     icon="crosshairs"
                     editMode={editMode}

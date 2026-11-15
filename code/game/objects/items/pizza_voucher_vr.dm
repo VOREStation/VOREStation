@@ -1,6 +1,7 @@
 /obj/item/pizzavoucher
 	name = "free pizza voucher"
 	desc = "A pocket-sized plastic slip with a button in the middle. The writing on it seems to have faded."
+	description_antag = "Careful! Emagging this will mess with the delivery, crushing the recipient under it! Which, is probably fine and dandy for you! Just, don't forget about it."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "pizza_voucher"
 	var/spent = FALSE
@@ -33,14 +34,14 @@
 			span_notice("A small bluespace rift opens just above your head and spits out a pizza box!"),
 			span_notice("You hear a fwoosh followed by a thump."))
 		if(special_delivery)
-			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECEIVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
+			GLOB.command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECEIVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
 			new /obj/effect/falling_effect/pizza_delivery/special(user.loc)
 		else
 			new /obj/effect/falling_effect/pizza_delivery(user.loc)
 	else
 		to_chat(user, span_warning("The [src] is spent!"))
 
-/obj/item/pizzavoucher/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/pizzavoucher/emag_act(remaining_charges, mob/user)
 	if(spent)
 		to_chat(user, span_warning("The [src] is spent!"))
 		return

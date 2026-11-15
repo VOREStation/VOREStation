@@ -3,7 +3,7 @@
 	name = "gas thruster"
 	var/obj/machinery/atmospherics/unary/engine/nozzle
 
-/datum/ship_engine/gas_thruster/New(var/obj/machinery/_holder)
+/datum/ship_engine/gas_thruster/New(obj/machinery/_holder)
 	..()
 	nozzle = _holder
 
@@ -18,9 +18,9 @@
 	return nozzle.get_thrust()
 
 /datum/ship_engine/gas_thruster/burn()
-	return nozzle.burn()
+	return nozzle.thrust_burn()
 
-/datum/ship_engine/gas_thruster/set_thrust_limit(var/new_limit)
+/datum/ship_engine/gas_thruster/set_thrust_limit(new_limit)
 	nozzle.thrust_limit = new_limit
 
 /datum/ship_engine/gas_thruster/get_thrust_limit()
@@ -145,7 +145,7 @@
 		A = get_step(A, exhaust_dir)
 	return blockage
 
-/obj/machinery/atmospherics/unary/engine/proc/burn()
+/obj/machinery/atmospherics/unary/engine/proc/thrust_burn()
 	if(!is_on())
 		return 0
 	if(!check_fuel() || (use_power_oneoff(charge_per_burn) < charge_per_burn) || check_blockage())
@@ -189,7 +189,7 @@
 	light_color = "#ed9200"
 	anchored = TRUE
 
-/obj/effect/engine_exhaust/Initialize(mapload, var/ndir, var/flame)
+/obj/effect/engine_exhaust/Initialize(mapload, ndir, flame)
 	. = ..()
 	if(flame)
 		icon_state = "exhaust"
@@ -204,7 +204,6 @@
 	name = T_BOARD("gas thruster")
 	icon_state = "mcontroller"
 	build_path = /obj/machinery/atmospherics/unary/engine
-	origin_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 2)
 	req_components = list(
 		/obj/item/stack/cable_coil = 30,
 		/obj/item/pipe = 2,

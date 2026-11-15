@@ -1,4 +1,4 @@
-/turf/simulated/mineral/vacuum/gb_mine/make_ore(var/rare_ore)
+/turf/simulated/mineral/vacuum/gb_mine/make_ore(rare_ore)
 	if(mineral)
 		return
 	var/mineral_name

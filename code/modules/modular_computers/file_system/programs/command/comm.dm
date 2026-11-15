@@ -14,7 +14,7 @@
 	category = PROG_COMMAND
 	var/datum/comm_message_listener/message_core
 
-/datum/computer_file/program/comm/New(var/obj/item/modular_computer/comp = null)
+/datum/computer_file/program/comm/New(obj/item/modular_computer/comp = null)
 	..()
 	message_core = new
 
@@ -32,7 +32,7 @@ General message handling stuff
 	GLOB.last_message_id = GLOB.last_message_id + 1
 	return GLOB.last_message_id
 
-/proc/post_comm_message(var/message_title, var/message_text)
+/proc/post_comm_message(message_title, message_text)
 	var/list/message = list()
 	message["id"] = get_comm_message_id()
 	message["title"] = message_title
@@ -49,8 +49,8 @@ General message handling stuff
 	messages = list()
 	GLOB.comm_message_listeners.Add(src)
 
-/datum/comm_message_listener/proc/Add(var/list/message)
+/datum/comm_message_listener/proc/Add(list/message)
 	messages[++messages.len] = message
 
-/datum/comm_message_listener/proc/Remove(var/list/message)
+/datum/comm_message_listener/proc/Remove(list/message)
 	messages -= list(message)

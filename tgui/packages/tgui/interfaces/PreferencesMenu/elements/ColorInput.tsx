@@ -50,7 +50,7 @@ export const PreferenceEditColor = (
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
     if (!isOpen) {
       timeoutId = setTimeout(() => {
@@ -145,7 +145,7 @@ export const PreferenceEditColor = (
         <Floating
           onOpenChange={handleIsOpen}
           placement="top-end"
-          contentClasses="VorePanel__Floating VorePanel__noScroll"
+          contentClasses="VorePanel__Floating"
           content={
             <ColorSelector
               color={currentColor}

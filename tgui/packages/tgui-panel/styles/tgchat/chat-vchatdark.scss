@@ -196,32 +196,6 @@ a:visited {
  *
  ******************************************/
 
-/* MOTD */
-
-.motd {
-  color: hsl(75, 100%, 26%);
-  font-family: Verdana, sans-serif;
-  white-space: normal;
-}
-
-.motd h1,
-.motd h2,
-.motd h3,
-.motd h4,
-.motd h5,
-.motd h6 {
-  color: hsl(75, 100%, 26%);
-  text-decoration: underline;
-}
-
-.motd a,
-.motd a:link,
-.motd a:visited,
-.motd a:active,
-.motd a:hover {
-  color: hsl(75, 100%, 26%);
-}
-
 .underline {
   text-decoration: underline;
 }
@@ -268,6 +242,32 @@ h2.alert {
   color: hsl(214, 38%, 74%);
 }
 
+/* MOTD */
+
+.motd {
+  color: hsl(75, 100%, 26%);
+  font-family: Verdana, sans-serif;
+  white-space: normal;
+}
+
+.motd h1,
+.motd h2,
+.motd h3,
+.motd h4,
+.motd h5,
+.motd h6 {
+  color: hsl(75, 100%, 26%);
+  text-decoration: underline;
+}
+
+.motd a,
+.motd a:link,
+.motd a:visited,
+.motd a:active,
+.motd a:hover {
+  color: hsl(75, 100%, 26%);
+}
+
 em {
   font-style: normal;
   font-weight: bold;
@@ -288,6 +288,11 @@ em {
 
 .ooc .developer {
   color: hsl(124, 50%, 21%);
+}
+
+.admin {
+  color: hsl(227, 64%, 60%);
+  font-weight: bold;
 }
 
 .ooc .admin {
@@ -339,11 +344,6 @@ img.icon.bigicon {
 
 .adminsay {
   color: hsl(16, 100%, 50%);
-  font-weight: bold;
-}
-
-.admin {
-  color: hsl(227, 64%, 60%);
   font-weight: bold;
 }
 
@@ -983,35 +983,6 @@ img.icon.bigicon {
   font-style: italic;
 }
 
-.hypnophrase {
-  color: hsl(0, 0%, 13%);
-  font-weight: bold;
-  animation: hypnocolor 1500ms infinite;
-  animation-direction: alternate;
-}
-
-@keyframes hypnocolor {
-  0% {
-    color: hsl(0, 0%, 13%);
-  }
-
-  25% {
-    color: hsl(266, 98%, 34%);
-  }
-
-  50% {
-    color: hsl(272, 86%, 60%);
-  }
-
-  75% {
-    color: hsl(266, 70%, 36%);
-  }
-
-  100% {
-    color: hsl(192, 83%, 72%);
-  }
-}
-
 .phobia {
   color: hsl(0, 100%, 43%);
   font-weight: bold;
@@ -1340,7 +1311,6 @@ $border-width-px: $border-width * 1px;
 @each $color-name, $color-value in $alert-stripe-colors {
   .chat_alert_#{$color-name} {
     color: hsl(0, 0%, 100%);
-    padding: 0.5rem 0.5rem;
     box-shadow: none;
     font-weight: bold;
     margin: 1rem 0 1rem 0;
@@ -1526,6 +1496,35 @@ $border-width-px: $border-width * 1px;
   font-family: Wingdings, Webdings;
 }
 
+.hypnophrase {
+  color: hsl(0, 0%, 12.5%);
+  font-weight: bold;
+  animation: hypnocolor 1500ms infinite;
+  animation-direction: alternate;
+}
+
+@keyframes hypnocolor {
+  0% {
+    color: hsl(0, 0%, 12.5%);
+  }
+
+  25% {
+    color: hsl(265.8, 97.7%, 34.1%);
+  }
+
+  50% {
+    color: hsl(272, 86.3%, 60%);
+  }
+
+  75% {
+    color: hsl(266.2, 69.6%, 36.1%);
+  }
+
+  100% {
+    color: hsl(191.9, 83.4%, 71.6%);
+  }
+}
+
 .rainbow {
   font-family: monospace;
   font-weight: bold;
@@ -1557,16 +1556,6 @@ $border-width-px: $border-width * 1px;
   }
 }
 
-.spoiler {
-  background-color: hsl(0, 0%, 50%);
-  color: transparent;
-}
-
-.spoiler:hover {
-  background-color: inherit;
-  color: inherit;
-}
-
 details {
   width: 80%;
   background: hsl(220, 5%, 11%);
@@ -1574,7 +1563,6 @@ details {
   box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   overflow: hidden;
-  border-color: #343b3d;
   border: 1px solid hsl(214, 38%, 74%);
 }
 

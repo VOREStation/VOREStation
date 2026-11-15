@@ -2,7 +2,6 @@
 	name = "agent card"
 	icon_state = "generic-s"
 	assignment = "Agent"
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/electronic_warfare = 1
 	var/mob/registered_user = null
 
@@ -15,7 +14,7 @@
 
 /obj/item/card/id/syndicate/station_access/Initialize(mapload)
 	. = ..() // Same as the normal Syndicate id, only already has all station access
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 /obj/item/card/id/syndicate/Destroy()
 	QDEL_NULL(agentcard_module)
@@ -25,12 +24,12 @@
 /obj/item/card/id/syndicate/prevent_tracking()
 	return electronic_warfare
 
-/obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
+/obj/item/card/id/syndicate/afterattack(obj/item/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
 		src.access |= I.GetAccess()
-		if(player_is_antag(user.mind) || registered_user == user)
+		if(SSantag_job.player_is_antag(user.mind) || registered_user == user)
 			to_chat(user, span_notice("The microscanner activates as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
@@ -50,7 +49,7 @@
 				..(user, TRUE)
 
 
-/obj/item/card/id/syndicate/proc/register_user(var/mob/user)
+/obj/item/card/id/syndicate/proc/register_user(mob/user)
 	if(!istype(user) || user == registered_user)
 		return FALSE
 	unset_registered_user()
@@ -59,7 +58,7 @@
 	user.register(OBSERVER_EVENT_DESTROY, src, /obj/item/card/id/syndicate/proc/unset_registered_user)
 	return TRUE
 
-/obj/item/card/id/syndicate/proc/unset_registered_user(var/mob/user)
+/obj/item/card/id/syndicate/proc/unset_registered_user(mob/user)
 	if(!registered_user || (user && user != registered_user))
 		return
 	registered_user.unregister(OBSERVER_EVENT_DESTROY, src)

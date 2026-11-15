@@ -79,13 +79,12 @@
 /datum/component/disposal_system_connection/proc/handle_flush(list/flushed_items, datum/gas_mixture/flush_gas)
 	PROTECTED_PROC(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-	var/obj/structure/disposalholder/packet = new()	// virtual holder object which actually travels through the pipes.
-	packet.init(flushed_items, flush_gas)
-
-	// if no trunk connected, expel immediately
+	// if no trunk connected, return false
 	if(!connected_trunk)
-		handle_expel(packet)
-		return TRUE
+		return FALSE
+
+	var/obj/structure/disposalholder/packet = new(disposal_owner)	// virtual holder object which actually travels through the pipes.
+	packet.init(flushed_items, flush_gas)
 
 	// start the holder processing movement
 	packet.forceMove(connected_trunk)

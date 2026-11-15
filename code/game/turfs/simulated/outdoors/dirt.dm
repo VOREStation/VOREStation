@@ -5,4 +5,4 @@
 	edge_blending_priority = 2
 	turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 	initial_flooring = /datum/decl/flooring/dirt
-	can_dig = TRUE
+	flags = TURF_CAN_DIG_SHOVEL

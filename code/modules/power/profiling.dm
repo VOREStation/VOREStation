@@ -1,14 +1,14 @@
 datum
 
-var/global/enable_power_update_profiling = 0
+GLOBAL_VAR_INIT(enable_power_update_profiling, FALSE)
 
-var/global/power_profiled_time = 0
-var/global/power_last_profile_time = 0
+GLOBAL_VAR_INIT(power_profiled_time, 0)
+GLOBAL_VAR_INIT(power_last_profile_time, 0)
 GLOBAL_LIST_EMPTY(power_update_requests_by_machine)
 GLOBAL_LIST_EMPTY(power_update_requests_by_area)
 
 /proc/log_power_update_request(area/A, obj/machinery/M)
-	if (!enable_power_update_profiling)
+	if (!GLOB.enable_power_update_profiling)
 		return
 
 	var/machine_type = "[M.type]"
@@ -22,8 +22,8 @@ GLOBAL_LIST_EMPTY(power_update_requests_by_area)
 	else
 		GLOB.power_update_requests_by_area[A.name] = 1
 
-	power_profiled_time += (world.time - power_last_profile_time)
-	power_last_profile_time = world.time
+	GLOB.power_profiled_time += (world.time - GLOB.power_last_profile_time)
+	GLOB.power_last_profile_time = world.time
 
 /client/proc/toggle_power_update_profiling()
 	set name = "Toggle Area Power Update Profiling"
@@ -31,15 +31,15 @@ GLOBAL_LIST_EMPTY(power_update_requests_by_area)
 	set category = "Debug"
 	if(!check_rights(R_DEBUG))	return
 
-	if(enable_power_update_profiling)
-		enable_power_update_profiling = 0
+	if(GLOB.enable_power_update_profiling)
+		GLOB.enable_power_update_profiling = FALSE
 
 		to_chat(usr, "Area power update profiling disabled.")
 		message_admins("[key_name(src)] toggled area power update profiling off.")
 		log_admin("[key_name(src)] toggled area power update profiling off.")
 	else
-		enable_power_update_profiling = 1
-		power_last_profile_time = world.time
+		GLOB.enable_power_update_profiling = TRUE
+		GLOB.power_last_profile_time = world.time
 
 		to_chat(usr, "Area power update profiling enabled.")
 		message_admins("[key_name(src)] toggled area power update profiling on.")
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(power_update_requests_by_area)
 
 	if(!check_rights(R_DEBUG))	return
 
-	to_chat(usr, "Total profiling time: [power_profiled_time] ticks")
+	to_chat(usr, "Total profiling time: [GLOB.power_profiled_time] ticks")
 	for (var/M in GLOB.power_update_requests_by_machine)
 		to_chat(usr, "[M] = [GLOB.power_update_requests_by_machine[M]]")
 
@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(power_update_requests_by_area)
 
 	if(!check_rights(R_DEBUG))	return
 
-	to_chat(usr, "Total profiling time: [power_profiled_time] ticks")
-	to_chat(usr, "Total profiling time: [power_profiled_time] ticks")
+	to_chat(usr, "Total profiling time: [GLOB.power_profiled_time] ticks")
+	to_chat(usr, "Total profiling time: [GLOB.power_profiled_time] ticks")
 	for (var/A in GLOB.power_update_requests_by_area)
 		to_chat(usr, "[A] = [GLOB.power_update_requests_by_area[A]]")

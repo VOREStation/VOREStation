@@ -23,7 +23,7 @@
 			continue
 
 		// Or antags / bellied.
-		if(player_is_antag(H.mind) || isbelly(H.loc))
+		if(SSantag_job.player_is_antag(H.mind) || isbelly(H.loc))
 			continue
 
 		// Or doctors (otherwise it could be possible for the only surgeon to need surgery).

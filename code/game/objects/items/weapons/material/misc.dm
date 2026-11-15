@@ -18,7 +18,6 @@
 	w_class = ITEMSIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
@@ -32,7 +31,7 @@
 	item_state = "rock"
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/material/knife/machete/hatchet/stone/set_material(var/new_material)
+/obj/item/material/knife/machete/hatchet/stone/set_material(new_material)
 	var/old_name = name
 	. = ..()
 	name = old_name
@@ -44,26 +43,10 @@
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
 	can_cleave = FALSE
-	var/hits = 0
-
-/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
-	if(hits > 0)
-		return
-	var/obj/item/I = user.get_inactive_hand()
-	if(istype(I, /obj/item/material/knife/machete/hatchet/unathiknife))
-		hits ++
-		var/obj/item/W = I
-		W.attack(M, user)
-		W.afterattack(M, user)
-	..()
-
-/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
-	hits = initial(hits)
-	..()
 
 /obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
-	desc = "It's used for removing weeds or scratching your back."
+	desc = "It's used for removing weeds, or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hoe"
 	force_divisor = 0.25 // 5 with weight 20 (steel)
@@ -121,7 +104,6 @@
 	default_material = MAT_LEATHER
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	force_divisor = 0.15
 	thrown_force_divisor = 0.25
@@ -154,16 +136,16 @@
 				user.visible_message(span_warning("\The [AM] is snatched by \the [src]!"))
 				AM.throw_at(user, reach, 0.1, user)
 
-/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
 				if(prob(10) && ishuman(target) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					to_chat(target, span_warning("\The [src] rips at your hands!"))
-					ranged_disarm(target)
+					ranged_disarm(target, user)
 			if(I_DISARM)
 				if(prob(min(90, force * 3)) && ishuman(target) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
-					ranged_disarm(target)
+					ranged_disarm(target, user)
 				else
 					target.visible_message(span_danger("\The [src] sends \the [target] stumbling away."))
 					target.Move(get_step(target,get_dir(user,target)))
@@ -175,44 +157,6 @@
 				target.throw_at(get_turf(get_step(user,get_dir(user,target))), 2, 1, src)
 
 	..()
-
-/obj/item/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
-	if(istype(H))
-		var/list/holding = list(H.get_active_hand() = 40, H.get_inactive_hand() = 20)
-
-		if(user.zone_sel in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
-			for(var/obj/item/gun/W in holding)
-				if(W && prob(holding[W]))
-					var/list/turfs = list()
-					for(var/turf/T in view())
-						turfs += T
-					if(turfs.len)
-						var/turf/target = pick(turfs)
-						visible_message(span_danger("[H]'s [W] goes off due to \the [src]!"))
-						return W.afterattack(target,H)
-
-		if(!(H.species.flags & NO_SLIP) && prob(10) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
-			var/armor_check = H.run_armor_check(user.zone_sel, "melee")
-			H.apply_effect(3, WEAKEN, armor_check)
-			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			if(armor_check < 60)
-				visible_message(span_danger("\The [src] has tripped [H]!"))
-			else
-				visible_message(span_warning("\The [src] attempted to trip [H]!"))
-			return
-
-		else
-			if(H.break_all_grabs(user))
-				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				return
-
-			if(user.zone_sel in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
-				for(var/obj/item/I in holding)
-					if(I && prob(holding[I]))
-						H.drop_from_inventory(I)
-						visible_message(span_danger("\The [src] has disarmed [H]!"))
-						playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-						return
 
 /obj/item/material/whip/attack_self(mob/user)
 	. = ..(user)
@@ -227,7 +171,6 @@
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "stone_wood_axe"
 	default_material = MAT_FLINT
-	origin_tech = list()
 	applies_material_colour = FALSE
 
 /obj/item/material/knife/machete/hatchet/stone/bone

@@ -18,10 +18,11 @@
 					LANGUAGE_TERMINUS = 1,
 					LANGUAGE_ZADDAT = 0
 					)
-	var/id
+	ui_theme = "syndicate"
+	idcard_type = /obj/item/card/id/syndicate
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
-/obj/item/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/pinpointer/shuttle/merc(src)
 	src.modules += new /obj/item/melee/robotic/blade/syndicate(src)
@@ -34,26 +35,21 @@
 	src.modules += jetpack
 	robot.internals = jetpack
 
-	var/obj/id = robot.idcard
-	id.forceMove(src)
-	src.modules += id
+	var/obj/item/card/id/robot_id = robot.idcard
+	robot_id.forceMove(src)
+	src.modules += robot_id
 
 /obj/item/robot_module/robot/syndicate/adjust_gps(obj/item/gps/robot/robot_gps)
 	robot_gps.long_range = TRUE
 	robot_gps.hide_signal = TRUE
 	robot_gps.can_hide_signal = TRUE
 
-/obj/item/robot_module/robot/syndicate/Destroy()
-	src.modules -= id
-	id = null
-	return ..()
-
 // Gets a big shield and a gun that shoots really fast to scare the opposing force.
 /obj/item/robot_module/robot/syndicate/protector
 	name = "protector robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
-/obj/item/robot_module/robot/syndicate/protector/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/protector/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/shield_projector/rectangle/weak(src)
 	src.modules += new /obj/item/gun/energy/robotic/laser/dakkalaser(src)
@@ -68,7 +64,7 @@
 /obj/item/robot_module/robot/syndicate/mechanist
 	name = "mechanist robot module"
 
-/obj/item/robot_module/robot/syndicate/mechanist/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/mechanist/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	// General engineering/hacking.
 	src.modules += new /obj/item/borg/sight/meson(src)
@@ -122,7 +118,7 @@
 	name = "combat medic robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
-/obj/item/robot_module/robot/syndicate/combat_medic/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/combat_medic/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/healthanalyzer/phasic(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/merc(src)
@@ -163,7 +159,7 @@
 	src.modules += new /obj/item/dogborg/sleeper/syndie(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
 
-/obj/item/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/robot/syndicate/combat_medic/respawn_consumable(mob/living/silicon/robot/R, amount)
 
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
@@ -177,7 +173,7 @@
 	name = "ninja robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
-/obj/item/robot_module/robot/syndicate/ninja/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/ninja/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/dogborg/sleeper/K9/syndie(src)
 	src.modules += new /obj/item/dogborg/pounce(src)

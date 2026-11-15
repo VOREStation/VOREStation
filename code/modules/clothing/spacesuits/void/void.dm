@@ -68,7 +68,7 @@
 	if(tank && in_range(src,user))
 		. += span_notice("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
-/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
+/obj/item/clothing/suit/space/void/refit_for_species(target_species)
 	..()
 	if(istype(hood))
 		hood.refit_for_species(target_species)
@@ -103,7 +103,7 @@
 			to_chat(M, "Your suit's cooling unit deploys.")
 			cooler.canremove = FALSE
 
-/obj/item/clothing/suit/space/void/dropped(mob/user)
+/obj/item/clothing/suit/space/void/dropped(mob/user, equipping, slot)
 	..()
 
 	var/mob/living/carbon/human/H
@@ -132,7 +132,7 @@
 		cooler.canremove = TRUE
 		cooler.forceMove(src)
 
-/obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
+/obj/item/clothing/suit/space/void/proc/attach_helmet(obj/item/clothing/head/helmet/space/void/helm)
 	if(!istype(helm) || hood)
 		return
 
@@ -281,7 +281,7 @@
 		if(tank)
 			to_chat(user, "\The [src] already has an airtank installed.")
 		else if(cooler)
-			to_chat(user, "\The [src]'s suit cooling unit is the modular suit storage.  Remove it first.")
+			to_chat(user, "\The [src]'s suit cooling unit is the modular suit storage. Remove it first.")
 		else
 			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
 			user.drop_item()

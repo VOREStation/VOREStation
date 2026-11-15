@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	wrap_buddy = null
 	return ..()
 
-/turf/unsimulated/map/edge/Bumped(var/atom/movable/AM)
+/turf/unsimulated/map/edge/Bumped(atom/movable/AM)
 	if(wrap_buddy?.map_is_to_my)
 		AM.forceMove(get_step(wrap_buddy, wrap_buddy.map_is_to_my))
 	else
@@ -56,11 +56,11 @@ GLOBAL_LIST_EMPTY(map_sectors)
 	name = "[x]-[y]"
 	var/list/numbers = list()
 
-	if(x == 1 || x == global.using_map.overmap_size)
+	if(x == 1 || x == using_map.overmap_size)
 		numbers += list("[round(y/10)]","[round(y%10)]")
-		if(y == 1 || y == global.using_map.overmap_size)
+		if(y == 1 || y == using_map.overmap_size)
 			numbers += "-"
-	if(y == 1 || y == global.using_map.overmap_size)
+	if(y == 1 || y == using_map.overmap_size)
 		numbers += list("[round(x/10)]","[round(x%10)]")
 
 	for(var/i = 1 to numbers.len)
@@ -70,22 +70,22 @@ GLOBAL_LIST_EMPTY(map_sectors)
 		if(y == 1)
 			I.pixel_y = 3
 			I.pixel_x = 5*i + 4
-		if(y == global.using_map.overmap_size)
+		if(y == using_map.overmap_size)
 			I.pixel_y = world.icon_size - 9
 			I.pixel_x = 5*i + 4
 		if(x == 1)
 			I.pixel_x = 5*i - 2
-		if(x == global.using_map.overmap_size)
+		if(x == using_map.overmap_size)
 			I.pixel_x = 5*i + 2
 		add_overlay(I)
 	AddElement(/datum/element/turf_z_transparency)
 
-/turf/unsimulated/map/Entered(var/atom/movable/O, var/atom/oldloc)
+/turf/unsimulated/map/Entered(atom/movable/O, atom/oldloc)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_entered(src, O, oldloc)
 
-/turf/unsimulated/map/Exited(var/atom/movable/O, var/atom/newloc)
+/turf/unsimulated/map/Exited(atom/movable/O, atom/newloc)
 	..()
 	if(istype(O, /obj/effect/overmap/visitable/ship))
 		GLOB.overmap_event_handler.on_turf_exited(src, O, newloc)

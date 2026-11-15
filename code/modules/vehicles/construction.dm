@@ -11,7 +11,7 @@
 
 	density = TRUE
 	slowdown = 10 //It's a vehicle frame, what do you expect?
-	w_class = 5
+	w_class = ITEMSIZE_HUGE
 
 	var/build_stage = 0
 	var/obj/item/cell/cell = null
@@ -21,7 +21,7 @@
 	icon_state = "[initial(icon_state)][build_stage]"
 	update_icon()
 
-/obj/item/vehicle_assembly/proc/increase_step(var/new_name = null)
+/obj/item/vehicle_assembly/proc/increase_step(new_name = null)
 	build_stage++
 	if(new_name)
 		name = new_name
@@ -39,7 +39,7 @@
 	icon_state = "quad-frame"
 	pixel_x = -16
 
-/obj/item/vehicle_assembly/quadbike/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/vehicle_assembly/quadbike/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	switch(build_stage)
@@ -151,7 +151,7 @@
 	icon_state = "quadtrailer-frame"
 	pixel_x = -16
 
-/obj/item/vehicle_assembly/quadtrailer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/vehicle_assembly/quadtrailer/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	switch(build_stage)
@@ -200,7 +200,7 @@
 
 	pixel_x = 0
 
-/obj/item/vehicle_assembly/spacebike/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/vehicle_assembly/spacebike/attackby(obj/item/W as obj, mob/user as mob)
 	switch(build_stage)
 		if(0)
 			if(istype(W, /obj/item/tank/jetpack) || istype(W, /obj/item/borg/upgrade/advanced/jetpack))
@@ -285,7 +285,7 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "snowmobile-frame"
 
-/obj/item/vehicle_assembly/snowmobile/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/vehicle_assembly/snowmobile/attackby(obj/item/W as obj, mob/user as mob)
 	switch(build_stage)
 		if(0)
 			if(istype(W, /obj/item/stack/material/steel))

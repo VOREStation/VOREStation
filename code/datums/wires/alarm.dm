@@ -31,7 +31,7 @@
 				A.locked = TRUE
 
 		if(WIRE_MAIN_POWER1)
-			A.shock(usr, 50)
+			A.shock(usr, 50) // TODO - REMOVE USR
 			A.shorted = !mend
 			A.update_icon()
 

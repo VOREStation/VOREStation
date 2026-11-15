@@ -30,7 +30,7 @@
 	icon_state = "toy"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/afoam_dart
-	matter = list(MAT_PLASTIC = 250)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(0.125))
 	caliber = "foam"
 	max_ammo = 9
 	multiple_sprites = 1
@@ -48,7 +48,7 @@
 	icon_state = "toysmg"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/afoam_dart
-	matter = list(MAT_PLASTIC = 250)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(0.125))
 	caliber = "foam"
 	max_ammo = 20
 	multiple_sprites = 1
@@ -58,7 +58,7 @@
 
 /obj/item/ammo_magazine/mfoam_dart/smg/riot
 	ammo_type = /obj/item/ammo_casing/afoam_dart/riot
-	matter = list(MAT_PLASTIC = 1260, MAT_PLASTIC = 250)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(0.63), MAT_PLASTIC = MATERIAL_COST(0.125))
 
 ///////// .357 /////////
 
@@ -68,7 +68,7 @@
 	icon_state = "38"
 	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357
-	matter = list(MAT_STEEL = 1260)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.63))
 	max_ammo = 6
 	multiple_sprites = 1
 
@@ -94,7 +94,7 @@
 	desc = "A speedloader for .38 revolvers."
 	icon_state = "38"
 	caliber = ".38"
-	matter = list(MAT_STEEL = 360)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.18))
 	ammo_type = /obj/item/ammo_casing/a38
 	max_ammo = 6
 	multiple_sprites = 1
@@ -112,9 +112,8 @@
 /obj/item/ammo_magazine/m38/makarov
 	name = "makarov magazine (.38)"
 	icon_state = "45"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 480)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.24))
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	max_ammo = 8
@@ -128,9 +127,8 @@
 /obj/item/ammo_magazine/m38/giskard
 	name = "magazine (.38)"
 	icon_state = "m91"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 540)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.27))
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/a38
 	max_ammo = 10
@@ -147,7 +145,7 @@
 	icon_state = "45"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a45
-	matter = list(MAT_STEEL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2625)) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".45"
 	max_ammo = 7
 	multiple_sprites = 1
@@ -185,7 +183,7 @@
 	icon_state = "uzi45"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a45
-	matter = list(MAT_STEEL = 1200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.6))
 	caliber = ".45"
 	max_ammo = 16
 	multiple_sprites = 1
@@ -199,7 +197,7 @@
 	icon_state = "tomstick"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a45
-	matter = list(MAT_STEEL = 1500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.75))
 	caliber = ".45"
 	max_ammo = 20
 	multiple_sprites = 1
@@ -217,7 +215,7 @@
 	w_class = ITEMSIZE_NORMAL // Bulky ammo doesn't fit in your pockets!
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a45
-	matter = list(MAT_STEEL = 3750)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.875))
 	caliber = ".45"
 	max_ammo = 50
 	multiple_sprites = 1
@@ -236,7 +234,7 @@
 	desc = "A stripper clip for reloading .45 rounds into magazines."
 	caliber = ".45"
 	ammo_type = /obj/item/ammo_casing/a45
-	matter = list(MAT_STEEL = 675) // metal costs very roughly based around one .45 casing = 75 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.3375)) // metal costs very roughly based around one .45 casing = 75 metal
 	max_ammo = 9
 	multiple_sprites = 1
 
@@ -257,7 +255,7 @@
 	name = "speedloader (.45)"
 	icon_state = "45s"
 	ammo_type = /obj/item/ammo_casing/a45
-	matter = list(MAT_STEEL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2625)) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".45"
 	max_ammo = 6
 	multiple_sprites = 1
@@ -304,9 +302,8 @@
 /obj/item/ammo_magazine/m9mm
 	name = "magazine (9mm)"
 	icon_state = "m91"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 600)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.3))
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 10
@@ -332,9 +329,8 @@
 	name = "extended magazine (9mm)"
 	desc = "\"FOR LAW ENFORCEMENT/MILITARY USE ONLY\" is clearly etched on the magazine. This is probably illegal for you to have." // Remember, Security is not Law Enforcement, so it's illegal for Security to use as well.
 	icon_state = "m93"
-	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5))
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 17
@@ -354,9 +350,8 @@
 /obj/item/ammo_magazine/m9mm/compact
 	name = "compact magazine (9mm)"
 	icon_state = "m92"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 480)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.24))
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 8
@@ -381,9 +376,8 @@
 /obj/item/ammo_magazine/m9mm/luger
 	name = "\improper \"Mäuse\" magazine (9mm)"
 	icon_state = "9x19p"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(MAT_STEEL = 480)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.24))
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 8
@@ -402,7 +396,7 @@
 	icon_state = "9mmt"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a9mm
-	matter = list(MAT_STEEL = 1200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.6))
 	caliber = "9mm"
 	max_ammo = 20
 	multiple_sprites = 1
@@ -425,7 +419,7 @@
 /obj/item/ammo_magazine/m9mmt/ap
 	name = "top mounted magazine (9mm armor piercing)"
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
-	matter = list(MAT_STEEL = 1000, MAT_PLASTEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_PLASTEEL = MATERIAL_COST(1))
 
 // P90
 /obj/item/ammo_magazine/m9mmp90
@@ -433,7 +427,7 @@
 	icon_state = "p90"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
-	matter = list(MAT_STEEL = 3000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.5))
 	caliber = "9mm"
 	max_ammo = 50
 	multiple_sprites = 1
@@ -448,7 +442,7 @@
 	desc = "A stripper clip for reloading 9mm rounds into magazines."
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
-	matter = list(MAT_STEEL = 540) // metal costs are very roughly based around one 9mm casing = 60 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.27)) // metal costs are very roughly based around one 9mm casing = 60 metal
 	max_ammo = 9
 	multiple_sprites = 1
 
@@ -470,17 +464,16 @@
 	icon_state = "S9mm"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a9mm
-	matter = list(MAT_STEEL = 1200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.6))
 	caliber = "9mm"
 	max_ammo = 21
-	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/m9mmAdvanced/ap
 	desc = "A high capacity double stack magazine made specially for the Advanced SMG. Filled with 21 9mm armor piercing bullets."
 	icon_state = "S9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 
 /obj/item/ammo_magazine/m9mmAdvanced/empty
 	initial_ammo = 0
@@ -490,10 +483,9 @@
 /obj/item/ammo_magazine/m10mm
 	name = "magazine (10mm)"
 	icon_state = "10mm"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
-	matter = list(MAT_STEEL = 1500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.75))
 	ammo_type = /obj/item/ammo_casing/a10mm
 	max_ammo = 20
 	multiple_sprites = 1
@@ -503,38 +495,38 @@
 
 /obj/item/ammo_magazine/m10mm/practice
 	name = "magazine (10mm practice)"
-	matter = list(MAT_STEEL = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5))
 	ammo_type = /obj/item/ammo_casing/a10mm/practice
 
 /obj/item/ammo_magazine/m10mm/rubber
 	name = "magazine (10mm rubber)"
-	matter = list(MAT_STEEL = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5))
 	ammo_type = /obj/item/ammo_casing/a10mm/rubber
 
 /obj/item/ammo_magazine/m10mm/emp
 	name = "magazine (10mm haywire)"
-	matter = list(MAT_STEEL = 1500, MAT_URANIUM = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(1))
 	ammo_type = /obj/item/ammo_casing/a10mm/emp
 
 // Pistol
 /obj/item/ammo_magazine/m10mm/pistol
 	icon_state = "m91"
-	matter = list(MAT_STEEL = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5))
 	max_ammo = 12
 
 /obj/item/ammo_magazine/m10mm/pistol/practice
 	name = "magazine (10mm practice)"
-	matter = list(MAT_STEEL = 800)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4))
 	ammo_type = /obj/item/ammo_casing/a10mm/practice
 
 /obj/item/ammo_magazine/m10mm/pistol/rubber
 	name = "magazine (10mm rubber)"
-	matter = list(MAT_STEEL = 800)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4))
 	ammo_type = /obj/item/ammo_casing/a10mm/rubber
 
 /obj/item/ammo_magazine/m10mm/pistol/emp
 	name = "magazine (10mm haywire)"
-	matter = list(MAT_STEEL = 1000, MAT_URANIUM = 1500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.75))
 	ammo_type = /obj/item/ammo_casing/a10mm/emp
 
 /obj/item/ammo_magazine/m10mm/pistol/empty
@@ -545,10 +537,9 @@
 /obj/item/ammo_magazine/m545
 	name = "magazine (5.45mm)"
 	icon_state = "m545"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "5.45mm"
-	matter = list(MAT_STEEL = 1800)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.9))
 	ammo_type = /obj/item/ammo_casing/a545
 	max_ammo = 20
 	multiple_sprites = 1
@@ -571,7 +562,7 @@
 // Extended
 /obj/item/ammo_magazine/m545/ext
 	name = "extended magazine (5.45mm)"
-	matter = list(MAT_STEEL = 2700)
+	matter = list(MAT_STEEL = MATERIAL_COST(1.35))
 	max_ammo = 30
 
 /obj/item/ammo_magazine/m545/ext/empty
@@ -593,7 +584,7 @@
 /obj/item/ammo_magazine/m545/small
 	name = "reduced magazine (5.45mm)"
 	icon_state = "m545-small"
-	matter = list(MAT_STEEL = 900)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.45))
 	max_ammo = 10
 
 /obj/item/ammo_magazine/m545/small/empty
@@ -617,7 +608,7 @@
 	icon_state = "clip_rifle"
 	caliber = "5.45mm"
 	ammo_type = /obj/item/ammo_casing/a545
-	matter = list(MAT_STEEL = 450) // metal costs are very roughly based around one 10mm casing = 180 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.225)) // metal costs are very roughly based around one 10mm casing = 180 metal
 	max_ammo = 5
 	multiple_sprites = 1
 
@@ -637,10 +628,9 @@
 /obj/item/ammo_magazine/m545saw
 	name = "magazine box (5.45mm)"
 	icon_state = "a545"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "5.45mm"
-	matter = list(MAT_STEEL = 10000)
+	matter = list(MAT_STEEL = MATERIAL_COST(5))
 	ammo_type = /obj/item/ammo_casing/a545
 	w_class = ITEMSIZE_NORMAL // This should NOT fit in your pocket!!
 	max_ammo = 50
@@ -662,10 +652,9 @@
 /obj/item/ammo_magazine/m44
 	name = "magazine (.44)"
 	icon_state = "m44"
-	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".44"
-	matter = list(MAT_STEEL = 1260)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.63))
 	ammo_type = /obj/item/ammo_casing/a44
 	max_ammo = 7
 	multiple_sprites = 1
@@ -684,7 +673,7 @@
 	desc = "A stripper clip for reloading .44 rounds into magazines."
 	caliber = ".44"
 	ammo_type = /obj/item/ammo_casing/a44
-	matter = list(MAT_STEEL = 1620) // metal costs are very roughly based around one .50 casing = 180 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.81)) // metal costs are very roughly based around one .50 casing = 180 metal
 	max_ammo = 9
 	multiple_sprites = 1
 
@@ -693,7 +682,7 @@
 	name = "speedloader (.44)"
 	icon_state = "44"
 	ammo_type = /obj/item/ammo_casing/a44
-	matter = list(MAT_STEEL = 1260) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.63)) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".44"
 	max_ammo = 6
 	multiple_sprites = 1
@@ -718,7 +707,7 @@
 	icon_state = "m762-small"
 	mag_type = MAGAZINE
 	caliber = "7.62mm"
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 10
 	multiple_sprites = 1
@@ -734,7 +723,7 @@
 /obj/item/ammo_magazine/m762/ext
 	name = "extended magazine (7.62mm)"
 	icon_state = "m762"
-	matter = list(MAT_STEEL = 4000)
+	matter = list(MAT_STEEL = MATERIAL_COST(2))
 	max_ammo = 20
 
 /obj/item/ammo_magazine/m762/ext/empty
@@ -750,7 +739,7 @@
 	icon_state = "enbloc"
 	mag_type = MAGAZINE
 	caliber = "7.62mm"
-	matter = list(MAT_STEEL = 1600)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.8))
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 8
 	multiple_sprites = 1
@@ -768,7 +757,7 @@
 	icon_state = "clip_rifle"
 	caliber = "7.62mm"
 	ammo_type = /obj/item/ammo_casing/a762
-	matter = list(MAT_STEEL = 1000) // metal costs are very roughly based around one 7.62 casing = 200 metal
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5)) // metal costs are very roughly based around one 7.62 casing = 200 metal
 	max_ammo = 5
 	multiple_sprites = 1
 
@@ -790,7 +779,7 @@
 	icon_state = "SVD"
 	mag_type = MAGAZINE
 	caliber = "7.62mm"
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 10
 	multiple_sprites = 1
@@ -809,7 +798,7 @@
 	icon_state = "ashot-mag"
 	mag_type = MAGAZINE
 	caliber = "12g"
-	matter = list(MAT_STEEL = 13000)
+	matter = list(MAT_STEEL = MATERIAL_COST(6.5))
 	ammo_type = /obj/item/ammo_casing/a12g
 	max_ammo = 24
 	multiple_sprites = 1
@@ -836,7 +825,7 @@
 	desc = "A metal clip for holding and quickly loading two shotgun shells."
 	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g
-	matter = list(MAT_STEEL = 1070)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.535))
 	max_ammo = 2
 	multiple_sprites = 1
 
@@ -844,13 +833,13 @@
 	name = "ammo clip (12g buckshot)"
 	icon_state = "12gclipshell"
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
-	matter = list(MAT_STEEL = 1070)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.535))
 
 /obj/item/ammo_magazine/clip/c12g/beanbag
 	name = "ammo clip (12g beanbag)"
 	icon_state = "12gclipbean"
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
-	matter = list(MAT_STEEL = 710)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.355))
 
 ///////// .75 Gyrojet /////////
 

@@ -30,7 +30,7 @@ GLOBAL_DATUM(mercs, /datum/antagonist/mercenary)
 	global_objectives |= new /datum/objective/nuclear
 	return 1
 
-/datum/antagonist/mercenary/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/mercenary/equip(mob/living/carbon/human/player)
 
 	if(!..())
 		return 0

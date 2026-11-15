@@ -1,6 +1,6 @@
 /obj/machinery/meter
-	name = "meter"
-	desc = "It measures something."
+	name = "digital gas meter"
+	desc = "This device attaches to a pipe, and provide a readout of the contents pressure and temperature."
 	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
@@ -13,10 +13,11 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 
-/obj/machinery/meter/Initialize(mapload)
+/obj/machinery/meter/Initialize(mapload, pipe_layer_selected)
 	. = ..()
 	if (!target)
 		target = select_target()
+		align_to_target()
 
 /obj/machinery/meter/Destroy()
 	pipes_on_turf.Cut()
@@ -80,7 +81,7 @@
 /obj/machinery/meter/examine(mob/user)
 	. = ..()
 
-	if(get_dist(user, src) > 3 && !(isAI(user) || isobserver(user)))
+	if(get_dist(user, src) > 6 && !(isAI(user) || isobserver(user)))
 		. += span_warning("You are too far away to read it.")
 
 	else if(stat & (NOPOWER|BROKEN))
@@ -89,11 +90,11 @@
 	else if(target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
-			. += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+			. += span_notice("The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)")
 		else
-			. += "The sensor error light is blinking."
+			. += span_notice("The sensor error light is blinking.")
 	else
-		. += "The connect error light is blinking."
+		. += span_notice("The connect error light is blinking.")
 
 /obj/machinery/meter/Click()
 
@@ -105,7 +106,7 @@
 
 	return ..()
 
-/obj/machinery/meter/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/meter/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
@@ -138,15 +139,35 @@
 		target = pipes_on_turf[1]
 		pipes_on_turf.Remove(target)
 		pipes_on_turf.Add(target)
+		align_to_target()
 		to_chat(user, span_notice("Pipe meter set to moniter \the [target]."))
 		return
 
 	return ..()
+
+/obj/machinery/meter/proc/align_to_target()
+	// Use offsets instead of custom icons
+	switch(target?.piping_layer)
+		if(PIPING_LAYER_SUPPLY)
+			pixel_x = -4
+			pixel_y = -4
+		if(PIPING_LAYER_SCRUBBER)
+			pixel_x = 4
+			pixel_y = 4
+		if(PIPING_LAYER_FUEL)
+			pixel_x = 8
+			pixel_y = 8
+		if(PIPING_LAYER_AUX)
+			pixel_x = -8
+			pixel_y = -8
+		else
+			pixel_x = 0
+			pixel_y = 0
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 
 /obj/machinery/meter/turf/select_target()
 	return loc
 
-/obj/machinery/meter/turf/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/meter/turf/attackby(obj/item/W, mob/user)
 	return

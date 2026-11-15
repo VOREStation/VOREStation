@@ -7,7 +7,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 	flags = OPENCONTAINER|NOBLUDGEON
-	matter = list(MAT_GLASS = 300, MAT_STEEL = 300)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.15), MAT_STEEL = MATERIAL_COST(0.15))
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL
@@ -179,7 +179,6 @@
 	w_class = ITEMSIZE_NORMAL
 	max_transfer_amount = null
 	volume = 600
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 
 /obj/item/reagent_containers/spray/chemsprayer/Spray_at(atom/A as mob|obj, mob/user)
 	playsound(src, 'sound/effects/spray3.ogg', rand(50,1), -6)

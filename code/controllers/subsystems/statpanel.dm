@@ -36,8 +36,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
 
-		if(GLOB.emergency_shuttle.evac)
-			var/ETA = GLOB.emergency_shuttle.get_status_panel_eta()
+		if(SSemergency_shuttle.evac)
+			var/ETA = SSemergency_shuttle.get_status_panel_eta()
 			if(ETA)
 				global_data += "[ETA]"
 
@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(statpanels)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/statpanels/proc/update_misc_tabs(var/client/target,var/mob/target_mob)
+/datum/controller/subsystem/statpanels/proc/update_misc_tabs(client/target,mob/target_mob)
 	target_mob.update_misc_tabs()
 	for(var/tab in target_mob.misc_tabs)
 		if(length(target_mob.misc_tabs[tab]) == 0 && (tab in target.misc_tabs))

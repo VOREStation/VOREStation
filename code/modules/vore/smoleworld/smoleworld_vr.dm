@@ -73,6 +73,7 @@
 	destruction_desc = "smashed"
 	sheet_singular_name = "bag"
 	sheet_plural_name = "bags"
+	supply_conversion_value = 1 // The value of smollbricks are only going up! Buy now! Fill your house! THE PLASTIC BRICKS ARE WORTH YOUR CHILD'S COLLEGE MONEY!
 
 //the actual materials
 
@@ -250,7 +251,7 @@
 	dismantle()
 	return
 //checks for projectile damage and does the same as dismaintle but spawns material instead.
-/obj/structure/smolebuilding/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/smolebuilding/bullet_act(obj/item/projectile/Proj)
 	displode()
 	return
 //is the same as dismaintal but instead of ruins it just makes it all explode
@@ -279,7 +280,7 @@
 	displode()
 	return
 
-/obj/structure/smoleruins/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/smoleruins/bullet_act(obj/item/projectile/Proj)
 	displode()
 	return
 

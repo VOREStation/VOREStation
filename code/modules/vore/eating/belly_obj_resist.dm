@@ -171,8 +171,8 @@
 		transferlocation = null
 		return TRUE
 
-	var/primary_transfer_owner_message = span_vwarning(belly_format_string(primary_transfer_messages_owner, living_prey, dest = transferlocation))
-	var/primary_transfer_prey_message = span_vwarning(belly_format_string(primary_transfer_messages_prey, living_prey, dest = transferlocation))
+	var/primary_transfer_owner_message = span_vwarning(belly_format_string(primary_transfer_messages_owner, living_prey, dest = dest_belly.get_belly_name()))
+	var/primary_transfer_prey_message = span_vwarning(belly_format_string(primary_transfer_messages_prey, living_prey, dest = dest_belly.get_belly_name()))
 
 	to_chat(living_prey, primary_transfer_prey_message)
 	to_chat(owner, primary_transfer_owner_message)
@@ -199,8 +199,8 @@
 		transferlocation_secondary = null
 		return TRUE
 
-	var/secondary_transfer_owner_message = span_vwarning(belly_format_string(secondary_transfer_messages_owner, living_prey, dest = transferlocation_secondary))
-	var/secondary_transfer_prey_message = span_vwarning(belly_format_string(secondary_transfer_messages_prey, living_prey, dest = transferlocation_secondary))
+	var/secondary_transfer_owner_message = span_vwarning(belly_format_string(secondary_transfer_messages_owner, living_prey, dest = dest_belly.get_belly_name()))
+	var/secondary_transfer_prey_message = span_vwarning(belly_format_string(secondary_transfer_messages_prey, living_prey, dest = dest_belly.get_belly_name()))
 
 	to_chat(living_prey, secondary_transfer_prey_message)
 	to_chat(owner, secondary_transfer_owner_message)

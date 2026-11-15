@@ -13,6 +13,7 @@
 	var/datum/money_account/detailed_account_view
 	var/creating_new_account = 0
 	var/const/fund_cap = 1000000
+	circuit = /obj/item/circuitboard/account_console
 
 /obj/machinery/account_database/proc/get_access_level()
 	if(!held_card)
@@ -43,8 +44,12 @@
 /obj/machinery/account_database/Initialize(mapload)
 	machine_id = "[station_name()] Acc. DB #[GLOB.num_financial_terminals++]"
 	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/account_database/attackby(obj/O, mob/user)
+	if(computer_deconstruction_screwdriver(user, O))
+		return
+
 	if(!istype(O, /obj/item/card/id))
 		return ..()
 

@@ -249,12 +249,12 @@
 				if(P.mind)
 					P.mind.loaded_from_ckey = picked_ckey
 					P.mind.loaded_from_slot = picked_slot
-					var/datum/antagonist/antag_data = get_antag_data(P.mind.special_role)
+					var/datum/antagonist/antag_data = SSantag_job.get_antag_data(P.mind.special_role)
 					if(antag_data)
 						antag_data.add_antagonist(P.mind)
 						antag_data.place_mob(P)
 					P.mind.assigned_role = charjob
-					P.mind.role_alt_title = GLOB.job_master.GetPlayerAltTitle(P, charjob)
+					P.mind.role_alt_title = SSjob.get_player_alt_title(P, charjob)
 
 				//no need to be particularly thorough about language handover, we can safely assume that they were allowed to have it if they had it to begin with
 				P.languages.Cut()

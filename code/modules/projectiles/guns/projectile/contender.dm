@@ -45,7 +45,7 @@
 	icon_state = initial(icon_state)
 	retracted_bolt = 0
 
-/obj/item/gun/projectile/contender/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/contender/load_ammo(obj/item/A, mob/user)
 	if(!retracted_bolt)
 		to_chat(user, span_notice("You can't load [src] without cycling the bolt."))
 		return

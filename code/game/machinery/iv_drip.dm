@@ -40,6 +40,8 @@
 	..()
 	if(!isliving(usr))
 		return
+	if(usr.is_incorporeal())
+		return
 
 	if(attached)
 		visible_message("[attached] is detached from \the [src]")
@@ -77,8 +79,8 @@
 				beaker = null
 			qdel(src)
 		return
-	else
-		return ..()
+
+	. = ..()
 
 
 /obj/machinery/iv_drip/process()
@@ -131,6 +133,7 @@
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = T.take_blood(beaker,amount)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DONATE_BLOOD, amount)
 
 			if(B)
 				beaker.reagents.reagent_list |= B
@@ -140,6 +143,9 @@
 				update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)
+	if(user.is_incorporeal())
+		return
+
 	if(beaker)
 		beaker.loc = get_turf(src)
 		beaker = null
@@ -158,6 +164,8 @@
 		return
 
 	if(usr.stat)
+		return
+	if(usr.is_incorporeal())
 		return
 
 	mode = !mode

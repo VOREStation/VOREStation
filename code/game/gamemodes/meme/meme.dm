@@ -103,7 +103,7 @@
 	return
 
 
-/datum/game_mode/proc/forge_meme_objectives(var/datum/mind/meme, var/datum/mind/first_host)
+/datum/game_mode/proc/forge_meme_objectives(datum/mind/meme, datum/mind/first_host)
 	if (config.objectives_disabled)
 		return
 
@@ -124,7 +124,7 @@
 
 	return
 
-/datum/game_mode/proc/greet_meme(var/datum/mind/meme, var/you_are=1)
+/datum/game_mode/proc/greet_meme(datum/mind/meme, you_are=1)
 	if (you_are)
 		to_chat(meme.current, span_danger("You are a meme!"))
 	show_objectives(meme)

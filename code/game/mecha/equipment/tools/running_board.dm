@@ -3,7 +3,6 @@
 	name = "hacked powered exosuit running board"
 	desc = "A running board with a power-lifter attachment, to quickly catapult exosuit pilots into the cockpit. Fits any exosuit."
 	icon_state = "mecha_runningboard"
-	origin_tech = list(TECH_MATERIAL = 6)
 	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/runningboard/limited

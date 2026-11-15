@@ -1,4 +1,4 @@
-/mob/living/carbon/human/update_fullness(var/returning = FALSE)
+/mob/living/carbon/human/update_fullness(returning = FALSE)
 	if(!returning)
 		if(updating_fullness)
 			return
@@ -29,7 +29,7 @@
 	if(vore_fullness_ex["taur belly"] != previous_taur_fullness)
 		update_vore_tail_sprite()
 
-/mob/living/carbon/human/vs_animate(var/belly_to_animate)
+/mob/living/carbon/human/vs_animate(belly_to_animate)
 	if(belly_to_animate == "stomach")
 		vore_belly_animation()
 	else if(belly_to_animate == "taur belly")

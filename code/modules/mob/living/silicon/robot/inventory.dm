@@ -73,7 +73,7 @@
 	for(var/datum/action/A as anything in I.actions)
 		A.Remove(src)
 
-	after_equip()
+	handle_removal(I)
 	update_icon()
 	if(shown_robot_modules)
 		hud_used.update_robot_modules_display()
@@ -102,6 +102,7 @@
 		for(var/datum/action/A as anything in I.actions)
 			A.Remove(src)
 		module_state_1:loc = module
+		handle_removal(module_state_1)
 		module_state_1 = null
 		inv1.icon_state = "inv1"
 		removed_any_module = TRUE
@@ -116,6 +117,7 @@
 			A.Remove(src)
 		contents -= module_state_2
 		module_state_2:loc = module
+		handle_removal(module_state_2)
 		module_state_2 = null
 		inv2.icon_state = "inv2"
 		removed_any_module = TRUE
@@ -130,11 +132,11 @@
 			A.Remove(src)
 		contents -= module_state_3
 		module_state_3:loc = module
+		handle_removal(module_state_3)
 		module_state_3 = null
 		inv3.icon_state = "inv3"
 		removed_any_module = TRUE
 
-	after_equip()
 	update_icon()
 
 	// Refresh inventory if needed
@@ -170,7 +172,7 @@
 		if(material_belt.selected_item == O)
 			return TRUE
 	for(var/obj/item/gripper/gripper in contents)
-		if(gripper.current_pocket == O)
+		if(gripper.current_pocket == O || (O in gripper.current_pocket.contents))
 			return TRUE
 	return FALSE
 
@@ -178,14 +180,14 @@
 	return list(module_state_1, module_state_2, module_state_3)
 
 // This one takes an object's type instead of an instance, as above.
-/mob/living/silicon/robot/proc/has_active_type(var/type_to_compare, var/explicit = FALSE)
+/mob/living/silicon/robot/proc/has_active_type(type_to_compare, explicit = FALSE)
 	var/list/active_modules = get_active_modules()
 	if(is_type_in_modules(type_to_compare, active_modules, explicit))
 		return TRUE
 	return FALSE
 
 /// Searches through a provided list to see if we have a module that is in that list.
-/mob/living/silicon/robot/proc/has_active_type_list(var/list/type_to_compare, var/explicit = FALSE)
+/mob/living/silicon/robot/proc/has_active_type_list(list/type_to_compare, explicit = FALSE)
 	var/list/active_modules = get_active_modules()
 	if(islist(type_to_compare))
 		for(var/object_to_compare in type_to_compare)
@@ -194,7 +196,7 @@
 	return FALSE
 
 // Checks if the activated module is of the given type
-/mob/living/silicon/robot/proc/activated_module_type_list(var/list/type_to_compare, var/explicit = FALSE)
+/mob/living/silicon/robot/proc/activated_module_type_list(list/type_to_compare, explicit = FALSE)
 	if(!islist(type_to_compare))
 		return FALSE
 	for(var/type in type_to_compare)
@@ -202,7 +204,7 @@
 			return TRUE
 	return FALSE
 
-/mob/living/silicon/robot/proc/is_type_in_modules(var/type, var/list/modules, var/explicit = FALSE)
+/mob/living/silicon/robot/proc/is_type_in_modules(type, list/modules, explicit = FALSE)
 	for(var/atom/module in modules)
 		if(explicit && isatom(module))
 			if(module.type == type)
@@ -215,11 +217,11 @@
 //These are hackish but they help clean up code elsewhere.
 
 //module_selected(module) - Checks whether the module slot specified by "module" is currently selected.
-/mob/living/silicon/robot/proc/module_selected(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/module_selected(module) //Module is 1-3
 	return module == get_selected_module()
 
 //module_active(module) - Checks whether there is a module active in the slot specified by "module".
-/mob/living/silicon/robot/proc/module_active(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/module_active(module) //Module is 1-3
 	if(module < 1 || module > 3) return 0
 
 	switch(module)
@@ -246,7 +248,7 @@
 	return 0
 
 //select_module(module) - Selects the module slot specified by "module"
-/mob/living/silicon/robot/proc/select_module(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/select_module(module) //Module is 1-3
 	if(module < 1 || module > 3) return
 
 	if(!module_active(module)) return
@@ -279,7 +281,7 @@
 	return
 
 //deselect_module(module) - Deselects the module slot specified by "module"
-/mob/living/silicon/robot/proc/deselect_module(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/deselect_module(module) //Module is 1-3
 	if(module < 1 || module > 3) return
 
 	switch(module)
@@ -304,7 +306,7 @@
 	return
 
 //toggle_module(module) - Toggles the selection of the module slot specified by "module".
-/mob/living/silicon/robot/proc/toggle_module(var/module) //Module is 1-3
+/mob/living/silicon/robot/proc/toggle_module(module) //Module is 1-3
 	if(module < 1 || module > 3) return
 
 	if(module_selected(module))
@@ -337,7 +339,7 @@
 
 	return
 
-/mob/living/silicon/robot/proc/activate_module(var/obj/item/O)
+/mob/living/silicon/robot/proc/activate_module(obj/item/O)
 	if(!(locate(O) in src.module.modules) && !(locate(O) in src.module.emag))
 		return
 	if(activated(O))
@@ -372,30 +374,41 @@
 		return
 	after_equip(O)
 
-/mob/living/silicon/robot/proc/after_equip(var/obj/item/O)
-	if(istype(O, /obj/item/gps))
-		var/obj/item/gps/tracker = O
-		if(tracker.tracking)
-			tracker.tracking = FALSE
-			tracker.toggle_tracking()
-	if(sight_mode & BORGANOMALOUS)
-		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
-		if(pounce)
-			pounce.name = "bluespace pounce"
-			pounce.icon_state = "bluespace_pounce"
-			pounce.bluespace = TRUE
-	else
+/mob/living/silicon/robot/proc/handle_removal(obj/item/O)
+	if(istype(O, /obj/item/dogborg/sleeper)) //gross, fuck you diana! THAT does NOT Fucking work!
+		var/obj/item/dogborg/sleeper/our_compactor = O
+		if(our_compactor.ore_storage)
+			our_compactor.ore_bag.dropped(src)
+
+	if(!(sight_mode & BORGANOMALOUS))
 		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)
 			pounce.name = initial(pounce.name)
 			pounce.icon_state = initial(pounce.icon_state)
 			pounce.desc = initial(pounce.desc)
 			pounce.bluespace = initial(pounce.bluespace)
+
+/mob/living/silicon/robot/proc/after_equip(obj/item/O)
+	if(istype(O, /obj/item/gps))
+		var/obj/item/gps/tracker = O
+		if(tracker.tracking)
+			tracker.tracking = FALSE
+			tracker.toggle_tracking()
+	if(istype(O, /obj/item/dogborg/sleeper)) //gross
+		var/obj/item/dogborg/sleeper/our_compactor = O
+		if(our_compactor.ore_storage)
+			our_compactor.ore_bag.equipped(src)
+	if(sight_mode & BORGANOMALOUS)
+		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
+		if(pounce)
+			pounce.name = "bluespace pounce"
+			pounce.icon_state = "bluespace_pounce"
+			pounce.bluespace = TRUE
 	if(O)
 		for(var/datum/action/A as anything in O.actions)
 			A.Grant(src)
 
-/mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/silicon/robot/put_in_hands(obj/item/W) // No hands.
 	W.forceMove(get_turf(src))
 	return 1
 

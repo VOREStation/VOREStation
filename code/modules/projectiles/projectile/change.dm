@@ -8,10 +8,10 @@
 
 	combustion = FALSE
 
-/obj/item/projectile/change/on_hit(var/atom/change)
+/obj/item/projectile/change/on_hit(atom/change)
 	wabbajack(change)
 
-/obj/item/projectile/change/proc/wabbajack(var/mob/M)
+/obj/item/projectile/change/proc/wabbajack(mob/M)
 	if(isliving(M) && M.stat != DEAD)
 		if(M.transforming)
 			return

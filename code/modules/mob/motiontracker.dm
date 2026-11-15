@@ -9,7 +9,7 @@
 		RegisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER, PROC_REF(handle_motion_tracking))
 		add_verb(src,/mob/proc/toggle_motion_echo_vis)
 
-/mob/proc/motiontracker_unsubscribe(var/destroying = FALSE)
+/mob/proc/motiontracker_unsubscribe(destroying = FALSE)
 	if(is_motion_tracking)
 		is_motion_tracking = FALSE
 		UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
@@ -22,7 +22,7 @@
 	. = ..()
 
 // For COMSIG_MOVABLE_MOTIONTRACKER
-/mob/proc/handle_motion_tracking(mob/source, var/datum/weakref/RW, var/turf/T)
+/mob/proc/handle_motion_tracking(mob/source, datum/weakref/RW, turf/T)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)

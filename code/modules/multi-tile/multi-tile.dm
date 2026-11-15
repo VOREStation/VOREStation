@@ -2,7 +2,7 @@
  * This is the home of multi-tile movement checks, and thus here be dragons. You are warned.
  */
 
-/atom/movable/proc/check_multi_tile_move_density_dir(var/stepdir)
+/atom/movable/proc/check_multi_tile_move_density_dir(stepdir)
 	if(!locs || !locs.len)
 		return TRUE
 

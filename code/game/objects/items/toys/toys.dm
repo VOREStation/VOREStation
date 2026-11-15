@@ -42,8 +42,8 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	return
+/obj/item/toy/balloon/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
 	if(!proximity) return
@@ -257,6 +257,7 @@
 	qdel(src)
 
 /obj/item/toy/snappop/Crossed(atom/movable/H as mob|obj)
+	. = ..()
 	if(H.is_incorporeal())
 		return
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
@@ -309,7 +310,7 @@
 
 /obj/item/toy/figure/Initialize(mapload)
 	. = ..()
-	desc = "A \"Space Life\" brand [name]"
+	desc = "A \"Space Life\" brand [name]."
 
 /obj/item/toy/figure/attack_self(mob/user)
 	. = ..(user)
@@ -642,7 +643,7 @@
 	cooldown_length = 1 SECOND
 
 // Attack mob
-/obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
+/obj/item/toy/plushie/carp/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	playsound(src, squeeze_sound, 20, 1)	// Play bite sound in local area
 	return ..()
 

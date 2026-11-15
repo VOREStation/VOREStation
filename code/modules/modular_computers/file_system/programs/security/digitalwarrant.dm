@@ -1,4 +1,5 @@
-var/warrant_uid = 0
+GLOBAL_VAR_INIT(warrant_uid, 0)
+
 /datum/datacore
 	var/list/warrants = list()
 
@@ -7,7 +8,7 @@ var/warrant_uid = 0
 
 /datum/data/record/warrant/New()
 	..()
-	warrant_id = warrant_uid++
+	warrant_id = GLOB.warrant_uid++
 
 /datum/computer_file/program/digitalwarrant
 	filename = "digitalwarrant"
@@ -136,7 +137,7 @@ var/warrant_uid = 0
 
 		if("editwarrantauth")
 			. = TRUE
-			if(!(ACCESS_HOS in I.GetAccess())) // VOREStation edit begin
+			if(!(ACCESS_BRIG in I.GetAccess())) // VOREStation edit begin
 				to_chat(ui.user, span_warning("You don't have the access to do this!"))
 				return // VOREStation edit end
 			activewarrant.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"

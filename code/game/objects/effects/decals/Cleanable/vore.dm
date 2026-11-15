@@ -11,7 +11,7 @@
 	var/custombasedesc = null
 	var/custombasecolor = null
 
-/obj/effect/decal/cleanable/blood/reagent/Initialize(mapload, var/spill_name, var/spill_color, var/spill_reagentid, var/new_amount, var/ckey_user, var/ckey_spawn)
+/obj/effect/decal/cleanable/blood/reagent/Initialize(mapload, spill_name, spill_color, spill_reagentid, new_amount, ckey_user, ckey_spawn)
 	. = ..()
 	switch(spill_reagentid)	//To ensure that if people spill some liquids, it wont cause issues with spawning, like spilling blood. Also allow for spilling of certain things to
 		if("blood")
@@ -43,5 +43,9 @@
 	name = custombasename
 	desc = custombasedesc
 
+//This will just be an issue until someone fixes this which will probably not happen
 /obj/effect/decal/cleanable/blood/reagent/Crossed(mob/living/carbon/human/perp)
 	//Nothing, we dont wanna spread our mess all over, at least not until people want that
+	//return //Not anymore
+	amount = 0 //Reo, you're so smart. This really need to be refactored to not be a blood subtype holy shit.
+	. = ..() //Fuck you.

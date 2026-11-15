@@ -72,7 +72,7 @@
 	Typically they will follow their prey from a distance, and when they are not paying attention, will rush in to tackle their meal. However, they're stealth hunters and are easily startled if spotted. They will not attack their prey head on unless physically provoked to defend themselves."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/vore/stalker/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple_mob/vore/stalker/PounceTarget(mob/living/M, successrate = 100)
 	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
@@ -146,7 +146,7 @@
 	give_target(new_target)
 	return new_target
 
-/datum/ai_holder/simple_mob/vore/stalker/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/vore/stalker/can_attack(atom/movable/the_target, vision_required = TRUE)
 	ai_log("can_attack() : Entering.", AI_LOG_TRACE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE

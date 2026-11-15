@@ -48,7 +48,7 @@
 		radial_state = icon_state
 	my_radial_icon = image(icon = radial_icon, icon_state = radial_state)
 
-/obj/item/organ/internal/augment/handle_organ_mod_special(var/removed = FALSE)
+/obj/item/organ/internal/augment/handle_organ_mod_special(removed = FALSE)
 	if(removed && integrated_object && integrated_object.loc != src)
 		if(isliving(integrated_object.loc))
 			var/mob/living/L = integrated_object.loc
@@ -92,7 +92,7 @@
 
 	enable_augments(src)
 
-/mob/living/carbon/human/proc/enable_augments(var/mob/living/user)
+/mob/living/carbon/human/proc/enable_augments(mob/living/user)
 	var/list/options = list()
 
 	var/list/present_augs = list()
@@ -123,7 +123,7 @@
  * cling_to_organ is a reference to the organ object itself, so they can easily return to their organ when removed by any means.
  */
 
-/mob/living/carbon/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/obj/item/organ/cling_to_organ = null)
+/mob/living/carbon/human/proc/equip_augment_item(slot, obj/item/equipping = null, make_sound = TRUE, obj/item/organ/cling_to_organ = null)
 	if(!ishuman(src))
 		return 0
 

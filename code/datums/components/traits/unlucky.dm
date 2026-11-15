@@ -83,7 +83,7 @@
 
 /datum/component/omen/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_accident))
-	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
+	RegisterSignal(parent, COMSIG_ON_LIVING_SLIP, PROC_REF(check_slip))
 	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
 	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
 	RegisterSignal(parent, COMSIG_MOB_ROLLED_DICE, PROC_REF(check_roll))
@@ -91,7 +91,7 @@
 	RegisterSignal(parent, COMSIG_ITEM_PICKUP, PROC_REF(check_pickup))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_ITEM_PICKUP))
+	UnregisterSignal(parent, list(COMSIG_ON_LIVING_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_ITEM_PICKUP))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -163,6 +163,8 @@
 			return
 
 		if(vorish)
+			if(living_guy.stat >= DEAD) // Make sure they're alive, else it might end up with insta-digestion
+				return
 			for(var/mob/living/living_mob in the_turf)
 				if(living_mob == our_guy || (living_mob.vore_selected == living_guy.vore_selected))
 					continue //Don't do anything to ourselves.
@@ -212,18 +214,23 @@
 
 				to_chat(living_guy, span_warning("[evil_light] glows ominously...")) // ominously
 				evil_light.visible_message(span_boldwarning("[evil_light] suddenly flares brightly and sparks!"))
-				//evil_light.broken(skip_sound_and_sparks = FALSE) //Let's not break it actually.
+				evil_light.broken(skip_sound_and_sparks = FALSE) // LET'S BREAK IT ACTUALLY
 				evil_light.Beam(living_guy, icon_state = "lightning[rand(1,12)]", time = 0.5 SECONDS)
-				living_guy.electrocute_act(35 * (damage_mod * 0.5), evil_light, stun = TRUE) //Stun is binary and scales on damage..Lame.
-				living_guy.emote("scream")
+				if(living_guy.electrocute_act(35 * (damage_mod * 0.5), evil_light, stun = TRUE)) //Stun is binary and scales on damage..Lame.)
+					living_guy.emote("scream")
 				consume_omen()
 				return
 
 		for(var/obj/machinery/vending/darth_vendor in the_turf)
-			if(darth_vendor.stat & (BROKEN|NOPOWER))
-				continue
-			darth_vendor.visible_message(span_warning("[darth_vendor] suddenly clunks and the delivery chute raises up!"))
-			darth_vendor.throw_item(living_guy)
+			if(prob(50))
+				if(darth_vendor.stat & (BROKEN|NOPOWER))
+					continue
+				darth_vendor.visible_message(span_warning("[darth_vendor] suddenly clunks and the delivery chute raises up!"))
+				darth_vendor.throw_item(living_guy)
+			else
+				if(darth_vendor.tilted || !darth_vendor.density)
+					continue
+				darth_vendor.tilt(living_guy)
 			consume_omen()
 			return
 
@@ -279,7 +286,7 @@
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
 				continue
-			if(!prob(10)) //Reduce the chance further, due to the number of tables that are passed in normal play.
+			if(prob(90)) //Reduce the chance further, due to the number of tables that are passed in normal play.
 				continue
 			living_guy.visible_message(span_danger("[living_guy] stubs [living_guy.p_their()] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")
@@ -307,8 +314,14 @@
 		consume_omen()
 
 /// If we get knocked down, see if we have a really bad slip and bash our head hard
-/datum/component/omen/proc/check_slip(mob/living/our_guy, amount)
+/datum/component/omen/proc/check_slip(mob/living/our_guy, weaken_amount, slipped_on, lube, slip_dist)
 	SIGNAL_HANDLER
+
+	if(isbelly(our_guy.loc)) //Prevent cracking your skull against soft squishy gutflesh
+		return
+
+	if(our_guy.lying || our_guy.slip_timer) //Dont fall down and break our head if we're laying down, or currently on a recursive slip.
+		return
 
 	if(prob(30)) // AAAA
 		our_guy.emote("scream")
@@ -335,7 +348,7 @@
 
 	return
 
-/datum/component/omen/proc/check_roll(mob/living/unlucky_soul, var/obj/item/dice/the_dice, silent, result)
+/datum/component/omen/proc/check_roll(mob/living/unlucky_soul, obj/item/dice/the_dice, silent, result)
 	SIGNAL_HANDLER
 	if(prob(20 * luck_mod))
 		//unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_boldwarning("You feel dreadfully unlucky as you roll the dice!"))

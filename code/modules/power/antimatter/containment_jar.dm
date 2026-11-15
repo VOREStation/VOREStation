@@ -34,7 +34,7 @@
 	//check_stability()
 	return
 
-/obj/item/am_containment/proc/usefuel(var/wanted)
+/obj/item/am_containment/proc/usefuel(wanted)
 	if(fuel < wanted)
 		wanted = fuel
 	fuel -= wanted

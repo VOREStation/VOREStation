@@ -1,10 +1,10 @@
 //Called when the mob is hit with an item in combat.
-/mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/resolve_item_attack(obj/item/I, mob/living/user, effective_force, hit_zone)
 	if(check_neckgrab_attack(I, user, hit_zone))
 		return null
 	..()
 
-/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, effective_force, blocked, hit_zone)
 	if(!effective_force || blocked >= 100)
 		return 0
 
@@ -35,7 +35,7 @@
 	return 1
 
 // Attacking someone with a weapon while they are neck-grabbed
-/mob/living/carbon/proc/check_neckgrab_attack(obj/item/W, mob/user, var/hit_zone)
+/mob/living/carbon/proc/check_neckgrab_attack(obj/item/W, mob/user, hit_zone)
 	if(user.a_intent == I_HURT)
 		for(var/obj/item/grab/G in src.grabbed_by)
 			if(G.assailant == user)
@@ -149,3 +149,26 @@
 	damage = damage * damage_mod
 
 	return damage
+
+/mob/living/carbon/can_slip(lube)
+	//Slip Godmode
+	if(HAS_TRAIT(src, TRAIT_NO_SLIP_ALL))
+		return FALSE
+	//Not standing on a surface to slip on...
+	if(flying || hovering)
+		return FALSE
+	//Not on this plane of existance (and also not able to touch whatever would be slipping them, probably.)
+	if(is_incorporeal())
+		return FALSE
+	if(lube & PUZZLE_ICE) //Puzzle ice. Gear cant help block these slips.
+		return TRUE
+	// General magboot check to my knowledge. Should block lube-level slips.
+	if(Check_Shoegrip())
+		return FALSE
+	if(!(lube & GALOSHES_DONT_HELP)) //Non-lube slippery (water, soap)
+		if(HAS_TRAIT(src, TRAIT_NO_SLIP_WATER) || HAS_TRAIT(src, TRAIT_NO_SLIP_GREATER))
+			return FALSE
+	else
+		if(HAS_TRAIT(src, TRAIT_NO_SLIP_GREATER))
+			return FALSE
+	return TRUE

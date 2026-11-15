@@ -24,7 +24,7 @@
 	glass_overlay.appearance_flags = RESET_COLOR
 	add_overlay(glass_overlay)
 
-/obj/item/clothing/head/helmet/space/void/heck/apply_accessories(var/image/standing)
+/obj/item/clothing/head/helmet/space/void/heck/apply_accessories(image/standing)
 	. = ..()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon_override, "hostile_env_glass")
 	glass_overlay.appearance_flags = KEEP_APART|RESET_COLOR

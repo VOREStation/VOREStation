@@ -26,7 +26,7 @@
 	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI, SPECIES_VASILISSAN, SPECIES_XENOCHIMERA, SPECIES_VOX) //i assume if a dev made your base slowdown different then you shouldn't have this.
 	excludes = list(/datum/trait/positive/speed_fast) // olympic sprinters don't naruto run
 
-/datum/trait/positive/unusual_running/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/unusual_running/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	ADD_TRAIT(H, UNUSUAL_RUNNING, ROUNDSTART_TRAIT)
 
@@ -104,7 +104,7 @@
 	excludes = list(/datum/trait/positive/endurance_very_high, /datum/trait/positive/endurance_extremely_high)
 	banned_species = list(SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_SHADEKIN_CREW) //Either not applicable or buffs are too strong
 
-/datum/trait/positive/endurance_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/endurance_high/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -199,7 +199,7 @@
 	custom_only = FALSE
 	has_preferences = list("flight_vore" = list(TRAIT_PREF_TYPE_BOOLEAN, "Flight Vore enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
-/datum/trait/positive/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/winged_flight/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/flying_toggle)
 	add_verb(H, /mob/living/proc/flying_vore_toggle)
@@ -218,7 +218,7 @@
 	desc = "Your saliva has especially strong antiseptic properties that can be used to heal small wounds."
 	cost = 1
 
-/datum/trait/positive/antiseptic_saliva/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/antiseptic_saliva/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/lick_wounds)
 
@@ -247,7 +247,7 @@
 	added_component_path = /datum/component/weaver
 	excludes = list(/datum/trait/positive/cocoon_tf)
 
-/datum/trait/positive/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+/datum/trait/positive/weaver/apply(datum/species/S,mob/living/carbon/human/H, list/trait_prefs)
 	..()
 	var/datum/component/weaver/W = H.GetComponent(added_component_path)
 	if(S.get_bodytype() == SPECIES_VASILISSAN)
@@ -267,7 +267,7 @@
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic/plus)
 
-/datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/aquatic/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/water_stealth)
 	add_verb(H, /mob/living/carbon/human/proc/underwater_devour)
@@ -290,7 +290,7 @@
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/weaver)
 
-/datum/trait/positive/cocoon_tf/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/cocoon_tf/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/enter_cocoon)
 
@@ -310,15 +310,6 @@
 	var_changes = list("gun_accuracy_mod" = 25)
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
-
-/datum/trait/positive/trauma_tolerance
-	name = "Grit"
-	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
-	cost = 2
-	var_changes = list("trauma_mod" = 0.85)
-	excludes = list(/datum/trait/negative/neural_hypersensitivity)
-	can_take = ORGANICS
-	custom_only = FALSE
 
 /datum/trait/positive/throw_resistance
 	name = "Firm Body"
@@ -371,7 +362,7 @@
 // This feels jank, but it's the cleanest way I could do TRAIT_VARCHANGE_LESS_BETTER while having a boolean var change
 // Alternate would've been banned_species = list(SPECIES_TAJARAN, SPECIES_VASSILISIAN)
 // Opted for this as it's "future proof"
-/datum/trait/positive/wall_climber_pro/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/wall_climber_pro/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	S.can_climb = TRUE
 
@@ -398,7 +389,7 @@
 
 	has_preferences = list("pass_table" = list(TRAIT_PREF_TYPE_BOOLEAN, "On spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
 
-/datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+/datum/trait/positive/table_passer/apply(datum/species/S,mob/living/carbon/human/H, list/trait_prefs)
 	..()
 	if(trait_prefs?["pass_table"] || !trait_prefs)
 		H.pass_flags |= PASSTABLE
@@ -442,6 +433,14 @@
 	hidden = FALSE
 	activation_message="Your body feels mundane."
 
+/datum/trait/positive/rad_immune/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/rad_immune/unapply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	REMOVE_TRAIT(H, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
+
 /datum/trait/positive/vibration_sense
 	name = "Vibration Sense"
 	desc = "Allows you to sense subtle vibrations nearby, even if the source cannot be seen."
@@ -479,15 +478,6 @@
 	allowed_species = list(SPECIES_XENOCHIMERA)
 	name = "Xenochimera: Weaver"
 	desc = "You've evolved your body to produce silk that you can fashion into articles of clothing and other objects."
-	cost = 0
-	category = 0
-	custom_only = FALSE
-
-/datum/trait/positive/hardfeet/xenochimera
-	sort = TRAIT_SORT_SPECIES
-	allowed_species = list(SPECIES_XENOCHIMERA)
-	name = "Xenochimera: Hard Feet"
-	desc = "Your body has adapted to make your feet immune to glass shards, whether by developing hooves, chitin, or just horrible callous."
 	cost = 0
 	category = 0
 	custom_only = FALSE
@@ -560,7 +550,7 @@
 	cost = 3
 	excludes = list(/datum/trait/negative/hollow, /datum/trait/negative/boneless, /datum/trait/negative/boneless/major)
 
-/datum/trait/positive/densebones/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/densebones/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	for(var/obj/item/organ/external/organ in H.organs)
 		if(istype(organ))
@@ -640,8 +630,9 @@
 	desc = "You are more heavyweight or otherwise more sturdy than most species, and as such, more resistant to knockdown effects and stuns. Stuns are only half as effective on you, and neither players nor mobs can trade places with you or bump you out of the way."
 	cost = 2
 	var_changes = list("stun_mod" = 0.5, "weaken_mod" = 0.5) // Stuns are 50% as effective - a stun of 3 seconds will be 2 seconds due to rounding up. Set to 0.5 to be in-line with the trait's description. (Weaken is used alongside stun to prevent aiming.)
+	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/negative/lightweight)
 
-/datum/trait/positive/heavyweight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/heavyweight/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.mob_size = MOB_LARGE
 	H.mob_bump_flag = HEAVY
@@ -667,7 +658,7 @@
 	can_take = ORGANICS
 	var/last_adrenaline_rush
 
-/datum/trait/positive/adrenaline_rush/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/trait/positive/adrenaline_rush/handle_environment_special(mob/living/carbon/human/H)
 	if(!(H.health<0))
 		return
 	if(last_adrenaline_rush && last_adrenaline_rush + (30 MINUTES) > world.time)
@@ -745,7 +736,7 @@
 	desc = "Allows you to sting your victim with a smalll amount of poison"
 	cost = 1
 
-/datum/trait/positive/insect_sting/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/insect_sting/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	add_verb(H,/mob/living/proc/insect_sting)
 
@@ -770,7 +761,7 @@
 	var_changes = list("total_health" = 150)
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_extremely_high)
 
-/datum/trait/positive/endurance_very_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/endurance_very_high/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -781,7 +772,7 @@
 	var_changes = list("total_health" = 175)
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_very_high)
 
-/datum/trait/positive/endurance_extremely_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/endurance_extremely_high/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.setMaxHealth(S.total_health)
 
@@ -794,17 +785,24 @@
 
 /datum/trait/positive/pain_tolerance
 	name = "Pain Tolerance"
-	desc = "You are noticeably more resistant to pain than most, and experience 20% less pain from all sources."
+	desc = "You are moderately more resistant to pain than most, and experience 20% less pain from all sources."
 	cost = 2
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.8)
 
 /datum/trait/positive/pain_tolerance_advanced // High Pain Intolerance is 50% incoming pain, but this is 40% reduced incoming pain.
 	name = "Pain Tolerance, Major"
-	desc = "You are extremely resistant to pain sources, and experience 40% less pain from all sources."
-	cost = 3 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
+	desc = "You are noticably resistant to pain sources, and experience 40% less pain from all sources."
+	cost = 3
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.6)
+
+/datum/trait/positive/pain_tolerance_extreme // Essentialy the inverse of Neural Hypersensitivity
+	name = "Pain Tolerance, Extreme"
+	desc = "You are extremely resistant to pain sources, and experience 50% less pain from all sources."
+	cost = 4
+	custom_only = FALSE
+	var_changes = list("pain_mod" = 0.50)
 
 /datum/trait/positive/improved_biocompat
 	name = "Improved Biocompatibility"
@@ -826,6 +824,24 @@
 	var_changes = list("item_slowdown_mod" = 0.0)
 	excludes = list(/datum/trait/positive/speed_fast,/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
+/datum/trait/positive/hardy_weakspecies
+	name = "Unusually Hardy"
+	desc = "In spite of the standards of your specie, you've somehow managed to raise your strength to levels comparable with the human, or skrell baseline. You carry heavy equipment with no particular slowdown."
+	cost = 4 // Expensive!
+	var_changes = list("item_slowdown_mod" = 1)
+	custom_only = FALSE
+	allowed_species = list(SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
+	excludes = list(/datum/trait/positive/hardy_major_weakspecies)
+
+/datum/trait/positive/hardy_major_weakspecies
+	name = "Unusually Hardy, Major"
+	desc = "In the distant past, you'd have gotten a great shot at being a powerful soldier, or warlord. Now? You could probably make it into the interstellar olympics. You carry heavy equipment with less slowdown than the rest of your specie."
+	cost = 7 // Very expensive! You must reallllly want that!
+	var_changes = list("item_slowdown_mod" = 0.7)
+	custom_only = FALSE
+	allowed_species = list( SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
+	excludes = list(/datum/trait/positive/hardy_weakspecies)
+
 /datum/trait/positive/bloodsucker_plus
 	name = "Evolved Bloodsucker"
 	desc = "Makes you able to gain nutrition by draining blood as well as eating food. To compensate, you get fangs that can be used to drain blood from prey."
@@ -833,19 +849,20 @@
 	var_changes = list("organic_food_coeff" = 0.5) // Hopefully this works???
 	excludes = list(/datum/trait/neutral/bloodsucker)
 
-/datum/trait/positive/bloodsucker_plus/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/bloodsucker_plus/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	add_verb(H,/mob/living/carbon/human/proc/bloodsuck)
 
 /datum/trait/positive/toxin_gut
 	name ="Robust Gut"
-	desc = "You are immune to most ingested toxins. Does not protect from possible harm caused by other drugs, meds, allergens etc."
+	desc = "You are immune to most ingested toxins and raw food. Does not protect from possible harm caused by other drugs, meds, allergens etc."
 	cost = 1
 	custom_only = FALSE
 
-/datum/trait/positive/toxin_gut/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/toxin_gut/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	ADD_TRAIT(H, INGESTED_TOXIN_IMMUNE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(H, TRAIT_STRONG_STOMACH, ROUNDSTART_TRAIT)
 
 /datum/trait/positive/nobreathe
 	name = "Breathless"
@@ -861,7 +878,7 @@
 					/datum/trait/negative/deep_breather
 )
 
-/datum/trait/positive/nobreathe/apply(var/datum/species/S, var/mob/living/carbon/human/H)
+/datum/trait/positive/nobreathe/apply(datum/species/S, mob/living/carbon/human/H)
 	..()
 	H.does_not_breathe = 1
 	var/obj/item/organ/internal/breathy = H.internal_organs_by_name[O_LUNGS]
@@ -890,7 +907,7 @@
 	var_changes = list("emp_dmg_mod" = 0.7, "emp_stun_mod" = 0.7)
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist_major)
 
-/datum/trait/positive/emp_resist/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/emp_resist/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/empresist)
 
@@ -904,7 +921,7 @@
 	var_changes = list("emp_dmg_mod" = 0.5, "emp_stun_mod" = 0.5)
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist)
 
-/datum/trait/positive/emp_resist_major/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/emp_resist_major/apply(datum/species/S,mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/empresistb)
 
@@ -920,7 +937,7 @@
 	added_component_path = /datum/component/radiation_effects
 	excludes = list(/datum/trait/neutral/glowing_radiation, /datum/trait/positive/rad_resistance, /datum/trait/positive/rad_resistance_extreme, /datum/trait/positive/rad_immune, /datum/trait/negative/rad_weakness)
 
-/datum/trait/positive/radioactive_heal/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+/datum/trait/positive/radioactive_heal/apply(datum/species/S,mob/living/carbon/human/H, list/trait_prefs)
 	..()
 	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
 	if(trait_prefs)
@@ -929,7 +946,7 @@
 	G.radiation_healing = TRUE
 	G.radiation_nutrition = TRUE
 
-/datum/trait/positive/radioactive_heal/unapply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+/datum/trait/positive/radioactive_heal/unapply(datum/species/S,mob/living/carbon/human/H, list/trait_prefs)
 	..() //Does all the removal stuff
 	//We then check to see if we still have the radiation component (such as we have a species componennt of it)
 	//If so, we remove the healing effect.
@@ -937,3 +954,49 @@
 	if(G)
 		G.radiation_healing = initial(G.radiation_healing)
 		G.radiation_nutrition = initial(G.radiation_nutrition)
+
+/datum/trait/positive/shapeshifting
+	name = "Shapeshifter"
+	desc = "You're able to shift your appearance."
+	cost = 3 //this trait is functionally wholly cosmetic, but it is less flavor-restricted than cocoon, and takes less time, so it's a bit pricier
+	custom_only = FALSE
+	hidden = TRUE
+
+/datum/trait/positive/shapeshifting/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
+	add_verb(H, /mob/living/proc/name_change_verb)
+
+/datum/trait/positive/scavenger
+	name ="Scavenger"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster!"
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger_expert)
+
+/datum/trait/positive/scavenger/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/scavenger_expert
+	name ="Scavenger Expert"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster! And not only that, you can occassionally find extras!"
+	cost = 2
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger)
+
+/datum/trait/positive/scavenger_expert/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER_EXPERT, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/leap
+	name = "Leaper"
+	desc = "You have powerful legs, allowing you to do a short leap."
+	cost = 3
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_TAJARAN) // These two are natural leapers
+
+/datum/trait/positive/leap/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	var/datum/action/cooldown/mob_cooldown/leap/jump = new()
+	jump.Grant(H)

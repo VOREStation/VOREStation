@@ -6,7 +6,7 @@
 /mob/living/silicon/robot/Check_Shoegrip()
 	return module && module.no_slip
 
-/mob/living/silicon/robot/Process_Spacemove(var/check_drift = 0)
+/mob/living/silicon/robot/Process_Spacemove(check_drift = 0)
 	if(..())//Can move due to other reasons, don't use jetpack fuel
 		return 1
 
@@ -45,19 +45,6 @@
 
 	if(!module)
 		return
-
-	//Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
-	if(istype(module_state_1, /obj/item/storage/bag/ore) || istype(module_state_2, /obj/item/storage/bag/ore) || istype(module_state_3, /obj/item/storage/bag/ore))
-		var/obj/item/storage/bag/ore/B = null
-		if(istype(module_state_1, /obj/item/storage/bag/ore)) //First orebag has priority, if they for some reason have multiple.
-			B = module_state_1
-		else if(istype(module_state_2, /obj/item/storage/bag/ore))
-			B = module_state_2
-		else if(istype(module_state_3, /obj/item/storage/bag/ore))
-			B = module_state_3
-		var/turf/tile = loc
-		if(isturf(tile))
-			B.gather_all(tile, src, 1) //Shhh, unless the bag fills, don't spam the borg's chat with stuff that's going on every time they move!
 
 	if(scrubbing && isturf(loc))
 		var/turf/tile = loc

@@ -138,7 +138,7 @@
 	activity_bounds = DNA_HARD_BOUNDS
 	hidden = TRUE // Cannot start with superpowers
 
-	mutation = LASER
+	mutation = LASER_EYES
 	activation_message="Your eyes feel strange..."
 
 /datum/trait/positive/superpower_hulk

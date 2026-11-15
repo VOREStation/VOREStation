@@ -1,8 +1,7 @@
 import { useBackend } from 'tgui/backend';
+import { TemporaryNotice } from 'tgui/interfaces/common/TemporaryNotice';
 import { Window } from 'tgui/layouts';
 import { Box } from 'tgui-core/components';
-
-import { TemporaryNotice } from '../common/TemporaryNotice';
 import { MessageMonitorContent } from './MessageMonitorContent';
 import { MessageMonitorHack } from './MessageMonitorHack';
 import { MessageMonitorLogin } from './MessageMonitorLogin';

@@ -20,37 +20,12 @@
 	drop_sound = 'sound/items/drop/bottle.ogg'
 	pickup_sound = 'sound/items/pickup/bottle.ogg'
 	description_info = "Clicking on a venomous animal (or person) with the lid closed will express their venom into the beaker!"
+	resistance_flags = ACID_PROOF
 
 	var/label_text = ""
 
+	var/container_can_be_placed_into = REAGENT_CONTAINER_CAN_BE_PLACED_INTO_DEFAULT
 	var/list/prefill = null	//Reagents to fill the container with on New(), formatted as "reagentID" = quantity
-
-	var/list/can_be_placed_into = list(
-		/obj/machinery/chem_master/,
-		/obj/machinery/chemical_dispenser,
-		/obj/machinery/reagentgrinder,
-		/obj/structure/table,
-		/obj/structure/closet,
-		/obj/structure/sink,
-		/obj/item/storage,
-		/obj/machinery/atmospherics/unary/cryo_cell,
-		/obj/machinery/dna_scannernew,
-		/obj/item/grenade/chem_grenade,
-		/mob/living/bot/medbot,
-		/obj/item/storage/secure/safe,
-		/obj/machinery/iv_drip,
-		/obj/structure/medical_stand,
-		/obj/machinery/disposal,
-		/mob/living/simple_mob/animal/passive/cow,
-		/mob/living/simple_mob/animal/goat,
-		/obj/machinery/sleeper,
-		/obj/machinery/smartfridge/,
-		/obj/machinery/biogenerator,
-		/obj/structure/frame,
-		/obj/machinery/radiocarbon_spectrometer,
-		/obj/machinery/portable_atmospherics/powered/reagent_distillery,
-		/obj/machinery/computer/pandemic
-		)
 
 	///Var for attack_self chain
 	var/special_handling = FALSE
@@ -65,7 +40,7 @@
 	base_name = name
 	base_desc = desc
 
-/obj/item/reagent_containers/glass/examine(var/mob/user)
+/obj/item/reagent_containers/glass/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		if(reagents && reagents.reagent_list.len)
@@ -89,7 +64,7 @@
 		flags |= OPENCONTAINER
 	update_icon()
 
-/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/glass/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return	..()
 
@@ -98,16 +73,16 @@
 		return attempt_snake_milking(user, M)
 
 	if(standard_feed_mob(user, M))
-		return
+		return ITEM_INTERACT_SUCCESS
 
-	return 0
+	return ITEM_INTERACT_FAILURE
 
-/obj/item/reagent_containers/glass/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/glass/standard_feed_mob(mob/user, mob/target)
 	if(user.a_intent == I_HURT)
-		return 1
+		return FALSE
 	return ..()
 
-/obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
+/obj/item/reagent_containers/glass/self_feed_message(mob/user)
 	balloon_alert(user, "swallowed from \the [src]")
 
 /obj/item/reagent_containers/glass/proc/attempt_snake_milking(mob/living/user, mob/living/target)
@@ -124,21 +99,21 @@
 
 	if(!reagent || !amount)
 		to_chat(user, span_warning("[target] does not have venom you can express. Open the beaker to drink from it."))
-		return TRUE
+		return ITEM_INTERACT_FAILURE
 
 	if(TIMER_COOLDOWN_RUNNING(target, COOLDOWN_VENOM_MILKING))
 		user.visible_message(span_warning("[user] attempts to express venom from [target], but nothing happens."), span_warning("[target] had their venom expressed too recently, try again later."))
-		return TRUE
+		return ITEM_INTERACT_FAILURE
 
 	TIMER_COOLDOWN_START(target, COOLDOWN_VENOM_MILKING, 30 SECONDS)
 	user.visible_message(span_notice("[user] expresses venom from [target]."))
 	reagents.add_reagent(reagent, amount)
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
-/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	if(!proximity || !is_open_container()) //Is the container open & are they next to whatever they're clicking?
 		return 1 //If not, do nothing.
-	for(var/type in can_be_placed_into) //Is it something it can be placed into?
+	for(var/type in GLOB.reagent_containers_can_be_placed_into[container_can_be_placed_into]) //Is it something it can be placed into?
 		if(istype(target, type))
 			return 1
 	if(standard_dispenser_refill(user, target)) //Are they clicking a water tank/some dispenser?
@@ -193,7 +168,7 @@
 	item_state = "beaker"
 	center_of_mass_x = 15
 	center_of_mass_y = 11
-	matter = list(MAT_GLASS = 500)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.25))
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 	var/rating = 1
@@ -212,7 +187,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/dropped(mob/user)
+/obj/item/reagent_containers/glass/beaker/dropped(mob/user, equipping, slot)
 	..()
 	update_icon()
 
@@ -250,7 +225,7 @@
 	icon_state = "beakerlarge"
 	center_of_mass_x = 16
 	center_of_mass_y = 11
-	matter = list(MAT_GLASS = 5000)
+	matter = list(MAT_GLASS = MATERIAL_COST(2.5))
 	volume = 120
 	amount_per_transfer_from_this = 10
 	max_transfer_amount = 120
@@ -263,7 +238,7 @@
 	icon_state = "beakernoreact"
 	center_of_mass_x = 16
 	center_of_mass_y = 13
-	matter = list(MAT_GLASS = 500)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.25))
 	volume = 60
 	amount_per_transfer_from_this = 10
 	flags = OPENCONTAINER | NOREACT
@@ -274,7 +249,7 @@
 	icon_state = "beakerbluespace"
 	center_of_mass_x = 16
 	center_of_mass_y = 11
-	matter = list(MAT_GLASS = 5000)
+	matter = list(MAT_GLASS = MATERIAL_COST(2.5))
 	volume = 300
 	amount_per_transfer_from_this = 10
 	max_transfer_amount = 300
@@ -287,7 +262,7 @@
 	icon_state = "vial"
 	center_of_mass_x = 15
 	center_of_mass_y = 9
-	matter = list(MAT_GLASS = 250)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.125))
 	volume = 30
 	w_class = ITEMSIZE_TINY
 	amount_per_transfer_from_this = 10
@@ -320,7 +295,7 @@
 	item_state = "bucket"
 	center_of_mass_x = 16
 	center_of_mass_y = 10
-	matter = list(MAT_STEEL = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.1))
 	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 20
 	max_transfer_amount = 120
@@ -330,7 +305,7 @@
 	drop_sound = 'sound/items/drop/helm.ogg'
 	pickup_sound = 'sound/items/pickup/helm.ogg'
 
-/obj/item/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user as mob)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/D, mob/user as mob)
 	if(isprox(D))
 		to_chat(user, "You add [D] to [src].")
 		qdel(D)
@@ -379,7 +354,7 @@
 	item_state = "woodbucket"
 	center_of_mass_x = 16
 	center_of_mass_y = 8
-	matter = list(MAT_WOOD = 50)
+	matter = list(MAT_WOOD = MATERIAL_COST(0.025))
 	w_class = ITEMSIZE_LARGE
 	amount_per_transfer_from_this = 20
 	max_transfer_amount = 120
@@ -389,7 +364,7 @@
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
-/obj/item/reagent_containers/glass/bucket/wood/attackby(var/obj/D, mob/user as mob)
+/obj/item/reagent_containers/glass/bucket/wood/attackby(obj/D, mob/user as mob)
 	if(isprox(D))
 		to_chat(user, "This wooden bucket doesn't play well with electronics.")
 		return
@@ -415,25 +390,20 @@
 	name = "water-cooler bottle"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler_bottle"
-	matter = list(MAT_PLASTIC = 2000)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(1))
 	w_class = ITEMSIZE_NO_CONTAINER
 	amount_per_transfer_from_this = 20
 	max_transfer_amount = 120
 	volume = 2000
 	slowdown = 2
-
-	can_be_placed_into = list(
-		/obj/structure/table,
-		/obj/structure/closet,
-		/obj/structure/sink
-		)
+	container_can_be_placed_into = REAGENT_CONTAINER_CAN_BE_PLACED_INTO_WATERCOOLER
 
 /obj/item/reagent_containers/glass/pint_mug
 	desc = "A rustic pint mug designed for drinking ale."
 	name = "pint mug"
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "pint_mug"
-	matter = list(MAT_WOOD = 50)
+	matter = list(MAT_WOOD = MATERIAL_COST(0.025))
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
@@ -450,6 +420,6 @@
 	volume = 60
 	w_class = ITEMSIZE_SMALL
 	flags = OPENCONTAINER
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	drop_sound = 'sound/items/drop/crowbar.ogg'
 	pickup_sound = 'sound/items/pickup/drinkglass.ogg'

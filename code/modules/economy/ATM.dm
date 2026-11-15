@@ -23,6 +23,7 @@ log transactions
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	circuit =  /obj/item/circuitboard/atm
+	flags = WALL_ITEM
 	var/datum/money_account/authenticated_account
 	var/number_incorrect_tries = 0
 	var/previous_account_number = 0
@@ -63,7 +64,7 @@ log transactions
 			playsound(src, 'sound/items/polaroid2.ogg', 50, 1)
 		break
 
-/obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/atm/emag_act(remaining_charges, mob/user)
 	if(emagged)
 		return
 
@@ -471,7 +472,7 @@ log transactions
 	held_card = null
 
 
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/spawn_ewallet(sum, loc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
 	if(ishuman(human_user) && !human_user.get_active_hand())
 		human_user.put_in_hands(E)

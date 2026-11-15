@@ -144,15 +144,15 @@
 	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in GLOB.all_stellar_delights)
 		sd.forceMove(loc, SOUTH)
 
-/obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
+/obj/effect/overmap/visitable/sector/virgo3b/Crossed(atom/movable/AM)
 	. = ..()
 	announce_atc(AM,going = FALSE)
 
-/obj/effect/overmap/visitable/sector/virgo3b/Uncrossed(var/atom/movable/AM)
+/obj/effect/overmap/visitable/sector/virgo3b/Uncrossed(atom/movable/AM)
 	. = ..()
 	announce_atc(AM,going = TRUE)
 
-/obj/effect/overmap/visitable/sector/virgo3b/announce_atc(var/atom/movable/AM, var/going = FALSE)
+/obj/effect/overmap/visitable/sector/virgo3b/announce_atc(atom/movable/AM, going = FALSE)
 	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
 		if(world.time < mob_announce_cooldown)
 			return

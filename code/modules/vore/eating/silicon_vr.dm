@@ -59,7 +59,7 @@
 	if(do_after(user = eyeobj, delay = 5 SECONDS, target = prey) && holo && hologram) //Didn't move and still projecting and effect exists and no other bellied people
 		feed_grabbed_to_self(src, prey)
 
-/mob/living/AIShiftClick(var/mob/user) //Shift-click as AI overridden on mobs to examine.
+/mob/living/AIShiftClick(mob/user) //Shift-click as AI overridden on mobs to examine.
 	if(user.client)
 		examine(user)
 	return

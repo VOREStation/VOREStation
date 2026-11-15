@@ -16,7 +16,7 @@
 	. = ..()
 	communications = new(src)
 
-/obj/machinery/computer/communications/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/communications/emag_act(remaining_charges, mob/user)
 	if(!emagged)
 		emagged = TRUE
 		communications.emagged = TRUE

@@ -22,10 +22,10 @@
 				if(istype(A,/obj/structure/closet ))
 					break
 
-/obj/item/bork_medigun/linked/proc/check_charge(var/charge_amt)
+/obj/item/bork_medigun/linked/proc/check_charge(charge_amt)
 	return (medigun_base_unit.bcell && medigun_base_unit.bcell.check_charge(charge_amt))
 
-/obj/item/bork_medigun/linked/proc/checked_use(var/charge_amt)
+/obj/item/bork_medigun/linked/proc/checked_use(charge_amt)
 	return (medigun_base_unit.bcell && medigun_base_unit.bcell.checked_use(charge_amt))
 
 /obj/item/bork_medigun/linked/attack_self(mob/living/user)
@@ -37,7 +37,7 @@
 	if(busy)
 		busy = MEDIGUN_CANCELLED
 
-/obj/item/bork_medigun/linked/proc/should_stop(var/mob/living/target, var/mob/living/user, var/active_hand)
+/obj/item/bork_medigun/linked/proc/should_stop(mob/living/target, mob/living/user, active_hand)
 	if(!target || !user || (!active_hand && medigun_base_unit.is_twohanded()) || !istype(target) || !istype(user) || busy < MEDIGUN_BUSY)
 		return TRUE
 

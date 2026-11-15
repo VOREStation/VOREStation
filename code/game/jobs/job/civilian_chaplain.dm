@@ -43,7 +43,7 @@
 /datum/alt_title/monk
 	title = JOB_ALT_MONK
 
-/datum/job/chaplain/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
+/datum/job/chaplain/equip(mob/living/carbon/human/H, alt_title, ask_questions = TRUE)
 	. = ..()
 	if(!.)
 		return
@@ -136,7 +136,7 @@
 	var/title = JOB_CHAPLAIN
 	var/configured = FALSE
 
-/datum/religion/New(var/r, var/d, var/bn, var/bis, var/bits, var/t)
+/datum/religion/New(r, d, bn, bis, bits, t)
 	. = ..()
 	religion = r
 	deity = d

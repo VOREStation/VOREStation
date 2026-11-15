@@ -9,7 +9,7 @@
 	slot_flags = SLOT_HOLSTER
 	throw_speed = 7
 	throw_range = 15
-	matter = list(MAT_STEEL = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.03))
 	pressure_resistance = 2
 	attack_verb = list("stamped")
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -60,6 +60,10 @@
 /obj/item/stamp/clown
 	name = "clown's rubber stamp"
 	icon_state = "stamp-clown"
+
+/obj/item/stamp/mime
+	name = "mime's rubber stamp"
+	icon_state = "stamp-mime"
 
 /obj/item/stamp/internalaffairs
 	name = "internal affairs rubber stamp"

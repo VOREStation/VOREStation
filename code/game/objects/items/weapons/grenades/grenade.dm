@@ -22,7 +22,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/grenade/proc/clown_check(var/mob/living/user)
+/obj/item/grenade/proc/clown_check(mob/living/user)
 	if(CLUMSY_HARM_CHANCE(user))
 		to_chat(user, span_warning("Huh? How does this thing work?"))
 
@@ -122,15 +122,15 @@
 	..()
 	return
 
-/obj/item/grenade/vendor_action(var/obj/machinery/vending/V)
+/obj/item/grenade/vendor_action(obj/machinery/vending/V)
 	activate(V)
 
-/obj/item/grenade/proc/start_effect_sprayer(var/datum/effect/effect/system/spraying, duration, sound_play, start_data = null)
+/obj/item/grenade/proc/start_effect_sprayer(datum/effect/effect/system/spraying, duration, sound_play, start_data = null)
 	playsound(loc, sound_play, 50, 1, -3)
 	spraying.set_up(10, 0, loc)
 	effect_spraying(spraying, duration, start_data)
 
-/obj/item/grenade/proc/effect_spraying(var/datum/effect/effect/system/spraying, duration, start_data)
+/obj/item/grenade/proc/effect_spraying(datum/effect/effect/system/spraying, duration, start_data)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 

@@ -95,4 +95,4 @@
 	var/message = "Movements of [gamount_message] group[location_amount == 1 ? "" : "s"] of wildlife have been detected in regions surrounding [using_map.full_name]. The wildlife group[location_amount == 1 ? "" : "s"] [location_amount == 1 ? "is" : "are"] [threat_message] and \
 				[location_amount == 1 ? "is" : "are"] comprised of [amount_message].[threat_level > 2 ? " Take caution." : ""]"
 
-	command_announcement.Announce(message, "Wildlife Monitoring")
+	GLOB.command_announcement.Announce(message, "Wildlife Monitoring")

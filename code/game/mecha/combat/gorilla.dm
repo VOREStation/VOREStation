@@ -128,7 +128,7 @@
 	icon_state = "shell"
 	damage = 1000 // In order to 1-hit any other mech and royally fuck anyone unfortunate enough to get in the way.
 
-/obj/item/projectile/bullet/cannon/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/bullet/cannon/on_hit(atom/target, blocked = 0)
 	explosion(target, 0, 0, 2, 4)
 	return 1
 

@@ -8,7 +8,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ILLEGAL = 4, TECH_MAGNET = 4)
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy = null
 	var/saved_item = /obj/item/trash/cigbutt
@@ -19,7 +18,9 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/chameleon/dropped(mob/user)
+/obj/item/chameleon/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	disrupt()
 	..()
 
@@ -72,7 +73,7 @@
 		flick("emppulse",T)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), T), 0.8 SECONDS, TIMER_DELETE_ME)
 
-/obj/item/chameleon/proc/disrupt(var/delete_dummy = 1)
+/obj/item/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
@@ -101,7 +102,7 @@
 	var/can_move = 1
 	var/obj/item/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/chameleon/C)
+/obj/effect/dummy/chameleon/proc/activate(obj/O, mob/M, new_icon, new_iconstate, new_overlays, obj/item/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -136,7 +137,7 @@
 /obj/effect/dummy/chameleon/proc/allow_move()
 	can_move = 1
 
-/obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
+/obj/effect/dummy/chameleon/relaymove(mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
 
 	if(can_move)

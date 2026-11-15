@@ -12,6 +12,7 @@
 	var/datum/material/material
 	var/set_temperature = T0C + 30	//K
 	var/heating_power = 80000
+	resistance_flags = FIRE_PROOF
 
 /obj/structure/bonfire/Initialize(mapload, material_name)
 	. = ..()
@@ -127,7 +128,7 @@
 /obj/structure/bonfire/permanent/add_fuel(mob/user)
 	to_chat(user, span_warning("\The [src] has plenty of fuel and doesn't need more fuel."))
 
-/obj/structure/bonfire/proc/consume_fuel(var/obj/item/stack/consumed_fuel)
+/obj/structure/bonfire/proc/consume_fuel(obj/item/stack/consumed_fuel)
 	if(!istype(consumed_fuel))
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE
@@ -170,7 +171,7 @@
 		START_PROCESSING(SSobj, src)
 		visible_message(span_warning("\The [src] starts burning!"))
 
-/obj/structure/bonfire/proc/burn()
+/obj/structure/bonfire/proc/burn_bonfire()
 	var/turf/current_location = get_turf(src)
 	current_location.hotspot_expose(1000, 500)
 	for(var/A in current_location)
@@ -225,7 +226,7 @@
 			extinguish()
 			return
 	if(!grill)
-		burn()
+		burn_bonfire()
 
 	if(burning)
 		var/W = get_fuel_amount()
@@ -279,6 +280,7 @@
 	var/next_fuel_consumption = 0
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
+	resistance_flags = FIRE_PROOF
 
 /obj/structure/fireplace/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material/wood) || istype(W, /obj/item/stack/material/log) )
@@ -326,7 +328,7 @@
 		to_chat(user, span_warning("\The [src] needs raw wood to burn, \a [new_fuel] won't work."))
 		return FALSE
 
-/obj/structure/fireplace/proc/consume_fuel(var/obj/item/stack/consumed_fuel)
+/obj/structure/fireplace/proc/consume_fuel(obj/item/stack/consumed_fuel)
 	if(!istype(consumed_fuel))
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE
@@ -365,7 +367,7 @@
 		START_PROCESSING(SSobj, src)
 		visible_message(span_warning("\The [src] starts burning!"))
 
-/obj/structure/fireplace/proc/burn()
+/obj/structure/fireplace/proc/burn_bonfire()
 	var/turf/current_location = get_turf(src)
 	current_location.hotspot_expose(1000, 500)
 	for(var/A in current_location)

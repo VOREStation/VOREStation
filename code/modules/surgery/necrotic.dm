@@ -16,14 +16,14 @@
 
 /datum/surgery_step/necrotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 
 	if (target_zone == O_MOUTH || target_zone == O_EYES)
-		return 0
+		return FALSE
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
-		return 0
+		return FALSE
 
 	return affected && affected.open >= FLESH_RETRACTED && (affected.status & ORGAN_DEAD)
 

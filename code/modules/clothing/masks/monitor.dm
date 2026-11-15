@@ -11,6 +11,7 @@
 	icon_state = "monitor"
 
 	var/monitor_state_index = "blank"
+	resistance_flags = FIRE_PROOF
 
 
 /obj/item/clothing/mask/monitor/set_dir()
@@ -29,11 +30,11 @@
 			icon_state = GLOB.monitor_states[monitor_state_index]
 			to_chat(H, span_notice("\The [src] connects to your display output."))
 
-/obj/item/clothing/mask/monitor/dropped(mob/user)
+/obj/item/clothing/mask/monitor/dropped(mob/user, equipping, slot)
 	canremove = TRUE
 	return ..()
 
-/obj/item/clothing/mask/monitor/mob_can_equip(var/mob/living/carbon/human/user, var/slot, disable_warning = FALSE)
+/obj/item/clothing/mask/monitor/mob_can_equip(mob/living/carbon/human/user, slot, disable_warning = FALSE)
 	if (!..())
 		return 0
 	if(istype(user))

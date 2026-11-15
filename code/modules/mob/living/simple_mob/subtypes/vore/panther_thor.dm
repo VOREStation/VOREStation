@@ -102,7 +102,7 @@
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/vore/aggressive/panther/thor/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+/mob/living/simple_mob/vore/aggressive/panther/thor/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone, hide_attack_message)
 	. = ..()
 	break_cloak()
 

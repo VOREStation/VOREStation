@@ -65,6 +65,9 @@
 /obj/effect/overlay/singularity_pull()
 	return
 
+/obj/effect/abstract/singularity_act()
+	return
+
 /obj/machinery/power/supermatter/shard/singularity_act()
 	qdel(src)
 	return 5000
@@ -121,4 +124,7 @@
 	return 0
 
 /mob/new_player/singuloCanEat()
+	return 0
+
+/turf/unsimulated/wall/supermatter/singuloCanEat()
 	return 0

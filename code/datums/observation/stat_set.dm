@@ -19,17 +19,17 @@ stat_set_event, /datum/decl/observ/stat_set, new)
 /****************
 * Stat Handling *
 ****************/
-/mob/living/set_stat(var/new_stat)
+/mob/living/set_stat(new_stat)
 	var/old_stat = stat
 	. = ..()
 	if(stat != old_stat)
 		SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, old_stat, new_stat)
 
-		if(isbelly(src.loc))
+		if(isbelly(src.loc)) //Should probably be listening to the signal tbh
 			var/obj/belly/ourbelly = src.loc
 			if(!ourbelly.owner.client)
 				return
-			if(stat == CONSCIOUS)
+			if(stat == CONSCIOUS && old_stat >= UNCONSCIOUS) //Unconcious or dead to concious
 				to_chat(ourbelly.owner, span_notice("\The [src.name] is awake."))
-			else if(stat == UNCONSCIOUS)
+			else if(stat >= UNCONSCIOUS) //Concious to dead or unconcious
 				to_chat(ourbelly.owner, span_red("\The [src.name] has fallen unconscious!"))

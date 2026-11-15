@@ -81,11 +81,8 @@
 		return FALSE
 	. = ..()
 
-/mob/living/simple_mob/vore/demonAI/zMove(direction)
+/mob/living/simple_mob/vore/demonAI/is_incorporeal()
 	if(shifted_out)
-		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-		if(destination)
-			forceMove(destination)
 		return TRUE
 	. = ..()
 
@@ -154,11 +151,11 @@
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/vore/demonAI/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+/mob/living/simple_mob/vore/demonAI/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone, hide_attack_message)
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/vore/demonAI/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/demonAI/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

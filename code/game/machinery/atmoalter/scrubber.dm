@@ -27,15 +27,13 @@
 	AddElement(/datum/element/climbable)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 
 	if(prob(50/severity))
 		on = !on
 		update_icon()
-
-	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/update_icon()
 	cut_overlays()
@@ -87,14 +85,14 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/scrubber/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_ghost(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/scrubber/attack_ghost(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(var/mob/user)
+/obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(mob/user)
 	tgui_interact(user)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/tgui_interact(mob/user, datum/tgui/ui)
@@ -174,7 +172,7 @@
 	// Not climbable!
 	RemoveElement(/datum/element/climbable)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(mob/user as mob)
 		to_chat(user, span_notice("You can't directly interact with this machine. Use the scrubber control console."))
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
@@ -218,7 +216,7 @@
 		use_power(power_draw)
 		update_connected_network()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		if(on)
 			to_chat(user, span_warning("Turn \the [src] off first!"))
@@ -250,7 +248,7 @@
 	. = ..()
 	desc += "This one seems to be tightly secured with large bolts."
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, span_warning("The bolts are too tight for you to unscrew!"))
 		return

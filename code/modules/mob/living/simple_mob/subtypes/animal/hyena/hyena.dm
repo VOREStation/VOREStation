@@ -95,7 +95,7 @@ They're also cool, and Rykka/Nyria wrote this uwu
 
 	drop_hat(usr)
 
-/mob/living/simple_mob/animal/hyena/proc/drop_hat(var/mob/user)
+/mob/living/simple_mob/animal/hyena/proc/drop_hat(mob/user)
 	if(hat)
 		hat.forceMove(get_turf(user))
 		hat = null
@@ -118,7 +118,7 @@ They're also cool, and Rykka/Nyria wrote this uwu
 
 	take_hat(usr)
 
-/mob/living/simple_mob/animal/hyena/proc/take_hat(var/mob/user)
+/mob/living/simple_mob/animal/hyena/proc/take_hat(mob/user)
 	if(hat)
 		if(user == src)
 			to_chat(user, span_notice("You already have a hat!"))

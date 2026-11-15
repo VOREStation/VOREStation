@@ -130,6 +130,9 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
+	if(uses_integrity)
+		atom_integrity = max_integrity
+
 	/*
 	if (light_system == COMPLEX_LIGHT && light_power && light_range)
 		update_light()

@@ -34,7 +34,7 @@ type Data = {
     }[];
   };
   powerCellStatus: number;
-  emagged: BooleanLike;
+  hacked: BooleanLike;
   isOperating: BooleanLike;
   chargeMode: BooleanLike;
   totalCharging: number;
@@ -125,7 +125,7 @@ const ApcContent = (props) => {
     chargingStatus,
     powerChannels,
     powerCellStatus,
-    emagged,
+    hacked,
     isOperating,
     chargeMode,
     totalCharging,
@@ -147,7 +147,7 @@ const ApcContent = (props) => {
   return (
     <>
       <InterfaceLockNoticeBox
-        deny={emagged}
+        deny={hacked}
         denialMessage={
           <>
             <Box color="bad" fontSize="1.5rem">

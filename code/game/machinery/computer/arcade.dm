@@ -37,6 +37,7 @@
 
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)
 	SEND_SIGNAL(src, COMSIG_ARCADE_PRIZEVEND, user)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ARCADE_PRIZEVEND)
 
 	if(LAZYLEN(special_prizes)) // Downstream wanted the 'win things inside contents sans circuitboard' feature kept.
 		var/atom/movable/AM = pick_n_take(special_prizes)
@@ -62,8 +63,8 @@
 
 
 /obj/machinery/computer/arcade/emp_act(severity, recursive)
-	if(stat & (NOPOWER|BROKEN))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || (stat & (NOPOWER|BROKEN)))
 		return
 	var/empprize = null
 	var/num_of_prizes = 0
@@ -79,8 +80,6 @@
 	for(num_of_prizes; num_of_prizes > 0; num_of_prizes--)
 		empprize = pickweight(prizes)
 		new empprize(src.loc)
-
-	..(severity, recursive)
 
 ///////////////////
 //  BATTLE HERE  //
@@ -205,7 +204,7 @@
 	add_fingerprint(ui.user)
 	return TRUE
 
-/obj/machinery/computer/arcade/battle/proc/arcade_action(var/mob/user)
+/obj/machinery/computer/arcade/battle/proc/arcade_action(mob/user)
 	if ((enemy_mp <= 0) || (enemy_hp <= 0))
 		if(!gameover)
 			gameover = 1
@@ -276,7 +275,7 @@
 	return
 
 
-/obj/machinery/computer/arcade/battle/emag_act(var/charges, var/mob/user)
+/obj/machinery/computer/arcade/battle/emag_act(charges, mob/user)
 	if(!emagged)
 		to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Hyper-Lethal Mode."))
 
@@ -368,7 +367,7 @@
 		"You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!"
 		)
 
-/obj/machinery/computer/arcade/orion_trail/proc/newgame(var/mob/user)
+/obj/machinery/computer/arcade/orion_trail/proc/newgame(mob/user)
 	// Set names of settlers in crew
 	settlers = list()
 	for(var/i = 1; i <= 3; i++)
@@ -975,7 +974,7 @@
 				eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];leave_spaceport=1'>Depart Spaceport</a></P>"
 
 
-/obj/machinery/computer/arcade/orion_trail/proc/add_crewmember(var/specific = "")
+/obj/machinery/computer/arcade/orion_trail/proc/add_crewmember(specific = "")
 	var/newcrew = ""
 	if(specific)
 		newcrew = specific
@@ -989,7 +988,7 @@
 		alive++
 	return newcrew
 
-/obj/machinery/computer/arcade/orion_trail/proc/remove_crewmember(var/specific = "", var/dont_remove = "")
+/obj/machinery/computer/arcade/orion_trail/proc/remove_crewmember(specific = "", dont_remove = "")
 	var/list/safe2remove = settlers
 	var/removed = ""
 	if(dont_remove)
@@ -1007,7 +1006,7 @@
 	return removed
 
 
-/obj/machinery/computer/arcade/orion_trail/proc/win(var/mob/user)
+/obj/machinery/computer/arcade/orion_trail/proc/win(mob/user)
 	gameStatus = ORION_STATUS_START
 	src.visible_message("\The [src] plays a triumpant tune, stating 'CONGRATULATIONS, YOU HAVE MADE IT TO ORION.'")
 	playsound(src, 'sound/arcade/ori_win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
@@ -1130,7 +1129,7 @@
 		return
 
 ////// Cash
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_cash(var/obj/item/spacecash/cashmoney, mob/user)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_cash(obj/item/spacecash/cashmoney, mob/user)
 	if(!emagged)
 		if(gameprice > cashmoney.worth)
 
@@ -1159,7 +1158,7 @@
 
 
 ///// Ewallet
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet, var/mob/user)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(obj/item/spacecash/ewallet/wallet, mob/user)
 	if(!emagged)
 		visible_message(span_info("\The [user] swipes \the [wallet] through \the [src]."))
 		playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
@@ -1175,7 +1174,7 @@
 		to_chat(user, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 ///// ID
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container, var/mob/user)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(obj/item/card/id/I, obj/item/ID_container, mob/user)
 	if(I==ID_container || ID_container == null)
 		visible_message(span_info("\The [user] swipes \the [I] through \the [src]."))
 	else
@@ -1231,7 +1230,7 @@
 
 /// Add to vendor account
 
-/obj/machinery/computer/arcade/clawmachine/proc/credit_purchase(var/target as text)
+/obj/machinery/computer/arcade/clawmachine/proc/credit_purchase(target as text)
 	GLOB.vendor_account.money += gameprice
 
 	var/datum/transaction/T = new()
@@ -1291,7 +1290,7 @@
 		instructions = "Insert 1 thaler or swipe a card to play!"
 		clawvend(ui.user)
 
-/obj/machinery/computer/arcade/clawmachine/proc/clawvend(var/mob/user) /// True to a real claw machine, it's NEARLY impossible to win.
+/obj/machinery/computer/arcade/clawmachine/proc/clawvend(mob/user) /// True to a real claw machine, it's NEARLY impossible to win.
 	winprob += 1 /// Yeah.
 
 	if(prob(winprob)) /// YEAH.

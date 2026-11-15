@@ -2,37 +2,41 @@
 /mob/var/is_floating = 0
 /mob/var/floatiness = 0
 
-/mob/proc/update_floating(var/dense_object=0)
+///Returns TRUE if mob is floating
+/mob/proc/update_floating(dense_object=0)
 
 	if(anchored||buckled)
 		make_floating(0)
-		return
-	if(ishuman(src)) //VOREStation Edit Start. Floating code.
+		return FALSE
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.flying)
 			make_floating(1)
-			return //VOREStation Edit End
+			return TRUE
+	if(HAS_TRAIT(src, TRAIT_NO_GRAVITY))
+		make_floating(1)
+		return TRUE
 	var/turf/turf = get_turf(src)
 	if(!istype(turf,/turf/space))
 		var/area/A = turf.loc
 		if(istype(A) && A.get_gravity())
 			make_floating(0)
-			return
+			return FALSE
 		else if (Check_Shoegrip())
 			make_floating(0)
-			return
+			return FALSE
 		else
 			make_floating(1)
-			return
+			return TRUE
 
 	if(dense_object && Check_Shoegrip())
 		make_floating(0)
-		return
+		return FALSE
 
 	make_floating(1)
-	return
+	return TRUE
 
-/mob/proc/make_floating(var/n)
+/mob/proc/make_floating(n)
 	if(buckled)
 		if(is_floating)
 			stop_floating()
@@ -65,7 +69,7 @@
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/fade_towards(atom/A,var/time = 2)
+/atom/movable/proc/fade_towards(atom/A,time = 2)
 	set waitfor = FALSE
 
 	var/pixel_x_diff = 0

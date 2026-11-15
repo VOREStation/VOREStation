@@ -98,7 +98,7 @@
 	entry_vent = null
 	. = ..()
 
-/obj/item/organ/internal/intestine/horror/handle_organ_mod_special(var/removed = FALSE)
+/obj/item/organ/internal/intestine/horror/handle_organ_mod_special(removed = FALSE)
 	..()
 	if(removed)
 		for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
@@ -232,7 +232,7 @@
 	. = ..()
 	redspace = GLOB.all_languages[LANGUAGE_REDSPACE]
 
-/obj/item/organ/internal/voicebox/horror/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/internal/voicebox/horror/replaced(mob/living/carbon/human/target,obj/item/organ/external/affected)
 	..()
 	target.add_language(LANGUAGE_REDSPACE)
 	target.default_language = redspace

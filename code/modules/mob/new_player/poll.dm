@@ -1,6 +1,5 @@
 
 /mob/new_player/proc/handle_privacy_poll()
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		return
 	var/voted = 0
@@ -47,7 +46,6 @@
 	var/optiontext
 
 /mob/new_player/proc/handle_player_polling()
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 		var/isadmin = 0
 		if(src.client && check_rights_for(src.client, R_HOLDER))
@@ -79,9 +77,8 @@
 
 
 
-/mob/new_player/proc/poll_player(var/pollid = -1)
+/mob/new_player/proc/poll_player(pollid = -1)
 	if(pollid == -1) return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid]")
@@ -337,13 +334,12 @@
 				src << browse("<html>[output]</html>","window=playerpoll;size=500x250")
 		return
 
-/mob/new_player/proc/vote_on_poll(var/pollid = -1, var/optionid = -1, var/multichoice = 0)
+/mob/new_player/proc/vote_on_poll(pollid = -1, optionid = -1, multichoice = 0)
 	if(pollid == -1 || optionid == -1)
 		return
 
 	if(!isnum(pollid) || !isnum(optionid))
 		return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
@@ -409,13 +405,12 @@
 		usr << browse(null,"window=playerpoll")
 
 
-/mob/new_player/proc/log_text_poll_reply(var/pollid = -1, var/replytext = "")
+/mob/new_player/proc/log_text_poll_reply(pollid = -1, replytext = "")
 	if(pollid == -1 || replytext == "")
 		return
 
 	if(!isnum(pollid) || !istext(replytext))
 		return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
@@ -469,13 +464,12 @@
 		usr << browse(null,"window=playerpoll")
 
 
-/mob/new_player/proc/vote_on_numval_poll(var/pollid = -1, var/optionid = -1, var/rating = null)
+/mob/new_player/proc/vote_on_numval_poll(pollid = -1, optionid = -1, rating = null)
 	if(pollid == -1 || optionid == -1)
 		return
 
 	if(!isnum(pollid) || !isnum(optionid))
 		return
-	establish_db_connection()
 	if(SSdbcore.IsConnected())
 
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")

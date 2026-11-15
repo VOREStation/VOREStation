@@ -34,7 +34,7 @@
 			// /obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
 			var/obj/item/pda/P
 			var/list/viables = list()
-			for(var/obj/item/pda/check_pda in sort_names(PDAs))
+			for(var/obj/item/pda/check_pda in GLOB.PDAs)
 				if (!check_pda.owner || check_pda == src || check_pda.hidden)
 					continue
 

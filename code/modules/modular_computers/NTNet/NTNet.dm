@@ -49,12 +49,12 @@
 	build_emails_list()
 	add_log("NTNet logging system activated.")
 
-/datum/ntnet/proc/add_log_with_ids_check(var/log_string, var/obj/item/computer_hardware/network_card/source = null)
+/datum/ntnet/proc/add_log_with_ids_check(log_string, obj/item/computer_hardware/network_card/source = null)
 	if(intrusion_detection_enabled)
 		add_log(log_string, source)
 
 // Simplified logging: Adds a log. log_string is mandatory parameter, source is optional.
-/datum/ntnet/proc/add_log(var/log_string, var/obj/item/computer_hardware/network_card/source = null)
+/datum/ntnet/proc/add_log(log_string, obj/item/computer_hardware/network_card/source = null)
 	var/log_text = "[stationtime2text()] - "
 	if(source)
 		log_text += "[source.get_network_tag()] - "
@@ -88,7 +88,7 @@
 	return FALSE
 
 // Checks whether NTNet operates. If parameter is passed checks whether specific function is enabled.
-/datum/ntnet/proc/check_function(var/specific_action = 0)
+/datum/ntnet/proc/check_function(specific_action = 0)
 	if(!relays || !relays.len) // No relays found. NTNet is down
 		return 0
 
@@ -142,7 +142,7 @@
 		email_accounts += new F(TRUE)
 
 // Attempts to find a downloadable file according to filename var
-/datum/ntnet/proc/find_ntnet_file_by_name(var/filename)
+/datum/ntnet/proc/find_ntnet_file_by_name(filename)
 	for(var/datum/computer_file/program/P in available_station_software)
 		if(filename == P.filename)
 			return P
@@ -166,7 +166,7 @@
 	add_log("-!- LOGS DELETED BY SYSTEM OPERATOR -!-")
 
 // Updates maximal amount of stored logs. Use this instead of setting the number, it performs required checks.
-/datum/ntnet/proc/update_max_log_count(var/lognumber)
+/datum/ntnet/proc/update_max_log_count(lognumber)
 	if(!lognumber)
 		return 0
 	// Trim the value if necessary
@@ -174,7 +174,7 @@
 	setting_maxlogcount = lognumber
 	add_log("Configuration Updated. Now keeping [setting_maxlogcount] logs in system memory.")
 
-/datum/ntnet/proc/toggle_function(var/function)
+/datum/ntnet/proc/toggle_function(function)
 	if(!function)
 		return
 	function = text2num(function)
@@ -192,7 +192,7 @@
 			setting_systemcontrol = !setting_systemcontrol
 			add_log("Configuration Updated. Wireless network firewall now [setting_systemcontrol ? "allows" : "disallows"] remote control of station's systems.")
 
-/datum/ntnet/proc/does_email_exist(var/login)
+/datum/ntnet/proc/does_email_exist(login)
 	for(var/datum/computer_file/data/email_account/A in GLOB.ntnet_global.email_accounts)
 		if(A.login == login)
 			return 1

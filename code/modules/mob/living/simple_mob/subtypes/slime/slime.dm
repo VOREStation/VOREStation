@@ -1,4 +1,4 @@
-var/list/_slime_default_emotes = list(
+GLOBAL_LIST_INIT(slime_default_emotes, list(
 	/datum/decl/emote/audible/moan,
 	/datum/decl/emote/visible/twitch,
 	/datum/decl/emote/visible/sway,
@@ -13,7 +13,7 @@ var/list/_slime_default_emotes = list(
 	/datum/decl/emote/slime/angry,
 	/datum/decl/emote/slime/frown,
 	/datum/decl/emote/slime/smile
-)
+))
 
 // The top-level slime defines. Xenobio slimes and feral slimes will inherit from this.
 /mob/living/simple_mob/slime
@@ -87,7 +87,7 @@ var/list/_slime_default_emotes = list(
 	pain_emote_3p = list("squishes", "squelches")
 
 /mob/living/simple_mob/slime/get_available_emotes()
-	return global._slime_default_emotes.Copy()
+	return GLOB.slime_default_emotes.Copy()
 
 /datum/say_list/slime
 	speak = list("Blorp...", "Blop...")
@@ -224,7 +224,7 @@ var/list/_slime_default_emotes = list(
 	return
 
 // Hat simulator
-/mob/living/simple_mob/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+/mob/living/simple_mob/slime/proc/give_hat(obj/item/clothing/head/new_hat, mob/living/user)
 	if(!istype(new_hat))
 		to_chat(user, span_warning("\The [new_hat] isn't a hat."))
 		return
@@ -239,7 +239,7 @@ var/list/_slime_default_emotes = list(
 		update_icon()
 		return
 
-/mob/living/simple_mob/slime/proc/remove_hat(var/mob/living/user)
+/mob/living/simple_mob/slime/proc/remove_hat(mob/living/user)
 	if(!hat)
 		to_chat(user, span_warning("\The [src] doesn't have a hat to remove."))
 	else

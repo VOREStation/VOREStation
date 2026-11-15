@@ -82,7 +82,7 @@
 
 /datum/event2/event/airlock_failure/announce()
 	if(prob(announce_odds))
-		command_announcement.Announce("An electrical issue has been detected in the airlock grid at [english_list(affected_areas)]. \
+		GLOB.command_announcement.Announce("An electrical issue has been detected in the airlock grid at [english_list(affected_areas)]. \
 		Some airlocks may require servicing by a qualified technician.", "Electrical Alert")
 
 

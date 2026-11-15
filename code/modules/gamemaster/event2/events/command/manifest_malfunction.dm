@@ -43,7 +43,7 @@
 				message = "The [record_class_to_delete] record database server has suffered a hardware failure, and is no longer functional. \
 				A temporary replacement server has been activated, containing recovered data from the main server. \
 				A few records became corrupted, and could not be transferred."
-		command_announcement.Announce(message, author)
+		GLOB.command_announcement.Announce(message, author)
 
 /datum/event2/event/manifest_malfunction/start()
 	for(var/i = 1 to records_to_delete)

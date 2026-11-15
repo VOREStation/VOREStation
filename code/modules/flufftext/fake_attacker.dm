@@ -47,8 +47,9 @@
 	. = ..()
 	clear_every_clients_images()
 	qdel_all_images()
+	clients.Cut()
 
-/obj/effect/fake_attacker/proc/create_images_from(var/atom/clone)
+/obj/effect/fake_attacker/proc/create_images_from(atom/clone)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	dir_images["[NORTH]"] = image(clone,dir = NORTH)
 	dir_images["[SOUTH]"] = image(clone,dir = SOUTH)
@@ -62,12 +63,12 @@
 		G.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		G.loc = loc
 
-/obj/effect/fake_attacker/proc/append_client(var/client/C)
+/obj/effect/fake_attacker/proc/append_client(client/C)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	clients.Add(WEAKREF(C))
 	assign_image_to_client(C)
 
-/obj/effect/fake_attacker/proc/assign_image_to_client(var/client/C)
+/obj/effect/fake_attacker/proc/assign_image_to_client(client/C)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!C)
@@ -82,7 +83,7 @@
 	for(var/datum/weakref/C in clients)
 		clear_images_from_client(C?.resolve())
 
-/obj/effect/fake_attacker/proc/clear_images_from_client(var/client/C)
+/obj/effect/fake_attacker/proc/clear_images_from_client(client/C)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!C)
@@ -104,7 +105,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Hallucination attackers with AI behaviors
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/mob/proc/create_hallucination_attacker(var/turf/T = null,var/mob/living/carbon/human/clone = null, var/forced_type = null)
+/mob/proc/create_hallucination_attacker(turf/T = null,mob/living/carbon/human/clone = null, forced_type = null)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!client)
 		return null
@@ -148,7 +149,7 @@
 	VAR_PROTECTED/datum/weakref/target = null
 	var/requires_hallucinating = TRUE // Mob will qdel if the target is not hallucinating if this is true
 
-/obj/effect/fake_attacker/human/Initialize(mapload,var/mob/targeting_mob,var/atom/clone_appearance_from)
+/obj/effect/fake_attacker/human/Initialize(mapload,mob/targeting_mob,atom/clone_appearance_from)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	set_target(targeting_mob)
@@ -179,7 +180,7 @@
 
 	return M
 
-/obj/effect/fake_attacker/human/proc/set_target(var/mob/M)
+/obj/effect/fake_attacker/human/proc/set_target(mob/M)
 	target = WEAKREF(M)
 
 

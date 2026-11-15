@@ -128,7 +128,7 @@
 		our_targets -= SM.prey_excludes // Lazylist, but subtracting a null from the list seems fine.
 	return our_targets
 
-/datum/ai_holder/simple_mob/ranged/pakkun/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/ranged/pakkun/can_attack(atom/movable/the_target, vision_required = TRUE)
 	.=..()
 	if(isliving(the_target))
 		var/mob/living/L = the_target
@@ -141,7 +141,7 @@
 	else
 		return FALSE
 
-/mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
+/mob/living/simple_mob/vore/pakkun/on_throw_vore_special(pred, mob/living/target)
 	if(pred && !extra_possessive && !(LAZYFIND(prey_excludes, target)))
 		LAZYSET(prey_excludes, target, world.time)
 		addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(target)), 5 MINUTES)
@@ -162,7 +162,7 @@
 	B.digestchance = 0
 	B.digest_mode = DM_SELECT
 
-/mob/living/simple_mob/vore/pakkun/attackby(var/obj/item/O, var/mob/user) //if they're newspapered, they'll spit out any junk they've eaten for whatever reason
+/mob/living/simple_mob/vore/pakkun/attackby(obj/item/O, mob/user) //if they're newspapered, they'll spit out any junk they've eaten for whatever reason
 	if(istype(O, /obj/item/newspaper) && !ckey && isturf(user.loc))
 		user.visible_message(span_info("[user] swats [src] with [O]!"))
 		release_vore_contents()
@@ -185,7 +185,7 @@
 
 	extra_possessive = TRUE //you're gonna get KEPT, at least the first time you go in
 
-/mob/living/simple_mob/vore/pakkun/snapdragon/on_throw_vore_special(var/pred, var/mob/living/target)
+/mob/living/simple_mob/vore/pakkun/snapdragon/on_throw_vore_special(pred, mob/living/target)
 	..()
 	extra_possessive = !extra_possessive //toggle their possessiveness on and off every time they eat someone
 
@@ -201,7 +201,7 @@
 
 	extra_possessive = TRUE // won't let its prey go if it's awake, luckily, see below.
 
-/mob/living/simple_mob/vore/pakkun/sand/on_throw_vore_special(var/pred, var/mob/living/target)
+/mob/living/simple_mob/vore/pakkun/sand/on_throw_vore_special(pred, mob/living/target)
 	..()
 	autorest_cooldown = 0 // Sand pakkuns, also known as napdragons, like to curl up for an small sleemp after eating. This is your chance to escape.
 
@@ -255,7 +255,7 @@
 			our_targets -= list_target
 	return our_targets
 
-/datum/ai_holder/simple_mob/ranged/pakkun/snappy/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/ranged/pakkun/snappy/can_attack(atom/movable/the_target, vision_required = TRUE)
 	.=..()
 	var/mob/living/simple_mob/vore/pakkun/snapdragon/snappy/SM = holder
 	if(!(the_target in SM.petters))

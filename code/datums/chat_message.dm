@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(runechat_image_cache)
 
 	for(var/word in names)
 		if(length(word) > 3)
-			parts += word
+			parts += REGEX_QUOTE(word)
 
 	var/regex/message_regex = new("\\b(" + parts.Join("|") + ")\\b(?!\[^<]*>)", "gi")
 

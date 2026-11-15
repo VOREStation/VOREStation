@@ -30,8 +30,8 @@
 /datum/event2/event/electrical_fault/announce()
 	// Trying to be vague to avoid 'space lightning storms'.
 	// This could be re-flavored to be a solar flare or something and have robots outside be sad.
-	command_announcement.Announce("External conditions near \the [location_name()] are likely \
-	to cause voltage spikes and other electrical issues very soon. Please secure sensitive electrical equipment until the situation passes.", "[location_name()] Sensor Array")
+	GLOB.command_announcement.Announce("External conditions near \the [location_name()] are likely \
+	to cause voltage spikes and other electrical issues very soon. Please secure sensitive electrical equipment until the situation passes.", "[location_name()] Sensor Array", ANNOUNCER_MSG_WIRING_FAULT_START)
 
 /datum/event2/event/electrical_fault/set_up()
 	valid_z_levels = get_location_z_levels()
@@ -43,7 +43,7 @@
 			valid_apcs += A
 
 /datum/event2/event/electrical_fault/start()
-	command_announcement.Announce("Irregularities detected in \the [location_name()] power grid.", "[location_name()] Power Grid Monitoring")
+	GLOB.command_announcement.Announce("Irregularities detected in \the [location_name()] power grid.", "[location_name()] Power Grid Monitoring", ANNOUNCER_MSG_WIRING_FAULT_START)
 
 /datum/event2/event/electrical_fault/event_tick()
 	if(!valid_apcs.len)
@@ -59,7 +59,7 @@
 		affect_apc(A)
 
 /datum/event2/event/electrical_fault/end()
-	command_announcement.Announce("The irregular electrical conditions inside \the [location_name()] power grid has ceased.", "[location_name()] Power Grid Monitoring")
+	GLOB.command_announcement.Announce("The irregular electrical conditions inside \the [location_name()] power grid has ceased.", "[location_name()] Power Grid Monitoring", ANNOUNCER_MSG_WIRING_FAULT_END)
 	log_game("Electrical Fault event caused [apcs_disabled] APC\s to shut off, \
 	[apcs_overloaded] APC\s to overload lighting, and [apcs_emagged] APC\s to be emagged.")
 

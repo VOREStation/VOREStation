@@ -55,15 +55,14 @@
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
-/datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/epinephrine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
-	M.add_chemical_effect(CE_SPEEDBOOST, 3)
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 	M.add_chemical_effect(CE_PAINKILLER, 60)
 	M.adjustHalLoss(-30)
 	M.AdjustParalysis(-2)
 	M.AdjustStunned(-2)
 	M.AdjustWeakened(-2)
-	M.adjustToxLoss(removed * 2.5) //It gives you 20units of epinephrine. 50 toxins damage. 1 Toxin per tick.
 	..()
 	return

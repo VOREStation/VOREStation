@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(reagent_addictive_slow,list(REAGENT_ID_TRAMADOL,REAGENT_ID_OXYC
 GLOBAL_LIST_INIT(reagent_addictive_fast,list(REAGENT_ID_HYPERZINE,REAGENT_ID_BLISS))
 GLOBAL_LIST_INIT(reagent_addictive_poison,list())
 
-/proc/get_addictive_reagents(var/addict_type)
+/proc/get_addictive_reagents(addict_type)
 	RETURN_TYPE(/list)
 	switch(addict_type)
 		if(ADDICT_NORMAL)

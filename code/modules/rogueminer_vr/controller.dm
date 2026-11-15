@@ -3,7 +3,7 @@
 // Makes mining zones more difficult as you enter new ones
 // THIS IS THE FIRST UNIT INITIALIZED THAT STARTS EVERYTHING
 //////////////////////////////
-var/datum/controller/rogue/rm_controller
+GLOBAL_DATUM(rm_controller, /datum/controller/rogue)
 
 /datum/controller/rogue
 	var/list/datum/rogue/zonemaster/all_zones = list()
@@ -106,7 +106,7 @@ var/datum/controller/rogue/rm_controller
 		all_zones += new /datum/rogue/zonemaster(A)
 	//decay() //Decay removed for now, since people aren't getting high scores as it is.
 
-/datum/controller/rogue/proc/decay(var/manual = 0)
+/datum/controller/rogue/proc/decay(manual = 0)
 	log_world("RM(stats): DECAY on controller from [difficulty] to [difficulty+(RM_DIFF_DECAY_AMT)] min 100.") //DEBUG code for playtest stats gathering.
 	adjust_difficulty(RM_DIFF_DECAY_AMT)
 
@@ -115,12 +115,12 @@ var/datum/controller/rogue/rm_controller
 			decay()
 	return difficulty
 
-/datum/controller/rogue/proc/dbg(var/message)
+/datum/controller/rogue/proc/dbg(message)
 	ASSERT(message) //I want a stack trace if there's no message
 	if(debugging)
 		log_world("[message]")
 
-/datum/controller/rogue/proc/adjust_difficulty(var/amt)
+/datum/controller/rogue/proc/adjust_difficulty(amt)
 	ASSERT(amt)
 
 	difficulty = max(difficulty+amt, diffstep_nums[1]) //Can't drop below the lowest level.
@@ -142,39 +142,39 @@ var/datum/controller/rogue/rm_controller
 
 	return oldest_zone
 
-/datum/controller/rogue/proc/mark_clean(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/mark_clean(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(mc): Some unknown zone asked to be listed.")
 
 	if(ZM in ready_zones)
-		rm_controller.dbg("RMC(mc): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(mc): Finite state machine broken.")
 
 	clean_zones += ZM
 
-/datum/controller/rogue/proc/mark_ready(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/mark_ready(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(mr): Some unknown zone asked to be listed.")
 
 	if(ZM in clean_zones)
-		rm_controller.dbg("RMC(mr): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(mr): Finite state machine broken.")
 
 	ready_zones += ZM
 
-/datum/controller/rogue/proc/unmark_clean(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/unmark_clean(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(umc): Some unknown zone asked to be listed.")
 
 	if(!(ZM in clean_zones))
-		rm_controller.dbg("RMC(umc): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(umc): Finite state machine broken.")
 
 	clean_zones -= ZM
 
-/datum/controller/rogue/proc/unmark_ready(var/datum/rogue/zonemaster/ZM)
+/datum/controller/rogue/proc/unmark_ready(datum/rogue/zonemaster/ZM)
 	if(!(ZM in all_zones)) //What? Who?
-		rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
+		GLOB.rm_controller.dbg("RMC(umr): Some unknown zone asked to be listed.")
 
 	if(!(ZM in ready_zones))
-		rm_controller.dbg("RMC(umr): Finite state machine broken.")
+		GLOB.rm_controller.dbg("RMC(umr): Finite state machine broken.")
 
 	ready_zones -= ZM
 
@@ -191,10 +191,10 @@ var/datum/controller/rogue/rm_controller
 			ZM_toscore.score_zone()
 		ZM_target.prepare_zone()
 	else
-		rm_controller.dbg("RMC(pnz): I was asked for a new zone but there's no space.")
+		GLOB.rm_controller.dbg("RMC(pnz): I was asked for a new zone but there's no space.")
 
 	if(clean_zones.len <= 1) //Need to clean the oldest one, too.
-		rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
+		GLOB.rm_controller.dbg("RMC(pnz): Cleaning up oldest zone.")
 		spawn(0) //Detatch it so we can return the new zone for now.
 			var/datum/rogue/zonemaster/ZM_oldest = get_oldest_zone()
 			if(ZM_oldest) ZM_oldest.clean_zone()

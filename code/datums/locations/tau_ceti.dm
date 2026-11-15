@@ -4,7 +4,7 @@
 	name = "Tau Ceti"
 	desc = "Tau Ceti is a relatively populated system that sits between the inner and outer systems of human colonized space."
 
-/datum/locations/tau_ceti/New(var/creator)
+/datum/locations/tau_ceti/New(creator)
 	contents.Add(
 		new /datum/locations/tau_ceti_i(src),
 		new /datum/locations/luthien(src),

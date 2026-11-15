@@ -35,13 +35,12 @@
 /datum/material/fur
 	name = MAT_FUR
 	icon_colour = "#fff2d3"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
 	display_name = MAT_FUR
 	icon_base = "sheet-fabric"
 	stack_type = /obj/item/stack/material/fur
 	sheet_collective_name = "pile"
 	pass_stack_colors = TRUE
-	supply_conversion_value = 1
+	supply_conversion_value = 0.5
 	sheet_singular_name = "bundle"
 	sheet_plural_name = "bundles"
 	ignition_point = T0C+232

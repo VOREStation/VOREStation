@@ -4,7 +4,6 @@
 	name = "omni shield"
 	desc = "A shield generator that forms an ennlosing, omnidirectional shield around the exosuit."
 	icon_state = "shield"
-	origin_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
 	equip_cooldown = 5
 	energy_drain = OMNI_SHIELD_DRAIN
 	range = 0

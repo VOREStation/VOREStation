@@ -2,8 +2,7 @@
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
-	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MAT_STEEL = 500, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.025))
 
 	wires = WIRE_PULSE
 
@@ -32,7 +31,7 @@
 	update_icon()
 	return secured
 
-/obj/item/assembly/timer/proc/set_state(var/state)
+/obj/item/assembly/timer/proc/set_state(state)
 	if(state && !timing) //Not running, starting though
 		START_PROCESSING(SSobj, src)
 	else if(timing && !state) //Running, stopping though

@@ -81,6 +81,7 @@
 #define MAT_SMOLEBRICKS		"smolebricks"
 #define MAT_WAX				"wax"
 #define MAT_EAGATE			"energized agate"
+#define MAT_ALGAE 			"algae"
 
 #define MAT_CULT			"cult"
 #define MAT_CULT2			"cult2"
@@ -145,5 +146,12 @@
 #define OPTIMAL_COST(cost)(max(1, round(cost)))
 
 /// Default circuitboard material list
-#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 2000)
-#define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = 40)
+#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = MATERIAL_COST(1))
+#define RECYCLE_CIRCUIT_MATERIALS list(MAT_GLASS = MATERIAL_COST(0.02))
+
+#define MATERIAL_COST(x) (SHEET_MATERIAL_AMOUNT * x)
+
+/// Amount of material in one sheet
+#define SHEET_MATERIAL_AMOUNT 2000
+/// Max size of sheet stacks
+#define MAX_STACK_SIZE 50

@@ -1,4 +1,4 @@
-var/list/department_radio_keys = list(
+GLOBAL_LIST_INIT(department_radio_keys, list(
 	":r" = "right ear",	".r" = "right ear",
 	":l" = "left ear",	".l" = "left ear",
 	":i" = "intercom",	".i" = "intercom",
@@ -16,8 +16,8 @@ var/list/department_radio_keys = list(
 	":u" = CHANNEL_SUPPLY,		".u" = CHANNEL_SUPPLY,
 	":v" = CHANNEL_SERVICE,		".v" = CHANNEL_SERVICE,
 	":p" = CHANNEL_AI_PRIVATE,	".p" = CHANNEL_AI_PRIVATE,
-	":a" = CHANNEL_EXPLORATION,	".a" = CHANNEL_EXPLORATION,	//VOREStation Edit
-	":y" = CHANNEL_TALON,		".y" = CHANNEL_TALON, //VOREStation Add,
+	":a" = CHANNEL_EXPLORATION,	".a" = CHANNEL_EXPLORATION,
+	":y" = CHANNEL_TALON,		".y" = CHANNEL_TALON,
 	":g" = CHANNEL_CASINO,	".g" = CHANNEL_CASINO,
 
 	":R" = "right ear",	".R" = "right ear",
@@ -37,7 +37,7 @@ var/list/department_radio_keys = list(
 	":V" = CHANNEL_SERVICE,		".V" = CHANNEL_SERVICE,
 	":P" = CHANNEL_AI_PRIVATE,	".P" = CHANNEL_AI_PRIVATE,
 	":A" = CHANNEL_EXPLORATION,	".A" = CHANNEL_EXPLORATION,
-	":Y" = CHANNEL_TALON,		".Y" = CHANNEL_TALON, //VOREStation Add,
+	":Y" = CHANNEL_TALON,		".Y" = CHANNEL_TALON,
 	":G" = CHANNEL_CASINO,	".G" = CHANNEL_CASINO,
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
@@ -59,22 +59,21 @@ var/list/department_radio_keys = list(
 	":м" = CHANNEL_SERVICE,        ".м" = CHANNEL_SERVICE,
 	":з" = CHANNEL_AI_PRIVATE,    ".з" = CHANNEL_AI_PRIVATE,
 	":ф" = CHANNEL_EXPLORATION,    ".ф" = CHANNEL_EXPLORATION,
-	":н" = CHANNEL_TALON,        ".н" = CHANNEL_TALON, //VOREStation Add
+	":н" = CHANNEL_TALON,        ".н" = CHANNEL_TALON,
 	":п" = CHANNEL_CASINO,	".п" = CHANNEL_CASINO,
-)
+))
 
-
-var/list/channel_to_radio_key = list()
-/proc/get_radio_key_from_channel(var/channel)
-	var/key = channel_to_radio_key[channel]
+GLOBAL_LIST_EMPTY(channel_to_radio_key)
+/proc/get_radio_key_from_channel(channel)
+	var/key = GLOB.channel_to_radio_key[channel]
 	if(!key)
-		for(var/radio_key in department_radio_keys)
-			if(department_radio_keys[radio_key] == channel)
+		for(var/radio_key in GLOB.department_radio_keys)
+			if(GLOB.department_radio_keys[radio_key] == channel)
 				key = radio_key
 				break
 		if(!key)
 			key = ""
-		channel_to_radio_key[channel] = key
+		GLOB.channel_to_radio_key[channel] = key
 
 	return key
 
@@ -89,11 +88,9 @@ var/list/channel_to_radio_key = list()
 
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise
-/mob/living/proc/handle_speech_problems(var/list/message_data)
-	var/list/message_pieces = message_data[1]
-	var/verb = message_data[2]
-	var/whispering = message_data[3]
-	. = 0
+/mob/living/proc/handle_speech_problems(list/message_data)
+	var/list/message_pieces = message_data[SPEECH_MSGPIECES]
+	. = FALSE
 
 	// Technically this rerolls the verb for as many say pieces as there are. _shrug_
 	for(var/datum/multilingual_say_piece/S in message_pieces)
@@ -102,34 +99,31 @@ var/list/channel_to_radio_key = list()
 
 		if(disabilities & CENSORED)
 			S.message = censor_swears(S.message) // Googlybonkers
-			. = 1
-
+			. = TRUE
 		if((HULK in mutations) && health >= 25 && length(S.message))
 			S.message = "[uppertext(S.message)]!!!"
-			verb = pick("yells","roars","hollers")
-			whispering = 0
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("yells","roars","hollers")
+			message_data[SPEECH_WHISPERING] = FALSE
+			. = TRUE
 		if(slurring)
 			S.message = slur(S.message)
-			verb = pick("slobbers","slurs")
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("slobbers","slurs")
+			. = TRUE
 		if(stuttering)
 			S.message = stutter(S.message)
-			verb = pick("stammers","stutters")
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("stammers","stutters")
+			. = TRUE
 		if(muffled)
-			verb = pick("muffles")
-			whispering = 1
-			. = 1
+			message_data[SPEECH_MSGVERB] = pick("muffles")
+			message_data[SPEECH_WHISPERING] = TRUE
+			. = TRUE
 		if(disabilities & WINGDINGS)
-			verb = pick("gibbers","gabbers","gahoos","gazonks") // Yeah lets just be stupid
+			message_data[SPEECH_MSGVERB] = pick("gibbers","gabbers","gahoos","gazonks") // Yeah lets just be stupid
 			S.message = Gibberish(S.message, 100) // Googlybonkers
 			S.message = span_wingdings((S.message))
-			. = 1
+			. = TRUE
 
-	message_data[1] = message_pieces
-	message_data[2] = verb
-	message_data[3] = whispering
+	message_data[SPEECH_MSGPIECES] = message_pieces
 
 /mob/living/proc/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	if(message_mode == "intercom")
@@ -144,14 +138,14 @@ var/list/channel_to_radio_key = list()
 	returns[2] = null
 	return returns
 
-/mob/living/proc/get_speech_ending(verb, var/ending)
+/mob/living/proc/get_speech_ending(verb, ending)
 	if(ending == "!")
 		return pick("exclaims","shouts","yells")
 	if(ending == "?")
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/say(message, datum/language/speaking = null, whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)
@@ -174,7 +168,17 @@ var/list/channel_to_radio_key = list()
 		if("^") return custom_emote(VISIBLE_MESSAGE, copytext(message, 2))
 	direct_say(message, speaking, whispering)
 
-/mob/living/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+/mob/living/direct_say(message, datum/language/speaking = null, whispering = 0)
+	var/message_range = world.view
+	var/list/message_data = list(message, speaking, whispering, null, null, null, message_range)
+	var/comsig_flags = SEND_SIGNAL(src, COMSIG_MOB_SAY, message_data)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Forbid sending at all
+		return 1
+	message = message_data[SPEECH_MESSAGE]
+	speaking = message_data[SPEECH_SPEAKINGLANG]
+	whispering = message_data[SPEECH_WHISPERING]
+	message_range = message_data[SPEECH_RANGE]
+
 	// Handle automatic whispering mode
 	if(autowhisper)
 		whispering = 1
@@ -194,10 +198,9 @@ var/list/channel_to_radio_key = list()
 	//Clean up any remaining space on the left
 	message = trim_left(message)
 
-	// VOREStation Edit - Reflect messages as needed, no sanitizing because parse_languages will handle it for us
+	// Reflect messages as needed, no sanitizing because parse_languages will handle it for us
 	if(reflect_if_needed(message, src))
 		return
-	// VOREStation Edit End
 
 	// If the message ends in an alphanumeric character (therefore, not punctuation),
 	// and autopunctuation is turned on, add a period.
@@ -208,8 +211,22 @@ var/list/channel_to_radio_key = list()
 
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, null, message_range)
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_PREPARE, message_data)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK) // Sometimes we just want to do nothing at all, like passing the message to a TTS object
+		return 1
+	message = message_data[SPEECH_MESSAGE]
+	speaking = message_data[SPEECH_SPEAKINGLANG]
+	whispering = message_data[SPEECH_WHISPERING]
+	message_mode = message_data[SPEECH_MSGMODE]
+	message_pieces = message_data[SPEECH_MSGPIECES]
+	message_range = message_data[SPEECH_RANGE]
+
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
 		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
+		if(!(comsig_flags & COMSIG_SAY_IGNORE_MIME_VOW) && HAS_MIND_TRAIT(src, TRAIT_MIMING))
+			to_chat(src, span_green("You stop yourself from signing in favor of the art of mimery!"))
+			return FALSE
 		S.speaking.broadcast(src, S.message)
 		return 1
 
@@ -217,9 +234,13 @@ var/list/channel_to_radio_key = list()
 		log_runtime(EXCEPTION("Message failed to generate pieces. [message] - [json_encode(message_pieces)]"))
 		return 0
 
+	if(!(comsig_flags & COMSIG_SAY_IGNORE_MIME_VOW) && HAS_MIND_TRAIT(src, TRAIT_MIMING))
+		to_chat(src, span_green("Your vow of silence prevents you from speaking!"))
+		return
+
 	// If you're muzzled, you can only speak sign language
 	// However, sign language is handled above.
-	if(is_muzzled())
+	if(!(comsig_flags & COMSIG_SAY_IGNORE_MUZZLING) && is_muzzled())
 		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
@@ -242,15 +263,17 @@ var/list/channel_to_radio_key = list()
 		w_not_heard = "[first_piece.speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	var/list/message_data = list(message_pieces, verb, whispering)
-	if(handle_speech_problems(message_data))
-		message_pieces = message_data[1]
-		whispering = message_data[3]
-
-		if(verb != message_data[2]) //They changed our verb
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb, message_range)
+	if(!(comsig_flags & COMSIG_SAY_FORBID_SPEECH_PROBLEMS) && handle_speech_problems(message_data))
+		speaking = message_data[SPEECH_SPEAKINGLANG]
+		whispering = message_data[SPEECH_WHISPERING]
+		message_mode = message_data[SPEECH_MSGMODE]
+		message_pieces = message_data[SPEECH_MSGPIECES]
+		message_range = message_data[SPEECH_RANGE]
+		if(verb != message_data[SPEECH_MSGVERB]) //They changed our verb
 			if(whispering)
 				w_adverb = pick("quietly", "softly")
-			verb = message_data[2]
+			verb = message_data[SPEECH_MSGVERB]
 
 	//Whisper may have adverbs, add those if one was set
 	if(w_adverb)
@@ -271,7 +294,6 @@ var/list/channel_to_radio_key = list()
 	var/sound_vol = handle_v[2]
 
 	//Default range and italics, may be overridden past here
-	var/message_range = world.view
 	var/italics = 0
 	var/do_sound = TRUE
 	if(!voice_sounds_list || !voice_sounds_list.len)
@@ -314,6 +336,21 @@ var/list/channel_to_radio_key = list()
 	else if(custom_say)
 		verb = "[custom_say]"
 
+	// Final handling, MERGE the returned flags, so either signal can use the remaining flags. Handles a fully prepared message
+	message_data = list(message, speaking, whispering, message_mode, message_pieces, verb, message_range)
+	comsig_flags |= SEND_SIGNAL(src, COMSIG_MOB_SAY_FINALIZE, message_data)
+	if(comsig_flags & COMSIG_SAY_FORBID_SPEAK)
+		return 1
+	if(comsig_flags & COMSIG_SAY_DISABLE_SPEAK_NOISE)
+		do_sound = FALSE
+	message = message_data[SPEECH_MESSAGE]
+	speaking = message_data[SPEECH_SPEAKINGLANG]
+	whispering = message_data[SPEECH_WHISPERING]
+	message_mode = message_data[SPEECH_MSGMODE]
+	message_pieces = message_data[SPEECH_MSGPIECES]
+	message_range = message_data[SPEECH_RANGE]
+	verb = message_data[SPEECH_MSGVERB]
+
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
@@ -328,21 +365,27 @@ var/list/channel_to_radio_key = list()
 	//Atmosphere calculations (speaker's side only, for now)
 	var/turf/T = get_turf(src)
 	if(T)
-		//Air is too thin to carry sound at all, contact speech only
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = environment ? environment.return_pressure() : 0
-		if(pressure < SOUND_MINIMUM_PRESSURE)
-			message_range = 1
+		if(!(comsig_flags & COMSIG_SAY_IGNORE_AIR_PRESSURE))
+			//Air is too thin to carry sound at all, contact speech only
+			var/datum/gas_mixture/environment = T.return_air()
+			var/pressure = environment ? environment.return_pressure() : 0
+			if(pressure < SOUND_MINIMUM_PRESSURE)
+				message_range = 1
 
-		//Air is nearing minimum levels, make text italics as a hint, and muffle sound
-		if(pressure < ONE_ATMOSPHERE * 0.4)
-			italics = 1
-			sound_vol *= 0.5
+			//Air is nearing minimum levels, make text italics as a hint, and muffle sound
+			if(pressure < ONE_ATMOSPHERE * 0.4)
+				italics = 1
+				sound_vol *= 0.5
 
 		//Obtain the mobs and objects in the message range
-		var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
-		listening = results["mobs"]
-		listening_obj = results["objs"]
+		var/mobs_can_hear = !(comsig_flags & COMSIG_SAY_FORBID_MOBS_HEARING)
+		var/objs_can_hear = !(comsig_flags & COMSIG_SAY_FORBID_OBJS_HEARING)
+		if(mobs_can_hear || objs_can_hear) // We check before if we need to do the big heavy range check at all.
+			var/list/results = get_mobs_and_objs_in_view_fast(T, world.view, remote_ghosts = client ? TRUE : FALSE)
+			if(mobs_can_hear)
+				listening = results["mobs"]
+			if(objs_can_hear)
+				listening_obj = results["objs"]
 	else
 		return 1 //If we're in nullspace, then forget it.
 
@@ -375,7 +418,8 @@ var/list/channel_to_radio_key = list()
 
 			if(M && src) //If we still exist, when the spawn processes
 				// Ghosts don't hear whispers
-				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
+				var/is_whisper = whispering || (comsig_flags & COMSIG_SAY_HIDDEN_FROM_GHOSTS)
+				if(is_whisper && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
 				(!(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || (isbelly(M.loc) && src == M.loc:owner))  && !check_rights_for(M.client, R_HOLDER))))
 					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), 2)
 					return
@@ -389,7 +433,7 @@ var/list/channel_to_radio_key = list()
 							var/image/I1 = listening[M] || speech_bubble
 							images_to_clients[I1] |= M.client
 							M << I1
-				if(whispering && !isobserver(M)) //Don't even bother with these unless whispering
+				if(is_whisper && !isobserver(M)) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
 						if(M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2))
 							if(M.client && !runechat_enabled)
@@ -424,12 +468,12 @@ var/list/channel_to_radio_key = list()
 			blooploop(message, extrarange = -6, volume = 25, sound_preference = /datum/preference/toggle/whisper_sounds)
 			// playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/whisper_sounds)
 
-		log_talk(message, LOG_WHISPER)
+		log_talk(message, LOG_WHISPER, color="#aeaeae")
 	else
 		if(do_sound && message)
 			blooploop(message, volume = 75)
 			// playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/say_sounds)
-		log_talk(message, LOG_SAY)
+		log_talk(message, LOG_SAY, color="#c0c0c0")
 	return 1
 
 /*************************************************************************/
@@ -472,7 +516,7 @@ var/list/channel_to_radio_key = list()
 #undef BLOOPER_MAX_BLOOPERS
 #undef BLOOPER_MAX_TIME
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
+/mob/living/proc/say_signlang(message, verb="gestures", verb_understood="gestures", datum/language/language, type = 1)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
 	if(loc != T && !istype(loc, /obj/item/holder)) // Partially fixes sign language while being held.

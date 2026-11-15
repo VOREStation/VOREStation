@@ -22,7 +22,7 @@
 	holder.vis_enabled -= VIS_GHOSTS
 	holder.recalculate_vis()
 
-/datum/modifier/feysight/can_apply(var/mob/living/L)
+/datum/modifier/feysight/can_apply(mob/living/L)
 	if(L.stat)
 		to_chat(L, span_warning("You can't be unconscious or dead to experience tranquility."))
 		return FALSE

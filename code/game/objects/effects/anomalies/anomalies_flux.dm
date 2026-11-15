@@ -71,14 +71,14 @@
 			sparks.set_up(3, 1, src)
 			sparks.start()
 		if(16 to 33)
-			tesla_zap(src, 2, 1000, FALSE, FALSE)
+			tesla_zap(src, 2, 1000, FALSE, FALSE, current_jumps = 1) //Can't chain jumps.
 		if(34 to 65)
-			tesla_zap(src, 3, 1000, FALSE, FALSE)
+			tesla_zap(src, 3, 1000, FALSE, FALSE, current_jumps = 1)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 3, 1500, FALSE, FALSE), 3 SECONDS)
 		else
-			tesla_zap(src, 4, 1000, FALSE, TRUE)
+			tesla_zap(src, 4, 1000, FALSE, TRUE, current_jumps = 1)
 			addtimer(CALLBACK(src, PROC_REF(highSevPulse)), 3 SECONDS)
 
-/obj/effect/anomaly/flux/proc/highSevPulse()
-	tesla_zap(src, 4, 1250, FALSE, FALSE)
+/obj/effect/anomaly/flux/proc/highSevPulse(power, explosive, current_jumps)
+	tesla_zap(src, 4, 1250, FALSE, FALSE, current_jumps = 1)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(tesla_zap), src, 4, 1500, FALSE, FALSE), 3 SECONDS)

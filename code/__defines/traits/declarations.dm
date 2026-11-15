@@ -31,8 +31,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WET_FOR_LONGER "wet_for_longer"
 /// Mobs with this trait will be immune to slipping while also being slippery themselves when lying on the floor
 #define TRAIT_SLIPPERY_WHEN_WET "slippery_when_wet"
+/// Stops the mob from slipping on ice, lube and lesser.
+#define TRAIT_NO_SLIP_GREATER "noslip_greater" // Replaces TRAIT_NO_SLIP_ICE "noslip_ice" from TG. This comment is mostly here for searching
 /// Stops the mob from slipping on water, or banana peels, or pretty much anything that doesn't have [GALOSHES_DONT_HELP] set
 #define TRAIT_NO_SLIP_WATER "noslip_water"
+/// Stops the mob from slipping entirely.
+#define TRAIT_NO_SLIP_ALL "noslip_all"
 /// Owner will ignore any fire protection when calculating fire damage
 #define TRAIT_IGNORE_FIRE_PROTECTION "ignore_fire_protection"
 /// Owner will slam down heavily into the ground upon falling from a height!
@@ -57,5 +61,51 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ELECTROVORE_OBLIGATE "electrovore_obligate"
 // adds wet stacks when licking someone
 #define TRAIT_SLOBBER "slobber"
+/// Trait from being under the floor in some manner
+#define TRAIT_UNDERFLOOR "underfloor"
+#define TRAIT_RESISTHEAT "resist_heat"
+/// For when you want to be able to touch hot things, but still want fire to be an issue.
+#define TRAIT_RESISTHEATHANDS "resist_heat_handsonly"
 // Owner will be considered a tiny mob for some interactions, such as airlocks not opening unless they have a client, or being vacuumed up by the vacpack
 #define TRAIT_AMBIENT_PEST_MOB "ambient_pest_mob"
+///Trait given by /datum/component/germ_sensitive
+#define TRAIT_GERM_SENSITIVE "germ_sensitive"
+#define TRAIT_STRONG_STOMACH "strong_stomach"
+/// Marks that this object is irradiated
+#define TRAIT_IRRADIATED "irradiated"
+/// Whether or not this item will allow the radiation SS to go through standard
+/// radiation processing as if this wasn't already irradiated.
+/// Basically, without this, COMSIG_IN_RANGE_OF_IRRADIATION won't fire once the object is irradiated.
+#define TRAIT_BYPASS_EARLY_IRRADIATED_CHECK "radiation_bypass_early_irradiated_check"
+/// Immune to being irradiated
+#define TRAIT_RADIMMUNE "rad_immunity"
+/// This clothing protects the user from radiation.
+/// This should not be used on clothing_traits, but should be applied to the clothing itself.
+#define TRAIT_RADIATION_PROTECTED_CLOTHING "radiation_protected_clothing"
+/// Trait applied by MODsuits.
+#define MOD_TRAIT "mod"
+/// The mob has the stasis effect.
+/// Does nothing on its own, applied via status effect.
+#define TRAIT_STASIS "in_stasis"
+/// Harmful radiation effects, the toxin damage and the burns, will not occur while this trait is active
+#define TRAIT_HALT_RADIATION_EFFECTS "halt_radiation_effects"
+/// Trait applied to mobs when on Critical condition
+#define TRAIT_CRITICAL_CONDITION "critical_condition"
+/// Trait applied for when a mob unconditionaly has no gravity.
+#define TRAIT_NO_GRAVITY "no_gravity"
+#define TRAIT_SCAVENGER "scavenger"
+#define TRAIT_SCAVENGER_EXPERT "scavenger_expert"
+
+/**
+ *
+ * This trait is used in some interactions very high in the interaction chain to allow
+ * certain atoms to be skipped by said interactions if the user is in combat mode.
+ *
+ * Its primarily use case is for stuff like storage and tables, to allow things like emags to be bagged
+ * (because in some contexts you might want to be emagging a bag, and in others you might want to be storing it.)
+ *
+ * This is only checked by certain items explicitly so you can't just add the trait and expect it to work.
+ * (This may be changed later but I chose to do it this way to avoid messing up interactions which require combat mode)
+ * While /tg/ calls it combat mode, we just specifiy it as having your a_intent set to I_HURT
+ */
+#define TRAIT_COMBAT_MODE_SKIP_INTERACTION "combat_mode_skip_interaction"

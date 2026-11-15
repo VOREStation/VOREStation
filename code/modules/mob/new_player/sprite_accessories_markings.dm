@@ -937,6 +937,12 @@ includes scars and tattoos
 	icon_state = "aug_headcase"
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/aug/skullmask
+	name = "Augment (Skull Mask, Head)"
+	icon_state = "aug_skullmask"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/aug/headcase_light
 	name = "Augment (Headcase Light, Head)"
 	icon_state = "aug_headcaselight"
@@ -2846,6 +2852,18 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/secondary_eyes_far
+	name = "Secondary Eyes (Far)"
+	icon_state = "secondary_eyes_far"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/secondary_eyes_close
+	name = "Secondary Eyes (Close)"
+	icon_state = "secondary_eyes_close"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/gatorsnout
 	name = "Gator Snout"
 	icon_state = "gator_snout"
@@ -2855,12 +2873,6 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/sharpsnout
 	name = "Sharp Snout"
 	icon_state = "sharpsnout"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
-/datum/sprite_accessory/marking/sharpsnoutlower
-	name = "Sharp Snout(lower)"
-	icon_state = "lowersharpsnout"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
@@ -2876,6 +2888,66 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/longerthinsnout
+	name = "Longer, Thin Snout"
+	icon_state = "longerthinsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longthinsnout
+	name = "Long, Thin Snout"
+	icon_state = "longthinsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/thinsnout
+	name = "Thin Snout"
+	icon_state = "thinsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/snoutteeth
+	name = "Snout Teeth"
+	icon_state = "snoutteeth"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longsnoutteeth
+	name = "Long Snout Teeth"
+	icon_state = "longsnoutteeth"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longersnoutteeth
+	name = "Longer Snout Teeth"
+	icon_state = "longersnoutteeth"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longerthinsnoutlower
+	name = "Longer, Thin Snout(lower)"
+	icon_state = "lowerlongerthinsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longthinsnoutlower
+	name = "Long, Thin Snout(lower)"
+	icon_state = "lowerlongthinsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/thinsnoutlower
+	name = "Thin Snout(lower)"
+	icon_state = "lowerthinsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/sharpsnoutlower
+	name = "Sharp Snout(lower)"
+	icon_state = "lowersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/longsnoutlower
 	name = "Long, Sharp Snout(lower)"
 	icon_state = "lowerlongsharpsnout"
@@ -2888,6 +2960,7 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
+
 /datum/sprite_accessory/marking/snouttop
 	name = "Top of Snout"
 	icon_state = "topofsnout"
@@ -2897,6 +2970,12 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/nosering
 	name = "Snout Ring (Use with Sharp Snout)"
 	icon_state = "nosering"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/snouthorn
+	name = "Snout Horn (Use with Long, Thin Snout)"
+	icon_state = "thinsnouthorn"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
@@ -3052,4 +3131,17 @@ includes scars and tattoos
 	name = "Catslug Belly Mark, Door"
 	icon_state = "scug_door"
 	body_parts = list(BP_GROIN)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/moreeyes
+	name = "More Eyes"
+	icon_state = "moreeyes"
+	body_parts = list(BP_HEAD)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/marking/teshari_accents
+	name = "Teshari - Raptor Accents"
+	icon_state = "tesh-accents"
+	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG,BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
 	color_blend_mode = ICON_MULTIPLY

@@ -19,7 +19,7 @@
 /*
  * Allow thrown items into smartfridges
  */
-/obj/machinery/smartfridge/hitby(var/atom/movable/source, datum/thrownthing/throwingdatum)
+/obj/machinery/smartfridge/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/mob/thrower = throwingdatum?.get_thrower()
 	if(accept_check(source) && thrower)
@@ -45,8 +45,9 @@
 	desc = "A refrigerated storage unit for medicine and chemical storage. Now sporting a fancy system of pulleys to lift bottles up and down."
 	expert_job = JOB_CHEMIST
 	var/obj/machinery/smartfridge/chemistry/chemvator/attached
+	circuit = /obj/item/circuitboard/smartfridge/chemvator
 
-/obj/machinery/smartfridge/chemistry/chemvator/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/chemistry/chemvator/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
@@ -57,6 +58,7 @@
 
 /obj/machinery/smartfridge/chemistry/chemvator/down
 	name = "\improper Smart Chemavator - Lower"
+	circuit = /obj/item/circuitboard/smartfridge/chemvator/down
 
 /obj/machinery/smartfridge/chemistry/chemvator/down/Initialize(mapload)
 	. = ..()

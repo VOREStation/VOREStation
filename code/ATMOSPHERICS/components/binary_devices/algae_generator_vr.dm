@@ -1,5 +1,3 @@
-#define MAT_ALGAE "algae"
-
 /obj/machinery/atmospherics/binary/algae_farm
 	name = "algae oxygen generator"
 	desc = "An oxygen generator using algae to convert carbon dioxide to oxygen."
@@ -267,7 +265,7 @@
 
 
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
-/obj/machinery/atmospherics/binary/algae_farm/proc/try_load_materials(var/mob/user, var/obj/item/stack/material/S)
+/obj/machinery/atmospherics/binary/algae_farm/proc/try_load_materials(mob/user, obj/item/stack/material/S)
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in stored_material))
@@ -294,6 +292,7 @@
 	hardness = 10
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
+	supply_conversion_value = 0.25
 
 /obj/item/stack/material/algae
 	name = "algae sheet"
@@ -303,5 +302,3 @@
 
 /obj/item/stack/material/algae/ten
 	amount = 10
-
-#undef MAT_ALGAE

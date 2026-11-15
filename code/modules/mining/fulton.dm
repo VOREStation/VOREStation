@@ -110,11 +110,17 @@
 				var/mob/living/carbon/human/L = A
 				L.AdjustStunned(20)
 				L.drowsyness = 0
+				L.emote("scream")
 			sleep(30)
 			var/list/flooring_near_beacon = list()
+			var/had_option = FALSE
 			for(var/turf/simulated/floor/floor in orange(1, beacon))
+				had_option = TRUE
 				flooring_near_beacon += floor
-			holder_obj.forceMove(pick(flooring_near_beacon))
+			if(had_option)
+				holder_obj.forceMove(pick(flooring_near_beacon))
+			else
+				holder_obj.forceMove(beacon.loc)
 			animate(holder_obj, pixel_z = 10, time = 50)
 			sleep(50)
 			animate(holder_obj, pixel_z = 15, time = 10)

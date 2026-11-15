@@ -8,6 +8,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
+	flags = WALL_ITEM
 	var/open = 0
 	var/hitstaken = 0
 	var/locked = 1
@@ -20,7 +21,7 @@
 		fireaxe = new /obj/item/material/twohanded/fireaxe()
 	update_icon()
 
-/obj/structure/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+/obj/structure/fireaxecabinet/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
 
 	// This could stand to be put further in, made better, etc. but fuck you. Fuck whoever

@@ -150,7 +150,7 @@
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
-/obj/machinery/clawmachine/proc/insert_cash(var/obj/item/spacecash/cashmoney, mob/user)
+/obj/machinery/clawmachine/proc/insert_cash(obj/item/spacecash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)

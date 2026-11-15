@@ -24,12 +24,13 @@
 	qdel(radio)
 	camera = null
 	radio = null
+	showing = null
 	. = ..()
 
 /obj/item/tvcamera/examine()
 	. = ..()
-	. += "Video feed is [camera.status ? "on" : "off"]"
-	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
+	. += span_notice("Video feed is [camera.status ? "on" : "off"]")
+	. += span_notice("Audio feed is [radio.broadcasting ? "on" : "off"]")
 
 /obj/item/tvcamera/Initialize(mapload)
 	. = ..()
@@ -161,7 +162,7 @@
 
 //Assembly by roboticist
 
-/obj/item/robot_parts/head/attackby(var/obj/item/assembly/S, mob/user as mob)
+/obj/item/robot_parts/head/attackby(obj/item/assembly/S, mob/user as mob)
 	if(!istype(S, /obj/item/assembly/infra))
 		..()
 		return

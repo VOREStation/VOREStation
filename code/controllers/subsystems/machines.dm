@@ -228,7 +228,7 @@ SUBSYSTEM_DEF(machines)
 		wake_vent(hibernating_vents[key])
 		i--
 
-/datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
+/datum/controller/subsystem/machines/proc/hibernate_vent(obj/machinery/atmospherics/unary/V)
 	if(!V)
 		return
 	var/datum/weakref/WR = WEAKREF(V)
@@ -237,7 +237,7 @@ SUBSYSTEM_DEF(machines)
 	hibernating_vents[WR.reference] = WR
 	STOP_MACHINE_PROCESSING(V)
 
-/datum/controller/subsystem/machines/proc/wake_vent(var/datum/weakref/WR)
+/datum/controller/subsystem/machines/proc/wake_vent(datum/weakref/WR)
 	if(!WR)
 		return
 	var/obj/machinery/atmospherics/unary/V = WR.resolve()

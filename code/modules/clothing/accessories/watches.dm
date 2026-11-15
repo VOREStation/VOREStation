@@ -35,7 +35,7 @@
 /obj/item/clothing/accessory/watch/survival
 	name = "survival watch"
 	desc = "An overengineered wristwatch that purports to be both space and water proof, and includes a compass, micro GPS beacon, and temperature and pressure sensors. The beacon is off by default, and can only transmit its location: it cannot scan for other signals."
-	description_fluff = "Hold ALT whilst left-clicking on the survival watch to toggle the status of its micro-beacon."
+	description_fluff = "Hold ALT whilst left-clicking on the survival watch to toggle the status of its micro-beacon. Ctrl-click in help intent to rename the micro-beacon."
 	icon_state = "wristwatch_survival"
 
 	var/obj/item/gps/gps = null
@@ -71,3 +71,14 @@
 	if(Adjacent(user))
 		gps.tracking = !gps.tracking
 		to_chat(user,span_notice("You turn the micro beacon [gps.tracking ? "on" : "off"]."))
+
+/obj/item/clothing/accessory/watch/survival/item_ctrl_click(mob/user)
+	. = ..()
+	if(!Adjacent(user) || (!user.a_intent == I_HELP))
+		return
+	var/new_name = tgui_input_text(user, "What would you like to name the GPS?", "Rename GPS", gps.gps_tag, 11)
+	if(!new_name || !Adjacent(user))
+		return FALSE
+	gps.gps_tag = uppertext(new_name)
+	gps.name = "global positioning system ([gps.gps_tag])"
+	to_chat(user,span_notice("You rename the GPS to [uppertext(new_name)]."))

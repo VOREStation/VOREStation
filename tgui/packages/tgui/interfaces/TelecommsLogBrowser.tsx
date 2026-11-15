@@ -131,7 +131,7 @@ const TelecommsServerSelection = (props: {
   const { act } = useBackend();
   const { network, servers } = props;
 
-  if (!servers || !servers.length) {
+  if (!servers?.length) {
     return (
       <Section title="Detected Telecommunications Servers">
         <Box color="bad">No servers detected.</Box>
@@ -186,7 +186,7 @@ const TelecommsSelectedServer = (props: {
       </LabeledList>
       <Section title="Stored Logs" mt="4px">
         <Stack wrap="wrap">
-          {!server.logs || !server.logs.length
+          {!server.logs?.length
             ? 'No Logs Detected.'
             : server.logs.map((log) => (
                 <Stack.Item m="2px" key={log.id} basis="49%" grow={log.id % 2}>

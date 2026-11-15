@@ -32,7 +32,7 @@
 
 	AddComponent(/datum/component/hose_connector/output/cow) // Moo?
 
-/mob/living/simple_mob/animal/passive/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/animal/passive/cow/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message(span_notice("[user] milks [src] using \the [O]."))

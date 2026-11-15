@@ -52,7 +52,7 @@
 /obj/structure/flora/proc/get_harvestable_desc()
 	return span_notice("\The [src] seems to have something hanging from it.")
 
-/obj/structure/flora/attackby(var/obj/item/W, var/mob/living/user)
+/obj/structure/flora/attackby(obj/item/W, mob/living/user)
 
 	if(can_harvest(W))
 		var/harvest_spawn = pickweight(harvest_loot)
@@ -72,13 +72,13 @@
 
 	..(W, user)
 
-/obj/structure/flora/proc/can_harvest(var/obj/item/I)
+/obj/structure/flora/proc/can_harvest(obj/item/I)
 	. = FALSE
 	if(harvest_tool && istype(I, harvest_tool) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
 		. = TRUE
 	return .
 
-/obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
+/obj/structure/flora/proc/spawn_harvest(path = null, mob/user = null)
 	if(!ispath(path))
 		return 0
 
@@ -129,7 +129,7 @@
 	min_harvests = 1
 	max_harvests = 3
 
-/obj/structure/flora/ausbushes/spawn_harvest(var/path = null, var/mob/user = null)
+/obj/structure/flora/ausbushes/spawn_harvest(path = null, mob/user = null)
 	. = ..()
 	if(. && prob(15))
 		var/static/list/possibleseeds = list(
@@ -152,7 +152,7 @@
 		var/choice = pickweight(possibleseeds)
 		new choice(get_turf(user))
 
-/obj/structure/flora/ausbushes/Initialize(mapload, var/bush_icon)
+/obj/structure/flora/ausbushes/Initialize(mapload, bush_icon)
 	. = ..()
 	if(bush_icon)
 		icon_state = bush_icon

@@ -45,7 +45,10 @@
 
 	examine(mob/user)
 		. = ..()
-		. += span_notice("The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.")
+		if(Adjacent(user))
+			. += span_notice("The generator has [P.air_contents.phoron] units of fuel left, set to produce [power_gen] per cycle.")
+			. += span_notice("It is currently [active ? "on" : "off"].")
+
 
 	handleInactive()
 		heat -= 2
@@ -157,7 +160,7 @@
 				usr << browse(null, "window=port_gen")
 				usr.machine = null
 
-/obj/machinery/power/port_gen/pacman2/emag_act(var/remaining_uses, var/mob/user)
+/obj/machinery/power/port_gen/pacman2/emag_act(remaining_uses, mob/user)
 	emagged = 1
-	emp_act(1)
+	emp_act(EMP_HEAVY)
 	return 1

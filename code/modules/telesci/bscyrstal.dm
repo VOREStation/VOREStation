@@ -6,7 +6,6 @@
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_BLUESPACE = 6, TECH_MATERIAL = 3)
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 
 /obj/item/bluespace_crystal/Initialize(mapload)
@@ -45,5 +44,4 @@
 /obj/item/bluespace_crystal/artificial
 	name = "artificial bluespace crystal"
 	desc = "An artificially made bluespace crystal, it looks delicate."
-	origin_tech = list(TECH_BLUESPACE = 3, TECH_PHORON = 4)
 	blink_range = 4 // Not as good as the organic stuff!

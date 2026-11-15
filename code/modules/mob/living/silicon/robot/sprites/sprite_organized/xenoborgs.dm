@@ -10,6 +10,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/mining/xenoborg/mining //gee gosh cargo, how come you get TWO sprites
 	name = "Xenoborg - Mining"
@@ -22,6 +23,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/medical/xenoborg
 	name = "Xenoborg"
@@ -34,6 +36,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/engineering/xenoborg
 	name = "Xenoborg"
@@ -46,6 +49,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/service/xenoborg
 	name = "Xenoborg"
@@ -58,6 +62,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/science/xenoborg
 	name = "Xenoborg"
@@ -70,6 +75,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/security/xenoborg
 	name = "Xenoborg"
@@ -82,6 +88,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/janitor/xenoborg
 	name = "Xenoborg"
@@ -94,6 +101,7 @@
 	pixel_x = -16
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	hat_offset = XENO_HAT_OFFSET
 
 //Misc
 /datum/robot_sprite/syndie/xenoborg
@@ -109,6 +117,7 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	module_type = list("Protector", "Mechanist", "Combat Medic")
 	sprite_hud_icon_state = "malf"
+	hat_offset = XENO_HAT_OFFSET
 
 /datum/robot_sprite/ninja/xenoborg
 	name = "Xenoborg"
@@ -123,3 +132,4 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	module_type = "Ninja"
 	sprite_hud_icon_state = "malf"
+	hat_offset = XENO_HAT_OFFSET

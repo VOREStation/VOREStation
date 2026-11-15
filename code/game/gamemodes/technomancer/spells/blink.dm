@@ -17,7 +17,7 @@
 	cast_methods = CAST_RANGED | CAST_MELEE | CAST_USE
 	aspect = ASPECT_TELE
 
-/proc/safe_blink(atom/movable/AM, var/range = 3)
+/proc/safe_blink(atom/movable/AM, range = 3)
 	if(AM.anchored || !AM.loc)
 		return
 	var/turf/starting = get_turf(AM)

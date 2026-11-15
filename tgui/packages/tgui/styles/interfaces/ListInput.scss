@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use '../colors.scss';
-@use '../base.scss';
+@use '~tgui-core/styles/functions.scss' as fn;
 
 .ListInput__Section .Section__title {
   flex-shrink: 0;
@@ -23,7 +22,7 @@
 .ListInput__LoaderProgress {
   position: absolute;
   height: 100%;
-  background-color: colors.bg(var(--color-primary));
+  background-color: fn.bg(var(--color-primary));
   transition-property: background-color, width;
   transition-duration: var(--transition-time-slow);
   transition-timing-function: ease-out;

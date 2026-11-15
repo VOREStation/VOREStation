@@ -22,7 +22,6 @@
 /datum/event/rogue_drone/announce()
 	var/msg
 	var/rng = rand(1,5)
-	//VOREStation Edit Start
 	switch(rng)
 		if(1)
 			msg = "A combat drone wing operating in close orbit above Virgo 3b has failed to return from a anti-piracy sweep.  If any are sighted, \
@@ -36,8 +35,7 @@
 			msg = "A passing derelict ship's drone defense systems have just activated. If any are sighted in the area, use caution."
 		if(5)
 			msg = "We're detecting a swarm of small objects approaching your [using_map.facility_type].  Most likely a bunch of drones.  Please exercise caution if you see any."
-	//VOREStation Edit End
-	command_announcement.Announce(msg, "Rogue drone alert")
+	GLOB.command_announcement.Announce(msg, "Rogue drone alert", new_sound = ANNOUNCER_MSG_DRONEPOD)
 
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0
@@ -52,6 +50,6 @@
 		num_recovered++
 
 	if(num_recovered > drones_list.len * 0.75)
-		command_announcement.Announce("The drones that were malfunctioning have been recovered safely.", "Rogue drone alert")
+		GLOB.command_announcement.Announce("The drones that were malfunctioning have been recovered safely.", "Rogue drone alert")
 	else
-		command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")
+		GLOB.command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")

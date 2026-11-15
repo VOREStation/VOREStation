@@ -9,11 +9,10 @@
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.01))
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
 	var/recent_fail = 0
 
@@ -46,4 +45,3 @@
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)

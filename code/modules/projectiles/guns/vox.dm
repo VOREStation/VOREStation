@@ -64,9 +64,9 @@
 	accuracy = 30
 
 	firemodes = list(
-		list(mode_name="stunning", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(30), dispersion=null, projectile_type=/obj/item/projectile/beam/stun/darkmatter, charge_cost = 300),
-		list(mode_name="focused", burst=1, fire_delay=null, move_delay=null, burst_accuracy=list(30), dispersion=null, projectile_type=/obj/item/projectile/beam/darkmatter, charge_cost = 400),
-		list(mode_name="scatter burst", burst=8, fire_delay=null, move_delay=4, burst_accuracy=list(0, 0, 0, 0, 0, 0, 0, 0), dispersion=list(3, 3, 3, 3, 3, 3, 3, 3, 3), projectile_type=/obj/item/projectile/energy/darkmatter, charge_cost = 300),
+		list(mode_name="stunning", burst=1, fire_delay=null, burst_accuracy=list(30), dispersion=null, projectile_type=/obj/item/projectile/beam/stun/darkmatter, charge_cost = 300),
+		list(mode_name="focused", burst=1, fire_delay=null, burst_accuracy=list(30), dispersion=null, projectile_type=/obj/item/projectile/beam/darkmatter, charge_cost = 400),
+		list(mode_name="scatter burst", burst=8, fire_delay=null, burst_accuracy=list(0, 0, 0, 0, 0, 0, 0, 0), dispersion=list(3, 3, 3, 3, 3, 3, 3, 3, 3), projectile_type=/obj/item/projectile/energy/darkmatter, charge_cost = 300),
 		)
 
 /obj/item/projectile/beam/stun/darkmatter
@@ -148,7 +148,7 @@
 /obj/item/projectile/sonic/strong
 	damage = 45
 
-/obj/item/projectile/sonic/strong/on_hit(var/atom/movable/target, var/blocked = 0)
+/obj/item/projectile/sonic/strong/on_hit(atom/movable/target, blocked = 0)
 	if(ismob(target))
 		var/throwdir = get_dir(firer,target)
 		target.throw_at(get_edge_target_turf(target, throwdir), rand(1,6), 10)

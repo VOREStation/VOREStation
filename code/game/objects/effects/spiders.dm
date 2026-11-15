@@ -20,7 +20,7 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/spider/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(LAZYLEN(W.attack_verb))
@@ -52,7 +52,7 @@
 	visible_message(span_warning("\The [user] stomps \the [src] dead!"))
 	die()
 
-/obj/effect/spider/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/spider/bullet_act(obj/item/projectile/Proj)
 	..()
 	health -= Proj.get_structure_damage()
 	healthcheck()
@@ -104,7 +104,7 @@
 	START_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/spider/eggcluster/Initialize(mapload, var/atom/parent)
+/obj/effect/spider/eggcluster/Initialize(mapload, atom/parent)
 	. = ..()
 	get_light_and_color(parent)
 
@@ -169,7 +169,7 @@
 			/mob/living/simple_mob/animal/giant_spider/webslinger, /mob/living/simple_mob/animal/giant_spider/phorogenic, /mob/living/simple_mob/animal/giant_spider/carrier,
 			/mob/living/simple_mob/animal/giant_spider/ion)
 
-/obj/effect/spider/spiderling/Initialize(mapload, var/atom/parent)
+/obj/effect/spider/spiderling/Initialize(mapload, atom/parent)
 	. = ..()
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
@@ -297,7 +297,7 @@
 	desc = "There's a special aura about this one."
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider/nurse/queen)
 
-/obj/effect/spider/spiderling/princess/Initialize(mapload, var/atom/parent)
+/obj/effect/spider/spiderling/princess/Initialize(mapload, atom/parent)
 	. = ..()
 	amount_grown = 50
 

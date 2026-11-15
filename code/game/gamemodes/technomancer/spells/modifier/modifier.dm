@@ -24,7 +24,7 @@
 	return FALSE
 
 
-/obj/item/spell/modifier/proc/on_add_modifier(var/mob/living/L)
+/obj/item/spell/modifier/proc/on_add_modifier(mob/living/L)
 	var/duration = modifier_duration
 	if(duration)
 		duration = round(duration * calculate_spell_power(1.0), 1)

@@ -39,14 +39,13 @@
 	icon_state = "detective"
 	item_state = "gun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	w_class = ITEMSIZE_NORMAL
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
 	force = 5
 	preserve_item = 1
-	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 	drop_sound = 'sound/items/drop/gun.ogg'
@@ -56,7 +55,6 @@
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
-	var/move_delay = 1
 	var/fire_sound = null // This is handled by projectile.dm's fire_sound var now, but you can override the projectile's fire_sound with this one if you want to.
 	var/fire_sound_text = "gunshot"
 	var/fire_anim = null
@@ -73,7 +71,6 @@
 	var/wielded_item_state
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
 	var/atom/movable/screen/auto_target/auto_target
-	var/shooting = 0
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
@@ -144,6 +141,10 @@
 		verbs -= /obj/item/gun/verb/give_dna
 		verbs -= /obj/item/gun/verb/allow_dna
 
+	if(sel_mode <= length(firemodes))
+		var/datum/firemode/new_mode = firemodes[sel_mode]
+		new_mode.apply_to(src)
+
 /obj/item/gun/update_twohanding()
 	if(one_handed_penalty)
 		var/mob/living/M = loc
@@ -173,7 +174,7 @@
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
-/obj/item/gun/proc/special_check(var/mob/user)
+/obj/item/gun/proc/special_check(mob/user)
 
 	if(!isliving(user))
 		return FALSE
@@ -271,19 +272,21 @@
 	Fire(A,user,params) //Otherwise, fire normally.
 */
 
-/obj/item/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.zone_sel.selecting == O_MOUTH && !mouthshoot)
+/obj/item/gun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
+	if (A == user && user.zone_sel.selecting == O_MOUTH)
 		handle_suicide(user)
+		return ITEM_INTERACT_SUCCESS
 	else if(user.a_intent == I_HURT) //point blank shooting
 		if(user && user.client && user.aiming && user.aiming.active && user.aiming.aiming_at != A && A != user)
 			PreFire(A,user) //They're using the new gun system, locate what they're aiming at.
-			return
+			return ITEM_INTERACT_SUCCESS
 		else
 			Fire(A, user, pointblank=1)
+			return ITEM_INTERACT_SUCCESS
 	else
 		return ..() //Pistolwhippin'
 
-/obj/item/gun/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/dnalockingchip))
 		if(dna_lock)
 			to_chat(user, span_notice("\The [src] already has a [attached_lock]."))
@@ -314,7 +317,7 @@
 			to_chat(user, span_warning("\The [src] is not accepting modifications at this time."))
 	..()
 
-/obj/item/gun/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/gun/emag_act(remaining_charges, mob/user)
 	if(dna_lock && attached_lock.controller_lock)
 		to_chat(user, span_notice("You short circuit the internal locking mechanisms of \the [src]!"))
 		attached_lock.controller_dna = null
@@ -374,14 +377,10 @@
 
 	var/shoot_time = (burst - 1)* burst_delay
 
-	//These should apparently be disabled to allow for the automatic system to function without causing near-permanant paralysis. Re-enabling them while we sort that out.
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
-
 	next_fire_time = world.time + shoot_time
 	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
-/obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
+/obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, ticker, recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
@@ -479,7 +478,7 @@
 
 // This is horrible. I tried to keep the old way it had because if I try to use the fancy procs above like handle_post_fire, it expects a user.
 // Which this doesn't have. It's ugly but whatever. This is used in literally one place (sawn off shotguns) and should honestly just be axed.
-/obj/item/gun/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
+/obj/item/gun/proc/handle_userless_gunfire(atom/target, ticker, recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
@@ -536,7 +535,7 @@
 	return null
 
 //used by aiming code
-/obj/item/gun/proc/can_hit(atom/target as mob, var/mob/living/user as mob)
+/obj/item/gun/proc/can_hit(atom/target as mob, mob/living/user as mob)
 	if(!special_check(user))
 		return 2
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
@@ -575,7 +574,7 @@
 	add_attack_logs(user, target, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
 
 //called after successfully firing
-/obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
+/obj/item/gun/proc/handle_post_fire(mob/user, atom/target, pointblank=0, reflex=0)
 	if(fire_anim)
 		flick(fire_anim, src)
 
@@ -607,6 +606,8 @@
 					to_chat(user, span_warning("You struggle to hold \the [src] steady!"))
 
 	if(recoil)
+		if(recoil > 5)
+			recoil = 5 //Prevents crashing user client.
 		shake_camera(user, recoil+1, recoil)
 	update_icon()
 
@@ -632,7 +633,7 @@
 	P.agony *= damage_mult
 	P.damage *= damage_mult
 
-/obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, var/burst, var/held_twohanded)
+/obj/item/gun/proc/process_accuracy(obj/projectile, mob/living/user, atom/target, burst, held_twohanded)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
@@ -674,7 +675,7 @@
 			P.accuracy -= 35
 
 //does the actual launching of the projectile
-/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, target_zone, params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
@@ -694,7 +695,7 @@
 
 	return launched
 
-/obj/item/gun/proc/play_fire_sound(var/mob/user, var/obj/item/projectile/P)
+/obj/item/gun/proc/play_fire_sound(mob/user, obj/item/projectile/P)
 	var/shot_sound = fire_sound
 
 	if(!shot_sound && istype(P) && P.fire_sound) // If the gun didn't have a fire_sound, but the projectile exists, and has a sound...
@@ -707,19 +708,14 @@
 	else
 		playsound(src, shot_sound, 50, 1)
 
-//Suicide handling.
-/obj/item/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
-
 /obj/item/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/M = user
 
-	mouthshoot = 1
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
-		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
@@ -727,11 +723,10 @@
 		play_fire_sound(M, in_chamber)
 		if(istype(in_chamber, /obj/item/projectile/beam/lasertag))
 			user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
-			mouthshoot = 0
 			return
 
 		in_chamber.on_hit(M)
-		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
+		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage && in_chamber.damage > 0)
 			log_and_message_admins("commited suicide using \a [src]", user)
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
 			user.death()
@@ -739,32 +734,29 @@
 			to_chat(user, span_notice("Ow..."))
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
-		mouthshoot = 0
 		return
 	else
 		handle_click_empty(user)
-		mouthshoot = 0
 		return
 
-/obj/item/gun/proc/toggle_scope(zoom_amount=2.0)
+/obj/item/gun/proc/toggle_scope(mob/user, zoom_amount=2.0)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	var/zoom_offset = round(world.view * zoom_amount)
 	var/view_size = round(world.view + zoom_amount)
 	var/scoped_accuracy_mod = zoom_offset
 
-	zoom(zoom_offset, view_size)
-	if(zoom)
+	toggle_zoom(user, zoom_offset, view_size)
+	if(zoom) // If zoom in was successful
 		accuracy = scoped_accuracy + scoped_accuracy_mod
 		if(recoil)
 			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
 
-//make sure accuracy and recoil are reset regardless of how the item is unzoomed.
-/obj/item/gun/zoom()
-	..()
-	if(!zoom)
-		accuracy = initial(accuracy)
-		recoil = initial(recoil)
+/obj/item/gun/unzoom()
+	. = ..()
+	//make sure accuracy and recoil are reset regardless of how the item is unzoomed.
+	accuracy = initial(accuracy)
+	recoil = initial(recoil)
 
 /obj/item/gun/examine(mob/user)
 	. = ..()
@@ -815,7 +807,7 @@
 
 	return ..()
 
-/obj/item/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
+/obj/item/gun/dropped(mob/user, equipping, slot) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti.
 	user.hud_used.remove_ammo_hud(user, src)
 
 	..()

@@ -1,14 +1,13 @@
 import { useBackend } from 'tgui/backend';
+import { modalOpen } from 'tgui/interfaces/common/ComplexModal';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
-
-import { modalOpen } from '../common/ComplexModal';
 import { doEdit } from '../GeneralRecords/functions';
 import type { Data } from './types';
 
 export const MedicalRecordsViewMedical = (props) => {
   const { act, data } = useBackend<Data>();
   const { medical } = data;
-  if (!medical || !medical.fields) {
+  if (!medical?.fields) {
     return (
       <Box color="bad">
         Medical records lost!

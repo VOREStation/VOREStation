@@ -161,7 +161,7 @@ mob
 			// Give it a name for the cache
 			var/iconName = "[ckey(src.name)]_flattened.dmi"
 			// Send the icon to src's local cache
-			src<<browse_rsc(get_flat_icon(src), iconName)
+			send_rsc(src, get_flat_icon(src), iconName)
 			// Display the icon in their browser
 			src<<browse("<html><body bgcolor='#000000'><p><img src='[iconName]'></p></body></html>")
 
@@ -176,7 +176,7 @@ mob
 			// Copy the file to the rsc manually
 			var/icon/I = fcopy_rsc(get_flat_icon(src))
 			// Send the icon to src's local cache
-			src<<browse_rsc(I, iconName)
+			send_rsc(src, I, iconName)
 			// Update the label to show it
 			winset(src,"imageLabel","image='[REF(I)]'");
 

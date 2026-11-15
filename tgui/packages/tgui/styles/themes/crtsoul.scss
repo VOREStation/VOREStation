@@ -32,8 +32,7 @@
     font-family: var(--font-family-mono);
     border-width: var(--border-thickness-small);
     border-style: outset;
-    border-color: hsl(120, 100%, 33.33%);
-    border-color: #00aa00;
+    border-color: hsl(120, 100%, 33%);
     outline: var(--border-thickness-tiny) solid rgb(0, 122, 0);
 
     &--color--default {

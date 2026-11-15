@@ -268,7 +268,7 @@
 
 	return ..(targets)
 
-/datum/ai_holder/simple_mob/melee/nurse_spider/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/melee/nurse_spider/can_attack(atom/movable/the_target, vision_required = TRUE)
 	. = ..()
 	if(!.) // Parent returned FALSE.
 		if (istype(the_target, /mob/living/simple_mob/animal/giant_spider))

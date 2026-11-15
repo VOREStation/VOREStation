@@ -15,7 +15,7 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/reagent_containers/dropper/examine(var/mob/user)
+/obj/item/reagent_containers/dropper/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		if(reagents && reagents.reagent_list.len)
@@ -23,7 +23,7 @@
 		else
 			. += span_notice("It is empty.")
 
-/obj/item/reagent_containers/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/dropper/afterattack(obj/target, mob/user, proximity)
 	if(!target.reagents || !proximity) return
 
 	if(reagents.total_volume)

@@ -15,16 +15,14 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_recipe/pipe("Upward Pipe",			/obj/machinery/atmospherics/pipe/zpipe/up),
 		new /datum/pipe_recipe/pipe("Downward Pipe",		/obj/machinery/atmospherics/pipe/zpipe/down),
 		new /datum/pipe_recipe/pipe("Universal Pipe Adaptor",/obj/machinery/atmospherics/pipe/simple/visible/universal),
+		new /datum/pipe_recipe/pipe("Pressure Tank",		/obj/machinery/atmospherics/pipe/tank/custom),
 	),
 	"Devices" = list(
 		new /datum/pipe_recipe/pipe("Connector",			/obj/machinery/atmospherics/portables_connector),
 		new /datum/pipe_recipe/pipe("Unary Vent",			/obj/machinery/atmospherics/unary/vent_pump),
-		new /datum/pipe_recipe/pipe("Aux Vent",				/obj/machinery/atmospherics/unary/vent_pump/aux),
 		new /datum/pipe_recipe/pipe("Passive Vent",			/obj/machinery/atmospherics/pipe/vent),
 		new /datum/pipe_recipe/pipe("Injector",				/obj/machinery/atmospherics/unary/outlet_injector),
 		new /datum/pipe_recipe/pipe("Gas Pump",				/obj/machinery/atmospherics/binary/pump),
-		new /datum/pipe_recipe/pipe("Fuel Pump",			/obj/machinery/atmospherics/binary/pump/fuel),
-		new /datum/pipe_recipe/pipe("Aux Pump",				/obj/machinery/atmospherics/binary/pump/aux),
 		new /datum/pipe_recipe/pipe("Pressure Regulator",	/obj/machinery/atmospherics/binary/passive_gate),
 		new /datum/pipe_recipe/pipe("High Power Gas Pump",	/obj/machinery/atmospherics/binary/pump/high_power),
 		new /datum/pipe_recipe/pipe("Volumetric Gas Pump",	/obj/machinery/atmospherics/binary/volume_pump),
@@ -129,7 +127,7 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	var/obj/item/pipe/construction_type 		// The type PATH to the type of pipe fitting object the recipe makes.
 	var/paintable = FALSE						// If TRUE, allow the RPD to paint this pipe.	// VOREStation Add
 
-/datum/pipe_recipe/pipe/New(var/label, var/obj/machinery/atmospherics/path)
+/datum/pipe_recipe/pipe/New(label, obj/machinery/atmospherics/path)
 	name = label
 	pipe_type = path
 	construction_type = initial(path.construction_type)
@@ -166,7 +164,7 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 /datum/pipe_recipe/disposal
 	var/subtype			// subtype is one of the DISPOSAL_SORT_ constants.
 
-/datum/pipe_recipe/disposal/New(var/label, var/ptype, var/state, dt=PIPE_DIRECTIONAL, var/sort=0)
+/datum/pipe_recipe/disposal/New(label, ptype, state, dt=PIPE_DIRECTIONAL, sort=0)
 	name = label
 	icon_state = state
 	pipe_type = ptype

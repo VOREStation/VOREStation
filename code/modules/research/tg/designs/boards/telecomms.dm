@@ -1,96 +1,87 @@
-
-/datum/design_techweb/board/comm_monitor
-	name = "telecommunications monitoring console circuit"
-	id = "comm_monitor"
-	// req_tech = list(TECH_DATA = 3)
-	build_path = /obj/item/circuitboard/comm_monitor
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/comm_server
-	name = "telecommunications server monitoring console circuit"
-	id = "comm_server"
-	// req_tech = list(TECH_DATA = 3)
-	build_path = /obj/item/circuitboard/comm_server
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/board/message_monitor
-	name = "messaging monitor console circuit"
-	id = "message_monitor"
-	// req_tech = list(TECH_DATA = 5)
-	build_path = /obj/item/circuitboard/message_monitor
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/board/tcom
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/tcom/comm_monitor
+	SET_CIRCUIT_DESIGN_NAMEDESC("telecommunications monitoring console")
+	id = "comm_monitor"
+	build_path = /obj/item/circuitboard/comm_monitor
+
+/datum/design_techweb/board/tcom/comm_server
+	SET_CIRCUIT_DESIGN_NAMEDESC("telecommunications server monitoring console")
+	id = "comm_server"
+	build_path = /obj/item/circuitboard/comm_server
+
+/datum/design_techweb/board/tcom/message_monitor
+	SET_CIRCUIT_DESIGN_NAMEDESC("messaging monitor console")
+	id = "message_monitor"
+	build_path = /obj/item/circuitboard/message_monitor
+
 /datum/design_techweb/board/tcom/server
-	name = "server mainframe circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("server mainframe")
 	id = "tcom-server"
 	build_path = /obj/item/circuitboard/telecomms/server
 
 /datum/design_techweb/board/tcom/processor
-	name = "processor unit circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("processor unit")
 	id = "tcom-processor"
 	build_path = /obj/item/circuitboard/telecomms/processor
 
 /datum/design_techweb/board/tcom/bus
-	name = "bus mainframe circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("bus mainframe")
 	id = "tcom-bus"
 	build_path = /obj/item/circuitboard/telecomms/bus
 
 /datum/design_techweb/board/tcom/hub
-	name = "hub mainframe circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("hub mainframe")
 	id = "tcom-hub"
 	build_path = /obj/item/circuitboard/telecomms/hub
 
 /datum/design_techweb/board/tcom/relay
-	name = "relay mainframe circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("relay mainframe")
 	id = "tcom-relay"
-	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 3)
 	build_path = /obj/item/circuitboard/telecomms/relay
 
 /datum/design_techweb/board/tcom/broadcaster
-	name = "subspace broadcaster circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("subspace broadcaster")
 	id = "tcom-broadcaster"
-	// req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_BLUESPACE = 2)
 	build_path = /obj/item/circuitboard/telecomms/broadcaster
 
 /datum/design_techweb/board/tcom/receiver
-	name = "subspace receiver circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("subspace receiver")
 	id = "tcom-receiver"
-	// req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
 	build_path = /obj/item/circuitboard/telecomms/receiver
 
 /datum/design_techweb/board/tcom/exonet_node
-	name = "exonet node circuit"
+	SET_CIRCUIT_DESIGN_NAMEDESC("exonet node")
 	id = "tcom-exonet_node"
-	// req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
 	build_path = /obj/item/circuitboard/telecomms/exonet_node
 
-/datum/design_techweb/board/ntnet_relay
-	name = "NTNet Quantum Relay circuit"
+/datum/design_techweb/board/tcom/ntnet_relay
+	SET_CIRCUIT_DESIGN_NAMEDESC("NTNet Quantum Relay")
 	id = "ntnet_relay"
-	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/ntnet_relay
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/tcom/pda_multicaster
+	SET_CIRCUIT_DESIGN_NAMEDESC("PDA multicaster")
+	id = "pda_multicaster"
+	build_path = /obj/item/circuitboard/telecomms/pda_multicaster
+
+/datum/design_techweb/board/tcom/comm_traffic
+	SET_CIRCUIT_DESIGN_NAMEDESC("telecommunications traffic control console")
+	id = "comm_traffic"
+	build_path =  /obj/item/circuitboard/comm_traffic
+
+/datum/design_techweb/board/tcom/message_server
+	SET_CIRCUIT_DESIGN_NAMEDESC("message server")
+	id = "message_server"
+	build_path =  /obj/item/circuitboard/message_server
 
 // Telecomm parts
 /datum/design_techweb/subspace
+	desc = "Complex components used to construct and repair telecomms machinery."
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_TELECOMMS
@@ -106,41 +97,41 @@
 /datum/design_techweb/subspace/subspace_ansible
 	id = "s-ansible"
 	// req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MAT_STEEL = 80, MAT_SILVER = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.04), MAT_SILVER = MATERIAL_COST(0.01))
 	build_path = /obj/item/stock_parts/subspace/ansible
 
 /datum/design_techweb/subspace/hyperwave_filter
 	id = "s-filter"
 	// req_tech = list(TECH_DATA = 3, TECH_MAGNET = 3)
-	materials = list(MAT_STEEL = 40, MAT_SILVER = 10)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.02), MAT_SILVER = MATERIAL_COST(0.005))
 	build_path = /obj/item/stock_parts/subspace/sub_filter
 
 /datum/design_techweb/subspace/subspace_amplifier
 	id = "s-amplifier"
 	// req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MAT_STEEL = 10, MAT_GOLD = 30, MAT_URANIUM = 15)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.005), MAT_GOLD = MATERIAL_COST(0.015), MAT_URANIUM = MATERIAL_COST(0.0075))
 	build_path = /obj/item/stock_parts/subspace/amplifier
 
 /datum/design_techweb/subspace/subspace_treatment
 	id = "s-treatment"
 	// req_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MAT_STEEL = 10, MAT_SILVER = 20)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.005), MAT_SILVER = MATERIAL_COST(0.01))
 	build_path = /obj/item/stock_parts/subspace/treatment
 
 /datum/design_techweb/subspace/subspace_analyzer
 	id = "s-analyzer"
 	// req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MAT_STEEL = 10, MAT_GOLD = 15)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.005), MAT_GOLD = MATERIAL_COST(0.0075))
 	build_path = /obj/item/stock_parts/subspace/analyzer
 
 /datum/design_techweb/subspace/subspace_crystal
 	id = "s-crystal"
 	// req_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	materials = list(MAT_GLASS = 1000, MAT_SILVER = 20, MAT_GOLD = 20)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.01), MAT_GOLD = MATERIAL_COST(0.01))
 	build_path = /obj/item/stock_parts/subspace/crystal
 
 /datum/design_techweb/subspace/subspace_transmitter
 	id = "s-transmitter"
 	// req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_BLUESPACE = 3)
-	materials = list(MAT_GLASS = 100, MAT_SILVER = 10, MAT_URANIUM = 15)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.05), MAT_SILVER = MATERIAL_COST(0.005), MAT_URANIUM = MATERIAL_COST(0.0075))
 	build_path = /obj/item/stock_parts/subspace/transmitter

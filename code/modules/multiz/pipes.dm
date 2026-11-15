@@ -51,7 +51,7 @@
 		if(SOUTHWEST)
 			initialize_directions = SOUTH
 
-/obj/machinery/atmospherics/pipe/zpipe/hide(var/i)
+/obj/machinery/atmospherics/pipe/zpipe/hide(i)
 	if(istype(loc, /turf/simulated))
 		invisibility = i ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
@@ -136,7 +136,7 @@
 			if (!node1_dir)
 				node1_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node1_dir)))
 		if(can_be_node(target, 1))
 			node1 = target
 			break
@@ -173,7 +173,7 @@
 			if (!node1_dir)
 				node1_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node1_dir)))
 		if(can_be_node(target, 1))
 			node1 = target
 			break

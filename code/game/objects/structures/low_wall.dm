@@ -27,7 +27,7 @@
 	var/datum/material/material
 	var/grille_type
 
-/obj/structure/low_wall/Initialize(mapload, var/materialtype)
+/obj/structure/low_wall/Initialize(mapload, materialtype)
 	. = ..()
 	icon_state = "blank"
 	var/turf/T = loc
@@ -72,7 +72,7 @@
 		else
 			to_chat(user, span_danger("It's nearly falling to pieces."))
 
-/obj/structure/low_wall/attackby(var/obj/item/W, var/mob/user, var/hit_modifier, var/click_parameters)
+/obj/structure/low_wall/attackby(obj/item/W, mob/user, hit_modifier, click_parameters)
 	src.add_fingerprint(user)
 
 	// Making grilles (only works on Bay ones currently)
@@ -251,7 +251,7 @@
 			I.color = main_color
 			add_overlay(I)
 
-/obj/structure/low_wall/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/low_wall/bullet_act(obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	var/damage = min(proj_damage, 100)
 	take_damage(damage)
@@ -276,7 +276,7 @@
 	if(health <= 0)
 		dismantle()
 
-/obj/structure/low_wall/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/low_wall/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	user.do_attack_animation(src)
 	take_damage(damage)

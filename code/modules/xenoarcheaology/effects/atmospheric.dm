@@ -17,7 +17,7 @@
 		//effect = pick(EFFECT_TOUCH, EFFECT_AURA) //Changed to just AURA for now.
 		gas_type = pick(GAS_CO2, GAS_N2, GAS_N2O, GAS_O2, GAS_PHORON, GAS_VOLATILE_FUEL) //the only way you will EVER see volatile fuel.
 
-/datum/artifact_effect/gas/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/gas/DoEffectTouch(mob/user)
 	var/atom/holder = get_master_holder()
 	if(holder) //We should always have a holder.
 		var/turf/holder_loc

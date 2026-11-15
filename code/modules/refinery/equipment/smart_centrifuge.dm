@@ -15,7 +15,7 @@
 	flags |= OPENCONTAINER
 	default_apply_parts()
 
-/obj/machinery/smart_centrifuge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/smart_centrifuge/attackby(obj/item/O as obj, mob/user as mob)
 	if(working)
 		to_chat(user, "<span class='notice'>\The [src] is still spinning.</span>")
 		return
@@ -52,7 +52,7 @@
 	set src in view(1)
 	spin_reagents(usr,FALSE,TRUE)
 
-/obj/machinery/smart_centrifuge/proc/spin_reagents(mob/user, var/force_bottle, var/force_canister)
+/obj/machinery/smart_centrifuge/proc/spin_reagents(mob/user, force_bottle, force_canister)
 	if(working)
 		to_chat(user, "<span class='notice'>\The [src] is still spinning.</span>")
 		return
@@ -67,7 +67,7 @@
 		flags ^= OPENCONTAINER
 	addtimer(CALLBACK(src, PROC_REF(internal_reagent_seperate),force_canister,force_bottle), 10 SECONDS, TIMER_DELETE_ME)
 
-/obj/machinery/smart_centrifuge/proc/internal_reagent_seperate(var/force_canister,var/force_bottle)
+/obj/machinery/smart_centrifuge/proc/internal_reagent_seperate(force_canister,force_bottle)
 	if(reagents.reagent_list.len <= 0)
 		visible_message("\The [src] finishes processing.")
 		playsound(src, 'sound/machines/biogenerator_end.ogg', 50, 1)
@@ -100,7 +100,7 @@
 		break
 	addtimer(CALLBACK(src, PROC_REF(internal_reagent_seperate),force_canister,force_bottle), 1 SECOND, TIMER_DELETE_ME)
 
-/obj/machinery/smart_centrifuge/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/machinery/smart_centrifuge/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
 		return
 	if(istype(C,/obj/vehicle/train/trolley_tank))

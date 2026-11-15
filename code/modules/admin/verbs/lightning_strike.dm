@@ -62,18 +62,22 @@ ADMIN_VERB(admin_lightning_strike, R_FUN, "Lightning Strike", "Causes lightning 
 			if(M.check_sound_preference(/datum/preference/toggle/weather_sounds))
 				M.playsound_local(get_turf(M), soundin = sound, vol = 70, vary = FALSE, is_global = TRUE)
 
+	// Prevent lightning on central command level from being simulated
+	if(T.z in using_map.admin_levels)
+		return
+
 	if(cosmetic) // Everything beyond here involves potentially damaging things. If we don't want to do that, stop now.
 		return
 
 	if(ground) // All is well.
-		ground.tesla_act(LIGHTNING_POWER, FALSE)
+		ground.tesla_act(LIGHTNING_POWER, FALSE, current_jumps = 1)
 		return
 
 	else if(coil) // Otherwise lets bounce off the tesla coil.
-		coil.tesla_act(LIGHTNING_POWER, TRUE)
+		coil.tesla_act(LIGHTNING_POWER, TRUE, current_jumps = 1)
 
 	else // Striking the turf directly.
-		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE)
+		tesla_zap(T, zap_range = LIGHTNING_ZAP_RANGE, power = LIGHTNING_POWER, explosive = FALSE, stun_mobs = TRUE, current_jumps = MAXIMUM_TESLA_JUMPS - 1) //This ensures it can only jump to the closest thing and that's it. No more jumps after that.
 
 	// Some extra effects.
 	// Some apply to those within zap range, others if they were a bit farther away.

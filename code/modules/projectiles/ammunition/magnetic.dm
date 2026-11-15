@@ -4,8 +4,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "caseless-mag"
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 1800)
-	origin_tech = list(TECH_COMBAT = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.9))
 	var/remaining = 9
 	preserve_item = 1
 

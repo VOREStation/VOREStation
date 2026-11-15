@@ -1,8 +1,5 @@
 GLOBAL_LIST_EMPTY(limb_icon_cache)
 
-/obj/item/organ/external/set_dir()
-	return
-
 /obj/item/organ/external/proc/compile_icon()
 	cut_overlays()
 	// This is a kludge, only one icon has more than one generation of children though.
@@ -12,7 +9,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 				add_overlay(child.mob_icon)
 		add_overlay(organ.mob_icon)
 
-/obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
+/obj/item/organ/external/proc/sync_colour_to_human(mob/living/carbon/human/human)
 	s_tone = null
 	s_col = null
 	h_col = null
@@ -44,7 +41,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 		s_col = data.skin_color.Copy()
 	h_col = data.hair_color.Copy()
 
-/obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
+/obj/item/organ/external/head/sync_colour_to_human(mob/living/carbon/human/human)
 	..()
 
 	if(owner)
@@ -79,7 +76,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 
 	return res
 
-/obj/item/organ/external/proc/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
+/obj/item/organ/external/proc/get_icon(skeletal, can_apply_transparency = TRUE)
 	var/digitigrade = 0
 
 	cut_overlays()
@@ -174,7 +171,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	icon = mob_icon
 	return mob_icon
 
-/obj/item/organ/external/proc/apply_colouration(var/icon/applying)
+/obj/item/organ/external/proc/apply_colouration(icon/applying)
 
 	if(transparent)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
@@ -221,7 +218,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 GLOBAL_LIST_INIT(flesh_hud_colours, list("#02BA08","#9ECF19","#DEDE10","#FFAA00","#FF0000","#AA0000","#660000"))
 GLOBAL_LIST_INIT(robot_hud_colours, list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F4F","#2F2F2F","#000000"))
 
-/obj/item/organ/external/proc/get_damage_hud_image(var/min_dam_state)
+/obj/item/organ/external/proc/get_damage_hud_image(min_dam_state)
 
 	// Generate the greyscale base icon and cache it for later.
 	// icon_cache_key is set by any get_icon() calls that are made.

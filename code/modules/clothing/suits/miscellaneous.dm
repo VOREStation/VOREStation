@@ -270,7 +270,7 @@
 			return
 	..()
 
-/obj/item/clothing/suit/straight_jacket/equipped(var/mob/living/user,var/slot)
+/obj/item/clothing/suit/straight_jacket/equipped(mob/living/user,slot)
 	. = ..()
 	if(slot == slot_wear_suit)
 		user.drop_l_hand()
@@ -1055,7 +1055,7 @@
 	throwforce = 3
 	throw_speed = 2
 	throw_range = 5
-	w_class = 2
+	w_class = ITEMSIZE_SMALL
 	body_parts_covered = CHEST
 	attack_verb = list("warned", "cautioned", "smashed")
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)

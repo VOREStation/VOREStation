@@ -57,7 +57,7 @@
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
 /// Performs a single reagent addition. Returns its success (or error) status at doing so.
-/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/datum/reagents/target_reagents, var/mob/user, var/reagent_id, var/amount)
+/obj/item/reagent_containers/borghypo/proc/try_add_reagent(datum/reagents/target_reagents, mob/user, reagent_id, amount)
 	var/reagent_volume = reagent_volumes[reagent_id]
 	if(!reagent_volume || reagent_volume < amount)
 		return BORGHYPO_STATUS_NOCHARGE
@@ -74,7 +74,7 @@
 	return BORGHYPO_STATUS_SUCCESS
 
 /// Attempts to add one reagent or multiple reagents, depending on if this hypo is currently set to dispense a recipe, (see `is_dispensing_recipe`.) Returns its success (or error) status at doing so.
-/obj/item/reagent_containers/borghypo/proc/try_injection(var/datum/reagents/target_reagents, var/mob/user)
+/obj/item/reagent_containers/borghypo/proc/try_injection(datum/reagents/target_reagents, mob/user)
 	if(is_dispensing_recipe && selected_recipe_id)
 		// Add reagents with our selected ID
 		var/foundRecipe = saved_recipes[selected_recipe_id]
@@ -126,20 +126,20 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
 
-/obj/item/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!istype(M))
-		return
+		return ITEM_INTERACT_FAILURE
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
 		if(!affected)
 			balloon_alert(user, "\the [H] is missing that limb!")
-			return
+			return ITEM_INTERACT_FAILURE
 		/* since synths have oil/coolant streams now, it only makes sense that you should be able to inject stuff. preserved for posterity.
 		else if(affected.robotic >= ORGAN_ROBOT)
 			to_chat(user, span_danger("You cannot inject a robotic limb."))
-			return
+			return ITEM_INTERACT_FAILURE
 		*/
 
 	if(M.can_inject(user, 1, ignore_thickness = bypass_protection))
@@ -160,7 +160,7 @@
 			switch(result)
 				if(BORGHYPO_STATUS_CONTAINERFULL)
 					balloon_alert(user, "\the [M] has too many reagents in [M.p_their()] system!")
-					return
+					return ITEM_INTERACT_FAILURE
 				if(BORGHYPO_STATUS_NOCHARGE)
 					if(is_dispensing_recipe)
 						balloon_alert(user, "not enough reagents to inject full recipe!")
@@ -168,10 +168,10 @@
 					else
 						var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_id]
 						balloon_alert(user, "\the [src] doesn't have enough [empty_reagent.name]!")
-					return
+					return ITEM_INTERACT_FAILURE
 				if(BORGHYPO_STATUS_NORECIPE)
 					balloon_alert(user, "recipe '[selected_recipe_id]' not found!")
-					return
+					return ITEM_INTERACT_FAILURE
 				else
 					if(is_dispensing_recipe)
 						balloon_alert(user, "recipe '[selected_recipe_id]' injected into \the [M].")
@@ -179,7 +179,8 @@
 					else
 						balloon_alert(user, "[amount_to_add] units injected into \the [M].")
 						balloon_alert(M, "you feel a tiny prick!")
-	return
+					return ITEM_INTERACT_SUCCESS
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user) //Change the mode
 	. = ..(user)
@@ -189,7 +190,7 @@
 	return
 
 /* No longer necessary because we use TGUI for this now!
-/obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
+/obj/item/reagent_containers/borghypo/Topic(href, list/href_list)
 	if(href_list["reagent"])
 		var/t = reagent_ids.Find(href_list["reagent"])
 		if(t)
@@ -396,10 +397,10 @@
 		REAGENT_ID_WATERMELONJUICE,
 		REAGENT_ID_WHISKEY)
 
-/obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
-	return
+/obj/item/reagent_containers/borghypo/service/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	return NONE
 
-/obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/borghypo/service/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 

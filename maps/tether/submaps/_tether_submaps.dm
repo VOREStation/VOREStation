@@ -173,7 +173,7 @@
 		src:target_z = z
 		return INITIALIZE_HINT_QDEL
 
-/obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
+/obj/effect/step_trigger/zlevel_fall/Trigger(atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
 	if(!src:target_z)
 		return
 

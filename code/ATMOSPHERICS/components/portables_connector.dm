@@ -9,7 +9,7 @@
 	initialize_directions = SOUTH
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "connector"
-	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
+	pipe_flags = PIPING_ONE_PER_TURF
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
@@ -25,21 +25,31 @@
 	icon_state = "map_connector-fuel"
 	pipe_state = "connector-fuel"
 	icon_connect_type = "-fuel"
-	pipe_flags = PIPING_ONE_PER_TURF
 	connect_types = CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/portables_connector/aux
 	icon_state = "map_connector-aux"
 	pipe_state = "connector-aux"
 	icon_connect_type = "-aux"
-	pipe_flags = PIPING_ONE_PER_TURF
 	connect_types = CONNECT_TYPE_AUX
+
+/obj/machinery/atmospherics/portables_connector/scrubbers
+	icon_state = "map_connector-scrubbers"
+	pipe_state = "connector-scrubbers"
+	icon_connect_type = "-scrubbers"
+	connect_types = CONNECT_TYPE_SCRUBBER
+
+/obj/machinery/atmospherics/portables_connector/supply
+	icon_state = "map_connector-supply"
+	pipe_state = "connector-supply"
+	icon_connect_type = "-supply"
+	connect_types = CONNECT_TYPE_SUPPLY
 
 /obj/machinery/atmospherics/portables_connector/init_dir()
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/portables_connector/update_icon()
-	icon_state = "connector"
+	icon_state = "connector[icon_connect_type]"
 
 /obj/machinery/atmospherics/portables_connector/update_underlays()
 	..()
@@ -49,7 +59,7 @@
 		return
 	add_underlay(T, node, dir, node?.icon_connect_type)
 
-/obj/machinery/atmospherics/portables_connector/hide(var/i)
+/obj/machinery/atmospherics/portables_connector/hide(i)
 	update_underlays()
 
 /obj/machinery/atmospherics/portables_connector/process()
@@ -96,7 +106,7 @@
 
 	var/node_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node_connect)))
 		if(can_be_node(target, 1))
 			node = target
 			break
@@ -146,7 +156,7 @@
 	return null
 
 
-/obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/portables_connector/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (connected_device)
@@ -165,4 +175,4 @@
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
-		deconstruct()
+		atom_deconstruct()

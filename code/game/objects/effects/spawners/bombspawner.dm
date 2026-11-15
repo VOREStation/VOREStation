@@ -1,22 +1,19 @@
-/client/proc/spawn_tanktransferbomb()
-	set category = "Debug.Game"
-	set desc = "Spawn a tank transfer valve bomb"
-	set name = "Instant TTV"
-
-	if(!check_rights(R_SPAWN)) return
-
+ADMIN_VERB(spawn_tanktransferbomb, R_SPAWN, "Instant TTV", "Spawn a tank transfer valve bomb.", ADMIN_CATEGORY_DEBUG_GAME)
 	var/obj/effect/spawner/newbomb/proto = /obj/effect/spawner/newbomb/radio/custom
 
-	var/p = tgui_input_number(usr, "Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt))
-	if(p == null) return
+	var/p = tgui_input_number(user, "Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt))
+	if(isnull(p))
+		return
 
-	var/o = tgui_input_number(usr, "Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt))
-	if(o == null) return
+	var/o = tgui_input_number(user, "Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt))
+	if(isnull(o))
+		return
 
-	var/c = tgui_input_number(usr, "Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt))
-	if(c == null) return
+	var/c = tgui_input_number(user, "Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt))
+	if(isnull(c))
+		return
 
-	new /obj/effect/spawner/newbomb/radio/custom(get_turf(mob), p, o, c)
+	new /obj/effect/spawner/newbomb/radio/custom(get_turf(user.mob), p, o, c)
 
 /obj/effect/spawner/newbomb
 	name = "TTV bomb"

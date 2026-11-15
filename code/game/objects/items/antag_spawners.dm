@@ -90,7 +90,7 @@
 		qdel(src)
 
 /obj/item/antag_spawner/technomancer_apprentice/equip_antag(mob/technomancer_mob)
-	var/datum/antagonist/technomancer/antag_datum = GLOB.all_antag_types[MODE_TECHNOMANCER]
+	var/datum/antagonist/technomancer/antag_datum = SSantag_job.all_antag_types[MODE_TECHNOMANCER]
 	antag_datum.equip_apprentice(technomancer_mob)
 
 

@@ -16,13 +16,13 @@
 // Proc: adjust_instability()
 // Parameters: 0
 // Description: Does nothing, because inheritence.
-/mob/living/proc/adjust_instability(var/amount)
+/mob/living/proc/adjust_instability(amount)
 	instability = between(0, round(instability + amount, TECHNOMANCER_INSTABILITY_PRECISION), 200)
 
 // Proc: adjust_instability()
 // Parameters: 1 (amount - how much instability to give)
 // Description: Adds or subtracks instability to the mob, then updates the hud.
-/mob/living/carbon/human/adjust_instability(var/amount)
+/mob/living/carbon/human/adjust_instability(amount)
 	..()
 	instability_update_hud()
 
@@ -129,7 +129,7 @@
 						safe_blink(src, range = 6)
 						to_chat(src, span_warning("You're teleported against your will!"))
 					if(4)
-						emp_act(3)
+						emp_act(EMP_LIGHT)
 
 			if(51 to 100) //Severe
 				rng = rand(0,3)
@@ -137,7 +137,7 @@
 					if(0)
 						electrocute_act(instability * 0.5, "extremely unstable energies", 0.75)
 					if(1)
-						emp_act(2)
+						emp_act(EMP_MEDIUM)
 					if(2)
 						adjustFireLoss(instability * 0.3) //30 burn @ 100 instability
 						to_chat(src, span_danger("Your chassis alerts you to extreme overheating from an unknown external force!"))
@@ -151,7 +151,7 @@
 					if(0)
 						electrocute_act(instability, "extremely unstable energies", 0.75)
 					if(1)
-						emp_act(1)
+						emp_act(EMP_HEAVY)
 					if(2)
 						adjustFireLoss(instability * 0.4) //40 burn @ 100 instability
 						to_chat(src, span_danger("Your chassis alerts you to extreme overheating from an unknown external force!"))

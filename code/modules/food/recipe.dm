@@ -64,7 +64,7 @@
 
 	var/wiki_flag = 0
 
-/datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents, var/exact = FALSE)
+/datum/recipe/proc/check_reagents(datum/reagents/avail_reagents, exact = FALSE)
 	if(!reagents || !reagents.len)
 		return TRUE
 
@@ -83,7 +83,7 @@
 		return FALSE
 	return TRUE
 
-/datum/recipe/proc/check_fruit(var/obj/container, var/exact = FALSE)
+/datum/recipe/proc/check_fruit(obj/container, exact = FALSE)
 	if (!fruit || !fruit.len)
 		return TRUE
 
@@ -106,7 +106,7 @@
 					break
 	return .
 
-/datum/recipe/proc/check_items(var/obj/container as obj, var/exact = FALSE)
+/datum/recipe/proc/check_items(obj/container as obj, exact = FALSE)
 	if(!items || !items.len)
 		return TRUE
 
@@ -147,7 +147,7 @@
 	return .
 
 //This is called on individual items within the container.
-/datum/recipe/proc/check_coating(var/obj/O, var/exact = FALSE)
+/datum/recipe/proc/check_coating(obj/O, exact = FALSE)
 	if(!istype(O,/obj/item/reagent_containers/food/snacks))
 		return TRUE //Only snacks can be battered
 
@@ -165,7 +165,7 @@
 	return FALSE
 
 //general version
-/datum/recipe/proc/make(var/obj/container as obj)
+/datum/recipe/proc/make(obj/container as obj)
 	var/obj/result_obj = new result(container)
 	if(istype(container, /obj/machinery))
 		var/obj/machinery/machine = container
@@ -181,7 +181,7 @@
 
 // food-related
 // This proc is called under the assumption that the container has already been checked and found to contain the necessary ingredients
-/datum/recipe/proc/make_food(var/obj/container as obj)
+/datum/recipe/proc/make_food(obj/container as obj)
 	if(!result)
 		log_runtime(EXCEPTION(span_danger("Recipe [type] is defined without a result, please bug report this.")))
 		if(istype(container, /obj/machinery/microwave))
@@ -315,7 +315,7 @@
 // When exact is false, extraneous ingredients are ignored
 // When exact is true, extraneous ingredients will fail the recipe
 // In both cases, the full set of required ingredients is still needed
-/proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact)
+/proc/select_recipe(list/datum/recipe/available_recipes, obj/obj as obj, exact)
 	var/highest_count = 0
 	var/count = 0
 	for (var/datum/recipe/recipe in available_recipes)

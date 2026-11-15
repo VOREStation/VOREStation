@@ -21,6 +21,8 @@
 									/obj/item/toy, \
 									/obj/item/clipboard, \
 									/obj/item/paper, \
+									/obj/item/paperplane, \
+									/obj/item/paper_bundle, \
 									/obj/item/pen, \
 									/obj/item/canvas, \
 									/obj/item/paint_palette, \

@@ -2,10 +2,9 @@
 	name = "pneumatic wrench"
 	desc = "An exosuit-mounted hydraulic wrench."
 	icon_state = "mecha_wrench"
-	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
 	equip_cooldown = 3
 	energy_drain = 15
-	range = MELEE
+	range = MECH_MELEE
 	equip_type = EQUIP_UTILITY
 	ready_sound = 'sound/items/Ratchet.ogg'
 	required_type = list(/obj/mecha/working/ripley)
@@ -24,7 +23,7 @@
 	QDEL_NULL(my_tool)
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/tool/powertool/action(var/atom/target)
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/action(atom/target)
 	if(!action_checks(target))
 		return FALSE
 

@@ -74,7 +74,7 @@ Deployable items
 		explode()
 	return
 
-/obj/machinery/deployable/barrier/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/machinery/deployable/barrier/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 	user.do_attack_animation(src)
@@ -82,7 +82,7 @@ Deployable items
 	CheckHealth()
 	return
 
-/obj/machinery/deployable/barrier/take_damage(var/damage)
+/obj/machinery/deployable/barrier/take_damage(damage)
 	health -= damage
 	CheckHealth()
 	return
@@ -98,7 +98,8 @@ Deployable items
 			return
 
 /obj/machinery/deployable/barrier/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
+	. = ..()
+	if (. & EMP_PROTECT_SELF || (stat & (BROKEN|NOPOWER)))
 		return
 	if(prob(50/severity))
 		locked = !locked
@@ -126,7 +127,7 @@ Deployable items
 	if(src)
 		qdel(src)
 
-/obj/machinery/deployable/barrier/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/deployable/barrier/emag_act(remaining_charges, mob/user)
 	if(emagged == 0)
 		emagged = 1
 		LAZYCLEARLIST(req_access)

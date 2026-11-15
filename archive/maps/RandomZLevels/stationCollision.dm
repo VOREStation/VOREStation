@@ -136,7 +136,7 @@ obj/item/gun/energy/laser/retro/sc_retro
 	if(prob(25))
 		mezzer()
 
-/obj/machinery/singularity/narsie/sc_Narsie/consume(var/atom/A)
+/obj/machinery/singularity/narsie/sc_Narsie/consume(atom/A)
 	if(is_type_in_list(A, uneatable))
 		return 0
 	if (isliving(A))

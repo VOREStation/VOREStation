@@ -285,7 +285,7 @@
 	else
 		deflect_chance = initial(deflect_chance)
 		src.occupant_message(span_red("You disable [src] defence mode."))
-	src.log_message("Toggled defence mode.")
+	src.log_message("Toggled defence mode.", LOG_GAME)
 	return
 
 
@@ -363,7 +363,7 @@
 		return
 	if(src.occupant.client)
 		src.zoom = !src.zoom
-		src.log_message("Toggled zoom mode.")
+		src.log_message("Toggled zoom mode.", LOG_GAME)
 		if(src.zoom)
 			src.occupant_message(span_blue("Zoom mode enabled."))
 		else
@@ -390,7 +390,7 @@
 	if(src.occupant)
 		if(get_charge() > 0)
 			thrusters = !thrusters
-			src.log_message("Toggled thrusters.")
+			src.log_message("Toggled thrusters.", LOG_GAME)
 			if(src.thrusters)
 				src.occupant_message(span_blue("Thrusters enabled."))
 			else

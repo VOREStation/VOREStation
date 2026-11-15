@@ -385,7 +385,7 @@
 			return TRUE
 	return FALSE
 
-/datum/board_game/checkers/proc/add_jumps(var/list/directions, start_x, start_y, list/jump_moves, list/visited = list())
+/datum/board_game/checkers/proc/add_jumps(list/directions, start_x, start_y, list/jump_moves, list/visited = list())
 	var/piece = current_board[start_y][start_x]
 	if(!piece)
 		return

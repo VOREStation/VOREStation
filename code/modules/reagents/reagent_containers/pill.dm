@@ -22,45 +22,45 @@
 	if(!icon_state)
 		icon_state = "[base_state][rand(1, 4)]" //preset pills only use colour changing or unique icons
 
-/obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/pill/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!M.consume_liquid_belly)
 		if(liquid_belly_check())
 			to_chat(user, span_infoplain("[user == M ? "You can't" : "\The [M] can't"] consume that, it contains something produced from a belly!"))
-			return FALSE
+			return ITEM_INTERACT_FAILURE
 	if(M == user)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(!H.check_has_mouth())
 				to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
-				return
+				return ITEM_INTERACT_FAILURE
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
 				balloon_alert(user, "\the [blocked] is in the way!")
-				return
+				return ITEM_INTERACT_FAILURE
 
 			balloon_alert(user, "swallowed \the [src]")
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
-			return 1
+			return ITEM_INTERACT_SUCCESS
 
 	else if(ishuman(M))
 
 		var/mob/living/carbon/human/H = M
 		if(!H.check_has_mouth())
 			balloon_alert(user, "\the [H] doesn't have a mouth.")
-			return
+			return ITEM_INTERACT_FAILURE
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
 			balloon_alert(user, "\the [blocked] is in the way!")
-			return
+			return ITEM_INTERACT_FAILURE
 
 		user.balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
 
 		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_after(user, 3 SECONDS, M))
-			return
+			return ITEM_INTERACT_FAILURE
 
 		user.drop_from_inventory(src) //icon update
 		user.balloon_alert_visible("[user] forces [M] to swallow \the [src].")
@@ -72,9 +72,9 @@
 			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		qdel(src)
 
-		return 1
+		return ITEM_INTERACT_SUCCESS
 
-	return 0
+	return ITEM_INTERACT_FAILURE
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
@@ -422,3 +422,45 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 5)
 	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/maintenance
+	name = "maintenance pill"
+	desc = "A strange pill found in the depths of maintenance"
+	icon_state = "pill24"
+	var/random_reagent = REAGENT_ID_WATER
+	var/static/list/names = list(
+		"maintenance pill",
+		"floor pill",
+		"mystery pill",
+		"suspicious pill",
+		"strange pill",
+		"lucky pill",
+		"ominous pill",
+		"eerie pill",
+		"gas station vitamin pill"
+	)
+
+	var/static/list/descs = list(
+		"Your feeling is telling you no, but...",
+		"Drugs are expensive, you can't afford not to eat any pills that you find.",
+		"Surely, there's no way this could go bad.",
+		"Winners don't do dr- oh what the heck!",
+		"Free pills? At no cost, how could I lose?",
+		"Make sure to take your vitamins!"
+	)
+
+/obj/item/reagent_containers/pill/maintenance/Initialize(mapload)
+	. = ..()
+	pick_reagent()
+	if(istype(SSchemistry.chemical_reagents[random_reagent], /datum/reagent/ethanol) && prob(75)) // REROLL
+		pick_reagent()
+	name = pick(names)
+	if(prob(30))
+		desc = pick(descs)
+	reagents.add_reagent(random_reagent, rand(5, 20))
+	icon_state = "pill[rand(5, 24)]"
+
+/obj/item/reagent_containers/pill/maintenance/proc/pick_reagent()
+	random_reagent = pick(SSchemistry.chemical_reagents)
+	if(random_reagent in GLOB.obtainable_chemical_blacklist)
+		random_reagent = REAGENT_ID_WATER // You get WATER

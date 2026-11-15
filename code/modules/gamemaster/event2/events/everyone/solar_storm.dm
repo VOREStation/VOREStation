@@ -17,23 +17,23 @@
 	var/base_solar_gen_rate = null
 
 /datum/event2/event/solar_storm/announce()
-	command_announcement.Announce("A solar storm has been detected approaching \the [station_name()]. \
-	Please halt all EVA activites immediately and return to the interior of the station.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	GLOB.command_announcement.Announce("A solar storm has been detected approaching \the [station_name()]. \
+	Please halt all EVA activites immediately and return to the interior of the station.", "Anomaly Alert", new_sound = ANNOUNCER_MSG_RADIATION)
 	adjust_solar_output(1.5)
 
 /datum/event2/event/solar_storm/start()
-	command_announcement.Announce("The solar storm has reached the station. Please refrain from EVA and remain inside the station until it has passed.", "Anomaly Alert")
+	GLOB.command_announcement.Announce("The solar storm has reached the station. Please refrain from EVA and remain inside the station until it has passed.", "Anomaly Alert")
 	adjust_solar_output(5)
 
 /datum/event2/event/solar_storm/event_tick()
 	radiate()
 
 /datum/event2/event/solar_storm/end()
-	command_announcement.Announce("The solar storm has passed the station. It is now safe to resume EVA activities. \
+	GLOB.command_announcement.Announce("The solar storm has passed the station. It is now safe to resume EVA activities. \
 	Please report to medbay if you experience any unusual symptoms.", "Anomaly Alert")
 	adjust_solar_output(1)
 
-/datum/event2/event/solar_storm/proc/adjust_solar_output(var/mult = 1)
+/datum/event2/event/solar_storm/proc/adjust_solar_output(mult = 1)
 	if(isnull(base_solar_gen_rate))
 		base_solar_gen_rate = GLOB.solar_gen_rate
 	GLOB.solar_gen_rate = mult * base_solar_gen_rate
@@ -49,4 +49,10 @@
 			continue
 
 		//Todo: Apply some burn damage from the heat of the sun. Until then, enjoy some moderate radiation.
-		L.rad_act(rand(15, 30))
+		radiation_pulse(
+			L,
+			max_range = 1,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = URANIUM_IRRADIATION_CHANCE,
+			strength = rand(10, 50)
+		)

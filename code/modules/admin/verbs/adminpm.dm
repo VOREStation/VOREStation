@@ -1,23 +1,13 @@
 //allows right clicking mobs to send an admin PM to their client, forwards the selected mob's client to cmd_admin_pm
-/client/proc/cmd_admin_pm_context(mob/M in GLOB.mob_list)
-	set category = null
-	set name = "Admin PM Mob"
-	if(!check_rights(R_ADMIN))
-		to_chat(src, span_admin_pm_warning("Error: Admin-PM-Context: Only administrators may use this command."))
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_ADMIN|R_MOD|R_SERVER|R_EVENT, "Admin PM Mob", mob/M in GLOB.mob_list)
+	if(!ismob(M) || !M.client)
 		return
-	if( !ismob(M) || !M.client )
-		return
-	cmd_admin_pm(M.client,null)
+	user.cmd_admin_pm(M.client, null)
 	feedback_add_details("admin_verb","Admin PM Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
-/client/proc/cmd_admin_pm_panel()
-	set category = "Admin"
-	set name = "Admin PM"
-	if(!check_rights(R_ADMIN))
-		to_chat(src, span_admin_pm_warning("Error: Admin-PM-Panel: Only administrators may use this command."))
-		return
-	var/list/client/targets[0]
+ADMIN_VERB(cmd_admin_pm_panel, R_ADMIN|R_MOD|R_SERVER|R_EVENT, "Admin PM", "Directly message a player.", ADMIN_CATEGORY_MAIN)
+	var/list/client/targets = list()
 	for(var/client/T)
 		if(T.mob)
 			if(isnewplayer(T.mob))
@@ -28,10 +18,10 @@
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
 		else
 			targets["(No Mob) - [T]"] = T
-	var/target = tgui_input_list(src,"To whom shall we send a message?","Admin PM", sortList(targets))
+	var/target = tgui_input_list(user, "To whom shall we send a message?", "Admin PM", sortList(targets))
 	if(!target) //Admin canceled
 		return
-	cmd_admin_pm(targets[target],null)
+	user.cmd_admin_pm(targets[target], null)
 	feedback_add_details("admin_verb","Admin PM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_ahelp_reply(whom)

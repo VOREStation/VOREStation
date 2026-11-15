@@ -27,7 +27,7 @@
 	if(visible > 0)
 		visible--
 
-/datum/chunk/ghost/acquireVisibleTurfs(var/list/invisible)
+/datum/chunk/ghost/acquireVisibleTurfs(list/invisible)
 
 	for(var/area/A in hidden_areas)
 

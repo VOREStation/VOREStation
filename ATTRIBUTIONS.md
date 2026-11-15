@@ -127,3 +127,7 @@
 **Creator:** Commissioned by Cross_Exonar from Toriate<br>
 **Link:** https://github.com/TS-Rogue-Star/Rogue-Star/pull/1010<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
+<br>
+**File:** `/sound/talksounds/looc_sound.ogg`<br>
+**Creator:** VerySoft<br>
+**License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>

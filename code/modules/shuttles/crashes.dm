@@ -18,17 +18,17 @@
 
 // Return 0 to let the jump continue, 1 to abort the jump.
 // Default implementation checks if the shuttle should crash and if so crashes it.
-/datum/shuttle/proc/process_longjump(var/obj/effect/shuttle_landmark/intended_destination)
+/datum/shuttle/proc/process_longjump(obj/effect/shuttle_landmark/intended_destination)
 	if(should_crash(intended_destination))
 		do_crash(intended_destination)
 		return 1
 
 // Decide if this is the time we crash.  Return true for yes
-/datum/shuttle/proc/should_crash(var/obj/effect/shuttle_landmark/intended_destination)
+/datum/shuttle/proc/should_crash(obj/effect/shuttle_landmark/intended_destination)
 	return FALSE
 
 // Actually crash the shuttle
-/datum/shuttle/proc/do_crash(var/obj/effect/shuttle_landmark/intended_destination)
+/datum/shuttle/proc/do_crash(obj/effect/shuttle_landmark/intended_destination)
 	// Choose the target
 	var/obj/effect/shuttle_landmark/target = pick(crash_locations)
 	ASSERT(istype(target))
@@ -46,7 +46,7 @@
 	//SHAKA SHAKA SHAKA
 	addtimer(CALLBACK(src, PROC_REF(after_crash), victims, target), 2 SECONDS)
 
-/datum/shuttle/proc/after_crash(var/list/victims, var/obj/effect/shuttle_landmark/target)
+/datum/shuttle/proc/after_crash(list/victims, obj/effect/shuttle_landmark/target)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
@@ -69,7 +69,7 @@
 	var/boomsize = shuttle_turfs.len / 10 // Bigger shuttle = bigger boom
 	explosion(epicenter, 0, boomsize, boomsize*2, boomsize*3)
 	moving_status = SHUTTLE_CRASHED
-	command_announcement.Announce("[crash_message]", "Shuttle Alert")
+	GLOB.command_announcement.Announce("[crash_message]", "Shuttle Alert", ANNOUNCER_MSG_SHUTTLE_CRASHED)
 
 	// Put people back
 	for(var/mob/living/L as anything in victims)

@@ -106,11 +106,7 @@
 		to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 		anchored = !anchored
 
-/client/proc/generic_structure()
-	set category = "Fun.Event Kit"
-	set name = "Spawn Generic Structure"
-	set desc = "Spawn a customisable structure with a range of different options."
-
+ADMIN_VERB(generic_structure, R_SPAWN, "Spawn Generic Structure", "Spawn a customisable structure with a range of different options.", ADMIN_CATEGORY_FUN_EVENT_KIT)
 	var/s_wrenchable = 0
 	var/s_anchored = 0
 	var/s_density = 0
@@ -193,6 +189,7 @@
 										"ob_warhead_4",
 										"angel",
 										"Upload Own Sprite")
+
 	var/list/sound_options = list('sound/effects/alert.ogg',
 								'sound/effects/bamf.ogg',
 								'sound/effects/bang.ogg',
@@ -225,57 +222,53 @@
 
 	var/check_togglable
 
-
-	if(!check_rights_for(src, R_HOLDER))
-		return
-
-	var/s_name = tgui_input_text(src, "Structure Name:", "Name")
-	var/s_desc = tgui_input_text(src, "Structure Description:", "Description")
-	var/check_anchored = tgui_alert(src, "Start anchored?", "anchored", list("Yes", "No", "Cancel"))
+	var/s_name = tgui_input_text(user, "Structure Name:", "Name")
+	var/s_desc = tgui_input_text(user, "Structure Description:", "Description")
+	var/check_anchored = tgui_alert(user, "Start anchored?", "anchored", list("Yes", "No", "Cancel"))
 	if(!check_anchored || check_anchored == "Cancel")
 		return
 	if(check_anchored == "No")
 		s_anchored = 0
 	if(check_anchored == "Yes")
 		s_anchored = 1
-	var/check_density = tgui_alert(src, "Start dense?", "density", list("Yes", "No", "Cancel"))
+	var/check_density = tgui_alert(user, "Start dense?", "density", list("Yes", "No", "Cancel"))
 	if(!check_density || check_density == "Cancel")
 		return
 	if(check_density == "No")
 		s_density = 0
 	if(check_density == "Yes")
 		s_density = 1
-	var/check_wrenchable = tgui_alert(src, "Allow it to be fastened and unfastened with a wrench?", "wrenchable", list("Yes", "No", "Cancel"))
+	var/check_wrenchable = tgui_alert(user, "Allow it to be fastened and unfastened with a wrench?", "wrenchable", list("Yes", "No", "Cancel"))
 	if(!check_wrenchable || check_wrenchable == "Cancel")
 		return
 	if(check_wrenchable == "No")
 		s_wrenchable = 0
 	if(check_wrenchable == "Yes")
 		s_wrenchable = 1
-	var/s_icon_state_off = tgui_input_list(src, "Choose starting icon state:", "icon_state_off", icon_state_options)
+	var/s_icon_state_off = tgui_input_list(user, "Choose starting icon state:", "icon_state_off", icon_state_options)
 	if(s_icon_state_off == "Upload Own Sprite")
-		s_icon = input(usr, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
-	var/check_activatable = tgui_alert(src, "Allow it to be turned on?", "activatable", list("Yes", "No", "Cancel"))
+		s_icon = input(user, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
+	var/check_activatable = tgui_alert(user, "Allow it to be turned on?", "activatable", list("Yes", "No", "Cancel"))
 	if(!check_activatable || check_activatable == "Cancel")
 		return
 	if(check_activatable == "No")
 		s_activatable = 0
 	if(check_activatable == "Yes")
 		s_activatable = 1
-		s_text_activated = tgui_input_text(src, "Activation text:", "Activation Text")
-		check_togglable = tgui_alert(src, "Allow it to be turned back off again?", "togglable", list("Yes", "No", "Cancel"))
+		s_text_activated = tgui_input_text(user, "Activation text:", "Activation Text")
+		check_togglable = tgui_alert(user, "Allow it to be turned back off again?", "togglable", list("Yes", "No", "Cancel"))
 		if(!check_togglable || check_togglable == "Cancel")
 			return
 		if(check_togglable == "No")
 			s_togglable = 0
 		if(check_togglable == "Yes")
-			s_text_deactivated = tgui_input_text(src, "Deactivation text:", "Deactivation Text")
+			s_text_deactivated = tgui_input_text(user, "Deactivation text:", "Deactivation Text")
 			s_togglable = 1
-		s_icon_state_on = tgui_input_list(src, "Choose activated icon state:", "icon_state_on", icon_state_options)
+		s_icon_state_on = tgui_input_list(user, "Choose activated icon state:", "icon_state_on", icon_state_options)
 		if(s_icon_state_on == "Upload Own Sprite")
-			s_icon2 = input(usr, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
-		s_delay = tgui_input_number(src, "Do you want it to take time to put turn on? Choose a number of deciseconds to activate, or 0 for instant.", "Delay")
-		var/check_effect = tgui_alert(src, "Produce an effect on activation?", "Effect?", list("No", "Spark", "Flicker Lights", "Flash", "Spawn Item", "Fear", "Cancel"))
+			s_icon2 = input(user, "Choose an image file to upload. Images that are not 32x32 will need to have their positions offset.","Upload Icon") as null|file
+		s_delay = tgui_input_number(user, "Do you want it to take time to put turn on? Choose a number of deciseconds to activate, or 0 for instant.", "Delay")
+		var/check_effect = tgui_alert(user, "Produce an effect on activation?", "Effect?", list("No", "Spark", "Flicker Lights", "Flash", "Spawn Item", "Fear", "Cancel"))
 		if(!check_effect || check_effect == "Cancel")
 			return
 		if(check_effect == "No")
@@ -288,16 +281,16 @@
 			s_effect = 3
 		if(check_effect == "Spawn Item")
 			s_effect = 4
-			s_object = get_path_from_partial_text()
+			s_object = user.get_path_from_partial_text()
 		if(check_effect == "Fear")
 			s_effect = 5
-		var/check_sound = tgui_alert(src, "Play a sound when turning on?", "Sound", list("Yes", "No", "Cancel"))
+		var/check_sound = tgui_alert(user, "Play a sound when turning on?", "Sound", list("Yes", "No", "Cancel"))
 		if(!check_sound || check_sound == "Cancel")
 			return
 		if(check_sound == "Yes")
-			s_sound = tgui_input_list(src, "Choose a sound to play on activation:", "Sound", sound_options)
+			s_sound = tgui_input_list(user, "Choose a sound to play on activation:", "Sound", sound_options)
 
-	var/spawnloc = get_turf(src.mob)
+	var/spawnloc = get_turf(user.mob)
 	var/obj/structure/generic_structure/P = new(spawnloc)
 	P.name = s_name
 	P.desc = s_desc
@@ -322,7 +315,7 @@
 	P.update_icon()
 
 /client/proc/get_path_from_partial_text(default_path)
-	var/desired_path = tgui_input_text(usr, "Enter full or partial typepath.","Typepath","[default_path]")
+	var/desired_path = tgui_input_text(src, "Enter full or partial typepath.","Typepath","[default_path]")
 
 	if(!desired_path)	//VOREStation Add - If you don't give it anything it builds a list of every possible thing in the game and crashes your client.
 		return			//VOREStation Add - And the main way for it to do that is to push the cancel button, which should just do nothing. :U
@@ -335,7 +328,7 @@
 			matches += path
 
 	if(matches.len==0)
-		tgui_alert_async(usr, "No results found.  Sorry.")
+		tgui_alert_async(src, "No results found.  Sorry.")
 		return
 
 	var/result = null
@@ -343,5 +336,5 @@
 	if(matches.len==1)
 		result = matches[1]
 	else
-		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches, strict_modern = TRUE)
+		result = tgui_input_list(src, "Select an atom type", "Spawn Atom", matches, strict_modern = TRUE)
 	return result

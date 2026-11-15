@@ -2,18 +2,17 @@
 	name = "nano printer"
 	desc = "Small integrated printer with paper recycling module."
 	power_usage = 50
-	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	critical = 0
 	icon_state = "printer"
 	hardware_size = 1
 	var/stored_paper = 5
 	var/max_paper = 10
 
-/obj/item/computer_hardware/nano_printer/diagnostics(var/mob/user)
+/obj/item/computer_hardware/nano_printer/diagnostics(mob/user)
 	..()
 	to_chat(user, "Paper buffer level: [stored_paper]/[max_paper]")
 
-/obj/item/computer_hardware/nano_printer/proc/print_text(var/text_to_print, var/paper_title = null)
+/obj/item/computer_hardware/nano_printer/proc/print_text(text_to_print, paper_title = null)
 	if(!stored_paper)
 		return 0
 	if(!enabled)
@@ -37,7 +36,7 @@
 	stored_paper--
 	return 1
 
-/obj/item/computer_hardware/nano_printer/proc/count_fields(var/info)
+/obj/item/computer_hardware/nano_printer/proc/count_fields(info)
 //Count the fields. This is taken directly from paper.dm, /obj/item/paper/proc/parsepencode(). -Hawk_v3
 	var/fields = 0
 	var/t = info

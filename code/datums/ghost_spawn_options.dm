@@ -21,7 +21,7 @@
 		to_chat(user, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
 		return
 
-	if(!user.MayRespawn(1))
+	if(!user.MayRespawn(TRUE))
 		return
 
 	var/turf/T = get_turf(user)
@@ -77,7 +77,7 @@
 			to_chat(user, span_danger("You have not been playing on the server long enough to join as drone."))
 			return
 
-	if(!user.MayRespawn(1))
+	if(!user.MayRespawn(TRUE))
 		return
 
 	var/deathtime = world.time - user.timeofdeath
@@ -175,6 +175,11 @@
 	if(!target)
 		to_chat(user, span_warning("Invalid player selected!"))
 		return
+
+	if(!(get_z(target) in using_map.station_levels))
+		tgui_alert_async(user,{"
+			You are about to spawn outside of the main station levels. Remember that this spawn method is to facilitates scenes, and not to abuse it.
+			"},"OOC Warning")
 
 	to_chat(user, span_notice("Inbelly spawn request sent to predator."))
 	to_chat(target, span_notice("Incoming belly spawn request."))

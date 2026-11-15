@@ -87,7 +87,7 @@
 
 	backpack_contents = list(/obj/item/spacecash/c200 = 1)
 
-/datum/decl/hierarchy/outfit/maint_lurker/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/maint_lurker/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/spacecash/c200(H), slot_l_hand)

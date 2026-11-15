@@ -90,7 +90,7 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(check_keywords), message), rand(1 SECOND, 3 SECONDS))
 
-/datum/ai_holder/simple_mob/passive/possum/poppy/proc/check_keywords(var/message)
+/datum/ai_holder/simple_mob/passive/possum/poppy/proc/check_keywords(message)
 	var/mob/living/simple_mob/animal/passive/opossum/poss = holder
 	if(!istype(poss) || holder.client || holder.stat != CONSCIOUS)
 		return
@@ -140,12 +140,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/opossum)
 	meat_amount = 2
 
-/mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(var/amount,var/include_robo)
+/mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(amount,include_robo)
 	. = ..()
 	if(amount >= 3)
 		respond_to_damage()
 
-/mob/living/simple_mob/animal/passive/opossum/adjustFireLoss(var/amount,var/include_robo)
+/mob/living/simple_mob/animal/passive/opossum/adjustFireLoss(amount,include_robo)
 	. = ..()
 	if(amount >= 3)
 		respond_to_damage()

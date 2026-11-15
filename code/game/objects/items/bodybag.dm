@@ -58,7 +58,7 @@
 	var/contains_body = FALSE
 	var/has_label = FALSE
 
-/obj/structure/closet/body_bag/attackby(var/obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/body_bag/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/pen))
 		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null, MAX_NAME_LEN	)
 		if (user.get_active_hand() != W)
@@ -82,7 +82,7 @@
 		cut_overlays()
 		return
 
-/obj/structure/closet/body_bag/store_mobs(var/stored_units)
+/obj/structure/closet/body_bag/store_mobs(stored_units)
 	contains_body = ..()
 	return contains_body
 
@@ -116,7 +116,7 @@
 		occupants += H
 	return occupants
 
-/obj/structure/closet/body_bag/proc/update(var/broadcast=0)
+/obj/structure/closet/body_bag/proc/update(broadcast=0)
 	if(istype(loc, /obj/structure/morgue))
 		var/obj/structure/morgue/M = loc
 		M.update(broadcast)
@@ -139,7 +139,6 @@
 	icon = 'icons/obj/closets/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	item_state = "bodybag_cryo_folded"
-	origin_tech = list(TECH_BIO = 4)
 	cryogenic = TRUE
 
 /obj/structure/closet/body_bag/cryobag
@@ -195,6 +194,7 @@
 		syringe = null
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
+	ADD_TRAIT(AM, TRAIT_STASIS, REF(src))
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(stasis_level)
@@ -209,6 +209,7 @@
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Exited(atom/movable/AM)
+	REMOVE_TRAIT(AM, TRAIT_STASIS, REF(src))
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(0)
@@ -225,7 +226,7 @@
 		return tank.air_contents
 	..()
 
-/obj/structure/closet/body_bag/cryobag/proc/inject_occupant(var/mob/living/carbon/human/H)
+/obj/structure/closet/body_bag/cryobag/proc/inject_occupant(mob/living/carbon/human/H)
 	if(!syringe)
 		return
 

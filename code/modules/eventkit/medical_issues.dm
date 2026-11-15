@@ -115,7 +115,7 @@
 
 // Proc for setting all this up for GMs
 
-/mob/living/carbon/human/proc/custom_medical_issue(var/mob/user)
+/mob/living/carbon/human/proc/custom_medical_issue(mob/user)
 
 	var/list/external_organ_surgeries = list("bone reinforcement","remove growths","redirect blood vessels","extract object","flesh graft")
 	var/list/internal_organ_surgeries = list("remove growths","redirect blood vessels","close holes","ultrasound","reoxygenate tissue")
@@ -223,7 +223,7 @@
 	else
 		to_chat(user,"[issue_name] can only be cured by amputation or removal of \the [issue_organ]!")
 
-/mob/living/carbon/human/proc/clear_medical_issue(var/mob/user)
+/mob/living/carbon/human/proc/clear_medical_issue(mob/user)
 	var/list/all_issues = list()
 	for(var/obj/item/organ/O in contents)
 		for(var/datum/medical_issue/MI in O.medical_issues)

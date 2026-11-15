@@ -23,7 +23,7 @@
 	var/applies_material_colour = 1
 	var/flippable = TRUE
 
-/obj/structure/bed/Initialize(mapload, var/new_material, var/new_padding_material)
+/obj/structure/bed/Initialize(mapload, new_material, new_padding_material)
 	..()
 	color = null
 	if(!new_material)
@@ -167,7 +167,7 @@
 		padding_material = null
 	update_icon()
 
-/obj/structure/bed/proc/add_padding(var/padding_type)
+/obj/structure/bed/proc/add_padding(padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 

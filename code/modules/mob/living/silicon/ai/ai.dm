@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	var/override_CPURate = 0					// Bonus/Penalty CPU generation rate. For use by admins/testers.
 
 	var/datum/ai_icon/selected_sprite			// The selected icon set
-	var/custom_sprite 	= 0 					// Whether the selected icon is custom
+	var/custom_sprite  = FALSE					// Whether the selected icon is custom
 	var/carded
 
 	// Multicam Vars
@@ -171,6 +171,20 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	add_language(LANGUAGE_ROOTLOCAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_ZADDAT, 1)
+	add_language(LANGUAGE_VESPINAE, 1)
+	add_language(LANGUAGE_SPACER, 1)
+	add_language(LANGUAGE_ECHOSONG, 1)
+	add_language(LANGUAGE_TEPPI, 1)
+	add_language(LANGUAGE_VOX, 1)
+	add_language(LANGUAGE_ENOCHIAN, 1)
+	add_language(LANGUAGE_DAEMON, 1)
+	add_language(LANGUAGE_ECUREUILIAN, 1)
+	add_language(LANGUAGE_CANILUNZT, 1)
+	add_language(LANGUAGE_SAGARU, 1)
+	add_language(LANGUAGE_BIRDSONG, 1)
+	add_language(LANGUAGE_DRUDAKAR, 1)
+	add_language(LANGUAGE_PROMETHEAN, 1)
+	add_language(LANGUAGE_ALAI, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -185,6 +199,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 
 	GLOB.ai_list += src
 	. = ..()
+	init_id(idcard_type)
 
 	new /obj/machinery/ai_powersupply(src)
 
@@ -283,7 +298,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 
 		if(Entry[1] == src.ckey && Entry[2] == src.real_name)
 			icon = CUSTOM_ITEM_SYNTH
-			custom_sprite = 1
+			custom_sprite = TRUE
 			selected_sprite = new/datum/ai_icon("Custom", "[src.ckey]-ai", "4", "[ckey]-ai-crash", "#FFFFFF", "#FFFFFF", "#FFFFFF")
 		else
 			selected_sprite = GLOB.default_ai_icon
@@ -406,7 +421,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 		call_shuttle_proc(src)
 
 	// hack to display shuttle timer
-	if(GLOB.emergency_shuttle.online())
+	if(SSemergency_shuttle.online())
 		post_status(src, "shuttle", user = src)
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()
@@ -530,7 +545,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 			new_eye.set_light(0)
 
 
-/mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
+/mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if (!C || stat == DEAD) //C.can_use())
 		return 0
 
@@ -566,7 +581,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	cameralist = sortAssoc(cameralist)
 	return cameralist
 
-/mob/living/silicon/ai/proc/ai_network_change(var/network in get_camera_network_list())
+/mob/living/silicon/ai/proc/ai_network_change(network in get_camera_network_list())
 	set category = "AI.Camera Control"
 	set name = "Jump To Network"
 	unset_machine()
@@ -838,7 +853,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	to_chat(src, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
-/mob/living/silicon/ai/proc/check_unable(var/flags = NONE, var/feedback = 1)
+/mob/living/silicon/ai/proc/check_unable(flags = NONE, feedback = 1)
 	if(stat == DEAD)
 		if(feedback)
 			to_chat(src, span_warning("You are dead!"))
@@ -896,7 +911,7 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	else
 		to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 
-/mob/living/silicon/ai/ex_act(var/severity)
+/mob/living/silicon/ai/ex_act(severity)
 	if(severity == 1.0)
 		qdel(src)
 		return
@@ -1029,6 +1044,9 @@ GLOBAL_LIST_INIT(ai_verbs_default, list(
 	GLOB.ai_list -= src
 	GLOB.silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
+
+/mob/living/silicon/ai/CanObtainCentcommMessage()
+	return TRUE
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

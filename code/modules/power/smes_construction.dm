@@ -11,61 +11,61 @@
 	desc = "The standard superconductive magnetic coil, with average capacity and I/O rating."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
-	w_class = ITEMSIZE_LARGE 						// It's LARGE (backpack size)
-	var/ChargeCapacity = 6000000		// 100 kWh
-	var/IOCapacity = 250000				// 250 kW
+	w_class = ITEMSIZE_LARGE 			// It's LARGE (backpack size)
+	var/ChargeCapacity = 6 MEGAWATTS	// 100 kWh
+	var/IOCapacity = 250 KILOWATTS		// 250 kW
 
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
 /obj/item/smes_coil/weak
 	name = "basic superconductive magnetic coil"
 	desc = "A cheaper model of superconductive magnetic coil. Its capacity and I/O rating are considerably lower."
 	icon_state = "smes_coil_weak"
-	ChargeCapacity = 1200000			// 20 kWh
-	IOCapacity = 150000					// 150 kW
+	ChargeCapacity = 1.2 MEGAWATTS		// 20 kWh
+	IOCapacity = 150 KILOWATTS			// 150 kW
 
 // Capacity Coils: High Capacity, Low Flow
 /obj/item/smes_coil/super_capacity
 	name = "superconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance"
-	ChargeCapacity = 60000000			// 1000 kWh
-	IOCapacity = 50000					// 50 kW
+	ChargeCapacity = 60 MEGAWATTS	// 1000 kWh
+	IOCapacity = 50 KILOWATTS		// 50 kW
 
 /obj/item/smes_coil/super_capacity/ultra
 	name = "ultraconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance_ultra"
-	ChargeCapacity = 120000000			// 2000 kWh
-	IOCapacity = 100000					// 100 kW
+	ChargeCapacity = 120 MEGAWATTS			// 2000 kWh
+	IOCapacity = 100 KILOWATTS				// 100 kW
 
 /obj/item/smes_coil/super_capacity/hyper
 	name = "hyperconductive capacitance coil"
 	desc = "A specialised type of superconductive magnetic coil with a significantly stronger containment field, allowing for larger power storage. Its IO rating is much lower, however."
 	icon_state = "smes_coil_capacitance_hyper"
-	ChargeCapacity = 360000000			// 6000 kWh
-	IOCapacity = 200000					// 200 kW
+	ChargeCapacity = 360 MEGAWATTS		// 6000 kWh
+	IOCapacity = 200 KILOWATTS			// 200 kW
 
 // Flow Coils: Low Capacity, High Flow
 /obj/item/smes_coil/super_io
 	name = "superconductive transmission coil"
 	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	icon_state = "smes_coil_transmission"
-	ChargeCapacity = 600000				// 10 kWh
-	IOCapacity = 1000000				// 1000 kW
+	ChargeCapacity = 600 KILOWATTS		// 10 kWh
+	IOCapacity = 1 MEGAWATTS			// 1000 kW
 
 /obj/item/smes_coil/super_io/ultra
 	name = "ultraconductive transmission coil"
 	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	icon_state = "smes_coil_transmission_ultra"
-	ChargeCapacity = 1200000				// 20 kWh
-	IOCapacity = 2000000				// 2000 kW
+	ChargeCapacity = 1.2 MEGAWATTS		// 20 kWh
+	IOCapacity = 2 MEGAWATTS			// 2000 kW
 
 /obj/item/smes_coil/super_io/hyper
 	name = "hyperconductive transmission coil"
 	desc = "A specialised type of superconductive magnetic coil with reduced storage capabilites but vastly improved power transmission capabilities, making it useful in systems which require large throughput."
 	icon_state = "smes_coil_transmission_hyper"
-	ChargeCapacity = 2400000				// 40 kWh
-	IOCapacity = 6000000				// 6000 kW
+	ChargeCapacity = 2.4 MEGAWATTS		// 40 kWh
+	IOCapacity = 6 MEGAWATTS			// 6000 kW
 
 // SMES SUBTYPES - THESE ARE MAPPED IN AND CONTAIN DIFFERENT TYPES OF COILS
 
@@ -104,7 +104,6 @@
 	var/cur_coils = 1 			// Current amount of installed coils
 	var/safeties_enabled = 1 	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = 0 			// If 1 critical failure has occured and SMES explosion is imminent.
-	var/datum/wires/smes/wires
 	var/grounding = 1			// Cut to quickly discharge, at cost of "minor" electrical issues in output powernet.
 	var/RCon = 1				// Cut to disable AI and remote control.
 	var/RCon_tag = "NO_TAG"		// RCON tag, change to show it on SMES Remote control console.
@@ -153,7 +152,7 @@
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
-	wires = new /datum/wires/smes(src)
+	set_wires(new /datum/wires/smes(src))
 
 	// Allows for mapped-in SMESs with larger capacity/IO
 	if(mapload)
@@ -191,7 +190,7 @@
 // Proc: total_system_failure()
 // Parameters: 2 (intensity - how strong the failure is, user - person which caused the failure)
 // Description: Checks the sensors for alerts. If change (alerts cleared or detected) occurs, calls for icon update.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(intensity = 0, mob/user)
 	// SMESs store very large amount of power. If someone screws up (ie: Disables safeties and attempts to modify the SMES) very bad things happen.
 	// Bad things are based on charge percentage.
 	// Possible effects:
@@ -302,7 +301,7 @@
 // Proc: apcs_overload()
 // Parameters: 2 (failure_chance - chance to actually break the APC, overload_chance - Chance of breaking lights)
 // Description: Damages output powernet by power surge. Destroys few APCs and lights, depending on parameters.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance)
+/obj/machinery/power/smes/buildable/proc/apcs_overload(failure_chance, overload_chance)
 	if (!powernet)
 		return
 
@@ -327,7 +326,7 @@
 // Proc: attackby()
 // Parameters: 2 (W - object that was used on this machine, user - person which used the object)
 // Description: Handles tool interaction. Allows deconstruction/upgrading/fixing.
-/obj/machinery/power/smes/buildable/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/smes/buildable/attackby(obj/item/W, mob/user)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if (failing)
 		to_chat(user, span_warning("The [src]'s indicator lights are flashing wildly. It seems to be overloaded! Touching it now is probably not a good idea."))

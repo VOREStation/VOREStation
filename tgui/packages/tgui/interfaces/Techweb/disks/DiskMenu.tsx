@@ -39,12 +39,14 @@ export function TechwebDiskMenu(props: Props) {
             </Tabs>
           </Stack.Item>
           <Stack.Item align="center">
-            {diskType === 'tech' && (
-              <Button icon="save" onClick={() => act('loadTech')}>
-                Web &rarr; Disk
-              </Button>
-            )}
             <Stack>
+              {diskType === 'tech' && (
+                <Stack.Item>
+                  <Button icon="save" onClick={() => act('loadTech')}>
+                    Web &rarr; Disk
+                  </Button>
+                </Stack.Item>
+              )}
               <Stack.Item>
                 <Button
                   icon="upload"

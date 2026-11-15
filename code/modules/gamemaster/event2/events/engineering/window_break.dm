@@ -53,8 +53,8 @@
 
 /datum/event2/event/window_break/announce()
 	if(chosen_window)
-		command_announcement.Announce("Structural integrity of space-facing windows at \the [get_area(chosen_turf_with_windows)] are failing. \
-		Repair of the damaged window is advised. Personnel without EVA suits in the area should leave until repairs are complete.", "Structural Alert")
+		GLOB.command_announcement.Announce("Structural integrity of space-facing windows at \the [get_area(chosen_turf_with_windows)] are failing. \
+		Repair of the damaged window is advised. Personnel without EVA suits in the area should leave until repairs are complete.", "Structural Alert", ANNOUNCER_MSG_WINDOWBREAK)
 
 /datum/event2/event/window_break/start()
 	if(!chosen_turf_with_windows)
@@ -116,7 +116,7 @@
 	return FALSE
 
 //TL;DR: breadth first search for all connected turfs with windows
-/datum/event2/event/window_break/proc/gather_collateral_windows(var/obj/structure/window/target_window)
+/datum/event2/event/window_break/proc/gather_collateral_windows(obj/structure/window/target_window)
 	var/list/turf/frontier_set = list(target_window.loc)
 	var/list/obj/structure/window/result_set = list()
 	var/list/turf/explored_set = list()

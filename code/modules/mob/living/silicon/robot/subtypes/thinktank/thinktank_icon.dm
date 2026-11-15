@@ -58,7 +58,7 @@
 		I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 		add_overlay(I)
 
-/mob/living/silicon/robot/platform/proc/try_paint(var/obj/item/floor_painter/painting, var/mob/user)
+/mob/living/silicon/robot/platform/proc/try_paint(obj/item/floor_painter/painting, mob/user)
 
 	var/obj/item/robot_module/robot/platform/tank_module = module
 	if(!istype(tank_module))

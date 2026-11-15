@@ -283,7 +283,7 @@ function draw_examine() {
       for (let j = 0; j < textList.length; j++) {
         const spoilerText = document.createElement('span');
         if (j % 2) {
-          spoilerText.className = 'spoiler';
+          spoilerText.className = 'text-spoiler';
         }
         spoilerText.innerHTML = textList[j];
         parameter.appendChild(spoilerText);

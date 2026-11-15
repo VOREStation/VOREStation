@@ -21,7 +21,7 @@
 
 	return
 
-/mob/living/silicon/robot/drone/MouseDrop(var/atom/over_object)
+/mob/living/silicon/robot/drone/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(!istype(H) || !Adjacent(H))
 		return ..()

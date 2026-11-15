@@ -10,7 +10,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "jar"
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_GLASS = 200)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.1))
 	flags = NOBLUDGEON
 	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse, /mob/living/simple_mob/animal/sif/leech, /mob/living/simple_mob/animal/sif/frostfly, /mob/living/simple_mob/animal/sif/glitterfly)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
@@ -26,7 +26,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/glass_jar/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/glass_jar/afterattack(atom/A, mob/user, proximity)
 	if(!proximity || contains)
 		return
 	if(can_fill && !filled)
@@ -110,7 +110,7 @@
 			update_icon()
 			return
 
-/obj/item/glass_jar/attackby(var/obj/item/W, var/mob/user)
+/obj/item/glass_jar/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/spacecash))
 		if(contains == JAR_NOTHING)
 			contains = JAR_MONEY
@@ -200,7 +200,7 @@
 /obj/item/glass_jar/fish/plastic
 	name = "plastic tank"
 	desc = "A large plastic tank."
-	matter = list(MAT_PLASTIC = 4000)
+	matter = list(MAT_PLASTIC = MATERIAL_COST(2))
 
 #undef JAR_NOTHING
 #undef JAR_MONEY

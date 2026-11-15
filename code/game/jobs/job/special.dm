@@ -22,7 +22,7 @@
 	pto_type = PTO_CIVILIAN
 
 /datum/job/centcom_officer/get_access()
-	return get_all_accesses().Copy()
+	return SSaccess.get_all_accesses().Copy()
 
 /datum/job/emergency_responder //For staff managing/leading ERTs
 	title = "Emergency Responder"
@@ -48,7 +48,7 @@
 	pto_type = PTO_CIVILIAN
 
 /datum/job/emergency_responder/get_access()
-	return get_all_accesses().Copy()
+	return SSaccess.get_all_accesses().Copy()
 
 /datum/job/clown
 	title = JOB_CLOWN
@@ -99,6 +99,12 @@
 	requestable = FALSE
 	outfit_type = /datum/decl/hierarchy/outfit/job/mime
 	pto_type = PTO_CIVILIAN
+
+/datum/job/mime/equip(mob/living/carbon/human/H, alt_title)
+	. = ..()
+	if(H.mind)
+		var/datum/action/innate/vow_of_silence/vow = new(H)
+		vow.Grant(H)
 
 /datum/alt_title/poseur
 	title = JOB_ALT_PASEUR

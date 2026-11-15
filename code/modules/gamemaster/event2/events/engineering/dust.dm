@@ -13,7 +13,7 @@
 
 /datum/event2/event/dust/announce()
 	if(prob(33))
-		command_announcement.Announce("Dust has been detected on a collision course with \the [location_name()].")
+		GLOB.command_announcement.Announce("Dust has been detected on a collision course with \the [location_name()].", new_sound = ANNOUNCER_MSG_DEBRISFIELD_START)
 
 /datum/event2/event/dust/start()
 	dust_swarm("norm")

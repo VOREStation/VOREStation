@@ -87,6 +87,12 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/looc_sounds
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "LOOC_SOUNDS"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /datum/preference/toggle/air_pump_noise
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "SOUND_AIRPUMP"
@@ -254,7 +260,7 @@
 	step = 1
 
 /datum/preference/numeric/living/jukebox_volume/apply_to_client_updated(client/client, value)
-	client?.media?.update_volume(value)
+	client?.media?.update_volume(value / 100)
 
 /datum/preference/numeric/volume
 	abstract_type = /datum/preference/numeric/volume
@@ -268,4 +274,9 @@
 /datum/preference/numeric/volume/sound_instruments
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "sound_instruments"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/sound_fridgehum
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "sound_fridgehum"
 	savefile_identifier = PREFERENCE_PLAYER

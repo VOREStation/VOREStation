@@ -1,4 +1,6 @@
 #define SHOULD_DISABLE_FOOTSTEPS(source)
+#define VOLUME_MULTIPLIER 0.3
+#define RANGE_ADJUSTMENT 0
 
 ///Footstep element. Plays footsteps at parents location when it is appropriate.
 /datum/element/footstep
@@ -26,8 +28,15 @@
 	src.footstep_type = footstep_type
 	src.sound_vary = sound_vary
 
+	//Human footsteps
 	if(ishuman(target))
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_humanstep))
+		steps_for_living[target] = 0
+		return
+
+	//Cyborg footsteps
+	if(isrobot(target))
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_robotstep))
 		steps_for_living[target] = 0
 		return
 
@@ -43,18 +52,20 @@
 			footstep_ret = GLOB.lightclawfootstep
 		if(FOOTSTEP_MOB_CLAW)
 			footstep_ret = GLOB.clawfootstep
-		if(FOOTSTEP_MOB_HEAVY)
-			footstep_ret = GLOB.heavyfootstep
+		if(FOOTSTEP_MOB_HEAVY_ALT)
+			footstep_ret = GLOB.heavyaltfootstep
 		if(FOOTSTEP_MOB_SHOE)
 			footstep_ret = GLOB.footstep
 		if(FOOTSTEP_MOB_SLIME)
 			footstep_ret = GLOB.slimefootstep
 		if(FOOTSTEP_MOB_SLITHER)
 			footstep_ret = GLOB.slitherfootstep
-		if(FOOTSTEP_MOB_HEAVY_ALT)
-			footstep_ret = GLOB.heavyaltfootstep
+		if(FOOTSTEP_MOB_HEAVY)
+			footstep_ret = GLOB.heavyfootstep
 		if(FOOTSTEP_MOB_MECHY)
 			footstep_ret = GLOB.mechfootstep
+		if(FOOTSTEP_MOB_POWERLOADER)
+			footstep_ret = GLOB.powerloaderfootstep
 		else
 			footstep_ret = GLOB.barefootstep
 	return footstep_ret
@@ -117,8 +128,6 @@
 /datum/element/footstep/proc/play_simplestep(mob/living/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
-
 	if(!isturf(source.loc))
 		return
 
@@ -127,7 +136,7 @@
 		return
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
-		playsound(source.loc, footstep_sounds, volume * volume_multiplier, falloff = 1, vary = sound_vary)
+		playsound(source.loc, footstep_sounds, volume * VOLUME_MULTIPLIER, falloff = 1, vary = sound_vary)
 		return
 
 	var/turf_footstep = prepared_steps[footstep_type]
@@ -138,21 +147,26 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
-	var/range_adjustment = 0
-
 	var/list/prepared_steps = prepare_step(source)
 	if(isnull(prepared_steps))
 		return
 
-	if (source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
-		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+	if(source.client?.prefs?.read_preference(/datum/preference/toggle/human/ignore_shoes))
+		play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
 		return
+
+	if(istype(source.shoes, /obj/item/clothing/shoes))
+		var/obj/item/clothing/shoes/feet = source.shoes
+		if(feet.custom_footstep) //Mostly for legacy reasons, such as clown shoes.
+			playsound(source.loc, get_sfx(feet.custom_footstep), feet.custom_footstep_volume * volume * VOLUME_MULTIPLIER, TRUE, e_range + RANGE_ADJUSTMENT, falloff = TRUE, vary = sound_vary)
+			return
+
+
 
 	//cache for sanic speed (lists are references anyways)
 	var/footstep_sounds = GLOB.footstep
 
-	if ( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
+	if( istype(source.shoes, /obj/item/clothing/shoes) || ( source.wear_suit && (source.wear_suit.body_parts_covered & FEET) ) )
 		// we are wearing shoes
 
 		var/obj/item/clothing/shoes/feet = source.shoes
@@ -160,13 +174,13 @@
 			var/shoestep_type = prepared_steps[FOOTSTEP_MOB_SHOE]
 			if(!isnull(shoestep_type) && footstep_sounds[shoestep_type]) // shoestep type can be null
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),
-					footstep_sounds[shoestep_type][2] * volume * volume_multiplier,
+					footstep_sounds[shoestep_type][2] * volume * VOLUME_MULTIPLIER,
 					TRUE,
-					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+					footstep_sounds[shoestep_type][3] + e_range + RANGE_ADJUSTMENT, falloff = 1, vary = sound_vary)
 				return
 
 	// we are barefoot
-	play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
+	play_barefoot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
 
 /datum/element/footstep/proc/play_barefoot_sound(mob/living/carbon/human/source, list/prepared_steps, volume_multiplier, range_adjustment)
 
@@ -196,4 +210,28 @@
 		return
 
 	playsound(source_loc, footstep_sounds, 50, falloff = 1, vary = sound_vary)
+
+
+/datum/element/footstep/proc/play_robotstep(mob/living/silicon/robot/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
+	SIGNAL_HANDLER
+
+	var/list/prepared_steps = prepare_step(source)
+	if(isnull(prepared_steps))
+		return
+
+	// we are barefoot
+	play_robot_sound(source, prepared_steps, VOLUME_MULTIPLIER, RANGE_ADJUSTMENT)
+
+/datum/element/footstep/proc/play_robot_sound(mob/living/silicon/robot/source, list/prepared_steps, volume_multiplier, range_adjustment)
+	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
+	var/bare_footstep_sounds = check_footstep_type(source.custom_footstep)
+
+	if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
+		playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
+			bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
+			TRUE,
+			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+
+#undef RANGE_ADJUSTMENT
+#undef VOLUME_MULTIPLIER
 #undef SHOULD_DISABLE_FOOTSTEPS

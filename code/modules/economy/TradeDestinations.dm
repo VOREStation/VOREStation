@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(weighted_mundaneevent_locations)
 	var/list/temp_price_change[BIOMEDICAL]
 	var/mundane_probability = 0
 
-/datum/trade_destination/proc/get_custom_eventstring(var/event_type)
+/datum/trade_destination/proc/get_custom_eventstring(event_type)
 	return null
 
 //distance is measured in Arbitrary and corelates to travel time, like, I guess

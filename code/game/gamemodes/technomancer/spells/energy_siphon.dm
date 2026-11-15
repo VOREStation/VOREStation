@@ -188,7 +188,7 @@
 		return 1
 	..()
 
-/obj/item/projectile/beam/lightning/energy_siphon/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
+/obj/item/projectile/beam/lightning/energy_siphon/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
 	if(target_mob == firer) // This shouldn't actually occur due to Bump(), but just in-case.
 		return 1
 	if(ishuman(target_mob)) // Otherwise someone else stood in the beam and is going to pay for it.

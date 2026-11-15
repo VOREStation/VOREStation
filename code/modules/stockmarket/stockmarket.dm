@@ -11,7 +11,7 @@
 		generateStocks()
 		START_PROCESSING(SSobj, src)
 
-/datum/stockMarket/proc/balanceLog(var/whose, var/net)
+/datum/stockMarket/proc/balanceLog(whose, net)
 	if (!(whose in balances))
 		balances[whose] = net
 	else
@@ -41,7 +41,7 @@
 			continue
 		stockBrokers += pname
 
-/datum/stockMarket/proc/generateDesignation(var/name)
+/datum/stockMarket/proc/generateDesignation(name)
 	if (length(name) <= 4)
 		return uppertext(name)
 	var/list/w = splittext(name, " ")
@@ -57,7 +57,7 @@
 				d += uppertext(ascii2text(text2ascii(name, i)))
 		return d
 
-/datum/stockMarket/proc/generateStocks(var/amt = 15)
+/datum/stockMarket/proc/generateStocks(amt = 15)
 	var/list/fruits = list("Banana", "Mimana", "Watermelon", "Ambrosia", "Pomegranate", "Reishi", "Papaya", "Mango", "Tomato", "Conkerberry", "Wood", "Lychee", "Mandarin", "Harebell", "Pumpkin", "Rhubarb", "Tamarillo", "Yantok", "Ziziphus", "Oranges", "Gatfruit", "Daisy", "Kudzu")
 	var/list/tech_prefix = list("Nano", "Cyber", "Funk", "Astro", "Fusion", "Tera", "Exo", "Star", "Virtual", "Plasma", "Robust", "Bit", "Future", "Hugbox", "Carbon", "Nerf", "Buff", "Nova", "Space", "Meta", "Cyber")
 	var/list/tech_short = list("soft", "tech", "prog", "tec", "tek", "ware", "", "gadgets", "nics", "tric", "trasen", "tronic", "coin")
@@ -111,7 +111,7 @@
 		var/datum/stock/S = stock
 		S.process()
 
-/datum/stockMarket/proc/add_log(var/log_type, var/user, var/company_name, var/stocks, var/shareprice, var/money)
+/datum/stockMarket/proc/add_log(log_type, user, company_name, stocks, shareprice, money)
 	var/datum/stock_log/L = new log_type
 	L.user_name = user
 	L.company_name = company_name
@@ -123,7 +123,7 @@
 
 GLOBAL_DATUM_INIT(stockExchange, /datum/stockMarket, new)
 
-/proc/plotBarGraph(var/list/points, var/base_text, var/width=400, var/height=400)
+/proc/plotBarGraph(list/points, base_text, width=400, height=400)
 	var/output = "<table style='border:1px solid black; border-collapse: collapse; width: [width]px; height: [height]px'>"
 	if (points.len && height > 20 && width > 20)
 		var/min = points[1]

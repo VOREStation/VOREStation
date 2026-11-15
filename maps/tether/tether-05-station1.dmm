@@ -6093,7 +6093,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "aof" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/light/small,
@@ -6370,7 +6370,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "aoQ" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -10611,7 +10611,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "aDM" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/light/small,
@@ -15443,7 +15443,7 @@
 /area/tether/exploration/hallway)
 "cHa" = (
 /obj/machinery/door/blast/regular,
-/turf/simulated/wall,
+/turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "cHo" = (
 /obj/effect/floor_decal/industrial/warning{

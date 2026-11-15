@@ -61,7 +61,7 @@ BONUS
 	if(A.transmission >= 11)
 		infective = TRUE
 
-/datum/symptom/cough/Activate(var/datum/disease/advance/A)
+/datum/symptom/cough/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/M = A.affected_mob

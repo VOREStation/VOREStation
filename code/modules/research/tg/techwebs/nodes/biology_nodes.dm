@@ -8,7 +8,7 @@
 		// "healthanalyzer",
 		// "autopsyscanner",
 		// "genescanner",
-		// "medical_kiosk",
+		"medical_kiosk",
 		// "chem_master",
 		// "ph_meter",
 		// "scigoggles",
@@ -86,12 +86,12 @@
 	description = "Essential tools for maintaining onboard gardens, supporting plant growth in the unique environment of the space station."
 	design_ids = list(
 		"plant_analyzer",
-		// "seed_extractor",
+		"seed_extractor",
 		// "watering_can",
-		// "spade",
+		"spade",
 		// "cultivator",
 		// "secateurs",
-		// "hatchet",
+		"hatchet",
 	)
 
 /datum/techweb_node/hydroponics
@@ -115,6 +115,8 @@
 	design_ids = list(
 		"flora_gun",
 		"disk_botany",
+		"botany_extractor",
+		"botany_editor",
 		// "gene_shears",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)

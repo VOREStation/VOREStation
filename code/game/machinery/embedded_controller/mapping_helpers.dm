@@ -43,7 +43,7 @@ Any frequency works, it's self-setting, but it seems like people have decided AU
 	my_device = null
 	return ..()
 
-/obj/effect/map_helper/airlock/proc/get_controller(var/area/A)
+/obj/effect/map_helper/airlock/proc/get_controller(area/A)
 	if(!A)
 		return null
 

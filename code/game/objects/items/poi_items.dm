@@ -27,17 +27,57 @@
 	name = "misshapen manhole cover"
 	desc = "The top of this twisted chunk of metal is faintly stamped with a five pointed star. 'Property of US Army, Pascal B - 1957'."
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/pascalb)
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/poi/pascalb/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/poi/pascalb/process()
-	SSradiation.radiate(src, 5)
+	radiate()
+	..()
+
+/obj/item/poi/pascalb/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 25
+	)
+	last_event = world.time
+	active = FALSE
 
 /obj/item/poi/pascalb/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+/obj/item/poi/pascalb/deadly //For testing purposes, mainly.
+
+/obj/item/poi/pascalb/deadly/radiate()
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 3,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = 100,
+		strength = 250
+	)
+	last_event = world.time
+	active = FALSE
 
 /datum/category_item/catalogue/information/objects/oldreactor
 	name = "Object - Zorren Fission Reactor Rack"
@@ -78,15 +118,38 @@
 	name = "ruptured fission reactor rack"
 	desc = "This broken hunk of machinery looks extremely dangerous."
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/poi/brokenoldreactor/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/poi/brokenoldreactor/process()
-	SSradiation.radiate(src, 25)
+	radiate()
+	..()
+
+/obj/item/poi/brokenoldreactor/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 50
+	)
+	last_event = world.time
+	active = FALSE
 
 /obj/item/poi/brokenoldreactor/Destroy()
+	UnregisterSignal(src, COMSIG_ATOM_PROPAGATE_RAD_PULSE)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -128,7 +191,6 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	var/drone_name = ""	//Randomly picked unless pre-defined. Used by tool examines
 	var/examine_multitool = "TEST_multi - CONTACT DEV"	//Read by attacking with multitool
 	var/examine_canalyzer = "TEST_canalyzer spoken - CONTACT DEV"	//Read by attacking with cyborg analyzer. Define in New() if using vars

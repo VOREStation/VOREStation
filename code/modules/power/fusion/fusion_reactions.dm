@@ -11,10 +11,10 @@ GLOBAL_LIST(fusion_reactions)
 	var/list/products = list()
 	var/minimum_reaction_temperature = 100
 
-/datum/decl/fusion_reaction/proc/handle_reaction_special(var/obj/effect/fusion_em_field/holder)
+/datum/decl/fusion_reaction/proc/handle_reaction_special(obj/effect/fusion_em_field/holder)
 	return 0
 
-/proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
+/proc/get_fusion_reaction(p_react, s_react, m_energy)
 	if(!GLOB.fusion_reactions)
 		GLOB.fusion_reactions = list()
 		for(var/rtype in subtypesof(/datum/decl/fusion_reaction))
@@ -58,7 +58,7 @@ GLOBAL_LIST(fusion_reactions)
 
 /datum/decl/fusion_reaction/deuterium_tritium
 	p_react = REAGENT_ID_DEUTERIUM
-	s_react = REAGENT_ID_SLIMEJELLY
+	s_react = REAGENT_ID_TRITIUM
 	energy_consumption = 1
 	energy_production = 1
 	products = list(REAGENT_ID_HELIUM3 = 1)
@@ -70,7 +70,7 @@ GLOBAL_LIST(fusion_reactions)
 	energy_consumption = 2
 	energy_production = 0
 	radiation = 3
-	products = list(REAGENT_ID_SLIMEJELLY= 1)
+	products = list(REAGENT_ID_TRITIUM = 1)
 	instability = 1
 
 // Unideal/material production reactions
@@ -110,17 +110,19 @@ GLOBAL_LIST(fusion_reactions)
 	radiation = 20
 	instability = 20
 
-/datum/decl/fusion_reaction/phoron_supermatter/handle_reaction_special(var/obj/effect/fusion_em_field/holder)
+/datum/decl/fusion_reaction/phoron_supermatter/handle_reaction_special(obj/effect/fusion_em_field/holder)
 
 	wormhole_event()
 
 	var/turf/origin = get_turf(holder)
 	holder.Rupture()
-	qdel(holder)
-	var/radiation_level = 200
-
-	// Copied from the SM for proof of concept. //Not any more --Cirra //Use the whole z proc --Leshana
-	SSradiation.z_radiate(locate(1, 1, holder.z), radiation_level, 1)
+	radiation_pulse(
+		holder,
+		max_range = 50,
+		threshold = RAD_HEAVY_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 500
+	)
 
 	for(var/mob/living/mob in GLOB.living_mob_list)
 		var/turf/T = get_turf(mob)
@@ -135,8 +137,7 @@ GLOBAL_LIST(fusion_reactions)
 			spawn(5)
 				if(I && I.loc)
 					qdel(I)
-
-	sleep(5)
+	qdel(holder)
 	explosion(origin, 1, 2, 5)
 
 	return 1

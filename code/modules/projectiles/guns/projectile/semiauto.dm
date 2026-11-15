@@ -14,7 +14,6 @@
 	item_state = "rifle"
 	w_class = ITEMSIZE_LARGE
 	caliber = "7.62mm"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
 	//fire_sound = 'sound/weapons/rifleshot.ogg'
 	load_method = MAGAZINE // ToDo: Make it so MAGAZINE, SPEEDLOADER and SINGLE_CASING can all be used on the same gun.
@@ -47,7 +46,6 @@
 	item_state = "rifle"
 	w_class = ITEMSIZE_LARGE
 	caliber = ".44"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
 	handle_casings = CYCLE_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER

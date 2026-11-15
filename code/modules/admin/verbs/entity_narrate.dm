@@ -68,7 +68,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(add_mob_for_narration, R_FUN, "Narrate Entity (Add r
 		log_and_message_admins("added [A.name] for their personal list to narrate", user) //Logging here to avoid spam, while still safeguarding abuse
 
 //Proc for keeping our ref list relevant, deleting mobs that are no longer relevant for our event
-ADMIN_VERB(remove_mob_for_narration, R_FUN, "Narrate Entity (Remove ref)", "Remove mobs you're no longer narrating from your list for easier work.", "Fun.Narrate")
+ADMIN_VERB(remove_mob_for_narration, R_FUN, "Narrate Entity (Remove ref)", "Remove mobs you're no longer narrating from your list for easier work.", ADMIN_CATEGORY_FUN_NARRATE)
 	if(!user.entity_narrate_holder)
 		user.entity_narrate_holder = new /datum/entity_narrate()
 		to_chat(user, "No references were added yet! First add references!")
@@ -92,7 +92,7 @@ ADMIN_VERB(remove_mob_for_narration, R_FUN, "Narrate Entity (Remove ref)", "Remo
 //For now brings up a list of all entities on our reference list and gives us the option to choose what we wanna do
 //using TGUI/Byond list/alert inputs
 //Does not actually interact with the game world, it passes user input to narrate_mob_args(name, mode, message) after sanitizing
-ADMIN_VERB(narrate_mob, R_FUN, "Narrate Entity (Interface)", "Send either a visible or audiable message through your chosen entities using an interface.", "Fun.Narrate")
+ADMIN_VERB(narrate_mob, R_FUN, "Narrate Entity (Interface)", "Send either a visible or audiable message through your chosen entities using an interface.", ADMIN_CATEGORY_FUN_NARRATE)
 	if(!user.entity_narrate_holder)
 		user.entity_narrate_holder = new /datum/entity_narrate()
 		to_chat(user, "No references were added yet! First add references!")

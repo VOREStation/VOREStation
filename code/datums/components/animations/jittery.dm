@@ -69,7 +69,7 @@ jittery process - wiggles the mob's pixel offset over time
 value of jittery ranges from 0 to 1000
 below 100 is not jittery
 */
-/mob/proc/make_jittery(var/amount)
+/mob/proc/make_jittery(amount)
 	if(amount < 0 && get_jittery() == 0) // If removing, check if we're already empty!
 		return
 	var/datum/component/jittery_shake/JC = LoadComponent(/datum/component/jittery_shake);
@@ -86,7 +86,7 @@ below 100 is not jittery
 	return max(JC.jitteriness,0)
 
 // Disabled on borgs
-/mob/living/silicon/make_jittery(var/amount)
+/mob/living/silicon/make_jittery(amount)
 	return
 
 /mob/living/silicon/get_jittery()

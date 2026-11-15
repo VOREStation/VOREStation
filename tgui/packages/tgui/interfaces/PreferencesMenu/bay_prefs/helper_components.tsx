@@ -62,13 +62,13 @@ export const CanvasBackedImage = (props: {
 
 export const drawColorizedIconToOffscreenCanvas = async (
   color: string,
-  icon: string,
-  icon_state: string,
+  icon: string | null,
+  icon_state: string | null,
   dir?: string,
 ): Promise<OffscreenCanvas | null> => {
   const canvas = new OffscreenCanvas(64, 64);
   const ctx = canvas.getContext('2d');
-  if (!ctx) {
+  if (!ctx || !icon || !icon_state) {
     return null;
   }
 
@@ -96,8 +96,8 @@ export const drawColorizedIconToOffscreenCanvas = async (
 };
 
 export const ColorizedImage = (props: {
-  iconRef: string;
-  iconState: string;
+  iconRef: string | null;
+  iconState: string | null;
   preRender?: (ctx: OffscreenCanvasRenderingContext2D) => Promise<void>;
   postRender?: (ctx: OffscreenCanvasRenderingContext2D) => Promise<void>;
   color?: string | null;
@@ -178,8 +178,8 @@ export const CustomImageButton = (
 
 export const ColorizedImageButton = (
   props: PropsWithChildren<{
-    iconRef: string;
-    iconState: string;
+    iconRef: string | null;
+    iconState: string | null;
     color?: string | null;
     dir?: string;
     onClick: () => void;

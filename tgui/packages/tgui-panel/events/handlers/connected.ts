@@ -1,4 +1,4 @@
-import type { GameConnectedPayload } from 'packages/tgui-panel/game/types';
+import type { GameConnectedPayload } from 'tgui-panel/game/types';
 import {
   chatlogApiEndpointAtom,
   databaseBackendEnabledAtom,

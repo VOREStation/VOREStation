@@ -13,7 +13,7 @@ export const MarkdownSpoilerText = (props: { text: string }) => {
           inline
           preserveWhitespace
           key={index}
-          className={index % 2 === 1 ? 'spoiler' : undefined}
+          className={index % 2 === 1 ? 'text-spoiler' : undefined}
         >
           {part}
         </Box>
@@ -27,7 +27,7 @@ export const SpoilerText = (props: { text: string }) => {
   const { text } = props;
 
   return (
-    <Box inline preserveWhitespace className="spoiler">
+    <Box inline preserveWhitespace className="text-spoiler">
       {text}
     </Box>
   );

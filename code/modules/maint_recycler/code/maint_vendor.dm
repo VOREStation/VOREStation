@@ -27,7 +27,7 @@
 
 	var/obj/effect/overlay/recycler/monitor_screen
 
-/obj/machinery/maint_vendor/fall_apart(var/severity = 3, var/scatter = TRUE)
+/obj/machinery/maint_vendor/fall_apart(severity = 3, scatter = TRUE)
 	return FALSE //don't fall apart. you can't fall apart if you don't consent. it works irl too.
 
 /obj/machinery/maint_vendor/dismantle()
@@ -86,7 +86,7 @@
 	if(!is_on)
 		set_on_state(TRUE)
 
-/obj/machinery/maint_vendor/proc/attempt_purchase(var/mob/user, var/datum/maint_recycler_vendor_entry/entry)
+/obj/machinery/maint_vendor/proc/attempt_purchase(mob/user, datum/maint_recycler_vendor_entry/entry)
 	if(!istype(entry))
 		return
 	if(entry.purchased_by == null)
@@ -101,7 +101,7 @@
 	credit_user(user,-entry.item_cost)
 	entry.purchased_by[user.client.ckey] += 1
 
-/obj/machinery/maint_vendor/proc/purchase_failed(var/mob/user, var/reason)
+/obj/machinery/maint_vendor/proc/purchase_failed(mob/user, reason)
 	if(prob(95))
 		set_screen_state("screen_deny",10)
 	else
@@ -110,7 +110,7 @@
 	playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
 	return
 
-/obj/machinery/maint_vendor/proc/dispense_item_from_datum(var/mob/user, var/datum/maint_recycler_vendor_entry/used_entry)
+/obj/machinery/maint_vendor/proc/dispense_item_from_datum(mob/user, datum/maint_recycler_vendor_entry/used_entry)
 	if(!used_entry || !used_entry.object_type_to_spawn)
 		to_chat(user,span_warning("What the fuck?? this is a scam! Nothing happened!"))
 		return;
@@ -123,7 +123,7 @@
 	else
 		set_screen_state("screen_happy",10)
 
-/obj/machinery/maint_vendor/proc/can_user_purchase(var/mob/user,var/datum/maint_recycler_vendor_entry/attempted_entry)
+/obj/machinery/maint_vendor/proc/can_user_purchase(mob/user,datum/maint_recycler_vendor_entry/attempted_entry)
 	if(!user_balance(user) || user_balance(user) < attempted_entry.item_cost)
 		purchase_failed(user, "Insufficent Balance")
 		return FALSE
@@ -150,7 +150,7 @@
 		add_overlay(mutable_appearance(src.icon, "passiveGlow")) //product display. screen is distinct.
 		add_overlay(emissive_appearance(src.icon, "passiveGlow"))
 
-/obj/machinery/maint_vendor/proc/set_screen_state(var/state, var/duration = 10)
+/obj/machinery/maint_vendor/proc/set_screen_state(state, duration = 10)
 	if(!is_on) return
 	monitor_screen.icon_state = state
 	addtimer(CALLBACK(src, PROC_REF(reset_screen_state)), duration)
@@ -215,16 +215,16 @@
 
 //utility
 
-/obj/machinery/maint_vendor/proc/user_balance(var/mob/user)
+/obj/machinery/maint_vendor/proc/user_balance(mob/user)
 	return user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
 
-/obj/machinery/maint_vendor/proc/credit_user(var/mob/user, var/amount)
+/obj/machinery/maint_vendor/proc/credit_user(mob/user, amount)
 	if(!user || !user.client || !user.client.prefs) return
 	var/currentValue = 	user.client?.prefs?.read_preference(/datum/preference/numeric/recycler_points)
 	user.client?.prefs?.write_preference_by_type(/datum/preference/numeric/recycler_points, currentValue + amount)
 
 
-/obj/machinery/maint_vendor/proc/set_on_state(var/state)
+/obj/machinery/maint_vendor/proc/set_on_state(state)
 	if(is_on == state) return
 	is_on = state
 	if(is_on)

@@ -4,7 +4,7 @@
 	icon_state = "knuckledusters"
 	slot = ACCESSORY_SLOT_RING
 	slot_flags = SLOT_GLOVES
-	matter = list(MAT_STEEL = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.25))
 	attack_verb = list("punched", "beaten", "struck")
 	siemens_coefficient = 1
 	force = 10	//base punch strength is 5
@@ -54,7 +54,7 @@
 	material_slowdown_multiplier = 0
 	slowdown = 0
 
-/obj/item/clothing/accessory/bracelet/material/Initialize(mapload, var/new_material)
+/obj/item/clothing/accessory/bracelet/material/Initialize(mapload, new_material)
 	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL

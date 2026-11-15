@@ -5,8 +5,9 @@
 	name = "\improper Refrigerated Medicine Storage"
 	desc = "A refrigerated storage unit for securely storing medicine and chemicals."
 	icon_contents = "chem"
+	circuit = /obj/item/circuitboard/smartfridge/medbay
 
-/obj/machinery/smartfridge/medbay/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/medbay/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/borghypo))
 		return FALSE
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
@@ -18,8 +19,9 @@
 	desc = "A refrigerated storage unit for storing medicine and chemicals."
 	icon_contents = "chem"
 	req_one_access = list(ACCESS_MEDICAL,ACCESS_CHEMISTRY)
+	circuit = /obj/item/circuitboard/smartfridge/medbay/secure
 
-/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/borghypo))
 		return FALSE
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
@@ -34,7 +36,7 @@
 	desc = "A refrigerated storage unit for storing viral material."
 	icon_contents = "viro"
 
-/obj/machinery/smartfridge/virology/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/virology/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/borghypo))
 		return FALSE
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
@@ -47,7 +49,7 @@
 	icon_contents = "viro"
 	req_access = list(ACCESS_VIROLOGY)
 
-/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/virology/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/borghypo))
 		return FALSE
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
@@ -63,7 +65,7 @@
 	icon_contents = "chem"
 	req_one_access = list(ACCESS_CHEMISTRY)
 
-/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/chemistry/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/borghypo))
 		return FALSE
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
@@ -76,7 +78,7 @@
 	icon_contents = "chem"
 	req_one_access = list(ACCESS_CHEMISTRY)
 
-/obj/machinery/smartfridge/secure/chemistry/accept_check(var/obj/item/O as obj)
+/obj/machinery/smartfridge/secure/chemistry/accept_check(obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/borghypo))
 		return FALSE
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))

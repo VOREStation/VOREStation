@@ -29,7 +29,7 @@
 			give_new_spell(random_spell())
 		qdel(src)
 
-/obj/item/spell/gambit/proc/give_new_spell(var/spell_type)
+/obj/item/spell/gambit/proc/give_new_spell(spell_type)
 	owner.drop_from_inventory(src, null)
 	owner.place_spell_in_hand(spell_type)
 

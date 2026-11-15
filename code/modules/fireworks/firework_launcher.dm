@@ -30,7 +30,7 @@
 /obj/machinery/firework_launcher/update_icon()
 	icon_state = "launcher[loaded_star ? "1" : "0"][anchored ? "1" : "0"][panel_open ? "_open" : ""]"
 
-/obj/machinery/firework_launcher/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/firework_launcher/attackby(obj/item/O, mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		update_icon()
 		return

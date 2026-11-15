@@ -30,7 +30,7 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	pixel_x = -16
 
-/obj/item/clothing/suit/drake_cloak/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/suit/drake_cloak/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(..())
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/drake))
 			return ..()
@@ -47,7 +47,7 @@
 	pixel_x = -16
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 5, bomb = 5, bio = 0, rad = 0)//Minor armor for fluff.
 
-/obj/item/clothing/suit/barding/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/suit/barding/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = FALSE, ignore_obstruction, go_over_slot = FALSE)
 	if(..())
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 			return ..()

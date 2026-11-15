@@ -17,11 +17,28 @@
 	center_of_mass_y = 0
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MAT_STEEL = 18750)
+	matter = list(MAT_STEEL = MATERIAL_COST(9.375))
 	var/deployed = 0
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
+	slot_flags = SLOT_MASK
+	item_icons = list(
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
+		)
+
+/obj/item/beartrap/equipped()
+	if(ishuman(src.loc))
+		var/mob/living/carbon/human/H = src.loc
+		if(H.wear_mask == src)
+			add_verb(H, /mob/living/proc/shred_limb_temp)
+		else
+			remove_verb(H, /mob/living/proc/shred_limb_temp)
+	..()
+
+/obj/item/beartrap/dropped(mob/user, equipping, slot)
+	remove_verb(user, /mob/living/proc/shred_limb_temp)
+	..()
+
 
 /obj/item/beartrap/start_active
 	deployed = TRUE
@@ -128,7 +145,10 @@
 	can_buckle = initial(can_buckle)
 
 /obj/item/beartrap/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
+		return
+	if(AM.throwing)
 		return
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
@@ -145,7 +165,6 @@
 			deployed = 0
 			update_icon()
 			log_and_message_admins("has sprung a [name] at \the [get_area(loc)], last touched by [forensic_data?.get_lastprint()]", L)
-	..()
 
 /obj/item/beartrap/update_icon()
 	..()
@@ -168,8 +187,6 @@
 	camo_net = TRUE
 	color = "#C9DCE1"
 
-	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 1)
-
 /*
  * Barbed-Wire.
  * Slows individuals crossing it. Barefoot individuals will be cut. Can be electrified by placing over a cable node.
@@ -191,17 +208,18 @@
 
 	sharp = TRUE
 
-/obj/item/material/barbedwire/set_material(var/new_material)
+/obj/item/material/barbedwire/set_material(new_material)
 	..()
 
 	if(!QDELETED(src))
 		health = round(material.integrity / 3)
-		name = (material.get_edge_damage() * force_divisor > 15) ?  "[material.display_name] razor wire" : "[material.display_name] [initial(name)]"
+		if(named_from_material)
+			name = (material.get_edge_damage() * force_divisor > 15) ?  "[material.display_name] razor wire" : "[material.display_name] [initial(name)]"
 
 /obj/item/material/barbedwire/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
-/obj/item/material/barbedwire/attack_hand(mob/user as mob)
+/obj/item/material/barbedwire/attack_hand(mob/user)
 	if(anchored && can_use(user))
 		user.visible_message(
 			span_danger("[user] starts to collect \the [src]."),
@@ -245,7 +263,7 @@
 			anchored = TRUE
 			update_icon()
 
-/obj/item/material/barbedwire/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/material/barbedwire/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return
 
@@ -278,9 +296,13 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/material/barbedwire/Crossed(atom/movable/AM as mob|obj)
+/obj/item/material/barbedwire/Crossed(atom/movable/AM)
+	. = ..()
+	return check_step(AM)
+
+/obj/item/material/barbedwire/proc/check_step(atom/movable/AM)
 	if(AM.is_incorporeal())
-		return
+		return FALSE
 	if(anchored && isliving(AM))
 		var/mob/living/L = AM
 		if(L.m_intent == I_RUN)
@@ -291,9 +313,11 @@
 				)
 			attack_mob(L)
 			update_icon()
-	..()
+			return TRUE
+	return FALSE
 
-/obj/item/material/barbedwire/proc/shock(mob/user as mob, prb, var/target_zone = BP_TORSO)
+
+/obj/item/material/barbedwire/proc/shock(mob/user, prb, target_zone = BP_TORSO)
 	if(!anchored || health == 0)		// anchored/destroyed grilles are never connected
 		return 0
 	if(material.conductivity <= 0)
@@ -402,3 +426,21 @@
 /obj/item/material/barbedwire/plastic
 	name = "snare wire"
 	default_material = MAT_PLASTIC
+
+/obj/item/material/barbedwire/plastic/starts_active
+	anchored = TRUE
+
+/obj/item/material/barbedwire/plastic/starts_active/Initialize(mapload, material_key)
+	. = ..()
+	update_icon()
+
+/obj/item/material/barbedwire/durasteel
+	name = "durasteel razor wire"
+	default_material = MAT_DURASTEEL
+
+/obj/item/material/barbedwire/durasteel/starts_active
+	anchored = TRUE
+
+/obj/item/material/barbedwire/durasteel/starts_active/Initialize(mapload, material_key)
+	. = ..()
+	update_icon()

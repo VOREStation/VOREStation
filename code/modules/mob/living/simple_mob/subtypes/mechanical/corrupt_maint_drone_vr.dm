@@ -51,7 +51,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 
-/mob/living/simple_mob/mechanical/corrupt_maint_drone/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/mechanical/corrupt_maint_drone/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

@@ -92,7 +92,7 @@
 		return
 
 /datum/event/atmos_leak/announce()
-	command_announcement.Announce("Warning, hazardous [GLOB.gas_data.name[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert")
+	GLOB.command_announcement.Announce("Warning, hazardous [GLOB.gas_data.name[gas_type]] gas leak detected in \the [target_area], evacuate the area and contain the damage!", "Hazard Alert", ANNOUNCER_MSG_GASLEAK)
 
 /datum/event/atmos_leak/start()
 	// Okay, time to actually put the gas in the room!

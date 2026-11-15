@@ -28,7 +28,7 @@
 			if(O.client.prefs.be_special & BE_ALIEN)
 				question(O.client)
 
-/obj/item/slime_cube/proc/question(var/client/C)
+/obj/item/slime_cube/proc/question(client/C)
 	spawn(0)
 		if(!C)
 			return
@@ -50,7 +50,7 @@
 		for (var/mob/M in viewers(T))
 			M.show_message(span_warning("The activity in the cube dies down. Maybe it will spark another time."))
 
-/obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
+/obj/item/slime_cube/proc/transfer_personality(mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
@@ -79,10 +79,9 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "slime_crystal_small"
 	w_class = ITEMSIZE_TINY
-	origin_tech = list(TECH_MAGNET = 6, TECH_BLUESPACE = 3)
 	force = 1 //Needs a token force to ensure you can attack because for some reason you can't attack with 0 force things
 
-/obj/item/slime_crystal/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/slime_crystal/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	target.visible_message(span_warning("\The [target] has been teleported with \the [src] by \the [user]!"))
 	safe_blink(target, 14)
 	qdel(src)
@@ -115,8 +114,6 @@
 	icon_state = "slime_crystal_large"
 	uses = 1
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 4)
-
 
 // Very filling food.
 /obj/item/reagent_containers/food/snacks/slime
@@ -168,6 +165,9 @@
 	light_power = 0.4
 	light_range = 2
 	w_class = ITEMSIZE_TINY
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/item/slime_irradiator/Initialize(mapload)
 	. = ..()
@@ -175,7 +175,25 @@
 	set_light(light_range, light_power, light_color)
 
 /obj/item/slime_irradiator/process()
-	SSradiation.radiate(src, 5)
+	radiate()
+
+/obj/item/slime_irradiator/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = 25
+	)
+	last_event = world.time
+	active = FALSE
 
 /obj/item/slime_irradiator/Destroy()
 	STOP_PROCESSING(SSobj, src)

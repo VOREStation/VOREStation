@@ -16,6 +16,7 @@
 #define EXPERIMENT_TAG_BASE "Base"
 #define EXPERIMENT_TAG_SCAN "Scan"
 #define EXPERIMENT_TAG_PHYSICAL "Physical Experiment"
+#define EXPERIMENT_TAG_ORDINANCE "Explosives Experiment"
 
 /// Macro for defining a progress stage
 #define EXPERIMENT_PROGRESS(type, desc, values...) list(list(type, desc, values))

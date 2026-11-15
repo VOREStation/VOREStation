@@ -15,6 +15,4 @@
 	deviation = 0.4
 	projectile_energy_cost = 40
 	fire_cooldown = 3
-	origin_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_PHORON = 2, TECH_ILLEGAL = 1)
-
 	step_delay = 1

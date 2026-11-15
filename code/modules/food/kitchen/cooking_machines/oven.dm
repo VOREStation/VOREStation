@@ -50,6 +50,19 @@
 	QDEL_NULL(oven_loop)
 	return ..()
 
+/obj/machinery/appliance/cooker/oven/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	.["is_open"] = open
+
+/obj/machinery/appliance/cooker/oven/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("toggle_door")
+			try_toggle_door(ui.user)
+			return TRUE
+
 /obj/machinery/appliance/cooker/oven/update_icon()
 	if(!open)
 		if(!stat)
@@ -72,16 +85,9 @@
 			oven_loop.stop(src)
 	..()
 
-/obj/machinery/appliance/cooker/oven/click_alt(var/mob/user)
+/obj/machinery/appliance/cooker/oven/click_alt(mob/user)
 	try_toggle_door(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
-/obj/machinery/appliance/cooker/oven/verb/toggle_door()
-	set src in oview(1)
-	set category = "Object"
-	set name = "Open/close oven door"
-
-	try_toggle_door(usr)
 
 /obj/machinery/appliance/cooker/oven/proc/try_toggle_door(mob/user)
 	if(!isliving(user) || isAI(user))
@@ -109,7 +115,7 @@
 	to_chat(user, span_notice("You [open? "open":"close"] the oven door"))
 	update_icon()
 
-/obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
+/obj/machinery/appliance/cooker/oven/proc/manip(obj/item/I)
 	// check if someone's trying to manipulate the machine
 
 	if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/storage/part_replacer))
@@ -117,7 +123,7 @@
 	else
 		return FALSE
 
-/obj/machinery/appliance/cooker/oven/can_insert(var/obj/item/I, var/mob/user)
+/obj/machinery/appliance/cooker/oven/can_insert(obj/item/I, mob/user)
 	if(!open && !manip(I))
 		to_chat(user, span_warning("You can't put anything in while the door is closed!"))
 		return 0
@@ -135,7 +141,7 @@
 		if(temperature > T.temperature)
 			equalize_temperature()
 
-/obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user, show_warning = TRUE)
+/obj/machinery/appliance/cooker/oven/can_remove_items(mob/user, show_warning = TRUE)
 	if(!open)
 		if(show_warning)
 			to_chat(user, span_warning("You can't take anything out while the door is closed!"))
@@ -147,7 +153,7 @@
 
 //Oven has lots of recipes and combine options. The chance for interference is high, so
 //If a combine target is set the oven will do it instead of checking recipes
-/obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
+/obj/machinery/appliance/cooker/oven/finish_cooking(datum/cooking_item/CI)
 	if(CI.combine_target)
 		CI.result_type = 3//Combination type. We're making something out of our ingredients
 		visible_message(span_infoplain(span_bold("\The [src]") + " pings!"))

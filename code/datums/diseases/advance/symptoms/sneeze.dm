@@ -103,7 +103,7 @@ Bonus
 		else
 			SneezeTeleport(A, A.affected_mob)
 
-/datum/symptom/bsneeze/proc/SneezeTeleport(datum/disease/advance/A, var/mob/living/mob)
+/datum/symptom/bsneeze/proc/SneezeTeleport(datum/disease/advance/A, mob/living/mob)
 	var/list/destination = list()
 	var/place
 

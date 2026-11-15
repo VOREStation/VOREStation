@@ -65,11 +65,15 @@
 
 	var/datum/religion/my_religion
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 	purchase_log = list()
 	antag_holder = new
 	..()
+
+/datum/mind/Destroy(force)
+	. = ..()
+	original_character = null
 
 /datum/mind/proc/transfer_to(mob/living/new_character, force = FALSE)
 	if(!istype(new_character))
@@ -102,7 +106,7 @@
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
 
-	update_antag_icons(src)
+	SSantag_job.update_antag_icons(src)
 
 
 /datum/mind/proc/store_memory(new_text)
@@ -127,9 +131,9 @@
 	popup.set_content(output)
 	popup.open()
 
-/datum/mind/proc/edit_memory()
+/datum/mind/proc/edit_memory(mob/user)
 	if(!SSticker || !SSticker.mode)
-		tgui_alert_async(usr, "Not before round-start!", "Alert")
+		tgui_alert_async(user, "Not before round-start!", "Alert")
 		return
 
 	var/out = span_bold("[name]") + "[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
@@ -137,8 +141,8 @@
 	out += "Assigned role: [assigned_role]. <a href='byond://?src=\ref[src];[HrefToken()];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Factions and special roles:<br><table>"
-	for(var/antag_type in GLOB.all_antag_types)
-		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+	for(var/antag_type in SSantag_job.all_antag_types)
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 		out += "[antag.get_panel_entry(src)]"
 	out += "</table><hr>"
 	out += span_bold("Objectives") + "</br>"
@@ -161,15 +165,16 @@
 	out += "<br><a href='byond://?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
 	out += span_bold("Ambitions:") + " [ambitions ? ambitions : "None"] <a href='byond://?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
 
-	var/datum/browser/popup = new(usr, "edit_memory[src]", "Edit Memory")
+	var/datum/browser/popup = new(user, "edit_memory[src]", "Edit Memory")
 	popup.set_content(out)
 	popup.open()
 
 /datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))
+		return
 
 	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["add_antagonist"]]
 		if(antag)
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
@@ -177,23 +182,23 @@
 				to_chat(usr, span_warning("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["remove_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["remove_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["remove_antagonist"]]
 		if(antag) antag.remove_antagonist(src)
 
 	else if(href_list["equip_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["equip_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["equip_antagonist"]]
 		if(antag) antag.equip(src.current)
 
 	else if(href_list["unequip_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["unequip_antagonist"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["unequip_antagonist"]]
 		if(antag) antag.unequip(src.current)
 
 	else if(href_list["move_antag_to_spawn"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["move_antag_to_spawn"]]
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[href_list["move_antag_to_spawn"]]
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
-		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, GLOB.joblist)
+		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, SSjob.occupations_by_name)
 		if (!new_role) return
 		assigned_role = new_role
 
@@ -428,7 +433,7 @@
 		for(var/datum/objective/objective in objectives)
 			to_chat(current, span_bold("Objective #[obj_count]") + ": [objective.explanation_text]")
 			obj_count++
-	edit_memory()
+	edit_memory(usr)
 
 /datum/mind/proc/find_syndicate_uplink()
 	var/list/L = current.get_contents()
@@ -526,7 +531,7 @@
 			log_world("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
-	if(player_is_antag(mind))
+	if(SSantag_job.player_is_antag(mind))
 		add_verb(src.client, /client/proc/aooc)
 
 //HUMAN

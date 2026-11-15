@@ -70,4 +70,5 @@
 	target.belly_rub_target = source.belly_rub_target;									\
 																						\
 	target.soulcatcher_pref_flags = source.soulcatcher_pref_flags;						\
-	target.persistend_edit_mode = source.persistend_edit_mode;
+	target.persistend_edit_mode = source.persistend_edit_mode;							\
+	target.vore_pref_type_flags = source.vore_pref_type_flags;

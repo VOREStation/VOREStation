@@ -5,18 +5,18 @@
 	integrity = 600
 	icon_base = "diona"
 	icon_reinf = "noreinf"
+	supply_conversion_value = 1
 
 /datum/material/diona/place_dismantled_product()
 	return
 
-/datum/material/diona/place_dismantled_girder(var/turf/target)
+/datum/material/diona/place_dismantled_girder(turf/target)
 	spawn_diona_nymph(target)
 
 /datum/material/chitin
 	name = MAT_CHITIN
 	icon_colour = "#8d6653"
 	stack_type = /obj/item/stack/material/chitin
-	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
 	icon_base = "solid"
 	icon_reinf = "reinf_mesh"
 	integrity = 60

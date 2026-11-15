@@ -52,6 +52,7 @@ export const LiquidOptionsLeft = (props: {
       </LabeledList.Item>
       <LabeledList.Item label="Liquid Type">
         <VorePanelEditDropdown
+          searchInput
           action="liq_set_attribute"
           subAction="b_liq_reagent_type"
           color={reagentToColor[liq_reagent_type]}

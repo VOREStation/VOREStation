@@ -85,12 +85,15 @@ export const BanningSection = (props: { possibleJobs: string[] }) => {
                 </LabeledList.Item>
                 <LabeledList.Item label="Job">
                   <Dropdown
+                    searchInput
+                    styledInput
                     fluid
                     onSelected={(value) => {
                       setBanJob(value);
                     }}
                     options={possibleJobs}
                     selected={banJob}
+                    displayText={banJob}
                   />
                 </LabeledList.Item>
               </LabeledList>

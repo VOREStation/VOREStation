@@ -17,7 +17,7 @@
 	attack_message = "A fragment strikes you"
 	attack_verb = "strikes"
 
-/datum/blob_type/shifting_fragments/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+/datum/blob_type/shifting_fragments/on_received_damage(obj/structure/blob/B, damage, damage_type)
 	if(damage > 0 && prob(60))
 		var/list/available_blobs = list()
 		for(var/obj/structure/blob/OB in orange(1, B))
@@ -30,7 +30,7 @@
 			B.forceMove(T) // Swap places.
 	return ..()
 
-/datum/blob_type/shifting_fragments/on_expand(var/obj/structure/blob/B, var/obj/structure/blob/new_B, var/turf/T, var/mob/observer/blob/O)
+/datum/blob_type/shifting_fragments/on_expand(obj/structure/blob/B, obj/structure/blob/new_B, turf/T, mob/observer/blob/O)
 	if(istype(B, /obj/structure/blob/normal) || (istype(B, /obj/structure/blob/shield) && prob(25)))
 		new_B.forceMove(get_turf(B))
 		B.forceMove(T)

@@ -57,7 +57,7 @@ export const WikiBotanyPage = (props: { seeds: BotanyData }) => {
               )}
             </LabeledList.Item>
             <LabeledList.Item label="Yield">
-              {!!crop_yield && crop_yield > 0 ? crop_yield : <NotAvilableBox />}
+              {crop_yield && crop_yield > 0 ? crop_yield : <NotAvilableBox />}
             </LabeledList.Item>
             {!!traits && (
               <WikiSpoileredList

@@ -73,7 +73,7 @@
 		to_chat(user, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
 		return
 
-	if(!user.MayRespawn(1))
+	if(!user.MayRespawn(TRUE))
 		return
 
 	var/turf/T = get_turf(src)
@@ -120,7 +120,10 @@
 
 		//Do the searching
 		busy = TRUE
-		if(do_after(user, rand(4 SECONDS,6 SECONDS), target = src))
+		var/search_time = rand(4 SECONDS,6 SECONDS)
+		if(HAS_TRAIT(H, TRAIT_SCAVENGER) || HAS_TRAIT(H, TRAIT_SCAVENGER_EXPERT))
+			search_time = 1 SECONDS
+		if(do_after(user, search_time, target = src))
 			if(hider && prob(50))
 				//If there was a hider, chance to reveal them
 				to_chat(hider,span_danger("You've been discovered!"))
@@ -162,11 +165,11 @@
 		"trashbag",
 		"brokecomp")
 
-/obj/structure/mob_spawner/mouse_nest/do_spawn(var/mob_path)
+/obj/structure/mob_spawner/mouse_nest/do_spawn(mob_path)
 	. = ..()
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[.] crawls out of \the [src].")
 
-/obj/structure/mob_spawner/mouse_nest/get_death_report(var/mob/living/L)
+/obj/structure/mob_spawner/mouse_nest/get_death_report(mob/living/L)
 	..()
 	last_spawn = rand(world.time - spawn_delay, world.time)

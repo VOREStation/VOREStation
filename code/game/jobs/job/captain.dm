@@ -1,4 +1,4 @@
-var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
+GLOBAL_DATUM_INIT(captain_announcement, /datum/announcement/minor, new(do_newscast = 1))
 
 //////////////////////////////////
 //			Captain
@@ -41,14 +41,14 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 /*
-/datum/job/captain/equip(var/mob/living/carbon/human/H)
+/datum/job/captain/equip(mob/living/carbon/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(src)
 */
 
 /datum/job/captain/get_access()
-	return get_all_station_access().Copy()
+	return SSaccess.get_all_station_access().Copy()
 
 /datum/job/captain/get_request_reasons()
 	return list("Training crew", "Assembling expedition team")

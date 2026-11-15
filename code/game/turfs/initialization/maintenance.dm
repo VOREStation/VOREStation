@@ -1,4 +1,4 @@
-/datum/turf_initializer/maintenance/InitializeTurf(var/turf/simulated/T)
+/datum/turf_initializer/maintenance/InitializeTurf(turf/simulated/T)
 	if(T.density)
 		return
 	if(!T.can_dirty)
@@ -39,7 +39,7 @@
 		GLOB.random_junk -= /obj/item/trash/tray
 	return pick(GLOB.random_junk)
 
-/datum/turf_initializer/maintenance/proc/dirty_neighbors(var/list/cardinal_turfs)
+/datum/turf_initializer/maintenance/proc/dirty_neighbors(list/cardinal_turfs)
 	var/how_dirty = 0
 	for(var/turf/simulated/T in cardinal_turfs)
 		// Considered dirty if more than halfway to visible dirt
@@ -47,7 +47,7 @@
 			how_dirty++
 	return how_dirty
 
-/datum/turf_initializer/maintenance/proc/attempt_web(var/turf/simulated/T)
+/datum/turf_initializer/maintenance/proc/attempt_web(turf/simulated/T)
 	var/turf/north_turf = get_step(T, NORTH)
 	if(!north_turf || !north_turf.density)
 		return
@@ -61,7 +61,7 @@
 				new /obj/effect/decal/cleanable/cobweb2(T)
 			return
 
-/datum/turf_initializer/maintenance/shallow/InitializeTurf(var/turf/simulated/dirty)
+/datum/turf_initializer/maintenance/shallow/InitializeTurf(turf/simulated/dirty)
 	if(dirty.density)
 		return
 	if(!dirty.can_dirty)

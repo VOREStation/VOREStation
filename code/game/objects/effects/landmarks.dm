@@ -74,7 +74,7 @@
 	else
 		GLOB.landmarks_list += src
 
-/obj/effect/landmark/Destroy(var/force = FALSE)
+/obj/effect/landmark/Destroy(force = FALSE)
 	if(delete_me || force)
 		GLOB.landmarks_list -= src
 		return ..()

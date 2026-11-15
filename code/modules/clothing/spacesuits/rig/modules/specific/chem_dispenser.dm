@@ -43,7 +43,7 @@
 		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 30)
 		)
 
-/obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
+/obj/item/rig_module/chem_dispenser/accepts_item(obj/item/input_item, mob/living/user)
 
 	if(!input_item.is_open_container())
 		return 0

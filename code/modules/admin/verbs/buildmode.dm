@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 	set category = "Special Verbs"
 	if(M.client)
 		if(M.client.buildmode)
-			log_admin("[key_name(M)] has left build mode.")
+			log_admin("[key_name(M)] exited build mode.")
 			M.client.buildmode = 0
 			M.client.show_popup_menus = 1
 			M.plane_holder.set_vis(VIS_BUILDMODE, FALSE)
@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(H.cl == M.client)
 					qdel(H)
 		else
-			log_admin("[key_name(M)] has entered build mode.")
+			log_admin("[key_name(M)] entered build mode.")
 			M.client.buildmode = 1
 			M.client.show_popup_menus = 0
 			M.plane_holder.set_vis(VIS_BUILDMODE, TRUE)
@@ -299,6 +299,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
+				log_admin("BUILDMODE: [key_name(usr)] set var-edit: [valueholder].")
 
 			if(BUILDMODE_ROOM)
 				switch(tgui_alert(usr, "Would you like to generate a new area as well?","Room Builder", list("No", "Yes")))
@@ -314,6 +315,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							area_enabled = 0
 							return
 						area_name = sanitize(area_name,MAX_NAME_LEN)
+						log_admin("BUILDMODE ROOM: [key_name(usr)] area: [area_name].")
 				var/choice = tgui_alert(usr, "Would you like to change the floor or wall holders?","Room Builder", list("Floor", "Wall"))
 				switch(choice)
 					if("Floor")
@@ -328,19 +330,22 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						var/input = tgui_input_number(usr, "New light range.","Light Maker",3)
 						if(input)
 							new_light_range = input
+							log_admin("BUILDMODE: [key_name(usr)] set light r to [new_light_range].")
 					if("Power")
 						var/input = tgui_input_number(usr, "New light power.","Light Maker",3)
 						if(input)
 							new_light_intensity = input
+							log_admin("BUILDMODE: [key_name(usr)] set light i to [new_light_intensity].")
 					if("Color")
 						var/input = tgui_color_picker(usr, "New light color.","Light Maker",new_light_color)
 						if(input)
 							new_light_color = input
+							log_admin("BUILDMODE: [key_name(usr)] set light c to [new_light_color].")
 			if(BUILDMODE_DROP)
 				objholder = get_path_from_partial_text()
 	return 1
 
-/proc/build_click(var/mob/user, buildmode, params, var/obj/object)
+/proc/build_click(mob/user, buildmode, params, obj/object)
 	var/obj/effect/bmode/buildholder/holder = null
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)
@@ -355,19 +360,23 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(istype(object,/turf/space))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/floor))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall/r_wall)
+					T.flags |= ADMIN_SPAWNED
 					return
 			else if(pa.Find("right"))
 				if(istype(object,/turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/floor))
 					var/turf/T = object
@@ -375,42 +384,53 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						var/warning = tgui_alert(user, "Are you -sure- you want to delete this turf and make it the base turf for this Z level?", "GRIEF ALERT", list("No", "Yes"))
 						if(warning == "Yes")
 							holder.warned = 1
+							log_admin("[key_name(usr)] has acknowledged the deletion of [T] and turned it into base turf. This could have resulted in spacing.")
 						else
 							return
 					T.ChangeTurf(get_base_turf_by_area(T)) //Defaults to Z if area does not have a special base turf.
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/turf/simulated/wall/r_wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall)
+					T.flags |= ADMIN_SPAWNED
 					return
 				else if(istype(object,/obj))
+					log_admin("[key_name(usr)] qdel'd [object].")
 					qdel(object)
 					return
 			else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
-				new/obj/machinery/door/airlock(get_turf(object))
+				var/obj/new_door = new /obj/machinery/door/airlock(get_turf(object))
+				new_door.flags |= ADMIN_SPAWNED
 			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("left"))
 				switch(holder.builddir.dir)
 					if(NORTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(NORTH)
+						WIN.flags |= ADMIN_SPAWNED
 					if(SOUTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(SOUTH)
+						WIN.flags |= ADMIN_SPAWNED
 					if(EAST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(EAST)
+						WIN.flags |= ADMIN_SPAWNED
 					if(WEST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(WEST)
+						WIN.flags |= ADMIN_SPAWNED
 					if(NORTHWEST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
 						WIN.set_dir(NORTHWEST)
+						WIN.flags |= ADMIN_SPAWNED
 			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("alt") && pa.Find("middle"))
 				var/turf/T = object
 				var/obj/item/toy/plushie/teshari/easter_egg = new /obj/item/toy/plushie/teshari(T)
 				easter_egg.name = "coding teshari plushie"
 				easter_egg.desc = "A small purple teshari with a plush keyboard attached to it. Where did this come from?"
 				easter_egg.color = "#a418c7"
+				easter_egg.flags |= ADMIN_SPAWNED
 
 
 		if(BUILDMODE_ADVANCED)
@@ -418,35 +438,43 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
+					T.flags |= ADMIN_SPAWNED
 				else if(ispath(holder.buildmode.objholder))
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.set_dir(holder.builddir.dir)
+					A.flags |= ADMIN_SPAWNED
+					//log_admin("BUILDMODE: [key_name(usr)] spawned [A] at x:[object.x] y:[object.y] z:[object.z].") //Too spammy. We'll just log when they select the item initially.
 			else if(pa.Find("right") && !pa.Find("alt"))
 				if(isobj(object))
+					log_admin("BUILDMODE: [key_name(usr)] qdel'd [object].")
 					qdel(object)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
+				log_admin("BUILDMODE: [key_name(usr)] has copied [object.type] to buildmode.")
 			else if(pa.Find("left") && pa.Find("alt"))
 				user.client.debug_variables(object)
 			else if(pa.Find("right") && pa.Find("alt"))
-				SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/call_proc_datum, object)
+				SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/call_proc_datum, object) //This'll log itself later when the proc is actually called.
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)
 					to_chat(usr, "[object.type]")
+					log_admin("BUILDMODE: [key_name(usr)] selected [object.type].")
 
 		if(BUILDMODE_EDIT)
 			if(pa.Find("left")) //I cant believe this shit actually compiles.
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
+					object.datum_flags |= DF_VAR_EDITED
 				else
 					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
-					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
+					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to initial state.")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
+					object.datum_flags |= DF_VAR_EDITED
 				else
 					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 
@@ -454,10 +482,10 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			if(pa.Find("left"))
 				if(istype(object, /atom/movable))
 					holder.throw_atom = object
+					log_admin("[key_name(usr)] selected [object] to throw.")
 			if(pa.Find("right"))
 				if(holder.throw_atom)
-					holder.throw_atom.throw_at(object, 10, 1)
-					log_admin("[key_name(usr)] threw [holder.throw_atom] at [object]")
+					holder.throw_atom.throw_at(object, 10, 1) //No logging here since this gets spammed.
 
 		if(BUILDMODE_ROOM)
 			if(pa.Find("left"))
@@ -482,6 +510,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					holder.buildmode.floor_holder,
 					holder.buildmode.area_enabled,
 					holder.buildmode.area_name)
+				log_admin("BUILDMODE: [key_name(usr)] has created a room starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and ending at x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
 				holder.buildmode.coordA = null
 				holder.buildmode.coordB = null
 
@@ -500,8 +529,11 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				var/obj/structure/ladder/B = new /obj/structure/ladder(holder.buildmode.coordB)
 				A.target_up = B
 				B.target_down = A
+				A.flags |= ADMIN_SPAWNED
+				B.flags |= ADMIN_SPAWNED
 				A.update_icon()
 				B.update_icon()
+				log_admin("BUILDMODE: [key_name(usr)] has created a ladder starting at x: [get_x(holder.buildmode.coordA)] y: [get_y(holder.buildmode.coordA)] z: [get_z(holder.buildmode.coordA)] and connecting to x: [get_x(holder.buildmode.coordB)] y: [get_y(holder.buildmode.coordB)] z: [get_z(holder.buildmode.coordB)].")
 				holder.buildmode.coordA = null
 				holder.buildmode.coordB = null
 
@@ -518,9 +550,11 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			if(pa.Find("left"))
 				if(object)
 					object.set_light(holder.buildmode.new_light_range, holder.buildmode.new_light_intensity, holder.buildmode.new_light_color)
+					log_admin("[key_name(usr)] adjusted [object]'s L I C to [holder.buildmode.new_light_range], [holder.buildmode.new_light_intensity], [holder.buildmode.new_light_color].")
 			if(pa.Find("right"))
 				if(object)
 					object.set_light(0, 0, "#FFFFFF")
+					log_admin("[key_name(usr)] adjusted [object]'s light to default.")
 
 		if(BUILDMODE_AI)
 			if(pa.Find("left"))
@@ -534,10 +568,14 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							var/datum/ai_holder/AI = L.ai_holder
 							if(stance == STANCE_SLEEP)
 								AI.go_wake()
+								L.datum_flags |= DF_VAR_EDITED //we'll consider messing with AI as varediting it.
 								to_chat(user, span_notice("\The [L]'s AI has been enabled."))
+								log_admin("[key_name(usr)] activated [L]'s AI.")
 							else
 								AI.go_sleep()
+								L.datum_flags |= DF_VAR_EDITED
 								to_chat(user, span_notice("\The [L]'s AI has been disabled."))
+								log_admin("[key_name(usr)] deactivated [L]'s AI.")
 							return
 						else
 							to_chat(user, span_warning("\The [L] is not AI controlled."))
@@ -548,7 +586,9 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						if(!isnull(L.get_AI_stance()))
 							var/datum/ai_holder/AI = L.ai_holder
 							AI.hostile = !AI.hostile
+							L.datum_flags |= DF_VAR_EDITED
 							to_chat(user, span_notice("\The [L] is now [AI.hostile ? "hostile" : "passive"]."))
+							log_admin("[key_name(usr)] made [L]'s AI hostile.")
 						else
 							to_chat(user, span_warning("\The [L] is not AI controlled."))
 						return
@@ -578,16 +618,21 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			if(pa.Find("middle"))
 				if(pa.Find("shift"))
 					to_chat(user, span_notice("All selected mobs set to wander"))
+					log_admin("[key_name(usr)] told selected mobs to wander.")
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = TRUE
+						unit.datum_flags |= DF_VAR_EDITED
 				if(pa.Find("ctrl"))
 					to_chat(user, span_notice("Setting mobs set to NOT wander"))
+					log_admin("[key_name(usr)] told selected mobs to not wander.")
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
 						AI.wander = FALSE
+						unit.datum_flags |= DF_VAR_EDITED
 				if(pa.Find("alt") && isatom(object))
 					to_chat(user, span_notice("Adding [object] to Entity Narrate List!"))
+					log_admin("[key_name(usr)] added [object] to the entity narration list.")
 					SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/add_mob_for_narration, object)
 
 
@@ -599,7 +644,9 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 						return
 					else
 						var/mob/living/L = object
+						log_admin("[key_name(usr)] changed [L]'s faction from [L.faction] to [holder.copied_faction].")
 						L.faction = holder.copied_faction
+						L.datum_flags |= DF_VAR_EDITED
 						to_chat(user, span_notice("Pasted faction '[holder.copied_faction]'."))
 						return
 
@@ -613,6 +660,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							AI.give_target(A)
 							i++
 						to_chat(user, span_notice("Commanded [i] mob\s to attack \the [A]."))
+						log_admin("[key_name(usr)] told selected mobs to attack [A].")
 						var/image/orderimage = image(GLOB.buildmode_hud,A,"ai_targetorder")
 						orderimage.plane = PLANE_BUILDMODE
 						flick_overlay(orderimage, list(user.client), 8, TRUE)
@@ -639,6 +687,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							message += "."
 					if(j)
 						message += "[j] mob\s to follow \the [L]."
+					log_admin("[key_name(usr)] told selected mobs to attack/follow [L].")
 					to_chat(user, span_notice(message))
 					var/image/orderimage = image(GLOB.buildmode_hud,L,"ai_targetorder")
 					orderimage.plane = PLANE_BUILDMODE
@@ -659,6 +708,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							AI.give_destination(T, 1, pa.Find("shift")) // If shift is held, the mobs will not stop moving to attack a visible enemy.
 							told++
 					to_chat(user, span_notice("Commanded [told] mob\s to move to \the [T], and manually placed [forced] of them."))
+					log_admin("[key_name(usr)] told selected mobs to move to [T].")
 					var/image/orderimage = image(GLOB.buildmode_hud,T,"ai_turforder")
 					orderimage.plane = PLANE_BUILDMODE
 					flick_overlay(orderimage, list(user.client), 8, TRUE)
@@ -671,19 +721,23 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
-					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE)
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE, TRUE)
+					log_admin("[key_name(usr)] dropped [holder.buildmode.objholder] onto [object] nonlethally.")
 			else if(pa.Find("right"))
 				if(ispath(holder.buildmode.objholder))
-					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE)
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE, TRUE)
+					log_admin("[key_name(usr)] dropped [holder.buildmode.objholder] onto [object] lethally.")
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
+				log_admin("[key_name(usr)] copied [object] ([object.type]) to buildmode.")
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
+				log_admin("[key_name(usr)] selected [holder.buildmode.objholder].")
 				if(holder.buildmode.objsay)
 					to_chat(usr, "[object.type]")
 
-/proc/build_drag(var/client/user, buildmode, var/atom/fromatom, var/atom/toatom, var/atom/fromloc, var/atom/toloc, var/fromcontrol, var/tocontrol, params)
+/proc/build_drag(client/user, buildmode, atom/fromatom, atom/toatom, atom/fromloc, atom/toloc, fromcontrol, tocontrol, params)
 	var/obj/effect/bmode/buildholder/holder = null
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user)
@@ -720,6 +774,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					i++
 
 			to_chat(user, span_notice("Band-selected [i] mobs."))
+			log_admin("[key_name(usr)] selected [i] mobs. x:[low_x] y:[low_y]- x:[hi_x] y:[hi_y] z:[z].")
 			return
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
@@ -745,9 +800,11 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 		result = matches[1]
 	else
 		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches, strict_modern = TRUE)
+		if(result)
+			log_admin("BUILDMODE/ITEM GENERATION: [key_name(usr)] selected [result] to be spawned.")
 	return result
 
-/obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type, var/area_enabled, var/area_name)
+/obj/effect/bmode/buildmode/proc/make_rectangle(turf/A, turf/B, turf/wall_type, turf/floor_type, area_enabled, area_name)
 	if(!A || !B) // No coords
 		return
 	if(A.z != B.z) // Not same z-level
@@ -791,20 +848,25 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			if(i == low_bound_x || i == high_bound_x || j == low_bound_y || j == high_bound_y)
 				if(isturf(wall_type))
 					T.ChangeTurf(wall_type)
+					T.flags |= ADMIN_SPAWNED
 				else
-					new wall_type(T)
+					var/atom/new_thing = new wall_type(T) //wall_type can be ANY /obj, /mob, /turf, etc
+					new_thing.flags |= ADMIN_SPAWNED
 
 			else
 				if(T.x == origin_x && T.y == origin_y) //Get the middle of the square.
 					origin = T
 				if(isturf(floor_type))
 					T.ChangeTurf(floor_type)
+					T.flags |= ADMIN_SPAWNED
 				else
-					new floor_type(T)
+					var/atom/new_thing = new floor_type(T)
+					new_thing.flags |= ADMIN_SPAWNED
+
 	if(area_enabled) //Let's try not to make a new area unless you got walls and a floor.
 		create_buildmode_area(area_name, origin) //Generates a new area.
 
-/proc/create_buildmode_area(var/area_name, var/turf/origin)
+/proc/create_buildmode_area(area_name, turf/origin)
 	var/turfs = detect_room_buildmode(origin)
 
 	var/area/newA
@@ -828,7 +890,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	return TRUE
 
-/proc/detect_room_buildmode(var/turf/first, var/allowedAreas = AREA_SPACE)
+/proc/detect_room_buildmode(turf/first, allowedAreas = AREA_SPACE)
 	if(!istype(first))
 		return
 	var/list/turf/found = list()

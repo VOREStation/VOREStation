@@ -1,6 +1,5 @@
 ///////////////////////////
 //// Spawning and despawning
-GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
@@ -142,6 +141,8 @@ GLOBAL_LIST_EMPTY(latejoin_talon)
 ///////////////////////////
 //// The Various Machines
 /obj/machinery/telecomms/allinone/talon
+	id = "talon_aio"
+	network = "Talon"
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
 /obj/item/paper/secret_vendornote
@@ -282,7 +283,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
-	idcard_type = /obj/item/card/id/synthetic/talon
+	module_type = /obj/item/robot_module/drone/talon
 
 /obj/item/card/id/synthetic/talon
 	name = "\improper Talon synthetic ID"
@@ -389,6 +390,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/storage/backpack/dufflebag/captain,
 		/obj/item/clothing/head/beret/talon/command,
 		/obj/item/clothing/head/beret/talon/command/refreshed,
+		/obj/item/clothing/under/rank/talon/command,
+		/obj/item/clothing/under/rank/talon/refreshed/command,
 		/obj/item/clothing/suit/storage/vest,
 		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/accessory/solgov/department/command/army,
@@ -413,6 +416,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/under/utility,
 		/obj/item/clothing/head/soft/talon,
+		/obj/item/clothing/under/rank/talon/security,
+		/obj/item/clothing/under/rank/talon/refreshed/security,
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
 		/obj/item/handcuffs = 2,
@@ -443,6 +448,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clothing/under/rank/medical,
 		/obj/item/clothing/under/rank/nurse,
 		/obj/item/clothing/head/soft/talon,
+		/obj/item/clothing/under/rank/talon/medical,
+		/obj/item/clothing/under/rank/talon/refreshed/medical,
 		/obj/item/clothing/under/rank/orderly,
 		/obj/item/clothing/accessory/solgov/department/medical/army,
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
@@ -464,6 +471,10 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
 		/obj/item/clothing/accessory/solgov/department/engineering/army,
+		/obj/item/clothing/under/rank/talon/engineer,
+		/obj/item/clothing/under/rank/talon/atmos,
+		/obj/item/clothing/under/rank/talon/refreshed/engineer,
+		/obj/item/clothing/under/rank/talon/refreshed/atmos,
 		/obj/item/clothing/glasses/omnihud/eng/meson,
 		/obj/item/flashlight,
 		/obj/item/extinguisher,
@@ -490,6 +501,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clothing/accessory/solgov/department/service/army,
 		/obj/item/clothing/head/pilot,
 		/obj/item/clothing/under/rank/pilot1,
+		/obj/item/clothing/under/rank/talon/pilot,
+		/obj/item/clothing/under/rank/talon/refreshed/pilot,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/reagent_containers/food/snacks/liquidfood,
@@ -516,6 +529,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	starts_with = list(
 		/obj/item/radio/headset/talon,
 		/obj/item/clothing/accessory/solgov/department/supply/army,
+		/obj/item/clothing/under/rank/talon/miner,
+		/obj/item/clothing/under/rank/talon/refreshed/miner,
 		/obj/item/clothing/head/helmet/space/void/refurb/mining/talon,
 		/obj/item/clothing/suit/space/void/refurb/mining/talon,
 		/obj/item/tank/oxygen,
@@ -523,7 +538,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/gps/mining/talonminer,
 		/obj/item/clothing/gloves/black,
 		/obj/item/analyzer,
-		/obj/item/storage/bag/ore,
+		/obj/item/ore_bag,
 		/obj/item/flashlight/lantern,
 		/obj/item/shovel,
 		/obj/item/pickaxe,
@@ -565,8 +580,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/item/clothing/head/beret/talon = 10,
 				/obj/item/clothing/head/beret/talon/refreshed = 10,
 				/obj/item/clothing/suit/storage/toggle/hoodie/talon = 10,
-				/obj/item/clothing/under/rank/talon/basic = 10,
-				/obj/item/clothing/under/rank/talon/basic/refreshed = 10,
+				/obj/item/clothing/under/rank/talon = 10,
+				/obj/item/clothing/under/rank/talon/refreshed = 10,
 				/obj/item/clothing/suit/storage/toggle/labcoat/talon = 10,
 				/obj/item/storage/backpack/messenger/talon = 10,
 				/obj/item/storage/backpack/talon = 10,

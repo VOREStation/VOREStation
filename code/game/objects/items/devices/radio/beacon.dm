@@ -4,7 +4,6 @@
 	icon_state = "beacon"
 	item_state = "signaler"
 	var/code = "electronic"
-	origin_tech = list(TECH_BLUESPACE = 1)
 
 GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/radio/beacon)
 
@@ -33,7 +32,6 @@ GLOBAL_LIST_BOILERPLATE(all_beacons, /obj/item/radio/beacon)
 /obj/item/radio/beacon/syndicate
 	name = "suspicious beacon"
 	desc = "A label on it reads: <i>Activate to have a singularity beacon teleported to your location</i>."
-	origin_tech = list(TECH_BLUESPACE = 1, TECH_ILLEGAL = 7)
 	beacon = TRUE
 
 /obj/item/radio/beacon/syndicate/attack_self(mob/user)

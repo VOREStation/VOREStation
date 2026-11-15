@@ -126,6 +126,9 @@
 		color = new_color
 
 /obj/item/storage/wallet/poly/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	var/original_state = icon_state
 	icon_state = "wallet-emp"
 	update_icon()
@@ -134,7 +137,6 @@
 		if(src)
 			icon_state = original_state
 			update_icon()
-	..()
 
 /obj/item/storage/wallet/womens
 	name = "women's wallet"

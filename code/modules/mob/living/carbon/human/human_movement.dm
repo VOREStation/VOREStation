@@ -25,17 +25,19 @@
 	//100 max hp w/ 75 damage = (25/100) * 100 = 75HP
 	//200 max hp w/ 50 damage = (50/200) * 100 = 75HP
 	if(species.pain_mod)
-		var/health_percent = ((health / getMaxHealth()) * 100) / species.pain_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
+		var/health_percent = (health / getMaxHealth()) * 100 //Species pain sensitivity does not apply to painkillers, so we apply it before
 
-		var/hal_pain = getHalLoss() * species.pain_mod //trauma_mod is something entirely differently
+		var/hal_pain = getHalLoss() * species.pain_mod
 		//var/hal_pain = can_feel_pain() ? (getHalLoss() * 2) * species.pain_mod : 0 //Variant for if you want pain immune people to not be affected by halloss slowdown.
+		// Specific pain to respect traits
+		var/pain_threshold = 60 + (30 * (1 - (1 / species.pain_mod)))
 
-		if((health_percent <= 60 || hal_pain >= 25) && !chem_effects[CE_NARCOTICS]) //Have taken 40% of our max health in damage OR we have >=25 halloss pain
+		if((health_percent <= pain_threshold || hal_pain >= 25) && !chem_effects[CE_NARCOTICS]) //Have taken 40% of our max health in damage OR we have >=25 halloss pain
 
 			if(health_percent < 0)
 				health_percent = 0 //Crit already has its own negative effects, so
 
-			var/amount_damaged = 100 - health_percent //Get the percent.
+			var/amount_damaged = (100 - health_percent) *  species.pain_mod //Get the percent.
 
 			if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
 				var/painkiller_strength = chem_effects[CE_PAINKILLER]
@@ -128,6 +130,12 @@
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 
+//Turns out, moving all of the slip check to can_slip() means this proc doesnt really do anything.
+/*
+/mob/living/carbon/human/slip(weaken_amount, obj/slipped_on, lube, stun, force_drop)
+	return ..(knockdown_amount, slipped_on, lube, stun, force_drop)
+*/
+
 /mob/living/carbon/human/Moved()
 	. = ..()
 	if(embedded_flag)
@@ -137,6 +145,9 @@
 		pose = null
 		pose_move = FALSE
 		remove_pose_indicator()
+
+	if(client && !is_incorporeal() && isturf(loc))
+		GLOB.step_taken_shift_roundstat++
 
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
@@ -271,7 +282,7 @@
 			return v.tank
 
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
+/mob/living/carbon/human/Process_Spacemove(check_drift = 0)
 	//Can we act?
 	if(restrained())	return 0
 
@@ -295,14 +306,14 @@
 	return FALSE
 
 // Handle footstep sounds
-/mob/living/carbon/human/handle_footstep(var/turf/T)
+/mob/living/carbon/human/handle_footstep(turf/T)
 	if(shoes && loc == T && get_gravity(loc) && !flying)
 		if(SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION, m_intent))
 			return
 	return
 
-/mob/living/carbon/human/set_dir(var/new_dir)
+/mob/living/carbon/human/set_dir(new_dir)
 	. = ..()
 	if(. && (species.tail || tail_style))
-		//update_tail_showing() this is already called by update_inv_wear_suit
+		update_tail_showing()
 		update_inv_wear_suit()

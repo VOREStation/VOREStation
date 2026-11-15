@@ -6,3 +6,9 @@
 /image/client_only/motion_echo/New(icon, loc, icon_state, layer, dir)
 	. = ..()
 	QDEL_IN(src, 2 SECONDS)
+
+/image/client_only/motion_echo/place_from_root(turf/At)
+	. = ..()
+	var/rand_limit = 12
+	pixel_x += rand(-rand_limit,rand_limit)
+	pixel_y += rand(-rand_limit,rand_limit)

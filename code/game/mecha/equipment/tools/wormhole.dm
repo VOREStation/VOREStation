@@ -2,7 +2,6 @@
 	name = "wormhole generator"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
 	icon_state = "mecha_wholegen"
-	origin_tech = list(TECH_BLUESPACE = 3)
 	equip_cooldown = 50
 	energy_drain = 300
 	range = RANGED

@@ -9,7 +9,7 @@
 				return list(channel)
 	return 0
 
-/proc/ahelp_discord_message(var/message)
+/proc/ahelp_discord_message(message)
 	if(!message)
 		return
 	if(CONFIG_GET(flag/discord_ahelps_disabled))

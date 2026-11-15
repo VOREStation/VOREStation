@@ -1,8 +1,6 @@
 // Kind of a weirdly named SCSS file, but this is used for both pda/pda_messenger.js
 // as well as Communicator.js, and it implements a CSS scheme to produce results similar to Tinder.
 
-@use '../base.scss';
-
 .TinderMessage_First_Sent,
 .TinderMessage_Subsequent_Sent,
 .TinderMessage_First_Received,

@@ -90,24 +90,6 @@
 
 	default_apply_parts()
 
-	if(!LAZYLEN(GLOB.available_recipes))
-		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
-			if((initial(typepath.appliance) & appliancetype))
-				GLOB.available_recipes += new typepath
-
-		for (var/datum/recipe/recipe in GLOB.available_recipes)
-			for (var/item in recipe.items)
-				GLOB.acceptable_items |= item
-			for (var/reagent in recipe.reagents)
-				GLOB.acceptable_reagents |= reagent
-		// This will do until I can think of a fun recipe to use dionaea in -
-		// will also allow anything using the holder item to be microwaved into
-		// impure carbon. ~Z
-		GLOB.acceptable_items |= /obj/item/holder
-		GLOB.acceptable_items |= /obj/item/reagent_containers/food/snacks/grown
-		GLOB.acceptable_items |= /obj/item/soulstone
-		GLOB.acceptable_items |= /obj/item/fuel_assembly/supermatter
-
 	soundloop = new(list(src), FALSE)
 	update_icon()
 
@@ -159,6 +141,8 @@
 			return TRUE
 		to_chat(user, span_warning("There is already a pAI inserted, and you don't feel like cooking \the [O]."))
 		return TRUE
+	if(istype(O, /obj/item/gripper)) //Grippers count as 'attacking' before the thing they're holding. Don't send a message.
+		return FALSE
 	to_chat(user, span_warning("You have no idea what you can cook with \the [O]."))
 	..()
 	post_state_change()
@@ -334,7 +318,7 @@
 /obj/machinery/microwave/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes, src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes[appliancetype], src)
 	data["recipe"] = recipe ? sanitize_css_class_name("[recipe.type]") : null
 	data["recipe_name"] = recipe ? initial(recipe.result:name) : null
 
@@ -466,7 +450,7 @@
 		dispose(FALSE)
 
 /obj/machinery/microwave/proc/loop_finish()
-	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes, src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes[appliancetype], src)
 	if(!recipe)
 		if(length(cookingContents()) >= 1)
 			dirty += 1
@@ -493,7 +477,7 @@
 
 		valid = FALSE
 		recipe.after_cook(src)
-		recipe = select_recipe(GLOB.available_recipes, src)
+		recipe = select_recipe(GLOB.available_recipes[appliancetype], src)
 		if(recipe && recipe.result == result)
 			valid = TRUE
 
@@ -530,7 +514,7 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/microwave/proc/stop(var/success = TRUE)
+/obj/machinery/microwave/proc/stop(success = TRUE)
 	if(success)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
@@ -541,7 +525,7 @@
 	post_state_change()
 	soundloop.stop()
 
-/obj/machinery/microwave/proc/dispose(var/message = TRUE)
+/obj/machinery/microwave/proc/dispose(message = TRUE)
 	for (var/atom/movable/A in cookingContents())
 		A.forceMove(loc)
 	if (src.reagents.total_volume)
@@ -555,7 +539,7 @@
 	src.visible_message(span_warning("\The [src] gets covered in muck!"))
 	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 
-/obj/machinery/microwave/proc/broke(var/spark = TRUE)
+/obj/machinery/microwave/proc/broke(spark = TRUE)
 	if(spark)
 		var/datum/effect/effect/system/spark_spread/s = new
 		s.set_up(2, 1, src)

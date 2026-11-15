@@ -74,3 +74,10 @@
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MAIN_VIRGO_TESTING, 64, 64)
 */
 	return 1
+
+// The map doesn't use shuttles
+/datum/shuttle/autodock/ferry/emergency/escape
+	defer_initialisation = TRUE
+
+/datum/shuttle/autodock/ferry/supply/cargo
+	defer_initialisation = TRUE

@@ -98,7 +98,7 @@
 	else if(isbroken)
 		return
 
-/obj/machinery/slot_machine/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user)
+/obj/machinery/slot_machine/proc/insert_chip(obj/item/spacecasinocash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)
@@ -327,7 +327,7 @@
 	else if(isbroken)
 		return
 
-/obj/machinery/station_slot_machine/proc/insert_cash(var/obj/item/spacecash/cashmoney, mob/user)
+/obj/machinery/station_slot_machine/proc/insert_cash(obj/item/spacecash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)

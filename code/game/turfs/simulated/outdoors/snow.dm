@@ -24,7 +24,7 @@
 	for(var/d in crossed_dirs)
 		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
 
-/turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
+/turf/simulated/floor/outdoors/snow/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shovel))
 		to_chat(user, span_notice("You begin to remove \the [src] with your [W]."))
 		if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
@@ -52,7 +52,15 @@
 	desc = "Looks slippery."
 	edge_blending_priority = 0
 	can_be_plated = FALSE
-	wet = TURFSLIP_ICE
+
+/turf/simulated/floor/outdoors/ice/Initialize(mapload, floortype)
+	. = ..()
+	MakeSlippery(TURF_WET_PERMAFROST, INFINITY, 0, INFINITY, TRUE)
+
+/turf/simulated/floor/outdoors/ice/Destroy()
+	MakeDry(TURF_WET_PERMAFROST)
+	. = ..()
+
 
 /turf/simulated/floor/outdoors/ice/dark
 	name = "black ice"

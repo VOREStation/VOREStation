@@ -84,7 +84,7 @@
 		var/obj/item/O = pick(contents)
 		. += span_blue("You think you can see [O.name] in there.")
 
-/obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/csandwich/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 
 	var/obj/item/shard
 	for(var/obj/item/O in contents)

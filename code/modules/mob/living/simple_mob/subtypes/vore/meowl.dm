@@ -100,7 +100,7 @@
 		"Unfortunately, %pred seems to have absolutely no intention of letting you go, and your futile effort goes nowhere.",
 		"Strain as you might, you can't keep up the effort long enough before you sink back into %pred's %belly.")
 
-/mob/living/simple_mob/vore/meowl/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/meowl/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/reagent_containers/food))
 		if(health <= 0)
 			return
@@ -111,7 +111,7 @@
 		return
 	return ..()
 
-/mob/living/simple_mob/vore/meowl/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple_mob/vore/meowl/PounceTarget(mob/living/M, successrate = 100)
 	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
 	if(prob(max(successrate,33))) // pounce success!
 		M.Weaken(5)

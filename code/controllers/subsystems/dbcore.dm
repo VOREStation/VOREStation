@@ -44,6 +44,11 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/Initialize()
 	Connect()
+	if(IsConnected() && CONFIG_GET(flag/database_logging))
+		var/datum/db_query/query_truncate = NewQuery("TRUNCATE erro_dialog")
+		if(!query_truncate.Execute())
+			log_sql("ERROR TRYING TO CLEAR erro_dialog: "+query_truncate.ErrorMsg())
+		qdel(query_truncate)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/dbcore/stat_entry(msg)

@@ -311,7 +311,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		add_overlay("cart_sign[signs]")
 
 //This is called if the cart is caught in an explosion, or destroyed by weapon fire
-/obj/structure/janitorialcart/proc/spill(var/chance = 100)
+/obj/structure/janitorialcart/proc/spill(chance = 100)
 	var/turf/dropspot = get_turf(src)
 	if (mymop && prob(chance))
 		mymop.forceMove(dropspot)
@@ -355,7 +355,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 
 
-/obj/structure/janitorialcart/proc/dismantle(var/mob/user = null)
+/obj/structure/janitorialcart/proc/dismantle(mob/user = null)
 	if (!dismantled)
 		if (has_items)
 			spill()

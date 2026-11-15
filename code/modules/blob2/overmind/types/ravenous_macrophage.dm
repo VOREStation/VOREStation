@@ -21,7 +21,7 @@
 	attack_message_synth = ", and your body begins to corrode"
 	attack_verb = "splashes"
 
-/datum/blob_type/ravenous_macrophage/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/ravenous_macrophage/on_pulse(obj/structure/blob/B)
 	var/mob/living/L = locate() in range(world.view, B)
 	if(L && prob(1) && L.mind && !L.stat)	// There's some active living thing nearby, produce offgas.
 		var/turf/T = get_turf(B)

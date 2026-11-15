@@ -3,8 +3,7 @@
 	desc = "A coiled metallic tape used to check dimensions and lengths."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "measuring"
-	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MAT_STEEL = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05))
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/storage/bag/fossils
@@ -36,8 +35,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "xenoarch_scanner"
 	item_state = "analyzer"
-	origin_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
-	matter = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
+	matter = list(MAT_STEEL = MATERIAL_COST(5),MAT_GLASS = MATERIAL_COST(2.5))
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 
@@ -103,8 +101,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "depth_scanner"
 	item_state = "analyzer"
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
-	matter = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5),MAT_GLASS = MATERIAL_COST(0.5))
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	var/list/positive_locations = list()
@@ -117,7 +114,7 @@
 	var/record_index = 1
 	var/material = "unknown"
 
-/obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
+/obj/item/depth_scanner/proc/scan_atom(mob/user, atom/A)
 	user.visible_message(span_bold("\The [user]") + " scans \the [A], the air around them humming gently.")
 
 	if(istype(A, /turf/simulated/mineral))
@@ -236,8 +233,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"	//pinonfar, pinonmedium, pinonclose, pinondirect, pinonnull
 	item_state = "electronic"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
-	matter = list(MAT_STEEL = 1000,MAT_GLASS = 500)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5),MAT_GLASS = MATERIAL_COST(0.25))
 	var/frequency = PUB_FREQ
 	var/scan_ticks = 0
 	var/obj/item/radio/target_radio
@@ -338,8 +334,7 @@
 	icon_state = "ano_scanner2"
 	item_state = "lampgreen"
 	icon = 'icons/obj/xenoarchaeology.dmi'
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
-	matter = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
+	matter = list(MAT_STEEL = MATERIAL_COST(5),MAT_GLASS = MATERIAL_COST(2.5))
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	var/mode = 1 //Start off scanning. 1 = scanning, 0 = measuring

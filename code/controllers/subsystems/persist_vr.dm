@@ -12,15 +12,14 @@ SUBSYSTEM_DEF(persist)
 	var/list/currentrun = list()
 	var/list/query_stack = list()
 
-/datum/controller/subsystem/persist/fire(var/resumed = FALSE)
+/datum/controller/subsystem/persist/fire(resumed = FALSE)
 	update_department_hours(resumed)
 
 // Do PTO Accruals
-/datum/controller/subsystem/persist/proc/update_department_hours(var/resumed = FALSE)
+/datum/controller/subsystem/persist/proc/update_department_hours(resumed = FALSE)
 	if(!CONFIG_GET(flag/time_off))
 		return
 
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		src.currentrun.Cut()
 		return
@@ -103,16 +102,16 @@ SUBSYSTEM_DEF(persist)
 		query_stack.Cut()
 
 // This proc tries to find the job datum of an arbitrary mob.
-/datum/controller/subsystem/persist/proc/detect_job(var/mob/M)
+/datum/controller/subsystem/persist/proc/detect_job(mob/M)
 	// Records are usually the most reliable way to get what job someone is.
 	var/datum/data/record/R = find_general_record("name", M.real_name)
 	if(R) // We found someone with a record.
 		var/recorded_rank = R.fields["real_rank"]
 		if(recorded_rank)
-			. = GLOB.job_master.GetJob(recorded_rank)
+			. = SSjob.get_job(recorded_rank)
 			if(.) return
 
 	// They have a custom title, aren't crew, or someone deleted their record, so we need a fallback method.
 	// Let's check the mind.
 	if(M.mind && M.mind.assigned_role)
-		. = GLOB.job_master.GetJob(M.mind.assigned_role)
+		. = SSjob.get_job(M.mind.assigned_role)

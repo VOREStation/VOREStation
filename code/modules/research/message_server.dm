@@ -6,7 +6,7 @@
 	var/sender = "Unspecified" //name of the sender
 	var/message = "Blank" //transferred message
 
-/datum/data_pda_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "")
+/datum/data_pda_msg/New(param_rec = "",param_sender = "",param_message = "")
 
 	if(param_rec)
 		recipient = param_rec
@@ -23,7 +23,7 @@
 	var/id_auth = "Unauthenticated"
 	var/priority = "Normal"
 
-/datum/data_rc_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "",var/param_stamp = "",var/param_id_auth = "",var/param_priority)
+/datum/data_rc_msg/New(param_rec = "",param_sender = "",param_message = "",param_stamp = "",param_id_auth = "",param_priority)
 	if(param_rec)
 		rec_dpt = param_rec
 	if(param_sender)
@@ -56,6 +56,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
+	circuit = /obj/item/circuitboard/message_server
 
 	var/list/datum/data_pda_msg/pda_msgs = list()
 	var/list/datum/data_rc_msg/rc_msgs = list()
@@ -68,7 +69,21 @@
 			//Messages having theese tokens will be rejected by server. Case sensitive
 	var/spamfilter_limit = MESSAGE_SERVER_DEFAULT_SPAM_LIMIT	//Maximal amount of tokens
 
+	var/datum/looping_sound/tcomms/soundloop
+	var/noisy = FALSE
+
 /obj/machinery/message_server/Initialize(mapload)
+	soundloop = new(list(src), FALSE)
+	if(prob(60)) // 60% chance to change the midloop
+		if(prob(40))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_02.ogg' = 1)
+			soundloop.mid_length = 40
+		else if(prob(20))
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_03.ogg' = 1)
+			soundloop.mid_length = 10
+		else
+			soundloop.mid_sounds = list('sound/machines/tcomms/tcomms_04.ogg' = 1)
+			soundloop.mid_length = 30
 	. = ..()
 	GLOB.message_servers += src
 	decryptkey = GenerateKey()
@@ -76,6 +91,7 @@
 
 /obj/machinery/message_server/Destroy()
 	GLOB.message_servers -= src
+	QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
@@ -95,11 +111,16 @@
 	//	decryptkey = generateKey()
 	if(active && (stat & (BROKEN|NOPOWER)))
 		active = 0
+		soundloop.stop()
+		noisy = FALSE
 		return
+	if(!noisy && active)
+		soundloop.start()
+		noisy = TRUE
 	update_icon()
 	return
 
-/obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
+/obj/machinery/message_server/proc/send_pda_message(recipient = "",sender = "",message = "")
 	var/result
 	for (var/token in spamfilter)
 		if (findtextEx(message,token))
@@ -108,7 +129,7 @@
 	pda_msgs += new/datum/data_pda_msg(recipient,sender,message)
 	return result
 
-/obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
+/obj/machinery/message_server/proc/send_rc_message(recipient = "",sender = "",message = "",stamp = "", id_auth = "", priority = 1)
 	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
 	var/authmsg = "[message]\n"
 	if (id_auth)
@@ -137,7 +158,7 @@
 			Console.set_light(2)
 
 
-/obj/machinery/message_server/attack_hand(user as mob)
+/obj/machinery/message_server/attack_hand(mob/living/user)
 //	to_chat(user, span_blue("There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."))
 	to_chat(user, span_filter_notice("You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]."))
 	active = !active
@@ -145,7 +166,13 @@
 
 	return
 
-/obj/machinery/message_server/attackby(obj/item/O as obj, mob/living/user as mob)
+/obj/machinery/message_server/attackby(obj/item/O, mob/living/user)
+	if(default_deconstruction_screwdriver(user, O))
+		return
+
+	if(default_deconstruction_crowbar(user, O))
+		return
+
 	if (active && !(stat & (BROKEN|NOPOWER)) && (spamfilter_limit < MESSAGE_SERVER_DEFAULT_SPAM_LIMIT*2) && \
 		istype(O,/obj/item/circuitboard/message_monitor))
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
@@ -176,11 +203,11 @@
 		return FALSE
 	return ..()
 
-/datum/feedback_variable/New(var/param_variable,var/param_value = 0)
+/datum/feedback_variable/New(param_variable,param_value = 0)
 	variable = param_variable
 	value = param_value
 
-/datum/feedback_variable/proc/inc(var/num = 1)
+/datum/feedback_variable/proc/inc(num = 1)
 	if(isnum(value))
 		value += num
 	else
@@ -190,7 +217,7 @@
 		else
 			value = num
 
-/datum/feedback_variable/proc/dec(var/num = 1)
+/datum/feedback_variable/proc/dec(num = 1)
 	if(isnum(value))
 		value -= num
 	else
@@ -200,7 +227,7 @@
 		else
 			value = -num
 
-/datum/feedback_variable/proc/set_value(var/num)
+/datum/feedback_variable/proc/set_value(num)
 	if(isnum(num))
 		value = num
 
@@ -210,11 +237,11 @@
 /datum/feedback_variable/proc/get_variable()
 	return variable
 
-/datum/feedback_variable/proc/set_details(var/text)
+/datum/feedback_variable/proc/set_details(text)
 	if(istext(text))
 		details = text
 
-/datum/feedback_variable/proc/add_details(var/text)
+/datum/feedback_variable/proc/add_details(text)
 	if(istext(text))
 		if(!details)
 			details = text
@@ -227,7 +254,7 @@
 /datum/feedback_variable/proc/get_parsed()
 	return list(variable,value,details)
 
-var/obj/machinery/blackbox_recorder/blackbox
+GLOBAL_DATUM(blackbox, /obj/machinery/blackbox_recorder)
 
 /obj/machinery/blackbox_recorder
 	icon = 'icons/obj/stationobjs.dmi'
@@ -261,15 +288,14 @@ var/obj/machinery/blackbox_recorder/blackbox
 	//Only one can exist in the world!
 /obj/machinery/blackbox_recorder/Initialize(mapload)
 	. = ..()
-	if(blackbox)
-		if(istype(blackbox,/obj/machinery/blackbox_recorder))
-			return INITIALIZE_HINT_QDEL
-	blackbox = src
+	if(istype(GLOB.blackbox, /obj/machinery/blackbox_recorder))
+		return INITIALIZE_HINT_QDEL
+	GLOB.blackbox = src
 
 /obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1,1,2)
 	if(T)
-		blackbox = null
+		GLOB.blackbox = null
 		var/obj/machinery/blackbox_recorder/BR = new/obj/machinery/blackbox_recorder(T)
 		BR.msg_common = msg_common
 		BR.msg_science = msg_science
@@ -284,11 +310,9 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.feedback = feedback
 		BR.messages = messages
 		BR.messages_admin = messages_admin
-		if(blackbox != BR)
-			blackbox = BR
 	. = ..()
 
-/obj/machinery/blackbox_recorder/proc/find_feedback_datum(var/variable)
+/obj/machinery/blackbox_recorder/proc/find_feedback_datum(variable)
 	for(var/datum/feedback_variable/FV in feedback)
 		if(FV.get_variable() == variable)
 			return FV
@@ -344,7 +368,6 @@ var/obj/machinery/blackbox_recorder/blackbox
 	if(!feedback) return
 
 	round_end_data_gathering() //round_end time logging and some other data processing
-	establish_db_connection()
 	if(!SSdbcore.IsConnected()) return
 	var/round_id
 
@@ -363,65 +386,65 @@ var/obj/machinery/blackbox_recorder/blackbox
 		query_insert.Execute()
 		qdel(query_insert)
 
-// Sanitize inputs to avoid SQL injection attacks
-/proc/sql_sanitize_text(var/text)
+// Sanitize inputs to avoid SQL injection attacks. This is not secure. Basic filters like this are pretty easy to bypass. Use the format for arguments used in the above.
+/proc/sql_sanitize_text(text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")
 	return text
 
-/proc/feedback_set(var/variable,var/value)
-	if(!blackbox) return
+/proc/feedback_set(variable,value)
+	if(!GLOB.blackbox) return
 
 	variable = sql_sanitize_text(variable)
 
-	var/datum/feedback_variable/FV = blackbox.find_feedback_datum(variable)
+	var/datum/feedback_variable/FV = GLOB.blackbox.find_feedback_datum(variable)
 
 	if(!FV) return
 
 	FV.set_value(value)
 
-/proc/feedback_inc(var/variable,var/value)
-	if(!blackbox) return
+/proc/feedback_inc(variable,value)
+	if(!GLOB.blackbox) return
 
 	variable = sql_sanitize_text(variable)
 
-	var/datum/feedback_variable/FV = blackbox.find_feedback_datum(variable)
+	var/datum/feedback_variable/FV = GLOB.blackbox.find_feedback_datum(variable)
 
 	if(!FV) return
 
 	FV.inc(value)
 
-/proc/feedback_dec(var/variable,var/value)
-	if(!blackbox) return
+/proc/feedback_dec(variable,value)
+	if(!GLOB.blackbox) return
 
 	variable = sql_sanitize_text(variable)
 
-	var/datum/feedback_variable/FV = blackbox.find_feedback_datum(variable)
+	var/datum/feedback_variable/FV = GLOB.blackbox.find_feedback_datum(variable)
 
 	if(!FV) return
 
 	FV.dec(value)
 
-/proc/feedback_set_details(var/variable,var/details)
-	if(!blackbox) return
+/proc/feedback_set_details(variable,details)
+	if(!GLOB.blackbox) return
 
 	variable = sql_sanitize_text(variable)
 	details = sql_sanitize_text(details)
 
-	var/datum/feedback_variable/FV = blackbox.find_feedback_datum(variable)
+	var/datum/feedback_variable/FV = GLOB.blackbox.find_feedback_datum(variable)
 
 	if(!FV) return
 
 	FV.set_details(details)
 
-/proc/feedback_add_details(var/variable,var/details)
-	if(!blackbox) return
+/proc/feedback_add_details(variable,details)
+	if(!GLOB.blackbox) return
 
 	variable = sql_sanitize_text(variable)
 	details = sql_sanitize_text(details)
 
-	var/datum/feedback_variable/FV = blackbox.find_feedback_datum(variable)
+	var/datum/feedback_variable/FV = GLOB.blackbox.find_feedback_datum(variable)
 
 	if(!FV) return
 

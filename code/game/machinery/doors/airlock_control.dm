@@ -34,7 +34,7 @@
 
 	do_command(cur_command)
 
-/obj/machinery/door/airlock/proc/check_completion(var/do_lock, var/delayed_status)
+/obj/machinery/door/airlock/proc/check_completion(do_lock, delayed_status)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(do_lock)
@@ -46,7 +46,7 @@
 		cur_command = null
 	send_status()
 
-/obj/machinery/door/airlock/proc/do_command(var/command)
+/obj/machinery/door/airlock/proc/do_command(command)
 	switch(command)
 		if("open")
 			open()
@@ -82,7 +82,7 @@
 	open()
 	addtimer(CALLBACK(src, PROC_REF(check_completion), TRUE), anim_length_before_density + anim_length_before_finalize)
 
-/obj/machinery/door/airlock/proc/command_completed(var/command)
+/obj/machinery/door/airlock/proc/command_completed(command)
 	switch(command)
 		if("open")
 			return (!density)
@@ -107,7 +107,7 @@
 
 	return 1	//Unknown command. Just assume it's completed.
 
-/obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
+/obj/machinery/door/airlock/proc/send_status(bumped = 0)
 	if(radio_connection)
 		var/datum/signal/signal = new
 		signal.transmission_method = TRANSMISSION_RADIO //radio signal
@@ -128,7 +128,7 @@
 	if(!surpress_send) send_status()
 
 
-/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
+/obj/machinery/door/airlock/close(forced= FALSE, ignore_safties = FALSE, crush_damage = DOOR_CRUSH_DAMAGE)
 	. = ..()
 	if(!forced) send_status()
 
@@ -343,7 +343,7 @@
 					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 					set_frequency(new_frequency)
 			if("Command")
-				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: cycle, cycle_interior, cycle_exterior", "[src] command", command, encode = TRUE)
+				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: 'open', 'close', 'unlock', 'lock', 'secure_open', 'secure_close', and 'update', without the '. Additionally, some airlocks support 'cycle', 'cycle_interion', and 'cycle_exterior' '", "[src] command", command, encode = TRUE)
 				if(new_command)
 					command = new_command
 

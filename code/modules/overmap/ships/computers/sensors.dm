@@ -196,7 +196,7 @@
 	else if(health < max_health * 0.75)
 		. += "It shows signs of damage!"
 
-/obj/machinery/shipsensors/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shipsensors/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
 	..()
 
@@ -235,7 +235,8 @@
 	change_power_consumption(1500 * (range**2), USE_POWER_IDLE) //Exponential increase, also affects speed of overheating
 
 /obj/machinery/shipsensors/emp_act(severity, recursive)
-	if(!use_power)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || !use_power)
 		return
 	take_damage(20/severity)
 	toggle()

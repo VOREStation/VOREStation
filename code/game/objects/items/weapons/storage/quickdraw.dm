@@ -14,21 +14,22 @@
 	//When set to 1, a click while it is equipped will instead move the first item inside it to your hand
 	var/quickmode = 0
 
-/obj/item/storage/quickdraw/attack_hand(mob/user as mob)
-	if(src.loc == user) //If they aren't holding us, we do nothing special
+/obj/item/storage/quickdraw/attack_hand(mob/user)
+	if(loc == user) //If they aren't holding us, we do nothing special
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(quickmode)
-				var/first_item = contents[1]
-				if(first_item && !H.get_active_hand()) //Do we have anything to give you?
-					H.put_in_hands(first_item)
-					return
+				if(length(contents))
+					var/first_item = contents[1]
+					if(first_item && !H.get_active_hand()) //Do we have anything to give you?
+						H.put_in_hands(first_item)
+						return
 
 			if(H.l_store == src && !H.get_active_hand()) //overrides
-				src.open(user)
+				open(user)
 				return
 			if(H.r_store == src && !H.get_active_hand())
-				src.open(user)
+				open(user)
 				return
 	..() //Nothing special happened, go call the other proc
 

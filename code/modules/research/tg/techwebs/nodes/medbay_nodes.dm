@@ -6,7 +6,7 @@
 	design_ids = list(
 		"operating",
 		"scan_console",
-		// "medicalbed",
+		"medicalbed",
 		// "defibmountdefault",
 		"defibrillator",
 		// "surgical_drapes",
@@ -14,6 +14,8 @@
 		"retractor",
 		"hemostat",
 		"cautery",
+		"fixovein",
+		"bonegel",
 		"circular_saw",
 		"surgicaldrill",
 		"bonesetter",
@@ -36,6 +38,13 @@
 		// "jerrycan",
 		// "reflex_hammer",
 		// "blood_scanner",
+		"sleevecard",
+		"body_record_disk",
+		"scanner_console",
+		"body_scanner",
+		"sleeper_console",
+		"sleeper",
+		"bioprinter",
 	)
 
 /datum/techweb_node/chem_synthesis
@@ -107,6 +116,9 @@
 		// "defibmount",
 		// "medicalbed_emergency",
 		// "piercesyringe",
+		"syringe_gun",
+		"syringe_cartridge",
+		"bioregen"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/easy_cytology)

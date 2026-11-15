@@ -73,7 +73,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, (R_DEBUG|R_SERVER|R_ADMIN|R_SPAWN|R
 	var/sprite_text
 	if(sprite)
 		hash = md5(sprite)
-		src << browse_rsc(sprite, "vv[hash].png")
+		send_rsc(src, sprite, "vv[hash].png")
 		sprite_text = no_icon ? "\[NO ICON\]" : "<img src='vv[hash].png'></td><td>"
 
 	title = "[thing] ([REF(thing)]) = [type]"

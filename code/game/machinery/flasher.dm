@@ -5,6 +5,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
 	layer = ABOVE_WINDOW_LAYER
+	flags = WALL_ITEM
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/disable = 0
@@ -100,12 +101,11 @@
 		O.Weaken(flash_time)
 
 /obj/machinery/flasher/emp_act(severity, recursive)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF || stat & (BROKEN|NOPOWER))
 		return
 	if(prob(75/severity))
 		flash()
-	..(severity, recursive)
 
 /obj/machinery/flasher/portable/HasProximity(turf/T, datum/weakref/WF, oldloc)
 	if(isnull(WF))

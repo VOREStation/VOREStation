@@ -12,8 +12,9 @@
 	var/list/active_field = list()//Our active field.
 	var/active = 0 //are we even on?
 	var/id_tag //needed for !!rasins!!
+	circuit = /obj/item/circuitboard/hydromagnetic_trap
 
-/obj/machinery/power/hydromagnetic_trap/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/hydromagnetic_trap/attackby(obj/item/W, mob/user)
 	if(default_unfasten_wrench(user, W))
 		return
 

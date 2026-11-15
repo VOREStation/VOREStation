@@ -13,6 +13,7 @@
 	siemens_coefficient = 0.9
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL | ALLOW_SURVIVALFOOD
+	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
@@ -29,6 +30,7 @@
 	siemens_coefficient = 0.9
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
+	resistance_flags = UNACIDABLE
 
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general

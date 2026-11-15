@@ -21,7 +21,7 @@ GLOBAL_DATUM(wizards, /datum/antagonist/wizard)
 	..()
 	GLOB.wizards = src
 
-/datum/antagonist/wizard/create_objectives(var/datum/mind/wizard)
+/datum/antagonist/wizard/create_objectives(datum/mind/wizard)
 
 	if(!..())
 		return
@@ -64,13 +64,13 @@ GLOBAL_DATUM(wizards, /datum/antagonist/wizard)
 		wizard.objectives |= hijack_objective
 	return
 
-/datum/antagonist/wizard/update_antag_mob(var/datum/mind/wizard)
+/datum/antagonist/wizard/update_antag_mob(datum/mind/wizard)
 	..()
 	wizard.store_memory(span_bold("Remember:") + " do not forget to prepare your spells.")
 	wizard.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	wizard.current.name = wizard.current.real_name
 
-/datum/antagonist/wizard/equip(var/mob/living/carbon/human/wizard_mob)
+/datum/antagonist/wizard/equip(mob/living/carbon/human/wizard_mob)
 
 	if(!..())
 		return 0
@@ -119,7 +119,7 @@ GLOBAL_DATUM(wizards, /datum/antagonist/wizard)
 	var/helmet_handling = FALSE
 
 // Does this clothing slot count as wizard garb? (Combines a few checks)
-/proc/is_wiz_garb(var/obj/item/clothing/C)
+/proc/is_wiz_garb(obj/item/clothing/C)
 	return C && C.wizard_garb
 
 /*Checks if the wizard is wearing the proper attire.

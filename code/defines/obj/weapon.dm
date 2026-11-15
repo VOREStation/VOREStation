@@ -59,6 +59,7 @@
 			audible_message(span_maroon("[honk_text]"))
 
 /obj/item/bikehorn/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(isliving(AM))
@@ -73,6 +74,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 5
+	resistance_flags = FLAMMABLE
 
 /obj/item/disk
 	name = "disk"
@@ -86,6 +88,7 @@
 	icon_state = "nucleardisk"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF
 
 /*
 /obj/item/game_kit
@@ -109,6 +112,7 @@
 	var/obj/item/gift = null
 	item_state = "gift"
 	w_class = ITEMSIZE_LARGE
+	resistance_flags = FLAMMABLE
 
 /*/obj/item/syndicate_uplink
 	name = "station bounced radio"
@@ -126,8 +130,7 @@
 	item_state = "radio"
 	throw_speed = 4
 	throw_range = 20
-	matter = list(MAT_STEEL = 100)
-	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 3)*/
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05))*/
 
 /obj/item/SWF_uplink
 	name = "station-bounced radio"
@@ -145,8 +148,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 4
 	throw_range = 20
-	matter = list(MAT_STEEL = 100)
-	origin_tech = list(TECH_MAGNET = 1)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05))
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
@@ -210,7 +212,7 @@
 	icon_state = "power_mod"
 	item_state = "std_mod"
 	desc = "Heavy-duty switching circuits for power control."
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = RECYCLE_CIRCUIT_MATERIALS
 
 /obj/item/module/id_auth
 	name = "\improper ID authentication module"
@@ -270,7 +272,7 @@
 			break
 	if (user.stat == 2) return
 
-	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = target, vconfig_path = /datum/remote_view_config/camera_standard, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = FALSE)
+	user.AddComponent(/datum/component/remote_view, focused_on = target, vconfig_path = /datum/remote_view_config/camera_standard, managing_item = src, viewsize = null, tileoffset = 0, show_visible_messages = FALSE)
 
 /*
 /obj/item/cigarpacket
@@ -323,15 +325,13 @@
 	name = "console screen"
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
-	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MAT_GLASS = 200)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.1))
 
 /obj/item/stock_parts/capacitor
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
-	origin_tech = list(TECH_POWER = 1)
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.025))
 
 	var/charge = 0
 	var/max_charge = 1000
@@ -340,12 +340,12 @@
 	. = ..()
 	max_charge *= rating
 
-/obj/item/stock_parts/capacitor/proc/charge(var/amount)
+/obj/item/stock_parts/capacitor/proc/charge(amount)
 	charge += amount
 	if(charge > max_charge)
 		charge = max_charge
 
-/obj/item/stock_parts/capacitor/proc/use(var/amount)
+/obj/item/stock_parts/capacitor/proc/use(amount)
 	if(charge)
 		charge -= amount
 		if(charge < 0)
@@ -355,29 +355,25 @@
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
-	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.01))
 
 /obj/item/stock_parts/manipulator
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "micro_mani"
-	origin_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 
 /obj/item/stock_parts/micro_laser
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
-	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MAT_STEEL = 10,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.005),MAT_GLASS = MATERIAL_COST(0.01))
 
 /obj/item/stock_parts/matter_bin
 	name = "matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "matter_bin"
-	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MAT_STEEL = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.04))
 
 //Rank 2
 
@@ -385,41 +381,36 @@
 	name = "advanced capacitor"
 	desc = "An advanced capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor_adv"
-	origin_tech = list(TECH_POWER = 3)
 	rating = 2
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.025))
 
 /obj/item/stock_parts/scanning_module/adv
 	name = "advanced scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module_adv"
-	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.01))
 
 /obj/item/stock_parts/manipulator/nano
 	name = "nano-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "nano_mani"
-	origin_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
 	rating = 2
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 
 /obj/item/stock_parts/micro_laser/high
 	name = "high-power micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "high_micro_laser"
-	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
-	matter = list(MAT_STEEL = 10,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.005),MAT_GLASS = MATERIAL_COST(0.01))
 
 /obj/item/stock_parts/matter_bin/adv
 	name = "advanced matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "advanced_matter_bin"
-	origin_tech = list(TECH_MATERIAL = 3)
 	rating = 2
-	matter = list(MAT_STEEL = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.04))
 
 //Rating 3
 
@@ -427,41 +418,36 @@
 	name = "super capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor_super"
-	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 3
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.025))
 
 /obj/item/stock_parts/scanning_module/phasic
 	name = "phasic scanning module"
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
 	icon_state = "scan_module_phasic"
-	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
-	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025),MAT_GLASS = MATERIAL_COST(0.01))
 
 /obj/item/stock_parts/manipulator/pico
 	name = "pico-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "pico_mani"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 3
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 
 /obj/item/stock_parts/micro_laser/ultra
 	name = "ultra-high-power micro-laser"
 	icon_state = "ultra_high_micro_laser"
 	desc = "A tiny laser used in certain devices."
-	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
-	matter = list(MAT_STEEL = 10,MAT_GLASS = 20)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.005),MAT_GLASS = MATERIAL_COST(0.01))
 
 /obj/item/stock_parts/matter_bin/super
 	name = "super matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "super_matter_bin"
-	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 3
-	matter = list(MAT_STEEL = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.04))
 
 // Rating 4 - Anomaly
 
@@ -469,41 +455,36 @@
 	name = "hyper capacitor"
 	desc = "A hyper-capacity capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor_hyper"
-	origin_tech = list(TECH_POWER = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
 	rating = 4
-	matter = list(MAT_STEEL = 80, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.04), MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/stock_parts/scanning_module/hyper
 	name = "quantum scanning module"
 	desc = "A compact, near-perfect resolution quantum scanning module used in the construction of certain devices."
 	icon_state = "scan_module_hyper"
-	origin_tech = list(TECH_MAGNET = 6, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
 	rating = 4
-	matter = list(MAT_STEEL = 100,MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05),MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/stock_parts/manipulator/hyper
 	name = "planck-manipulator"
 	desc = "A miniscule manipulator used in the construction of certain devices."
 	icon_state = "hyper_mani"
-	origin_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3, TECH_ARCANE = 1)
 	rating = 4
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 
 /obj/item/stock_parts/micro_laser/hyper
 	name = "hyper-power micro-laser"
 	icon_state = "hyper_micro_laser"
 	desc = "A tiny laser used in certain devices."
-	origin_tech = list(TECH_MAGNET = 6, TECH_ARCANE = 1)
 	rating = 4
-	matter = list(MAT_STEEL = 30, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/stock_parts/matter_bin/hyper
 	name = "hyper matter bin"
 	desc = "A container for holding compressed matter awaiting re-construction."
 	icon_state = "hyper_matter_bin"
-	origin_tech = list(TECH_MATERIAL = 6, TECH_ARCANE = 1)
 	rating = 4
-	matter = list(MAT_STEEL = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05))
 
 // Rating 5 - Precursor
 
@@ -511,41 +492,36 @@
 	name = "omni-capacitor"
 	desc = "A capacitor of immense capacity used in the construction of a variety of devices."
 	icon_state = "capacitor_omni"
-	origin_tech = list(TECH_POWER = 7, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PRECURSOR  = 1)
 	rating = 5
-	matter = list(MAT_STEEL = 80, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.04), MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/stock_parts/scanning_module/omni
 	name = "omni-scanning module"
 	desc = "A compact, perfect resolution temporospatial scanning module used in the construction of certain devices."
 	icon_state = "scan_module_omni"
-	origin_tech = list(TECH_MAGNET = 7, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
 	rating = 5
-	matter = list(MAT_STEEL = 100,MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05),MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/stock_parts/manipulator/omni
 	name = "omni-manipulator"
 	desc = "A strange, infinitesimal manipulator used in the construction of certain devices."
 	icon_state = "omni_mani"
-	origin_tech = list(TECH_MATERIAL = 7, TECH_DATA = 4, TECH_PRECURSOR  = 1)
 	rating = 5
-	matter = list(MAT_STEEL = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015))
 
 /obj/item/stock_parts/micro_laser/omni
 	name = "omni-power micro-laser"
 	icon_state = "omni_micro_laser"
 	desc = "A strange laser used in certain devices."
-	origin_tech = list(TECH_MAGNET = 7, TECH_PRECURSOR  = 1)
 	rating = 5
-	matter = list(MAT_STEEL = 30, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/stock_parts/matter_bin/omni
 	name = "omni-matter bin"
 	desc = "A strange container for holding compressed matter awaiting re-construction."
 	icon_state = "omni_matter_bin"
-	origin_tech = list(TECH_MATERIAL = 7, TECH_PRECURSOR  = 1)
 	rating = 5
-	matter = list(MAT_STEEL = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.05))
 
 
 // Subspace stock parts
@@ -554,50 +530,43 @@
 	name = "subspace ansible"
 	icon_state = "subspace_ansible"
 	desc = "A compact module capable of sensing extradimensional activity."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 5 ,TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/stock_parts/subspace/sub_filter
 	name = "hyperwave filter"
 	icon_state = "hyperwave_filter"
 	desc = "A tiny device capable of filtering and converting super-intense radiowaves."
-	origin_tech = list(TECH_DATA = 4, TECH_MAGNET = 2)
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/stock_parts/subspace/amplifier
 	name = "subspace amplifier"
 	icon_state = "subspace_amplifier"
 	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/stock_parts/subspace/treatment
 	name = "subspace treatment disk"
 	icon_state = "treatment_disk"
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 5, TECH_BLUESPACE = 2)
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/stock_parts/subspace/analyzer
 	name = "subspace wavelength analyzer"
 	icon_state = "wavelength_analyzer"
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
-	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MAT_STEEL = 30,MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.015),MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/stock_parts/subspace/crystal
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
-	origin_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MAT_GLASS = 50)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.025))
 
 /obj/item/stock_parts/subspace/transmitter
 	name = "subspace transmitter"
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
-	origin_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_BLUESPACE = 3)
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 
 /obj/item/ectoplasm
 	name = "ectoplasm"
@@ -606,13 +575,6 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm2"
 
-/obj/item/research
-	name = "research debugging device"
-	desc = "Instant research tool. For testing purposes only."
-	icon = 'icons/obj/stock_parts.dmi'
-	icon_state = "smes_coil"
-	origin_tech = list(TECH_MATERIAL = 19, TECH_ENGINEERING = 19, TECH_PHORON = 19, TECH_POWER = 19, TECH_BLUESPACE = 19, TECH_BIO = 19, TECH_COMBAT = 19, TECH_MAGNET = 19, TECH_DATA = 19, TECH_ILLEGAL = 19, TECH_ARCANE = 19, TECH_PRECURSOR = 19)
-
 // Additional construction stock parts
 
 /obj/item/stock_parts/gear
@@ -620,24 +582,21 @@
 	desc = "A gear used for construction."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "gear"
-	origin_tech = list(TECH_ENGINEERING = 1)
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 
 /obj/item/stock_parts/motor
 	name = "motor"
 	desc = "A motor used for construction."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "motor"
-	origin_tech = list(TECH_ENGINEERING = 1)
-	matter = list(MAT_STEEL = 60, MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.03), MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/stock_parts/spring
 	name = "spring"
 	desc = "A spring used for construction."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "spring"
-	origin_tech = list(TECH_ENGINEERING = 1)
-	matter = list(MAT_STEEL = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.02))
 
 /obj/effect/spawner/parts
 	name = "nondescript parts bundle that shouldn't exist"

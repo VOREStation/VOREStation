@@ -9,6 +9,7 @@
 #define TURF_IS_FRAGILE         256
 #define TURF_ACID_IMMUNE        512
 #define TURF_UNSHIELDABLE       1024
+#define TURF_CAN_DIG_SHOVEL		2048
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 //Used for floor/wall smoothing
@@ -33,18 +34,40 @@
 
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 ///Returns a list of turf in a square
+#define RANGE_TURFS(RADIUS, CENTER) \
+	RECT_TURFS(RADIUS, RADIUS, CENTER)
 
 #define RECT_TURFS(H_RADIUS, V_RADIUS, CENTER) \
 	block( \
-	locate(max(CENTER.x-(H_RADIUS),1),          max(CENTER.y-(V_RADIUS),1),          CENTER.z), \
-	locate(min(CENTER.x+(H_RADIUS),world.maxx), min(CENTER.y+(V_RADIUS),world.maxy), CENTER.z) \
+	(CENTER).x - (H_RADIUS), (CENTER).y - (V_RADIUS), (CENTER).z, \
+	(CENTER).x + (H_RADIUS), (CENTER).y + (V_RADIUS), (CENTER).z \
 	)
 
-// Wet turfs have different slipping intensities
-#define TURFSLIP_DRY 0
-#define TURFSLIP_WET 1
-#define TURFSLIP_LUBE 2
-#define TURFSLIP_ICE 3
+//Wet floor type flags. Stronger ones should be higher in number.
+#define TURF_DRY			(0)
+#define TURF_WET_WATER		(1<<0)
+#define TURF_WET_PERMAFROST	(1<<1)
+#define TURF_WET_ICE 		(1<<2)
+#define TURF_WET_LUBE		(1<<3)
+#define TURF_WET_SUPERLUBE	(1<<4)
+
+#define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
 
 ///Returns all turfs in a zlevel
 #define Z_TURFS(ZLEVEL) block(1, 1, ZLEVEL, world.maxx, world.maxy, ZLEVEL)
+
+//Maximum amount of time, (in deciseconds) a tile can be wet for.
+#define MAXIMUM_WET_TIME 5 MINUTES
+
+/// Digging loot with a shovel
+#define TURF_DIG_LOOT_ENDLESS 0
+#define TURF_DIG_LOOT_EXHAUSTED 100
+
+/// Generate horizontal striped color turf decals
+#define PATTERN_DEFAULT "default"
+/// Generate vertical striped color turf decals
+#define PATTERN_VERTICAL_STRIPE "vertical"
+/// Generate random color turf decals
+#define PATTERN_RANDOM "random"
+/// Generate rainbow color turf decals
+#define PATTERN_RAINBOW "rainbow"

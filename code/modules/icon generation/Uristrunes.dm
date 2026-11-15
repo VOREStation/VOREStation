@@ -115,7 +115,7 @@
 //----------------------------------------
 
 
-/proc/animate_rune(icon/input, rune_color = "#00000000", border_color = "#c8000000", rune_color2 = "#00000000", border_color2 = "#d8380000", alpha = 255, alpha2 = 255, frames = rune_animation)
+/proc/animate_rune(icon/input, rune_color = "#00000000", border_color = "#c8000000", rune_color2 = "#00000000", border_color2 = "#d8380000", alpha = 255, alpha2 = 255, frames = GLOB.rune_animation)
 	var/rr1 = hex2num(copytext(rune_color, 2, 4))
 	var/rg1 = hex2num(copytext(rune_color, 4, 6))
 	var/rb1 = hex2num(copytext(rune_color, 6, 8))
@@ -143,7 +143,7 @@
 
 	return base
 
-var/list/rune_animation = list(
+GLOBAL_LIST_INIT(rune_animation, list(
 		list(0.000, 5),
 		list(0.020, 1),
 		list(0.050, 1),
@@ -166,15 +166,15 @@ var/list/rune_animation = list(
 		list(0.375, 1),
 		list(0.250, 1),
 		list(0.125, 1),
-	)
+	))
 
-/var/list/rune_cache = list()
+GLOBAL_LIST_EMPTY(rune_cache)
 
 /proc/get_rune(rune_bits, animated = 0)
 	var/lookup = "[rune_bits]-[animated]"
 
-	if(lookup in rune_cache)
-		return rune_cache[lookup]
+	if(lookup in GLOB.rune_cache)
+		return GLOB.rune_cache[lookup]
 
 	var/icon/base = icon('icons/effects/uristrunes.dmi', "")
 
@@ -190,7 +190,7 @@ var/list/rune_animation = list(
 	else
 		result = inanimate_rune(base)
 
-	rune_cache[lookup] = result
+	GLOB.rune_cache[lookup] = result
 	return result
 
 

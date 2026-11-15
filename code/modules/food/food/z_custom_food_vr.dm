@@ -66,7 +66,7 @@
 		. = ..()
 	return
 
-/obj/item/reagent_containers/food/snacks/customizable/proc/generateFilling(var/obj/item/reagent_containers/food/snacks/S, params)
+/obj/item/reagent_containers/food/snacks/customizable/proc/generateFilling(obj/item/reagent_containers/food/snacks/S, params)
 	var/image/I
 	if(fullyCustom)
 		var/icon/C = getFlatIcon(S, S.dir, 0)

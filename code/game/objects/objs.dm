@@ -13,11 +13,19 @@
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
 
 	var/redgate_allowed = TRUE	//can we be taken through the redgate, in either direction?
-	var/rad_resistance = 0  // Allow overriding rad resistance
 	var/being_shocked = FALSE
 	var/micro_accepted_scale = 0.5
 	var/micro_target = FALSE
 	var/explosion_resistance
+
+	/// Cached custom fire overlay
+	var/custom_fire_overlay
+	/// Particles this obj uses when burning, if any
+	var/burning_particles
+
+	var/obj_flags = CAN_BE_HIT
+
+	uses_integrity = TRUE
 
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -46,7 +54,7 @@
 
 	return ..()
 
-/obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
+/obj/Topic(href, href_list, datum/tgui_state/state = GLOB.tgui_default_state)
 	if(usr && ..())
 		return 1
 
@@ -59,24 +67,24 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
+/obj/CanUseTopic(mob/user, datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	to_chat(user, span_danger("[icon2html(src, user.client)]Access Denied!"))
 	return STATUS_CLOSE
 
-/mob/living/silicon/CanUseObjTopic(var/obj/O)
+/mob/living/silicon/CanUseObjTopic(obj/O)
 	var/id = src.GetIdCard()
 	return O.check_access(id)
 
 /mob/proc/CanUseObjTopic()
 	return 1
 
-/obj/proc/CouldUseTopic(var/mob/user)
+/obj/proc/CouldUseTopic(mob/user)
 	var/atom/host = tgui_host()
 	host.add_hiddenprint(user)
 
-/obj/proc/CouldNotUseTopic(var/mob/user)
+/obj/proc/CouldNotUseTopic(mob/user)
 	// Nada
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
@@ -123,7 +131,7 @@
 /obj/proc/hear_signlang(mob/M as mob, text, verb, datum/language/speaking) // Saycode gets worse every day.
 	return FALSE
 
-/obj/proc/see_emote(mob/M as mob, text, var/emote_type)
+/obj/proc/see_emote(mob/M as mob, text, emote_type)
 	return
 
 // Used to mark a turf as containing objects that are dangerous to step onto.
@@ -141,7 +149,7 @@
 /obj/proc/is_safe_to_step(mob/living/L)
 	return TRUE
 
-/obj/proc/container_resist(var/mob/living)
+/obj/proc/container_resist(mob/living)
 	return
 
 // If returns true, pai can interact with the object with a click
@@ -150,7 +158,7 @@
 
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
-/obj/proc/tumble(var/dist = 2)
+/obj/proc/tumble(dist = 2)
 	set waitfor = FALSE
 	if (dist >= 1)
 		dist += rand(0,1)

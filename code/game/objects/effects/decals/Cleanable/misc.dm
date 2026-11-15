@@ -23,10 +23,40 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/greenglow
+	var/last_event = 0
+	/// Mutex to prevent infinite recursion when propagating radiation pulses
+	var/active = null
 
 /obj/effect/decal/cleanable/greenglow/Initialize(mapload, _age)
 	. = ..()
 	QDEL_IN(src, 2 MINUTES)
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/decal/cleanable/greenglow/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/effect/decal/cleanable/greenglow/process()
+	radiate()
+	..()
+
+/obj/effect/decal/cleanable/greenglow/proc/radiate()
+	SIGNAL_HANDLER
+	if(active)
+		return
+	if(world.time <= last_event + 1.5 SECONDS)
+		return
+	active = TRUE
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_LIGHT_INSULATION,
+		chance = URANIUM_IRRADIATION_CHANCE,
+		strength = 2
+	)
+	last_event = world.time
+	active = FALSE
+
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
@@ -39,7 +69,7 @@
 	mouse_opacity = 0
 	var/delete_me = FALSE
 
-/obj/effect/decal/cleanable/dirt/Initialize(mapload, var/_age, var/dirt)
+/obj/effect/decal/cleanable/dirt/Initialize(mapload, _age, dirt)
 	.=..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
@@ -122,10 +152,12 @@
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/datum/disease/viruses = list()
+	var/infectious = TRUE //Remind Reo to move all this to /cleanable at some point. Or Guti. I'll pregnant guti if I have to fix their code grrrrr
 
 /obj/effect/decal/cleanable/vomit/old
 	name = "crusty dried vomit"
 	desc = "You try not to look at the chunks, and fail."
+	infectious = FALSE
 
 /obj/effect/decal/cleanable/vomit/old/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -136,12 +168,10 @@
 		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 4), rand(7, 9), 4)
 		src.viruses += new_disease
 
-/obj/effect/decal/cleanable/vomit/old/Crossed(mob/living/carbon/human/perp)
-	return // Don't spread our viruses
-
 /obj/effect/decal/cleanable/blood/old
 	dryname = "nasty dried blood"
 	drydesc = "Why hasn't anyone cleaned this up yet?"
+	infectious = FALSE
 
 /obj/effect/decal/cleanable/blood/old/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -153,9 +183,6 @@
 		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 4), rand(7, 9), 4)
 		src.viruses += new_disease
 	dry()
-
-/obj/effect/decal/cleanable/blood/old/Crossed(mob/living/carbon/human/perp)
-	return
 
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"

@@ -10,7 +10,7 @@
 		var/obj/item/cell/newcell = new cell_type(src.loc)
 		insert_cell(newcell)
 
-/obj/item/module/power_control/attackby(var/obj/item/I, var/mob/user)
+/obj/item/module/power_control/attackby(obj/item/I, mob/user)
 	if(I.has_tool_quality(TOOL_MULTITOOL))
 		to_chat(user, span_notice("You begin tweaking the power control circuits to support a power cell rack."))
 		if(do_after(user, 5 SECONDS * I.toolspeed, target = src))

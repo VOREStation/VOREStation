@@ -13,11 +13,40 @@
 		to_chat(src, span_notice("You move down."))
 
 /mob/proc/zMove(direction)
+	SHOULD_NOT_OVERRIDE(TRUE) // Keep snowflake logic HERE in one place where it can actually be found.
+	var/turf/destination = (direction == UP) ? GetAbove(eyeobj ? eyeobj : src) : GetBelow(eyeobj ? eyeobj : src)
+	if(SEND_SIGNAL(src, COMSIG_MOB_ZMOVE, direction, destination))
+		return FALSE
+
 	if(eyeobj)
-		return eyeobj.zMove(direction)
+		if(!destination)
+			to_chat(src, span_notice("There is nothing of interest in this direction."))
+			return FALSE
+		eyeobj.setLoc(destination)
+		return TRUE
+
+	if(isobserver(src))
+		if(!destination)
+			to_chat(src, span_notice("There is nothing of interest in this direction."))
+			return FALSE
+		forceMove(destination)
+		return TRUE
+
 	if(istype(loc,/obj/mecha))
 		var/obj/mecha/mech = loc
 		return mech.relaymove(src,direction)
+
+	if(isliving(src))
+		var/mob/living/liv = src
+		if(liv.is_ventcrawling && istype(loc,/obj/machinery/atmospherics/pipe/zpipe))
+			var/obj/machinery/atmospherics/pipe/zpipe/currentpipe = loc
+			if(istype(currentpipe.node1,/obj/machinery/atmospherics/pipe/zpipe))
+				currentpipe.ventcrawl_to(src, currentpipe.node1, direction)
+				return TRUE
+			else if(istype(currentpipe.node2,/obj/machinery/atmospherics/pipe/zpipe))
+				currentpipe.ventcrawl_to(src, currentpipe.node2, direction)
+				return TRUE
+			return FALSE
 
 	var/swim_modifier = 1
 	var/climb_modifier = 1
@@ -28,21 +57,20 @@
 
 	if(!can_ztravel())
 		to_chat(src, span_warning("You lack means of travel in that direction."))
-		return
+		return FALSE
 
 	var/turf/start = loc
 	if(!istype(start))
 		to_chat(src, span_notice("You are unable to move from here."))
-		return 0
+		return FALSE
 
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(!destination)
 		to_chat(src, span_notice("There is nothing of interest in this direction."))
-		return 0
+		return FALSE
 
 	if(is_incorporeal())
 		forceMove(destination)
-		return 1
+		return TRUE
 
 	var/obj/structure/ladder/ladder = locate() in start.contents
 	if((direction == UP ? ladder?.target_up : ladder?.target_down) && (ladder?.allowed_directions & direction))
@@ -51,7 +79,7 @@
 
 	if(!start.CanZPass(src, direction))
 		to_chat(src, span_warning("\The [start] is in the way."))
-		return 0
+		return FALSE
 
 	if(direction == DOWN)
 		if(isdiveablewater(start) && !destination.density)
@@ -62,16 +90,15 @@
 				to_chat(src, span_notice("You reach the sea floor."))
 			else
 				to_chat(src, span_warning("You stopped swimming downwards."))
-				return 0
+				return FALSE
 
 		else if(!destination.CanZPass(src, direction)) // one for the down and non-special case
 			to_chat(src, span_warning("\The [destination] blocks your way."))
-			return 0
+			return FALSE
 
 	else if(!destination.CanZPass(src, direction)) // and one for up
 		to_chat(src, span_warning("\The [destination] blocks your way."))
-		return 0
-
+		return FALSE
 
 	var/area/area = get_area(src)
 	if(area.get_gravity() && !can_overcome_gravity())
@@ -87,7 +114,7 @@
 					to_chat(src, span_notice("You pull yourself up."))
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
-					return 0
+					return FALSE
 
 			else if(isdiveablewater(destination))
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
@@ -97,7 +124,7 @@
 					to_chat(src, span_notice("You reach the surface."))
 				else
 					to_chat(src, span_warning("You stopped swimming upwards."))
-					return 0
+					return FALSE
 
 			else if(catwalk?.hatch_open)
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * climb_modifier), 1)
@@ -106,26 +133,26 @@
 				destination = get_step(destination, dir) // mob's dir
 				if(!destination?.Enter(src, old_dest))
 					to_chat(src, span_notice("There's something in the way up above in that direction, try another."))
-					return 0
+					return FALSE
 				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
 				if(do_after(src, pull_up_time, target = src))
 					to_chat(src, span_notice("You pull yourself up."))
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
-					return 0
+					return FALSE
 
 			// Explicit check if the destination turf allows full passing
 			else if(!destination.CanZPass(src, direction))
 				to_chat(src, span_warning("Something solid above stops you from passing."))
-				return 0
+				return FALSE
 
-			else if(isliving(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
+			else if(isliving(src))
 				var/mob/living/H = src
 				if(H.flying)
 					if(H.incapacitated(INCAPACITATION_ALL))
 						to_chat(src, span_notice("You can't fly in your current state."))
 						H.stop_flying() //Should already be done, but just in case.
-						return 0
+						return FALSE
 					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
 					to_chat(src, span_notice("You begin to fly upwards..."))
 					H.audible_message(span_notice("[H] begins to flap \his wings, preparing to move upwards!"), runemessage = "flap flap")
@@ -133,21 +160,23 @@
 						to_chat(src, span_notice("You fly upwards."))
 					else
 						to_chat(src, span_warning("You stopped flying upwards."))
-						return 0
+						return FALSE
 				else
 					to_chat(src, span_warning("Gravity stops you from moving upward."))
-					return 0 //VOREStation Edit End.
+					return FALSE
 
 			else
 				to_chat(src, span_warning("Gravity stops you from moving upward."))
-				return 0
+				return FALSE
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
 			to_chat(src, span_warning("\The [A] blocks you."))
-			return 0
+			return FALSE
+
 	if(!Move(destination))
-		return 0
+		return FALSE
+
 	if(isliving(src))
 		var/list/atom/movable/pulling = list()
 		var/mob/living/L = src
@@ -161,7 +190,8 @@
 			src.audible_message(span_notice("[src] moves down."))
 		for(var/atom/movable/P in pulling)
 			P.forceMove(destination)
-	return 1
+
+	return TRUE
 
 /mob/proc/can_overcome_gravity()
 	return FALSE
@@ -174,32 +204,8 @@
 	if(!.)
 		return species && species.can_overcome_gravity(src)
 
-/mob/observer/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		forceMove(destination)
-	else
-		to_chat(src, span_notice("There is nothing of interest in this direction."))
-
-/mob/observer/eye/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		setLoc(destination)
-	else
-		to_chat(src, span_notice("There is nothing of interest in this direction."))
-
 /mob/proc/can_ztravel()
 	return 0
-
-/mob/living/zMove(direction)
-	//Sort of a lame hack to allow ztravel through zpipes. Should be improved.
-	if(is_ventcrawling && istype(loc,/obj/machinery/atmospherics/pipe/zpipe))
-		var/obj/machinery/atmospherics/pipe/zpipe/currentpipe = loc
-		if(istype(currentpipe.node1,/obj/machinery/atmospherics/pipe/zpipe))
-			currentpipe.ventcrawl_to(src, currentpipe.node1, direction)
-		else if(istype(currentpipe.node2,/obj/machinery/atmospherics/pipe/zpipe))
-			currentpipe.ventcrawl_to(src, currentpipe.node2, direction)
-	return ..()
 
 /mob/observer/can_ztravel()
 	return TRUE
@@ -271,7 +277,7 @@
 	return 42
 
 //If atom stands under open space, it can prevent fall, or not
-/atom/proc/can_prevent_fall(var/atom/movable/mover, var/turf/coming_from)
+/atom/proc/can_prevent_fall(atom/movable/mover, turf/coming_from)
 	return (!CanPass(mover, coming_from))
 
 ////////////////////////////
@@ -298,6 +304,9 @@
 		return
 
 	if(!T.CanZPass(src, DOWN) || !below.CanZPass(src, DOWN))
+		return
+
+	if(HAS_TRAIT(src, TRAIT_NO_GRAVITY))
 		return
 
 	// No gravity in space, apparently.
@@ -420,7 +429,7 @@
 		return TRUE
 
 // So you'll slam when falling onto a catwalk
-/obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
+/obj/structure/catwalk/CheckFall(atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
 /obj/structure/lattice/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
@@ -434,13 +443,13 @@
 		return FALSE // TODO - Technically should be density = TRUE and flags |= ON_BORDER
 
 // So you'll slam when falling onto a grille
-/obj/structure/lattice/CheckFall(var/atom/movable/falling_atom)
+/obj/structure/lattice/CheckFall(atom/movable/falling_atom)
 	if(istype(falling_atom) && falling_atom.checkpass(PASSGRILLE))
 		return FALSE
 	return falling_atom.fall_impact(src)
 
 // Actually process the falling movement and impacts.
-/atom/movable/proc/handle_fall(var/turf/landing)
+/atom/movable/proc/handle_fall(turf/landing)
 	var/turf/oldloc = loc
 
 	// Now lets move there!
@@ -453,15 +462,15 @@
 		return
 	fall_impact(A)
 
-/atom/movable/proc/special_fall_handle(var/atom/A)
+/atom/movable/proc/special_fall_handle(atom/A)
 	return FALSE
 
-/mob/living/carbon/human/special_fall_handle(var/atom/A)
+/mob/living/carbon/human/special_fall_handle(atom/A)
 	if(species)
 		return species.fall_impact_special(src, A)
 	return FALSE
 
-/atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
+/atom/movable/proc/find_fall_target(turf/oldloc, turf/landing)
 	if(isopenspace(oldloc))
 		oldloc.visible_message(span_notice("\The [src] falls down through \the [oldloc]!"), span_notice("You hear something falling through the air."))
 
@@ -478,7 +487,7 @@
 	if(landing.CheckFall(src))
 		return landing
 
-/mob/living/carbon/human/find_fall_target(var/turf/landing)
+/mob/living/carbon/human/find_fall_target(turf/landing)
 	if(species)
 		var/atom/A = species.find_fall_target_special(src, landing)
 		if(A)
@@ -490,36 +499,36 @@
 // ## THE FALLING PROCS ###
 
 // Called on everything that falling_atom might hit. Return TRUE if you're handling it so find_fall_target() will stop checking.
-/atom/proc/CheckFall(var/atom/movable/falling_atom)
+/atom/proc/CheckFall(atom/movable/falling_atom)
 	if(density && !(flags & ON_BORDER))
 		return TRUE
 
 // If you are hit: how is it handled.
 // Return TRUE if the generic fall_impact should be called
 // Return FALSE if you handled it yourself or if there's no effect from hitting you
-/atom/proc/check_impact(var/atom/movable/falling_atom)
+/atom/proc/check_impact(atom/movable/falling_atom)
 	if(density && !(flags & ON_BORDER))
 		return TRUE
 
 // By default all turfs are gonna let you hit them regardless of density.
-/turf/CheckFall(var/atom/movable/falling_atom)
+/turf/CheckFall(atom/movable/falling_atom)
 	return TRUE
 
-/turf/check_impact(var/atom/movable/falling_atom)
+/turf/check_impact(atom/movable/falling_atom)
 	return TRUE
 
 // Obviously you can't really hit open space.
-/turf/simulated/open/CheckFall(var/atom/movable/falling_atom)
+/turf/simulated/open/CheckFall(atom/movable/falling_atom)
 	return FALSE
 
-/turf/simulated/open/check_impact(var/atom/movable/falling_atom)
+/turf/simulated/open/check_impact(atom/movable/falling_atom)
 	return FALSE
 
 // Or actual space.
-/turf/space/CheckFall(var/atom/movable/falling_atom)
+/turf/space/CheckFall(atom/movable/falling_atom)
 	return FALSE
 
-/turf/space/check_impact(var/atom/movable/falling_atom)
+/turf/space/check_impact(atom/movable/falling_atom)
 	return FALSE
 
 // Can't fall onto ghosts
@@ -537,14 +546,14 @@
 // If silent is True, the proc won't play sound or give a message.
 // If planetary is True, it's harder to stop the fall damage
 
-/atom/movable/proc/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 10, var/silent = FALSE, var/planetary = FALSE)
+/atom/movable/proc/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 10, silent = FALSE, planetary = FALSE)
 	if(!silent)
 		visible_message("\The [src] falls from above and slams into \the [hit_atom]!", "You hear something slam into \the [hit_atom].")
 	for(var/atom/movable/A in src.contents)
 		A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
 
 // Take damage from falling and hitting the ground
-/mob/living/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 5, var/silent = FALSE, var/planetary = FALSE)
+/mob/living/fall_impact(atom/hit_atom, damage_min = 0, damage_max = 5, silent = FALSE, planetary = FALSE)
 	var/turf/landing = get_turf(hit_atom)
 	var/safe_fall = FALSE
 	if(src.softfall || (isanimal(src) && src.mob_size <= MOB_SMALL))
@@ -642,7 +651,7 @@
 		return parachuting
 
 //Mech Code
-/obj/mecha/handle_fall(var/turf/landing)
+/obj/mecha/handle_fall(turf/landing)
 	// First things first, break any lattice
 	var/obj/structure/lattice/lattice = locate(/obj/structure/lattice, loc)
 	if(lattice)
@@ -653,7 +662,7 @@
 	// Then call parent to have us actually fall
 	return ..()
 
-/obj/mecha/fall_impact(var/atom/hit_atom, var/damage_min = 15, var/damage_max = 30, var/silent = FALSE, var/planetary = FALSE)
+/obj/mecha/fall_impact(atom/hit_atom, damage_min = 15, damage_max = 30, silent = FALSE, planetary = FALSE)
 	// Anything on the same tile as the landing tile is gonna have a bad day.
 	for(var/mob/living/L in hit_atom.contents)
 		L.visible_message(span_danger("\The [src] crushes \the [L] as it lands on them!"))

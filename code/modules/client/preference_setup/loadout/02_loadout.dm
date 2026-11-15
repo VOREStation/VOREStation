@@ -1,11 +1,11 @@
-var/list/loadout_categories = list()
-var/list/gear_datums = list()
+GLOBAL_LIST_EMPTY_TYPED(loadout_categories, /datum/loadout_category)
+GLOBAL_LIST_EMPTY_TYPED(gear_datums, /datum/gear)
 
 /datum/loadout_category
 	var/category = ""
 	var/list/gear = list()
 
-/datum/loadout_category/New(var/cat)
+/datum/loadout_category/New(cat)
 	category = cat
 	..()
 
@@ -28,16 +28,12 @@ var/list/gear_datums = list()
 			log_world("## ERROR Loadout - Missing path definition: [G]")
 			continue
 
-		if(!loadout_categories[use_category])
-			loadout_categories[use_category] = new /datum/loadout_category(use_category)
-		var/datum/loadout_category/LC = loadout_categories[use_category]
-		gear_datums[use_name] = new G
-		LC.gear[use_name] = gear_datums[use_name]
+		if(!GLOB.loadout_categories[use_category])
+			GLOB.loadout_categories[use_category] = new /datum/loadout_category(use_category)
+		var/datum/loadout_category/LC = GLOB.loadout_categories[use_category]
+		GLOB.gear_datums[use_name] = new G
+		LC.gear[use_name] = GLOB.gear_datums[use_name]
 
-	loadout_categories = sortAssoc(loadout_categories)
-	for(var/loadout_category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[loadout_category]
-		LC.gear = sortAssoc(LC.gear)
 	return 1
 
 /datum/category_item/player_setup_item/loadout/loadout
@@ -70,7 +66,7 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/is_valid_gear(datum/gear/G, max_cost)
 	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client)
-		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.species && G.whitelisted != pref.custom_base))
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.read_preference(/datum/preference/choiced/species) && G.whitelisted != pref.custom_base))
 			return FALSE
 		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 			return FALSE
@@ -97,12 +93,12 @@ var/list/gear_datums = list()
 
 	var/total_cost = 0
 	for(var/gear_name in active_gear_list)
-		if(!gear_datums[gear_name])
+		if(!GLOB.gear_datums[gear_name])
 			to_chat(preference_mob, span_warning("You cannot have the \the [gear_name]."))
 			active_gear_list -= gear_name
 			continue
 
-		var/datum/gear/G = gear_datums[gear_name]
+		var/datum/gear/G = GLOB.gear_datums[gear_name]
 		if(!is_valid_gear(G))
 			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))
 			active_gear_list -= gear_name
@@ -124,7 +120,7 @@ var/list/gear_datums = list()
 
 	var/list/gear_tweaks = list()
 	for(var/item in active_gear_list)
-		var/datum/gear/G = gear_datums[item]
+		var/datum/gear/G = GLOB.gear_datums[item]
 		var/list/tweaks = list()
 		for(var/datum/gear_tweak/tweak in G.gear_tweaks)
 			UNTYPED_LIST_ADD(tweaks, list(
@@ -140,8 +136,8 @@ var/list/gear_datums = list()
 	var/list/data = ..()
 
 	var/list/categories = list()
-	for(var/category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[category]
+	for(var/category, value in GLOB.loadout_categories)
+		var/datum/loadout_category/LC = value
 		var/list/items = list()
 		for(var/gear in LC.gear)
 			var/datum/gear/G = LC.gear[gear]
@@ -162,7 +158,7 @@ var/list/gear_datums = list()
 
 	return data
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(var/datum/gear/G)
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_gear_metadata(datum/gear/G)
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 
 	// {"/datum/gear_tweak/custom_name": "" }
@@ -170,14 +166,14 @@ var/list/gear_datums = list()
 	if(!.)
 		. = list()
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak)
+/datum/category_item/player_setup_item/loadout/loadout/proc/get_tweak_metadata(datum/gear/G, datum/gear_tweak/tweak)
 	var/list/metadata = get_gear_metadata(G)
 	. = metadata["[tweak]"]
 	if(isnull(.))
 		. = tweak.get_default()
 		metadata["[tweak]"] = .
 
-/datum/category_item/player_setup_item/loadout/loadout/proc/set_tweak_metadata(var/datum/gear/G, var/datum/gear_tweak/tweak, var/new_metadata)
+/datum/category_item/player_setup_item/loadout/loadout/proc/set_tweak_metadata(datum/gear/G, datum/gear_tweak/tweak, new_metadata)
 	var/list/metadata = get_gear_metadata(G)
 	metadata["[tweak]"] = new_metadata
 
@@ -185,7 +181,7 @@ var/list/gear_datums = list()
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
 	. = 0
 	for(var/gear_name in active_gear_list)
-		var/datum/gear/G = gear_datums[gear_name]
+		var/datum/gear/G = GLOB.gear_datums[gear_name]
 		if(G)
 			. += G.cost
 
@@ -228,11 +224,14 @@ var/list/gear_datums = list()
 				if(confirm != "Yes")
 					return TOPIC_HANDLED
 
-			pref.gear_list["[copy_to]"] = check_list_copy(active_gear_list)
+			var/list/slot_copy = check_list_copy(active_gear_list)
+			for(var/gear_name in slot_copy)
+				slot_copy[gear_name] = check_list_copy(slot_copy[gear_name])
+			pref.gear_list["[copy_to]"] = slot_copy
 			return TOPIC_REFRESH
 
 		if("toggle_gear")
-			var/datum/gear/TG = gear_datums[params["gear"]]
+			var/datum/gear/TG = GLOB.gear_datums[params["gear"]]
 			if(TG)
 				if(TG.display_name in active_gear_list)
 					active_gear_list -= TG.display_name
@@ -241,7 +240,7 @@ var/list/gear_datums = list()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("gear_tweak")
-			var/datum/gear/gear = gear_datums[params["gear"]]
+			var/datum/gear/gear = GLOB.gear_datums[params["gear"]]
 			var/datum/gear_tweak/tweak = locate(params["tweak"])
 			if(!tweak || !gear || !(tweak in gear.gear_tweaks))
 				return TOPIC_HANDLED
@@ -282,11 +281,11 @@ var/list/gear_datums = list()
 	var/path
 	var/location
 
-/datum/gear_data/New(var/path, var/location)
+/datum/gear_data/New(path, location)
 	src.path = path
 	src.location = location
 
-/datum/gear/proc/spawn_item(var/location, var/metadata)
+/datum/gear/proc/spawn_item(location, metadata)
 	var/datum/gear_data/gd = new(path, location)
 	if(length(gear_tweaks) && metadata)
 		for(var/datum/gear_tweak/gt in gear_tweaks)

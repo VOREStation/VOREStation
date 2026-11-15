@@ -16,7 +16,7 @@
 	var/x_offset = 0 // Offset from the 'center' of where the projector is, so that if it moves, the shield can recalc its position.
 	var/y_offset = 0 // Ditto.
 
-/obj/effect/directional_shield/Initialize(mapload, var/new_projector)
+/obj/effect/directional_shield/Initialize(mapload, new_projector)
 	. = ..()
 	if(new_projector)
 		projector = new_projector
@@ -40,7 +40,7 @@
 	else
 		qdel(src)
 
-/obj/effect/directional_shield/proc/update_color(var/new_color)
+/obj/effect/directional_shield/proc/update_color(new_color)
 	if(!projector)
 		color = "#0099FF"
 	else
@@ -64,7 +64,7 @@
 			return FALSE
 	return TRUE
 
-/obj/effect/directional_shield/bullet_act(var/obj/item/projectile/P)
+/obj/effect/directional_shield/bullet_act(obj/item/projectile/P)
 	adjust_health(-P.get_structure_damage())
 	P.on_hit(src)
 	playsound(src, 'sound/effects/EMPulse.ogg', 75, 1)
@@ -121,7 +121,7 @@
 	SIGNAL_HANDLER
 	update_shield_positions()
 
-/obj/item/shield_projector/proc/create_shield(var/newloc, var/new_dir)
+/obj/item/shield_projector/proc/create_shield(newloc, new_dir)
 	var/obj/effect/directional_shield/S = new(newloc, src)
 	S.dir = new_dir
 	active_shields += S
@@ -205,7 +205,7 @@
 		set_on(TRUE)
 	visible_message(span_notice("\The [user] [!active ? "de":""]activates \the [src]."))
 
-/obj/item/shield_projector/proc/set_on(var/on)
+/obj/item/shield_projector/proc/set_on(on)
 	if(isnull(on))
 		return
 
@@ -221,12 +221,15 @@
 		else
 			playsound(src, 'sound/machines/defib_safetyOff.ogg', 75, 0)
 
-/obj/item/shield_projector/examine(var/mob/user)
+/obj/item/shield_projector/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "Its shield matrix is at [round( (shield_health / max_shield_health) * 100, 0.01)]% strength."
 
 /obj/item/shield_projector/emp_act(severity, recursive)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	adjust_health(-max_shield_health / severity) // A strong EMP will kill the shield instantly, but weaker ones won't on the first hit.
 
 // Subtypes
@@ -383,7 +386,7 @@
 		else
 			destroy_shields()
 			my_tool.set_ready_state(TRUE)
-			my_tool.log_message("Power lost.")
+			my_tool.log_message("Power lost.", LOG_GAME)
 	else
 		my_tool.set_ready_state(TRUE)
 
@@ -409,5 +412,5 @@
 	..()
 	my_mecha.use_power(my_tool.energy_drain)
 	if(!active && shield_health < shield_regen_amount)
-		my_tool.log_message("Shield overloaded.")
+		my_tool.log_message("Shield overloaded.", LOG_GAME)
 		my_mecha.use_power(my_tool.energy_drain * 4)

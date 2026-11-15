@@ -16,7 +16,6 @@
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 //enough to hold all starting contents
-	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("robusted")
 	use_sound = 'sound/items/storage/toolbox.ogg'
 	drop_sound = 'sound/items/drop/toolbox.ogg'
@@ -83,7 +82,6 @@
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "syndicate"
 	item_state_slots = list(slot_r_hand_str = "toolbox_syndi", slot_l_hand_str = "toolbox_syndi")
-	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = 14
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow,
@@ -200,7 +198,7 @@
 	filled = TRUE
 
 /obj/item/storage/toolbox/lunchbox/mars
-	name = "\improper Mojave university lunchbox"
+	name = "Mojave university lunchbox"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "lunchbox_marsuniversity"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
@@ -210,7 +208,7 @@
 	filled = TRUE
 
 /obj/item/storage/toolbox/lunchbox/cti
-	name = "\improper CTI lunchbox"
+	name = "CTI lunchbox"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "lunchbox_cti"
 	item_state_slots = list(slot_r_hand_str = "toolbox_blue", slot_l_hand_str = "toolbox_blue")
@@ -220,7 +218,7 @@
 	filled = TRUE
 
 /obj/item/storage/toolbox/lunchbox/nymph
-	name = "\improper Diona nymph lunchbox"
+	name = "Diona nymph lunchbox"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "lunchbox_dionanymph"
 	item_state_slots = list(slot_r_hand_str = "toolbox_yellow", slot_l_hand_str = "toolbox_yellow")
@@ -238,3 +236,10 @@
 
 /obj/item/storage/toolbox/lunchbox/syndicate/filled
 	filled = TRUE
+
+// Paintable
+/obj/item/storage/toolbox/paintable
+	name = "toolbox"
+	desc = "A metal toolbox with remarkably robust construction."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "custom_toolbox"

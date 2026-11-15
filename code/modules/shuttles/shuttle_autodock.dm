@@ -19,7 +19,7 @@
 	category = /datum/shuttle/autodock
 	flags = SHUTTLE_FLAGS_PROCESS | SHUTTLE_FLAGS_ZERO_G
 
-/datum/shuttle/autodock/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
+/datum/shuttle/autodock/New(_name, obj/effect/shuttle_landmark/start_waypoint)
 	..(_name, start_waypoint)
 
 	//Initial dock
@@ -27,7 +27,7 @@
 	update_docking_target(current_location)
 	if(active_docking_controller)
 		set_docking_codes(active_docking_controller.docking_codes)
-	else if(global.using_map.use_overmap)
+	else if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(get_z(current_location))
 		if(location && location.docking_codes)
 			set_docking_codes(location.docking_codes)
@@ -45,7 +45,7 @@
 
 	return ..()
 
-/datum/shuttle/autodock/proc/set_docking_codes(var/code)
+/datum/shuttle/autodock/proc/set_docking_codes(code)
 	docking_codes = code
 	if(shuttle_docking_controller)
 		shuttle_docking_controller.docking_codes = code
@@ -55,7 +55,7 @@
 	..()
 
 // Despite the name this actually updates the SHUTTLE docking conroller, not the active.
-/datum/shuttle/autodock/proc/update_docking_target(var/obj/effect/shuttle_landmark/location)
+/datum/shuttle/autodock/proc/update_docking_target(obj/effect/shuttle_landmark/location)
 	var/current_dock_target
 	if(location && location.special_dock_targets && location.special_dock_targets[name])
 		current_dock_target = location.special_dock_targets[name]
@@ -168,7 +168,7 @@
 	"Public" procs
 */
 // Queue shuttle for undock and launch by shuttle subsystem.
-/datum/shuttle/autodock/proc/launch(var/user)
+/datum/shuttle/autodock/proc/launch(user)
 	if (!can_launch()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
@@ -177,7 +177,7 @@
 	undock()
 
 // Queue shuttle for forced undock and launch by shuttle subsystem.
-/datum/shuttle/autodock/proc/force_launch(var/user)
+/datum/shuttle/autodock/proc/force_launch(user)
 	if (!can_force()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
@@ -185,7 +185,7 @@
 	process_state = FORCE_LAUNCH
 
 // Cancel queued launch.
-/datum/shuttle/autodock/cancel_launch(var/user)
+/datum/shuttle/autodock/cancel_launch(user)
 	if (!can_cancel()) return
 
 	moving_status = SHUTTLE_IDLE

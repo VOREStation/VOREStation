@@ -146,7 +146,7 @@
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/shoes/black,
 			/obj/item/analyzer,
-			/obj/item/storage/bag/ore,
+			/obj/item/ore_bag,
 			/obj/item/flashlight/lantern,
 			/obj/item/shovel,
 			/obj/item/pickaxe,

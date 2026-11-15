@@ -2,7 +2,6 @@
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
-	origin_tech = list(TECH_DATA = 2)
 	density = FALSE
 	anchored = FALSE
 	w_class = ITEMSIZE_SMALL
@@ -18,26 +17,29 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
+	/// If true, this board should be ignored during the circuitboard printing unit test, and give an examine hint that the board may be hard to get if so.
+	var/hidden = FALSE
+
 /obj/item/circuitboard/Destroy()
 	if(isobject(board_type)) // Some boards use text instead of an instance...
 		QDEL_NULL(board_type)
 	return ..()
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/circuitboard/proc/construct(var/obj/machinery/M)
+/obj/item/circuitboard/proc/construct(obj/machinery/M)
 	if(istype(M, build_path))
 		return 1
 	return 0
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/circuitboard/atom_deconstruct(disassembled = TRUE, obj/machinery/M)
 	if(istype(M, build_path))
 		return 1
 	return 0
 
 //Should be called from the constructor of any machine to automatically populate the default parts
-/obj/item/circuitboard/proc/apply_default_parts(var/obj/machinery/M)
+/obj/item/circuitboard/proc/apply_default_parts(obj/machinery/M)
 	if(!istype(M))
 		return
 	if(!req_components)

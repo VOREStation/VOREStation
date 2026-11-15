@@ -62,7 +62,7 @@
 	if(!landmark)
 		return
 
-	var/mob/living/carbon/human/avatar = new(get_turf(landmark), client.prefs.species)
+	var/mob/living/carbon/human/avatar = new(get_turf(landmark), client.prefs.read_preference(/datum/preference/choiced/species))
 	if(!avatar)
 		to_chat(src, "Something went wrong and spawning failed.")
 		return
@@ -81,7 +81,7 @@
 
 	avatar.regenerate_icons()
 	avatar.update_transform()
-	GLOB.job_master.EquipRank(avatar,JOB_VR, 1, FALSE)
+	SSjob.equip_rank(avatar,JOB_VR, 1, FALSE)
 	add_verb(avatar,/mob/living/carbon/human/proc/fake_exit_vr)
 	add_verb(avatar,/mob/living/carbon/human/proc/vr_transform_into_mob)
 	add_verb(avatar,/mob/living/proc/set_size)

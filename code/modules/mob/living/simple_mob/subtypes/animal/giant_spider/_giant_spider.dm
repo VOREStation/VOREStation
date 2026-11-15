@@ -129,6 +129,8 @@
 
 	no_pull_when_living = TRUE
 
+	export_research_value = TECHWEB_TIER_1_POINTS
+	export_research_diminished_max = 3
 
 /mob/living/simple_mob/animal/giant_spider/Initialize(mapload)
 	. = ..()
@@ -139,7 +141,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_mob/animal/giant_spider/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/animal/giant_spider/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)

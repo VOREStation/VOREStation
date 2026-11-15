@@ -89,7 +89,7 @@
 				SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 				return TRUE
 
-/datum/tgui_module/uav/proc/set_current(var/obj/item/uav/U)
+/datum/tgui_module/uav/proc/set_current(obj/item/uav/U)
 	if(current_uav == U)
 		return
 
@@ -123,7 +123,9 @@
 	// 2 is strong
 	var/obj/item/modular_computer/host = tgui_host() //Better not add this to anything other than modular computers.
 	if(!istype(host))
-		return
+		return 0
+	if(is_jammed(host) || is_jammed(AM))
+		return 0
 	var/our_signal = host.get_ntnet_status() //1 low, 2 good, 3 wired, 0 none
 	var/their_z = get_z(AM)
 
@@ -195,14 +197,26 @@
 	override_health_hud = TRUE
 	var/original_health_hud_icon
 
-/datum/remote_view_config/uav_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
+/datum/remote_view_config/uav_control/handle_relay_movement(datum/component/remote_view/owner_component, mob/host_mob, direction)
 	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
 	if(tgui_owner?.current_uav)
 		return tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
 	return FALSE
 
-/datum/remote_view_config/uav_control/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/handle_attempt_zmovement(datum/component/remote_view/owner_component, mob/host_mob, direction, turf/destination)
 	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+	if(!tgui_owner?.current_uav)
+		return ..()
+
+	var/turf/start = get_turf(tgui_owner.current_uav)
+	if(!start.CanZPass(tgui_owner.current_uav, direction))
+		to_chat(host_mob, span_warning("\The [start] is in the way."))
+		return TRUE
+	tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
+	return TRUE
+
+/datum/remote_view_config/uav_control/handle_apply_visuals(mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = get_component_coordinator(host_mob)
 	if(!tgui_owner)
 		return
 	if(get_dist(host_mob, tgui_owner.tgui_host()) > 1 || !tgui_owner.current_uav)
@@ -216,24 +230,24 @@
 	else
 		host_mob.clear_fullscreen("whitenoise", 0)
 
-/datum/remote_view_config/uav_control/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/handle_remove_visuals(datum/component/remote_view/owner_component, mob/host_mob)
 	// Clear hud
 	host_mob.clear_fullscreen("fishbed",0)
 	host_mob.clear_fullscreen("scanlines",0)
 	host_mob.clear_fullscreen("whitenoise",0)
 
 // We are responsible for restoring the health UI's icons on removal
-/datum/remote_view_config/uav_control/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/attached_to_mob(datum/component/remote_view/owner_component, mob/host_mob)
 	original_health_hud_icon = host_mob.healths?.icon
 
-/datum/remote_view_config/uav_control/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/detatch_from_mob(datum/component/remote_view/owner_component, mob/host_mob)
 	if(host_mob.healths && original_health_hud_icon)
 		host_mob.healths.icon = original_health_hud_icon
 		host_mob.healths.appearance = null
 
 // Show the uav health instead of the mob's while it is viewing
-/datum/remote_view_config/uav_control/handle_hud_health( datum/component/remote_view/owner_component, mob/host_mob)
-	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+/datum/remote_view_config/uav_control/handle_hud_health(mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = get_component_coordinator(host_mob)
 
 	var/mutable_appearance/MA = new (host_mob.healths)
 	MA.icon = 'icons/mob/screen1_robot_minimalist.dmi'

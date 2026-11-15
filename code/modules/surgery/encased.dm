@@ -10,11 +10,11 @@
 
 /datum/surgery_step/open_encased/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
-		return 0
+		return FALSE
 	return affected && !(affected.robotic >= ORGAN_ROBOT) && affected.encased && affected.open >= FLESH_RETRACTED
 
 ///////////////////////////////////////////////////////////////

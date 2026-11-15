@@ -1,6 +1,6 @@
 //KEEP THE STREAK ALIVE
 SUBSYSTEM_DEF(nerdle)
-	name = "nerdle"
+	name = "Nerdle"
 	priority = FIRE_PRIORITY_APPRECIATE
 	runlevels = RUNLEVEL_GAME
 	flags = SS_BACKGROUND | SS_NO_FIRE
@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(nerdle)
 	l = null
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/nerdle/proc/report_winner_or_loser(var/guesses, var/failure = FALSE)
+/datum/controller/subsystem/nerdle/proc/report_winner_or_loser(guesses, failure = FALSE)
 	guesses = clamp(guesses,1,7)
 	if(failure)
 		guesses = 7 //fail

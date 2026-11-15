@@ -14,6 +14,7 @@
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/station_map
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	flags = ON_BORDER|WALL_ITEM
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
 	var/use_auto_lights = 1
@@ -29,7 +30,6 @@
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
-	flags = ON_BORDER
 
 /obj/machinery/station_map/Initialize(mapload)
 	. = ..()
@@ -65,7 +65,7 @@
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
 
-/obj/machinery/station_map/attack_hand(var/mob/user)
+/obj/machinery/station_map/attack_hand(mob/user)
 	if(watching_mob && (watching_mob != user))
 		to_chat(user, span_warning("Someone else is currently watching the holomap."))
 		return
@@ -77,7 +77,7 @@
 	startWatching(user)
 
 // Let people bump up against it to watch
-/obj/machinery/station_map/Bumped(var/atom/movable/AM)
+/obj/machinery/station_map/Bumped(atom/movable/AM)
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
@@ -85,7 +85,7 @@
 	if(get_dir(mover, target) == GLOB.reverse_dir[dir])
 		return FALSE
 	return TRUE
-/obj/machinery/station_map/proc/startWatching(var/mob/user)
+/obj/machinery/station_map/proc/startWatching(mob/user)
 	// Okay, does this belong on a screen thing or what?
 	// One argument is that this is an "in game" object becuase its in the world.
 	// But I think it actually isn't.  The map isn't holo projected into the whole room, (maybe strat one is!)
@@ -122,7 +122,7 @@
 			else
 				to_chat(user, span_notice("A hologram of the station appears before your eyes."))
 
-/obj/machinery/station_map/attack_ai(var/mob/living/silicon/robot/user)
+/obj/machinery/station_map/attack_ai(mob/living/silicon/robot/user)
 	return // TODO - Implement for AI ~Leshana
 	// user.station_holomap.toggleHolomap(user, isAI(user))
 
@@ -224,7 +224,7 @@
 	circuit = /obj/item/circuitboard/station_map
 	icon_override = 'icons/obj/machines/stationmap.dmi'
 
-/datum/frame/frame_types/station_map/get_icon_state(var/state)
+/datum/frame/frame_types/station_map/get_icon_state(state)
 	return "station_map_frame_[state]"
 
 /obj/structure/frame
@@ -234,7 +234,6 @@
 	name = T_BOARD("Station Map")
 	board_type = new /datum/frame/frame_types/station_map
 	build_path = /obj/machinery/station_map
-	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	req_components = list()
 
 /datum/holomap_marker

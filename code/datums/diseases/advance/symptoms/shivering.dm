@@ -65,7 +65,7 @@ Bonus
 		to_chat(M, span_userdanger(pick("You feel your blood run cold.", "You feel ice in your veins.", "You feel like you can't heat up.", "You shiver violently.")))
 		set_body_temp(M, A)
 
-/datum/symptom/shivering/proc/set_body_temp(var/mob/living/carbon/H, datum/disease/advance/A)
+/datum/symptom/shivering/proc/set_body_temp(mob/living/carbon/H, datum/disease/advance/A)
 	if(!unsafe)
 		H.bodytemperature = max(-((3 * power) * A.stage), (BODYTEMP_COLD_DAMAGE_LIMIT + 1))
 	else

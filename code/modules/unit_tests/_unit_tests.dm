@@ -114,6 +114,7 @@
 #include "recipe_tests.dm"
 #include "recycler_vendor_tests.dm"
 #include "robot_tests.dm"
+#include "slime_tests.dm"
 #include "spritesheets.dm"
 #include "sqlite_tests.dm"
 #include "subsystem_init.dm"

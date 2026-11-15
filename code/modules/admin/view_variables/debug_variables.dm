@@ -47,7 +47,7 @@
 		var/icon/icon_value = icon(value)
 		var/rnd = rand(1,10000)
 		var/rname = "tmp[REF(icon_value)][rnd].png"
-		usr << browse_rsc(icon_value, rname)
+		send_rsc(usr, icon_value, rname)
 		return "(" + span_value("[value]") + ") <img class=icon src=\"[rname]\">"
 		#else
 		return "/icon (" + span_value("[value]") + ")"
@@ -63,6 +63,15 @@
 	if(isdatum(value))
 		var/datum/datum_value = value
 		return datum_value.debug_variable_value(name, level, owner, sanitize, display_flags)
+
+	if(istype(value, /alist))
+		var/alist/alist_value = value
+		var/list/items = list()
+
+		for(var/key, val in alist_value)
+			items += debug_variable(key, val, level + 1, sanitize = sanitize)
+
+		return "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(alist_value)]'>/alist ([alist_value.len])</a><ul>[items.Join()]</ul>"
 
 	if(islist(value) || (name in GLOB.vv_special_lists)) // Some special lists aren't detectable as a list through istype
 		var/list/list_value = value

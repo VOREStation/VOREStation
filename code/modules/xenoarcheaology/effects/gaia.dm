@@ -7,7 +7,7 @@
 
 	effect_color = "#8cd448"
 
-/datum/artifact_effect/gaia/proc/age_plantlife(var/obj/machinery/portable_atmospherics/hydroponics/Tray = null)
+/datum/artifact_effect/gaia/proc/age_plantlife(obj/machinery/portable_atmospherics/hydroponics/Tray = null)
 	if(istype(Tray) && Tray.seed)
 		Tray.health += rand(1,3) * HYDRO_SPEED_MULTIPLIER
 		Tray.age += 1
@@ -31,7 +31,7 @@
 			age_plantlife(Tray)
 			P.update_icon()
 
-/datum/artifact_effect/gaia/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/gaia/DoEffectTouch(mob/user)
 	var/atom/holder = get_master_holder()
 	to_chat(user, span_alien("You feel the presence of something long forgotten."))
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(world.view,get_turf(holder)))

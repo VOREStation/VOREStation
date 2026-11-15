@@ -55,7 +55,7 @@
 		user.visible_message(span_notice("[user] fumbled the [src]!"), runemessage = "fumbles [src]")
 		user.remove_from_mob(src)
 
-/obj/item/aliencoin/examine(var/mob/user)
+/obj/item/aliencoin/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += span_notice("It has some writing along its edge that seems to be some language that you are not familiar with. The face of the coin is very smooth, with what appears to be some kind of angular logo along the left side, and a couple of lines of the alien text along the opposite side. The reverse side is similarly smooth, the top of it features what appears to be some kind of vortex, surrounded by six stars, three on either side, with further swirls and intricate patterns along the bottom sections of this face. Looking closely, you can see that there is more text hidden among the swirls.")

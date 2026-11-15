@@ -6,6 +6,10 @@
 	circuit = /obj/item/circuitboard/circuit_imprinter
 	allowed_buildtypes = IMPRINTER
 
+/obj/machinery/rnd/production/circuit_imprinter/Initialize(mapload)
+	. = ..()
+	set_wires(new /datum/wires/circuit_imprinter(src))
+
 /obj/machinery/rnd/production/circuit_imprinter/compute_efficiency()
 	var/rating = 0
 	for(var/obj/item/stock_parts/manipulator/manip in component_parts)

@@ -1,7 +1,7 @@
 /*
 	Animals
 */
-/mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/simple_mob/UnarmedAttack(atom/A, proximity)
 	if(!(. = ..()))
 		return
 
@@ -24,6 +24,10 @@
 			if(istype(A,/obj/structure/micro_tunnel))	//Allows simplemobs to click on mouse holes, mice should be allowed to go in mouse holes, and other mobs
 				var/obj/structure/micro_tunnel/t = A	//should be allowed to drag the mice out of the mouse holes!
 				t.tunnel_interact(src)
+			if(istype(A,/obj/item/reagent_containers/food/snacks))
+				var/obj/item/reagent_containers/food/snacks/snack = A
+				snack.attack_generic(src)
+				setClickCooldown(get_attack_speed(src))
 
 		if(I_HURT)
 			if(can_special_attack(A) && special_attack_target(A))
@@ -40,6 +44,18 @@
 				A.attack_hand(src)
 			else if(isliving(A) && src.client && !vore_attack_override)
 				animal_nom(A)
+			else if(isitem(A))
+				var/obj/item/snack = A
+				if(!snack.check_item_devourability(src))
+					return
+				visible_message(span_warning("\The [src] is attempting to [vore_selected.vore_verb] \the [snack]"))
+				do_windup_animation(A, 1 SECOND) //Mlaaaah...
+				setClickCooldown(get_attack_speed(src))
+				if(!do_after(src, 1 SECOND, A))
+					animate(src) //Cancel the windup animation if we're interrupted
+					return
+				do_attack_animation(A, TRUE) //Homph.~
+				eat_trash_proc(A)
 			else
 				attack_target(A)
 
@@ -49,7 +65,7 @@
 			else
 				attack_target(A)
 
-/mob/living/simple_mob/RangedAttack(var/atom/A)
+/mob/living/simple_mob/RangedAttack(atom/A)
 //	setClickCooldown(get_attack_speed())
 
 	if(can_special_attack(A) && special_attack_target(A))

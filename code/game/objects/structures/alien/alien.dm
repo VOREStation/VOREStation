@@ -13,7 +13,7 @@
 		qdel(src)
 	return
 
-/obj/structure/alien/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/alien/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	healthcheck()
@@ -52,7 +52,7 @@
 	..()
 	return
 
-/obj/structure/alien/attack_generic(var/mob/user, var/damage, var/attack_verb)
+/obj/structure/alien/attack_generic(mob/user, damage, attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)

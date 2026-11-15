@@ -10379,7 +10379,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "vd" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/alarm/angled{
@@ -17283,7 +17283,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/dorms/dorm6)
 "Ki" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 4
 	},
 /obj/machinery/alarm/angled{

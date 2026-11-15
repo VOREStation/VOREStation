@@ -313,6 +313,11 @@
 		name_data[1] = ""
 		return COMPONENT_ALT_NAME_CHANGED
 
+	// Suppress "(as Unknown)" for shadekin with voice changers, or no identification.
+	if(source.name != source.GetVoice())
+		name_data[1] = ""
+		return COMPONENT_ALT_NAME_CHANGED
+
 /// Signal handler for get_visible_name()
 /datum/component/shadekin/proc/on_get_visible_name(mob/living/source, list/name_data)
 	SIGNAL_HANDLER

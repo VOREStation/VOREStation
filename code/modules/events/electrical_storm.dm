@@ -19,11 +19,11 @@
 	..()
 	switch(severity)
 		if(EVENT_LEVEL_MUNDANE)
-			command_announcement.Announce("A minor electrical storm has been detected near the [location_name()]. Please watch out for possible electrical discharges.", "[location_name()] Sensor Array")
+			GLOB.command_announcement.Announce("A minor electrical storm has been detected near the [location_name()]. Please watch out for possible electrical discharges.", "[location_name()] Sensor Array", ANNOUNCER_MSG_ELECTRICAL_STORM)
 		if(EVENT_LEVEL_MODERATE)
-			command_announcement.Announce("The [location_name()] is about to pass through an electrical storm. Please secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array")
+			GLOB.command_announcement.Announce("The [location_name()] is about to pass through an electrical storm. Please secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array", ANNOUNCER_MSG_ELECTRICAL_STORM)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Alert. A strong electrical storm has been detected in proximity of the [location_name()]. It is recommended to immediately secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array")
+			GLOB.command_announcement.Announce("Alert. A strong electrical storm has been detected in proximity of the [location_name()]. It is recommended to immediately secure sensitive electrical equipment until the storm passes.", "[location_name()] Sensor Array", ANNOUNCER_MSG_ELECTRICAL_STORM)
 
 /datum/event/electrical_storm/start()
 	..()
@@ -54,7 +54,7 @@
 	for(var/obj/machinery/power/apc/T in picked_apcs)
 		affect_apc(T)
 
-/datum/event/electrical_storm/proc/affect_apc(var/obj/machinery/power/apc/T)
+/datum/event/electrical_storm/proc/affect_apc(obj/machinery/power/apc/T)
 	// Main breaker is turned off. Consider this APC protected.
 	if(!T.operating)
 		return

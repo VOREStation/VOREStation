@@ -22,7 +22,7 @@
 	default_apply_parts()
 	update_light_color()
 
-/obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/slime/replicator/attackby(obj/item/W, mob/user)
 	//Let's try to deconstruct first.
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && !inuse)
 		default_deconstruction_screwdriver(user, W)
@@ -140,7 +140,6 @@
 	name = T_BOARD("Slime replicator")
 	build_path = "/obj/machinery/slime/replicator"
 	board_type = "machine"
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	req_components = list(
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/stock_parts/matter_bin = 1,

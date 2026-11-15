@@ -9,7 +9,7 @@
 #define LIGHT_EMERGENCY_POWER_USE 0.2 //How much power emergency lights will consume per tick
 
 GLOBAL_LIST_EMPTY(light_type_cache)
-/proc/get_light_type_instance(var/light_type)
+/proc/get_light_type_instance(light_type)
 	. = GLOB.light_type_cache[light_type]
 	if(!.)
 		. = new light_type
@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 /obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
+	description_antag = "There's a flexible cover near the ballast. Someone figured you can inject phoron in there as a rigged explosive. Just, don't do it while it is on."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
@@ -31,7 +32,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 
 	var/cell_connectors = TRUE
 
-/obj/machinery/light_construct/Initialize(mapload, var/newdir, var/building = 0, var/datum/frame/frame_types/frame_type, var/obj/machinery/light/fixture = null)
+/obj/machinery/light_construct/Initialize(mapload, newdir, building = 0, datum/frame/frame_types/frame_type, obj/machinery/light/fixture = null)
 	. = ..()
 	if(fixture)
 		fixture_type = fixture.type
@@ -435,7 +436,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	update()
 
 // update lighting
-/obj/machinery/light/proc/update(var/trigger = 1)
+/obj/machinery/light/proc/update(trigger = 1)
 	update_icon()
 	if(!on)
 		needsound = TRUE // Play sound next time we turn on
@@ -484,7 +485,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	update_light()
 	update_active_power_usage((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
-/obj/machinery/light/proc/nightshift_mode(var/state)
+/obj/machinery/light/proc/nightshift_mode(state)
 	if(!nightshift_allowed)
 		return
 
@@ -492,7 +493,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		nightshift_enabled = state
 		update(FALSE)
 
-/obj/machinery/light/attack_generic(var/mob/user, var/damage)
+/obj/machinery/light/attack_generic(mob/user, damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -505,7 +506,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	broken()
 	return 1
 
-/obj/machinery/light/take_damage(var/damage)
+/obj/machinery/light/take_damage(damage)
 	if(!damage)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
@@ -520,7 +521,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(var/s)
+/obj/machinery/light/proc/seton(s)
 	on = (s && status == LIGHT_OK)
 	update()
 
@@ -533,15 +534,15 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	var/fitting = get_fitting_name()
 	switch(status)
 		if(LIGHT_OK)
-			. += "It is turned [on? "on" : "off"]."
+			. += span_notice("It is turned [on? "on" : "off"].")
 		if(LIGHT_EMPTY)
-			. += "The [fitting] has been removed."
+			. += span_notice("The [fitting] has been removed.")
 		if(LIGHT_BURNED)
-			. += "The [fitting] is burnt out."
+			. += span_notice("The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
-			. += "The [fitting] has been smashed."
+			. += span_notice("The [fitting] has been smashed.")
 	if(cell)
-		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
+		. += span_notice("Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
 /obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/light/L = light_type
@@ -721,7 +722,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
 	return TRUE
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20), var/flicker_color)
+/obj/machinery/light/proc/flicker(amount = rand(10, 20), flicker_color)
 	if(flickering) return
 	if(on && status == LIGHT_OK)
 		flickering = 1
@@ -808,7 +809,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		else if(TK in user.mutations)
 			to_chat(user, "You telekinetically remove the light [get_fitting_name()].")
 		else
-			to_chat(user, "You try to remove the light [get_fitting_name()], but it's too hot and you don't want to burn your hand.")
+			to_chat(user, "You try to remove the [get_fitting_name()], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
 	else
 		to_chat(user, "You remove the light [get_fitting_name()].")
@@ -852,7 +853,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = FALSE)
+/obj/machinery/light/proc/broken(skip_sound_and_sparks = FALSE)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -949,7 +950,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	force = 2
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
-	matter = list(MAT_STEEL = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.03))
 
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/status = LIGHT_OK
@@ -991,7 +992,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list(MAT_GLASS = 100)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.05))
 	brightness_range = 7
 	brightness_power = 2
 	init_brightness_range = 7
@@ -1019,7 +1020,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter = list(MAT_GLASS = 100)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.05))
 	brightness_range = 5
 	brightness_power = 1
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
@@ -1070,7 +1071,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list(MAT_GLASS = 100)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.05))
 
 // update the icon state and description of the light
 /obj/item/light/update_icon()
@@ -1103,12 +1104,12 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode
-/obj/item/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/light/attackby(obj/item/I, mob/user)
 	..()
 	if(isrobot(user))
 		I = user.get_active_hand()
 
-	if(istype(I,/obj/item/multitool))
+	if(I?.has_tool_quality(TOOL_MULTITOOL))
 		var/list/menu_list = list(
 		"Normal Range",
 		"Normal Brightness",
@@ -1198,6 +1199,16 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/turf/our_turf = get_turf(src)
+		if(!our_turf)
+			return
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		air_contents.volume = 2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*air_contents.volume/(R_IDEAL_GAS_EQUATION*T20C))
+		our_turf.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade

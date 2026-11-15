@@ -5,7 +5,7 @@
 /datum/visualnet/cult
 	chunk_type = /datum/chunk/cult
 
-/datum/visualnet/cult/proc/provides_vision(var/mob/living/L)
+/datum/visualnet/cult/proc/provides_vision(mob/living/L)
 	return L.provides_cult_vision()
 
 /mob/living/proc/provides_cult_vision()

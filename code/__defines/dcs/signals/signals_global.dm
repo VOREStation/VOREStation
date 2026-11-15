@@ -158,3 +158,14 @@
 
 // base /obj/item/autopsy_scanner/do_surgery() : (mob/user, mob/target)
 #define COMSIG_GLOB_AUTOPSY_PERFORMED "!performed_autopsy"
+// base /datum/disease/proc/cure() : (id)
+#define COMSIG_GLOB_ADV_DISEASE_CURED "!adv_disease_cured"
+
+// base /obj/machinery/anomaly_harvester/proc/add_points() : (add_points)
+#define COMSIG_GLOB_ANOMALY_HARVESTED "!anomaly_harvested"
+// base /obj/item/mail_scanner/afterattack()
+#define COMSIG_GLOB_MAIL_DELIVERED "!mail_delivered"
+// base /obj/machinery/computer/arcade/proc/pricevend()
+#define COMSIG_GLOB_ARCADE_PRIZEVEND "!arcade_win"
+
+#define COMSIG_GLOB_DONATE_BLOOD "!donate_blood"

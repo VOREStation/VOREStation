@@ -1,4 +1,4 @@
-var/datum/planet/virgo4/planet_virgo4 = null
+GLOBAL_DATUM(planet_virgo4, /datum/planet/virgo4)
 
 /datum/time/virgo4
 	seconds_in_day = 24 HOURS
@@ -12,7 +12,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/planet/virgo4/New()
 	..()
-	planet_virgo4 = src
+	GLOB.planet_virgo4 = src
 	weather_holder = new /datum/weather_holder/virgo4(src)
 
 /datum/planet/virgo4/update_sun()
@@ -553,7 +553,15 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		if(!T.is_outdoors())
 			return // They're indoors, so no need to irradiate them with fallout.
 
-		L.rad_act(rand(direct_rad_low, direct_rad_high))
+		radiation_pulse(
+			L,
+			max_range = 1,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = rand(direct_rad_low, direct_rad_high),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rand(direct_rad_low, direct_rad_high)
+		)
+
 
 // This makes random tiles near people radioactive for awhile.
 // Tiles far away from people are left alone, for performance.
@@ -565,7 +573,14 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	if(!istype(T))
 		return
 	if(T.is_outdoors())
-		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+		radiation_pulse(
+			T,
+			max_range = 5,
+			threshold = RAD_MEDIUM_INSULATION,
+			chance = rand(direct_rad_low, direct_rad_high),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = rand(fallout_rad_low, fallout_rad_high)
+		)
 
 /datum/weather/virgo4/fallout/temp
 	name = "short-term fallout"

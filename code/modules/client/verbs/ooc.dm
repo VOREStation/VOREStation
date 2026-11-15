@@ -42,7 +42,7 @@
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 
-	src.mob.log_talk(msg, LOG_OOC)
+	src.mob.log_talk(msg, LOG_OOC, color="#0051ff")
 
 	if(msg)
 		handle_spam_prevention(MUTE_OOC)
@@ -125,7 +125,7 @@
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 
-	src.mob.log_message(msg, LOG_LOOC)
+	src.mob.log_message(msg, LOG_LOOC, color="#53cbff")
 
 	if(msg)
 		handle_spam_prevention(MUTE_LOOC)
@@ -176,6 +176,8 @@
 			admin_stuff += "/([key])"
 
 		to_chat(target, span_looc(create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
+		if(target.prefs?.read_preference(/datum/preference/toggle/looc_sounds))
+			SEND_SOUND(target, sound('sound/talksounds/looc_sound.ogg', volume = 50))	//Only sound for actually local targets, not for RLOOC because that would be annoying
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"

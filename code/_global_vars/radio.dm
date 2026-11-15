@@ -18,6 +18,8 @@ GLOBAL_LIST_INIT(radiochannels, list(
 	CHANNEL_SECURITY_1		= SEC_I_FREQ,
 	CHANNEL_TALON			= TALON_FREQ, //VOREStation Add
 	CHANNEL_CASINO			= CSN_FREQ,
+	CHANNEL_ATC				= ATC_FREQ,
+	CHANNEL_CULTURE			= CULTURE_FREQ
 ))
 
 // Hey, if anyone ever needs to update tgui/packages/tgui/constants.js with new radio channels
@@ -62,7 +64,7 @@ GLOBAL_LIST_INIT(department_frequencies, list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_
 
 GLOBAL_LIST_INIT(offmap_frequencies, list(TALON_FREQ, CSN_FREQ))
 
-/proc/frequency_span_class(var/frequency)
+/proc/frequency_span_class(frequency)
 	// Antags!
 	if (frequency in GLOB.antag_frequencies)
 		return "syndradio"

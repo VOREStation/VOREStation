@@ -23,6 +23,7 @@
 
 	// There's basically always going to be wall connections, making this lazy doesn't seem like it'd help much unless you wanted to make it bitflags instead.
 	var/list/wall_connections = list("0", "0", "0", "0")
+	rad_insulation = RAD_MEDIUM_INSULATION
 
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
@@ -58,7 +59,7 @@
 /turf/simulated/wall/proc/get_material()
 	return material
 
-/turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
+/turf/simulated/wall/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(2500)
 	else if(istype(Proj,/obj/item/projectile/ion))
@@ -125,7 +126,7 @@
 			plant.pixel_y = 0
 		plant.update_neighbors()
 
-/turf/simulated/wall/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
+/turf/simulated/wall/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
 	clear_plants()
 	. = ..(N, tell_universe, force_lighting_update, preserve_outdoors)
 
@@ -195,7 +196,7 @@
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
+/turf/simulated/wall/proc/dismantle_wall(devastated, explode, no_product)
 
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
@@ -297,11 +298,19 @@
 	return
 
 /turf/simulated/wall/proc/radiate()
+	SIGNAL_HANDLER
 	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0) + (girder_material ? girder_material.radioactivity / 2 : 0)
 	if(!total_radiation)
 		return
 
-	SSradiation.radiate(src, total_radiation)
+	radiation_pulse(
+		src,
+		max_range = 5,
+		threshold = RAD_MEDIUM_INSULATION,
+		chance = total_radiation,
+		minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+		strength = total_radiation
+	)
 	return total_radiation
 
 /turf/simulated/wall/proc/burn(temperature)

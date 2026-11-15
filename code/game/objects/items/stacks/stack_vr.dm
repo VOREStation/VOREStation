@@ -29,7 +29,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/stack/Crossed(var/atom/movable/AM)
+/obj/item/stack/Crossed(atom/movable/AM)
 	if(istype(AM, src.type)) // Sanity so we don't try to merge non-stacks.
 		if(can_merge(AM))
 			merge(AM)

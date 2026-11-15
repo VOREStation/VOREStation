@@ -9,7 +9,7 @@
 	var/art_color
 	var/art_shade
 
-/obj/effect/decal/cleanable/crayon/Initialize(mapload, main = "#FFFFFF",shade = "#000000",var/type = "rune", new_age = 0)
+/obj/effect/decal/cleanable/crayon/Initialize(mapload, main = "#FFFFFF",shade = "#000000",type = "rune", new_age = 0)
 	name = type
 	desc = "A [type] drawn in crayon."
 

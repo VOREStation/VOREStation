@@ -2,7 +2,7 @@
 /datum/mini_hud/mapper
 	var/obj/item/mapping_unit/owner
 
-/datum/mini_hud/mapper/New(var/datum/hud/other, owner)
+/datum/mini_hud/mapper/New(datum/hud/other, owner)
 	src.owner = owner
 	screenobjs = list(new /atom/movable/screen/movable/mapper_holder(null, owner))
 	..()

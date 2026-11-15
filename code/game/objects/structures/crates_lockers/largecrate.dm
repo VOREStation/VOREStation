@@ -149,6 +149,10 @@
 	starts_with = list(
 		/obj/machinery/anomaly_harvester,
 		/obj/item/anomaly_releaser/science,
-		/obj/item/anomaly_choice,
+		/obj/item/assembly/signaler/anomaly/choice/,
 		/obj/item/anomaly_scanner
 	)
+
+/obj/structure/largecrate/mysteryhats
+	name = "mystery hats box"
+	starts_with = list(/obj/structure/mystery_box/hat)

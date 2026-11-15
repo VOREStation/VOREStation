@@ -25,7 +25,7 @@ D [1]/  ||
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 
-/datum/integrated_io/New(var/newloc, var/name, var/new_data)
+/datum/integrated_io/New(newloc, name, new_data)
 	..()
 	src.name = name
 	if(!isnull(new_data))
@@ -44,14 +44,14 @@ D [1]/  ||
 	return holder.tgui_host()
 
 
-/datum/integrated_io/proc/data_as_type(var/as_type)
+/datum/integrated_io/proc/data_as_type(as_type)
 	if(!isweakref(data))
 		return
 	var/datum/weakref/w = data
 	var/output = w.resolve()
 	return istype(output, as_type) ? output : null
 
-/datum/integrated_io/proc/display_data(var/input)
+/datum/integrated_io/proc/display_data(input)
 	if(isnull(input))
 		return "(null)" // Empty data means nothing to show.
 
@@ -110,7 +110,7 @@ list[](
 /datum/integrated_io/activate/scramble()
 	push_data()
 
-/datum/integrated_io/proc/write_data_to_pin(var/new_data)
+/datum/integrated_io/proc/write_data_to_pin(new_data)
 	if(isnull(new_data) || isnum(new_data) || istext(new_data) || isweakref(new_data)) // Anything else is a type we don't want.
 		if(istext(new_data))
 			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
@@ -146,7 +146,7 @@ list[](
 		//Now that we're removed from them, we gotta remove them from us.
 		src.linked.Remove(their_io)
 
-/datum/integrated_io/proc/ask_for_data_type(mob/user, var/default, var/list/allowed_data_types = list("string","number","null"))
+/datum/integrated_io/proc/ask_for_data_type(mob/user, default, list/allowed_data_types = list("string","number","null"))
 	var/type_to_use = tgui_input_list(user, "Please choose a type to use.","[src] type setting", allowed_data_types)
 	if(!holder.check_interactivity(user))
 		return

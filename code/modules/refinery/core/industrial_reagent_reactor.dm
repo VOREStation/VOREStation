@@ -77,7 +77,7 @@
 			add_overlay(dot)
 		update_input_connection_overlays("reactor_intakes")
 
-/obj/machinery/reagent_refinery/reactor/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
+/obj/machinery/reagent_refinery/reactor/handle_transfer(atom/origin_machine, datum/reagents/RT, source_forward_dir, transfer_rate, filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
 	if(dir == GLOB.reverse_dir[source_forward_dir])
 		return 0
@@ -93,7 +93,7 @@
 	. += "The internal temperature is [GM.temperature]k at [GM.return_pressure()]kpa. It is currently in a [toggle_mode ? "pumping cycle, outputting stored chemicals" : "distilling cycle, accepting input chemicals"]."
 	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT, .)
 
-/obj/machinery/reagent_refinery/reactor/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/reagent_refinery/reactor/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
 	if(O.has_tool_quality(TOOL_WRENCH))
 		update_gas_network() // Handles anchoring

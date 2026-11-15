@@ -1,7 +1,7 @@
 
-/proc/power_failure(var/announce = 1)
+/proc/power_failure(announce = 1)
 	if(announce)
-		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
+		GLOB.command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = ANNOUNCER_MSG_POWER_OFF)
 
 	var/list/skipped_areas = list(/area/ai)
 
@@ -23,11 +23,11 @@
 		if(!C.is_critical && C.cell && (C.z in using_map.station_levels))
 			C.cell.charge = 0
 
-/proc/power_restore(var/announce = 1)
+/proc/power_restore(announce = 1)
 	var/list/skipped_areas = list(/area/ai)
 
 	if(announce)
-		command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		GLOB.command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = ANNOUNCER_MSG_POWER_ON)
 	for(var/obj/machinery/power/apc/C in GLOB.apcs)
 		if(C.cell && (C.z in using_map.station_levels))
 			C.cell.charge = C.cell.maxcharge
@@ -41,10 +41,10 @@
 		S.update_icon()
 		S.power_change()
 
-/proc/power_restore_quick(var/announce = 1)
+/proc/power_restore_quick(announce = 1)
 
 	if(announce)
-		command_announcement.Announce("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		GLOB.command_announcement.Announce("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = ANNOUNCER_MSG_POWER_ON)
 	for(var/obj/machinery/power/smes/S in GLOB.smeses)
 		if(isNotStationLevel(S.z))
 			continue

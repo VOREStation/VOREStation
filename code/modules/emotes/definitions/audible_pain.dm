@@ -2,8 +2,10 @@
 	key = "pain"
 	emote_message_1p = "You yell in pain!"
 	emote_message_3p = "yells in pain!"
+	emote_message_mute_1p = "You yell silently in pain!"
+	emote_message_mute_3p = "yells silently in pain!"
 
-/datum/decl/emote/audible/pain/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/audible/pain/get_emote_message_1p(atom/user, atom/target, extra_params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		return "You [pick(H.species.pain_verb_1p)] in pain!"
@@ -13,7 +15,7 @@
 			return "You [pick(M.pain_emote_1p)]!"
 	. = ..()
 
-/datum/decl/emote/audible/pain/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
+/datum/decl/emote/audible/pain/get_emote_message_3p(atom/user, atom/target, extra_params)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		return "[pick(H.species.pain_verb_3p)] in pain!"
@@ -23,7 +25,7 @@
 			return "[pick(M.pain_emote_3p)]!"
 	. = ..()
 
-/datum/decl/emote/audible/pain/get_emote_sound(var/atom/user)
+/datum/decl/emote/audible/pain/get_emote_sound(atom/user)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

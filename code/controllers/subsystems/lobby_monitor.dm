@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(lobby_monitor)
 
 	to_reinitialize = initialize_queue
 
-/datum/controller/subsystem/lobby_monitor/proc/do_reinit(var/mob/new_player/player)
+/datum/controller/subsystem/lobby_monitor/proc/do_reinit(mob/new_player/player)
 	var/datum/tgui/ui = SStgui.get_open_ui(player, player)
 	if(ui && player.lobby_window && player.lobby_window.status > TGUI_WINDOW_CLOSED)
 		return

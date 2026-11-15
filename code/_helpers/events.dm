@@ -1,4 +1,4 @@
-/proc/get_station_areas(var/list/area/excluded_areas)
+/proc/get_station_areas(list/area/excluded_areas)
 	var/list/area/grand_list_of_areas = list()
 	// Assemble areas that all exists (See DM reference if you are confused about loop labels)
 	looping_station_areas:
@@ -15,7 +15,7 @@
 	return grand_list_of_areas
 
 /** Checks if any living humans are in a given area! */
-/proc/is_area_occupied(var/area/myarea)
+/proc/is_area_occupied(area/myarea)
 	// Testing suggests looping over GLOB.human_mob_list is quicker than looping over area contents
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
@@ -37,3 +37,26 @@
 			if(!istype(A) || !A.contents.len) // Empty contents list means it's not on the map.
 				continue
 			. += A
+
+/proc/request_decoration_colors(atom/thing_to_color, pattern)
+	switch(pattern)
+		if(PATTERN_RANDOM)
+			return "#[random_short_color()]"
+		if(PATTERN_RAINBOW)
+			return get_decoration_color_from_pattern(thing_to_color, PATTERN_DEFAULT, PRIDE_FLAG_COLORS)
+
+	for(var/holiday_key in GLOB.holidays)
+		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
+		if(!holiday_real.holiday_colors)
+			continue
+		return holiday_real.get_holiday_colors(thing_to_color, pattern)
+
+/// Proc to return colors for recoloring atoms based on a pattern and the position of the atom. Primarily used by holidays
+/proc/get_decoration_color_from_pattern(atom/thing_to_color, pattern = PATTERN_DEFAULT, list/colors)
+	if(!length(colors))
+		return
+	switch(pattern)
+		if(PATTERN_DEFAULT)
+			return colors[(thing_to_color.y % colors.len) + 1]
+		if(PATTERN_VERTICAL_STRIPE)
+			return colors[(thing_to_color.x % colors.len) + 1]

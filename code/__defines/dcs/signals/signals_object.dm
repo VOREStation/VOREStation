@@ -32,6 +32,8 @@
 #define COMSIG_MACHINERY_SET_OCCUPANT "machinery_set_occupant"
 ///from /obj/machinery/rnd/destructive_analyzer/proc/destroy_item(gain_research_points = FALSE): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
+///from /obj/machinery/doppler_array/proc/sense_explosion(): Runs when an explosion is detected. (turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
+#define COMSIG_MACHINERY_EXPLOSION_DETECTED "machinery_explosion_detected"
 ///from /obj/machinery/computer/arcade/victory_tickets(tickets, sound = TRUE)
 #define COMSIG_ARCADE_VICTORY "arcade_victory"
 ///from /obj/machinery/computer/telescience/proc/doteleport(mob/user): (list/atom/movable/teleported_things, turf/target_turf, sending )
@@ -189,7 +191,7 @@
 	/// Return to prevent the default behavior (attack_selfing) from occurring.
 	#define COMPONENT_ITEM_ACTION_SLOT_INVALID (1<<0)
 
-///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
+///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone) //We use hit_with_weapon here
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
 ///from base of obj/item/hit_reaction(): (owner, hitby, attack_text, final_block_chance, damage, attack_type, damage_type)
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"

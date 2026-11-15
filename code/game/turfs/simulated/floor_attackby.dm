@@ -1,7 +1,11 @@
-/turf/simulated/floor/attackby(var/obj/item/C, var/mob/user, attack_modifier, click_parameters)
+/turf/simulated/floor/attackby(obj/item/C, mob/user, attack_modifier, click_parameters)
 
 	if(!C || !user)
 		return 0
+
+	// Check parent signals
+	if(..())
+		return
 
 	if(isliving(user) && istype(C, /obj/item))
 		var/mob/living/L = user

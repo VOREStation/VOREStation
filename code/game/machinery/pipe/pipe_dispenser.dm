@@ -19,7 +19,7 @@
 	var/disposals = FALSE
 
 // TODO - Its about time to make this NanoUI don't we think?
-/obj/machinery/pipedispenser/attack_hand(var/mob/user as mob)
+/obj/machinery/pipedispenser/attack_hand(mob/user as mob)
 	if((. = ..()))
 		return
 	tgui_interact(user)
@@ -109,7 +109,7 @@
 				VARSET_IN(src, wait, FALSE, 15)
 
 
-/obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/pipedispenser/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
 		to_chat(user, span_notice("You put [W] back in [src]."))
@@ -155,7 +155,7 @@
 	disposals = TRUE
 
 //Allow you to drag-drop disposal pipes into it
-/obj/machinery/pipedispenser/disposal/MouseDrop_T(var/obj/structure/disposalconstruct/pipe as obj, mob/user as mob)
+/obj/machinery/pipedispenser/disposal/MouseDrop_T(obj/structure/disposalconstruct/pipe as obj, mob/user as mob)
 	if(!user.canmove || user.stat || user.restrained())
 		return
 

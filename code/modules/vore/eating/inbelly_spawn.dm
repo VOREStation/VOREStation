@@ -55,7 +55,7 @@
 
 	if(confirmation_prey == "Yes" && potential_prey && src && belly_choice)
 		//Now we finally spawn them in!
-		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.species]))
+		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.read_preference(/datum/preference/choiced/species)]))
 			to_chat(potential_prey, span_notice("You are not whitelisted to play as currently selected character."))
 			to_chat(src, span_notice("Prey accepted the confirmation, but something went wrong with spawning their character."))
 			return
@@ -64,7 +64,7 @@
 		to_chat(potential_prey, span_notice("Inbelly spawn cancelled."))
 		to_chat(src, span_notice("Prey cancelled their inbelly spawn request."))
 
-/proc/inbelly_spawn(client/prey, mob/living/pred, obj/belly/target_belly, var/absorbed = FALSE)
+/proc/inbelly_spawn(client/prey, mob/living/pred, obj/belly/target_belly, absorbed = FALSE)
 	// All this is basically admin late spawn-in, but skipping all parts related to records and equipment and with predteremined location
 	var/player_key = prey.key
 	var/picked_ckey = prey.ckey
@@ -85,7 +85,7 @@
 	new_character.initialize_vessel()
 	new_character.key = player_key
 	if(new_character.mind)
-		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
+		var/datum/antagonist/antag_data = SSantag_job.get_antag_data(new_character.mind.special_role)
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)

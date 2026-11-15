@@ -3,9 +3,10 @@
 	name = "Pill Bottle"
 	id = "pillbottle"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_PLASTIC = 100, MAT_GLASS = 100)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/storage/pill_bottle
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -14,9 +15,10 @@
 	name = "Syringe"
 	id = "syringe"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 500)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.095))
 	build_path = /obj/item/reagent_containers/syringe
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -25,9 +27,10 @@
 	name = "Dropper"
 	id = "dropper"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_GLASS = 100, MAT_PLASTIC = 500)
+	materials = list(MAT_GLASS = MATERIAL_COST(0.05), MAT_PLASTIC = MATERIAL_COST(0.25))
 	build_path = /obj/item/reagent_containers/dropper
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_CHEMISTRY,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -36,9 +39,10 @@
 	name = "Scalpel"
 	id = "scalpel"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/scalpel
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -47,9 +51,10 @@
 	name = "Circular Saw"
 	id = "circular_saw"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/surgical/circular_saw
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -58,9 +63,10 @@
 	name = "Bonesetter"
 	id = "bonesetter"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 1000,  MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5),  MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/surgical/bonesetter
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -69,9 +75,10 @@
 	name = "Surgical Drill"
 	id = "surgicaldrill"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/surgicaldrill
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -80,9 +87,10 @@
 	name = "Retractor"
 	id = "retractor"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/retractor
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -91,9 +99,10 @@
 	name = "Cautery"
 	id = "cautery"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/cautery
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -102,10 +111,47 @@
 	name = "Hemostat"
 	id = "hemostat"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/surgical/hemostat
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/fixovein
+	name = "FixOVein"
+	id = "fixovein"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
+	build_path = /obj/item/surgical/FixOVein
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/bonegel
+	name = "bone gel"
+	id = "bonegel"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
+	build_path = /obj/item/surgical/bonegel
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/bioregen
+	name="bioregenerator"
+	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."
+	id = "bioregen"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.25))
+	build_path = /obj/item/surgical/bioregen
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -124,10 +170,11 @@
 /datum/design_techweb/penlight
 	name = "Penlight"
 	id = "penlight"
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 100, MAT_GLASS = 100)
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/flashlight/pen
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
@@ -136,9 +183,269 @@
 	name = "Implanter"
 	id = "implanter"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/implanter
 	category = list(
+		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+// Surgical devices
+/datum/design_techweb/scalpel_laser1
+	name = "Basic Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
+	id = "scalpel_laser1"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75))
+	build_path = /obj/item/surgical/scalpel/laser1
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/scalpel_laser2
+	name = "Improved Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
+	id = "scalpel_laser2"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 4, TECH_MAGNET = 4)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(1.25))
+	build_path = /obj/item/surgical/scalpel/laser2
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/scalpel_laser3
+	name = "Advanced Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
+	id = "scalpel_laser3"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 5)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.75))
+	build_path = /obj/item/surgical/scalpel/laser3
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/scalpel_manager
+	name = "Incision Management System"
+	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
+	id = "scalpel_manager"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.375))
+	build_path = /obj/item/surgical/scalpel/manager
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/saw_manager
+	name = "Energetic Bone Diverter"
+	desc = "A strange development following the I.M.S., this heavy tool can split and open, or close and shut, intentional holes in bones."
+	id = "advanced_saw"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_DATA = 5)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_PLASTIC = MATERIAL_COST(0.4), MAT_SILVER = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(0.75), MAT_OSMIUM = MATERIAL_COST(0.5))
+	build_path = /obj/item/surgical/circular_saw/manager
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/organ_ripper
+	name = "Organ Ripper"
+	desc = "A modern and horrifying take on an ancient practice, this tool is capable of rapidly removing an organ from a hopefully willing patient, without damaging it."
+	id = "organ_ripper"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_ILLEGAL = 3)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_PLASTIC = MATERIAL_COST(4), MAT_OSMIUM = MATERIAL_COST(1.25))
+	build_path = /obj/item/surgical/scalpel/ripper
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/bone_clamp
+	name = "Bone Clamp"
+	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
+	id = "bone_clamp"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
+	materials = list (MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(3.75), MAT_SILVER = MATERIAL_COST(1.25))
+	build_path = /obj/item/surgical/bone_clamp
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/medical_analyzer
+	name = "health analyzer"
+	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
+	id = "medical_analyzer"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
+	build_path = /obj/item/healthanalyzer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/improved_analyzer
+	name = "improved health analyzer"
+	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
+	id = "improved_analyzer"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.75))
+	build_path = /obj/item/healthanalyzer/improved
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/advanced_analyzer
+	name = "advanced health analyzer"
+	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
+	id = "advanced_analyzer"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_MAGNET = 7, TECH_BIO = 7, TECH_DATA = 5)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(2), MAT_SILVER = MATERIAL_COST(1.75), MAT_GOLD = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.625))
+	build_path = /obj/item/healthanalyzer/advanced
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/phasic_analyzer
+	name = "phasic health analyzer"
+	desc = "State of the art handheld health scanner, containing not only a full biosign monitor, on-board radiation, and neurological analysis suites, but also a chemical-analysis suite."
+	id = "phasic_analyzer"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(2), MAT_SILVER = MATERIAL_COST(1.75), MAT_GOLD = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(1.25), MAT_PHORON = MATERIAL_COST(0.625))
+	build_path = /obj/item/healthanalyzer/phasic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/gene_scanner
+	name = "Gene Scanner"
+	id = "gene_scanner"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_DATA = 1, TECH_BIO = 2)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.01))
+	build_path = /obj/item/gene_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/roller
+	name = "roller bed"
+	desc = "A collapsed roller bed that can be carried around."
+	id = "medicalbed"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1))
+	build_path = /obj/item/roller
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/advanced_roller
+	name = "advanced roller bed"
+	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."
+	id = "roller_bed"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3, TECH_MAGNET = 3)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(1))
+	build_path = /obj/item/roller/adv
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/sleevemate
+	name = "SleeveMate 3700"
+	id = "sleevemate"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
+	build_path = /obj/item/sleevemate
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/protohypospray
+	name = "prototype hypospray"
+	desc = "This prototype hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	id = "protohypospray"
+	build_type = PROTOLATHE
+	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.75), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(0.5))
+	build_path = /obj/item/reagent_containers/hypospray/science
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/syringe_gun
+	name = "syringe gun"
+	desc = "A spring loaded rifle designed to fit syringes, designed to incapacitate unruly patients from a distance."
+	id = "syringe_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(1))
+	build_path = /obj/item/gun/launcher/syringe
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/syringe_cartridge
+	name = "syringe gun cartridge"
+	desc = "An impact-triggered compressed gas cartridge that can be fitted to a syringe for rapid injection."
+	id = "syringe_cartridge"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.075), MAT_GLASS = MATERIAL_COST(0.25))
+	build_path = /obj/item/syringe_cartridge
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/body_record_disk
+	name = "Body Design Disk"
+	desc = "Portable Body Record Storage Disk."
+	id = "body_record_disk"
+	materials = list(MAT_STEEL = MATERIAL_COST(1.25))
+	build_path = /obj/item/disk/body_record
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/anomalock
+	name = "Voltaic combat cyberheart"
+	desc = "A cutting-edge cyberheart. Voltaic technology allows the heart to keep the body upright in dire circumstances, alongside redirecting anomalous flux energy to fully shield the user from shocks and electro-magnetic pulses. Does nothing without a flux anomaly core."
+	id = "cybernetic_heart_anomalock"
+	construction_time = 5 SECONDS
+	materials = list(
+		MAT_STEEL = MATERIAL_COST(1.25),
+		MAT_GLASS = MATERIAL_COST(1.25),
+		MAT_TITANIUM = MATERIAL_COST(5),
+		MAT_DIAMOND = MATERIAL_COST(2.5)
+	)
+	build_path = /obj/item/organ/internal/heart/machine/anomalock
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

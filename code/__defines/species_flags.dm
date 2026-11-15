@@ -13,6 +13,7 @@
 #define NO_DEFIB		0x800	// Don't allow them to be defibbed
 #define NO_DNA          0x1000	// Cannot have mutations or have their dna changed by genetics/radiation/genome-stolen.
 #define THICK_SKIN		0x2000	// Needles have a chain to fail when attempted to be used on them.
+#define SHOCK_ABSORB	0x4000	// Absorbs shock and converts it into energy that can be used on later attacks.
 // unused: 0x8000 - higher than this will overflow
 
 // Species EMP vuln for carbons
@@ -62,6 +63,14 @@
 #define ALLERGEN_CHOCOLATE	0x2000	// Makes dogs die if they want to?
 #define ALLERGEN_POLLEN		0x4000  // Teshari sneezes! Grasses and plants make you have a reaction.
 #define ALLERGEN_SALT 		0x8000  // Chefs beware, can't have fast food!
+
+// Medical allergies
+#define MEDALLERGEN_TRICORD		0x1
+#define MEDALLERGEN_BICARD		0x2
+#define MEDALLERGEN_DYLO 		0x4
+#define MEDALLERGEN_SPACACIL	0x8
+#define MEDALLERGEN_PERIDAX		0x10
+#define MEDALLERGEN_KELOTANE	0x20
 
 // Allergen reactions
 #define AG_PHYS_DMG	0x1	// brute

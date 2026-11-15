@@ -867,3 +867,11 @@
 	sort_category = "Xenowear"
 	whitelisted = SPECIES_ZADDAT
 	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN, JOB_ENGINEER)
+
+/datum/gear/uniform/anthro_skeleton
+	path = /obj/item/clothing/under/anthro_skeleton
+	display_name = "Anthro Skeleton"
+	description = "A standardized anthropomorphic skeleton commonly used by prometheans who struggle to maintain their outer body shape. It's made of plastic, just like the trusty model in the exam room."
+	slot = slot_w_uniform
+	whitelisted = SPECIES_PROMETHEAN
+	sort_category = "Xenowear"

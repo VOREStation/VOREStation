@@ -166,7 +166,7 @@
 
 	add_fingerprint(ui.user)
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/G as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, span_warning("A beaker is already loaded into the machine."))
@@ -182,21 +182,29 @@
 		var/obj/item/grab/grab = G
 		if(!ismob(grab.affecting))
 			return
-		if(occupant)
-			to_chat(user,span_warning("\The [src] is already occupied by [occupant]."))
-		if(grab.affecting.has_buckled_mobs())
-			to_chat(user, span_warning("\The [grab.affecting] has other entities attached to it. Remove them first."))
-			return
 		var/mob/M = grab.affecting
+		if(!check_put(M, user))
+			return
 		qdel(grab)
 		put_mob(M)
 
 	return
 
-/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user) //Allows borgs to put people into cryo without external assistance
-	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
+/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(mob/target, mob/user) //Allows borgs to put people into cryo without external assistance
+	if(!check_put(target, user))
 		return
 	put_mob(target)
+
+/obj/machinery/atmospherics/unary/cryo_cell/proc/check_put(mob/target, mob/user)
+	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
+		return FALSE
+	if(occupant)
+		to_chat(user,span_warning("\The [src] is already occupied by [occupant]."))
+		return FALSE
+	if(target.has_buckled_mobs() || target.buckled)
+		to_chat(user, span_warning("\The [target] has other entities attached to it. Remove them first."))
+		return FALSE
+	return TRUE
 
 /obj/machinery/atmospherics/unary/cryo_cell/update_icon()
 	cut_overlay(fluid)
@@ -269,6 +277,7 @@
 	if(occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	unbuckle_mob(occupant, force = TRUE)
+	//REMOVE_TRAIT(occupant, TRAIT_STASIS, REF(src)) //Stops life almost entirely, so not done here.
 	occupant = null
 	current_heat_capacity = initial(current_heat_capacity)
 	update_use_power(USE_POWER_IDLE)
@@ -285,9 +294,11 @@
 	if(occupant)
 		to_chat(usr, span_danger("The cryo cell is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(M.abiotic())
 		to_chat(usr, span_warning("Subject may not have abiotic items on."))
 		return
+	*/
 	if(!node)
 		to_chat(usr, span_warning("The cell is not correctly connected to its pipe network!"))
 		return
@@ -297,6 +308,7 @@
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
+	//ADD_TRAIT(occupant, TRAIT_STASIS, REF(src))  //Stops life almost entirely, so not done here.
 	buckle_mob(occupant, forced = TRUE, check_loc = FALSE)
 	vis_contents |= occupant
 	occupant.pixel_y += 19
@@ -340,7 +352,7 @@
 			return
 		put_mob(L)
 
-/atom/proc/return_air_for_internal_lifeform(var/mob/living/lifeform)
+/atom/proc/return_air_for_internal_lifeform(mob/living/lifeform)
 	return return_air()
 
 /obj/machinery/atmospherics/unary/cryo_cell/return_air_for_internal_lifeform()

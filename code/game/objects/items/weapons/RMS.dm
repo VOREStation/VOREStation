@@ -38,7 +38,6 @@ GLOBAL_LIST_INIT(RMS_random_malfunction, list(/obj/item/fbp_backup_cell,
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 5000)
 	preserve_item = FALSE
 
@@ -86,7 +85,7 @@ GLOBAL_LIST_INIT(RMS_random_malfunction, list(/obj/item/fbp_backup_cell,
 	. += display_resources()
 
 /obj/item/rms/proc/display_resources()
-	return "It currently holds [round(stored_charge/1000)]/[max_charge/1000] kW charge."
+	return span_notice("It currently holds [round(stored_charge/1000)]/[max_charge/1000] kW charge.")
 
 /obj/item/rms/proc/drain_battery(user, battery)
 	var/obj/item/cell/C = battery

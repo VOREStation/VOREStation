@@ -114,7 +114,7 @@
 		icon_state = initial(icon_state)
 
 // Panel flips retry power cable connections so you don't have to decon the whole thing
-/obj/machinery/power/quantumpad/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+/obj/machinery/power/quantumpad/default_deconstruction_screwdriver(mob/user, obj/item/S)
 	if((. = ..()))
 		var/original_powernet = powernet
 		if(powernet)

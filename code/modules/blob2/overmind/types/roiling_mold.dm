@@ -23,7 +23,7 @@
 	spore_projectile = /obj/item/projectile/arc/spore
 	factory_type = /obj/structure/blob/factory/turret
 
-/datum/blob_type/roiling_mold/proc/find_target(var/obj/structure/blob/B, var/tries = 0, var/list/previous_targets = null)
+/datum/blob_type/roiling_mold/proc/find_target(obj/structure/blob/B, tries = 0, list/previous_targets = null)
 	if(tries > 3)
 		return
 	var/mob/living/L = locate() in (view(world.view + 3, get_turf(B)) - view(2,get_turf(B)) - previous_targets)	// No adjacent mobs.
@@ -38,7 +38,7 @@
 
 	return L
 
-/datum/blob_type/roiling_mold/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/roiling_mold/on_pulse(obj/structure/blob/B)
 	var/mob/living/L = find_target(B)
 
 	if(!istype(L))

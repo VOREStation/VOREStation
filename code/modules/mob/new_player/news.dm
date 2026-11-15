@@ -40,7 +40,7 @@
 			show_latest_news(GLOB.news_data.station_newspaper)
 
 
-/mob/new_player/proc/show_latest_news(var/datum/feed_channel/CHANNEL)
+/mob/new_player/proc/show_latest_news(datum/feed_channel/CHANNEL)
 	if(!GLOB.news_data) return
 	if(!GLOB.news_data.station_newspaper) return
 
@@ -67,7 +67,7 @@
 
 	client.seen_news = 1
 
-/proc/get_news_page(var/datum/feed_channel/CHANNEL, var/datum/feed_message/MESSAGE, current_page)
+/proc/get_news_page(datum/feed_channel/CHANNEL, datum/feed_message/MESSAGE, current_page)
 	var/dat
 
 	dat += get_newspaper_header(CHANNEL.channel_name, "Aggregated News", "#d4cec1")
@@ -78,7 +78,7 @@
 		var/pic_data
 
 		if(MESSAGE.img)
-			usr << browse_rsc(MESSAGE.img, "tmp_photo[current_page].png")
+			send_rsc(usr, MESSAGE.img, "tmp_photo[current_page].png")
 			pic_data+="<img src='tmp_photo[current_page].png' width = '180'><BR>"
 
 		dat += get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author, "#d4cec1", pic_data)

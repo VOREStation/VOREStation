@@ -10,6 +10,7 @@
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerCargo.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/mining/myomer/mining
 	name = "Myomer - Miner"
@@ -24,6 +25,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_GUN_SPRITE
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/engineering/myomer
 	name = "Myomer"
@@ -37,6 +39,7 @@
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerEngi.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/janitor/myomer
 	name = "Myomer"
@@ -50,6 +53,8 @@
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerJani.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	hat_offset = MYOMER_HAT_OFFSET
+
 /datum/robot_sprite/dogborg/crisis/myomer
 	name = "Myomer"
 	sprite_icon_state = "base"
@@ -63,6 +68,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	module_type = list("Crisis", "Surgeon")
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/science/myomer
 	name = "Myomer"
@@ -76,6 +82,7 @@
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerSci.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/security/myomer
 	name = "Myomer"
@@ -90,6 +97,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_SHIELD_SPRITE
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/service/myomer
 	name = "Myomer"
@@ -103,6 +111,7 @@
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerService.dmi'
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	hat_offset = MYOMER_HAT_OFFSET
 
 /datum/robot_sprite/dogborg/combat_medic/myomer
 	name = "Myomer"
@@ -117,6 +126,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE
+	hat_offset = MYOMER_HAT_OFFSET
 
 /// Custom sprite added to fluff.dm
 /*

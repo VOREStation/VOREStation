@@ -15,7 +15,7 @@ export const NIFSettings = (props) => {
           <Stack.Item grow>
             <Dropdown
               autoScroll={false}
-              width="100%"
+              fluid
               selected={theme || 'default'}
               options={valid_themes}
               onSelected={(val) => act('setTheme', { theme: val })}

@@ -8,7 +8,6 @@
 	icon_state = "sleeper"
 	w_class = ITEMSIZE_TINY
 	var/mob/living/carbon/patient = null
-	var/mob/living/silicon/robot/hound = null
 	var/inject_amount = 10
 	var/min_health = -100
 	var/cleaning = 0
@@ -31,10 +30,10 @@
 	var/max_item_count = 1
 	var/upgraded_capacity = FALSE
 	var/gulpsound = 'sound/vore/gulp.ogg'
-	var/datum/matter_synth/metal = null
-	var/datum/matter_synth/glass = null
-	var/datum/matter_synth/wood = null
-	var/datum/matter_synth/plastic = null
+	var/datum/matter_synth/metal/metal = null
+	var/datum/matter_synth/glass/glass = null
+	var/datum/matter_synth/wood/wood = null
+	var/datum/matter_synth/plastic/plastic = null
 	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
@@ -43,8 +42,7 @@
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 	var/obj/item/healthanalyzer/med_analyzer = null
 	var/ore_storage = FALSE
-	var/max_ore_storage = 500
-	var/current_capacity = 0
+	var/obj/item/ore_bag/sleeper/ore_bag //Used by supply compactor
 	flags = NOBLUDGEON
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
@@ -58,11 +56,17 @@
 			config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
 			experiment_signals = destructive_signals, \
 		)
+	if(ore_storage)
+		ore_bag = new(null) //We don't need it inside, just need a reference to it.
 	. = ..()
 	med_analyzer = new /obj/item/healthanalyzer
 
 /obj/item/dogborg/sleeper/Destroy()
-	go_out()
+	go_out(loc)
+	if(ore_bag)
+		QDEL_NULL(ore_bag)
+	if(med_analyzer)
+		QDEL_NULL(med_analyzer)
 	. = ..()
 
 /obj/item/dogborg/sleeper/Exit(atom/movable/O)
@@ -75,15 +79,14 @@
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
 
-/obj/item/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)
-	hound = loc
-	if(!istype(target))
+/obj/item/dogborg/sleeper/afterattack(atom/movable/target, mob/living/silicon/robot/user, proximity_flag, click_parameters)
+	if(!istype(target) || !istype(user))
 		return
-	if(!proximity)
+	if(!proximity_flag)
 		return
 	if(target.anchored)
 		return
-	if(target in hound.module.modules)
+	if(target in user.module.modules)
 		return
 	if(length(contents) >= max_item_count)
 		to_chat(user, span_warning("Your [src.name] is full. Eject or process contents to continue."))
@@ -98,29 +101,29 @@
 			if(target_obj.w_class > ITEMSIZE_LARGE)
 				to_chat(user, span_warning("\The [target] is too large to fit into your [src.name]"))
 				return
-			user.visible_message(span_warning("[hound.name] is ingesting [target.name] into their [src.name]."), span_notice("You start ingesting [target] into your [src.name]..."))
+			user.visible_message(span_warning("[user.name] is ingesting [target.name] into their [src.name]."), span_notice("You start ingesting [target] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target) && length(contents) < max_item_count)
 				target.forceMove(src)
-				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
+				user.visible_message(span_warning("[user.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= target
 					to_chat(user, span_notice("\The [target.name] added to cargo compartment slot: [delivery_tag]."))
-				update_patient()
+				update_patient(user)
 			return
 		if(istype(target, /mob/living/simple_mob/animal/passive/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
 			var/mob/living/simple_mob/trashmouse = target
-			user.visible_message(span_warning("[hound.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
+			user.visible_message(span_warning("[user.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target = trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
-				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
+				user.visible_message(span_warning("[user.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= trashmouse
 					to_chat(user, span_notice("\The [trashmouse] added to cargo compartment slot: [delivery_tag]."))
-				update_patient()
+				update_patient(user)
 			return
 		else if(ishuman(target))
 			var/mob/living/carbon/human/trashman = target
@@ -130,19 +133,19 @@
 			if(trashman.buckled)
 				to_chat(user, span_warning("[trashman] is buckled and can not be put into your [src.name]."))
 				return
-			user.visible_message(span_warning("[hound.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
+			user.visible_message(span_warning("[user.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target = trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				START_PROCESSING(SSobj, src)
-				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
-				log_attack("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				user.visible_message(span_warning("[user.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
+				log_attack("[key_name(user)] has eaten [key_name(patient)] with a cyborg belly. ([user ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= trashman
 					to_chat(user, span_notice("\The [trashman] added to cargo compartment slot: [delivery_tag]."))
-					to_chat(trashman, span_notice("[hound.name] has added you to their cargo compartment slot: [delivery_tag]."))
-				update_patient()
+					to_chat(trashman, span_notice("[user.name] has added you to their cargo compartment slot: [delivery_tag]."))
+				update_patient(user)
 			return
 		return
 
@@ -154,21 +157,21 @@
 		if(patient)
 			to_chat(user, span_warning("Your [src.name] is already occupied."))
 			return
-		user.visible_message(span_warning("[hound.name] is ingesting [H.name] into their [src.name]."), span_notice("You start ingesting [H] into your [src]..."))
+		user.visible_message(span_warning("[user.name] is ingesting [H.name] into their [src.name]."), span_notice("You start ingesting [H] into your [src]..."))
 		if(!patient && !H.buckled && do_after (user, 50, H))
-			if(!proximity)
+			if(!proximity_flag)
 				return //If they moved away, you can't eat them.
 			if(patient)
 				return //If you try to eat two people at once, you can only eat one.
 			else //If you don't have someone in you, proceed.
 				H.forceMove(src)
-				update_patient()
+				update_patient(user)
 				START_PROCESSING(SSobj, src)
-				user.visible_message(span_warning("[hound.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
-				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				user.visible_message(span_warning("[user.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
+				log_admin("[key_name(user)] has eaten [key_name(patient)] with a cyborg belly. ([user ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 
-/obj/item/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
+/obj/item/dogborg/sleeper/proc/ingest_atom(atom/ingesting, mob/living/silicon/robot/hound)
 	if (!ingesting || ingesting == hound)
 		return
 	var/obj/belly/belly = hound.vore_selected
@@ -184,7 +187,7 @@
 			var/obj/item/holder/micro = ingesting
 			var/delete_holder = TRUE
 			for (var/mob/living/M in micro.contents)
-				if (!ingest_living(M, belly) || M.loc == micro)
+				if (!ingest_living(M, belly, hound) || M.loc == micro)
 					delete_holder = FALSE
 			if (delete_holder)
 				micro.held_mob = null
@@ -193,15 +196,14 @@
 		to_eat.forceMove(belly)
 		log_admin("VORE: [hound] used their [src] to swallow [to_eat].")
 
-/obj/item/dogborg/sleeper/proc/ingest_living(var/mob/living/victim, var/obj/belly/belly)
+/obj/item/dogborg/sleeper/proc/ingest_living(mob/living/victim, obj/belly/belly, mob/living/silicon/robot/hound)
 	if (victim.devourable && is_vore_predator(hound))
 		belly.nom_atom(victim, hound)
 		add_attack_logs(hound, victim, "Eaten via [belly.name]")
 		return TRUE
 	return FALSE
 
-/obj/item/dogborg/sleeper/proc/go_out()
-	hound = src.loc
+/obj/item/dogborg/sleeper/proc/go_out(mob/living/silicon/robot/hound)
 	items_preserved.Cut()
 	cleaning = 0
 	for(var/list/dlist in deliverylists)
@@ -211,10 +213,9 @@
 		for(var/atom/movable/content in contents)
 			content.forceMove(get_turf(src))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
-	update_patient()
+	update_patient(hound)
 
-/obj/item/dogborg/sleeper/proc/vore_ingest_all()
-	hound = src.loc
+/obj/item/dogborg/sleeper/proc/vore_ingest_all(mob/living/silicon/robot/hound)
 	if (!istype(hound) || length(contents) <= 0)
 		return
 	if (!hound.vore_selected)
@@ -222,14 +223,12 @@
 		return
 	for (var/C in contents)
 		if (isliving(C) || isitem(C))
-			ingest_atom(C)
+			ingest_atom(C, hound)
 	hound.updateVRPanel()
-	update_patient()
+	update_patient(hound)
 
-/obj/item/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
-	hound = src.loc
-	if(istype(hound,/obj/item/robot_module))
-		hound = hound.loc
+/obj/item/dogborg/sleeper/proc/drain(mob/living/silicon/robot/hound, amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
+
 	hound.cell.charge = hound.cell.charge - amt
 
 /obj/item/dogborg/sleeper/attack_self(mob/user)
@@ -291,6 +290,11 @@
 			)
 
 	var/datum/component/experiment_handler/handler = get_experiment_handler()
+	var/current_capacity = 0
+	var/max_ore_storage = 0
+	if(ore_storage)
+		current_capacity = ore_bag.current_capacity
+		max_ore_storage = ore_bag.max_storage_space
 	var/list/data = list(
 		"our_patient" = patient_data,
 		"eject_port" = eject_port,
@@ -320,22 +324,26 @@
 	if(ui.user == patient)
 		return FALSE
 
+	var/mob/living/silicon/robot/our_hound = ui.user
+
 	switch(action)
 		if("eject")
-			go_out()
+			go_out(our_hound)
 			return TRUE
 		if("clean")
 			if(cleaning)
 				return FALSE
 			cleaning = TRUE
-			drain(startdrain)
+			drain(our_hound, startdrain)
 			START_PROCESSING(SSobj, src)
-			update_patient()
+			update_patient(our_hound)
 			if(patient)
-				to_chat(patient, span_danger("[hound.name]'s [src.name] fills with caustic enzymes around you!"))
+				to_chat(patient, span_danger("[our_hound.name]'s [src.name] fills with caustic enzymes around you!"))
 			return TRUE
 		if("analyze")
-			med_analyzer.scan_mob(patient,hound)
+			if(!patient)
+				return FALSE
+			med_analyzer.scan_mob(patient, our_hound)
 			return TRUE
 		if("port")
 			var/new_port = params["value"]
@@ -344,7 +352,7 @@
 			eject_port = new_port
 			return TRUE
 		if("ingest")
-			vore_ingest_all()
+			vore_ingest_all(our_hound)
 			return TRUE
 		if("deliveryslot")
 			var/new_tag = params["value"]
@@ -355,11 +363,11 @@
 		if("slot_eject")
 			if(!length(deliverylists[delivery_tag]))
 				return FALSE
-			hound.visible_message(span_warning("[hound.name] empties out their cargo compartment via their [eject_port] port."), span_notice("You empty your cargo compartment via your [eject_port] port."))
+			our_hound.visible_message(span_warning("[our_hound.name] empties out their cargo compartment via their [eject_port] port."), span_notice("You empty your cargo compartment via your [eject_port] port."))
 			for(var/atom/movable/content in deliverylists[delivery_tag])
 				content.forceMove(get_turf(src))
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
-			update_patient()
+			update_patient(our_hound)
 			deliverylists[delivery_tag].Cut()
 			return TRUE
 		if("inject")
@@ -375,24 +383,23 @@
 				to_chat(ui.user, span_notice("ERROR: Subject is not in stable condition for injections."))
 			return TRUE
 
-/obj/item/dogborg/sleeper/proc/inject_chem(mob/user, chem)
+/obj/item/dogborg/sleeper/proc/inject_chem(mob/living/silicon/robot/user, chem)
 	if(patient && patient.reagents)
 		if(chem in (injection_chems + REAGENT_ID_INAPROVALINE))
-			if(hound.cell.charge < 800) //This is so borgs don't kill themselves with it.
-				to_chat(hound, span_notice("You don't have enough power to synthesize fluids."))
+			if(user.cell.charge < 800) //This is so borgs don't kill themselves with it.
+				to_chat(user, span_notice("You don't have enough power to synthesize fluids."))
 				return
 			else if(patient.reagents.get_reagent_amount(chem) + 10 >= 20) //Preventing people from accidentally killing themselves by trying to inject too many chemicals!
-				to_chat(hound, span_notice("Your stomach is currently too full of fluids to secrete more fluids of this kind."))
+				to_chat(user, span_notice("Your stomach is currently too full of fluids to secrete more fluids of this kind."))
 			else if(patient.reagents.get_reagent_amount(chem) + 10 <= 20) //No overdoses for you
 				patient.reagents.add_reagent(chem, inject_amount)
-				drain(SLEEPER_INJECT_COST)
+				drain(user, SLEEPER_INJECT_COST)
 			var/units = round(patient.reagents.get_reagent_amount(chem))
-			to_chat(hound, span_notice("Injecting [units] unit\s of [SSchemistry.chemical_reagents[chem]] into occupant.")) //If they were immersed, the reagents wouldn't leave with them.
+			to_chat(user, span_notice("Injecting [units] unit\s of [SSchemistry.chemical_reagents[chem]] into occupant.")) //If they were immersed, the reagents wouldn't leave with them.
 
 //For if the dogborg's existing patient uh, doesn't make it.
-/obj/item/dogborg/sleeper/proc/update_patient()
-	hound = src.loc
-	if(!istype(hound,/mob/living/silicon/robot))
+/obj/item/dogborg/sleeper/proc/update_patient(mob/living/silicon/robot/hound)
+	if(!istype(hound))
 		return
 
 	//Cleaning looks better with red on, even with nobody in it
@@ -447,7 +454,7 @@
 	return
 
 //Gurgleborg process
-/obj/item/dogborg/sleeper/proc/clean_cycle()
+/obj/item/dogborg/sleeper/proc/clean_cycle(mob/living/silicon/robot/hound)
 
 	//Sanity? Maybe not required. More like if indigestible person OOC escapes.
 	for(var/I in items_preserved)
@@ -615,22 +622,22 @@
 		return
 
 	if(cleaning) //We're cleaning, return early after calling this as we don't care about the patient.
-		clean_cycle()
+		clean_cycle(loc)
 		return
 
 	if(patient && stabilizer) //We're caring for the patient. Medical emergency! Or endo scene.
-		update_patient()
+		update_patient(loc)
 		if(patient.health < 0)
 			patient.adjustOxyLoss(-1) //Heal some oxygen damage if they're in critical condition
 			patient.updatehealth()
-			drain()
+			drain(loc)
 		patient.AdjustStunned(-4)
 		patient.AdjustWeakened(-4)
-		drain(1)
+		drain(loc, 1)
 		return
 
 	if(!patient && !cleaning) //We think we're done working.
-		if(!update_patient()) //One last try to find someone
+		if(!update_patient(loc)) //One last try to find someone
 			STOP_PROCESSING(SSobj, src)
 			return
 

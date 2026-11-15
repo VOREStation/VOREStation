@@ -1,6 +1,6 @@
 /obj/machinery/injector_maker
 	name = "Ready-to-Use Medicine 3000"
-	desc = "Fills plastic autoinjectors with chemicals! Molds new injectors if needed!  \n Add a beaker or a bottle filled with chemicals and an autoinjector of appropriate size or sheets of plastic to use!"
+	desc = "Fills plastic autoinjectors with chemicals! Molds new injectors if needed!  \n Add a beaker or a bottle filled with chemicals and an autoinjector of appropriate size or sheets of plastic to use! \n Plastic can be drag-dropped into the machine."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "injector"
 	use_power = USE_POWER_IDLE
@@ -52,7 +52,7 @@
 	return
 
 
-/obj/machinery/injector_maker/attackby(var/obj/item/O, var/mob/user)
+/obj/machinery/injector_maker/attackby(obj/item/O, mob/user)
 
 	if (istype(O, /obj/item/multitool))
 		return ..()
@@ -111,6 +111,26 @@
 				src.count_plastic = src.count_plastic + plastic_input
 				update_icon()
 
+
+/obj/machinery/injector_maker/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!isliving(user) || user.stat || !Adjacent(user) || !Adjacent(dropping))
+		return
+
+	if(istype(dropping, /obj/item/stack/material/plastic))
+		var/obj/item/stack/material/plastic/plastic_stack = dropping
+		var/input_amount = tgui_input_number(user, "How many sheets would you like to add?", "Add plastic", 0, plastic_stack.get_amount())
+		if(input_amount == 0)
+			return
+		if(!isliving(user) || user.stat || !Adjacent(user) || !Adjacent(dropping))
+			return
+		var/plastic_input = input_amount * value_plastic
+		var/free_space = capacity_plastic - count_plastic
+		if(plastic_input > free_space)
+			to_chat(user, span_warning("Storage is full! There is only [free_space] units worth of space left!"))
+		else
+			plastic_stack.use(input_amount)
+			src.count_plastic = src.count_plastic + plastic_input
+			update_icon()
 
 /obj/machinery/injector_maker/click_alt(mob/user)
 	. = ..()
@@ -226,7 +246,7 @@
 				update_icon()
 
 
-/obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name, var/material, mob/user)
+/obj/machinery/injector_maker/proc/make_injector(size, amount, new_name, material, mob/user)
 	if(!beaker)
 		return
 	var/amount_per_injector = null

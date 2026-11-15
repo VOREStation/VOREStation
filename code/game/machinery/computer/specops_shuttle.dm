@@ -246,13 +246,13 @@ GLOBAL_VAR_INIT(specops_shuttle_timeleft, 0)
 			return 0
 	return 1
 
-/obj/machinery/computer/specops_shuttle/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/specops_shuttle/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/specops_shuttle/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/specops_shuttle/emag_act(remaining_charges, mob/user)
 	to_chat(user, span_notice("The electronic systems in this console are far too advanced for your primitive hacking peripherals."))
 
-/obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/specops_shuttle/attack_hand(mob/user as mob)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access Denied."))
 		return

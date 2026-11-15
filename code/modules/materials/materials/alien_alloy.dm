@@ -12,6 +12,8 @@
 	weight = 500
 	protectiveness = 80 // 80%
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = 5 // Neat if you somehow manage to sell this
+	shard_type = null
 
 /datum/material/alienalloy/elevatorium
 	name = MAT_ALIEN_ELEVAT

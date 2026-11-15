@@ -17,6 +17,7 @@
 /obj/item/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")
 	build_path = /obj/machinery/computer/security/wooden_tv
+	hidden = TRUE
 
 /obj/item/circuitboard/security/engineering
 	name = T_BOARD("engineering camera monitor")
@@ -37,21 +38,21 @@
 	name = T_BOARD("entertainment camera monitor")
 	build_path = /obj/machinery/computer/security/telescreen/entertainment
 	board_type = new /datum/frame/frame_types/display
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 
 /obj/item/circuitboard/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
 	network = NETWORK_THUNDER
 
-/obj/item/circuitboard/security/construct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/security/construct(obj/machinery/computer/security/C)
 	if (..(C))
 		C.set_network(network.Copy())
 
-/obj/item/circuitboard/security/deconstruct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/security/atom_deconstruct(disassembled = TRUE, obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network.Copy()
 
-/obj/item/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/circuitboard/security/emag_act(remaining_charges, mob/user)
 	if(emagged)
 		to_chat(user, "Circuit lock is already removed.")
 		return

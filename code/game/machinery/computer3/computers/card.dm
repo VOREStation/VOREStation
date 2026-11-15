@@ -195,7 +195,7 @@
 		return 1
 	return 0
 
-/datum/file/program/card_comp/proc/set_default_access(var/jobname)
+/datum/file/program/card_comp/proc/set_default_access(jobname)
 	var/datum/job/jobdatum
 	for(var/jobtype in typesof(/datum/job))
 		var/datum/job/J = new jobtype

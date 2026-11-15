@@ -31,6 +31,7 @@
 #define FOOTSTEP_MOB_SLIME "footstep_slime"
 #define FOOTSTEP_MOB_SLITHER "footstep_slither"
 #define FOOTSTEP_MOB_MECHY "footstep_mechy"
+#define FOOTSTEP_MOB_POWERLOADER "footstep_powerloader"
 #define FOOTSTEP_OBJ_MACHINE "footstep_machine"
 #define FOOTSTEP_OBJ_ROBOT "footstep_robot"
 
@@ -236,10 +237,19 @@ GLOBAL_LIST_INIT(lightclawfootstep, list(
 ))
 
 //heavy footsteps list
-GLOBAL_LIST_INIT(heavyfootstep, list(
+GLOBAL_LIST_INIT(heavyaltfootstep, list(
+	FOOTSTEP_WOOD_BAREFOOT = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
+	FOOTSTEP_HARD_BAREFOOT = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
+	FOOTSTEP_CARPET_BAREFOOT = list(list(
+		'sound/effects/footstep/heavy1.ogg',
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
 	FOOTSTEP_GENERIC_HEAVY = list(list(
 		'sound/effects/footstep/heavy1.ogg',
-		'sound/effects/footstep/heavy2.ogg'), 100, 2),
+		'sound/effects/footstep/heavy2.ogg'), 50, 2),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',
@@ -253,8 +263,8 @@ GLOBAL_LIST_INIT(heavyfootstep, list(
 		'sound/effects/meatslap.ogg'), 100, 0),
 ))
 
-//heavy alt footsteps list
-GLOBAL_LIST_INIT(heavyaltfootstep, list(
+//heavy footsteps list
+GLOBAL_LIST_INIT(heavyfootstep, list(
 	FOOTSTEP_WOOD_BAREFOOT = list(list(
 		'sound/mob/footstep_large.ogg',
 		'sound/mob/footstep_large2.ogg'), 90, 1),
@@ -307,16 +317,54 @@ GLOBAL_LIST_INIT(mechfootstep, list(
 		'sound/effects/meatslap.ogg'), 100, 0),
 ))
 
+GLOBAL_LIST_INIT(powerloaderfootstep, list(
+	FOOTSTEP_WOOD_BAREFOOT = list(list(
+		'sound/effects/mech/powerloader_step.ogg',
+		'sound/effects/mech/powerloader_step2.ogg'), 90, 1),
+	FOOTSTEP_HARD_BAREFOOT = list(list(
+		'sound/effects/mech/powerloader_step.ogg',
+		'sound/effects/mech/powerloader_step2.ogg'), 90, 1),
+	FOOTSTEP_CARPET_BAREFOOT = list(list(
+		'sound/effects/mech/powerloader_step.ogg',
+		'sound/effects/mech/powerloader_step2.ogg'), 75, -2),
+	FOOTSTEP_GRASS = list(list(
+		'sound/effects/mech/powerloader_step.ogg',
+		'sound/effects/mech/powerloader_step2.ogg'), 75, 0),
+	FOOTSTEP_WATER = list(list(
+		'sound/effects/footstep/water1.ogg',
+		'sound/effects/footstep/water2.ogg',
+		'sound/effects/footstep/water3.ogg',
+		'sound/effects/footstep/water4.ogg'), 100, 1),
+	FOOTSTEP_LAVA = list(list(
+		'sound/effects/footstep/lava1.ogg',
+		'sound/effects/footstep/lava2.ogg',
+		'sound/effects/footstep/lava3.ogg'), 100, 0),
+	FOOTSTEP_MEAT = list(list(
+		'sound/effects/meatslap.ogg'), 100, 0),
+))
+
 //slime footsteps list
 GLOBAL_LIST_INIT(slimefootstep, list(
 	FOOTSTEP_WOOD_BAREFOOT = list(list(
-		'sound/effects/footstep/slime1.ogg'), 90, 1),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, 1),
 	FOOTSTEP_HARD_BAREFOOT = list(list(
-		'sound/effects/footstep/slime1.ogg'), 90, 1),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, 1),
 	FOOTSTEP_CARPET_BAREFOOT = list(list(
-		'sound/effects/footstep/slime1.ogg'), 75, -2),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, -2),
 	FOOTSTEP_GRASS = list(list(
-		'sound/effects/footstep/slime1.ogg'), 75, 0),
+		'sound/effects/footstep/slime1.ogg',
+		'sound/effects/footstep/slime2.ogg',
+		'sound/effects/footstep/slime3.ogg'
+	), 25, 0),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',

@@ -180,11 +180,8 @@ export const Gps = (props) => {
                       <Table.Cell collapsing>Coordinates</Table.Cell>
                     </Table.Row>
                     {signals.length ? (
-                      signals.filter(searchName).map((signal, index) => (
-                        <Table.Row
-                          key={signal.gpsTag + signal.coords + index}
-                          className="candystripe"
-                        >
+                      signals.filter(searchName).map((signal) => (
+                        <Table.Row key={signal.ref} className="candystripe">
                           <Table.Cell bold color="label">
                             {signal.gpsTag}
                           </Table.Cell>

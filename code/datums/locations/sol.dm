@@ -4,7 +4,7 @@
 	name = "Sol"
 	desc = "The home system of humanity."
 
-/datum/locations/sol/New(var/creator)
+/datum/locations/sol/New(creator)
 	contents.Add(
 		new /datum/locations/mercury(src),
 		new /datum/locations/venus(src),

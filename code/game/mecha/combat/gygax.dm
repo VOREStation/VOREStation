@@ -74,7 +74,7 @@
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
 
-/obj/mecha/combat/gygax/dark/add_cell(var/obj/item/cell/C=null)
+/obj/mecha/combat/gygax/dark/add_cell(obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -116,7 +116,7 @@
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 
-/obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/combat/gygax/serenity/moved_inside(mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.glasses)
 			occupant_message(span_red("[H.glasses] prevent you from using [src] [hud]!"))

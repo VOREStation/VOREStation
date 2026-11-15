@@ -64,6 +64,7 @@ export const AutoTransferOptions = (props: {
             <Stack.Item basis="49%" grow>
               <LabeledList.Item label="Auto-Transfer Location">
                 <VorePanelEditDropdown
+                  searchInput
                   action="set_attribute"
                   subAction={`b_autotransferlocation_${title}`}
                   editMode={editMode}

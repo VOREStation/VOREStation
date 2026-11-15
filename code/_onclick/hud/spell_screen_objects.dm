@@ -36,7 +36,7 @@
 
 	toggle_open()
 
-/atom/movable/screen/movable/spell_master/proc/toggle_open(var/forced_state = 0)
+/atom/movable/screen/movable/spell_master/proc/toggle_open(forced_state = 0)
 	if(showing && (forced_state != 2))
 		for(var/atom/movable/screen/spell/O in spell_objects)
 			if(spell_holder && spell_holder.client)
@@ -173,7 +173,7 @@
 		qdel(spellmaster)
 	spellmaster = null
 
-/atom/movable/screen/spell/proc/update_charge(var/forced_update = 0)
+/atom/movable/screen/spell/proc/update_charge(forced_update = 0)
 	if(!spell)
 		qdel(src)
 		return

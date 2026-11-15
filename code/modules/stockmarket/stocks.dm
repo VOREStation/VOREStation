@@ -46,10 +46,10 @@
 	var/fluctuation_counter = 0
 	var/datum/industry/industry = null
 
-/datum/stock/proc/addEvent(var/datum/stockEvent/E)
+/datum/stock/proc/addEvent(datum/stockEvent/E)
 	events |= E
 
-/datum/stock/proc/addArticle(var/datum/article/A)
+/datum/stock/proc/addArticle(datum/article/A)
 	if (!(A in articles))
 		articles.Insert(1, A)
 	A.ticks = world.time
@@ -59,11 +59,11 @@
 	for (var/T in types)
 		generateEvent(T)
 
-/datum/stock/proc/generateEvent(var/T)
+/datum/stock/proc/generateEvent(T)
 	var/datum/stockEvent/E = new T(src)
 	addEvent(E)
 
-/datum/stock/proc/affectPublicOpinion(var/boost)
+/datum/stock/proc/affectPublicOpinion(boost)
 	optimism += rand(0, 500) / 500 * boost
 	average_optimism += rand(0, 150) / 5000 * boost
 	speculation += rand(-1, 50) / 10 * boost
@@ -248,7 +248,7 @@
 		return 1
 	return 0
 
-/datum/stock/proc/borrow(var/datum/borrow/B, var/who)
+/datum/stock/proc/borrow(datum/borrow/B, who)
 	if (B.lease_expires)
 		return 0
 	B.lease_expires = world.time + B.lease_time
@@ -273,7 +273,7 @@
 		GLOB.FrozenAccounts[who] += B
 	return 1
 
-/datum/stock/proc/buyShares(var/who, var/howmany)
+/datum/stock/proc/buyShares(who, howmany)
 	if (howmany <= 0)
 		return
 	howmany = round(howmany)
@@ -289,7 +289,7 @@
 		return 1
 	return 0
 
-/datum/stock/proc/sellShares(var/whose, var/howmany)
+/datum/stock/proc/sellShares(whose, howmany)
 	if (howmany < 0)
 		return
 	howmany = round(howmany)
@@ -304,7 +304,7 @@
 		return 1
 	return 0
 
-/datum/stock/proc/displayValues(var/mob/user)
+/datum/stock/proc/displayValues(mob/user)
 	var/datum/browser/popup = new(user, "stock_[name]", "Share Value", 450, 450)
 	popup.set_content(plotBarGraph(values, "[name] share value per share"))
 	popup.open()

@@ -7,7 +7,7 @@
 	protectiveness = 0
 	conductive = 0
 	integrity = 10
-	supply_conversion_value = 1
+	supply_conversion_value = 0.1
 
 /datum/material/grass/generate_recipes()
 	recipes = list(

@@ -4,7 +4,7 @@
 	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
 	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
 	var/center_offset = 0.5				// Center offset for uneven scaling symmetry.
-	var/offset_override = FALSE			// Pref toggle for center offset.
+	var/offset_override = TRUE			// Pref toggle for center offset.
 
 /mob/living
 	var/holder_default
@@ -19,7 +19,7 @@
 	holder_type = /obj/item/holder/micro
 
 // The reverse lookup of player_sizes_list, number to name.
-/proc/player_size_name(var/size_multiplier)
+/proc/player_size_name(size_multiplier)
 	// (This assumes list is sorted big->small)
 	for(var/N in GLOB.player_sizes_list)
 		. = N // So we return the smallest if we get to the end
@@ -50,13 +50,13 @@
  * but in the future we may also incorporate the "mob_size", so that
  * a macro mouse is still only effectively "normal" or a micro dragon is still large etc.
  */
-/mob/proc/get_effective_size(var/micro = FALSE)
+/mob/proc/get_effective_size(micro = FALSE)
 	return 100000 //Whatever it is, it's too big to pick up, or it's a ghost, or something.
 
-/mob/living/get_effective_size(var/micro = FALSE)
+/mob/living/get_effective_size(micro = FALSE)
 	return size_multiplier
 
-/mob/living/carbon/human/get_effective_size(var/micro = FALSE)		// Set micro to TRUE for interactions where you're small, to FALSE for ones where you're large.
+/mob/living/carbon/human/get_effective_size(micro = FALSE)		// Set micro to TRUE for interactions where you're small, to FALSE for ones where you're large.
 	var/effective_size = size_multiplier
 	if(micro)
 		effective_size += species.micro_size_mod
@@ -91,7 +91,7 @@
  * * aura_animation - CHANGE_ME. Default: TRUE
  * * allow_stripping - CHANGE_ME.  Default: FALSE
  */
-/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
+/mob/living/proc/resize(new_size, animate = TRUE, uncapped = FALSE, ignore_prefs = FALSE, aura_animation = TRUE, allow_stripping = FALSE)
 	if(!uncapped)
 		if((z in using_map.station_levels) && CONFIG_GET(flag/pixel_size_limit))
 			var/size_diff = ((runechat_y_offset() / size_multiplier) * new_size) // This returns 32 multiplied with the new size
@@ -148,7 +148,7 @@
 	else
 		update_transform() //Lame way
 
-/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
+/mob/living/carbon/human/resize(new_size, animate = TRUE, uncapped = FALSE, ignore_prefs = FALSE, aura_animation = TRUE, allow_stripping = FALSE)
 	if(!resizable && !ignore_prefs)
 		return 1
 	var/previous_scale = size_multiplier
@@ -170,7 +170,7 @@
 			apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE, var/allow_stripping = FALSE)
+/mob/living/carbon/human/dummy/mannequin/resize(new_size, animate = TRUE, uncapped = FALSE, ignore_prefs = FALSE, aura_animation = TRUE, allow_stripping = FALSE)
 	size_multiplier = new_size
 
 /**
@@ -350,13 +350,13 @@
 			tmob.Weaken(1)
 
 	var/size_damage_multiplier = size_multiplier - tmob.size_multiplier
-	// This technically means that I_GRAB will set this value to the same as I_HARM, but
+	// This technically means that I_GRAB will set this value to the same as I_HURT, but
 	// I_GRAB won't ever trigger the damage-giving code, so it doesn't matter.
-	// I_HARM: Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
+	// I_HURT: Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
 	// I_DISARM: Perform some HALLOSS damage to the smaller.
 	//           Since stunned is broken, let's do this. Rand 15-30 multiplied by 1 min or 1.75 max. 15 holo to 52.5 holo, depending on RNG and size differnece.
 	var/damage = (a_intent == I_DISARM) ? (rand(15, 30) * size_damage_multiplier) : (rand(1, 3) * size_damage_multiplier)
-	// I_HARM only
+	// I_HURT only
 	var/calculated_damage = damage / 2 //This will sting, but not kill. Does .5 to 2.625 damage, randomly, to each limb.
 
 	var/message_pred = null

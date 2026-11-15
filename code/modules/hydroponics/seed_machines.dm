@@ -53,6 +53,22 @@
 	var/failed_task = 0
 	var/disk_needs_genes = 0
 
+/obj/machinery/botany/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+
+/* Currently part upgrades do nothing
+/obj/machinery/botany/RefreshParts()
+	..()
+*/
+
+/obj/machinery/botany/Destroy()
+	if(seed)
+		seed.forceMove(get_turf(src))
+	if(loaded_disk)
+		loaded_disk.forceMove(get_turf(src))
+	. = ..()
+
 /obj/machinery/botany/process()
 
 	..()
@@ -78,7 +94,7 @@
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
-			loaded_disk.loc = get_turf(src)
+			loaded_disk.forceMove(get_turf(src))
 			visible_message(span_filter_notice("[icon2html(src,viewers(src))] [src] beeps and spits out [loaded_disk]."))
 			loaded_disk = null
 
@@ -92,7 +108,7 @@
 			to_chat(user, span_filter_notice("That seed is not compatible with our genetics technology."))
 		else
 			user.drop_from_inventory(W)
-			W.loc = src
+			W.forceMove(src)
 			seed = W
 			to_chat(user, span_filter_notice("You load [W] into [src]."))
 		return
@@ -104,8 +120,11 @@
 		to_chat(user, span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		return
-//	if(default_deconstruction_crowbar(user, W))	//No circuit boards to give.
-//		return
+	if(!active)
+		if(default_deconstruction_crowbar(user, W))
+			return
+		if(default_part_replacement(user, W))
+			return
 	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
 			to_chat(user, span_filter_notice("There is already a data disk loaded."))
@@ -123,7 +142,7 @@
 					return
 
 			user.drop_from_inventory(W)
-			W.loc = src
+			W.forceMove(src)
 			loaded_disk = W
 			to_chat(user, span_filter_notice("You load [W] into [src]."))
 
@@ -137,6 +156,7 @@
 
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
+	circuit = /obj/item/circuitboard/botany_extractor
 
 /obj/machinery/botany/extractor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -265,6 +285,7 @@
 	name = "bioballistic delivery system"
 	icon_state = "traitgun"
 	disk_needs_genes = 1
+	circuit = /obj/item/circuitboard/botany_editor
 
 /obj/machinery/botany/editor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

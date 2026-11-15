@@ -227,7 +227,7 @@
 		. += " with [trapped.name] trapped within"
 	return
 
-/obj/item/roulette_ball/hollow/attackby(var/obj/item/W, var/mob/user)
+/obj/item/roulette_ball/hollow/attackby(obj/item/W, mob/user)
 	if(trapped)
 		to_chat(user, span_notice("This ball already has something trapped in it!"))
 		return
@@ -463,7 +463,7 @@
 		var/obj/item/spacecasinocash/C = W
 		insert_chip(C, user)
 
-/obj/machinery/wheel_of_fortune/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user)
+/obj/machinery/wheel_of_fortune/proc/insert_chip(obj/item/spacecasinocash/cashmoney, mob/user)
 	if (busy)
 		to_chat(user,span_notice("The Wheel of Fortune is busy, wait for it to be done to buy a lottery ticket."))
 		return
@@ -484,7 +484,7 @@
 	lottery_tickets += "Number.[lottery_entries] [user.name]"
 	lottery_tickets_ckeys += user.client.ckey
 
-/obj/machinery/wheel_of_fortune/proc/spin_the_wheel(var/mode)
+/obj/machinery/wheel_of_fortune/proc/spin_the_wheel(mode)
 	var/result = 0
 
 	if(mode == "not_lottery")
@@ -725,7 +725,7 @@
 				if("Change Prize Value")
 					setprice(user)
 
-/obj/machinery/casinosentientprize_handler/proc/do_item_tf(mob/living/sentient_prize, var/target_item_name)
+/obj/machinery/casinosentientprize_handler/proc/do_item_tf(mob/living/sentient_prize, target_item_name)
 	var/item_type = GLOB.item_tf_options[target_item_name]
 	var/obj/item/newitem = new item_type(null) // Starts off in nullspace while we customize!
 	var/item_color = newitem.color
@@ -754,7 +754,7 @@
 	sentient_prize.tf_into(newitem, TRUE, item_name)
 	return newitem
 
-/obj/machinery/casinosentientprize_handler/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user, var/buystate)
+/obj/machinery/casinosentientprize_handler/proc/insert_chip(obj/item/spacecasinocash/cashmoney, mob/user, buystate)
 	if(cashmoney.worth < casinosentientprize_price)
 		to_chat(user,span_notice("You dont have enough chips to pay for the sentient prize!"))
 		return

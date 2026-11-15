@@ -187,6 +187,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/heal/process_mob(obj/belly/B, mob/living/L)
 	var/oldstat = L.stat
+	var/needs_stomach_update = FALSE
 	if(L.stat == DEAD || !L.permit_healbelly) //healpref check
 		return null // Can't heal the dead with healbelly
 	var/mob/living/carbon/human/H = L
@@ -196,29 +197,29 @@ GLOBAL_LIST_INIT(digest_modes, list())
 			if(O.brute_dam > 0 || O.burn_dam > 0) //Making sure healing continues until fixed.
 				O.heal_damage(0.5, 0.5, 0, 1) // Less effective healing as able to fix broken limbs
 				B.owner.adjust_nutrition(-5)  // More costly for the pred, since metals and stuff
-				if(B.health_impacts_size)
-					B.owner.handle_belly_update()
-			if(L.health < L.getMaxHealth())
-				L.adjustToxLoss(-2)
-				L.adjustOxyLoss(-2)
-				L.adjustCloneLoss(-1)
-				B.owner.adjust_nutrition(-1)  // Normal cost per old functionality
-				if(B.health_impacts_size)
-					B.owner.handle_belly_update()
+
+		if(L.health < L.getMaxHealth())
+			needs_stomach_update = TRUE
+			L.adjustToxLoss(-2)
+			L.adjustOxyLoss(-2)
+			L.adjustCloneLoss(-1)
+			B.owner.adjust_nutrition(-1)  // Normal cost per old functionality
+
 	if(B.owner.nutrition > 90 && (L.health < L.getMaxHealth()) && !H.isSynthetic())
+		needs_stomach_update = TRUE
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
 		L.adjustToxLoss(-5)
 		L.adjustOxyLoss(-5)
 		L.adjustCloneLoss(-1.25)
 		B.owner.adjust_nutrition(-2)
-		if(B.health_impacts_size)
-			B.owner.handle_belly_update()
 		if(L.nutrition <= 400)
 			L.adjust_nutrition(1)
 	else if(B.owner.nutrition > 90 && (L.nutrition <= 400))
 		B.owner.adjust_nutrition(-1)
 		L.adjust_nutrition(1)
+	if(B.health_impacts_size && needs_stomach_update)
+		B.owner.handle_belly_update()
 	if(L.stat != oldstat)
 		return list("to_update" = TRUE)
 

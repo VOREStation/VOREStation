@@ -34,17 +34,26 @@
 	var/obj/item/clothing/head/helmet/space/rig/helmet = holder.helmet
 	var/obj/item/clothing/gloves/gauntlets/rig/gloves = holder.gloves
 
+	var/list/items_to_update = list()
+
 	to_chat(H, span_boldnotice("You activate your suit's powered radiation shielding."))
 	stored_rad_armor = holder.armor["rad"]
 	if(boots)
 		boots.armor["rad"] = 100
+		items_to_update += boots
 	if(chest)
 		chest.armor["rad"] = 100
+		items_to_update += chest
 	if(helmet)
 		helmet.armor["rad"] = 100
+		items_to_update += helmet
 	if(gloves)
 		gloves.armor["rad"] = 100
+		items_to_update += gloves
 	holder.armor["rad"] = 100
+	items_to_update += holder
+	for(var/obj/item/part in items_to_update)
+		ADD_TRAIT(part, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT)
 
 /obj/item/rig_module/rad_shield/deactivate()
 
@@ -57,19 +66,29 @@
 	var/obj/item/clothing/head/helmet/space/rig/helmet = holder.helmet
 	var/obj/item/clothing/gloves/gauntlets/rig/gloves = holder.gloves
 
+	var/list/items_to_update = list()
+
 	to_chat(H, span_danger("You deactivate your suit's powered radiation shielding."))
 
 	if(boots)
 		boots.armor["rad"] = stored_rad_armor
+		items_to_update += boots
 	if(chest)
 		chest.armor["rad"] = stored_rad_armor
+		items_to_update += chest
 	if(helmet)
 		helmet.armor["rad"] = stored_rad_armor
+		items_to_update += helmet
 	if(gloves)
 		gloves.armor["rad"] = stored_rad_armor
+		items_to_update += gloves
 	holder.armor["rad"] = stored_rad_armor
+	items_to_update += holder
 
 	stored_rad_armor = 0
+
+	for(var/obj/item/part in items_to_update)
+		REMOVE_TRAIT(part, TRAIT_RADIATION_PROTECTED_CLOTHING, MOD_TRAIT)
 
 /obj/item/rig_module/rad_shield/advanced
 	name = "advanced radiation absorption device"

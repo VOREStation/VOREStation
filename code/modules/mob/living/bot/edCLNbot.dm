@@ -39,7 +39,7 @@
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
 			visible_message(span_infoplain(span_bold("\The [src]") + " squirts a puddle of water on the floor!"))
-			T.wet_floor()
+			T.MakeSlippery(TURF_WET_WATER, 20 SECONDS, 15 SECONDS)
 
 	if(!red_switch && !blue_switch && green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))
@@ -98,7 +98,7 @@
 			to_chat(ui.user, span_notice("You flip the blue switch [blue_switch ? "on" : "off"]."))
 			. = TRUE
 
-/mob/living/bot/cleanbot/edCLN/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/cleanbot/edCLN/emag_act(remaining_uses, mob/user)
 	. = ..()
 	if(!emagged)
 		if(user)
@@ -117,7 +117,7 @@
 	item_state = "buildpipe"
 	created_name = "ED-CLN Security Robot"
 
-/obj/item/secbot_assembly/edCLN_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/secbot_assembly/edCLN_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if(istype(W, /obj/item/pen))

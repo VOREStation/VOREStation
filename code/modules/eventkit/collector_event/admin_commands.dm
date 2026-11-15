@@ -2,14 +2,7 @@
 Event Collector Admin Commands
 */
 
-/client/proc/modify_event_collector(var/obj/structure/event_collector/target in GLOB.event_collectors)
-	set category = "Fun.Event Kit"
-	set desc="Configure Event Collector"
-	set name="Configure Collector"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB_AND_CONTEXT_MENU(modify_event_collector, R_ADMIN, "Configure Collector", "Configure Event Collector.", ADMIN_CATEGORY_FUN_EVENT_KIT, obj/structure/event_collector/target in GLOB.event_collectors)
 	var/msg = "---------------\n"
 	if(target?.active_recipe?.len > 0)
 		msg += " [target] has [target.active_recipe.len] left in its current recipe\n"
@@ -27,7 +20,7 @@ Event Collector Admin Commands
 	if(blockers > 0)
 		msg += "[target] has [blockers] things blocking/slowing it down! Anything more than 10 means it's stopped!"
 
-	to_chat(usr,msg)
+	to_chat(user, msg)
 
 
 	var/list/options = list(
@@ -37,7 +30,7 @@ Event Collector Admin Commands
 		"Force Clear Blockers"
 	)
 
-	var/option = tgui_input_list(usr, "What Would You Like To Do?", "Event Collector",options,"Cancel")
+	var/option = tgui_input_list(user, "What Would You Like To Do?", "Event Collector",options,"Cancel")
 	switch(option)
 		if("Cancel")
 			return
@@ -56,16 +49,9 @@ Event Collector Admin Commands
 		if("Empty Stored Items")
 			target.empty_items()
 
-/client/proc/induce_malfunction(var/obj/structure/event_collector_blocker/target in GLOB.event_collector_blockers)
-	set category = "Fun.Event Kit"
-	set desc="Configure Collector Blocker"
-	set name="Toggle Malfunction State"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB_AND_CONTEXT_MENU(induce_malfunction, R_ADMIN, "Toggle Malfunction State", "Configure Collector Blocker.", ADMIN_CATEGORY_FUN_EVENT_KIT, obj/structure/event_collector_blocker/target in GLOB.event_collector_blockers)
 	if(target.block_amount)
 		target.fix()
+		return
 
-	else
-		target.induce_failure()
+	target.induce_failure()

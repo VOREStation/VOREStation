@@ -5,7 +5,6 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "translator"
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	var/mult_icons = 1	//Changes sprite when it translates
 	var/visual = 1		//If you need to see to get the message
 	var/audio = 0		//If you need to hear to get the message
@@ -138,7 +137,7 @@
 	if(mult_icons && confirm)
 		flick("[initial(icon_state)]2",src)
 
-	if(confirm) //Don't show a message at all if there's no recognised language, that'd just be annoying.
+	if(confirm && L.stat == CONSCIOUS) //Don't show a message at all if there's no recognised language, that'd just be annoying.
 		to_chat(L, span_filter_say("<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\""))
 
 /obj/item/universal_translator/limited/sol

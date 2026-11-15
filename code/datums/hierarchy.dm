@@ -4,7 +4,7 @@
 	var/datum/decl/hierarchy/parent
 	var/list/datum/decl/hierarchy/children
 
-/datum/decl/hierarchy/New(var/full_init = TRUE)
+/datum/decl/hierarchy/New(full_init = TRUE)
 	children = list()
 	if(!full_init)
 		return

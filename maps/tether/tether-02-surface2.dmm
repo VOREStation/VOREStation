@@ -5443,7 +5443,7 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aiI" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -6662,7 +6662,7 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akH" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -7453,7 +7453,7 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
 "alT" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -24116,7 +24116,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
 "aSj" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -24199,7 +24199,7 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/east_stairs_two)
 "aSs" = (
-/obj/structure/toilet,
+/obj/structure/toilet/teleplumbed,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -24466,7 +24466,7 @@
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
 "aSU" = (
-/obj/structure/toilet{
+/obj/structure/toilet/teleplumbed{
 	dir = 1
 	},
 /obj/machinery/light/small,

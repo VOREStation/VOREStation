@@ -36,5 +36,5 @@
 					M.remove_from_mob(to_remove)
 					qdel(to_remove)
 
-/datum/spell/targeted/equip_item/proc/summon_item(var/newtype)
+/datum/spell/targeted/equip_item/proc/summon_item(newtype)
 	return new newtype

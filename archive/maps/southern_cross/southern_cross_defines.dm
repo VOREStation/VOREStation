@@ -98,7 +98,7 @@
 // Commented out due to causing a lot of bugs. The base proc plus overmap achieves this functionality anyways.
 /*
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
-/datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)
+/datum/map/southern_cross/get_map_levels(srcz, long_range = TRUE)
 	if (long_range && (srcz in map_levels))
 		return map_levels
 	else if (srcz == Z_LEVEL_TRANSIT && !long_range)

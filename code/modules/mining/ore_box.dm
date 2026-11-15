@@ -33,16 +33,20 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 
-/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/ore))
+/obj/structure/ore_box/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/ore))
 		var/obj/item/ore/ore = W
 		stored_ore[ore.material]++
 		user.remove_from_mob(W)
 		qdel(ore)
+		return
 
-	else if (istype(W, /obj/item/storage/bag/ore))
-		var/obj/item/storage/bag/ore/S = W
-		S.hide_from(user)
+	if(istype(W, /obj/item/dogborg/sleeper/compactor/supply))
+		var/obj/item/dogborg/sleeper/compactor/supply/borg_sleeper = W
+		W = borg_sleeper.ore_bag
+
+	if(istype(W, /obj/item/ore_bag))
+		var/obj/item/ore_bag/S = W
 		for(var/ore in S.stored_ore)
 			if(S.stored_ore[ore] > 0)
 				var/ore_amount = S.stored_ore[ore]	// How many ores does the satchel have?
@@ -50,6 +54,7 @@
 				S.stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				S.current_capacity = 0				// Set the amount of ore in the satchel  to 0.
 		to_chat(user, span_notice("You empty the satchel into the box."))
+		return
 
 	return
 

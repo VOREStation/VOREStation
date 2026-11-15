@@ -14,7 +14,7 @@
 	headset_alt = /obj/item/radio/headset/alt/heads/captain
 	headset_earbud = /obj/item/radio/headset/earbud/heads/captain
 
-/datum/decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
+/datum/decl/hierarchy/outfit/job/captain/post_equip(mob/living/carbon/human/H)
 	..()
 	if(H.age>49)
 		// Since we can have something other than the default uniform at this

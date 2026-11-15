@@ -10,8 +10,7 @@
 	force = 6
 	throwforce = 7
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
-	matter = list(MAT_STEEL = 150)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.075))
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	usesound = 'sound/items/ratchet.ogg'
 	toolspeed = 1
@@ -36,7 +35,6 @@
 	force = 8
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked", "warped", "blasted")
 	usesound = 'sound/effects/stealthoff.ogg'
 	toolspeed = 0.5
@@ -65,7 +63,6 @@
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'
 	toolspeed = 0.1
-	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
 
 /obj/item/tool/wrench/power
 	name = "power wrench"

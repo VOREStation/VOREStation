@@ -54,7 +54,7 @@
 	consume_next_projectile()
 	update_icon()
 
-/obj/item/gun/projectile/multi_cannon/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/multi_cannon/unload_ammo(mob/user, allow_dump=1)
 	.=..()
 	update_icon()
 	chambered = null

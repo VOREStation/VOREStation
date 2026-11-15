@@ -12,7 +12,7 @@
 	// if you make a loud noise (screams etc), you'll be heard from 4 tiles over instead of two
 	return (copytext(message, length(message)) == "!") ? 4 : 2
 
-/datum/language/noise/can_speak_special(var/mob/speaker)
+/datum/language/noise/can_speak_special(mob/speaker)
 	return TRUE	//Audible emotes
 
 // 'basic' language; spoken by default.
@@ -29,7 +29,7 @@
 	partial_understanding = list(LANGUAGE_SKRELLIAN = 30, LANGUAGE_SOL_COMMON = 30)
 
 //TODO flag certain languages to use the mob-type specific say_quote and then get rid of these.
-/datum/language/common/get_spoken_verb(var/msg_end)
+/datum/language/common/get_spoken_verb(msg_end)
 	switch(msg_end)
 		if("!")
 			return pick("exclaims","shouts","yells") //TODO: make the basic proc handle lists of verbs.
@@ -133,17 +133,17 @@
 	key = "s"
 	flags = SIGNLANG|NO_STUTTER|NONVERBAL
 
-/datum/language/sign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
+/datum/language/sign/can_speak_special(mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
 	return (hands || !iscarbon(speaker))
 
-/datum/language/sign/scramble(var/input, var/list/known_languages)
+/datum/language/sign/scramble(input, list/known_languages)
 	return stars(input)
 
 // This is a little weird because broadcast is traditionally for hivemind languages
 // But in practice, it's just a way for a language to override all other languages and bypass hear_say
 // which is exactly what sign language does.
-/datum/language/sign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+/datum/language/sign/broadcast(mob/living/speaker, message, speaker_mask)
 	speaker.log_talk("(SIGN) [message]", LOG_SAY)
 	var/verb_to_use = pick(signlang_verb)
 	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
@@ -219,5 +219,5 @@
 			"his", "ing", "ion", "ith", "not", "ome", "oul", "our", "sho", "ted", "ter", "tha", "the", "thi"
 			)
 
-/datum/language/gibberish/can_speak_special(var/mob/speaker)
+/datum/language/gibberish/can_speak_special(mob/speaker)
 	return TRUE	//Anyone can speak gibberish

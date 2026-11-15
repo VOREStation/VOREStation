@@ -20,9 +20,6 @@
 	var/sex = "\[UNSET\]"
 	var/front
 
-	var/primary_color = rgb(0,0,0) // Obtained by eyedroppering the stripe in the middle of the card
-	var/secondary_color = rgb(0,0,0) // Likewise for the oval in the top-left corner
-
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
@@ -53,18 +50,18 @@
 /obj/item/card/id/proc/update_name()
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
-/obj/item/card/id/proc/set_id_photo(var/mob/M)
+/obj/item/card/id/proc/set_id_photo(mob/M)
 	M.ImmediateOverlayUpdate()
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 
-/obj/item/card/id/proc/adjust_mining_points(var/points)
+/obj/item/card/id/proc/adjust_mining_points(points)
 	if(mining_points + points < 0)
 		return FALSE
 	mining_points += points
 	return TRUE
 
-/mob/proc/set_id_info(var/obj/item/card/id/id_card)
+/mob/proc/set_id_info(obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
@@ -77,7 +74,7 @@
 		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
-/mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
+/mob/living/carbon/human/set_id_info(obj/item/card/id/id_card)
 	..()
 	id_card.age = age
 	if(species.name == SPECIES_HANNER)
@@ -134,7 +131,7 @@
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	return
 
-/obj/item/card/id/get_worn_icon_state(var/slot_name)
+/obj/item/card/id/get_worn_icon_state(slot_name)
 	if(slot_name == slot_wear_id_str)
 		return "id" //Legacy, just how it is. There's only one sprite.
 
@@ -142,7 +139,7 @@
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
-	var/datum/job/J = GLOB.job_master.GetJob(rank)
+	var/datum/job/J = SSjob.get_job(rank)
 	if(J)
 		access = J.get_access()
 
@@ -181,7 +178,7 @@
 
 /obj/item/card/id/synthetic/Initialize(mapload)
 	. = ..()
-	access = get_all_station_access().Copy() + ACCESS_SYNTH
+	access = SSaccess.get_all_station_access().Copy() + ACCESS_SYNTH
 
 /obj/item/card/id/lost
 	name = "\improper Unknown ID"
@@ -214,11 +211,11 @@
 
 /obj/item/card/id/centcom/Initialize(mapload)
 	. = ..()
-	access = get_all_centcom_access().Copy()
+	access = SSaccess.get_all_centcom_access().Copy()
 
 /obj/item/card/id/centcom/station/Initialize(mapload)
 	. = ..()
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 /obj/item/card/id/centcom/ert
 	name = "\improper " + JOB_EMERGENCY_RESPONSE_TEAM + "ID"
@@ -228,22 +225,18 @@
 
 /obj/item/card/id/centcom/ert/Initialize(mapload)
 	. = ..()
-	access |= get_all_station_access()
+	access |= SSaccess.get_all_station_access()
 
 // Department-flavor IDs
 /obj/item/card/id/medical
 	name = "identification card"
 	desc = "A card issued to station medical staff."
 	icon_state = "medical-id"
-	primary_color = rgb(189,237,237)
-	secondary_color = rgb(223,255,255)
 	rank = JOB_MEDICAL_DOCTOR
 
 /obj/item/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
-	primary_color = rgb(189,237,237)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_CHIEF_MEDICAL_OFFICER
 	rank = JOB_CHIEF_MEDICAL_OFFICER
 
@@ -251,8 +244,6 @@
 	name = "identification card"
 	desc = "A card issued to station security staff."
 	icon_state = "security-id"
-	primary_color = rgb(189,47,0)
-	secondary_color = rgb(223,127,95)
 	rank = JOB_SECURITY_OFFICER
 
 /obj/item/card/id/security/warden
@@ -262,8 +253,6 @@
 /obj/item/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
-	primary_color = rgb(189,47,0)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_HEAD_OF_SECURITY
 	rank = JOB_HEAD_OF_SECURITY
 
@@ -271,8 +260,6 @@
 	name = "identification card"
 	desc = "A card issued to station engineering staff."
 	icon_state = "engineering-id"
-	primary_color = rgb(189,94,0)
-	secondary_color = rgb(223,159,95)
 
 /obj/item/card/id/engineering/atmos
 	assignment = JOB_ATMOSPHERIC_TECHNICIAN
@@ -281,8 +268,6 @@
 /obj/item/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
-	primary_color = rgb(189,94,0)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_CHIEF_ENGINEER
 	rank = JOB_CHIEF_ENGINEER
 
@@ -290,14 +275,10 @@
 	name = "identification card"
 	desc = "A card issued to station science staff."
 	icon_state = "science-id"
-	primary_color = rgb(142,47,142)
-	secondary_color = rgb(191,127,191)
 
 /obj/item/card/id/science/head
 	name = "identification card"
 	desc = "A card which represents knowledge and reasoning."
-	primary_color = rgb(142,47,142)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_RESEARCH_DIRECTOR
 	rank = JOB_RESEARCH_DIRECTOR
 
@@ -305,14 +286,10 @@
 	name = "identification card"
 	desc = "A card issued to station cargo staff."
 	icon_state = "cargo-id"
-	primary_color = rgb(142,94,0)
-	secondary_color = rgb(191,159,95)
 
 /obj/item/card/id/cargo/head
 	name = "identification card"
 	desc = "A card which represents service and planning."
-	primary_color = rgb(142,94,0)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_QUARTERMASTER
 	rank = JOB_QUARTERMASTER
 
@@ -324,23 +301,17 @@
 	name = "identification card"
 	desc = "A card issued to station civilian staff."
 	icon_state = "civilian-id"
-	primary_color = rgb(0,94,142)
-	secondary_color = rgb(95,159,191)
 	assignment = "Civilian"
 	rank = JOB_ALT_ASSISTANT
 
 /obj/item/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
 	desc = "A card which represents common sense and responsibility."
-	primary_color = rgb(0,94,142)
-	secondary_color = rgb(255,223,127)
 
 /obj/item/card/id/external
 	name = "identification card"
 	desc = "An identification card of some sort. It does not look like it is issued by NT."
 	icon_state = "generic"
-	primary_color = rgb(142,94,0)
-	secondary_color = rgb(191,159,95)
 
 //Event IDs
 /obj/item/card/id/event
@@ -416,8 +387,9 @@
 
 	if(!preset_rank)
 		var/title
-		if(user.client.prefs.player_alt_titles[user.job])
-			title = user.client.prefs.player_alt_titles[user.job]
+		var/list/alt_titles = user.client.prefs.read_preference(/datum/preference/player_alt_titles)
+		if(islist(alt_titles) && alt_titles[user.job])
+			title = alt_titles[user.job]
 		else
 			title = user.job
 		assignment = title
@@ -435,7 +407,7 @@
 	configured = TRUE
 	to_chat(user, span_notice("Card settings set."))
 
-/obj/item/card/id/event/attackby(obj/item/I, var/mob/user)
+/obj/item/card/id/event/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
 		var/obj/item/card/id/O = I
 		access |= O.GetAccess()
@@ -595,7 +567,7 @@
 	desc = "An ID card typically used by contractors."
 	polymorphic_type = 1
 
-/obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
+/obj/item/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
 		var/obj/item/card/id/O = I
 		var/list/itgdont = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_COMMAND_SECRETARY, JOB_HEAD_OF_SECURITY, JOB_CHIEF_ENGINEER, JOB_CHIEF_MEDICAL_OFFICER, JOB_RESEARCH_DIRECTOR, JOB_CLOWN, JOB_MIME, JOB_TALON_CAPTAIN) //If you're in as one of these you probably aren't representing ITG

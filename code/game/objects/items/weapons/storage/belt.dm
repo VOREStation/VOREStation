@@ -29,7 +29,7 @@
 	update_icon()
 
 //Some belts have sprites to show icons
-/obj/item/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
+/obj/item/storage/belt/make_worn_icon(body_type,slot_name,inhands,default_icon,default_layer = 0,icon/clip_mask = null)
 	var/image/standing = ..()
 	if(!inhands && contents.len)
 		for(var/obj/item/i in contents)
@@ -70,6 +70,7 @@
 		/obj/item/pda,
 		/obj/item/megaphone,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/radio/headset,
 		/obj/item/robotanalyzer,
 		/obj/item/material/minihoe,
@@ -133,6 +134,16 @@
 		/obj/item/extinguisher/mini //Vorestation edit. As above, the mini's much more handy to have rather than lugging a big one around
 	)
 
+/obj/item/storage/belt/utility/telecomms
+	starts_with = list(
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/wrench,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/wirecutters,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/multitool/station_buffered
+	)
+
 /obj/item/storage/belt/utility/chief
 	name = "chief engineer's toolbelt"
 	desc = "Holds tools, looks snazzy."
@@ -159,6 +170,7 @@
 		/obj/item/pda,
 		/obj/item/megaphone,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/radio/headset,
 		/obj/item/robotanalyzer,
 		/obj/item/material/minihoe,
@@ -212,6 +224,7 @@
 		/obj/item/pda,
 		/obj/item/megaphone,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/radio/headset,
 		/obj/item/robotanalyzer,
 		/obj/item/material/minihoe,
@@ -258,6 +271,7 @@
 		/obj/item/radio/headset,
 		/obj/item/pda,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/megaphone,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
@@ -323,6 +337,7 @@
 		/obj/item/gun/projectile/sec,
 		/obj/item/gun/projectile/p92x,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/gun/projectile/colt/detective,
 		/obj/item/holowarrant,
 		/obj/item/ticket_printer	//VOREStation Edit
@@ -361,6 +376,7 @@
 		/obj/item/radio/headset,
 		/obj/item/clothing/gloves,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/handcuffs,
 		/obj/item/flash,
@@ -426,6 +442,7 @@
 		/obj/item/radio/headset,
 		/obj/item/pda,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/megaphone,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/head/surgery,
@@ -512,6 +529,7 @@
 		/obj/item/flame/lighter,
 		/obj/item/megaphone,
 		/obj/item/taperoll,
+		/obj/item/tape_roll,
 		/obj/item/reagent_containers/spray,
 		/obj/item/soap,
 		/obj/item/lightreplacer,
@@ -535,6 +553,7 @@
 		/obj/item/depth_scanner,
 		/obj/item/camera,
 		/obj/item/paper,
+		/obj/item/paper_bundle,
 		/obj/item/photo,
 		/obj/item/folder,
 		/obj/item/pen,
@@ -550,7 +569,8 @@
 		/obj/item/pickaxe/hand,
 		/obj/item/xenoarch_multi_tool,
 		/obj/item/pickaxe/excavationdrill,
-		/obj/item/storage/sample_container
+		/obj/item/storage/sample_container,
+		/obj/item/storage/bag/fossils
 		)
 
 /obj/item/storage/belt/fannypack
@@ -718,6 +738,7 @@
 		/obj/item/pickaxe,
 		/obj/item/shovel,
 		/obj/item/paper,
+		/obj/item/paper_bundle,
 		/obj/item/photo,
 		/obj/item/folder,
 		/obj/item/pen,
@@ -736,7 +757,7 @@
 		/obj/item/melee,
 		/obj/item/kinetic_crusher,
 		/obj/item/mining_scanner,
-		/obj/item/storage/bag/ore,
+		/obj/item/ore_bag,
 		/obj/item/storage/sample_container
 		)
 		//Pretty much, if it's in the mining vendor, they should be able to put it on the belt.
@@ -760,6 +781,7 @@
 		/obj/item/cell/device,
 		/obj/item/pickaxe,
 		/obj/item/paper,
+		/obj/item/paper_bundle,
 		/obj/item/photo,
 		/obj/item/folder,
 		/obj/item/pen,

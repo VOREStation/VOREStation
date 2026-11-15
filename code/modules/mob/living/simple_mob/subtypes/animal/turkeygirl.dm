@@ -73,7 +73,7 @@
 	if(resting)
 		icon_state = "[icon_state]-resting"
 
-/mob/living/simple_mob/vore/turkeygirl/attackby(var/obj/item/reagent_containers/food/snacks/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/vore/turkeygirl/attackby(obj/item/reagent_containers/food/snacks/O as obj, mob/user as mob)
 	if(stat)
 		return ..()
 

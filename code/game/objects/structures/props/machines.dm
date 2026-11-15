@@ -615,7 +615,7 @@
 /obj/structure/prop/machine/nt_pod/Entered(atom/movable/mover)
 	abduct(mover)
 
-/obj/structure/prop/machine/nt_pod/proc/abduct(var/atom/movable/AM)
+/obj/structure/prop/machine/nt_pod/proc/abduct(atom/movable/AM)
 	// Save old settings
 	contents_vis_flags = AM.vis_flags
 	contents_original_pixel_y = AM.pixel_y
@@ -632,7 +632,7 @@
 	// TRAP THEM
 	change_state("closed")
 
-/obj/structure/prop/machine/nt_pod/proc/unduct(var/atom/movable/AM)
+/obj/structure/prop/machine/nt_pod/proc/unduct(atom/movable/AM)
 	// Geddout
 	vis_contents -= AM
 	if(ismob(AM))
@@ -644,7 +644,7 @@
 	AM.vis_flags = contents_vis_flags
 	AM.pixel_y = contents_original_pixel_y
 
-/obj/structure/prop/machine/nt_pod/MouseDrop_T(var/atom/movable/AM, var/mob/user)
+/obj/structure/prop/machine/nt_pod/MouseDrop_T(atom/movable/AM, mob/user)
 	if(contents.len)
 		return
 	if(!ismovable(AM))
@@ -694,7 +694,7 @@
 
 // Old Virology stuff
 
-/obj/structure/prop/machine/nt_pod/proc/delayed_flick(var/obj/effect/overlay/ovrl, var/icon_state, var/flicked, var/get_out_time)
+/obj/structure/prop/machine/nt_pod/proc/delayed_flick(obj/effect/overlay/ovrl, icon_state, flicked, get_out_time)
 	ovrl.icon_state = icon_state
 	flick(flicked, ovrl)
 	// GET OUT

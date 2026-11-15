@@ -37,7 +37,7 @@
 	var/datum/preferences/preferences
 	var/datum/category_group/player_setup_category/selected_category = null
 
-/datum/category_collection/player_setup_collection/New(var/datum/preferences/preferences)
+/datum/category_collection/player_setup_collection/New(datum/preferences/preferences)
 	src.preferences = preferences
 	..()
 	selected_category = categories[1]
@@ -67,7 +67,7 @@
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.save_preferences(savefile)
 
-/datum/category_collection/player_setup_collection/proc/copy_to_mob(var/mob/living/carbon/human/C)
+/datum/category_collection/player_setup_collection/proc/copy_to_mob(mob/living/carbon/human/C)
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.copy_to_mob(C)
 
@@ -81,7 +81,7 @@
 	dat += "<a href='byond://?src=\ref[src];game_prefs=1'>Game Options</a>"
 	return dat
 
-/datum/category_collection/player_setup_collection/Topic(var/href,var/list/href_list)
+/datum/category_collection/player_setup_collection/Topic(href,list/href_list)
 	if(..())
 		return 1
 	var/mob/user = usr
@@ -139,7 +139,7 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.save_preferences(savefile)
 
-/datum/category_group/player_setup_category/proc/copy_to_mob(var/mob/living/carbon/human/C)
+/datum/category_group/player_setup_category/proc/copy_to_mob(mob/living/carbon/human/C)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.copy_to_mob(C)
 
@@ -189,7 +189,7 @@
 /*
 * Called when the item is asked to apply its per character settings to a new mob.
 */
-/datum/category_item/player_setup_item/proc/copy_to_mob(var/mob/living/carbon/human/C)
+/datum/category_item/player_setup_item/proc/copy_to_mob(mob/living/carbon/human/C)
 	return
 
 /datum/category_item/player_setup_item/proc/sanitize_character()
@@ -198,7 +198,7 @@
 /datum/category_item/player_setup_item/proc/sanitize_preferences()
 	return
 
-/datum/category_item/player_setup_item/Topic(var/href,var/list/href_list)
+/datum/category_item/player_setup_item/Topic(href,list/href_list)
 	if(..())
 		return 1
 	var/mob/pref_mob = preference_mob()
@@ -215,10 +215,10 @@
 	if(. & TOPIC_REFRESH)
 		pref_mob.client.prefs.ShowChoices(usr)
 
-/datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
+/datum/category_item/player_setup_item/CanUseTopic(mob/user)
 	return 1
 
-/datum/category_item/player_setup_item/proc/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/proc/OnTopic(href,list/href_list, mob/user)
 	return TOPIC_NOACTION
 
 /datum/category_item/player_setup_item/proc/preference_mob()
@@ -233,7 +233,8 @@
 
 // Checks in a really hacky way if a character's preferences say they are an FBP or not.
 /datum/category_item/player_setup_item/proc/is_FBP()
-	if(pref.organ_data && pref.organ_data[BP_TORSO] != "cyborg")
+	var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+	if(organ_data && organ_data[BP_TORSO] != "cyborg")
 		return 0
 	return 1
 
@@ -241,8 +242,9 @@
 /datum/category_item/player_setup_item/proc/get_FBP_type()
 	if(!is_FBP())
 		return 0 // Not a robot.
-	if(O_BRAIN in pref.organ_data)
-		switch(pref.organ_data[O_BRAIN])
+	var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+	if(organ_data && (O_BRAIN in organ_data))
+		switch(organ_data[O_BRAIN])
 			if(FBP_ASSISTED)
 				return PREF_FBP_CYBORG
 			if(FBP_MECHANICAL)
@@ -252,7 +254,8 @@
 	return 0 //Something went wrong!
 
 /datum/category_item/player_setup_item/proc/get_min_age()
-	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : "Human"]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species) || "Human"
+	var/datum/species/S = GLOB.all_species[pref_species]
 	if(!is_FBP())
 		return S.min_age // If they're not a robot, we can just use the species var.
 	var/FBP_type = get_FBP_type()
@@ -266,7 +269,8 @@
 	return S.min_age // welp
 
 /datum/category_item/player_setup_item/proc/get_max_age()
-	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : "Human"]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species) || "Human"
+	var/datum/species/S = GLOB.all_species[pref_species]
 	if(!is_FBP())
 		return S.max_age // If they're not a robot, we can just use the species var.
 	var/FBP_type = get_FBP_type()

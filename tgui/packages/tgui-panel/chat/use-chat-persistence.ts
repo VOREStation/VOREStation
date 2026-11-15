@@ -1,4 +1,4 @@
-import { storage } from 'common/storage';
+import { type StorageDiagnostic, storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 import { useAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
@@ -10,6 +10,7 @@ import {
   allChatAtom,
   chatLoadedAtom,
   lastRoundIDAtom,
+  mainPage,
   storedLinesAtom,
   storedRoundsAtom,
   versionAtom,
@@ -92,7 +93,7 @@ export function useChatPersistence() {
 
   /** Periodically saves chat + chat settings */
   useEffect(() => {
-    let saveInterval: NodeJS.Timeout;
+    let saveInterval: ReturnType<typeof setTimeout> | undefined;
 
     if (loaded && settings.saveInterval) {
       saveInterval = setInterval(() => {
@@ -107,7 +108,7 @@ export function useChatPersistence() {
 
   /** Saves chat settings shortly after any settings change */
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
 
     if (loaded) {
       timeout = setTimeout(() => {
@@ -173,6 +174,8 @@ export function useChatPersistence() {
       } else {
         messages = await loadChatFromStorage();
       }
+
+      surfaceStorageDiagnostics(storage.diagnostics);
 
       if (messages) {
         handleMessages(messages);
@@ -267,12 +270,32 @@ export function useChatPersistence() {
     // Empty settings, set defaults
     if (!state) {
       console.log('Initialized chat with default settings');
+      chatRenderer.changePage(mainPage);
     } else if (state && 'version' in state && state.version === version) {
       console.log('Loaded chat state from storage:', state);
       startChatStateMigration(state);
     } else {
       // Discard incompatible versions
       console.log('Discarded incompatible chat state from storage:', state);
+      chatRenderer.changePage(mainPage);
+    }
+  }
+
+  function surfaceStorageDiagnostics(diagnostics: StorageDiagnostic[]) {
+    const hasIssues = diagnostics.some((d) => d.level !== 'info');
+    if (!hasIssues) return;
+
+    const batch = diagnostics
+      .filter((d) => d.level !== 'info')
+      .map((d) =>
+        createMessage({
+          type: 'internal/storage',
+          text: `[Storage] ${d.message}`,
+        }),
+      );
+
+    if (batch.length) {
+      chatRenderer.processBatch(batch, { prepend: true });
     }
   }
 

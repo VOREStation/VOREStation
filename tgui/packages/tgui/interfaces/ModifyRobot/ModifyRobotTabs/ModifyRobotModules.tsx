@@ -36,8 +36,11 @@ export const ModifyRobotModules = (props: {
           <Section title="Source Module" scrollable fill>
             <Box>Robot to salvage</Box>
             <Dropdown
-              width="100%"
+              fluid
+              searchInput
+              styledInput
               selected={source ? source.model : ''}
+              displayText={source ? source.model : ''}
               options={model_options}
               onSelected={(value) =>
                 act('select_source', {
@@ -124,8 +127,8 @@ export const ModifyRobotModules = (props: {
 };
 
 const SelectionField = (props: {
-  previewImage: string | undefined;
-  previewImageSize: string | undefined;
+  previewImage?: string;
+  previewImageSize?: string | null;
   searchText: string;
   onSearchText: React.Dispatch<React.SetStateAction<string>>;
   action: string;
@@ -165,24 +168,24 @@ const SelectionField = (props: {
       <Divider />
       <Stack>
         <Stack.Item width="100%">
-          {prepareSearch(modules, searchText).map((modul_option, i) => {
+          {prepareSearch(modules, searchText).map((module_option, i) => {
             return (
               <Button
                 fluid
                 key={i}
-                tooltip={modul_option.desc}
+                tooltip={module_option.desc}
                 onClick={() =>
                   act(action, {
-                    module: modul_option.ref,
+                    module: module_option.ref,
                   })
                 }
               >
                 <Stack fill align="center">
                   <Stack.Item>
-                    <Image fixErrors src={modul_option.icon} />
+                    <Image fixErrors src={module_option.icon} />
                   </Stack.Item>
                   <Stack.Item grow overflow="hidden" ml="10px">
-                    {capitalize(modul_option.name)}
+                    {capitalize(module_option.name)}
                   </Stack.Item>
                   <Stack.Item>
                     <Icon

@@ -21,7 +21,6 @@
 	color = "#68a2f2"
 
 	cell =        /obj/item/cell/mech
-	idcard_type = /obj/item/card/id/platform
 	module =      /obj/item/robot_module/robot/platform
 
 	lawupdate = FALSE

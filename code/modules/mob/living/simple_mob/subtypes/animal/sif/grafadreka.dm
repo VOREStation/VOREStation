@@ -84,7 +84,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	emote_cooldown = 20 SECONDS
 	broadcast_distance = 90
 
-/datum/decl/emote/audible/drake_howl/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
+/datum/decl/emote/audible/drake_howl/broadcast_emote_to(send_sound, mob/target, direction)
 	if((. = ..()))
 		to_chat(target, span_notice("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
 
@@ -213,7 +213,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	var/list/original_armor
 
 GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
-/mob/living/simple_mob/animal/sif/grafadreka/proc/can_tend_wounds(var/mob/living/friend)
+/mob/living/simple_mob/animal/sif/grafadreka/proc/can_tend_wounds(mob/living/friend)
 
 	// We can't heal robots.
 	if(friend.isSynthetic())
@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 	original_armor = armor
 	update_icon()
 
-/mob/living/simple_mob/animal/sif/grafadreka/examine(var/mob/living/user)
+/mob/living/simple_mob/animal/sif/grafadreka/examine(mob/living/user)
 	. = ..()
 	if(istype(user, /mob/living/simple_mob/animal/sif/grafadreka) || isobserver(user))
 		var/datum/gender/G = gender_datums[get_visible_gender()]
@@ -268,7 +268,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 		else
 			. += span_danger("[G.His] sap reserves are depleted.")
 
-/mob/living/simple_mob/animal/sif/grafadreka/can_projectile_attack(var/atom/A)
+/mob/living/simple_mob/animal/sif/grafadreka/can_projectile_attack(atom/A)
 	if(a_intent != I_HURT || world.time < next_spit)
 		return FALSE
 	if(!has_sap(2))
@@ -286,12 +286,12 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 		setMoveCooldown(1 SECOND)
 		spend_sap(2)
 
-/mob/living/simple_mob/animal/sif/grafadreka/get_dietary_food_modifier(var/datum/reagent/nutriment/food)
+/mob/living/simple_mob/animal/sif/grafadreka/get_dietary_food_modifier(datum/reagent/nutriment/food)
 	if(food.allergen_type & ALLERGEN_MEAT)
 		return ..()
 	return 0.25 // Quarter nutrition from non-meat.
 
-/mob/living/simple_mob/animal/sif/grafadreka/handle_reagent_transfer(var/datum/reagents/holder, var/amount = 1, var/chem_type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0)
+/mob/living/simple_mob/animal/sif/grafadreka/handle_reagent_transfer(datum/reagents/holder, amount = 1, chem_type = CHEM_BLOOD, multiplier = 1, copy = 0)
 	return holder.trans_to_holder(reagents, amount, multiplier, copy)
 
 /mob/living/simple_mob/animal/sif/grafadreka/Life()
@@ -315,15 +315,15 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 			chem.affect_animal(src, removed)
 			reagents.remove_reagent(chem.id, removed)
 
-/mob/living/simple_mob/animal/sif/grafadreka/proc/has_sap(var/amt)
+/mob/living/simple_mob/animal/sif/grafadreka/proc/has_sap(amt)
 	return stored_sap >= amt
 
-/mob/living/simple_mob/animal/sif/grafadreka/proc/add_sap(var/amt)
+/mob/living/simple_mob/animal/sif/grafadreka/proc/add_sap(amt)
 	stored_sap = clamp(round(stored_sap + amt, 0.01), 0, max_stored_sap)
 	update_icon()
 	return TRUE
 
-/mob/living/simple_mob/animal/sif/grafadreka/proc/spend_sap(var/amt)
+/mob/living/simple_mob/animal/sif/grafadreka/proc/spend_sap(amt)
 	if(has_sap(amt))
 		stored_sap = clamp(round(stored_sap - amt, 0.01), 0, max_stored_sap)
 		update_icon()
@@ -411,7 +411,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 /mob/living/simple_mob/animal/sif/grafadreka/get_eye_color()
 	return eye_colour
 
-/mob/living/simple_mob/animal/sif/grafadreka/do_tame(var/obj/O, var/mob/user)
+/mob/living/simple_mob/animal/sif/grafadreka/do_tame(obj/O, mob/user)
 	. = ..()
 	attacked_by_neutral = FALSE
 
@@ -531,7 +531,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 	. += "Nutrition: [nutrition]/[max_nutrition]"
 	. += "Stored sap: [stored_sap]/[max_stored_sap]"
 
-/mob/living/simple_mob/animal/sif/grafadreka/proc/can_bite(var/mob/living/M)
+/mob/living/simple_mob/animal/sif/grafadreka/proc/can_bite(mob/living/M)
 	return istype(M) && (M.lying || M.confused || M.incapacitated())
 
 /mob/living/simple_mob/animal/sif/grafadreka/apply_bonus_melee_damage(atom/A, damage_amount)

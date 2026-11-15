@@ -19,7 +19,7 @@
 	broken_damage = 150
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/modular_computer/telescreen/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		if(anchored)
 			shutdown_computer()

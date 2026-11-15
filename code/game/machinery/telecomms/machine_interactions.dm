@@ -36,7 +36,7 @@
 	if(default_deconstruction_crowbar(user, P))
 		return
 
-/obj/machinery/telecomms/attack_ai(var/mob/user as mob)
+/obj/machinery/telecomms/attack_ai(mob/user as mob)
 	attack_hand(user)
 
 /obj/machinery/telecomms/tgui_data(mob/user)
@@ -98,7 +98,7 @@
 			return STATUS_CLOSE
 	. = ..()
 
-/obj/machinery/telecomms/attack_hand(var/mob/user as mob)
+/obj/machinery/telecomms/attack_hand(mob/user as mob)
 	tgui_interact(user)
 
 /obj/machinery/telecomms/tgui_interact(mob/user, datum/tgui/ui)
@@ -373,12 +373,12 @@
 
 	add_fingerprint(ui.user)
 
-/obj/machinery/telecomms/proc/canAccess(var/mob/user)
+/obj/machinery/telecomms/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
 
-/obj/machinery/telecomms/proc/set_temp(var/text, var/color = "average")
+/obj/machinery/telecomms/proc/set_temp(text, color = "average")
 	temp = list("color" = color, "text" = text)
 
 #undef TELECOMM_Z

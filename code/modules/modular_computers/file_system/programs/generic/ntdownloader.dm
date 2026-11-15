@@ -33,7 +33,7 @@
 	..()
 	abort_file_download()
 
-/datum/computer_file/program/ntnetdownload/proc/begin_file_download(var/filename)
+/datum/computer_file/program/ntnetdownload/proc/begin_file_download(filename)
 	if(downloaded_file)
 		return 0
 
@@ -56,7 +56,7 @@
 
 	downloaded_file = PRG.clone()
 
-/datum/computer_file/program/ntnetdownload/proc/check_file_download(var/filename)
+/datum/computer_file/program/ntnetdownload/proc/check_file_download(filename)
 	//returns 1 if file can be downloaded, returns 0 if download prohibited
 	var/datum/computer_file/program/PRG = GLOB.ntnet_global.find_ntnet_file_by_name(filename)
 
@@ -155,8 +155,9 @@
 	data["disk_used"] = my_computer.hard_drive.used_capacity
 	var/list/all_entries[0]
 	for(var/datum/computer_file/program/P in GLOB.ntnet_global.available_station_software)
-		// Only those programs our user can run will show in the list
-		if(!P.can_run(user) && P.requires_access_to_download || my_computer.hard_drive.find_file_by_name(P.filename))
+		// Only those programs our user can run will show in the list.
+		// Pass the card inserted in the laptop's slot so slotted IDs are respected.
+		if(!P.can_run(user, 0, null, my_computer.card_slot?.stored_card) && P.requires_access_to_download || my_computer.hard_drive.find_file_by_name(P.filename))
 			continue
 		all_entries.Add(list(list(
 			"filename" = P.filename,

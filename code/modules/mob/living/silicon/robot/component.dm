@@ -220,7 +220,7 @@
 	return C && C.installed == 1 && C.toggled && C.is_powered()
 
 // Returns component by it's string name
-/mob/living/silicon/robot/proc/get_component(var/component_name)
+/mob/living/silicon/robot/proc/get_component(component_name)
 	var/datum/robot_component/C = components[component_name]
 	return C
 
@@ -237,7 +237,7 @@
 	name = "broken component"
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "broken"
-	matter = list(MAT_STEEL = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5))
 
 /obj/item/broken_device/random
 	var/list/possible_icons = list("binradio_broken",

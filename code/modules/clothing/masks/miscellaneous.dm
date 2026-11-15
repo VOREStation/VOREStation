@@ -236,7 +236,7 @@
 	. = ..()
 	eye = new(src)
 
-/obj/item/clothing/mask/ai/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/ai/equipped(mob/user, slot)
 	..(user, slot)
 	if(slot == slot_wear_mask)
 		eye.owner = user
@@ -246,7 +246,7 @@
 			c.remove(eye)
 		eye.setLoc(user)
 
-/obj/item/clothing/mask/ai/dropped(mob/user)
+/obj/item/clothing/mask/ai/dropped(mob/user, equipping, slot)
 	..()
 	if(eye.owner == user)
 		for(var/datum/chunk/c in eye.visibleChunks)
@@ -265,7 +265,7 @@
 	icon_state = "bandblack"
 	item_state_slots = list(slot_r_hand_str = "bandblack", slot_l_hand_str = "bandblack")
 
-/obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/bandana/equipped(mob/user, slot)
 	switch(slot)
 		if(slot_wear_mask) //Mask is the default for all the settings
 			flags_inv = initial(flags_inv)

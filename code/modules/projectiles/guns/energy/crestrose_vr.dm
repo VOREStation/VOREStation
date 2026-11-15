@@ -8,7 +8,6 @@
 	item_state = "laser" //placeholder
 
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 4)
 	slot_flags = null
 	fire_sound = 'sound/weapons/gunshot_light.ogg'
 	load_method = MAGAZINE
@@ -32,7 +31,7 @@
 		update_held_icon()
 
 
-/obj/item/gun/projectile/automatic/fluff/crestrose/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/gun/projectile/automatic/fluff/crestrose/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(50))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(user, 'sound/weapons/punchmiss.ogg', 50, 1)

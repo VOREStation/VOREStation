@@ -109,6 +109,9 @@
 	new /obj/structure/simple_door/wood(loc)
 	..()
 
+/obj/structure/simple_door/wood
+	resistance_flags = FLAMMABLE
+
 /obj/structure/simple_door/wood/cultify()
 	return
 

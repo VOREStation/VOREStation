@@ -8,7 +8,7 @@
 #define MECHA_PROC_DAMAGE   2
 #define MECHA_PROC_INT_TEMP 4
 
-#define MELEE 1
+#define MECH_MELEE 1
 #define RANGED 2
 
 #define MECH_FACTION_NT "nano"

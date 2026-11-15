@@ -31,6 +31,8 @@
 
 /datum/anomaly_stats/Destroy(force)
 	QDEL_NULL(modifier)
+	attached_anomaly = null
+	attached_harvester = null
 	return ..()
 
 /datum/anomaly_stats/proc/randomize_particle_types()
@@ -42,7 +44,7 @@
 	transformation_type = particles[4]
 
 /datum/anomaly_stats/proc/calculate_points()
-	var/total = 10
+	var/total = 15
 
 	var/obj/effect/anomaly/anomaly = attached_anomaly.resolve()
 
@@ -70,7 +72,7 @@
 		return
 	else if(particle == containment_type)
 		update_state(FALSE)
-		update_health(-1, -10)
+		update_health(-1, -5)
 		return
 	else if(particle == transformation_type)
 		update_modifiers()

@@ -46,7 +46,7 @@
 		for(var/obj/item/I in contents)
 			. += span_notice("\the [I]")
 
-/obj/machinery/particle_smasher/atmosanalyze(var/mob/user)
+/obj/machinery/particle_smasher/atmosanalyze(mob/user)
 	return list(span_notice("\The [src] reads an energy level of [energy]."))
 
 /obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
@@ -139,7 +139,7 @@
 	else
 		set_light(0, 0, "#FFFFFF")
 
-/obj/machinery/particle_smasher/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/particle_smasher/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
 		if(Proj.damage >= 50)
 			TryCraft()
@@ -148,13 +148,27 @@
 /obj/machinery/particle_smasher/process()
 	if(!src.anchored)	// Rapidly loses focus.
 		if(energy)
-			SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
+			radiation_pulse(
+				src,
+				max_range = 7,
+				threshold = RAD_HEAVY_INSULATION,
+				chance = round(((src.energy-150)/50)*5,1),
+				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+				strength = energy * 0.1 //60 rads at max energy.
+			)
 			energy = max(0, energy - 30)
 			update_icon()
 		return
 
 	if(energy)
-		SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
+		radiation_pulse(
+			src,
+			max_range = 7,
+			threshold = RAD_HEAVY_INSULATION,
+			chance = round(((src.energy-150)/50)*5,1),
+			minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+			strength = energy * 0.1 //60 rads at max energy.
+		)
 		energy = CLAMP(energy - 5, 0, max_energy)
 
 	return
@@ -184,7 +198,14 @@
 	if(successful_craft)
 		visible_message(span_warning("\The [src] fizzles."))
 		if(prob(33))	// Why are you blasting it after it's already done!
-			SSradiation.radiate(src, 10 + round(src.energy / 60, 1))
+			radiation_pulse(
+				src,
+				max_range = 7,
+				threshold = RAD_HEAVY_INSULATION,
+				chance = URANIUM_IRRADIATION_CHANCE + round(src.energy / 60, 1),
+				minimum_exposure_time = URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME,
+				strength = energy * 0.1
+			)
 			energy = max(0, energy - 30)
 		update_icon()
 		return
@@ -218,7 +239,7 @@
 				break
 	update_icon()
 
-/obj/machinery/particle_smasher/proc/DoCraft(var/datum/particle_smasher_recipe/recipe)
+/obj/machinery/particle_smasher/proc/DoCraft(datum/particle_smasher_recipe/recipe)
 	if(!successful_craft || !recipe)
 		return
 
@@ -285,7 +306,7 @@
 	var/item_consume_chance = 100		// The probability for the items (not materials) used in the recipe to be consume.
 	var/wiki_flag = NONE
 
-/datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
+/datum/particle_smasher_recipe/proc/check_items(obj/container as obj)
 	. = 1
 	if (items && items.len)
 		var/list/checklist = list()
@@ -308,7 +329,7 @@
 			. = -1
 	return .
 
-/datum/particle_smasher_recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+/datum/particle_smasher_recipe/proc/check_reagents(datum/reagents/avail_reagents)
 	. = 1
 	for (var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)

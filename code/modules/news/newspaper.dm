@@ -18,6 +18,7 @@
 	var/scribble_page = null
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/newspaper/attack_self(mob/user)
 	. = ..(user)
@@ -68,7 +69,7 @@
 							dat+="[MESSAGE.title] <BR>"
 							dat+="-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
-								user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+								send_rsc(user, MESSAGE.img, "tmp_photo[i].png")
 								dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
 							dat+=span_small("\[[MESSAGE.message_type] by " + span_maroon("[MESSAGE.author]") + "\]") + "<BR><BR>"
 						dat+="</ul>"
@@ -84,7 +85,7 @@
 					dat+=span_bold("Description") + ": [important_message.body]<BR>"
 					dat+=span_bold("Photo:") + ": "
 					if(important_message.img)
-						user << browse_rsc(important_message.img, "tmp_photow.png")
+						send_rsc(user, important_message.img, "tmp_photow.png")
 						dat+="<BR><img src='tmp_photow.png' width = '180'>"
 					else
 						dat+="None"

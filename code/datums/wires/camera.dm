@@ -59,6 +59,3 @@
 		if(WIRE_CAM_ALARM)
 			C.visible_message("[icon2html(C,viewers(holder))] *beep*", "[icon2html(C,viewers(holder))] *beep*")
 	..()
-
-/datum/wires/camera/proc/CanDeconstruct()
-	return is_all_cut()

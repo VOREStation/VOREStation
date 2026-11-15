@@ -120,18 +120,17 @@
 	return
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/analyzer))
+	if(istype(I, /obj/item/analyzer) || (istype(I, /obj/item/anomaly_scanner) && !stats))
 		if(anomaly_core)
 			to_chat(user, span_notice("Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(anomaly_core.frequency)], code [anomaly_core.code]."))
 			return TRUE
-	if(istype(I, /obj/item/anomaly_scanner))
+	if(istype(I, /obj/item/anomaly_scanner) && stats)
 		var/obj/item/anomaly_scanner/scanner = I
-		if(stats)
-			if(!do_after(user, 1 SECOND, src))
-				return
-			scanner.buffered_anomaly = WEAKREF(src)
-			scanner.tgui_interact(user)
-			return TRUE
+		if(!do_after(user, 1 SECOND, src))
+			return
+		scanner.buffered_anomaly = WEAKREF(src)
+		scanner.tgui_interact(user)
+		return TRUE
 	return ..()
 
 /obj/effect/anomaly/bullet_act(obj/item/projectile/proj)
@@ -170,7 +169,7 @@
 		if(HALLUCINATION_ANOMALY)
 			new /obj/effect/anomaly/hallucination/supermatter(local_turf, has_changed_lifespan ? rand(15 SECONDS, 25 SECONDS) : null, drops_core)
 		if(BIOSCRAMBLER_ANOMALY)
-			new /obj/effect/anomaly/bioscrambler/docile(local_turf, null, drops_core)
+			new /obj/effect/anomaly/bioscrambler(local_turf, null, drops_core)
 		if(DIMENSIONAL_ANOMALY)
 			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)
 		if(WEATHER_ANOMALY)

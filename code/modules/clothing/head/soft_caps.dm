@@ -8,7 +8,9 @@
 	body_parts_covered = 0
 	special_handling = TRUE
 
-/obj/item/clothing/head/soft/dropped(mob/user)
+/obj/item/clothing/head/soft/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	icon_state = initial(icon_state)
 	flipped = FALSE
 	..()

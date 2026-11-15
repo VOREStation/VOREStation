@@ -13,7 +13,7 @@
 	var/obj/item/assembly/a_right = null
 	var/obj/special_assembly = null
 
-/obj/item/assembly_holder/proc/attach(var/obj/item/assembly/D, var/obj/item/assembly/D2, var/mob/user)
+/obj/item/assembly_holder/proc/attach(obj/item/assembly/D, obj/item/assembly/D2, mob/user)
 	if(!D || !D2)
 		return FALSE
 
@@ -83,6 +83,7 @@
 		a_right.HasProximity(T, WF, old_loc)
 
 /obj/item/assembly_holder/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(a_left)
@@ -108,7 +109,7 @@
 		a_right.holder_movement()
 	..()
 
-/obj/item/assembly_holder/attackby(var/obj/item/W, var/mob/user)
+/obj/item/assembly_holder/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!a_left || !a_right)
 			to_chat(user, span_warning(" BUG:Assembly part missing, please report this!"))
@@ -156,7 +157,7 @@
 			a_right.forceMove(T)
 		qdel(src)
 
-/obj/item/assembly_holder/proc/process_activation(var/obj/D, var/normal = 1)
+/obj/item/assembly_holder/proc/process_activation(obj/D, normal = 1)
 	if(!D)
 		return 0
 	if(!secured)

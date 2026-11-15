@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   Icon,
   LabeledList,
@@ -11,6 +10,7 @@ import {
 } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
+import { TechWebRecipeIcon } from './common/TechWebRecipeIcon';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import type {
@@ -135,35 +135,15 @@ const Recipe = (props: RecipeProps) => {
           <Icon name="question-circle" />
         </div>
       </Tooltip>
-      <Tooltip
-        position="bottom"
-        content={
-          <MaterialCostSequence
-            design={design}
-            amount={1}
-            available={available}
-          />
-        }
-      >
-        <div
-          className={classes([
-            'FabricatorRecipe__Title',
-            !canPrint && 'FabricatorRecipe__Title--disabled',
-          ])}
-          onClick={() =>
-            canPrint && act('build', { designs: [design.id], now: true })
-          }
-        >
-          <div className="FabricatorRecipe__Icon">
-            <Box
-              width={'32px'}
-              height={'32px'}
-              className={classes(['design32x32', design.icon])}
-            />
-          </div>
-          <div className="FabricatorRecipe__Label">{design.name}</div>
-        </div>
-      </Tooltip>
+      <TechWebRecipeIcon
+        position={'bottom'}
+        icon={design.icon}
+        name={design.name}
+        design={design}
+        availableMaterials={available}
+        canPrint={canPrint}
+        action={() => act('build', { designs: [design.id], now: true })}
+      />
 
       <Tooltip content={'Add to Queue'} position="right">
         <div
@@ -362,34 +342,14 @@ const QueueList = (props: QueueListProps) => {
                 }}
               />
             )}
-            <Tooltip
+            <TechWebRecipeIcon
               position={'bottom'}
-              content={
-                <MaterialCostSequence
-                  design={entry.design}
-                  amount={1}
-                  available={availableMaterials}
-                />
-              }
-            >
-              <div
-                className={classes([
-                  'FabricatorRecipe__Title',
-                  !entry.canPrint && 'FabricatorRecipe__Title--disabled',
-                ])}
-              >
-                <div className="FabricatorRecipe__Icon">
-                  <Box
-                    width={'32px'}
-                    height={'32px'}
-                    className={classes(['design32x32', entry.design?.icon])}
-                  />
-                </div>
-                <div className="FabricatorRecipe__Label">
-                  {entry.design?.name}
-                </div>
-              </div>
-            </Tooltip>
+              icon={entry.design.icon}
+              name={entry.design.name}
+              design={entry.design}
+              availableMaterials={availableMaterials}
+              canPrint={entry.canPrint}
+            />
 
             {!entry.job.processing && (
               <div

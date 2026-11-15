@@ -23,6 +23,7 @@
 	preserve_item = 1
 	flash_protection = FLASH_PROTECTION_MAJOR
 	valid_accessory_slots = null
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -90,6 +91,7 @@
 	preserve_item = 1
 	valid_accessory_slots = (ACCESSORY_SLOT_OVER | ACCESSORY_SLOT_ARMBAND | ACCESSORY_SLOT_DECOR)
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 //VOREStation edit start - use the specially refitted sprites by KBraid. Done this way to avoid breaking subtypes.
 /obj/item/clothing/suit/space/Initialize(mapload)
@@ -102,7 +104,7 @@
 	check_limb_support(M)
 	..()
 
-/obj/item/clothing/suit/space/dropped(mob/user)
+/obj/item/clothing/suit/space/dropped(mob/user, equipping, slot)
 	check_limb_support(user)
 	..()
 
@@ -110,7 +112,7 @@
 // broken limbs - at the time of writing, only the ninja suit, but
 // I can see it being useful for other suits as we expand them. ~ Z
 // The actual splinting occurs in /obj/item/organ/external/proc/fracture()
-/obj/item/clothing/suit/space/proc/check_limb_support(var/mob/living/carbon/human/user)
+/obj/item/clothing/suit/space/proc/check_limb_support(mob/living/carbon/human/user)
 
 	// If this isn't set, then we don't need to care.
 	if(!istype(user) || isnull(supporting_limbs))
@@ -128,7 +130,7 @@
 				to_chat(user, "\The [src] stops supporting your [E.name].")
 		supporting_limbs.Cut()
 
-/obj/item/clothing/suit/space/proc/handle_fracture(var/mob/living/carbon/human/user, var/obj/item/organ/external/E)
+/obj/item/clothing/suit/space/proc/handle_fracture(mob/living/carbon/human/user, obj/item/organ/external/E)
 	if(!istype(user) || isnull(supporting_limbs))
 		return
 	if(E.is_broken() && E.apply_splint(src))

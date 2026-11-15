@@ -4,13 +4,13 @@
 	icon_state = "brown"
 	permeability_coefficient = 0.05
 	item_flags = NOSLIP
-	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
 	species_restricted = null
 	step_volume_mod = 0.5
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
@@ -18,16 +18,18 @@
 	step_volume_mod = 0	//It's a mime
 
 /obj/item/clothing/shoes/galoshes
-	desc = "Rubber boots"
+	desc = "Thick rubber boots. Worn mostly by janitors wading through wet floors and much worse."
 	name = "galoshes"
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0 //They're thick rubber boots! Of course they won't conduct electricity!
+	flags = NOCONDUCT
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
+	resistance_flags = ACID_PROOF
 
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"
@@ -97,18 +99,9 @@
 	icon_state = "clown"
 	slowdown = SHOES_SLOWDOWN+0.5
 	force = 0
-	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
-
-/obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
-	if(running)
-		if(footstep >= 2)
-			footstep = 0
-			playsound(src, "clownstep", 50, 1) // this will get annoying very fast.
-		else
-			footstep++
-	else
-		playsound(src, "clownstep", 20, 1)
+	custom_footstep = "clownstep"
+	custom_footstep_volume = 75
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
@@ -258,3 +251,21 @@
 	desc = "These shoes feature long lace straps and flattened off toes. Great for the most elegant of dances!"
 	icon_state = "ballet"
 	item_state = "ballet"
+
+/obj/item/clothing/shoes/dry_galoshes
+	desc = "A pair of purple rubber boots, designed to prevent slipping on wet surfaces while also drying them. They're extra grippy, too!"
+	name = "absorbent galoshes"
+	icon = 'icons/inventory/feet/item.dmi'
+	icon_state = "galoshes_dry"
+	permeability_coefficient = 0.05
+	siemens_coefficient = 0
+	flags = NOCONDUCT
+	item_flags = NOSLIP | NOSLIP_LUBE
+	slowdown = SHOES_SLOWDOWN + 0.5
+	species_restricted = null
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
+
+/obj/item/clothing/shoes/dry_galoshes/Initialize(mapload)
+	.=..()
+	LoadComponent(/datum/component/dry)

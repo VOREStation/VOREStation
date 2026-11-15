@@ -1,9 +1,8 @@
 // Pretty much everything here is stolen from the dna scanner FYI
 
 /obj/machinery/bodyscanner
-	var/mob/living/carbon/human/occupant
-	var/locked
 	name = "Body Scanner"
+	desc = "An advanced, modern medical scanner. It provides a full body readout of your patient."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
 	density = TRUE
@@ -15,6 +14,8 @@
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
+	var/mob/living/carbon/human/occupant
+	var/locked
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
 	var/scan_level = SCANNABLE_DIFFICULT //By default, we start with level 2 scanning level.
@@ -40,7 +41,7 @@
 	else
 		set_light(0)
 
-/obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
+/obj/machinery/bodyscanner/attackby(obj/item/G, user as mob)
 	if(istype(G, /obj/item/grab))
 		var/obj/item/grab/H = G
 		if(panel_open)
@@ -58,9 +59,11 @@
 			to_chat(user, span_warning("\The [H.affecting] has other entities attached to it. Remove them first."))
 			return
 		var/mob/M = H.affecting
+		/* Disable abiotic lockout
 		if(M.abiotic())
 			to_chat(user, span_notice("Subject cannot have abiotic items on."))
 			return
+		*/
 		M.forceMove(src)
 		occupant = M
 		update_icon()
@@ -77,7 +80,7 @@
 /obj/machinery/bodyscanner/MouseDrop_T(mob/living/carbon/human/O, mob/user as mob)
 	if(!istype(O))
 		return 0 //not a mob
-	if(user.incapacitated())
+	if(user.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return 0 //user shouldn't be doing things
 	if(O.anchored)
 		return 0 //mob is anchored???
@@ -94,9 +97,11 @@
 
 	if(O.buckled)
 		return 0
+	/* Disable abiotic lockout
 	if(O.abiotic())
 		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return 0
+	*/
 	if(O.has_buckled_mobs())
 		to_chat(user, span_warning("\The [O] has other entities attached to it. Remove them first."))
 		return
@@ -114,7 +119,7 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
-	if(user.incapacitated())
+	if(user.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return 0 //maybe they should be able to get out with cuffs, but whatever
 	go_out()
 
@@ -123,7 +128,7 @@
 	set category = "Object"
 	set name = "Eject Body Scanner"
 
-	if(usr.incapacitated())
+	if(usr.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_KNOCKOUT))
 		return
 	go_out()
 	add_fingerprint(usr)
@@ -241,6 +246,8 @@
 
 		occupantData["hasBorer"] = H.has_brain_worms()
 		occupantData["hasWithdrawl"] = has_withdrawl
+
+		occupantData["hasAllergens"] = islist(occupantData["allergens"])
 
 		occupantData["colourblind"] = null
 		for(var/datum/modifier/M in H.modifiers)
@@ -522,6 +529,12 @@
 		dat += "Paralysis Summary %: [occupant_paralysis] ([paralysis_duration] seconds left!)<br>"
 		dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"
 
+		if(ishuman(occupant))
+			var/mob/living/carbon/human/H = occupant
+			var/list/allergen_list = assembly_allergy_list(H.species.allergens, H.species.medallergens)
+			if(length(allergen_list))
+				dat += "Allergens: [english_list(allergen_list)]<BR>"
+
 		dat += "<hr>"
 
 		if(occupant.has_brain_worms())
@@ -692,10 +705,8 @@
 
 //Body Scan Console
 /obj/machinery/body_scanconsole
-	var/obj/machinery/bodyscanner/scanner
-	var/delete
-	var/temphtml
 	name = "Body Scanner Console"
+	desc = "The display console for a linked scanner. The font is overly formal."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scannerconsole"
 	dir = 8
@@ -703,6 +714,9 @@
 	anchored = TRUE
 	unacidable = TRUE
 	circuit = /obj/item/circuitboard/scanner_console
+	var/obj/machinery/bodyscanner/scanner
+	var/delete
+	var/temphtml
 	var/printing = null
 
 /obj/machinery/body_scanconsole/Initialize(mapload)
@@ -714,7 +728,7 @@
 		scanner.console = null
 	return ..()
 
-/obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/body_scanconsole/attackby(obj/item/I, mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
 	else if(istype(I, /obj/item/multitool)) //Did you want to link it?

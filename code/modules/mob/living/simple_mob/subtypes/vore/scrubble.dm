@@ -69,7 +69,7 @@
 	Their geneneral behaviour supports this, as they will heavily avoid interaction with any other species that approach it, usually darting away rapidly and keeping a distance. However, they have been known to act defensively should they be completely cornered."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/vore/scrubble/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple_mob/vore/scrubble/PounceTarget(mob/living/M, successrate = 100)
 	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)

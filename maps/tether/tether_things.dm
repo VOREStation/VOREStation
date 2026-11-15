@@ -71,7 +71,7 @@
 	teleport_z = Z_LEVEL_TETHER_SURFACE_LOW
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/find_planet()
-	planet = planet_virgo3b
+	planet = GLOB.planet_virgo3b
 
 // Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
 /obj/machinery/power/supermatter/touch_map_edge()

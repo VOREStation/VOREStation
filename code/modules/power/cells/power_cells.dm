@@ -11,11 +11,10 @@
 	name = "\improper rechargable DD battery"
 	desc = "An older, cheap power cell. It's probably been in use for quite some time now."
 	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
-	origin_tech = list(TECH_POWER = 0)
 	icon_state = "crap"
 	charge = 500
 	maxcharge = 500
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.02))
 	robot_durability = 20
 
 /obj/item/cell/crap/update_icon() //No visible charge indicator
@@ -29,11 +28,10 @@
  */
 /obj/item/cell/apc
 	name = "heavy-duty power cell"
-	origin_tech = list(TECH_POWER = 1)
 	icon_state = "apc"
 	charge = 5000
 	maxcharge = 5000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.025))
 
 /*
  * Robot
@@ -48,11 +46,10 @@
  */
 /obj/item/cell/high
 	name = "high-capacity power cell"
-	origin_tech = list(TECH_POWER = 2)
 	icon_state = "b_hi"
 	charge = 10000
 	maxcharge = 10000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.03))
 	robot_durability = 55
 
 /obj/item/cell/high/empty
@@ -63,11 +60,10 @@
  */
 /obj/item/cell/super
 	name = "super-capacity power cell"
-	origin_tech = list(TECH_POWER = 5)
 	icon_state = "b_sup"
 	charge = 20000
 	maxcharge = 20000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 70)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.035))
 	robot_durability = 60
 
 /obj/item/cell/super/empty
@@ -89,11 +85,10 @@
  */
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
-	origin_tech = list(TECH_POWER = 6)
 	icon_state = "b_hy"
 	charge = 30000
 	maxcharge = 30000
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.04))
 	robot_durability = 70
 
 /obj/item/cell/hyper/empty
@@ -108,35 +103,32 @@
 	connector_type = "mech"
 	charge = 15000
 	maxcharge = 15000
-	matter = list(MAT_STEEL = 800, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/cell/mech/lead
 	name = "lead acid battery"
 	desc = "An ancient battery design not commonly seen anymore. It looks like it'd fit inside a mech however..."
-	origin_tech = list(TECH_POWER = 0) //Litteraly an old car battery, doesn't need tech
 	icon_state = "lead"
 	charge = 8000
 	maxcharge = 8000
-	matter = list(MAT_STEEL = 300, MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.15), MAT_GLASS = MATERIAL_COST(0.005))
 
 /obj/item/cell/mech/lead/update_icon() //No visible charge indicator
 	return
 
 /obj/item/cell/mech/high
 	name = "high-capacity mecha power cell"
-	origin_tech = list(TECH_POWER = 3)
 	icon_state = "exs_m"
 	charge = 20000
 	maxcharge = 20000
-	matter = list(MAT_STEEL = 800, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4), MAT_GLASS = MATERIAL_COST(0.04))
 
 /obj/item/cell/mech/super
 	name = "super-capacity mecha power cell"
-	origin_tech = list(TECH_POWER = 6)
 	icon_state = "exs_l"
 	charge = 25000
 	maxcharge = 25000
-	matter = list(MAT_STEEL = 800, MAT_GLASS = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.4), MAT_GLASS = MATERIAL_COST(0.05))
 
 /*
  * Infinite
@@ -144,11 +136,14 @@
 /obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "infinite_b"
-	origin_tech =  null
 	charge = 30000
 	maxcharge = 30000 //determines how badly mobs get shocked
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.04))
 	robot_durability = 200
+
+/obj/item/cell/infinite/Initialize(mapload)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
+	return ..()
 
 /obj/item/cell/infinite/check_charge()
 	return 1
@@ -162,7 +157,6 @@
 /obj/item/cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
-	origin_tech = list(TECH_POWER = 1)
 	icon_state = "potato"
 	charge = 100
 	maxcharge = 300
@@ -175,7 +169,6 @@
 /obj/item/cell/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with phoron, it crackles with power."
-	origin_tech = list(TECH_POWER = 4, TECH_BIO = 5)
 	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"
 	connector_type = "slime"
@@ -195,7 +188,7 @@
 	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
 	charge = 720
 	maxcharge = 720 //Emergency lights use 0.2 W per tick, meaning ~60 minutes of emergency power from a cell
-	matter = list(MAT_GLASS = 20)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.01))
 	icon_state = "em_light"
 	connector_type = "emergency"
 	w_class = ITEMSIZE_TINY
@@ -227,22 +220,26 @@
 	. = ..()
 	add_overlay("[icon_state]_100")
 
-/obj/item/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/fbp_backup_cell/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!used && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
 			if(H.nutrition <= amount)
 				use(user,H)
+				return ITEM_INTERACT_SUCCESS
 			else
 				to_chat(user,span_warning("The difference in potential is too great. [user == M ? "You have" : "[H] has"] too much charge to use such a small battery."))
+				return ITEM_INTERACT_FAILURE
 		else if(M == user)
 			to_chat(user,span_warning("You lick the cell, and your tongue tingles slightly."))
+			return ITEM_INTERACT_SUCCESS
 		else
 			to_chat(user,span_warning("This cell is meant for use on humanoid synthetics only."))
+			return ITEM_INTERACT_FAILURE
 
 	. = ..()
 
-/obj/item/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
+/obj/item/fbp_backup_cell/proc/use(mob/living/user, mob/living/target)
 	if(used)
 		return
 	used = TRUE
@@ -255,7 +252,6 @@
 /obj/item/cell/void
 	name = "void cell (machinery)"
 	desc = "An alien technology that produces energy seemingly out of nowhere. Its small, cylinderal shape means it might be able to be used with human technology, perhaps?"
-	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cell"
 	charge = 10000
@@ -291,11 +287,10 @@
  */
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
-	origin_tech = list(TECH_POWER = 0)
 	icon_state = "secborg"
 	charge = 2400
 	maxcharge = 2400
-	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35), MAT_GLASS = MATERIAL_COST(0.02))
 
 /obj/item/cell/secborg/empty
 	charge = 0
@@ -305,11 +300,10 @@
  */
 /obj/item/cell/giga
 	name = "giga-capacity power cell"
-	origin_tech = list(TECH_POWER = 8)
 	icon_state = "meb_b_hi"
 	charge = 40000
 	maxcharge = 40000
-	matter = list(MAT_STEEL = 1000, MAT_GLASS = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.05))
 
 /obj/item/cell/giga/empty
 	charge = 0

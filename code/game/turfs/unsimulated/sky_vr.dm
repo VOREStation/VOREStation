@@ -41,7 +41,7 @@
 
 	do_fall(AM)
 
-/turf/unsimulated/floor/sky/hitby(var/atom/movable/source, datum/thrownthing/throwingdatum)
+/turf/unsimulated/floor/sky/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	. = ..()
 
 	if(!does_skyfall)

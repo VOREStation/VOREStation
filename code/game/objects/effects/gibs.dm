@@ -1,4 +1,4 @@
-/proc/gibs(atom/location, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
+/proc/gibs(atom/location, datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
 	new gibber_type(location,MobDNA,fleshcolor,bloodcolor)
 
 /obj/effect/gibspawner
@@ -12,7 +12,7 @@
 	icon = 'icons/effects/map_effects.dmi'
 	icon_state = "gibspawn"
 
-/obj/effect/gibspawner/Initialize(mapload, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+/obj/effect/gibspawner/Initialize(mapload, datum/dna/MobDNA, fleshcolor, bloodcolor)
 	. = ..()
 
 	if(fleshcolor) src.fleshcolor = fleshcolor
@@ -20,7 +20,7 @@
 	Gib(loc,MobDNA)
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/gibspawner/proc/Gib(atom/location, var/datum/dna/MobDNA = null)
+/obj/effect/gibspawner/proc/Gib(atom/location, datum/dna/MobDNA = null)
 	if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 		to_chat(world, span_filter_system(span_warning("Gib list length mismatch!")))
 		log_world("Gib list length mismatch!")

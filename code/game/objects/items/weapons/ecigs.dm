@@ -107,7 +107,7 @@
 		M.update_inv_r_hand(1)
 
 
-/obj/item/clothing/mask/smokable/ecig/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/item/clothing/mask/smokable/ecig/attackby(obj/item/I, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/ecig_cartridge))
 		if (ec_cartridge)//can't add second one
 			to_chat(user, span_notice("A cartridge has already been installed."))
@@ -153,7 +153,7 @@
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/obj/ecig.dmi'
 	icon_state = "ecartridge"
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 10)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.005))
 	volume = 20
 	flags = OPENCONTAINER
 	max_transfer_amount = null

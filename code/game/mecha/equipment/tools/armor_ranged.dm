@@ -2,7 +2,6 @@
 	name = "\improper RW armor booster"
 	desc = "Ranged-weaponry armor booster. Boosts exosuit armor against ranged attacks. Completely blocks taser shots, but requires energy to operate."
 	icon_state = "mecha_abooster_proj"
-	origin_tech = list(TECH_MATERIAL = 4)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
@@ -13,7 +12,7 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/handle_projectile_contact(var/obj/item/projectile/Proj, var/inc_damage)
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/handle_projectile_contact(obj/item/projectile/Proj, inc_damage)
 	if(istype(Proj, /obj/item/projectile/test))
 		return inc_damage// Don't care about test projectiles, just what comes after them
 	if(!action_checks(src))
@@ -31,7 +30,7 @@
 		do_after_cooldown()
 	return max(0, inc_damage)
 
-/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/handle_ranged_contact(var/obj/A, var/inc_damage = 0)
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/handle_ranged_contact(obj/A, inc_damage = 0)
 	if(!action_checks(A))
 		return inc_damage
 	if(prob(chassis.deflect_chance*deflect_coeff))
@@ -70,7 +69,7 @@
 	..()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/proc/dynbulletdamage(var/obj/item/projectile/Proj)
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/proc/dynbulletdamage(obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/test))
 		return // Don't care about test projectiles, just what comes after them
 	if(!action_checks(src))

@@ -4,7 +4,7 @@
 	var/recharge_rate = 2000
 	var/energy
 
-/datum/matter_synth/New(var/store = 0)
+/datum/matter_synth/New(store = 0)
 	if(store)
 		max_energy = store
 	energy = max_energy
@@ -13,16 +13,18 @@
 /datum/matter_synth/proc/get_charge()
 	return energy
 
-/datum/matter_synth/proc/use_charge(var/amount)
+/datum/matter_synth/proc/use_charge(amount)
 	if (energy >= amount)
 		energy -= amount
 		return 1
 	return 0
 
-/datum/matter_synth/proc/add_charge(var/amount)
+/datum/matter_synth/proc/add_charge(amount)
 	energy = min(energy + amount, max_energy)
 
 /datum/matter_synth/proc/emp_act(severity, recursive)
+	if (. & EMP_PROTECT_SELF)
+		return
 	use_charge(max_energy * 0.1 / severity)
 
 /datum/matter_synth/medicine

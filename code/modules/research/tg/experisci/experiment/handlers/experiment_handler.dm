@@ -134,22 +134,33 @@
 		to_chat(user, span_notice("[target] is not related to your currently selected experiment."))
 
 /**
- * Hooks on destructive scans to try and run an experiment (When using a handheld handler)
+ * Hooks on destructive scans to try and run a destructive analyzer experiment.
  */
-/datum/component/experiment_handler/proc/try_run_destructive_experiment(datum/source, atom/scan_target)
+/datum/component/experiment_handler/proc/try_run_destructive_experiment(obj/source, atom/scan_target)
 	SIGNAL_HANDLER
-	var/atom/movable/our_scanner = parent
-	if (selected_experiment == null && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE) )
-		if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
-			playsound(our_scanner, 'sound/machines/buzz-sigh.ogg', 25)
-			to_chat(our_scanner, span_notice("No experiment selected!"))
-		return
+
 	if(action_experiment(source, scan_target))
-		playsound(our_scanner, 'sound/machines/ping.ogg', 25)
-		to_chat(our_scanner, span_notice("The scan succeeds."))
-	else if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		our_scanner.atom_say("The scan did not result in anything.")
+		playsound(source, 'sound/machines/ping.ogg', 25)
+		source.atom_say("Destructive analysis complete.")
+
+/**
+ * Hooks on to RD server to try and run a spectral experiment.
+ */
+/datum/component/experiment_handler/proc/try_run_spectral_experiment(obj/source, atom/scan_target)
+	SIGNAL_HANDLER
+
+	if(action_experiment(source, scan_target))
+		playsound(source, 'sound/machines/ping.ogg', 25)
+		source.atom_say("Spectral analysis complete.")
+
+/**
+ * Hooks on doppler array scans to try and run a explosive experiment.
+ */
+/datum/component/experiment_handler/proc/try_run_ordinance_experiment(obj/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
+	SIGNAL_HANDLER
+
+	if(action_experiment(source, epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken))
+		playsound(source, 'sound/machines/ping.ogg', 25)
 
 /// Hooks on a successful autopsy experiment
 /datum/component/experiment_handler/proc/try_run_autopsy_experiment(obj/source, mob/living/target)

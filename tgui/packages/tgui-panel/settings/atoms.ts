@@ -33,6 +33,8 @@ export const defaultSettings: SettingsState = {
     activeTab: SETTINGS_TABS[0].id,
     visible: false,
   },
+  websocketEnabled: false,
+  websocketServer: '',
   visibleMessageLimit: 2500,
   visibleMessages: 0,
 };
@@ -46,6 +48,7 @@ export const defaultHighlightSetting: HighlightSetting = {
   highlightWholeMessage: true,
   matchWord: false,
   matchCase: false,
+  enabled: true,
 };
 
 export const defaultHighlights: HighlightState = {

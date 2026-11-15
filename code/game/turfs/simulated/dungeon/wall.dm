@@ -48,8 +48,8 @@
 	name = "solid rock"
 	desc = "This rock seems dense, impossible to drill."
 
-/turf/simulated/wall/solidrock/proc/get_cached_border(var/cache_id, var/direction, var/icon_file, var/icon_state, var/offset = 32)
-	if(!mining_overlay_cache["[cache_id]_[direction]"])
+/turf/simulated/wall/solidrock/proc/get_cached_border(cache_id, direction, icon_file, icon_state, offset = 32)
+	if(!GLOB.mining_overlay_cache["[cache_id]_[direction]"])
 		var/image/new_cached_image = image(icon_state, dir = direction, layer = ABOVE_TURF_LAYER)
 		switch(direction)
 			if(NORTH)
@@ -60,12 +60,12 @@
 				new_cached_image.pixel_x = offset
 			if(WEST)
 				new_cached_image.pixel_x = -offset
-		mining_overlay_cache["[cache_id]_[direction]"] = new_cached_image
+		GLOB.mining_overlay_cache["[cache_id]_[direction]"] = new_cached_image
 		return new_cached_image
 
-	return mining_overlay_cache["[cache_id]_[direction]"]
+	return GLOB.mining_overlay_cache["[cache_id]_[direction]"]
 
-/turf/simulated/wall/solidrock/update_icon(var/update_neighbors)
+/turf/simulated/wall/solidrock/update_icon(update_neighbors)
 	cut_overlays()
 	if(density)
 		var/image/I
@@ -102,7 +102,7 @@
 /turf/simulated/wall/solidrock/Initialize(mapload)
 	. = ..(mapload, "mossyrock")
 
-/turf/simulated/wall/solidrock/mossyrockpoi/update_icon(var/update_neighbors)
+/turf/simulated/wall/solidrock/mossyrockpoi/update_icon(update_neighbors)
 	if(density)
 		var/image/I
 		for(var/i = 1 to 4)

@@ -79,16 +79,7 @@ ADMIN_VERB(log_viewer_new, R_ADMIN|R_MOD|R_DEBUG, "View Round Logs", "View the r
 		category = log_categories[category]
 		var/list/category_data = list()
 
-		var/list/entries = list()
-		for(var/datum/log_entry/entry as anything in category.entries)
-			entries += list(list(
-				"id" = entry.id,
-				"message" = entry.message,
-				"timestamp" = entry.timestamp,
-				"data" = entry.data,
-				"semver" = entry.semver_store,
-			))
-		category_data["entries"] = entries
+		category_data["entries"] = category.build_ui_log_entries()
 		category_data["entry_count"] = category.entry_count
 
 		category_map[category.category] = category_data

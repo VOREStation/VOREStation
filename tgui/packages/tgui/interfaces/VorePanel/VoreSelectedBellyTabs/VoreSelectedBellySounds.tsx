@@ -123,6 +123,7 @@ export const VoreSelectedBellySounds = (props: {
             <Stack>
               <Stack.Item>
                 <VorePanelEditDropdown
+                  searchInput
                   action="set_attribute"
                   subAction="b_sound"
                   editMode={editMode}
@@ -145,6 +146,7 @@ export const VoreSelectedBellySounds = (props: {
             <Stack>
               <Stack.Item>
                 <VorePanelEditDropdown
+                  searchInput
                   action="set_attribute"
                   subAction="b_release"
                   editMode={editMode}

@@ -1,14 +1,16 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Icon, Stack } from 'tgui-core/components';
+import { Button, Icon, Stack, Tooltip } from 'tgui-core/components';
 
 export const SelectorElement = (props: {
   option: string;
   action: string;
   selected?: string | null;
-  belly?: boolean;
+  icon?: string;
+  iconTooltip?: string;
+  iconColor?: string;
 }) => {
   const { act } = useBackend();
-  const { option, action, selected, belly } = props;
+  const { option, action, selected, icon, iconTooltip, iconColor } = props;
 
   return (
     <Stack.Item>
@@ -18,14 +20,13 @@ export const SelectorElement = (props: {
         onClick={() => act(action, { value: option })}
       >
         <Stack>
-          <Stack.Item>{option}</Stack.Item>
-          {!!belly && (
-            <>
-              <Stack.Item grow />
-              <Stack.Item>
-                <Icon name="utensils" />
-              </Stack.Item>
-            </>
+          <Stack.Item grow>{option}</Stack.Item>
+          {!!icon && (
+            <Stack.Item>
+              <Tooltip content={iconTooltip}>
+                <Icon name={icon} color={iconColor} />
+              </Tooltip>
+            </Stack.Item>
           )}
         </Stack>
       </Button>

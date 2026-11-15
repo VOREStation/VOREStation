@@ -8,12 +8,12 @@
 #define DEFAULT_HEATING_POWER 40000
 
 /obj/machinery/space_heater
-	anchored = FALSE
-	density = TRUE
-	icon = 'icons/obj/atmos.dmi'
-	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
+	icon = 'icons/obj/atmos.dmi'
+	icon_state = "sheater0"
+	anchored = FALSE
+	density = TRUE
 
 	light_system = MOVABLE_LIGHT
 	light_range = 3
@@ -41,7 +41,7 @@
 	update_icon()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/space_heater/RefreshParts(var/limited = 0)
+/obj/machinery/space_heater/RefreshParts(limited = 0)
 	min_temperature = DEFAULT_MIN_TEMP
 	max_temperature = DEFAULT_MAX_TEMP
 	heating_power = DEFAULT_HEATING_POWER
@@ -77,11 +77,11 @@
 /obj/machinery/space_heater/examine(mob/user)
 	. = ..()
 
-	. += "The heater is [state ? "on" : "off"] and the hatch is [panel_open ? "open" : "closed"]."
+	. += span_notice("The heater is [state ? "on" : "off"] and the hatch is [panel_open ? "open" : "closed"].")
 	if(panel_open)
-		. += "The power cell is [cell ? "installed" : "missing"]."
+		. += span_notice("The power cell is [cell ? "installed" : "missing"].")
 	else
-		. += "The charge meter reads [cell ? round(cell.percent(),1) : 0]%"
+		. += span_notice("The charge meter reads [cell ? round(cell.percent(),1) : 0]%")
 	return
 
 /obj/machinery/space_heater/powered()
@@ -101,7 +101,7 @@
 				if(istype(C))
 					user.drop_item()
 					cell = C
-					C.loc = src
+					C.forceMove(src)
 					C.add_fingerprint(user)
 
 					user.visible_message(span_notice("[user] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))

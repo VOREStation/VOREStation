@@ -49,15 +49,15 @@
 	var/new_species = null
 	new_species = tgui_input_list(src, "Please select a species to emulate.", "Shapeshifter Body", species.get_valid_shapeshifter_forms(src))
 
-	if(!new_species || !GLOB.all_species[new_species] || wrapped_species_by_ref["\ref[src]"] == new_species)
+	if(!new_species || !GLOB.all_species[new_species] || GLOB.wrapped_species_by_ref["\ref[src]"] == new_species)
 		return
 	lleill_change_shape(new_species)
 
-/mob/living/carbon/human/proc/lleill_change_shape(var/new_species = null)
+/mob/living/carbon/human/proc/lleill_change_shape(new_species = null)
 	if(!new_species)
 		return
 
-	wrapped_species_by_ref["\ref[src]"] = new_species
+	GLOB.wrapped_species_by_ref["\ref[src]"] = new_species
 	dna.base_species = new_species
 	species.base_species = new_species
 	visible_message(span_infoplain(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
@@ -78,7 +78,7 @@
 		return
 	lleill_set_colour(new_skin)
 
-/mob/living/carbon/human/proc/lleill_set_colour(var/new_skin)
+/mob/living/carbon/human/proc/lleill_set_colour(new_skin)
 
 	r_skin =   hex2num(copytext(new_skin, 2, 4))
 	g_skin =   hex2num(copytext(new_skin, 4, 6))
@@ -486,7 +486,7 @@
 	species.update_lleill_hud(src)
 
 
-/mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
+/mob/living/carbon/human/proc/spawn_beast_mob(chosen_beast)
 	var/tf_type = chosen_beast
 	if(!ispath(tf_type))
 		return

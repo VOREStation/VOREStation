@@ -1,37 +1,27 @@
-/client/proc/change_human_appearance_admin()
-	set name = "Change Mob Appearance - Admin"
-	set desc = "Allows you to change the mob appearance"
-	set category = "Admin.Events"
+ADMIN_VERB(change_human_appearance_admin, R_FUN, "Change Mob Appearance - Admin", "Allows you to change the mob appearance.", ADMIN_CATEGORY_EVENTS)
+	var/mob/living/carbon/human/target_human = tgui_input_list(user, "Select mob.", "Change Mob Appearance - Admin", GLOB.human_mob_list)
+	if(!target_human)
+		return
 
-	if(!check_rights(R_FUN)) return
-
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Admin", GLOB.human_mob_list)
-	if(!H) return
-
-	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, check_species_whitelist = 0, state = ADMIN_STATE(R_FUN))
+	log_and_message_admins("is altering the appearance of [target_human].")
+	target_human.change_appearance(APPEARANCE_ALL, usr, check_species_whitelist = 0, state = ADMIN_STATE(R_FUN))
 	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/change_human_appearance_self()
-	set name = "Change Mob Appearance - Self"
-	set desc = "Allows the mob to change its appearance"
-	set category = "Admin.Events"
-
-	if(!check_rights(R_FUN)) return
-
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Self", GLOB.human_mob_list)
-	if(!H) return
-
-	if(!H.client)
-		to_chat(usr, span_filter_warning(" Only mobs with clients can alter their own appearance."))
+ADMIN_VERB(change_human_appearance_self, R_FUN, "Change Mob Appearance - Self", "Allows the mob to change its appearance.", ADMIN_CATEGORY_EVENTS)
+	var/mob/living/carbon/human/human_target = tgui_input_list(user, "Select mob.", "Change Mob Appearance - Self", GLOB.human_mob_list)
+	if(!human_target)
 		return
-	switch(tgui_alert(usr, "Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
+
+	if(!human_target.client)
+		to_chat(human_target, span_filter_warning("Only mobs with clients can alter their own appearance."))
+		return
+	switch(tgui_alert(user, "Do you wish for [human_target] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
-			log_and_message_admins("has allowed [H] to change [H.p_their()] appearance, without whitelisting of races.")
-			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 0)
+			log_and_message_admins("has allowed [human_target] to change [human_target.p_their()] appearance, without whitelisting of races.")
+			human_target.change_appearance(APPEARANCE_ALL, human_target, check_species_whitelist = 0)
 		if("No")
-			log_and_message_admins("has allowed [H] to change [H.p_their()] appearance, with whitelisting of races.")
-			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
+			log_and_message_admins("has allowed [human_target] to change [human_target.p_their()] appearance, with whitelisting of races.")
+			human_target.change_appearance(APPEARANCE_ALL, human_target, check_species_whitelist = 1)
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(editappear, R_FUN, "Edit Appearance", "Edit a human's apperance.", ADMIN_CATEGORY_FUN_EVENT_KIT)

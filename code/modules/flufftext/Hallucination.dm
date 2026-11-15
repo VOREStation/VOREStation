@@ -31,6 +31,8 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	if(halitem.len)
 		remove_hallucination_item()
 	our_human = null
+	halbody = null
+	halimage = null
 	. = ..()
 
 /datum/component/hallucinations/proc/make_timer()

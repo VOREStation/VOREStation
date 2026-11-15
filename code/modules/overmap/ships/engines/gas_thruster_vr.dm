@@ -19,7 +19,7 @@
 	var/node_connect = dir
 	var/turf/one_step = get_step(src,node_connect)
 
-	for(var/obj/machinery/atmospherics/target in get_step(one_step,node_connect))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(one_step,node_connect)))
 		if(can_be_node(target, 1))
 			node = target
 			break
@@ -62,7 +62,7 @@
 	var/turf/one_step = get_step(src,node_connect)
 	var/turf/two_step = get_step(one_step,node_connect)
 
-	for(var/obj/machinery/atmospherics/target in get_step(two_step,node_connect))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(two_step,node_connect)))
 		if(can_be_node(target, 1))
 			node = target
 			break

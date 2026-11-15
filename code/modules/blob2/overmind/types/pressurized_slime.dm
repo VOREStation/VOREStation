@@ -24,26 +24,26 @@
 	victim.water_act(5)
 	var/turf/simulated/T = get_turf(victim)
 	if(T)
-		T.wet_floor()
+		T.MakeSlippery(TURF_WET_WATER, min_wet_time = 40 SECONDS, wet_time_to_add = 20 SECONDS) //Did you know TG has this blob emit lube? I quadrupled the values here since it's just water. -Reo
 
-/datum/blob_type/pressurized_slime/on_received_damage(var/obj/structure/blob/B, damage, damage_type)
+/datum/blob_type/pressurized_slime/on_received_damage(obj/structure/blob/B, damage, damage_type)
 	wet_surroundings(B, damage)
 	return ..()
 
-/datum/blob_type/pressurized_slime/on_pulse(var/obj/structure/blob/B)
+/datum/blob_type/pressurized_slime/on_pulse(obj/structure/blob/B)
 	var/turf/simulated/T = get_turf(B)
 	if(!istype(T))
 		return
-	T.wet_floor()
+	T.MakeSlippery(TURF_WET_WATER, min_wet_time = 40 SECONDS, wet_time_to_add = 20 SECONDS)
 
 /datum/blob_type/pressurized_slime/on_death(obj/structure/blob/B)
 	B.visible_message(span_danger("The blob ruptures, spraying the area with liquid!"))
 	wet_surroundings(B, 50)
 
-/datum/blob_type/pressurized_slime/proc/wet_surroundings(var/obj/structure/blob/B, var/probability = 50)
+/datum/blob_type/pressurized_slime/proc/wet_surroundings(obj/structure/blob/B, probability = 50)
 	for(var/turf/simulated/T in range(1, get_turf(B)))
 		if(prob(probability))
-			T.wet_floor()
+			T.MakeSlippery(TURF_WET_WATER, min_wet_time = 40 SECONDS, wet_time_to_add = 20 SECONDS)
 		for(var/atom/movable/AM in T)
 			AM.water_act(2)
 

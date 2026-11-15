@@ -23,10 +23,10 @@
 	var/source_mineral = REAGENT_ID_CHLORINE
 	var/list/find_presence = list()
 
-/datum/geosample/New(var/turf/simulated/mineral/container)
+/datum/geosample/New(turf/simulated/mineral/container)
 	UpdateTurf(container)
 
-/datum/geosample/proc/UpdateTurf(var/turf/simulated/mineral/container)
+/datum/geosample/proc/UpdateTurf(turf/simulated/mineral/container)
 	if(!istype(container))
 		return
 
@@ -63,7 +63,7 @@
 	for(var/carrier in find_presence)
 		find_presence[carrier] = find_presence[carrier] / total_presence
 
-/datum/geosample/proc/UpdateNearbyArtifactInfo(var/turf/simulated/mineral/container)
+/datum/geosample/proc/UpdateNearbyArtifactInfo(turf/simulated/mineral/container)
 	if(!container || !istype(container))
 		return
 
@@ -95,12 +95,12 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/core_sampler/examine(var/mob/user)
+/obj/item/core_sampler/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		. += span_notice("Used to extract geological core samples - this one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag[num_stored_bags != 1 ? "s" : ""] remaining.")
 
-/obj/item/core_sampler/attackby(var/obj/item/I, var/mob/living/user)
+/obj/item/core_sampler/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/evidencebag))
 		if(I.contents.len)
 			to_chat(user, span_warning("\The [I] is full."))
@@ -114,15 +114,15 @@
 	else
 		return ..()
 
-/obj/item/core_sampler/proc/sample_item(var/item_to_sample, var/mob/user)
+/obj/item/core_sampler/proc/sample_item(item_to_sample, mob/user)
 	var/datum/geosample/geo_data
 
 	if(ismineralturf(item_to_sample))
 		var/turf/simulated/mineral/T = item_to_sample
 		T.geologic_data.UpdateNearbyArtifactInfo(T)
 		geo_data = T.geologic_data
-	else if(istype(item_to_sample, /obj/item/ore))
-		var/obj/item/ore/O = item_to_sample
+	else if(istype(item_to_sample, /obj/item/ore/archeology_debris))
+		var/obj/item/ore/archeology_debris/O = item_to_sample
 		geo_data = O.geologic_data
 
 	if(geo_data)

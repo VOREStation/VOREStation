@@ -77,7 +77,9 @@ export const SpriteSection = (props: {
                     option={filter.sprite}
                     action="pick_icon"
                     selected={selected}
-                    belly={filter.belly}
+                    icon={filter.belly ? 'utensils' : undefined}
+                    iconColor="lightgray"
+                    iconTooltip={'Module has belly sprite.'}
                   />
                 ))}
             </Stack>

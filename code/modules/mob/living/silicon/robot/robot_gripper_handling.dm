@@ -13,7 +13,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/gripper/proc/update_ref(var/datum/weakref/new_ref)
+/obj/item/gripper/proc/update_ref(datum/weakref/new_ref)
 	var/had_item = get_wrapped_item()
 	WR = new_ref
 	var/holding_item = get_wrapped_item()
@@ -107,7 +107,7 @@
 	if(wrapped)
 		return wrapped.attack_self(user)
 
-/obj/item/gripper/attackby(var/obj/item/O, var/mob/user)
+/obj/item/gripper/attackby(obj/item/O, mob/user)
 	if(is_in_use(user))
 		return FALSE
 
@@ -143,8 +143,6 @@
 	return ..()
 
 /obj/item/gripper/afterattack(atom/target, mob/living/user, proximity, params)
-	if(!proximity)
-		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
 
 	if(is_in_use(user))
 		return
@@ -154,20 +152,27 @@
 		clear_and_select_item()
 		return
 
-	if(use_item(target, user, wrapped)) //Already have an item.
+	if(!proximity && !allow_ranged_usage) //Prevents using guns or using items at range
 		return
+
+	if(use_item(target, user, wrapped, proximity, params)) //Already have an item.
+		return
+
 	update_ref(WEAKREF(wrapped))
 
-	if(pick_up_item(target, user))
+	if(!proximity && !allow_ranged_pickup)
 		return
 
 	if(handle_afterattack_special(target, user))
 		return
 
+	if(pick_up_item(target, user))
+		return
+
 	if(item_left_gripper(wrapped))
 		clear_and_select_item()
 
-/obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped)
+/obj/item/gripper/proc/use_item(atom/target, mob/user, obj/item/wrapped, proximity, params)
 	if(!wrapped)
 		return FALSE
 
@@ -186,7 +191,7 @@
 
 	var/resolved = target.attackby(wrapped, user)
 	if(!resolved && wrapped && target)
-		wrapped.afterattack(target, user, TRUE)
+		wrapped.afterattack(target, user, proximity, params)
 
 	if(item_left_gripper(wrapped))
 		clear_and_select_pocket()
@@ -209,9 +214,6 @@
 
 	var/obj/item/I = target
 
-	if(!isturf(I.loc))
-		return FALSE
-
 	if(I.anchored)
 		to_chat(user, span_notice("You are unable to lift \the [I]."))
 		return FALSE
@@ -225,8 +227,15 @@
 		to_chat(user, span_danger("Your gripper cannot hold \the [I]."))
 		return FALSE
 
+	if(istype(target.loc, /obj/item/storage)) //Updates the HUD and all that.
+		var/obj/item/storage/S = I.loc
+		if(!S.remove_from_storage(I, selected_pocket))
+			to_chat(user, "Something prevents you from taking \the [I] out of \the [S].")
+			return
+	else
+		I.loc = selected_pocket
+
 	to_chat(user, "You collect \the [I].")
-	I.loc = selected_pocket
 	current_pocket = selected_pocket
 	update_ref(WEAKREF(I))
 	return TRUE
@@ -277,6 +286,9 @@
 			"You remove the power cell."
 		)
 
+		return TRUE
+
+	if(istype(target, /obj/item/stack) && QDELETED(target)) //We handle the special stuff above already.
 		return TRUE
 
 	return FALSE
@@ -352,7 +364,7 @@
 	generate_icons()
 
 //FORCES the item onto the ground and resets.
-/obj/item/gripper/proc/drop_item_nm(atom/taget)
+/obj/item/gripper/proc/drop_item_nm(atom/target)
 	var/obj/item/wrapped = get_wrapped_item()
 	if(!wrapped)
 		return
@@ -362,33 +374,38 @@
 		generate_icons()
 		return
 
-	wrapped.forceMove(taget ? taget : get_turf(src))
+	wrapped.forceMove(target ? target : get_turf(src))
 	clear_and_select_pocket()
 	generate_icons()
 
-/obj/item/gripper/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/gripper/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(is_in_use(user))
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	var/obj/item/wrapped = get_wrapped_item()
 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 	if(!wrapped)
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
 	//If our wrapper was deleted OR it's no longer in our internal gripper storage
 	if(item_left_gripper(wrapped))
 		update_ref(null)
-		return FALSE
+		return ITEM_INTERACT_FAILURE
 
-	wrapped.attack(M, user)
-	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
-	M.attackby(wrapped, user)
+	//First, we call the item's /attack on the MOB TARGET we are clicking on.
+	if(!(wrapped.attack(M, user, target_zone, attack_modifier) == (ITEM_INTERACT_SUCCESS || ITEM_INTERACT_BLOCKING)))
+		//If we don't get a return value of success/failure, that means we didn't hit them with it/do a special interaction with it.
+		if(item_left_gripper(wrapped))
+			update_ref(null)
+			return ITEM_INTERACT_SUCCESS
+		//Attackby is procced when an object (non living entity) is clicked on by the user.
+		M.attackby(wrapped, user, target_zone, attack_modifier)
 
 	//If our wrapper was deleted OR it's no longer in our internal gripper storage
 	if(item_left_gripper(wrapped))
 		update_ref(null)
 
-	return TRUE
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gripper/update_icon()
 	cut_overlays()
@@ -412,13 +429,13 @@
 	return wrapped
 
 /// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
-/obj/item/gripper/proc/consolidate_stacks(var/obj/item/stack/stack_to_consolidate)
+/obj/item/gripper/proc/consolidate_stacks(obj/item/stack/stack_to_consolidate, mob/user)
 	if(!stack_to_consolidate || !istype(stack_to_consolidate, /obj/item/stack))
-		return
+		return FALSE
 
 	var/obj/item/current_item = get_wrapped_item()
 	if(current_item?.type == stack_to_consolidate.type)
-		return
+		return FALSE
 
 	for(var/obj/item/storage/internal/gripper/pocket in pockets)
 		if(!LAZYLEN(pocket.contents))
@@ -426,7 +443,8 @@
 		for(var/obj/item/stack/stack in pocket.contents)
 			if(istype(stack_to_consolidate, stack))
 				stack_to_consolidate.transfer_to(stack)
-				return
+				to_chat(user, "You collect \the [stack_to_consolidate] and consolidate it.")
+				return TRUE
 
 /obj/item/gripper/proc/grab_cell(obj/item/cell, mob/user)
 	var/obj/item/storage/internal/gripper/P = find_empty_pocket()

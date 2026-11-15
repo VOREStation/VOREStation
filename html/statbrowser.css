@@ -294,12 +294,12 @@ body.dark {
   text-decoration: underline;
 }
 
-.spoiler {
+.text-spoiler {
   background-color: gray;
   color: transparent;
 }
 
-.spoiler:hover {
+.text-spoiler:hover {
   background-color: inherit;
   color: inherit;
 }

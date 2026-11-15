@@ -20,7 +20,6 @@
 
 	charge_cost = 600
 
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 
 //Projectile
 /obj/item/projectile/sickshot
@@ -34,7 +33,7 @@
 	vacuum_traversal = 0
 	range = 5 //Scary name, but just deletes the projectile after this range
 
-/obj/item/projectile/sickshot/on_hit(var/atom/movable/target, var/blocked = 0)
+/obj/item/projectile/sickshot/on_hit(atom/movable/target, blocked = 0)
 	if(isliving(target))
 		var/mob/living/L = target
 		if(prob(20))

@@ -30,7 +30,7 @@
 			goo.basecolor = "#412464"
 			goo.update_icon()
 
-/obj/item/organ/internal/borer/removed(var/mob/living/user)
+/obj/item/organ/internal/borer/removed(mob/living/user)
 
 	..()
 
@@ -52,4 +52,4 @@
 
 /obj/item/organ/internal/stack/vox/stack
 	name = "vox cortical stack"
-	icon_state = "cortical_stack"
+	icon_state = "cortical-stack"

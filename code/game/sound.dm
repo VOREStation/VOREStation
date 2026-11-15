@@ -14,11 +14,31 @@
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
 	var/list/listeners = GLOB.player_list.Copy()
-	for(var/mob/M as anything in listeners)
-		if(!M || !M.client)
-			continue
-		var/turf/T = get_turf(M)
-		if(!T)
+
+	// Get AI holograms of active AIs too
+	var/list/holo_listeners = list()
+	for(var/mob/living/silicon/ai/A in listeners)
+		if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo/))
+			holo_listeners += A.holo.masters[A]
+	listeners += holo_listeners
+
+	for(var/atom/U as anything in listeners)
+		var/turf/T = get_turf(U)
+		var/mob/hearer = null
+		// Normal mobs
+		if(istype(U,/mob))
+			var/mob/M = U
+			if(!M || !M.client)
+				continue
+			hearer = M
+		// Holograms need to hear too
+		if(istype(U,/obj/effect/overlay/aiholo))
+			var/obj/effect/overlay/aiholo/H = U
+			if(!H || !H.master || !H.master.client)
+				continue
+			hearer = H.master
+
+		if(!T || !hearer)
 			continue
 		var/area/A = T.loc
 		if((A.flag_check(AREA_SOUNDPROOF) || area_source.flag_check(AREA_SOUNDPROOF)) && (A != area_source))
@@ -32,8 +52,8 @@
 		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2))
 			continue
 
+		hearer.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel, T)
 		SSmotiontracker.ping(source,vol) // Nearly everything pings this, the quieter the less likely
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
 /mob/proc/check_sound_preference(list/preference)
 	if(!islist(preference))
@@ -72,9 +92,16 @@
 		else
 			S.frequency = get_rand_frequency()
 
-	if(isturf(turf_source))
-		var/turf/T = get_turf(src)
+	// Check if an AI is listening through hologram...
+	var/turf/T = get_turf(src)
+	var/listener_position = T
+	if(isAI(src))
+		var/mob/living/silicon/ai/A = src
+		if(A.holo && istype(A.holo.masters[A],/obj/effect/overlay/aiholo))
+			T = get_turf(A.holo.masters[A])
+			listener_position = A.holo.masters[A]
 
+	if(isturf(turf_source))
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
@@ -105,7 +132,7 @@
 
 		//Apply a sound environment.
 		if(!is_global)
-			S.environment = get_sound_env(pressure_factor)
+			S.environment = get_sound_env(listener_position,pressure_factor)
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
@@ -306,6 +333,10 @@
 				soundin = pick(
 					'sound/effects/mech/powerloader_step.ogg',
 					'sound/effects/mech/powerloader_step2.ogg')
+			if ("sizzle")
+				soundin = pick(
+					'sound/effects/wounds/sizzle1.ogg',
+					'sound/effects/wounds/sizzle2.ogg')
 	return soundin
 
 
@@ -405,7 +436,7 @@ GLOBAL_LIST_INIT(species_sound_map, list(
  * If your species has a gendered sound, DON'T PANIC. Simply set the gender_specific_species_sounds var on the species to true, and when you call this, do it like so:
  * get_species_sound(H.species.species_sounds_male)["emote"] // If we're male, and want an emote sound gendered correctly.
 */
-/proc/get_species_sound(var/sounds)
+/proc/get_species_sound(sounds)
 	if(!islist(GLOB.species_sound_map[sounds])) // We check here if this list actually has anything in it, or if we're about to return a null index
 		return null // Shitty failsafe but better than rewriting an entire litany of procs rn when I'm low on time - Rykka // list('sound/voice/silence.ogg')
 	return GLOB.species_sound_map[sounds] // Otherwise, successfully return our sound
@@ -414,11 +445,12 @@ GLOBAL_LIST_INIT(species_sound_map, list(
  * The following helper proc will select a species' default sounds - useful for if we're set to "Unset"
  * This is ONLY called by Unset, meaning we haven't chosen a species sound.
 */
-/proc/select_default_species_sound(var/datum/preferences/pref) // Called in character setup. This is similar to check_gendered_sounds, except here we pull from the prefs.
+/proc/select_default_species_sound(datum/preferences/pref) // Called in character setup. This is similar to check_gendered_sounds, except here we pull from the prefs.
 	// First, we determine if we're custom-choosing a body or if we're a base game species.
-	var/datum/species/valid = GLOB.all_species[pref.species]
+	var/pref_species = pref.read_preference(/datum/preference/choiced/species)
+	var/datum/species/valid = GLOB.all_species[pref_species]
 	if(valid.selects_bodytype == (SELECTS_BODYTYPE_CUSTOM || SELECTS_BODYTYPE_SHAPESHIFTER)) // Custom species or xenochimera handling here
-		valid = coalesce(GLOB.all_species[pref.custom_base], GLOB.all_species[pref.species])
+		valid = coalesce(GLOB.all_species[pref.custom_base], GLOB.all_species[pref_species])
 	// Now we start getting our sounds.
 	var/id_gender = pref.read_preference(/datum/preference/choiced/gender/identifying)
 	if(valid.gender_specific_species_sounds) // Do we have gender-specific sounds?
@@ -431,7 +463,7 @@ GLOBAL_LIST_INIT(species_sound_map, list(
 	else
 		return valid.species_sounds
 
-/proc/get_gendered_sound(var/mob/living/user) // Called anywhere we need gender-specific species sounds. Gets the gender-specific sound if one exists, but otherwise, will return the species-generic sound list.
+/proc/get_gendered_sound(mob/living/user) // Called anywhere we need gender-specific species sounds. Gets the gender-specific sound if one exists, but otherwise, will return the species-generic sound list.
 	var/mob/living/carbon/human/H = user
 	if(ishuman(H))
 		if(H.species.gender_specific_species_sounds) // Do we have gender-specific sounds?

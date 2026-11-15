@@ -634,7 +634,7 @@
 /area/submap/Chasm)
 "Tl" = (
 /obj/effect/floor_decal/rust,
-/obj/item/storage/bag/ore,
+/obj/item/ore_bag,
 /turf/simulated/floor/plating,
 /area/submap/Chasm)
 "Tp" = (

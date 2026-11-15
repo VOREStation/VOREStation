@@ -13,20 +13,20 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
-	matter = list(MAT_STEEL = 500, MAT_GLASS = 200)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.1))
 	var/mode = 1;
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	do_scan(M, user)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/robotanalyzer/click_alt(mob/user)
 	mode = !mode
 	user.show_message(span_blue("[mode ? "Toggled to cyborg analyzing mode." : "Toggled to cyborg upgrade scan mode."]"), 1)
 
-/obj/item/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/proc/do_scan(mob/living/M, mob/living/user)
 	if(CLUMSY_FAIL_CHANCE(user))
 		to_chat(user, span_red("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
@@ -181,7 +181,6 @@
 				to_chat(user, "No prosthetics located.")
 
 		if("mecha")
-
 			var/obj/mecha/Mecha = M
 
 			var/integrity = Mecha.health/initial(Mecha.health)*100
@@ -193,7 +192,7 @@
 			var/output = span_notice("Analyzing Results for \the [Mecha]:") + {"<br>
 				<b>Chassis Integrity: </b> [integrity]%<br>
 				<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[capitalize(initial(Mecha.cell.name))] at [Mecha.cell.percent()]%"]<br>
-				<b>Air source: </b>[Mecha.use_internal_tank?"Internal Airtank":"Environment"]<br>
+				<b>Current Air source: </b>[Mecha.use_internal_tank?"Internal Airtank":"Environment"]<br>
 				<b>Airtank pressure: </b>[tank_pressure]kPa<br>
 				<b>Airtank temperature: </b>[tank_temperature]K|[tank_temperature - T0C]&deg;C<br>
 				<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? span_red("[cabin_pressure]"): cabin_pressure]kPa<br>
@@ -211,6 +210,17 @@
 			to_chat(user, "<hr>")
 			to_chat(user, span_notice("General Statistics:"))
 			to_chat(user, span_notice("Movement Weight: [Mecha.get_step_delay()]") + "<br>")
+			to_chat(user, "<hr>")
+			to_chat(user, span_notice("Equipement mounts:"))
+			var/output2 = span_notice( "Analyzing Results for \the [Mecha]:") + {"<b>
+				Available hull slots:</b> [Mecha.max_hull_equip-Mecha.hull_equipment.len]
+				<b>Available weapon slots:</b> [Mecha.max_weapon_equip-Mecha.weapon_equipment.len]
+				<b>Available micro weapon slots:</b> [Mecha.max_micro_weapon_equip-Mecha.micro_weapon_equipment.len]
+				<b>Available utility slots:</b> [Mecha.max_utility_equip-Mecha.utility_equipment.len]
+				<b>Available micro utility slots:</b> [Mecha.max_micro_utility_equip-Mecha.micro_utility_equipment.len]
+				<b>Available universal slots:</b> [Mecha.max_universal_equip-Mecha.universal_equipment.len]
+				<b>Available special slots:</b> [Mecha.max_special_equip-Mecha.special_equipment.len]"}
+			to_chat(user, output2)
 
 	src.add_fingerprint(user)
 	return

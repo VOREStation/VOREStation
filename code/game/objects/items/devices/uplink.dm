@@ -31,7 +31,7 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(next_offer)), offer_time) //It seems like only the /hidden type actually makes use of this...
 
-/obj/item/uplink/get_item_cost(var/item_type, var/item_cost)
+/obj/item/uplink/get_item_cost(item_type, item_cost)
 	return (discount_item && (item_type == discount_item)) ? max(1, round(item_cost*discount_amount)) : item_cost
 
 /obj/item/uplink/proc/next_offer()
@@ -63,7 +63,7 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/item/uplink/hidden/next_offer()
-	discount_item = default_uplink_selection.get_random_item(INFINITY)
+	discount_item = GLOB.default_uplink_selection.get_random_item(INFINITY)
 	discount_amount = pick(90;0.9, 80;0.8, 70;0.7, 60;0.6, 50;0.5, 40;0.4, 30;0.3, 20;0.2, 10;0.1)
 	next_offer_time = world.time + offer_time
 	SStgui.update_uis(src)
@@ -82,7 +82,7 @@
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
-/obj/item/uplink/hidden/proc/check_trigger(mob/user as mob, var/value, var/target)
+/obj/item/uplink/hidden/proc/check_trigger(mob/user as mob, value, target)
 	if(value == target)
 		trigger(user)
 		return TRUE
@@ -168,7 +168,7 @@
 	var/list/data = ..()
 
 	data["categories"] = list()
-	for(var/datum/uplink_category/category in uplink.categories)
+	for(var/datum/uplink_category/category in GLOB.uplink.categories)
 		var/list/cat = list(
 				"name" = category.name,
 				"items" = (category == selected_cat ? list() : null)
@@ -196,7 +196,7 @@
 
 	switch(action)
 		if("buy")
-			var/datum/uplink_item/UI = (locate(params["ref"]) in uplink.items)
+			var/datum/uplink_item/UI = (locate(params["ref"]) in GLOB.uplink.items)
 			UI.buy(src, ui.user)
 			return TRUE
 		if("lock")

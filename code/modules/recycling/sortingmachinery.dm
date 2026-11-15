@@ -15,7 +15,7 @@
 /obj/machinery/disposal/deliveryChute/click_alt(mob/user) //No flushing the chute
 	return
 
-/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+/obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
 	if(QDELETED(AM) || istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
 	switch(dir)
 		if(NORTH)
@@ -45,7 +45,7 @@
 		source.forceMove(src)
 		flush()
 
-/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, attack_modifier, click_parameters, drag_dropped = FALSE)
 	if(!I || !user)
 		return
 

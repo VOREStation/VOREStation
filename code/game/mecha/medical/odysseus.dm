@@ -24,7 +24,7 @@
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 
-/obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/medical/odysseus/moved_inside(mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.glasses)
 			occupant_message(span_red("[H.glasses] prevent you from using [src] [hud]!"))

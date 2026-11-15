@@ -27,6 +27,11 @@
 		new /obj/item/tank/phoron(src)
 	update_icon()
 
+/obj/structure/dispenser/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += span_notice("You can see [oxygentanks] oxygen tanks and [phorontanks] phoron tanks.")
+
 /obj/structure/dispenser/update_icon()
 	cut_overlays()
 	switch(oxygentanks)

@@ -137,7 +137,7 @@
 /mob/living/simple_mob/shadekin/load_default_bellies()
 	var/obj/belly/B = new /obj/belly(src)
 	vore_selected = B
-	B.immutable = 1
+	B.immutable = TRUE
 	B.affects_vore_sprites = TRUE
 	B.name = vore_stomach_name ? vore_stomach_name : "stomach"
 	B.desc = vore_stomach_flavor ? vore_stomach_flavor : "Your surroundings are warm, soft, and slimy. Makes sense, considering you're inside \the [name]."
@@ -306,7 +306,7 @@
 
 /* //VOREStation AI Temporary Removal
 //Blue-eyes want to nom people to heal them
-/mob/living/simple_mob/shadekin/Found(var/atom/A)
+/mob/living/simple_mob/shadekin/Found(atom/A)
 	if(specific_targets && isliving(A)) //Healing!
 		var/mob/living/L = A
 		var/health_percent = (L.health/L.getMaxHealth())*100
@@ -341,11 +341,6 @@
 		if(ORANGE_EYES)
 			comp.set_light_and_darkness(-0.25,0.75)
 			comp.nutrition_conversion_scaling = 1.5
-
-/mob/living/simple_mob/shadekin/is_incorporeal()
-	if(comp.in_phase)
-		return TRUE
-	return FALSE
 
 /* //VOREStation AI Removal
 //Friendly ones wander towards people, maybe shy-ly if they are set to shy
@@ -407,7 +402,7 @@
 /mob/living/simple_mob/shadekin/speech_bubble_appearance()
 	return "ghost"
 
-/mob/living/simple_mob/shadekin/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/shadekin/apply_melee_effects(atom/A)
 	. = ..(A)
 	if(isliving(A)) //We punched something!
 		var/mob/living/L = A

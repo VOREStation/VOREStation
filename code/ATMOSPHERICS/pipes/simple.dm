@@ -103,7 +103,7 @@
 /obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
 
-/obj/machinery/atmospherics/pipe/simple/change_color(var/new_color)
+/obj/machinery/atmospherics/pipe/simple/change_color(new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
 	if(node1)
@@ -111,7 +111,7 @@
 	if(node2)
 		node2.update_underlays()
 
-/obj/machinery/atmospherics/pipe/simple/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/simple/update_icon(safety = 0)
 	alpha = 255
 
 	cut_overlays()
@@ -136,11 +136,11 @@
 			else if (!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node1_dir)))
 		if(can_be_node(target, 1))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
+	for(var/obj/machinery/atmospherics/target in get_prioritized_nodes(get_step(src,node2_dir)))
 		if(can_be_node(target, 2))
 			node2 = target
 			break

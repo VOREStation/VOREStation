@@ -120,7 +120,7 @@
 
 	return ..()
 
-/obj/item/mapping_unit/dropped(mob/user)
+/obj/item/mapping_unit/dropped(mob/user, equipping, slot)
 	..()
 	if(loc != user) // Not just a juggle
 		hide_device()
@@ -395,7 +395,7 @@
 				marker_prefix = prefix_update_rig["[rig.type]"]
 				return
 
-/obj/item/mapping_unit/proc/handle_marker(var/atom/movable/marker,var/TU_x,var/TU_y)
+/obj/item/mapping_unit/proc/handle_marker(atom/movable/marker,TU_x,TU_y)
 	marker.pixel_x = TU_x - 8 //16x16 icons, so to center.
 	marker.pixel_y = TU_y - 8
 	animate(marker, alpha = 0, time = 5, easing = SINE_EASING)

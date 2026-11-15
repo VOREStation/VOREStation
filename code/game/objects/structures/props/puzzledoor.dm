@@ -27,7 +27,7 @@
 			return 0
 	return 1
 
-/obj/machinery/door/blast/puzzle/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/blast/puzzle/bullet_act(obj/item/projectile/Proj)
 	if(!istype(Proj, /obj/item/projectile/test))
 		visible_message(span_cult("\The [src] is completely unaffected by \the [Proj]."))
 	qdel(Proj) //No piercing. No.
@@ -88,11 +88,11 @@
 			qdel(C)
 			return 0
 
-/obj/machinery/door/blast/puzzle/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/blast/puzzle/attack_generic(mob/user, damage)
 	if(check_locks())
 		force_toggle(1, user)
 
-/obj/machinery/door/blast/puzzle/attack_alien(var/mob/user)
+/obj/machinery/door/blast/puzzle/attack_alien(mob/user)
 	if(check_locks())
 		force_toggle(1, user)
 

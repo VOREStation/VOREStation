@@ -59,7 +59,7 @@
 	desc = "A grotesque weapon made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "arm_blade"
-	w_class = ITEMSIZE_HUGE
+	w_class = ITEMSIZE_NO_CONTAINER
 	force = 5
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
@@ -81,18 +81,18 @@
 		span_warningplain("You hear organic matter ripping and tearing!"))
 		src.creator = loc
 
-/obj/item/melee/changeling/dropped(mob/user)
-	..()
+/obj/item/melee/changeling/dropped(mob/user, equipping, slot)
 	visible_message(span_warning("With a sickening crunch, [creator] reforms their arm!"),
 	span_notice("We assimilate the weapon back into our body."),
 	span_warningplain("You hear organic matter ripping and tearing!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
+	..()
 
 /obj/item/melee/changeling/Destroy()
 	creator = null
 	. = ..()
 
-/obj/item/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/melee/changeling/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
 		user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1)

@@ -4,15 +4,21 @@
 	var/chance_rare = 1				// Ditto, but for rare_loot list.
 	var/chance_gamma = 0			// Singledrop global loot table shared with all piles.
 
+	var/chance_scav_uncommon = 25	// Not that kind of scavs. It's for people with the scavenger_expert trait.
+	var/chance_scav_rare = 10
+	var/chance_scav_gamma = 1
+
 	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/loot_depletion = FALSE		// If true, loot piles can be 'depleted' after a certain number of searches by different players, where no more loot can be obtained.
-	var/loot_left = 0				// When this reaches zero, and loot_depleted is true, you can't obtain anymore loot.
+	var/loot_left = 0				// Maximum number of times a pile can be looted before no loot will remain for anyone
 	var/delete_on_depletion = FALSE	// If true, and if the loot gets depleted as above, the pile is deleted.
 
 	var/list/unlucky_loot = list()	// Unlucky is the worst tier. Only people with the unlucky trait can get this stuff. Primed grenades, dangerous syringes, etc.
 	var/list/common_loot = list()	// Common is generally less-than-useful junk and filler, at least for maint loot piles.
 	var/list/uncommon_loot = list()	// Uncommon is actually maybe some useful items, usually the reason someone bothers looking inside.
 	var/list/rare_loot = list()		// Rare is really powerful, or at least unique items.
+
+	var/static/list/piles_looted = list() // Keeps track of the number of times a specific pile has been looted if the specific lootable type has loot_depletion on
 
 /datum/element/lootable/Attach(atom/target)
 	. = ..()
@@ -22,15 +28,19 @@
 
 /datum/element/lootable/Detach(atom/target)
 	. = ..()
+	if(loot_depletion)
+		piles_looted -= REF(target)
 	UnregisterSignal(target, COMSIG_LOOT_REWARD)
 
 /// Calculates and drops loot, the source's turf is where it will be dropped, L is the searching mob, and searched_by is a passed list for storing who has searched a loot pile.
-/datum/element/lootable/proc/loot(atom/source,mob/living/L,var/list/searched_by, wake_chance = 0)
+/datum/element/lootable/proc/loot(atom/source,mob/living/L,list/searched_by, wake_chance = 0)
 	SIGNAL_HANDLER
 	// The loot's all gone.
-	if(loot_depletion && loot_left <= 0)
-		to_chat(L, span_warning("\The [source] has been picked clean."))
-		return
+	if(loot_depletion)
+		var/looted_count = piles_looted[REF(source)]
+		if(looted_count >= loot_left)
+			to_chat(L, span_warning("\The [source] has been picked clean."))
+			return
 
 	// You got unlucky.
 	if(chance_nothing && prob(chance_nothing))
@@ -48,10 +58,10 @@
 	var/obj/item/loot = null
 	var/span = "notice" // Blue
 
-	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len) // If you're unlucky, you will always find bad stuff.
+	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len && prob(15)) // If you're unlucky, you will probably find bad stuff.
 		loot = produce_unlucky_item(source)
 		span = "cult" // Purple and bold.
-		if(prob(1))
+		if(prob(6))
 			to_chat(L, span_danger("You cut your hand on something in the trash!"))
 			L.apply_damage(2, BRUTE, pick(BP_L_HAND, BP_R_HAND), used_weapon = "sharp object")
 			var/datum/disease/advance/random/random_disease = new /datum/disease/advance/random()
@@ -73,16 +83,9 @@
 	else  // Welp.
 		loot = produce_common_item(source)
 
-	// Handle randomized items in our tables.
-	if(istype(loot,/obj/random))
-		var/obj/random/randy = loot
-		var/new_I = randy.spawn_item()
-		QDEL_SWAP(loot,new_I)
+	loot = randylootspawn(loot)
 
-	//We either have an item to hand over or we don't, at this point!
-	if(!loot)
-		return
-	loot.forceMove(get_turf(source))
+
 	var/final_message = "You found \a [loot]!"
 	switch(span)
 		if("notice")
@@ -93,15 +96,30 @@
 			final_message = span_alium(final_message)
 	to_chat(L, span_info(final_message))
 	var/disturbed_sleep = rand(1,100) //spawning of mobs, for now only the trash panda.
+
+	if(HAS_TRAIT(L, TRAIT_SCAVENGER_EXPERT) && prob(30)) //Free stuff!
+		to_chat(L, span_info("You've managed to spot something else of worth!"))
+		if((prob(chance_scav_uncommon)) && uncommon_loot.len)
+			randylootspawn(produce_uncommon_item(source))
+		else if((prob(chance_scav_rare)) && rare_loot.len)
+			randylootspawn(produce_rare_item(source))
+		else if((prob(chance_scav_gamma) && GLOB.unique_gamma_loot.len))
+			randylootspawn(produce_gamma_item(source))
+		else
+			randylootspawn(produce_common_item(source))
 	if(disturbed_sleep <= wake_chance)
 		new /mob/living/simple_mob/animal/passive/raccoon(get_turf(source))
-		source.visible_message("A raccoon jumps out of the trash!.")
+		source.visible_message("A raccoon jumps out of the trash!")
 
 	// Check if we should delete on depletion
 	if(!loot_depletion)
 		return
-	loot_left--
-	if(loot_left > 0)
+	// Add to looted piles if not already one
+	if(!(REF(source) in piles_looted))
+		piles_looted[REF(source)] = 0
+	// Increase the looted count till we've hit our limit
+	piles_looted[REF(source)] += 1
+	if(piles_looted[REF(source)] < loot_left)
 		return
 	to_chat(L, span_warning("You seem to have gotten the last of the spoils in \the [source]."))
 	if(delete_on_depletion)
@@ -109,19 +127,32 @@
 
 /datum/element/lootable/proc/produce_unlucky_item(atom/source)
 	var/path = pick(unlucky_loot)
-	return new path(source)
+	return new path(get_turf(source))
+
+// The proc that handles spawning objects.
+/datum/element/lootable/proc/randylootspawn(obj/item/the_object)
+	// Handle randomized items in our tables.
+	if(istype(the_object,/obj/random))
+		var/obj/random/randy = the_object
+		var/new_I = randy.spawn_item()
+		QDEL_SWAP(the_object, new_I)
+
+	//We either have an item to hand over or we don't, at this point!
+	if(QDELETED(the_object))
+		return
+	return the_object
 
 /datum/element/lootable/proc/produce_common_item(atom/source)
 	var/path = pick(common_loot)
-	return new path(source)
+	return new path(get_turf(source))
 
 /datum/element/lootable/proc/produce_uncommon_item(atom/source)
 	var/path = pick(uncommon_loot)
-	return new path(source)
+	return new path(get_turf(source))
 
 /datum/element/lootable/proc/produce_rare_item(atom/source)
 	var/path = pick(rare_loot)
-	return new path(source)
+	return new path(get_turf(source))
 
 /// These are types that can only spawn once, and then will be removed from this list.
 /datum/element/lootable/proc/produce_gamma_item(atom/source)
@@ -136,13 +167,13 @@
 				break
 
 	if(path)
-		var/obj/item/I = new path(source)
+		var/obj/item/I = new path(get_turf(source))
 		GLOB.allocated_gamma_loot[path] = WEAKREF(I)
 		return I
 
 	return produce_rare_item(source)
 
 /// Restores a removed gamma loot item back to the loot table
-/proc/restore_gamma_loot(var/w_type)
+/proc/restore_gamma_loot(w_type)
 	GLOB.allocated_gamma_loot -= w_type
 	GLOB.unique_gamma_loot += w_type

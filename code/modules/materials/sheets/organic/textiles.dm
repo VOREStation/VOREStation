@@ -8,6 +8,7 @@
 	strict_color_stacking = TRUE
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/stack/material/cloth
 	name = MAT_CLOTH
@@ -19,6 +20,7 @@
 	strict_color_stacking = TRUE
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/stack/material/cloth/diyaab
 	color = "#c6ccf0"
@@ -34,6 +36,7 @@
 	strict_color_stacking = TRUE
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	resistance_flags = FLAMMABLE
 
 /obj/item/stack/material/fiber
 	name = "plant fiber"
@@ -44,3 +47,4 @@
 	apply_colour = TRUE
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+	resistance_flags = FLAMMABLE

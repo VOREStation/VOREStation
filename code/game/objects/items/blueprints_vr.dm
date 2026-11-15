@@ -332,27 +332,27 @@
 	if(message)
 		to_chat(user, message)
 */
-/obj/item/areaeditor/blueprints/dropped(mob/user)
+/obj/item/areaeditor/blueprints/dropped(mob/user, equipping, slot)
+	if(equipping)
+		return ..()
 	..()
 	//clear_viewer()
 	if(areaColor_turfs.len)
 		seeAreaColors_remove()
 	legend = FALSE
 
-
-
 /obj/item/areaeditor/proc/get_area_type(area/A)
-	if (!A)
+	if(!A)
 		A = get_area(usr)
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
-		if ( istype(A,type) )
+	for(var/type in GLOB.BUILDABLE_AREA_TYPES)
+		if(istype(A,type))
 			return AREA_SPACE
 
-	for (var/type in GLOB.SPECIALS)
-		if ( istype(A,type) )
+	for(var/type in GLOB.SPECIALS)
+		if(istype(A,type))
 			return AREA_SPECIAL
 	return AREA_STATION
 
@@ -472,7 +472,7 @@
 			found_turfs += origin //If this isn't done, it just adds the 8 tiles around the user.
 		return found_turfs
 
-/proc/create_area(mob/creator, var/obj/item/areaeditor/AO)
+/proc/create_area(mob/creator, obj/item/areaeditor/AO)
 	if(AO && istype(AO,/obj/item/areaeditor))
 		if(AO.uses_charges && AO.charges < 1)
 			to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
@@ -552,7 +552,7 @@
 // OLD CODE. DON'T TOUCH OR 100 RABID SQUIRRELS WILL DEVOUR YOU.
 // I say old code, but it truly isn't. It's a bastardization of the new create_area code and the old create_area code.
 // In essence, it does a few things: Ensure no blacklisted areas are nearby, get the nearby areas (to allow merging), and allow you to make a whole near area.
-/obj/item/areaeditor/proc/create_area_whole(mob/creator, var/override = 0) //Gets the entire enclosed space and makes a new area out of it. Can overwrite old areas.
+/obj/item/areaeditor/proc/create_area_whole(mob/creator, override = 0) //Gets the entire enclosed space and makes a new area out of it. Can overwrite old areas.
 	if(uses_charges && charges < 5)
 		to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
 		return
@@ -666,12 +666,12 @@
 		interact()
 	return
 
-/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
+/proc/move_turfs_to_area(list/turf/turfs, area/A)
 	for(var/T in turfs)
 		ChangeArea(T, A)
 
 
-/obj/item/areaeditor/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE, var/list/forbiddenAreas = list(), var/visual)
+/obj/item/areaeditor/proc/detect_room_ex(turf/first, allowedAreas = AREA_SPACE, list/forbiddenAreas = list(), visual)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
 	if(!visual && forbiddenAreas[first.loc.type] || forbiddenAreas[first.type]) //Is the area of the starting turf a banned area? Is the turf a banned area?
@@ -776,16 +776,6 @@
 			if(i.icon_state == "blueprints")
 				usr.client.images.Remove(i)
 
-
-
-
-
-
-
-
-
-
-
 //GLOBAL VERB FOR PAPER TO ENABLE ANYONE TO MAKE AN AREA IN BUILDABLE AREAS.
 //THIS IS 70 TILES. ANYTHING LARGER SHOULD USE ACTUAL BLUEPRINTS.
 
@@ -828,7 +818,7 @@
 	return 0 //If it's not a buildable area, don't let them build in it.
 
 
-/proc/detect_new_area(var/turf/first, var/user) //Heavily simplified version for creating an area yourself.
+/proc/detect_new_area(turf/first, user) //Heavily simplified version for creating an area yourself.
 	if(!istype(first)) //Not on a turf.
 		to_chat(usr, span_warning("You can not create a room here."))
 		return

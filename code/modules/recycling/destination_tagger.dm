@@ -21,16 +21,13 @@
 		ui.open()
 
 /obj/item/destTagger/tgui_static_data(mob/user)
-	var/list/data = ..()
-	var/list/taggers = list()
-	var/list/tagger_levels = list()
-	for(var/tag in GLOB.tagger_locations)
-		var/z_level = GLOB.tagger_locations[tag]
-		taggers += list(list("tag" = tag, "level" = z_level))
-		tagger_levels += list(list("z" = z_level, "location" = using_map.get_zlevel_name(z_level)))
-	data["taggerLevels"] = tagger_levels
-	data["taggerLocs"] = taggers
+	. = ..()
+	.["level_names"] = using_map.zlevels
 
+/obj/item/destTagger/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = list(
+		"taggerLocs" = GLOB.tagger_locations
+	)
 	return data
 
 /obj/item/destTagger/tgui_data(mob/user, datum/tgui/ui)
@@ -56,4 +53,13 @@
 			if(!(new_tag in GLOB.tagger_locations))
 				return FALSE
 			currTag = new_tag
-			. = TRUE
+			return TRUE
+		if("new_tag")
+			var/dest_tag = sanitizeName(params["tag"], allow_numbers = TRUE)
+			if(!istext(dest_tag) || length(dest_tag) < 3)
+				return FALSE
+			if(dest_tag in GLOB.tagger_locations)
+				return FALSE
+			GLOB.tagger_locations[dest_tag] = null
+			currTag = dest_tag
+			return TRUE

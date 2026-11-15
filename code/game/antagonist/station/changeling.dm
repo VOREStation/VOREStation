@@ -12,13 +12,13 @@
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	antaghud_indicator = "hudchangeling"
 
-/datum/antagonist/changeling/get_special_objective_text(var/datum/mind/player)
+/datum/antagonist/changeling/get_special_objective_text(datum/mind/player)
 	if(player.current)
 		var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
 		if(comp)
 			return "<br><b>Changeling ID:</b> [comp.changelingID].<br><b>Genomes Absorbed:</b> [comp.absorbedcount]"
 
-/datum/antagonist/changeling/update_antag_mob(var/datum/mind/player)
+/datum/antagonist/changeling/update_antag_mob(datum/mind/player)
 	..()
 	player.current.make_changeling()
 
@@ -32,7 +32,7 @@
 		if(comp.owner.mind)
 			comp.owner.mind.antag_holder.changeling = null
 
-/datum/antagonist/changeling/create_objectives(var/datum/mind/changeling)
+/datum/antagonist/changeling/create_objectives(datum/mind/changeling)
 	if(!..())
 		return
 
@@ -69,7 +69,7 @@
 				changeling.objectives += survive_objective
 	return
 
-/datum/antagonist/changeling/can_become_antag(var/datum/mind/player, var/ignore_role)
+/datum/antagonist/changeling/can_become_antag(datum/mind/player, ignore_role)
 	if(!..())
 		return 0
 	if(player.current)
@@ -82,15 +82,16 @@
 			return 1
 		else if(isnewplayer(player.current))
 			if(player.current.client && player.current.client.prefs)
-				var/datum/species/S = GLOB.all_species[player.current.client.prefs.species]
+				var/datum/species/S = GLOB.all_species[player.current.client.prefs.read_preference(/datum/preference/choiced/species)]
 				if(S && (S.flags & (NO_SLEEVE|NO_DNA)))
 					return 0
-				if(player.current.client.prefs.organ_data[BP_TORSO] == "cyborg") // Full synthetic. // TODO, this to issynthetic()?
+				var/list/organ_data = player.current.client.prefs.read_preference(/datum/preference/organ_data)
+				if(organ_data && organ_data[BP_TORSO] == "cyborg") // Full synthetic. // TODO, this to issynthetic()?
 					return 0
 				return 1
 	return 0
 
-/datum/antagonist/changeling/print_player_full(var/datum/mind/player)
+/datum/antagonist/changeling/print_player_full(datum/mind/player)
 	var/text = print_player_lite(player)
 
 	var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)

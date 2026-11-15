@@ -39,7 +39,7 @@
 	else
 		emote_vr(message)
 
-/mob/proc/custom_emote_vr(var/m_type=1,var/message = null,var/mode_selection = FALSE) //This would normally go in emote.dm
+/mob/proc/custom_emote_vr(m_type=1,message = null,mode_selection = FALSE) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
 		return
@@ -220,7 +220,7 @@
 			spawn(0)
 				O.see_emote(src, message, 2)
 
-/mob/proc/emote_vr(var/act, var/type, var/message, var/mode_selection) //This would normally go in say.dm
+/mob/proc/emote_vr(act, type, message, mode_selection) //This would normally go in say.dm
 	if(act == "me")
 		return custom_emote_vr(type, message, mode_selection)
 
@@ -357,7 +357,7 @@
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || check_rights_for(G.client, R_HOLDER))
 					to_chat(G, span_psay("[formatted_name] thinks, \"[message]\""))
-		M.log_talk("(PSAY) [message]", LOG_SAY)
+		M.log_talk("(PSAY) [message]", LOG_SAY, color="#d900ff")
 	else		//There wasn't anyone to send the message to, pred or prey, so let's just say it instead and correct our psay just in case.
 		M.forced_psay = FALSE
 		M.say(message)
@@ -463,7 +463,7 @@
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || check_rights_for(G.client, R_HOLDER))
 					to_chat(G, span_pemote("[formatted_name] [message]"))
-		M.log_talk(message, LOG_SAY)
+		M.log_talk(message, LOG_SAY, color="#d900ff")
 	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
 		M.forced_psay = FALSE
 		M.me_verb(message)

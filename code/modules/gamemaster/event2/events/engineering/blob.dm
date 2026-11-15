@@ -122,6 +122,7 @@
 		var/obj/structure/blob/core/B = weakref.resolve()
 		if(istype(B))
 			qdel(B)
+	blobs.Cut()
 
 /datum/event2/event/blob/announce()
 	if(!ended) // Don't announce if the blobs die early.
@@ -157,4 +158,4 @@
 		if(danger_level >= BLOB_DIFFICULTY_SUPERHARD)
 			lines += "Extreme caution is advised."
 
-		command_announcement.Announce(lines.Join("\n"), "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+		GLOB.command_announcement.Announce(lines.Join("\n"), "Biohazard Alert", new_sound = ANNOUNCER_MSG_BIOHAZARD_SEVEN)

@@ -57,6 +57,9 @@
 	T.vis_contents -= visuals
 
 /datum/anomalous_weather/proc/affect_turf(turf/to_affect)
+	if(isnull(to_affect))
+		return
+
 	if(iswall(to_affect) || isopenturf(to_affect))
 		return
 
@@ -109,7 +112,7 @@
 		affected_mob.wash(CLEAN_ALL)
 		affected_mob.water_act(2)
 
-/datum/anomalous_weather/proc/do_special(var/turf/simulated/T)
+/datum/anomalous_weather/proc/do_special(turf/simulated/T)
 	return
 
 /datum/anomalous_weather/proc/hear_sounds(mob/M, adding)
@@ -131,7 +134,7 @@
 
 /datum/anomalous_weather/rain/do_special(turf/simulated/T)
 	if(prob(2) && !isopenturf(T))
-		T.wet_floor(1)
+		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, 10 SECONDS)
 
 /datum/anomalous_weather/rain/blood
 	name = "Blood Rain" // From a lacerated sky
@@ -154,15 +157,15 @@
 
 /datum/anomalous_weather/rain/storm/do_special(turf/simulated/T)
 	if(prob(3) && !isopenturf(T))
-		T.wet_floor(1)
+		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, 10 SECONDS)
 	if(prob(0.025) && !isopenturf(T))
 		lightning_strike(T)
-
+/*
 /datum/anomalous_weather/rain/acid
 	name = "Acid Rain"
 	reagent_id = REAGENT_ID_SACID
 	telegraph_message = "Strange clouds begin to cover the ceiling, an acidid tinge on them..."
-
+*/
 /datum/anomalous_weather/hail
 	name = "Hail"
 	icon_state = "snowfall_heavy_old"

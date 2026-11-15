@@ -20,6 +20,7 @@
 	var/list/images
 	var/list/raw_images
 	var/last_status
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/pilot/Initialize(mapload)
 	. = ..()
@@ -85,7 +86,7 @@
 	images["horizon"] = I
 	raw_images += I
 
-/obj/item/clothing/head/pilot/proc/update_hud(var/status)
+/obj/item/clothing/head/pilot/proc/update_hud(status)
 	if(last_status == status)
 		return
 
@@ -170,13 +171,13 @@
 	qdel(pilot_hud)
 	return ..()
 
-/obj/item/clothing/head/pilot/equipped(var/mob/user,var/slot)
+/obj/item/clothing/head/pilot/equipped(mob/user,slot)
 	. = ..()
 	if(slot == slot_head && user.client)
 		user.client.screen |= pilot_hud
 		user.client.images |= raw_images
 
-/obj/item/clothing/head/pilot/dropped(mob/user)
+/obj/item/clothing/head/pilot/dropped(mob/user, equipping, slot)
 	. = ..()
 	if(user.client)
 		user.client.screen -= pilot_hud

@@ -4,7 +4,6 @@
 	desc = "An experimental Anti-Everything weapon."
 	icon_state = "mecha_pulse"
 	energy_drain = 120
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 6, TECH_POWER = 4)
 	projectile = /obj/item/projectile/beam/pulse/heavy
 	fire_sound = 'sound/weapons/gauss_shoot.ogg'
 

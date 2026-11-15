@@ -20,17 +20,17 @@
 				contain(Ob)
 				break
 
-/obj/structure/anomaly_container/proc/can_contain(var/obj/O)
+/obj/structure/anomaly_container/proc/can_contain(obj/O)
 	return O.is_anomalous()
 
-/obj/structure/anomaly_container/attack_hand(var/mob/user)
+/obj/structure/anomaly_container/attack_hand(mob/user)
 	release()
 
-/obj/structure/anomaly_container/attack_robot(var/mob/user)
+/obj/structure/anomaly_container/attack_robot(mob/user)
 	if(Adjacent(user))
 		release()
 
-/obj/structure/anomaly_container/proc/contain(var/obj/machinery/artifact/artifact)
+/obj/structure/anomaly_container/proc/contain(obj/machinery/artifact/artifact)
 	if(contained)
 		return
 	contained = artifact
@@ -46,7 +46,7 @@
 	underlays.Cut()
 	desc = initial(desc)
 
-/atom/MouseDrop(var/obj/structure/anomaly_container/over_object)
+/atom/MouseDrop(obj/structure/anomaly_container/over_object)
 	. = ..()
 
 	if(istype(over_object))

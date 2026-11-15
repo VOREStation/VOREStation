@@ -90,7 +90,7 @@
 
 	admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE)
+/datum/map_template/proc/load_new_z(centered = FALSE)
 	var/x = 1
 	var/y = 1
 
@@ -204,7 +204,7 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name)
+/proc/load_new_z_level(file, name)
 	var/datum/map_template/template = new(file, name, TRUE)
 	if(!template.cached_map || template.cached_map.check_for_errors())
 		return FALSE
@@ -212,7 +212,7 @@
 	return TRUE
 
 // Very similar to the /tg/ version.
-/proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
+/proc/seed_submaps(list/z_levels, budget = 0, whitelist = /area/space, desired_map_template_type = null)
 	set background = TRUE
 
 	if(!z_levels || !length(z_levels))

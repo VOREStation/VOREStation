@@ -247,6 +247,7 @@
 			to_chat(user, "You detach the [nicetype] from the underfloor.")
 		else
 			if(ptype == DISPOSAL_PIPE_BIN || ptype == DISPOSAL_PIPE_OUTLET || ptype == DISPOSAL_PIPE_CHUTE) // Disposal or outlet
+				CP = locate(/obj/structure/disposalpipe/trunk) in T //Prevent issues where non-trunk pipes on the same tile could block machine attachment
 				if(CP) // There's something there
 					if(!istype(CP,/obj/structure/disposalpipe/trunk))
 						to_chat(user, "The [nicetype] requires a trunk underneath it in order to work.")

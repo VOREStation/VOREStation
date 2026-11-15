@@ -26,7 +26,7 @@
 	fish_cap = fish_base_cap + fish_cap_mult ** severity // No more than this many at once regardless of waves. (5, 11, 29)
 
 /datum/event/spacefish_migration/start()
-	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	affecting_z -= using_map.sealed_levels // Space levels only please!
 	..()
 
 /datum/event/spacefish_migration/announce()
@@ -35,7 +35,7 @@
 		announcement = "Massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
 	else
 		announcement = "Unknown biological [spawned_fish.len == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
-	command_announcement.Announce(announcement, "Lifesign Alert")
+	GLOB.command_announcement.Announce(announcement, "Lifesign Alert", new_sound = ANNOUNCER_MSG_UNIDENTIFIED_LIFESIGNS)
 
 /datum/event/spacefish_migration/tick()
 	if(activeFor % 5 != 0)
@@ -43,7 +43,7 @@
 	if(count_spawned_fish() < fish_cap)
 		spawn_fish(rand(3, 3 + severity * 2) - 1, 1, severity + 2)
 
-/datum/event/spacefish_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
+/datum/event/spacefish_migration/proc/spawn_fish(num_groups, group_size_min, group_size_max, dir)
 	if(isnull(dir))
 		dir = (victim && prob(80)) ? victim.fore_dir : pick(GLOB.cardinal)
 
@@ -84,7 +84,7 @@
 		i++
 
 // Spawn a single fish at given location.
-/datum/event/spacefish_migration/proc/spawn_one_fish(var/loc)
+/datum/event/spacefish_migration/proc/spawn_one_fish(loc)
 	var/mob/living/simple_mob/animal/M = new fish_type(loc)
 	RegisterSignal(M, COMSIG_OBSERVER_DESTROYED, PROC_REF(on_fish_destruction))
 	spawned_fish.Add(M)
@@ -98,7 +98,7 @@
 			. += 1
 
 // If fish is bomphed, remove it from the list.
-/datum/event/spacefish_migration/proc/on_fish_destruction(var/mob/M)
+/datum/event/spacefish_migration/proc/on_fish_destruction(mob/M)
 	SIGNAL_HANDLER
 	spawned_fish -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)

@@ -59,7 +59,7 @@
 	icon_state = disabled_icon
 	update_icon()
 
-/obj/item/self_repair_system/proc/self_repair(mob/living/silicon/robot/R, datum/robot_component/C, var/tick_delay, var/heal_per_tick)
+/obj/item/self_repair_system/proc/self_repair(mob/living/silicon/robot/R, datum/robot_component/C, tick_delay, heal_per_tick)
 	if(!C || !R.cell)
 		return
 	if(C.brute_damage == 0 && C.electronics_damage == 0)

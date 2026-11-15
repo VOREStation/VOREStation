@@ -40,6 +40,8 @@
 	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
+	///Needs to implement InterceptClickOn(user,params,atom) proc
+	var/datum/click_intercept = null
 	var/buildmode		= 0
 
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.

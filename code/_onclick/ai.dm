@@ -9,7 +9,7 @@
 
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
-/mob/living/silicon/ai/DblClickOn(var/atom/A, params)
+/mob/living/silicon/ai/DblClickOn(atom/A, params)
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
@@ -22,7 +22,7 @@
 		A.move_camera_by_click()
 
 
-/mob/living/silicon/ai/ClickOn(var/atom/A, params)
+/mob/living/silicon/ai/ClickOn(atom/A, params)
 	if(!checkClickCooldown())
 		return
 
@@ -39,6 +39,9 @@
 				if(P.ai == src)
 					P.Click(params)
 					break
+
+	if(check_click_intercept(params,A))
+		return
 
 	if(stat)
 		return
@@ -95,7 +98,7 @@
 	for AI shift, ctrl, and alt clicking.
 */
 
-/mob/living/silicon/ai/ShiftClickOn(var/atom/A)
+/mob/living/silicon/ai/ShiftClickOn(atom/A)
 	if(!control_disabled && A.AIShiftClick(src))
 		return
 	..()
@@ -105,12 +108,12 @@
 		return
 	..()
 
-/mob/living/silicon/ai/AltClickOn(var/atom/A)
+/mob/living/silicon/ai/AltClickOn(atom/A)
 	if(!control_disabled && A.AIAltClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
+/mob/living/silicon/ai/MiddleClickOn(atom/A)
 	if(!control_disabled && A.AIMiddleClick(src))
 		return
 	..()
@@ -126,31 +129,29 @@
 /atom/proc/AIShiftClick()
 	return
 
+/atom/proc/ctrl_click_ai(mob/user)
+	return
+
+/atom/proc/AIMiddleClick(mob/living/silicon/user)
+	return 0
+
+/atom/proc/AIAltClick(atom/A)
+	return click_alt(A)
+
+
+
+// Interactions start here.//
+
+// Airlocks
 /obj/machinery/door/airlock/AIShiftClick(mob/user)  // Opens and closes doors!
 	add_fingerprint(user)
 	user_toggle_open(user)
 	return 1
 
-/atom/proc/ctrl_click_ai(mob/user)
-	return
-
 /obj/machinery/door/airlock/ctrl_click_ai(mob/user) // Bolts doors
 	add_fingerprint(user)
 	toggle_bolt(user)
 	return 1
-
-/obj/machinery/power/apc/ctrl_click_ai(mob/user) // turns off/on APCs.
-	add_fingerprint(user)
-	toggle_breaker()
-	return 1
-
-/obj/machinery/turretid/ctrl_click_ai() //turns off/on Turrets
-	enabled = !enabled
-	updateTurrets()
-	return TRUE
-
-/atom/proc/AIAltClick(var/atom/A)
-	return click_alt(A)
 
 /obj/machinery/door/airlock/AIAltClick(mob/user) // Electrifies doors.
 	add_fingerprint(user)
@@ -158,16 +159,12 @@
 		electrify(0, 1)
 	else
 		electrify(-1, 1)
+	// Clientside only notification
+	var/turf/root_turf = get_turf(src)
+	var/image/client_only/electrify_notice/zap = new('icons/hud/screen_gen.dmi', root_turf, electrified_until ? "stamina_crit" : "stamina_dead", OBFUSCATION_LAYER, SOUTH)
+	zap.place_from_root(root_turf)
+	zap.append_client(user.client)
 	return 1
-
-/obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
-	if(lethal_is_configurable)
-		lethal = !lethal
-		updateTurrets()
-	return TRUE
-
-/atom/proc/AIMiddleClick(var/mob/living/silicon/user)
-	return 0
 
 /obj/machinery/door/airlock/AIMiddleClick(mob/user) // Toggles door bolt lights.
 	if(..())
@@ -181,9 +178,30 @@
 	update_icon()
 	return TRUE
 
+// APC
+/obj/machinery/power/apc/ctrl_click_ai(mob/user) // turns off/on APCs.
+	add_fingerprint(user)
+	toggle_breaker()
+	return 1
+
+// Turret controls
+/obj/machinery/turretid/ctrl_click_ai() //turns off/on Turrets
+	enabled = !enabled
+	updateTurrets()
+	return TRUE
+
+/obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
+	if(lethal_is_configurable)
+		lethal = !lethal
+		updateTurrets()
+	return TRUE
+
+
+
+
 //
 // Override AdjacentQuick for AltClicking
 //
 
-/mob/living/silicon/ai/TurfAdjacent(var/turf/T)
+/mob/living/silicon/ai/TurfAdjacent(turf/T)
 	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(T))

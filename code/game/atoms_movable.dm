@@ -10,7 +10,6 @@
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/datum/thrownthing/throwing
-	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
@@ -99,7 +98,6 @@
 
 	if(orbiting)
 		stop_orbit()
-	throw_source = null
 	QDEL_NULL(riding_datum)
 	set_listening(NON_LISTENING_ATOM)
 
@@ -285,6 +283,12 @@
 	if(SEND_SIGNAL(AM, COMSIG_MOVABLE_CROSS_OVER, src) & COMPONENT_BLOCK_CROSS)
 		return FALSE
 	return CanPass(AM, loc)
+
+///oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
+/atom/movable/Crossed(atom/movable/AM, oldloc)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
 
 /atom/movable/CanPass(atom/movable/mover, turf/target)
 	. = ..()
@@ -593,7 +597,7 @@
 
 
 // Animations for cloaking/uncloaking
-/atom/movable/proc/cloak_animation(var/length = 1 SECOND)
+/atom/movable/proc/cloak_animation(length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -614,7 +618,7 @@
 	//Back to original alpha
 	alpha = initial_alpha
 
-/atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
+/atom/movable/proc/uncloak_animation(length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
 
@@ -652,7 +656,7 @@
 /atom/movable/proc/get_cell()
 	return
 
-/atom/movable/proc/emblocker_gc(var/datum/source)
+/atom/movable/proc/emblocker_gc(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_QDELETING)
 	cut_overlay(source)
@@ -672,7 +676,7 @@
 /atom/movable/proc/exit_belly(obj/belly/B)
 	return
 
-/atom/movable/proc/set_listening(var/set_to)
+/atom/movable/proc/set_listening(set_to)
 	if (listening_recursive && !set_to)
 		LAZYREMOVE(recursive_listeners, src)
 		if (!LAZYLEN(recursive_listeners))

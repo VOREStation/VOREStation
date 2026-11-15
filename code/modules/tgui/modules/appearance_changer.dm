@@ -105,6 +105,7 @@
 	QDEL_NULL(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	QDEL_NULL(cam_background)
+	local_skybox = null
 	return ..()
 
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -486,7 +487,7 @@
 					owner.species.deform = owner.species.get_icobase(get_deform = TRUE)
 					owner.species.vanity_base_fit = new_species
 					if(istype(owner.species, /datum/species/shapeshifter)) //TODO: See if this is still needed.
-						wrapped_species_by_ref["\ref[owner]"] = new_species
+						GLOB.wrapped_species_by_ref["\ref[owner]"] = new_species
 					owner.regenerate_icons()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -901,7 +902,7 @@
 	if(target)
 		target.update_dna()
 
-/datum/tgui_module/appearance_changer/proc/can_change(mob/living/carbon/human/target, var/flag)
+/datum/tgui_module/appearance_changer/proc/can_change(mob/living/carbon/human/target, flag)
 	return target && (flags & flag)
 
 /datum/tgui_module/appearance_changer/proc/can_change_skin_tone(mob/living/carbon/human/target)
@@ -1139,6 +1140,7 @@
 	if(DC)
 		DC.selected_record = FALSE
 		DC.designer_gui = null // no hardrefs
+	linked_body_design_console = null
 	. = ..()
 
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()
@@ -1154,7 +1156,7 @@
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE, PROC_REF(update_active_camera_screen), TRUE)
 
-/datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
+/datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(datum/transhuman/body_record/current_project)
 	if(owner)
 		UnregisterSignal(owner, COMSIG_MOVABLE_ATTEMPTED_MOVE)
 		QDEL_NULL(owner)

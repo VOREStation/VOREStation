@@ -35,7 +35,7 @@
 /obj/item/reagent_containers/chem_disp_cartridge/verb/verb_set_label(L as text)
 	set name = "Set Cartridge Label"
 	set category = "Object"
-	set src in view(usr, 1)
+	set src in view(1)
 
 	setLabel(L, usr)
 

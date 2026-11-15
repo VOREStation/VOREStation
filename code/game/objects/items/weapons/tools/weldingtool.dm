@@ -4,6 +4,7 @@
  */
 /obj/item/weldingtool
 	name = "\improper welding tool"
+	desc = "One of the most ubiquitous tools found on the frontier. You can use that thing to weld things together, cut things apart, heat them up, burn them down, light a cigarette, slide through horrible blob creatures, and more. Takes welding fuel."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	item_state = "welder"
@@ -17,10 +18,9 @@
 	w_class = ITEMSIZE_SMALL
 
 	//Cost to make in the autolathe
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.015))
 
 	//R&D tech level
-	origin_tech = list(TECH_ENGINEERING = 1)
 
 	tool_qualities = list(TOOL_WELDER)
 
@@ -66,14 +66,14 @@
 /obj/item/weldingtool/examine(mob/user)
 	. = ..()
 	if(max_fuel && loc == user)
-		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
+		. += span_notice("It contains [get_fuel()]/[src.max_fuel] units of fuel!")
 
-/obj/item/weldingtool/attack(atom/A, mob/living/user, def_zone)
-	if(ishuman(A) && user.a_intent == I_HELP)
-		var/mob/living/carbon/human/H = A
+/obj/item/weldingtool/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
+	if(ishuman(M) && user.a_intent == I_HELP)
+		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
+		if(!S || S.robotic < ORGAN_ROBOT || S.open == BONE_RETRACTED)
 			return ..()
 
 		//VOREStation Add - No welding nanoform limbs
@@ -84,21 +84,21 @@
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-				return TRUE
+				return ITEM_INTERACT_FAILURE
 
 		if(!welding)
 			to_chat(user, span_warning("You'll need to turn [src] on to patch the damage on [H]'s [S.name]!"))
-			return TRUE
+			return ITEM_INTERACT_FAILURE
 
 		if(S.robo_repair(15, BRUTE, "some dents", src, user))
 			remove_fuel(1, user)
-			return TRUE
+			return ITEM_INTERACT_SUCCESS
 		else
-			return TRUE //Stops you from accidentally harming someone while on help intent.
+			return ITEM_INTERACT_FAILURE //Stops you from accidentally harming someone while on help intent.
 
 	return ..()
 
@@ -183,7 +183,7 @@
 	return max_fuel
 
 //Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(amount)
@@ -266,7 +266,7 @@
 
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
-/obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
+/obj/item/weldingtool/proc/setWelding(set_welding, mob/M)
 	if(!status)	return
 
 	var/turf/T = get_turf(src)
@@ -364,8 +364,7 @@
 	desc = "A slightly larger welder with a larger tank."
 	icon_state = "indwelder"
 	max_fuel = 40
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
@@ -373,8 +372,7 @@
 	icon_state = "upindwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 3)
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.06))
 
 /obj/item/weldingtool/mini
 	name = "emergency welding tool"
@@ -382,7 +380,7 @@
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_METAL = 30, MAT_GLASS = 10)
+	matter = list(MAT_METAL = 30, MAT_GLASS = MATERIAL_COST(0.005))
 	change_icons = 0
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
@@ -424,7 +422,6 @@
 	flame_color = "#6699FF" // Light bluish.
 	eye_safety_modifier = 2
 	change_icons = 0
-	origin_tech = list(TECH_PHORON = 5 ,TECH_ENGINEERING = 5)
 	always_process = TRUE
 
 /obj/item/weldingtool/alien/process()
@@ -438,8 +435,7 @@
 	icon_state = "exwelder"
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.035), MAT_GLASS = MATERIAL_COST(0.06))
 	toolspeed = 0.5
 	change_icons = 0
 	flame_intensity = 3
@@ -461,7 +457,6 @@
 	toolspeed = 0.25
 	w_class = ITEMSIZE_NORMAL
 	flame_intensity = 5
-	origin_tech = list(TECH_ENGINEERING = 5, TECH_PHORON = 4, TECH_PRECURSOR = 1)
 	reach = 2
 
 /*
@@ -513,9 +508,9 @@
 
 	..()
 
-/obj/item/weldingtool/tubefed/dropped(mob/user)
+/obj/item/weldingtool/tubefed/dropped(mob/user, equipping, slot)
 	..()
-	if(src.loc != user)
+	if(loc != user)
 		mounted_pack.return_nozzle()
 		to_chat(user, span_notice("\The [src] retracts to its fueltank."))
 
@@ -589,7 +584,7 @@
 		return power_supply.maxcharge
 	return 0
 
-/obj/item/weldingtool/electric/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/electric/remove_fuel(amount = 1, mob/M = null)
 	if(!welding)
 		return 0
 	if(get_fuel() >= amount)
@@ -663,6 +658,10 @@
 /obj/item/weldingtool/electric/mounted
 	use_external_power = 1
 
+//No power information given we use an external source.
+/obj/item/weldingtool/electric/mounted/examine(mob/user)
+		. = ..()
+
 /obj/item/weldingtool/electric/mounted/exosuit
 	var/obj/item/mecha_parts/mecha_equipment/equip_mount = null
 	flame_intensity = 1
@@ -697,7 +696,7 @@
 /obj/item/weldingtool/dummy/get_fuel()
 	return get_max_fuel()
 
-/obj/item/weldingtool/dummy/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/weldingtool/dummy/remove_fuel(amount = 1, mob/M = null)
 	return TRUE
 
 /obj/item/weldingtool/dummy/isOn()

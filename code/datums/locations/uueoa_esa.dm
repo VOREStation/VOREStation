@@ -4,7 +4,7 @@
 	name = "Uueoa-Esa"
 	desc = "The home system of the Unathi.  It roughly translates to 'burning mother'."
 
-/datum/locations/uueoa_esa/New(var/creator)
+/datum/locations/uueoa_esa/New(creator)
 	contents.Add(
 		new /datum/locations/moghes(src),
 		new /datum/locations/ouere(src),

@@ -1,4 +1,4 @@
-/datum/vore_look/proc/import_soulcatcher(mob/host, var/list/soulcatcher_data)
+/datum/vore_look/proc/import_soulcatcher(mob/host, list/soulcatcher_data)
 	if(!host.soulgem)
 		return FALSE
 

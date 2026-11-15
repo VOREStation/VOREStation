@@ -1,6 +1,5 @@
 @use 'sass:map';
-@use '../colors.scss';
-@use '../base.scss';
+@use '~tgui-core/styles/colors.scss';
 
 $map-keys: colors.$color-map !default;
 

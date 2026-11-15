@@ -13,7 +13,7 @@ import type { Data } from './types';
 export const CloningConsoleTemp = (props) => {
   const { act, data } = useBackend<Data>();
   const { temp } = data;
-  if (!temp || !temp.text || temp.text.length <= 0) {
+  if (!temp?.text || temp.text.length <= 0) {
     return;
   }
 

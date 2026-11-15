@@ -29,6 +29,7 @@
 /mob/living/silicon/robot/syndicate
 	register_alarms = 0
 	silicon_subsystems = list(/mob/living/silicon/proc/subsystem_law_manager)
+	idcard_type = /obj/item/card/id/syndicate
 
 /mob/living/silicon/proc/init_subsystems()
 	alarm_monitor 	= new(src)

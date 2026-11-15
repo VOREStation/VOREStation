@@ -39,13 +39,12 @@
 	. = ..()
 	if(istype(thrower) && thrower.a_intent == I_HURT)
 		violent_throw = TRUE
-		throw_source = get_turf(thrower)
 
-/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom)
+/obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 
 	if(isGlass && violent_throw)
-		var/throw_dist = get_dist(throw_source, loc)
+		var/throw_dist = get_dist(throwingdatum.starting_turf, loc)
 		if(smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
 				hit_atom.visible_message(span_notice("The contents of \the [src] splash all over [hit_atom]!"))
@@ -53,9 +52,8 @@
 			src.smash(loc, hit_atom)
 
 	violent_throw = FALSE
-	throw_source = null
 
-/obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
+/obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(distance)
 	if(!isGlass || !smash_duration)
 		return 0
 
@@ -65,7 +63,7 @@
 		return 0
 	return prob(chance_table[idx])
 
-/obj/item/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
+/obj/item/reagent_containers/food/drinks/bottle/proc/smash(newloc, atom/against = null)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src)
@@ -159,7 +157,7 @@
 	else
 		set_light(0)
 
-/obj/item/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
 	var/blocked = ..()
 
 	if(user.a_intent != I_HURT)
@@ -224,7 +222,7 @@
 	edge = FALSE
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
-/obj/item/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/broken_bottle/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 

@@ -17,6 +17,7 @@
 	var/basecolor="#A10808" // Color when wet.
 	var/synthblood = 0
 	var/list/datum/disease/viruses = list()
+	var/infectious = TRUE // Because copying code makes you pregnant
 	var/amount = 5
 	generic_filth = TRUE
 	persistent = FALSE
@@ -53,7 +54,7 @@
 						qdel(B)
 
 //VOREstation edit - Moved timer call to Init, and made it not call on mapload
-/obj/effect/decal/cleanable/blood/Initialize(mapload, var/_age)
+/obj/effect/decal/cleanable/blood/Initialize(mapload, _age)
 	. = ..()
 	if(!mapload)
 		addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount+1))
@@ -76,6 +77,7 @@
 	add_janitor_hud_overlay()
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
+	. = ..()
 	if(perp.is_incorporeal())
 		return
 	if(!istype(perp))
@@ -117,7 +119,7 @@
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
 		W.bloodiness = 4
 
-	if(viruses)
+	if(viruses && infectious)
 		for(var/datum/disease/D in viruses)
 			if(D.IsSpreadByTouch())
 				perp.ContractDisease(D, BP_R_FOOT)
@@ -233,7 +235,7 @@
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
@@ -274,6 +276,7 @@
 	return ..()
 
 /obj/effect/decal/cleanable/mucus/Crossed(mob/living/carbon/human/perp)
+	. = ..()
 	if(perp.is_incorporeal())
 		return
 	if(!istype(perp))
@@ -296,11 +299,12 @@
 			perp.ContractDisease(D, BP_R_HAND)
 
 /obj/effect/decal/cleanable/vomit/Crossed(mob/living/carbon/human/perp)
+	. = ..()
 	if(perp.is_incorporeal())
 		return
 	if(!istype(perp))
 		return
-	if(viruses)
+	if(viruses && infectious)
 		for(var/datum/disease/D in viruses)
 			if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS))
 				continue

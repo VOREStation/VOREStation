@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 		GLOB.global_hud.druggy,
 		GLOB.global_hud.blurry,
 		GLOB.global_hud.whitense,
+		GLOB.global_hud.heavy_whitense,
 		GLOB.global_hud.vimpaired,
 		GLOB.global_hud.darkMask,
 		GLOB.global_hud.centermarker,
@@ -28,6 +29,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/atom/movable/screen/druggy
 	var/atom/movable/screen/blurry
 	var/atom/movable/screen/whitense
+	var/atom/movable/screen/heavy_whitense
 	var/list/vimpaired
 	var/list/darkMask
 	var/atom/movable/screen/centermarker
@@ -39,7 +41,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/atom/movable/screen/material
 	var/atom/movable/screen/holomap
 
-/datum/global_hud/proc/setup_overlay(var/icon_state)
+/datum/global_hud/proc/setup_overlay(icon_state)
 	var/atom/movable/screen/screen = new /atom/movable/screen()
 	screen.alpha = 30 // Adjut this if you want goggle overlays to be thinner or thicker. //VOREStation Edit
 	screen.screen_loc = "SOUTHWEST to NORTHEAST" // Will tile up to the whole screen, scaling beyond 15x15 if needed.
@@ -69,6 +71,11 @@ GLOBAL_LIST_INIT(global_huds, list(
 	whitense = new /atom/movable/screen/global_screen()
 	whitense.icon = 'icons/effects/static.dmi'
 	whitense.icon_state = "1 light"
+
+	//static overlay effect for cameras and the like
+	heavy_whitense = new /atom/movable/screen/global_screen()
+	heavy_whitense.icon = 'icons/effects/static.dmi'
+	heavy_whitense.icon_state = "1 heavy"
 
 	//darksight 'hanger' for attached icons
 	darksight = new /atom/movable/screen()
@@ -407,7 +414,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 		I.color = UI_style_color_new
 		I.alpha = UI_style_alpha_new
 
-/datum/hud/proc/apply_minihud(var/datum/mini_hud/MH)
+/datum/hud/proc/apply_minihud(datum/mini_hud/MH)
 	if(MH in minihuds)
 		return
 	minihuds += MH
@@ -417,7 +424,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	if(mymob.client)
 		mymob.client.screen += miniobjs
 
-/datum/hud/proc/remove_minihud(var/datum/mini_hud/MH)
+/datum/hud/proc/remove_minihud(datum/mini_hud/MH)
 	if(!(MH in minihuds))
 		return
 	minihuds -= MH
@@ -428,7 +435,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 		mymob.client.screen += miniobjs
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
-/mob/verb/button_pressed_F12(var/full = 0 as null)
+/mob/verb/button_pressed_F12(full = 0 as null)
 	set name = "F12"
 	set hidden = 1
 

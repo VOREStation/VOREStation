@@ -3,9 +3,8 @@
 	desc = "A sleeper. Mountable to an exosuit. (Can be attached to: Medical Exosuits)"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
-	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	energy_drain = 20
-	range = MELEE
+	range = MECH_MELEE
 	equip_cooldown = 30
 	mech_flags = EXOSUIT_MODULE_MEDICAL
 	var/mob/living/carbon/human/occupant = null
@@ -22,7 +21,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/Exit(atom/movable/O)
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(var/mob/living/carbon/human/target)
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(mob/living/carbon/human/target)
 	if(!action_checks(target))
 		return
 	if(!istype(target))
@@ -104,7 +103,7 @@
 				<head>
 				<title>[occupant] statistics</title>
 				<script language='javascript' type='text/javascript'>
-				[js_byjax]
+				[JS_BYJAX]
 				</script>
 				<style>
 				h3 {margin-bottom:2px;font-size:14px;}
@@ -181,7 +180,7 @@
 	return output
 
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/inject_reagent(var/datum/reagent/R,var/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/SG)
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/inject_reagent(datum/reagent/R,obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/SG)
 	if(!R || !occupant || !SG || !(SG in chassis.equipment))
 		return 0
 	var/to_inject = min(R.volume, inject_amount)
@@ -204,7 +203,7 @@
 		return 1
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/container_resist(var/mob/living)
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/container_resist(mob/living)
 	if(occupant == living)
 		eject()
 

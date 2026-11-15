@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(sacrificed)
 
 
 /////////////////////////////////////////FIRST RUNE
-/obj/effect/rune/proc/teleport(var/key)
+/obj/effect/rune/proc/teleport(key)
 	var/mob/living/user = usr
 	var/allrunesloc[]
 	allrunesloc = new/list()
@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(sacrificed)
 		return
 
 
-/obj/effect/rune/proc/itemport(var/key)
+/obj/effect/rune/proc/itemport(key)
 	var/culcount = 0
 	var/runecount = 0
 	var/obj/effect/rune/IP = null
@@ -203,9 +203,9 @@ GLOBAL_LIST_EMPTY(sacrificed)
 			GLOB.narsie_cometh = 1
 
 			spawn(10 SECONDS)
-				if(GLOB.emergency_shuttle)
-					GLOB.emergency_shuttle.call_evac()
-					GLOB.emergency_shuttle.launch_time = 0	// Cannot recall
+				if(SSemergency_shuttle)
+					SSemergency_shuttle.call_evac()
+					SSemergency_shuttle.launch_time = 0	// Cannot recall
 
 		log_and_message_admins_many(cultists, "summoned the end of days.")
 		return
@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(sacrificed)
 
 /////////////////////////////////////////FIFTH RUNE
 
-/obj/effect/rune/proc/emp(var/U,var/range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
+/obj/effect/rune/proc/emp(U,range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
 	log_and_message_admins("activated an EMP rune.")
 	if(istype(src,/obj/effect/rune))
 		usr.say("Ta'gh fara[pick("'","`")]qha fel d'amar det!")
@@ -388,7 +388,7 @@ GLOBAL_LIST_EMPTY(sacrificed)
 
 /////////////////////////////////////////NINETH RUNE
 
-/obj/effect/rune/proc/obscure(var/rad)
+/obj/effect/rune/proc/obscure(rad)
 	var/S=0
 	for(var/obj/effect/rune/R in orange(rad,src))
 		if(R!=src)
@@ -750,7 +750,7 @@ GLOBAL_LIST_EMPTY(sacrificed)
 
 /////////////////////////////////////////SIXTEENTH RUNE
 
-/obj/effect/rune/proc/revealrunes(var/obj/W as obj)
+/obj/effect/rune/proc/revealrunes(obj/W as obj)
 	var/go=0
 	var/rad
 	var/S=0
@@ -1049,7 +1049,7 @@ GLOBAL_LIST_EMPTY(sacrificed)
 
 //////////             Rune 24 (counting burningblood, which kinda doesnt work yet.)
 
-/obj/effect/rune/proc/runestun(var/mob/living/T as mob)
+/obj/effect/rune/proc/runestun(mob/living/T as mob)
 	if(istype(src,/obj/effect/rune))   ///When invoked as rune, flash and stun everyone around.
 		usr.say("Fuu ma[pick("'","`")]jin!")
 		for(var/mob/living/L in viewers(src))

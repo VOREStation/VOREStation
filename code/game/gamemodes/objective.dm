@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = 0					//currently only used for custom objectives.
 
-/datum/objective/New(var/text)
+/datum/objective/New(text)
 	GLOB.all_objectives |= src
 	if(text)
 		explanation_text = text
@@ -219,7 +219,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/hijack/check_completion()
 	if(!owner.current || owner.current.stat)
 		return 0
-	if(!GLOB.emergency_shuttle.returned())
+	if(!SSemergency_shuttle.returned())
 		return 0
 	if(issilicon(owner.current))
 		return 0
@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/block/check_completion()
 	if(!istype(owner.current, /mob/living/silicon))
 		return 0
-	if(!GLOB.emergency_shuttle.returned())
+	if(!SSemergency_shuttle.returned())
 		return 0
 	if(!owner.current)
 		return 0
@@ -259,7 +259,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 /datum/objective/silence/check_completion()
-	if(!GLOB.emergency_shuttle.returned())
+	if(!SSemergency_shuttle.returned())
 		return 0
 
 	for(var/mob/living/player in GLOB.player_list)
@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		return 0
 	if(isbrain(owner.current))
 		return 0
-	if(!GLOB.emergency_shuttle.returned())
+	if(!SSemergency_shuttle.returned())
 		return 0
 	if(!owner.current || owner.current.stat ==2)
 		return 0
@@ -568,7 +568,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	return 1
 
 
-/datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
+/datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
 	target_amount = rand (lowbound,highbound)
 	if (SSticker)
 		var/n_p = 1 //autowin
@@ -787,7 +787,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/ninja_highlander/check_completion()
 	if(owner)
-		for(var/datum/mind/ninja in get_antags("ninja"))
+		for(var/datum/mind/ninja in SSantag_job.get_antags("ninja"))
 			if(ninja != owner)
 				if(ninja.current.stat < 2) return 0
 		return 1

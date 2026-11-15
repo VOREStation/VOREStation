@@ -29,7 +29,7 @@
 	else if(!do_merge(M))
 		to_chat(src, "You fail to merge with \the [M]...")
 
-/mob/living/carbon/alien/diona/proc/do_merge(var/mob/living/carbon/human/H)
+/mob/living/carbon/alien/diona/proc/do_merge(mob/living/carbon/human/H)
 	if(!istype(H) || !src || !(src.Adjacent(H)))
 		return 0
 	to_chat(H, "You feel your being twine with that of \the [src] as it merges with your biomass.")

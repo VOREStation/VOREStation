@@ -170,7 +170,6 @@
 	icon = 'icons/obj/egg.dmi'
 	icon_state = "egg_slimeglob"
 
-	origin_tech = list(TECH_BIO = 10)
 
 /obj/item/royal_spider_egg/attack_self(mob/user)
 	. = ..(user)

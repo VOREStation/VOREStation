@@ -6,10 +6,11 @@
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
+	flags = WALL_ITEM
 	var/obj/item/extinguisher/has_extinguisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/Initialize(mapload, var/dir, var/building = 0)
+/obj/structure/extinguisher_cabinet/Initialize(mapload, dir, building = 0)
 	. = ..()
 
 	if(building)

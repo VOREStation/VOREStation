@@ -1,3 +1,5 @@
+#define AMPLIFIER_STRENGTH 0.2 //Each tier of capacitor increases the amplifier's strength by this much. At 5 rating, 100% increase per relay.
+
 /obj/machinery/power/tesla_coil
 	name = "tesla coil"
 	desc = "Balanced power generation and zapping."
@@ -15,40 +17,54 @@
 
 	var/power_loss = 2
 	var/input_power_multiplier = 1
-	var/zap_cooldown = 100
+	var/zap_cooldown = 10
 	var/last_zap = 0
-	var/datum/wires/tesla_coil/wires = null
+	var/zap_range = 5
+	var/lossy_transfer = TRUE  //If true, we lose power upon shooting the next beam by our power_loss var. Only comes to play if power_loss is > 1
 
-/obj/machinery/power/tesla_coil/pre_mapped
-	anchored = TRUE
-
-/obj/machinery/power/tesla_coil/examine()
+/obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()
 	if(anchored)
 		. += span_notice("It has been securely bolted down and is ready for operation.")
 	else
 		. += span_warning("It is not secured!")
 
-/obj/machinery/power/tesla_coil/Initialize(mapload)
-	. = ..()
-	wires = new(src)
+	if(Adjacent(user))
+
+		var/power_calculated = FALSE
+		if(input_power_multiplier != 1) //Greater than 1 or less than 1.
+			if(power_loss != 1)
+				. += span_info("This tesla coil will increase any power it produces by [((input_power_multiplier/power_loss) - 1) * 100]%.")
+				power_calculated = TRUE
+			else
+				. += span_info("This tesla coil will increase any power it produces by [(input_power_multiplier - 1) * 100]%.")
+		if(!power_calculated || lossy_transfer)
+			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next. if set above 1, it reduces efficiency accordingly as a multiplier.
+				. += span_warning("This tesla coil will relay power with [(1/power_loss) * 100]% efficiency.")
+
+		if(zap_range)
+			. += span_info("This tesla coil produces bolts that will reach out [zap_range] tiles.")
+		else
+			. += span_warning("This tesla coil does not produce bolts!")
 
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
+	set_wires(new /datum/wires/tesla_coil(src))
 	default_apply_parts()
+	if(anchored)
+		connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/Destroy()
 	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/power/tesla_coil/RefreshParts()
-	var/power_multiplier = 0
-	zap_cooldown = 100
+	input_power_multiplier = 0
+	zap_cooldown = 10
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		power_multiplier += C.rating
-		zap_cooldown -= (C.rating * 20)
-	input_power_multiplier = power_multiplier
-
+		input_power_multiplier += C.rating
+		zap_cooldown -= (C.rating - 1)
 
 /obj/machinery/power/tesla_coil/update_icon()
 	if(panel_open)
@@ -57,7 +73,7 @@
 		icon_state = "[icontype][anchored]"
 
 /obj/machinery/power/tesla_coil/attackby(obj/item/W, mob/user, params)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 	//if(default_deconstruction_screwdriver(user, "coil_open[anchored]", "coil[anchored]", W))
 	if(default_deconstruction_screwdriver(user, W))
@@ -68,8 +84,70 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
+
+	if(panel_open && W?.has_tool_quality(TOOL_MULTITOOL))
+		var/list/menu_list = list(
+		"Normal",
+		"Relay",
+		"Splitter",
+		"Amplifier",
+		"Recaster",
+		"Collector",
+		"Researcher",
+		)
+
+		var/modification_decision = tgui_input_list(user, "Which tesla do you wish to change it into?", "Tesla Selection", menu_list)
+		if(!modification_decision)
+			return //They didn't select anything!
+		if(QDELETED(src) || QDELETED(W) || QDELETED(user) || get_dist(user, src) > W.reach)
+			return
+
+		var/turf = get_turf(src)
+		if(!turf)
+			return
+		var/obj/machinery/power/tesla_coil/new_coil
+		switch(modification_decision)
+			if("Normal")
+				new_coil = new(turf)
+			if("Relay")
+				new_coil = new /obj/machinery/power/tesla_coil/relay(turf)
+			if("Splitter")
+				new_coil = new /obj/machinery/power/tesla_coil/splitter(turf)
+			if("Amplifier")
+				new_coil = new /obj/machinery/power/tesla_coil/amplifier(turf)
+			if("Recaster")
+				new_coil = new /obj/machinery/power/tesla_coil/recaster(turf)
+			if("Collector")
+				new_coil = new /obj/machinery/power/tesla_coil/collector(turf)
+			if("Researcher")
+				new_coil = new /obj/machinery/power/tesla_coil/research(turf)
+			else //Should never happen.
+				return
+
+		//Get rid of the stock parts that get added by init.
+		for(var/obj/item/stock_parts/C in new_coil.component_parts)
+			new_coil.component_parts -= C
+			qdel(C)
+
+		//Move the stock parts from the old coil to the new one.
+		for(var/obj/item/stock_parts/C in component_parts)
+			C.forceMove(new_coil)
+			component_parts -= C
+			new_coil.component_parts += C
+		new_coil.RefreshParts()
+
+		new_coil.anchored = anchored
+		new_coil.update_icon()
+
+		to_chat(user, span_notice("You modify \the [src]. It is now a [lowertext(modification_decision)]! You close the access panel."))
+		qdel(src)
+		return
+
+	/* //Tesla wires do literally nothing.
 	if(is_wire_tool(W))
 		return wires.Interact(user)
+	*/
+
 	return ..()
 
 /obj/machinery/power/tesla_coil/attack_hand(mob/user)
@@ -77,67 +155,109 @@
 		return
 	..()
 
-/obj/machinery/power/tesla_coil/tesla_act(var/power)
-	if(anchored && !panel_open)
-		being_shocked = TRUE
-		coil_act(power)
-		//addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
-		spawn(10) reset_shocked()
-	else
-		..()
-
-/obj/machinery/power/tesla_coil/proc/coil_act(var/power)
+/obj/machinery/power/tesla_coil/proc/coil_act(power, explosive, current_jumps)
 	var/power_produced = power / power_loss
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_produced)
+	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
-/obj/machinery/power/tesla_coil/proc/zap()
+//Unused.
+/obj/machinery/power/tesla_coil/proc/zap(power, explosive, current_jumps)
 	if((last_zap + zap_cooldown) > world.time || !powernet)
 		return FALSE
 	last_zap = world.time
 	var/coeff = (20 - ((input_power_multiplier - 1) * 3))
 	coeff = max(coeff, 10)
-	var/power = (powernet.avail/2)
+	power = (powernet.avail/2)
 	draw_power(power)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 10, power/(coeff/2))
+	tesla_zap(src, zap_range, power/(coeff/2), current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/relay
 	name = "tesla relay coil"
-	desc = "Designed to move power around rather than just consuming it."
+	desc = "Designed to move power around rather. Creates no power on its own."
 	icon_state = "relay0"
 	icontype = "relay"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
 	power_loss = 1
-	input_power_multiplier = 0
-
 	var/relay_efficiency = 0.9
 
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
 	..()
-	var/relay_multiplier
+	input_power_multiplier = 1 //So we don't show the examine text further above.
+	relay_efficiency = 0.85
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		relay_multiplier += C.rating
-	relay_efficiency = 0.85 + (0.05 * relay_multiplier)
+		relay_efficiency += C.rating * 0.05
 
-/obj/machinery/power/tesla_coil/relay/coil_act(var/power)
-	var/power_relayed = power * relay_efficiency
+/obj/machinery/power/tesla_coil/relay/coil_act(power, explosive, current_jumps)
+	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it's only 1/2 as effective.
+	var/power_relayed = ((power * relay_efficiency) / diminishing_returns)
+	if(power_relayed < power && relay_efficiency >= 1)
+		power_relayed = power
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_relayed)
+	tesla_zap(src, zap_range, power_relayed, current_jumps = current_jumps)
+
+/obj/machinery/power/tesla_coil/relay/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		if(relay_efficiency == 1)
+			. += span_info("This tesla coil will transfer power through it with no loss.")
+		else
+			. += span_info("This tesla coil will [relay_efficiency > 1 ? "amplify" : "reduce"] power transferring through it by [ abs(relay_efficiency - 1) * 100]%.")
+
+#define CORONA_LOSS_FACTOR 10
+#define CORONA_POWER_JUDGEMENT 100 KILOWATTS
+//Multiply the above together. That's how much energy one of these has to get in order to produce a research point.
+
+// Tesla R&D researcher
+// This sacrifices power generation for R&D point generation. Since amplification is a thing, the celing for getting a result is very high to reach.
+/obj/machinery/power/tesla_coil/research
+	name = "tesla corona analyzer"
+	desc = "A modified tesla coil used to study the effects of Edison's Bane for research."
+	icon_state = "rpcoil0"
+	icontype = "rpcoil"
+	power_loss = CORONA_LOSS_FACTOR					// default 10 aka a 10% efficiency for powernet input.
+	zap_range = 1									// power leakage allows for a very short range jump but inherits the default efficiency for said zap.
+	var/power_judgement = CORONA_POWER_JUDGEMENT	// avoids cheese by setting a minimum threshold for power generation
+	var/last_shock_value = 0						// used for examine
+	var/datum/techweb/linked_techweb				// R&D server to contribute points to
+
+/obj/machinery/power/tesla_coil/research/Initialize(mapload)
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/tesla_coil/research/LateInitialize()
+	if(!linked_techweb)
+		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
+
+/obj/machinery/power/tesla_coil/research/coil_act(power, zap_flags, current_jumps)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)	//allow for upgrades to actually be useful.
+	last_shock_value = power_produced
+	flick("[icontype]hit", src)
+	if(powernet && (power_produced >= power_judgement) && linked_techweb)// must have a hard connection to the powergrid
+		for(var/obj/machinery/power/smes/S in powernet.nodes)	//and a SMES unit for the full power grid experience. No running it in your basement or without proper wiring
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
+			break
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
+
+/obj/machinery/power/tesla_coil/research/examine(mob/user)
+	. = ..()
+	. += span_notice("This corona analyzer has [(last_shock_value >= power_judgement) ? "sufficent power output to produce additional research data points" : "insufficent power output for electrical corona analysis"].")
+	. += span_info("Will require a strike of at least [power_judgement / 1000]KW to produce research data points. Last strike was: [round(last_shock_value / 1000)]KW.")
+
+#undef CORONA_POWER_JUDGEMENT
+#undef CORONA_LOSS_FACTOR
 
 /obj/machinery/power/tesla_coil/splitter
 	name = "tesla prism coil"
 	desc = "Acts as a multi-target distributor."
 	icon_state = "prism0"
 	icontype = "prism"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
+	power_loss = 2
+	lossy_transfer = FALSE
 	var/split_count = 1
 
 /obj/machinery/power/tesla_coil/splitter/RefreshParts()
@@ -146,82 +266,92 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		split_count += C.rating
 
-/obj/machinery/power/tesla_coil/splitter/coil_act(var/power)
+/obj/machinery/power/tesla_coil/splitter/coil_act(power, explosive, current_jumps)
 	var/power_per_bolt = power / (split_count + 1)
 	var/power_produced = power_per_bolt / power_loss
-	add_avail(power_produced*input_power_multiplier)
+	add_avail(power_produced * input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	for(var/i = 0, i < split_count, i++)
-		tesla_zap(src, 5, power_per_bolt)
+		tesla_zap(src, zap_range, power_per_bolt, current_jumps = current_jumps)
+
+/obj/machinery/power/tesla_coil/splitter/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += span_info("This tesla coil will create [split_count + 1] bolts, with each containing [round(((1 / (split_count+1)) * 100), 0.1)]% of the original power.")
 
 /obj/machinery/power/tesla_coil/amplifier
 	name = "tesla amplifier coil"
-	desc = "Designed to amplify power moving through it rather than collecting it."
+	desc = "Designed to amplify power moving through it rather than collecting it. Has diminishing returns the more relays the tesla bolt has passed through."
 	icon_state = "amp0"
 	icontype = "amp"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
-	var/amp_eff = 2
+	var/amp_eff = 1.075
+	power_loss = 1
 
 /obj/machinery/power/tesla_coil/amplifier/RefreshParts()
 	..()
-	var/amp_eff = 1
+	amp_eff = 1.075
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		amp_eff += C.rating
+		amp_eff += ((C.rating * AMPLIFIER_STRENGTH) - AMPLIFIER_STRENGTH)
+	input_power_multiplier = 1 //no mult for you
 
-/obj/machinery/power/tesla_coil/amplifier/coil_act(var/power)
-	var/power_produced = power / power_loss
-	add_avail(power_produced*input_power_multiplier)
+/obj/machinery/power/tesla_coil/amplifier/coil_act(power, explosive, current_jumps)
+	var/diminishing_returns = 1 + ((current_jumps * 0.1)-0.1) //The more jumps, the less effective the amplifier is. At 10 jumps, it stops increasing power. Use something else!
+	var/power_produced = ((power * amp_eff) / diminishing_returns)
+	if(power_produced < power)
+		power_produced = power //Don't let it reduce power. If the amp is worse than the original, just give them the original power.
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 5, power_produced)
+	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
 
+/obj/machinery/power/tesla_coil/amplifier/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += span_info("This tesla coil will amplify any power it receives by [round((((amp_eff) * 100) - 100), 0.1)]% of the original power when relaying it.")
+		. += span_info("Every jump the tesla makes reduces the effectiveness of the amplifier by 10%, meaning at 10 jumps, it stops increasing power.")
+		. += span_danger("This tesla coil will NOT produce energy.")
+
+
+///BE WARNED, THIS THING CAN CAUSE MASSIVE LAG IF THE RANGE IS TOO HIGH
 /obj/machinery/power/tesla_coil/recaster
 	name = "tesla recaster coil"
 	desc = "Extends the reach of the bolts."
 	icon_state = "recaster0"
 	icontype = "recaster"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
-	var/zap_range = 6
+	zap_range = 6
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
 	..()
-	var/zap_range = 5
+	zap_range = 5
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		zap_range += C.rating
+		zap_range += C.rating * 1
 
-/obj/machinery/power/tesla_coil/recaster/coil_act(var/power)
+/obj/machinery/power/tesla_coil/recaster/coil_act(power, explosive, current_jumps)
 	var/power_relayed = power / power_loss
 	var/power_produced = power / (power_loss * 2)
 	add_avail(power_produced*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = zap_range)
-	tesla_zap(src, zap_range, power_relayed)
+	tesla_zap(src, zap_range, power_relayed, current_jumps = current_jumps)
 
 /obj/machinery/power/tesla_coil/collector
 	name = "tesla collector coil"
 	desc = "Highly efficient power collection. Does not arc."
 	icon_state = "collector0"
 	icontype = "collector"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
-	var/collect_eff = 0.8
+	power_loss = 1 //Doesn't lose power. Instead it uses collect_eff
+	zap_range = 0
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
 	..()
-	var/collect_mod = 0
+	input_power_multiplier = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		collect_mod += C.rating
-	collect_eff = 0.75 + collect_mod*0.05
+		input_power_multiplier += C.rating * C.rating //T1 = 200% T2 = 400% T3 = 900% T4 = 1600% T5 = 2500%
+	if(input_power_multiplier == 1)
+		input_power_multiplier = 2
 
-/obj/machinery/power/tesla_coil/collector/coil_act(var/power)
-	var/power_produced = power * collect_eff
-	add_avail(power_produced*input_power_multiplier)
+/obj/machinery/power/tesla_coil/collector/coil_act(power, explosive, current_jumps)
+	add_avail(power*input_power_multiplier)
 	flick("[icontype]hit", src)
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 
@@ -241,15 +371,12 @@
 	. = ..()
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/power/grounding_rod/examine()
+/obj/machinery/power/grounding_rod/examine(user)
 	. = ..()
 	if(anchored)
 		. += span_notice("It has been securely bolted down and is ready for operation.")
 	else
 		. += span_warning("It is not secured!")
-
-/obj/machinery/power/grounding_rod/pre_mapped
-	anchored = TRUE
 
 /obj/machinery/power/grounding_rod/update_icon()
 	if(panel_open)
@@ -274,8 +401,29 @@
 		return
 	..()
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power)
-	if(anchored && !panel_open)
-		flick("grounding_rodhit", src)
-	else
-		..()
+//Mapspawn variants of each.
+/obj/machinery/power/tesla_coil/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/relay/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/splitter/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/amplifier/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/recaster/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/collector/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/tesla_coil/research/pre_mapped
+	anchored = TRUE
+
+/obj/machinery/power/grounding_rod/pre_mapped
+	anchored = TRUE
+
+#undef AMPLIFIER_STRENGTH

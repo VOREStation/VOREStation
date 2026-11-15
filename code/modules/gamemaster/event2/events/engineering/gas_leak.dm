@@ -31,7 +31,7 @@
 
 /datum/event2/event/gas_leak/announce()
 	if(chosen_turf)
-		command_announcement.Announce("Warning, hazardous [lowertext(GLOB.gas_data.name[chosen_gas])] gas leak detected in \the [chosen_turf.loc], evacuate the area.", "Hazard Alert")
+		GLOB.command_announcement.Announce("Warning, hazardous [lowertext(GLOB.gas_data.name[chosen_gas])] gas leak detected in \the [chosen_turf.loc], evacuate the area.", "Hazard Alert", ANNOUNCER_MSG_GASLEAK)
 
 /datum/event2/event/gas_leak/start()
 	// Okay, time to actually put the gas in the room!

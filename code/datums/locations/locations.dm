@@ -4,7 +4,7 @@
 	var/list/contents = list()
 	var/parent
 
-/datum/locations/New(var/creator)
+/datum/locations/New(creator)
 	if(creator)
 		parent = creator
 

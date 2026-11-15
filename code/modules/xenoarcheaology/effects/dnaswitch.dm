@@ -17,7 +17,7 @@
 	else
 		effect_strength = rand(10,20) //This one is SUPER beneficial to the geneticist, as they can mutate monkeys.
 
-/datum/artifact_effect/dnaswitch/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/dnaswitch/DoEffectTouch(mob/toucher)
 	var/weakness = GetAnomalySusceptibility(toucher)
 	if(ishuman(toucher) && prob(weakness * 100))
 		if(prob(effect_strength))

@@ -21,4 +21,4 @@
 			var/datum/material/material = GET_MATERIAL_REF(M::default_type)
 			UI.blend_color(material.icon_colour, ICON_MULTIPLY)
 
-		insert_icon(M::default_type, UI)
+		insert_icon(sanitize_css_class_name(M::default_type), UI)

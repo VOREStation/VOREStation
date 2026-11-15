@@ -17,7 +17,11 @@
 	var/list/skin_color
 	var/list/hair_color
 
-/datum/organ_data/proc/setup_from_dna(var/datum/dna/dna)
+/datum/organ_data/Destroy(force)
+	. = ..()
+	species = null
+
+/datum/organ_data/proc/setup_from_dna(datum/dna/dna)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	// Prosfab uses default dna to get vars, lets respect that still
 	var/self_clear = FALSE
@@ -40,32 +44,33 @@
 	if(self_clear)
 		qdel(dna)
 
-/datum/organ_data/proc/setup_from_species(var/datum/species/S) // This needs a full rework, but can't be done unless all of transformating species code is refactored
+/datum/organ_data/proc/setup_from_species(datum/species/S) // This needs a full rework, but can't be done unless all of transformating species code is refactored
 	SHOULD_NOT_OVERRIDE(TRUE)
 	species = WEAKREF(S)
 
 // All accessed vars need to be cached during read.
 // Get data from species, if this fails use cached data
-#define SETUP_SPECIES_CHECK(p,x)\
-var/datum/species/SP = species?.resolve();\
-if(SP)\
-	cached_species_vars[p] = x;\
-return cached_species_vars[p];
+#define SETUP_SPECIES_CHECK(p, x) \
+	var/datum/species/SP = species?.resolve(); \
+	if (SP) { \
+		cached_species_vars[p] = x; \
+	} \
+	return cached_species_vars[p];
 
 
 /datum/organ_data/proc/get_species_name()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("name",SP.name)
 
-/datum/organ_data/proc/get_species_race_key(var/owner)
+/datum/organ_data/proc/get_species_race_key(owner)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("race_key",SP.get_race_key(owner))
 
-/datum/organ_data/proc/get_species_bodytype(var/mob/living/carbon/human/H)
+/datum/organ_data/proc/get_species_bodytype(mob/living/carbon/human/H)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("bodytype",SP.get_bodytype(H))
 
-/datum/organ_data/proc/get_species_icobase(var/mob/living/carbon/human/H, var/get_deform)
+/datum/organ_data/proc/get_species_icobase(mob/living/carbon/human/H, get_deform)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("icobase",SP.get_icobase(H,get_deform))
 
@@ -89,11 +94,11 @@ return cached_species_vars[p];
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("mob_size",SP.mob_size)
 
-/datum/organ_data/proc/get_species_flesh_colour(var/owner)
+/datum/organ_data/proc/get_species_flesh_colour(owner)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("flesh_colour",SP.get_flesh_colour(owner) || "#C80000")
 
-/datum/organ_data/proc/get_species_blood_colour(var/owner)
+/datum/organ_data/proc/get_species_blood_colour(owner)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SETUP_SPECIES_CHECK("blood_colour",SP.get_blood_colour(owner) || "#C80000")
 

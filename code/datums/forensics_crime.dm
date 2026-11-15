@@ -11,7 +11,7 @@
 // Fingerprints
 //////////////////////////////////////////////////////////////////////////////////////
 /// Adds fingerprints to the object, prints can be smudged, glove handling is done on the atom side of this proc.
-/datum/forensics_crime/proc/add_prints(var/mob/living/carbon/human/H)
+/datum/forensics_crime/proc/add_prints(mob/living/carbon/human/H)
 	//Now, lets get to the dirty work.
 	if(!fingerprints)
 		fingerprints = list()
@@ -79,7 +79,7 @@
 	return TRUE
 
 /// Merges data from another forensics crime datum into this one. Entries with the same key will be merged. Does nothing if the origin datum's list is empty.
-/datum/forensics_crime/proc/merge_prints(var/datum/forensics_crime/origin)
+/datum/forensics_crime/proc/merge_prints(datum/forensics_crime/origin)
 	if(!islist(origin?.fingerprints))
 		return
 	LAZYOR(fingerprints,origin.fingerprints)
@@ -90,7 +90,7 @@
 	fingerprintslast = null
 
 /// Sets the key of the last mob to touch this object
-/datum/forensics_crime/proc/set_lastprint(var/val)
+/datum/forensics_crime/proc/set_lastprint(val)
 	fingerprintslast = val
 
 /// Gets the key of the last mob to touch this object
@@ -142,7 +142,7 @@
 	return TRUE
 
 /// Merges data from another forensics crime datum into this one. Entries with the same key will be merged. Does nothing if the origin datum's list is empty.
-/datum/forensics_crime/proc/merge_hiddenprints(var/datum/forensics_crime/origin)
+/datum/forensics_crime/proc/merge_hiddenprints(datum/forensics_crime/origin)
 	if(!islist(origin?.fingerprintshidden))
 		return
 	LAZYOR(fingerprintshidden,origin.fingerprintshidden)
@@ -152,7 +152,7 @@
 // Fibres
 //////////////////////////////////////////////////////////////////////////////////////
 /// Adds stray fibres from clothing worn by a mob while handling something
-/datum/forensics_crime/proc/add_fibres(var/mob/living/carbon/human/M)
+/datum/forensics_crime/proc/add_fibres(mob/living/carbon/human/M)
 	var/fibertext = null
 	var/item_multiplier = istype(src,/obj/item)?1.2:1
 	var/suit_coverage = 0
@@ -194,7 +194,7 @@
 	return TRUE
 
 /// Merges data from another forensics crime datum into this one. Entries with the same key will be merged. Does nothing if the origin datum's list is empty.
-/datum/forensics_crime/proc/merge_fibres(var/datum/forensics_crime/origin)
+/datum/forensics_crime/proc/merge_fibres(datum/forensics_crime/origin)
 	if(!islist(origin?.suit_fibres))
 		return
 	LAZYOR(suit_fibres,origin.suit_fibres)
@@ -210,7 +210,7 @@
 #define XENO_DNA "UNKNOWN DNA STRUCTURE"
 #define NOT_HUMAN_DNA "Non-human DNA"
 /// Adds the mob's bloodtype to a UE keyed list, returns true if the key was not present in the list before.
-/datum/forensics_crime/proc/add_blooddna(var/datum/dna/dna_data,var/mob/M)
+/datum/forensics_crime/proc/add_blooddna(datum/dna/dna_data,mob/M)
 	if(!blood_DNA)
 		blood_DNA = list()
 	// Special alien handling
@@ -231,7 +231,7 @@
 #undef NOT_HUMAN_DNA
 
 /// Adds the mob's bloodtype to a UE keyed list, returns true if the key was not present in the list before. Uses an organ's dna_data datum instead of a mob's dna datum.
-/datum/forensics_crime/proc/add_blooddna_organ(var/datum/organ_data/dna_data)
+/datum/forensics_crime/proc/add_blooddna_organ(datum/organ_data/dna_data)
 	if(!blood_DNA)
 		blood_DNA = list()
 	var/fresh = isnull(blood_DNA[dna_data.unique_enzymes])
@@ -252,7 +252,7 @@
 	return TRUE
 
 /// Merges data from another forensics crime datum into this one. Entries with the same key will be merged. Does nothing if the origin datum's list is empty. Supports merging from a list directly as well.
-/datum/forensics_crime/proc/merge_blooddna(var/datum/forensics_crime/origin, var/list/raw_list = null)
+/datum/forensics_crime/proc/merge_blooddna(datum/forensics_crime/origin, list/raw_list = null)
 	// Copying from a list, blood on a mob's feet is stored as a list outside of forensics data
 	if(raw_list)
 		LAZYOR(blood_DNA,raw_list)
@@ -271,7 +271,7 @@
 // Gunshot residue
 //////////////////////////////////////////////////////////////////////////////////////
 /// Sets a string name of the last fired bullet's caliber from a projectile based gun.
-/datum/forensics_crime/proc/add_gunshotresidue(var/gsr)
+/datum/forensics_crime/proc/add_gunshotresidue(gsr)
 	gunshot_residue = gsr
 
 /// Gets a string name of the last bullet caliber fired from a projectile based gun.
@@ -287,7 +287,7 @@
 // Misc procs
 //////////////////////////////////////////////////////////////////////////////////////
 /// Cleans off forensic information, different cleaning types remove different things.
-/datum/forensics_crime/proc/wash(var/clean_types)
+/datum/forensics_crime/proc/wash(clean_types)
 	// These require specific cleaning flags
 	if(clean_types & CLEAN_TYPE_BLOOD)
 		clear_blooddna()
@@ -300,7 +300,7 @@
 		clear_gunshotresidue()
 
 /// Merges both visible and admin hidden investigation fingerprints, as well as setting the last fingerprint from the origin datum's if one is not already set.
-/datum/forensics_crime/proc/merge_allprints(var/datum/forensics_crime/origin)
+/datum/forensics_crime/proc/merge_allprints(datum/forensics_crime/origin)
 	if(!origin)
 		return
 	merge_prints(origin)

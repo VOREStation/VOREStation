@@ -44,7 +44,7 @@
 	if(EA)
 		EA.attack_self(user)
 
-/obj/item/assembly/electronic_assembly/pulsed(var/radio = 0)						//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
+/obj/item/assembly/electronic_assembly/pulsed(radio = 0)						//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
 	if(EA)
 		for(var/obj/item/integrated_circuit/built_in/device_input/I in EA.contents)
 			I.do_work()

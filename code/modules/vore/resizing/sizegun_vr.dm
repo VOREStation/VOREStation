@@ -11,7 +11,6 @@
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
-	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
 	battery_lock = 1
 	var/backfire = 0
@@ -63,7 +62,7 @@
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
 
-/obj/item/gun/energy/sizegun/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/sizegun/update_icon(ignore_inhands)
 	var/grow_mode = "shrink"
 	if(size_set_to > 1)
 		grow_mode = "grow"
@@ -152,7 +151,7 @@
 	else
 		return ..()
 
-/obj/item/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/sizegun/attack(mob/living/A, mob/living/user, target_zone, attack_modifier)
 	if(backfire)
 		if(prob(50))
 			to_chat(user, span_notice("\The [src] backfires and consumes its entire charge!"))
@@ -161,14 +160,14 @@
 			var/mob/living/M = loc // TGMC Ammo HUD
 			if(istype(M)) // TGMC Ammo HUD
 				M?.hud_used.update_ammo_hud(M, src)
-			return
+			return ITEM_INTERACT_SUCCESS
 		else
 			return ..()
 	else
 		return ..()
 
 
-/obj/item/gun/energy/sizegun/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/sizegun/attackby(obj/item/A as obj, mob/user as mob)
 	if(A.has_tool_quality(TOOL_WIRECUTTER))
 		if(backfire)
 			to_chat(user, span_warning("You repair the damage to the \the [src]."))
@@ -204,7 +203,7 @@
 	tracer_type = /obj/effect/projectile/tracer/xray
 	impact_type = /obj/effect/projectile/impact/xray
 
-/obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
+/obj/item/projectile/beam/sizelaser/on_hit(atom/target)
 	var/mob/living/M = target
 	var/ignoring_prefs = (target == firer ? TRUE : FALSE) // Resizing yourself
 	if(istype(M))
@@ -219,7 +218,7 @@
 		return
 	return 1
 
-/obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
+/obj/item/projectile/beam/sizelaser/admin/on_hit(atom/target)
 	var/mob/living/M = target
 
 	if(istype(M))

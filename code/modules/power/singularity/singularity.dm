@@ -31,7 +31,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	var/chained = 0//Adminbus chain-grab
 
-/obj/singularity/Initialize(mapload, var/starting_energy = 50)
+/obj/singularity/Initialize(mapload, starting_energy = 50)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 	. = ..()
@@ -108,7 +108,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	else
 		dissipate_track++
 
-/obj/singularity/proc/expand(var/force_size = 0, var/growing = 1)
+/obj/singularity/proc/expand(force_size = 0, growing = 1)
 	if(current_size == STAGE_SUPER)//if this is happening, this is an error
 		message_admins("expand() was called on a super singulo. This should not happen. Contact a coder immediately!")
 		return
@@ -278,7 +278,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	src.energy += A.singularity_act(src, current_size)
 	return
 
-/obj/singularity/proc/move(var/force_move = 0)
+/obj/singularity/proc/move(force_move = 0)
 	if(!move_self)
 		return 0
 
@@ -305,7 +305,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		last_failed_movement = movement_dir
 	return 0
 
-/obj/singularity/proc/check_turfs_in(var/direction = 0, var/step = 0)
+/obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
 	if(!direction)
 		return 0
 	var/steps = 0
@@ -401,13 +401,20 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 
 /obj/singularity/proc/toxmob()
-	var/toxrange = 10
+	var/toxrange = 7
 	var/toxdamage = 4
 	var/radiation = 15
 	if (src.energy>200)
 		toxdamage = round(((src.energy-150)/50)*4,1)
-		radiation = round(((src.energy-150)/50)*5,1)
-	SSradiation.radiate(src, radiation) //Always radiate at max, so a decent dose of radiation is applied
+		radiation =	round(((energy-150) / 50) * 5,1)
+	radiation_pulse(
+		src,
+		max_range = 7,
+		threshold = RAD_EXTREME_INSULATION - 0.1,
+		chance = 100, // We want to guarentee this
+		minimum_exposure_time = 1 SECOND,
+		strength = radiation
+	)
 	for(var/mob/living/M in view(toxrange, src.loc))
 		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 			return 0	// Cancelled by a component
@@ -450,13 +457,30 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			to_chat(M, span_danger("You hear an unearthly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
 			to_chat(M, span_danger("You don't even have a moment to react as you are reduced to ashes by the intense radiation."))
 			M.dust()
-	SSradiation.radiate(src, rand(energy))
+
+	var/rand_pulse_strength = rand(energy)
+	radiation_pulse(
+		src,
+		max_range = BAYRAD_RADIATION_RANGE(rand_pulse_strength),
+		threshold = RAD_EXTREME_INSULATION,
+		chance = 100,
+		strength = rand_pulse_strength
+	)
 	return
 
 /obj/singularity/proc/pulse()
 	for(var/obj/machinery/power/rad_collector/R in GLOB.rad_collectors)
 		if (get_dist(R, src) <= 15) //Better than using orange() every process.
 			R.receive_pulse(energy)
+	//Yes, this means rad collectors can double dip on the singulo, but you could always use the safer SM or tesla, so it gets a small buff.
+	var/rad_pulse = energy * 0.25
+	radiation_pulse(
+		src,
+		max_range = BAYRAD_RADIATION_RANGE(rad_pulse),
+		threshold = RAD_EXTREME_INSULATION,
+		chance = 80,
+		strength = rad_pulse
+	)
 
 /obj/singularity/proc/on_capture()
 	chained = 1

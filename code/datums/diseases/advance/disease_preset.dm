@@ -6,7 +6,7 @@
 /datum/disease/advance/random/minor
 	max_symptoms_override = 4
 
-/datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom, var/atom/infected, mute = TRUE)
+/datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom, atom/infected, mute = TRUE)
 	if(!max_symptoms)
 		max_symptoms = (2 + rand(1, (VIRUS_SYMPTOM_LIMIT - 2)))
 	if(max_symptoms_override)

@@ -90,7 +90,7 @@
 //Water
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
-	desc = "A water tank."
+	desc = "A water tank. Life-saving water, now on wheels!"
 	icon_state = "water"
 	amount_per_transfer_from_this = 10
 
@@ -116,7 +116,8 @@
 //Fuel
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
-	desc = "A fuel tank."
+	desc = "A fuel tank. Filled with flammable fuel suitable for welding tools, or some small engines. Unless someone siphoned it again!"
+	description_antag = "Explosive if filled with fuel. Can be wrenched open to spill fuel over the floor."
 	icon_state = REAGENT_ID_FUEL
 	amount_per_transfer_from_this = 10
 	var/modded = 0
@@ -139,7 +140,7 @@
 //Foam
 /obj/structure/reagent_dispensers/foam
 	name = "foam tank"
-	desc = "A foam tank."
+	desc = "A foam tank. Used for firefighting, not bathing."
 	icon_state = "foam"
 	amount_per_transfer_from_this = 10
 
@@ -244,7 +245,7 @@
 	return ..()
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		if(istype(Proj.firer))
 			message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>).")
@@ -294,6 +295,7 @@
 	anchored = TRUE
 	density = FALSE
 	amount_per_transfer_from_this = 45
+	flags = WALL_ITEM
 
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
 	. = ..()
@@ -327,10 +329,10 @@
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
-	desc = "A machine that dispenses water to drink."
-	amount_per_transfer_from_this = 5
+	desc = "A machine that dispenses water to drink. Imagine how many conversations it has heard."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
+	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	anchored = TRUE
 	has_sockets = FALSE
@@ -486,6 +488,26 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
 
+/obj/structure/reagent_dispensers/beerkeg/irish
+	name = "special irish drink keg"
+	desc = "A keg full of a cocktail drink made from imported irish whiskey."
+
+/obj/structure/reagent_dispensers/beerkeg/irish/Initialize(mapload)
+	. = ..()
+	reagents.remove_any(1000)
+	var/reagent_id = pick(REAGENT_ID_IRISHCOFFEE, REAGENT_ID_IRISHCREAM, REAGENT_ID_IRISHCARBOMB, REAGENT_ID_B52)
+	reagents.add_reagent(reagent_id, 1000)
+
+/obj/structure/reagent_dispensers/beerkeg/pirate
+	name = "vintage rum keg"
+	desc = "A keg of Captain Pete's Spiced Rum from over half a century ago. Old recipe, strong and authentic flavor, y'aaarrrr..."
+	icon_state = "beertankfantasy"
+
+/obj/structure/reagent_dispensers/beerkeg/pirate/Initialize(mapload)
+	. = ..()
+	reagents.remove_any(1000)
+	reagents.add_reagent(REAGENT_ID_RUM, 1000)
+
 //Cooking oil refill tank
 /obj/structure/reagent_dispensers/cookingoil
 	name = "cooking oil tank"
@@ -499,7 +521,7 @@
 	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
 	AddElement(/datum/element/climbable)
 
-/obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/reagent_dispensers/cookingoil/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		explode()
 

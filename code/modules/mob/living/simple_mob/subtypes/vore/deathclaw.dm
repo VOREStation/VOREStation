@@ -72,6 +72,9 @@
 
 	can_be_drop_prey = FALSE
 
+	export_research_value = TECHWEB_TIER_2_POINTS
+	export_research_diminished_max = 3
+
 /mob/living/simple_mob/vore/aggressive/deathclaw/Login()
 	. = ..()
 	if(!riding_datum)

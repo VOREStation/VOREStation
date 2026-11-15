@@ -9,7 +9,7 @@
 	var/list/instances		//What items are actually stored
 	var/stored				//The thing holding it is
 
-/datum/stored_item/New(var/stored, var/path, var/name = null, var/amount = 0)
+/datum/stored_item/New(stored, path, name = null, amount = 0)
 	src.item_path = path
 
 	if(!name)
@@ -34,7 +34,7 @@
 /datum/stored_item/proc/get_amount()
 	return instances ? instances.len : amount
 
-/datum/stored_item/proc/get_product(var/product_location)
+/datum/stored_item/proc/get_product(product_location)
 	if(!get_amount() || !product_location)
 		return
 	init_products()
@@ -47,7 +47,7 @@
 		our_item.persist_storable = FALSE
 	return product
 
-/datum/stored_item/proc/add_product(var/atom/movable/product)
+/datum/stored_item/proc/add_product(atom/movable/product)
 	if(product.type != item_path)
 		return FALSE
 	init_products()
@@ -63,7 +63,7 @@
 		var/new_product = new item_path(stored)
 		instances += new_product
 
-/datum/stored_item/proc/refill_products(var/refill_amount)
+/datum/stored_item/proc/refill_products(refill_amount)
 	if(!instances)
 		init_products()
 	for(var/i = 1 to refill_amount)
@@ -73,14 +73,14 @@
 /datum/stored_item/stack/get_amount()
 	return amount
 
-/datum/stored_item/stack/add_product(var/atom/movable/product)
+/datum/stored_item/stack/add_product(atom/movable/product)
 	. = ..()
 	if(.)
 		var/obj/item/stack/S = product
 		if(istype(S))
 			amount += S.get_amount()
 
-/datum/stored_item/stack/get_product(var/product_location, var/count)
+/datum/stored_item/stack/get_product(product_location, count)
 	if(!LAZYLEN(instances))
 		return null // Shouldn't happen, but will loudly complain if it breaks
 

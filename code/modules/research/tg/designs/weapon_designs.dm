@@ -3,7 +3,7 @@
 	name = "Size Gun"
 	id = "sizegun"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/gun/energy/sizegun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -13,7 +13,7 @@
 	name = "Gradual Size Gun"
 	id = "gradsizegun"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/slow_sizegun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -25,7 +25,7 @@
 	id = "stunrevolver"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2))
 	build_path = /obj/item/gun/energy/stunrevolver
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -37,7 +37,7 @@
 	id = "nuclear_gun"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_URANIUM = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.25))
 	build_path = /obj/item/gun/energy/gun/nuclear
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -49,12 +49,45 @@
 	id = "ppistol"
 	// req_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_PHORON = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.5), MAT_PHORON = MATERIAL_COST(1.5))
 	build_path = /obj/item/gun/energy/toxgun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/caselessrifle_prototype
+	name = "Caseless Rifle"
+	id = "caselessrifle"
+	materials = list(MAT_STEEL = MATERIAL_COST(3.5), MAT_TITANIUM = MATERIAL_COST(2))
+	build_path = /obj/item/gun/projectile/caseless/prototype
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/caselessrifle_ammo
+	name = "Caseless Ammo"
+	id = "caselessrifle_ammo"
+	materials = list(MAT_PHORON = MATERIAL_COST(5), MAT_STEEL = MATERIAL_COST(2))
+	build_path = /obj/item/ammo_magazine/m5mmcaseless
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/caselessrifle_ammo_stun
+	name = "Caseless Ammo - Stun"
+	id = "caselessrifle_ammo_stun"
+	materials = list(MAT_PHORON = MATERIAL_COST(5), MAT_STEEL = MATERIAL_COST(2))
+	build_path = /obj/item/ammo_magazine/m5mmcaseless/stun
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/lasercannon
 	name = "Laser Cannon"
@@ -62,19 +95,33 @@
 	id = "lasercannon"
 	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/gun/energy/lasercannon
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
+/*
+/datum/design_techweb/cyrogun
+	name = "Cryo Gun"
+	desc = "An improperly researched and poorly built weapon, specialized in utlizing frost offensively.."
+	id = "cryogun"
+	materials = list(MAT_GLASS = MATERIAL_COST(1.5), MAT_MORPHIUM = MATERIAL_COST(2), MAT_DURASTEEL = MATERIAL_COST(3), MAT_LEAD = MATERIAL_COST(3), MAT_METALHYDROGEN = MATERIAL_COST(1.5))
+	build_path = /obj/item/gun/energy/freezegun
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_WEAPONS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
+
 /datum/design_techweb/decloner
 	name = "Decloner"
 	id = "decloner"
 	// req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_GOLD = 5000,MAT_URANIUM = 10000)
+	materials = list(MAT_GOLD = MATERIAL_COST(2.5),MAT_URANIUM = MATERIAL_COST(5))
 	build_path = /obj/item/gun/energy/decloner
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -87,7 +134,7 @@
 	id = "temp_gun"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 500, MAT_SILVER = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.25), MAT_SILVER = MATERIAL_COST(1.5))
 	build_path = /obj/item/gun/energy/temperature
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -99,7 +146,7 @@
 	id = "flora_gun"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 500, MAT_URANIUM = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.25))
 	build_path = /obj/item/gun/energy/floragun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -111,7 +158,7 @@
 	id = "vinstunrevolver"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2))
 	build_path = /obj/item/gun/energy/stunrevolver/vintage
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -125,50 +172,10 @@
 	desc = "An advanced 9mm SMG with a reflective laser optic."
 	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 8000, MAT_SILVER = 2000, MAT_DIAMOND = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_SILVER = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(0.5))
 	build_path = /obj/item/gun/projectile/automatic/advanced_smg
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-// Ballistic ammo
-/datum/design_techweb/ammo_9mmAdvanced
-	name = "9mm magazine"
-	id = "ammo_9mm"
-	desc = "A 21 round magazine for an advanced 9mm SMG."
-	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3750, MAT_SILVER = 100) // Requires silver for proprietary magazines! Or something.
-	build_path = /obj/item/ammo_magazine/m9mmAdvanced
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/stunshell
-	name = "stun shells"
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
-
-/datum/design_techweb/empshell
-	name = "emp shells"
-	desc = "An electromagnetic shell for a shotgun."
-	id = "empshell"
-	// req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_URANIUM = 1000)
-	build_path = /obj/item/ammo_magazine/ammo_box/b12g/emp
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
@@ -178,7 +185,7 @@
 	id = "rapidsyringe"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/gun/launcher/syringe/rapid
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -191,7 +198,7 @@
 	id = "dartgun_r"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_BIO = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GOLD = 5000, MAT_SILVER = 2500, MAT_GLASS = 750)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GOLD = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(1.25), MAT_GLASS = MATERIAL_COST(0.375))
 	build_path = /obj/item/gun/projectile/dartgun/research
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -204,7 +211,7 @@
 	id = "chemsprayer"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_STEEL = MATERIAL_COST(1))
 	build_path = /obj/item/reagent_containers/spray/chemsprayer
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -216,7 +223,7 @@
 	id = "fuelrod_gun"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 2000, MAT_GOLD = 500, MAT_SILVER = 500, MAT_URANIUM = 1000, MAT_PHORON = 3000, MAT_DIAMOND = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(0.25), MAT_SILVER = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(0.5), MAT_PHORON = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(0.5))
 	build_path = /obj/item/gun/magnetic/fuelrod
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -230,7 +237,7 @@
 	id = "dartgun_mag_s"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 300, MAT_GOLD = 100, MAT_SILVER = 100, MAT_GLASS = 300)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.15), MAT_GOLD = MATERIAL_COST(0.05), MAT_SILVER = MATERIAL_COST(0.05), MAT_GLASS = MATERIAL_COST(0.15))
 	build_path = /obj/item/ammo_magazine/chemdart/small
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -245,7 +252,7 @@
 	id = "dartgun_ammo_s"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 50, MAT_GOLD = 30, MAT_SILVER = 30, MAT_GLASS = 50)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GOLD = MATERIAL_COST(0.015), MAT_SILVER = MATERIAL_COST(0.015), MAT_GLASS = MATERIAL_COST(0.025))
 	build_path = /obj/item/ammo_casing/chemdart/small
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -260,7 +267,7 @@
 	id = "dartgun_mag_m"
 	// req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GOLD = 150, MAT_SILVER = 150, MAT_DIAMOND = 200, MAT_GLASS = 400)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.075), MAT_SILVER = MATERIAL_COST(0.075), MAT_DIAMOND = MATERIAL_COST(0.1), MAT_GLASS = MATERIAL_COST(0.2))
 	build_path = /obj/item/ammo_magazine/chemdart
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -272,7 +279,7 @@
 	id = "dartgun_ammo_m"
 	// req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_MAGNET = 1, TECH_ILLEGAL = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 80, MAT_GOLD = 40, MAT_SILVER = 40, MAT_GLASS = 60)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.04), MAT_GOLD = MATERIAL_COST(0.02), MAT_SILVER = MATERIAL_COST(0.02), MAT_GLASS = MATERIAL_COST(0.03))
 	build_path = /obj/item/ammo_casing/chemdart
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -284,7 +291,7 @@
 	id = "magnetic_ammo"
 	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_MAGNET = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500, MAT_GOLD = 300, MAT_GLASS = 150, MAT_PHORON = 100)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.15), MAT_GLASS = MATERIAL_COST(0.075), MAT_PHORON = MATERIAL_COST(0.05))
 	build_path = /obj/item/magnetic_ammo
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -297,7 +304,7 @@
 	id = "chargesword"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 4, TECH_ENGINEERING = 5, TECH_ILLEGAL = 4, TECH_ARCANE = 1)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTEEL = 3500, MAT_GLASS = 1000, MAT_LEAD = 2250, MAT_METALHYDROGEN = 500)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1.75), MAT_GLASS = MATERIAL_COST(0.5), MAT_LEAD = MATERIAL_COST(1.125), MAT_METALHYDROGEN = MATERIAL_COST(0.25))
 	build_path = /obj/item/melee/energy/sword/charge
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
@@ -309,7 +316,7 @@
 	id = "chargeaxe"
 	// req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 5, TECH_ENGINEERING = 4, TECH_ILLEGAL = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTEEL = 3500, MAT_OSMIUM = 2000, MAT_LEAD = 2000, MAT_METALHYDROGEN = 500)
+	materials = list(MAT_PLASTEEL = MATERIAL_COST(1.75), MAT_OSMIUM = MATERIAL_COST(1), MAT_LEAD = MATERIAL_COST(1), MAT_METALHYDROGEN = MATERIAL_COST(0.25))
 	build_path = /obj/item/melee/energy/axe/charge
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
@@ -322,7 +329,7 @@
 	id = "large_Grenade"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5))
 	build_path = /obj/item/grenade/chem_grenade/large
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -336,7 +343,7 @@
 	id = "protector"
 	// req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/gun/energy/gun/protector
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -349,7 +356,7 @@
 	id = "sickshot"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1))
 	build_path = /obj/item/gun/energy/sickshot
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -362,7 +369,7 @@
 	id = "netgun"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/gun/energy/netgun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -374,7 +381,7 @@
 	desc  = "The \"Varmint Compactor\" is an energy net projector designed to immobilize its targets while simultaneously reducing them to a more manageable size."
 	id = "sizenetgun"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/gun/energy/netgun/shrink
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -387,7 +394,7 @@
 	id = "bolablaster"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(1.5))
 	build_path = /obj/item/gun/energy/bolagun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -402,7 +409,7 @@
 	id = "pummeler"
 	// req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.5), MAT_GLASS = MATERIAL_COST(1.5), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/gun/energy/pummeler
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -415,7 +422,7 @@
 	id = "advparticle"
 	// req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_GOLD = 1000, MAT_URANIUM = 750)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.375))
 	build_path = /obj/item/gun/energy/particle/advanced
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -427,7 +434,7 @@
 	id = "particlecannon"
 	// req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 1500, MAT_GOLD = 2000, MAT_URANIUM = 1000, MAT_DIAMOND = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(1))
 	build_path = /obj/item/gun/energy/particle/cannon
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -440,7 +447,7 @@
 	id = "pressureinterlock"
 	// req_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 250)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.125))
 	build_path = /obj/item/pressurelock
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_FIRING_PINS
@@ -453,7 +460,7 @@
 	id = "nsfw_prototype"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6000, MAT_PHORON = 8000, MAT_URANIUM = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(3), MAT_PHORON = MATERIAL_COST(4), MAT_URANIUM = MATERIAL_COST(2))
 	build_path = /obj/item/gun/projectile/cell_loaded/combat/prototype
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -465,7 +472,7 @@
 	id = "nsfw_mag_prototype"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 8000, MAT_GLASS = 4000, MAT_PHORON = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(2), MAT_PHORON = MATERIAL_COST(2))
 	build_path = /obj/item/ammo_magazine/cell_mag/combat/prototype
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -477,7 +484,7 @@
 	id = "nsfw_cell_stun"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_POWER = 3, TECH_COMBAT = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5))
 	build_path = /obj/item/ammo_casing/microbattery/combat/stun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -489,7 +496,7 @@
 	id = "nsfw_cell_lethal"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PHORON = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PHORON = MATERIAL_COST(1.5))
 	build_path = /obj/item/ammo_casing/microbattery/combat/lethal
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -501,7 +508,7 @@
 	id = "nsfw_cell_net"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_URANIUM = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_URANIUM = MATERIAL_COST(1.5))
 	build_path = /obj/item/ammo_casing/microbattery/combat/net
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -513,7 +520,7 @@
 	id = "nsfw_cell_ion"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 5, TECH_COMBAT = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(1.5))
 	build_path = /obj/item/ammo_casing/microbattery/combat/ion
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -525,7 +532,7 @@
 	id = "nsfw_cell_shotstun"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 6, TECH_COMBAT = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 2000, MAT_GOLD = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(1), MAT_GOLD = MATERIAL_COST(1))
 	build_path = /obj/item/ammo_casing/microbattery/combat/shotstun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -537,7 +544,7 @@
 	id = "nsfw_cell_xray"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 5, TECH_COMBAT = 7)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 1000, MAT_GOLD = 1000, MAT_URANIUM = 1000, MAT_PHORON = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.5), MAT_PHORON = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/combat/xray
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -549,7 +556,7 @@
 	id = "nsfw_cell_stripper"
 	// req_tech = list(TECH_MATERIAL = 7, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4, TECH_ILLEGAL = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_URANIUM = 2000, MAT_PHORON = 2000, MAT_DIAMOND = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_URANIUM = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(0.25))
 	build_path = /obj/item/ammo_casing/microbattery/combat/stripper
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -562,7 +569,7 @@
 	id = "ptrshell"
 	// req_tech = list(TECH_COMBAT = 7, TECH_ILLEGAL = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_TITANIUM = 4000, MAT_URANIUM = 500, MAT_PLASTEEL = 500)
+	materials = list(MAT_TITANIUM = MATERIAL_COST(2), MAT_URANIUM = MATERIAL_COST(0.25), MAT_PLASTEEL = MATERIAL_COST(0.25))
 	build_path = /obj/item/ammo_casing/a145
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -576,7 +583,7 @@
 	id = "recombobray"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_POWER = 4, TECH_BIO = 5, TECH_BLUESPACE = 4) //Not like these matter. *Glares at circuit printer.*
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 1000, MAT_GLASS = 2000, MAT_URANIUM = 500, MAT_PHORON = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(0.25), MAT_PHORON = MATERIAL_COST(0.75))
 	build_path = /obj/item/gun/energy/mouseray/medical
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -589,7 +596,7 @@
 	id = "cell_medigun"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 3, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 8000, MAT_PLASTIC = 8000, MAT_GLASS = 5000, MAT_SILVER = 1000, MAT_GOLD = 1000, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_PLASTIC = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/gun/projectile/cell_loaded/medical
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -601,7 +608,7 @@
 	id = "cell_medigun_mag"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 3, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_PLASTIC = 6000, MAT_GLASS = 3000, MAT_SILVER = 500, MAT_GOLD = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_PLASTIC = MATERIAL_COST(3), MAT_GLASS = MATERIAL_COST(1.5), MAT_SILVER = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.25))
 	build_path = /obj/item/ammo_magazine/cell_mag/medical
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -613,7 +620,7 @@
 	id = "cell_medigun_mag_advanced"
 	// req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 4, TECH_BIO = 7)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_PLASTIC = 10000, MAT_GLASS = 5000, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_DIAMOND = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(0.75), MAT_GOLD = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(2.5))
 	build_path = /obj/item/ammo_magazine/cell_mag/medical/advanced
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -626,7 +633,7 @@
 	id = "ml3m_cell_brute"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/brute
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -638,7 +645,7 @@
 	id = "ml3m_cell_burn"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/burn
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -650,7 +657,7 @@
 	id = "ml3m_cell_stabilize"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/stabilize
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -664,7 +671,7 @@
 	id = "ml3m_cell_toxin"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25))
 	build_path = /obj/item/ammo_casing/microbattery/medical/toxin
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -676,7 +683,7 @@
 	id = "ml3m_cell_omni"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25))
 	build_path = /obj/item/ammo_casing/microbattery/medical/omni
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -688,7 +695,7 @@
 	id = "ml3m_cell_antirad"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25))
 	build_path = /obj/item/ammo_casing/microbattery/medical/antirad
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -702,7 +709,7 @@
 	id = "ml3m_cell_brute2"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_GOLD = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/brute2
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -714,7 +721,7 @@
 	id = "ml3m_cell_burn2"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_GOLD = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/burn2
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -726,7 +733,7 @@
 	id = "ml3m_cell_stabilize2"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_SILVER = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/stabilize2
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -738,7 +745,7 @@
 	id = "ml3m_cell_omni2"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/omni2
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -752,7 +759,7 @@
 	id = "ml3m_cell_toxin2"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_URANIUM = 1000, MAT_SILVER = 1000, MAT_DIAMOND = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_URANIUM = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.25))
 	build_path = /obj/item/ammo_casing/microbattery/medical/toxin2
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -764,7 +771,7 @@
 	id = "ml3m_cell_haste"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_GOLD = 1000, MAT_SILVER = 1000, MAT_DIAMOND = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_GOLD = MATERIAL_COST(0.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/haste
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -776,7 +783,7 @@
 	id = "ml3m_cell_resist"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_GOLD = 1000, MAT_URANIUM = 1000, MAT_DIAMOND = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_GOLD = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/resist
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -788,7 +795,7 @@
 	id = "ml3m_cell_corpse_mend"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_PHORON = 3000, MAT_DIAMOND = 3000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_PHORON = MATERIAL_COST(1.5), MAT_DIAMOND = MATERIAL_COST(1.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/corpse_mend
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -802,7 +809,7 @@
 	id = "ml3m_cell_brute3"
 	// req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_PRECURSOR = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_DIAMOND = 500, MAT_VERDANTIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_VERDANTIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/brute3
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -814,7 +821,7 @@
 	id = "ml3m_cell_burn3"
 	// req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_PRECURSOR = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_DIAMOND = 500, MAT_VERDANTIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_VERDANTIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/burn3
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -826,7 +833,7 @@
 	id = "ml3m_cell_toxin3"
 	// req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_ARCANE = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_DIAMOND = 500, MAT_VERDANTIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_VERDANTIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/toxin3
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -838,7 +845,7 @@
 	id = "ml3m_cell_omni3"
 	// req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_ARCANE = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_DIAMOND = 500, MAT_VERDANTIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_DIAMOND = MATERIAL_COST(0.25), MAT_VERDANTIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/ammo_casing/microbattery/medical/omni3
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -852,7 +859,7 @@
 	id = "ml3m_cell_shrink"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_URANIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_URANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/ammo_casing/microbattery/medical/shrink
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -864,7 +871,7 @@
 	id = "ml3m_cell_grow"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_URANIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_URANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/ammo_casing/microbattery/medical/grow
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -876,7 +883,7 @@
 	id = "ml3m_cell_normalsize"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_PLASTIC = 2500, MAT_URANIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_PLASTIC = MATERIAL_COST(1.25), MAT_URANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/ammo_casing/microbattery/medical/normalsize
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -887,7 +894,7 @@
 	name = "Prototype Bluespace Medigun Backpack"
 	id = "medigun_constant"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 8000, MAT_PLASTIC = 8000, MAT_GLASS = 5000, MAT_SILVER = 1000, MAT_GOLD = 1000, MAT_URANIUM = 1000)
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_PLASTIC = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(0.5), MAT_GOLD = MATERIAL_COST(0.5), MAT_URANIUM = MATERIAL_COST(0.5))
 	build_path = /obj/item/medigun_backpack
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -900,7 +907,7 @@
 	id = "pka_mineaoe"
 	// req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 8, TECH_ENGINEERING = 7) // Lets make this endgame level tech, due to it's power.
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 500, MAT_GOLD = 500, MAT_URANIUM = 2000, MAT_PHORON = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5), MAT_SILVER = MATERIAL_COST(0.25), MAT_GOLD = MATERIAL_COST(0.25), MAT_URANIUM = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(1))
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_PARTS
@@ -913,8 +920,7 @@
 	id = "riflescope"
 	// req_tech = list(TECH_ILLEGAL = 2, TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2))
 	build_path = /obj/item/binoculars/scope
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_PARTS
@@ -926,8 +932,7 @@
 	id = "slimebaton"
 	// req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_POWER = 3, TECH_COMBAT = 3)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5))
 	build_path = /obj/item/melee/baton/slime
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
@@ -939,8 +944,7 @@
 	id = "slimetaser"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 3, TECH_POWER = 4, TECH_COMBAT = 4)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 5000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5))
 	build_path = /obj/item/gun/energy/taser/xeno
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
@@ -953,21 +957,206 @@
 	id = "monkey_gun"
 	// req_tech = list(TECH_BIO = 6, TECH_BLUESPACE = 5)
 	build_type = PROTOLATHE
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 3500, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(1.75), MAT_GLASS = MATERIAL_COST(1.75), MAT_PHORON = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.75))
 	build_path = /obj/item/xenobio/monkey_gun
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/knuckledusters
+	name = "knuckle dusters"
+	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
+	id = "knuckledusters"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.3125))
+	build_path = /obj/item/clothing/accessory/knuckledusters
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/tacknife
+	name = "tactical knife"
+	desc = "A steel knife made for combat."
+	id = "tacknife"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(0.4))
+	build_path = /obj/item/material/knife/tacknife
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/* Unbalanced material weapons
+/datum/design_techweb/claymore
+	name = "claymore"
+	desc = "A very large sword."
+	id = "claymore"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(5))
+	build_path = /obj/item/material/sword
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/gladius
+	name = "gladius"
+	desc = "An ancient short sword, designed to stab and cut."
+	id = "gladius"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5))
+	build_path = /obj/item/material/sword/gladius
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/katana
+	name = "katana"
+	desc = "An ancient short sword, designed to slice and dice."
+	id = "katana"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(3))
+	build_path = /obj/item/material/sword/katana
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/rapier
+	name = "rapier"
+	desc = "A slender, fancy and sharply pointed sword."
+	id = "rapier"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(3))
+	build_path = /obj/item/material/sword/rapier
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/sabre
+	name = "sabre"
+	desc = "A sharp curved sword, a favored weapon of pirates far in the past."
+	id = "sabre"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(3.7))
+	build_path = /obj/item/material/sword/sabre
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/longsword
+	name = "longsword"
+	desc = "a more elegant weapon from a more civilised age"
+	id = "longsword"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(4))
+	build_path = /obj/item/material/twohanded/longsword
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+// has no wielded sprite
+/datum/design_techweb/battleaxe
+	name = "battleaxe"
+	desc = "A one handed battle axe, still a deadly weapon."
+	id = "battleaxe"
+	build_type = AUTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(3.5))
+	build_path = /obj/item/material/sword/battleaxe
+	category = list(
+		RND_CATEGORY_HACKED,
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_MELEE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+*/
+
 /datum/design_techweb/anomaly_gun
 	name = "Handheld Anomalous Particle Releaser"
 	id = "anom_gun"
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 3500, MAT_PHORON = 1500, MAT_DIAMOND = 1500, MAT_URANIUM = 1500)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(1.75), MAT_PHORON = MATERIAL_COST(0.75), MAT_DIAMOND = MATERIAL_COST(0.75), MAT_URANIUM = MATERIAL_COST(0.75))
 	build_path = /obj/item/gun/energy/anomaly
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+//Standalone photon rifle. Not unlockable for now.
+/datum/design_techweb/photon_rifle
+	name = "Photon Rifle"
+	id = "ghost_gun"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(4), MAT_GLASS = MATERIAL_COST(4), MAT_PHORON = MATERIAL_COST(4), MAT_DIAMOND = MATERIAL_COST(3), MAT_VERDANTIUM = MATERIAL_COST(3)) //Expensive.
+	build_path = /obj/item/ghost_catcher
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/photon_pack
+	name = "Proton Pack"
+	id = "ghost_pack"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2), MAT_PHORON = MATERIAL_COST(2), MAT_DIAMOND = MATERIAL_COST(1), MAT_VERDANTIUM = MATERIAL_COST(1)) //Expensive.
+	build_path = /obj/item/proton_pack
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/spectral_trap
+	name = "Spectral Trap"
+	id = "ghost_trap"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(0.5), MAT_DIAMOND = MATERIAL_COST(0.25))
+	build_path = /obj/item/ghost_trap
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+
+/datum/design_techweb/advanced_emf
+	name = "Advanced EMF Reader"
+	id = "ghost_emf"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(2.5), MAT_GLASS = MATERIAL_COST(2.5)) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/entrepreneur/emf/professional
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/spectral_goggles
+	name = "Spectral Goggles"
+	id = "ghost_goggles"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_PHORON = MATERIAL_COST(1), MAT_DIAMOND = MATERIAL_COST(0.25)) //Assumed you're making this with the ghost_gun, so it has similar values.
+	build_path = /obj/item/clothing/glasses/ghost
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

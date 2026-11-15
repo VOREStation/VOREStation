@@ -34,8 +34,8 @@
 
 /datum/tgui_ban_panel/tgui_static_data(mob/user)
 	var/list/bantypes = list("traitor","changeling","operative","revolutionary","cultist","wizard") //For legacy bans.
-	for(var/antag_type in GLOB.all_antag_types) // Grab other bans.
-		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+	for(var/antag_type in SSantag_job.all_antag_types) // Grab other bans.
+		var/datum/antagonist/antag = SSantag_job.all_antag_types[antag_type]
 		bantypes |= antag.bantype
 
 	var/list/data = list(
