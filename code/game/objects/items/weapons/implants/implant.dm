@@ -594,7 +594,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	name = "away team death alarm implant"
 	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Away Team and Medical channels."
 
-/obj/item/implant/death_alarm/explorer/activate(var/cause)
+/obj/item/implant/death_alarm/explorer/activate(cause)
 	var/mob/implantee = imp_in
 	var/area/t = get_area(implantee)
 	if(cause == "death")
@@ -613,7 +613,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	name = "security death alarm implant"
 	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Security and Medical channels."
 
-/obj/item/implant/death_alarm/security/activate(var/cause)
+/obj/item/implant/death_alarm/security/activate(cause)
 	var/mob/implantee = imp_in
 	var/area/t = get_area(implantee)
 	if(cause == "death")
