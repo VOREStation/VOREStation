@@ -595,40 +595,38 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Away Team and Medical channels."
 
 /obj/item/implant/death_alarm/explorer/activate(var/cause)
-	var/mob/M = imp_in
-	var/area/t = get_area(M)
-	switch (cause)
-		if("death")
-			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
-			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
-				//give the syndies a bit of stealth
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Away Team")
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
-			else
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Away Team")
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
-			qdel(a)
-			STOP_PROCESSING(SSobj, src)
+	var/mob/implantee = imp_in
+	var/area/t = get_area(implantee)
+	if(cause == "death")
+		var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
+		if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
+			//give the syndies a bit of stealth
+			a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Away Team")
+			a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+		else
+			a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Away Team")
+			a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+		qdel(a)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/implant/death_alarm/security
 	name = "security death alarm implant"
 	desc = "An alarm which monitors the host's vital signs and transmits a radio message upon death. This one messages the Security and Medical channels."
 
 /obj/item/implant/death_alarm/security/activate(var/cause)
-	var/mob/M = imp_in
-	var/area/t = get_area(M)
-	switch (cause)
-		if("death")
-			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
-			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
-				//give the syndies a bit of stealth
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
-				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
-			else
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
-				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
-			qdel(a)
-			STOP_PROCESSING(SSobj, src)
+	var/mob/implantee = imp_in
+	var/area/t = get_area(implantee)
+	if(cause == "death")
+		var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
+		if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
+			//give the syndies a bit of stealth
+			a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Security")
+			a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm", "Medical")
+		else
+			a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
+			a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
+		qdel(a)
+		STOP_PROCESSING(SSobj, src)
 
 //////////////////////////////
 //	Compressed Matter Implant
