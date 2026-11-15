@@ -17,6 +17,10 @@ export const CommunicationsConsoleMain = (props) => {
     security_level,
     security_level_color,
     authenticated,
+    is_command_role,
+    captain_spare_id_available,
+    captain_spare_id_requested,
+    captain_job_occupied,
     atcsquelch,
     boss_short,
   } = data;
@@ -32,6 +36,13 @@ export const CommunicationsConsoleMain = (props) => {
   }
 
   const alertLevelText = str_security_level;
+  const spareIdButtonText = captain_spare_id_requested
+    ? 'Already requested'
+    : captain_job_occupied
+      ? 'Unavailable (Site Manager position occupied)'
+      : captain_spare_id_available
+        ? "Request Captain's Spare ID (60s delay)"
+        : 'Unavailable (ID not found)';
   const alertLevelButtons = levels.map((slevel) => {
     return (
       <Button
@@ -105,6 +116,21 @@ export const CommunicationsConsoleMain = (props) => {
               onClick={() => act('status')}
             >
               Change Status Displays
+            </Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Captain's Spare ID">
+            <Button
+              icon="id-card"
+              disabled={
+                !authenticated ||
+                !is_command_role ||
+                !captain_spare_id_available ||
+                !!captain_spare_id_requested ||
+                !!captain_job_occupied
+              }
+              onClick={() => act('request_captain_spare_id')}
+            >
+              {spareIdButtonText}
             </Button>
           </LabeledList.Item>
           <LabeledList.Item label="Incoming Messages">

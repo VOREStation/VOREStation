@@ -80,6 +80,7 @@
 	name = "Spare ID"
 	initial_sprite_stack = list("base-stamp-gold", "top-gold", "stamp-n")
 	rank = JOB_SITE_MANAGER
+	var/spare_request_used = FALSE
 
 //Medical
 

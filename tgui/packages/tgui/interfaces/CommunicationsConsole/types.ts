@@ -6,6 +6,10 @@ export type Data = {
   emagged: BooleanLike;
   authenticated: BooleanLike;
   authmax: BooleanLike;
+  is_command_role: BooleanLike;
+  captain_spare_id_available: BooleanLike;
+  captain_spare_id_requested: BooleanLike;
+  captain_job_occupied: BooleanLike;
   atcsquelch: BooleanLike;
   boss_short: string;
   stat_display: {
