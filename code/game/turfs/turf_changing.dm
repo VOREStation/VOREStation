@@ -37,7 +37,6 @@
 		if(istype(below) && zones_present && !(src.z in using_map.below_blocked_levels) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
 			N = /turf/simulated/open
 
-	var/obj/fire/old_fire = fire
 	var/old_lighting_corners_initialized = lighting_corners_initialised
 	var/old_dynamic_lighting = dynamic_lighting
 	var/old_lighting_object = lighting_object
@@ -56,6 +55,7 @@
 	var/turf/simulated/simself = src
 	if(istype(simself) && simself.shandler)
 		old_shandler = simself.shandler
+	qdel(fire) // Clear fire on turf changes
 
 	var/turf/Ab = GetAbove(src)
 	if(Ab)
@@ -80,8 +80,6 @@
 
 	var/turf/W = new N( locate(src.x, src.y, src.z) )
 	if(ispath(N, /turf/simulated/floor))
-		if(old_fire)
-			W.fire = old_fire
 		W.RemoveLattice()
 	W.lighting_corners_initialised = old_lighting_corners_initialized
 	var/turf/simulated/W_sim = W
@@ -91,8 +89,6 @@
 	else if(istype(W_sim) && (SSplanets && SSplanets.z_to_planet.len >= z && SSplanets.z_to_planet[z]) && has_dynamic_lighting())
 		W_sim.shandler = new(src)
 		W_sim.shandler.manualInit()
-	if(old_fire)
-		qdel(old_fire)
 
 	if(tell_universe)
 		GLOB.universe.OnTurfChange(W)
