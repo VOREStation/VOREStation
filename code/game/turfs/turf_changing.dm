@@ -92,7 +92,7 @@
 		W_sim.shandler = new(src)
 		W_sim.shandler.manualInit()
 	if(old_fire)
-		old_fire.RemoveFire()
+		qdel(old_fire)
 
 	if(tell_universe)
 		GLOB.universe.OnTurfChange(W)
