@@ -27,13 +27,20 @@ export function GarbageSubsystemOverview(props) {
   const [searchText, setSearchText] = useState('');
   const [sortType, setSortType] = useState(0);
   const [ascending, setAscending] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
   const { label, propName } = SORTING_TYPES[sortType];
 
   const sorted = delete_log
-    .filter((entry) =>
-      entry.path.toLowerCase().includes(searchText.toLowerCase()),
-    )
+    .filter((entry) => {
+      const matchesSearch = entry.path
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+
+      const matchesHarddels = showAll || entry.harddel_count > 0;
+
+      return matchesSearch && matchesHarddels;
+    })
     .sort((a, b) => {
       if (ascending) {
         return a[propName] - b[propName];
@@ -104,6 +111,15 @@ export function GarbageSubsystemOverview(props) {
                       value={searchText}
                       onChange={setSearchText}
                     />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      selected={showAll}
+                      onClick={() => setShowAll(!showAll)}
+                      tooltip="Toggle between showing only harddels and all deletions"
+                    >
+                      All
+                    </Button>
                   </Stack.Item>
                   <Stack.Item>
                     <Dropdown
