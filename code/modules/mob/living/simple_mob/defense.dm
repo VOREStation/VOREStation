@@ -71,6 +71,7 @@
 				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null)
 				L.visible_message(span_warning("\The [L] [pick(attack.attack_verb)] \the [src]!"))
 				L.do_attack_animation(src)
+				playsound(src, attack.attack_sound, 25, 1, -1)
 				return
 			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message(span_warning("\The [L] [response_harm] \the [src]!"))
