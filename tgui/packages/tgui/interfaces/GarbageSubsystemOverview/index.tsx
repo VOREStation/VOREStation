@@ -58,9 +58,11 @@ export function GarbageSubsystemOverview(props) {
             <Section
               title="Deletions"
               buttons={
-                <Button icon="refresh" onClick={() => act('refresh')}>
-                  Refresh
-                </Button>
+                <Stack>
+                  <Button icon="refresh" onClick={() => act('refresh')}>
+                    Refresh
+                  </Button>
+                </Stack>
               }
               fill
               scrollable
