@@ -540,6 +540,31 @@ ADMIN_VERB_AND_CONTEXT_MENU(player_effects, R_FUN, "Player Effects", "Modify a p
 				return
 			add_verb(Tar, /mob/living/carbon/human/proc/enter_cocoon)
 
+		if("shapeshift_form")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/types = typesof(/mob/living)
+			var/mob_type = tgui_input_text(ui.user, "Mob path to add shapeshift form of?", "Mob")
+			if(!mob_type)
+				return
+			var/list/matches = new()
+			for(var/path in types)
+				if(findtext("[path]", mob_type))
+					matches += path
+			if(matches.len==0)
+				return
+			var/mob/living/chosen
+			if(matches.len==1)
+				chosen = matches[1]
+			else
+				chosen = tgui_input_list(ui.user, "Select a mob type", "Select Mob", matches)
+				if(!chosen)
+					return
+			var/mob/living/new_mob = new chosen(Tar)
+			Tar.tf_form = new_mob
+			add_verb(Tar, /mob/living/proc/shapeshift_form)
+
 		if("transformation")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
