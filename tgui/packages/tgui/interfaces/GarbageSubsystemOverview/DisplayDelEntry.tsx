@@ -3,6 +3,7 @@ import type { DeletedItem } from './types';
 
 export function DisplayDelEntry(props: { entry: DeletedItem }) {
   const { entry } = props;
+
   return (
     <Section
       title={entry.path}
