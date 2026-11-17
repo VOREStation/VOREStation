@@ -315,8 +315,11 @@
 					instance = null
 				if(!istype(instance) && !params["clear"])
 					return FALSE
+				var/datum/sprite_accessory/tail/old_style = owner.tail_style
 				owner.tail_style = instance
-				owner.update_tail_showing()
+				//decide if we need a hard regeneration, due to taur and big leg bodypart hiding. It's the 'major change' clause for regenerate_icons.
+				//calls update_tail_showing() if it doesn't, just like color changes
+				owner.refresh_tail_style(old_style)
 				update_dna(owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE

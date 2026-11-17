@@ -301,28 +301,20 @@
 
 /obj/item/clothing/head/helmet/space/rig/focalpoint
 	icon_state = "techno_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/focalpoint
 	icon_state = "techno_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 /obj/item/clothing/shoes/magboots/rig/ce/focalpoint
 	icon_state = "techno_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 /obj/item/clothing/gloves/gauntlets/rig/focalpoint
 	icon_state = "techno_rig"
 	siemens_coefficient = 0
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 // 'Ironhammer' hardsuit
 /obj/item/rig/hephaestus
@@ -353,27 +345,19 @@
 
 /obj/item/clothing/head/helmet/space/rig/hephaestus
 	icon_state = "ihs_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/hephaestus
 	icon_state = "ihs_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 /obj/item/clothing/shoes/magboots/rig/hephaestus
 	icon_state = "ihs_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 /obj/item/clothing/gloves/gauntlets/rig/hephaestus
 	icon_state = "ihs_rig"
-	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = null
 
 // 'Zero' rig
 /obj/item/rig/zero
@@ -465,14 +449,10 @@
 /obj/item/clothing/shoes/magboots/rig/ce/baymed
 	icon_state = "medical_rig_bay"
 	item_state = null
-	sprite_sheets = null
-	sprite_sheets_obj = null
 
 /obj/item/clothing/gloves/gauntlets/rig/baymed
 	icon_state = "medical_rig_bay"
 	item_state = null
-	sprite_sheets = null
-	sprite_sheets_obj = null
 
 // Engineering/'Industrial' rig from bay
 /obj/item/rig/bayeng
@@ -523,14 +503,10 @@
 /obj/item/clothing/shoes/magboots/rig/ce/bayeng
 	icon_state = "engineering_rig_bay"
 	item_state = null
-	sprite_sheets = null
-	sprite_sheets_obj = null
 
 /obj/item/clothing/gloves/gauntlets/rig/bayeng
 	icon_state = "engineering_rig_bay"
 	item_state = null
-	sprite_sheets = null
-	sprite_sheets_obj = null
 	siemens_coefficient = 0 // insulated
 
 // Pathfinder rig from bay - event/reward stuff here
@@ -579,14 +555,10 @@
 /obj/item/clothing/shoes/magboots/rig/pathfinder
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
-	sprite_sheets = null
-	sprite_sheets_obj = null
 
 /obj/item/clothing/gloves/gauntlets/rig/pathfinder
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
-	sprite_sheets = null
-	sprite_sheets_obj = null
 
 /obj/item/rig/industrial/vendor
 	name = "discount industrial suit control module"

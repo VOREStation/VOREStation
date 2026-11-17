@@ -24,36 +24,28 @@
 	icon_state = "bigsnaketail"
 	ani_state = "bigsnaketail_w"
 
-/datum/sprite_accessory/tail/bigsnaketailstripes
+/datum/sprite_accessory/tail/bigsnaketail/stripes
 	name = "large snake tail, striped (vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
-	icon_state = "bigsnaketailstripes"
 	extra_overlay = "bigsnaketailstripes-tips"
-	ani_state = "bigsnaketailstripes_w"
 	extra_overlay_w = "bigsnaketailstripes-tips_w"
 
-/datum/sprite_accessory/tail/bigsnaketailstripes_alt
+/datum/sprite_accessory/tail/bigsnaketail/stripes_alt
 	name = "large snake tail, striped, alt (vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
-	icon_state = "bigsnaketailstripesalt"
 	extra_overlay = "bigsnaketailstripesalt-tips"
-	ani_state = "bigsnaketailstripesalt_w"
 	extra_overlay_w = "bigsnaketailstripesalt-tips_w"
 
-/datum/sprite_accessory/tail/bigsnaketaildual
+/datum/sprite_accessory/tail/bigsnaketail/dual
 	name = "large snake tail, dual color (vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
-	icon_state = "bigsnaketaildual"
 	extra_overlay = "bigsnaketaildual-tips"
-	ani_state = "bigsnaketaildual_w"
 	extra_overlay_w = "bigsnaketaildual-tips_w"
 
-/datum/sprite_accessory/tail/bigsnaketailunder
+/datum/sprite_accessory/tail/bigsnaketail/under
 	name = "large snake tail, under (vwag)"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
-	icon_state = "bigsnaketailunder"
 	extra_overlay = "bigsnaketailunder-tips"
-	ani_state = "bigsnaketailunder_w"
 	extra_overlay_w = "bigsnaketailunder-tips_w"
 
 /datum/sprite_accessory/tail/tail_smooth
@@ -62,11 +54,11 @@
 	icon_state = "tail_smooth"
 	ani_state = "tail_smooth_w"
 
-/datum/sprite_accessory/tail/tail_smooth_dual
+/datum/sprite_accessory/tail/tail_smooth/dual
 	name = "Smooth Lizard Tail, dual color"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
-	icon_state = "tail_smooth"
 	extra_overlay = "tail_smooth_markings"
+	extra_overlay_w = "tail_smooth_w_markings"
 
 /datum/sprite_accessory/tail/Easterntail
 	name = "Eastern Dragon (Animated)"
@@ -112,6 +104,7 @@
 	name = "kururak tail"
 	icon = 'icons/mob/human_races/sprite_accessories/tails/tails_reptile.dmi'
 	icon_state = "kururak"
+	do_colouration = FALSE
 
 /datum/sprite_accessory/tail/snaketail_stripes
 	name = "snake tail with stripes, dual-color"

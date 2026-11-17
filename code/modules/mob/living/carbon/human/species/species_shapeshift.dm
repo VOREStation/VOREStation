@@ -447,7 +447,8 @@ GLOBAL_LIST_EMPTY(wrapped_species_by_ref)
 	if(!new_tail_style)
 		return
 
-	//Set new style
+	//Set new style, as well as checking if we need to hard regenerate our body type
+	var/datum/sprite_accessory/tail/old_style = tail_style
 	tail_style = GLOB.tail_styles_list[pretty_tail_styles[new_tail_style]]
 
 	//Allow color picks
@@ -483,7 +484,7 @@ GLOBAL_LIST_EMPTY(wrapped_species_by_ref)
 	if(new_tail_alpha)
 		a_tail = new_tail_alpha
 
-	update_tail_showing()
+	refresh_tail_style(old_style)
 
 /mob/living/carbon/human/proc/shapeshifter_select_wings()
 	set name = "Select Wings"

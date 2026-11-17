@@ -1,7 +1,13 @@
 /mob/living/Check_Shoegrip()
 	if(flying)
-		return 1
+		return TRUE
 	..()
+
+/mob/living/proc/stop_flying()
+	if(QDESTROYING(src))
+		return
+	flying = FALSE
+	return TRUE
 
 /mob/living/verb/customsay()
 	set category = "IC.Settings"

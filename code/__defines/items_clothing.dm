@@ -51,7 +51,8 @@
 #define HIDESHOES       0x8
 #define HIDETAIL        0x10
 #define HIDETIE         0x20
-#define HIDEHOLSTER     0x40 //Some clothing hides holsters, but not all accessories
+#define HIDEHOLSTER     0x40	//Some clothing hides holsters, but not all accessories
+#define HIDEWINGS		0x80	//suit specific toggle for wings, like tails
 
 // WARNING: The following flags apply only to the helmets and masks!
 #define HIDEMASK 0x1
