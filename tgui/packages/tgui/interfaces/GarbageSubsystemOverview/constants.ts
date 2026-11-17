@@ -1,5 +1,3 @@
-import { ProvidePlugin } from '@rspack/core';
-
 export const SORTING_TYPES = [
   { label: 'Time Since Last', propName: 'time_since' },
   { label: 'Total Dels', propName: 'count' },
