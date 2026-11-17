@@ -97,6 +97,7 @@ SUBSYSTEM_DEF(garbage)
 			entry["Failures"] = I.failures
 		entry["qdel() Count"] = I.qdels
 		entry["Destroy() Cost (ms)"] = I.destroy_time
+		entry["Last qdel tick"] = I.starting_qdel_time
 
 		if (I.hard_deletes)
 			entry["Total Hard Deletes"] = I.hard_deletes
@@ -336,6 +337,7 @@ SUBSYSTEM_DEF(garbage)
 	var/no_hint = 0 //!Number of times it's not even bother to give a qdel hint
 	var/slept_destroy = 0 //!Number of times it's slept in its destroy
 	var/qdel_flags = 0 //!Flags related to this type's trip thru qdel.
+	var/starting_qdel_time = 0 //Time of most recent qdel
 	var/list/extra_details //!Lazylist of string metadata about the deleted objects
 
 /datum/qdel_item/New(mytype)
@@ -374,6 +376,7 @@ SUBSYSTEM_DEF(garbage)
 	SEND_SIGNAL(to_delete, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 	var/hint = to_delete.Destroy(force) // Let our friend know they're about to get fucked up.
 
+	trash.starting_qdel_time = SSticker.ticks // Last tick the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to sort with!
 	if(world.time != start_time)
 		trash.slept_destroy++
 	else
