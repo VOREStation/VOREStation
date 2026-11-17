@@ -44,7 +44,6 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, tgui_id, name)
-		ui.autoupdate = TRUE
 		ui.open()
 
 /datum/tgui_module/crew_monitor/tgui_data(mob/user)
