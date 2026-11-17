@@ -1,33 +1,15 @@
 import { useBackend } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { LabeledList, Section } from 'tgui-core/components';
 import type { DeletedItem } from './types';
 
 export function DisplayDelEntry(props: { entry: DeletedItem }) {
   const { act } = useBackend();
   const { entry } = props;
-  const has_coords =
-    entry.del_coords &&
-    entry.del_coords.x > 0 &&
-    entry.del_coords.y > 0 &&
-    entry.del_coords.z > 0;
   return (
     <Section
       title={entry.path}
       key={entry.path}
       textColor={entry.failures ? 'bad' : undefined}
-      buttons={
-        has_coords ? (
-          <Button
-            icon="refresh"
-            onClick={() => act('jump', { coords: entry.del_coords })}
-            tooltip="Jump to the most recently deleted atom of this type"
-          >
-            Jump
-          </Button>
-        ) : (
-          ''
-        )
-      }
     >
       <LabeledList>
         <LabeledList.Item label="Total Count">{entry.count}</LabeledList.Item>
@@ -35,13 +17,6 @@ export function DisplayDelEntry(props: { entry: DeletedItem }) {
         <LabeledList.Item label="Time Since">
           {entry.time_since} seconds
         </LabeledList.Item>
-        {has_coords && entry.del_coords ? (
-          <LabeledList.Item label="Recent Coords">
-            {entry.del_coords.x}, {entry.del_coords.y}, {entry.del_coords.z}
-          </LabeledList.Item>
-        ) : (
-          ''
-        )}
         {entry.failures ? (
           <LabeledList.Item label="Failures">{entry.failures}</LabeledList.Item>
         ) : (

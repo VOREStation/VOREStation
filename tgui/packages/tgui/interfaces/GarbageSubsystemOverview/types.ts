@@ -6,7 +6,6 @@ export type DeletedItem = {
   count: number;
   cost: number;
   time_since: number;
-  del_coords: { x: number; y: number; z: number } | undefined;
   harddel_count: number;
   harddel_cost: number;
   slept: BooleanLike;

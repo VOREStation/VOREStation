@@ -338,7 +338,6 @@ SUBSYSTEM_DEF(garbage)
 	var/slept_destroy = 0 //!Number of times it's slept in its destroy
 	var/qdel_flags = 0 //!Flags related to this type's trip thru qdel.
 	var/starting_qdel_time = 0 //Time of most recent qdel
-	var/del_coords = null
 	var/list/extra_details //!Lazylist of string metadata about the deleted objects
 
 /datum/qdel_item/New(mytype)
@@ -373,15 +372,6 @@ SUBSYSTEM_DEF(garbage)
 
 	// Last time and coords the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to debug with!
 	trash.starting_qdel_time = world.time
-	trash.del_coords = null // Allow jumping to the most recently deleted atom if it had coords
-	if(isturf(to_delete))
-		var/turf/atom_turf = to_delete
-		trash.del_coords = list("x" = atom_turf.x, "y" = atom_turf.y, "z" = atom_turf.z)
-	else if(istype(to_delete, /atom/movable))
-		var/turf/atom_turf = get_turf(to_delete)
-		if(atom_turf)
-			trash.del_coords = list("x" = atom_turf.x, "y" = atom_turf.y, "z" = atom_turf.z)
-
 	to_delete.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 	var/start_time = world.time
 	var/start_tick = world.tick_usage
@@ -468,7 +458,6 @@ SUBSYSTEM_DEF(garbage)
 			"count" = I.qdels,
 			"cost" = I.destroy_time,
 			"time_since" = FLOOR(world.time - I.starting_qdel_time, 0.1) / (1 SECOND),
-			"del_coords" = I.del_coords,
 			"harddel_count" = I.hard_deletes,
 			"harddel_cost" = I.hard_delete_time,
 			"slept" = I.slept_destroy,
