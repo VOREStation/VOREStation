@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(tgui)
 	current_run -= ui
 	// If the user exists, remove it from them too.
 	if(ui.user)
-		ui.user.tgui_open_uis -= ui
+		LAZYREMOVE(ui.user.tgui_open_uis, ui)
 	if(ui.src_object)
 		LAZYREMOVE(ui.src_object.open_tguis, ui)
 	return TRUE
@@ -369,7 +369,7 @@ SUBSYSTEM_DEF(tgui)
 	for(var/datum/tgui/ui in source.tgui_open_uis)
 		// Inform the UIs of their new owner.
 		ui.user = target
-		target.tgui_open_uis += ui
+		LAZYADD(target.tgui_open_uis, ui)
 	// Clear the old list.
-	source.tgui_open_uis.Cut()
+	LAZYNULL(source.tgui_open_uis)
 	return TRUE
