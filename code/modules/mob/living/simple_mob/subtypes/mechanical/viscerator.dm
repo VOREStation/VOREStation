@@ -55,6 +55,8 @@
 	AddComponent(/datum/component/swarming)
 
 /mob/living/simple_mob/mechanical/viscerator/death()
+	if(QDELETED(src))
+		return
 	..(null,"is smashed into pieces!")
 	qdel(src)
 

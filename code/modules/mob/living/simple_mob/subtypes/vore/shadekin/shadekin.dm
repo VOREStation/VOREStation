@@ -220,6 +220,8 @@
 
 //They phase back to the dark when killed
 /mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
+	if(stat == DEAD)
+		return
 	var/special_handling = FALSE //varswitch for downstream
 	if(!special_handling)
 		cut_overlays()
