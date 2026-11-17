@@ -142,39 +142,35 @@
 /obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
 	return
 
+/**
+* A successful check means we had no error. Otherwise, we return a number for the problem, or the generic 1.
+* EQUIP_SUCCESS - All good!
+* EQUIP_FAIL_GENERIC - Generic error
+* EQUIP_FAIL_DUPLICATE - Duplicate
+* EQUIP_FAIL_SPACE - Not enough space
+* EQUIP_FAIL_TYPE - Type of exosuit isn't compatible with this */
 /obj/item/mecha_parts/mecha_equipment/proc/can_attach(obj/mecha/M as obj)
-	//if(M.equipment.len >= M.max_equip)
-	//	return 0
 	if(!allow_duplicate)
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in M.equipment) //Exact duplicate components aren't allowed.
 			if(ME.type == src.type)
-				return 0
-	if(equip_type == EQUIP_HULL && M.hull_equipment.len < M.max_hull_equip)
-		return 1
-	if(equip_type == EQUIP_WEAPON && M.weapon_equipment.len < M.max_weapon_equip)
-		return 1
-	if(equip_type == EQUIP_UTILITY && M.utility_equipment.len < M.max_utility_equip)
-		return 1
-	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len < M.max_special_equip)
-		return 1
-	//VOREStation Addition begin: MICROMECHS
-	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len < M.max_micro_utility_equip)
-		return 1
-	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len < M.max_micro_weapon_equip)
-		return 1
-	//VOREStation Addition end: MICROMECHS
-	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len < M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
+				return EQUIP_FAIL_DUPLICATE
+	if(equip_type == EQUIP_HULL && M.hull_equipment.len >= M.max_hull_equip)
+		return EQUIP_FAIL_SPACE
+	if(equip_type == EQUIP_WEAPON && M.weapon_equipment.len >= M.max_weapon_equip)
+		return EQUIP_FAIL_SPACE
+	if(equip_type == EQUIP_UTILITY && M.utility_equipment.len >= M.max_utility_equip)
+		return EQUIP_FAIL_SPACE
+	if(equip_type == EQUIP_SPECIAL && M.special_equipment.len >= M.max_special_equip)
+		return EQUIP_FAIL_SPACE
+	if(equip_type == EQUIP_MICRO_UTILITY && M.micro_utility_equipment.len >= M.max_micro_utility_equip)
+		return EQUIP_FAIL_SPACE
+	if(equip_type == EQUIP_MICRO_WEAPON && M.micro_weapon_equipment.len >= M.max_micro_weapon_equip)
+		return EQUIP_FAIL_SPACE
+	if(equip_type != EQUIP_SPECIAL && M.universal_equipment.len >= M.max_universal_equip) //The exosuit needs to be military grade to actually have a universal slot capable of accepting a true weapon.
 		if(equip_type == EQUIP_WEAPON && !istype(M, /obj/mecha/combat))
-			return 0
-		return 1
-	/*if (ispath(required_type))
-		return istype(M, required_type)
-
-	for (var/path in required_type)
-		if (istype(M, path))
-			return 1
-	*/
-	return 0
+			return EQUIP_FAIL_TYPE
+		return EQUIP_SUCCESS
+	return EQUIP_SUCCESS
 
 /obj/item/mecha_parts/mecha_equipment/proc/attach(obj/mecha/M as obj)
 	//M.equipment += src

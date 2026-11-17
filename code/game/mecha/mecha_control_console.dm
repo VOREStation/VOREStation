@@ -72,9 +72,11 @@
 
 /obj/item/mecha_parts/mecha_tracking
 	name = "Exosuit tracking beacon"
-	desc = "Device used to transmit exosuit data."
+	desc = "Device used to transmit exosuit data, and if needed, remotely overload their systems with a weak EMP. This little bugger can attach pretty much anywhere. On a mech."
+	description_info = "Those are used by the exosuit tracking console to locate a mech. You can attach as many as you'd want to one, and they do not take any equipment slots."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion2"
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/mecha_parts/mecha_tracking/Initialize(mapload)
 	. = ..()
