@@ -226,6 +226,26 @@
 		else
 			return FALSE; // Unable to scoop, let other code run
 
+//Why did we not have a regular check, mainly utilized for utensil poking without scooping yet
+/mob/living/proc/check_for_scoopable(mob/living/micro)
+	if(!istype(micro) || src == micro)
+		return FALSE
+	if(!(micro.pickup_pref && pickup_pref && pickup_active))
+		return FALSE
+	if(!(a_intent == I_HELP))
+		return FALSE
+	if(isanimal(src))
+		var/mob/living/simple_mob/grabber = src
+		if(!grabber.has_hands)
+			return FALSE
+	var/size_diff = get_effective_size(FALSE) - micro.get_effective_size(TRUE)
+	if(size_diff >= 0.50 || micro.mob_size < MOB_SMALL || size_diff >= micro.get_effective_size())
+		if(micro.buckled)
+			to_chat(src,span_notice("You have to unbuckle \the [micro] before you pick them up."))
+			return FALSE
+		return TRUE
+	return FALSE
+
 #define STEP_TEXT_OWNER(x) "[replacetext(x,"%prey",tmob)]"
 #define STEP_TEXT_PREY(x) "[replacetext(x,"%owner",src)]"
 /**
