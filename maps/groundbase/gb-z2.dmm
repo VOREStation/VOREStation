@@ -8656,15 +8656,15 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "xY" = (
-/obj/machinery/computer/power_monitor{
-	dir = 4;
-	throwpass = 1
-	},
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
 /obj/machinery/camera/network/command{
 	dir = 1
+	},
+/obj/machinery/computer/general_air_control/storage_monitor/station{
+	dir = 4;
+	sensors = list("dist_main_meter" = "Distribution Loop", "scrub_main_meter" = "Scrubbers Loop", "mair_main_meter" = "Standard Air Mix Reserves", "aux_mix_meter" = "Gas Mixing Buffer", "n2_tank" = "Nitrogen Reserves", "o2_tank" = "Oxygen Reserves", "no2_tank" = "Nitrous Oxide Reserves", "phoron_tank" = "Phoron Reserves", "co2_tank" = "Carbon Dioxide Reserves")
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
@@ -9941,14 +9941,14 @@
 /turf/simulated/wall/r_wall,
 /area/groundbase/command/bridge)
 "BQ" = (
-/obj/machinery/computer/rcon{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
+	},
+/obj/item/modular_computer/console/preset/engineering{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)

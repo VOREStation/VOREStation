@@ -41,14 +41,18 @@ const AtmoSensor = (props: { sensor: sensor }) => {
     methane,
   } = sensor.sensor_data;
 
+  //We need to not say false and not print a value on our sensors
+  const hasValue = (value?: number | null): value is number =>
+    typeof value === 'number';
+
   const labeledListContents: React.JSX.Element[] = [];
-  if (pressure) {
+  if (hasValue(pressure)) {
     labeledListContents.push(
       <LabeledList.Item label="Pressure">{pressure} kPa</LabeledList.Item>,
     );
   }
 
-  if (temperature) {
+  if (hasValue(temperature)) {
     labeledListContents.push(
       <LabeledList.Item label="Temperature">{temperature} K</LabeledList.Item>,
     );

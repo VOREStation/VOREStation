@@ -206,6 +206,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
+"av" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/phoron_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos/storage)
 "aw" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -5234,6 +5239,11 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/engineering/engine_eva)
+"kU" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/o2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos/storage)
 "kV" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 8
@@ -5284,6 +5294,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos/monitoring)
+"lb" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/green,
+/obj/structure/cable/orange{
+	icon_state = "1-2"
+	},
+/obj/machinery/meter/preset/aux_mix_meter,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos/storage)
 "lc" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -5418,6 +5436,11 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
+"lp" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/no2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos/storage)
 "lq" = (
 /obj/structure/cable/orange{
 	icon_state = "1-2"
@@ -5514,10 +5537,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
-/obj/machinery/meter,
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/machinery/meter/preset/dist_main_meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/monitoring)
 "lz" = (
@@ -5572,6 +5595,11 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/bridge)
+"lE" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/n2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos/storage)
 "lF" = (
 /obj/effect/landmark{
 	name = "lightsout"
@@ -10675,7 +10703,7 @@
 /area/engineering/atmos/monitoring)
 "xu" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
-/obj/machinery/meter,
+/obj/machinery/meter/preset/co2_tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/storage)
 "xv" = (
@@ -10752,11 +10780,11 @@
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "xB" = (
-/obj/machinery/computer/station_alert/all,
 /obj/structure/panic_button{
 	pixel_y = 32
 	},
 /obj/effect/floor_decal/milspec/color/orange/half,
+/obj/machinery/computer/general_air_control/storage_monitor,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
 "xC" = (
@@ -14784,18 +14812,13 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
 "Gz" = (
-/obj/machinery/computer/general_air_control{
-	frequency = 1443;
-	level = 3;
-	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
-	},
 /obj/machinery/power/apc/angled{
 	dir = 1
 	},
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
+/obj/machinery/computer/general_air_control/storage_monitor,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engineering_monitoring)
 "GA" = (
@@ -15452,10 +15475,10 @@
 /area/crew_quarters/locker)
 "HX" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan,
-/obj/machinery/meter,
 /obj/structure/cable/orange{
 	icon_state = "2-4"
 	},
+/obj/machinery/meter/preset/mair_main_meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/storage)
 "HY" = (
@@ -16115,7 +16138,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 1
 	},
-/obj/machinery/meter,
+/obj/machinery/meter/preset/engine_fuel,
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck2/fuelstorage)
 "Jt" = (
@@ -22891,13 +22914,13 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "YE" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/machinery/meter/preset/scrub_main_meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/monitoring)
 "YF" = (
@@ -30461,11 +30484,11 @@ ux
 MC
 BT
 Yv
-xu
+lp
 oA
 oo
 xW
-xu
+av
 oA
 mA
 kW
@@ -30748,7 +30771,7 @@ gM
 oe
 AX
 Dc
-he
+lb
 CR
 AX
 AX
@@ -31171,11 +31194,11 @@ Es
 te
 eq
 Mu
-xu
+lE
 oA
 TA
 sU
-xu
+kU
 oA
 NX
 xl
