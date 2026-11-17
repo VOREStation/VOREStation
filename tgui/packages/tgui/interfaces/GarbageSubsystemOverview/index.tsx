@@ -26,7 +26,7 @@ export function GarbageSubsystemOverview(props) {
 
   const [searchText, setSearchText] = useState('');
   const [sortType, setSortType] = useState(0);
-  const [ascending, setAscending] = useState(false);
+  const [ascending, setAscending] = useState(true);
 
   const { label, propName } = SORTING_TYPES[sortType];
 
