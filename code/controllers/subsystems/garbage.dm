@@ -338,6 +338,7 @@ SUBSYSTEM_DEF(garbage)
 	var/slept_destroy = 0 //!Number of times it's slept in its destroy
 	var/qdel_flags = 0 //!Flags related to this type's trip thru qdel.
 	var/starting_qdel_time = 0 //Time of most recent qdel
+	var/del_coords = null
 	var/list/extra_details //!Lazylist of string metadata about the deleted objects
 
 /datum/qdel_item/New(mytype)
@@ -370,13 +371,23 @@ SUBSYSTEM_DEF(garbage)
 	if (SEND_SIGNAL(to_delete, COMSIG_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
 		return
 
+	// Last time and coords the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to debug with!
+	trash.starting_qdel_time = world.time
+	trash.del_coords = null // Allow jumping to the most recently deleted atom if it had coords
+	if(isturf(to_delete))
+		var/turf/atom_turf = to_delete
+		trash.del_coords = list("x" = atom_turf.x, "y" = atom_turf.y, "z" = atom_turf.z)
+	else if(istype(to_delete, /atom/movable))
+		var/turf/atom_turf = get_turf(to_delete)
+		if(atom_turf)
+			trash.del_coords = list("x" = atom_turf.x, "y" = atom_turf.y, "z" = atom_turf.z)
+
 	to_delete.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 	var/start_time = world.time
 	var/start_tick = world.tick_usage
 	SEND_SIGNAL(to_delete, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 	var/hint = to_delete.Destroy(force) // Let our friend know they're about to get fucked up.
 
-	trash.starting_qdel_time = start_time // Last time the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to sort with!
 	if(world.time != start_time)
 		trash.slept_destroy++
 	else
@@ -456,7 +467,8 @@ SUBSYSTEM_DEF(garbage)
 			"failures" = I.failures,
 			"count" = I.qdels,
 			"cost" = I.destroy_time,
-			"time_since" = world.time - I.starting_qdel_time,
+			"time_since" = FLOOR(world.time - I.starting_qdel_time, 0.1) / (1 SECOND),
+			"del_coords" = I.del_coords,
 			"harddel_count" = I.hard_deletes,
 			"harddel_cost" = I.hard_delete_time,
 			"slept" = I.slept_destroy,
@@ -479,36 +491,18 @@ SUBSYSTEM_DEF(garbage)
 	if(..())
 		return TRUE
 
+	// This probably needs an admin perm check?
+
 	switch(action)
 		if("refresh")
 			update_tgui_static_data(ui.user, ui)
 			return TRUE
 
-
-/*
-	var/list/dellog = list(span_bold("List of things that have gone through qdel this round") + "<BR><BR><ol>")
-
-	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
-	for(var/path in SSgarbage.items)
-		var/datum/qdel_item/I = SSgarbage.items[path]
-		dellog += "<li><u>[path]</u><ul>"
-		if (I.failures)
-			dellog += "<li>Failures: [I.failures]</li>"
-		dellog += "<li>qdel() Count: [I.qdels]</li>"
-		dellog += "<li>Destroy() Cost: [I.destroy_time]ms</li>"
-		dellog += "<li>Last qdel tick: [I.starting_qdel_time]ms</li>"
-		if (I.hard_deletes)
-			dellog += "<li>Total Hard Deletes [I.hard_deletes]</li>"
-			dellog += "<li>Time Spent Hard Deleting: [I.hard_delete_time]ms</li>"
-		if (I.slept_destroy)
-			dellog += "<li>Sleeps: [I.slept_destroy]</li>"
-		if (I.no_respect_force)
-			dellog += "<li>Ignored force: [I.no_respect_force]</li>"
-		if (I.no_hint)
-			dellog += "<li>No hint: [I.no_hint]</li>"
-		dellog += "</ul></li>"
-
-	dellog += "</ol>"
-
-	user << browse("<html>[dellog.Join()]</html>", "window=dellog")
-*/
+		if("jump")
+			var/list/coord = params["coords"]
+			if(!islist(coord))
+				return FALSE
+			if(!isobserver(ui.user))
+				SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/admin_ghost)
+			ui.user.forceMove(locate(coord["x"],coord["y"],coord["z"]))
+			return FALSE

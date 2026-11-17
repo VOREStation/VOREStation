@@ -15,7 +15,7 @@ export function GarbageSubsystemOverview(props) {
     total_time_harddeling,
   } = data;
   return (
-    <Window title="Controller Overview" height={800} width={600}>
+    <Window title="Garbage Collection Overview" height={700} width={800}>
       <Window.Content scrollable>
         <Section title="Stats">
           <LabeledList>
@@ -24,11 +24,11 @@ export function GarbageSubsystemOverview(props) {
               {total_harddels}
             </LabeledList.Item>
             <LabeledList.Item label="Failures">{total_fails}</LabeledList.Item>
-            <LabeledList.Item label="Time Spent(ms)">
-              {total_time_deling}
+            <LabeledList.Item label="Time Spent">
+              {total_time_deling} ms
             </LabeledList.Item>
-            <LabeledList.Item label="Hard Time Spent">
-              {total_time_harddeling}
+            <LabeledList.Item label="Harddel Time Spent">
+              {total_time_harddeling} ms
             </LabeledList.Item>
           </LabeledList>
         </Section>
