@@ -438,9 +438,10 @@ SUBSYSTEM_DEF(garbage)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(isnull(ui))
 		ui = new /datum/tgui(user, src, "GarbageSubsystemOverview")
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/datum/controller/subsystem/garbage/tgui_static_data(mob/user)
+/datum/controller/subsystem/garbage/tgui_data(mob/user)
 	var/list/data = list()
 	var/list/del_log = list()
 
@@ -474,6 +475,7 @@ SUBSYSTEM_DEF(garbage)
 	data["total_fails"] = total_fails
 	data["total_time_deling"] = total_time_deling
 	data["total_time_harddeling"] = total_time_harddeling
+
 	return data
 
 /datum/controller/subsystem/garbage/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -484,7 +486,6 @@ SUBSYSTEM_DEF(garbage)
 
 	switch(action)
 		if("refresh")
-			update_tgui_static_data(ui.user, ui)
 			return TRUE
 
 		if("jump")
