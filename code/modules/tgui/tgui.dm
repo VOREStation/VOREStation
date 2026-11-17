@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
+/// How long a new window gets to load and send ready before we close it
+#define TGUI_WINDOW_STARTUP_TIMEOUT (60 SECONDS)
+
 /**
  * tgui datum (represents a UI).
  */
@@ -25,8 +28,8 @@
 	var/autoupdate = TRUE
 	/// If the UI has been initialized yet.
 	var/initialized = FALSE
-	/// Time of opening the window.
-	var/opened_at
+	/// The world.time this UI has to finish its first handshake by, set once in open()
+	var/initialization_deadline
 	/// Stops further updates when close() was called.
 	var/closing = FALSE
 	/// The status/visibility of the UI.
@@ -45,11 +48,8 @@
 	var/datum/tgui/parent_ui
 	/// Children of this UI
 	var/list/children = list()
-	/// Any partial packets that we have received from TGUI, waiting to be sent
-	var/partial_packets
 	/// If the window should be closed with other windows when requested
 	var/closeable = TRUE
-
 
 /**
  * public
@@ -68,12 +68,15 @@
  * return datum/tgui The requested UI.
  */
 /datum/tgui/New(mob/user, datum/src_object, interface, title, datum/tgui/parent_ui, ui_x, ui_y, datum/tgui_window/window)
+	log_tgui(user,
+		"new [interface]",
+		src_object = src_object)
 	src.user = user
 	src.src_object = src_object
 	src.interface = interface
 	if(title)
 		src.title = title
-	src.state = src_object.tgui_state()
+	src.state = src_object.tgui_state(user)
 	src.parent_ui = parent_ui
 	if(parent_ui)
 		parent_ui.children += src
@@ -114,16 +117,17 @@
 		window = SStgui.request_pooled_window(user)
 	if(!window)
 		return FALSE
-	opened_at = world.time
 	window.acquire_lock(src)
 	if(!window.is_ready() && !preinitialized)
+		initialization_deadline = world.time + TGUI_WINDOW_STARTUP_TIMEOUT
 		window.initialize(
 			strict_mode = TRUE,
 			fancy = user.read_preference(/datum/preference/toggle/tgui_fancy),
 			assets = list(
 				get_asset_datum(/datum/asset/simple/tgui),
-				))
+			))
 	else
+		initialization_deadline = world.time + TGUI_PING_TIMEOUT
 		window.send_message("ping")
 	send_assets()
 	window.send_message("update", get_payload(
@@ -132,7 +136,6 @@
 	SStgui.on_open(src)
 
 	return TRUE
-
 
 /datum/tgui/proc/send_assets()
 	var/flush_queue = window.send_asset(get_asset_datum(
@@ -155,12 +158,12 @@
  *
  * optional can_be_suspended bool
  */
-/datum/tgui/proc/close(can_be_suspended = TRUE, logout = FALSE)
+/datum/tgui/proc/close(can_be_suspended = TRUE)
 	if(closing)
 		return
 	closing = TRUE
 	for(var/datum/tgui/child in children)
-		child.close(can_be_suspended, logout)
+		child.close(can_be_suspended)
 	// If we don't have window_id, open proc did not have the opportunity
 	// to finish, therefore it's safe to skip this whole block.
 	if(window)
@@ -168,21 +171,32 @@
 		// and we want to keep them around, to allow user to read
 		// the error message properly.
 		window.release_lock()
-		window.close(can_be_suspended, logout)
+		window.close(can_be_suspended)
 		src_object.tgui_close(user)
 		SStgui.on_close(src)
 
 		if(user.client)
 			terminate_byondui_elements()
 
-	// Unset machine just to be sure.
-	user.unset_machine()
-
 	state = null
 	if(parent_ui)
 		parent_ui.children -= src
 	parent_ui = null
 	qdel(src)
+
+/**
+ * public
+ *
+ * Sends a message to the front end to push the UI window to position 0,0
+ *
+ * optional can_be_suspended bool
+ */
+/datum/tgui/proc/reset_ui_position()
+	if(window)
+		// Windows you want to keep are usually blue screens of death
+		// and we want to keep them around, to allow user to read
+		// the error message properly.
+		window.send_message("resetposition")
 
 /**
  * public
@@ -238,21 +252,23 @@
  *
  * optional custom_data list Custom data to send instead of ui_data.
  * optional force bool Send an update even if UI is not interactive.
+ * optional always_instant bool Send and update regardless of the cooldown.
  */
-/datum/tgui/proc/send_full_update(custom_data, force)
+/datum/tgui/proc/send_full_update(custom_data, force, always_instant)
 	if(!user?.client || !initialized || closing)
 		return
-	//if(!COOLDOWN_FINISHED(src, refresh_cooldown))
-		//refreshing = TRUE
-		//addtimer(CALLBACK(src, PROC_REF(send_full_update)), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
-		//return
-	//refreshing = FALSE
+	if(!always_instant && !COOLDOWN_FINISHED(src, refresh_cooldown))
+		refreshing = TRUE
+		addtimer(CALLBACK(src, PROC_REF(send_full_update), custom_data, force), COOLDOWN_TIMELEFT(src, refresh_cooldown), TIMER_UNIQUE)
+		return
+	refreshing = FALSE
 	var/should_update_data = force || status >= STATUS_UPDATE
 	window.send_message("update", get_payload(
 		custom_data,
 		with_data = should_update_data,
 		with_static_data = TRUE))
-	//COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
+	if(!always_instant)
+		COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
 
 /**
  * public
@@ -286,8 +302,7 @@
 			"name" = interface,
 			"layout" = user.read_preference(/datum/preference/choiced/tgui_layout),
 		),
-		//"refreshing" = refreshing,
-		"refreshing" = FALSE,
+		"refreshing" = refreshing,
 		"mapZLevel" = map_z_level,
 		"mapInfo" = list(
 			"maxx" = world.maxx,
@@ -310,7 +325,8 @@
 			"observer" = isobserver(user),
 		),
 	)
-	var/data = custom_data || with_data && src_object.tgui_data(user, src, state)
+	var/data = custom_data || with_data && src_object.tgui_data(user)
+	SEND_SIGNAL(src_object, COMSIG_UI_DATA, user, data)
 	if(data)
 		json_data["data"] = data
 	var/static_data = with_static_data && src_object.tgui_static_data(user)
@@ -326,7 +342,7 @@
  * Run an update cycle for this UI. Called internally by SStgui
  * every second or so.
  */
-/datum/tgui/process(force = FALSE)
+/datum/tgui/process(seconds_per_tick, force = FALSE)
 	if(closing)
 		return
 	var/datum/host = src_object.tgui_host(user)
@@ -335,12 +351,10 @@
 		close(can_be_suspended = FALSE)
 		return
 	// Validate ping
-	if(!initialized && world.time - opened_at > TGUI_PING_TIMEOUT)
-		log_tgui(user, \
-			"Error: Zombie window detected, killing it with fire.\n" \
-			+ "window_id: [window.id]\n" \
-			+ "opened_at: [opened_at]\n" \
-			+ "world.time: [world.time]")
+	if(!initialized && world.time > initialization_deadline)
+		log_tgui(user, "Error: Zombie window detected, closing.",
+			window = window,
+			src_object = src_object)
 		close(can_be_suspended = FALSE)
 		return
 	// Update through a normal call to ui_interact
@@ -377,12 +391,12 @@
  * Callback for handling incoming tgui messages.
  */
 /datum/tgui/proc/on_message(type, list/payload, list/href_list)
-	// Pass act type messages to tgui_act
+	// Pass act type messages to ui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		var/act_type = copytext(type, 5)
-		#ifdef TGUI_DEBUGGING
-		log_tgui(user, "Action: [act_type] [href_list["payload"]], Window: [window.id], Source: [src_object]")
-		#endif
+		log_tgui(user, "Action: [act_type] [href_list["payload"]]",
+			window = window,
+			src_object = src_object)
 		process_status()
 		DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(on_act_message), act_type, payload, state))
 		return FALSE
@@ -431,3 +445,5 @@
 		return
 	if(src_object.tgui_act(act_type, payload, src, state))
 		SStgui.update_uis(src_object)
+
+#undef TGUI_WINDOW_STARTUP_TIMEOUT
