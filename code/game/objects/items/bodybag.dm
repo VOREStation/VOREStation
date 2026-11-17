@@ -86,7 +86,7 @@
 	contains_body = ..()
 	return contains_body
 
-/obj/structure/closet/body_bag/close()
+/obj/structure/closet/body_bag/close(mob/user)
 	if(..())
 		density = FALSE
 		return 1
@@ -172,7 +172,7 @@
 	else
 		..()
 
-/obj/structure/closet/body_bag/cryobag/open()
+/obj/structure/closet/body_bag/cryobag/open(mob/user)
 	. = ..()
 	if(used)
 		new /obj/item/usedcryobag(loc)
