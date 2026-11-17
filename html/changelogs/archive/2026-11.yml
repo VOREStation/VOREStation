@@ -129,3 +129,8 @@
   - refactor: ancient and unused transport pod entirely recoded for future event use
   lbnesquik:
   - balance: Make it so you can make ATV's without osmium
+2026-11-17:
+  Cerami:
+  - rscadd: Adds two new reagents to Succubus Bite
+  Lira:
+  - bugfix: Weedkiller kills instead of grows weeds.
