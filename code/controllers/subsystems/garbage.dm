@@ -376,7 +376,7 @@ SUBSYSTEM_DEF(garbage)
 	SEND_SIGNAL(to_delete, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 	var/hint = to_delete.Destroy(force) // Let our friend know they're about to get fucked up.
 
-	trash.starting_qdel_time = SSticker.ticks // Last tick the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to sort with!
+	trash.starting_qdel_time = start_time // Last time the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to sort with!
 	if(world.time != start_time)
 		trash.slept_destroy++
 	else
@@ -427,3 +427,88 @@ SUBSYSTEM_DEF(garbage)
 			#endif
 			trash.no_hint++
 			SSgarbage.Queue(to_delete)
+
+/datum/controller/subsystem/garbage/tgui_status(mob/user, datum/tgui_state/state)
+	if(!user.client?.holder?.check_for_rights(R_SERVER|R_DEBUG))
+		return STATUS_CLOSE
+	return STATUS_INTERACTIVE
+
+/datum/controller/subsystem/garbage/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(isnull(ui))
+		ui = new /datum/tgui(user, src, "GarbageSubsystemOverview")
+		ui.open()
+
+/datum/controller/subsystem/garbage/tgui_static_data(mob/user)
+	var/list/data = list()
+	var/list/del_log = list()
+
+	var/total_dels = 0
+	var/total_hard_dels = 0
+	var/total_fails = 0
+	var/total_time_deling = 0
+	var/total_time_harddeling = 0
+	data["delete_log"] = del_log
+	for(var/path in items)
+		var/datum/qdel_item/I = SSgarbage.items[path]
+		del_log += list(list(
+			"path" = path,
+			"failures" = I.failures,
+			"count" = I.qdels,
+			"cost" = I.destroy_time,
+			"time_since" = world.time - I.starting_qdel_time,
+			"harddel_count" = I.hard_deletes,
+			"harddel_cost" = I.hard_delete_time,
+			"slept" = I.slept_destroy,
+			"no_respect_force" = I.no_respect_force,
+			"no_hint" = I.no_hint,
+		))
+		total_dels += I.qdels
+		total_hard_dels += I.hard_deletes
+		total_fails += I.failures
+		total_time_deling += I.destroy_time
+		total_time_harddeling += I.hard_delete_time
+	data["total_dels"] = total_dels
+	data["total_harddels"] = total_hard_dels
+	data["total_fails"] = total_fails
+	data["total_time_deling"] = total_time_deling
+	data["total_time_harddeling"] = total_time_harddeling
+	return data
+
+/datum/controller/subsystem/garbage/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("refresh")
+			update_tgui_static_data(ui.user, ui)
+			return TRUE
+
+
+/*
+	var/list/dellog = list(span_bold("List of things that have gone through qdel this round") + "<BR><BR><ol>")
+
+	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
+	for(var/path in SSgarbage.items)
+		var/datum/qdel_item/I = SSgarbage.items[path]
+		dellog += "<li><u>[path]</u><ul>"
+		if (I.failures)
+			dellog += "<li>Failures: [I.failures]</li>"
+		dellog += "<li>qdel() Count: [I.qdels]</li>"
+		dellog += "<li>Destroy() Cost: [I.destroy_time]ms</li>"
+		dellog += "<li>Last qdel tick: [I.starting_qdel_time]ms</li>"
+		if (I.hard_deletes)
+			dellog += "<li>Total Hard Deletes [I.hard_deletes]</li>"
+			dellog += "<li>Time Spent Hard Deleting: [I.hard_delete_time]ms</li>"
+		if (I.slept_destroy)
+			dellog += "<li>Sleeps: [I.slept_destroy]</li>"
+		if (I.no_respect_force)
+			dellog += "<li>Ignored force: [I.no_respect_force]</li>"
+		if (I.no_hint)
+			dellog += "<li>No hint: [I.no_hint]</li>"
+		dellog += "</ul></li>"
+
+	dellog += "</ol>"
+
+	user << browse("<html>[dellog.Join()]</html>", "window=dellog")
+*/
