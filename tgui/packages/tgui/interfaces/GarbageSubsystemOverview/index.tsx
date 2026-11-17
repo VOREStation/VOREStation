@@ -19,15 +19,34 @@ export function GarbageSubsystemOverview(props) {
       <Window.Content scrollable>
         <Section title="Stats">
           <LabeledList>
-            <LabeledList.Item label="Deletions">{total_dels}</LabeledList.Item>
-            <LabeledList.Item label="Hard Dels">
+            <LabeledList.Item
+              label="Deletions"
+              tooltip="The total number of atoms deleted."
+            >
+              {total_dels}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Hard Dels"
+              tooltip="The total number of hard deletions that had to be forced to clear their references by byond. This number should be 0."
+            >
               {total_harddels}
             </LabeledList.Item>
-            <LabeledList.Item label="Failures">{total_fails}</LabeledList.Item>
-            <LabeledList.Item label="Time Spent">
+            <LabeledList.Item
+              label="Failures"
+              tooltip="Total number of failed garbage collection actions. This number should be 0."
+            >
+              {total_fails}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Time Spent"
+              tooltip="Total time spent processing deleted atoms."
+            >
               {total_time_deling} ms
             </LabeledList.Item>
-            <LabeledList.Item label="Harddel Time Spent">
+            <LabeledList.Item
+              label="Harddel Time Spent"
+              tooltip="Total time spent deleting atoms that had to be forced to clear their references by byond. This number should be 0."
+            >
               {total_time_harddeling} ms
             </LabeledList.Item>
           </LabeledList>
