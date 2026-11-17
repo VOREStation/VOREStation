@@ -4,7 +4,7 @@
 	desc = "A strange condition which causes the victim to feel as if they were wasting away, despite being otherwise (almost) perfectly healthy."
 	form = "Condition"
 	max_stages = 5
-	stage_prob = 5
+	stage_threshold = 60
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	cure_text = REAGENT_HOLYWATER + " or rest"
 	spread_text = "None"

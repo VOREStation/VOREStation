@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	SetSpread()
 	permeability_mod = max(CEILING(0.4 * transmission, 1), 1)
 	cure_chance = clamp(7.5 - (0.5 * resistance), 5, 10)
-	stage_prob = max(stage_rate, 2)
+	stage_threshold = 100 / (1 + stage_rate * 0.1)
 	SetDanger(severity)
 	GenerateCure()
 	symptoms = sortList(symptoms, GLOBAL_PROC_REF(cmp_advdisease_symptomid_asc))

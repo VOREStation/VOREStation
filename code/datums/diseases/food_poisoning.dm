@@ -2,7 +2,7 @@
 	name = "Food Poisoning"
 	medical_name = "Gastroenteritis"
 	max_stages = 3
-	stage_prob = 5
+	stage_threshold = 60
 	spread_text = "Non-Contagious"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	cure_text = "Sleep"
