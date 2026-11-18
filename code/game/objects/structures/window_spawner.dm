@@ -119,6 +119,10 @@
 	anchored = TRUE
 	var/pattern = PATTERN_DEFAULT
 
+/obj/effect/holidify_window/vertical
+	pattern = PATTERN_VERTICAL_STRIPE
+	icon_state = "gift1_r"
+
 /obj/effect/holidify_window/Initialize(mapload)
 	. = ..()
 	if(pattern && SSticker && SSticker.current_state < GAME_STATE_PLAYING)
