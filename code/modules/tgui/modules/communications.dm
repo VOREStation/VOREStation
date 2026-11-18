@@ -336,24 +336,24 @@
 				return FALSE
 			var/obj/item/card/id/gold/captain/spare/spare_id = locate(/obj/item/card/id/gold/captain/spare) in world
 			if(!spare_id)
-				to_chat(ui.user, span_warning("The Captain's spare ID could not be located."))
+				delivery_target.atom_say("The Captain's spare ID could not be located. Please contact Central Command for further assistance.")
 				return FALSE
 			if(spare_id.spare_request_used)
-				to_chat(ui.user, span_warning("The Captain's spare ID has already been requested this round."))
+				delivery_target.atom_say("The Captain's spare ID has already been requested for this shift.")
 				return FALSE
 			if(is_captain_job_occupied())
-				to_chat(ui.user, span_warning("The Captain's spare ID cannot be requested while the Site Manager position is occupied."))
+				delivery_target.atom_say("The Captain's spare ID cannot be requested while the Site Manager is aboard.")
 				return FALSE
 			var/turf/request_turf = get_turf(delivery_target)
 			var/area/request_area = get_area(request_turf)
 			if(!request_turf || !request_area)
-				to_chat(ui.user, span_warning("The computer's location could not be determined, so the request could not be announced."))
+				delivery_target.atom_say("The computer's location could not be determined, so the request could not be announced.")
 				return FALSE
 
 			spare_id.spare_request_used = TRUE
 			addtimer(CALLBACK(src, PROC_REF(deliver_captain_spare_id), spare_id, delivery_target), 60 SECONDS)
-			to_chat(ui.user, span_notice("The Captain's spare ID has been requested. It will arrive in 60 seconds."))
-			GLOB.global_announcer.autosay("[ui.user.real_name] requested the Captain's spare ID in [request_area.name] at coordinates [request_turf.x], [request_turf.y], [request_turf.z]. It will arrive in 60 seconds.", "Facility PA", channel = "Common", zlevels = using_map.get_map_levels(request_turf.z))
+			delivery_target.atom_say("The Captain's spare ID has been requested. It will arrive in 60 seconds.")
+			GLOB.command_announcement.Announce("[ui.user.real_name] requested the Captain's spare ID at the [request_area.name]. It will arrive in 60 seconds.", "Station Access Department")
 			message_admins("[key_name_admin(ui.user)] requested the Captain's spare ID in [request_area.name] at ([request_turf.x], [request_turf.y], [request_turf.z]) [ADMIN_JMP(request_turf)]")
 
 		// Status display stuff
@@ -436,11 +436,12 @@
 		log_game("Captain's spare ID request could not be completed as the computer or ID no longer exists.")
 		return
 	if(is_captain_job_occupied())
-		delivery_target.visible_message(span_warning("The Captain's spare ID delivery is cancelled because the Site Manager position is now occupied."))
+		delivery_target.atom_say("The Captain's spare ID delivery has been cancelled as the Site Manager has arrived.")
+		spare_id.spare_request_used = FALSE
 		return
 
 	spare_id.forceMove(get_turf(delivery_target))
-	delivery_target.visible_message(span_notice("The Captain's spare ID materializes."))
+	delivery_target.visible_message(span_notice("\The [delivery_target] dispenses an ID card."))
 
 /datum/tgui_module/communications/ntos
 	ntos = TRUE

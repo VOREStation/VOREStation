@@ -118,7 +118,7 @@ export const CommunicationsConsoleMain = (props) => {
               Change Status Displays
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Captain's Spare ID">
+          <LabeledList.Item label="Spare ID Request">
             <Button
               icon="id-card"
               disabled={
