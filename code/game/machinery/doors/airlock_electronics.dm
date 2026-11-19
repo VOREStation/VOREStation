@@ -57,9 +57,9 @@
 
 /obj/item/airlock_electronics/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
-		return TRUE[
+		return TRUE
 	if (!ishuman(ui.user) && !issilicon(ui.user))
-		return FALSE]
+		return FALSE
 
 	switch(action)
 		if("login")
