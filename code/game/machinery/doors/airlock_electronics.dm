@@ -38,14 +38,7 @@
 
 /obj/item/airlock_electronics/tgui_data(mob/user)
 	// this is the data which will be sent to the ui
-	var/list/data = list(
-		"last_configurator" = last_configurator,
-		"locked" = locked,
-		"one_access" = one_access
-	)
-
 	var/acc_list = list()
-	data["access"] = acc_list
 	var/list/available_access = list()
 	available_access += user.GetAccess()
 	if(conf_access)
@@ -53,13 +46,20 @@
 	for(var/acc in available_access)
 		acc_list[SSaccess.get_access_desc(acc)] = list("access_num" = acc, "enabled" = (acc in conf_access))
 
+	var/list/data = list(
+		"last_configurator" = last_configurator,
+		"locked" = locked,
+		"one_access" = one_access,
+		"access" = acc_list
+	)
+
 	return data
 
-/obj/item/airlock_electronics/tgui_act(action, params, datum/tgui/ui)
+/obj/item/airlock_electronics/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
-		return TRUE
+		return TRUE[
 	if (!ishuman(ui.user) && !issilicon(ui.user))
-		return FALSE
+		return FALSE]
 
 	switch(action)
 		if("login")
@@ -100,16 +100,16 @@
 		return
 
 	var/req = text2num(acc)
-	if (conf_access == null)
-		conf_access = list()
+	if(!req)
+		return FALSE
+
+	LAZYINITLIST(conf_access)
 
 	if (!(req in conf_access))
 		conf_access += req
 		return
 
-	conf_access -= req
-	if (!conf_access.len)
-		conf_access = null
+	LAZYREMOVE(conf_access, req)
 
 /obj/item/airlock_electronics/proc/get_available_accesses(mob/user)
 	var/obj/item/card/id/id
