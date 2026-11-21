@@ -72,7 +72,7 @@
 	return last_area
 
 /datum/alarm/proc/alarm_name()
-	if(!origin)
+	if(!origin || isnull(origin.loc))
 		return last_name
 
 	last_name = origin.get_alarm_name()
