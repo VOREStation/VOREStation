@@ -135,7 +135,7 @@
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "The safety is [safety ? "on" : "off"]."
+		. += span_notice("The safety is [safety ? "on" : "off"].")
 
 /obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
 	. = ..(user)

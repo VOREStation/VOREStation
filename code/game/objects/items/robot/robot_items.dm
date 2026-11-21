@@ -44,12 +44,14 @@
 
 /obj/item/borg/sight/material
 	name = "\proper material scanner vision"
+	desc = "Very confusing glasses."
 	sight_mode = BORGMATERIAL
 	icon_state = "material"
 	icon = 'icons/inventory/eyes/item.dmi'
 
 /obj/item/borg/sight/janitor
 	name = "\proper contaminant detector vision"
+	desc = "A vision augmenting device, this nifty little device helps you find gross things in need to cleaning."
 	sight_mode = BORGJAN
 	icon_state = "janhud"
 	icon = 'icons/inventory/eyes/item.dmi'
