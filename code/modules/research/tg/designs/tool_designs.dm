@@ -425,7 +425,7 @@
 	name = "Analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	id = "atmosanalyzer"
-	build_type = PROTOLATHE
+	build_type = PROTOLATHE | AUTOLATHE
 	// req_tech = list(TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = MATERIAL_COST(0.1), MAT_GLASS = MATERIAL_COST(0.05))
 	build_path = /obj/item/analyzer
