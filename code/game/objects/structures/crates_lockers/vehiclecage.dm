@@ -62,7 +62,7 @@
 		return
 
 	var/obj/vehicle/V
-	if(istype(C, /obj/vehicle))
+	if(isVehicle(C))
 		V = C
 	if(!V)
 		return

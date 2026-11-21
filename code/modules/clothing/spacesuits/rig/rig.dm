@@ -989,7 +989,7 @@
 		to_chat(src, span_notice("Your host is pinned to a wall by [wearer.pinned[1]]!"))
 		return 0
 
-	if(istype(wearer.buckled, /obj/vehicle))
+	if(isVehicle(wearer.buckled))
 		//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 		//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 		wearer_move_delay = world.time

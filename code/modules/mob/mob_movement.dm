@@ -247,7 +247,7 @@
 
 	var/old_delay = mob.next_move
 
-	if(istype(my_mob.buckled, /obj/vehicle) || ismob(my_mob.buckled))
+	if(isVehicle(my_mob.buckled) || ismob(my_mob.buckled))
 		//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 		//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
 		my_mob.next_move = world.time
