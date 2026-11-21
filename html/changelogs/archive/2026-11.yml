@@ -134,3 +134,15 @@
   - rscadd: Adds two new reagents to Succubus Bite
   Lira:
   - bugfix: Weedkiller kills instead of grows weeds.
+2026-11-21:
+  Cerami:
+  - qol: Adds aquatic movement to Kelpie simplemobs
+  Kashargul:
+  - refactor: cameranet to SScameras
+  Will:
+  - refactor: Updates airlock electronics circuitboard to tgui
+  - balance: Reduced the death explosion size of phoron spiders
+  - bugfix: Corrected a harddel with fires, updated fire destroy logic
+  Will, Kash:
+  - refactor: Modernizes deletion overview ui
+  - code_imp: update tgui to tg
