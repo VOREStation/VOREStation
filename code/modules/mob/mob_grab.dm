@@ -21,7 +21,7 @@
 	item_flags = DROPDEL | NOSTRIP
 	var/atom/movable/screen/grab/hud = null
 	var/mob/living/affecting = null
-	var/mob/living/carbon/human/assailant = null
+	var/mob/living/assailant = null
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = 1
