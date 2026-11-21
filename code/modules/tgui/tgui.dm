@@ -325,7 +325,7 @@
 			"observer" = isobserver(user),
 		),
 	)
-	var/data = custom_data || with_data && src_object.tgui_data(user)
+	var/data = custom_data || with_data && src_object.tgui_data(user, src, state)
 	SEND_SIGNAL(src_object, COMSIG_UI_DATA, user, data)
 	if(data)
 		json_data["data"] = data
