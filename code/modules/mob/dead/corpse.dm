@@ -38,7 +38,7 @@
 	var/hair = null
 	var/corpsesynthtype = 0			// 0 for organic, 1 for drone, 2 for posibrain
 	var/corpsesynthbrand = "Unbranded"
-	var/corpsesensormode = 0
+	var/corpsesensormode = SUIT_SENSOR_OFF
 	delete_me = TRUE
 
 /obj/effect/landmark/mobcorpse/Initialize(mapload)
