@@ -453,6 +453,7 @@
 	create_reagents(reaction_volume)
 	reagents.add_reagent(reagent_id, reaction_volume)
 	soundloop = new(list(src), FALSE)
+	current_temperature = pick(SHOWER_NORMAL, SHOWER_BOILING, SHOWER_FREEZING)
 
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
@@ -495,6 +496,7 @@
 /obj/machinery/shower/examine(mob/user)
 	. = ..()
 	. += span_notice("You can <b>alt-click</b> to change the temperature.")
+	. += span_notice("The water seems to be set to [current_temperature].")
 
 /obj/machinery/shower/update_icon()
 	cut_overlays()

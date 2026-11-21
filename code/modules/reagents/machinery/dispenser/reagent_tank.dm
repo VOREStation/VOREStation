@@ -96,7 +96,7 @@
 
 /obj/structure/reagent_dispensers/watertank/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_WATER, 1000)
+	reagents.add_reagent(REAGENT_ID_WATER,rand(980,1000))
 	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/watertank/high
@@ -125,7 +125,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_FUEL,1000)
+	reagents.add_reagent(REAGENT_ID_FUEL,rand(980,1000))
 	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/fueltank/high
@@ -146,7 +146,7 @@
 
 /obj/structure/reagent_dispensers/foam/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_FIREFOAM,1000)
+	reagents.add_reagent(REAGENT_ID_FIREFOAM,rand(980,1000))
 	AddElement(/datum/element/climbable)
 
 //Helium3
@@ -343,15 +343,16 @@
 /obj/structure/reagent_dispensers/water_cooler/full
 	bottle = 1
 	cupholder = 1
-	cups = 10
+	cups = 90
 
 /obj/structure/reagent_dispensers/water_cooler/Initialize(mapload)
 	. = ..()
 	if(bottle)
-		reagents.add_reagent(REAGENT_ID_WATER,2000)
+		reagents.add_reagent(REAGENT_ID_WATER,rand(1900,2000))
 	update_icon()
 	AddElement(/datum/element/climbable)
 	AddElement(/datum/element/rotatable)
+	cups = rand(40, 70)
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()

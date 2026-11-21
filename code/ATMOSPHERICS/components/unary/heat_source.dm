@@ -32,6 +32,7 @@
 	create_reagents(120)
 	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/output)
+	set_temperature = rand(0, max_temperature)
 
 /obj/machinery/atmospherics/unary/heater/atmos_init()
 	if(node)

@@ -21,6 +21,7 @@
 /obj/machinery/photocopier/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+	toner = rand(27,33)
 
 /obj/machinery/photocopier/examine(mob/user as mob)
 	. = ..()
