@@ -99,7 +99,7 @@
 /datum/goal/cargo/sell_chemicals/handle_cargo_sale(datum/source, atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
 	if(!sold_successfully)
 		return
-	if(!istype(sold_item,/obj/vehicle/train/trolley_tank))
+	if(!istype(sold_item,/obj/vehicle/train/trolley_tank) || !istype(sold_item,/obj/structure/reagent_dispensers/fueltank))
 		return
 	current_count += sold_item.reagents.get_reagent_amount(chosen_reagent)
 
