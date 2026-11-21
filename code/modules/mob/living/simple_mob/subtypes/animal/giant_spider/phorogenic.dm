@@ -51,13 +51,17 @@
 	)
 
 	var/exploded = FALSE
-	var/explosion_dev_range		= 3
-	var/explosion_heavy_range	= 3
+	var/explosion_dev_range		= 1
+	var/explosion_heavy_range	= 2
 	var/explosion_light_range	= 4
 	var/explosion_flash_range	= 6 // This doesn't do anything iirc.
 
 	var/explosion_delay_lower	= 1 SECOND	// Lower bound for explosion delay.
 	var/explosion_delay_upper	= 2 SECONDS	// Upper bound.
+
+/mob/living/simple_mob/animal/giant_spider/phorogenic/high_yield
+	explosion_dev_range		= 3
+	explosion_heavy_range	= 3
 
 /mob/living/simple_mob/animal/giant_spider/phorogenic/Initialize(mapload)
 	adjust_scale(1.25)
