@@ -286,7 +286,6 @@
 	has_vore_belly_resting_sprites = TRUE
 	hat_offset = DRAKE_HAT_OFFSET
 
-
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/surgical

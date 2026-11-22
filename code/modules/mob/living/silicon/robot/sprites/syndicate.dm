@@ -36,8 +36,6 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
-
-
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/syndie
