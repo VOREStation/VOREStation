@@ -282,6 +282,7 @@
 	rest_sprite_options = list("Default")
 	has_dead_sprite = FALSE
 	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = TRUE
 
 /datum/robot_sprite/dogborg/science/cat
 	name = "Cat"
