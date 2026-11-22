@@ -95,7 +95,7 @@ export type Component = {
   max_damage: number;
   idle_usage: number;
   active_usage: number;
-  installed: number;
+  installed: -1 | 0 | 1;
   exists: BooleanLike;
 };
 
