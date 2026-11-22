@@ -3,6 +3,7 @@
 	var/module_type
 	var/default_sprite = FALSE
 	var/sprite_flags
+	///What the maximum resize value for the sprite is. By default, this is whatever the server max is (typically 2.0).
 	var/size_limit
 
 	var/sprite_icon
