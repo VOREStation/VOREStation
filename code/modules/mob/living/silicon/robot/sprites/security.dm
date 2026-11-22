@@ -174,19 +174,6 @@
 	sprite_flags = ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	hat_offset = DRAKE_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/security/wyvern
-	name = "Wyvern"
-	sprite_icon_state = "wyvern"
-	has_eye_light_sprites = TRUE
-	has_rest_eyes_sprites = TRUE
-	has_rest_lights_sprites = TRUE
-	has_rest_sprites = TRUE
-	sprite_icon = 'icons/mob/robot/wyvern/WyvernFrameSec.dmi'
-	rest_sprite_options = list("Default")
-	has_dead_sprite = FALSE
-	has_dead_sprite_overlay = FALSE
-
-
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/security
@@ -290,6 +277,18 @@
 	icon_x = 64
 	pixel_x = -16
 	hat_offset = DULLAHAN_HAT_OFFSET
+
+/datum/robot_sprite/dogborg/tall/security/wyvern
+	name = "Wyvern"
+	sprite_icon_state = "wyvern"
+	has_eye_light_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/wyvern/WyvernFrameSec.dmi'
+	rest_sprite_options = list("Default")
+	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 
 
 /datum/robot_sprite/dogborg/security/vale2

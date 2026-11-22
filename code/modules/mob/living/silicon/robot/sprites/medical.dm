@@ -286,7 +286,14 @@
 	has_vore_belly_resting_sprites = TRUE
 	hat_offset = DRAKE_HAT_OFFSET
 
-/datum/robot_sprite/dogborg/surgical/wyvern
+
+// Tall sprites
+
+/datum/robot_sprite/dogborg/tall/surgical
+	module_type = "Crisis"
+	sprite_icon = 'icons/mob/robot/surgical_large.dmi'
+
+/datum/robot_sprite/dogborg/tall/surgical/wyvern
 	name = "Wyvern"
 	sprite_icon_state = "wyvern"
 	has_eye_light_sprites = TRUE
@@ -297,13 +304,6 @@
 	rest_sprite_options = list("Default")
 	has_dead_sprite = FALSE
 	has_dead_sprite_overlay = FALSE
-
-
-// Tall sprites
-
-/datum/robot_sprite/dogborg/tall/surgical
-	module_type = "Crisis"
-	sprite_icon = 'icons/mob/robot/surgical_large.dmi'
 
 /datum/robot_sprite/dogborg/tall/surgical/do_equipment_glamour(obj/item/robot_module/module)
 	..()
