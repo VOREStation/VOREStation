@@ -75,7 +75,7 @@ export type Target = {
 export type Upgrade = {
   name: string;
   path: string;
-  installed?: number;
+  installed?: 0 | 1 | 2;
 };
 
 export type Source = {
