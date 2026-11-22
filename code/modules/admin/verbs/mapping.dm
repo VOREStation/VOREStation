@@ -51,7 +51,7 @@ ADMIN_VERB(camera_view, R_DEBUG, "Camera Range Display", "Globally changes the c
 		qdel(C)
 
 	if(GLOB.camera_range_display_status)
-		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+		for(var/obj/machinery/camera/C in SScameras.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb","mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -63,7 +63,7 @@ ADMIN_VERB(sec_camera_report, R_DEBUG, "Camera Report", "Gives a report of the c
 
 	var/list/obj/machinery/camera/CL = list()
 
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for(var/obj/machinery/camera/C in SScameras.cameras)
 		CL += C
 
 	var/output = span_bold("CAMERA ANNOMALITIES REPORT") + {"<HR>

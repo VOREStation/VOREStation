@@ -75,6 +75,12 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/tgui_unlimited_windows
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "tgui_unlimited_windows"
+	savefile_identifier = PREFERENCE_PLAYER
+	default_value = FALSE
+
 /datum/preference/toggle/tgui_say_light
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "TGUI_SAY_LIGHT_MODE"

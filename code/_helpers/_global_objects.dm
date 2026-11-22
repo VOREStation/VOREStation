@@ -27,7 +27,6 @@ GLOBAL_DATUM_INIT(decls_repository, /datum/repository/decls, new)
 
 // Visual nets
 GLOBAL_LIST_EMPTY_TYPED(visual_nets, /datum/visualnet)
-GLOBAL_DATUM_INIT(cameranet, /datum/visualnet/camera, new)
 GLOBAL_DATUM_INIT(cultnet, /datum/visualnet/cult, new)
 GLOBAL_DATUM_INIT(ghostnet, /datum/visualnet/ghost, new)
 
