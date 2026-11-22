@@ -184,6 +184,8 @@
 	sprite_icon = 'icons/mob/robot/wyvern/WyvernFrameSec.dmi'
 	rest_sprite_options = list("Default")
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
+
 
 // Tall sprites
 
