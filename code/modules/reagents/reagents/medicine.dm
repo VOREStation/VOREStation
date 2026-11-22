@@ -176,6 +176,21 @@
 	industrial_use = REFINERYEXPORT_REASON_DRUG
 	medallergen_type = MEDALLERGEN_KELOTANE
 
+/datum/reagent/dermaline/topical/touch_obj(obj/O)
+	..()
+	if(istype(O, /obj/item/stack/medical) && round(volume) >= 1)
+		if(istype(O, /obj/item/stack/medical/bruise_pack)) // Standard gauze into burnpacks
+			return
+		var/obj/item/stack/medical/C = O
+
+		var/packname = C.name
+		var/to_produce = min(C.get_amount(), round(volume))
+		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce, /obj/item/stack/medical/advanced/ointment)
+
+		if(M && M.get_amount())
+			holder.my_atom.visible_message(span_infoplain(span_bold("\The [packname]") + " bubbles."))
+			remove_self(to_produce)
+
 /datum/reagent/dermaline/affect_blood(mob/living/carbon/M, alien, removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
@@ -393,7 +408,11 @@
 		var/packname = C.name
 		var/to_produce = min(C.get_amount(), round(volume / 5))
 
-		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
+		var/obj/item/stack/medical/M
+		if(istype(C, /obj/item/stack/medical/crude_pack)) // crude bandage into gauze
+			M = C.upgrade_stack(to_produce, /obj/item/stack/medical/bruise_pack)
+		else if(istype(C, /obj/item/stack/medical/bruise_pack)) // bandage into brutepack
+			M = C.upgrade_stack(to_produce, /obj/item/stack/medical/advanced/bruise_pack)
 
 		if(M && M.get_amount())
 			holder.my_atom.visible_message(span_infoplain(span_bold("\The [packname]") + " bubbles."))
@@ -615,7 +634,7 @@
 	M.add_chemical_effect(CE_PAINKILLER, 200 * chem_effective)
 	M.add_chemical_effect(CE_SLOWDOWN, 1)
 	M.add_chemical_effect(CE_NARCOTICS, 1)
-	M.eye_blurry = min(M.eye_blurry + 10, 250 * chem_effective)
+	M.eye_blurry = min(M.eye_blurry + 10, 100 * chem_effective)
 
 /datum/reagent/oxycodone/overdose(mob/living/carbon/M, alien)
 	..()
@@ -771,7 +790,7 @@
 				I.damage = max(I.damage - removed, 0)
 				H.Confuse(5)
 			if(I.damage <= 5 && I.organ_tag == O_EYES)
-				H.eye_blurry = min(M.eye_blurry + 10, 250) //Eyes need to reset, or something
+				H.eye_blurry = min(M.eye_blurry + 10, 100) //Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
 		if(alien == IS_SLIME)
 			H.add_chemical_effect(CE_PAINKILLER, 20 * M.species.chem_strength_pain)
@@ -836,7 +855,7 @@
 /datum/reagent/myelamine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
-	M.eye_blurry = min(M.eye_blurry + (repair_strength * removed), 250)
+	M.eye_blurry = min(M.eye_blurry + (repair_strength * removed), 100)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength
@@ -1361,7 +1380,11 @@
 		var/packname = C.name
 		var/to_produce = min(C.get_amount(), round(volume))
 
-		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
+		var/obj/item/stack/medical/M
+		if(istype(C, /obj/item/stack/medical/crude_pack)) // crude bandage into gauze
+			M = C.upgrade_stack(to_produce, /obj/item/stack/medical/bruise_pack)
+		else if(istype(C, /obj/item/stack/medical/bruise_pack)) // bandage into brutepack
+			M = C.upgrade_stack(to_produce, /obj/item/stack/medical/advanced/bruise_pack)
 
 		if(M && M.get_amount())
 			holder.my_atom.visible_message(span_infoplain(span_bold("\The [packname]") + " bubbles."))

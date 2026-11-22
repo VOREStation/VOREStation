@@ -13,8 +13,6 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-	var/upgrade_to	// The type path this stack can be upgraded to.
-
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(!iscarbon(M))
 		balloon_alert(user, "\the [src] cannot be applied to [M]!")
@@ -69,16 +67,12 @@
 	M.updatehealth()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/stack/medical/proc/upgrade_stack(upgrade_amount)
-	. = FALSE
-
+/obj/item/stack/medical/proc/upgrade_stack(upgrade_amount, upgrade_to)
 	var/turf/T = get_turf(src)
-
-	if(ispath(upgrade_to) && use(upgrade_amount))
+	if(use(upgrade_amount))
 		var/obj/item/stack/medical/M = new upgrade_to(T, upgrade_amount)
 		return M
-
-	return .
+	return null
 
 /obj/item/stack/medical/crude_pack
 	name = "crude bandage"
@@ -87,8 +81,6 @@
 	icon_state = "gauze"
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
-
-	upgrade_to = /obj/item/stack/medical/bruise_pack
 
 /obj/item/stack/medical/crude_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..() == ITEM_INTERACT_FAILURE)
@@ -156,8 +148,6 @@
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
-
-	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(..() == ITEM_INTERACT_FAILURE)

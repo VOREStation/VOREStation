@@ -1,5 +1,5 @@
 /*	This code is responsible for the examine tab.  When someone examines something, it copies the examined object's description_info,
-	description_fluff, and description_antag, and shows it in a new tab.
+	description_fluff, and description_antag, description_silicon, and shows it in a new tab.
 
 	In this file, some atom and mob stuff is defined here.  It is defined here instead of in the normal files, to keep the whole system self-contained.
 	This means that this file can be unchecked, along with the other examine files, and can be removed entirely with no effort.
@@ -10,6 +10,7 @@
 	var/description_info = null //Helpful blue text.
 	var/description_fluff = null //Green text about the atom's fluff, if any exists.
 	var/description_antag = null //Malicious red text, for the antags.
+	var/description_silicon = null //Grey text for the machines.
 
 //Override these if you need special behaviour for a specific type.
 ///What is shown to the user when something is examined. This can be overridden for specific uses.
@@ -27,6 +28,11 @@
 /atom/proc/get_description_antag()
 	if(description_antag)
 		return description_antag
+	return
+
+/atom/proc/get_description_silicon()
+	if(description_silicon)
+		return description_silicon
 	return
 
 // This one is slightly different, in that it must return a list.
@@ -50,11 +56,12 @@
 
 /client/var/description_holders[0]
 
-/client/proc/update_description_holders(atom/A, update_antag_info=0)
+/client/proc/update_description_holders(atom/A, update_antag_info=0, update_silicon_info=0)
 	examine_icon = null
 	description_holders["info"] = A.get_description_info()
 	description_holders["fluff"] = A.get_description_fluff()
 	description_holders["antag"] = (update_antag_info)? A.get_description_antag() : ""
+	description_holders["silicon"] = (update_silicon_info)? A.get_description_silicon() : ""
 	description_holders["interactions"] = A.get_description_interaction()
 
 	description_holders["name"] = "[A.name]"
@@ -121,12 +128,17 @@
 	var/antag_info_temp = A.get_description_antag()
 	if(is_antagish && antag_info_temp)
 		. += span_details("🏴‍☠️ | Antag Information", antag_info_temp)
+
+	var/is_silicon = silicon_check()
+	var/silicon_info_temp = A.get_description_silicon()
+	if(is_silicon && silicon_info_temp)
+		. += span_details("🤖 | Silicon Information", silicon_info_temp)
 	var/list/interaction_info = A.get_description_interaction()
 	if(LAZYLEN(interaction_info))
 		var/temp = ""
 		for(var/a in interaction_info)
 			temp += a + "\n"
-		. += span_details("🛠️ | Interaction Information",temp)
+		. += span_details("🛠️ | Interaction Information", temp)
 
 /mob/proc/antag_check()
 	if(mind && (mind.special_role || mind.antag_holder.is_antag())) //We're a /mob and have a mind and antag status.
@@ -138,10 +150,18 @@
 		return TRUE
 	return FALSE
 
+/mob/proc/silicon_check()
+	if(isobserver(src)) //We're an observer. We always are able to see stuff antags see.
+		return TRUE
+	if(issilicon(src))
+		return TRUE
+	return FALSE
+
 /mob/proc/update_examine_panel(atom/A)
 	if(client)
 		var/is_antag = antag_check()
-		client.update_description_holders(A, is_antag)
+		var/is_silicon = silicon_check()
+		client.update_description_holders(A, is_antag, is_silicon)
 		SSstatpanels.set_examine_tab(client)
 
 

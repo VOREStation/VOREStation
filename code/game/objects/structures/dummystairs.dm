@@ -1,6 +1,6 @@
 /obj/structure/dummystairs
 	name = "stairs"
-	desc = "A short set of stairs"
+	desc = "A short set of stairs."
 	icon = 'icons/obj/dummystairs.dmi'
 	icon_state = "stair"
 	anchored = TRUE

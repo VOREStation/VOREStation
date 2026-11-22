@@ -10,6 +10,9 @@
 
 	for(var/client/C in GLOB.clients)
 		if(!check_rights_for(src, R_ADMIN|R_MOD))
+			if(C.mob.read_preference(/datum/preference/toggle/obfuscate_key))
+				Lines += "\tAnonymous User"
+				continue
 			Lines += "\t[C.holder?.fakekey || C.key]"
 			continue
 		var/entry = "\t[C.key]"

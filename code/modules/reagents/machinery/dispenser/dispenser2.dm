@@ -1,6 +1,7 @@
 /obj/machinery/chemical_dispenser
 	name = "chemical dispenser"
 	desc = "Automagically fabricates chemicals from electricity."
+	description_info = "It'll take a prying tool to retrieve installed cartridges."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 	clicksound = "switch"
@@ -37,8 +38,7 @@
 
 /obj/machinery/chemical_dispenser/examine(mob/user)
 	. = ..()
-	. += "It has [cartridges.len] cartridges installed, and has space for [max_cartridges - cartridges.len] more."
-	. += "It'll take a prying tool to retrieve installed cartridges."
+	. += span_notice("It has [cartridges.len] cartridges installed, and has space for [max_cartridges - cartridges.len] more.")
 
 /obj/machinery/chemical_dispenser/update_icon()
 	if(accept_drinking) //drink dispensors don't have fancy sprites, so this is a very handy checker

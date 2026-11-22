@@ -26,66 +26,7 @@
 	ooc_notes_maybes = read_preference(/datum/preference/text/living/ooc_notes_maybes)
 	ooc_notes_style = read_preference(/datum/preference/toggle/living/ooc_notes_style)
 	private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
-	digestable = client.prefs_vr.digestable
-	devourable = client.prefs_vr.devourable
-	absorbable = client.prefs_vr.absorbable
-	feeding = client.prefs_vr.feeding
-	can_be_drop_prey = client.prefs_vr.can_be_drop_prey
-	can_be_drop_pred = client.prefs_vr.can_be_drop_pred
-	can_be_afk_prey = client.prefs_vr.can_be_afk_prey
-	can_be_afk_pred = client.prefs_vr.can_be_afk_pred
-	throw_vore = client.prefs_vr.throw_vore
-	food_vore = client.prefs_vr.food_vore
-	spont_belly_rear = client.prefs_vr.spont_belly_rear
-	spont_belly_left = client.prefs_vr.spont_belly_left
-	spont_belly_front = client.prefs_vr.spont_belly_front
-	spont_belly_right = client.prefs_vr.spont_belly_right
-	consume_liquid_belly = client.prefs_vr.consume_liquid_belly
-	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
-	digest_leave_remains = client.prefs_vr.digest_leave_remains
-	allowmobvore = client.prefs_vr.allowmobvore
-	permit_healbelly = client.prefs_vr.permit_healbelly
-	noisy = client.prefs_vr.noisy
-	selective_preference = client.prefs_vr.selective_preference
-	size_strip_preference = client.prefs_vr.size_strip_preference
-	eating_privacy_global = client.prefs_vr.eating_privacy_global
-	vore_death_privacy = client.prefs_vr.vore_death_privacy
-	allow_mimicry = client.prefs_vr.allow_mimicry
-	allowtemp = client.prefs_vr.allowtemp
-
-	drop_vore = client.prefs_vr.drop_vore
-	stumble_vore = client.prefs_vr.stumble_vore
-	slip_vore = client.prefs_vr.slip_vore
-	digest_pain = client.prefs_vr.digest_pain
-
-	resizable = client.prefs_vr.resizable
-	show_vore_fx = client.prefs_vr.show_vore_fx
-	step_mechanics_pref = client.prefs_vr.step_mechanics_pref
-	pickup_pref = client.prefs_vr.pickup_pref
-	allow_mind_transfer = client.prefs_vr.allow_mind_transfer
-
-	phase_vore = client.prefs_vr.phase_vore
-	latejoin_vore = client.prefs_vr.latejoin_vore
-	latejoin_prey = client.prefs_vr.latejoin_prey
-	receive_reagents = client.prefs_vr.receive_reagents
-	give_reagents = client.prefs_vr.give_reagents
-	apply_reagents = client.prefs_vr.apply_reagents
-	autotransferable = client.prefs_vr.autotransferable
-	noisy_full = client.prefs_vr.noisy_full
-	strip_pref = client.prefs_vr.strip_pref
-	contaminate_pref = client.prefs_vr.contaminate_pref
-	vore_sprite_color = client.prefs_vr.vore_sprite_color
-	vore_sprite_multiply = client.prefs_vr.vore_sprite_multiply
-	no_latejoin_vore_warning = client.prefs_vr.no_latejoin_vore_warning
-	no_latejoin_prey_warning = client.prefs_vr.no_latejoin_prey_warning
-	no_latejoin_vore_warning_time = client.prefs_vr.no_latejoin_vore_warning_time
-	no_latejoin_prey_warning_time = client.prefs_vr.no_latejoin_prey_warning_time
-	no_latejoin_vore_warning_persists = client.prefs_vr.no_latejoin_vore_warning_persists
-	no_latejoin_prey_warning_persists = client.prefs_vr.no_latejoin_prey_warning_persists
-	max_voreoverlay_alpha = client.prefs_vr.max_voreoverlay_alpha
-	belly_rub_target = client.prefs_vr.belly_rub_target
-	soulcatcher_pref_flags = client.prefs_vr.soulcatcher_pref_flags
-	persistend_edit_mode = client.prefs_vr.persistend_edit_mode
+	VORE_PREF_TRANSFER(src, client.prefs_vr)
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"

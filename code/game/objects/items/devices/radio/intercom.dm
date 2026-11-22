@@ -1,6 +1,7 @@
 /obj/item/radio/intercom
 	name = "station intercom (General)"
 	desc = "Talk through this."
+	description_info = "Use the :i key to speak into it."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "intercom"
 	layer = ABOVE_WINDOW_LAYER

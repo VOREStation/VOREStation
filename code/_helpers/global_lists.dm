@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(event_triggers)					//Associative list of creator_ckey:list(la
 GLOBAL_LIST_EMPTY(surgery_steps)					//list of all surgery steps  |BS12
 
 GLOBAL_LIST_EMPTY(mechas_list)						//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_LIST_EMPTY(mech_trackers) 					//Stores all mech tracker boards
 GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
 GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 

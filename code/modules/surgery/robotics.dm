@@ -58,7 +58,7 @@
 /datum/surgery_step/robotics/unscrew_hatch/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] has opened the maintenance hatch on [target]'s [affected.name] with \the [tool]."), \
-	span_notice("You have opened the maintenance hatch on [target]'s [affected.name] with \the [tool]."),)
+		span_notice("You have opened the maintenance hatch on [target]'s [affected.name] with \the [tool]."),)
 	user.balloon_alert_visible("opens the maintenance hatch on [target]'s [affected.name]", "maintenance hatch opened on \the [affected.name]")
 	affected.open = INCISION_MADE
 
@@ -67,13 +67,13 @@
 	if(istype(tool, /obj/item/coin))
 		user.drop_item()
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to unscrew [target]'s [affected.name]."), \
-	span_warning("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
+		span_warning("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
 	user.balloon_alert_visible("slips, failing to unscrew [target]'s [affected.name]", "your [tool] slips, failing to unscrew \the [affected.name]")
 
 ///////////////////////////////////////////////////////////////
-// Open Hatch Surgery
+// Open Port Surgery
 ///////////////////////////////////////////////////////////////
-
+/* // Unnessesary. Fixed incase someone wants to bring this back for some reason, I guess.
 /datum/surgery_step/robotics/insertion_preparation
 	surgery_name = "Open Augment Port"
 	allowed_tools = list(
@@ -86,7 +86,7 @@
 /datum/surgery_step/robotics/insertion_preparation/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && affected.open == FLESH_RETRACTED
+		return affected && affected.open == INCISION_MADE
 
 /datum/surgery_step/robotics/insertion_preparation/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -104,7 +104,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to open the augment port on [target]'s [affected.name]."),
 		span_warning("Your [tool] slips, failing to open the augment port on [target]'s [affected.name]."))
-
+*/
 ///////////////////////////////////////////////////////////////
 // Open Hatch Surgery
 ///////////////////////////////////////////////////////////////
@@ -144,7 +144,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to open the hatch on [target]'s [affected.name]."),
 										span_warning("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
-	user.balloon_alert_visible("slips, failing to open the hatch on [target]'s [affected.name]", "your [tool] slips, fialing to open the hatch on \the [affected.name]")
+	user.balloon_alert_visible("slips, failing to open the hatch on [target]'s [affected.name]", "your [tool] slips, failing to open the hatch on \the [affected.name]")
 
 ///////////////////////////////////////////////////////////////
 // Close Hatch Surgery
@@ -186,7 +186,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to close the hatch on [target]'s [affected.name]."),
 	span_warning("Your [tool.name] slips, failing to close the hatch on [target]'s [affected.name]."))
-	user.balloon_alert_visible("[tool.name] slips, failing to close the htach on [target]'s [affected.name]", "[tool.name] slips, failing to close the htach on [target]'s [affected.name]")
+	user.balloon_alert_visible("[tool.name] slips, failing to close the hatch on [target]'s [affected.name]", "[tool.name] slips, failing to close the hatch on [target]'s [affected.name]")
 
 ///////////////////////////////////////////////////////////////
 // Brute Repair Surgery
@@ -195,21 +195,32 @@
 /datum/surgery_step/robotics/repair_brute
 	surgery_name = "Repair Robotic Brute"
 	allowed_tools = list(
-		/obj/item/weldingtool = 100,
 		/obj/item/pickaxe/plasmacutter = 50
 	)
+
+	allowed_procs = list(IS_WELDER = 100)
 
 	min_duration = 50
 	max_duration = 60
 
 /datum/surgery_step/robotics/repair_brute/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(..())
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(istype(tool, /obj/item/weldingtool))
-			var/obj/item/weldingtool/welder = tool
-			if(!welder.isOn() || !welder.remove_fuel(1,user))
-				return FALSE
-		return affected && affected.open == BONE_RETRACTED && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
+	. = ..()
+	if(!.)
+		return //Return Parent
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected || affected.open != BONE_RETRACTED) //Panel needs to be open
+		return FALSE
+	if(target_zone != O_MOUTH)
+		return FALSE
+	if((affected.brute_dam <= 0) || affected.disfigured)
+		user.balloon_alert_visible("there are no burnt wires here!")
+		to_chat(user, span_notice("There are no burnt wires here!"))
+		return SURGERY_FAILURE
+	if(istype(tool, /obj/item/weldingtool))
+		var/obj/item/weldingtool/welder = tool
+		if(!welder.isOn() || !welder.remove_fuel(1,user))
+			return SURGERY_FAILURE
+	return //Parent will be true if we make it here.
 
 /datum/surgery_step/robotics/repair_brute/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -223,7 +234,7 @@
 	user.visible_message(span_notice("[user] finishes patching damage to [target]'s [affected.name] with \the [tool]."), \
 	span_notice("You finish patching damage to [target]'s [affected.name] with \the [tool]."))
 	user.balloon_alert_visible("finishes patching damage to [target]'s [affected.name]", "patched samage to \the [affected.name]")
-	affected.heal_damage(rand(30,50),0,1,1)
+	affected.heal_damage(rand(30,50), 0, TRUE, TRUE)
 	affected.disfigured = 0
 
 /datum/surgery_step/robotics/repair_brute/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -247,23 +258,25 @@
 	max_duration = 60
 
 /datum/surgery_step/robotics/repair_burn/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(..())
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(istype(tool, /obj/item/stack/cable_coil))
-			var/obj/item/stack/cable_coil/C = tool
-			if(affected.burn_dam == 0)
-				user.balloon_alert_visible("there are no burnt wires here!")
-				to_chat(user, span_notice("There are no burnt wires here!"))
-				return SURGERY_FAILURE
-			else
-				if(!C.can_use(5))
-					to_chat(user, span_danger("You need at least five cable pieces to repair this part.")) //usage amount made more consistent with regular cable repair
-					user.balloon_alert_visible("You need at least five cable pieces to repair this part.")
-					return SURGERY_FAILURE
-				else
-					C.use(5)
-
-		return affected && affected.open == BONE_RETRACTED && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH
+	. = ..()
+	if(!.)
+		return //Return parent
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected || affected.open != BONE_RETRACTED) //Panel needs to be open
+		return FALSE
+	if(target_zone == O_MOUTH)
+		return FALSE
+	if((affected.burn_dam <= 0) && !affected.disfigured) //You can fix disfigurement with wires, I guess.
+		user.balloon_alert_visible("there are no burnt wires here!")
+		to_chat(user, span_notice("There are no burnt wires here!"))
+		return SURGERY_FAILURE
+	if(istype(tool, /obj/item/stack/cable_coil)) //Theoretically doing this with something other than a cable coil is possible, I guess.
+		var/obj/item/stack/cable_coil/C = tool
+		if(!C.can_use(5))
+			to_chat(user, span_danger("You need at least five cable pieces to repair this part.")) //usage amount made more consistent with regular cable repair
+			user.balloon_alert_visible("You need at least five cable pieces to repair this part.")
+			return SURGERY_FAILURE
+	return //Parent will be true if we make it here.
 
 /datum/surgery_step/robotics/repair_burn/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -277,7 +290,10 @@
 	user.visible_message(span_notice("[user] finishes splicing cable into [target]'s [affected.name]."), \
 	span_notice("You finishes splicing new cable into [target]'s [affected.name]."))
 	user.balloon_alert_visible("finishes splicing cable into [target]'s [affected.name]", "finished splicing new cable into [target]'s [affected.name]")
-	affected.heal_damage(0,rand(30,50),1,1)
+	if(istype(tool, /obj/item/stack/cable_coil)) //Use the cable coils.
+		var/obj/item/stack/cable_coil/C = tool
+		C.use(5)
+	affected.heal_damage(0, rand(30,50), TRUE, TRUE)
 	affected.disfigured = 0
 
 /datum/surgery_step/robotics/repair_burn/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -380,7 +396,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 		return FALSE
-	if(affected.open < 3)
+	if(affected.open < BONE_RETRACTED)
 		return FALSE
 
 	var/list/attached_organs = list() //Let's see if we have any organs able to be detached!
@@ -628,11 +644,6 @@
 	if(!(affected.robotic >= ORGAN_ROBOT))
 		to_chat(user, span_danger("You cannot install a nymph into a meat puppet."))
 		user.balloon_alert(user, "you cannot install a nymph into a meat puppet")
-		return SURGERY_FAILURE
-
-	if(!(affected.model != "Skrellian Exoskeleton"))
-		to_chat(user, span_danger("You're fairly certain a nymph can't pilot a normal robot."))
-		user.balloon_alert(user, "you're fairly certain a nymph can't pilot a normal robot")
 		return SURGERY_FAILURE
 
 	if(!target.should_have_organ(O_BRAIN))

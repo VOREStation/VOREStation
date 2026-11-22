@@ -1,8 +1,8 @@
 // Disposal pipes
 /obj/structure/disposalpipe
-	icon = 'icons/obj/pipes/disposal.dmi'
 	name = "disposal pipe"
-	desc = "An underfloor disposal pipe."
+	desc = "An underfloor disposal pipe. Most often used as part of a pneumatic disposal system."
+	icon = 'icons/obj/pipes/disposal.dmi'
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE

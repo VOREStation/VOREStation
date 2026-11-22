@@ -123,7 +123,9 @@
 	// 2 is strong
 	var/obj/item/modular_computer/host = tgui_host() //Better not add this to anything other than modular computers.
 	if(!istype(host))
-		return
+		return 0
+	if(is_jammed(host) || is_jammed(AM))
+		return 0
 	var/our_signal = host.get_ntnet_status() //1 low, 2 good, 3 wired, 0 none
 	var/their_z = get_z(AM)
 

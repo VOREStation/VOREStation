@@ -193,7 +193,7 @@
 		qdel(hotspot)
 
 	if(volume >= 3)
-		T.wet_floor(2)
+		T.MakeSlippery(TURF_WET_LUBE, 160 SECONDS, min(volume * 2 SECONDS))
 
 /datum/reagent/nutriment/triglyceride/oil/initialize_data(newdata) // Called when the reagent is created.
 	..()

@@ -76,9 +76,9 @@
 
 /obj/item/stack/proc/get_examine_string()
 	if(!uses_charge)
-		return "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
+		return span_notice("There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack.")
 	else
-		return "There is enough charge for [get_amount()]."
+		return span_notice("There is enough charge for [get_amount()].")
 
 /obj/item/stack/examine(mob/user)
 	. = ..()

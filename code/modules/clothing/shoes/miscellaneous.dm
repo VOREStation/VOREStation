@@ -18,7 +18,7 @@
 	step_volume_mod = 0	//It's a mime
 
 /obj/item/clothing/shoes/galoshes
-	desc = "Rubber boots"
+	desc = "Thick rubber boots. Worn mostly by janitors wading through wet floors and much worse."
 	name = "galoshes"
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
@@ -253,15 +253,15 @@
 	item_state = "ballet"
 
 /obj/item/clothing/shoes/dry_galoshes
-	desc = "A pair of purple rubber boots, designed to prevent slipping on wet surfaces while also drying them."
+	desc = "A pair of purple rubber boots, designed to prevent slipping on wet surfaces while also drying them. They're extra grippy, too!"
 	name = "absorbent galoshes"
 	icon = 'icons/inventory/feet/item.dmi'
 	icon_state = "galoshes_dry"
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0
 	flags = NOCONDUCT
-	item_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+0.5
+	item_flags = NOSLIP | NOSLIP_LUBE
+	slowdown = SHOES_SLOWDOWN + 0.5
 	species_restricted = null
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'

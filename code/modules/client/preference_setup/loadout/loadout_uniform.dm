@@ -771,7 +771,7 @@ Talon jumpsuit
 /datum/gear/uniform/talonbasic
 	display_name = "Talon Jumpsuit"
 	description = "A jumpsuit that is usually issued to ITV Talon contractors, however others can purchase it to show their support towards the ship."
-	path = /obj/item/clothing/under/rank/talon/basic
+	path = /obj/item/clothing/under/rank/talon
 
 // Summer dresses
 /datum/gear/uniform/summerdress

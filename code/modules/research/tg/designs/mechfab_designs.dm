@@ -706,7 +706,7 @@
 	desc = "A space-bike's un-assembled frame."
 	id = "vehicle_chassis_spacebike"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3)
-	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PHORON = MATERIAL_COST(1.5), MAT_OSMIUM = MATERIAL_COST(0.5))
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PHORON = MATERIAL_COST(1.5))
 	build_path = /obj/item/vehicle_assembly/spacebike
 
 /datum/design_techweb/mechfab/vehicle/quadbike_chassis
@@ -714,7 +714,7 @@
 	desc = "A quad bike's un-assembled frame."
 	id = "vehicle_chassis_quadbike"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
-	materials = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5), MAT_OSMIUM = MATERIAL_COST(0.5))
+	materials = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5))
 	build_path = /obj/item/vehicle_assembly/quadbike
 
 /datum/design_techweb/mechfab/vehicle/snowmobile_chassis
@@ -722,7 +722,7 @@
 	desc = "A snowmobile's un-assembled frame."
 	id = "vehicle_chassis_snowmobile"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
-	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5), MAT_OSMIUM = MATERIAL_COST(0.5))
+	materials = list(MAT_STEEL = MATERIAL_COST(6), MAT_SILVER = MATERIAL_COST(1.5), MAT_PLASTIC = MATERIAL_COST(1.5))
 	build_path = /obj/item/vehicle_assembly/snowmobile
 
 /datum/design_techweb/mechfab/vehicle/basic //I'm going to just count this as a vehicle...
@@ -817,7 +817,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/mechfab/polecat
-	desc = "A part used in the construction of the Gopher micro mech series"
+	desc = "A part used in the construction of the Polecat micro mech series"
 	category = list(
 		RND_CATEGORY_MECHFAB_POLECAT + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)

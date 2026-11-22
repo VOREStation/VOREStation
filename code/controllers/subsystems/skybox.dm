@@ -20,7 +20,8 @@ SUBSYSTEM_DEF(skybox)
 	//Create our 'normal' space appearance
 	normal_space = new()
 	normal_space.name = "\proper space"
-	normal_space.desc = "Space!"
+	//normal_space.desc = "Space!"
+	normal_space.desc = pick("Space!", "Spaaaaace!", "Space...", "SPAAACCCCCE!") //Yes, this is a portal reference.
 	normal_space.mouse_opacity = 2 //Always fully opaque. It's SPACE there can't be things BEHIND IT.
 	normal_space.appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	normal_space.plane = SPACE_PLANE

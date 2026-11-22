@@ -9,6 +9,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 
 /obj/machinery/rnd/destructive_analyzer
 	name = "destructive analyzer"
+	desc = "Learn science by destroying things!"
 	icon_state = "d_analyzer"
 	var/decon_mod = 0
 	circuit = /obj/item/circuitboard/destructive_analyzer

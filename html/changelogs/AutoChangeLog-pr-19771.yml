@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "trash piles keeping random objects within their contents whilst moving the qdeleted random spawner into view"

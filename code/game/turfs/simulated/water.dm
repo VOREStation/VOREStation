@@ -125,6 +125,9 @@
 			to_chat(L, span_warning("You climb out of \the [src]."))
 	..()
 
+/turf/simulated/floor/water/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
+	return
+
 /turf/simulated/floor/water/deep
 	name = "deep water"
 	desc = "A body of water.  It seems quite deep."
@@ -143,7 +146,7 @@
 
 /turf/simulated/floor/water/deep/pool
 	name = "deep pool"
-	desc = "Don't worry, it's not closed."
+	desc = "Deep enough to ask for a lifeguard to be around."
 	outdoors = OUTDOORS_NO
 
 /mob/living/proc/can_breathe_water()

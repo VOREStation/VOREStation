@@ -585,13 +585,13 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of power cable."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_RED
 	gender = NEUTER
-	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
@@ -627,7 +627,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
-		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
+		if(!S || S.robotic < ORGAN_ROBOT || S.open == BONE_RETRACTED)
 			return ..()
 
 		//VOREStation Add - No welding nanoform limbs
@@ -646,8 +646,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 		var/use_amt = min(src.amount, CEILING(S.burn_dam/5, 1), 5)
 		if(can_use(use_amt))
-			if(S.robo_repair(5*use_amt, BURN, "some damaged wiring", src, user))
-				src.use(use_amt)
+			if(S.robo_repair(5*use_amt, BURN, "some damaged wiring", src, user, stack_use = use_amt))
+				//src.use(use_amt) //Wire usage gets done in robo_repair, now.
 				return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_FAILURE
 

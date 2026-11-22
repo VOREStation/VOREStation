@@ -183,7 +183,11 @@
 
 	character.set_gender(pref.read_preference(/datum/preference/choiced/gender/biological))
 
-	character.synthetic = pref.read_preference(/datum/preference/choiced/species) == "Protean" ? GLOB.all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	if(pref.read_preference(/datum/preference/choiced/species) == "Protean")
+		character.synthetic = GLOB.all_robolimbs["protean"]
+	else
+		character.synthetic = null
+
 	var/list/pref_organ_data = pref.read_preference(/datum/preference/organ_data)
 	var/list/pref_rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
 	var/list/organs_to_edit = list()
@@ -244,8 +248,8 @@
 
 /datum/category_item/player_setup_item/general/body/proc/reset_limbs()
 	// Reset organ and robolimb data
-	pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], list())
-	pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], list())
+	pref.update_preference_by_type(/datum/preference/organ_data, list())
+	pref.update_preference_by_type(/datum/preference/rlimb_data, list())
 
 	// Sanitize the name so that there aren't any numbers sticking around.
 	// Is this still necessary with TG conversation?
@@ -496,6 +500,11 @@
 			if(new_hair && has_flag(mob_species, HAS_HAIR_COLOR))
 				pref.update_preference_by_type(/datum/preference/color/human/hair_color, new_hair)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_hairstyle")
+			var/hairstyles = pref.get_available_styles(GLOB.hair_styles_list)
+			var/new_h_style = pick(hairstyles)
+			pref.h_style = new_h_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Facial Hair */
 		if("set_facial_hair_style")
@@ -510,6 +519,10 @@
 			if(new_facial && has_flag(mob_species, HAS_HAIR_COLOR))
 				pref.update_preference_by_type(/datum/preference/color/human/facial_color, new_facial)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_facialhair")
+			var/new_f_style = pick(pref.get_available_styles(GLOB.facial_hair_styles_list))
+			pref.f_style = new_f_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Gradient */
 		if("set_grad_style")
@@ -594,6 +607,12 @@
 			var/zone = params["zone"]
 			pref.body_markings[marking][zone]["on"] = !pref.body_markings[marking][zone]["on"]
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_markings")
+			var/list/usable_markings = pref.body_markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
+			var/new_marking = pick(usable_markings)
+			if(new_marking && (new_marking in usable_markings))
+				pref.body_markings[new_marking] = pref.mass_edit_marking_list(new_marking) //New markings start black
+				return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Ears */
 		if("set_ear_style")
@@ -661,6 +680,14 @@
 			if(new_ear_alpha)
 				pref.update_preference_by_type(/datum/preference/numeric/human/ears_alpha/secondary, new_ear_alpha)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_ears")
+			var/new_ear_style = pick(pref.get_available_styles(GLOB.ear_styles_list))
+			pref.ear_style = new_ear_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_horns")
+			var/new_ear_style = pick(pref.get_available_styles(GLOB.ear_styles_list))
+			pref.ear_secondary_style = new_ear_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Wings */
 		if("set_wing_style")
@@ -692,6 +719,10 @@
 			if(new_wing_alpha)
 				pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_wings")
+			var/new_style = pick(pref.get_available_styles(GLOB.wing_styles_list))
+			pref.wing_style = new_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Tail */
 		if("set_tail_style")
@@ -723,6 +754,10 @@
 			if(new_tail_alpha)
 				pref.update_preference_by_type(/datum/preference/numeric/human/tail_alpha, new_tail_alpha)
 				return TOPIC_REFRESH_UPDATE_PREVIEW
+		if("pick_random_tail")
+			var/new_tail_style = pick(pref.get_available_styles(GLOB.tail_styles_list))
+			pref.tail_style = new_tail_style
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		/* Species */
 		if("set_species")
@@ -862,8 +897,8 @@
 
 			switch(new_state)
 				if("Normal")
-					var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
-					var/list/rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
+					var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
+					var/list/rlimb_data = check_list_copy(pref.read_preference(/datum/preference/rlimb_data))
 					organ_data[limb] = null
 					rlimb_data[limb] = null
 					if(limb == BP_TORSO) // depends on standardization
@@ -876,21 +911,22 @@
 					if(third_limb)
 						organ_data[third_limb] = null
 						rlimb_data[third_limb] = null
-					pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
-					pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
+					pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
+					pref.update_preference_by_type(/datum/preference/rlimb_data, rlimb_data)
+					pref.restore_preview_organs()
 
 				if("Amputated")
 					if(limb == BP_TORSO) // depends on standardization
 						return
-					var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
-					var/list/rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
+					var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
+					var/list/rlimb_data = check_list_copy(pref.read_preference(/datum/preference/rlimb_data))
 					organ_data[limb] = "amputated"
 					rlimb_data[limb] = null
 					if(second_limb)
 						organ_data[second_limb] = "amputated"
 						rlimb_data[second_limb] = null
-					pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
-					pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
+					pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
+					pref.update_preference_by_type(/datum/preference/rlimb_data, rlimb_data)
 
 				if("Prosthesis")
 					var/list/usable_manufacturers = list()
@@ -909,8 +945,8 @@
 					if(!choice)
 						return
 
-					var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
-					var/list/rlimb_data = pref.read_preference(/datum/preference/rlimb_data)
+					var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
+					var/list/rlimb_data = check_list_copy(pref.read_preference(/datum/preference/rlimb_data))
 					rlimb_data[limb] = choice
 					organ_data[limb] = "cyborg"
 
@@ -930,8 +966,9 @@
 							organ_data[O_BRAIN] = FBP_ASSISTED
 						for(var/internal_organ in list(O_HEART,O_EYES))
 							organ_data[internal_organ] = FBP_MECHANICAL
-					pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
-					pref.write_preference(GLOB.preference_entries[/datum/preference/rlimb_data], rlimb_data)
+					pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
+					pref.update_preference_by_type(/datum/preference/rlimb_data, rlimb_data)
+					pref.restore_preview_organs()
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -940,7 +977,7 @@
 			if(!(zone in O_STANDARD))
 				return
 
-			var/list/organ_data = pref.read_preference(/datum/preference/organ_data)
+			var/list/organ_data = check_list_copy(pref.read_preference(/datum/preference/organ_data))
 			if(zone == O_BRAIN && organ_data[BP_HEAD] != "cyborg")
 				to_chat(user, span_warning("You may only select a cybernetic or synthetic brain if you have a full prosthetic body."))
 				return
@@ -978,7 +1015,7 @@
 					organ_data[zone] = FBP_DIGITAL
 				if("Positronic")
 					organ_data[zone] = FBP_MECHANICAL
-			pref.write_preference(GLOB.preference_entries[/datum/preference/organ_data], organ_data)
+			pref.update_preference_by_type(/datum/preference/organ_data, organ_data)
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 

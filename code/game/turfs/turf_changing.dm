@@ -80,8 +80,6 @@
 
 	var/turf/W = new N( locate(src.x, src.y, src.z) )
 	if(ispath(N, /turf/simulated/floor))
-		if(old_fire)
-			W.fire = old_fire
 		W.RemoveLattice()
 	W.lighting_corners_initialised = old_lighting_corners_initialized
 	var/turf/simulated/W_sim = W
@@ -92,10 +90,9 @@
 		W_sim.shandler = new(src)
 		W_sim.shandler.manualInit()
 	if(old_fire)
-		old_fire.RemoveFire()
-	if(istype(N, /turf/simulated))
-		var/turf/simulated/new_turf = N
-		new_turf.wet = initial(new_turf.wet)
+		fire = null
+		W.fire = old_fire
+		W.fire.loc = W
 
 	if(tell_universe)
 		GLOB.universe.OnTurfChange(W)

@@ -37,6 +37,8 @@
 /obj/item/communicator/commlink
 	name = "commlink"
 	desc = "An internal communicator, basically."
+	icon = 'icons/obj/device_alt.dmi'
+	icon_state = "nif_full"	//You aren't supposed to see it.
 	occupation = "\[Commlink\]"
 	var/obj/item/nif/nif
 	var/datum/nifsoft/commlink/nifsoft

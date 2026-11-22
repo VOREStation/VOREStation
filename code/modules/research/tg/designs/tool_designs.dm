@@ -116,7 +116,7 @@
 
 /datum/design_techweb/minihoe
 	name = "mini hoe"
-	desc = "It's used for removing weeds or scratching your back."
+	desc = "It's used for removing weeds, or scratching your back."
 	id = "spade"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_STEEL = MATERIAL_COST(0.3125))

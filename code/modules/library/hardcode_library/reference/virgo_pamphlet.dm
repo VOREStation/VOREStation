@@ -2,6 +2,7 @@
 
 /obj/item/book/manual/virgo_pamphlet
 	name = "Welcome to Virgo pamphlet"
+	desc = "Often given to newly arrived immigrants within the Virgo-Erigone system. The paper feels very cheap."
 	icon_state = "pamphlet"
 	author = "Rhiannon Pryce, Sapient Resources"
 	title = "Welcome to Virgo"

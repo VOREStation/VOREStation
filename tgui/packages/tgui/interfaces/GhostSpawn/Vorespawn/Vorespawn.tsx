@@ -34,7 +34,7 @@ export const Vorespawn = (props: {
       <Stack.Item>
         <Box color="red">
           {
-            "This verb allows you to spawn inside someone's belly when they are in round. Make sure you to coordinate with your predator OOCly as well as roleplay approprietly. You are considered to have been in the belly entire time the predator was around and are not added to crew lists. This is not intended to be used for mechanical advantage or providing assistance, but for facilitating longterm scenes. Please do not abuse this ability."
+            "This verb allows you to spawn inside someone's belly when they are in round. Make sure you to coordinate with your predator OOCly as well as roleplay appropriately. You are considered to have been in the belly entire time the predator was around and are not added to crew lists. This is not intended to be used for mechanical advantage or providing assistance, but for facilitating longterm scenes. Please do not abuse this ability."
           }
         </Box>
       </Stack.Item>

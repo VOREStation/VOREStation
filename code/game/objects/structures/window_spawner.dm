@@ -72,6 +72,16 @@
 	icon_state = "r-wingrille"
 	win_path = /obj/structure/window/reinforced
 
+/obj/effect/wingrille_spawn/reinforced/holiday
+	name = "holiday reinforced window grille spawner"
+	icon_state = "r-wingrille"
+	win_path = /obj/structure/window/reinforced/holiday
+
+/obj/effect/wingrille_spawn/reinforced/holiday/vertical
+	name = "vertical holiday reinforced window grille spawner"
+	icon_state = "r-wingrille"
+	win_path = /obj/structure/window/reinforced/holiday/vertical
+
 /obj/effect/wingrille_spawn/reinforced/crescent
 	name = "Crescent window grille spawner"
 	icon_state = "r-wingrille"
@@ -100,3 +110,22 @@
 /obj/effect/wingrille_spawn/reinforced/polarized/handle_window_spawn(obj/structure/window/reinforced/polarized/P)
 	if(id)
 		P.id = id
+
+/obj/effect/holidify_window
+	name = "holidify window"
+	icon = 'icons/obj/gifts.dmi'
+	icon_state = "gift1_g"
+	density = TRUE
+	anchored = TRUE
+	var/pattern = PATTERN_DEFAULT
+
+/obj/effect/holidify_window/vertical
+	pattern = PATTERN_VERTICAL_STRIPE
+	icon_state = "gift1_r"
+
+/obj/effect/holidify_window/Initialize(mapload)
+	. = ..()
+	if(pattern && SSticker && SSticker.current_state < GAME_STATE_PLAYING)
+		for(var/obj/structure/window/the_window in get_turf(src))
+			the_window.color = request_decoration_colors(the_window, pattern)
+	return INITIALIZE_HINT_QDEL

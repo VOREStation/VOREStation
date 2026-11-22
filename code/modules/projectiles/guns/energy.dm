@@ -195,11 +195,11 @@
 		if(power_supply)
 			if(charge_cost)
 				var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
-				. += "Has [shots_remaining] shot\s remaining."
+				. += span_notice("Has [shots_remaining] shot\s remaining.")
 			else
-				. += "Has infinite shots remaining."
+				. += span_notice("Has infinite shots remaining.")
 		else
-			. += "Does not have a power cell."
+			. += span_notice("Does not have a power cell.")
 
 /obj/item/gun/energy/update_icon(ignore_inhands)
 	if(power_supply == null)

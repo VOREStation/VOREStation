@@ -119,6 +119,9 @@
 	if(feral)
 		//We're feral
 		feral_state = TRUE
+		if(owner.nutrition > 0)
+			owner.heal_overall_damage(0.2, 0.2, FALSE) //slowly heal over time. This comes out to 1 health of each type every 10 seconds. Prevents being softlocked due to paincrit
+			owner.adjustToxLoss(-0.2)
 
 		//If they're still stressed, they stay feral
 		if(currentstress >= 15)

@@ -217,6 +217,8 @@
 
 	if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
+		if(eye_blurry > 100) //Max of 200 seconds of eye blurry.
+			eye_blurry = 100
 
 	//Ears
 	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own

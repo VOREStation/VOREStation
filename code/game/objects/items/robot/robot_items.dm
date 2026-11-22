@@ -21,6 +21,7 @@
 
 /obj/item/borg/sight/xray
 	name = "\proper x-ray vision"
+	desc = "An X-ray module that allows you to see through walls. Expensive, even in this era."
 	sight_mode = BORGXRAY
 	icon_state = "night"
 	icon = 'icons/inventory/eyes/item.dmi'
@@ -28,6 +29,7 @@
 
 /obj/item/borg/sight/thermal
 	name = "\proper thermal vision"
+	desc = "Thermal sensors, used to sense creatures at range, and behind cover."
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
 	icon = 'icons/inventory/eyes/item.dmi'
@@ -35,6 +37,7 @@
 
 /obj/item/borg/sight/meson
 	name = "\proper meson vision"
+	desc = "Used for seeing walls, floors, and stuff through anything."
 	sight_mode = BORGMESON
 	icon_state = "meson"
 	icon = 'icons/inventory/eyes/item.dmi'
@@ -64,6 +67,7 @@
 
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
+	desc = "A heads-up display that scans the people in view and provides accurate data about their health status."
 	icon_state = "healthhud"
 	icon = 'icons/inventory/eyes/item.dmi'
 

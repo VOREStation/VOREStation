@@ -138,9 +138,18 @@ export const WingsDimmer = (props: {
       title="Wings"
       fill
       buttons={
-        <Button onClick={() => setShow(BodyPopup.None)} color="bad">
-          Close
-        </Button>
+        <Stack>
+          <Stack.Item>
+            <Button onClick={() => act('pick_random_wings')} color="blue">
+              Random
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button onClick={() => setShow(BodyPopup.None)} color="bad">
+              Close
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack vertical fill>

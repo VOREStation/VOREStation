@@ -82,15 +82,22 @@
 	switch(severity)
 		if(EMP_HEAVY)
 			stat &= BROKEN
-			if(prob(75)) explode()
+			if(prob(75))
+				explode()
+				return
 		if(EMP_MEDIUM)
-			if(prob(50)) stat &= BROKEN
-			if(prob(10)) explode()
+			if(prob(50))
+				stat &= BROKEN
+			if(prob(10))
+				explode()
+				return
 		if(EMP_LIGHT)
-			if(prob(25)) stat &= BROKEN
+			if(prob(25))
+				stat &= BROKEN
 			base_duration = 3 MINUTES
 		if(EMP_HARMLESS)
-			if(prob(10)) stat &= BROKEN
+			if(prob(10))
+				stat &= BROKEN
 			base_duration = 3 MINUTES
 
 	stat |= EMPED
@@ -164,12 +171,13 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += "It appears to be producing [power_gen*power_output] W."
-	. += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken())
-		. += span_warning("It seems to have broken down.")
-	if(overheating)
-		. += span_danger("It is overheating!")
+	if(Adjacent(user))
+		. += span_notice("It appears to be producing [power_gen*power_output] W.")
+		. += span_notice("There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
+		if(IsBroken())
+			. += span_warning("It seems to have broken down.")
+		if(overheating)
+			. += span_danger("It is overheating!")
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet

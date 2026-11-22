@@ -1,5 +1,6 @@
 /obj/structure/simple_door
 	name = "door"
+	desc = "A regular door. Usually found only found outside space-stations."
 	description_info = "If you hold left alt whilst left-clicking on a door, you can knock on it to announce your presence to anyone on the other side! Alternately if you are on HARM intent when doing this, you will bang loudly on the door!"
 	density = TRUE
 	anchored = TRUE
@@ -109,7 +110,7 @@
 		if(locked && state == 0)
 			to_chat(M,span_warning("It's locked!"))
 			return
-		if(world.time - last_bumped <= 60)
+		if(world.time - last_bumped <= 10)
 			return
 		if(M.client)
 			if(iscarbon(M))

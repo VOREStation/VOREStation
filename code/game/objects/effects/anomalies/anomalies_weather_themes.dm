@@ -134,7 +134,7 @@
 
 /datum/anomalous_weather/rain/do_special(turf/simulated/T)
 	if(prob(2) && !isopenturf(T))
-		T.wet_floor(1)
+		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, 10 SECONDS)
 
 /datum/anomalous_weather/rain/blood
 	name = "Blood Rain" // From a lacerated sky
@@ -157,7 +157,7 @@
 
 /datum/anomalous_weather/rain/storm/do_special(turf/simulated/T)
 	if(prob(3) && !isopenturf(T))
-		T.wet_floor(1)
+		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, 10 SECONDS)
 	if(prob(0.025) && !isopenturf(T))
 		lightning_strike(T)
 /*

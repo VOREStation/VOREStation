@@ -572,8 +572,8 @@
 
 /obj/item/inflatable_dispenser/examine(mob/user)
 	. = ..()
-	. += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored."
-	. += "It is set to deploy [mode ? "doors" : "walls"]"
+	. += span_notice("It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored.")
+	. += span_notice("It is set to deploy [mode ? "doors" : "walls"].")
 
 /obj/item/inflatable_dispenser/attack_self(mob/user)
 	. = ..(user)

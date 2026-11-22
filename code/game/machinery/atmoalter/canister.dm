@@ -1,5 +1,6 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
+	desc = "Standardized space-grade gas storage. The middle child between larger, immobile tanks and portable compressed cylinders."
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
 	density = TRUE

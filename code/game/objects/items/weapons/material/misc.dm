@@ -46,7 +46,7 @@
 
 /obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
-	desc = "It's used for removing weeds or scratching your back."
+	desc = "It's used for removing weeds, or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hoe"
 	force_divisor = 0.25 // 5 with weight 20 (steel)

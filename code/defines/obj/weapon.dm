@@ -59,6 +59,7 @@
 			audible_message(span_maroon("[honk_text]"))
 
 /obj/item/bikehorn/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(isliving(AM))
@@ -247,7 +248,7 @@
 		return
 
 	var/list/cameras = new/list()
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for (var/obj/machinery/camera/C in SScameras.cameras)
 		if (C.bugged && C.status)
 			cameras.Add(C)
 	if (length(cameras) == 0)

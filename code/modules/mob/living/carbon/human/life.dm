@@ -68,7 +68,7 @@
 
 			SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
-			handle_medical_side_effects()
+			//handle_medical_side_effects() // Disabled, the code was non-functional for a decade, randomly readding it because it's suddenly fixed is undesired currently.
 
 			handle_heartbeat()
 			handle_nif()
@@ -1267,10 +1267,10 @@
 
 		//Brain damage from Oxyloss
 		if(should_have_organ(O_BRAIN))
-			var/brainOxPercent = 0.015		//Default 1.5% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
-			if(CE_STABLE in chem_effects)
-				brainOxPercent = 0.008		//Halved in effect
 			if(oxyloss >= (getMaxHealth() * 0.3) && prob(5)) // If oxyloss exceeds 30% of your max health, you can take brain damage.
+				var/brainOxPercent = 0.015		//Default 1.5% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
+				if(CE_STABLE in chem_effects)
+					brainOxPercent = 0.008		//Halved in effect
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
 		if(halloss >= getMaxHealth())

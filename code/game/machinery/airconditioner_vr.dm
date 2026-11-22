@@ -28,7 +28,7 @@
 /obj/machinery/power/thermoregulator/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
-		. += "There is a small display that reads \"[convert_k2c(target_temp)]C\"."
+		. += span_notice("There is a small display that reads \"[convert_k2c(target_temp)]C\".")
 
 /obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))

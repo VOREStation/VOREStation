@@ -521,7 +521,7 @@ class ChatRenderer {
 
   tryTTS(message: SerializedMessage, node: HTMLElement) {
     if (this.ttsCategories[message.type]) {
-      const utterance = new SpeechSynthesisUtterance(node.innerText);
+      const utterance = new SpeechSynthesisUtterance(node.textContent);
 
       const voice = window.speechSynthesis
         .getVoices()

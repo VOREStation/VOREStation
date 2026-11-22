@@ -171,8 +171,8 @@
 /obj/item/cell/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "It has a power rating of [maxcharge]."
-		. += "The charge meter reads [round(src.percent() )]%."
+		. += span_notice("It has a power rating of [maxcharge].")
+		. += span_notice("The charge meter reads [round(src.percent() )]%.")
 
 /obj/item/cell/attack(mob/living/M, mob/living/user, target_zone, attack_modifier)
 	if(isrobot(M))

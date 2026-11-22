@@ -1,12 +1,13 @@
 /obj/item/material/barbedwire/glass
 	name = "glass wire"
 	desc = "Thin webs of strewn glass, very easy to break."
-	icon = 'icons/obj/traps/abberations.dmi'
+	icon = 'icons/obj/traps/aberrations.dmi'
 	icon_state = "abb_glass"
 	default_material = MAT_GLASS
 	applies_material_colour = FALSE
 	named_from_material = FALSE
 	drops_debris = FALSE
+	force = 15
 
 /obj/item/material/barbedwire/glass/start_active
 	anchored = TRUE
@@ -40,27 +41,30 @@
 	..()
 	icon_state = "abb_glass"
 
-/obj/item/material/barbedwire/glass/Crossed(atom/movable/AM)
-	if(AM.is_incorporeal())
-		return
-	if(istype(AM,/obj/effect/abstract)) // Stops flashlight beams from breaking them
-		return // Maybe special handling someday, like making them shine?
-	if(anchored)
-		if(isliving(AM))
-			var/mob/living/L = AM
-			L.visible_message(
-				span_danger("[L] steps in \the [src]."),
-				span_danger("You step in \the [src]!"),
-				span_infoplain(span_bold("You hear a sharp rustling!"))
-				)
-			attack_mob(L)
-			update_icon()
-		else
-			health = 0
-			check_health()
+/obj/item/material/barbedwire/glass/check_step(atom/movable/AM)
+	. = ..()
+	if(istype(AM,/obj/effect/abstract/directional_lighting)) // Shines when lit directly
+		flick("abb_glass_flash",src)
+	if(.) //Child did the work already.
+		return TRUE
+	if(!AM.is_incorporeal())
+		return FALSE
+	if(!isobj(AM))
+		return FALSE
+	if(anchored) //Child takes care of the isliving part.
+		health = 0
+		check_health()
+		return TRUE
+	return FALSE
 
 /obj/item/material/barbedwire/glass/attack_mob(mob/living/L)
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)
+
+	if(!ishuman(L)) // Only humans can take limb damage
+		if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE))
+			to_chat(L, span_danger("You narrowly avoid being cut by \the [src]!"))
+		break_wire()
+		return
 
 	var/target_zone = ran_zone()
 	var/obj/item/organ/external/affecting = L.get_organ(target_zone)

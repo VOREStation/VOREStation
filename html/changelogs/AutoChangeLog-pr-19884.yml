@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "a crash with tgui data on UIs using parent_ui after the update"

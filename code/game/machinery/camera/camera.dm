@@ -13,13 +13,14 @@
 	var/list/network = list(NETWORK_DEFAULT)
 	var/c_tag = null
 	var/c_tag_order = 999
-	var/status = 1
+	var/status = TRUE
 	anchored = TRUE
 	var/invuln = 0
 	var/bugged = 0
 	var/obj/item/camera_assembly/assembly = null
 
-	var/toughness = 5 //sorta fragile
+	var/toughness = 5
+	var/damage_threshold = 5
 
 	//OTHER
 
@@ -39,36 +40,41 @@
 	var/client_huds = null
 
 /obj/machinery/camera/Initialize(mapload)
+	if(!isnull(get_turf(src))) //Communicator cameras spawn in nullspace.
+		SScameras.cameras += src
 	set_wires(new /datum/wires/camera(src))
 	assembly = new(src)
 	assembly.state = 4
 	LAZYOR(client_huds, GLOB.global_hud.whitense)
 
 	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+	for(var/obj/machinery/camera/C in SScameras.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
 			to_world_log("[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
 	*/
-	if(!src.network || src.network.len < 1)
-		if(loc)
+	if(!src.network || length(src.network) < 1)
+		if(get_turf(src))
 			log_world("## ERROR [src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
 			log_world("## ERROR [src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
-	// VOREStation Edit Start - Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
 		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
 
-	. = ..()
-
 	if (dir == NORTH)
 		layer = ABOVE_MOB_LAYER
-	// VOREStation Edit End
+
+	if(!isnull(get_turf(src))) //Communicator cameras spawn in nullspace.
+		SScameras.add_camera_to_chunk(src)
+		update_coverage(1)
+
+	. = ..()
 
 /obj/machinery/camera/Destroy()
+	SScameras.cameras -= src
 	if(isMotion())
 		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	deactivate(null, 0) //kick anyone viewing out
@@ -77,7 +83,13 @@
 		assembly = null
 	qdel(wires)
 	wires = null
+	clear_all_networks()
+	SScameras.cameras -= src
 	return ..()
+
+/obj/machinery/camera/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	SScameras.camera_moved(src, get_turf(old_loc), get_turf(loc))
 
 /obj/machinery/camera/process()
 	if((stat & EMPED) && world.time >= affected_by_emp_until)
@@ -86,6 +98,15 @@
 		update_icon()
 		update_coverage()
 	return internal_process()
+
+/obj/machinery/camera/examine(mob/user)
+	. = ..()
+	if(panel_open)
+		. += span_notice("The maintenance panel is open.")
+	if(toughness <= initial(toughness) && !BROKEN)
+		. += span_warning("\The [src] is looking damaged!")
+	if(stat & BROKEN)
+		. += span_warning("\The [src] is completely broken. Maybe you could slice the cover and re-use the assembly?")
 
 /obj/machinery/camera/proc/internal_process()
 	return
@@ -108,56 +129,56 @@
 	take_damage(P.get_structure_damage())
 
 /obj/machinery/camera/ex_act(severity)
-	if(src.invuln)
+	if(src.invuln || resistance_flags & BOMB_PROOF)
 		return
 
 	//camera dies if an explosion touches it!
-	if(severity <= 2 || prob(50))
-		destroy()
+	if(severity <= 2 || prob(250/toughness))
+		camera_break()
 
 	..() //and give it the regular chance of being deleted outright
 
 /obj/machinery/camera/blob_act()
 	if((stat & BROKEN) || invuln)
 		return
-	destroy()
+	camera_break()
 
 /obj/machinery/camera/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	..()
 	if (!isobj(source))
 		return
 	var/obj/item/O = source
-	if(O.throwforce >= src.toughness)
+	if(O.throwforce >= src.damage_threshold)
 		visible_message(span_boldwarning("[src] was hit by [O]."))
 	take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+	SScameras.update_visibility(src)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if(!istype(user))
 		return
 
 	if(user.species.can_shred(user, FALSE, 11))
-		set_status(0)
+		set_status(FALSE)
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())
 		visible_message(span_warning("\The [user] slashes at [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
-		destroy()
+		camera_break()
 
 /obj/machinery/camera/attack_generic(mob/user as mob)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
-		set_status(0)
+		set_status(FALSE)
 		S.do_attack_animation(src)
 		S.setClickCooldown(user.get_attack_speed())
 		visible_message(span_warning("\The [user] [pick(S.attacktext)] \the [src]!"))
 		playsound(src, S.attack_sound, 100, 1)
 		add_hiddenprint(user)
-		destroy()
+		camera_break()
 	..()
 
 /obj/machinery/camera/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -185,7 +206,8 @@
 				assembly.dir = src.dir
 				if(stat & BROKEN)
 					assembly.state = 2
-					to_chat(user, span_notice("You repaired \the [src] frame."))
+					to_chat(user, span_notice("You've sliced out all the electronics from \the [src] frame. Now, you can rebuild it."))
+					toughness = initial(toughness)
 				else
 					assembly.state = 1
 					to_chat(user, span_notice("You cut \the [src] free from the wall."))
@@ -236,16 +258,16 @@
 			to_chat(user, span_notice("Camera bugged."))
 			src.bugged = 1
 
-	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
+	else if(W.damtype == BRUTE || W.damtype == BURN || W.damtype == SEARING) //bashing cameras
 		user.setClickCooldown(user.get_attack_speed(W))
-		if (W.force >= src.toughness)
+		if (W.force >= src.damage_threshold)
 			user.do_attack_animation(src)
 			visible_message(span_boldwarning("[src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with [W] by [user]!"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
 				var/obj/item/I = W
 				if (I.hitsound)
 					playsound(src, I.hitsound, 50, 1, -1)
-		take_damage(W.force)
+			take_damage(W.force)
 
 	else
 		..()
@@ -259,6 +281,9 @@
 		return
 
 	set_status(!src.status)
+	// Can't control a wrecked camera.
+	if(stat & BROKEN)
+		return
 	if (!(src.status))
 		if(user)
 			visible_message(span_notice(" [user] has deactivated [src]!"))
@@ -276,13 +301,23 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
 
+	if(isnull(get_turf(src))) //Intergrated cameras and communicator code and things getting qdel'd and sent to nullspace.
+		return
+	if(can_use())
+		SScameras.add_camera_to_chunk(src)
+	else
+		set_light(0)
+		SScameras.remove_camera_from_chunk(src)
+
+
 /obj/machinery/camera/take_damage(force, message)
-	//prob(25) gives an average of 3-4 hits
-	if (force >= toughness && (force > toughness*4 || prob(25)))
-		destroy()
+	toughness -= force
+	if(toughness <= 0)
+		camera_break()
+		toughness = 0
 
 //Used when someone breaks a camera
-/obj/machinery/camera/proc/destroy()
+/obj/machinery/camera/proc/camera_break()
 	stat |= BROKEN
 	wires.cut_all()
 
@@ -295,6 +330,7 @@
 	spark_system.set_up(5, 0, loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
+	visible_message(span_warning("\The [src] breaks open in a shower of sparks!"))
 
 /obj/machinery/camera/proc/set_status(newstatus)
 	if (status != newstatus)
@@ -383,7 +419,7 @@
 		return 0
 
 	// Do after stuff here
-	to_chat(user, span_notice("You start to weld [src].."))
+	to_chat(user, span_notice("You start to weld [src]..."))
 	playsound(src, WT.usesound, 50, 1)
 	WT.eyecheck(user)
 	busy = 1
@@ -400,7 +436,7 @@
 		return
 
 	if(stat & BROKEN)
-		to_chat(user, span_warning("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is completely broken. Weld it open, and start from there."))
 		return
 
 	wires.Interact(user)
@@ -462,16 +498,18 @@
 	return cam
 
 /obj/machinery/camera/proc/update_coverage(network_change = 0)
+	if(isnull(get_turf(src)))
+		return
 	if(network_change)
 		var/list/open_networks = difflist(network, GLOB.restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary
 		if(on_open_network && !open_networks.len)
-			GLOB.cameranet.removeCamera(src)
+			SScameras.remove_camera_from_chunk(src)
 		else if(!on_open_network && open_networks.len)
 			on_open_network = 1
-			GLOB.cameranet.addCamera(src)
+			SScameras.add_camera_to_chunk(src)
 	else
-		GLOB.cameranet.updateVisibility(src, 0)
+		SScameras.update_visibility(src)
 
 // Resets the camera's wires to fully operational state. Used by one of Malfunction abilities.
 /obj/machinery/camera/proc/reset_wires()
