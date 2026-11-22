@@ -37,13 +37,8 @@
 		ui.open()
 
 /obj/item/airlock_electronics/tgui_data(mob/user)
-	// this is the data which will be sent to the ui
 	var/acc_list = list()
-	var/list/available_access = list()
-	available_access += user.GetAccess()
-	if(conf_access)
-		available_access |= conf_access
-	for(var/acc in available_access)
+	for(var/acc in SSaccess.get_all_station_access())
 		acc_list[SSaccess.get_access_desc(acc)] = list("access_num" = acc, "enabled" = (acc in conf_access))
 
 	var/list/data = list(
@@ -110,26 +105,6 @@
 		return
 
 	LAZYREMOVE(conf_access, req)
-
-/obj/item/airlock_electronics/proc/get_available_accesses(mob/user)
-	var/obj/item/card/id/id
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		id = H.get_idcard()
-	else if(issilicon(user))
-		var/mob/living/silicon/R = user
-		id = R.idcard
-
-	// Nothing
-	if(!id || !id.GetAccess())
-		return list()
-
-	// Has engineer access, can put any access
-	if(has_access(null, apply_any_access, id.GetAccess()))
-		return SSaccess.get_all_station_access()
-
-	// Not an engineer, can only pick your own accesses to program
-	return id.GetAccess()
 
 /obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"
