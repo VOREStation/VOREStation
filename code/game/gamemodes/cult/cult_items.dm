@@ -111,7 +111,7 @@
 	slowdown = 0.5
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 80, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/space/cult/cultify()
 	return

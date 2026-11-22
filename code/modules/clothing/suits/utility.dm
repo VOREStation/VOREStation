@@ -20,7 +20,7 @@
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, /obj/item/extinguisher)
 	slowdown = 1.0
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_flags = 0
 	heat_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -63,7 +63,7 @@
 	permeability_coefficient = 0.01
 	slowdown = 2
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 100, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	heat_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -107,7 +107,7 @@
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, /obj/item/clothing/head/radiation)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
-	flags_inv = HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_flags = THICKMATERIAL
 
 /obj/item/clothing/suit/radiation/Initialize(mapload)

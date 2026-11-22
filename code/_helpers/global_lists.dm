@@ -1636,8 +1636,6 @@ GLOBAL_LIST(chamelion_belt_choices)
 //Accessory
 GLOBAL_LIST(chamelion_accessory_choices)
 
-GLOBAL_LIST_INIT(tail_layer_options, list("Lower layer" = TAIL_UPPER_LAYER_LOW , "Default layer" = TAIL_UPPER_LAYER , "Upper layer" = TAIL_UPPER_LAYER_HIGH ))
-
 //Spritesheet stuff. Used by /obj/item/clothing/proc/refit_for_species(var/target_species)
 #define SPECIES_HUMANOID_CAN_WEAR list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN)
 #define SPECIES_UNATHI_CAN_WEAR list(SPECIES_UNATHI, SPECIES_XENOHYBRID)

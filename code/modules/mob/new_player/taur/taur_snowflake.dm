@@ -1,16 +1,4 @@
 // Special snowflake tails/taurhalves
-
-//spoopylizz: Roiz Lizden
-/datum/sprite_accessory/tail/taur/roiz_long_lizard // Not ACTUALLY a taur, but it uses 64x32 so it wouldn't fit in tails.dmi, and having it as a tail bugs up the sprite.
-	name = "Long Lizard Tail (Roiz Lizden)"
-	icon = 'icons/mob/human_races/sprite_accessories/taurs/taurs_snowflake.dmi'
-	icon_state = "roiz_tail_s"
-	do_colouration = FALSE
-	ckeys_allowed = list("spoopylizz")
-	hide_body_parts = null
-	clip_mask_icon = null
-	clip_mask_state = null
-
 //grallstonefist: Ranihrönn Skrolk
 /datum/sprite_accessory/tail/taur/altmermaid/orcamermaid
 	name = "Mermaid Orca (Taur)"
@@ -19,6 +7,7 @@
 	can_ride = TRUE
 	do_colouration = FALSE
 	ckeys_allowed = list("grallstonefist")
+	tailsock_markings = "orcamermaid_marking"
 
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest

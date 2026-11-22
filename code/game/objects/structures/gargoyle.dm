@@ -21,7 +21,6 @@
 	var/list/tail_lower_dirs = list(SOUTH, EAST, WEST)
 	var/image/tail_image
 	var/tail_layering = TAIL_UPPER_LAYER
-
 	var/can_revert = TRUE
 	var/was_rayed = FALSE
 
@@ -58,11 +57,14 @@
 	if(tint_ovr)
 		tint = tint_ovr
 
-	if(H.tail_style?.clip_mask_state)
+	if(istaurtail(H.tail_style))
+		tail_lower_dirs = list(NORTH, SOUTH, EAST, WEST)
+	else if(H.tail_style?.clip_mask_state)
 		tail_lower_dirs.Cut()
 	else if(H.tail_style)
 		tail_lower_dirs = H.tail_style.lower_layer_dirs.Copy()
-	tail_layering = H.tail_layering ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
+	//mimic human rules
+	tail_layering = H.tail_style?.clip_mask_state ? TAIL_UPPER_LAYER : TAIL_UPPER_LAYER_HIGH
 
 	max_integrity = H.getMaxHealth() + 100
 	obj_integrity = H.health + 100
@@ -279,11 +281,14 @@
 		return ..()
 
 /obj/structure/gargoyle/set_dir(new_dir)
+	//exactly the same as human set_dir for layering hijinks
+	var/old_dir = dir
 	. = ..()
-	if(. && tail_image)
-		cut_overlay(tail_image)
-		tail_image.layer = BODY_LAYER + ((dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : tail_layering)
-		add_overlay(tail_image)
+	if(dir == old_dir || !tail_image)
+		return
+	cut_overlay(tail_image)
+	tail_image.layer = BODY_LAYER + ((dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : ((dir == NORTH) ? tail_layering : TAIL_UPPER_LAYER))
+	add_overlay(tail_image)
 
 /obj/structure/gargoyle/hitby(atom/movable/source, datum/thrownthing/throwingdatum)
 	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
