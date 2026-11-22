@@ -146,3 +146,14 @@
   Will, Kash:
   - refactor: Modernizes deletion overview ui
   - code_imp: update tgui to tg
+2026-11-22:
+  Aroliacue:
+  - balance: Halved range on EMP landmines. Still very dangerous to step on, but maintaining
+      good spacing now actually works.
+  Kashargul:
+  - bugfix: a crash with tgui data on UIs using parent_ui after the update
+  TheCaramelion:
+  - rscadd: Adds a holidify window mapping helper
+  - bugfix: fixed wrong path for reinforced holiday windows
+  Will:
+  - bugfix: Missing proper airlock electronic's access list
