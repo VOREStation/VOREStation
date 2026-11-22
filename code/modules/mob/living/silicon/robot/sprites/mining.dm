@@ -145,7 +145,7 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/wyvern/WyvernFrameMining.dmi'
-	rest_sprite_options = list("Default", "Sit")
+	rest_sprite_options = list("Default")
 	has_dead_sprite = FALSE
 
 // Tall sprites
