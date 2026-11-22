@@ -661,7 +661,7 @@
 	if(slip_dist <= 0 || !isturf(M.loc))
 		if(M.slip_timer)
 			deltimer(M.slip_timer)
-			M.slip_timer = null
+		M.slip_timer = VARSET_IN(M, slip_timer, null, 2)
 		M.slipping = 0 //Just in case.
 		return
 
@@ -673,7 +673,7 @@
 	if(!step(M, dir)) //Do the movement. if it fails, the slide ends here.
 		if(M.slip_timer)
 			deltimer(M.slip_timer)
-			M.slip_timer = null
+		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //"Slipping" after the slide ends for the purposes of recursive slip catches
 		M.slipping = 0
 		return
 
