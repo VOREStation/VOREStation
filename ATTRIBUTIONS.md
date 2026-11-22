@@ -111,6 +111,12 @@
 **License Holders:** Matica<br>
 **License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>
 <br>
+**Folder:** `icons/mob/robot/gooborgs`<br>
+**Title:** Centiborgs<br>
+**Creator / Copyright:** Toriate<br>
+**License Holders:** Matica<br>
+**License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>
+<br>
 **File:** `icons/obj/borkmedigun.dmi`<br>
 **Creator:** Commissioned by Cross_Exonar from Toriate<br>
 **Link:** https://github.com/TS-Rogue-Star/Rogue-Star/pull/1010<br>
