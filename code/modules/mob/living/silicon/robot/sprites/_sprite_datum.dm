@@ -3,6 +3,7 @@
 	var/module_type
 	var/default_sprite = FALSE
 	var/sprite_flags
+	var/size_limit
 
 	var/sprite_icon
 	var/sprite_icon_state

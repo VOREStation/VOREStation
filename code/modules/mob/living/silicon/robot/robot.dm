@@ -1752,3 +1752,9 @@
 	hat = null
 	update_icon()
 	balloon_alert(user, "dropped hat")
+
+/mob/living/silicon/robot/resize(new_size, animate, uncapped, ignore_prefs, aura_animation, allow_stripping)
+	var/max_size = new_size
+	if(!uncapped && sprite_datum && max_size > sprite_datum.size_limit)
+		max_size = sprite_datum.size_limit
+	. = ..(max_size, animate, uncapped, ignore_prefs, aura_animation, allow_stripping)

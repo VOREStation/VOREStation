@@ -16,6 +16,7 @@
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /datum/robot_sprite/dogborg/tall/mining/centiborg/miner
 	name = "Centiborg - Miner"
@@ -44,6 +45,7 @@
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 
 /// Janitor
@@ -62,6 +64,7 @@
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// Medical
 /datum/robot_sprite/dogborg/tall/crisis/centiborg
@@ -80,6 +83,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	module_type = list("Crisis", "Surgeon")
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// Science
 /datum/robot_sprite/dogborg/tall/science/centiborg
@@ -97,6 +101,7 @@
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// Security
 /datum/robot_sprite/dogborg/tall/security/centiborg
@@ -115,6 +120,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_BATON_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// Service
 /datum/robot_sprite/dogborg/tall/service/centiborg
@@ -133,6 +139,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	module_type = list("Service", "Clerical")
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// CLOWN
 /datum/robot_sprite/dogborg/tall/clown/centiborg
@@ -150,6 +157,7 @@
 	sprite_decals = list("spikes", "tail", "fins", "antennae")
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// COMMAND
 /datum/robot_sprite/dogborg/tall/command/centiborg
@@ -168,6 +176,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_BLADE_SPRITE | ROBOT_HAS_DAGGER_SPRITE | ROBOT_HAS_BATON_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// EXPLORATION
 /datum/robot_sprite/dogborg/tall/explorer/centiborg
@@ -186,6 +195,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /// STANDARD
 /datum/robot_sprite/dogborg/tall/standard/centiborg
@@ -204,6 +214,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_MELEE_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_DRILL_SPRITE | ROBOT_HAS_PKA_SPRITE
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 /datum/robot_sprite/dogborg/tall/ninja/centiborg
 	name = "Centiborg"
@@ -220,6 +231,7 @@
 	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
 
 //Syndicate
 /datum/robot_sprite/dogborg/tall/combat_medic/centiborg
@@ -238,3 +250,4 @@
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
 	module_type = list("Combat Medic", "Mechanist", "Protector") //You get all three modules.
 	hat_offset = CENTIBORG_HAT_OFFSET
+	size_limit = 1.25
