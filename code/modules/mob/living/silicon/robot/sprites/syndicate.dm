@@ -36,6 +36,18 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 	hat_offset = SMOL_RAPTOR_HAT_OFFSET
 
+/datum/robot_sprite/dogborg/syndie/wyvern
+	name = "Wyvern"
+	sprite_icon_state = "wyvern"
+	has_eye_light_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/wyvern/WyvernFrameSyndi.dmi'
+	rest_sprite_options = list("Default", "Sit")
+	has_dead_sprite = FALSE
+
+
 // Tall sprites
 
 /datum/robot_sprite/dogborg/tall/syndie
