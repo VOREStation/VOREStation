@@ -39,7 +39,7 @@
 // Horrible, but Byond will serialize non capitalized bellies by adding a "the" in front of it
 /obj/soulgem/serialize(list/data)
 	var/obj/belly/original = linked_belly
-	linked_belly = original.name
+	linked_belly = original?.name
 	. = ..()
 	linked_belly = original
 
