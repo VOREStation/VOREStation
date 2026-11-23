@@ -36,6 +36,13 @@
 	if(ismob(loc))
 		owner = loc
 
+// Horrible, but Byond will serialize non capitalized bellies by adding a "the" in front of it
+/obj/soulgem/serialize(list/data)
+	var/obj/belly/original = linked_belly
+	linked_belly = original.name
+	. = ..()
+	linked_belly = original
+
 // Store the vars_to_save into the save file
 /obj/soulgem/deserialize(list/data)
 	. = ..()
