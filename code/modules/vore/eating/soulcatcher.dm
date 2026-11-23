@@ -25,8 +25,7 @@
 		"transit_message",
 		"release_message",
 		"transfer_message",
-		"delete_message",
-		"linked_belly"
+		"delete_message"
 	)
 	return ..() + saving
 
@@ -38,10 +37,9 @@
 
 // Horrible, but Byond will serialize non capitalized bellies by adding a "the" in front of it
 /obj/soulgem/serialize(list/data)
-	var/obj/belly/original = linked_belly
-	linked_belly = original?.name
 	. = ..()
-	linked_belly = original
+	if(linked_belly)
+		.["linked_belly"] = linked_belly?.name
 
 // Store the vars_to_save into the save file
 /obj/soulgem/deserialize(list/data)
