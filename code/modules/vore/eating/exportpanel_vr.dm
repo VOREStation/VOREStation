@@ -515,7 +515,7 @@
 		soulcatcher_data["release_message"] = gem.release_message
 		soulcatcher_data["transfer_message"] = gem.transfer_message
 		soulcatcher_data["delete_message"] = gem.delete_message
-		soulcatcher_data["linked_belly"] = gem.linked_belly
+		soulcatcher_data["linked_belly"] = gem.linked_belly?.name
 
 		data["soulcatcher"] = soulcatcher_data
 

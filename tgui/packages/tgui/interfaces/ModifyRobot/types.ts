@@ -75,7 +75,7 @@ export type Target = {
 export type Upgrade = {
   name: string;
   path: string;
-  installed?: number;
+  installed?: 0 | 1 | 2;
 };
 
 export type Source = {
@@ -95,7 +95,7 @@ export type Component = {
   max_damage: number;
   idle_usage: number;
   active_usage: number;
-  installed: number;
+  installed: -1 | 0 | 1;
   exists: BooleanLike;
 };
 

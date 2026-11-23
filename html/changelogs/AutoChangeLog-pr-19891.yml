@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "soulcatcher sfx not saving for non capitalised bellies"
+  - bugfix: "capitalisation of a selected belly can be changed without triggering the duplicate warning"

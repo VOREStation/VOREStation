@@ -290,7 +290,7 @@
 
 		if("save_recording")
 			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name?", "Recipe Name", MAX_NAME_LEN)
-			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
+			if(!ui.user || tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return
 			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("No", "Yes")) != "Yes")
 				return

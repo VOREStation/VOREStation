@@ -1,5 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - rscadd: "Adds a holidify window mapping helper"
-  - bugfix: "fixed wrong path for reinforced holiday windows"
