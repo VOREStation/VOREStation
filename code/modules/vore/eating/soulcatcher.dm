@@ -39,7 +39,7 @@
 /obj/soulgem/serialize(list/data)
 	. = ..()
 	if(linked_belly)
-		.["linked_belly"] = linked_belly?.name
+		.["linked_belly"] = linked_belly.name
 
 // Store the vars_to_save into the save file
 /obj/soulgem/deserialize(list/data)
