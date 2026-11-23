@@ -502,6 +502,11 @@
 /mob/proc/slip(weaken_amount, obj/slipped_on, lube, slip_dist, stun, force_drop)
 	return
 
+/mob/proc/finish_slip()
+	SHOULD_CALL_PARENT(TRUE)
+	//Thank you, VARSET_IN, for being unstoppable.
+	slip_timer = null
+
 /mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
 
 	var/dense_object = 0

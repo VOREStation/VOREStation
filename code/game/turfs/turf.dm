@@ -599,7 +599,7 @@
 		if(prob(100 / max(slip_dist, 1))) // Longer slip distance is, the less of a chance you have to
 			if(world.time >= M.next_emote)
 				M.emote("sflip")
-				M.slip_timer = VARSET_IN(M, slip_timer, null, 2)
+				M.slip_timer = addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, finish_slip)), 2, TIMER_DELETE_ME|TIMER_STOPPABLE)
 				M.slipping = 0
 				// Because we're stopping here, but we're still slipping, send the signal for it now.
 				SEND_SIGNAL(M, COMSIG_ON_LIVING_SLIP, M, weaken_amount, slipped_on, lube, slip_dist, force_drop)
@@ -636,7 +636,7 @@
 	if(slip_dist > 0)
 		M.slip_timer = addtimer(CALLBACK(src, PROC_REF(slip_slide), M, slip_dist, olddir, lube), 1, TIMER_DELETE_ME|TIMER_STOPPABLE)
 	else
-		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //Non sliding slip time
+		M.slip_timer = addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, finish_slip)), 2, TIMER_DELETE_ME|TIMER_STOPPABLE) //Non sliding slip time
 
 	/* // Im doing my own thing, maybe forced movement can be a thing later, though.
 	if(lube & SLIDE)
@@ -661,7 +661,8 @@
 	if(slip_dist <= 0 || !isturf(M.loc))
 		if(M.slip_timer)
 			deltimer(M.slip_timer)
-		M.slip_timer = VARSET_IN(M, slip_timer, null, 2)
+			M.slip_timer = null
+		M.slip_timer = addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, finish_slip)), 2, TIMER_DELETE_ME|TIMER_STOPPABLE)
 		M.slipping = 0 //Just in case.
 		return
 
@@ -673,7 +674,8 @@
 	if(!step(M, dir)) //Do the movement. if it fails, the slide ends here.
 		if(M.slip_timer)
 			deltimer(M.slip_timer)
-		M.slip_timer = VARSET_IN(M, slip_timer, null, 2) //"Slipping" after the slide ends for the purposes of recursive slip catches
+			M.slip_timer = null
+		M.slip_timer = addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, finish_slip)), 2, TIMER_DELETE_ME|TIMER_STOPPABLE) //"Slipping" after the slide ends for the purposes of recursive slip catches
 		M.slipping = 0
 		return
 
