@@ -13,6 +13,9 @@
 			// else if(whatever) //Next test here.
 			else
 				for(var/obj/belly/B as anything in host.vore_organs)
+					// Allow us to lowercase rename
+					if(B == host.vore_selected)
+						continue
 					if(lowertext(new_name) == lowertext(B.name))
 						failure_msg = "No duplicate belly names, please."
 						break

@@ -97,6 +97,7 @@ SUBSYSTEM_DEF(garbage)
 			entry["Failures"] = I.failures
 		entry["qdel() Count"] = I.qdels
 		entry["Destroy() Cost (ms)"] = I.destroy_time
+		entry["Last qdel tick"] = I.starting_qdel_time
 
 		if (I.hard_deletes)
 			entry["Total Hard Deletes"] = I.hard_deletes
@@ -336,6 +337,7 @@ SUBSYSTEM_DEF(garbage)
 	var/no_hint = 0 //!Number of times it's not even bother to give a qdel hint
 	var/slept_destroy = 0 //!Number of times it's slept in its destroy
 	var/qdel_flags = 0 //!Flags related to this type's trip thru qdel.
+	var/starting_qdel_time = 0 //Time of most recent qdel
 	var/list/extra_details //!Lazylist of string metadata about the deleted objects
 
 /datum/qdel_item/New(mytype)
@@ -368,6 +370,8 @@ SUBSYSTEM_DEF(garbage)
 	if (SEND_SIGNAL(to_delete, COMSIG_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
 		return
 
+	// Last time and coords the qdel had, not super accurate if stuff replaces it, but much better than nothing at all to debug with!
+	trash.starting_qdel_time = world.time
 	to_delete.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 	var/start_time = world.time
 	var/start_tick = world.tick_usage
@@ -424,3 +428,71 @@ SUBSYSTEM_DEF(garbage)
 			#endif
 			trash.no_hint++
 			SSgarbage.Queue(to_delete)
+
+/datum/controller/subsystem/garbage/tgui_status(mob/user, datum/tgui_state/state)
+	if(!user.client?.holder?.check_for_rights(R_SERVER|R_DEBUG))
+		return STATUS_CLOSE
+	return STATUS_INTERACTIVE
+
+/datum/controller/subsystem/garbage/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(isnull(ui))
+		ui = new /datum/tgui(user, src, "GarbageSubsystemOverview")
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/datum/controller/subsystem/garbage/tgui_data(mob/user)
+	var/list/data = list()
+	var/list/del_log = list()
+
+	var/total_dels = 0
+	var/total_hard_dels = 0
+	var/total_fails = 0
+	var/total_time_deling = 0
+	var/total_time_harddeling = 0
+	data["delete_log"] = del_log
+	for(var/path in items)
+		var/datum/qdel_item/I = SSgarbage.items[path]
+		del_log += list(list(
+			"path" = path,
+			"failures" = I.failures,
+			"count" = I.qdels,
+			"cost" = I.destroy_time,
+			"time_since" = FLOOR(world.time - I.starting_qdel_time, 0.1) / (1 SECOND),
+			"harddel_count" = I.hard_deletes,
+			"harddel_cost" = I.hard_delete_time,
+			"slept" = I.slept_destroy,
+			"no_respect_force" = I.no_respect_force,
+			"no_hint" = I.no_hint,
+		))
+		total_dels += I.qdels
+		total_hard_dels += I.hard_deletes
+		total_fails += I.failures
+		total_time_deling += I.destroy_time
+		total_time_harddeling += I.hard_delete_time
+	data["total_dels"] = total_dels
+	data["total_harddels"] = total_hard_dels
+	data["total_fails"] = total_fails
+	data["total_time_deling"] = total_time_deling
+	data["total_time_harddeling"] = total_time_harddeling
+
+	return data
+
+/datum/controller/subsystem/garbage/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	// This probably needs an admin perm check?
+
+	switch(action)
+		if("refresh")
+			return TRUE
+
+		if("jump")
+			var/list/coord = params["coords"]
+			if(!islist(coord))
+				return FALSE
+			if(!isobserver(ui.user))
+				SSadmin_verbs.dynamic_invoke_verb(ui.user.client, /datum/admin_verb/admin_ghost)
+			ui.user.forceMove(locate(coord["x"],coord["y"],coord["z"]))
+			return FALSE
