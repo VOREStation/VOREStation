@@ -134,3 +134,44 @@
   - rscadd: Adds two new reagents to Succubus Bite
   Lira:
   - bugfix: Weedkiller kills instead of grows weeds.
+2026-11-21:
+  Cerami:
+  - qol: Adds aquatic movement to Kelpie simplemobs
+  Kashargul:
+  - refactor: cameranet to SScameras
+  Will:
+  - refactor: Updates airlock electronics circuitboard to tgui
+  - balance: Reduced the death explosion size of phoron spiders
+  - bugfix: Corrected a harddel with fires, updated fire destroy logic
+  Will, Kash:
+  - refactor: Modernizes deletion overview ui
+  - code_imp: update tgui to tg
+2026-11-22:
+  Aroliacue:
+  - balance: Halved range on EMP landmines. Still very dangerous to step on, but maintaining
+      good spacing now actually works.
+  Kashargul:
+  - bugfix: a crash with tgui data on UIs using parent_ui after the update
+  TheCaramelion:
+  - rscadd: Adds a holidify window mapping helper
+  - bugfix: fixed wrong path for reinforced holiday windows
+  Will:
+  - bugfix: Missing proper airlock electronic's access list
+2026-11-23:
+  RexAnivius, Diana, Kash:
+  - image: added and modified centiborg sprites. Modifications include renaming the
+      dmis to "Centiborg", neck sprites to "throat", "sit" sprites to "rest".
+  - code_imp: updated robot_hats_offset.dm to include centiborg defines.
+  - code_imp: Adds size limiters for borgs. Only centiborgs have this for now (1.75x
+      resize max)
+  - rscadd: added centiborgs
+2026-11-24:
+  Aroliacue:
+  - image: Fixed xenomorph tail (fully colourable, vwag) layering on south facing.
+  Asher-42:
+  - bugfix: fixed service and janitor dullahan taur sprite issues
+  Kashargul:
+  - bugfix: soulcatcher sfx not saving for non capitalised bellies
+  - bugfix: capitalisation of a selected belly can be changed without triggering the
+      duplicate warning
+  - bugfix: a few runtimes in some very specific cases

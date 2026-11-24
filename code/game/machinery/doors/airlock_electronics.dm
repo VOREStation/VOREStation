@@ -11,8 +11,8 @@
 
 	var/secure = 0 //if set, then wires will be randomized and bolts will drop if the door is broken
 	var/list/conf_access = null
-	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access
-	var/last_configurator = null
+	var/one_access = TRUE //if set to 1, door would receive req_one_access instead of req_access
+	var/last_configurator = "Noone"
 	var/locked = 1
 	var/emagged = 0
 
@@ -26,124 +26,85 @@
 	. = ..(user)
 	if(.)
 		return TRUE
-	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
+	if (!ishuman(user) && !issilicon(user))
+		return FALSE
+	tgui_interact(user)
+
+/obj/item/airlock_electronics/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AirlockElectronics", name)
+		ui.open()
+
+/obj/item/airlock_electronics/tgui_data(mob/user)
+	var/acc_list = list()
+	for(var/acc in SSaccess.get_all_station_access())
+		acc_list[SSaccess.get_access_desc(acc)] = list("access_num" = acc, "enabled" = (acc in conf_access))
+
+	var/list/data = list(
+		"last_configurator" = last_configurator,
+		"locked" = locked,
+		"one_access" = one_access,
+		"access" = acc_list
+	)
+
+	return data
+
+/obj/item/airlock_electronics/tgui_act(action, list/params, datum/tgui/ui)
+	if(..())
+		return TRUE
+	if (!ishuman(ui.user) && !issilicon(ui.user))
 		return FALSE
 
-	var/t1 = span_bold("Access control") + "<br>\n"
+	switch(action)
+		if("login")
+			if(emagged)
+				locked = FALSE
+				last_configurator = ui.user.name
+				return TRUE
 
-	if (last_configurator)
-		t1 += "Operator: [last_configurator]<br>"
+			var/obj/item/card/id/id = ui.user.GetIdCard()
+			var/list/access = ui.user.GetAccess()
+			if(check_access_list(access))
+				locked = FALSE
+				last_configurator = id ? id.registered_name : ui.user.name
+				return TRUE
+			return FALSE
 
-	if (locked)
-		t1 += "<a href='byond://?src=\ref[src];login=1'>Unlock Interface</a><hr>"
-	else
-		t1 += "<a href='byond://?src=\ref[src];logout=1'>Lock Interface</a><hr>"
-
-		t1 += "Access requirement is set to "
-		t1 += one_access ? "<a style='color: green' href='byond://?src=\ref[src];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='byond://?src=\ref[src];one_access=1'>ALL</a><hr>"
-
-		t1 += conf_access == null ? span_red("All") + "<br>" : "<a href='byond://?src=\ref[src];access=all'>All</a><br>"
-
-		t1 += "<br>"
-
-		var/list/accesses = get_available_accesses(user)
-		for (var/acc in accesses)
-			var/aname = SSaccess.get_access_desc(acc)
-
-			if (!conf_access || !conf_access.len || !(acc in conf_access))
-				t1 += "<a href='byond://?src=\ref[src];access=[acc]'>[aname]</a><br>"
-			else if(one_access)
-				t1 += "<a style='color: green' href='byond://?src=\ref[src];access=[acc]'>[aname]</a><br>"
-			else
-				t1 += "<a style='color: red' href='byond://?src=\ref[src];access=[acc]'>[aname]</a><br>"
-
-	t1 += text("<p><a href='byond://?src=\ref[];close=1'>Close</a></p>\n", src)
-
-	user << browse("<html>[t1]</html>", "window=airlock_electronics")
-	onclose(user, "airlock")
-
-/obj/item/airlock_electronics/Topic(href, href_list)
-	..()
-	if (usr.stat || usr.restrained() || (!ishuman(usr) && !istype(usr,/mob/living/silicon)))
-		return
-	if (href_list["close"])
-		usr << browse(null, "window=airlock_electronics")
-		return
-
-	if (href_list["login"])
-		if(emagged)
-			src.locked = 0
-			src.last_configurator = usr.name
-		else if(issilicon(usr))
-			src.locked = 0
-			src.last_configurator = usr.name
-		else if(isliving(usr))
-			var/obj/item/card/id/id
-			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
-				id = H.get_idcard()
-				// In their ID slot?
-				if(id && src.check_access(id))
-					src.locked = 0
-					src.last_configurator = id.registered_name
-			// Still locked, human handling didn't do it!
+		if("logout")
 			if(locked)
-				var/obj/item/I = usr.get_active_hand()
-				id = I?.GetID()
-				if(id && src.check_access(id))
-					src.locked = 0
-					src.last_configurator = id.registered_name
+				return FALSE
+			locked = TRUE
+			return TRUE
 
-	if (locked)
-		return
+		if("one_access")
+			if(locked)
+				return FALSE
+			one_access = !one_access
+			return TRUE
 
-	if (href_list["logout"])
-		locked = 1
-
-	if (href_list["one_access"])
-		one_access = !one_access
-
-	if (href_list["access"])
-		toggle_access(href_list["access"])
-
-	attack_self(usr)
+		if("access")
+			if(locked)
+				return FALSE
+			toggle_access(params["access"])
+			return TRUE
 
 /obj/item/airlock_electronics/proc/toggle_access(acc)
 	if (acc == "all")
 		conf_access = null
-	else
-		var/req = text2num(acc)
+		return
 
-		if (conf_access == null)
-			conf_access = list()
+	var/req = text2num(acc)
+	if(!req)
+		return FALSE
 
-		if (!(req in conf_access))
-			conf_access += req
-		else
-			conf_access -= req
-			if (!conf_access.len)
-				conf_access = null
+	LAZYINITLIST(conf_access)
 
-/obj/item/airlock_electronics/proc/get_available_accesses(mob/user)
-	var/obj/item/card/id/id
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		id = H.get_idcard()
-	else if(issilicon(user))
-		var/mob/living/silicon/R = user
-		id = R.idcard
+	if (!(req in conf_access))
+		conf_access += req
+		return
 
-	// Nothing
-	if(!id || !id.GetAccess())
-		return list()
-
-	// Has engineer access, can put any access
-	else if(has_access(null, apply_any_access, id.GetAccess()))
-		return SSaccess.get_all_station_access()
-
-	// Not an engineer, can only pick your own accesses to program
-	else
-		return id.GetAccess()
+	LAZYREMOVE(conf_access, req)
 
 /obj/item/airlock_electronics/secure
 	name = "secure airlock electronics"

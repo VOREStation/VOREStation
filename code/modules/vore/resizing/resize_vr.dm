@@ -177,14 +177,18 @@
  * Verb proc for a command that lets players change their size OOCly.
  * Ace was here! Redid this a little so we'd use math for shrinking characters. This is the old code.
  */
-
 /mob/living/proc/set_size()
 	set name = "Adjust Mass"
 	set category = "Abilities.General" //Seeing as prometheans have an IC reason to be changing mass.
 
-	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
+	var/max_size = RESIZE_MAXIMUM
+	if(isrobot(src))
+		var/mob/living/silicon/robot/our_robot = src
+		if(our_robot?.sprite_datum.size_limit)
+			max_size = our_robot.sprite_datum.size_limit
+	var/nagmessage = "Adjust your mass to be a size between [RESIZE_MINIMUM * 100] to [max_size * 100]% (or [RESIZE_MINIMUM_DORMS * 100]% to [RESIZE_MAXIMUM_DORMS * 100]% in dormitories). (DO NOT ABUSE)"
 	var/default = size_multiplier * 100
-	var/new_size = tgui_input_number(src, nagmessage, "Pick a Size", default, 600, 1)
+	var/new_size = tgui_input_number(src, nagmessage, "Pick a Size", default, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
 	if(size_range_check(new_size))
 		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		if(temporary_form)
