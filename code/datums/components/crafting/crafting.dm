@@ -338,7 +338,8 @@
 					continue
 
 				// Special case: the reagents may be needed for other recipes
-				if(istype(I, /obj/item/reagent_containers))
+				// But also... If it's food, just take it.
+				if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food))
 					var/obj/item/reagent_containers/RC = I
 					if(RC.reagents.total_volume > 0)
 						continue

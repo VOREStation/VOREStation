@@ -715,3 +715,18 @@
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that water outta here
 	result = /obj/item/reagent_containers/food/snacks/veggiemomo
 	result_quantity = 2
+
+/datum/recipe/grahamcookie
+	appliance = OVEN
+	items = list(
+		/obj/item/reagent_containers/food/snacks/dough
+	)
+	reagents = list(REAGENT_ID_SUGAR = 5, REAGENT_ID_MILK = 3)
+	result = /obj/item/reagent_containers/food/snacks/graham
+	result_quantity = 4
+
+/datum/recipe/marshmallow
+	appliance = OVEN
+	reagents = list(REAGENT_ID_SUGAR = 10, REAGENT_ID_WATER = 5, REAGENT_ID_GELATIN = 2)
+	result = /obj/item/reagent_containers/food/snacks/marshmallow
+	result_quantity = 6
