@@ -253,6 +253,14 @@
 	..()
 	update_icon()
 
+//We only call a camera static update if we have successfully moved and the camera is present and working
+/mob/living/silicon/robot/Moved(atom/oldloc, direct, forced, movetime)
+	. = ..()
+	if(!camera?.can_use())
+		return
+	// Delay's a bit faster then standard cameras to "avoid running out of the camera's fov" whatever that means
+	SScameras.camera_moved(camera, get_turf(oldloc), get_turf(camera), 0.5 SECONDS)
+
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 	laws = new using_map.default_law_type //use map's default
@@ -1744,3 +1752,9 @@
 	hat = null
 	update_icon()
 	balloon_alert(user, "dropped hat")
+
+/mob/living/silicon/robot/resize(new_size, animate, uncapped, ignore_prefs, aura_animation, allow_stripping)
+	var/max_size = new_size
+	if(!uncapped && sprite_datum?.size_limit && max_size > sprite_datum.size_limit)
+		max_size = sprite_datum.size_limit
+	. = ..(max_size, animate, uncapped, ignore_prefs, aura_animation, allow_stripping)

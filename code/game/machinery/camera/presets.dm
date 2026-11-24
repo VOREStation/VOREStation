@@ -110,6 +110,11 @@ GLOBAL_LIST_INIT(engineering_networks, list(
 	invuln = 1
 	always_visible = TRUE
 
+/obj/machinery/camera/network/bodycamera
+	network = list(NETWORK_BODYCAM)
+	invuln = 1
+	always_visible = TRUE
+
 // EMP
 
 /obj/machinery/camera/emp_proof/Initialize(mapload)
