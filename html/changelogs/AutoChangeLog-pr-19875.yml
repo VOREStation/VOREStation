@@ -1,0 +1,4 @@
+author: "Aroliacue"
+delete-after: True
+changes:
+  - image: "Fixed xenomorph tail (fully colourable, vwag) layering on south facing."

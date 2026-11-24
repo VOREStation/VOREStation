@@ -19,7 +19,7 @@
 		"name" = owner.soulgem.name,
 		"caught_souls" = stored_souls,
 		"selected_soul" = owner.soulgem.selected_soul,
-		"selected_sfx" = owner.soulgem.linked_belly,
+		"selected_sfx" = owner.soulgem.linked_belly?.name,
 		"sc_message_data" =  compile_soulcatcher_message_data(owner.soulgem),
 		"taken_over" = owner.soulgem.is_taken_over(),
 		"catch_self" = owner.soulgem.flag_check(NIF_SC_CATCHING_ME),
