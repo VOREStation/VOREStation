@@ -537,6 +537,13 @@
 	src.nsay_act(message)
 
 /mob/proc/nsay_act(message as text)
+	if(soulgem)
+		var/obj/soulgem/gem = soulgem
+		if(gem.brainmobs.len)
+			//They probably meant to do this then...
+			var/sane_message = sanitize(message)
+			gem.use_speech(sane_message, src)
+			return
 	to_chat(src, span_warning("You must be a humanoid with a NIF implanted to use that."))
 
 /mob/living/carbon/human/nsay_act(message as text)
@@ -544,6 +551,13 @@
 		to_chat(src,span_warning("You can't use NSay while unconscious."))
 		return
 	if(!nif)
+		if(soulgem)
+			var/obj/soulgem/gem = soulgem
+			if(gem.brainmobs.len)
+				//They probably meant to do this then...
+				var/sane_message = sanitize(message)
+				gem.use_speech(sane_message, src)
+				return
 		to_chat(src,span_warning("You can't use NSay without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
@@ -567,6 +581,13 @@
 	src.nme_act(message)
 
 /mob/proc/nme_act(message as message)
+	if(soulgem)
+		var/obj/soulgem/gem = soulgem
+		if(gem.brainmobs.len)
+			//They probably meant to do this then...
+			var/sane_message = sanitize(message)
+			gem.use_emote(sane_message, src)
+			return
 	to_chat(src, span_warning("You must be a humanoid with a NIF implanted to use that."))
 
 /mob/living/carbon/human/nme_act(message as message)
@@ -574,6 +595,13 @@
 		to_chat(src,span_warning("You can't use NMe while unconscious."))
 		return
 	if(!nif)
+		if(soulgem)
+			var/obj/soulgem/gem = soulgem
+			if(gem.brainmobs.len)
+				//They probably meant to do this then...
+				var/sane_message = sanitize(message)
+				gem.use_emote(sane_message, src)
+				return
 		to_chat(src,span_warning("You can't use NMe without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
