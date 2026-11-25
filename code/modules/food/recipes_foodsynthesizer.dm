@@ -347,6 +347,10 @@
 	build_path = /obj/item/reagent_containers/food/snacks/mysterysoup
 	hidden = TRUE
 
+/datum/category_item/synthesizer/appasnack/marshmallow
+	name = "Marshmallow"
+	build_path = /obj/item/reagent_containers/food/snacks/marshmallow
+
 /*********
 * Breakfast *
 **********/
@@ -929,6 +933,10 @@
 	name = "Sugar Cookie"
 	build_path = /obj/item/reagent_containers/food/snacks/sugarcookie
 
+/datum/category_item/synthesizer/dessert/graham
+	name = "Graham Cracker"
+	build_path = /obj/item/reagent_containers/food/snacks/graham
+
 /datum/category_item/synthesizer/dessert/custardbun
 	name = "Custard Bun"
 	build_path = /obj/item/reagent_containers/food/snacks/custardbun
@@ -977,6 +985,9 @@
 	name = "Mämmi"
 	build_path = /obj/item/reagent_containers/food/snacks/mammi
 
+/datum/category_item/synthesizer/dessert/chocolate
+	name = "Chocolate Bar"
+	build_path = /obj/item/reagent_containers/food/snacks/chocolatebar
 
 /*********
 * Exotic *

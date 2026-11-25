@@ -281,3 +281,18 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Poultry meat crate"
+
+/datum/supply_pack/hospitality/camp_supplies
+	name = "Camping supplies"
+	desc = "Everything needed for a good camping trip!"
+	containername = "Camping Supplies"
+	containertype = /obj/structure/closet/crate
+	contains = list(
+		/obj/item/storage/box/marshmallow = 2,
+		/obj/item/storage/box/graham = 2,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 5,
+		/obj/item/stack/material/log = 5,
+		/obj/item/storage/box/matches = 1,
+		/obj/item/stack/material/stick = 2
+	)
+	cost = 100

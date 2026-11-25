@@ -7800,3 +7800,36 @@
 /obj/item/reagent_containers/food/snacks/churro/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COOKINGOIL, 1)
+
+/obj/item/reagent_containers/food/snacks/marshmallow
+	name = "marshmallow"
+	desc = "A soft, spongy, sweet confection made by whipping sugar, water, and gelatin. Delicious!"
+	icon_state = "marsh"
+	filling_color = "#f5efe5"
+	bitesize = 1
+	nutriment_desc = list("pure sugar" = 2)
+	nutriment_amt = 2
+
+/obj/item/reagent_containers/food/snacks/marshmallow/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
+
+/obj/item/reagent_containers/food/snacks/graham
+	name = "graham cracker"
+	desc = "A thin, crisp, lightly sweet whole-heat cracker."
+	icon_state = "graham"
+	bitesize = 1
+	nutriment_desc = list("sweetness" = 2)
+	nutriment_amt = 2
+
+/obj/item/reagent_containers/food/snacks/smores
+	name = "smores"
+	desc = "A toasted marshmallow and a piece of chocolate, sandwiched between two crackers."
+	icon_state = "smores"
+	bitesize = 3
+	nutriment_amt = 5
+
+/obj/item/reagent_containers/food/snacks/smores/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
+	reagents.add_reagent(REAGENT_ID_CHOCOLATE, 1)
