@@ -1,0 +1,5 @@
+author: "Guti"
+delete-after: True
+changes:
+  - rscadd: "Added marshmallows, graham crackers, and smores."
+  - bugfix: "Fixed the crafting menu not using up food"
