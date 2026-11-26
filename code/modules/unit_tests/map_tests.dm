@@ -212,3 +212,96 @@
 /datum/unit_test/default_spawnpoint_exists/Run()
 	var/datum/spawnpoint/default_spawnpoint = new DEFAULT_LATEJOIN_LOCATION()
 	TEST_ASSERT(LAZYLEN(default_spawnpoint.turfs), "Map does not define the default spawnpoint location ([default_spawnpoint.display_name])")
+
+/// Telebeacons won't show up in the list, as it's assoc when presented for which one to warp to.
+/datum/unit_test/all_tele_beacons_must_be_unique
+
+/datum/unit_test/all_tele_beacons_must_be_unique/Run()
+	var/failed = FALSE
+
+	var/list/used_tags = list()
+	for(var/obj/item/perfect_tele_beacon/beacon in world)
+		var/turf/T = get_turf(beacon)
+		var/area/A = get_area(beacon)
+		if(!beacon.tele_name)
+			failed = TRUE
+			TEST_NOTICE(src, "Telebeacon not assigned a tele_name. Located at [T.x].[T.y].[T.z] : [A]")
+			continue
+		if(beacon.tele_name in used_tags)
+			failed = TRUE
+			TEST_NOTICE(src, "Telebeacon already in use [beacon.tele_name]. Located at [T.x].[T.y].[T.z] : [A]")
+			continue
+		used_tags += beacon.tele_name
+
+	if(failed)
+		TEST_FAIL("One or more tele_beacon objects are incorrectly setup or are duplicates")
+
+/// Airlocks behave erraticly if they have multiple controllers
+/datum/unit_test/all_airlock_controllers_shall_have_unique_ids
+
+/datum/unit_test/all_airlock_controllers_shall_have_unique_ids/Run()
+	var/failed = FALSE
+
+	var/list/used_tags = list()
+	for(var/obj/machinery/embedded_controller/radio/airlock/controller in world)
+		var/turf/T = get_turf(controller)
+		var/area/A = get_area(controller)
+		if(!controller.id_tag)
+			failed = TRUE
+			TEST_NOTICE(src, "Airlock controller was missing an id_tag. Located at [T.x].[T.y].[T.z] : [A]")
+			continue
+		if(controller.id_tag in used_tags)
+			failed = TRUE
+			TEST_NOTICE(src, "Airlock controller id_tag \"[controller.id_tag]\" was already in use. Located at [T.x].[T.y].[T.z] : [A]")
+			continue
+		used_tags += controller.id_tag
+
+	if(failed)
+		TEST_FAIL("One or more airlock controllers had an incorrect id_tag set")
+
+/// All areas in use must be unique
+/datum/unit_test/area_names_must_all_be_unique
+
+/datum/unit_test/area_names_must_all_be_unique/Run()
+	var/failed = FALSE
+
+	var/list/used_names = list()
+	for(var/area/check as anything in GLOB.areas_by_type) // Only the ones in use by this map!!
+		if(check.name in used_names)
+			TEST_NOTICE(src, "[check] area has a name already in use: [check.name]")
+			failed = TRUE
+			continue
+		used_names.Add(check.name)
+
+	if(failed)
+		TEST_FAIL("One or more area subtypes share a name.")
+
+// Doors, lights, railings, etc should not be inside of dense turfs. As well, doors should not have space placed under them.
+/datum/unit_test/things_should_not_be_in_walls
+
+/datum/unit_test/things_should_not_be_in_walls/Run()
+	set background=1
+
+	var/failed = FALSE
+
+	for(var/obj/machinery/light/lig in world)
+		if(is_in_wall(lig))
+			failed = TRUE
+	for(var/obj/machinery/door/dor in world)
+		if(is_in_wall(dor))
+			failed = TRUE
+	for(var/obj/structure/railing/ral in world)
+		if(is_in_wall(ral))
+			failed = TRUE
+
+	if(failed)
+		TEST_FAIL("One or more objects are inside a dense turf wall.")
+
+/datum/unit_test/things_should_not_be_in_walls/proc/is_in_wall(obj/structure/thing)
+	var/turf/ground = get_turf(thing)
+	if(!ground)
+		return FALSE; // What?
+	if(!ground.density)
+		return
+	TEST_NOTICE(src, "[thing] was inside a dense wall. Located at [ground.x].[ground.y].[ground.z] : [get_area(thing)]")
+	return TRUE;
