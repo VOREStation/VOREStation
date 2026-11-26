@@ -292,6 +292,19 @@
 	module_type = "Crisis"
 	sprite_icon = 'icons/mob/robot/surgical_large.dmi'
 
+/datum/robot_sprite/dogborg/tall/surgical/wyvern
+	name = "Wyvern"
+	sprite_icon_state = "wyvern"
+	has_eye_light_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/wyvern/WyvernFrameMedical.dmi'
+	rest_sprite_options = list("Default")
+	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = TRUE
+
 /datum/robot_sprite/dogborg/tall/surgical/do_equipment_glamour(obj/item/robot_module/module)
 	..()
 
