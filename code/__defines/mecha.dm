@@ -19,8 +19,15 @@
 #define EQUIP_HULL		"hull"
 #define EQUIP_WEAPON	"weapon"
 #define EQUIP_UTILITY	"utility"
-#define EQUIP_SPECIAL	"core"
-//VOREStation Addition begin: MICROMECHS
+#define EQUIP_SPECIAL	"special"
+
 #define EQUIP_MICRO_UTILITY	"micro_utility"
 #define EQUIP_MICRO_WEAPON	"micro_weapon"
-//VOREStation Addition end: MICROMECHS
+
+
+// Mecha Attach Messages
+#define EQUIP_SUCCESS 0
+#define EQUIP_FAIL_GENERIC 1
+#define EQUIP_FAIL_DUPLICATE 2
+#define EQUIP_FAIL_SPACE 3
+#define EQUIP_FAIL_TYPE 4
