@@ -354,6 +354,9 @@
 	name = "Powernet Sensor - Master Grid";
 	name_tag = "Master"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor,
 /area/engineering/engine_smes)
 "aaM" = (
@@ -2874,6 +2877,19 @@
 /obj/machinery/rnd/production/protolathe/department/engineering,
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/workshop)
+"afc" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "SMES Access";
+	req_access = list(11)
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/engine_smes)
+"afd" = (
+/turf/simulated/wall/r_wall,
+/area/engineering/rteg_room)
 "afe" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled,
@@ -2889,6 +2905,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_monitoring)
+"afg" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/rteg_room)
+"afh" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/rteg_room)
 "afi" = (
 /obj/machinery/camera/network/engine{
 	dir = 1
@@ -2936,6 +2962,9 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner2,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_monitoring)
+"afl" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/rteg_room)
 "afm" = (
 /obj/structure/closet,
 /obj/random/maintenance/clean,
@@ -3057,6 +3086,32 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"afv" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/rteg_room)
+"afw" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/rteg_room)
+"afx" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor,
+/area/engineering/rteg_room)
 "afy" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
@@ -3146,6 +3201,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"afH" = (
+/obj/machinery/power/port_gen/rteg/tether,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor,
+/area/engineering/rteg_room)
 "afJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -40949,10 +41014,10 @@ ank
 ank
 ank
 ank
-aam
-aam
-aam
-aam
+afd
+afd
+afd
+afd
 acL
 aaG
 abe
@@ -41091,10 +41156,10 @@ aqV
 bkU
 brX
 ank
-aac
-aam
-aam
-aam
+afx
+afv
+afl
+afg
 acL
 aaC
 abb
@@ -41233,11 +41298,11 @@ aYA
 bqT
 akA
 ank
-aac
-aac
-aac
-aac
-acL
+afH
+afw
+afh
+afh
+afc
 aaL
 abg
 abw

@@ -35,10 +35,12 @@
 		active = FALSE
 		update_icon()
 		// soundloop.stop()
+		balloon_alert_visible("turned off")
 	else if(HasFuel())
 		active = TRUE
 		update_icon()
 		// soundloop.start()
+		balloon_alert_visible("turned on")
 
 /obj/machinery/power/port_gen/process()
 	if(active && HasFuel() && !IsBroken() && anchored && powernet)
