@@ -328,8 +328,6 @@
 		if(I_RUN)
 			usr.m_intent = I_RUN
 			usr.m_int = "13,14"
-		if("Reset Machine")
-			usr.unset_machine()
 		if("internal") //dear god this entire thing needs to be rewritten this is literally assaulting my eyes with how awful it is. FUCK.
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr

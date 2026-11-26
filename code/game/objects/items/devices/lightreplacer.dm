@@ -65,7 +65,7 @@
 /obj/item/lightreplacer/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
-		. += "It has [uses] lights remaining."
+		. += span_notice("It has [uses] lights remaining.")
 
 /obj/item/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_GLASS || istype(W, /obj/item/stack/material/cyborg/glass))
@@ -237,7 +237,7 @@
 	color = "#bbbbff"
 	slot_flags = SLOT_BELT
 
-	matter = list(MAT_STEEL = 5000,MAT_GLASS = 1500)
+	matter = list(MAT_STEEL = MATERIAL_COST(2.5),MAT_GLASS = MATERIAL_COST(0.75))
 
 	var/static/dcolor = "#e0eff0"
 	var/static/dnightcolor = "#efcc86"

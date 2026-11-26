@@ -320,7 +320,7 @@
 
 		//Handle some general level adjustments. These values are independent of plants existing.
 		if(weedkiller_reagents[R.id])
-			weedlevel -= weedkiller_reagents[R.id] * reagent_total
+			weedlevel += weedkiller_reagents[R.id] * reagent_total
 		if(pestkiller_reagents[R.id])
 			pestlevel += pestkiller_reagents[R.id] * reagent_total
 

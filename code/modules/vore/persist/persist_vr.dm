@@ -163,8 +163,8 @@
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_organs_to_prefs(mob/living/carbon/human/character, datum/preferences/prefs)
 	if(!istype(character) || !character.species) return
-	var/list/organ_data = prefs.read_preference(/datum/preference/organ_data) || list()
-	var/list/rlimb_data = prefs.read_preference(/datum/preference/rlimb_data) || list()
+	var/list/organ_data = check_list_copy(prefs.read_preference(/datum/preference/organ_data)) || list()
+	var/list/rlimb_data = check_list_copy(prefs.read_preference(/datum/preference/rlimb_data)) || list()
 	// Checkify the limbs!
 	for(var/name in character.species.has_limbs)
 		var/obj/item/organ/external/external_organ = character.organs_by_name[name]

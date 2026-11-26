@@ -34,30 +34,149 @@ export const STL_UPGRADES = [
 ] as const;
 
 export const CIPHER_TIERS = [
-  { tier: 1, abbrev: 'C7', name: 'CAESAR-7', minMin: 2, maxMin: 8, minGb: 0.2, maxGb: 0.8, tppm: 0.003, types: ['CRD'] as string[], uptime: null as [number, number] | null },
-  { tier: 2, abbrev: 'VX', name: 'VIGENERE-X', minMin: 15, maxMin: 35, minGb: 0.5, maxGb: 2.0, tppm: 0.010, types: ['CRD', 'FIN'] as string[], uptime: null as [number, number] | null },
-  { tier: 3, abbrev: 'E4', name: 'ENIGMA-IV', minMin: 40, maxMin: 100, minGb: 1.5, maxGb: 5.0, tppm: 0.028, types: ['FIN', 'CRP'] as string[], uptime: null as [number, number] | null },
-  { tier: 4, abbrev: 'ON', name: 'ONYX-256', minMin: 180, maxMin: 420, minGb: 4.0, maxGb: 12.0, tppm: 0.075, types: ['CRP', 'CLS'] as string[], uptime: [60, 150] as [number, number] },
-  { tier: 5, abbrev: 'WR', name: 'WRAITH-512', minMin: 540, maxMin: 1440, minGb: 10.0, maxGb: 30.0, tppm: 0.190, types: ['CLS'] as string[], uptime: [30, 80] as [number, number] },
+  {
+    tier: 1,
+    abbrev: 'C7',
+    name: 'CAESAR-7',
+    minMin: 2,
+    maxMin: 8,
+    minGb: 0.2,
+    maxGb: 0.8,
+    tppm: 0.003,
+    types: ['CRD'] as string[],
+    uptime: null as [number, number] | null,
+  },
+  {
+    tier: 2,
+    abbrev: 'VX',
+    name: 'VIGENERE-X',
+    minMin: 15,
+    maxMin: 35,
+    minGb: 0.5,
+    maxGb: 2.0,
+    tppm: 0.01,
+    types: ['CRD', 'FIN'] as string[],
+    uptime: null as [number, number] | null,
+  },
+  {
+    tier: 3,
+    abbrev: 'E4',
+    name: 'ENIGMA-IV',
+    minMin: 40,
+    maxMin: 100,
+    minGb: 1.5,
+    maxGb: 5.0,
+    tppm: 0.028,
+    types: ['FIN', 'CRP'] as string[],
+    uptime: null as [number, number] | null,
+  },
+  {
+    tier: 4,
+    abbrev: 'ON',
+    name: 'ONYX-256',
+    minMin: 180,
+    maxMin: 420,
+    minGb: 4.0,
+    maxGb: 12.0,
+    tppm: 0.075,
+    types: ['CRP', 'CLS'] as string[],
+    uptime: [60, 150] as [number, number],
+  },
+  {
+    tier: 5,
+    abbrev: 'WR',
+    name: 'WRAITH-512',
+    minMin: 540,
+    maxMin: 1440,
+    minGb: 10.0,
+    maxGb: 30.0,
+    tppm: 0.19,
+    types: ['CLS'] as string[],
+    uptime: [30, 80] as [number, number],
+  },
 ];
 
-export const DATA_BASELINES: Record<string, number> = { CRD: 820, FIN: 1240, CRP: 960, CLS: 3100 };
-export const DATA_FLOORS: Record<string, number> = { CRD: 480, FIN: 700, CRP: 550, CLS: 1400 };
-export const DATA_CEILINGS: Record<string, number> = { CRD: 1200, FIN: 2500, CRP: 2000, CLS: 8000 };
-export const DATA_FULLNAMES: Record<string, string> = { CRD: 'CREDENTIALS', FIN: 'FINANCIAL', CRP: 'CORPORATE', CLS: 'CLASSIFIED' };
+export const DATA_BASELINES: Record<string, number> = {
+  CRD: 820,
+  FIN: 1240,
+  CRP: 960,
+  CLS: 3100,
+};
+export const DATA_FLOORS: Record<string, number> = {
+  CRD: 480,
+  FIN: 700,
+  CRP: 550,
+  CLS: 1400,
+};
+export const DATA_CEILINGS: Record<string, number> = {
+  CRD: 1200,
+  FIN: 2500,
+  CRP: 2000,
+  CLS: 8000,
+};
+export const DATA_FULLNAMES: Record<string, string> = {
+  CRD: 'CREDENTIALS',
+  FIN: 'FINANCIAL',
+  CRP: 'CORPORATE',
+  CLS: 'CLASSIFIED',
+};
 
-export const ASC_THRESHOLDS = [350000, 1200000, 2200000, 8000000, 25000000, 80000000];
+export const ASC_THRESHOLDS = [
+  350000, 1200000, 2200000, 8000000, 25000000, 80000000,
+];
 
 export const SHOP_ITEMS = [
-  { id: 'VPN', name: 'VPN Burst', cost: 200, desc: 'Instantly resets trace to 0%' },
-  { id: 'FRG', name: 'Key Fragment', cost: 450, desc: 'Halves crack time for T4/T5 jobs' },
-  { id: 'CVR', name: 'Cover Story', cost: 1200, desc: 'Removes 1 agency heat level' },
-  { id: 'XPL', name: 'Exploit Kit', cost: 900, desc: 'Reduces one job crack time by 30%' },
+  {
+    id: 'VPN',
+    name: 'VPN Burst',
+    cost: 200,
+    desc: 'Instantly resets trace to 0%',
+  },
+  {
+    id: 'FRG',
+    name: 'Key Fragment',
+    cost: 450,
+    desc: 'Halves crack time for T4/T5 jobs',
+  },
+  {
+    id: 'CVR',
+    name: 'Cover Story',
+    cost: 1200,
+    desc: 'Removes 1 agency heat level',
+  },
+  {
+    id: 'XPL',
+    name: 'Exploit Kit',
+    cost: 900,
+    desc: 'Reduces one job crack time by 30%',
+  },
 ] as const;
 
 export const ALL_COMMANDS = [
-  'scan', 'crack', 'jobs', 'cancel', 'collect', 'cache',
-  'sell', 'market', 'trace', 'cloak', 'vpn', 'launder', 'rig',
-  'upgrade', 'inv', 'shop', 'buy', 'use', 'wallet', 'log',
-  'ascend', 'ghost', 'bounty', 'explain', 'help', 'clear',
+  'scan',
+  'crack',
+  'jobs',
+  'cancel',
+  'collect',
+  'cache',
+  'sell',
+  'market',
+  'trace',
+  'cloak',
+  'vpn',
+  'launder',
+  'rig',
+  'upgrade',
+  'inv',
+  'shop',
+  'buy',
+  'use',
+  'wallet',
+  'log',
+  'ascend',
+  'ghost',
+  'bounty',
+  'explain',
+  'help',
+  'clear',
 ];

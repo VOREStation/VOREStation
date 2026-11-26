@@ -15,7 +15,9 @@ export function doAutocomplete(
   const parts = raw.trimEnd().split(/\s+/);
   const currentToken = endsWithSpace ? '' : (parts[parts.length - 1] ?? '');
   const tokensBefore = endsWithSpace ? parts : parts.slice(0, -1);
-  const prefix = endsWithSpace ? raw : raw.slice(0, raw.length - currentToken.length);
+  const prefix = endsWithSpace
+    ? raw
+    : raw.slice(0, raw.length - currentToken.length);
 
   let candidates: string[] = [];
   const state = gRef.current;
@@ -28,12 +30,19 @@ export function doAutocomplete(
 
     if (argPos === 1 && cmd === 'crack') {
       candidates = scanPool.current.map((s) => s.id);
-    } else if (argPos === 1 && cmd === 'scan' && !currentToken.startsWith('-')) {
+    } else if (
+      argPos === 1 &&
+      cmd === 'scan' &&
+      !currentToken.startsWith('-')
+    ) {
       candidates = scanPool.current.map((s) => s.id);
     } else if (argPos === 1 && cmd === 'cancel') {
       candidates = state.jobs.map((j) => j.id);
     } else if (argPos === 1 && cmd === 'collect') {
-      candidates = ['all', ...state.jobs.filter((j) => j.state === 'ready').map((j) => j.id)];
+      candidates = [
+        'all',
+        ...state.jobs.filter((j) => j.state === 'ready').map((j) => j.id),
+      ];
     } else if (argPos === 1 && cmd === 'sell') {
       candidates = ['all', ...state.cache.map((c) => c.id)];
     } else if (argPos === 2 && cmd === 'sell') {
@@ -41,7 +50,9 @@ export function doAutocomplete(
     } else if (argPos === 1 && ['buy', 'use'].includes(cmd)) {
       candidates = ['VPN', 'FRG', 'CVR', 'XPL', 'FHVST'];
     } else if (argPos === 2 && cmd === 'use') {
-      candidates = state.jobs.filter((j) => j.state === 'cracking').map((j) => j.id);
+      candidates = state.jobs
+        .filter((j) => j.state === 'cracking')
+        .map((j) => j.id);
     } else if (argPos === 1 && cmd === 'upgrade') {
       candidates = ['cpu', 'ram', 'stealth'];
     } else if (argPos === 2 && cmd === 'upgrade') {
@@ -73,7 +84,12 @@ export function doAutocomplete(
   let lcp = matches[0];
   for (const m of matches.slice(1)) {
     let i = 0;
-    while (i < lcp.length && i < m.length && lcp[i].toLowerCase() === m[i].toLowerCase()) i++;
+    while (
+      i < lcp.length &&
+      i < m.length &&
+      lcp[i].toLowerCase() === m[i].toLowerCase()
+    )
+      i++;
     lcp = lcp.slice(0, i);
   }
 

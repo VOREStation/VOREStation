@@ -83,6 +83,7 @@
 		a_right.HasProximity(T, WF, old_loc)
 
 /obj/item/assembly_holder/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
 		return
 	if(a_left)

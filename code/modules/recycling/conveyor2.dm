@@ -351,4 +351,4 @@
 /obj/machinery/conveyor_switch/examine()
 	.=..()
 	if(oneway == 1)
-		. += " It appears to only go in one direction."
+		. += "It appears to only go in one direction."

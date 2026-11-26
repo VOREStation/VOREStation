@@ -13,7 +13,7 @@
 	charge = 480
 	maxcharge = 480
 	charge_amount = 5
-	matter = list(MAT_STEEL = 350, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.175), MAT_GLASS = MATERIAL_COST(0.025))
 	preserve_item = 1
 
 /obj/item/cell/device/empty
@@ -29,7 +29,7 @@
 	icon_state = "device_crap"
 	charge = 240
 	maxcharge = 240
-	matter = list(MAT_STEEL = 350, MAT_GLASS = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.175), MAT_GLASS = MATERIAL_COST(0.015))
 
 /obj/item/cell/device/crap/update_icon() //No visible charge indicator
 	return
@@ -47,7 +47,7 @@
 	charge = 4800
 	maxcharge = 4800
 	charge_amount = 20
-	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/cell/device/hyper/empty
 	charge = 0
@@ -59,7 +59,7 @@
 	name = "shielded device power cell"
 	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
 	icon_state = "s_st"
-	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/cell/device/empproof/Initialize(mapload)
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
@@ -69,11 +69,11 @@
 	charge = 0
 
 /*
- * Weapon
+ * Device
  */
 /obj/item/cell/device/weapon
-	name = "weapon power cell"
-	desc = "A small power cell designed to power handheld weaponry."
+	name = "advanced device power cell"
+	desc = "A small power cell designed to power handheld devices."
 	icon_state = "m_sup"
 	charge = 2400
 	maxcharge = 2400
@@ -83,13 +83,13 @@
 	charge = 0
 
 /*
- * EMP Proof Weapon
+ * EMP Proof Device
  */
 /obj/item/cell/device/weapon/empproof
-	name = "shielded weapon power cell"
-	desc = "A small power cell designed to power handheld weaponry. Shielded from EMPs."
+	name = "shielded advanced device power cell"
+	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
 	icon_state = "s_hi"
-	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2), MAT_GLASS = MATERIAL_COST(0.03))
 
 /obj/item/cell/device/weapon/empproof/Initialize(mapload)
 	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
@@ -99,13 +99,13 @@
 	charge = 0
 
 /*
- * Self-charging Weapon
+ * Self-charging Device
  */
 /obj/item/cell/device/weapon/recharge
-	name = "self-charging weapon power cell"
-	desc = "A small power cell designed to power handheld weaponry. This one recharges itself."
+	name = "self-charging device power cell"
+	desc = "A small power cell designed to power handheld devices. This one recharges itself."
 	icon_state = "meb_m_nu"
-	matter = list(MAT_STEEL = 400, MAT_GLASS = 80)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2), MAT_GLASS = MATERIAL_COST(0.04))
 	self_recharge = TRUE
 	charge_amount = 120
 	charge_delay = 75
@@ -115,7 +115,7 @@
  */
 /obj/item/cell/device/weapon/recharge/captain
 	icon_state = "infinite_m"
-	matter = list(MAT_STEEL = 400, MAT_GLASS = 100)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.2), MAT_GLASS = MATERIAL_COST(0.05))
 	charge_amount = 160	//Recharges a lot more quickly...
 	charge_delay = 100	//... but it takes a while to get started
 

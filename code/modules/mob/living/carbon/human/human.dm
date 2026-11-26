@@ -282,12 +282,11 @@
 // called when something steps onto a human
 // this handles mobs on fire - mulebot and vehicle code has been relocated to /mob/living/Crossed()
 /mob/living/carbon/human/Crossed(atom/movable/AM)
+	. = ..() // call parent because we moved behavior to parent
 	if(AM.is_incorporeal())
 		return
 
 	spreadFire(AM)
-
-	..() // call parent because we moved behavior to parent
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(if_no_id = "No id", if_no_job = "No job")
@@ -847,6 +846,7 @@
 		to_chat(src, span_warning("You don't have the dexterity to use that!"))
 	return 0
 
+/* Disable abiotic lockout
 /mob/living/carbon/human/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
 		return 1
@@ -855,7 +855,7 @@
 		return 1
 
 	return 0
-
+*/
 
 /mob/living/carbon/human/proc/check_dna()
 	dna.check_integrity(src)
@@ -1135,9 +1135,9 @@
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
-	if(!dna ||!dna.uni_identity)
+	if(!dna ||!dna.unique_enzymes) // Hash of the hash of a player's name to keep consistency between respawns
 		return
-	return md5(dna.uni_identity)
+	return md5(dna.unique_enzymes)
 
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
@@ -1297,6 +1297,8 @@
 	species.create_organs(src)
 
 	species.apply_components(src)
+
+	species.apply_actions(src)
 
 	maxHealth = species.total_health
 	hunger_rate = species.hunger_factor
@@ -1485,23 +1487,6 @@
 		if(lungs && istype(lungs) && !(lungs.status & ORGAN_CUT_AWAY))
 			return TRUE
 	return FALSE
-
-/mob/living/carbon/human/slip(slipped_on, stun_duration=8)
-	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
-	var/footcoverage_check = FALSE
-	for(var/obj/item/clothing/C in equipment)
-		if(C.body_parts_covered & FEET)
-			footcoverage_check = TRUE
-			break
-	if(lying)
-		playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
-		drop_both_hands()
-		return FALSE
-	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
-		return FALSE
-	if(..(slipped_on,stun_duration))
-		drop_both_hands()
-		return TRUE
 
 /mob/living/carbon/human/proc/relocate()
 	set category = "Object"
@@ -2053,6 +2038,9 @@
 			return
 
 		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/cmd_admin_robotize, H)
+
+/mob/living/carbon/human/CanObtainCentcommMessage()
+	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
 
 	/*
 	if(href_list[VV_HK_PURRBATION])

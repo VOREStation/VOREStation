@@ -48,6 +48,7 @@
 	return 0
 
 /obj/machinery/containment_field/Crossed(atom/A)
+	. = ..()
 	if(!istype(A) || A.is_incorporeal())
 		return
 	if(isliving(A))
@@ -77,7 +78,7 @@
 		return 1
 	return 0
 
-/obj/machinery/containment_field/shock(mob/living/user as mob)
+/obj/machinery/containment_field/shock(mob/living/user)
 	if(hasShocked)
 		return 0
 	if(!FG1 || !FG2)

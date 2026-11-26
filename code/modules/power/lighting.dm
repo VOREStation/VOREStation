@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 /obj/machinery/light_construct
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
+	description_antag = "There's a flexible cover near the ballast. Someone figured you can inject phoron in there as a rigged explosive. Just, don't do it while it is on."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
@@ -533,15 +534,15 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	var/fitting = get_fitting_name()
 	switch(status)
 		if(LIGHT_OK)
-			. += "It is turned [on? "on" : "off"]."
+			. += span_notice("It is turned [on? "on" : "off"].")
 		if(LIGHT_EMPTY)
-			. += "The [fitting] has been removed."
+			. += span_notice("The [fitting] has been removed.")
 		if(LIGHT_BURNED)
-			. += "The [fitting] is burnt out."
+			. += span_notice("The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
-			. += "The [fitting] has been smashed."
+			. += span_notice("The [fitting] has been smashed.")
 	if(cell)
-		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
+		. += span_notice("Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
 /obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/light/L = light_type
@@ -949,7 +950,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	force = 2
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
-	matter = list(MAT_STEEL = 60)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.03))
 
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/status = LIGHT_OK
@@ -991,7 +992,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list(MAT_GLASS = 100)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.05))
 	brightness_range = 7
 	brightness_power = 2
 	init_brightness_range = 7
@@ -1019,7 +1020,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter = list(MAT_GLASS = 100)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.05))
 	brightness_range = 5
 	brightness_power = 1
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
@@ -1070,7 +1071,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list(MAT_GLASS = 100)
+	matter = list(MAT_GLASS = MATERIAL_COST(0.05))
 
 // update the icon state and description of the light
 /obj/item/light/update_icon()
@@ -1198,6 +1199,16 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+	if(rigged)
+		var/turf/our_turf = get_turf(src)
+		if(!our_turf)
+			return
+		var/datum/gas_mixture/air_contents
+		air_contents = new
+		air_contents.volume = 2
+		air_contents.temperature = T20C
+		air_contents.adjust_gas(GAS_PHORON, (10*ONE_ATMOSPHERE)*air_contents.volume/(R_IDEAL_GAS_EQUATION*T20C))
+		our_turf.assume_air(air_contents)
 
 //Lamp Shade
 /obj/item/lampshade

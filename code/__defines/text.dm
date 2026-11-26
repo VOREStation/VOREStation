@@ -33,3 +33,6 @@
 		var/_measurement = measurement; \
 		return_var = text2num(copytext(_measurement, findtextEx(_measurement, "x") + 1)); \
 	} while(FALSE);
+
+/// Small size. (ie: context subtooltips, spell delays) - Size options: 12pt 24pt.
+#define MAPTEXT_TINY_UNICODE(text) {"<span style='font-family: \"TinyUnicode\"; font-size: 12pt; line-height: 0.75; -dm-text-outline: 1px black'>[##text]</span>"}

@@ -161,14 +161,6 @@
 	primitive_expression_messages=list("staggers")
 	excludes = list(/datum/trait/negative/lightweight_light, /datum/trait/positive/heavyweight)
 
-/datum/trait/negative/neural_hypersensitivity
-	name = "Neural Hypersensitivity"
-	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Makes all pain effects twice as strong, and occur at half as much damage."
-	cost = -1
-	var_changes = list("trauma_mod" = 2)
-	can_take = ORGANICS
-	custom_only = FALSE
-
 /datum/trait/negative/breathes
 	cost = -2
 	can_take = ORGANICS
@@ -388,12 +380,14 @@
 	desc = "You have trouble dealing with sudden flashes of light, taking some time for you to recover. The effects of flashes from cameras and security equipment leaves you stunned for some time. 50% increased stun duration from flashes."
 	cost = -1
 	var_changes = list("flash_mod" = 1.5)
+	banned_species = list(SPECIES_ZADDAT)
 
 /datum/trait/negative/light_sensitivity_plus
 	name = "Photosensitivity, Major"
 	desc = "You have trouble dealing with sudden flashes of light, taking quite a long time for you to be able to recover. The effects of flashes from cameras and security equipment leave you stunned for some time. 100% (2x) stun duration from flashes."
 	cost = -2
 	var_changes = list("flash_mod" = 2.0)
+	banned_species = list(SPECIES_ZADDAT)
 
 	//Traitgenes
 	is_genetrait = TRUE
@@ -430,6 +424,14 @@
 
 	activation_message="You feel as though the airflow around you is painful..."
 	primitive_expression_messages=list("bumps their toe, screaming in pain")
+
+/datum/trait/negative/neural_hypersensitivity
+	name = "Neural Hypersensitivity" //Would rename this to 'Pain Intolerance, Extreme' but for savefile reasons, it stays this name.
+	desc = "You are frail and sensitive to pain. You experience 100% more pain from all sources."
+	cost = -5
+	var_changes = list("pain_mod" = 2)
+	can_take = ORGANICS
+	custom_only = FALSE
 
 /datum/trait/negative/sensitive_biochem
 	name = "Sensitive Biochemistry, Minor"
@@ -524,6 +526,7 @@
 	hidden = TRUE //Disabled on Virgo
 	can_take = ORGANICS
 	added_component_path = /datum/component/burninlight // Literally just Zaddat, but you don't start with any suit. Good luck.
+	banned_species = list(SPECIES_ZADDAT)
 
 // Addictions
 /datum/trait/neutral/addiction_alcohol

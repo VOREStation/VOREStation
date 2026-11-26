@@ -32,7 +32,7 @@
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "The service panel is [src.open ? "open" : "closed"]."
+		. += span_notice("The service panel is [src.open ? "open" : "closed"].")
 
 /obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)

@@ -1,3 +1,5 @@
+#define SELF_COMPONENTS 4 //Parts inside
+
 /obj/machinery/smartfridge
 	name = "\improper SmartFridge"
 	desc = "For storing all sorts of things! This one doesn't accept any of them!"
@@ -16,11 +18,11 @@
 	var/datum/stored_item/currently_vending = null	//What we're putting out of the machine.
 	var/stored_datum_type = /datum/stored_item
 	var/seconds_electrified = 0;
-	var/shoot_inventory = 0
 	var/locked = 0
-	var/scan_id = 1
-	var/is_secure = 0
-	var/wrenchable = 0
+	var/shoot_inventory = FALSE
+	var/scan_id = TRUE
+	var/is_secure = FALSE
+	var/wrenchable = TRUE
 	var/persistent = null // Path of persistence datum used to track contents
 	circuit = /obj/item/circuitboard/smartfridge //This one is meant to be uncraftable, however.
 
@@ -28,7 +30,7 @@
 	var/playing_sound = FALSE
 
 /obj/machinery/smartfridge/secure
-	is_secure = 1
+	is_secure = TRUE
 
 /obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
@@ -92,7 +94,7 @@
 
 	if(stat & (NOPOWER))
 		icon_state = "[icon_base]-off"
-		switch(contents.len)
+		switch(contents.len - SELF_COMPONENTS)
 			if(0)
 				add_overlay("[icon_base]-0-off")
 			if(1 to 3)
@@ -103,8 +105,8 @@
 				add_overlay("[icon_base]-[icon_contents]3-off")
 	else
 		icon_state = icon_base
-		switch(contents.len)
-			if(0)
+		switch(contents.len - SELF_COMPONENTS)
+			if(-INFINITY to 0)
 				add_overlay("[icon_base]-0")
 			if(1 to 3)
 				add_overlay("[icon_base]-[icon_contents]1")
@@ -116,13 +118,22 @@
 /obj/machinery/smartfridge/attackby(obj/item/O, mob/user)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
+		wrenchable = !wrenchable
 		user.visible_message(span_filter_notice("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src]."), span_filter_notice("You [panel_open ? "open" : "close"] the maintenance panel of \the [src]."))
 		playsound(src, O.usesound, 50, 1)
 		update_icon()
 		return
 
-	if(wrenchable && default_unfasten_wrench(user, O, 20))
-		return
+	if(wrenchable)
+		if(O.has_tool_quality(TOOL_WRENCH))
+			if(persistent)
+				to_chat(user, span_warning("\The [src] persistently denies you access to wrench it."))
+				return
+			if(allowed(user))
+				default_unfasten_wrench(user, O, 20)
+			else
+				to_chat(user, span_warning("\The [src] smartly denies you access to wrench it."))
+			return
 
 	if(O.has_tool_quality(TOOL_CROWBAR))
 		if(allowed(user))
@@ -175,7 +186,7 @@
 
 /obj/machinery/smartfridge/secure/emag_act(remaining_charges, mob/user)
 	if(!emagged)
-		emagged = 1
+		emagged = TRUE
 		locked = -1
 		to_chat(user, span_filter_notice("You short out the product lock on [src]."))
 		return TRUE
@@ -294,3 +305,5 @@
 			to_chat(ui.user, span_warning("Access denied."))
 			return TRUE
 	return ..()
+
+#undef SELF_COMPONENTS

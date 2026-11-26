@@ -17,7 +17,7 @@
 	center_of_mass_y = 0
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
-	matter = list(MAT_STEEL = 18750)
+	matter = list(MAT_STEEL = MATERIAL_COST(9.375))
 	var/deployed = 0
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
@@ -145,7 +145,10 @@
 	can_buckle = initial(can_buckle)
 
 /obj/item/beartrap/Crossed(atom/movable/AM as mob|obj)
+	. = ..()
 	if(AM.is_incorporeal())
+		return
+	if(AM.throwing)
 		return
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
@@ -162,7 +165,6 @@
 			deployed = 0
 			update_icon()
 			log_and_message_admins("has sprung a [name] at \the [get_area(loc)], last touched by [forensic_data?.get_lastprint()]", L)
-	..()
 
 /obj/item/beartrap/update_icon()
 	..()
@@ -295,8 +297,12 @@
 		icon_state = "[initial(icon_state)]"
 
 /obj/item/material/barbedwire/Crossed(atom/movable/AM)
+	. = ..()
+	return check_step(AM)
+
+/obj/item/material/barbedwire/proc/check_step(atom/movable/AM)
 	if(AM.is_incorporeal())
-		return
+		return FALSE
 	if(anchored && isliving(AM))
 		var/mob/living/L = AM
 		if(L.m_intent == I_RUN)
@@ -307,7 +313,9 @@
 				)
 			attack_mob(L)
 			update_icon()
-	..()
+			return TRUE
+	return FALSE
+
 
 /obj/item/material/barbedwire/proc/shock(mob/user, prb, target_zone = BP_TORSO)
 	if(!anchored || health == 0)		// anchored/destroyed grilles are never connected

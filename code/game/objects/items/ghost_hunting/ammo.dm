@@ -24,7 +24,7 @@
 	caliber = ".357"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/spectral/strong
-	matter = list(MAT_STEEL = 210)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.105))
 
 //38
 /obj/item/ammo_magazine/s38/spectral
@@ -60,7 +60,7 @@
 	caliber = ".44"
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/spectral/strong
-	matter = list(MAT_STEEL = 210)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.105))
 
 //The actual spectral bullet.
 /obj/item/projectile/bullet/spectral

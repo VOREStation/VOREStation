@@ -1,3 +1,4 @@
+// Not the material doors.
 /obj/machinery/door
 	name = "Door"
 	desc = "It opens and closes."
@@ -594,6 +595,11 @@
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
+
+/obj/machinery/door/get_rad_insulation()
+	if(!density) // An open door blocks no spicey light
+		return RAD_NO_INSULATION
+	. = ..()
 
 /obj/machinery/door/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()

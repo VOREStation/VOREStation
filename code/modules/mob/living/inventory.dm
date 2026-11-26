@@ -176,6 +176,7 @@
 		update_inv_active_hand()
 	return
 
+/* Disable abiotic lockout
 /mob/living/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )) || (src.back || src.wear_mask)))
 		return 1
@@ -183,12 +184,13 @@
 	if((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )))
 		return 1
 	return 0
+*/
 
 // This handles the drag-open inventory panel.
 /mob/living/MouseDrop(atom/over_object)
-	var/mob/living/L = over_object
-	if(L.is_incorporeal())
+	if(over_object?.is_incorporeal())
 		return
+	var/mob/living/L = over_object
 	if(istype(L) && L != src && L == usr && Adjacent(L))
 		show_inventory_panel(L)
 	. = ..()
@@ -281,7 +283,16 @@
 	data["slots"] = slots
 
 	data["internals"] = host.internals
-	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.back, /obj/item/tank)
+	var/internals_valid = FALSE
+	if(istype(host.wear_mask, /obj/item/clothing/mask))
+		if(istype(host.back, /obj/item/tank) || istype(host.l_hand, /obj/item/tank) || istype(host.r_hand, /obj/item/tank))
+			internals_valid = TRUE
+		else if(ishuman(host))
+			var/mob/living/carbon/human/human_host = host
+			if(istype(human_host.r_store, /obj/item/tank) || istype(human_host.l_store, /obj/item/tank) || istype(human_host.s_store, /obj/item/tank) || istype(human_host.belt, /obj/item/tank))
+				internals_valid = TRUE
+
+	data["internalsValid"] = internals_valid
 
 	return data
 

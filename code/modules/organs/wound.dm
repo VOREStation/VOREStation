@@ -375,7 +375,10 @@
 
 /datum/wound/lost_limb/New(obj/item/organ/external/lost_limb, losstype, clean)
 	var/damage_amt = lost_limb.max_damage
-	if(clean) damage_amt *= 0.25
+	if(clean)
+		damage_amt *= 0.10
+	else
+		damage_amt *= 0.25
 
 	switch(losstype)
 		if(DROPLIMB_EDGE, DROPLIMB_BLUNT)

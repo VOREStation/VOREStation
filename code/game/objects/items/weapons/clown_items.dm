@@ -8,9 +8,7 @@
 /*
  * Banana Peels
  */
-/obj/item/bananapeel/Crossed(atom/movable/AM as mob|obj)
-	if(AM.is_incorporeal())
-		return
-	if(isliving(AM))
-		var/mob/living/M = AM
-		M.slip("the [src.name]",4)
+
+// And with the slip refactor, the final define within this file dies.
+// A husk of what it used to be.
+// There's probably a few things that should be moved here (notably bikehorns), but that's out of my scope currently.

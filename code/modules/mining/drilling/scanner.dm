@@ -4,7 +4,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "deep_scan_device"
 	item_state = "electronic"
-	matter = list(MAT_STEEL = 150)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.075))
 	var/scan_time = 2 SECONDS
 	var/range = 2
 	var/exact = FALSE
@@ -107,7 +107,7 @@
 	name = "advanced ore detector"
 	desc = "An advanced device used to locate ore deep underground."
 	description_info = "This scanner has variable range, you can use the Set Scanner Range verb, or alt+click the device. Drills dig in 5x5."
-	matter = list(MAT_STEEL = 150)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.075))
 	scan_time = 0.5 SECONDS
 	exact = TRUE
 

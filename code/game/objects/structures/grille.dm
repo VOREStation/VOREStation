@@ -12,6 +12,12 @@
 	var/destroyed = FALSE
 
 
+/obj/structure/grille/examine(mob/user)
+	. = ..()
+	if(destroyed)
+		. += span_notice("This one's busted open..")
+
+
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
 

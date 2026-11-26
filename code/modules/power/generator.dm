@@ -222,6 +222,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["primary"]["inletTemperature"] = circ1.air1.temperature
 		data["primary"]["outletPressure"] = circ1.air2.return_pressure()
 		data["primary"]["outletTemperature"] = circ1.air2.temperature
+		data["primary"]["reversed"] = circ1.reverse_pipes
 
 	data["secondary"] = null
 	if(circ2)
@@ -234,8 +235,23 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		data["secondary"]["inletTemperature"] = circ2.air1.temperature
 		data["secondary"]["outletPressure"] = circ2.air2.return_pressure()
 		data["secondary"]["outletTemperature"] = circ2.air2.temperature
+		data["secondary"]["reversed"] = circ2.reverse_pipes
 
 	return data
+
+/obj/machinery/power/generator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("reverse_primary")
+			if(circ1)
+				circ1.reverse_circulator()
+			return TRUE
+		if("reverse_secondary")
+			if(circ2)
+				circ2.reverse_circulator()
+			return TRUE
 
 /obj/machinery/power/generator/power_change()
 	..()

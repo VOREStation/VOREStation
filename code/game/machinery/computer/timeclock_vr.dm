@@ -7,6 +7,7 @@
 //
 /obj/machinery/computer/timeclock
 	name = "timeclock terminal"
+	desc = "This device is connected to the employment servers, allowing you to clock in, or out, of your job. Slacker."
 	icon = 'icons/obj/machines/timeclock_vr.dmi'
 	icon_state = "timeclock"
 	icon_keyboard = null

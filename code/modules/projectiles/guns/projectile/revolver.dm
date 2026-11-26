@@ -191,7 +191,7 @@
  */
 /obj/item/gun/projectile/revolver/judge
 	name = "\"The Judge\""
-	desc = "A revolving hand-shotgun by Jindal Arms that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
+	desc = "A revolving hand-shotgun by Jindal Arms that packs the power of a 12 gauge in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
 	description_fluff = "While wholly owned by Hephaestus Industries, the Jindal Arms brand does not appear \
 	prominently in most company catalogues (Perhaps owing to its less than prestigious image), \
 	instead being sold almost exclusively through retailers and advertising platforms targeting the \

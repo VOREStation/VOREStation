@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
+import { RankIcon } from 'tgui/interfaces/common/RankIcon';
 import { Button, Icon, NoticeBox, Section, Stack } from 'tgui-core/components';
-
-import { RankIcon } from '../common/RankIcon';
 import type { Target } from './types';
 
 export const ModifyRobotNoModule = (props: { target: Target }) => {

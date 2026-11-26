@@ -22,7 +22,7 @@
 	id = "fireworkaesthetic"
 	// req_tech = list(TECH_MATERIAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 500, MAT_GLASS = 500)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.25), MAT_GLASS = MATERIAL_COST(0.25))
 	build_path = /obj/item/firework_star/aesthetic
 
 /datum/design_techweb/firework_star/aesthetic_config
@@ -31,7 +31,7 @@
 	id = "fireworkaestheticconfig"
 	// req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 1000, MAT_GLASS = 1000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(0.5), MAT_GLASS = MATERIAL_COST(0.5))
 	build_path = /obj/item/firework_star/aesthetic/configurable
 
 /datum/design_techweb/firework_star/weather_clear
@@ -40,7 +40,7 @@
 	id = "fireworkclearsky"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_STEEL = 4000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_STEEL = MATERIAL_COST(2))
 	build_path = /obj/item/firework_star/weather/clear
 
 /datum/design_techweb/firework_star/weather_overcast
@@ -49,7 +49,7 @@
 	id = "fireworkcloudy"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 1000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(0.5))
 	build_path = /obj/item/firework_star/weather/overcast
 
 /datum/design_techweb/firework_star/weather_fog
@@ -58,7 +58,7 @@
 	id = "fireworkfog"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1))
 	build_path = /obj/item/firework_star/weather/fog
 
 /datum/design_techweb/firework_star/weather_rain
@@ -67,7 +67,7 @@
 	id = "fireworkrain"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 4000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(2))
 	build_path = /obj/item/firework_star/weather/rain
 
 /datum/design_techweb/firework_star/weather_storm
@@ -76,7 +76,7 @@
 	id = "fireworkstorm"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_GOLD = 1000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1.5), MAT_GOLD = MATERIAL_COST(0.5))
 	build_path = /obj/item/firework_star/weather/storm
 
 /datum/design_techweb/firework_star/weather_light_snow
@@ -85,7 +85,7 @@
 	id = "fireworklightsnow"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_LEAD = 2000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1), MAT_LEAD = MATERIAL_COST(1))
 	build_path = /obj/item/firework_star/weather/light_snow
 
 /datum/design_techweb/firework_star/weather_snow
@@ -94,7 +94,7 @@
 	id = "fireworksnow"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 2000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1.5), MAT_LEAD = MATERIAL_COST(1))
 	build_path = /obj/item/firework_star/weather/snow
 
 /datum/design_techweb/firework_star/weather_blizzard
@@ -103,7 +103,7 @@
 	id = "fireworkblizzard"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 3000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1.5), MAT_LEAD = MATERIAL_COST(1.5))
 	build_path = /obj/item/firework_star/weather/blizzard
 
 /datum/design_techweb/firework_star/weather_hail
@@ -112,7 +112,7 @@
 	id = "fireworkhail"
 	// req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 3000, MAT_PLASTEEL = 4000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_SILVER = MATERIAL_COST(1.5), MAT_LEAD = MATERIAL_COST(1.5), MAT_PLASTEEL = MATERIAL_COST(2))
 	build_path = /obj/item/firework_star/weather/hail
 
 /datum/design_techweb/firework_star/weather_confetti
@@ -121,7 +121,7 @@
 	id = "fireworkconfetti"
 	// req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 10000, MAT_GLASS = 10000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(5), MAT_GLASS = MATERIAL_COST(5))
 	build_path = /obj/item/firework_star/weather/confetti
 
 /datum/design_techweb/firework_star/weather_fallout
@@ -130,5 +130,5 @@
 	id = "fireworkfallout"
 	// req_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 6, TECH_ILLEGAL = 7)
 	build_type = PROTOLATHE
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_URANIUM = 12000)
+	materials = list(MAT_PLASTIC = MATERIAL_COST(1), MAT_GLASS = MATERIAL_COST(1), MAT_URANIUM = MATERIAL_COST(6))
 	build_path = /obj/item/firework_star/weather/fallout

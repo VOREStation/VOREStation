@@ -1238,3 +1238,27 @@
 /obj/item/reagent_containers/food/snacks/acorn/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PEANUTBUTTER, 2) //Just to make it so people can be allergic to it without making a new reagent
+
+/obj/item/storage/box/marshmallow
+	name = "Marshmallow pack"
+	desc = "A pack of marshmallows!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "rhubarbcustard_pack"
+	max_storage_space = ITEMSIZE_COST_TINY * 15
+	can_hold = list(/obj/item/reagent_containers/food/snacks/marshmallow)
+	starts_with = list(
+		/obj/item/reagent_containers/food/snacks/marshmallow = 15,
+	)
+	foldable = FALSE
+
+/obj/item/storage/box/graham
+	name = "Graham cracker package"
+	desc = "A pack of graham crackers!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "pretzel"
+	max_storage_space = ITEMSIZE_COST_TINY * 15
+	can_hold = list(/obj/item/reagent_containers/food/snacks/graham)
+	starts_with = list(
+		/obj/item/reagent_containers/food/snacks/graham = 15,
+	)
+	foldable = FALSE

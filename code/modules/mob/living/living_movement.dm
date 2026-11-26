@@ -211,6 +211,7 @@ default behaviour is:
 
 // Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
 /mob/living/Crossed(atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+	. = ..()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 
@@ -270,6 +271,8 @@ default behaviour is:
 		pixel_y = default_pixel_y
 		layer = initial(layer)
 		plane = initial(plane)
+		how_tilted = 0
+		update_transform()
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
 		var/pull_dir = get_dir(src, pulling)
@@ -294,6 +297,8 @@ default behaviour is:
 
 	if(!isturf(loc))
 		return
+	else if(HAS_TRAIT(src, TRAIT_NO_GRAVITY))
+		inertial_drift()
 	else if(lastarea?.get_gravity() == 0)
 		inertial_drift()
 	else if(flying)

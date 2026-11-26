@@ -20,9 +20,6 @@
 	var/sex = "\[UNSET\]"
 	var/front
 
-	var/primary_color = rgb(0,0,0) // Obtained by eyedroppering the stripe in the middle of the card
-	var/secondary_color = rgb(0,0,0) // Likewise for the oval in the top-left corner
-
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
@@ -235,15 +232,11 @@
 	name = "identification card"
 	desc = "A card issued to station medical staff."
 	icon_state = "medical-id"
-	primary_color = rgb(189,237,237)
-	secondary_color = rgb(223,255,255)
 	rank = JOB_MEDICAL_DOCTOR
 
 /obj/item/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
-	primary_color = rgb(189,237,237)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_CHIEF_MEDICAL_OFFICER
 	rank = JOB_CHIEF_MEDICAL_OFFICER
 
@@ -251,8 +244,6 @@
 	name = "identification card"
 	desc = "A card issued to station security staff."
 	icon_state = "security-id"
-	primary_color = rgb(189,47,0)
-	secondary_color = rgb(223,127,95)
 	rank = JOB_SECURITY_OFFICER
 
 /obj/item/card/id/security/warden
@@ -262,8 +253,6 @@
 /obj/item/card/id/security/head
 	name = "identification card"
 	desc = "A card which represents honor and protection."
-	primary_color = rgb(189,47,0)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_HEAD_OF_SECURITY
 	rank = JOB_HEAD_OF_SECURITY
 
@@ -271,8 +260,6 @@
 	name = "identification card"
 	desc = "A card issued to station engineering staff."
 	icon_state = "engineering-id"
-	primary_color = rgb(189,94,0)
-	secondary_color = rgb(223,159,95)
 
 /obj/item/card/id/engineering/atmos
 	assignment = JOB_ATMOSPHERIC_TECHNICIAN
@@ -281,8 +268,6 @@
 /obj/item/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."
-	primary_color = rgb(189,94,0)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_CHIEF_ENGINEER
 	rank = JOB_CHIEF_ENGINEER
 
@@ -290,14 +275,10 @@
 	name = "identification card"
 	desc = "A card issued to station science staff."
 	icon_state = "science-id"
-	primary_color = rgb(142,47,142)
-	secondary_color = rgb(191,127,191)
 
 /obj/item/card/id/science/head
 	name = "identification card"
 	desc = "A card which represents knowledge and reasoning."
-	primary_color = rgb(142,47,142)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_RESEARCH_DIRECTOR
 	rank = JOB_RESEARCH_DIRECTOR
 
@@ -305,14 +286,10 @@
 	name = "identification card"
 	desc = "A card issued to station cargo staff."
 	icon_state = "cargo-id"
-	primary_color = rgb(142,94,0)
-	secondary_color = rgb(191,159,95)
 
 /obj/item/card/id/cargo/head
 	name = "identification card"
 	desc = "A card which represents service and planning."
-	primary_color = rgb(142,94,0)
-	secondary_color = rgb(255,223,127)
 	assignment = JOB_QUARTERMASTER
 	rank = JOB_QUARTERMASTER
 
@@ -324,23 +301,17 @@
 	name = "identification card"
 	desc = "A card issued to station civilian staff."
 	icon_state = "civilian-id"
-	primary_color = rgb(0,94,142)
-	secondary_color = rgb(95,159,191)
 	assignment = "Civilian"
 	rank = JOB_ALT_ASSISTANT
 
 /obj/item/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
 	name = "identification card"
 	desc = "A card which represents common sense and responsibility."
-	primary_color = rgb(0,94,142)
-	secondary_color = rgb(255,223,127)
 
 /obj/item/card/id/external
 	name = "identification card"
 	desc = "An identification card of some sort. It does not look like it is issued by NT."
 	icon_state = "generic"
-	primary_color = rgb(142,94,0)
-	secondary_color = rgb(191,159,95)
 
 //Event IDs
 /obj/item/card/id/event

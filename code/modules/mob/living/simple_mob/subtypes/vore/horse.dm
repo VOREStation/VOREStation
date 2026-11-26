@@ -122,6 +122,7 @@
 	maxHealth = 250
 	health = 250
 	meat_amount = 10
+	aquatic_movement = 1
 
 	old_x = -16
 	old_y = 0

@@ -318,12 +318,22 @@
 	LE.fire()
 
 /mob/living/carbon/human/LaserEyes(atom/A, params)
-	if(nutrition>0)
-		..()
-		nutrition = max(nutrition - rand(1,5),0)
-		handle_regular_hud_updates()
-	else
+	if(!nutrition)
 		to_chat(src, span_warning("You're out of energy!  You need food!"))
+		return
+	if(glasses && glasses.body_parts_covered & EYES)
+		var/obj/item/clothing/our_glasses = glasses
+		if(istype(our_glasses) && our_glasses.flash_protection > FLASH_PROTECTION_NONE)
+			to_chat(src, span_warning("Your glasses block your laser vision!"))
+			return
+	if(head && head.body_parts_covered & FACE)
+		var/obj/item/clothing/our_head = head
+		if(istype(our_head) && our_head.flash_protection > FLASH_PROTECTION_NONE)
+			to_chat(src, span_warning("Your helmet blocks your laser vision!"))
+			return
+	..()
+	nutrition = max(nutrition - 25,0)
+	handle_regular_hud_updates()
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/atom_to_face)

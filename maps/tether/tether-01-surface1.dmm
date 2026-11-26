@@ -11783,7 +11783,7 @@
 /area/tether/surfacebase/tram)
 "auD" = (
 /obj/machinery/door/blast/regular,
-/turf/simulated/wall,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
 "auE" = (
 /turf/simulated/wall,

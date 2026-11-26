@@ -11,12 +11,15 @@ export function rand(lo: number, hi: number): number {
 }
 
 // ── Trace status label + colour ───────────────────────────────────────────────
-export function getTraceStatus(t: number): { readonly label: string; readonly color: string } {
-  if (t < 30) return { label: 'SAFE',     color: '#33ff33' };
+export function getTraceStatus(t: number): {
+  readonly label: string;
+  readonly color: string;
+} {
+  if (t < 30) return { label: 'SAFE', color: '#33ff33' };
   if (t < 61) return { label: 'ELEVATED', color: '#ffff00' };
-  if (t < 81) return { label: 'DANGER',   color: '#ff8800' };
+  if (t < 81) return { label: 'DANGER', color: '#ff8800' };
   if (t < 100) return { label: 'CRITICAL', color: '#ff3333' };
-  return           { label: 'BURNED',    color: '#ff0000' };
+  return { label: 'BURNED', color: '#ff0000' };
 }
 
 // ── RAM slot count (base + GHOST bonus) ───────────────────────────────────────

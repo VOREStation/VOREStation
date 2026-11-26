@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { buildIconData } from '../common/TechWebRecipeIcon';
+import { buildIconData } from 'tgui/interfaces/common/TechWebRecipeIcon';
 import type { NodeCache, TechWebData } from './types';
 
 type Cost = {
@@ -67,7 +67,7 @@ function selectRemappedStaticData(data: TechWebData) {
       transform: transformValue
         ? `scale(${32 / transformValue},${32 / transformValue})`
         : undefined,
-      margin: `${offset > 0 ? offset : 0}px ${offset < 0 ? -offset : 0}px`,
+      margin: `${Math.max(offset, 0)}px ${Math.max(-offset, 0)}px`,
     };
   }
 

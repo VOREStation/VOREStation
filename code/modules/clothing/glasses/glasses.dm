@@ -155,6 +155,7 @@ BLIND     // can't see anything
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 	item_flags = AIRTIGHT
+	body_parts_covered = EYES
 
 /obj/item/clothing/glasses/science/Initialize(mapload)
 	. = ..()
@@ -385,7 +386,7 @@ BLIND     // can't see anything
 	icon_state = "welding-g"
 	item_state_slots = list(slot_r_hand_str = "welding-g", slot_l_hand_str = "welding-g")
 	actions_types = list(/datum/action/item_action/flip_welding_goggles)
-	matter = list(MAT_STEEL = 1500, MAT_GLASS = 1000)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.75), MAT_GLASS = MATERIAL_COST(0.5))
 	item_flags = AIRTIGHT
 	var/up = 0
 	flash_protection = FLASH_PROTECTION_MAJOR

@@ -44,7 +44,7 @@
 
 /datum/goal/common/grow_plants/New()
 	. = ..()
-	goal_count = rand(200,500)
+	goal_count = rand(100,300)
 	goal_text = "Crew should grow at least [goal_count] plants of any type to encourage hydroponics and kitchen crew productivity."
 
 /datum/goal/common/grow_plants/check_completion()
@@ -78,7 +78,7 @@
 
 /datum/goal/common/trashpiles/New()
 	. = ..()
-	goal_count = rand(40,200)
+	goal_count = rand(40,120)
 	goal_text = "Get that trash cleaned out of maintenance! Dig at least [goal_count] things out of the trashpiles in maintenance."
 	RegisterSignal(SSdcs,COMSIG_GLOB_TRASHPILE_SEARCHED,PROC_REF(handle_trash_searched))
 

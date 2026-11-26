@@ -73,7 +73,7 @@
 	for(var/datum/action/A as anything in I.actions)
 		A.Remove(src)
 
-	after_equip()
+	handle_removal(I)
 	update_icon()
 	if(shown_robot_modules)
 		hud_used.update_robot_modules_display()
@@ -102,6 +102,7 @@
 		for(var/datum/action/A as anything in I.actions)
 			A.Remove(src)
 		module_state_1:loc = module
+		handle_removal(module_state_1)
 		module_state_1 = null
 		inv1.icon_state = "inv1"
 		removed_any_module = TRUE
@@ -116,6 +117,7 @@
 			A.Remove(src)
 		contents -= module_state_2
 		module_state_2:loc = module
+		handle_removal(module_state_2)
 		module_state_2 = null
 		inv2.icon_state = "inv2"
 		removed_any_module = TRUE
@@ -130,11 +132,11 @@
 			A.Remove(src)
 		contents -= module_state_3
 		module_state_3:loc = module
+		handle_removal(module_state_3)
 		module_state_3 = null
 		inv3.icon_state = "inv3"
 		removed_any_module = TRUE
 
-	after_equip()
 	update_icon()
 
 	// Refresh inventory if needed
@@ -372,6 +374,20 @@
 		return
 	after_equip(O)
 
+/mob/living/silicon/robot/proc/handle_removal(obj/item/O)
+	if(istype(O, /obj/item/dogborg/sleeper)) //gross, fuck you diana! THAT does NOT Fucking work!
+		var/obj/item/dogborg/sleeper/our_compactor = O
+		if(our_compactor.ore_storage)
+			our_compactor.ore_bag.dropped(src)
+
+	if(!(sight_mode & BORGANOMALOUS))
+		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
+		if(pounce)
+			pounce.name = initial(pounce.name)
+			pounce.icon_state = initial(pounce.icon_state)
+			pounce.desc = initial(pounce.desc)
+			pounce.bluespace = initial(pounce.bluespace)
+
 /mob/living/silicon/robot/proc/after_equip(obj/item/O)
 	if(istype(O, /obj/item/gps))
 		var/obj/item/gps/tracker = O
@@ -381,23 +397,13 @@
 	if(istype(O, /obj/item/dogborg/sleeper)) //gross
 		var/obj/item/dogborg/sleeper/our_compactor = O
 		if(our_compactor.ore_storage)
-			if(O in get_all_held_items())
-				our_compactor.ore_bag.equipped(src)
-			else
-				our_compactor.ore_bag.dropped(src)
+			our_compactor.ore_bag.equipped(src)
 	if(sight_mode & BORGANOMALOUS)
 		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)
 			pounce.name = "bluespace pounce"
 			pounce.icon_state = "bluespace_pounce"
 			pounce.bluespace = TRUE
-	else
-		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
-		if(pounce)
-			pounce.name = initial(pounce.name)
-			pounce.icon_state = initial(pounce.icon_state)
-			pounce.desc = initial(pounce.desc)
-			pounce.bluespace = initial(pounce.bluespace)
 	if(O)
 		for(var/datum/action/A as anything in O.actions)
 			A.Grant(src)

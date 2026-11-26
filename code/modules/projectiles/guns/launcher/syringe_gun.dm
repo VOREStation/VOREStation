@@ -4,7 +4,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "syringe-cartridge"
 	var/icon_flight = "syringe-cartridge-flight" //so it doesn't look so weird when shot
-	matter = list(MAT_STEEL = 125, MAT_GLASS = 375)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.0625), MAT_GLASS = MATERIAL_COST(0.1875))
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 3
 	force = 3
@@ -76,7 +76,7 @@
 	item_state = "syringegun"
 	w_class = ITEMSIZE_NORMAL
 	force = 7
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 
 	fire_sound = 'sound/weapons/empty.ogg'

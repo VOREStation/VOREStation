@@ -39,8 +39,8 @@
 			else
 				. += span_info("This tesla coil will increase any power it produces by [(input_power_multiplier - 1) * 100]%.")
 		if(!power_calculated || lossy_transfer)
-			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next.
-				. += span_warning("This tesla coil will relay power with a [(1/power_loss) * 100]% loss.")
+			if(power_loss != 1) //If set to 1, we don't lose power upon shooting the next. if set above 1, it reduces efficiency accordingly as a multiplier.
+				. += span_warning("This tesla coil will relay power with [(1/power_loss) * 100]% efficiency.")
 
 		if(zap_range)
 			. += span_info("This tesla coil produces bolts that will reach out [zap_range] tiles.")
@@ -50,10 +50,10 @@
 /obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	set_wires(new /datum/wires/tesla_coil(src))
-
-/obj/machinery/power/tesla_coil/Initialize(mapload)
-	. = ..()
 	default_apply_parts()
+	if(anchored)
+		connect_to_network()
+	update_icon()
 
 /obj/machinery/power/tesla_coil/Destroy()
 	QDEL_NULL(wires)
@@ -93,6 +93,7 @@
 		"Amplifier",
 		"Recaster",
 		"Collector",
+		"Researcher",
 		)
 
 		var/modification_decision = tgui_input_list(user, "Which tesla do you wish to change it into?", "Tesla Selection", menu_list)
@@ -118,6 +119,8 @@
 				new_coil = new /obj/machinery/power/tesla_coil/recaster(turf)
 			if("Collector")
 				new_coil = new /obj/machinery/power/tesla_coil/collector(turf)
+			if("Researcher")
+				new_coil = new /obj/machinery/power/tesla_coil/research(turf)
 			else //Should never happen.
 				return
 
@@ -176,11 +179,7 @@
 	desc = "Designed to move power around rather. Creates no power on its own."
 	icon_state = "relay0"
 	icontype = "relay"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
 	power_loss = 1
-
 	var/relay_efficiency = 0.9
 
 /obj/machinery/power/tesla_coil/relay/RefreshParts()
@@ -207,17 +206,58 @@
 		else
 			. += span_info("This tesla coil will [relay_efficiency > 1 ? "amplify" : "reduce"] power transferring through it by [ abs(relay_efficiency - 1) * 100]%.")
 
+#define CORONA_LOSS_FACTOR 10
+#define CORONA_POWER_JUDGEMENT 100 KILOWATTS
+//Multiply the above together. That's how much energy one of these has to get in order to produce a research point.
+
+// Tesla R&D researcher
+// This sacrifices power generation for R&D point generation. Since amplification is a thing, the celing for getting a result is very high to reach.
+/obj/machinery/power/tesla_coil/research
+	name = "tesla corona analyzer"
+	desc = "A modified tesla coil used to study the effects of Edison's Bane for research."
+	icon_state = "rpcoil0"
+	icontype = "rpcoil"
+	power_loss = CORONA_LOSS_FACTOR					// default 10 aka a 10% efficiency for powernet input.
+	zap_range = 1									// power leakage allows for a very short range jump but inherits the default efficiency for said zap.
+	var/power_judgement = CORONA_POWER_JUDGEMENT	// avoids cheese by setting a minimum threshold for power generation
+	var/last_shock_value = 0						// used for examine
+	var/datum/techweb/linked_techweb				// R&D server to contribute points to
+
+/obj/machinery/power/tesla_coil/research/Initialize(mapload)
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/tesla_coil/research/LateInitialize()
+	if(!linked_techweb)
+		CONNECT_TO_RND_SERVER_ROUNDSTART(linked_techweb, src)
+
+/obj/machinery/power/tesla_coil/research/coil_act(power, zap_flags, current_jumps)
+	var/power_produced = power / power_loss
+	add_avail(power_produced*input_power_multiplier)	//allow for upgrades to actually be useful.
+	last_shock_value = power_produced
+	flick("[icontype]hit", src)
+	if(powernet && (power_produced >= power_judgement) && linked_techweb)// must have a hard connection to the powergrid
+		for(var/obj/machinery/power/smes/S in powernet.nodes)	//and a SMES unit for the full power grid experience. No running it in your basement or without proper wiring
+			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_GENERIC, 1)
+			break
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	tesla_zap(src, zap_range, power_produced, current_jumps = current_jumps)
+
+/obj/machinery/power/tesla_coil/research/examine(mob/user)
+	. = ..()
+	. += span_notice("This corona analyzer has [(last_shock_value >= power_judgement) ? "sufficent power output to produce additional research data points" : "insufficent power output for electrical corona analysis"].")
+	. += span_info("Will require a strike of at least [power_judgement / 1000]KW to produce research data points. Last strike was: [round(last_shock_value / 1000)]KW.")
+
+#undef CORONA_POWER_JUDGEMENT
+#undef CORONA_LOSS_FACTOR
+
 /obj/machinery/power/tesla_coil/splitter
 	name = "tesla prism coil"
 	desc = "Acts as a multi-target distributor."
 	icon_state = "prism0"
 	icontype = "prism"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
 	power_loss = 2
 	lossy_transfer = FALSE
-
 	var/split_count = 1
 
 /obj/machinery/power/tesla_coil/splitter/RefreshParts()
@@ -245,9 +285,6 @@
 	desc = "Designed to amplify power moving through it rather than collecting it. Has diminishing returns the more relays the tesla bolt has passed through."
 	icon_state = "amp0"
 	icontype = "amp"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
 	var/amp_eff = 1.075
 	power_loss = 1
 
@@ -272,7 +309,7 @@
 	if(Adjacent(user))
 		. += span_info("This tesla coil will amplify any power it receives by [round((((amp_eff) * 100) - 100), 0.1)]% of the original power when relaying it.")
 		. += span_info("Every jump the tesla makes reduces the effectiveness of the amplifier by 10%, meaning at 10 jumps, it stops increasing power.")
-		. += span_danger("This tesla coil will NOT produce produce energy.")
+		. += span_danger("This tesla coil will NOT produce energy.")
 
 
 ///BE WARNED, THIS THING CAN CAUSE MASSIVE LAG IF THE RANGE IS TOO HIGH
@@ -281,9 +318,6 @@
 	desc = "Extends the reach of the bolts."
 	icon_state = "recaster0"
 	icontype = "recaster"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
 	zap_range = 6
 
 /obj/machinery/power/tesla_coil/recaster/RefreshParts()
@@ -305,11 +339,7 @@
 	desc = "Highly efficient power collection. Does not arc."
 	icon_state = "collector0"
 	icontype = "collector"
-
-	circuit = /obj/item/circuitboard/tesla_coil
-
 	power_loss = 1 //Doesn't lose power. Instead it uses collect_eff
-
 	zap_range = 0
 
 /obj/machinery/power/tesla_coil/collector/RefreshParts()
@@ -375,57 +405,25 @@
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
-
 /obj/machinery/power/tesla_coil/relay/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/tesla_coil/relay/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 /obj/machinery/power/tesla_coil/splitter/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/splitter/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
-
 /obj/machinery/power/tesla_coil/amplifier/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/tesla_coil/amplifier/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 /obj/machinery/power/tesla_coil/recaster/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/recaster/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
-
 /obj/machinery/power/tesla_coil/collector/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/collector/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
+/obj/machinery/power/tesla_coil/research/pre_mapped
+	anchored = TRUE
 
 /obj/machinery/power/grounding_rod/pre_mapped
 	anchored = TRUE
-
-/obj/machinery/power/grounding_rod/pre_mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
-	update_icon()
 
 #undef AMPLIFIER_STRENGTH

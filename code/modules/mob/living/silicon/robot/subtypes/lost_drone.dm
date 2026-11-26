@@ -184,8 +184,8 @@
 							target_name = L.name
 							break
 
-							laws.set_zeroth_law("[target_name] is your master.")
-							return laws
+						laws.set_zeroth_law("[target_name] is your master.")
+						return laws
 			if("neutral")
 				var/rng = rand(1,3)
 				switch(rng)

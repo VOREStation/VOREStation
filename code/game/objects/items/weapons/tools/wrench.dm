@@ -10,7 +10,7 @@
 	force = 6
 	throwforce = 7
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 150)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.075))
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	usesound = 'sound/items/ratchet.ogg'
 	toolspeed = 1

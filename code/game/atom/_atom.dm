@@ -318,6 +318,10 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	return
 
+///Handle the atom being slipped over.
+/atom/proc/handle_slip(mob/living/M, weaken_amount, obj/slipped_on, lube, slip_dist = 0, stun_amount, force_drop)
+	return
+
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
 
@@ -364,6 +368,10 @@
 		return 1
 	else
 		return 0
+
+/// Allows for conditional situations where an atom has more or less rad resistance depending on its state.
+/atom/proc/get_rad_insulation()
+	return rad_insulation
 
 // Show a message to all mobs and objects in sight of this atom
 // Use for objects performing visible actions

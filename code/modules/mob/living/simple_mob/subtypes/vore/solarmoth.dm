@@ -72,6 +72,9 @@
 
 	glow_override = TRUE
 
+	export_research_value = TECHWEB_TIER_2_POINTS
+	export_research_diminished_max = 4
+
 /datum/say_list/solarmoth
 	emote_see = list("flutters")
 

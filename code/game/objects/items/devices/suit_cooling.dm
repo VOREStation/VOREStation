@@ -14,7 +14,7 @@
 	throw_range = 4
 	actions_types = list(/datum/action/item_action/toggle_heatsink)
 
-	matter = list(MAT_STEEL = 15000, MAT_GLASS = 3500)
+	matter = list(MAT_STEEL = MATERIAL_COST(7.5), MAT_GLASS = MATERIAL_COST(1.75))
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
@@ -210,22 +210,22 @@
 
 		if (on)
 			if (attached_to_suit(src.loc))
-				. += "It's switched on and running."
+				. += ("It's switched on and running.")
 			else
-				. += "It's switched on, but not attached to anything."
+				. += ("It's switched on, but not attached to anything.")
 		else
-			. += "It is switched off."
+			. += ("It is switched off.")
 
 		if (cover_open)
 			if(cell)
-				. += "The panel is open, exposing the [cell]."
+				. += span_notice("The panel is open, exposing the [cell].")
 			else
-				. += "The panel is open."
+				. += span_notice("The panel is open.")
 
 		if (cell)
-			. += "The charge meter reads [round(cell.percent())]%."
+			. += span_notice("The charge meter reads [round(cell.percent())]%.")
 		else
-			. += "It doesn't have a power cell installed."
+			. += span_notice("It doesn't have a power cell installed.")
 
 /obj/item/suit_cooling_unit/emergency
 	icon_state = "esuitcooler"

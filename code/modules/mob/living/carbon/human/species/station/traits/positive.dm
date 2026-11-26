@@ -311,15 +311,6 @@
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
-/datum/trait/positive/trauma_tolerance
-	name = "Grit"
-	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
-	cost = 2
-	var_changes = list("trauma_mod" = 0.85)
-	excludes = list(/datum/trait/negative/neural_hypersensitivity)
-	can_take = ORGANICS
-	custom_only = FALSE
-
 /datum/trait/positive/throw_resistance
 	name = "Firm Body"
 	desc = "Your body is firm enough that small thrown items can't do anything to you."
@@ -487,15 +478,6 @@
 	allowed_species = list(SPECIES_XENOCHIMERA)
 	name = "Xenochimera: Weaver"
 	desc = "You've evolved your body to produce silk that you can fashion into articles of clothing and other objects."
-	cost = 0
-	category = 0
-	custom_only = FALSE
-
-/datum/trait/positive/hardfeet/xenochimera
-	sort = TRAIT_SORT_SPECIES
-	allowed_species = list(SPECIES_XENOCHIMERA)
-	name = "Xenochimera: Hard Feet"
-	desc = "Your body has adapted to make your feet immune to glass shards, whether by developing hooves, chitin, or just horrible callous."
 	cost = 0
 	category = 0
 	custom_only = FALSE
@@ -803,17 +785,24 @@
 
 /datum/trait/positive/pain_tolerance
 	name = "Pain Tolerance"
-	desc = "You are noticeably more resistant to pain than most, and experience 20% less pain from all sources."
+	desc = "You are moderately more resistant to pain than most, and experience 20% less pain from all sources."
 	cost = 2
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.8)
 
 /datum/trait/positive/pain_tolerance_advanced // High Pain Intolerance is 50% incoming pain, but this is 40% reduced incoming pain.
 	name = "Pain Tolerance, Major"
-	desc = "You are extremely resistant to pain sources, and experience 40% less pain from all sources."
-	cost = 3 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
+	desc = "You are noticably resistant to pain sources, and experience 40% less pain from all sources."
+	cost = 3
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.6)
+
+/datum/trait/positive/pain_tolerance_extreme // Essentialy the inverse of Neural Hypersensitivity
+	name = "Pain Tolerance, Extreme"
+	desc = "You are extremely resistant to pain sources, and experience 50% less pain from all sources."
+	cost = 4
+	custom_only = FALSE
+	var_changes = list("pain_mod" = 0.50)
 
 /datum/trait/positive/improved_biocompat
 	name = "Improved Biocompatibility"
@@ -834,6 +823,24 @@
 	cost = 3
 	var_changes = list("item_slowdown_mod" = 0.0)
 	excludes = list(/datum/trait/positive/speed_fast,/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
+
+/datum/trait/positive/hardy_weakspecies
+	name = "Unusually Hardy"
+	desc = "In spite of the standards of your specie, you've somehow managed to raise your strength to levels comparable with the human, or skrell baseline. You carry heavy equipment with no particular slowdown."
+	cost = 4 // Expensive!
+	var_changes = list("item_slowdown_mod" = 1)
+	custom_only = FALSE
+	allowed_species = list(SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
+	excludes = list(/datum/trait/positive/hardy_major_weakspecies)
+
+/datum/trait/positive/hardy_major_weakspecies
+	name = "Unusually Hardy, Major"
+	desc = "In the distant past, you'd have gotten a great shot at being a powerful soldier, or warlord. Now? You could probably make it into the interstellar olympics. You carry heavy equipment with less slowdown than the rest of your specie."
+	cost = 7 // Very expensive! You must reallllly want that!
+	var_changes = list("item_slowdown_mod" = 0.7)
+	custom_only = FALSE
+	allowed_species = list( SPECIES_SHADEKIN_CREW, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_TESHARI) // The slowed down species.
+	excludes = list(/datum/trait/positive/hardy_weakspecies)
 
 /datum/trait/positive/bloodsucker_plus
 	name = "Evolved Bloodsucker"
@@ -959,3 +966,37 @@
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/innate_shapeshifting)
 	add_verb(H, /mob/living/proc/name_change_verb)
+
+/datum/trait/positive/scavenger
+	name ="Scavenger"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster!"
+	cost = 0
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger_expert)
+
+/datum/trait/positive/scavenger/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/scavenger_expert
+	name ="Scavenger Expert"
+	desc = "You have an eye for sorting the wheat from the chaff. You search and find things faster! And not only that, you can occassionally find extras!"
+	cost = 2
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/scavenger)
+
+/datum/trait/positive/scavenger_expert/apply(datum/species/S,mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_SCAVENGER_EXPERT, ROUNDSTART_TRAIT)
+
+/datum/trait/positive/leap
+	name = "Leaper"
+	desc = "You have powerful legs, allowing you to do a short leap."
+	cost = 3
+	custom_only = FALSE
+	banned_species = list(SPECIES_TESHARI, SPECIES_TAJARAN) // These two are natural leapers
+
+/datum/trait/positive/leap/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	var/datum/action/cooldown/mob_cooldown/leap/jump = new()
+	jump.Grant(H)

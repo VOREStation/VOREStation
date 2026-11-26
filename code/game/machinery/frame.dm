@@ -183,6 +183,15 @@ GLOBAL_LIST(construction_frame_floor)
 	x_offset = 30
 	y_offset = 30
 
+/datum/frame/frame_types/mat_production_console
+	name = "mining machine console"
+	icon_override = 'icons/obj/stock_parts_vr.dmi'
+	frame_class = FRAME_CLASS_DISPLAY
+	frame_size = 2
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 32
+	y_offset = 32
+
 /datum/frame/frame_types/intercom
 	name = "Intercom"
 	frame_class = FRAME_CLASS_ALARM
@@ -298,6 +307,7 @@ GLOBAL_LIST(construction_frame_floor)
 /obj/structure/frame
 	anchored = FALSE
 	name = "frame"
+	desc = "This could become anything. Any sort of machine, as long as you have the parts."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
 	flags = WALL_ITEM
@@ -318,7 +328,10 @@ GLOBAL_LIST(construction_frame_floor)
 /obj/structure/frame/examine(mob/user)
 	. = ..()
 	if(circuit)
-		. += "It has \a [circuit] installed."
+		. += span_notice("It has \a [circuit] installed.")
+	if(anchored)
+		. += span_notice("It is anchored.")
+
 
 /obj/structure/frame/proc/update_desc()
 	var/D

@@ -63,6 +63,8 @@
 
 #define STANCES_COMBAT      list(STANCE_ALERT, STANCE_APPROACH, STANCE_FIGHT, STANCE_BLINDFIGHT, STANCE_REPOSITION)
 
+#define TILT_INCAPACITATED_WAITTIME (3 SECONDS)
+
 #define LEFT  0x1
 #define RIGHT 0x2
 #define UNDER 0x4
@@ -187,6 +189,12 @@
 #define INCAPACITATION_KNOCKDOWN (INCAPACITATION_KNOCKOUT|INCAPACITATION_FORCELYING)
 #define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_ALL (~INCAPACITATION_NONE)
+
+#define NO_SLIP_WHEN_WALKING	(1<<0)	// Water mostly. Dont slip over when walking over it.
+#define SLIDE_RECURSIVE			(1<<1)	// Slip_distance gets re-applied when sliding over another slippery component of this tier.
+#define PUZZLE_ICE				(1<<2)	// Specific slips that cant be countered most of the time.
+#define GALOSHES_DONT_HELP		(1<<3)	// Lube. Requires stronger anti-slip to stop slipping.
+#define SLIP_WHEN_CRAWLING		(1<<4)
 
 #define MODIFIER_STACK_FORBID	1	// Disallows stacking entirely.
 #define MODIFIER_STACK_EXTEND	2	// Disallows a second instance, but will extend the first instance if possible.

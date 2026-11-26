@@ -9,6 +9,7 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
+	description_antag = "An emag could give you full access."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	anchored = TRUE

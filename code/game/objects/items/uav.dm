@@ -233,6 +233,11 @@
 			return TRUE
 	return FALSE
 
+/obj/item/uav/can_fall()
+	if(ion_trail.on)
+		return FALSE
+	. = ..()
+
 /obj/item/uav/proc/power_up()
 	if(state != UAV_OFF || !isturf(loc))
 		return
@@ -259,6 +264,8 @@
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	visible_message(span_notice("[nickname] gracefully settles onto the ground."))
+	if(isopenspace(loc))
+		fall()
 
 //////////////// Helpers
 /obj/item/uav/get_cell()

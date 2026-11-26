@@ -1,7 +1,6 @@
+import { modalOpen } from 'tgui/interfaces/common/ComplexModal';
 import { Box, Button, LabeledList } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
-import { modalOpen } from '../common/ComplexModal';
 
 export const ChemMasterProductionChemical = (props: {
   pillsprite: string;

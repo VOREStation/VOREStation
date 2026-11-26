@@ -6,7 +6,7 @@
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
 
-	matter = list(MAT_STEEL = 60,MAT_GLASS = 30)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.03),MAT_GLASS = MATERIAL_COST(0.015))
 
 	var/emagged = 0.0
 	var/recording = 0.0
@@ -166,6 +166,8 @@
 		//count seconds until full, or recording is stopped
 		while(mytape && recording && mytape.used_capacity < mytape.max_capacity)
 			sleep(10)
+			if(!mytape)
+				break
 			mytape.used_capacity++
 			if(mytape.used_capacity >= mytape.max_capacity)
 				if(ismob(loc))
@@ -370,7 +372,7 @@
 	icon_state = "tape_white"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_TINY
-	matter = list(MAT_STEEL=20, MAT_GLASS=5)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.01), MAT_GLASS = MATERIAL_COST(0.0025))
 	force = 1
 	throwforce = 0
 	var/max_capacity = 1800

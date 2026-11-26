@@ -14,13 +14,13 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.event.repository.default_branch }}
 
       - name: Generate App Token
         id: app-token-generation
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@v3.4.0
         if: env.APP_PRIVATE_KEY != '' && env.APP_CLIENT_ID != ''
         with:
           client-id: ${{ secrets.APP_CLIENT_ID }}

@@ -26,3 +26,12 @@
 				"volchannel" = VOLUME_CHANNEL_SPECIES_SOUNDS
 			)
 	return ..()
+
+/datum/decl/emote/audible/sneeze/do_extra(atom/user, atom/target)
+	if(ishuman(user) && HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10))
+		var/mob/living/carbon/human/human = user
+		if(human.glasses)
+			var/obj/item/glasses = human.glasses
+			human.unEquip(glasses, FALSE, get_step(human, human.dir))
+			glasses.throw_at(get_step(human, human.dir), 10, 10)
+			human.visible_message(span_notice("[human]'s [glasses] go flying after a sneeze!"), span_danger("Your [glasses] go flying!"))

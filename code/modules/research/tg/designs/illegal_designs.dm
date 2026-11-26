@@ -4,7 +4,7 @@
 	id = "binaryencrypt"
 	// req_tech = list(TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 300, MAT_GLASS = 300)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.15), MAT_GLASS = MATERIAL_COST(0.15))
 	build_path = /obj/item/encryptionkey/binary
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -18,7 +18,7 @@
 	id = "chameleon"
 	// req_tech = list(TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25))
 	build_path = /obj/item/storage/box/syndie_kit/chameleon
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -32,7 +32,7 @@
 	id = "clerical"
 	// req_tech = list(TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 500)
+	materials = list(MAT_STEEL = MATERIAL_COST(0.25))
 	build_path = /obj/item/storage/box/syndie_kit/clerical
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -45,7 +45,7 @@
 	id = "bodysnatcher"
 	// req_tech = list(TECH_MAGNET = 3, TECH_BIO = 3, TECH_ILLEGAL = 2)
 	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_URANIUM = 2000)
+	materials = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(2), MAT_URANIUM = MATERIAL_COST(1))
 	build_path = /obj/item/bodysnatcher
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -58,7 +58,7 @@
 	desc = "Dance my monkeys! DANCE!!!"
 	id = "electropack"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(MAT_STEEL = 12500, MAT_GLASS = 3125)
+	materials = list(MAT_STEEL = MATERIAL_COST(6.25), MAT_GLASS = MATERIAL_COST(1.5625))
 	build_path = /obj/item/radio/electropack
 	category = list(
 		RND_CATEGORY_HACKED,

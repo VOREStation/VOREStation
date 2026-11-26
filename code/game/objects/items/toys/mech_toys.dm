@@ -460,7 +460,7 @@
 	icon_state = "ripleytoy"
 
 /obj/random/mech_toy/item_to_spawn()
-	return pick(typesof(/obj/item/toy/mecha))
+	return pick(subtypesof(/obj/item/toy/mecha))
 
 /obj/item/toy/mecha/ripley
 	name = "toy ripley"

@@ -337,8 +337,15 @@
 	else if(!M.capture_crystal || M.capture_caught)
 		to_chat(U, span_warning("This creature is not suitable for capture."))
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-	else if(tgui_alert(M, "Would you like to be caught by in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
-		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No","Yes")) == "Yes")
+	//What if someone slips and tries to capture themselves?
+	else if(M == U && tgui_alert(M, "Would you like to be caught by [src]? You will be bound to the will of whomever claims ownership of the crystal.", "Become Caught",list("No","Yes")) == "Yes")
+		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No", "Yes")) == "Yes")
+			log_admin("[key_name(M)] has, by their own volition and discretion, decided to catch themselves with [src].")
+			capture(M, null)
+			return
+	//Make sure the player can opt out of getting captured
+	else if(M != U && tgui_alert(M, "Would you like to be caught in [src] by [U]? You will be bound to their will.", "Become Caught",list("No", "Yes")) == "Yes")
+		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No", "Yes")) == "Yes")
 			log_admin("[key_name(M)] has agreed to become caught by [key_name(U)].")
 			capture(M, U)
 			recall(U)

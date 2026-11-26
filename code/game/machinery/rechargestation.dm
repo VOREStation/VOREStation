@@ -1,6 +1,6 @@
 /obj/machinery/recharge_station
 	name = "cyborg recharging station"
-	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
+	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves. Despite the name, it can also be used by synthmorphs."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
 	density = TRUE
@@ -143,7 +143,7 @@
 
 /obj/machinery/recharge_station/examine(mob/user)
 	. = ..()
-	. += "The charge meter reads: [round(chargepercentage())]%"
+	. += span_notice("The charge meter reads: [round(chargepercentage())]%")
 
 /obj/machinery/recharge_station/proc/chargepercentage()
 	if(!cell)

@@ -149,7 +149,8 @@
 		M.can_pull_size = 0
 	else //Just unbuckled someone
 		M.can_pull_size = initial(M.can_pull_size)
-		qdel(src)
+		if(!QDELETED(src)) // Prevent a Qdel loop in situations where the net is deleted by ex_act or other means, and the mob unbuckles itself, only to call post_buckle_mob and try to delete it again.
+			qdel(src)
 
 /obj/item/energy_net/shrink
 	name = "compactor energy net"

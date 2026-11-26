@@ -1,6 +1,7 @@
 
 /obj/item/mecha_parts/component/electrical
 	name = "mecha electrical harness"
+	desc = "The sum of capacitors, switches, resistors, sensors, cabling and ports that make everything talk to everything else inside the mech."
 	icon = 'icons/mecha/mech_component.dmi'
 	icon_state = "board"
 	w_class = ITEMSIZE_HUGE
@@ -22,7 +23,7 @@
 
 /obj/item/mecha_parts/component/electrical/high_current
 	name = "efficient mecha electrical harness"
-
+	desc = "The sum of capacitors, switches, resistors, sensors, cabling and ports that make everything talk to everything else inside the mech. This one stripped most of the passive capacitors aimed at stabilizing the system in the event of a surge, in exchange for faster charging, and a smaller size."
 	emp_resistance = 0
 	max_integrity = 30
 

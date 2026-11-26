@@ -455,6 +455,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 // Format a power value in W, kW, MW, or GW.
 /proc/DisplayPower(powerused)
+	if(powerused <= 0)	//no negative numbers, please.
+		return "0 W"
 	if(powerused < 1000) //Less than a kW
 		return "[powerused] W"
 	else if(powerused < 1000000) //Less than a MW
@@ -1646,3 +1648,7 @@ GLOBAL_DATUM(dview_mob, /mob/dview)
 		c_dist++
 
 	return atom_list
+
+/// Orders cameras by their `c_tag` ascending
+/proc/cmp_camera_ctag_asc(obj/machinery/camera/a, obj/machinery/camera/b)
+	return sorttext(b.c_tag, a.c_tag)

@@ -8,9 +8,9 @@ import { FONTS_DISABLED } from './constants';
 import { setClientTheme } from './themes';
 import type { SettingsState } from './types';
 
-let statFontTimer: NodeJS.Timeout;
-let statTabsTimer: NodeJS.Timeout;
-let overrideRule: HTMLStyleElement;
+let statFontTimer: ReturnType<typeof setTimeout> | undefined;
+let statTabsTimer: ReturnType<typeof setTimeout> | undefined;
+let overrideRule: HTMLStyleElement | undefined;
 let overrideFontFamily: string | undefined;
 let overrideFontSize: string;
 
@@ -32,7 +32,7 @@ function updateGlobalOverrideRule(): void {
   }
 
   // no other way to force a CSS refresh other than to update its innerText
-  overrideRule.innerText = constructedRule;
+  overrideRule.textContent = constructedRule;
 
   document.body.style.setProperty('font-size', overrideFontSize);
 }

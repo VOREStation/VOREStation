@@ -13,6 +13,9 @@
 			// else if(whatever) //Next test here.
 			else
 				for(var/obj/belly/B as anything in host.vore_organs)
+					// Allow us to lowercase rename
+					if(B == host.vore_selected)
+						continue
 					if(lowertext(new_name) == lowertext(B.name))
 						failure_msg = "No duplicate belly names, please."
 						break
@@ -45,6 +48,12 @@
 
 			host.vore_selected.digest_mode = new_mode
 			host.vore_selected.updateVRPanels()
+			. = TRUE
+		if("b_types")
+			var/toggle_type = params["val"]
+			if(!(toggle_type in GLOB.vore_pref_types))
+				return FALSE
+			host.vore_selected.vore_pref_type_flags ^= GLOB.vore_pref_types[toggle_type]
 			. = TRUE
 		if("b_addons")
 			var/toggle_addon = params["val"]
@@ -810,6 +819,12 @@
 			. = TRUE
 		if("b_disable_hud")
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
+			if(host.vore_selected.disable_hud)
+				for(var/mob/living/living_prey in host.vore_selected.contents)
+					host.vore_selected.check_hud_disable(living_prey)
+			else
+				for(var/mob/living/living_prey in host.vore_selected.contents)
+					host.vore_selected.check_hud_enable(living_prey)
 			. = TRUE
 		if("b_colorization_enabled") //ALLOWS COLORIZATION.
 			host.vore_selected.colorization_enabled = !host.vore_selected.colorization_enabled
@@ -873,15 +888,15 @@
 					failure_msg += "This is the destiantion for at least '[dest_for]' secondary belly transfers. Remove it as the destination from any bellies before deleting it. "
 					break
 
-			if(host.vore_selected.contents.len)
+			if(length(host.vore_selected.contents))
 				failure_msg += "You cannot delete bellies with contents! " //These end with spaces, to be nice looking. Make sure you do the same.
 			if(host.vore_selected.immutable)
 				failure_msg += "This belly is marked as undeletable. "
-			if(host.vore_organs.len == 1)
+			if(length(host.vore_organs) == 1)
 				failure_msg += "You must have at least one belly. "
 
 			if(failure_msg)
-				tgui_alert_async(user,failure_msg,"Error!")
+				tgui_alert_async(user, failure_msg, "Error!")
 				return FALSE
 
 			if(host.soulgem?.linked_belly == host.vore_selected)

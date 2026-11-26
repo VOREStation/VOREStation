@@ -17,7 +17,7 @@ GLOBAL_LIST(global_map)
 // Noises made when hit while typing.
 GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
 
-GLOBAL_VAR_INIT(game_year, (text2num(time2text(world.realtime, "YYYY")) + 300))
+GLOBAL_VAR_INIT(game_year, (text2num(time2text(world.realtime, "YYYY")) + STATION_YEAR_OFFSET))
 GLOBAL_VAR_INIT(round_progressing, TRUE)
 
 GLOBAL_VAR_INIT(master_mode, "extended") // "extended"

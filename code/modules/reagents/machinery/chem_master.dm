@@ -11,8 +11,8 @@
 	idle_power_usage = 20
 	var/obj/item/reagent_containers/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
-	var/mode = 0
-	var/condi = 0
+	var/mode = FALSE				//beaker or disposal transfer
+	var/condi = FALSE				//condimaster ?
 	var/useramount = 15 // Last used amount
 	var/pillamount = 10
 	var/list/bottle_styles
@@ -26,7 +26,7 @@
 /obj/machinery/chem_master/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
-	var/datum/reagents/R = new/datum/reagents(900)	//Just a huge random number so the buffer should (probably) never dump your reagents.
+	var/datum/reagents/R = new/datum/reagents(300)	//Exactly one bluespace beaker worth of buffer.
 	reagents = R	//There should be a nano ui thingy to warn of this.
 	R.my_atom = src
 
@@ -44,37 +44,78 @@
 	icon_state = "mixer[beaker ? "1" : "0"]"
 
 /obj/machinery/chem_master/attackby(obj/item/B as obj, mob/user as mob)
-
-	if(istype(B, /obj/item/reagent_containers/glass) || istype(B, /obj/item/reagent_containers/food))
-
-		if(src.beaker)
-			to_chat(user, "\A [beaker] is already loaded into the machine.")
-			return
-		src.beaker = B
-		user.drop_item()
-		B.loc = src
-		to_chat(user, "You add \the [B] to the machine.")
+	if(condi && istype(B, /obj/item/reagent_containers/food))
+		if(!beaker)
+			if(user && Adjacent(user))
+				user.drop_from_inventory(B, src)
+		else
+			beaker.forceMove(drop_location())
+			if(user && Adjacent(user))
+				user.drop_from_inventory(B, src)
+				user.put_in_hands(beaker)
+		to_chat(user, span_notice("You add \the [B] into the receptical [beaker ? "and swap out [beaker]" : ""]."))
+		beaker = B
 		update_icon()
+		return TRUE
+
+	if(istype(B, /obj/item/reagent_containers/glass))
+		if(!beaker)
+			if(user && Adjacent(user))
+				user.drop_from_inventory(B, src)
+		else
+			beaker.forceMove(drop_location())
+			if(user && Adjacent(user))
+				user.drop_from_inventory(B, src)
+				user.put_in_hands(beaker)
+		to_chat(user, span_notice("You add \the [B] into the receptical [beaker ? "and swap out [beaker]" : ""]."))
+		beaker = B
+		update_icon()
+		return TRUE
 
 	else if(istype(B, /obj/item/storage/pill_bottle))
+		if(!loaded_pill_bottle)
+			if(user && Adjacent(user))
+				user.drop_from_inventory(B, src)
+		else
+			loaded_pill_bottle.forceMove(drop_location())
+			if(user && Adjacent(user))
+				user.drop_from_inventory(B, src)
+				user.put_in_hands(loaded_pill_bottle)
+		to_chat(user, span_notice("You add \the [B] into the pill dispenser slot [loaded_pill_bottle ? "and swap out [loaded_pill_bottle]" : ""]."))
+		loaded_pill_bottle = B
+		update_icon()
+		return TRUE
 
-		if(src.loaded_pill_bottle)
-			to_chat(user, "A \the [loaded_pill_bottle] s already loaded into the machine.")
-			return
-
-		src.loaded_pill_bottle = B
-		user.drop_item()
-		B.loc = src
-		to_chat(user, "You add \the [loaded_pill_bottle] into the dispenser slot.")
-
-	else if(default_unfasten_wrench(user, B, 20))
+	if(default_unfasten_wrench(user, B, 20))
 		return
 	if(default_deconstruction_screwdriver(user, B))
 		return
 	if(default_deconstruction_crowbar(user, B))
 		return
 
-	return
+/obj/machinery/chem_master/click_alt(mob/user)
+	if(!iscarbon(user))
+		return FALSE
+	take_container(user, user.get_active_hand())
+
+/obj/machinery/chem_master/proc/take_container(mob/living/user, obj/item/new_container)
+	if(!new_container && beaker)
+		if(user && Adjacent(user))
+			user.put_in_hands(beaker)
+			update_icon()
+			to_chat(user, span_notice("You take out \the [beaker] from the receptical."))
+			beaker = null
+			return TRUE
+	else if(!new_container && !beaker && loaded_pill_bottle)
+		if(user && Adjacent(user))
+			user.put_in_hands(loaded_pill_bottle)
+			update_icon()
+			to_chat(user, span_notice("You take out \the [loaded_pill_bottle] from the pill dispenser."))
+			loaded_pill_bottle = null
+			return TRUE
+	else
+		to_chat(user, span_notice("There's nothing to take out from the receptical."))
+		return FALSE
 
 /obj/machinery/chem_master/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
@@ -108,17 +149,17 @@
 		data["loaded_pill_bottle_contents_len"] = loaded_pill_bottle.contents.len
 		data["loaded_pill_bottle_storage_slots"] = loaded_pill_bottle.max_storage_space
 
+	var/list/buffer_reagents_list = list()
+	data["buffer_reagents"] = buffer_reagents_list
+	for(var/datum/reagent/R in reagents.reagent_list)
+		buffer_reagents_list[++buffer_reagents_list.len] = list("name" = R.name, "volume" = R.volume, "id" = R.id, "description" = R.description)
+
 	data["beaker"] = !!beaker
 	if(beaker)
 		var/list/beaker_reagents_list = list()
 		data["beaker_reagents"] = beaker_reagents_list
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beaker_reagents_list[++beaker_reagents_list.len] = list("name" = R.name, "volume" = R.volume, "description" = R.description, "id" = R.id)
-
-		var/list/buffer_reagents_list = list()
-		data["buffer_reagents"] = buffer_reagents_list
-		for(var/datum/reagent/R in reagents.reagent_list)
-			buffer_reagents_list[++buffer_reagents_list.len] = list("name" = R.name, "volume" = R.volume, "id" = R.id, "description" = R.description)
 
 	data["pillsprite"] = pillsprite
 	data["bottlesprite"] = bottlesprite
@@ -449,17 +490,39 @@
 			var/amount = text2num(params["amount"])
 			if(!id || !amount)
 				return
-			R.trans_id_to(src, id, amount)
+			if(reagents && !reagents.get_free_space())
+				to_chat(ui.user, span_warning("The reagent buffer is too full!"))
+				return
+			var/remaining = amount - reagents.get_free_space()
+			if(remaining <= 0)
+				R.trans_id_to(src, id, amount)
+			else
+				R.trans_id_to(src, id, reagents.get_free_space())
 		if("remove")
 			var/id = params["id"]
 			var/amount = text2num(params["amount"])
 			if(!id || !amount)
 				return
 			if(mode)
-				reagents.trans_id_to(beaker, id, amount)
+				if(R && !R.get_free_space())
+					to_chat(ui.user, span_warning("\the [beaker.name] is too full!"))
+					return
+				var/remaining = amount - R.get_free_space()	//figure out if we'd have leftovers
+				if(remaining <= 0)	//No leftovers means we can fill the whole thing
+					reagents.trans_id_to(beaker, id, amount)
+				else
+					reagents.trans_id_to(beaker, id, R.get_free_space())
 			else
 				reagents.remove_reagent(id, amount)
 		if("eject")
+			if(!beaker)
+				return
+			beaker.forceMove(get_turf(src))
+			if(Adjacent(ui.user) && !issilicon(ui.user))
+				ui.user.put_in_hands(beaker)
+			beaker = null
+			update_icon()
+		if("ejectandclear")
 			if(!beaker)
 				return
 			beaker.forceMove(get_turf(src))

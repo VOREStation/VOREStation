@@ -182,12 +182,15 @@
 		for(var/obj/machinery/atmospherics/machine in range(1,src))
 			if(is_type_in_list(machine, GLOB.ventcrawl_machinery))
 				vent_found = machine
-			if(!vent_found || !vent_found.can_crawl_through())
+			if(!vent_found)
+				continue
+			if(!vent_found.can_crawl_through())
 				vent_found = null
+				to_chat(src, span_danger("You can't crawl through that welded vent!"))
+				return
 			if(vent_found)
 				break
-
-	// Check if the vent is even possible to enter
+	// Check if the vent is next to us.
 	if(!vent_found)
 		to_chat(src, span_danger("You must be standing on or beside an air vent to enter it."))
 		return

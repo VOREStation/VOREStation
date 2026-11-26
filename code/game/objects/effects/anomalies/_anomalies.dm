@@ -169,7 +169,7 @@
 		if(HALLUCINATION_ANOMALY)
 			new /obj/effect/anomaly/hallucination/supermatter(local_turf, has_changed_lifespan ? rand(15 SECONDS, 25 SECONDS) : null, drops_core)
 		if(BIOSCRAMBLER_ANOMALY)
-			new /obj/effect/anomaly/bioscrambler/docile(local_turf, null, drops_core)
+			new /obj/effect/anomaly/bioscrambler(local_turf, null, drops_core)
 		if(DIMENSIONAL_ANOMALY)
 			new /obj/effect/anomaly/dimensional(local_turf, null, drops_core)
 		if(WEATHER_ANOMALY)

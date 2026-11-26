@@ -257,6 +257,7 @@
 	qdel(src)
 
 /obj/item/toy/snappop/Crossed(atom/movable/H as mob|obj)
+	. = ..()
 	if(H.is_incorporeal())
 		return
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
@@ -309,7 +310,7 @@
 
 /obj/item/toy/figure/Initialize(mapload)
 	. = ..()
-	desc = "A \"Space Life\" brand [name]"
+	desc = "A \"Space Life\" brand [name]."
 
 /obj/item/toy/figure/attack_self(mob/user)
 	. = ..(user)

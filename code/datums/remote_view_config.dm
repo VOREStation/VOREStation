@@ -14,8 +14,6 @@
 	var/override_entire_hud = FALSE // Overrides all others, only this needs to be set if you do a fully custom hud
 	var/override_health_hud = FALSE
 	var/override_darkvision_hud = FALSE
-	// turf release flag
-	var/release_view_to_turf = FALSE
 
 /datum/remote_view_config/proc/register_signals(mob/host_mob, datum/component/remote_view/component)
 	RETURN_TYPE(null)
@@ -93,6 +91,11 @@
 	var/atom/remote_view_target = owner_component.get_target()
 	return remote_view_target.relaymove(host_mob, direction)
 
+/// Handles attempted zmovement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
+/datum/remote_view_config/proc/handle_attempt_zmovement(datum/component/remote_view/owner_component, mob/host_mob, direction, turf/destination)
+	SIGNAL_HANDLER
+	return FALSE
+
 /// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
 /datum/remote_view_config/proc/handle_apply_visuals(mob/host_mob)
 	SIGNAL_HANDLER
@@ -144,17 +147,6 @@
 
 /// Remote view that handles being inside of an object. This ignores stuns and other effects, as you are remaining within the object anyway.
 /datum/remote_view_config/inside_object
-	forbid_movement = TRUE
-	will_death = TRUE
-	will_stun = FALSE
-	will_weaken = FALSE
-	will_paralyze = FALSE
-	will_sleep = FALSE
-	will_blind = FALSE
-	release_view_to_turf = TRUE
-
-/// Remote view that only allows decoupling a turf view by movement. Seperate from effect_immune to allow for easier removal in the future if the underlying issue that makes this needed is someday fixed
-/datum/remote_view_config/turf_decoupling
 	forbid_movement = TRUE
 	will_death = TRUE
 	will_stun = FALSE

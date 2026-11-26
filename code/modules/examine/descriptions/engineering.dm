@@ -24,6 +24,8 @@
 	description_antag = "This can be emagged to unlock it.  It will cause the APC to have a blue error screen. \
 	Wires can be pulsed remotely with a signaler attached to it.  A powersink will also drain any APCs connected to the same wire the powersink is on."
 
+	description_silicon = "You can use ctrl-click toggle the APC main breaker remotely."
+
 /obj/item/inflatable
 	description_info = "Inflate by using it in your hand.  The inflatable barrier will inflate on your tile.  To deflate it, use the 'deflate' verb.  \
 	You can also inflate this on an adjacent tile by clicking the tile."

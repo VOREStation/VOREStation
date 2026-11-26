@@ -132,7 +132,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 	item_state = "camera"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	var/pictures_max = 10
 	var/pictures_left = 10
 	var/on = 1

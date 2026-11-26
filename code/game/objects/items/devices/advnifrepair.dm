@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list(MAT_STEEL = 4000, MAT_GLASS = 6000)
+	matter = list(MAT_STEEL = MATERIAL_COST(2), MAT_GLASS = MATERIAL_COST(3))
 	var/datum/reagents/supply
 	var/efficiency = 15 //How many units reagent per 1 unit nanopaste
 	pickup_sound = 'sound/items/pickup/device.ogg'

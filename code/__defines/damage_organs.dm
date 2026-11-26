@@ -69,6 +69,8 @@
 #define MODULAR_BODYPART_PROSTHETIC 1 // Can be detached or reattached freely.
 #define MODULAR_BODYPART_CYBERNETIC 2 // Can be detached or reattached to compatible parent organs.
 
+#define WOUND_CRITICAL_HEAL_LIMIT 50 // Damage that wounds will not self-heal from, even if treated by basic medical supplies. Chems/surgery ignores this.
+
 //CitRP Port
 #define CYBERBEAST_MONITOR_STYLES "blank=cyber_blank;\
 	default=cyber_default;\

@@ -47,6 +47,12 @@
 		if(temp && !temp.is_usable())
 			to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 			return
+		if(istype(src.loc, /obj/item/storage))
+			var/obj/item/storage/S = src.loc
+			S.remove_from_storage(src)
+			user.put_in_hands(src)
+			to_chat(user, span_notice("You pick up the [src]."))
+			return
 	var/response = ""
 	if(!papers.len > 0)
 		response = tgui_alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", list("Regular", "Carbon-Copy", "Cancel"))
@@ -65,7 +71,7 @@
 		else
 			if(response == "Regular")
 				P = new /obj/item/paper
-				if(GLOB.Holiday == "April Fool's Day")
+				if(check_holidays(HOLIDAY_APRILFOOLS))
 					if(prob(30))
 						P.info = span_red(span_bold("<font face=\"[P.crayonfont]\">HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</font>"))
 						P.rigged = 1

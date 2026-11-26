@@ -38,11 +38,21 @@
 	name = T_BOARD("entertainment camera monitor")
 	build_path = /obj/machinery/computer/security/telescreen/entertainment
 	board_type = new /datum/frame/frame_types/display
-	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025), MAT_GLASS = MATERIAL_COST(0.025))
 
 /obj/item/circuitboard/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
 	network = NETWORK_THUNDER
+
+/obj/item/circuitboard/security/telescreen/bodycamera
+	name = T_BOARD("security bodycamera monitor")
+	build_path = /obj/machinery/computer/security/telescreen/bodycamera
+	board_type = new /datum/frame/frame_types/display
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+
+/obj/item/circuitboard/security/telescreen/bodycamera/Initialize(mapload)
+	. = ..()
+	network = NETWORK_BODYCAM
 
 /obj/item/circuitboard/security/construct(obj/machinery/computer/security/C)
 	if (..(C))

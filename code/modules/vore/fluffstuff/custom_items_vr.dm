@@ -665,7 +665,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
-	matter = list(MAT_STEEL = 50)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.025))
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/cane/fluff/tasald
@@ -820,6 +820,7 @@
 	icon_state = "purple"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	item_flags = AIRTIGHT
+	body_parts_covered = EYES
 
 //General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/spiffygogs
@@ -832,6 +833,8 @@
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	toggleable = 1
 	off_state = "spiffygogsup"
+	item_flags = AIRTIGHT
+	body_parts_covered = EYES
 
 //General use
 /obj/item/clothing/accessory/tronket

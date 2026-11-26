@@ -3,10 +3,10 @@ import type { ServerWebSocket } from 'bun';
 import { createLogger, directLog } from '../logging';
 import { retrace } from './retrace';
 
-interface LinkSocketData {
+type LinkSocketData = {
   id: string;
   createdAt: number;
-}
+};
 
 let server: Bun.Server<LinkSocketData>;
 

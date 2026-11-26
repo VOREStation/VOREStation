@@ -48,8 +48,6 @@
 	var/must_walk = TRUE
 	var/datum/component/antag/changeling/comp
 	var/old_regen_rate
-	var/mob/living/carbon/human/owner
-
 
 /datum/modifier/changeling_camouflage/recursive
 	must_walk = FALSE
@@ -69,14 +67,13 @@
 
 /datum/modifier/changeling_camouflage/on_expire()
 	animate(holder,alpha = 10, alpha = 255, time = 10)
-	owner.invisibility = initial(owner.invisibility)
+	holder.invisibility = initial(holder.invisibility)
 	holder.visible_message(span_warning("[holder] suddenly fades in, seemingly from nowhere!"),
 	span_notice("We revert our camouflage, revealing ourselves."))
 	holder.set_m_intent(I_RUN)
 	comp.cloaked = FALSE
 	comp.chem_recharge_rate = old_regen_rate
 	comp = null
-	owner = null
 
 /datum/modifier/changeling_camouflage/tick()
 	if(holder.m_intent != I_WALK && must_walk) // Moving too fast uncloaks you.

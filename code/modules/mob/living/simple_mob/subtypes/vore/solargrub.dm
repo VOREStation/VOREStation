@@ -65,6 +65,9 @@ GLOBAL_VAR_INIT(moth_amount, 0)
 	allow_mind_transfer = TRUE
 	glow_override = TRUE
 
+	export_research_value = TECHWEB_TIER_1_POINTS
+	export_research_diminished_max = 6
+
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
 

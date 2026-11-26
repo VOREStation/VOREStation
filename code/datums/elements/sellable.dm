@@ -1,6 +1,8 @@
 /datum/element/sellable
 	var/sale_info = "This can be sold on the cargo shuttle if packed in a crate."
 	var/needs_crate = TRUE
+	var/datum/techweb/research_default_techweb = null
+	var/department = DEPARTMENT_CARGO // Which kind of points does selling this give, by default it gives cargo supply points
 
 /datum/element/sellable/Attach(datum/target)
 	. = ..()
@@ -26,6 +28,12 @@
 
 /datum/element/sellable/proc/calculate_sell_quantity(obj/source)
 	return 1
+
+/datum/element/sellable/proc/object_sold_name(obj/source)
+	return "\proper[source.name]"
+
+/datum/element/sellable/proc/handle_post_sale(obj/source)
+	return
 // End overrides
 
 /datum/element/sellable/proc/sell(obj/source, datum/exported_crate/EC, in_crate)
@@ -41,11 +49,20 @@
 		return FALSE
 
 	EC.contents[++EC.contents.len] = list(
-		"object" = "\proper[source.name]",
+		"object" = object_sold_name(source),
 		"value" = calculate_sell_value(source),
 		"quantity" = calculate_sell_quantity(source)
 	)
-	EC.value += EC.contents[EC.contents.len]["value"]
+	handle_post_sale(source)
+
+	var/point_value = EC.contents[EC.contents.len]["value"]
+	switch(department)
+		if(DEPARTMENT_CARGO)
+			EC.value += point_value
+		if(DEPARTMENT_RESEARCH)
+			if(!research_default_techweb) // Lets do this when we sell a research giving item, instead of fighting subsystem init order
+				research_default_techweb = locate(/datum/techweb/science) in SSresearch.techwebs
+			research_default_techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = point_value))
 	return TRUE
 
 /datum/element/sellable/proc/on_examine(datum/source, mob/user, list/examine_texts)
@@ -180,6 +197,9 @@
 				GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
 				GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
 
+/datum/element/sellable/trolley_tank/object_sold_name(obj/source)
+	return "Reagent"
+
 /datum/element/sellable/salvage //For selling /obj/item/salvage
 
 /datum/element/sellable/salvage/calculate_sell_value(obj/source)
@@ -293,13 +313,16 @@
 
 /datum/element/sellable/mecha/sell_error(obj/source)
 	var/obj/mecha/exo = source
-	exo.wreckage = null // Exo sold, remove it's lootpile on qdel, or we'll have issues in cargo....
 	var/check_val = calculate_sell_value(source)
 	if(!check_val)
 		if((exo.health / exo.maxhealth) < 0.5)
 			return "Error: The unit is too damaged to sell, and will be used as scrap. Payment rendered null under terms of agreement."
 		return "Error: The unit in its current condition has no resale value at all, and will be used as scrap. Payment rendered null under terms of agreement."
 	return null
+
+/datum/element/sellable/mecha/handle_post_sale(obj/source)
+	var/obj/mecha/exo = source
+	exo.wreckage = null // Exo sold, remove it's lootpile on qdel, or we'll have issues in cargo....
 
 /datum/element/sellable/mecha/calculate_sell_value(obj/source)
 	var/obj/mecha/exo = source
@@ -398,3 +421,63 @@
 			amount /= 20
 
 	return FLOOR(amount,5)
+
+
+// Selling xenomobs for science!!
+/datum/element/sellable/stasis_cage
+	sale_info = "This can be export on the cargo shuttle. Central command will reward the station with research points if the creature within has scientific value."
+	needs_crate = FALSE
+	department = DEPARTMENT_RESEARCH
+
+/datum/element/sellable/stasis_cage/sell_error(obj/source)
+	var/obj/structure/stasis_cage/cage = source
+	if(!cage.contained)
+		return "Error: [cage] was empty."
+	// Check if this creature can even be sold at all
+	if(!istype(cage.contained, /mob/living/simple_mob))
+		return "Error: This creature has no scientific value."
+	if(cage.contained.client) // Lets not allow player possessed creatures to be sold
+		return "Error: This creature has an undesirable mutation and has no scientific value."
+	var/mob/living/simple_mob/our_mob = cage.contained
+	if(our_mob.stat == DEAD)
+		return "Error: The creature must be alive to study. It has no scientific value."
+	if(!our_mob.export_research_value || !our_mob.export_research_diminished_max)
+		return "Error: This creature has no scientific value."
+	// We know it HAD value, see if it has any value remaining
+	var/check_val = calculate_sell_value(source)
+	if(!check_val)
+		return "Error: This creature no longer has any scientific value."
+	return null
+
+/datum/element/sellable/stasis_cage/calculate_sell_value(obj/source)
+	var/obj/structure/stasis_cage/cage = source
+	if(!cage.contained)
+		return 0
+	if(!istype(cage.contained, /mob/living/simple_mob))
+		return 0
+	var/mob/living/simple_mob/our_mob = cage.contained
+	if(our_mob.stat == DEAD)
+		return 0
+	if(!our_mob.export_research_value || !our_mob.export_research_diminished_max)
+		return 0
+	// Calculate diminishing returns from number of mobs that have already been sold of this type
+	var/mob_key = "[cage.contained.type]"
+	var/sold_mobs = 0
+	if(mob_key in SSsupply.exported_research_mobs)
+		sold_mobs = SSsupply.exported_research_mobs[mob_key]
+	var/research_val = our_mob.export_research_value // Each mob sold will linearly scale the value of research points recieved, until it hits 25% of it's value.
+	return max(1, FLOOR(lerp(research_val, research_val * 0.25, CLAMP(sold_mobs / our_mob.export_research_diminished_max, 0, 1)), 1))
+
+/datum/element/sellable/stasis_cage/handle_post_sale(obj/source)
+	// Increase sold count, now that we've reached successful export
+	var/obj/structure/stasis_cage/cage = source
+	var/mob_key = "[cage.contained.type]"
+	if(!(mob_key in SSsupply.exported_research_mobs))
+		SSsupply.exported_research_mobs[mob_key] = 0
+	SSsupply.exported_research_mobs[mob_key] += 1
+
+/datum/element/sellable/stasis_cage/object_sold_name(obj/source)
+	var/obj/structure/stasis_cage/cage = source
+	if(!cage || !cage.contained)
+		return ..()
+	return cage.contained.name

@@ -24,6 +24,9 @@ export const LobbyMenu = (props) => {
   const [animationsFinished, setAnimationsFinished] = useState(false);
 
   useEffect(() => {
+    let t1: ReturnType<typeof setTimeout> | undefined;
+    let t2: ReturnType<typeof setTimeout> | undefined;
+
     (async () => {
       const [filterDisabled, animationsDisabled, audioDisabled] =
         await Promise.all([
@@ -36,16 +39,23 @@ export const LobbyMenu = (props) => {
       setAnimationsDisabled(!!animationsDisabled);
       setAudioDisabled(!!audioDisabled);
 
-      setTimeout(() => {
-        if (onLoadPlayer.current) {
-          onLoadPlayer.current!.play();
-        }
+      t1 = setTimeout(() => {
+        onLoadPlayer.current?.play().catch(() => {});
       }, 250);
 
-      setTimeout(() => {
+      t2 = setTimeout(() => {
         setAnimationsFinished(true);
       }, 10000);
     })();
+
+    return () => {
+      if (t1) {
+        clearTimeout(t1);
+      }
+      if (t2) {
+        clearTimeout(t2);
+      }
+    };
   }, []);
 
   const [hidden, setHidden] = useState<boolean>(false);

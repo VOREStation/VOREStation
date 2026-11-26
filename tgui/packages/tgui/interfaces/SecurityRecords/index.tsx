@@ -1,11 +1,10 @@
 import { useBackend } from 'tgui/backend';
+import { ComplexModal } from 'tgui/interfaces/common/ComplexModal';
+import { LoginInfo } from 'tgui/interfaces/common/LoginInfo';
+import { LoginScreen } from 'tgui/interfaces/common/LoginScreen';
+import { TemporaryNotice } from 'tgui/interfaces/common/TemporaryNotice';
 import { Window } from 'tgui/layouts';
 import { Section } from 'tgui-core/components';
-
-import { ComplexModal } from '../common/ComplexModal';
-import { LoginInfo } from '../common/LoginInfo';
-import { LoginScreen } from '../common/LoginScreen';
-import { TemporaryNotice } from '../common/TemporaryNotice';
 import { SecurityRecordsList } from './SecurityRecordsList';
 import {
   SecurityRecordsMaintenance,

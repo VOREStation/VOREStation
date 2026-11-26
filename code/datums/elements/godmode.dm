@@ -20,6 +20,8 @@
 	if(ishuman(target))
 		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
 		RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
+		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_STANCE_DAMAGE_APPLICATION, PROC_REF(on_stance_damaged))
+		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_GRASP_DAMAGE_APPLICATION, PROC_REF(on_grasp_damaged))
 
 	if(issilicon(target))
 		RegisterSignal(target, COMSIG_SILICON_EMP_ACT, PROC_REF(on_emp))
@@ -51,7 +53,7 @@
 /datum/element/godmode/Detach(atom/movable/target)
 	//Human specific comsigs:
 	if(ishuman(target))
-		UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION))
+		UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_EXTERNAL_ORGAN_STANCE_DAMAGE_APPLICATION, COMSIG_EXTERNAL_ORGAN_GRASP_DAMAGE_APPLICATION))
 
 	if(issilicon(target))
 		UnregisterSignal(target, list(COMSIG_SILICON_EMP_ACT))
@@ -71,6 +73,14 @@
 	return ..()
 
 /datum/element/godmode/proc/on_external_damaged()
+	SIGNAL_HANDLER
+	return COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE
+
+/datum/element/godmode/proc/on_stance_damaged()
+	SIGNAL_HANDLER
+	return COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE
+
+/datum/element/godmode/proc/on_grasp_damaged()
 	SIGNAL_HANDLER
 	return COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE
 

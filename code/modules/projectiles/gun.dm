@@ -39,7 +39,7 @@
 	icon_state = "detective"
 	item_state = "gun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	matter = list(MAT_STEEL = 2000)
+	matter = list(MAT_STEEL = MATERIAL_COST(1))
 	w_class = ITEMSIZE_NORMAL
 	throwforce = 5
 	throw_speed = 4
@@ -726,7 +726,7 @@
 			return
 
 		in_chamber.on_hit(M)
-		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
+		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage && in_chamber.damage > 0)
 			log_and_message_admins("commited suicide using \a [src]", user)
 			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, sharp = TRUE, used_weapon = src)
 			user.death()

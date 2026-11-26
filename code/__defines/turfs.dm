@@ -43,15 +43,44 @@
 	(CENTER).x + (H_RADIUS), (CENTER).y + (V_RADIUS), (CENTER).z \
 	)
 
-// Wet turfs have different slipping intensities
-#define TURFSLIP_DRY 0
-#define TURFSLIP_WET 1
-#define TURFSLIP_LUBE 2
-#define TURFSLIP_ICE 3
+//Wet floor type flags. Stronger ones should be higher in number.
+#define TURF_DRY			(0)
+#define TURF_WET_WATER		(1<<0)
+#define TURF_WET_PERMAFROST	(1<<1)
+#define TURF_WET_ICE 		(1<<2)
+#define TURF_WET_LUBE		(1<<3)
+#define TURF_WET_SUPERLUBE	(1<<4)
+
+#define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
 
 ///Returns all turfs in a zlevel
 #define Z_TURFS(ZLEVEL) block(1, 1, ZLEVEL, world.maxx, world.maxy, ZLEVEL)
 
+//Maximum amount of time, (in deciseconds) a tile can be wet for.
+#define MAXIMUM_WET_TIME 5 MINUTES
+
 /// Digging loot with a shovel
 #define TURF_DIG_LOOT_ENDLESS 0
 #define TURF_DIG_LOOT_EXHAUSTED 100
+
+/// Returns a list of turfs in the rectangle specified by BOTTOM LEFT corner and height/width, checks for being outside the world border for you
+#define CORNER_BLOCK(corner, width, height) CORNER_BLOCK_OFFSET(corner, width, height, 0, 0)
+
+/// Returns a list of turfs similar to CORNER_BLOCK but with offsets
+#define CORNER_BLOCK_OFFSET(corner, width, height, offset_x, offset_y) ((block(corner.x + offset_x, corner.y + offset_y, corner.z, corner.x + (width - 1) + offset_x, corner.y + (height - 1) + offset_y, corner.z)))
+
+/// Returns an outline (neighboring turfs) of the given block
+#define CORNER_OUTLINE(corner, width, height) ( \
+	CORNER_BLOCK_OFFSET(corner, width + 2, 1, -1, -1) + \
+	CORNER_BLOCK_OFFSET(corner, width + 2, 1, -1, height) + \
+	CORNER_BLOCK_OFFSET(corner, 1, height, -1, 0) + \
+	CORNER_BLOCK_OFFSET(corner, 1, height, width, 0))
+ 
+/// Generate horizontal striped color turf decals
+#define PATTERN_DEFAULT "default"
+/// Generate vertical striped color turf decals
+#define PATTERN_VERTICAL_STRIPE "vertical"
+/// Generate random color turf decals
+#define PATTERN_RANDOM "random"
+/// Generate rainbow color turf decals
+#define PATTERN_RAINBOW "rainbow"

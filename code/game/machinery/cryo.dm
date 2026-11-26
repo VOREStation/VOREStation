@@ -294,9 +294,11 @@
 	if(occupant)
 		to_chat(usr, span_danger("The cryo cell is already occupied!"))
 		return
+	/* Disable abiotic lockout
 	if(M.abiotic())
 		to_chat(usr, span_warning("Subject may not have abiotic items on."))
 		return
+	*/
 	if(!node)
 		to_chat(usr, span_warning("The cell is not correctly connected to its pipe network!"))
 		return

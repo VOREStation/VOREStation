@@ -272,7 +272,7 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/M as mob, power_source, obj/source, siemens_coeff = 1.0)
+/proc/electrocute_mob(mob/living/M, power_source, obj/source, siemens_coeff = 1.0)
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	if(issilicon(M))	return 0	//No more robot shocks from machinery
 	var/area/source_area
@@ -319,6 +319,8 @@
 		PN.trigger_warning()
 
 	if (!cell && !PN)
+		return 0
+	if(!isliving(M))
 		return 0
 	var/PN_damage = 0
 	var/cell_damage = 0

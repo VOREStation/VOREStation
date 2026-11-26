@@ -65,7 +65,8 @@
 	else
 		if(istype(T, /turf/simulated))
 			var/turf/simulated/S = T
-			S.freeze_floor()
+			S.MakeSlippery(TURF_WET_WATER, 160 SECONDS, min(volume * 2 SECONDS)) //bandaid fix for ice instantly melting if the atmos temp isnt below freezing
+			S.MakeSlippery(TURF_WET_ICE, 160 SECONDS, min(volume * 2 SECONDS)) //same time as lube.
 	return
 
 /datum/reagent/modapplying/vatstabilizer

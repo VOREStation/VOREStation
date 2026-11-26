@@ -36,7 +36,12 @@ export type CacheItem = {
 export type Inv = { VPN: number; FRG: number; CVR: number; XPL: number };
 
 // ── Ascension bonuses ─────────────────────────────────────────────────────────
-export type Ghost = { crack: number; market: number; trace: number; slots: number };
+export type Ghost = {
+  crack: number;
+  market: number;
+  trace: number;
+  slots: number;
+};
 
 // ── Full client-side game state ───────────────────────────────────────────────
 export type GState = {

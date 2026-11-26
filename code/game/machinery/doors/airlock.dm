@@ -9,6 +9,7 @@
 /obj/machinery/door/airlock
 	name = "Airlock"
 	description_info = "If you hold left ctrl whilst left-clicking on an airlock, you can ring the doorbell to announce your presence to anyone on the other side! Alternately if you are on HARM intent when doing this, you will bang loudly on the door!<br><br>AIs and Cyborgs can also quickly open/close, bolt/unbolt, and electrify/de-electrify doors at a distance by holding left shift, left control, or left alt respectively whilst left-clicking."
+	description_silicon = "Open with shift-click, operate the bolts with ctrl-click, and alt-click to electrify. Careful with that last one."
 	icon = 'icons/obj/doors/doorint.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
@@ -1240,8 +1241,10 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
+	if(welded)
+		. += span_danger(text("It is welded shut."))
 	if(frozen)
-		. += span_danger("it's frozen shut!")
+		. += span_danger("It's frozen shut!")
 
 /// Most airlocks don't freeze, subtypes set this
 /obj/machinery/door/airlock/proc/can_freeze()

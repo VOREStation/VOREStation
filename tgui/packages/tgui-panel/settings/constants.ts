@@ -39,6 +39,10 @@ export const SETTINGS_TABS = [
     id: 'ttsSettings',
     name: 'TTS/Accessibility',
   },
+  {
+    id: 'websocket',
+    name: 'Websocket',
+  },
 ] as const;
 
 export const FONTS_DISABLED = 'Default';

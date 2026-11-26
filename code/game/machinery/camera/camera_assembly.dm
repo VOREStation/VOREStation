@@ -6,7 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	anchored = FALSE
 
-	matter = list(MAT_STEEL = 700,MAT_GLASS = 300)
+	matter = list(MAT_STEEL = MATERIAL_COST(0.35),MAT_GLASS = MATERIAL_COST(0.15))
 
 	//	Motion, EMP-Proof, X-Ray
 	var/list/obj/item/possible_upgrades = list(/obj/item/assembly/prox_sensor, /obj/item/stack/material/osmium, /obj/item/stock_parts/scanning_module)

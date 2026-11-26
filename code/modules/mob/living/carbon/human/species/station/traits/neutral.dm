@@ -1667,6 +1667,7 @@
 	can_take = ORGANICS // (Not sure if this is needed for Xenochimera-specific sub-version.)
 	custom_only = FALSE
 	excludes = list(/datum/trait/neutral/hotadapt, /datum/trait/neutral/hotadapt/xenochimera)
+
 /datum/trait/neutral/hotadapt/xenochimera
 	sort = TRAIT_SORT_SPECIES
 	allowed_species = list(SPECIES_XENOCHIMERA)
@@ -1815,6 +1816,18 @@
 		/datum/trait/neutral/autohiss_tajaran/xenochimera,
 		/datum/trait/neutral/autohiss_zaddat/xenochimera,
 		/datum/trait/neutral/autohiss_vassilian/xenochimera)
+
+/datum/trait/neutral/non_infectious
+	name = "Non-Infectious Strain"
+	desc = "Whatever strain of xenochimera you are is not immediately infectious to others, resulting in no spread through slices, bites, or other forms of contact."
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	hidden = TRUE //Disabled on Virgo. Used downstream.
+	cost = 0
+
+/datum/trait/neutral/non_infectious/apply(datum/species/S,mob/living/carbon/human/H, list/trait_prefs)
+	..()
+	ADD_TRAIT(H, NON_INFECTIOUS_XENOCHIMERA_TRAIT, ROUNDSTART_TRAIT)
 
 /datum/trait/neutral/waddle
 	name = "Waddle / Animated Movement (Adjustable)"

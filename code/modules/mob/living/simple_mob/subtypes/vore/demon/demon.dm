@@ -50,7 +50,6 @@
 	vore_icons = SA_ICON_LIVING
 	vore_escape_chance = 25
 
-	var/shifted_out = FALSE
 	var/shift_state = AB_SHIFT_NONE
 	var/last_shift = 0
 	var/blood_spawn = 0
@@ -68,33 +67,10 @@
 	B.name = "Stomach"
 	B.desc = "You slide down the slick, slippery gullet of the creature. It's warm, and the air is thick. You can feel the doughy walls of the creatures gut push and knead into your form! Slimy juices coat your form stinging against your flesh as they waste no time to start digesting you. The creature's heartbeat and the gurgling of their stomach are all you can hear as your jostled about, treated like nothing but food."
 
-/mob/living/simple_mob/vore/demon/UnarmedAttack()
-	if(shifted_out)
-		return FALSE
-	. = ..()
-
-/mob/living/simple_mob/vore/demon/can_fall()
-	if(shifted_out)
-		return FALSE
-	. = ..()
-
-/mob/living/simple_mob/vore/demon/zMove(direction)
-	if(shifted_out)
-		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-		if(destination)
-			forceMove(destination)
-		return TRUE
-	. = ..()
-
 /mob/living/simple_mob/vore/demon/Life()
 	. = ..()
-	if(shifted_out)
+	if(is_incorporeal())
 		density = FALSE
-
-/mob/living/simple_mob/vore/demon/handle_environment(datum/gas_mixture/environment) // TODO - Refactor demons to use is_incorporeal()
-	if(shifted_out)
-		return
-	. = ..()
 
 /mob/living/simple_mob/vore/demon/update_canmove()
 	if(is_shifting)

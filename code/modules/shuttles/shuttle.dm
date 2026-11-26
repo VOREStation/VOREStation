@@ -314,6 +314,9 @@
 					continue
 				if(isobserver(AM) || isEye(AM))
 					continue
+				if(length(AM.locs) > 1) // multi-loc objects need to check if it's their actual loc, and not just a corner!
+					if(AM.loc != dst_turf)
+						continue
 				if(isliving(AM))
 					var/mob/living/bug = AM
 					bug.gib()

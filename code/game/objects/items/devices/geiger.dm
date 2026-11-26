@@ -14,10 +14,10 @@
 	matter = list(/datum/material/steel = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5)
 
 	var/last_perceived_radiation_danger = null
-	///How strong the last radiation pulse was, at the source.
+	///How strong the last radiation pulse was
 	var/last_radiation_strength = null
-	///How much insulation we're lacking.
-	var/insulation_deficit = null
+	/// Used to describe how penetrating a radiation is, or if it requires long exposure to be dangerous
+	var/radiation_description = null
 
 	var/scanning = FALSE
 
@@ -37,17 +37,18 @@
 		if(null)
 			. += span_notice("Ambient radiation level count reports that all is well. It is ") + span_green("safe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_LOW)
-			. += span_notice("Ambient radiation levels slightly above average. It is ") + span_green("safe ") + span_notice("here.")
+			. += span_notice("Ambient radiation levels slightly above average. It is ") + span_warning("unsafe ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_MEDIUM)
-			. += span_notice("Ambient radiation levels above average. It is ") + span_green("safe ") + span_notice("here.")
+			. += span_notice("Ambient radiation levels above average. It is ") + span_warning("dangerous ") + span_notice("here.")
 		if(PERCEIVED_RADIATION_DANGER_HIGH)
-			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("unsafe ") + span_suicide("here.")
+			. += span_suicide("Ambient radiation levels highly above average. It is ") + span_warning("very dangerous ") + span_suicide("here.")
 		if(PERCEIVED_RADIATION_DANGER_EXTREME)
-			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely unsafe ") + span_suicide("here.")
-	if(last_radiation_strength)
-		. += span_notice("Maximum strength at source of radioactive pulse: ") + span_warning("[last_radiation_strength]")
-	if(insulation_deficit)
-		. += span_warning("Insulation deficit: [insulation_deficit]")
+			. += span_suicide("Ambient radiation levels reaching critical levels! It is ") + span_warning("extremely dangerous ") + span_suicide("here.")
+
+	var/raddesc = ""
+	if(radiation_description && last_radiation_strength > 0)
+		raddesc = " of [radiation_description]"
+	. += span_warning("[scanning ? "Ambient" : "Stored"] radiation level: [last_radiation_strength > 0 ? last_radiation_strength : "0"]Bq[raddesc].")
 
 /obj/item/geiger/update_icon()
 	if(!scanning)
@@ -108,12 +109,35 @@
 /obj/item/geiger/proc/on_pre_potential_irradiation(datum/source, datum/radiation_pulse_information/pulse_information, insulation_to_target)
 	SIGNAL_HANDLER
 
-	last_perceived_radiation_danger = get_perceived_radiation_danger(pulse_information, insulation_to_target)
-	last_radiation_strength = pulse_information.strength
-	if(insulation_to_target > pulse_information.threshold)
-		insulation_deficit = round(insulation_to_target - pulse_information.threshold, 0.1)
-	else
-		insulation_deficit = null
+	// We can trust the weakref is still valid by this point, as the subsystem discards the pulse if so. Just get how much rads we should get if we were standing here as a mob.
+	last_radiation_strength = FLOOR(RAD_SOLVE_MOBRADS(pulse_information.strength, calculate_recieved_radiation_intensity(pulse_information, get_dist_euclidean(get_turf(pulse_information.source_ref.resolve()), get_turf(src)), insulation_to_target)), RAD_ROUNDING_THRESHOLD)
+	switch(last_radiation_strength)
+		if(-INFINITY to RAD_LEVEL_LOW)
+			last_perceived_radiation_danger = null
+		if(RAD_LEVEL_LOW to RAD_LEVEL_MODERATE)
+			last_perceived_radiation_danger = PERCEIVED_RADIATION_DANGER_LOW
+		if(RAD_LEVEL_MODERATE to RAD_LEVEL_HIGH)
+			last_perceived_radiation_danger = PERCEIVED_RADIATION_DANGER_MEDIUM
+		if(RAD_LEVEL_HIGH to RAD_LEVEL_VERY_HIGH)
+			last_perceived_radiation_danger = PERCEIVED_RADIATION_DANGER_HIGH
+		if(RAD_LEVEL_VERY_HIGH to INFINITY)
+			last_perceived_radiation_danger = PERCEIVED_RADIATION_DANGER_EXTREME
+
+	// Store the threshold too so we can describe the type of radiation we are being hit with
+	var/chance_desc = "low energy"
+	if(pulse_information.chance >= DEFAULT_RADIATION_CHANCE && pulse_information.minimum_exposure_time <= URANIUM_RADIATION_MINIMUM_EXPOSURE_TIME)
+		chance_desc = "high energy"
+	var/energy_desc
+	if(pulse_information.threshold == RAD_FULL_INSULATION) // Goes it's full range, only the most shielded walls can stop it
+		energy_desc = "neutrinos"
+	else if(pulse_information.threshold < RAD_EXTREME_INSULATION) // Can get through two layers of reinforced walls, walls only weaken it.
+		energy_desc = "gamma rays"
+	else if(pulse_information.threshold < RAD_MEDIUM_INSULATION) // Can get through a single normal wall weakened
+		energy_desc = "beta particles"
+	else // Cannot get past a single normal wall
+		energy_desc = "alpha particles"
+	radiation_description = "[chance_desc] [energy_desc]"
+
 	addtimer(CALLBACK(src, PROC_REF(reset_perceived_danger)), TIME_WITHOUT_RADIATION_BEFORE_RESET, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 	if (scanning)
@@ -122,7 +146,7 @@
 /obj/item/geiger/proc/reset_perceived_danger()
 	last_perceived_radiation_danger = null
 	last_radiation_strength = null
-	insulation_deficit = null
+	radiation_description = null
 	if (scanning)
 		update_icon()
 
