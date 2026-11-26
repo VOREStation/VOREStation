@@ -15,6 +15,9 @@ export const ControlAbilities = (props) => {
       <Button fluid onClick={() => act('cocoon')}>
         Give Cocoon Transformation
       </Button>
+      <Button fluid onClick={() => act('shapeshift_form')}>
+        Give Shapeshift Form
+      </Button>
       <Button fluid onClick={() => act('transformation')}>
         Give TF verbs
       </Button>
