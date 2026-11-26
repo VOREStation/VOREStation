@@ -216,7 +216,7 @@
 
 /obj/item/pupscrubber
 	name = "floor scrubber"
-	desc = "Toggles floor scrubbing."
+	desc = "On the go, hands-free, mobile floor scrubbing. Just run, crawl, or float over dirty floors! Warranty voids if used on floors made of dirt."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "scrub0"
 	var/enabled = FALSE
@@ -327,6 +327,7 @@
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "pounce"
 	desc = "Leap at your target to momentarily stun them."
+	description_info = "Activate to select a leap target."
 	force = 0
 	throwforce = 0
 	var/bluespace = FALSE
@@ -418,6 +419,7 @@
 		T.apply_effect(5, WEAKEN, armor_block)
 
 /obj/item/reagent_containers/glass/beaker/large/borg
+	desc = "A large beaker. Due to how it is constructed, you can't drop it. Some would argue it is an upside."
 	var/mob/living/silicon/robot/R
 	var/last_robot_loc
 

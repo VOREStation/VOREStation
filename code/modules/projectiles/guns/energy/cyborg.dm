@@ -127,12 +127,13 @@
 
 /obj/item/melee/robotic //Just the parent. Don't use this one.
 	name = "Robotic Appendage"
-	desc = "A robotic weapon of some sort."
+	desc = "A robotic weapon of some sort. You shouldn't be having this..."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
 	borg_flags = COUNTS_AS_ROBOTIC_MELEE
 
 /obj/item/melee/robotic/jaws
+	description_info = "With a bit of effort, you could use this as a crowbar."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	hitsound = 'sound/weapons/bite.ogg'
 	throwforce = 0

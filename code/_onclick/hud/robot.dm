@@ -32,6 +32,7 @@
 
 	using = new /atom/movable/screen()
 	using.name = "module1"
+	using.desc = "One of your three 'hands'."
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
@@ -44,6 +45,7 @@
 
 	using = new /atom/movable/screen()
 	using.name = "module2"
+	using.desc = "One of your three 'hands'."
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
@@ -56,6 +58,7 @@
 
 	using = new /atom/movable/screen()
 	using.name = "module3"
+	using.desc = "One of your three 'hands'."
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.color = HUD.ui_color
@@ -71,6 +74,7 @@
 //Intent
 	using = new /atom/movable/screen()
 	using.name = "act_intent"
+	using.desc = "Violence? Assistance?"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
 	using.alpha = HUD.ui_alpha
@@ -83,6 +87,7 @@
 	//Move intent (walk/run)
 	using = new /atom/movable/screen()
 	using.name = "mov_intent"
+	using.desc = "Control your speed settings here."
 	using.icon = HUD.ui_style
 	using.icon_state = (m_intent == I_RUN ? "running" : "walking")
 	using.screen_loc = ui_movi
@@ -154,6 +159,7 @@
 //Module Panel
 	using = new /atom/movable/screen()
 	using.name = "panel"
+	using.desc = "Integrated Control Panel for your cyborg needs."
 	using.icon = HUD.ui_style
 	using.icon_state = "panel"
 	using.alpha = HUD.ui_alpha
@@ -163,17 +169,19 @@
 
 //Store
 	throw_icon = new /atom/movable/screen()
+	throw_icon.name = "store"
+	throw_icon.desc = "Put away your tools."
 	throw_icon.icon = HUD.ui_style
 	throw_icon.icon_state = "store"
 	throw_icon.alpha = HUD.ui_alpha
 	throw_icon.color = HUD.ui_color
-	throw_icon.name = "store"
 	throw_icon.screen_loc = ui_borg_store
 	other += throw_icon
 
 //Inventory
 	robot_inventory = new /atom/movable/screen()
 	robot_inventory.name = "inventory"
+	robot_inventory.desc = "Access your tools, equipment, and other accessories."
 	robot_inventory.icon = HUD.ui_style
 	robot_inventory.icon_state = "inventory"
 	robot_inventory.alpha = HUD.ui_alpha
