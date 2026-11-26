@@ -5110,14 +5110,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8
 	},
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "dist_aux_meter";
-	name = "Distribution Loop"
-	},
 /obj/machinery/camera/network/engineering{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "alq" = (
@@ -12554,12 +12550,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
 "aTX" = (
-/obj/machinery/computer/general_air_control{
-	dir = 4;
-	frequency = 1443;
-	level = 3;
-	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
+/obj/machinery/computer/general_air_control/storage_monitor/station{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -21177,11 +21169,7 @@
 /area/maintenance/station/exploration)
 "iMe" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "dist_aux_meter";
-	name = "Distribution Loop"
-	},
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "iMk" = (

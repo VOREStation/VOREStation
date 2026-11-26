@@ -309,11 +309,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 1
 	},
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "mair_mining_meter";
-	name = "Mixed Air Tank"
-	},
+/obj/machinery/meter/preset/mining_air,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "aR" = (
@@ -1112,7 +1108,6 @@
 /area/outpost/mining_main/hangar)
 "cx" = (
 /obj/machinery/alarm{
-	alarm_id = null;
 	breach_detection = 0;
 	dir = 1;
 	pixel_y = -22
@@ -1437,7 +1432,6 @@
 /area/outpost/mining_main/secondary_gear_storage)
 "cZ" = (
 /obj/machinery/alarm{
-	alarm_id = null;
 	breach_detection = 0;
 	dir = 1;
 	pixel_y = -22

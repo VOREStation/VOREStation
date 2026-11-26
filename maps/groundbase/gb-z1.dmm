@@ -338,6 +338,10 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/machinery/computer/general_air_control/storage_monitor/station{
+	dir = 1;
+	sensors = list("dist_main_meter" = "Distribution Loop", "scrub_main_meter" = "Scrubbers Loop", "mair_main_meter" = "Standard Air Mix Reserves", "aux_mix_meter" = "Gas Mixing Buffer", "n2_tank" = "Nitrogen Reserves", "o2_tank" = "Oxygen Reserves", "no2_tank" = "Nitrous Oxide Reserves", "phoron_tank" = "Phoron Reserves", "co2_tank" = "Carbon Dioxide Reserves")
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
 "aN" = (
@@ -7072,6 +7076,11 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
+"pp" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/n2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "pq" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -7184,6 +7193,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall/r_wall,
 /area/groundbase/civilian/gateway)
+"pE" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/no2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "pF" = (
 /turf/simulated/wall,
 /area/groundbase/cargo/mining)
@@ -7276,6 +7290,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
+"pQ" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/o2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "pR" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7406,6 +7425,11 @@
 /obj/item/radio/off,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
+"qh" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/co2_tank,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "qi" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -7544,6 +7568,11 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/iaa1)
+"qy" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/green,
+/obj/machinery/meter/preset/aux_mix_meter,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "qz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -7669,6 +7698,11 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/medcargo)
+"qS" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/meter/preset/mair_main_meter,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "qT" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow,
@@ -7705,6 +7739,11 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
+"qW" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/meter/preset/dist_main_meter,
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "qY" = (
 /obj/structure/closet/crate,
 /obj/item/circuitboard/smes,
@@ -9014,7 +9053,6 @@
 /area/groundbase/unexplored/outdoors)
 "tU" = (
 /obj/machinery/mineral/stacking_unit_console{
-	density = 0;
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
@@ -9233,7 +9271,6 @@
 /area/maintenance/groundbase/level1/setunnel)
 "ur" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/green,
-/obj/machinery/meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "us" = (
@@ -10320,7 +10357,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/green{
 	dir = 1
 	},
-/obj/machinery/meter,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -12617,7 +12653,7 @@
 /area/groundbase/security/hos)
 "Ce" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
-/obj/machinery/meter,
+/obj/machinery/meter/preset/phoron_tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "Cf" = (
@@ -14385,7 +14421,6 @@
 /area/groundbase/command/ai/robot)
 "Go" = (
 /obj/machinery/mineral/processing_unit_console{
-	density = 0;
 	pixel_y = 32
 	},
 /obj/structure/disposalpipe/segment{
@@ -15467,12 +15502,9 @@
 /turf/simulated/floor,
 /area/groundbase/civilian/gateway)
 "IJ" = (
-/obj/machinery/computer/general_air_control{
+/obj/machinery/computer/general_air_control/storage_monitor/station{
 	dir = 8;
-	frequency = 1443;
-	level = 3;
-	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter" = "Distribution Loop", "scrub_main_meter" = "Scrubbers Loop", "mair_main_meter" = "Standard Air Mix Reserves", "aux_mix_meter" = "Gas Mixing Buffer", "n2_tank" = "Nitrogen Reserves", "o2_tank" = "Oxygen Reserves", "no2_tank" = "Nitrous Oxide Reserves", "phoron_tank" = "Phoron Reserves", "co2_tank" = "Carbon Dioxide Reserves")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -21399,6 +21431,7 @@
 /area/groundbase/medical/lhallway)
 "Wu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/meter/preset/scrub_main_meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "Wv" = (
@@ -38088,11 +38121,11 @@ OH
 OH
 OH
 DG
-Ce
+qh
 Dh
 cL
 DG
-Ce
+pE
 Dh
 cL
 DG
@@ -38798,7 +38831,7 @@ eN
 eN
 eN
 eN
-ur
+qy
 eN
 eN
 eN
@@ -39356,7 +39389,7 @@ kj
 wU
 CO
 NV
-Do
+qW
 Do
 Do
 Do
@@ -39508,15 +39541,15 @@ RW
 Yk
 js
 gf
-Ce
+qS
 io
 js
 gf
-Ce
+pQ
 Ar
 Nk
 gf
-Ce
+pp
 io
 OH
 Lt
