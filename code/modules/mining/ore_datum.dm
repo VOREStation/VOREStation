@@ -150,7 +150,7 @@
 	name = ORE_VERDANTIUM
 	display_name = "crystalline verdantite"
 	compresses_to = MAT_VERDANTIUM
-	result_amount = 2
+	result_amount = 5
 	spread_chance = 5
 	ore = /obj/item/ore/verdantium
 	scan_icon = "mineral_rare"
@@ -164,7 +164,7 @@
 	name = ORE_MARBLE
 	display_name = "recrystallized carbonate"
 	compresses_to = MAT_MARBLE
-	result_amount = 1
+	result_amount = 5
 	spread_chance = 10
 	ore = /obj/item/ore/marble
 	scan_icon = "mineral_common"
@@ -174,7 +174,7 @@
 	name = ORE_LEAD
 	display_name = "lead glance"
 	smelts_to = MAT_LEAD
-	result_amount = 3
+	result_amount = 5
 	spread_chance = 20
 	ore = /obj/item/ore/lead
 	scan_icon = "mineral_rare"
