@@ -31,6 +31,7 @@
 	create_reagents(120)
 	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/output)
+	set_temperature = rand(0, round(T20C+500))
 
 /obj/machinery/atmospherics/unary/freezer/atmos_init()
 	if(node)
