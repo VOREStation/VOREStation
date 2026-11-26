@@ -104,6 +104,11 @@
 	data["emagged"]       = emagged
 	data["authenticated"] = is_authenticated(user, 0)
 	data["authmax"] = data["authenticated"] == COMM_AUTHENTICATION_MAX ? TRUE : FALSE
+	data["is_command_role"] = user.mind && SSjob.is_job_in_department(user.mind.assigned_role, DEPARTMENT_COMMAND)
+	var/obj/item/card/id/gold/captain/spare/spare_id = locate(/obj/item/card/id/gold/captain/spare) in world
+	data["captain_spare_id_available"] = !!spare_id
+	data["captain_spare_id_requested"] = !!spare_id && spare_id.spare_request_used
+	data["captain_job_occupied"] = is_captain_job_occupied()
 	data["atcsquelch"] = SSatc.is_squelched()
 	data["boss_short"] = using_map.boss_short
 
@@ -321,6 +326,36 @@
 		if("status")
 			setMenuState(ui.user, COMM_SCREEN_STAT)
 
+		if("request_captain_spare_id")
+			if(!ui.user.mind || !SSjob.is_job_in_department(ui.user.mind.assigned_role, DEPARTMENT_COMMAND))
+				to_chat(ui.user, span_warning("Only Command staff can request the Captain's spare ID."))
+				return FALSE
+			var/atom/delivery_target = get_spare_id_delivery_target()
+			if(!delivery_target)
+				to_chat(ui.user, span_warning("The Captain's spare ID can only be requested from a computer running the command and communications program."))
+				return FALSE
+			var/obj/item/card/id/gold/captain/spare/spare_id = locate(/obj/item/card/id/gold/captain/spare) in world
+			if(!spare_id)
+				delivery_target.atom_say("The Captain's spare ID could not be located. Please contact Central Command for further assistance.")
+				return FALSE
+			if(spare_id.spare_request_used)
+				delivery_target.atom_say("The Captain's spare ID has already been requested for this shift.")
+				return FALSE
+			if(is_captain_job_occupied())
+				delivery_target.atom_say("The Captain's spare ID cannot be requested while the Site Manager is aboard.")
+				return FALSE
+			var/turf/request_turf = get_turf(delivery_target)
+			var/area/request_area = get_area(request_turf)
+			if(!request_turf || !request_area)
+				delivery_target.atom_say("The computer's location could not be determined, so the request could not be announced.")
+				return FALSE
+
+			spare_id.spare_request_used = TRUE
+			addtimer(CALLBACK(src, PROC_REF(deliver_captain_spare_id), spare_id, delivery_target), 60 SECONDS)
+			delivery_target.atom_say("The Captain's spare ID has been requested. It will arrive in 60 seconds.")
+			GLOB.command_announcement.Announce("[ui.user.real_name] requested the Captain's spare ID at the [request_area.name]. It will arrive in 60 seconds.", "Station Access Department")
+			message_admins("[key_name_admin(ui.user)] requested the Captain's spare ID in [request_area.name] at ([request_turf.x], [request_turf.y], [request_turf.z]) [ADMIN_JMP(request_turf)]")
+
 		// Status display stuff
 		if("setstat")
 			display_type = params["statdisp"]
@@ -382,6 +417,31 @@
 			to_chat(ui.user, "Backup routing data restored!")
 			emagged = FALSE
 			setMenuState(ui.user, COMM_SCREEN_MAIN)
+
+/datum/tgui_module/communications/proc/is_captain_job_occupied()
+	for(var/mob/player in GLOB.player_list)
+		if(player.mind && player.mind.assigned_role == JOB_SITE_MANAGER)
+			return TRUE
+	return FALSE
+
+/datum/tgui_module/communications/proc/get_spare_id_delivery_target()
+	if(istype(host, /obj/machinery/computer/communications))
+		return host
+	if(istype(host, /datum/computer_file/program/comm))
+		var/datum/computer_file/program/comm/comm_program = host
+		return comm_program.computer
+
+/datum/tgui_module/communications/proc/deliver_captain_spare_id(obj/item/card/id/gold/captain/spare/spare_id, atom/delivery_target)
+	if(!delivery_target || !spare_id)
+		log_game("Captain's spare ID request could not be completed as the computer or ID no longer exists.")
+		return
+	if(is_captain_job_occupied())
+		delivery_target.atom_say("The Captain's spare ID delivery has been cancelled as the Site Manager has arrived.")
+		spare_id.spare_request_used = FALSE
+		return
+
+	spare_id.forceMove(get_turf(delivery_target))
+	delivery_target.visible_message(span_notice("\The [delivery_target] dispenses an ID card."))
 
 /datum/tgui_module/communications/ntos
 	ntos = TRUE
