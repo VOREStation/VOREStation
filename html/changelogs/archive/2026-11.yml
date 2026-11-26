@@ -175,3 +175,10 @@
   - bugfix: capitalisation of a selected belly can be changed without triggering the
       duplicate warning
   - bugfix: a few runtimes in some very specific cases
+2026-11-26:
+  Guti:
+  - rscadd: Added marshmallows, graham crackers, and smores.
+  - bugfix: Fixed the crafting menu not using up food
+  ReoDaProtovali:
+  - bugfix: slip timers nolonger try to delete un-deletable timers by making all slip-related
+      timers deletable
