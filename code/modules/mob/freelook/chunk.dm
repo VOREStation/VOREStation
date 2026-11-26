@@ -72,7 +72,7 @@
 
 	set background = 1
 
-	var/list/newVisibleTurfs = new()
+	var/list/newVisibleTurfs = list()
 	acquireVisibleTurfs(newVisibleTurfs)
 
 	// Removes turf that isn't in turfs.
