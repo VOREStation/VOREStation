@@ -768,3 +768,15 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Chemical implants"
 	access = ACCESS_SECURITY
+
+/datum/supply_pack/security/deathalarm
+	name = "Security Death Alarm crate"
+	desc = "Death alarms, a now somewhat-antiquated means of tracking the status of vital personnel. Configured for security personnel. Requires Security access."
+	contains = list(
+			/obj/item/storage/box/cdeathalarm_kit/security,
+			/obj/item/storage/box/cdeathalarm_kit/security
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Security Death Alarm crate"
+	access = ACCESS_SECURITY
