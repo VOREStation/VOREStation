@@ -1,8 +1,8 @@
 import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Button, Divider, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
-
 import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
 import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
@@ -37,16 +37,16 @@ export const WikiSearchPage = (
     onUpdateAds,
     updateAds,
     searchmode,
-    botany_data,
-    ore_data,
-    virus_data,
-    gene_data,
-    food_data,
-    drink_data,
-    chemistry_data,
-    material_data,
-    particle_data,
-    catalog_data,
+    botany_id,
+    ore_id,
+    virus_id,
+    gene_id,
+    food_id,
+    drink_id,
+    chemistry_id,
+    material_id,
+    particle_id,
+    catalog_id,
     search,
     print,
     subCats,
@@ -76,24 +76,56 @@ export const WikiSearchPage = (
     (search) => search,
   );
   const subToDisplay = subCats?.filter(customSubSearch);
-
   const tabs: Record<string, React.JSX.Element | false> = {};
-  tabs['Food Recipes'] = !!food_data && <WikiFoodPage food={food_data} />;
-  tabs['Drink Recipes'] = !!drink_data && <WikiFoodPage food={drink_data} />;
-  tabs.Chemistry = !!chemistry_data && (
-    <WikiChemistryPage chems={chemistry_data} beakerFill={0.5} />
+  tabs['Food Recipes'] = !!food_id && (
+    <WikiFoodPage
+      food={JSON.parse(resolveAsset('intwiki_recipe.json'))[food_id]}
+    />
   );
-  tabs.Botany = !!botany_data && <WikiBotanyPage seeds={botany_data} />;
-  tabs.Ores = !!ore_data && <WikiOrePage ores={ore_data} />;
-  tabs.Viruses = !!virus_data && <WikiVirusPage virus={virus_data} />;
-  tabs.Genes = !!gene_data && <WikiGenePage gene={gene_data} />;
-  tabs.Materials = !!material_data && (
-    <WikiMaterialPage materials={material_data} />
+  tabs['Drink Recipes'] = !!drink_id && (
+    <WikiFoodPage
+      food={JSON.parse(resolveAsset('intwiki_drink.json'))[drink_id]}
+    />
   );
-  tabs['Particle Physics'] = !!particle_data && (
-    <WikiParticlePage smasher={particle_data} />
+  tabs.Chemistry = !!chemistry_id && (
+    <WikiChemistryPage
+      chems={JSON.parse(resolveAsset('intwiki_chemistry.json'))[chemistry_id]}
+      beakerFill={0.5}
+    />
   );
-  tabs.Catalogs = !!catalog_data && <WikiCatalogPage catalog={catalog_data} />;
+  tabs.Botany = !!botany_id && (
+    <WikiBotanyPage
+      seeds={JSON.parse(resolveAsset('intwiki_seed.json'))[botany_id]}
+    />
+  );
+  tabs.Ores = !!ore_id && (
+    <WikiOrePage ores={JSON.parse(resolveAsset('intwiki_ore.json'))[ore_id]} />
+  );
+  tabs.Viruses = !!virus_id && (
+    <WikiVirusPage
+      virus={JSON.parse(resolveAsset('intwiki_virus.json'))[virus_id]}
+    />
+  );
+  tabs.Genes = !!gene_id && (
+    <WikiGenePage
+      gene={JSON.parse(resolveAsset('intwiki_gene.json'))[gene_id]}
+    />
+  );
+  tabs.Materials = !!material_id && (
+    <WikiMaterialPage
+      materials={JSON.parse(resolveAsset('intwiki_material.json'))[material_id]}
+    />
+  );
+  tabs['Particle Physics'] = !!particle_id && (
+    <WikiParticlePage
+      smasher={JSON.parse(resolveAsset('intwiki_smasher.json'))[particle_id]}
+    />
+  );
+  tabs.Catalogs = !!catalog_id && (
+    <WikiCatalogPage
+      catalog={JSON.parse(resolveAsset('intwiki_catalog.json'))[catalog_id]}
+    />
+  );
 
   return (
     <Section fill>
