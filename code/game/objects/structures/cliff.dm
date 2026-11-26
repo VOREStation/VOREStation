@@ -209,7 +209,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 		var/harm = !is_double_cliff ? 1 : 0.5
 		if(!safe_fall)
 			// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
-			if(istype(L.buckled, /obj/vehicle)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
+			if(isVehicle(L.buckled)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
 				var/obj/vehicle/vehicle = L.buckled
 				vehicle.adjust_health(40 * harm)
 				to_chat(L, span_warning("\The [vehicle] absorbs some of the impact, damaging it."))

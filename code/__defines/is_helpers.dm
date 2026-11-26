@@ -37,6 +37,10 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define ismecha(A)      istype(A, /obj/mecha)
 
+#define isVehicle(A)      istype(A, /obj/vehicle)
+
+#define isMulebot(A)      istype(A, /mob/living/bot/mulebot)
+
 #define isstructure(A)	istype(A, /obj/structure)
 
 #define isdisposalpacket(A)	istype(A,/obj/structure/disposalholder)

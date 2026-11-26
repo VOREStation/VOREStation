@@ -33,7 +33,7 @@
 				if(S.occupant != null)
 					return 0
 
-	return istype(O, /obj/mecha) || istype(O, /obj/vehicle)
+	return ismecha(O) ||isVehicle(O)
 
 /obj/machinery/mech_sensor/proc/give_feedback(O as obj)
 	var/block_message = span_warning("Movement control overridden. Area denial active.")
