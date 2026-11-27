@@ -302,9 +302,9 @@
 		H.bodytemperature += temp_adj
 
 	else if(breath.temperature >= heat_discomfort_level)
-		get_environment_discomfort(src,"heat")
+		get_environment_discomfort(H,ENVIRONMENT_COMFORT_MARKER_HOT)
 	else if(breath.temperature <= cold_discomfort_level)
-		get_environment_discomfort(src,"cold")
+		get_environment_discomfort(H,ENVIRONMENT_COMFORT_MARKER_COLD)
 
 	breath.update_values()
 	..()
