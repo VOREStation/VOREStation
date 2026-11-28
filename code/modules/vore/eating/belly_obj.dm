@@ -513,6 +513,8 @@
 		STOP_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSbellies, src)
+	if(owner.soulgem?.linked_belly == src)
+		owner.soulgem.update_linked_belly(null)
 	owner?.vore_organs?.Remove(src)
 	owner = null
 	for(var/mob/observer/G in src)
@@ -1840,8 +1842,7 @@
 		belly_surrounding = list()
 		return
 	belly_surrounding = get_belly_surrounding(contents)
-	var/obj/belly/linked_belly = owner.soulgem.belly_ref?.resolve()
-	if(linked_belly == src)
+	if(owner.soulgem?.linked_belly == src)
 		belly_surrounding += owner.soulgem.brainmobs
 
 // Recursive proc that returns all living mobs directly and indirectly inside a belly
