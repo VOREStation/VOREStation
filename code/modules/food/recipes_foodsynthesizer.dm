@@ -989,6 +989,10 @@
 	name = "Chocolate Bar"
 	build_path = /obj/item/reagent_containers/food/snacks/chocolatebar
 
+/datum/category_item/synthesizer/dessert/smores
+	name = "Smore Sandwich"
+	build_path = /obj/item/reagent_containers/food/snacks/smores
+
 /*********
 * Exotic *
 **********/
