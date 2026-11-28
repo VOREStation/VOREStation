@@ -507,6 +507,7 @@
 	if(user.soulgem)
 		var/obj/soulgem/gem = user.soulgem
 		var/list/soulcatcher_data = list()
+		var/obj/belly/linked_belly = gem.belly_ref?.resolve()
 		soulcatcher_data["name"] = gem.name
 		soulcatcher_data["setting_flags"] = gem.setting_flags
 		soulcatcher_data["inside_flavor"] = gem.inside_flavor
@@ -515,7 +516,7 @@
 		soulcatcher_data["release_message"] = gem.release_message
 		soulcatcher_data["transfer_message"] = gem.transfer_message
 		soulcatcher_data["delete_message"] = gem.delete_message
-		soulcatcher_data["linked_belly"] = gem.linked_belly?.name
+		soulcatcher_data["linked_belly"] = linked_belly?.name
 
 		data["soulcatcher"] = soulcatcher_data
 

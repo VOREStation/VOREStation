@@ -1840,7 +1840,8 @@
 		belly_surrounding = list()
 		return
 	belly_surrounding = get_belly_surrounding(contents)
-	if(owner.soulgem?.linked_belly == src)
+	var/obj/belly/linked_belly = owner.soulgem.belly_ref?.resolve()
+	if(linked_belly == src)
 		belly_surrounding += owner.soulgem.brainmobs
 
 // Recursive proc that returns all living mobs directly and indirectly inside a belly

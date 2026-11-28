@@ -899,8 +899,9 @@
 				tgui_alert_async(user, failure_msg, "Error!")
 				return FALSE
 
-			if(host.soulgem?.linked_belly == host.vore_selected)
-				host.soulgem.linked_belly = null
+			var/obj/belly/linked_belly = host.soulgem?.belly_ref?.resolve()
+			if(linked_belly == host.vore_selected)
+				host.soulgem.belly_ref = null
 
 			qdel(host.vore_selected)
 			host.vore_selected = host.vore_organs[1]

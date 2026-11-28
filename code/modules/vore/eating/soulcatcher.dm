@@ -3,7 +3,7 @@
 	desc = "A mind storage and processing system capable of capturing and supporting human-level minds in a small VR space."
 	var/mob/living/owner
 	var/datum/own_mind
-	var/obj/belly/linked_belly
+	var/datum/weakref/belly_ref
 	var/taken_over_name
 
 	var/setting_flags = (NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS|NIF_SC_PROJECTING)
@@ -38,6 +38,7 @@
 // Horrible, but Byond will serialize non capitalized bellies by adding a "the" in front of it
 /obj/soulgem/serialize(list/data)
 	. = ..()
+	var/obj/belly/linked_belly = belly_ref?.resolve()
 	if(linked_belly)
 		.["linked_belly"] = linked_belly.name
 
@@ -46,7 +47,7 @@
 	. = ..()
 	if(apply_stored_belly(data["linked_belly"], TRUE))
 		return
-	linked_belly = null
+	belly_ref = null
 	owner.recalculate_vis()
 
 /obj/soulgem/proc/apply_stored_belly(belly_string, skip_unreg = FALSE)
@@ -70,9 +71,10 @@
 	selected_soul = null
 	own_mind = null
 	QDEL_LIST_NULL(brainmobs)
+	var/obj/belly/linked_belly = belly_ref?.resolve()
 	if(istype(linked_belly))
 		UnregisterSignal(linked_belly, COMSIG_BELLY_UPDATE_VORE_FX)
-		linked_belly = null
+		belly_ref = null
 	. = ..()
 
 // Sends messages to the owner of the soulcatcher
@@ -318,26 +320,29 @@
 
 // Updates the vore FX signal links to the new given belly
 /obj/soulgem/proc/update_linked_belly(obj/belly, skip_unreg = FALSE)
+	var/obj/belly/linked_belly = belly_ref?.resolve()
 	if(!belly && linked_belly)
 		UnregisterSignal(linked_belly, COMSIG_BELLY_UPDATE_VORE_FX)
-		linked_belly = null
+		belly_ref = null
 		return
 	if(!isbelly(belly))
 		return
 	if(!linked_belly)
 		linked_belly = belly
 		RegisterSignal(linked_belly, COMSIG_BELLY_UPDATE_VORE_FX, PROC_REF(soulgem_show_vfx))
+		belly_ref = WEAKREF(linked_belly)
 		return
 	if(belly != linked_belly)
 		if(!skip_unreg)
 			UnregisterSignal(linked_belly, COMSIG_BELLY_UPDATE_VORE_FX)
 		linked_belly = belly
 		RegisterSignal(linked_belly, COMSIG_BELLY_UPDATE_VORE_FX, PROC_REF(soulgem_show_vfx))
+		belly_ref = WEAKREF(linked_belly)
 
 // Handles the vore fx updates for the captured souls
 /obj/soulgem/proc/soulgem_show_vfx(severity = 0)
 	SIGNAL_HANDLER
-	if(linked_belly)
+	if(belly_ref?.resolve())
 		for(var/mob/living/L in brainmobs)
 			if(flag_check(SOULGEM_SHOW_VORE_SFX))
 				show_vore_fx(L, severity)
@@ -346,6 +351,7 @@
 
 // Function to show the vore fx overlay
 /obj/soulgem/proc/show_vore_fx(mob/living/L, severity = 0)
+	var/obj/belly/linked_belly = belly_ref?.resolve()
 	if(!linked_belly || !flag_check(SOULGEM_SHOW_VORE_SFX))
 		return
 	if(!istype(L) || L.eyeobj)

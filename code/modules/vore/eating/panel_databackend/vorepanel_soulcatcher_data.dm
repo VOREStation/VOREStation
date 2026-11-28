@@ -14,12 +14,13 @@
 	for(var/soul in owner.soulgem.brainmobs)
 		var/list/info = list("displayText" = "[soul]", "value" = "\ref[soul]")
 		stored_souls.Add(list(info))
+	var/obj/belly/linked_belly = host.soulgem.belly_ref?.resolve()
 	var/list/soulcatcher_data = list(
 		"active" = owner.soulgem.flag_check(SOULGEM_ACTIVE),
 		"name" = owner.soulgem.name,
 		"caught_souls" = stored_souls,
 		"selected_soul" = owner.soulgem.selected_soul,
-		"selected_sfx" = owner.soulgem.linked_belly?.name,
+		"selected_sfx" = linked_belly?.name,
 		"sc_message_data" =  compile_soulcatcher_message_data(owner.soulgem),
 		"taken_over" = owner.soulgem.is_taken_over(),
 		"catch_self" = owner.soulgem.flag_check(NIF_SC_CATCHING_ME),
