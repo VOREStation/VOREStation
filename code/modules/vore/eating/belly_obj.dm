@@ -513,8 +513,11 @@
 		STOP_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSbellies, src)
-	owner?.vore_organs?.Remove(src)
-	owner = null
+	if(owner)
+		if(owner.soulgem?.linked_belly == src)
+			owner.soulgem.update_linked_belly(null)
+		owner.vore_organs?.Remove(src)
+		owner = null
 	for(var/mob/observer/G in src)
 		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
 	return ..()
